@@ -1,0 +1,46 @@
+.dateRangePicker {
+    margin-bottom: 1rem;
+
+    &__flexContainer {
+        display: flex;
+
+        @media (max-width: 736px) {
+            display: block;
+
+            fieldset:not(:first-child) {
+                margin-top: 1rem;
+            }
+        }
+
+        fieldset {
+            margin-right: 1rem;
+            margin-bottom: 0;
+            max-width: 50%;
+            &__label {
+                font-weight: normal;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+
+            @media (max-width: 736px) {
+                width: 100% !important;
+
+                .nav-datovelger__kalenderPortal:not(.nav-datovelger__kalenderPortal--fullscreen) {
+                    top: calc(100% + 10px);
+                    width: 100%;
+                    text-align: center;
+                    background-color: white;
+                }
+            }
+
+            .nav-datovelger {
+                width: 100%;
+
+                &__inputContainer {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
