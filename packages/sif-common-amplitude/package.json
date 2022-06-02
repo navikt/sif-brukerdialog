@@ -1,13 +1,26 @@
 {
+    "author": "navikt",
+    "description": "Amplitude log util used in SIF",
+    "homepage": "https://github.com/navikt/sif-common-amplitude",
+    "license": "MIT",
+    "main": "lib/index.js",
     "name": "@navikt/sif-common-amplitude",
+    "types": "lib/index.d.js",
     "version": "2.4.0",
-    "private": false,
-    "scripts": {
-        "test": "jest",
-        "test-w": "jest --watch",
-        "build": "npm-run-all clean-lib compile-lib-script",
-        "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig-build-lib.json"
+    "browserslist": {
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ]
+    },
+    "bugs": {
+        "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "devDependencies": {
         "@types/amplitude-js": "^8.16.1",
@@ -34,44 +47,31 @@
         "ts-jest": "^28.0.3",
         "typescript": "^4.7.2"
     },
-    "peerDependencies": {
-        "amplitude-js": "8.x",
-        "constate": "^3.3.0",
-        "react": "^17.x"
-    },
-    "jest": {
-        "testEnvironment": "node"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+    "directories": {
+        "lib": "lib"
     },
     "files": [
         "package.json",
         "/lib"
     ],
-    "description": "Amplitude log util used in sif",
-    "directories": {
-        "lib": "lib"
+    "jest": {
+        "testEnvironment": "node"
+    },
+    "peerDependencies": {
+        "amplitude-js": "8.x",
+        "constate": "^3.3.0",
+        "react": "^17.x"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-common-amplitude.git"
     },
-    "author": "navikt",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/navikt/sif-common-amplitude/issues"
+    "scripts": {
+        "build": "npm-run-all clean-lib compile-lib-script",
+        "clean-lib": "rimraf ./lib",
+        "compile-lib-script": "tsc -p tsconfig-build-lib.json",
+        "test": "jest",
+        "test-w": "jest --watch"
     },
-    "homepage": "https://github.com/navikt/sif-common-amplitude",
-    "main": "lib/index.js",
-    "types": "lib/index.d.js"
+    "private": false
 }
