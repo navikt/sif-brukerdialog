@@ -13,6 +13,8 @@
         "format": "prettier --write \"**/*.{ts,tsx,md}\""
     },
     "devDependencies": {
+        "@storybook/builder-webpack5": "^6.5.6",
+        "@storybook/manager-webpack5": "^6.5.6",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
         "enzyme": "^3.11.0",
         "jest-environment-jsdom": "^28.1.0",
