@@ -1,27 +1,25 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Default",
     "compilerOptions": {
         "allowJs": false,
         "allowSyntheticDefaultImports": true,
-        "baseUrl": "./src",
+        "composite": false,
         "declaration": true,
+        "declarationMap": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "inlineSources": false,
         "isolatedModules": true,
-        "jsx": "react-jsx",
-        "lib": ["dom", "dom.iterable", "es2015", "es2016", "es2017"],
-        "module": "esnext",
         "moduleResolution": "node",
-        "noEmit": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": false,
-        "outDir": "./dist",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "preserveWatchOutput": true,
         "removeComments": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "strict": true,
-        "strictNullChecks": true,
-        "target": "es2015"
+        "strictNullChecks": true
     },
-    "include": ["src"],
     "exclude": ["node_modules"]
 }

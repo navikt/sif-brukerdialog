@@ -6,6 +6,10 @@
             "outputs": ["dist/**", ".next/**", "public/dist/**"],
             "dependsOn": ["^build"]
         },
+        "lib-formik": {
+            "outputs": ["dist/**", "build/**"],
+            "dependsOn": ["^build"]
+        },
         "test": {
             "outputs": ["coverage/**"],
             "dependsOn": ["^build"]
