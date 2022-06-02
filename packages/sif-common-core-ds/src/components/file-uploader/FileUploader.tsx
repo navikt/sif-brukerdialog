@@ -1,7 +1,6 @@
 import * as React from 'react';
-
-import { FormikFileInput, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { FormikFileInput, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { AxiosError, AxiosResponse } from 'axios';
 import { ArrayHelpers } from 'formik';
 import { Attachment, PersistedFile } from '../../types/Attachment';
@@ -90,7 +89,7 @@ const FileUploader = ({
                 attachment = setAttachmentPendingToFalse(attachment);
                 attachment.url = response.headers.location;
                 attachment.uploaded = true;
-            } catch (error) {
+            } catch (error: any) {
                 if (isForbidden(error) || isUnauthorized(error)) {
                     onUnauthorizedOrForbiddenUpload();
                 } else {

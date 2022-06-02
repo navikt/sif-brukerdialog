@@ -1,10 +1,10 @@
 import { Alert } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { v4 as uuid } from 'uuid';
 import CollapsableContainer from './CollapsableContainer';
 import InfoToggleButton from './InfoToggleButton';
 import './expandableInfo.less';
+import bemUtils from '../../../utils/bemUtils';
 
 interface Props {
     children: React.ReactNode;

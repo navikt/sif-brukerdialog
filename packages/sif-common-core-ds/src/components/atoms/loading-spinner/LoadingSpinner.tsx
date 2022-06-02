@@ -1,16 +1,16 @@
+import { Heading, Loader, LoaderProps } from '@navikt/ds-react';
 import React from 'react';
-import NavFrontendSpinner, { NavFrontendSpinnerBaseProps } from 'nav-frontend-spinner';
-import { Element } from 'nav-frontend-typografi';
 
 interface OwnProps {
     style?: 'inline' | 'block';
     blockTitle?: string;
+    'data-testid'?: string;
 }
 
-type Props = OwnProps & NavFrontendSpinnerBaseProps;
+type Props = OwnProps & LoaderProps;
 
-const LoadingSpinner = ({ type, style = 'inline', blockTitle }: Props) => {
-    const spinner = <NavFrontendSpinner type={type} data-testid="spinner-element" />;
+const LoadingSpinner = ({ type, size, style = 'inline', blockTitle, ...rest }: Props) => {
+    const spinner = <Loader type={type} size={size} data-testid={rest['data-testid']} />;
     if (style === 'inline') {
         return spinner;
     }
@@ -24,7 +24,11 @@ const LoadingSpinner = ({ type, style = 'inline', blockTitle }: Props) => {
                 alignItems: 'center',
             }}>
             <LoadingSpinner type="XXL" />
-            {blockTitle && <Element style={{ marginTop: '1rem' }}>{blockTitle}</Element>}
+            {blockTitle && (
+                <Heading size="medium" style={{ marginTop: '1rem' }}>
+                    {blockTitle}
+                </Heading>
+            )}
         </div>
     );
 };

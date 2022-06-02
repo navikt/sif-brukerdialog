@@ -2,12 +2,12 @@ import { BodyLong, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { ExternalLink } from '@navikt/ds-icons';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import ExpandableInfo from '../../components/layout/expandable-info/ExpandableInfo';
+import bemUtils from '../../utils/bemUtils';
+import intlHelper from '../../utils/intlUtils';
 import PictureScanningExample from './PictureScanningExample';
 import ScanningIcon from './scanning-icon/ScanningIcon';
 import './pictureScanningGuide.less';
-import intlHelper from '../../utils/intlUtils';
 
 const bem = bemUtils('pictureScanningGuide');
 
