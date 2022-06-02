@@ -1,0 +1,18 @@
+.infoDialog {
+    max-width: 50rem;
+}
+.sif--modal__content {
+    @media (max-width: 399px) {
+        padding: 0.5rem;
+    }
+    @media (max-width: 599px) {
+        padding: 1rem;
+    }
+    @media (min-width: 600px) {
+        padding: var(--navds-spacing-6) var(--navds-spacing-8) var(--navds-spacing-8) var(--navds-spacing-8);
+    }
+    ul,
+    ol {
+        padding-left: var(--navds-spacing-6);
+    }
+}
