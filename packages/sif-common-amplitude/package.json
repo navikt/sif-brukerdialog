@@ -7,18 +7,6 @@
     "name": "@navikt/sif-common-amplitude",
     "types": "lib/index.d.js",
     "version": "2.4.0",
-    "browserslist": {
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ],
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ]
-    },
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
@@ -70,8 +58,8 @@
         "build": "npm-run-all clean-lib compile-lib-script",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig-build-lib.json",
-        "test": "jest",
-        "test-w": "jest --watch"
+        "test": "jest  --config ./jest/jest.config.js --watch",
+        "test-c": "jest  --coverage --config ./jest/jest.config.js --watch"
     },
     "private": false
 }

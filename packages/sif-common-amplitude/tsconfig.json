@@ -21,6 +21,6 @@
         "noEmit": false,
         "baseUrl": "./src"
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "jest"],
     "exclude": ["node_modules", "**/*.spec.ts"]
 }
