@@ -13,4 +13,4 @@ public/dist
 .turbo
 packages/**/*/coverage
 
-/packages/**/lib
+/packages/**/*/lib

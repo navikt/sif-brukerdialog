@@ -1,0 +1,27 @@
+{
+    "app": "sif-ettersending",
+    "cluster": "prod-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "minReplicas": "1",
+    "maxReplicas": "1",
+    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending"],
+    "externalHosts": ["www.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/ettersending/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/ettersending/health/isReady",
+    "env": {
+        "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false",
+        "API_URL": "https://k9-brukerdialog-api.nav.no",
+        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/ettersending/api",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
+        "LOGIN_URL": "https://loginservice.nav.no/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending",
+        "NYNORSK": "off",
+        "LIVETS_SLUTTFASE": "on",
+        "INNSYN_PP": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/dine-pleiepenger",
+        "DITT_NAV_URL": "https://www.nav.no/person/dittnav",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "production",
+        "USE_AMPLITUDE": "true",
+        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api"
+    }
+}
