@@ -6,7 +6,6 @@
     ],
     "scripts": {
         "build": "turbo run build",
-        "build-formik": "turbo run build --filter=sif-common-formik-ds",
         "dev": "turbo run dev --no-cache --parallel --continue",
         "lint": "turbo run lint",
         "test": "turbo run test",

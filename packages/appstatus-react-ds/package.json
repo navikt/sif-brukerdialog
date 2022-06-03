@@ -69,9 +69,7 @@
         "build": "npm-run-all clean-lib compile-lib-script copy-files-to-lib",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig-build-lib.json",
-        "copy-files-to-lib": "copyfiles -u 2 \"src/appstatus-react-ds/**/*.css\" lib",
-        "test": "jest  --config ./jest/jest.config.js --watch",
-        "test-c": "jest  --coverage --config ./jest/jest.config.js --watch"
+        "copy-files-to-lib": "copyfiles -u 2 \"src/appstatus-react-ds/**/*.css\" lib"
     },
     "private": false
 }

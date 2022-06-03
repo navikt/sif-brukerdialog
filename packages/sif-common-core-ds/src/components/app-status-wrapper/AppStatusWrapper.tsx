@@ -1,5 +1,4 @@
-import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
-import { SanityConfig } from '@navikt/appstatus-react-ds/lib/types';
+import { Status, StatusMessage, useAppStatus, SanityConfig } from '@navikt/appstatus-react-ds';
 import React from 'react';
 import LoadingSpinner from '../atoms/loading-spinner/LoadingSpinner';
 
