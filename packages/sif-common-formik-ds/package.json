@@ -87,7 +87,7 @@
         "copy-css-files-to-lib": "copyfiles -u 2 \"src/sif-common-formik-ds/**/*.css\" lib",
         "copy-sass-files-to-lib": "copyfiles -u 2 \"src/sif-common-formik-ds/**/*.scss\" lib",
         "storybook": "start-storybook -p 6006 -s public",
-        "test": "jest  --config ./jest/jest.config.js --watch",
+        "test": "jest  --config ./jest/jest.config.js",
         "test-c": "jest  --coverage --config ./jest/jest.config.js --watch"
     },
     "private": false
