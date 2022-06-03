@@ -68,7 +68,7 @@
     "scripts": {
         "build": "npm-run-all clean-lib compile-lib-script copy-files-to-lib",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig-build-lib.json",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "copy-files-to-lib": "copyfiles -u 2 \"src/appstatus-react-ds/**/*.css\" lib"
     },
     "private": false

@@ -1,0 +1,51 @@
+import { DateRange, ISODate, ISODateRange, MaybeDateRange } from '.';
+export declare const isDateRange: (dateRange: any) => dateRange is DateRange;
+export declare const sortDateRange: (d1: DateRange, d2: DateRange) => number;
+export declare const sortDateRangeByToDate: (d1: DateRange, d2: DateRange) => number;
+export declare const dateRangesCollide: (dateRanges: DateRange[], fromDateCanBeSameAsPreviousToDate?: boolean) => boolean;
+export declare const datesCollideWithDateRanges: (dates: Date[], dateRanges: DateRange[]) => boolean;
+export declare const isDateInMaybeDateRange: (date: Date, dateRange: MaybeDateRange) => boolean;
+export declare const isDateInDateRange: (date: Date, dateRange: DateRange) => boolean;
+export declare const isDateInsideDateRange: (date: Date, dateRange: DateRange) => boolean;
+export declare const getMonthsInDateRange: (dateRange: DateRange, returnFullMonths?: boolean) => DateRange[];
+export declare const getMonthDateRange: (date: Date, onlyWeekDays?: boolean) => DateRange;
+export declare const getWeekDateRange: (date: Date, onlyWeekDays?: boolean) => DateRange;
+export declare const getWeeksInDateRange: (dateRange: DateRange) => DateRange[];
+export declare const getDatesInDateRange: (dateRange: DateRange, onlyWeekDays?: boolean) => Date[];
+export declare const getYearsInDateRanges: (dateRanges: DateRange[]) => number[];
+export declare const getNumberOfDaysInDateRange: (dateRange: DateRange, onlyWeekDays?: boolean) => number;
+export declare const getDateRangeFromDateRanges: (dateRanges: DateRange[]) => DateRange;
+export declare const getDateRangesBetweenDateRanges: (dateRanges: DateRange[]) => DateRange[];
+export declare const getDatesInMonthOutsideDateRange: (month: Date, dateRange: DateRange) => Date[];
+export declare const ISODateRangeToDateRange: (isoDateRange: ISODateRange) => DateRange;
+export declare const ISODateRangeToISODates: (isoDateRange: ISODateRange) => {
+    from: ISODate;
+    to: ISODate;
+};
+export declare const dateRangeToISODateRange: (dateRange: DateRange) => ISODateRange;
+export declare const getISODatesInISODateRange: (range: ISODateRange, onlyWeekDays?: boolean) => ISODate[];
+export declare const ISODateToISODateRange: (isoDate: ISODate) => ISODateRange;
+export declare const dateRangeUtils: {
+    dateRangesCollide: (dateRanges: DateRange[], fromDateCanBeSameAsPreviousToDate?: boolean) => boolean;
+    dateRangeToISODateRange: (dateRange: DateRange) => ISODateRange;
+    datesCollideWithDateRanges: (dates: Date[], dateRanges: DateRange[]) => boolean;
+    getDateRangeFromDateRanges: (dateRanges: DateRange[]) => DateRange;
+    getDateRangesBetweenDateRanges: (dateRanges: DateRange[]) => DateRange[];
+    getMonthDateRange: (date: Date, onlyWeekDays?: boolean) => DateRange;
+    getMonthsInDateRange: (dateRange: DateRange, returnFullMonths?: boolean) => DateRange[];
+    getNumberOfDaysInDateRange: (dateRange: DateRange, onlyWeekDays?: boolean) => number;
+    getWeekDateRange: (date: Date, onlyWeekDays?: boolean) => DateRange;
+    isDateInDateRange: (date: Date, dateRange: DateRange) => boolean;
+    isDateInMaybeDateRange: (date: Date, dateRange: MaybeDateRange) => boolean;
+    isDateInsideDateRange: (date: Date, dateRange: DateRange) => boolean;
+    isDateRange: (dateRange: any) => dateRange is DateRange;
+    ISODateRangeToDateRange: (isoDateRange: ISODateRange) => DateRange;
+    ISODateRangeToISODates: (isoDateRange: ISODateRange) => {
+        from: ISODate;
+        to: ISODate;
+    };
+    ISODateToISODateRange: (isoDate: ISODate) => ISODateRange;
+    sortDateRange: (d1: DateRange, d2: DateRange) => number;
+    sortDateRangeByToDate: (d1: DateRange, d2: DateRange) => number;
+};
+//# sourceMappingURL=dateRangeUtils.d.ts.map

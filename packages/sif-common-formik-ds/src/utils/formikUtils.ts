@@ -3,7 +3,7 @@ export function resetFieldValue<FieldName extends string, FormValues>(
     setFieldValue: (field: string, value: any) => void,
     initialValues: FormValues
 ) {
-    setFieldValue(fieldName, initialValues[fieldName as string]);
+    setFieldValue(fieldName, (initialValues as any)[fieldName]);
 }
 
 export function resetFieldValues<FieldName extends string, FormValues>(

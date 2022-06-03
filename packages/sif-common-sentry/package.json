@@ -63,7 +63,7 @@
     "scripts": {
         "build": "npm-run-all clean-lib compile-lib-script",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig-build-lib.json",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "test": "jest  --config ./jest/jest.config.js --watch",
         "test-c": "jest  --coverage --config ./jest/jest.config.js --watch"
     },

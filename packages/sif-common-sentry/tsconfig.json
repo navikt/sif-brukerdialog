@@ -1,13 +1,11 @@
 {
+    "extends": "tsconfig/base.json",
     "compilerOptions": {
-        "target": "es5",
+        "baseUrl": "./src",
         "module": "commonjs",
-        "lib": ["es2015"],
-        "strict": true,
-        "declaration": true,
-        "outDir": "dist",
-        "sourceMap": true
+        "target": "es2015",
+        "lib": ["dom", "ES2015"]
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+    "exclude": ["node_modules", ".turbo", "lib"],
+    "include": ["src"]
 }

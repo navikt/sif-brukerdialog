@@ -1,10 +1,11 @@
 {
-    "compilerOptions": {
-        "lib": ["dom", "ES2015"],
-        "module": "commonjs",
-        "target": "es2015"
-    },
     "extends": "tsconfig/base.json",
-    "include": ["src/**/*"],
-    "exclude": ["dist", "build", "node_modules"]
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "module": "commonjs",
+        "target": "es2015",
+        "lib": ["dom", "ES2015"]
+    },
+    "exclude": ["node_modules", ".turbo", "lib"],
+    "include": ["src"]
 }
