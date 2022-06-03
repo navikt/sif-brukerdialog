@@ -1,0 +1,3 @@
+export declare function resetFieldValue<FieldName extends string, FormValues>(fieldName: FieldName, setFieldValue: (field: string, value: any) => void, initialValues: FormValues): void;
+export declare function resetFieldValues<FieldName extends string, FormValues>(fieldNames: FieldName[], setFieldValue: (field: string, value: any) => void, initialValues: FormValues): void;
+//# sourceMappingURL=formikUtils.d.ts.map

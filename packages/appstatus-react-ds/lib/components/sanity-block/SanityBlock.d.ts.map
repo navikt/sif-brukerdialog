@@ -1,0 +1,1 @@
+{"version":3,"file":"SanityBlock.d.ts","sourceRoot":"","sources":["../../../src/components/sanity-block/SanityBlock.tsx"],"names":[],"mappings":"AAEA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,UAAU,KAAK;IACX,OAAO,EAAE,GAAG,CAAC;CAChB;AAED,QAAA,MAAM,WAAW,EAAE,KAAK,CAAC,iBAAiB,CAAC,KAAK,CAqB/C,CAAC;AACF,eAAe,WAAW,CAAC"}

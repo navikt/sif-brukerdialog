@@ -1,0 +1,1 @@
+{"version":3,"file":"sanityObjects.d.ts","sourceRoot":"","sources":["../../src/types/sanityObjects.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,oBAAoB,EAAE,iBAAiB,EAAE,MAAM,GAAG,CAAC;AAE5D,MAAM,WAAW,mBAAmB;IAChC,KAAK,EAAE,eAAe,CAAC;IACvB,OAAO,EAAE,oBAAoB,CAAC;IAC9B,WAAW,CAAC,EAAE,iBAAiB,CAAC;CACnC"}
