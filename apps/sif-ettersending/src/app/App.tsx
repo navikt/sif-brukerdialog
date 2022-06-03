@@ -1,17 +1,17 @@
 import { Modal } from '@navikt/ds-react';
 import * as React from 'react';
 import { render } from 'react-dom';
-import '@navikt/ds-css';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
-import AppStatusWrapper from '@navikt/sif-common-core-ds/components/app-status-wrapper/AppStatusWrapper';
-import '@navikt/sif-common-core-ds/styles/sif-ds-theme/sif-ds-theme.css';
 import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import appSentryLogger from './utils/appSentryLogger';
 import { getEnvironmentVariable } from './utils/envUtils';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import YtelseSwitch from './YtelseSwitch';
+import '@navikt/ds-css';
+import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme/sif-ds-theme.css';
 
 export const APPLICATION_KEY = 'ettersending';
 

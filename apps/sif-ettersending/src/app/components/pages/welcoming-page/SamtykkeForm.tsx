@@ -6,7 +6,7 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import ApplicationFormComponents from '../../../application/ApplicationFormComponents';
 import { ApplicationFormField } from '../../../types/ApplicationFormData';
-import intlHelper from '@navikt/sif-common-core-ds/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
     onConfirm: () => void;

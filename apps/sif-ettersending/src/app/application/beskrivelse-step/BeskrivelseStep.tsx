@@ -6,7 +6,7 @@ import { ApplicationFormField } from '../../types/ApplicationFormData';
 import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';
 import ApplicationFormComponents from '../ApplicationFormComponents';
 import ApplicationStep from '../ApplicationStep';
-import intlHelper from '@navikt/sif-common-core-ds/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { BodyLong, Link } from '@navikt/ds-react';
 

@@ -86,8 +86,8 @@
         "build-storybook": "build-storybook -s public",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-css-files-to-lib": "copyfiles -u 2 \"src/sif-common-formik-ds/**/*.css\" lib",
-        "copy-sass-files-to-lib": "copyfiles -u 2 \"src/sif-common-formik-ds/**/*.scss\" lib",
+        "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
+        "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
         "storybook": "start-storybook -p 6006 -s public",
         "test": "react-scripts test"
     },

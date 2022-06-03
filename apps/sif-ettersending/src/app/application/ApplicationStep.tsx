@@ -7,7 +7,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import Step, { StepProps } from '../components/step/Step';
 import { getStepConfig } from '../config/stepConfig';
 import { ApplicationTypeContext } from '../context/ApplicationTypeContext';
-import intlHelper from '@navikt/sif-common-core-ds/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getStepTexts } from '../utils/stepUtils';
 import ApplicationFormComponents from './ApplicationFormComponents';
 

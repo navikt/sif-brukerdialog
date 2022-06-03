@@ -1,7 +1,7 @@
 import { Heading, Link } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../../lenker';
 import { ApplicationType } from '../../../types/ApplicationType';
 

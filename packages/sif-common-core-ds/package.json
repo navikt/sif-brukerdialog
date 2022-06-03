@@ -84,12 +84,13 @@
         "url": "git+https://github.com/navikt/sif-common-core-ds.git"
     },
     "scripts": {
-        "build": "npm-run-all clean-lib compile-lib-script copy-sass-files-to-lib copy-css-files-to-lib",
+        "build": "npm-run-all clean-lib compile-lib-script copy-sass-files-to-lib copy-css-files-to-lib copy-less-files-to-lib",
         "build-storybook": "build-storybook -s public",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-css-files-to-lib": "copyfiles -u 2 \"src/sif-common-core-ds/**/*.css\" lib",
-        "copy-sass-files-to-lib": "copyfiles -u 2 \"src/sif-common-core-ds/**/*.scss\" lib",
+        "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
+        "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
+        "copy-less-files-to-lib": "copyfiles -u 1 \"src/**/*.less\" lib",
         "storybook": "start-storybook -p 6006 -s public",
         "test": "react-scripts test"
     },
