@@ -3,6 +3,7 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "module": "commonjs",
+        "outDir": "./lib",
         "target": "es2015",
         "lib": ["dom", "ES2015"]
     },

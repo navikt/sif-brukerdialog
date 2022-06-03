@@ -3,7 +3,8 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "jsx": "react-jsx",
-        "module": "esnext",
+        "module": "commonjs",
+        "outDir": "./lib",
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"]
     },
