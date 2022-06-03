@@ -2,7 +2,7 @@ require('dotenv').config();
 const mustacheExpress = require('mustache-express');
 const path = require('path');
 const envSettings = require('../../../envSettings');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+// const { createProxyMiddleware } = require('http-proxy-middleware');
 /* Start */
 
 const configureDevServer = (decoratorFragments) => ({
@@ -15,6 +15,7 @@ const configureDevServer = (decoratorFragments) => ({
             res.set('content-type', 'application/javascript');
             res.send(`${envSettings()}`);
         });
+
         devServer.app.get('/dist/settings.js', (req, res) => {
             res.set('content-type', 'application/javascript');
             res.send(`${envSettings()}`);
