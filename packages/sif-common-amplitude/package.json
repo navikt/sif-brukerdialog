@@ -30,6 +30,7 @@
         "npm-run-all": "^4.1.5",
         "prettier": "^2.6.2",
         "react": "^17.0.2",
+        "react-scripts": "5.0.1",
         "rimraf": "^3.0.2",
         "ts-jest": "^28.0.3",
         "typescript": "^4.7.2"
@@ -41,9 +42,6 @@
         "package.json",
         "/lib"
     ],
-    "jest": {
-        "testEnvironment": "node"
-    },
     "peerDependencies": {
         "amplitude-js": "8.x",
         "constate": "^3.3.0",
@@ -57,8 +55,7 @@
         "build": "npm-run-all clean-lib compile-lib-script",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "test": "jest  --config ./jest/jest.config.js --watch",
-        "test-c": "jest  --coverage --config ./jest/jest.config.js --watch"
+        "test": "react-scripts test"
     },
     "private": false
 }
