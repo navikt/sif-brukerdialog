@@ -2,8 +2,18 @@
     "$schema": "https://turborepo.org/schema.json",
     "baseBranch": "origin/main",
     "pipeline": {
+        "build-packages": {
+            "outputs": ["dist/**", "public/dist/**"],
+            "dependsOn": ["^build"],
+            "inputs": ["./packages/**/*"]
+        },
+        "build-apps": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["^build"],
+            "inputs": ["./apps/**/*"]
+        },
         "build": {
-            "outputs": ["dist/**", ".next/**", "public/dist/**"],
+            "outputs": ["dist/**", "public/dist/**"],
             "dependsOn": ["^build"]
         },
         "lib-formik": {

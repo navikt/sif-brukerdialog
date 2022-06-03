@@ -87,7 +87,7 @@
         "build": "npm-run-all clean-lib compile-lib-script copy-sass-files-to-lib copy-css-files-to-lib",
         "build-storybook": "build-storybook -s public",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig-build-lib.json",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "copy-css-files-to-lib": "copyfiles -u 2 \"src/sif-common-core-ds/**/*.css\" lib",
         "copy-sass-files-to-lib": "copyfiles -u 2 \"src/sif-common-core-ds/**/*.scss\" lib",
         "storybook": "start-storybook -p 6006 -s public",
