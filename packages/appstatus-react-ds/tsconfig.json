@@ -1,0 +1,13 @@
+{
+    "extends": "tsconfig/base.json",
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "jsx": "react-jsx",
+        "module": "commonjs",
+        "outDir": "./lib",
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"]
+    },
+    "exclude": ["node_modules", ".turbo", "lib"],
+    "include": ["src"]
+}

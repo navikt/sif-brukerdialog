@@ -1,19 +1,28 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --no-cache --parallel --continue",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "devDependencies": {
-    "prettier": "^2.5.1",
-    "turbo": "latest"
-  }
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "apps/*"
+    ],
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev --no-cache --parallel --continue",
+        "lint": "turbo run lint",
+        "test": "turbo run test",
+        "clean": "turbo run clean && rm -rf node_modules",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "devDependencies": {
+        "@storybook/builder-webpack5": "^6.5.6",
+        "@storybook/manager-webpack5": "^6.5.6",
+        "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
+        "enzyme": "^3.11.0",
+        "jest-environment-jsdom": "^28.1.0",
+        "jsdom": "^19.0.0",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.6.2",
+        "ts-jest": "^28.0.3",
+        "turbo": "^1.2.16"
+    },
+    "dependencies": {}
 }

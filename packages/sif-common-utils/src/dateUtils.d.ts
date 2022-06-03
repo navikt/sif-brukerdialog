@@ -1,0 +1,33 @@
+import { DateRange, ISODate } from '.';
+export declare const dateToday: Date;
+export declare const dateToISODate: (date: Date) => ISODate;
+export declare const ISODateToDate: (isoDate: ISODate) => Date;
+export declare const getISOWeekdayFromISODate: (isoDate: ISODate) => number;
+export declare const getDatesInMonth: (month: Date, onlyWeekDays?: boolean) => Date[];
+export declare const getFirstWeekDayInMonth: (month: Date) => Date;
+export declare const getWeekFromDate: (date: Date, withinSameMonth?: boolean) => DateRange;
+export declare const getLastWeekDayInMonth: (month: Date) => Date;
+export declare const getLastWeekdayOnOrBeforeDate: (date: Date) => Date;
+export declare const getFirstWeekdayOnOrAfterDate: (date: Date) => Date;
+export declare const getWeeksInMonth: (month: Date, includeWholeWeeks?: boolean) => DateRange[];
+export declare const isDateWeekDay: (date: Date) => boolean;
+export declare const isDateInDates: (date: Date, dates?: Date[]) => boolean;
+export declare const getYearMonthKey: (date: Date) => string;
+export declare const getFirstOfTwoDates: (date1: Date, date2: Date) => Date;
+export declare const getLastOfTwoDates: (date1: Date, date2: Date) => Date;
+export declare const sortDateArray: (dates: Date[]) => Date[];
+export declare const dateUtils: {
+    dateToday: Date;
+    dateToISODate: (date: Date) => ISODate;
+    getDatesInMonth: (month: Date, onlyWeekDays?: boolean) => Date[];
+    getFirstOfTwoDates: (date1: Date, date2: Date) => Date;
+    getFirstWeekDayInMonth: (month: Date) => Date;
+    getLastOfTwoDates: (date1: Date, date2: Date) => Date;
+    getISOWeekdayFromISODate: (isoDate: ISODate) => number;
+    getLastWeekDayInMonth: (month: Date) => Date;
+    getYearMonthKey: (date: Date) => string;
+    isDateInDates: (date: Date, dates?: Date[]) => boolean;
+    isDateWeekDay: (date: Date) => boolean;
+    ISODateToDate: (isoDate: ISODate) => Date;
+};
+//# sourceMappingURL=dateUtils.d.ts.map

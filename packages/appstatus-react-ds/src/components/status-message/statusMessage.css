@@ -1,0 +1,6 @@
+.statusMessage p:first-child {
+    margin-top: 0;
+}
+.statusMessage p:last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,12 @@
+{
+    "extends": "tsconfig/base.json",
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "module": "commonjs",
+        "outDir": "./lib",
+        "target": "es2015",
+        "lib": ["dom", "ES2015"]
+    },
+    "exclude": ["node_modules", ".turbo", "lib"],
+    "include": ["src"]
+}

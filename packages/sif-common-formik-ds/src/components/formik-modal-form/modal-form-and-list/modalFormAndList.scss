@@ -1,0 +1,13 @@
+// .skjemagruppe--feil {
+//     .modalFormAndList__listWrapper {
+//         border: 2px dashed #ba3a26;
+//         border-radius: 0.5rem;
+//         padding: 0.5rem;
+//     }
+// }
+
+.modalFormAndList__addButton button {
+    @media (max-width: 600px) {
+        white-space: pre-wrap;
+    }
+}
