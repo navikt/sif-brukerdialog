@@ -1,6 +1,6 @@
-/* @tailwind base; */
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 .sif-ds-theme {
     --navds-guide-panel-color-border: var(--navds-global-color-purple-300);

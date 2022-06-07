@@ -11,7 +11,7 @@ import { getEnvironmentVariable } from './utils/envUtils';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import YtelseSwitch from './YtelseSwitch';
 import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/lib/styles/ds-tailwind.css';
+import './app.css';
 
 export const APPLICATION_KEY = 'ettersending';
 
@@ -24,6 +24,7 @@ const getAppStatusSanityConfig = () => {
     const dataset = getEnvironmentVariable('APPSTATUS_DATASET');
     return !projectId || !dataset ? undefined : { projectId, dataset };
 };
+// npx tailwindcss -i ./src/app/app.css -o ./dist/output.css --watch
 
 const App = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);

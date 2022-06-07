@@ -1,0 +1,20 @@
+{
+    "license": "MIT",
+    "main": "index.js",
+    "name": "config",
+    "version": "0.0.0",
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.27.1",
+        "@typescript-eslint/parser": "^5.27.1",
+        "eslint": "^8.17.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.30.0",
+        "eslint-plugin-storybook": "^0.5.12"
+    },
+    "devDependencies": {},
+    "publishConfig": {
+        "access": "public"
+    }
+}

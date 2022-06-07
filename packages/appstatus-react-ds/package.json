@@ -26,11 +26,6 @@
         "@types/react-dom": "^17.0.11",
         "babel-plugin-named-exports-order": "^0.0.2",
         "copyfiles": "^2.4.1",
-        "eslint": "^7.32.0",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-jsx-a11y": "^6.5.1",
-        "eslint-plugin-prettier": "^4.0.0",
-        "eslint-plugin-react": "^7.30.0",
         "npm-run-all": "^4.1.5",
         "prettier": "^2.6.2",
         "prop-types": "^15.8.1",
@@ -43,13 +38,6 @@
     },
     "directories": {
         "lib": "lib"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ],
-        "overrides": []
     },
     "files": [
         "package.json",

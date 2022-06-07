@@ -1,5 +1,5 @@
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
+    content: ['src/**/*.{tsx,ts}', '../../packages/sif-common-core-ds/**/*.{tsx, ts}'],
     theme: {
         extend: {},
     },

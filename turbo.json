@@ -16,6 +16,10 @@
             "outputs": ["dist/**", "public/dist/**"],
             "dependsOn": ["^build"]
         },
+        "dev-lib": {
+            "outputs": ["dist/**", "public/dist/**"],
+            "dependsOn": ["^build"]
+        },
         "lib-formik": {
             "outputs": ["dist/**", "build/**"],
             "dependsOn": ["^build"]
