@@ -1,7 +1,7 @@
 {
     "license": "MIT",
     "main": "index.js",
-    "name": "eslint-config-custom",
+    "name": "config",
     "version": "0.0.0",
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "^5.27.1",

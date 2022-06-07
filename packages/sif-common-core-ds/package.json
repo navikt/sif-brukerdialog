@@ -43,6 +43,7 @@
         "@types/react": "^17.0.39",
         "@types/react-collapse": "5.0.1",
         "@types/react-dom": "^17.0.11",
+        "autoprefixer": "^10.4.7",
         "babel-plugin-named-exports-order": "^0.0.2",
         "copyfiles": "^2.4.1",
         "mini-css-extract-plugin": "^2.6.0",
@@ -83,7 +84,7 @@
         "url": "git+https://github.com/navikt/sif-common-core-ds.git"
     },
     "scripts": {
-        "build": "npm-run-all clean-lib compile-lib-script build-ds-tailwind copy-sass-files-to-lib copy-css-files-to-lib copy-less-files-to-lib",
+        "build": "npm-run-all clean-lib compile-lib-script copy-sass-files-to-lib copy-css-files-to-lib copy-less-files-to-lib",
         "build-storybook": "build-storybook -s public",
         "dev": "npm-run-all compile-lib-script-w build-ds-tailwind copy-sass-files-to-lib copy-css-files-to-lib copy-less-files-to-lib",
         "clean-lib": "rimraf ./lib",
@@ -93,7 +94,6 @@
         "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
         "copy-less-files-to-lib": "copyfiles -u 1 \"src/**/*.less\" lib",
         "storybook": "start-storybook -p 6006 -s public",
-        "build-ds-tailwind": "tailwindcss -i ./src/styles/sif-ds-theme.css -o ./src/styles/ds-tailwind.css",
         "test": "react-scripts test"
     },
     "private": false
