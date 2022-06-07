@@ -25,6 +25,5 @@
         "prettier": "^2.6.2",
         "ts-jest": "^28.0.3",
         "turbo": "^1.2.16"
-    },
-    "dependencies": {}
+    }
 }

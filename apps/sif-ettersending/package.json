@@ -41,7 +41,7 @@
         "promise": "^8.1.0",
         "react": "^17.0.2",
         "react-collapse": "^5.1.1",
-        "react-intl": "^6.0.3",
+        "react-intl": "6.0.4",
         "tailwindcss": "^3.0.24",
         "uuid": "^8.3.2"
     },
@@ -57,8 +57,6 @@
         "@types/react-dom": "^17.0.14",
         "@types/react-router-dom": "^5.3.3",
         "@types/uuid": "^8.3.4",
-        "@typescript-eslint/eslint-plugin": "^5.27.0",
-        "@typescript-eslint/parser": "^5.27.0",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
         "babel-jest": "^27.5.1",
         "babel-polyfill": "^6.26.0",
@@ -86,15 +84,11 @@
         "webpack": "^5.72.1",
         "webpack-dev-server": "^4.9.0"
     },
-    "overrides": {
-        "react-intl": "6.0.3"
-    },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"
     },
     "scripts": {
         "build": "node src/build/scripts/production-build.js",
-        "dev": "npm-run-all -p dev-api start-no-decorator",
         "dev-api": "PORT=8090 node ./api-mock.js",
         "prepare": "npm run snyk-protect",
         "snd": "npm run start-no-decorator",

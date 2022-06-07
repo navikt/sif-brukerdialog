@@ -3,7 +3,6 @@ module.exports = {
     extends: [
         'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
         'plugin:@typescript-eslint/recommended',
-        'prettier',
         'plugin:prettier/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin,
         'plugin:jsx-a11y/recommended',
     ],
@@ -20,8 +19,6 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
-        'react/display-name': 'off',
-        'react/prop-types': 'off',
     },
     plugins: ['jsx-a11y', 'react-hooks'],
     settings: {
@@ -29,4 +26,5 @@ module.exports = {
             version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
         },
     },
+    // ignorePatterns: ['node_modules', 'dist', 'lib', '.turbo'],
 };
