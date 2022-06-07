@@ -1,8 +1,8 @@
 module.exports = {
-    ...require('config/eslintrc'),
+    ...require('config/eslint'),
     parserOptions: {
         root: true,
         tsconfigRootDir: __dirname,
-        project: ['/tsconfig.json'],
+        // project: ['./tsconfig.json'],
     },
 };
