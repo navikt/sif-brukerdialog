@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block, { BlockProps } from '@navikt/sif-common-core-ds/lib/components/layout/block/Block';
+import Block, { BlockProps } from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
 
 interface Props extends BlockProps {
     header: string;

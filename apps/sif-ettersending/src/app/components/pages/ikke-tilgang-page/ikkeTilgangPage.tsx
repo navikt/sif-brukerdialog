@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Block from '@navikt/sif-common-core-ds/lib/components/layout/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
 import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
