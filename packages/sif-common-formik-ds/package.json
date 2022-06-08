@@ -77,7 +77,11 @@
         "storybook": "start-storybook -p 6006 -s public",
         "test": "react-scripts test --watchAll=false",
         "test-w": "react-scripts test",
-        "test-c": "react-scripts test --coverage"
+        "test-c": "npm-run-all jest-clear-cache test-coverage",
+        "test-cw": "npm-run-all jest-clear-cache test-coverage-watch",
+        "test-coverage": "react-scripts test a --coverage --watchAll=false",
+        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
+        "jest-clear-cache": "jest --clearCache"
     },
     "private": false
 }
