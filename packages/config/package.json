@@ -18,6 +18,7 @@
         "access": "public"
     },
     "files": [
-        "eslint.js"
+        "eslint.js",
+        "tsconfig-base.json"
     ]
 }
