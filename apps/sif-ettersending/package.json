@@ -96,8 +96,7 @@
         "start": "node ./src/build/scripts/start-dev.js",
         "start-api-mock": "PORT=8090 node ./api-mock.js",
         "start-express": "node ./server.js",
-        "start-no-decorator": "node ./src/build/scripts/start-dev-no-decorator.js",
-        "test": "react-scripts test"
+        "start-no-decorator": "node ./src/build/scripts/start-dev-no-decorator.js"
     },
     "snyk": true
 }

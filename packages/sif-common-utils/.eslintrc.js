@@ -1,4 +1,7 @@
 module.exports = {
-    root: true,
-    extends: ['custom'],
+    ...require('config/eslint'),
+    parserOptions: {
+        root: true,
+        tsconfigRootDir: __dirname,
+    },
 };
