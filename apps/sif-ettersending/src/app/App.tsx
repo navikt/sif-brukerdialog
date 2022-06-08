@@ -11,6 +11,7 @@ import { getEnvironmentVariable } from './utils/envUtils';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import YtelseSwitch from './YtelseSwitch';
 import '@navikt/ds-css';
+import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
 
 export const APPLICATION_KEY = 'ettersending';
