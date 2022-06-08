@@ -89,7 +89,8 @@
     "scripts": {
         "build": "npm-run-all clean-lib compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
-        "dev": "npm-run-all --parallel watch:styles compile-lib-script-w",
+        "dev": "npm-run-all compile-lib-script-w",
+        "dev2": "npm-run-all --parallel watch:styles compile-lib-script-w",
         "watch:styles": "npm-watch copy-files",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",

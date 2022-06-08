@@ -24,7 +24,6 @@ const getAppStatusSanityConfig = () => {
     const dataset = getEnvironmentVariable('APPSTATUS_DATASET');
     return !projectId || !dataset ? undefined : { projectId, dataset };
 };
-// npx tailwindcss -i ./src/app/app.css -o ./dist/output.css --watch
 
 const App = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
