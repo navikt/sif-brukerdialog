@@ -50,7 +50,12 @@
         "compile-lib-script-w": "tsc -p tsconfig.json --watch",
         "dev": "npm run compile-lib-script-w",
         "test": "react-scripts test --watchAll=false",
-        "test-w": "react-scripts test"
+        "test-w": "react-scripts test",
+        "test-c": "npm-run-all jest-clear-cache test-coverage",
+        "test-cw": "npm-run-all jest-clear-cache test-coverage-watch",
+        "test-coverage": "react-scripts test a --coverage --watchAll=false",
+        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
+        "jest-clear-cache": "jest --clearCache"
     },
     "private": false,
     "snyk": true

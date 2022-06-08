@@ -66,20 +66,20 @@ export const getDurationForISOWeekdayNumber = (
 };
 
 export const getNumberDurationForWeekday = (
-    fasteDager: DurationWeekdays,
+    durationWeekdays: DurationWeekdays,
     weekday: Weekday
 ): NumberDuration | undefined => {
     switch (weekday) {
         case 'monday':
-            return getNumberDurationOrUndefined(fasteDager.monday);
+            return getNumberDurationOrUndefined(durationWeekdays.monday);
         case 'tuesday':
-            return getNumberDurationOrUndefined(fasteDager.tuesday);
+            return getNumberDurationOrUndefined(durationWeekdays.tuesday);
         case 'wednesday':
-            return getNumberDurationOrUndefined(fasteDager.wednesday);
+            return getNumberDurationOrUndefined(durationWeekdays.wednesday);
         case 'thursday':
-            return getNumberDurationOrUndefined(fasteDager.thursday);
+            return getNumberDurationOrUndefined(durationWeekdays.thursday);
         case 'friday':
-            return getNumberDurationOrUndefined(fasteDager.friday);
+            return getNumberDurationOrUndefined(durationWeekdays.friday);
         default:
             return undefined;
     }
@@ -172,7 +172,7 @@ export const removeDurationWeekdaysNotInDurationWeekdays = (
     };
 };
 
-const getDurationOrUndefinedIfZeroDuration = (duration: Duration | undefined): Duration | undefined => {
+export const getDurationOrUndefinedIfZeroDuration = (duration: Duration | undefined): Duration | undefined => {
     if (duration === undefined) {
         return undefined;
     }

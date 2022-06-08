@@ -11,11 +11,15 @@
             "dependsOn": ["^build"]
         },
         "test": {
-            "outputs": ["coverage/**"],
+            "outputs": [],
             "dependsOn": ["^build"]
         },
         "test-w": {
             "outputs": [],
+            "dependsOn": ["^build"]
+        },
+        "test-c": {
+            "outputs": ["coverage/**"],
             "dependsOn": ["^build"]
         },
         "lint": {

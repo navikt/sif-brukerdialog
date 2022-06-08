@@ -76,7 +76,8 @@
         "dev": "npm run compile-lib-script-w",
         "storybook": "start-storybook -p 6006 -s public",
         "test": "react-scripts test --watchAll=false",
-        "test-w": "react-scripts test"
+        "test-w": "react-scripts test",
+        "test-c": "react-scripts test --coverage"
     },
     "private": false
 }

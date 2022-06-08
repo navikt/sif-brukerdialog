@@ -48,7 +48,8 @@
         "lint": "turbo run lint",
         "prepare": "husky install",
         "test": "turbo run test",
-        "test-w": "turbo run test-w"
+        "test-w": "turbo run test-w",
+        "test-c": "turbo run test-c"
     },
     "workspaces": [
         "apps/*",

@@ -2,10 +2,19 @@ import { DurationWeekdays, getDurationForISOWeekdayNumber } from '..';
 import { ISODateToDate } from '../dateUtils';
 import { durationToISODuration, ISODurationToDuration } from '../durationUtils';
 import {
+    durationWeekdaysFromHoursPerWeek,
+    durationWeekdaysToISODurationWeekdays,
     ensureCompleteDurationWeekdays,
     getAllWeekdaysWithoutDuration,
     getDateDurationMapFromDurationWeekdaysInDateRange,
+    getDurationOrUndefinedIfZeroDuration,
+    getISOWeekdaysFromDurationWeekdays,
+    getNumberDurationForWeekday,
+    getPercentageOfDurationWeekdays,
     getWeekdaysWithDuration,
+    hasWeekdaysWithoutDuration,
+    removeDurationWeekdaysNotInDurationWeekdays,
+    removeDurationWeekdaysWithNoDuration,
     summarizeDurationInDurationWeekdays,
 } from '../durationWeekdaysUtils';
 import { DateRange, Duration, Weekday } from '../types';
@@ -22,7 +31,40 @@ const fullWeek: DurationWeekdays = {
     thursday: { ...duration },
     friday: { ...duration },
 };
+
+const fullWeek2: DurationWeekdays = {
+    monday: { hours: '1', minutes: '0' },
+    tuesday: { hours: '2', minutes: '0' },
+    wednesday: { hours: '3', minutes: '0' },
+    thursday: { hours: '4', minutes: '0' },
+    friday: { hours: '5', minutes: '0' },
+};
+
 describe('workDurationUtils', () => {
+    describe('getISOWeekdaysFromDurationWeekdays', () => {
+        it('includes all weekdays', () => {
+            const result = getISOWeekdaysFromDurationWeekdays({
+                monday: { hours: '1', minutes: '0' },
+                tuesday: { hours: '1', minutes: '0' },
+                wednesday: { hours: '1', minutes: '0' },
+                thursday: { hours: '1', minutes: '0' },
+                friday: { hours: '1', minutes: '0' },
+            });
+            expect(result).toHaveLength(5);
+            expect(result[0]).toEqual(1);
+            expect(result[1]).toEqual(2);
+            expect(result[2]).toEqual(3);
+            expect(result[3]).toEqual(4);
+            expect(result[4]).toEqual(5);
+        });
+        it('excludes days with undefined duration', () => {
+            expect(
+                getISOWeekdaysFromDurationWeekdays({
+                    monday: undefined,
+                })
+            ).toHaveLength(0);
+        });
+    });
     describe('summarizeDurationInDurationWeekdays', () => {
         it('sum hours correctly', () => {
             const sum = summarizeDurationInDurationWeekdays({
@@ -48,42 +90,39 @@ describe('workDurationUtils', () => {
         });
     });
     describe('getDurationForISOWeekdayNumber', () => {
-        const durations: DurationWeekdays = {
-            monday: { hours: '1', minutes: '0' },
-            tuesday: { hours: '2', minutes: '0' },
-            wednesday: { hours: '3', minutes: '0' },
-            thursday: { hours: '4', minutes: '0' },
-            friday: { hours: '5', minutes: '0' },
-        };
         it('returns correctly for monday', () => {
-            const result = getDurationForISOWeekdayNumber(durations, 1);
+            const result = getDurationForISOWeekdayNumber(fullWeek2, 1);
             expect(result).toBeDefined();
             expect(result?.hours).toEqual('1');
             expect(result?.minutes).toEqual('0');
         });
         it('returns correctly for tuesday', () => {
-            const result = getDurationForISOWeekdayNumber(durations, 2);
+            const result = getDurationForISOWeekdayNumber(fullWeek2, 2);
             expect(result).toBeDefined();
             expect(result?.hours).toEqual('2');
             expect(result?.minutes).toEqual('0');
         });
         it('returns correctly for wednesday', () => {
-            const result = getDurationForISOWeekdayNumber(durations, 3);
+            const result = getDurationForISOWeekdayNumber(fullWeek2, 3);
             expect(result).toBeDefined();
             expect(result?.hours).toEqual('3');
             expect(result?.minutes).toEqual('0');
         });
         it('returns correctly for thursday', () => {
-            const result = getDurationForISOWeekdayNumber(durations, 4);
+            const result = getDurationForISOWeekdayNumber(fullWeek2, 4);
             expect(result).toBeDefined();
             expect(result?.hours).toEqual('4');
             expect(result?.minutes).toEqual('0');
         });
         it('returns correctly for friday', () => {
-            const result = getDurationForISOWeekdayNumber(durations, 5);
+            const result = getDurationForISOWeekdayNumber(fullWeek2, 5);
             expect(result).toBeDefined();
             expect(result?.hours).toEqual('5');
             expect(result?.minutes).toEqual('0');
+        });
+        it('returns undefined if isoWeekday is not mon-fri', () => {
+            const result = getDurationForISOWeekdayNumber(fullWeek2, 6);
+            expect(result).toBeUndefined();
         });
     });
 
@@ -111,6 +150,131 @@ describe('workDurationUtils', () => {
             expect(weekdays[0]).toEqual(Weekday.thursday);
         });
     });
+
+    describe('getNumberDurationForWeekday', () => {
+        it('returns duration for monday', () => {
+            expect(getNumberDurationForWeekday(fullWeek2, Weekday.monday)).toEqual({ hours: 1, minutes: 0 });
+            expect(getNumberDurationForWeekday(fullWeek2, Weekday.tuesday)).toEqual({ hours: 2, minutes: 0 });
+            expect(getNumberDurationForWeekday(fullWeek2, Weekday.wednesday)).toEqual({ hours: 3, minutes: 0 });
+            expect(getNumberDurationForWeekday(fullWeek2, Weekday.thursday)).toEqual({ hours: 4, minutes: 0 });
+            expect(getNumberDurationForWeekday(fullWeek2, Weekday.friday)).toEqual({ hours: 5, minutes: 0 });
+            expect(getNumberDurationForWeekday(fullWeek2, 6 as any)).toBeUndefined();
+        });
+    });
+
+    describe('durationWeekdaysToISODurationWeekdays', () => {
+        it('converts returns all defined durations', () => {
+            const result = durationWeekdaysToISODurationWeekdays(fullWeek2);
+            expect(result).toBeDefined();
+            expect(result.monday).toEqual('PT1H0M');
+            expect(result.tuesday).toEqual('PT2H0M');
+            expect(result.wednesday).toEqual('PT3H0M');
+            expect(result.thursday).toEqual('PT4H0M');
+            expect(result.friday).toEqual('PT5H0M');
+        });
+        it('excludes days with no duration', () => {
+            const result = durationWeekdaysToISODurationWeekdays({});
+            expect(result).toBeDefined();
+            expect(result.monday).toBeUndefined();
+            expect(result.tuesday).toBeUndefined();
+            expect(result.wednesday).toBeUndefined();
+            expect(result.thursday).toBeUndefined();
+            expect(result.friday).toBeUndefined();
+        });
+    });
+
+    describe('getPercentageOfDurationWeekdays', () => {
+        it('gets percentage for every weekday', () => {
+            const result = getPercentageOfDurationWeekdays(50, fullWeek);
+            expect(result.monday).toEqual({ hours: '0', minutes: '30' });
+            expect(result.tuesday).toEqual({ hours: '0', minutes: '30' });
+            expect(result.wednesday).toEqual({ hours: '0', minutes: '30' });
+            expect(result.thursday).toEqual({ hours: '0', minutes: '30' });
+            expect(result.friday).toEqual({ hours: '0', minutes: '30' });
+        });
+        it('gets excludes days with no duration weekday', () => {
+            const result = getPercentageOfDurationWeekdays(50, {});
+            expect(result.monday).toBeUndefined();
+            expect(result.tuesday).toBeUndefined();
+            expect(result.wednesday).toBeUndefined();
+            expect(result.thursday).toBeUndefined();
+            expect(result.friday).toBeUndefined();
+        });
+    });
+
+    describe('durationWeekdaysFromHoursPerWeek', () => {
+        it('divides hours with 5 and returns correct duration', () => {
+            const result = durationWeekdaysFromHoursPerWeek(30);
+            expect(result.monday).toEqual({ hours: '6', minutes: '0' });
+            expect(result.tuesday).toEqual({ hours: '6', minutes: '0' });
+            expect(result.wednesday).toEqual({ hours: '6', minutes: '0' });
+            expect(result.thursday).toEqual({ hours: '6', minutes: '0' });
+            expect(result.friday).toEqual({ hours: '6', minutes: '0' });
+        });
+    });
+
+    describe('hasWeekdaysWithoutDuration', () => {
+        it('returns true if a day has no duration', () => {
+            expect(hasWeekdaysWithoutDuration({ ...fullWeek2, monday: undefined })).toBeTruthy();
+        });
+        it('returns false if all days have duration', () => {
+            expect(hasWeekdaysWithoutDuration({ ...fullWeek2 })).toBeFalsy();
+        });
+    });
+
+    describe('removeDurationWeekdaysNotInDurationWeekdays', () => {
+        it('removes days from durationWeekdays1 not present in durationWeekdays2', () => {
+            const result = removeDurationWeekdaysNotInDurationWeekdays(fullWeek, { ...fullWeek, monday: undefined });
+            expect(result.monday).toBeUndefined();
+            expect(result.tuesday).toBeDefined();
+            expect(result.wednesday).toBeDefined();
+            expect(result.thursday).toBeDefined();
+            expect(result.friday).toBeDefined();
+        });
+        it('removes all days from durationWeekdays1 when durationWeekdays2 is empty', () => {
+            const result = removeDurationWeekdaysNotInDurationWeekdays(fullWeek, {});
+            expect(result.monday).toBeUndefined();
+            expect(result.tuesday).toBeUndefined();
+            expect(result.wednesday).toBeUndefined();
+            expect(result.thursday).toBeUndefined();
+            expect(result.friday).toBeUndefined();
+        });
+        it('keeps all days from durationWeekdays1 when durationWeekdays2 is full', () => {
+            const result = removeDurationWeekdaysNotInDurationWeekdays(fullWeek, fullWeek2);
+            expect(result.monday).toBeDefined();
+            expect(result.tuesday).toBeDefined();
+            expect(result.wednesday).toBeDefined();
+            expect(result.thursday).toBeDefined();
+            expect(result.friday).toBeDefined();
+        });
+    });
+
+    describe('getDurationOrUndefinedIfZeroDuration', () => {
+        it('returns undefined if duration is undefined', () => {
+            expect(getDurationOrUndefinedIfZeroDuration(undefined)).toBeUndefined();
+        });
+        it('returns undefined if duration is zero', () => {
+            expect(getDurationOrUndefinedIfZeroDuration({ hours: '0', minutes: '0' })).toBeUndefined();
+        });
+        it('returns duration param if duration is invalid', () => {
+            expect(getDurationOrUndefinedIfZeroDuration({ a: 'b' } as any)).toEqual({ a: 'b' });
+        });
+        it('returns duration if duration is more than zero', () => {
+            expect(getDurationOrUndefinedIfZeroDuration({ hours: '0', minutes: '1' })).toBeDefined();
+        });
+    });
+
+    describe('removeDurationWeekdaysWithNoDuration', () => {
+        it('removes all weekdays with zero duration', () => {
+            const result = removeDurationWeekdaysWithNoDuration({ ...fullWeek, tuesday: { hours: '0', minutes: '0' } });
+            expect(result.monday).toBeDefined();
+            expect(result.tuesday).toBeUndefined();
+            expect(result.wednesday).toBeDefined();
+            expect(result.thursday).toBeDefined();
+            expect(result.friday).toBeDefined();
+        });
+    });
+
     describe('getAllWeekdaysWithoutDuration', () => {
         it('returnerer ingen ukedager når alle ukedager har varighet', () => {
             const weekdays = getAllWeekdaysWithoutDuration(fullWeek);
