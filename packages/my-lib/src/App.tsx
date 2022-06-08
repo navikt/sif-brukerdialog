@@ -2,6 +2,7 @@ import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import MyButton from './components/MyButton';
+import '@navikt/ds-css';
 
 function App() {
     const [count, setCount] = useState(0);

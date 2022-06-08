@@ -11,7 +11,7 @@ export interface BlockProps extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
 }
 
-const bem = bemUtils('box');
+const bem = bemUtils('block');
 
 const Block = ({ margin = 'l', padBottom, className, textAlignCenter, ...rest }: BlockProps) => {
     const classNames = bem.classNames(
