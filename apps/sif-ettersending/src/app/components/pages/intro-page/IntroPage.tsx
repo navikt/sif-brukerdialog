@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/layout/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';

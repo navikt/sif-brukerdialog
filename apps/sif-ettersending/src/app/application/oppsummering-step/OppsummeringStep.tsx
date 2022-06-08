@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/layout/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
 import TextareaSummary from '@navikt/sif-common-core/lib/components/textarea-summary/TextareaSummary';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core/lib/utils/apiUtils';

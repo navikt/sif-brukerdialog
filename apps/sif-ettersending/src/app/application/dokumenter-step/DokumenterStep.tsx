@@ -2,7 +2,7 @@ import { Alert, BodyLong, GuidePanel } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/layout/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import {
     getTotalSizeOfAttachments,
