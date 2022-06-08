@@ -28,6 +28,10 @@
             "outputs": ["coverage/**"],
             "dependsOn": ["^build"]
         },
+        "test-w": {
+            "outputs": [],
+            "dependsOn": ["^build"]
+        },
         "lint": {
             "dependsOn": ["^build"],
             "outputs": []

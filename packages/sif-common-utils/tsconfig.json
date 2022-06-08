@@ -7,6 +7,6 @@
         "target": "es2015",
         "lib": ["dom", "ES2015"]
     },
-    "exclude": ["node_modules", ".turbo", "lib"],
+    "exclude": ["node_modules", ".turbo", "lib", "__tests__"],
     "include": ["src"]
 }
