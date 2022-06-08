@@ -39,7 +39,6 @@ function FormikRadioGroup<FieldName, ErrorType>({
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         value={field.value}>
                         {radios.map((rb, idx) => {
-                            console.log(field.name);
                             return (
                                 <Radio
                                     key={idx}
