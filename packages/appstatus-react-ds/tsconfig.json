@@ -8,6 +8,6 @@
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"]
     },
-    "exclude": ["node_modules", ".turbo", "lib"],
+    "exclude": ["node_modules", ".turbo", "lib", "__tests__"],
     "include": ["src"]
 }
