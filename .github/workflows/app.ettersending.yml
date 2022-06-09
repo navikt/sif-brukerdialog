@@ -2,6 +2,9 @@
 name: CI / CD
 on:
   push:
+    paths:
+      - apps/sif-ettersending
+      - .github/workflows/app.sif-ettersending.yml
     paths-ignore:
       - "**.md"
       - ".gitignore"
@@ -73,22 +76,22 @@ jobs:
             env:
                 APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                 CLUSTER: dev-gcp
-                RESOURCE: nais/naiserator.yml
-                VARS: nais/dev-gcp.json
+                RESOURCE: config/nais.yml
+                VARS: config/sif-ettersending/dev-gcp.json
 
-  deploy-prod-gcp:
-        name: Deploy-prod-gcp
-        if: startsWith(github.ref, 'refs/heads/master')
-        needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
-            - uses: nais/deploy/actions/deploy@v1
-              env:
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-                  CLUSTER: prod-gcp
-                  RESOURCE: nais/naiserator.yml
-                  VARS: nais/prod-gcp.json
+  # deploy-prod-gcp:
+  #       name: Deploy-prod-gcp
+  #       if: startsWith(github.ref, 'refs/heads/master')
+  #       needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
+  #       runs-on: ubuntu-latest
+  #       steps:
+  #           - uses: actions/checkout@v1
+  #           - uses: nais/deploy/actions/deploy@v1
+  #             env:
+  #                 APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  #                 CLUSTER: prod-gcp
+  #                 RESOURCE: nais/naiserator.yml
+  #                 VARS: nais/prod-gcp.json
 
   tag-image-as-latest:
     if: github.ref == 'refs/heads/master'
