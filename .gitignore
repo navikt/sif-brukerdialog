@@ -8,9 +8,10 @@ dist-ssr
 *.local
 .env
 .cache
+.turbo
+
 server/dist
 public/dist
-.turbo
-packages/**/*/coverage
 
-/packages/**/*/lib
+sif-common-packages/**/*/coverage
+sif-common-packages/**/*/lib
