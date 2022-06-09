@@ -1,0 +1,18 @@
+# This workflow trigger on push to apps/sif-ettersending
+name: CI / CD
+on:
+  push:
+    paths:
+      - apps/sif-ettersending
+      - .github/workflows/app.sif-ettersending.yml
+      - .github/workflows/app.common.yml
+
+jobs:
+  build:
+    name: Build
+    uses: navikt/sif-brukerdialog/.github/workflows/app.common.yml@dev-deploy
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+    with:
+      app-name: 'sif-ettersending'
+      working-directory: 'apps/sif-ettersending'
