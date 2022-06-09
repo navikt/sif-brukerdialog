@@ -1,6 +1,6 @@
 FROM node:16
 
-WORKDIR /usr/src/app
+WORKDIR /usr/apps/sif-ettersending/src/app
 
 COPY dist ./dist
 COPY server.js .
