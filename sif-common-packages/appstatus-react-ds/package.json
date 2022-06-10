@@ -51,7 +51,7 @@
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-w": "tsc -p tsconfig.json --watch",
         "copy-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "dev": "npm run compile-lib-script-w"
+        "dev": "yarn compile-lib-script-w"
     },
     "private": false
 }

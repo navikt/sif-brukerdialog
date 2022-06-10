@@ -60,13 +60,13 @@ jobs:
               with:
                   fetch-depth: 2
 
-            - name: Cache NPM dependencies
+            - name: Cache dependencies
               uses: actions/cache@v1
               with:
                   path: node_modules
-                  key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/package-lock.json') }}
                   restore-keys: |
-                      ${{ runner.OS }}-npm-cache-
+                      ${{ runner.OS }}-yarn-cache-
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -75,8 +75,8 @@ jobs:
 
             - name: Build code
               run: |
-                  npm i
-                  npm run build
+                  yarn
+                  yarn build
 
             - name: Build and publish Docker image
               working-directory: ${{ inputs.working-directory }}

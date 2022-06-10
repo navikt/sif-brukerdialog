@@ -1,19 +1,17 @@
-import '@navikt/ds-datepicker/lib/index.css';
-import './datepicker.css';
-
-import { CalendarPlacement, Datepicker, DatepickerChange } from '@navikt/ds-datepicker';
-import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
-import { FastField, Field, FieldProps } from 'formik';
-
-import { DayPickerProps } from 'react-day-picker';
 import React from 'react';
+import { DayPickerProps } from 'react-day-picker';
+import { useIntl } from 'react-intl';
+import { useMediaQuery } from 'react-responsive';
+import { CalendarPlacement, Datepicker, DatepickerChange } from '@navikt/ds-datepicker';
+import { FastField, Field, FieldProps } from 'formik';
+import { v4 as uuid } from 'uuid';
+import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
+import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import SkjemagruppeQuestion from '../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import datepickerUtils from './datepickerUtils';
-import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
-import { useIntl } from 'react-intl';
-import { useMediaQuery } from 'react-responsive';
-import { v4 as uuid } from 'uuid';
+import '@navikt/ds-datepicker/lib/index.css';
+import './datepicker.css';
 
 export interface DatepickerLimitiations {
     minDate?: Date;

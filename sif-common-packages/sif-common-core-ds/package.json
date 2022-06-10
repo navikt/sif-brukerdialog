@@ -73,7 +73,7 @@
     "scripts": {
         "build": "npm-run-all clean-lib compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
-        "dev": "npm run compile-lib-script-w",
+        "dev": "yarn compile-lib-script-w",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-w": "tsc -p tsconfig.json --watch ",
