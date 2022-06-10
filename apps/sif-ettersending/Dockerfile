@@ -1,54 +1,39 @@
 
-FROM node:alpine AS base
+FROM node:16.15.1-alpine AS base
 RUN apk update && apk add git
 
-## Globally install turbo
-RUN npm i -g turbo
+WORKDIR /app
 
-## Globally install husky
-RUN npm i -g husky
+ENV SCOPE=@navikt/sif-ettersending
+ENV YARN_CACHE_FOLDER=.yarn-cache
 
-# Prune the workspace for the `sif-ettersending` app
-FROM base as pruner
-COPY .git ./.git
+FROM base AS pruner
+RUN yarn global add turbo
+COPY  /sif-common-packages/config/ ./sif-common-packages/config/
 COPY . .
-RUN turbo prune --scope=@navikt/sif-ettersending
+RUN turbo prune --scope=${SCOPE} --docker
 
-# Add pruned lockfile and package.json's of the pruned subworkspace
-FROM pruner AS installer
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/yarn.lock ./yarn.lock
-# Install only the deps needed to build the target
+FROM base AS dev-deps
+COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/yarn.lock ./yarn.lock
 RUN yarn install
 
-# Copy source code of pruned subworkspace and build
-FROM installer as builder
-WORKDIR /app
-COPY --from=pruner .git ./.git
-COPY --from=installer /app/ .
-COPY --from=builder /app/out/full/ .
-RUN turbo run build --scope=@navikt/sif-ettersending
+# FROM base AS prod-deps
+# COPY --from=pruner /app/out/json/ .
+# COPY --from=pruner /app/out/yarn.lock ./yarn.lock
+# COPY --from=dev-deps /app/{YARN_CACHE_FOLDER} .
+# RUN yarn install --production
+# RUN rm -rf /app/${YARN_CACHE_FOLDER}
 
-# Start the app
-FROM builder as runner
+FROM base AS builder
+COPY --from=dev-deps /app/ .
+COPY --from=pruner /app/out/full/ .
+COPY  /sif-common-packages/config/ ./sif-common-packages/config/
+RUN yarn turbo run build --scope=${SCOPE}
+
+FROM base AS runner
+# COPY --from=prod-deps /app/ .
+COPY --from=builder /app/ .
 EXPOSE 8080
 CMD ["yarn","--cwd", "apps/sif-ettersending", "start-express"]
-
-# EXPOSE 3000
-# RUN ['yarn', '--cwd', 'apps/@navikt/sif-ettersending', 'start']
-
-
-# FROM node:16
-
-# WORKDIR /usr/src/app
-
-# COPY dist ./dist
-# COPY server.js .
-# COPY tokenx.js .
-# COPY node_modules ./node_modules
-# COPY package.json .
-# COPY src/build/scripts/decorator.js ./src/build/scripts/decorator.js
-# COPY envSettings.js ./envSettings.js
-
-# EXPOSE 8080
-# CMD ["yarn", "start-express"]
+# CMD yarn start-express

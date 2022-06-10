@@ -50,7 +50,7 @@ const startServer = () => {
     });
 
     server.listen(port, () => {
-        console.log(`App listening on port: ${port}`);
+        // console.log(`App listening on port: ${port}`);
     });
 
     server.post('/vedlegg', (req, res) => {

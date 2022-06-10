@@ -71,7 +71,7 @@
         "url": "git+https://github.com/navikt/sif-common-core-ds.git"
     },
     "scripts": {
-        "build": "npm-run-all clean-lib compile-lib-script copy-files",
+        "build": "npm-run-all compile-lib-script",
         "build-storybook": "build-storybook -s public",
         "dev": "yarn compile-lib-script-w",
         "clean-lib": "rimraf ./lib",
