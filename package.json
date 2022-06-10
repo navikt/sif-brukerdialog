@@ -46,8 +46,8 @@
         "clean": "turbo run clean && rm -rf node_modules",
         "dev": "turbo run dev --no-cache --parallel --continue",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "lint": "turbo run lint",
         "prepare": "husky install",
+        "lint": "turbo run lint",
         "test": "turbo run test",
         "test-w": "turbo run test-w",
         "test-c": "turbo run test-c"
