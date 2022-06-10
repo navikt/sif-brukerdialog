@@ -29,6 +29,5 @@ COPY --from=pruner /apps/sif-ettersending/tokenx.js .
 COPY --from=pruner /apps/sif-ettersending/package.json .
 COPY --from=pruner /apps/sif-ettersending/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
 
-
-# EXPOSE 8080
-# CMD ["yarn","--cwd", "apps/sif-ettersending", "start-express"]
+EXPOSE 8080
+CMD ["yarn","--cwd", "apps/sif-ettersending", "start-express"]
