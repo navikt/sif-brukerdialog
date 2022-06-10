@@ -2,7 +2,6 @@
 name: CI / CD
 on:
   push:
-    branches: [dev_redeploy]
     # paths:
     #   - apps/sif-ettersending
     #   - .github/workflows/app.sif-ettersending.yml
