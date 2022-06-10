@@ -1,0 +1,38 @@
+
+FROM node:16.15.1-alpine AS base
+RUN apk update && apk add git
+RUN yarn global add turbo
+RUN yarn global add rimraf
+RUN yarn global add copyfiles
+
+WORKDIR /app
+
+ENV SCOPE=@navikt/sif-ettersending
+
+FROM base AS pruner
+COPY  /sif-common-packages/config/ ./sif-common-packages/config/
+COPY . .
+RUN turbo prune --scope=${SCOPE} --docker
+
+FROM base AS installer
+COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/yarn.lock ./yarn.lock
+RUN yarn install
+
+FROM base AS builder
+COPY --from=installer /app/ .
+COPY --from=pruner /app/out/full/ .
+COPY  /sif-common-packages/config/ ./sif-common-packages/config/
+RUN yarn turbo run build --scope=${SCOPE}
+
+FROM builder AS runner
+COPY --from=builder /app/ .
+# COPY dist ./dist
+COPY --from=pruner server.js .
+# COPY tokenx.js .
+# COPY src/build/scripts/decorator.js ./src/build/scripts/decorator.js
+# COPY envSettings.js .
+EXPOSE 8080
+CMD ["yarn","--cwd", "apps/sif-ettersending", "start-express"]
+
+# CMD yarn start-express

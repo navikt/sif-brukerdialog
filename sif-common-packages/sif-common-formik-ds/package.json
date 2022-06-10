@@ -66,11 +66,12 @@
         "url": "git+https://github.com/navikt/sif-common-formik-ds.git"
     },
     "scripts": {
-        "build": "npm-run-all compile-lib-script",
+        "build": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-w": "tsc -p tsconfig.json --watch",
+        "copy-files": "npm-run-all copy-css-files-to-lib copy-sass-files-to-lib",
         "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
         "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
         "dev": "yarn compile-lib-script-w",

@@ -46,11 +46,11 @@
         "url": "git+https://github.com/navikt/appstatus-react-ds.git"
     },
     "scripts": {
-        "build": "npm-run-all compile-lib-script",
+        "build": "npm-run-all compile-lib-script copy-files",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-w": "tsc -p tsconfig.json --watch",
-        "copy-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
+        "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
         "dev": "yarn compile-lib-script-w"
     },
     "private": false
