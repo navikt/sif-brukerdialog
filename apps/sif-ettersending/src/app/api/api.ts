@@ -16,5 +16,3 @@ export const uploadFile = (file: File) => {
 };
 
 export const deleteFile = (url: string) => axios.delete(url, axiosConfig);
-
-/** Test */
