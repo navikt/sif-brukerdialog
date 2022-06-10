@@ -8,7 +8,6 @@ ENV SCOPE=@navikt/sif-ettersending
 
 FROM base AS pruner
 COPY . .
-COPY ../../turbo.json .
 RUN turbo prune --scope=@navikt/sif-ettersending --docker=true
 
 FROM pruner AS builder
