@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Build
-    uses: navikt/sif-brukerdialog/.github/workflows/app.common.yml@dev-deploy
+    uses: navikt/sif-brukerdialog/.github/workflows/app.common.yml@dev-redeploy
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
     with:
