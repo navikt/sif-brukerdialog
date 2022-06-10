@@ -7,12 +7,12 @@ WORKDIR /app
 
 ENV SCOPE=@navikt/sif-ettersending
 
-FROM base AS builder
+FROM base AS pruner
 COPY . .
 RUN yarn install
 RUN yarn turbo run build --filter=${SCOPE}
 
-FROM builder AS deployer
+FROM pruner AS server
 WORKDIR /apps/sif-ettersending
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/sif-ettersending/node_modules ./node_modules/

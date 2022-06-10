@@ -79,9 +79,8 @@ jobs:
                   yarn build
 
             - name: Build and publish Docker image
-              working-directory: ${{ inputs.working-directory }}
               run: |
-                  docker build --tag ${IMAGE} .
+                  docker build -t ${IMAGE} -f ${{inputs.working-directory}}/DockerFile .
                   docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
                   docker push ${IMAGE}
 
