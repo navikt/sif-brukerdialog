@@ -72,7 +72,6 @@ const IntroPage = () => {
                                     validate={getRequiredFieldValidator()}
                                 />
                             </Block>
-                            <p>Some test 2</p>
                         </PageForm.Form>
                     );
                 }}
