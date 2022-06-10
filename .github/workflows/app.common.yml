@@ -49,7 +49,7 @@ jobs:
     build-code-and-push-docker:
         name: Build and push docker
         if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/main') || github.event.deployment.payload.triggered
-        # needs: build-and-test
+        needs: build-and-test
         runs-on: ubuntu-latest
         strategy:
             matrix:
