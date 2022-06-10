@@ -60,13 +60,13 @@ jobs:
               with:
                   fetch-depth: 2
 
-            - name: Cache dependencies
-              uses: actions/cache@v1
-              with:
-                  path: node_modules
-                  key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.OS }}-yarn-cache-
+            # - name: Cache dependencies
+            #   uses: actions/cache@v1
+            #   with:
+            #       path: node_modules
+            #       key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/package-lock.json') }}
+            #       restore-keys: |
+            #           ${{ runner.OS }}-yarn-cache-
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
