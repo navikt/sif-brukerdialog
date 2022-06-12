@@ -62,5 +62,3 @@ const App = () => {
 
 const root = document.getElementById('app');
 render(<App />, root);
-
-/** build */
