@@ -51,7 +51,7 @@ jobs:
 
             - name: Install dependencies
               # if: steps.yarn-cache.outputs.cache-hit != 'true'
-              run: yarn
+              run: yarn --prefer-offline
 
             - name: Build
               run: yarn build
