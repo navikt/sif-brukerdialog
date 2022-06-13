@@ -10,7 +10,7 @@
         "@navikt/ds-css": "^0.17.2",
         "@navikt/ds-datepicker": "^2.1.5",
         "@navikt/ds-icons": "^0.8.12",
-        "@navikt/ds-react": "^0.18.6",
+        "@navikt/ds-react": "^0.19.8",
         "@navikt/ds-tailwind": "^0.2.2",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core": "12.0.1-beta.0",
