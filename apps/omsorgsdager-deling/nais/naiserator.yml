@@ -1,0 +1,51 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+    name: deling-omsorgsdager
+    namespace: dusseldorf
+    labels:
+        team: dusseldorf
+spec:
+    image: {{ image }}
+    port: 8080
+    liveness:
+        path: {{livenessPath}}
+        initialDelay: 20
+        timeout: 1
+        periodSeconds: 5
+        failureThreshold: 10
+    readiness:
+        path: {{readinessPath}}
+        initialDelay: 20
+        timeout: 1
+    resources:
+        limits:
+            cpu: 2000m
+            memory: 512Mi
+        requests:
+            cpu: 50m
+            memory: 128Mi
+    accessPolicy:
+        outbound:
+            external:
+            {{#each externalHosts as |host|}}
+            - host: {{host}}
+            {{/each}}
+    ingresses:
+      {{#each ingresses as |url|}}
+       - {{url}}
+          {{/each}}
+    replicas:
+        min: 1
+        max: 1
+        cpuThresholdPercentage: 90
+    prometheus:
+        enabled: true
+        path: /metrics
+    vault:
+        enabled: false
+    env:
+  {{#each env}}
+     - name: {{@key}}
+       value: "{{this}}"
+    {{/each}}

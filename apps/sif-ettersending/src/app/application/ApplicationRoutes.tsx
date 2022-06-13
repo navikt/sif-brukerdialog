@@ -26,12 +26,12 @@ const ApplicationRoutes = () => {
     const { values } = useFormikContext<ApplicationFormData>();
     const { søknadstype } = React.useContext(ApplicationTypeContext);
 
-    const history = useHistory();
+    const history = useHistory() as any;
+    const { logSoknadStartet } = useAmplitudeInstance();
 
     if (!søknadstype) {
         return <Route path={getRouteConfig(ApplicationType.ukjent).ERROR_PAGE_ROUTE} component={GeneralErrorPage} />;
     }
-    const { logSoknadStartet } = useAmplitudeInstance();
     const routeConfig = getRouteConfig(søknadstype);
 
     const navigateToNextStep = (stepId: StepID) => {

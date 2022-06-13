@@ -33,7 +33,7 @@ interface Essentials {
 }
 
 const ApplicationEssentialsLoader = ({ contentLoadedRenderer, søknadstype }: Props) => {
-    const history = useHistory();
+    const history = useHistory() as any;
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: true, doApiCalls: true });
     const [essentials, setEssentials] = useState<Essentials | undefined>();
 

@@ -28,7 +28,7 @@
         "@storybook/react": "^6.5.6",
         "@storybook/testing-library": "^0.0.11",
         "@types/node": "^17.0.38",
-        "@types/react": "^17.0.39",
+        "@types/react": "17.0.34",
         "@types/react-dom": "^17.0.11",
         "@types/uuid": "^8.3.4",
         "copyfiles": "^2.4.1",
@@ -68,6 +68,7 @@
     "scripts": {
         "build": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
+        "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-w": "tsc -p tsconfig.json --watch",
