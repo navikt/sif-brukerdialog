@@ -3,8 +3,8 @@ name: CI / CD
 on:
   push:
     paths:
-      - 'apps/sif-ettersending/**/*'
-      - '.github/workflows/app.sif-ettersending.yml'
+      - 'apps/dele-omsorgsdager/**/*'
+      - '.github/workflows/app.dele-omsorgsdager.yml'
       - '.github/workflows/app.common.yml'
 
 jobs:
