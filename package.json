@@ -28,6 +28,7 @@
         "postcss-loader": "^7.0.0",
         "postcss-nested": "^5.0.6",
         "prettier": "^2.6.2",
+        "react-scripts": "^5.0.1",
         "ts-jest": "^28.0.4",
         "turbo": "^1.2.16",
         "typescript": "^4.7.3"
@@ -45,8 +46,8 @@
         "clean": "turbo run clean && rm -rf node_modules",
         "dev": "turbo run dev --no-cache --parallel --continue",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "lint": "turbo run lint",
         "prepare": "husky install",
+        "lint": "turbo run lint",
         "test": "turbo run test",
         "test-w": "turbo run test-w",
         "test-c": "turbo run test-c"
@@ -55,6 +56,10 @@
         "apps/*",
         "sif-common-packages/*"
     ],
-    "private": false,
-    "snyk": true
+    "private": true,
+    "snyk": true,
+    "resolutions": {
+        "@types/react": "17.0.34",
+        "@types/react-dom": "17.0.14"
+    }
 }

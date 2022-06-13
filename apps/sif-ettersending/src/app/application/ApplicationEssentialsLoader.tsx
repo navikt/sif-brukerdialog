@@ -64,7 +64,7 @@ const ApplicationEssentialsLoader = ({ contentLoadedRenderer, søknadstype }: Pr
                         setLoadState({ isLoading: false, doApiCalls: false, error: false, hasNoAccess: true });
                     } else if (!userIsCurrentlyOnErrorPage(søknadstype)) {
                         appSentryLogger.logApiError(error);
-                        navigateToErrorPage(history);
+                        navigateToErrorPage(history as any);
                         setLoadState({ isLoading: false, doApiCalls: false, error: true });
                     } else {
                         setLoadState({ isLoading: false, doApiCalls: false, error: true });
