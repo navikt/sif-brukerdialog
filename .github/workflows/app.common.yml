@@ -22,9 +22,6 @@ jobs:
     build-and-test:
         name: Build and test
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [16.x]
         steps:
             - name: Check out code
               uses: actions/checkout@v3
@@ -34,8 +31,9 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 16
                   cache: 'yarn'
+                  continue-on-error: true
 
             - name: Get yarn cache directory path
               id: yarn-cache-dir-path
@@ -50,8 +48,7 @@ jobs:
                   ${{ runner.os }}-yarn-
 
             - name: Install dependencies
-              # if: steps.yarn-cache.outputs.cache-hit != 'true'
-              run: yarn --prefer-offline
+              run: yarn install --frozen-lockfile
 
             - name: Build
               run: yarn build
@@ -64,23 +61,20 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/main') || github.event.deployment.payload.triggered
         needs: build-and-test
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [16.x]
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
               with:
                   fetch-depth: 2
 
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js 16
               uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 16
 
             - name: Install dependencies
               if: steps.yarn-cache.outputs.cache-hit != 'true'
-              run: yarn --prefer-offline
+              run: yarn install --frozen-lockfile
 
             - name: Build code
               run: yarn build
