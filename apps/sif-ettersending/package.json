@@ -7,7 +7,7 @@
     "version": "0.0.1",
     "dependencies": {
         "@formatjs/intl-pluralrules": "^5.0.1",
-        "@navikt/ds-css": "^0.17.2",
+        "@navikt/ds-css": "^0.18.10",
         "@navikt/ds-datepicker": "^2.1.5",
         "@navikt/ds-icons": "^0.8.12",
         "@navikt/ds-react": "^0.18.6",
