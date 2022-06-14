@@ -1,0 +1,21 @@
+{
+    "modal.personopplysninger.dialogtittel": "Om behandling av personopplysningar",
+    "modal.personopplysninger.tittel": "Slik behandlar NAV personopplysningane dine",
+    "modal.personopplysninger.intro.1": "Vi hentar inn og får opplysningar om deg når vi skal behandle saka di. Det er nødvendig for at du skal få rett teneste.",
+    "modal.personopplysninger.opplysninger.tittel": "Kva opplysningar hentar vi inn?",
+    "modal.personopplysninger.opplysninger.part1": "Opplysningane vi hentar inn, kjem anten frå deg eller frå offentlege register:",
+    "modal.personopplysninger.opplysninger.1": "kva barn du er registrert som forelder til",
+    "modal.personopplysninger.opplysninger.2": "at du er åleine om omsorga for barn og kva barn det er",
+    "modal.personopplysninger.opplysninger.3": "kven du vil dele omsorgsdagar med",
+    "modal.personopplysninger.opplysninger.4": "arbeidssituasjonen din",
+    "modal.personopplysninger.opplysninger.5": "tilknytinga di til Noreg",
+    "modal.personopplysninger.opplysninger.6": "trygdeordningar du kan ha rett til i andre land. Vi kan også sende opplysningar om deg til trygdeorgan i andre land.",
+    "modal.personopplysninger.opplysninger.part2": "Vi lagrar opplysningane du gir om at du er åleine om omsorga for barn. Dette gjer vi slik at vi kan betale ut for rett tal på dagar dersom det kjem",
+    "modal.personopplysninger.opplysninger.7": "eit refusjonskrav frå arbeidsgivaren din, eller",
+    "modal.personopplysninger.opplysninger.8": "ein søknad frå deg om utbetaling ",
+
+    "modal.personopplysninger.svar.tittel": "Svar frå NAV",
+    "modal.personopplysninger.svar.part1a": "Du får eit svar frå NAV når saka di er behandla. Svaret inneheld grunngiving for avgjerda og informasjon om reglane som er brukte",
+    "modal.personopplysninger.svar.part1b": "Vil du vite meir om korleis NAV behandlar personopplysningar? Sjå",
+    "modal.personopplysninger.svar.part1c": "nav.no/personvern"
+}

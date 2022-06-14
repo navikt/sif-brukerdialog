@@ -37,7 +37,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<ApplicationFormData>();
     const søkerdata = React.useContext(SøkerdataContext);
-    const history = useHistory();
+    const history = useHistory() as any;
     const { logSoknadSent, logSoknadFailed, logUserLoggedOut, logInfo } = useAmplitudeInstance();
     const [sendingInProgress, setSendingInProgress] = useState(false);
 

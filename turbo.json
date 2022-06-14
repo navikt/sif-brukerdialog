@@ -6,8 +6,16 @@
             "outputs": ["dist/**", "public/dist/**"],
             "dependsOn": ["^build"]
         },
+        "build-app": {
+            "outputs": ["dist/**", "public/dist/**"],
+            "dependsOn": ["^build"]
+        },
         "dev-lib": {
             "outputs": ["dist/**", "public/dist/**"],
+            "dependsOn": ["^build"]
+        },
+        "snd": {
+            "outputs": [],
             "dependsOn": ["^build"]
         },
         "test": {

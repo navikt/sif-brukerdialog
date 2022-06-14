@@ -22,7 +22,7 @@ interface FormikFileUploader<FieldName> extends TypedFormInputValidationProps<Fi
     name: string;
     buttonLabel: string;
     value?: Attachment[];
-    uploadFile: (file: File) => Promise<AxiosResponse<any, any>>;
+    uploadFile: (file: File) => Promise<AxiosResponse<any>>;
     onFileInputClick?: () => void;
     onApiError: (error: AxiosError) => void;
     onErrorUploadingAttachments: (files: File[]) => void;
