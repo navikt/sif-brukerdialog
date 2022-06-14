@@ -18,7 +18,6 @@ COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/deling-omsorgsdager/node_modules ./node_modules/
 COPY --from=pruner /app/apps/deling-omsorgsdager/envSettings.js .
 COPY --from=pruner /app/apps/deling-omsorgsdager/server.js .
-# COPY --from=pruner /app/apps/deling-omsorgsdager/tokenx.js .
 COPY --from=pruner /app/apps/deling-omsorgsdager/package.json .
 COPY --from=pruner /app/apps/deling-omsorgsdager/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
 COPY --from=pruner /app/apps/deling-omsorgsdager/dist ./dist
