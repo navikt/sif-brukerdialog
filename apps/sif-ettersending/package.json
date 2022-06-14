@@ -67,7 +67,7 @@
     },
     "scripts": {
         "build": "node src/build/scripts/production-build.js",
-        "clean": "rm -rf node_modules",
+        "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8090 node ./api-mock.js",
         "prepare": "yarn snyk-protect",
         "snd": "yarn start-no-decorator",
