@@ -33,7 +33,7 @@ jobs:
               with:
                   node-version: 16
                   cache: 'yarn'
-                  continue-on-error: true
+                  # continue-on-error: true
 
             - name: Get yarn cache directory path
               id: yarn-cache-dir-path
@@ -102,5 +102,3 @@ jobs:
                   RESOURCE: config/nais.yml
                   VARS: config/${{ inputs.app-name }}/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-
-# Build 1
