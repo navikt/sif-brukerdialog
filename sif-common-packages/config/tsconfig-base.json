@@ -21,7 +21,8 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "strict": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "types": ["jest"]
     },
     "include": ["./src/**/*"],
     "exclude": ["node_modules"]
