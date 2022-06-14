@@ -3,8 +3,8 @@ name: CI / CD
 on:
   push:
     paths:
-      - 'apps/omsorgsdager-deling/**/*'
-      - '.github/workflows/app.omsorgsdager-deling.yml'
+      - 'apps/deling-omsorgsdager/**/*'
+      - '.github/workflows/app.deling-omsorgsdager.yml'
       - '.github/workflows/app.common.yml'
 
 jobs:
@@ -14,5 +14,5 @@ jobs:
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
     with:
-      app-name: 'omsorgsdager-deling'
-      working-directory: 'apps/omsorgsdager-deling'
+      app-name: 'deling-omsorgsdager'
+      working-directory: 'apps/deling-omsorgsdager'

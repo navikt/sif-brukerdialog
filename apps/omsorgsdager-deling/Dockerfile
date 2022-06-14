@@ -5,7 +5,7 @@ RUN yarn global add turbo
 
 WORKDIR /app
 
-ENV SCOPE=@navikt/omsorgsdager-deling
+ENV SCOPE=@navikt/deling-omsorgsdager
 
 FROM base AS pruner
 COPY . .
@@ -13,15 +13,15 @@ RUN yarn install
 RUN yarn turbo run build --filter=${SCOPE}
 
 FROM pruner AS server
-WORKDIR /apps/omsorgsdager-deling
+WORKDIR /apps/deling-omsorgsdager
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/omsorgsdager-deling/node_modules ./node_modules/
-COPY --from=pruner /app/apps/omsorgsdager-deling/envSettings.js .
-COPY --from=pruner /app/apps/omsorgsdager-deling/server.js .
-# COPY --from=pruner /app/apps/omsorgsdager-deling/tokenx.js .
-COPY --from=pruner /app/apps/omsorgsdager-deling/package.json .
-COPY --from=pruner /app/apps/omsorgsdager-deling/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
-COPY --from=pruner /app/apps/omsorgsdager-deling/dist ./dist
+COPY --from=pruner /app/apps/deling-omsorgsdager/node_modules ./node_modules/
+COPY --from=pruner /app/apps/deling-omsorgsdager/envSettings.js .
+COPY --from=pruner /app/apps/deling-omsorgsdager/server.js .
+# COPY --from=pruner /app/apps/deling-omsorgsdager/tokenx.js .
+COPY --from=pruner /app/apps/deling-omsorgsdager/package.json .
+COPY --from=pruner /app/apps/deling-omsorgsdager/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
+COPY --from=pruner /app/apps/deling-omsorgsdager/dist ./dist
 
 EXPOSE 8080
-CMD ["yarn","--cwd", "apps/omsorgsdager-deling", "start-express"]
+CMD ["yarn","--cwd", "apps/deling-omsorgsdager", "start-express"]

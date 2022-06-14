@@ -28,7 +28,7 @@ server.use((req, res, next) => {
     next();
 });
 
-const MELLOMLAGRING_JSON = `${os.tmpdir()}/omsorgsdager-deling-mellomlagring.json`;
+const MELLOMLAGRING_JSON = `${os.tmpdir()}/deling-omsorgsdager-mellomlagring.json`;
 
 const isJSON = (str) => {
     try {
