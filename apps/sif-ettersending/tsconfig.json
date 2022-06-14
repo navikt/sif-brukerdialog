@@ -1,26 +1,29 @@
 {
     "compilerOptions": {
-        "outDir": "build/dist",
+        "baseUrl": "./src",
+        "jsx": "react",
         "module": "esnext",
+        "moduleResolution": "node",
+        "outDir": "build/dist",
         "target": "es5",
         "lib": ["es6", "dom", "es2017"],
-        "sourceMap": true,
+        "paths": {
+            "@sif-common-core-ds/*": ["./src/sif-common-core-ds/*"]
+        },
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/@types"],
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
-        "jsx": "react",
-        "moduleResolution": "node",
+        "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "skipLibCheck": true,
-        "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
-        "baseUrl": "./src",
-        "esModuleInterop": true,
-        "paths": { "@sif-common-core-ds/*": ["./src/sif-common-core-ds/*"] }
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true
     },
-    "include": ["./src/app/**/*", "./src/sif-common-core-ds/**/*"],
-    "exclude": ["node_modules", "./src/build", "**.js", "dist"]
+    "exclude": ["node_modules", "./src/build", "**.js", "dist"],
+    "include": ["./src/app/**/*", "./src/sif-common-core-ds/**/*"]
 }

@@ -102,3 +102,5 @@ jobs:
                   RESOURCE: config/nais.yml
                   VARS: config/${{ inputs.app-name }}/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+
+# Build
