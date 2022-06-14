@@ -2,8 +2,8 @@
     "author": "NAV",
     "description": "Overføring og fordeling av omsorgsdager",
     "license": "MIT",
-    "name": "omsorgsdager-deling-dialog",
-    "repository": "https://github.com/navikt/omsorgsdager-deling-dialog",
+    "name": "@navikt/deling-omsorgsdager",
+    "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "0.0.1",
     "dependencies": {
         "@devexperts/remote-data-ts": "^2.1.1",
