@@ -1,5 +1,5 @@
 # This workflow trigger on push to apps/sif-ettersending
-name: CI / CD
+name: Ettersending
 on:
   push:
     paths:
