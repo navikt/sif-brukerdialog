@@ -11,6 +11,7 @@ FROM base AS pruner
 COPY . .
 RUN yarn install
 RUN yarn turbo run build --filter=${SCOPE}
+RUN yarn turbo run build-app --filter=${SCOPE}
 
 FROM pruner AS server
 WORKDIR /apps/sif-ettersending
