@@ -6,6 +6,7 @@ on:
       - 'apps/deling-omsorgsdager/**/*'
       - '.github/workflows/app.deling-omsorgsdager.yml'
       - '.github/workflows/app.common.yml'
+      - '.config/deling-omsorgsdager/**'
 
 jobs:
   build:
