@@ -5,7 +5,7 @@
         "jsx": "react-jsx",
         "module": "esnext",
         "outDir": "./lib",
-        "target": "es2015",
+        "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"]
     },
     "exclude": ["node_modules", ".turbo", "lib", "__tests__"],

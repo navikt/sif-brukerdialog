@@ -128,7 +128,6 @@
     "scripts": {
         "build": "node src/build/scripts/production-build.js",
         "clean": "rm -rf node_modules",
-        "dev": "npm-run-all -p rm:dist dev-api start-no-decorator",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "devd": "npm-run-all -p rm:dist dev-api start",
         "prepare": "npm run snyk-protect",

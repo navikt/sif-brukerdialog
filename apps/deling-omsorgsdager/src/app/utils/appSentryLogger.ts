@@ -1,6 +1,6 @@
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
+import { APPLICATION_KEY } from '../App';
 
-const APPLICATION_KEY = 'deling-omsorgsdager';
 const appSentryLogger = getSentryLoggerForApp(APPLICATION_KEY);
 
 export default appSentryLogger;

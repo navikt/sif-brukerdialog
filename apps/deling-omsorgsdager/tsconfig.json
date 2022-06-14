@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "build/dist",
         "module": "esnext",
-        "target": "es2015",
+        "target": "es5",
         "lib": ["es6", "dom", "es2017"],
         "sourceMap": true,
         "allowJs": true,
@@ -19,7 +19,6 @@
         "noUnusedLocals": true,
         "esModuleInterop": true,
         "baseUrl": "./src",
-
         "typeRoots": ["./node_modules/@types", "./src/@types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"]
