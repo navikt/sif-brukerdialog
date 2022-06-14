@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const process = require('process');
 require('dotenv').config();
 
