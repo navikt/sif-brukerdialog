@@ -3,8 +3,8 @@ import React from 'react';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import FormikYesOrNoQuestion, {
     FormikYesOrNoQuestionProps,
-} from '@navikt/sif-common-formik/lib/components/formik-yes-or-no-question/FormikYesOrNoQuestion';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+} from '@navikt/sif-common-formik-ds/lib/components/formik-yes-or-no-question/FormikYesOrNoQuestion';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export interface FormQuestionProps<FieldName> extends FormikYesOrNoQuestionProps<FieldName, ValidationError> {
@@ -13,7 +13,6 @@ export interface FormQuestionProps<FieldName> extends FormikYesOrNoQuestionProps
     stopMessage?: React.ReactNode;
     infoMessage?: React.ReactNode;
     showInfo?: boolean;
-    legend?: React.ReactNode;
     children?: React.ReactNode;
 }
 
