@@ -7,3 +7,7 @@
 .languageToggle__wrapper {
     min-width: 15rem;
 }
+
+.navds-fieldset__description > .expandableInfo:first-child {
+    margin-top: 0.5rem;
+}

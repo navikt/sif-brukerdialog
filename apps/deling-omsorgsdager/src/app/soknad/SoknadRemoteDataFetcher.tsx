@@ -1,13 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import RemoteDataHandler from '@navikt/sif-common-soknad-ds/lib/remote-data-handler/RemoteDataHandler';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import LoadingPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/LoadingPage';
 import SoknadErrorMessages from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
 import useSoknadEssentials, { SoknadEssentials } from '../hooks/useSoknadEssentials';
 import Soknad from './Soknad';
-import { isForbidden } from '@navikt/sif-common-core/lib/utils/apiUtils';
+import { isForbidden } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
 
 const SoknadRemoteDataFetcher = (): JSX.Element => {

@@ -45,7 +45,7 @@ const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
                 </Block>
                 <Block margin="xl">
                     <GuidePanel poster className="sif-guidePanel">
-                        <BodyShort>{intlHelper(intl, 'welcomingPage.counsellor')}</BodyShort>
+                        <BodyShort as="div">{intlHelper(intl, 'welcomingPage.counsellor')}</BodyShort>
                     </GuidePanel>
                 </Block>
 

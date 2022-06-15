@@ -16,6 +16,7 @@ import FormikInputGroup, { FormikInputGroupProps } from './formik-input-group/Fo
 import FormikRadioGroup, { FormikRadioGroupProps } from './formik-radio-group/FormikRadioGroup';
 import FormikSelect, { FormikSelectProps } from './formik-select/FormikSelect';
 import FormikTextField, { FormikTextFieldProps } from './formik-text-field/FormikTextField';
+import FormikNumberInput, { FormikNumberInputProps } from './formik-number-input/FormikNumberInput';
 import FormikTextarea, { FormikTextareaProps } from './formik-textarea/FormikTextarea';
 import FormikTimeInput, { FormikTimeInputProps } from './formik-time-input/FormikTimeInput';
 import FormikYesOrNoQuestion, { FormikYesOrNoQuestionProps } from './formik-yes-or-no-question/FormikYesOrNoQuestion';
@@ -34,6 +35,7 @@ export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
     Form: (props: TypedFormikFormProps<FormValues, ErrorType>) => JSX.Element;
     FormikWrapper: (props: TypedFormikWrapperProps<FormValues>) => JSX.Element;
     TextField: (props: FormikTextFieldProps<FieldName, ErrorType>) => JSX.Element;
+    NumberInput: (props: FormikNumberInputProps<FieldName, ErrorType>) => JSX.Element;
     InputGroup: (props: FormikInputGroupProps<ErrorType, FieldName>) => JSX.Element;
     RadioGroup: (props: FormikRadioGroupProps<FieldName, ErrorType>) => JSX.Element;
     Select: (props: FormikSelectProps<FieldName, ErrorType>) => JSX.Element;
@@ -74,6 +76,9 @@ export function getTypedFormComponents<FieldName, FormValues, ErrorType = string
         FormikWrapper: (props: TypedFormikWrapperProps<FormValues>) => <TypedFormikWrapper {...props} />,
         TextField: (props: FormikTextFieldProps<FieldName, ErrorType>) => (
             <FormikTextField<FieldName, ErrorType> {...props} />
+        ),
+        NumberInput: (props: FormikNumberInputProps<FieldName, ErrorType>) => (
+            <FormikNumberInput<FieldName, ErrorType> {...props} />
         ),
         InputGroup: (props: FormikInputGroupProps<ErrorType, FieldName>) => (
             <FormikInputGroup<ErrorType, FieldName> {...props} />

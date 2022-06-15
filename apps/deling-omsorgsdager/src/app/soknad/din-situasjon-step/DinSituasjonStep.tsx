@@ -2,8 +2,8 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { getListValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { getListValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import FormQuestion from '@navikt/sif-common-soknad-ds/lib/form-question/FormQuestion';
 import { useFormikContext } from 'formik';
 import Lenke from 'nav-frontend-lenker';
@@ -70,7 +70,7 @@ const DinSituasjonStep: React.FunctionComponent = () => {
             {kanFortsette === true && (
                 <>
                     <FormBlock>
-                        <SoknadFormComponents.CheckboxPanelGroup
+                        <SoknadFormComponents.CheckboxGroup
                             legend={intlHelper(intl, 'step.din_situasjon.form.arbeidssituasjon.spm')}
                             name={SoknadFormField.arbeidssituasjon}
                             checkboxes={[

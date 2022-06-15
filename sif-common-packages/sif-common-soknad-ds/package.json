@@ -81,7 +81,9 @@
         "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
+        "compile-lib-script-w": "tsc -p tsconfig.json --watch",
         "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
+        "dev": "yarn compile-lib-script-w",
         "deploy": "gh-pages -d build",
         "test": "react-scripts test --watchAll=false --passWithNoTests"
     },

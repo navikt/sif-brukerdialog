@@ -25,6 +25,7 @@ function FormikTextField<FieldName, ErrorType>({
     className,
     autoComplete = 'off',
     useFastField,
+    label,
     ...restProps
 }: FormikTextFieldProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
@@ -37,6 +38,7 @@ function FormikTextField<FieldName, ErrorType>({
                     <TextField
                         {...restProps}
                         {...field}
+                        label={<div>{label}</div>}
                         autoComplete={autoComplete}
                         className={getTextFieldWidthClassName(width, className)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}

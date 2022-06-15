@@ -1,7 +1,7 @@
+import { BodyShort, GuidePanel } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import './stepIntroduction.less';
 
 interface Props {
@@ -11,8 +11,12 @@ interface Props {
 const StepIntroduction: React.FunctionComponent<Props> = ({ ariaTitle, children }) => {
     const intl = useIntl();
     return (
-        <section className="stepIntroduction" aria-label={ariaTitle || intlHelper(intl, 'stepIntroduction.ariaTitle')}>
-            <CounsellorPanel>{children}</CounsellorPanel>
+        <section aria-label={ariaTitle || intlHelper(intl, 'stepIntroduction.ariaTitle')}>
+            <GuidePanel className="sif-guidePanel">
+                <BodyShort as="div" className="stepIntroductionContent">
+                    {children}
+                </BodyShort>
+            </GuidePanel>
         </section>
     );
 };

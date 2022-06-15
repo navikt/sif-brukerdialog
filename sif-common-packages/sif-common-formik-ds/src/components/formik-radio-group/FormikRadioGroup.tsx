@@ -5,7 +5,7 @@ import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 
-type FormikRadioProp = Omit<RadioProps, 'children' | 'name'> & {
+export type FormikRadioProp = Omit<RadioProps, 'children' | 'name'> & {
     label: React.ReactNode;
 } & TestProps;
 

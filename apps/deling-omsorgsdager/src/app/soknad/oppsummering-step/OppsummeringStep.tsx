@@ -1,13 +1,12 @@
+import { Alert, BodyShort, GuidePanel } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import Guide from '@navikt/sif-common-core/lib/components/guide/Guide';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
-import VeilederSVG from '@navikt/sif-common-core/lib/components/veileder-svg/VeilederSVG';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { Person } from '../../types/Person';
 import { SoknadApiData } from '../../types/SoknadApiData';
 import { Barn, SoknadFormField } from '../../types/SoknadFormData';
@@ -24,7 +23,6 @@ import OmBarnaSummary from './OmBarnaSummary';
 import SamværsavtaleSummary from './SamværsavtaleSummary';
 import SøknadstypeSummary from './SoknadstypeSummary';
 import SøkerSummary from './SøkerSummary';
-import { getCheckedValidator } from '@navikt/sif-common-formik/lib/validation';
 
 type Props = {
     søker: Person;
@@ -44,22 +42,25 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
             showButtonSpinner={isPending(sendSoknadStatus.status)}
             buttonDisabled={isPending(sendSoknadStatus.status) || apiDataIsValid === false}
             onSendSoknad={apiValues ? (): void => sendSoknad(apiValues) : undefined}>
-            <Box margin="xxxl">
-                <Guide kompakt={true} type="normal" svg={<VeilederSVG />}>
-                    <FormattedMessage id="step.oppsummering.info" />
-                </Guide>
+            <Box margin="xl">
+                <GuidePanel className="sif-guidePanel">
+                    <BodyShort as="div">
+                        <FormattedMessage id="step.oppsummering.info" />
+                    </BodyShort>
+                </GuidePanel>
+
                 {apiValues === undefined && (
                     <Box margin="xl">
-                        <AlertStripeFeil>
+                        <Alert variant="error">
                             <FormattedMessage id="oppsummering.advarsel.ingenApiValues" />
-                        </AlertStripeFeil>
+                        </Alert>
                     </Box>
                 )}
 
                 {apiValues !== undefined && apiDataIsValid === false && (
-                    <AlertStripeFeil>
+                    <Alert variant="error">
                         <FormattedMessage id="oppsummering.advarsel.invalidApiValues" />
-                    </AlertStripeFeil>
+                    </Alert>
                 )}
                 {apiValues !== undefined && (
                     <>
@@ -90,14 +91,14 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
             {isFailure(sendSoknadStatus.status) && (
                 <FormBlock>
                     {sendSoknadStatus.failures === 1 && (
-                        <AlertStripeFeil>
+                        <Alert variant="error">
                             <FormattedMessage id="step.oppsummering.sendMelding.feilmelding.førsteGang" />
-                        </AlertStripeFeil>
+                        </Alert>
                     )}
                     {sendSoknadStatus.failures === 2 && (
-                        <AlertStripeFeil>
+                        <Alert variant="error">
                             <FormattedMessage id="step.oppsummering.sendMelding.feilmelding.andreGang" />
-                        </AlertStripeFeil>
+                        </Alert>
                     )}
                 </FormBlock>
             )}
