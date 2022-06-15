@@ -9,8 +9,7 @@ ENV SCOPE=@navikt/sif-ettersending
 
 FROM base AS pruner
 COPY . .
-RUN yarn install
-RUN yarn turbo run build --filter=${SCOPE}
+RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
 FROM pruner AS server
