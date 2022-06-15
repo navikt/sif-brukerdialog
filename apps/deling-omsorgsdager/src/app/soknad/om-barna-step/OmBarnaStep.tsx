@@ -7,7 +7,7 @@ import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 import { AnnetBarn } from '@navikt/sif-common-forms/lib/annet-barn/types';
-import { QuestionVisibilityContext } from '@navikt/sif-common-soknad/lib/question-visibility/QuestionVisibilityContext';
+import { QuestionVisibilityContext } from '@navikt/sif-common-soknad-ds/lib/question-visibility/QuestionVisibilityContext';
 import { useFormikContext } from 'formik';
 import { CheckboksPanelProps } from 'nav-frontend-skjema';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';

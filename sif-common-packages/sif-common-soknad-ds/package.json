@@ -78,9 +78,10 @@
     },
     "scripts": {
         "build": "npm-run-all clean-lib compile-lib-script copy-files",
+        "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-files": "copyfiles -u 2 \"src/common/**/*.less\" lib/ && copyfiles -u 2 \"src/common/**/assets/**/*\" lib/ && copyfiles -u 2 \"src/common/**/*.json\" lib/",
+        "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
         "test": "react-scripts test --watchAll=false --passWithNoTests"
     },

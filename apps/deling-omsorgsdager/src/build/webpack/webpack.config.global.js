@@ -59,6 +59,10 @@ const webpackConfig = {
                 ],
             },
             {
+                test: /\.s[ac]ss$/i,
+                use: ['style-loader', 'css-loader', 'less-loader', 'sass-loader'],
+            },
+            {
                 test: /\.svg$/,
                 loader: 'svg-sprite-loader',
                 options: {},

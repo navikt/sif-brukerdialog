@@ -7,12 +7,14 @@ import FormikYesOrNoQuestion, {
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 
-export interface FormQuestionProps<FieldName> extends FormikYesOrNoQuestionProps<FieldName, ValidationError> {
+export interface FormQuestionProps<FieldName>
+    extends Omit<FormikYesOrNoQuestionProps<FieldName, ValidationError>, 'legend'> {
     showStop?: boolean;
     description?: React.ReactNode;
     stopMessage?: React.ReactNode;
     infoMessage?: React.ReactNode;
     showInfo?: boolean;
+    legend?: React.ReactNode;
     children?: React.ReactNode;
 }
 

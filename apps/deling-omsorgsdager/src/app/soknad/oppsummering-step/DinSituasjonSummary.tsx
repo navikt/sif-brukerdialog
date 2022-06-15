@@ -2,10 +2,10 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import JaNeiSvar from '@navikt/sif-common-soknad/lib/soknad-summary/JaNeiSvar';
-import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
-import TallSvar from '@navikt/sif-common-soknad/lib/soknad-summary/TallSvar';
+import JaNeiSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/JaNeiSvar';
+import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-block/SummaryBlock';
+import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
+import TallSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/TallSvar';
 import { DinSituasjonApiData } from '../../utils/map-form-data-to-api-data/mapDinSituasjonToApiData';
 
 interface Props {

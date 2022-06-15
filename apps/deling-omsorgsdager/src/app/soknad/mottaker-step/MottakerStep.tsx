@@ -11,7 +11,7 @@ import {
     getStringValidator,
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik/lib/validation';
-import { QuestionVisibilityContext } from '@navikt/sif-common-soknad/lib/question-visibility/QuestionVisibilityContext';
+import { QuestionVisibilityContext } from '@navikt/sif-common-soknad-ds/lib/question-visibility/QuestionVisibilityContext';
 import { useFormikContext } from 'formik';
 import { RadioPanelProps } from 'nav-frontend-skjema';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';

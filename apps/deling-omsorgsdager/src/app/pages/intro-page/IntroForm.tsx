@@ -7,7 +7,7 @@ import { getTypedFormComponents, UnansweredQuestionsInfo } from '@navikt/sif-com
 import { getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import FormQuestion from '@navikt/sif-common-soknad/lib/form-question/FormQuestion';
+import FormQuestion from '@navikt/sif-common-soknad-ds/lib/form-question/FormQuestion';
 import Lenke from 'nav-frontend-lenker';
 import getLenker from '../../lenker';
 import { IntroFormData, IntroFormField, introFormInitialValues } from './introFormConfig';

@@ -4,7 +4,7 @@ import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlo
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { getListValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
-import FormQuestion from '@navikt/sif-common-soknad/lib/form-question/FormQuestion';
+import FormQuestion from '@navikt/sif-common-soknad-ds/lib/form-question/FormQuestion';
 import { useFormikContext } from 'formik';
 import Lenke from 'nav-frontend-lenker';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';
