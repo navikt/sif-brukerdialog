@@ -14,7 +14,6 @@
         "@navikt/sif-common-formik": "23.1.0",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-forms": "^17.3.0",
-        "@navikt/sif-common-question-config": "0.0.7",
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad": "*",
         "@sentry/browser": "^7.1.1",

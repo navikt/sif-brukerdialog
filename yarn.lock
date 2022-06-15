@@ -2224,11 +2224,6 @@
   dependencies:
     "@wojtekmaj/enzyme-adapter-react-17" "^0.6.3"
 
-"@navikt/sif-common-question-config@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@navikt/sif-common-question-config/-/sif-common-question-config-0.0.7.tgz#e4487c0b61f3253a794ca42376b79b6a4c2b3f43"
-  integrity sha512-6K8cnhWk4CZ5t7FUXWK06mhpNP4YRMYNVXjbEhgiqmAH2Lz6ZjDsd9dvagMbekv0rzVty93aY8Ap+gY+dAFBEg==
-
 "@navikt/sif-common-soknad@*":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@navikt/sif-common-soknad/-/sif-common-soknad-5.3.1.tgz#99f6caf5f4e5dc70970dfbdaddb6b7d9eb0b6d0e"
