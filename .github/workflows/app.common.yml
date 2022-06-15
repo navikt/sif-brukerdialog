@@ -14,7 +14,7 @@ on:
                 description: Nais deploy APIKEY
                 required: false
 env:
-    IMAGE: ghcr.io/sif-brukerdialog/${{ github.repository }}/${{ inputs.app-name }:${{ github.sha }}
+    IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }:${{ github.sha }}
     GITHUB_USERNAME: x-access-token
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
