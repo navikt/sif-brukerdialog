@@ -14,7 +14,7 @@ on:
                 description: Nais deploy APIKEY
                 required: false
 env:
-    IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
+    IMAGE: ghcr.io/sif-brukerdialog/${{ github.repository }}/${{ inputs.app-name }:${{ github.sha }}
     GITHUB_USERNAME: x-access-token
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -81,7 +81,7 @@ jobs:
             - name: Build and publish Docker image
               run: |
                   docker build -t ${IMAGE} -f ${{inputs.working-directory}}/Dockerfile .
-                  docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+                  docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
                   docker push ${IMAGE}
 
     deploy-dev-gcp:
