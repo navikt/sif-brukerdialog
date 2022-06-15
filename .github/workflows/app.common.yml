@@ -102,4 +102,4 @@ jobs:
                   VARS: config/${{ inputs.app-name }}/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
 
-# build 2
+# build 3
