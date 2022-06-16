@@ -1,11 +1,11 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
+import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/layout/content-with-header/ContentWithHeader';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import ContentWithHeader from '@navikt/sif-common-core/lib/components/content-with-header/ContentWithHeader';
 import ItemList from '@navikt/sif-common-core/lib/components/item-list/ItemList';
 import { dateToday, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms/lib/annet-barn/AnnetBarnListAndDialog';
 import { useFormikContext } from 'formik';
@@ -46,7 +46,10 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
         <SoknadFormStep id={StepID.DINE_BARN} showSubmitButton={kanFortsette}>
             {barn.length > 0 && (
                 <Box margin="xl">
-                    <ContentWithHeader header={intlHelper(intl, 'step.dine-barn.listHeader.registrerteBarn')}>
+                    <ContentWithHeader
+                        level="2"
+                        size="xsmall"
+                        header={intlHelper(intl, 'step.dine-barn.listHeader.registrerteBarn')}>
                         <ItemList<Barn>
                             getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
                             getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
@@ -58,6 +61,8 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
             )}
             <Box margin="xl">
                 <ContentWithHeader
+                    level="2"
+                    size="xsmall"
                     header={
                         andreBarn.length === 0
                             ? intlHelper(intl, 'step.dine-barn.info.spm.andreBarn')
