@@ -39,7 +39,7 @@
         "apps/**/*.{ts,tsx}": [
             "eslint --fix"
         ],
-        "sif-common-packages/**/*.{ts,tsx}": [
+        "packages/**/*.{ts,tsx}": [
             "eslint --fix"
         ]
     },
@@ -57,7 +57,7 @@
     },
     "workspaces": [
         "apps/*",
-        "sif-common-packages/*"
+        "packages/*"
     ],
     "private": true,
     "snyk": true,

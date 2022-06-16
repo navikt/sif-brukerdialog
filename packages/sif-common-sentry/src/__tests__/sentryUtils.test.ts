@@ -1,4 +1,4 @@
-import { SentryEnvironment, setSentryEnvironment } from '../../src';
+import { SentryEnvironment, setSentryEnvironment } from '..';
 
 describe('routeUtils', () => {
     it('sentry environment is set correctly', () => {

@@ -47,7 +47,7 @@ jobs:
                   ${{ runner.os }}-yarn-
 
             - name: Install dependencies
-              run: yarn install --frozen-lockfile
+              run: yarn install
 
             - name: Build
               run: yarn build
@@ -73,7 +73,7 @@ jobs:
 
             - name: Install dependencies
               if: steps.yarn-cache.outputs.cache-hit != 'true'
-              run: yarn install --frozen-lockfile
+              run: yarn install
 
             - name: Build code
               run: yarn build
