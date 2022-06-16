@@ -9,7 +9,7 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "devDependencies": {
-        "@snyk/protect": "^1.951.0",
+        "@snyk/protect": "^1.952.0",
         "@storybook/builder-webpack5": "^6.5.9",
         "@storybook/manager-webpack5": "^6.5.9",
         "@testing-library/jest-dom": "^5.16.4",
