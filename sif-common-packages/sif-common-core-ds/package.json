@@ -70,11 +70,21 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-common-core-ds.git"
     },
+    "watch": {
+        "copy-files": {
+            "patterns": [
+                "src"
+            ],
+            "extensions": "css,scss,less",
+            "runOnChangeOnly": true
+        }
+    },
     "scripts": {
         "build": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
         "clean": "rm -rf node_modules lib",
-        "dev": "yarn compile-lib-script-w",
+        "dev": "yarn watch-styles & yarn compile-lib-script-w",
+        "watch-styles": "npm-watch copy-files ",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-w": "tsc -p tsconfig.json --watch ",

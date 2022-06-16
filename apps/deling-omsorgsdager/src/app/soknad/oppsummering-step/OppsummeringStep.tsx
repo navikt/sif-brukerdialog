@@ -1,11 +1,12 @@
-import { Alert, BodyShort, GuidePanel } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guidePanel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { Person } from '../../types/Person';
 import { SoknadApiData } from '../../types/SoknadApiData';
@@ -43,11 +44,11 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
             buttonDisabled={isPending(sendSoknadStatus.status) || apiDataIsValid === false}
             onSendSoknad={apiValues ? (): void => sendSoknad(apiValues) : undefined}>
             <Box margin="xl">
-                <GuidePanel className="sif-guidePanel">
+                <SifGuidePanel>
                     <BodyShort as="div">
                         <FormattedMessage id="step.oppsummering.info" />
                     </BodyShort>
-                </GuidePanel>
+                </SifGuidePanel>
 
                 {apiValues === undefined && (
                     <Box margin="xl">

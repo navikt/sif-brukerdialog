@@ -1,16 +1,17 @@
+import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/layout/expandable-info/ExpandableInfo';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guidePanel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
 import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { navigateToSoknadFrontpage } from '../../utils/navigationUtils';
 import IntroForm from './IntroForm';
-import { BodyShort, GuidePanel } from '@navikt/ds-react';
 
 const IntroPage: React.FunctionComponent = () => {
     const intl = useIntl();
@@ -22,7 +23,7 @@ const IntroPage: React.FunctionComponent = () => {
             topContentRenderer={() => <StepBanner tag="h1" text={intlHelper(intl, 'application.title')} />}>
             <Box margin="xxxl">
                 <section aria-label="Introduksjon">
-                    <GuidePanel poster className="sif-guidePanel">
+                    <SifGuidePanel poster>
                         <BodyShort as="div">
                             {intlHelper(intl, 'introForm.info.1')}
                             <p>{intlHelper(intl, 'introForm.info.2')}</p>
@@ -55,7 +56,7 @@ const IntroPage: React.FunctionComponent = () => {
                                 </li>
                             </ul>
                         </BodyShort>
-                    </GuidePanel>
+                    </SifGuidePanel>
                 </section>
             </Box>
             <FormBlock>

@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-function VeilederLokal({ mood }: { mood: 'happy' | 'uncertain' }) {
+export type GuideMood = 'happy' | 'uncertain';
+
+function SifGuide({ mood }: { mood: GuideMood }) {
     return (
         <svg width={49} height={85} viewBox="0 0 49 85">
             <title>{'Group 2'}</title>
@@ -45,4 +47,4 @@ function VeilederLokal({ mood }: { mood: 'happy' | 'uncertain' }) {
     );
 }
 
-export default VeilederLokal;
+export default SifGuide;

@@ -1,4 +1,4 @@
-import { BodyShort, GuidePanel, Heading } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
@@ -6,6 +6,7 @@ import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
 import InfoDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/info-dialog/InfoDialog';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import PageBanner from '@navikt/sif-common-core-ds/lib/components/page/page-banner/PageBanner';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
 import BehandlingAvPersonopplysningerContent from '../../information/behandling-av-personopplysninger-content/BehandlingAvPersonopplysningerContent';
@@ -44,9 +45,9 @@ const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
                     </Heading>
                 </Block>
                 <Block margin="xl">
-                    <GuidePanel poster className="sif-guidePanel">
+                    <SifGuidePanel poster>
                         <BodyShort as="div">{intlHelper(intl, 'welcomingPage.counsellor')}</BodyShort>
-                    </GuidePanel>
+                    </SifGuidePanel>
                 </Block>
 
                 <SamtykkeForm
