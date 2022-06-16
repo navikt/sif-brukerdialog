@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
-import { getFødselsnummerValidator } from '@navikt/sif-common-formik/lib/validation';
+import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
+import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ANTALL_DAGER_RANGE } from '../soknad/mottaker-step/MottakerStep';
 import { StepID } from '../soknad/soknadStepsConfig';
 import { Person } from '../types/Person';

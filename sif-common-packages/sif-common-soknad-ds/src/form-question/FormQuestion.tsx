@@ -1,13 +1,14 @@
+import { Alert } from '@navikt/ds-react';
 /* eslint-disable react/display-name */
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import FormikYesOrNoQuestion, {
     FormikYesOrNoQuestionProps,
-} from '@navikt/sif-common-formik/lib/components/formik-yes-or-no-question/FormikYesOrNoQuestion';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+} from '@navikt/sif-common-formik-ds/lib/components/formik-yes-or-no-question/FormikYesOrNoQuestion';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 
-export interface FormQuestionProps<FieldName> extends FormikYesOrNoQuestionProps<FieldName, ValidationError> {
+export interface FormQuestionProps<FieldName>
+    extends Omit<FormikYesOrNoQuestionProps<FieldName, ValidationError>, 'legend'> {
     showStop?: boolean;
     description?: React.ReactNode;
     stopMessage?: React.ReactNode;
@@ -29,12 +30,12 @@ function FormQuestion<FieldName>(props: FormQuestionProps<FieldName>) {
             <div aria-live="polite">
                 {showStop && stopMessage && (
                     <FormBlock margin="l">
-                        <AlertStripeAdvarsel>{stopMessage}</AlertStripeAdvarsel>
+                        <Alert variant="warning">{stopMessage}</Alert>
                     </FormBlock>
                 )}
                 {showInfo && infoMessage && (
                     <FormBlock margin="l">
-                        <AlertStripeInfo>{infoMessage}</AlertStripeInfo>
+                        <Alert variant="info">{infoMessage}</Alert>
                     </FormBlock>
                 )}
             </div>

@@ -1,19 +1,18 @@
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/layout/expandable-info/ExpandableInfo';
 import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
     getFødselsnummerValidator,
     getNumberValidator,
     getRequiredFieldValidator,
     getStringValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-common-formik/lib/validation';
-import { QuestionVisibilityContext } from '@navikt/sif-common-soknad/lib/question-visibility/QuestionVisibilityContext';
+} from '@navikt/sif-common-formik-ds/lib/validation';
+import { QuestionVisibilityContext } from '@navikt/sif-common-soknad-ds/lib/question-visibility/QuestionVisibilityContext';
 import { useFormikContext } from 'formik';
-import { RadioPanelProps } from 'nav-frontend-skjema';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';
 import { Person } from '../../types/Person';
 import { Mottaker, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
@@ -22,6 +21,7 @@ import SoknadFormQuestion from '../SoknadFormQuestion';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import { getMottakerFormStopp, MottakerFormQuestions } from './mottakerStepFormConfig';
+import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/formik-radio-group/FormikRadioGroup';
 
 export const ANTALL_DAGER_RANGE = { min: 1, max: 10 };
 export const ANTALL_DAGER_KORONA_RANGE = { min: 1, max: 999 };
@@ -59,7 +59,7 @@ const cleanupMottakerStep = (formData: SoknadFormData): SoknadFormData => {
     };
 };
 
-const getMottakertypeRadios = (intl: IntlShape): RadioPanelProps[] => {
+const getMottakertypeRadios = (intl: IntlShape): FormikRadioProp[] => {
     return [
         {
             label: intlHelper(intl, `step.mottaker.form.mottakerType.${Mottaker.samværsforelder}`),
@@ -140,7 +140,7 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                 />
 
                 <SoknadFormQuestion name={SoknadFormField.mottakerType}>
-                    <SoknadFormComponents.RadioPanelGroup
+                    <SoknadFormComponents.RadioGroup
                         name={SoknadFormField.mottakerType}
                         legend={intlHelper(intl, 'step.mottaker.form.mottakerType.spm')}
                         validate={getRequiredFieldValidator()}
@@ -158,7 +158,7 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                 </SoknadFormQuestion>
 
                 <SoknadFormQuestion name={SoknadFormField.fnrMottaker}>
-                    <SoknadFormComponents.Input
+                    <SoknadFormComponents.TextField
                         name={SoknadFormField.fnrMottaker}
                         label={intlHelper(intl, 'step.mottaker.form.fnr.spm')}
                         validate={getFødselsnummerValidator({
@@ -173,7 +173,7 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                 </SoknadFormQuestion>
 
                 <SoknadFormQuestion name={SoknadFormField.navnMottaker}>
-                    <SoknadFormComponents.Input
+                    <SoknadFormComponents.TextField
                         name={SoknadFormField.navnMottaker}
                         label={intlHelper(intl, 'step.mottaker.form.navn.spm')}
                         validate={(value) => {
@@ -197,7 +197,6 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                             name={SoknadFormField.antallDagerSomSkalOverføres}
                             label={intlHelper(intl, 'step.mottaker.form.antallDagerSomSkalOverføres.spm')}
                             validate={getRequiredFieldValidator()}
-                            bredde="s"
                             description={
                                 <ExpandableInfo
                                     title={intlHelper(
@@ -214,7 +213,7 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                         </SoknadFormComponents.Select>
                     )}
                     {gjelderMidlertidigPgaKorona === YesOrNo.YES && (
-                        <SoknadFormComponents.NumberInput
+                        <SoknadFormComponents.TextField
                             name={SoknadFormField.antallDagerSomSkalOverføres}
                             label={intlHelper(intl, 'step.mottaker.form.antallDagerSomSkalOverføres.spm')}
                             validate={(value) => {
@@ -230,7 +229,7 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                                       }
                                     : undefined;
                             }}
-                            bredde="XS"
+                            width="xs"
                             description={
                                 <ExpandableInfo
                                     title={intlHelper(

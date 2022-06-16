@@ -5,7 +5,7 @@ import Page from '@navikt/sif-common-core/lib/components/page/Page';
 import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
 import StepFooter from '@navikt/sif-common-core/lib/components/step-footer/StepFooter';
 import bemHelper from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikValidationErrorSummary } from '@navikt/sif-common-formik/lib';
+import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { History } from 'history';
 import { Systemtittel } from 'nav-frontend-typografi';
 import StepIndicator, { StepIndicatorStep } from '../step-indicator/StepIndicator';

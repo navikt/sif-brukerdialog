@@ -1,6 +1,6 @@
 import React from 'react';
-import FormQuestion, { FormQuestionProps } from '@navikt/sif-common-soknad/lib/form-question/FormQuestion';
-import QuestionVisibilityBlock from '@navikt/sif-common-soknad/lib/question-visibility/QuestionVisibilityBlock';
+import FormQuestion, { FormQuestionProps } from '@navikt/sif-common-soknad-ds/lib/form-question/FormQuestion';
+import QuestionVisibilityBlock from '@navikt/sif-common-soknad-ds/lib/question-visibility/QuestionVisibilityBlock';
 import { SoknadFormField } from '../types/SoknadFormData';
 
 type Props = FormQuestionProps<SoknadFormField>;

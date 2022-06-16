@@ -31,7 +31,6 @@
         "@formatjs/intl-pluralrules": "^5.0.2",
         "@navikt/appstatus-react": "^3.1.0",
         "@navikt/sif-common-core": "^12.0.0",
-        "@navikt/sif-common-formik": "^23.1.0",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "0.3.1",
         "@testing-library/jest-dom": "^5.16.4",
@@ -69,7 +68,7 @@
         "@formatjs/intl-pluralrules": "^4.1.x",
         "@navikt/appstatus-react": "^3.0.0",
         "@navikt/sif-common-core": "12.x",
-        "@navikt/sif-common-formik": "23.x",
+        "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
         "dayjs": "^1.10.x"
     },
@@ -79,9 +78,12 @@
     },
     "scripts": {
         "build": "npm-run-all clean-lib compile-lib-script copy-files",
+        "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-files": "copyfiles -u 2 \"src/common/**/*.less\" lib/ && copyfiles -u 2 \"src/common/**/assets/**/*\" lib/ && copyfiles -u 2 \"src/common/**/*.json\" lib/",
+        "compile-lib-script-w": "tsc -p tsconfig.json --watch",
+        "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
+        "dev": "yarn compile-lib-script-w",
         "deploy": "gh-pages -d build",
         "test": "react-scripts test --watchAll=false --passWithNoTests"
     },

@@ -4,8 +4,8 @@ import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { IntlShape } from 'react-intl';
 import { SoknadFormField } from '../types/SoknadFormData';
 import appSentryLogger from '../utils/appSentryLogger';

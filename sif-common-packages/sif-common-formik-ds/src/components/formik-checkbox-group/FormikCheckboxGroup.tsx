@@ -5,13 +5,13 @@ import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 
-type LocalCheckboxProps = Omit<CheckboxProps, 'children' | 'name'> & {
+export type FormikCheckboxGroupCheckboxProp = Omit<CheckboxProps, 'children' | 'name'> & {
     label: React.ReactNode;
 } & TestProps;
 
 interface OwnProps<FieldName> extends Omit<CheckboxGroupProps, 'name' | 'onChange' | 'value' | 'children'> {
     name: FieldName;
-    checkboxes: LocalCheckboxProps[];
+    checkboxes: FormikCheckboxGroupCheckboxProp[];
     afterOnChange?: (value: boolean | string[]) => void;
 }
 

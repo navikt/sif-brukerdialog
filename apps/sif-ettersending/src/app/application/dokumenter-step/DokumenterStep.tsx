@@ -1,24 +1,25 @@
-import { Alert, BodyLong, GuidePanel } from '@navikt/ds-react';
+import { Alert, BodyLong } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
+import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/content/picture-scanning-guide/PictureScanningGuide';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import { StepConfigProps, StepID } from '../../config/stepConfig';
-import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/content/picture-scanning-guide/PictureScanningGuide';
 import { ApplicationFormData, ApplicationFormField } from '../../types/ApplicationFormData';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import ApplicationStep from '../ApplicationStep';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 
 const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
     const intl = useIntl();
@@ -41,7 +42,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={true}
             buttonDisabled={hasPendingUploads || sizeOver24Mb}>
-            <GuidePanel>
+            <SifGuidePanel>
                 <BodyLong as="div">
                     <p>
                         <FormattedMessage id={'steg.dokumenter.infopanel.1'} />
@@ -53,7 +54,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
                         <FormattedMessage id={'steg.dokumenter.infopanel.3'} />
                     </p>
                 </BodyLong>
-            </GuidePanel>
+            </SifGuidePanel>
 
             <Block margin="l">
                 <PictureScanningGuide />
