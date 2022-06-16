@@ -17,7 +17,7 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
-        "@testing-library/react": "^12.1.4",
+        "@testing-library/react": "^13.3.0",
         "axios": "^0.27.2",
         "busboy": "^1.6.0",
         "compression": "^1.7.4",
