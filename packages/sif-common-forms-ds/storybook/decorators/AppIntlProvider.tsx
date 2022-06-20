@@ -5,13 +5,12 @@ import '@formatjs/intl-pluralrules//locale-data/nb';
 import '@formatjs/intl-pluralrules//locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
-import { appMessages } from './messages';
-import { BodyLong } from '@navikt/ds-react';
 import dayjs from 'dayjs';
-require('dayjs/locale/nb');
-require('dayjs/locale/nn');
+import { appMessages } from './messages';
 import '@navikt/ds-css';
 
+require('dayjs/locale/nb');
+require('dayjs/locale/nn');
 export interface IntlProviderProps {
     locale: Locale;
     children: React.ReactNode;
