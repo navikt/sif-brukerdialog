@@ -1,5 +1,5 @@
 import { ApplicationType } from '../types/ApplicationType';
-import { getEnvironmentVariable } from '../utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 interface RouteConfig {
     UTILGJENGELIG_ROUTE: string;

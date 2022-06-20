@@ -14,7 +14,7 @@ on:
                 description: Nais deploy APIKEY
                 required: false
 env:
-    IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
+    IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
     GITHUB_USERNAME: x-access-token
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -33,7 +33,6 @@ jobs:
               with:
                   node-version: 16
                   cache: 'yarn'
-                  continue-on-error: true
 
             - name: Get yarn cache directory path
               id: yarn-cache-dir-path
@@ -48,10 +47,12 @@ jobs:
                   ${{ runner.os }}-yarn-
 
             - name: Install dependencies
-              run: yarn install --frozen-lockfile
+              run: yarn install
 
             - name: Build
-              run: yarn build
+              run: |
+                yarn build-package
+                yarn build-app
 
             - name: Test
               run: yarn test
@@ -74,15 +75,17 @@ jobs:
 
             - name: Install dependencies
               if: steps.yarn-cache.outputs.cache-hit != 'true'
-              run: yarn install --frozen-lockfile
+              run: yarn install
 
-            - name: Build code
-              run: yarn build
+            - name: Build
+              run: |
+                yarn build-package
+                yarn build-app
 
             - name: Build and publish Docker image
               run: |
                   docker build -t ${IMAGE} -f ${{inputs.working-directory}}/Dockerfile .
-                  docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+                  docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
                   docker push ${IMAGE}
 
     deploy-dev-gcp:
@@ -103,4 +106,4 @@ jobs:
                   VARS: config/${{ inputs.app-name }}/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
 
-# Build
+# build 2

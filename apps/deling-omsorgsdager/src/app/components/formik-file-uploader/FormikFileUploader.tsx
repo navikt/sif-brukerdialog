@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Attachment, PersistedFile } from '@navikt/sif-common-core/lib/types/Attachment';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core/lib/utils/apiUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import {
     attachmentShouldBeProcessed,
     attachmentShouldBeUploaded,
@@ -10,13 +10,13 @@ import {
     mapFileToPersistedFile,
     VALID_EXTENSIONS,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import { TypedFormInputValidationProps } from '@navikt/sif-common-formik/lib';
+import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
 import { ArrayHelpers, useFormikContext } from 'formik';
 import api from '../../api/api';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { ApiEndpoint } from '../../types/ApiEndpoint';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
@@ -24,7 +24,7 @@ export type FieldArrayRemoveFn = (index: number) => undefined;
 
 interface FormikFileUploader extends TypedFormInputValidationProps<SoknadFormField, ValidationError> {
     name: SoknadFormField;
-    label: string;
+    buttonLabel: string;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
@@ -117,7 +117,8 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     return (
         <SoknadFormComponents.FileInput
             name={name}
-            acceptedExtensions={VALID_EXTENSIONS.join(', ')}
+            legend="Dokumenter"
+            accept={VALID_EXTENSIONS.join(', ')}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
                 const attachments = files.map((file) => addPendingAttachmentToFieldArray(file, push));
                 await uploadAttachments([...(values as any)[name], ...attachments], replace);

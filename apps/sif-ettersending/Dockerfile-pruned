@@ -1,27 +1,34 @@
 
 FROM node:16.15.1-alpine AS base
 RUN apk update && apk add git
-RUN yarn global add turbo
 
-WORKDIR /app
+RUN yarn global add turbo
 
 ENV SCOPE=@navikt/sif-ettersending
 
 FROM base AS pruner
 COPY . .
-RUN yarn install
-RUN yarn turbo run build --filter=${SCOPE}
+RUN turbo prune --scope=@navikt/deling-omsorgsdager --docker=true
 
-FROM pruner AS server
-WORKDIR /apps/sif-ettersending
-COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/sif-ettersending/node_modules ./node_modules/
-COPY --from=pruner /app/apps/sif-ettersending/envSettings.js .
-COPY --from=pruner /app/apps/sif-ettersending/server.js .
-COPY --from=pruner /app/apps/sif-ettersending/tokenx.js .
-COPY --from=pruner /app/apps/sif-ettersending/package.json .
-COPY --from=pruner /app/apps/sif-ettersending/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
-COPY --from=pruner /app/apps/sif-ettersending/dist ./dist
+FROM pruner AS builder
+WORKDIR /app/
+COPY --from=pruner /packages/config ./packages/config
+COPY --from=pruner /out/full/ .
+COPY --from=pruner /yarn.lock .
+RUN yarn install --ignore-scripts
+RUN turbo run build --filter=@navikt/sif-brukerdialog
+
+FROM builder AS prepper
+WORKDIR /prep/
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/sif-ettersending/node_modules ./node_modules
+COPY --from=builder /app/apps/sif-ettersending/dist ./dist
+COPY --from=pruner /apps/sif-ettersending/envSettings.js .
+COPY --from=pruner /apps/sif-ettersending/server.js .
+COPY --from=pruner /apps/sif-ettersending/tokenx.js .
+COPY --from=pruner /apps/sif-ettersending/package.json .
+COPY --from=pruner /apps/sif-ettersending/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
 
 EXPOSE 8080
 CMD ["yarn","--cwd", "apps/sif-ettersending", "start-express"]
+

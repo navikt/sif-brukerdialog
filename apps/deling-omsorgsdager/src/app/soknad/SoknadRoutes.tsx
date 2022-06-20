@@ -3,11 +3,11 @@ import { useIntl } from 'react-intl';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { isFailure, isInitial, isPending, isSuccess } from '@devexperts/remote-data-ts';
 import LoadWrapper from '@navikt/sif-common-core/lib/components/load-wrapper/LoadWrapper';
-import ErrorPage from '@navikt/sif-common-soknad/lib/soknad-common-pages/ErrorPage';
+import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import SoknadErrorMessages, {
     LastAvailableStepInfo,
-} from '@navikt/sif-common-soknad/lib/soknad-error-messages/SoknadErrorMessages';
-import soknadStepUtils from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepUtils';
+} from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
+import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { useFormikContext } from 'formik';
 import AppRoutes from '../config/routeConfig';
 import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
