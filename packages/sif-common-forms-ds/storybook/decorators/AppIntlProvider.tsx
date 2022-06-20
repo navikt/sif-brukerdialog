@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
+import { Modal } from '@navikt/ds-react';
 import '@formatjs/intl-pluralrules//locale-data/en';
 import '@formatjs/intl-pluralrules//locale-data/nb';
 import '@formatjs/intl-pluralrules//locale-data/nn';
@@ -20,10 +21,18 @@ export interface IntlProviderProps {
 const AppIntlProvider = ({ locale, onError, children }: IntlProviderProps) => {
     const messages = locale === 'nb' ? appMessages.nb : appMessages.nn;
     dayjs.locale(locale === 'nb' ? 'nb' : 'nn');
+    React.useEffect(() => {
+        if (Modal.setAppElement) {
+            Modal.setAppElement('#dialog-wrapper');
+        }
+    });
+
     return (
-        <IntlProvider locale={locale} messages={messages} onError={onError}>
-            <div style={{ fontSize: '1rem' }}>{children}</div>
-        </IntlProvider>
+        <div id="dialog-wrapper">
+            <IntlProvider locale={locale} messages={messages} onError={onError}>
+                <div style={{ fontSize: '1rem' }}>{children}</div>
+            </IntlProvider>
+        </div>
     );
 };
 
