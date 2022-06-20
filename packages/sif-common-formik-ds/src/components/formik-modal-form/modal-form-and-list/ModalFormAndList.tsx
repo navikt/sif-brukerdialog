@@ -82,7 +82,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 onClose={resetModal}
                 className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
                 shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}>
-                <Modal.Content title={labels.modalTitle}>
+                <Modal.Content>
                     {labels.modalTitle && (
                         <Heading spacing={true} size="large" level="1">
                             {labels.modalTitle}

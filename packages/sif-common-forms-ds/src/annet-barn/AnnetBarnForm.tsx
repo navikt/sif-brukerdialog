@@ -110,7 +110,6 @@ const AnnetBarnForm = ({
             onSubmit={onFormikSubmit}
             renderForm={() => (
                 <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'annetBarnForm')}>
-                    <Systemtittel tag="h1">{formLabels.title}</Systemtittel>
                     <FormBlock>
                         <Form.TextField
                             name={AnnetBarnFormFields.navn}

@@ -16,9 +16,6 @@
 .DayPicker-Weekday {
     padding: 0.4rem !important;
 }
-.DayPicker-Caption {
-    padding: 0 !important;
-}
 .nav-datovelger__navbar--withYearSelector {
     display: none;
 }

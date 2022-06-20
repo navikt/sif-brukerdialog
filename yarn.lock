@@ -1988,53 +1988,30 @@
     "@sanity/block-content-to-react" "^3.0.0"
     "@sanity/client" "^2.10.5"
 
-"@navikt/ds-css@^0.16.15":
-  version "0.16.21"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.16.21.tgz#b793f900f3148a048180423052480c04be239e68"
-  integrity sha512-kV9fLtnZoOIectWGZFg/aLzgp4gRi2sBjgq5VzoprNQlzSOnSxwR0QVLClpmjJe+oKZYUc5RndqDc0QAMawqkA==
-
-"@navikt/ds-css@^0.18.11", "@navikt/ds-css@^0.18.12", "@navikt/ds-css@^0.18.14":
+"@navikt/ds-css@^0.18.12", "@navikt/ds-css@^0.18.14", "@navikt/ds-css@^0.18.15":
   version "0.18.15"
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.18.15.tgz#8c0db1eabb8bc29fd61e5dce1eb0782d289b85bd"
   integrity sha512-v677/N1jUF74TsjpQZ13UyHQ/4wgxsG794MCjlyKGLBFEsjJPNGPv8NW6nkTccjEaSxAD0ZqPPC0GVG0ZZkFHA==
 
-"@navikt/ds-datepicker@^2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-datepicker/-/ds-datepicker-2.1.5.tgz#d9dbc718ff658dd487d82d3e1a8491448fabaa91"
-  integrity sha512-ClEeK8klocbc0pEJ/5YNKqEcf/rZjQdFvEA8trRl6UcjSuDUocSKBYe80S/1dIf2H2TxPLt1xShpvqV3wqdplg==
+"@navikt/ds-datepicker@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-datepicker/-/ds-datepicker-2.1.8.tgz#765d59355164d65c969eaa99daf9560cad2f1b19"
+  integrity sha512-M8gKJd79tMQyxp5ik91NHZnOYDx0DnMntmqwUVdRG5DXSu4VrcEhHnaJHiODAO619zPpbermI18YtgNguwoigQ==
   dependencies:
-    "@navikt/ds-css" "^0.16.15"
-    "@navikt/ds-react" "^0.17.19"
+    "@navikt/ds-css" "^0.18.15"
+    "@navikt/ds-react" "^0.19.14"
     focus-trap-react "^8.8.2"
-    less "^4.1.2"
+    less "^4.1.3"
     uuid "^8.3.2"
 
-"@navikt/ds-icons@^0.8.11", "@navikt/ds-icons@^0.8.17":
+"@navikt/ds-icons@^0.8.17":
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-0.8.17.tgz#ddf124687e158a988d6be70f653ae3239aba90ad"
   integrity sha512-CR1h9t0MZprEvTqlrlLd3cHhoYmriFWkETikPprUNl3AMJMSCDovVYzXtOgIyVeFbtwTPzGtShw5mgxlVWAEDg==
   dependencies:
     uuid "^8.3.2"
 
-"@navikt/ds-react@^0.17.19":
-  version "0.17.27"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.17.27.tgz#d826baf51bb8693b30ce0f84de041eb97bb6eeed"
-  integrity sha512-AIB2z+SdK8d/NSsEhuhEsMV1sPFn5em+LcWPdm4nmrPJ3Son7RckKcW2smRkMfrPaaJGzSlqvYTLDkK9z+W3BA==
-  dependencies:
-    "@floating-ui/react-dom" "0.6.0"
-    "@material-ui/core" "^4.12.3"
-    "@navikt/ds-icons" "^0.8.11"
-    "@popperjs/core" "^2.10.1"
-    "@radix-ui/react-tabs" "0.1.5"
-    "@radix-ui/react-toggle-group" "0.1.5"
-    classnames "^2.2.6"
-    react-collapse "^5.1.0"
-    react-merge-refs "^1.1.0"
-    react-modal "3.14.3"
-    react-popper "^2.2.5"
-    uuid "^8.3.2"
-
-"@navikt/ds-react@^0.19.10", "@navikt/ds-react@^0.19.12", "@navikt/ds-react@^0.19.13":
+"@navikt/ds-react@^0.19.12", "@navikt/ds-react@^0.19.13", "@navikt/ds-react@^0.19.14":
   version "0.19.14"
   resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.19.14.tgz#ff21b6792eaf7dcf64a9f4df397c91c6a8b0aec3"
   integrity sha512-sbDQxBkdtdIG5DiehWtEy0URrAlZ73XKEsBQqc6loD6uz8Vf5zJ/kJFAYU+ehIbX7SfbIw8HNle6jKLTNcZ2Pw==
@@ -2052,7 +2029,7 @@
     react-popper "^2.2.5"
     uuid "^8.3.2"
 
-"@navikt/ds-tailwind@^0.2.6":
+"@navikt/ds-tailwind@^0.2.6", "@navikt/ds-tailwind@^0.2.7":
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-0.2.7.tgz#fc5adb38962886f42e5018c435784e790c0c1829"
   integrity sha512-DIdC9jq991wII2eE1+mPfCh25vupvDkN3yCGnefpUmSE0QIpKdtby9Dw91seU55wTxCQRjBokxK/iAYSr/t4oQ==
@@ -2181,15 +2158,6 @@
     react-modal "^3.15.1"
     react-responsive "^8.2.0"
     react-router-dom "^5.2.0"
-
-"@navikt/sif-common-formik@23.1.0":
-  version "23.1.0"
-  resolved "https://registry.yarnpkg.com/@navikt/sif-common-formik/-/sif-common-formik-23.1.0.tgz#487cf6e3180bcce0174897b052f5efffddb15ce1"
-  integrity sha512-dExIfm8Av54uL/ejh++5WbJgQGd0iYGV7EUWdXCUj11k4Do77WcZboLx88ubI5RuhPX9vR9/PVDbwTHVIoEXuw==
-  dependencies:
-    flat "^5.0.2"
-    i18n-iso-countries "^7.4.0"
-    react-responsive "^8.2.0"
 
 "@navikt/sif-common-soknad@*":
   version "5.3.1"
@@ -12098,7 +12066,7 @@ less-plugin-npm-import@^2.1.0:
     promise "~7.0.1"
     resolve "~1.1.6"
 
-less@^4.1.2, less@^4.1.3:
+less@^4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/less/-/less-4.1.3.tgz#175be9ddcbf9b250173e0a00b4d6920a5b770246"
   integrity sha512-w16Xk/Ta9Hhyei0Gpz9m7VS8F28nieJaL/VyShID7cYvP6IL5oHeL6p4TXSDJqZE/lNv0oJ2pGVjJsRkfwm5FA==
@@ -13717,7 +13685,7 @@ npm-watch@^0.11.0:
     nodemon "^2.0.7"
     through2 "^4.0.2"
 
-npm@^8.12.1:
+npm@^8.12.2:
   version "8.12.2"
   resolved "https://registry.yarnpkg.com/npm/-/npm-8.12.2.tgz#d9be9d6368b0bd9d0e963b25a662c79909ca8bbf"
   integrity sha512-TArexqro9wpl/6wz6t6YdYhOoiy/UArqiSsSsqI7fieEhQEswDQSJcgt/LuCDjl6mfCDi0So7S2UZ979qLYRPg==
@@ -19145,7 +19113,7 @@ webpack@4:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-"webpack@>=4.43.0 <6.0.0", webpack@^5.64.4, webpack@^5.73.0, webpack@^5.9.0:
+webpack@5, "webpack@>=4.43.0 <6.0.0", webpack@^5.64.4, webpack@^5.73.0, webpack@^5.9.0:
   version "5.73.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.73.0.tgz#bbd17738f8a53ee5760ea2f59dce7f3431d35d38"
   integrity sha512-svjudQRPPa0YiOYa2lM/Gacw0r6PvxptHj4FuEKQ2kX05ZLkjbVc5MnPs6its5j7IZljnIqSVo/OsY2X0IpHGA==

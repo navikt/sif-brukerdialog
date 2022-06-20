@@ -9,6 +9,8 @@ dist-ssr
 .env
 .cache
 .turbo
+storybook-static
+coverage
 
 server/dist
 public/dist
