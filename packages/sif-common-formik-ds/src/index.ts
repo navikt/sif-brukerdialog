@@ -28,8 +28,8 @@ export * from './utils/formikUtils';
 export * from './utils/typedFormErrorUtils';
 export * from './components/getTypedFormComponents';
 export * from './validation/types';
+export * from './components/formik-modal-form/types';
 export { ISOStringToDate, dateToISOString } from './components/formik-datepicker/datepickerUtils';
-// export * from './components/formik-modal-form-and-list/types';
 export { getNumberFromNumberInputValue } from './utils/numberInputUtils';
 
 export { QuestionConfig, QuestionVisibility, Questions } from './question-config/index';

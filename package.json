@@ -45,6 +45,7 @@
         ]
     },
     "scripts": {
+        "build": "turbo run build",
         "build-package": "turbo run build-package",
         "build-app": "turbo run build-app",
         "clean": "turbo run clean && rm -rf node_modules",

@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/layout/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, UnansweredQuestionsInfo } from '@navikt/sif-common-formik';
+import { getTypedFormComponents, UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';

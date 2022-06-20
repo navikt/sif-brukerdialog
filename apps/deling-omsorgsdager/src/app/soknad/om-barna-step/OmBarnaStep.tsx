@@ -6,7 +6,7 @@ import { prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { AnnetBarn } from '@navikt/sif-common-forms/lib/annet-barn/types';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/annet-barn/types';
 import { QuestionVisibilityContext } from '@navikt/sif-common-soknad-ds/lib/question-visibility/QuestionVisibilityContext';
 import { useFormikContext } from 'formik';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';

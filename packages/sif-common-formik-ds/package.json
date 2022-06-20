@@ -80,8 +80,7 @@
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test",
         "test-coverage": "react-scripts test a --coverage --watchAll=false",
-        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
-        "jest-clear-cache": "jest --clearCache"
+        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true"
     },
     "private": false
 }

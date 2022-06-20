@@ -4,7 +4,7 @@
     "homepage": "https://navikt.github.io/sif-brukerdialog",
     "license": "MIT",
     "name": "@navikt/sif-common-soknad-ds",
-    "version": "5.3.1",
+    "version": "0.1.0",
     "browserslist": {
         "development": [
             "last 1 chrome version",
@@ -26,7 +26,6 @@
         }
     },
     "devDependencies": {
-        "@craco/craco": "^6.4.3",
         "@devexperts/remote-data-ts": "^2.1.1",
         "@formatjs/intl-pluralrules": "^5.0.2",
         "@navikt/appstatus-react": "^3.1.0",
