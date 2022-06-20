@@ -44,7 +44,7 @@
         ]
     },
     "scripts": {
-        "build": "turbo run build",
+        "build-package": "turbo run build-package",
         "build-app": "turbo run build-app",
         "clean": "turbo run clean && rm -rf node_modules",
         "dev": "turbo run dev --no-cache --parallel --continue",
@@ -52,8 +52,8 @@
         "prepare": "husky install",
         "lint": "turbo run lint",
         "test": "turbo run test",
-        "test-w": "turbo run test-w",
-        "test-c": "turbo run test-c"
+        "test-watch": "turbo run test-watch",
+        "test-coverage": "turbo run test-coverage"
     },
     "workspaces": [
         "apps/*",

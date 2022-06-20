@@ -2,36 +2,28 @@
     "$schema": "https://turborepo.org/schema.json",
     "baseBranch": "origin/main",
     "pipeline": {
-        "build": {
+        "build-package": {
             "outputs": ["dist/**", "public/dist/**"],
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build-package"]
         },
         "build-app": {
             "outputs": ["dist/**", "public/dist/**"],
-            "dependsOn": ["^build"]
-        },
-        "dev-lib": {
-            "outputs": ["dist/**", "public/dist/**"],
-            "dependsOn": ["^build"]
-        },
-        "snd": {
-            "outputs": [],
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build-package"]
         },
         "test": {
             "outputs": [],
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build-package"]
         },
-        "test-w": {
+        "test-watch": {
             "outputs": [],
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build-package"]
         },
-        "test-c": {
+        "test-coverage": {
             "outputs": ["coverage/**"],
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build-package"]
         },
         "lint": {
-            "dependsOn": ["^build"],
+            "dependsOn": ["^build-package"],
             "outputs": []
         },
         "dev": {
