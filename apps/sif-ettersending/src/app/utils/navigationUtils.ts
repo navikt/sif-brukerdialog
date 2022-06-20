@@ -1,7 +1,7 @@
 import { History } from 'history';
 import { getRouteConfig, getRouteUrl } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
-import { getEnvironmentVariable } from './envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 const getLoginUrl = (søknadstype: ApplicationType) => `${getEnvironmentVariable('LOGIN_URL')}/${søknadstype}`;
 

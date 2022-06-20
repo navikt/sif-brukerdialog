@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Kvittering from '@navikt/sif-common-core/lib/components/kvittering/Kvittering';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import Lenke from 'nav-frontend-lenker';
 import getLenker from '../../lenker';
 

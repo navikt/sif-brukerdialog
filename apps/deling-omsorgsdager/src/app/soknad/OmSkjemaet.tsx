@@ -1,7 +1,7 @@
+import { Alert } from '@navikt/ds-react';
 import React from 'react';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/layout/expandable-info/ExpandableInfo';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
-import Alertstripe from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 
 interface Props {
@@ -27,7 +27,7 @@ const OmSkjemaet: React.FunctionComponent<Props> = ({ showAlertstripe = false })
             <>
                 {showAlertstripe && (
                     <Box margin="xl">
-                        <Alertstripe type="info" form="inline">
+                        <Alert variant="info" size="small">
                             <Element tag="h2">Kort om skjemaet</Element>
                             Dette skjemaet består av fem sider og har rundt 20 spørsmål til sammen, avhengig av hva du
                             svarer.
@@ -36,7 +36,7 @@ const OmSkjemaet: React.FunctionComponent<Props> = ({ showAlertstripe = false })
                                 senere dersom du må ta en pause. Dersom du ikke har sendt inn skjemaet innen 24 timer,
                                 slettes denne informasjonen og du må da fylle ut alt på nytt.
                             </p>
-                        </Alertstripe>
+                        </Alert>
                     </Box>
                 )}
                 {!showAlertstripe && (

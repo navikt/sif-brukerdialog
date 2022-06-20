@@ -1,15 +1,14 @@
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/layout/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
-import { AnnetBarn } from '@navikt/sif-common-forms/lib/annet-barn/types';
-import { QuestionVisibilityContext } from '@navikt/sif-common-soknad/lib/question-visibility/QuestionVisibilityContext';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/annet-barn/types';
+import { QuestionVisibilityContext } from '@navikt/sif-common-soknad-ds/lib/question-visibility/QuestionVisibilityContext';
 import { useFormikContext } from 'formik';
-import { CheckboksPanelProps } from 'nav-frontend-skjema';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';
 import { Barn, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
@@ -17,6 +16,7 @@ import SoknadFormQuestion from '../SoknadFormQuestion';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import { getOmBarnaFormStop, OmBarnaFormQuestions, OmBarnaFormStop } from './omBarnaStepFormConfig';
+import { FormikCheckboxGroupCheckboxProp } from '@navikt/sif-common-formik-ds/lib/components/formik-checkbox-group/FormikCheckboxGroup';
 
 interface Props {
     barn: Barn[];
@@ -40,7 +40,11 @@ const cleanupOmBarnaStep = (values: SoknadFormData, barn: Barn[], andreBarn: Ann
     };
 };
 
-const getBarnOptions = (barn: Barn[] = [], andreBarn: AnnetBarn[] = [], intl: IntlShape): CheckboksPanelProps[] => {
+const getBarnOptions = (
+    barn: Barn[] = [],
+    andreBarn: AnnetBarn[] = [],
+    intl: IntlShape
+): FormikCheckboxGroupCheckboxProp[] => {
     return [
         ...barn.map((barnet) => ({
             label: `${intlHelper(intl, 'step.om-barna.født')} ${prettifyDate(barnet.fødselsdato)} ${formatName(
@@ -112,7 +116,7 @@ const OmBarnaStep: React.FunctionComponent<Props> = ({ barn }) => {
                     stopMessage={intlHelper(intl, 'step.oppsummering.om-barna.harAleneomsorg.stopMessage')}
                 />
                 <SoknadFormQuestion name={SoknadFormField.harAleneomsorgFor}>
-                    <SoknadFormComponents.CheckboxPanelGroup
+                    <SoknadFormComponents.CheckboxGroup
                         legend={intlHelper(intl, 'step.om-barna.form.spm.hvilkeAvBarnaAleneomsorg')}
                         name={SoknadFormField.harAleneomsorgFor}
                         checkboxes={barnOptions}
@@ -136,7 +140,7 @@ const OmBarnaStep: React.FunctionComponent<Props> = ({ barn }) => {
                     }
                 />
                 <SoknadFormQuestion name={SoknadFormField.harUtvidetRettFor}>
-                    <SoknadFormComponents.CheckboxPanelGroup
+                    <SoknadFormComponents.CheckboxGroup
                         legend={intlHelper(intl, 'step.om-barna.form.spm.hvilkeAvBarnaUtvRett')}
                         name={SoknadFormField.harUtvidetRettFor}
                         checkboxes={barnOptions}

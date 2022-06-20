@@ -1,0 +1,102 @@
+{
+    "author": "navikt",
+    "homepage": "https://navikt.github.io/sif-common-core-ds",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "name": "@navikt/sif-common-core-ds",
+    "types": "lib/index.d.js",
+    "version": "0.1.0",
+    "bugs": {
+        "url": "https://github.com/navikt/sif-common-core-ds/issues"
+    },
+    "dependencies": {
+        "http-status-codes": "^2.2.0",
+        "i18n-iso-countries": "^7.4.0",
+        "react-collapse": "^5.1.1",
+        "tailwindcss": "^3.1.3",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "@formatjs/intl-pluralrules": "^5.0.2",
+        "@navikt/appstatus-react-ds": "*",
+        "@navikt/ds-css": "^0.18.12",
+        "@navikt/ds-datepicker": "^2.1.5",
+        "@navikt/ds-react": "^0.19.12",
+        "@navikt/ds-tailwind": "^0.2.6",
+        "@navikt/fnrvalidator": "^1.3.0",
+        "@navikt/sif-common-formik-ds": "*",
+        "@storybook/addon-a11y": "^6.5.9",
+        "@storybook/addon-actions": "^6.5.9",
+        "@storybook/addon-essentials": "^6.5.9",
+        "@storybook/addon-interactions": "^6.5.9",
+        "@storybook/addon-links": "^6.5.9",
+        "@storybook/node-logger": "^6.5.9",
+        "@storybook/preset-create-react-app": "^4.1.2",
+        "@storybook/react": "^6.5.9",
+        "@storybook/testing-library": "^0.0.13",
+        "@types/node": "^18.0.0",
+        "@types/react": "17.0.34",
+        "@types/react-collapse": "5.0.1",
+        "@types/react-dom": "^17.0.11",
+        "autoprefixer": "^10.4.7",
+        "copyfiles": "^2.4.1",
+        "mini-css-extract-plugin": "^2.6.1",
+        "prop-types": "^15.8.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-intl": "6.0.4",
+        "react-responsive": "^9.0.0-beta.10",
+        "react-scripts": "5.0.1",
+        "rimraf": "^3.0.2",
+        "sass": "^1.52.3",
+        "storybook-addon-sass-postcss": "^0.1.3"
+    },
+    "directories": {
+        "lib": "lib"
+    },
+    "overrides": {
+        "react-refresh": "0.11.0"
+    },
+    "peerDependencies": {
+        "@navikt/appstatus-react-ds": "*",
+        "@navikt/ds-css": "0.18.x",
+        "@navikt/ds-react": "0.18.x",
+        "@navikt/sif-common-formik-ds": "*",
+        "react": "17.0.x",
+        "react-dom": "17.0.x",
+        "react-intl": "6.0.4"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-common-core-ds.git"
+    },
+    "watch": {
+        "copy-files": {
+            "patterns": [
+                "src"
+            ],
+            "extensions": "css,scss,less",
+            "runOnChangeOnly": true
+        }
+    },
+    "scripts": {
+        "build-package": "npm-run-all compile-lib-script copy-files",
+        "build-storybook": "build-storybook -s public",
+        "clean": "rm -rf node_modules lib",
+        "dev": "yarn watch-styles & yarn compile-lib-script-watch",
+        "watch-styles": "npm-watch copy-files ",
+        "clean-lib": "rimraf ./lib",
+        "compile-lib-script": "tsc -p tsconfig.json",
+        "compile-lib-script-watch": "tsc -p tsconfig.json --watch ",
+        "copy-files": "npm-run-all copy-sass-files-to-lib copy-css-files-to-lib copy-less-files-to-lib",
+        "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
+        "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
+        "copy-less-files-to-lib": "copyfiles -u 1 \"src/**/*.less\" lib",
+        "storybook": "start-storybook -p 6006 -s public",
+        "test": "react-scripts test --watchAll=false --env=jsdom",
+        "test-watch": "react-scripts test",
+        "test-coverage": "react-scripts test a --coverage --watchAll=false",
+        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true"
+    },
+    "private": false
+}

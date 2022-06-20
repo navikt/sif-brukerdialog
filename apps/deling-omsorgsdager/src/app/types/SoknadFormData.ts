@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { AnnetBarn } from '@navikt/sif-common-forms/lib/annet-barn/types';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/annet-barn/types';
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 
 export enum Arbeidssituasjon {

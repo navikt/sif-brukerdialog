@@ -4,7 +4,7 @@ import LanguageToggle from '@navikt/sif-common-core/lib/components/language-togg
 import ApplicationMessages from '@navikt/sif-common-core/lib/dev-utils/intl/application-messages/ApplicationMessages';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { ApplicantData } from '../../types/ApplicantData';
-import { getEnvironmentVariable } from '../../utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import IntlProvider, { appMessages } from '../intl-provider/IntlProvider';
 

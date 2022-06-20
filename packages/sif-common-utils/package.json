@@ -1,0 +1,60 @@
+{
+    "author": "navikt",
+    "description": "Diverse utils for Sykdom i familien teamet",
+    "homepage": "https://navikt.github.io/sif-common-utils",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "name": "@navikt/sif-common-utils",
+    "types": "lib/index.d.js",
+    "version": "3.9.0",
+    "bugs": {
+        "url": "https://github.com/navikt/sif-common-utils/issues"
+    },
+    "dependencies": {
+        "iso8601-duration": "^1.3.0",
+        "lodash.uniq": "^4.5.0"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.18.2",
+        "@babel/preset-react": "^7.17.12",
+        "@types/lodash.uniq": "^4.5.7",
+        "@types/node": "^18.0.0",
+        "@types/react": "17.0.34",
+        "@types/react-dom": "^17.0.14",
+        "dayjs": "^1.11.3",
+        "eslint-config-custom": "*",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-scripts": "5.0.1",
+        "typedoc": "^0.22.17",
+        "web-vitals": "^2.1.4"
+    },
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "package.json",
+        "/lib"
+    ],
+    "peerDependencies": {
+        "dayjs": "^1.11.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-common-utils.git"
+    },
+    "scripts": {
+        "build-package": "npm-run-all compile-lib-script",
+        "clean": "rm -rf node_modules lib",
+        "clean-lib": "rimraf ./lib",
+        "compile-lib-script": "tsc -p tsconfig.json",
+        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "dev": "yarn compile-lib-script-watch",
+        "test": "react-scripts test --watchAll=false --env=jsdom",
+        "test-watch": "react-scripts test",
+        "test-coverage": "react-scripts test a --coverage --watchAll=false",
+        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true"
+    },
+    "private": false,
+    "snyk": true
+}

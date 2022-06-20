@@ -14,5 +14,5 @@ server/dist
 public/dist
 out
 
-sif-common-packages/**/*/coverage
-sif-common-packages/**/*/lib
+packages/**/*/coverage
+packages/**/*/lib

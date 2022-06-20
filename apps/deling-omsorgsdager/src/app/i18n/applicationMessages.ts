@@ -1,8 +1,8 @@
 import { MessageFileFormat } from '@navikt/sif-common-core/lib/dev-utils/intl/devIntlUtils';
 import { allCommonMessages } from '@navikt/sif-common-core/lib/i18n/allCommonMessages';
-import annetBarnMessages from '@navikt/sif-common-forms/lib/annet-barn/annetBarnMessages';
-import soknadErrorIntlMessages from '@navikt/sif-common-soknad/lib/soknad-error-messages/soknadErrorIntlMessages';
-import soknadIntlMessages from '@navikt/sif-common-soknad/lib/soknad-intl-messages/soknadIntlMessages';
+import annetBarnMessages from '@navikt/sif-common-forms-ds/lib/annet-barn/annetBarnMessages';
+import soknadErrorIntlMessages from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/soknadErrorIntlMessages';
+import soknadIntlMessages from '@navikt/sif-common-soknad-ds/lib/soknad-intl-messages/soknadIntlMessages';
 
 const appMessagesNB = require('./nb.json');
 const introFormMessagesNB = require('../pages/intro-page/introFormMessagesNB.json');

@@ -9,39 +9,44 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "devDependencies": {
-        "@snyk/protect": "^1.950.0",
+        "@snyk/protect": "^1.953.0",
         "@storybook/builder-webpack5": "^6.5.9",
         "@storybook/manager-webpack5": "^6.5.9",
         "@testing-library/jest-dom": "^5.16.4",
-        "@testing-library/react": "^12.1.3",
-        "@testing-library/react-hooks": "^8.0.0",
+        "@testing-library/react": "^12.1.4",
+        "@testing-library/react-hooks": "^8.0.1",
         "@testing-library/user-event": "^13.5.0",
-        "esbuild": "^0.14.43",
+        "esbuild": "^0.14.46",
         "esbuild-jest": "^0.5.0",
+        "eslint": "^8.18.0",
+        "eslint-plugin-prettier": "^4.0.0",
         "husky": "^8.0.1",
         "jest-environment-jsdom": "^28.1.1",
         "jsdom": "^19.0.0",
-        "lint-staged": "^13.0.1",
+        "lint-staged": "^13.0.2",
         "npm-run-all": "^4.1.5",
+        "npm-watch": "^0.11.0",
         "postcss-cli": "^9.1.0",
         "postcss-loader": "^7.0.0",
         "postcss-nested": "^5.0.6",
-        "prettier": "^2.7.0",
+        "prettier": "^2.7.1",
+        "react-day-picker": "^7.4.10",
         "react-scripts": "5.0.1",
         "ts-jest": "^28.0.5",
         "turbo": "^1.2.16",
-        "typescript": "^4.7.3"
+        "typescript": "^4.7.4"
     },
     "lint-staged": {
         "apps/**/*.{ts,tsx}": [
             "eslint --fix"
         ],
-        "sif-common-packages/**/*.{ts,tsx}": [
+        "packages/**/*.{ts,tsx}": [
             "eslint --fix"
         ]
     },
     "scripts": {
         "build": "turbo run build",
+        "build-package": "turbo run build-package",
         "build-app": "turbo run build-app",
         "clean": "turbo run clean && rm -rf node_modules",
         "dev": "turbo run dev --no-cache --parallel --continue",
@@ -49,17 +54,21 @@
         "prepare": "husky install",
         "lint": "turbo run lint",
         "test": "turbo run test",
-        "test-w": "turbo run test-w",
-        "test-c": "turbo run test-c"
+        "test-watch": "turbo run test-watch",
+        "test-coverage": "turbo run test-coverage"
     },
     "workspaces": [
         "apps/*",
-        "sif-common-packages/*"
+        "packages/*"
     ],
     "private": true,
     "snyk": true,
     "resolutions": {
         "@types/react": "17.0.34",
         "@types/react-dom": "17.0.14"
+    },
+    "dependencies": {
+        "classnames": "^2.3.1",
+        "prop-types": "^15.8.1"
     }
 }

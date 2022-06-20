@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from './utils/envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 interface Lenker {
     medlemskap: string;

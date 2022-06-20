@@ -1,0 +1,90 @@
+{
+    "author": "navikt",
+    "description": "Basis felleskomponenter for sykdom i familien søknadsskjema",
+    "homepage": "https://navikt.github.io/sif-brukerdialog",
+    "license": "MIT",
+    "name": "@navikt/sif-common-soknad-ds",
+    "version": "0.1.0",
+    "browserslist": {
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ]
+    },
+    "bugs": {
+        "url": "https://github.com/navikt/sif-brukerdialog/issues"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "devDependencies": {
+        "@devexperts/remote-data-ts": "^2.1.1",
+        "@formatjs/intl-pluralrules": "^5.0.2",
+        "@navikt/appstatus-react": "^3.1.0",
+        "@navikt/sif-common-core": "^12.0.0",
+        "@navikt/sif-common-formik-ds": "*",
+        "@navikt/sif-common-sentry": "0.3.1",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^12.1.4",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/node": "^18.0.0",
+        "@types/react": "^17.0.34",
+        "@types/react-dom": "^17.0.11",
+        "@types/react-modal": "^3.13.1",
+        "@typescript-eslint/eslint-plugin": "5.28.0",
+        "@typescript-eslint/parser": "5.28.0",
+        "axios": "^0.27.2",
+        "copyfiles": "^2.4.1",
+        "dayjs": "^1.11.3",
+        "formik": "^2.2.9",
+        "gh-pages": "^3.2.3",
+        "intl": "^1.2.5",
+        "less-plugin-npm-import": "^2.1.0",
+        "react": "^17.0.2",
+        "react-day-picker": "^7.4.10",
+        "react-intl": "^6.0.4",
+        "react-scripts": "5.0.1",
+        "rimraf": "^3.0.2",
+        "ulid": "^2.3.0"
+    },
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "package.json",
+        "/lib"
+    ],
+    "peerDependencies": {
+        "@devexperts/remote-data-ts": "^2.0.x",
+        "@formatjs/intl-pluralrules": "^4.1.x",
+        "@navikt/appstatus-react": "^3.0.0",
+        "@navikt/sif-common-core": "12.x",
+        "@navikt/sif-common-formik-ds": "*",
+        "@navikt/sif-common-sentry": "*",
+        "dayjs": "^1.10.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "scripts": {
+        "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
+        "clean": "rm -rf node_modules lib",
+        "clean-lib": "rimraf ./lib",
+        "compile-lib-script": "tsc -p tsconfig.json",
+        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
+        "dev": "yarn compile-lib-script-watch",
+        "deploy": "gh-pages -d build",
+        "test": "react-scripts test --watchAll=false --passWithNoTests"
+    },
+    "private": false
+}

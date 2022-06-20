@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepTypes';
-import soknadStepUtils from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepUtils';
+import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
+import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { Mottaker, SoknadFormData } from '../types/SoknadFormData';
 
 export enum StepID {

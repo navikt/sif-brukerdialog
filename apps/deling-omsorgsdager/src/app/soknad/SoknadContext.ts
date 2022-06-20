@@ -3,7 +3,7 @@ import { initial } from '@devexperts/remote-data-ts';
 import {
     SendSoknadStatusInterface,
     SoknadContextInterface,
-} from '@navikt/sif-common-soknad/lib/soknad-context/SoknadContext';
+} from '@navikt/sif-common-soknad-ds/lib/soknad-context/SoknadContext';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { StepID } from './soknadStepsConfig';
 

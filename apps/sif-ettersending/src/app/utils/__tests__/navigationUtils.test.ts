@@ -7,7 +7,7 @@ const historyMock: Partial<History> = {
     push: jest.fn(),
 };
 
-jest.mock('./../envUtils.ts', () => {
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return { getEnvironmentVariable: () => '' };
 });
 
