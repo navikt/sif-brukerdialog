@@ -16,7 +16,7 @@
         "@sentry/types": "^7.0.0"
     },
     "devDependencies": {
-        "@types/node": "^17.0.38",
+        "@types/node": "^18.0.0",
         "axios": "^0.27.2",
         "copyfiles": "^2.4.1",
         "gh-pages": "^4.0.0",
