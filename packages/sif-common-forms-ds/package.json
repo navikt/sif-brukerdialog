@@ -10,11 +10,20 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
+    "dependencies": {},
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^4.1.6",
         "@navikt/sif-common-core": "^12.0.0",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
+        "@storybook/addon-a11y": "^6.5.9",
+        "@storybook/addon-actions": "^6.5.9",
+        "@storybook/addon-essentials": "^6.5.9",
+        "@storybook/addon-interactions": "^6.5.9",
+        "@storybook/addon-links": "^6.5.9",
+        "@storybook/node-logger": "^6.5.9",
+        "@storybook/react": "^6.5.9",
+        "@storybook/testing-library": "^0.0.13",
         "@testing-library/react": "^12.1.2",
         "@testing-library/user-event": "^13.5.0",
         "@types/node": "^16.11.12",
@@ -79,7 +88,8 @@
         "react-responsive": "^8.2.0",
         "react-router-dom": "^5.3.3",
         "react-scripts": "^5.0.1",
-        "rimraf": "^3.0.2"
+        "rimraf": "^3.0.2",
+        "webpack": "5"
     },
     "directories": {
         "lib": "lib"
@@ -89,21 +99,33 @@
         "/lib"
     ],
     "peerDependencies": {
-        "@navikt/sif-common-core": ">= 11.3.0 <=12.0",
-        "@navikt/sif-common-formik": ">= 23.1.0"
+        "@navikt/sif-common-core": ">= 11.3.0 <=12.0"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/navikt/sif-brukerdialog.git"
     },
+    "watch": {
+        "copy-files": {
+            "patterns": [
+                "src"
+            ],
+            "extensions": "css,scss,less",
+            "runOnChangeOnly": true
+        }
+    },
     "scripts": {
-        "build-package": "npm-run-all clean-lib compile-lib-script copy-files-to-lib",
+        "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
+        "build-storybook": "build-storybook",
         "clean": "rm -rf node_modules lib",
         "clean-lib": "rm -rf lib",
         "compile-lib-script": "tsc -p tsconfig.json",
-        "copy-files-to-lib": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
+        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
-        "dev": "yarn compile-lib-script-watch",
+        "dev": "yarn watch-styles & yarn compile-lib-script-watch",
+        "watch-styles": "npm-watch copy-files ",
+        "storybook": "start-storybook -p 6006",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test"
     },
