@@ -16,7 +16,6 @@ import annetBarnMessages from '../../../src/annet-barn/annetBarnMessages';
 import { AnnetBarn } from '../../../src/annet-barn/types';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-import AppIntlProvider from '../../decorators/AppIntlProvider';
 
 enum FormField {
     'annetBarn' = 'annetBarn',
@@ -35,7 +34,7 @@ const AnnetBarnExample = () => {
     const disallowedFødselsnumre = annetBarn ? annetBarn.map((barn) => barn.fnr) : undefined;
 
     return (
-        <AppIntlProvider locale="nb">
+        <>
             <Box padBottom="l">
                 <Undertittel>Liste og dialog</Undertittel>
             </Box>
@@ -93,7 +92,7 @@ const AnnetBarnExample = () => {
             <SubmitPreview values={singleFormValues} />
 
             <MessagesPreview messages={annetBarnMessages} showExplanation={false} />
-        </AppIntlProvider>
+        </>
     );
 };
 

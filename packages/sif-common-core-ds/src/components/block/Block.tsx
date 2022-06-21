@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import bemUtils from '../../../utils/bemUtils';
+import bemUtils from '../../utils/bemUtils';
 import './block.scss';
 
 export type BlockMargin = 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'none';

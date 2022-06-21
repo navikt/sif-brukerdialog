@@ -1,5 +1,6 @@
 import { Alert, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
 import React from 'react';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
@@ -84,9 +85,11 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}>
                 <Modal.Content>
                     {labels.modalTitle && (
-                        <Heading spacing={true} size="large" level="1">
-                            {labels.modalTitle}
-                        </Heading>
+                        <Box margin="s" padBottom="m">
+                            <Heading spacing={true} size="medium" level="1">
+                                {labels.modalTitle}
+                            </Heading>
+                        </Box>
                     )}
                     {formRenderer({
                         onSubmit: handleOnSubmit,

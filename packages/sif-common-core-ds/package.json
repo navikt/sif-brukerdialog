@@ -19,10 +19,10 @@
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "^0.18.12",
+        "@navikt/ds-css": "^0.18.15",
         "@navikt/ds-datepicker": "^2.1.8",
-        "@navikt/ds-react": "^0.19.12",
-        "@navikt/ds-tailwind": "^0.2.6",
+        "@navikt/ds-react": "^0.19.14",
+        "@navikt/ds-tailwind": "^0.2.7",
         "@navikt/fnrvalidator": "^1.3.0",
         "@navikt/sif-common-formik-ds": "*",
         "@storybook/addon-a11y": "^6.5.9",

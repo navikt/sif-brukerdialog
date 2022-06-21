@@ -1,11 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import AnnetBarnExample from './AnnetBarnExample';
 import AppIntlProvider from '../../decorators/AppIntlProvider';
+import BostedUtlandExample from './BostedUtlandExample';
 
 export default {
-    title: 'Form/AnnetBarn',
-    component: AnnetBarnExample,
+    title: 'Form/BostedUtland',
+    component: BostedUtlandExample,
     decorators: [
         (Story) => (
             <AppIntlProvider locale="nb">
@@ -13,20 +13,20 @@ export default {
             </AppIntlProvider>
         ),
     ],
-} as ComponentMeta<typeof AnnetBarnExample>;
+} as ComponentMeta<typeof BostedUtlandExample>;
 
-const Template: ComponentStory<typeof AnnetBarnExample> = (args) => <AnnetBarnExample {...args} />;
+const Template: ComponentStory<typeof BostedUtlandExample> = (args) => <BostedUtlandExample {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    label: 'AnnetBarn',
-    name: 'AnnetBarn',
+    label: 'BostedUtland',
+    name: 'BostedUtland',
     value: 'abc',
 };
 Default.parameters = {
     formik: {
         initialValues: {
-            AnnetBarnExample: true,
+            BostedUtlandExample: true,
         },
     },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Collapse } from 'react-collapse';
-import bemUtils from '../../../utils/bemUtils';
+import bemUtils from '../../utils/bemUtils';
 import './collapsableContainer.less';
 
 export interface Props {
