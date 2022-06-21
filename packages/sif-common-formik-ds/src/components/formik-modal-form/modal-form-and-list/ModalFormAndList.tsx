@@ -1,8 +1,8 @@
 import { Alert, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
+import Block from '../../helpers/block/Block';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndListLabels, ModalFormAndListListItemBase } from '../types';
 import './modalFormAndList.scss';

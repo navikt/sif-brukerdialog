@@ -1,7 +1,7 @@
 import { Button, Heading, Modal, ModalProps, Panel } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import bemUtils from '../../../utils/bemUtils';
+import Block from '../../helpers/block/Block';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';
 import './modalFormAndInfo.scss';
