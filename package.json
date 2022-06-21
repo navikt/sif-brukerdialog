@@ -16,7 +16,7 @@
         "@testing-library/react": "^12.1.4",
         "@testing-library/react-hooks": "^8.0.1",
         "@testing-library/user-event": "^14.2.1",
-        "esbuild": "^0.14.46",
+        "esbuild": "^0.14.47",
         "esbuild-jest": "^0.5.0",
         "eslint": "^8.18.0",
         "eslint-plugin-prettier": "^4.0.0",
@@ -61,6 +61,12 @@
         "apps/*",
         "packages/*"
     ],
+    "overrides": {
+        "react-scripts": {
+            "nth-check": ">=2.0.1"
+        },
+        "glob-parent": ">=5.1.2"
+    },
     "private": true,
     "snyk": true,
     "resolutions": {

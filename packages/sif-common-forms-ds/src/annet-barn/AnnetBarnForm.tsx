@@ -16,7 +16,6 @@ import {
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { Systemtittel } from 'nav-frontend-typografi';
 import annetBarnUtils from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues, BarnType } from './types';
 
@@ -110,14 +109,12 @@ const AnnetBarnForm = ({
             onSubmit={onFormikSubmit}
             renderForm={() => (
                 <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'annetBarnForm')}>
-                    <FormBlock>
-                        <Form.TextField
-                            name={AnnetBarnFormFields.navn}
-                            label={formLabels.navn}
-                            validate={getStringValidator({ required: true })}
-                            placeholder={formLabels.placeholderNavn}
-                        />
-                    </FormBlock>
+                    <Form.TextField
+                        name={AnnetBarnFormFields.navn}
+                        label={formLabels.navn}
+                        validate={getStringValidator({ required: true })}
+                        placeholder={formLabels.placeholderNavn}
+                    />
                     <FormBlock>
                         <Form.DatePicker
                             name={AnnetBarnFormFields.fødselsdato}
