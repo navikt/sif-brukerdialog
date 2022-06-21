@@ -4,6 +4,7 @@ on:
     push:
         paths:
             - 'apps/sif-ettersending/**/*'
+            - 'config/sif-ettersending/**/*'
             - '.github/workflows/app.sif-ettersending.yml'
             - '.github/workflows/app.common.yml'
 
