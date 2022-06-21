@@ -1,6 +1,6 @@
 import { Status, StatusMessage, useAppStatus, SanityConfig } from '@navikt/appstatus-react-ds';
 import React from 'react';
-import LoadingSpinner from '../atoms/loading-spinner/LoadingSpinner';
+import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 
 interface Props {
     applicationKey: string;

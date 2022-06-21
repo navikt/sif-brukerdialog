@@ -2,7 +2,7 @@ import { Alert, BodyLong } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/content/picture-scanning-guide/PictureScanningGuide';

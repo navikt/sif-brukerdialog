@@ -2,7 +2,7 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/atoms/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/info-dialog/InfoDialog';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import PageBanner from '@navikt/sif-common-core-ds/lib/components/page/page-banner/PageBanner';

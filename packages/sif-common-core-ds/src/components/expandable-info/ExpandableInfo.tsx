@@ -1,7 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import bemUtils from '../../../utils/bemUtils';
+import bemUtils from '../../utils/bemUtils';
 import CollapsableContainer from './CollapsableContainer';
 import InfoToggleButton from './InfoToggleButton';
 import './expandableInfo.less';

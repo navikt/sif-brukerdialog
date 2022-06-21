@@ -1,7 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/layout/content-with-header/ContentWithHeader';
+import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import ItemList from '@navikt/sif-common-core/lib/components/item-list/ItemList';

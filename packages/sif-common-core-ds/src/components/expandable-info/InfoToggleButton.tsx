@@ -1,6 +1,6 @@
 import React from 'react';
 import { Collapse, Expand } from '@navikt/ds-icons';
-import bemUtils from '../../../utils/bemUtils';
+import bemUtils from '../../utils/bemUtils';
 import './infoToggleButton.less';
 
 const cls = bemUtils('infoToggleButton');
