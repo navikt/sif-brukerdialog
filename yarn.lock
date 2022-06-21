@@ -2029,7 +2029,7 @@
     react-popper "^2.2.5"
     uuid "^8.3.2"
 
-"@navikt/ds-tailwind@^0.2.6", "@navikt/ds-tailwind@^0.2.7":
+"@navikt/ds-tailwind@^0.2.7":
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-0.2.7.tgz#fc5adb38962886f42e5018c435784e790c0c1829"
   integrity sha512-DIdC9jq991wII2eE1+mPfCh25vupvDkN3yCGnefpUmSE0QIpKdtby9Dw91seU55wTxCQRjBokxK/iAYSr/t4oQ==
