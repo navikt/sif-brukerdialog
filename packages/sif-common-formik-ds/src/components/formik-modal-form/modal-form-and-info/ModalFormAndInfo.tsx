@@ -1,5 +1,6 @@
-import { Button, Modal, ModalProps, Panel } from '@navikt/ds-react';
+import { Button, Heading, Modal, ModalProps, Panel } from '@navikt/ds-react';
 import React from 'react';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';
@@ -123,12 +124,21 @@ function ModalFormAndInfo<DataType>({
                 open={modalState.isVisible}
                 shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
                 className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
-                onClose={resetModal}>
-                {formRenderer({
-                    onSubmit: handleOnSubmit,
-                    onCancel: resetModal,
-                    data: modalState.data,
-                })}
+                onClose={resetModal}
+                aria-label={labels.modalTitle}>
+                <Modal.Content>
+                    <Block margin="s" padBottom="m">
+                        <Heading spacing={true} size="medium" level="1">
+                            {labels.modalTitle}
+                        </Heading>
+                    </Block>
+
+                    {formRenderer({
+                        onSubmit: handleOnSubmit,
+                        onCancel: resetModal,
+                        data: modalState.data,
+                    })}
+                </Modal.Content>
             </Modal>
             {wrapInfoInFieldset === true ? (
                 <SkjemagruppeQuestion error={error} legend={labels.infoTitle}>

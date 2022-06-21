@@ -13,7 +13,6 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { guid } from '@navikt/sif-common-utils';
-import { Systemtittel } from 'nav-frontend-typografi';
 import { Fosterbarn, isFosterbarn } from './types';
 
 interface FosterbarnFormText {
@@ -90,20 +89,17 @@ const FosterbarnForm = ({
                 onSubmit={onFormikSubmit}
                 renderForm={() => (
                     <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'fosterbarnForm')}>
-                        <Systemtittel tag="h1">Fosterbarn</Systemtittel>
-                        <FormBlock>
-                            <Form.TextField
-                                name={FosterbarnFormField.fødselsnummer}
-                                label={txt.form_fødselsnummer_label}
-                                validate={getFødselsnummerValidator({
-                                    required: true,
-                                    disallowedValues: disallowedFødselsnumre,
-                                })}
-                                inputMode="numeric"
-                                maxLength={11}
-                                style={{ width: '11rem' }}
-                            />
-                        </FormBlock>
+                        <Form.TextField
+                            name={FosterbarnFormField.fødselsnummer}
+                            label={txt.form_fødselsnummer_label}
+                            validate={getFødselsnummerValidator({
+                                required: true,
+                                disallowedValues: disallowedFødselsnumre,
+                            })}
+                            inputMode="numeric"
+                            maxLength={11}
+                            style={{ width: '11rem' }}
+                        />
                         {includeName && (
                             <Tiles columns={2}>
                                 <FormBlock>

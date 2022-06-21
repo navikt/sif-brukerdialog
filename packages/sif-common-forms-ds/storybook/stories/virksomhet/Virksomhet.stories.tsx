@@ -1,11 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import AnnetBarnExample from './AnnetBarnExample';
+import VirksomhetExample from './VirksomhetExample';
 import AppIntlProvider from '../../decorators/AppIntlProvider';
 
 export default {
-    title: 'Form/AnnetBarn',
-    component: AnnetBarnExample,
+    title: 'Form/Virksomhet',
+    component: VirksomhetExample,
     decorators: [
         (Story) => (
             <AppIntlProvider locale="nb">
@@ -13,8 +13,8 @@ export default {
             </AppIntlProvider>
         ),
     ],
-} as ComponentMeta<typeof AnnetBarnExample>;
+} as ComponentMeta<typeof VirksomhetExample>;
 
-const Template: ComponentStory<typeof AnnetBarnExample> = () => <AnnetBarnExample />;
+const Template: ComponentStory<typeof VirksomhetExample> = () => <VirksomhetExample />;
 
 export const Default = Template.bind({});

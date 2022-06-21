@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { countryIsMemberOfEøsOrEfta } from '@navikt/sif-common-core/lib/utils/countryUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
@@ -19,9 +19,8 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { Systemtittel } from 'nav-frontend-typografi';
 import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
-import { handleDateRangeValidationError, mapFomTomToDateRange } from '../utils';
+import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdÅrsak } from './types';
 import utils from './utenlandsoppholdUtils';
 
@@ -126,44 +125,40 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                         includeButtons={true}
                         onCancel={onCancel}
                         formErrorHandler={getFormErrorHandler(intl, 'utenlandsoppholdForm')}>
-                        <Systemtittel tag="h1">
-                            <FormattedMessage id="utenlandsopphold.form.tittel" />
-                        </Systemtittel>
-                        <FormBlock>
-                            <Form.DateRangePicker
-                                legend={intlHelper(intl, 'utenlandsopphold.form.tidsperiode.spm')}
-                                fullscreenOverlay={true}
-                                disabledDateRanges={registrerteTidsperioder}
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                fromInputProps={{
-                                    name: UtenlandsoppholdFormFields.fom,
-                                    label: intlHelper(intl, 'utenlandsopphold.form.tidsperiode.fraDato'),
-                                    validate: (value) => {
-                                        const error = getDateRangeValidator({
-                                            required: true,
-                                            min: minDate,
-                                            max: maxDate,
-                                            toDate: ISOStringToDate(tom),
-                                        }).validateFromDate(value);
-                                        return handleDateRangeValidationError(error, minDate, maxDate);
-                                    },
-                                }}
-                                toInputProps={{
-                                    name: UtenlandsoppholdFormFields.tom,
-                                    label: intlHelper(intl, 'utenlandsopphold.form.tidsperiode.tilDato'),
-                                    validate: (value) => {
-                                        const error = getDateRangeValidator({
-                                            required: true,
-                                            min: minDate,
-                                            max: maxDate,
-                                            fromDate: ISOStringToDate(fom),
-                                        }).validateToDate(value);
-                                        return handleDateRangeValidationError(error, minDate, maxDate);
-                                    },
-                                }}
-                            />
-                        </FormBlock>
+                        <Form.DateRangePicker
+                            legend={intlHelper(intl, 'utenlandsopphold.form.tidsperiode.spm')}
+                            fullscreenOverlay={true}
+                            disabledDateRanges={registrerteTidsperioder}
+                            minDate={minDate}
+                            maxDate={maxDate}
+                            fromInputProps={{
+                                name: UtenlandsoppholdFormFields.fom,
+                                label: intlHelper(intl, 'utenlandsopphold.form.tidsperiode.fraDato'),
+                                validate: (value) => {
+                                    const error = getDateRangeValidator({
+                                        required: true,
+                                        min: minDate,
+                                        max: maxDate,
+                                        toDate: ISOStringToDate(tom),
+                                    }).validateFromDate(value);
+                                    return handleDateRangeValidationError(error, minDate, maxDate);
+                                },
+                            }}
+                            toInputProps={{
+                                name: UtenlandsoppholdFormFields.tom,
+                                label: intlHelper(intl, 'utenlandsopphold.form.tidsperiode.tilDato'),
+                                validate: (value) => {
+                                    const error = getDateRangeValidator({
+                                        required: true,
+                                        min: minDate,
+                                        max: maxDate,
+                                        fromDate: ISOStringToDate(fom),
+                                    }).validateToDate(value);
+                                    return handleDateRangeValidationError(error, minDate, maxDate);
+                                },
+                            }}
+                        />
+
                         {hasDateStringValues && (
                             <FormBlock>
                                 <Form.CountrySelect
@@ -200,10 +195,6 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                                             minDate={ISOStringToDate(fom)}
                                             maxDate={ISOStringToDate(tom)}
                                             validate={getListValidator({ required: true })}
-                                            formTitle={intlHelper(
-                                                intl,
-                                                'utenlandsopphold.form.perioderBarnetErInnlag.formTitle'
-                                            )}
                                             labels={{
                                                 addLabel: intlHelper(
                                                     intl,
@@ -211,7 +202,7 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                                                 ),
                                                 modalTitle: intlHelper(
                                                     intl,
-                                                    'utenlandsopphold.form.perioderBarnetErInnlag.modalTitle'
+                                                    'utenlandsopphold.form.perioderBarnetErInnlag.formTitle'
                                                 ),
                                                 listTitle: intlHelper(
                                                     intl,

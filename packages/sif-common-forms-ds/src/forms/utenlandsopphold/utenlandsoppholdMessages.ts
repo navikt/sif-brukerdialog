@@ -9,7 +9,6 @@ const utenlandsoppholdMessages = {
         'utenlandsopphold.form.erBarnetInnlagt.spm': 'Er, eller skal, barnet være innlagt i helseinstitusjon i {land}?',
         'utenlandsopphold.form.perioderBarnetErInnlag.formTitle': 'Periode barnet er innlagt',
         'utenlandsopphold.form.perioderBarnetErInnlag.addLabel': 'Legg til periode barnet er innlagt',
-        'utenlandsopphold.form.perioderBarnetErInnlag.modalTitle': 'Periode(r) barnet er innlagt',
         'utenlandsopphold.form.perioderBarnetErInnlag.listTitle': 'Periode(r) barnet er innlagt',
         'utenlandsopphold.form.årsak.spm': 'Hvordan dekkes utgiftene til innleggelsen?',
         'utenlandsopphold.form.årsak.BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING':
@@ -56,7 +55,6 @@ const utenlandsoppholdMessages = {
         'utenlandsopphold.form.erBarnetInnlagt.spm': 'Er, eller skal, barnet bli lagt inn i helseinstitusjon i {land}?',
         'utenlandsopphold.form.perioderBarnetErInnlag.formTitle': 'Perioden barnet er innlagt',
         'utenlandsopphold.form.perioderBarnetErInnlag.addLabel': 'Legg til perioden barnet er innlagt',
-        'utenlandsopphold.form.perioderBarnetErInnlag.modalTitle': 'Perioden/periodane barnet er innlagt',
         'utenlandsopphold.form.perioderBarnetErInnlag.listTitle': 'Perioden/periodane barnet er innlagt',
         'utenlandsopphold.form.årsak.spm': 'Korleis blir utgiftene til innlegginga dekte?',
         'utenlandsopphold.form.årsak.BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING':

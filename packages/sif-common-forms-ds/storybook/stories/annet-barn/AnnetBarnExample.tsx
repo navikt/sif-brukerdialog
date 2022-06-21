@@ -1,3 +1,4 @@
+import { Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -7,13 +8,10 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import flatten from 'flat';
-import Panel from 'nav-frontend-paneler';
-import 'nav-frontend-tabs-style';
-import { Undertittel } from 'nav-frontend-typografi';
-import AnnetBarnForm, { AnnetBarnFormErrors } from '../../../src/annet-barn/AnnetBarnForm';
-import AnnetBarnListAndDialog from '../../../src/annet-barn/AnnetBarnListAndDialog';
-import annetBarnMessages from '../../../src/annet-barn/annetBarnMessages';
-import { AnnetBarn } from '../../../src/annet-barn/types';
+import AnnetBarnForm, { AnnetBarnFormErrors } from '../../../src/forms/annet-barn/AnnetBarnForm';
+import AnnetBarnListAndDialog from '../../../src/forms/annet-barn/AnnetBarnListAndDialog';
+import annetBarnMessages from '../../../src/forms/annet-barn/annetBarnMessages';
+import { AnnetBarn } from '../../../src/forms/annet-barn/types';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
 
@@ -36,7 +34,9 @@ const AnnetBarnExample = () => {
     return (
         <>
             <Block padBottom="l">
-                <Undertittel>Liste og dialog</Undertittel>
+                <Heading size="medium" level="2">
+                    Liste og dialog
+                </Heading>
             </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
@@ -75,7 +75,9 @@ const AnnetBarnExample = () => {
                 />
             </Block>
             <Block margin="xxl" padBottom="l">
-                <Undertittel>Kun dialog</Undertittel>
+                <Heading level="2" size="small">
+                    Kun dialog
+                </Heading>
             </Block>
 
             <Panel border={true}>

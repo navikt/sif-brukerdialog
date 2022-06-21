@@ -3,15 +3,15 @@ import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import TextareaSummary from '@navikt/sif-common-core/lib/components/textarea-summary/TextareaSummary';
 import { apiStringDateToDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import DatoSvar, { prettifyApiDate } from '../components/summary/DatoSvar';
-import IntlLabelValue from '../components/summary/IntlLabelValue';
-import JaNeiSvar from '../components/summary/JaNeiSvar';
-import Sitat from '../components/summary/Sitat';
-import SummaryBlock from '../components/summary/SummaryBlock';
-import TallSvar from '../components/summary/TallSvar';
+import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
+import IntlLabelValue from '../../components/summary/IntlLabelValue';
+import JaNeiSvar from '../../components/summary/JaNeiSvar';
+import Sitat from '../../components/summary/Sitat';
+import SummaryBlock from '../../components/summary/SummaryBlock';
+import TallSvar from '../../components/summary/TallSvar';
 import { VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet, harFiskerNæringstype } from './virksomhetUtils';
-import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface Props {

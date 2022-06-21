@@ -7,7 +7,7 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import ItemList from '@navikt/sif-common-core/lib/components/item-list/ItemList';
 import { dateToday, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
-import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/annet-barn/AnnetBarnListAndDialog';
+import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/AnnetBarnListAndDialog';
 import { useFormikContext } from 'formik';
 import { Person } from '../../types/Person';
 import { Barn, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';

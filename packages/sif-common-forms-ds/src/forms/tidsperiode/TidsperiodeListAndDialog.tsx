@@ -12,20 +12,12 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/typ
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;
-    formTitle?: string;
     minDate?: Date;
     maxDate?: Date;
     labels: ModalFormAndListLabels;
 }
 
-function TidsperiodeListAndDialog<FieldNames>({
-    name,
-    minDate,
-    maxDate,
-    validate,
-    labels,
-    formTitle,
-}: Props<FieldNames>) {
+function TidsperiodeListAndDialog<FieldNames>({ name, minDate, maxDate, validate, labels }: Props<FieldNames>) {
     return (
         <>
             <FormikModalFormAndList<FieldNames, DateTidsperiode, ValidationError>
@@ -38,7 +30,6 @@ function TidsperiodeListAndDialog<FieldNames>({
                     <TidsperiodeForm
                         tidsperiode={item}
                         alleTidsperioder={allItems}
-                        formLabels={formTitle ? { title: formTitle } : undefined}
                         minDate={minDate}
                         maxDate={maxDate}
                         onSubmit={onSubmit}

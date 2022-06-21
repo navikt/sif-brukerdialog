@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { DateRange, dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
@@ -21,8 +21,7 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import dayjs from 'dayjs';
-import { Systemtittel } from 'nav-frontend-typografi';
-import FormattedHtmlMessage from '../components/formatted-html-message/FormattedHtmlMessage';
+import FormattedHtmlMessage from '../../components/formatted-html-message/FormattedHtmlMessage';
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {
@@ -185,11 +184,10 @@ const FraværDagFormView = ({
                         <FraværDagForm.Form
                             onCancel={onCancel}
                             formErrorHandler={getFormErrorHandler(intl, 'fraværDagForm')}>
-                            <Systemtittel tag="h1">{formLabels.tittel}</Systemtittel>
                             {headerContent && <Block>{headerContent}</Block>}
-                            <FormBlock>
-                                <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />
-                            </FormBlock>
+
+                            <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />
+
                             <FormBlock>
                                 <FraværTimerSelect
                                     name={FraværDagFormFields.timerArbeidsdag}

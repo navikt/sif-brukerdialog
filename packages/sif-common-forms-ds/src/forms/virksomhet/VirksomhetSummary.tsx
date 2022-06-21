@@ -3,12 +3,12 @@ import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import TextareaSummary from '@navikt/sif-common-core/lib/components/textarea-summary/TextareaSummary';
 import { apiStringDateToDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import DatoSvar, { prettifyApiDate } from '../components/summary/DatoSvar';
-import IntlLabelValue from '../components/summary/IntlLabelValue';
-import JaNeiSvar from '../components/summary/JaNeiSvar';
-import Sitat from '../components/summary/Sitat';
-import SummaryBlock from '../components/summary/SummaryBlock';
-import TallSvar from '../components/summary/TallSvar';
+import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
+import IntlLabelValue from '../../components/summary/IntlLabelValue';
+import JaNeiSvar from '../../components/summary/JaNeiSvar';
+import Sitat from '../../components/summary/Sitat';
+import SummaryBlock from '../../components/summary/SummaryBlock';
+import TallSvar from '../../components/summary/TallSvar';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 

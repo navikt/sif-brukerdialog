@@ -12,7 +12,7 @@ import {
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { handleDateRangeValidationError, mapFomTomToDateRange } from '../utils';
+import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import bostedUtlandUtils from './bostedUtlandUtils';
 import { BostedUtland, BostedUtlandFormValues } from './types';
 

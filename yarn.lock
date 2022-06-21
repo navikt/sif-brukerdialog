@@ -1413,14 +1413,6 @@
     "@floating-ui/dom" "^0.4.0"
     use-isomorphic-layout-effect "^1.1.1"
 
-"@formatjs/ecma402-abstract@1.11.4":
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.11.4.tgz#b962dfc4ae84361f9f08fbce411b4e4340930eda"
-  integrity sha512-EBikYFp2JCdIfGEb5G9dyCkTGDmC57KSHhRQOC3aYxoPWVZvfWCDjZwkGYHN7Lis/fmuWl906bnNTJifDQ3sXw==
-  dependencies:
-    "@formatjs/intl-localematcher" "0.2.25"
-    tslib "^2.1.0"
-
 "@formatjs/ecma402-abstract@1.11.7":
   version "1.11.7"
   resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.11.7.tgz#47f1a854f679f813d9baa1ee55adae94880ec706"
@@ -1471,28 +1463,12 @@
     "@formatjs/intl-localematcher" "0.2.28"
     tslib "2.4.0"
 
-"@formatjs/intl-localematcher@0.2.25":
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-localematcher/-/intl-localematcher-0.2.25.tgz#60892fe1b271ec35ba07a2eb018a2dd7bca6ea3a"
-  integrity sha512-YmLcX70BxoSopLFdLr1Ds99NdlTI2oWoLbaUW2M406lxOIPzE1KQhRz2fPUkq34xVZQaihCoU29h0KK7An3bhA==
-  dependencies:
-    tslib "^2.1.0"
-
 "@formatjs/intl-localematcher@0.2.28":
   version "0.2.28"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-localematcher/-/intl-localematcher-0.2.28.tgz#412ea7fefbfc7ed33cd6b43aa304fc14d816e564"
   integrity sha512-FLsc6Gifs1np/8HnCn/7Q+lHMmenrD5fuDhRT82yj0gi9O19kfaFwjQUw1gZsyILuRyT93GuzdifHj7TKRhBcw==
   dependencies:
     tslib "2.4.0"
-
-"@formatjs/intl-pluralrules@^4.1.6":
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-pluralrules/-/intl-pluralrules-4.3.3.tgz#9dc5a96175d89c8887f003eacef457a1f3003caf"
-  integrity sha512-NLZN8gf2qLpCuc0m565IbKLNUarEGOzk0mkdTkE4XTuNCofzoQTurW6lL3fmDlneAoYl2FiTdHa5q4o2vZF50g==
-  dependencies:
-    "@formatjs/ecma402-abstract" "1.11.4"
-    "@formatjs/intl-localematcher" "0.2.25"
-    tslib "^2.1.0"
 
 "@formatjs/intl-pluralrules@^5.0.2":
   version "5.0.2"
@@ -7014,7 +6990,7 @@ core-js@^2.4.0, core-js@^2.5.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
-core-js@^3.0.4, core-js@^3.19.2, core-js@^3.23.1, core-js@^3.6.5, core-js@^3.8.2:
+core-js@^3.0.4, core-js@^3.19.2, core-js@^3.23.2, core-js@^3.6.5, core-js@^3.8.2:
   version "3.23.2"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.23.2.tgz#e07a60ca8b14dd129cabdc3d2551baf5a01c76f0"
   integrity sha512-ELJOWxNrJfOH/WK4VJ3Qd+fOqZuOuDNDJz0xG6Bt4mGg2eO/UT9CljCrbqDGovjLKUrGajEEBcoTOc0w+yBYeQ==
@@ -13374,12 +13350,12 @@ nav-frontend-paneler@^3.0.1:
   resolved "https://registry.yarnpkg.com/nav-frontend-paneler/-/nav-frontend-paneler-3.0.1.tgz#bf78fb8b7a83d07c11cb16ae23f650b6cc720c88"
   integrity sha512-FFV7fanUkIZ8X7vUUFXkX32KcFqTAxQNOOxrM52RSTvQy6TOOoYSMAALxXSMnzEQM3H0yCbq7/ctZzkZd29a6g==
 
-nav-frontend-popover-style@2.0.1, nav-frontend-popover-style@^2.0.1:
+nav-frontend-popover-style@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/nav-frontend-popover-style/-/nav-frontend-popover-style-2.0.1.tgz#7d908daa02d6d0de90e9cc46e87d49fe72337431"
   integrity sha512-b8ctzSOZp30WDIH1YOzdsq/DehG+FjSvWLvcAMVqvfGaUeue6BcB45jI9PUlxqwoN7YG+xfhrRPzIeB/1z8zRg==
 
-nav-frontend-popover@2.0.3, nav-frontend-popover@^2.0.3:
+nav-frontend-popover@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/nav-frontend-popover/-/nav-frontend-popover-2.0.3.tgz#1d9b6421ffbeb05d7a25ec70aca47230045aa26a"
   integrity sha512-OBEk9K+6O2Nysn/OKL02ctUOVOxLm0wInOHqIucfsq+uXta438FhW2GDEkTVIGk6qFwmmf7n5bTlw3vDWsMJQA==
@@ -13451,7 +13427,7 @@ nav-frontend-veileder@^3.0.2:
   resolved "https://registry.yarnpkg.com/nav-frontend-veileder/-/nav-frontend-veileder-3.0.2.tgz#ebd7adb673ecc3536e3d86adb6e7d80024b4477a"
   integrity sha512-trBnXeY30UdxqQsPvArnqjlO33d+1paoDuz8KqWt8+Ujnp9QVAHdeWNVKDs89RyrHxTTWEKtI76wAUJj3fKzvw==
 
-nav-frontend-veilederpanel-style@2.0.1, nav-frontend-veilederpanel-style@^2.0.1:
+nav-frontend-veilederpanel-style@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/nav-frontend-veilederpanel-style/-/nav-frontend-veilederpanel-style-2.0.1.tgz#e2886b02eb499b7552ac6fb43ea344cbc5a91550"
   integrity sha512-Bg39EHjE2R5S0Xyc1bLLaZ5yOrqpqqlLYq4t7ZR1namCO0CHTzqWVG9qCwqmze5KfJqrioy9RwSGcors7+r7xA==

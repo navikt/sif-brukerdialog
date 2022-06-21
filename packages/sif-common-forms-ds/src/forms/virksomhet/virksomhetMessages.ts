@@ -77,7 +77,7 @@ const virksomhetMessages = {
         'sifForms.virksomhet.summary.regnskapsfører.header': 'Regnskapsfører',
         'sifForms.virksomhet.summary.regnskapsfører.info': 'Ja, {navn}, telefon {telefon}',
 
-        'virksomhetForm.næringstyper.listIsEmpty': 'Velg hvilken type virksomhet du har fra listen.',
+        'virksomhetForm.næringstype.noValue': 'Velg hvilken type virksomhet du har fra listen.',
         'virksomhetForm.fiskerErPåBladB.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på spørsmålet om du er fisker på Blad B.',
         'virksomhetForm.navnPåVirksomheten.stringHasNoValue': 'Skriv inn navnet på virksomheten din.',

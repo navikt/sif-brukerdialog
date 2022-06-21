@@ -5,7 +5,7 @@ import {
     ValidateRequiredFieldError,
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { DateTidsperiode } from '../tidsperiode';
+import { DateTidsperiode } from '../forms/tidsperiode';
 
 export const mapFomTomToDateRange = ({ fom, tom }: DateTidsperiode): DateRange => ({
     from: fom,
