@@ -1,4 +1,4 @@
-import { jsonSort } from '@navikt/sif-common-core/lib/utils/jsonSort';
+import { jsonSort } from '@navikt/sif-common-utils';
 import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 import utils from './tidsperiodeUtils';
 import { DateTidsperiode, DateTidsperiodeFormValues } from './types';

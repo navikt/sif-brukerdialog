@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import { jsonSort } from '@navikt/sif-common-core/lib/utils/jsonSort';
+import { jsonSort } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import dayjs from 'dayjs';
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { jsonSort } from '@navikt/sif-common-core/lib/utils/jsonSort';
+import { jsonSort } from '@navikt/sif-common-utils';
 import { AnnetBarn, AnnetBarnFormValues } from './types';
 import annetBarnUtils from './annetBarnUtils';
 import { dateToISOFormattedDateString } from '@navikt/sif-common-core/lib/utils/dateUtils';

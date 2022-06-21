@@ -1,6 +1,6 @@
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { guid } from 'nav-frontend-js-utils';
+import { guid } from '@navikt/sif-common-utils';
 import { AnnetBarn, AnnetBarnFormValues } from './types';
 
 const isAnnetBarn = (annetBarn: Partial<AnnetBarn>): annetBarn is AnnetBarn => {

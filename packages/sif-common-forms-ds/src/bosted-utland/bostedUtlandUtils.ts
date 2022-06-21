@@ -1,5 +1,5 @@
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
-import { guid } from 'nav-frontend-js-utils';
+import { guid } from '@navikt/sif-common-utils';
 import { BostedUtland, BostedUtlandFormValues } from './types';
 
 const isValidBostedUtland = (bosted: Partial<BostedUtland>): bosted is BostedUtland => {

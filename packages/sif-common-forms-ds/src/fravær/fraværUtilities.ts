@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { isString } from 'formik';
-import { guid } from 'nav-frontend-js-utils';
+import { guid } from '@navikt/sif-common-utils';
 import { FraværDag, FraværDagFormValues, FraværPeriode, FraværPeriodeFormValues, FraværÅrsak } from './types';
 
 dayjs.extend(isSameOrAfter);

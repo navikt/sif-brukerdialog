@@ -3,7 +3,7 @@ import { date4YearsAgo } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import dayjs from 'dayjs';
-import { guid } from 'nav-frontend-js-utils';
+import { guid } from '@navikt/sif-common-utils';
 import { Næringstype, Virksomhet, VirksomhetFormValues } from './types';
 
 export const harFiskerNæringstype = (næringstyper: Næringstype[]): boolean =>

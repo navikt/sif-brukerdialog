@@ -1,5 +1,5 @@
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
-import { guid } from 'nav-frontend-js-utils';
+import { guid } from '@navikt/sif-common-utils';
 import { Utenlandsopphold, UtenlandsoppholdFormValues } from './types';
 
 const isValidUtenlandsopphold = (utenlandsopphold: Partial<Utenlandsopphold>): utenlandsopphold is Utenlandsopphold => {

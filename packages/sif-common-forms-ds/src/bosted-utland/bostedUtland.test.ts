@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { jsonSort } from '@navikt/sif-common-core/lib/utils/jsonSort';
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { jsonSort } from '@navikt/sif-common-utils';
 import utils from './bostedUtlandUtils';
 import { BostedUtland, BostedUtlandFormValues } from './types';
 
