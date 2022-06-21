@@ -1,16 +1,16 @@
 import React from 'react';
 import ContentWithHeader from '@navikt/sif-common-core/lib/components/content-with-header/ContentWithHeader';
-import Box, { BoxMargin } from '@navikt/sif-common-core/lib/components/box/Box';
+import Block, { BlockMargin } from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface Props {
     header: string;
-    margin?: BoxMargin;
+    margin?: BlockMargin;
 }
 
 const SummaryBlock: React.FunctionComponent<Props> = ({ header, margin = 'l', children }) => (
-    <Box margin={margin}>
+    <Block margin={margin}>
         <ContentWithHeader header={header}>{children}</ContentWithHeader>
-    </Box>
+    </Block>
 );
 
 export default SummaryBlock;

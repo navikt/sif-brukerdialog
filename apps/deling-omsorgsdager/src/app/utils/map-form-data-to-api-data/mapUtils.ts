@@ -1,6 +1,6 @@
 import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/annet-barn/types';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import { ApiBarn } from '../../types/SoknadApiData';
 import { Barn } from '../../types/SoknadFormData';
 

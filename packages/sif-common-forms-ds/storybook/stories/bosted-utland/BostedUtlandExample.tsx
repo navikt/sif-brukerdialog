@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
@@ -8,15 +8,13 @@ import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import flat from 'flat';
-import Panel from 'nav-frontend-paneler';
-import 'nav-frontend-tabs-style';
-import { Undertittel } from 'nav-frontend-typografi';
-import BostedUtlandForm, { BostedUtlandFormErrors } from '../../../src/bosted-utland/BostedUtlandForm';
-import BostedUtlandListAndDialog from '../../../src/bosted-utland/BostedUtlandListAndDialog';
-import bostedUtlandMessages from '../../../src/bosted-utland/bostedUtlandMessages';
-import { BostedUtland } from '../../../src/bosted-utland/types';
+import BostedUtlandForm, { BostedUtlandFormErrors } from '../../../src/forms/bosted-utland/BostedUtlandForm';
+import BostedUtlandListAndDialog from '../../../src/forms/bosted-utland/BostedUtlandListAndDialog';
+import bostedUtlandMessages from '../../../src/forms/bosted-utland/bostedUtlandMessages';
+import { BostedUtland } from '../../../src/forms/bosted-utland/types';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
+import { Heading, Panel } from '@navikt/ds-react';
 
 enum FormField {
     'bosted' = 'bosted',
@@ -33,9 +31,11 @@ const FormikExample = () => {
     const intl = useIntl();
     return (
         <>
-            <Box padBottom="l">
-                <Undertittel>Liste og dialog</Undertittel>
-            </Box>
+            <Block padBottom="l">
+                <Heading level="2" size="small">
+                    Liste og dialog
+                </Heading>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -65,18 +65,20 @@ const FormikExample = () => {
                 <SubmitPreview values={listFormValues} />
             </Panel>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flat(BostedUtlandFormErrors)}
                     intlMessages={bostedUtlandMessages}
                 />
-            </Box>
+            </Block>
 
-            <Box margin="xxl" padBottom="l">
-                <Undertittel>Kun dialog</Undertittel>
-            </Box>
+            <Block margin="xxl" padBottom="l">
+                <Heading level="2" size="small">
+                    Kun dialog
+                </Heading>
+            </Block>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <Panel border={true}>
                     <BostedUtlandForm
                         minDate={date1YearAgo}
@@ -86,7 +88,7 @@ const FormikExample = () => {
                     />
                 </Panel>
                 <SubmitPreview values={singleFormValues} />
-            </Box>
+            </Block>
 
             <MessagesPreview title="Alle tekster" messages={bostedUtlandMessages} showExplanation={false} />
         </>

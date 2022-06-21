@@ -1,6 +1,6 @@
+import { Modal } from '@navikt/ds-react';
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
-import { Modal } from '@navikt/ds-react';
 import '@formatjs/intl-pluralrules//locale-data/en';
 import '@formatjs/intl-pluralrules//locale-data/nb';
 import '@formatjs/intl-pluralrules//locale-data/nn';
@@ -9,6 +9,7 @@ import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import dayjs from 'dayjs';
 import { appMessages } from './messages';
 import '@navikt/ds-css';
+import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
 require('dayjs/locale/nb');
 require('dayjs/locale/nn');
@@ -25,10 +26,11 @@ const AppIntlProvider = ({ locale, onError, children }: IntlProviderProps) => {
         if (Modal.setAppElement) {
             Modal.setAppElement('#dialog-wrapper');
         }
+        window.document.body.className = window.document.body.className + ' sif-ds-theme';
     });
 
     return (
-        <div id="dialog-wrapper">
+        <div id="dialog-wrapper" className="sif-ds-theme">
             <IntlProvider locale={locale} messages={messages} onError={onError}>
                 <div style={{ fontSize: '1rem' }}>{children}</div>
             </IntlProvider>

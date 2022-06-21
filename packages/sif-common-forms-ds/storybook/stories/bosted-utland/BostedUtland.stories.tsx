@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import AppIntlProvider from '../../decorators/AppIntlProvider';
 import BostedUtlandExample from './BostedUtlandExample';
+import AppIntlProvider from '../../decorators/AppIntlProvider';
 
 export default {
     title: 'Form/BostedUtland',
@@ -15,18 +15,6 @@ export default {
     ],
 } as ComponentMeta<typeof BostedUtlandExample>;
 
-const Template: ComponentStory<typeof BostedUtlandExample> = (args) => <BostedUtlandExample {...args} />;
+const Template: ComponentStory<typeof BostedUtlandExample> = () => <BostedUtlandExample />;
 
 export const Default = Template.bind({});
-Default.args = {
-    label: 'BostedUtland',
-    name: 'BostedUtland',
-    value: 'abc',
-};
-Default.parameters = {
-    formik: {
-        initialValues: {
-            BostedUtlandExample: true,
-        },
-    },
-};

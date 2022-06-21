@@ -1,19 +1,17 @@
+import { Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { date4YearsAgo, dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import flatten from 'flat';
-import Panel from 'nav-frontend-paneler';
-import 'nav-frontend-tabs-style';
-import { Undertittel } from 'nav-frontend-typografi';
-import AnnetBarnForm, { AnnetBarnFormErrors } from '../../../src/annet-barn/AnnetBarnForm';
-import AnnetBarnListAndDialog from '../../../src/annet-barn/AnnetBarnListAndDialog';
-import annetBarnMessages from '../../../src/annet-barn/annetBarnMessages';
-import { AnnetBarn } from '../../../src/annet-barn/types';
+import AnnetBarnForm, { AnnetBarnFormErrors } from '../../../src/forms/annet-barn/AnnetBarnForm';
+import AnnetBarnListAndDialog from '../../../src/forms/annet-barn/AnnetBarnListAndDialog';
+import annetBarnMessages from '../../../src/forms/annet-barn/annetBarnMessages';
+import { AnnetBarn } from '../../../src/forms/annet-barn/types';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
 
@@ -35,9 +33,11 @@ const AnnetBarnExample = () => {
 
     return (
         <>
-            <Box padBottom="l">
-                <Undertittel>Liste og dialog</Undertittel>
-            </Box>
+            <Block padBottom="l">
+                <Heading size="medium" level="2">
+                    Liste og dialog
+                </Heading>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -67,16 +67,18 @@ const AnnetBarnExample = () => {
                 />
                 <SubmitPreview values={listFormValues} />
             </Panel>
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flatten(AnnetBarnFormErrors)}
                     formName={'annetBarn'}
                     intlMessages={annetBarnMessages}
                 />
-            </Box>
-            <Box margin="xxl" padBottom="l">
-                <Undertittel>Kun dialog</Undertittel>
-            </Box>
+            </Block>
+            <Block margin="xxl" padBottom="l">
+                <Heading level="2" size="small">
+                    Kun dialog
+                </Heading>
+            </Block>
 
             <Panel border={true}>
                 <AnnetBarnForm

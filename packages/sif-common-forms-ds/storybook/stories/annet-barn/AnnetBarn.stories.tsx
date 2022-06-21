@@ -15,18 +15,6 @@ export default {
     ],
 } as ComponentMeta<typeof AnnetBarnExample>;
 
-const Template: ComponentStory<typeof AnnetBarnExample> = (args) => <AnnetBarnExample {...args} />;
+const Template: ComponentStory<typeof AnnetBarnExample> = () => <AnnetBarnExample />;
 
 export const Default = Template.bind({});
-Default.args = {
-    label: 'AnnetBarn',
-    name: 'AnnetBarn',
-    value: 'abc',
-};
-Default.parameters = {
-    formik: {
-        initialValues: {
-            AnnetBarnExample: true,
-        },
-    },
-};

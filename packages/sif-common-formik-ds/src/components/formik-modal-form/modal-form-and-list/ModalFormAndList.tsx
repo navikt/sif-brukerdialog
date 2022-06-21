@@ -1,6 +1,5 @@
 import { Alert, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
 import React from 'react';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
@@ -82,15 +81,14 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 open={modalState.isVisible}
                 onClose={resetModal}
                 className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
-                shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}>
+                shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+                aria-label={labels.modalTitle}>
                 <Modal.Content>
-                    {labels.modalTitle && (
-                        <Box margin="s" padBottom="m">
-                            <Heading spacing={true} size="medium" level="1">
-                                {labels.modalTitle}
-                            </Heading>
-                        </Box>
-                    )}
+                    <div style={{ marginTop: 'var(--navds-spacing-1)', paddingBottom: 'var(--navds-spacing-2)' }}>
+                        <Heading spacing={true} size="medium" level="1">
+                            {labels.modalTitle}
+                        </Heading>
+                    </div>
                     {formRenderer({
                         onSubmit: handleOnSubmit,
                         onCancel: resetModal,

@@ -73,7 +73,7 @@ const ExampleForm: React.FunctionComponent = () => {
                                 <Form.Checkbox
                                     name={Fields.checked}
                                     label={'Check this'}
-                                    description={<>What</>}
+                                    description={'What'}
                                     validate={getCheckedValidator()}
                                 />
                             </FormBlock>
