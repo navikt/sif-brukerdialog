@@ -1,7 +1,6 @@
 import { Button, Heading, Modal, ModalProps, Panel } from '@navikt/ds-react';
 import React from 'react';
 import bemUtils from '../../../utils/bemUtils';
-import Block from '../../helpers/block/Block';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';
 import './modalFormAndInfo.scss';
@@ -127,11 +126,11 @@ function ModalFormAndInfo<DataType>({
                 onClose={resetModal}
                 aria-label={labels.modalTitle}>
                 <Modal.Content>
-                    <Block margin="s" padBottom="m">
+                    <div style={{ marginTop: 'var(--navds-spacing-1)', paddingBottom: 'var(--navds-spacing-2)' }}>
                         <Heading spacing={true} size="medium" level="1">
                             {labels.modalTitle}
                         </Heading>
-                    </Block>
+                    </div>
 
                     {formRenderer({
                         onSubmit: handleOnSubmit,
