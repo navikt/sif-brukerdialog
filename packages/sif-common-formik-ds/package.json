@@ -1,5 +1,11 @@
 {
     "author": "navikt",
+    "homepage": "https://navikt.github.io/sif-common-formik-ds",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "name": "@navikt/sif-common-formik-ds",
+    "types": "lib/index.d.js",
+    "version": "0.1.0",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },
@@ -9,9 +15,9 @@
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
-        "@navikt/ds-css": "^0.18.12",
+        "@navikt/ds-css": "^0.18.15",
         "@navikt/ds-datepicker": "^2.1.8",
-        "@navikt/ds-react": "^0.19.12",
+        "@navikt/ds-react": "^0.19.14",
         "@navikt/fnrvalidator": "^1.3.0",
         "@storybook/addon-a11y": "^6.5.9",
         "@storybook/addon-actions": "^6.5.9",
@@ -23,7 +29,7 @@
         "@storybook/testing-library": "^0.0.13",
         "@types/node": "^18.0.0",
         "@types/react": "17.0.34",
-        "@types/react-dom": "^17.0.11",
+        "@types/react-dom": "^18.0.5",
         "@types/uuid": "^8.3.4",
         "copyfiles": "^2.4.1",
         "dayjs": "^1.11.3",
@@ -33,7 +39,7 @@
         "prop-types": "^15.8.1",
         "react": "^17.0.2",
         "react-day-picker": "^7.4.10",
-        "react-dom": "^17.0.2",
+        "react-dom": "^18.2.0",
         "react-intl": "6.0.4",
         "react-responsive": "^9.0.0-beta.10",
         "react-scripts": "5.0.1",
@@ -44,10 +50,6 @@
     "directories": {
         "lib": "lib"
     },
-    "homepage": "https://navikt.github.io/sif-common-formik-ds",
-    "license": "MIT",
-    "main": "lib/index.js",
-    "name": "@navikt/sif-common-formik-ds",
     "overrides": {
         "react-refresh": "0.11.0"
     },
@@ -60,7 +62,6 @@
         "react-dom": "17.0.x",
         "react-intl": "6.0.4"
     },
-    "private": false,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-common-formik-ds.git"
@@ -83,6 +84,14 @@
         "test-watch": "react-scripts test",
         "watch-styles": "npm-watch copy-files"
     },
-    "types": "lib/index.d.js",
-    "version": "0.1.0"
+    "watch": {
+        "copy-files": {
+            "extensions": "css,scss,less",
+            "patterns": [
+                "src"
+            ],
+            "runOnChangeOnly": true
+        }
+    },
+    "private": false
 }
