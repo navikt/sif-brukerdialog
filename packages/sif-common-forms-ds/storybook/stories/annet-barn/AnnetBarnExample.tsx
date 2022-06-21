@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { date4YearsAgo, dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
@@ -35,9 +35,9 @@ const AnnetBarnExample = () => {
 
     return (
         <>
-            <Box padBottom="l">
+            <Block padBottom="l">
                 <Undertittel>Liste og dialog</Undertittel>
-            </Box>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -67,16 +67,16 @@ const AnnetBarnExample = () => {
                 />
                 <SubmitPreview values={listFormValues} />
             </Panel>
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flatten(AnnetBarnFormErrors)}
                     formName={'annetBarn'}
                     intlMessages={annetBarnMessages}
                 />
-            </Box>
-            <Box margin="xxl" padBottom="l">
+            </Block>
+            <Block margin="xxl" padBottom="l">
                 <Undertittel>Kun dialog</Undertittel>
-            </Box>
+            </Block>
 
             <Panel border={true}>
                 <AnnetBarnForm

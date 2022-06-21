@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
@@ -189,13 +189,13 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         onCancel={onCancel}
                         formErrorHandler={getFormErrorHandler(intl, 'virksomhetForm')}
                         cleanup={cleanupVirksomhetFormValues}>
-                        <Box padBottom="l">
+                        <Block padBottom="l">
                             <Systemtittel tag="h1">
                                 {harFlereVirksomheter
                                     ? getText('sifForms.virksomhet.form_title.flere')
                                     : getText('sifForms.virksomhet.form_title')}
                             </Systemtittel>
-                        </Box>
+                        </Block>
 
                         <Form.RadioGroup
                             name={VirksomhetFormField.næringstype}
@@ -222,25 +222,25 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                         />
 
                         {erFiskerNæringstype(næringstype) && (
-                            <Box margin="xl">
+                            <Block margin="xl">
                                 <Form.YesOrNoQuestion
                                     name={VirksomhetFormField.fiskerErPåBladB}
                                     legend={getText('sifForms.virksomhet.fisker_blad_b')}
                                     validate={getYesOrNoValidator()}
                                 />
-                            </Box>
+                            </Block>
                         )}
 
-                        <Box margin="xl">
+                        <Block margin="xl">
                             <Form.TextField
                                 name={VirksomhetFormField.navnPåVirksomheten}
                                 label={getText('sifForms.virksomhet.hva_heter_virksomheten')}
                                 validate={getStringValidator({ required: true })}
                                 maxLength={50}
                             />
-                        </Box>
+                        </Block>
 
-                        <Box margin="xl">
+                        <Block margin="xl">
                             <Form.YesOrNoQuestion
                                 name={VirksomhetFormField.registrertINorge}
                                 legend={getText('sifForms.virksomhet.registert_i_norge', { navnPåVirksomheten })}
@@ -257,10 +257,10 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                     ) : undefined
                                 }
                             />
-                        </Box>
+                        </Block>
 
                         {values.registrertINorge === YesOrNo.NO && (
-                            <Box margin="xl">
+                            <Block margin="xl">
                                 <Form.CountrySelect
                                     name={VirksomhetFormField.registrertILand}
                                     label={getText('sifForms.virksomhet.registert_i_hvilket_land', {
@@ -269,11 +269,11 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                     validate={getRequiredFieldValidator()}
                                     useAlpha3Code={true}
                                 />
-                            </Box>
+                            </Block>
                         )}
 
                         {values.registrertINorge === YesOrNo.YES && (
-                            <Box margin="xl">
+                            <Block margin="xl">
                                 <Form.TextField
                                     name={VirksomhetFormField.organisasjonsnummer}
                                     label={getText('sifForms.virksomhet.organisasjonsnummer')}
@@ -283,11 +283,11 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         skipOrgNumValidation ? undefined : getOrgNumberValidator({ required: true })
                                     }
                                 />
-                            </Box>
+                            </Block>
                         )}
 
                         {(values.registrertINorge === YesOrNo.YES || values.registrertINorge === YesOrNo.NO) && (
-                            <Box margin="xl">
+                            <Block margin="xl">
                                 <Form.DateRangePicker
                                     legend={getText('sifForms.virksomhet.startdato', { navnPåVirksomheten })}
                                     showYearSelector={true}
@@ -340,13 +340,13 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         }
                                     }}
                                 />
-                            </Box>
+                            </Block>
                         )}
 
                         {fomDate && (
                             <>
                                 {harFlereVirksomheter && (
-                                    <Box margin="xxl">
+                                    <Block margin="xxl">
                                         {erVirksomhetRegnetSomNyoppstartet(fomDate) ? (
                                             <>
                                                 <Undertittel>
@@ -374,13 +374,13 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 </p>
                                             </>
                                         )}
-                                    </Box>
+                                    </Block>
                                 )}
 
                                 {/* Nyoppstartet  */}
                                 {erVirksomhetRegnetSomNyoppstartet(fomDate) && (
                                     <>
-                                        <Box margin="xl">
+                                        <Block margin="xl">
                                             <Form.NumberInput
                                                 name={VirksomhetFormField.næringsinntekt}
                                                 label={
@@ -434,8 +434,8 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                     </>
                                                 }
                                             />
-                                        </Box>
-                                        <Box margin="xl">
+                                        </Block>
+                                        <Block margin="xl">
                                             <Form.YesOrNoQuestion
                                                 name={
                                                     VirksomhetFormField.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene
@@ -451,7 +451,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                     </ExpandableInfo>
                                                 }
                                             />
-                                        </Box>
+                                        </Block>
                                         {values.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene ===
                                             YesOrNo.YES && (
                                             <FormBlock margin="m">
@@ -477,7 +477,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                 {/* Ikke nyoppstartet */}
                                 {erVirksomhetRegnetSomNyoppstartet(fomDate) === false && (
                                     <>
-                                        <Box margin="xl">
+                                        <Block margin="xl">
                                             <Form.YesOrNoQuestion
                                                 name={
                                                     VirksomhetFormField.hattVarigEndringAvNæringsinntektSiste4Kalenderår
@@ -485,10 +485,10 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 legend={getText('sifForms.virksomhet.varig_endring_spm')}
                                                 validate={getYesOrNoValidator()}
                                             />
-                                        </Box>
+                                        </Block>
                                         {values.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES && (
                                             <>
-                                                <Box margin="xl">
+                                                <Block margin="xl">
                                                     <Form.DatePicker
                                                         name={VirksomhetFormField.varigEndringINæringsinntekt_dato}
                                                         label={getText('sifForms.virksomhet.varig_endring_dato')}
@@ -512,8 +512,8 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         minDate={date4YearsAgo}
                                                         maxDate={dateToday}
                                                     />
-                                                </Box>
-                                                <Box margin="xl">
+                                                </Block>
+                                                <Block margin="xl">
                                                     <Form.NumberInput
                                                         name={
                                                             VirksomhetFormField.varigEndringINæringsinntekt_inntektEtterEndring
@@ -540,8 +540,8 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                                 : undefined;
                                                         }}
                                                     />
-                                                </Box>
-                                                <Box margin="xl">
+                                                </Block>
+                                                <Block margin="xl">
                                                     <Form.Textarea
                                                         name={
                                                             VirksomhetFormField.varigEndringINæringsinntekt_forklaring
@@ -566,7 +566,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                                 : undefined;
                                                         }}
                                                     />
-                                                </Box>
+                                                </Block>
                                             </>
                                         )}
                                     </>
@@ -574,13 +574,13 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
 
                                 {values.registrertINorge === YesOrNo.YES && (
                                     <>
-                                        <Box margin="xl">
+                                        <Block margin="xl">
                                             <Form.YesOrNoQuestion
                                                 name={VirksomhetFormField.harRegnskapsfører}
                                                 legend={getText('sifForms.virksomhet.regnskapsfører_spm')}
                                                 validate={getYesOrNoValidator()}
                                             />
-                                        </Box>
+                                        </Block>
                                         {values.harRegnskapsfører === YesOrNo.YES && (
                                             <FormBlock margin="m">
                                                 <ResponsivePanel>
@@ -607,7 +607,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         }}
                                                         maxLength={50}
                                                     />
-                                                    <Box margin="xl">
+                                                    <Block margin="xl">
                                                         <Form.TextField
                                                             name={VirksomhetFormField.regnskapsfører_telefon}
                                                             label={getText(
@@ -634,20 +634,20 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                             }}
                                                             maxLength={15}
                                                         />
-                                                    </Box>
+                                                    </Block>
                                                 </ResponsivePanel>
                                             </FormBlock>
                                         )}
                                     </>
                                 )}
                                 {values.harRegnskapsfører === YesOrNo.YES && (
-                                    <Box margin="xl">
+                                    <Block margin="xl">
                                         <CounsellorPanel>
                                             {getText('sifForms.virksomhet.veileder_innhenter_info.1')}
                                             <br />
                                             {getText('sifForms.virksomhet.veileder_innhenter_info.2')}
                                         </CounsellorPanel>
-                                    </Box>
+                                    </Block>
                                 )}
                             </>
                         )}

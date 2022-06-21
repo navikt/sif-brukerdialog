@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
@@ -186,7 +186,7 @@ const FraværDagFormView = ({
                             onCancel={onCancel}
                             formErrorHandler={getFormErrorHandler(intl, 'fraværDagForm')}>
                             <Systemtittel tag="h1">{formLabels.tittel}</Systemtittel>
-                            {headerContent && <Box>{headerContent}</Box>}
+                            {headerContent && <Block>{headerContent}</Block>}
                             <FormBlock>
                                 <FraværDagForm.DatePicker {...datepickerProps} description={dagDescription} />
                             </FormBlock>

@@ -12,7 +12,7 @@ import TallSvar from '../components/summary/TallSvar';
 import { VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet, harFiskerNæringstype } from './virksomhetUtils';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -74,7 +74,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
     return (
         <>
             {renderVirksomhetSummary(virksomhet, intl)}
-            <Box margin="m">
+            <Block margin="m">
                 <ExpandableInfo title="Vis flere detaljer" filledBackground={false}>
                     {virksomhet.næringsinntekt !== undefined && (
                         <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.næringsinntekt')}>
@@ -154,7 +154,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                         </SummaryBlock>
                     )}
                 </ExpandableInfo>
-            </Box>
+            </Block>
         </>
     );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
@@ -33,9 +33,9 @@ const FormikExample = () => {
     const intl = useIntl();
     return (
         <>
-            <Box padBottom="l">
+            <Block padBottom="l">
                 <Undertittel>Liste og dialog</Undertittel>
-            </Box>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -65,18 +65,18 @@ const FormikExample = () => {
                 <SubmitPreview values={listFormValues} />
             </Panel>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flat(BostedUtlandFormErrors)}
                     intlMessages={bostedUtlandMessages}
                 />
-            </Box>
+            </Block>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <Undertittel>Kun dialog</Undertittel>
-            </Box>
+            </Block>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <Panel border={true}>
                     <BostedUtlandForm
                         minDate={date1YearAgo}
@@ -86,7 +86,7 @@ const FormikExample = () => {
                     />
                 </Panel>
                 <SubmitPreview values={singleFormValues} />
-            </Box>
+            </Block>
 
             <MessagesPreview title="Alle tekster" messages={bostedUtlandMessages} showExplanation={false} />
         </>

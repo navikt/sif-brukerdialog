@@ -82,7 +82,8 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 open={modalState.isVisible}
                 onClose={resetModal}
                 className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
-                shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}>
+                shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+                aria-label={labels.modalTitle}>
                 <Modal.Content>
                     {labels.modalTitle && (
                         <Box margin="s" padBottom="m">

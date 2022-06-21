@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
@@ -168,7 +168,7 @@ const FraværPeriodeForm = ({
                             onCancel={onCancel}
                             formErrorHandler={getFormErrorHandler(intl, 'fraværPeriodeForm')}>
                             <Systemtittel tag="h1">{formLabels.tittel}</Systemtittel>
-                            {headerContent && <Box margin="l">{headerContent}</Box>}
+                            {headerContent && <Block margin="l">{headerContent}</Block>}
                             <FormBlock>
                                 <Form.DateIntervalPicker
                                     legend={formLabels.tidsrom}
