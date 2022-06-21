@@ -1,5 +1,7 @@
 
 FROM node:16.15.1-alpine AS base
+ENV NPM_CONFIG_CACHE=/tmp
+
 RUN apk update && apk add git
 RUN yarn global add turbo
 
