@@ -20,7 +20,7 @@ env:
 
 jobs:
     build-and-test:
-        name: Build and test
+        name: Test code
         runs-on: ubuntu-latest
         steps:
             - name: Check out code
@@ -48,11 +48,6 @@ jobs:
 
             - name: Install dependencies
               run: yarn install
-
-            - name: Build
-              run: |
-                yarn build-package
-                yarn build-app
 
             - name: Test
               run: yarn test
