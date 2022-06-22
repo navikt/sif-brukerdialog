@@ -8,7 +8,7 @@
     "dependencies": {
         "@devexperts/remote-data-ts": "^2.1.1",
         "@formatjs/intl-pluralrules": "^5.0.2",
-        "@navikt/ds-css": "^0.18.15",
+        "@navikt/ds-css": "^0.18.16",
         "@navikt/ds-icons": "^0.8.17",
         "@navikt/ds-react": "^0.19.14",
         "@navikt/ds-tailwind": "^0.2.7",

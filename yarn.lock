@@ -1964,10 +1964,10 @@
     "@sanity/block-content-to-react" "^3.0.0"
     "@sanity/client" "^2.10.5"
 
-"@navikt/ds-css@^0.18.15":
-  version "0.18.15"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.18.15.tgz#8c0db1eabb8bc29fd61e5dce1eb0782d289b85bd"
-  integrity sha512-v677/N1jUF74TsjpQZ13UyHQ/4wgxsG794MCjlyKGLBFEsjJPNGPv8NW6nkTccjEaSxAD0ZqPPC0GVG0ZZkFHA==
+"@navikt/ds-css@^0.18.15", "@navikt/ds-css@^0.18.16":
+  version "0.18.16"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.18.16.tgz#f28ae0cc6916d2a22ccbc42f2ed7936fc6b4a7e1"
+  integrity sha512-6BEnsGn5OnVRarIR9TrIUg/oEvK2MKW1vdVvcoMoGvtkDug1MSgmdxefmFLrJMR6FceTo6pUtsVkWvf51cenRQ==
 
 "@navikt/ds-datepicker@^2.1.8":
   version "2.1.8"
