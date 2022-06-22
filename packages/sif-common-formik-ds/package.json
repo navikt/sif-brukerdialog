@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
-        "@navikt/ds-css": "^0.18.15",
+        "@navikt/ds-css": "^0.18.16",
         "@navikt/ds-datepicker": "^2.1.8",
         "@navikt/ds-react": "^0.19.14",
         "@navikt/fnrvalidator": "^1.3.0",
