@@ -1,7 +1,7 @@
 import React from 'react';
-import { MessageFileFormat } from '@navikt/sif-common-core/lib/dev-utils/intl/devIntlUtils';
-import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import MessagesPreview from '../../components/messages-preview/MessagesPreview';
+import { MessageFileFormat } from '../devIntlUtils';
 
 const createFieldErrorIntlKey = (error: ValidationError, fieldName: string, errorPrefix?: string): string =>
     `${errorPrefix ? `${errorPrefix}.` : ''}${fieldName}.${error}`;

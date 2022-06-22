@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { FormikModalFormAndList, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
 import FosterbarnForm from './FosterbarnForm';
 import FosterbarnList from './FosterbarnList';

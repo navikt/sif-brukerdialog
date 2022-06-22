@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
     navnPåVirksomheten: string;

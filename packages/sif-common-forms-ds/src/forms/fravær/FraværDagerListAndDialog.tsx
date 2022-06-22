@@ -1,14 +1,14 @@
 import React from 'react';
-import { DateRange, sortItemsByFom } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
 import FraværDagerList from './FraværDagerList';
 import FraværDagFormView from './FraværDagForm';
 import { FraværDag } from './types';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;
@@ -42,7 +42,7 @@ function FraværDagerListAndDialog<FieldNames>({
                 dialogWidth="narrow"
                 validate={validate}
                 sortFunc={(fraværDagA: FraværDag, fraværDagB: FraværDag) =>
-                    sortItemsByFom({ fom: fraværDagA.dato }, { fom: fraværDagB.dato })
+                    sortMaybeDateRange({ from: fraværDagA.dato }, { from: fraværDagB.dato })
                 }
                 formRenderer={({ onSubmit, onCancel, item }) => (
                     <FraværDagFormView

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
     labelKey: string;

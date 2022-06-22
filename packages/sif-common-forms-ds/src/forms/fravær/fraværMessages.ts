@@ -1,4 +1,4 @@
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 import { FraværÅrsak } from './types';
 

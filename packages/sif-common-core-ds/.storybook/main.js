@@ -2,8 +2,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
-    stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-    addons: ['@storybook/addon-essentials', '@storybook/addon-a11y'],
+    stories: ['../storybook/**/*.stories.@(js|jsx|ts|tsx)'],
+    addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
     framework: '@storybook/react',
     core: {
         builder: '@storybook/builder-webpack5',
@@ -26,10 +26,28 @@ module.exports = {
                 use: { loader: 'svg-sprite-loader', options: {} },
             },
             {
+                test: /\.less$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                math: 'always',
+                            },
+                        },
+                    },
+                ],
+            },
+            {
                 test: /\.s[ac]ss$/i,
                 use: [
+                    // Creates `style` nodes from JS strings
                     'style-loader',
+                    // Translates CSS into CommonJS
                     'css-loader',
+                    // Compiles Sass to CSS
                     'sass-loader',
                 ],
             }

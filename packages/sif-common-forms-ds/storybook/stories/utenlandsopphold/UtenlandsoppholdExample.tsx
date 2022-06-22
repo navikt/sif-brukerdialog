@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import MessagesPreview from '../../components/messages-preview/MessagesPreview';
+import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
@@ -36,11 +36,11 @@ const UtenlandsoppholdExample = () => {
     const intl = useIntl();
     return (
         <>
-            <Box padBottom="l">
+            <Block padBottom="l">
                 <Heading level="2" size="small">
                     Liste og dialog
                 </Heading>
-            </Box>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -70,18 +70,18 @@ const UtenlandsoppholdExample = () => {
                 <SubmitPreview values={listFormValues} />
             </Panel>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flat(UtlandsoppholdFormErrors)}
                     intlMessages={utenlandsoppholdMessages}
                 />
-            </Box>
+            </Block>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <Heading level="2" size="small">
                     Kun dialog
                 </Heading>
-            </Box>
+            </Block>
 
             <Panel border={true}>
                 <UtenlandsoppholdForm

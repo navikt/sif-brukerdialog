@@ -2,8 +2,7 @@ import { Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
@@ -13,6 +12,7 @@ import { Fosterbarn } from '../../../src/forms/fosterbarn';
 import FosterbarnForm, { FosterbarnFormErrors } from '../../../src/forms/fosterbarn/FosterbarnForm';
 import FosterbarnListAndDialog from '../../../src/forms/fosterbarn/FosterbarnListAndDialog';
 import fosterbarnMessages from '../../../src/forms/fosterbarn/fosterbarnMessages';
+import MessagesPreview from '../../components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
 
@@ -31,11 +31,11 @@ const FosterbarnExample = () => {
     const intl = useIntl();
     return (
         <>
-            <Box padBottom="l">
+            <Block padBottom="l">
                 <Heading level="2" size="small">
                     Liste og dialog
                 </Heading>
-            </Box>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -57,18 +57,18 @@ const FosterbarnExample = () => {
                 <SubmitPreview values={listFormValues} />
             </Panel>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flat(FosterbarnFormErrors)}
                     intlMessages={fosterbarnMessages}
                 />
-            </Box>
+            </Block>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <Heading level="2" size="small">
                     Kun dialog
                 </Heading>
-            </Box>
+            </Block>
 
             <Panel border={true}>
                 <FosterbarnForm
