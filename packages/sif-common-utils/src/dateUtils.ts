@@ -10,6 +10,13 @@ dayjs.extend(isoWeek);
 const ISODateFormat = 'YYYY-MM-DD';
 
 export const dateToday = dayjs().toDate();
+export const date10MonthsAgo = dayjs().subtract(10, 'month').startOf('day').toDate();
+export const date1YearAgo = dayjs().subtract(1, 'year').startOf('day').toDate();
+export const date2YearsAgo = dayjs().subtract(2, 'year').startOf('day').toDate();
+export const date3YearsAgo = dayjs().subtract(3, 'year').startOf('day').toDate();
+export const date4YearsAgo = dayjs().subtract(4, 'year').startOf('day').toDate();
+export const date4WeeksAgo = dayjs().subtract(4, 'week').startOf('day').toDate();
+export const date1YearFromNow = dayjs().add(1, 'year').endOf('day').toDate();
 
 export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODateFormat);
 

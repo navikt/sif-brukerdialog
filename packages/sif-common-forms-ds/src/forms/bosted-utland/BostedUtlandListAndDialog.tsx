@@ -1,11 +1,11 @@
 import React from 'react';
-import { sortItemsByFom } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import {
     FormikModalFormAndList,
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { sortMaybeDateRange } from '@navikt/sif-common-utils';
 import BostedUtlandForm from './BostedUtlandForm';
 import BostedUtlandListe from './BostedUtlandList';
 import { BostedUtland } from './types';
@@ -24,7 +24,7 @@ function BostedUtlandListAndDialog<FieldNames>({ name, minDate, maxDate, validat
             labels={labels}
             validate={validate}
             dialogWidth="narrow"
-            sortFunc={sortItemsByFom}
+            sortFunc={(d1, d2) => sortMaybeDateRange({ from: d1.fom }, { from: d2.fom })}
             formRenderer={({ onSubmit, onCancel, item, allItems }) => (
                 <BostedUtlandForm
                     bosted={item}

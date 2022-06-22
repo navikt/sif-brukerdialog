@@ -34,7 +34,30 @@ export const isDateRange = (dateRange: any): dateRange is DateRange => {
  * @returns sort value
  */
 
-export const sortDateRange = (d1: DateRange, d2: DateRange): number => {
+export const sortDateRange = (d1: Pick<DateRange, 'from'>, d2: Pick<DateRange, 'from'>): number => {
+    if (dayjs(d1.from).isSameOrBefore(d2.from, 'day')) {
+        return -1;
+    }
+    return 1;
+};
+
+/**
+ * Sorts an array of date ranges by the from-date
+ * @param d1
+ * @param d2
+ * @returns sort value
+ */
+
+export const sortMaybeDateRange = (d1: MaybeDateRange, d2: MaybeDateRange): number => {
+    if (d1.from === undefined && d2.from === undefined) {
+        return 0;
+    }
+    if (d1.from === undefined) {
+        return -1;
+    }
+    if (d2.from === undefined) {
+        return 1;
+    }
     if (dayjs(d1.from).isSameOrBefore(d2.from, 'day')) {
         return -1;
     }

@@ -1,7 +1,7 @@
 import { Heading, Panel, Checkbox } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
@@ -14,7 +14,7 @@ import VirksomhetInfoAndDialog from '../../../src/forms/virksomhet/VirksomhetInf
 import virksomhetMessages from '../../../src/forms/virksomhet/virksomhetMessages';
 import VirksomhetSummary from '../../../src/forms/virksomhet/VirksomhetSummary';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 enum FormField {
     'virksomhet' = 'virksomhet',
@@ -58,11 +58,11 @@ const VirksomhetExample = () => {
         virksomhet && isVirksomhet(virksomhet) ? mapVirksomhetToVirksomhetApiData(intl.locale, virksomhet) : undefined;
     return (
         <>
-            <Box padBottom="l">
+            <Block padBottom="l">
                 <Heading level="1" size="large">
                     Liste og dialog
                 </Heading>
-            </Box>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -89,35 +89,35 @@ const VirksomhetExample = () => {
                         );
                     }}
                 />
-                <Box margin="l">
+                <Block margin="l">
                     <hr />
                     <Panel style={{ padding: '1rem' }}>
-                        <Box padBottom="m">Varianter:</Box>
-                        <Box margin="m">
+                        <Block padBottom="m">Varianter:</Block>
+                        <Block margin="m">
                             <Checkbox
                                 checked={harFlereVirksomheter}
                                 onChange={(evt) => setHarFlereVirksomheter(evt.currentTarget.checked)}>
                                 Bruker har flere virksomheter
                             </Checkbox>
-                        </Box>
+                        </Block>
                     </Panel>
-                </Box>
+                </Block>
             </Panel>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flat(VirksomhetFormErrors)}
                     intlMessages={virksomhetMessages}
                 />
-            </Box>
+            </Block>
 
             {apiVirksomhet && (
                 <>
-                    <Box margin="xxl" padBottom="l">
+                    <Block margin="xxl" padBottom="l">
                         <Heading level="2" size="medium">
                             Oppsummering av api data
                         </Heading>
-                    </Box>
+                    </Block>
                     <Panel border={true}>
                         <VirksomhetSummary virksomhet={apiVirksomhet} harFlereVirksomheter={harFlereVirksomheter} />
                     </Panel>

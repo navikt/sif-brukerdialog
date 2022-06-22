@@ -10,7 +10,7 @@ import { Virksomhet } from './types';
 import VirksomhetForm from './VirksomhetForm';
 import VirksomhetSummary from './VirksomhetSummary';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;

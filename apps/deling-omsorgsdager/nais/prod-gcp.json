@@ -17,6 +17,7 @@
         "LOGIN_URL": "https://loginservice.nav.no/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/deling-omsorgsdager/melding",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "production",
-        "USE_AMPLITUDE": "true"
+        "USE_AMPLITUDE": "true",
+        "NPM_CONFIG_CACHE": "/tmp"
     }
 }

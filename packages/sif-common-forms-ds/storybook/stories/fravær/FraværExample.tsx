@@ -1,10 +1,10 @@
+import { BodyShort, Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
-import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
@@ -18,9 +18,9 @@ import FraværPeriodeForm, { FraværPeriodeFormErrors } from '../../../src/forms
 import FraværPerioderListAndDialog from '../../../src/forms/fravær/FraværPerioderListAndDialog';
 import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '../../../src/forms/fravær/fraværUtilities';
 import { FraværFieldValidationErrors, validateNoCollisions } from '../../../src/forms/fravær/fraværValidationUtils';
+import MessagesPreview from '../../components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-import { BodyShort, Heading, Panel } from '@navikt/ds-react';
 
 enum FormField {
     perioder = 'perioder',
@@ -45,11 +45,11 @@ const FraværExample: React.FunctionComponent = () => {
     const intl = useIntl();
     return (
         <>
-            <Box padBottom="l">
+            <Block padBottom="l">
                 <Heading level="2" size="small">
                     Liste og dialog
                 </Heading>
-            </Box>
+            </Block>
             <Panel border={true}>
                 <TypedFormikWrapper<FormValues>
                     initialValues={initialValues}
@@ -127,7 +127,7 @@ const FraværExample: React.FunctionComponent = () => {
                 <SubmitPreview values={listFormValues} />
             </Panel>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flat(FraværPeriodeFormErrors)}
                     intlMessages={fraværMessages}
@@ -136,13 +136,13 @@ const FraværExample: React.FunctionComponent = () => {
                     validationErrorIntlKeys={flat(FraværDagFormErrors)}
                     intlMessages={fraværMessages}
                 />
-            </Box>
+            </Block>
 
-            <Box margin="xxl" padBottom="l">
+            <Block margin="xxl" padBottom="l">
                 <Heading level="2" size="small">
                     Kun dialoger
                 </Heading>
-            </Box>
+            </Block>
 
             <FormBlock>
                 <Panel border={true}>

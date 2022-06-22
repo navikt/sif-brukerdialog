@@ -1,0 +1,23 @@
+.messageList {
+    thead {
+        th {
+            text-align: left;
+            padding: 0.5rem;
+            background-color: #dfdfdf;
+        }
+    }
+    tbody {
+        td,
+        th {
+            font-weight: normal;
+            text-align: left;
+            vertical-align: top;
+            padding: 0.5rem;
+            border: 1px solid #dfdfdf;
+            font-size: var(--navds-font-size-small);
+            &.missingText {
+                background-color: var(--navds-global-color-red-100);
+            }
+        }
+    }
+}

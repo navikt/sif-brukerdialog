@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import FormattedHtmlMessage from '../../components/formatted-html-message/FormattedHtmlMessage';
 
 const ÅrsakInfo: React.FunctionComponent = () => {
