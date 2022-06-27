@@ -7,7 +7,6 @@ import { FastField, Field, FieldProps } from 'formik';
 import { v4 as uuid } from 'uuid';
 import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
-import SkjemagruppeQuestion from '../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import datepickerUtils from './datepickerUtils';
 import '@navikt/ds-datepicker/lib/index.css';
@@ -111,43 +110,40 @@ function FormikDatepicker<FieldName, ErrorType>({
                 };
 
                 return (
-                    <SkjemagruppeQuestion
+                    <Datepicker
+                        id={elementId}
+                        label={label}
+                        inputName={inputName}
+                        locale={getLocaleToUse(locale || intl.locale)}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
-                        legend={label}
-                        description={description}>
-                        <Datepicker
-                            inputId={elementId}
-                            inputLabel={label}
-                            locale={getLocaleToUse(locale || intl.locale)}
-                            {...restProps}
-                            inputProps={{
-                                name: inputName,
-                                placeholder,
-                                'aria-invalid': isInvalid,
-                                title: inputTitle,
-                            }}
-                            value={field.value}
-                            calendarDateStringFilter={(value) => {
-                                if (datepickerUtils.isValidFormattedDateString(value)) {
-                                    return value;
-                                }
-                                // Date is not valid, open calendar with no date specified
-                                return undefined;
-                            }}
-                            limitations={datepickerUtils.parseDateLimitations({
-                                minDate,
-                                maxDate,
-                                disableWeekend,
-                                disabledDateRanges,
-                                disabledDaysOfWeek,
-                            })}
-                            showYearSelector={showYearSelector}
-                            calendarSettings={{
-                                position,
-                            }}
-                            onChange={handleOnDatepickerChange}
-                        />
-                    </SkjemagruppeQuestion>
+                        description={description}
+                        {...restProps}
+                        inputProps={{
+                            placeholder,
+                            'aria-invalid': isInvalid,
+                            title: inputTitle,
+                        }}
+                        value={field.value}
+                        calendarDateStringFilter={(value) => {
+                            if (datepickerUtils.isValidFormattedDateString(value)) {
+                                return value;
+                            }
+                            // Date is not valid, open calendar with no date specified
+                            return undefined;
+                        }}
+                        limitations={datepickerUtils.parseDateLimitations({
+                            minDate,
+                            maxDate,
+                            disableWeekend,
+                            disabledDateRanges,
+                            disabledDaysOfWeek,
+                        })}
+                        showYearSelector={showYearSelector}
+                        calendarSettings={{
+                            position,
+                        }}
+                        onChange={handleOnDatepickerChange}
+                    />
                 );
             }}
         </FieldComponent>

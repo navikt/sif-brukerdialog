@@ -155,7 +155,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                 )}
                 {includeButtons && (
                     <div style={{ marginTop: '2rem' }}>
-                        <ButtonRow layout={onCancel ? 'stretch' : 'normal'}>
+                        <ButtonRow layout={'normal'}>
                             <Button variant="primary" type="submit">
                                 {submitButtonLabel || 'Ok'}
                             </Button>

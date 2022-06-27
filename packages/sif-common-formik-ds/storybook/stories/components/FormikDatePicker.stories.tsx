@@ -18,6 +18,7 @@ const defaultProps: FormikDatepickerProps<any, any> = {
     name: 'date',
     label: 'ABc',
     description: 'Some description',
+    error: 'Dette er en feil',
 };
 Default.args = {
     ...defaultProps,

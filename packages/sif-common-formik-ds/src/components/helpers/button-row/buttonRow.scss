@@ -8,6 +8,9 @@ $mobile-breakpoint: 576px;
     .buttonRow__button + .buttonRow__button {
         padding-left: 1rem;
     }
+    button {
+        min-width: 7rem;
+    }
     &--left {
         justify-content: left;
     }

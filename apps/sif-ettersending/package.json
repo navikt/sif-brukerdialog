@@ -7,8 +7,8 @@
     "version": "0.0.1",
     "dependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
-        "@navikt/ds-css": "^0.18.16",
-        "@navikt/ds-datepicker": "^2.1.8",
+        "@navikt/ds-css": "^0.18.18",
+        "@navikt/ds-datepicker": "^3.0.0-beta.4",
         "@navikt/ds-icons": "^0.8.17",
         "@navikt/ds-react": "^0.19.14",
         "@navikt/ds-tailwind": "^0.2.7",
@@ -62,6 +62,11 @@
         "ts-loader": "^9.3.0",
         "webpack": "^5.73.0",
         "webpack-dev-server": "^4.9.2"
+    },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!(@navikt)).*\\.js$"
+        ]
     },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"

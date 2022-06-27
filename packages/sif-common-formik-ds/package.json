@@ -10,13 +10,13 @@
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },
     "dependencies": {
-        "i18n-iso-countries": "^7.4.0",
+        "i18n-iso-countries": "^7.5.0",
         "uuid": "^8.3.2"
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
-        "@navikt/ds-css": "^0.18.16",
-        "@navikt/ds-datepicker": "^2.1.8",
+        "@navikt/ds-css": "^0.18.18",
+        "@navikt/ds-datepicker": "^3.0.0-beta.4",
         "@navikt/ds-react": "^0.19.14",
         "@navikt/fnrvalidator": "^1.3.0",
         "@storybook/addon-a11y": "^6.5.9",
@@ -50,12 +50,17 @@
     "directories": {
         "lib": "lib"
     },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!(@navikt)).*\\.js$"
+        ]
+    },
     "overrides": {
         "react-refresh": "0.11.0"
     },
     "peerDependencies": {
         "@navikt/ds-css": "0.18.x",
-        "@navikt/ds-datepicker": "2.1.x",
+        "@navikt/ds-datepicker": "3.0.0-beta.2",
         "@navikt/ds-react": "0.18.x",
         "formik": "2.2.x",
         "react": "17.0.x",
