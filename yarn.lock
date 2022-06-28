@@ -1969,10 +1969,10 @@
   resolved "https://registry.npmjs.org/@navikt/ds-css/-/ds-css-0.18.18.tgz"
   integrity sha512-+iESE6m7CMhmVaiaQhFmy/nbhmLx6xDT6KdwW1jyusG87lQO0nS4gd3hqHsbMI/a2N0/A7HaF2QeCh08FWRXSQ==
 
-"@navikt/ds-datepicker@^3.0.0-beta.5":
-  version "3.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-datepicker/-/ds-datepicker-3.0.0-beta.5.tgz#0c1703a60008d0f68de8b78a813612246bbad43a"
-  integrity sha512-wR4zMALT+dxC5/q5oi+9D1xOo7IkX53B53c5T7+uhJ9zDFXLhCk/YuaSUbAW7wyC3n0EytB/uNVmS5x5K+OiLg==
+"@navikt/ds-datepicker@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-datepicker/-/ds-datepicker-3.0.0.tgz#827052dcada6e8bbfd4317ae70e8d3b5e4f44d4e"
+  integrity sha512-cWRfzA7OFu9r6hjOdZgt0P//TsJLnpEw/HJG8VkBICO0dAe8ped9AoPcP+XnMLb7DHdwnLmm8EWMfhqqEn3dKA==
   dependencies:
     "@navikt/ds-css" "^0.18.18"
     "@navikt/ds-react" "^0.19.14"

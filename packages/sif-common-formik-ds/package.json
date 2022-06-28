@@ -16,7 +16,7 @@
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
         "@navikt/ds-css": "^0.18.18",
-        "@navikt/ds-datepicker": "^3.0.0-beta.5",
+        "@navikt/ds-datepicker": "^3.0.0",
         "@navikt/ds-react": "^0.19.14",
         "@navikt/fnrvalidator": "^1.3.0",
         "@storybook/addon-a11y": "^6.5.9",
@@ -60,7 +60,7 @@
     },
     "peerDependencies": {
         "@navikt/ds-css": "0.18.x",
-        "@navikt/ds-datepicker": "3.0.0-beta.5",
+        "@navikt/ds-datepicker": "3.0.0",
         "@navikt/ds-react": "0.18.x",
         "formik": "2.2.x",
         "react": "17.0.x",
