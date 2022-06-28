@@ -1969,10 +1969,10 @@
   resolved "https://registry.npmjs.org/@navikt/ds-css/-/ds-css-0.18.18.tgz"
   integrity sha512-+iESE6m7CMhmVaiaQhFmy/nbhmLx6xDT6KdwW1jyusG87lQO0nS4gd3hqHsbMI/a2N0/A7HaF2QeCh08FWRXSQ==
 
-"@navikt/ds-datepicker@^3.0.0-beta.4":
-  version "3.0.0-beta.4"
-  resolved "https://registry.npmjs.org/@navikt/ds-datepicker/-/ds-datepicker-3.0.0-beta.4.tgz"
-  integrity sha512-Eibave15a9KoWd6L8nt98p0MldM55X4zayQ6cRFKz4OhvrQt397czoLVSmIciGkUaBo7jdgtRAxm/TGDZoMCBQ==
+"@navikt/ds-datepicker@^3.0.0-beta.5":
+  version "3.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-datepicker/-/ds-datepicker-3.0.0-beta.5.tgz#0c1703a60008d0f68de8b78a813612246bbad43a"
+  integrity sha512-wR4zMALT+dxC5/q5oi+9D1xOo7IkX53B53c5T7+uhJ9zDFXLhCk/YuaSUbAW7wyC3n0EytB/uNVmS5x5K+OiLg==
   dependencies:
     "@navikt/ds-css" "^0.18.18"
     "@navikt/ds-react" "^0.19.14"
@@ -9162,7 +9162,7 @@ focus-lock@^0.8.0:
   dependencies:
     tslib "^1.9.3"
 
-focus-trap-react@^8.6.0, focus-trap-react@^8.8.2:
+focus-trap-react@^8.8.2:
   version "8.11.3"
   resolved "https://registry.npmjs.org/focus-trap-react/-/focus-trap-react-8.11.3.tgz"
   integrity sha512-y126gMYuB1aVYiEZSP6/v9bAfVmAIUVixanhcoMelkz7bOh+l0c3h05CEHC8S63ztxdRI2AAPS9AsTat6jlDeQ==
@@ -13212,13 +13212,6 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
-
-nav-datovelger@^12.5.0:
-  version "12.5.0"
-  resolved "https://registry.npmjs.org/nav-datovelger/-/nav-datovelger-12.5.0.tgz"
-  integrity sha512-ySekEZCl+6eyEhMFwJ6+KGLcqke+yEOatsCcPFdZzQ8gm3F6lIpcP+WTCjgLtBH8kJysjhQYHVmeLMUDqHZUsg==
-  dependencies:
-    focus-trap-react "^8.6.0"
 
 nav-frontend-alertstriper-style@^3.0.1:
   version "3.0.1"
