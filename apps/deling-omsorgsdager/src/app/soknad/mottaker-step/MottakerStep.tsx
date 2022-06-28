@@ -197,6 +197,7 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                             name={SoknadFormField.antallDagerSomSkalOverføres}
                             label={intlHelper(intl, 'step.mottaker.form.antallDagerSomSkalOverføres.spm')}
                             validate={getRequiredFieldValidator()}
+                            style={{ maxWidth: '10rem' }}
                             description={
                                 <ExpandableInfo
                                     title={intlHelper(

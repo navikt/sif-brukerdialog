@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link } from '@navikt/ds-react';
+import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { ExternalLink } from '@navikt/ds-icons';
@@ -20,7 +20,7 @@ const PictureScanningGuide = () => {
                 <Heading level="2" size="small" spacing={true}>
                     <FormattedMessage id="psg.section1.tittel" />
                 </Heading>
-                <BodyLong as="div">
+                <BodyShort as="div">
                     <ul>
                         <li>
                             <FormattedMessage id="psg.section1.liste.1" />
@@ -32,7 +32,7 @@ const PictureScanningGuide = () => {
                             <FormattedMessage id="psg.section1.liste.3" />
                         </li>
                     </ul>
-                </BodyLong>
+                </BodyShort>
 
                 <div className="mt-8">
                     <Heading level="3" size="xsmall" spacing={true}>

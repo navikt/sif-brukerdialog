@@ -1,11 +1,12 @@
+import { BodyShort, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { date3YearsAgo, date4YearsAgo, dateToday, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { date3YearsAgo, date4YearsAgo, dateToday, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import {
     getNumberFromNumberInputValue,
     getTypedFormComponents,
@@ -40,7 +41,6 @@ import {
     mapFormValuesToVirksomhet,
     mapVirksomhetToFormValues,
 } from './virksomhetUtils';
-import { BodyLong, Heading } from '@navikt/ds-react';
 
 interface Props {
     virksomhet?: Virksomhet;
@@ -403,7 +403,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 }}
                                                 description={
                                                     <>
-                                                        <BodyLong>
+                                                        <BodyShort>
                                                             {harFlereVirksomheter
                                                                 ? getText(
                                                                       'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm.description'
@@ -411,7 +411,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                                 : getText(
                                                                       'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm.description'
                                                                   )}
-                                                        </BodyLong>
+                                                        </BodyShort>
                                                         <Block margin="m">
                                                             <ExpandableInfo
                                                                 title={getText(

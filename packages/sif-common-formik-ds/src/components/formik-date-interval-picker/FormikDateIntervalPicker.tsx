@@ -33,8 +33,12 @@ function FormikDateIntervalPicker<FieldName, ErrorType>({
             description={description}
             className="dateIntervalPicker">
             <div className="dateIntervalPicker__flexContainer">
-                <FormikDatepicker<FieldName, ErrorType> {...fromDatepickerProps} useFastField={useFastField} />
-                <FormikDatepicker<FieldName, ErrorType> {...toDatepickerProps} useFastField={useFastField} />
+                <div className="dateIntervalPicker__from">
+                    <FormikDatepicker<FieldName, ErrorType> {...fromDatepickerProps} useFastField={useFastField} />
+                </div>
+                <div className="dateIntervalPicker__to">
+                    <FormikDatepicker<FieldName, ErrorType> {...toDatepickerProps} useFastField={useFastField} />
+                </div>
             </div>
         </FormikInputGroup>
     );

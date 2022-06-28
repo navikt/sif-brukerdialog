@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "http-status-codes": "^2.2.0",
-        "i18n-iso-countries": "^7.4.0",
+        "i18n-iso-countries": "^7.5.0",
         "react-collapse": "^5.1.1",
         "tailwindcss": "^3.1.4",
         "uuid": "^8.3.2"
@@ -19,9 +19,9 @@
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "^0.18.16",
-        "@navikt/ds-datepicker": "^2.1.8",
-        "@navikt/ds-react": "^0.19.14",
+        "@navikt/ds-css": "^0.18.19",
+        "@navikt/ds-datepicker": "^3.0.0",
+        "@navikt/ds-react": "^0.19.15",
         "@navikt/ds-tailwind": "^0.2.7",
         "@navikt/fnrvalidator": "^1.3.0",
         "@navikt/sif-common-formik-ds": "*",

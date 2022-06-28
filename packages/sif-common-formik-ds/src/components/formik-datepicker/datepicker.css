@@ -1,27 +1,12 @@
-/* .skjemagruppe--feil .nav-datovelger__input:not(:focus):not(:hover):not(:active) {
-    border-color: #ba3a26;
-    box-shadow: 0 0 0 1px #ba3a26;
-} */
-
 @media screen and (max-width: 400px) {
     .DayPicker-Month {
         margin-right: 0.5rem;
         margin-left: 0.5rem;
     }
 }
-
 .DayPicker-Day {
     padding: 0.4rem !important;
 }
 .DayPicker-Weekday {
     padding: 0.4rem !important;
-}
-.nav-datovelger__navbar--withYearSelector {
-    display: none;
-}
-.nav-datovelger__inputContainer {
-    max-width: 8rem;
-}
-.nav-datovelger__inputContainer .nav-datovelger__input {
-    padding-right: 2rem;
 }

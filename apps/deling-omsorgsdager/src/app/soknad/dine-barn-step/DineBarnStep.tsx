@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
@@ -50,12 +50,14 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
                         level="2"
                         size="xsmall"
                         header={intlHelper(intl, 'step.dine-barn.listHeader.registrerteBarn')}>
-                        <ItemList<Barn>
-                            getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
-                            getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
-                            labelRenderer={(barn): React.ReactNode => barnItemLabelRenderer(barn, intl)}
-                            items={barn}
-                        />
+                        <BodyShort>
+                            <ItemList<Barn>
+                                getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
+                                getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
+                                labelRenderer={(barn): React.ReactNode => barnItemLabelRenderer(barn, intl)}
+                                items={barn}
+                            />
+                        </BodyShort>
                     </ContentWithHeader>
                 </Box>
             )}
@@ -68,7 +70,7 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
                             ? intlHelper(intl, 'step.dine-barn.info.spm.andreBarn')
                             : intlHelper(intl, 'step.dine-barn.info.spm.flereBarn')
                     }>
-                    {intlHelper(intl, 'step.dine-barn.info.spm.text')}
+                    <BodyShort>{intlHelper(intl, 'step.dine-barn.info.spm.text')}</BodyShort>
                 </ContentWithHeader>
             </Box>
             <Box margin="l">

@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Link } from '@navikt/ds-react';
+import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -16,7 +16,7 @@ const BehandlingAvPersonopplysningerContent = ({ søknadstype }: Props) => {
             <Heading level="1" size="large">
                 <FormattedMessage id="modal.personopplysninger.1" />
             </Heading>
-            <BodyLong as="div">
+            <BodyShort as="div">
                 <Block margin="xl">
                     <FormattedMessage id="modal.personopplysninger.2" />
                 </Block>
@@ -76,7 +76,7 @@ const BehandlingAvPersonopplysningerContent = ({ søknadstype }: Props) => {
                         <FormattedMessage id="modal.personopplysninger.5.3" />
                     </p>
                 </Block>
-            </BodyLong>
+            </BodyShort>
         </>
     );
 };

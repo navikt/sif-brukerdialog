@@ -60,20 +60,24 @@ function FormikDateRangePicker<FieldName, ErrorType>({
     return (
         <FormikInputGroup name={name} legend={legend} description={description} className="dateRangePicker">
             <div className="dateRangePicker__flexContainer">
-                <FormikDatepicker<FieldName, ErrorType>
-                    {...fromInputProps}
-                    {...{ fullscreenOverlay, fullScreenOnMobile, showYearSelector }}
-                    {...fromDateLimitations}
-                    locale={locale as any}
-                    useFastField={useFastField}
-                />
-                <FormikDatepicker<FieldName, ErrorType>
-                    {...toInputProps}
-                    {...{ fullscreenOverlay, fullScreenOnMobile, showYearSelector }}
-                    {...toDateLimitations}
-                    locale={locale as any}
-                    useFastField={useFastField}
-                />
+                <div className="dateRangePicker__from">
+                    <FormikDatepicker<FieldName, ErrorType>
+                        {...fromInputProps}
+                        {...{ fullscreenOverlay, fullScreenOnMobile, showYearSelector }}
+                        {...fromDateLimitations}
+                        locale={locale as any}
+                        useFastField={useFastField}
+                    />
+                </div>
+                <div className="dateRangePicker__to">
+                    <FormikDatepicker<FieldName, ErrorType>
+                        {...toInputProps}
+                        {...{ fullscreenOverlay, fullScreenOnMobile, showYearSelector }}
+                        {...toDateLimitations}
+                        locale={locale as any}
+                        useFastField={useFastField}
+                    />
+                </div>
             </div>
         </FormikInputGroup>
     );
