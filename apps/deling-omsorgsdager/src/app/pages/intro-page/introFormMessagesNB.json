@@ -38,10 +38,11 @@
     "introForm.form.erArbeidstakerSnEllerFrilanser.spm": "Er du arbeidstaker, selvstendig næringsdrivende eller frilanser?",
     "introForm.form.erArbeidstakerSnEllerFrilanser.stopMessage": "For å kunne dele omsorgsdager må du være yrkesaktiv. Det betyr at du må være enten arbeidstaker, selvstendig næringsdrivender, frilanser eller en kombinasjon av disse. Hvis du ikke er yrkesaktiv, kan du ikke gå videre.",
 
-    "introForm.validation.erArbeidstakerSnEllerFrilanser.unanswered": "Du må svare på om du er arbeidstaker, selvstendig næringsdrivende eller frilanser",
-    "introForm.validation.mottakersArbeidssituasjonErOk.unanswered": "Du må svare på om den du skal dele omsorgsdager med arbeidstaker, selvstendig næringsdrivende eller frilanser",
-    "introForm.validation.harAleneomsorg.unanswered": "Du må svare på om du er alene om omsorgen for barn",
-    "introForm.validation.mottakerErEktefelleEllerSamboer.unanswered": "Du må svare på om du skal dele omsorgsdager med en samboer du har bodd med i minst 12 måneder, eller ny ektefelle",
-    "introForm.validation.mottakerSamværsforelder.unanswered": "Du må svare på om du skal dele omsorgsdager med den andre forelderen som har samvær med felles barn",
-    "introForm.validation.korona.unanswered'": "Du må svare på om du skal dele omsorgsdager i forbindelse med at barnehage/skole/SFO er stengt på grunn av koronaviruset"
+    "introForm.validation.korona.yesOrNoIsUnanswered": "Du må svare på om du skal dele omsorgsdager i forbindelse med at barnehage/skole/SFO er stengt på grunn av koronaviruset",
+    "introForm.validation.erArbeidstakerSnEllerFrilanser.yesOrNoIsUnanswered": "Du må svare på om du er arbeidstaker, selvstendig næringsdrivende eller frilanser",
+    "introForm.validation.mottakersArbeidssituasjonErOk.yesOrNoIsUnanswered": "Du må svare på om den du skal dele omsorgsdager med arbeidstaker, selvstendig næringsdrivende eller frilanser",
+    "introForm.validation.harAleneomsorg.yesOrNoIsUnanswered": "Du må svare på om du er alene om omsorgen for barn",
+    "introForm.validation.mottakerErEktefelleEllerSamboer.yesOrNoIsUnanswered": "Du må svare på om du skal dele omsorgsdager med en samboer du har bodd med i minst 12 måneder, eller ny ektefelle",
+    "introForm.validation.mottakerSamværsforelder.yesOrNoIsUnanswered": "Du må svare på om du skal dele omsorgsdager med den andre forelderen som har samvær med felles barn",
+    "introForm.validation.korona.yesOrNoIsUnanswered'": "Du må svare på om du skal dele omsorgsdager i forbindelse med at barnehage/skole/SFO er stengt på grunn av koronaviruset"
 }

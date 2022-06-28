@@ -1,9 +1,9 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
@@ -121,36 +121,42 @@ const IntroForm: React.FunctionComponent<Props> = ({ onValidSubmit }) => {
         }
     };
 
-    const kanFortsetteFn = (values: IntroFormData): { kanFortsette: boolean; erStoppet: boolean } => {
-        const arbeidsSituasjonErOkHosBegge =
-            values.erArbeidstakerSnEllerFrilanser === YesOrNo.YES &&
-            values.mottakersArbeidssituasjonErOk === YesOrNo.YES;
-
-        const stoppPgaArbeidssituasjon =
-            values.erArbeidstakerSnEllerFrilanser === YesOrNo.NO || values.mottakersArbeidssituasjonErOk === YesOrNo.NO;
-
-        const kanFortsetteKorona = values.korona === YesOrNo.YES && arbeidsSituasjonErOkHosBegge;
-
-        const kanFortsetteVanlig =
-            values.korona === YesOrNo.NO &&
-            values.mottakerErEktefelleEllerSamboer === YesOrNo.YES &&
-            values.harAleneomsorg === YesOrNo.YES &&
-            arbeidsSituasjonErOkHosBegge;
-
-        const kanFortsetteSamværsforelder =
-            values.korona === YesOrNo.NO &&
-            values.mottakerErEktefelleEllerSamboer === YesOrNo.NO &&
-            values.mottakerSamværsforelder === YesOrNo.YES &&
-            values.harAleneomsorg === YesOrNo.YES &&
-            arbeidsSituasjonErOkHosBegge;
-
-        const stoppIngenValgtSituasjon =
-            values.mottakerSamværsforelder === YesOrNo.NO && values.mottakerErEktefelleEllerSamboer === YesOrNo.NO;
-
-        return {
-            kanFortsette: kanFortsetteKorona || kanFortsetteVanlig || kanFortsetteSamværsforelder,
-            erStoppet: stoppPgaArbeidssituasjon || stoppIngenValgtSituasjon,
-        };
+    const erStoppet = (values: IntroFormData): boolean => {
+        if (values.korona === YesOrNo.YES) {
+            if (values.erArbeidstakerSnEllerFrilanser === YesOrNo.NO) {
+                return true;
+            }
+            if (values.mottakersArbeidssituasjonErOk === YesOrNo.NO) {
+                return true;
+            }
+        } else {
+            if (values.mottakerErEktefelleEllerSamboer === YesOrNo.NO) {
+                if (values.mottakerSamværsforelder === YesOrNo.NO) {
+                    return true;
+                }
+                if (values.harAleneomsorg === YesOrNo.NO) {
+                    return true;
+                }
+                if (values.mottakersArbeidssituasjonErOk === YesOrNo.NO) {
+                    return true;
+                }
+                if (values.erArbeidstakerSnEllerFrilanser === YesOrNo.NO) {
+                    return true;
+                }
+            }
+            if (values.mottakerErEktefelleEllerSamboer === YesOrNo.YES) {
+                if (values.harAleneomsorg === YesOrNo.NO) {
+                    return true;
+                }
+                if (values.mottakersArbeidssituasjonErOk === YesOrNo.NO) {
+                    return true;
+                }
+                if (values.erArbeidstakerSnEllerFrilanser === YesOrNo.NO) {
+                    return true;
+                }
+            }
+        }
+        return false;
     };
 
     return (
@@ -160,22 +166,12 @@ const IntroForm: React.FunctionComponent<Props> = ({ onValidSubmit }) => {
                 onValidSubmit();
             }}
             renderForm={({ values }) => {
-                const { kanFortsette, erStoppet } = kanFortsetteFn(values);
                 return (
                     <section aria-label="Se om du kan bruke det dette skjemaet:">
                         <IntroFormComponents.Form
                             includeValidationSummary={true}
-                            includeButtons={kanFortsette}
+                            includeButtons={erStoppet(values) ? false : true}
                             formErrorHandler={getIntlFormErrorHandler(intl, 'introForm.validation')}
-                            noButtonsContentRenderer={
-                                kanFortsette || erStoppet
-                                    ? undefined
-                                    : () => (
-                                          <UnansweredQuestionsInfo>
-                                              <FormattedMessage id="page.form.ubesvarteSpørsmålInfo" />
-                                          </UnansweredQuestionsInfo>
-                                      )
-                            }
                             submitButtonLabel={intlHelper(intl, 'introForm.start')}>
                             <FormQuestion
                                 legend={intlHelper(intl, `introForm.form.${IntroFormField.korona}.spm`)}
