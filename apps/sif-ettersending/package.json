@@ -7,10 +7,10 @@
     "version": "0.0.1",
     "dependencies": {
         "@formatjs/intl-pluralrules": "^5.0.2",
-        "@navikt/ds-css": "^0.18.18",
+        "@navikt/ds-css": "^0.18.19",
         "@navikt/ds-datepicker": "^3.0.0",
         "@navikt/ds-icons": "^0.8.17",
-        "@navikt/ds-react": "^0.19.14",
+        "@navikt/ds-react": "^0.19.15",
         "@navikt/ds-tailwind": "^0.2.7",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core": "12.0.1-beta.0",

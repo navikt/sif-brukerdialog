@@ -1,4 +1,4 @@
-import { Alert, BodyLong } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
@@ -43,7 +43,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
             useValidationErrorSummary={true}
             buttonDisabled={hasPendingUploads || sizeOver24Mb}>
             <SifGuidePanel>
-                <BodyLong as="div">
+                <BodyShort as="div">
                     <p>
                         <FormattedMessage id={'steg.dokumenter.infopanel.1'} />
                     </p>
@@ -53,7 +53,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
                     <p>
                         <FormattedMessage id={'steg.dokumenter.infopanel.3'} />
                     </p>
-                </BodyLong>
+                </BodyShort>
             </SifGuidePanel>
 
             <Block margin="l">
