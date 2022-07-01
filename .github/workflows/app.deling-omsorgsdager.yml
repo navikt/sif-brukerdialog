@@ -1,4 +1,4 @@
-# This workflow trigger on push to apps/sif-ettersending
+# This workflow trigger on push to apps/deling-omsorgsdager
 name: Deling omsorgsdager
 on:
     push:
