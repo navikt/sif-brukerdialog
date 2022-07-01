@@ -6,6 +6,9 @@
     "minReplicas": "1",
     "maxReplicas": "1",
     "ingresses": ["https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no", "sanity.io"],
     "env": {
         "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
         "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
