@@ -86,10 +86,11 @@
         "babel-core": "7.0.0-bridge.0"
     },
     "scripts": {
-        "build": "node src/build/scripts/production-build.js",
+        "build-app": "node src/build/scripts/production-build.js",
+        "clean": "rm -rf node_modules .dist",
+        "prepare": "yarn snyk-protect",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "dev-deling": "npm-run-all -p rm:dist dev-api start-no-decorator",
-        "prepare": "npm run snyk-protect",
         "rm:dist": "rimraf dist/",
         "snyk-protect": "snyk-protect",
         "start-api-mock": "PORT=8089 node ./server/api-mock.js",
