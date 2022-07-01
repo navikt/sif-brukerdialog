@@ -55,7 +55,7 @@
         "less-loader": "^11.0.0",
         "postcss": "^8.4.14",
         "react-scripts": "5.0.1",
-        "sass": "^1.52.3",
+        "sass": "^1.53.0",
         "sass-loader": "^13.0.0",
         "source-map-loader": "^4.0.0",
         "tailwindcss": "^3.1.4",
