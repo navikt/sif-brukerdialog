@@ -13,7 +13,7 @@
         "@navikt/sif-common-question-config": "^0.0.7",
         "@navikt/sif-common-sentry": "^0.3.1",
         "@navikt/sif-common-soknad": "^5.3.1",
-        "@snyk/protect": "^1.961.0",
+        "@snyk/protect": "^1.963.0",
         "axios": "^0.27.2",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
