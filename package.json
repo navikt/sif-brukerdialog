@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@navikt/ds-tailwind": "^0.2.7",
-        "@snyk/protect": "^1.954.0",
+        "@snyk/protect": "^1.969.0",
         "@storybook/builder-webpack5": "^6.5.9",
         "@storybook/manager-webpack5": "^6.5.9",
         "@testing-library/jest-dom": "^5.16.4",
