@@ -7,7 +7,7 @@ import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation
 import ApplicationFormComponents from '../ApplicationFormComponents';
 import ApplicationStep from '../ApplicationStep';
 import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { BodyShort, Link } from '@navikt/ds-react';
+import { BodyLong, Link } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 const BeskrivelseStep = ({ onValidSubmit }: StepConfigProps) => {
@@ -37,7 +37,7 @@ const BeskrivelseStep = ({ onValidSubmit }: StepConfigProps) => {
                             : undefined;
                     }}
                     description={
-                        <BodyShort as="div">
+                        <BodyLong as="div">
                             <p>
                                 <FormattedMessage id="step.beskrivelse.intro.1" />
                             </p>
@@ -64,7 +64,7 @@ const BeskrivelseStep = ({ onValidSubmit }: StepConfigProps) => {
                                     }}
                                 />
                             </p>
-                        </BodyShort>
+                        </BodyLong>
                     }
                 />
             </FormBlock>

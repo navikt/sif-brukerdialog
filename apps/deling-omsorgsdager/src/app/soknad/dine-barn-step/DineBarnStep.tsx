@@ -1,4 +1,4 @@
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
@@ -50,14 +50,14 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
                         level="2"
                         size="xsmall"
                         header={intlHelper(intl, 'step.dine-barn.listHeader.registrerteBarn')}>
-                        <BodyShort>
+                        <BodyLong as="div">
                             <ItemList<Barn>
                                 getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
                                 getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
                                 labelRenderer={(barn): React.ReactNode => barnItemLabelRenderer(barn, intl)}
                                 items={barn}
                             />
-                        </BodyShort>
+                        </BodyLong>
                     </ContentWithHeader>
                 </Box>
             )}
@@ -70,7 +70,7 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
                             ? intlHelper(intl, 'step.dine-barn.info.spm.andreBarn')
                             : intlHelper(intl, 'step.dine-barn.info.spm.flereBarn')
                     }>
-                    <BodyShort>{intlHelper(intl, 'step.dine-barn.info.spm.text')}</BodyShort>
+                    <BodyLong>{intlHelper(intl, 'step.dine-barn.info.spm.text')}</BodyLong>
                 </ContentWithHeader>
             </Box>
             <Box margin="l">

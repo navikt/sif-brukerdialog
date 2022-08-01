@@ -83,9 +83,9 @@ jobs:
                   docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
                   docker push ${IMAGE}
 
-    deploy-dev-gcp:
+    deploy-dev:
         name: Deploy to dev-gcp
-        if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/main')
+        if: startsWith(github.ref, 'refs/heads/dev-')
         needs: build-code-and-push-docker
         runs-on: ubuntu-latest
         steps:
@@ -101,4 +101,17 @@ jobs:
                   VARS: config/${{ inputs.app-name }}/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
 
-# build 3
+    deploy-prod:
+        name: deploy-prod
+        if: startsWith(github.ref, 'refs/heads/main')
+        needs: build-code-and-push-docker
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - uses: nais/deploy/actions/deploy@v1
+              env:
+                  CLUSTER: prod-gcp
+                  RESOURCE: nais/naiserator.yml
+                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+                  VARS: config/${{ inputs.app-name }}/prod-gcp.json
+

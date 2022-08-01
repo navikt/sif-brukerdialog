@@ -2,14 +2,15 @@ import React from 'react';
 import BackLink from '@navikt/sif-common-core/lib/components/back-link/BackLink';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
-import StepFooter from '@navikt/sif-common-core/lib/components/step-footer/StepFooter';
+import StepFooter from '@navikt/sif-common-core-ds/lib/components/step-footer/StepFooter';
 import bemHelper from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { History } from 'history';
-import { Systemtittel } from 'nav-frontend-typografi';
 import StepIndicator, { StepIndicatorStep } from '../step-indicator/StepIndicator';
+
 import './step.less';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
+import { Heading } from '@navikt/ds-react';
 
 const bem = bemHelper('step');
 
@@ -56,7 +57,7 @@ function Step({
                 <>
                     {bannerTitle && (
                         <>
-                            <StepBanner text={bannerTitle} />
+                            <SoknadHeader title={bannerTitle} />
                         </>
                     )}
                     {useValidationErrorSummary !== false && <FormikValidationErrorSummary />}
@@ -85,9 +86,9 @@ function Step({
             )}
             <section aria-label={`Steg ${currentStepIndex + 1} av ${steps.length}:  ${pageTitle}`}>
                 <Box margin="xxl">
-                    <Systemtittel className={bem.element('title')} tag="h1">
+                    <Heading level="2" size="large" className={bem.element('title')}>
                         {stepTitle}
-                    </Systemtittel>
+                    </Heading>
                 </Box>
 
                 <Box margin="xl">{children}</Box>

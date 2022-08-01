@@ -1,4 +1,4 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -403,7 +403,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 }}
                                                 description={
                                                     <>
-                                                        <BodyShort>
+                                                        <BodyLong>
                                                             {harFlereVirksomheter
                                                                 ? getText(
                                                                       'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm.description'
@@ -411,7 +411,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                                 : getText(
                                                                       'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm.description'
                                                                   )}
-                                                        </BodyShort>
+                                                        </BodyLong>
                                                         <Block margin="m">
                                                             <ExpandableInfo
                                                                 title={getText(

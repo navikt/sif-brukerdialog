@@ -1,4 +1,4 @@
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyLong } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
@@ -17,14 +17,14 @@ const UnavailablePage = () => {
         <Page className={bem.block} title={title} topContentRenderer={() => <StepBanner text={title} />}>
             <Block margin="xxxl">
                 <Alert variant="warning">
-                    <BodyShort as="div">
+                    <BodyLong as="div">
                         <p>
                             <FormattedMessage id="page.unavailable.info.1" />
                         </p>
                         <p>
                             <FormattedMessage id="page.unavailable.info.2" />
                         </p>
-                    </BodyShort>
+                    </BodyLong>
                 </Alert>
             </Block>
         </Page>

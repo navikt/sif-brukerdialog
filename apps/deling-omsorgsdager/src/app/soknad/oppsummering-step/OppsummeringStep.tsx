@@ -1,4 +1,4 @@
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
@@ -45,13 +45,13 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
             onSendSoknad={apiValues ? (): void => sendSoknad(apiValues) : undefined}>
             <Box margin="xl">
                 <SifGuidePanel>
-                    <BodyShort as="div">
+                    <BodyLong as="div">
                         <FormattedMessage id="step.oppsummering.info" />
-                    </BodyShort>
+                    </BodyLong>
                 </SifGuidePanel>
 
                 {apiValues === undefined && (
-                    <Box margin="xl">
+                    <Box margin="l">
                         <Alert variant="error">
                             <FormattedMessage id="oppsummering.advarsel.ingenApiValues" />
                         </Alert>
@@ -59,9 +59,11 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
                 )}
 
                 {apiValues !== undefined && apiDataIsValid === false && (
-                    <Alert variant="error">
-                        <FormattedMessage id="oppsummering.advarsel.invalidApiValues" />
-                    </Alert>
+                    <Box margin="l">
+                        <Alert variant="error">
+                            <FormattedMessage id="oppsummering.advarsel.invalidApiValues" />
+                        </Alert>
+                    </Box>
                 )}
                 {apiValues !== undefined && (
                     <>

@@ -2,18 +2,16 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
-import Modal from 'nav-frontend-modal';
 import { applicationIntlMessages } from './i18n/applicationMessages';
 import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import '@navikt/sif-common-core/lib/styles/globalStyles.less';
-
-Modal.setAppElement('#app');
 
 export const APPLICATION_KEY = 'deling-omsorgsdager';
 export const SKJEMANAVN = 'Deling av omsorgsdager';
@@ -22,7 +20,7 @@ const root = document.getElementById('app');
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 render(
-    <div className="sif-ds-theme">
+    <SifAppWrapper>
         <AmplitudeProvider
             applicationKey={APPLICATION_KEY}
             isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
@@ -46,8 +44,6 @@ render(
                 />
             </SoknadApplication>
         </AmplitudeProvider>
-    </div>,
+    </SifAppWrapper>,
     root
 );
-
-/** Trigger build */

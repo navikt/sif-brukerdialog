@@ -1,4 +1,4 @@
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
@@ -24,7 +24,7 @@ const IntroPage: React.FunctionComponent = () => {
             <Box margin="xxxl">
                 <section aria-label="Introduksjon">
                     <SifGuidePanel poster>
-                        <BodyShort as="div">
+                        <BodyLong as="div">
                             {intlHelper(intl, 'introForm.info.1')}
                             <p>{intlHelper(intl, 'introForm.info.2')}</p>
                             <ul>
@@ -55,7 +55,7 @@ const IntroPage: React.FunctionComponent = () => {
                                     </ExpandableInfo>
                                 </li>
                             </ul>
-                        </BodyShort>
+                        </BodyLong>
                     </SifGuidePanel>
                 </section>
             </Box>

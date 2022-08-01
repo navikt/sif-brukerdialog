@@ -1,4 +1,4 @@
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -14,9 +14,9 @@ const StepIntroduction: React.FunctionComponent<Props> = ({ ariaTitle, children 
     return (
         <section aria-label={ariaTitle || intlHelper(intl, 'stepIntroduction.ariaTitle')}>
             <SifGuidePanel>
-                <BodyShort as="div" className="stepIntroductionContent">
+                <BodyLong as="div" className="stepIntroductionContent">
                     {children}
-                </BodyShort>
+                </BodyLong>
             </SifGuidePanel>
         </section>
     );

@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -71,10 +71,10 @@ const FraværExample: React.FunctionComponent = () => {
                                         minDate={date1YearAgo}
                                         maxDate={dateToday}
                                         periodeDescription={
-                                            <BodyShort style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
+                                            <BodyLong style={{ marginTop: '.5rem', paddingBottom: '.5rem' }}>
                                                 Du kan kun søke for ett og samme år i en søknad. Får å søke for flere
                                                 år, må du sende en søknad for hvert år.
-                                            </BodyShort>
+                                            </BodyLong>
                                         }
                                         validate={(value) => {
                                             const listError = getListValidator({ required: true })(value);
