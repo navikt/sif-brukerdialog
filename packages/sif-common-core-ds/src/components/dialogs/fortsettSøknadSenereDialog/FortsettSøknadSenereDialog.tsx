@@ -1,8 +1,5 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-
-import Undertittel from 'nav-frontend-typografi/lib/undertittel';
-
 import intlHelper from '../../../utils/intlUtils';
 import ConfirmationDialog from '../confirmation-dialog/ConfirmationDialog';
 
