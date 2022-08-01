@@ -12,7 +12,7 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "@formatjs/intl-pluralrules": "^5.0.2",
+        "@formatjs/intl-pluralrules": "^5.0.3",
         "@navikt/sif-common-core": "^12.0.0",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
@@ -35,8 +35,8 @@
         "@types/react-responsive": "^8.0.5",
         "axios": "^0.27.2",
         "copyfiles": "^2.4.1",
-        "core-js": "^3.23.2",
-        "dayjs": "^1.11.3",
+        "core-js": "^3.24.1",
+        "dayjs": "^1.11.4",
         "flat": "^5.0.2",
         "formik": "^2.2.9",
         "gh-pages": "^4.0.0",
@@ -49,13 +49,13 @@
         "react-collapse": "^5.1.1",
         "react-day-picker": "^7.4.10",
         "react-dom": "^17.0.2",
-        "react-intl": "6.0.4",
-        "react-modal": "^3.14.4",
+        "react-intl": "6.0.5",
+        "react-modal": "^3.15.1",
         "react-responsive": "^8.2.0",
         "react-router-dom": "^5.3.3",
         "react-scripts": "^5.0.1",
         "rimraf": "^3.0.2",
-        "webpack": "5"
+        "webpack": "5.74.0"
     },
     "directories": {
         "lib": "lib"
