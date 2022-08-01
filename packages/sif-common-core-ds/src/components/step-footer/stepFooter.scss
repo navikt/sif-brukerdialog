@@ -1,0 +1,46 @@
+.stepFooter {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+
+    &__divider {
+        width: 100%;
+        border-top: 1px solid #c6c2bf;
+        padding: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    &__avbrytSoknadLenke {
+        color: var(--navds-semantic-error);
+        &:focus {
+            color: white;
+        }
+    }
+    &__links {
+        display: flex;
+        align-items: center;
+    }
+
+    &__dot:after {
+        content: ' \00b7';
+        font-size: 25px;
+        display: inline-block;
+        color: #c6c2bf;
+        margin: 0.2rem 0.5rem 0;
+    }
+
+    @media screen and (max-width: 600px) {
+        &__links {
+            flex-direction: column;
+        }
+        &__divider,
+        &__dot {
+            display: none;
+        }
+        .lenke {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

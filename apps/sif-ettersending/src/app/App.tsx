@@ -3,11 +3,12 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
+import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import appSentryLogger from './utils/appSentryLogger';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import YtelseSwitch from './YtelseSwitch';
 import '@navikt/ds-css';
@@ -36,7 +37,7 @@ const App = () => {
         }
     });
     return (
-        <div className="sif-ds-theme">
+        <SifAppWrapper>
             <AmplitudeProvider applicationKey={APPLICATION_KEY}>
                 <ApplicationWrapper
                     locale={locale}
@@ -56,7 +57,7 @@ const App = () => {
                     )}
                 </ApplicationWrapper>
             </AmplitudeProvider>
-        </div>
+        </SifAppWrapper>
     );
 };
 

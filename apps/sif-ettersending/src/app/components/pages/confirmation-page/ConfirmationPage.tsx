@@ -1,4 +1,4 @@
-import { BodyShort, Heading, Ingress, Link } from '@navikt/ds-react';
+import { BodyLong, Heading, Ingress, Link } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
@@ -33,7 +33,7 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
                     </Heading>
                 </Block>
             </div>
-            <BodyShort as="div">
+            <BodyLong as="div">
                 <Block margin="xl">
                     {søknadstype === ApplicationType.pleiepengerBarn && (
                         <ul className="checklist">
@@ -72,7 +72,7 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
                         </>
                     )}
                 </Block>
-            </BodyShort>
+            </BodyLong>
         </Page>
     );
 };

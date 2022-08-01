@@ -1,6 +1,9 @@
 .sif-ds-theme {
-    --navds-guide-panel-color-border: var(--navds-global-color-purple-300);
+    --navds-guide-panel-color-border: var(--navds-global-color-purple-200);
     --navds-guide-panel-color-illustration-background: var(--navds-global-color-purple-200);
+}
+.navds-label {
+    line-height: var(--navds-font-line-height-xlarge) !important;
 }
 
 /** Skal flyttes/endres: */
@@ -9,5 +12,5 @@
 }
 
 .navds-fieldset__description > .expandableInfo:first-child {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }

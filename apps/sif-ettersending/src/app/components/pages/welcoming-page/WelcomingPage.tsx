@@ -1,4 +1,4 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
@@ -46,7 +46,7 @@ const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
                 </Block>
                 <Block margin="xl">
                     <SifGuidePanel poster>
-                        <BodyShort as="div">{intlHelper(intl, 'welcomingPage.counsellor')}</BodyShort>
+                        <BodyLong as="div">{intlHelper(intl, 'welcomingPage.counsellor')}</BodyLong>
                     </SifGuidePanel>
                 </Block>
 

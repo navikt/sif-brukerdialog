@@ -1,0 +1,18 @@
+.soknadHeader {
+    box-shadow: 0 -4px 0 var(--navds-global-color-purple-500) inset;
+
+    &__content {
+        max-width: 704px;
+        margin: 1rem auto;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1.25rem;
+    }
+    &__text {
+        width: 100%;
+        max-width: 63.5rem;
+    }
+    &__subtitle {
+        margin-top: 1rem;
+    }
+}

@@ -1,4 +1,4 @@
-import { BodyShort, Panel } from '@navikt/ds-react';
+import { BodyLong, Panel } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
@@ -83,9 +83,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
             buttonDisabled={sendingInProgress || apiValues.søknadstype === YtelseTypeApi.ukjent}
             showButtonSpinner={sendingInProgress}>
             <SifGuidePanel>
-                <BodyShort>
+                <BodyLong>
                     <FormattedMessage id="steg.oppsummering.info" />
-                </BodyShort>
+                </BodyLong>
             </SifGuidePanel>
             <Block margin="xl">
                 <Panel border={true}>
