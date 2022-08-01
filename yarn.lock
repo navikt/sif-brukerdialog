@@ -2780,14 +2780,19 @@
     "@sanity/block-content-to-react" "^3.0.0"
     "@sanity/client" "^2.10.5"
 
-"@navikt/ds-css@^0.18.18", "@navikt/ds-css@^0.18.19":
+"@navikt/ds-css@^0.18.18":
   version "0.18.19"
   resolved "https://registry.npmjs.org/@navikt/ds-css/-/ds-css-0.18.19.tgz"
   integrity sha512-OMUUu5NSWZT36rDY/WhyJck296/Lc8w+C8jCQ2C4bjCNb8644lpWsK0Rlz+tCnRUZYUF2CCgx0YQNUplinb2eA==
 
-"@navikt/ds-datepicker@^3.1.0-beta.1":
+"@navikt/ds-css@^0.18.27":
+  version "0.18.27"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.18.27.tgz#77a464d3dc1299e8b64329d8e18f43a05a70c6f2"
+  integrity sha512-JK+EqtuUcehxSRI6YqyZuVeDLXotoZLYmED6DM77+atCRvphpPDc9fQuzXkByI25s9crNdXaS0sRCXSYSS62yA==
+
+"@navikt/ds-datepicker@^3.1.1":
   version "3.1.1"
-  resolved "https://registry.npmjs.org/@navikt/ds-datepicker/-/ds-datepicker-3.1.1.tgz"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-datepicker/-/ds-datepicker-3.1.1.tgz#1524950f34f1bdc49fedc4175854204488107420"
   integrity sha512-8YkQ1LB7LoJ30qsNVGoyQaC9kuYwHcwFVBiMiyA1TTJhIwp0rNG9rGtkvUqgbkE+DlhMbs6OuUz85cmCtQkOng==
   dependencies:
     "@navikt/ds-css" "^0.18.18"
@@ -2801,7 +2806,14 @@
   dependencies:
     uuid "^8.3.2"
 
-"@navikt/ds-react@^0.19.14", "@navikt/ds-react@^0.19.15":
+"@navikt/ds-icons@^0.8.20":
+  version "0.8.20"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-0.8.20.tgz#b3c52f1839929d2e755b1ce6da44b4e02caf6f7e"
+  integrity sha512-ftX5GHpH8WdGXfw94P5M3Nn1Bma/MI3TaL1zlMnXBoqs/lFo6V3BeKNTcGoFTE7mJLJDE8qrcvewCWK2E6pkgw==
+  dependencies:
+    uuid "^8.3.2"
+
+"@navikt/ds-react@^0.19.14":
   version "0.19.15"
   resolved "https://registry.npmjs.org/@navikt/ds-react/-/ds-react-0.19.15.tgz"
   integrity sha512-23mava9eAb43hBYa2gxc1i5GjB2BN2K7hCqU/Zs4Q80X4ZiSid56sJxwCyKsk66+wudc6gvcmz3YdFWIe7uJrg==
@@ -2819,7 +2831,25 @@
     react-popper "^2.2.5"
     uuid "^8.3.2"
 
-"@navikt/ds-tailwind@^0.2.7", "@navikt/ds-tailwind@^0.2.8":
+"@navikt/ds-react@^0.19.25":
+  version "0.19.25"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.19.25.tgz#db43b172eab1c6efe62c6d00690b1d2ac5d33ea5"
+  integrity sha512-PAA06TEWnfbXJJGxC77eyCN/QfDiKoVFD163F6AGedT58icJQBkqtTcPC0HSpsxbtvJL6Z/ophgeD4LnCsSLhw==
+  dependencies:
+    "@floating-ui/react-dom" "0.6.0"
+    "@material-ui/core" "^4.12.3"
+    "@navikt/ds-icons" "^0.8.20"
+    "@popperjs/core" "^2.10.1"
+    "@radix-ui/react-tabs" "0.1.5"
+    "@radix-ui/react-toggle-group" "0.1.5"
+    classnames "^2.2.6"
+    react-collapse "^5.1.0"
+    react-merge-refs "^1.1.0"
+    react-modal "3.15.1"
+    react-popper "^2.2.5"
+    uuid "^8.3.2"
+
+"@navikt/ds-tailwind@^0.2.8":
   version "0.2.8"
   resolved "https://registry.npmjs.org/@navikt/ds-tailwind/-/ds-tailwind-0.2.8.tgz"
   integrity sha512-Go8ZO/h3jz2fua7ilw8FUUNsoZD5uX60ym5kVSby7JYv4Kng5sUWcZqeecqyCLm4SketaBiOD433RiKhFsQbEA==
@@ -16781,7 +16811,7 @@ react-modal@3.14.3:
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
 
-react-modal@^3.14.4, react-modal@^3.15.1:
+react-modal@3.15.1, react-modal@^3.14.4, react-modal@^3.15.1:
   version "3.15.1"
   resolved "https://registry.npmjs.org/react-modal/-/react-modal-3.15.1.tgz"
   integrity sha512-duB9bxOaYg7Zt6TMFldIFxQRtSP+Dg3F1ZX3FXxSUn+3tZZ/9JCgeAQKDg7rhZSAqopq8TFRw3yIbnx77gyFTw==
