@@ -42,7 +42,7 @@ jobs:
             - name: Build packages and applications
               run: |
                 yarn build-package
-                yarn build-${{inputs.app-name}}
+                yarn build-${{ inputs.app-name }}
 
             - name: Build and publish Docker image
               run: |

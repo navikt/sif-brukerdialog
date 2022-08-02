@@ -49,7 +49,7 @@
         "build": "turbo run build",
         "build-package": "turbo run build-package",
         "bp": "turbo run build-package",
-        "build-app": "turbo run build-apps",
+        "build-app": "turbo run build-app",
         "build-sif-ettersending": "turbo run build-sif-ettersending",
         "ba": "turbo run build-app",
         "clean": "turbo run clean && rm -rf node_modules",
