@@ -1,0 +1,18 @@
+name: Deploy sif-ettersending til dev
+
+on:
+  workflow_dispatch:
+      secrets:
+          NAIS_DEPLOY_APIKEY:
+              description: Nais deploy APIKEY
+              required: false
+
+jobs:
+    build:
+        name: Build and deploy
+        uses: navikt/sif-brukerdialog/.github/workflows/common/deploy-app-to-dev.yml@main
+        secrets:
+            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+        with:
+            app-name: 'sif-ettersending'
+            working-directory: 'apps/sif-ettersending'
