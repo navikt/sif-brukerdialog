@@ -100,18 +100,3 @@ jobs:
                   RESOURCE: config/nais.yml
                   VARS: config/${{ inputs.app-name }}/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-
-    deploy-prod:
-        name: deploy-prod
-        if: startsWith(github.ref, 'refs/heads/main')
-        needs: build-code-and-push-docker
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
-            - uses: nais/deploy/actions/deploy@v1
-              env:
-                  CLUSTER: prod-gcp
-                  RESOURCE: nais/naiserator.yml
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-                  VARS: config/${{ inputs.app-name }}/prod-gcp.json
-

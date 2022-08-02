@@ -1,0 +1,61 @@
+name: Deploy application to dev
+
+on:
+  workflow_dispatch:
+    inputs:
+        app-name:
+            description: Choose application
+            type: choice
+            options:
+            - sif-ettersending
+            - deling-omsorgsdager
+            - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+            required: true
+    secrets:
+        NAIS_DEPLOY_APIKEY:
+            description: Nais deploy APIKEY
+            required: false
+
+env:
+    IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
+    GITHUB_USERNAME: x-access-token
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+    deploy-to-dev:
+        name: Deploy ${{ inputs.app-name }} to dev
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 2
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
+            - name: Install dependencies
+              run: yarn install
+
+            - name: Run tests
+              run: yarn test
+
+            - name: Build packages and applications
+              run: |
+                yarn build-package
+                yarn build-${{ inputs.app-name }}
+
+            - name: Build and publish Docker image
+              run: |
+                  docker build -t ${IMAGE} -f apps/${{inputs.app-name}}/Dockerfile .
+                  docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+                  docker push ${IMAGE}
+
+            - name: Deploy to dev
+              uses: nais/deploy/actions/deploy@v1
+              env:
+                  CLUSTER: dev-fss
+                  RESOURCE: config/nais.yml
+                  VARS: config/${{ inputs.app-name }}/dev-gcp.json
+                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
