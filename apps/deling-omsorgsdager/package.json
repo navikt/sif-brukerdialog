@@ -19,7 +19,7 @@
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad": "*",
-        "@sentry/browser": "^7.8.0",
+        "@sentry/browser": "^7.8.1",
         "@snyk/protect": "^1.981.0",
         "@testing-library/react": "^12.1.4",
         "@types/amplitude-js": "^8.16.2",
