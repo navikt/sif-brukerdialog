@@ -71,7 +71,6 @@
         "babel-core": "7.0.0-bridge.0"
     },
     "scripts": {
-        "build-sif-ettersending": "node src/build/scripts/production-build.js",
         "build-app": "node src/build/scripts/production-build.js",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8090 node ./api-mock.js",

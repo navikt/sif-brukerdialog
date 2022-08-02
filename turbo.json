@@ -10,10 +10,6 @@
             "outputs": ["dist/**"],
             "dependsOn": ["^build-package"]
         },
-        "build-sif-ettersending": {
-            "outputs": ["dist/**"],
-            "dependsOn": ["^build-package"]
-        },
         "test": {
             "outputs": [],
             "dependsOn": ["^build-package"]
