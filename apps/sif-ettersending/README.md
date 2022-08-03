@@ -1,6 +1,6 @@
 # Ettersending av dokumenter innenfor sykdom i familien
 
-Kildekod til frontend-appen for ettersending av dokumenter innenfor sykdom i familien.
+Kildekode til frontend-appen for ettersending av dokumenter innenfor sykdom i familien.
 
 ## Komme i gang
 
