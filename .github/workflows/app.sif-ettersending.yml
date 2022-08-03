@@ -7,6 +7,12 @@ on:
             - 'config/sif-ettersending/**/*'
 
 jobs:
+    say-hello:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Greet
+              run: echo "Hi"
+
     deploy-to-dev:
         name: Build and deploy sif-ettersending to dev
         if: startsWith(github.ref, 'refs/heads/dev-') || github.event.deployment.payload.triggered
