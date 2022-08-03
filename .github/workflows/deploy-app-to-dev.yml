@@ -1,20 +1,18 @@
 name: Deploy application to dev
 
 on:
-  workflow_dispatch:
-    inputs:
-        app-name:
-            description: Choose application
-            type: choice
-            options:
-            - sif-ettersending
-            - deling-omsorgsdager
-            - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-            required: true
-    secrets:
-        NAIS_DEPLOY_APIKEY:
-            description: Nais deploy APIKEY
-            required: false
+    workflow_call:
+        inputs:
+            working-directory:
+                type: string
+                required: true
+            app-name:
+                type: string
+                required: true
+        secrets:
+            NAIS_DEPLOY_APIKEY:
+                description: Nais deploy APIKEY
+                required: false
 
 env:
     IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
@@ -43,7 +41,7 @@ jobs:
 
             - name: Build application
               run: |
-                yarn build-${{ inputs.app-name }}
+                  yarn build-${{ inputs.app-name }}
 
             - name: Build and publish Docker image
               run: |

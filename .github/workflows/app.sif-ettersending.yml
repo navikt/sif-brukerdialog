@@ -5,13 +5,12 @@ on:
         paths:
             - 'apps/sif-ettersending/**/*'
             - 'config/sif-ettersending/**/*'
-            - '.github/workflows/app.sif-ettersending.yml'
-            - '.github/workflows/app.common.yml'
 
 jobs:
-    build:
-        name: Build
-        uses: navikt/sif-brukerdialog/.github/workflows/app.common.yml@main
+    deploy-to-dev:
+        name: Build and deploy sif-ettersending to dev
+        if: startsWith(github.ref, 'refs/heads/dev-') || github.event.deployment.payload.triggered
+        uses: navikt/sif-brukerdialog/.github/workflows/deploy-app-to-dev.yml@dev-deploy
         secrets:
             NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
         with:
