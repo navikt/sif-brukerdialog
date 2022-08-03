@@ -23,7 +23,9 @@ const InfoToggleButton = (props: Props) => {
             aria-controls={controlsId}>
             <span className={cls.element('content')}>
                 <span className={cls.element('label')}>{children}</span>
-                <span className={cls.element('chevron')}>{isOpen ? <Collapse /> : <Expand />}</span>
+                <span className={cls.element('chevron')}>
+                    {isOpen ? <Collapse aria-hidden={true} /> : <Expand aria-hidden={true} />}
+                </span>
             </span>
         </button>
     );
