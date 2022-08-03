@@ -41,9 +41,8 @@ jobs:
             - name: Run tests
               run: yarn test
 
-            - name: Build packages and applications
+            - name: Build application
               run: |
-                yarn build-package
                 yarn build-${{ inputs.app-name }}
 
             - name: Build and publish Docker image
