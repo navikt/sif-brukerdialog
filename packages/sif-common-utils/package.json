@@ -44,6 +44,7 @@
         "url": "git+https://github.com/navikt/sif-common-utils.git"
     },
     "scripts": {
+        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script",
         "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",

@@ -84,6 +84,7 @@
         "babel-core": "7.0.0-bridge.0"
     },
     "scripts": {
+        "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
         "clean": "rm -rf node_modules .dist",
         "prepare": "yarn snyk-protect",

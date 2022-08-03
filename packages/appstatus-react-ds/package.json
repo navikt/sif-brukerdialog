@@ -46,6 +46,7 @@
         "url": "git+https://github.com/navikt/appstatus-react-ds.git"
     },
     "scripts": {
+        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script copy-files",
         "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",
