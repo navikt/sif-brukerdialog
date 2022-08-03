@@ -88,6 +88,7 @@
         }
     },
     "scripts": {
+        "build": "npm-run-all build-package",
         "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
         "build-storybook": "build-storybook",
         "clean": "rm -rf node_modules lib",

@@ -79,6 +79,7 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "scripts": {
+        "build": "npm-run-all build-package",
         "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
         "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",

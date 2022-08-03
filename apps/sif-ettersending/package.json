@@ -17,6 +17,7 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
+        "@navikt/sif-common-utils": "*",
         "@testing-library/react": "^12.1.4",
         "axios": "^0.27.2",
         "busboy": "^1.6.0",
@@ -71,6 +72,7 @@
         "babel-core": "7.0.0-bridge.0"
     },
     "scripts": {
+        "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8090 node ./api-mock.js",

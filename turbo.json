@@ -2,6 +2,9 @@
     "$schema": "https://turborepo.org/schema.json",
     "baseBranch": "origin/main",
     "pipeline": {
+        "build": {
+            "dependsOn": ["^build"]
+        },
         "build-package": {
             "outputs": ["lib/**"],
             "dependsOn": ["^build-package"]
