@@ -1,0 +1,27 @@
+name: Dispatch - deploy application to dev
+
+on:
+  workflow_dispatch:
+    inputs:
+        app-name:
+            description: Choose application
+            type: choice
+            options:
+            - sif-ettersending
+            - deling-omsorgsdager
+            - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+            required: true
+    secrets:
+        NAIS_DEPLOY_APIKEY:
+            description: Nais deploy APIKEY
+            required: false
+
+jobs:
+    deploy-to-dev:
+        name: Deploy ${{ inputs.app-name }} to dev
+        uses: navikt/sif-brukerdialog/.github/workflows/deploy-app-to-dev.yml@dev-deploy
+        secrets:
+            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+        with:
+            app-name: 'sif-ettersending'
+            working-directory: 'apps/sif-ettersending'
