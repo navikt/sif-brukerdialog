@@ -2,6 +2,8 @@
 
 Kildekod til frontend-appen for ettersending av dokumenter innenfor sykdom i familien.
 
+1
+
 ## Komme i gang
 
 For å kjøre opp app-en i dev:
