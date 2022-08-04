@@ -12,7 +12,7 @@
         "@navikt/ds-tailwind": "^0.2.8",
         "@snyk/protect": "^1.981.0",
         "@storybook/builder-webpack5": "^6.5.9",
-        "@storybook/manager-webpack5": "^6.5.9",
+        "@storybook/manager-webpack5": "^6.5.10",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^12.1.4",
         "@testing-library/react-hooks": "^8.0.1",
