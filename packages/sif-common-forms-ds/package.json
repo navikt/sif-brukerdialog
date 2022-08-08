@@ -21,7 +21,7 @@
         "@navikt/ds-react": "^0.19.25",
         "@storybook/addon-a11y": "^6.5.9",
         "@storybook/addon-actions": "^6.5.9",
-        "@storybook/addon-essentials": "^6.5.9",
+        "@storybook/addon-essentials": "^6.5.10",
         "@storybook/addon-interactions": "^6.5.9",
         "@storybook/addon-links": "^6.5.9",
         "@storybook/node-logger": "^6.5.9",
