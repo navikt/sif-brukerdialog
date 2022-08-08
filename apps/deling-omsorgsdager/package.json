@@ -2,7 +2,7 @@
     "author": "NAV",
     "description": "Overføring og fordeling av omsorgsdager",
     "license": "MIT",
-    "name": "@navikt/deling-omsorgsdager",
+    "name": "@navikt/omsorgsdager-deling-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "2.0.0",
     "dependencies": {
