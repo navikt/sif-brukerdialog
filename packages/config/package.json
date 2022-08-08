@@ -3,6 +3,7 @@
     "main": "index.js",
     "name": "config",
     "version": "0.0.0",
+    "private": true,
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "^5.32.0",
         "@typescript-eslint/parser": "^5.32.0",
