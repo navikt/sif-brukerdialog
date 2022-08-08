@@ -53,7 +53,7 @@
         "html-webpack-harddisk-plugin": "^2.0.0",
         "html-webpack-plugin": "^5.5.0",
         "less-loader": "^11.0.0",
-        "postcss": "^8.4.14",
+        "postcss": "^8.4.16",
         "react-scripts": "5.0.1",
         "sass": "^1.54.1",
         "sass-loader": "^13.0.2",
