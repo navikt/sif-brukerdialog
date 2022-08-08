@@ -4,7 +4,7 @@
     "homepage": "https://navikt.github.io/sif-brukerdialog",
     "license": "MIT",
     "name": "@navikt/sif-common-soknad-ds",
-    "version": "0.1.0",
+    "version": "0.1.3",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
