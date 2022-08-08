@@ -11,10 +11,10 @@
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "devDependencies": {
-        "@types/amplitude-js": "^8.16.1",
-        "@types/node": "^18.6.3",
+        "@types/amplitude-js": "^8.16.2",
+        "@types/node": "^18.6.4",
         "@types/react": "17.0.34",
-        "amplitude-js": "^8.18.4",
+        "amplitude-js": "^8.19.0",
         "constate": "^3.3.2",
         "gh-pages": "^4.0.0",
         "react": "^17.0.2",
