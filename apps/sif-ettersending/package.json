@@ -5,7 +5,7 @@
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
     "version": "0.0.2",
-    "private": false,
+    "private": true,
     "dependencies": {
         "@formatjs/intl-pluralrules": "^5.0.3",
         "@navikt/ds-css": "^0.18.28",
