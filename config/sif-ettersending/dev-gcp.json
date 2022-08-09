@@ -20,8 +20,7 @@
         "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://k9-ettersending-soknad.dev.nav.no/familie/sykdom-i-familien/soknad/ettersending",
         "NYNORSK": "on",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
-        "USE_AMPLITUDE": "true",
-        "NPM_CONFIG_CACHE": "/tmp"
+        "USE_AMPLITUDE": "true"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "ingresses": ["https://k9-ettersending-soknad.dev.nav.no"]
