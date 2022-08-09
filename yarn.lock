@@ -2256,10 +2256,10 @@
     react-popper "^2.2.5"
     uuid "^8.3.2"
 
-"@navikt/ds-tailwind@^0.2.8":
-  version "0.2.8"
-  resolved "https://registry.npmjs.org/@navikt/ds-tailwind/-/ds-tailwind-0.2.8.tgz"
-  integrity sha512-Go8ZO/h3jz2fua7ilw8FUUNsoZD5uX60ym5kVSby7JYv4Kng5sUWcZqeecqyCLm4SketaBiOD433RiKhFsQbEA==
+"@navikt/ds-tailwind@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-0.2.9.tgz#7f60eb196ab66dacbcd61560154edf7f0ba87005"
+  integrity sha512-77VoUa706ZrXUTwOP+zerGuZd2HE4H4AfSqz56A1XtU48y99FcsV5wBRExYKu5zsfijtPDGGRTuk/MDd6o87jQ==
 
 "@navikt/fnrvalidator@^1.3.0":
   version "1.3.0"
