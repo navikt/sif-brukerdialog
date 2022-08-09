@@ -13942,10 +13942,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-nav-datovelger@^12.5.0:
-  version "12.5.0"
-  resolved "https://registry.npmjs.org/nav-datovelger/-/nav-datovelger-12.5.0.tgz"
-  integrity sha512-ySekEZCl+6eyEhMFwJ6+KGLcqke+yEOatsCcPFdZzQ8gm3F6lIpcP+WTCjgLtBH8kJysjhQYHVmeLMUDqHZUsg==
+nav-datovelger@^12.6.0:
+  version "12.6.0"
+  resolved "https://registry.yarnpkg.com/nav-datovelger/-/nav-datovelger-12.6.0.tgz#e3b4020429584e71d2d16f5483e67e32fd3298b6"
+  integrity sha512-z7hmVcPSqZAoOX40hG/a7E9QQNZoPjRfL2Qn+ylYIYLv5Nx0lzFVZPHnubzdUFTYBf5SFJ6EGWcv9u6ISn2FDA==
   dependencies:
     focus-trap-react "^8.6.0"
 
