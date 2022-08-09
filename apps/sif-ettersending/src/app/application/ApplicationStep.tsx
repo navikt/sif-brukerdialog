@@ -26,11 +26,11 @@ const ApplicationStep = (props: Props) => {
     const intl = useIntl();
     const { søknadstype } = React.useContext(ApplicationTypeContext);
 
-    if (!søknadstype) {
-        return <div>what?</div>;
-    }
-
     useLogSidevisning(props.id);
+
+    if (!søknadstype) {
+        return <div>Søknadstype mangler</div>;
+    }
 
     const { children, onValidFormSubmit, showButtonSpinner, buttonDisabled, id } = props;
     const stepConfig = getStepConfig(søknadstype);

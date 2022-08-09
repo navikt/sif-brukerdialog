@@ -63,8 +63,6 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <FormBlock>
                     <FormikFileUploader
-                        søknadstype={søknadstype}
-                        groupName={ApplicationFormField.dokumenterGruppe}
                         name={ApplicationFormField.dokumenter}
                         buttonLabel={intlHelper(intl, 'steg.dokumenter.vedlegg')}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}

@@ -75,7 +75,7 @@ const ApplicationEssentialsLoader = ({ contentLoadedRenderer, søknadstype }: Pr
         if (loadState.doApiCalls) {
             loadEssentials();
         }
-    }, [essentials, loadState, history]);
+    }, [essentials, loadState, history, søknadstype]);
 
     const { isLoading, error, hasNoAccess } = loadState;
 

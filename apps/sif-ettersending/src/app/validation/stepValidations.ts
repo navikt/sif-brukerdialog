@@ -7,4 +7,4 @@ export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: Appli
 export const beskrivelseStepIsValid = (values: ApplicationFormData) =>
     hasValue(values.beskrivelse) && welcomingPageIsValid(values);
 
-export const documentsStepIsValid = ({ beskrivelse, dokumenter }: ApplicationFormData) => dokumenter.length > 0;
+export const documentsStepIsValid = ({ dokumenter }: ApplicationFormData) => dokumenter.length > 0;

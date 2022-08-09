@@ -2,13 +2,13 @@ import * as React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Page from '@navikt/sif-common-core/lib/components/page/Page';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import PageBanner from '@navikt/sif-common-core-ds/lib/components/page/page-banner/PageBanner';
 import { ApplicationType } from '../../../types/ApplicationType';
 import { Feature, isFeatureEnabled } from '../../../utils/featureToggleUtils';
 import { navigateToWelcomePage } from '../../../utils/navigationUtils';
@@ -49,7 +49,7 @@ const IntroPage = () => {
     return (
         <Page
             title={intlHelper(intl, 'banner.intro')}
-            topContentRenderer={() => <PageBanner level="1">{intlHelper(intl, 'banner.intro')}</PageBanner>}>
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'banner.intro')} />}>
             <PageForm.FormikWrapper
                 initialValues={{}}
                 onSubmit={({ søknadstype }) => {

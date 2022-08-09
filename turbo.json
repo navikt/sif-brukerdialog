@@ -26,7 +26,7 @@
             "dependsOn": ["^build-package"]
         },
         "lint": {
-            "dependsOn": ["^build-package"],
+            "dependsOn": ["^lint"],
             "outputs": []
         },
         "dev": {

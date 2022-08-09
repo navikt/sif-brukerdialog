@@ -52,7 +52,7 @@ jobs:
             - name: Deploy to dev
               uses: nais/deploy/actions/deploy@v1
               env:
-                  CLUSTER: dev-fss
+                  CLUSTER: dev-gcp
                   RESOURCE: config/nais.yml
                   VARS: config/${{ inputs.app-name }}/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
