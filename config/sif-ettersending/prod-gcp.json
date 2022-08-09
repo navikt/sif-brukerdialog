@@ -18,6 +18,7 @@
         "INNSYN_PP": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/dine-pleiepenger",
         "LIVETS_SLUTTFASE": "on",
         "LOGIN_URL": "https://loginservice.nav.no/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending",
+        "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
         "USE_AMPLITUDE": "true"
