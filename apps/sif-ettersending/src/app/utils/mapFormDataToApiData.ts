@@ -42,6 +42,7 @@ export const mapFormDataToApiData = (
         harForståttRettigheterOgPlikter,
         søknadstype: søknadstype ? getSøknadstypeApi(søknadstype) : getSøknadstypeApi(søknadstypeFraURL),
         beskrivelse,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         vedlegg: dokumenter.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!),
     };
     return apiData;

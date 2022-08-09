@@ -6,5 +6,5 @@ interface ApplicationTypeContextType {
 }
 
 export const ApplicationTypeContext = createContext<ApplicationTypeContextType>({
-    søknadstype: ApplicationType.ukjent
+    søknadstype: ApplicationType.ukjent,
 });

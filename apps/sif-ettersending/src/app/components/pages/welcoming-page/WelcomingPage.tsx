@@ -1,17 +1,17 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/info-dialog/InfoDialog';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import PageBanner from '@navikt/sif-common-core-ds/lib/components/page/page-banner/PageBanner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
 import BehandlingAvPersonopplysningerContent from '../../information/behandling-av-personopplysninger-content/BehandlingAvPersonopplysningerContent';
 import DinePlikterContent from '../../information/dine-plikter-content/DinePlikterContent';
 import SamtykkeForm from './SamtykkeForm';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 
 type Props = Omit<StepConfigProps, 'formValues'>;
 
@@ -36,14 +36,7 @@ const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
         <>
             <Page
                 title={intlHelper(intl, `application.title.${søknadstype}`)}
-                topContentRenderer={() => (
-                    <PageBanner level="2">{intlHelper(intl, `banner.${søknadstype}`)}</PageBanner>
-                )}>
-                <Block margin="xxl">
-                    <Heading level="1" size="large" className="text-center">
-                        {intlHelper(intl, `application.title.${søknadstype}`)}
-                    </Heading>
-                </Block>
+                topContentRenderer={() => <SoknadHeader title={intlHelper(intl, `banner.${søknadstype}`)} level="1" />}>
                 <Block margin="xl">
                     <SifGuidePanel poster>
                         <BodyLong as="div">{intlHelper(intl, 'welcomingPage.counsellor')}</BodyLong>

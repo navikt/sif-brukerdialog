@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import LanguageToggle from '@navikt/sif-common-core/lib/components/language-toggle/LanguageToggle';
+import useDecoratorLanguageSelector from '@navikt/sif-common-core-ds/lib/hooks/useDecoratorLanguageSelector';
 import ApplicationMessages from '@navikt/sif-common-core/lib/dev-utils/intl/application-messages/ApplicationMessages';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { ApplicantData } from '../../types/ApplicantData';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import IntlProvider, { appMessages } from '../intl-provider/IntlProvider';
+// import { setAvailableLanguages, onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 
 interface ApplicationWrapperProps {
     søkerdata?: ApplicantData;
@@ -16,9 +17,13 @@ interface ApplicationWrapperProps {
 }
 
 const ApplicationWrapper = ({ locale, children, onChangeLocale }: ApplicationWrapperProps) => {
+    useDecoratorLanguageSelector(
+        ['nb', ...(isFeatureEnabled(Feature.NYNORSK) ? ['nn' as Locale] : [])],
+        onChangeLocale
+    );
+
     return (
         <IntlProvider locale={locale}>
-            {isFeatureEnabled(Feature.NYNORSK) && <LanguageToggle locale={locale} toggle={onChangeLocale} />}
             <Router basename={getEnvironmentVariable('PUBLIC_PATH')}>
                 {children}
                 <ApplicationMessages messages={appMessages} title="Ettersending av dokumenter" />

@@ -1,13 +1,13 @@
 import { Heading } from '@navikt/ds-react';
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import BackLink from '@navikt/sif-common-core/lib/components/back-link/BackLink';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import BackLink from '@navikt/sif-common-core/lib/components/back-link/BackLink';
 import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { History } from 'history';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../../config/stepConfig';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import PageBanner from '@navikt/sif-common-core-ds/lib/components/page/page-banner/PageBanner';
 import { getStepTexts } from '../../utils/stepUtils';
 import StepIndicator from './step-indicator/StepIndicator';
 
@@ -33,7 +33,7 @@ const Step = ({ id, bannerTitle, stepConfig, useValidationErrorSummary, children
             title={stepTexts.pageTitle}
             topContentRenderer={() => (
                 <>
-                    <PageBanner level="2">{bannerTitle || intlHelper(intl, 'banner.title')}</PageBanner>
+                    <SoknadHeader title={bannerTitle || intlHelper(intl, 'banner.title')} level="2" />
                     {useValidationErrorSummary !== false && <FormikValidationErrorSummary />}
                 </>
             )}>

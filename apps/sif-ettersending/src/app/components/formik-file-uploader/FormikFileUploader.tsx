@@ -15,7 +15,6 @@ import { ArrayHelpers, useFormikContext } from 'formik';
 import { uploadFile } from '../../api/api';
 import ApplicationFormComponents from '../../application/ApplicationFormComponents';
 import { ApplicationFormData, ApplicationFormField } from '../../types/ApplicationFormData';
-import { ApplicationType } from '../../types/ApplicationType';
 import appSentryLogger from '../../utils/appSentryLogger';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
@@ -23,11 +22,9 @@ export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
 
 interface FormikFileUploader extends TypedFormInputValidationProps<ApplicationFormField, ValidationError> {
-    groupName: ApplicationFormField;
     name: ApplicationFormField;
     buttonLabel: string;
     onFileInputClick?: () => void;
-    søknadstype: ApplicationType;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
 }
@@ -36,8 +33,6 @@ type Props = FormikFileUploader;
 
 const FormikFileUploader = ({
     name,
-    søknadstype,
-    groupName,
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
