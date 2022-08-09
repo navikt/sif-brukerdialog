@@ -15,7 +15,7 @@
         "@sanity/client": "^3.3.3"
     },
     "devDependencies": {
-        "@navikt/ds-css": "^0.18.27",
+        "@navikt/ds-css": "^0.18.28",
         "@navikt/ds-react": "^0.19.25",
         "@types/node": "^18.6.5",
         "@types/react": "17.0.34",

@@ -8,7 +8,7 @@
     "private": true,
     "dependencies": {
         "@formatjs/intl-pluralrules": "^5.0.3",
-        "@navikt/ds-css": "^0.18.27",
+        "@navikt/ds-css": "^0.18.28",
         "@navikt/ds-datepicker": "^3.1.1",
         "@navikt/ds-icons": "^0.8.20",
         "@navikt/ds-react": "^0.19.25",
