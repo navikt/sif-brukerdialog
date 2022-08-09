@@ -22,7 +22,7 @@
         "@navikt/ds-css": "^0.18.27",
         "@navikt/ds-datepicker": "^3.1.1",
         "@navikt/ds-react": "^0.19.25",
-        "@navikt/ds-tailwind": "^0.2.8",
+        "@navikt/ds-tailwind": "^0.2.9",
         "@navikt/fnrvalidator": "^1.3.0",
         "@navikt/sif-common-formik-ds": "*",
         "@storybook/addon-a11y": "^6.5.10",
