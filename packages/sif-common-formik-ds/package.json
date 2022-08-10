@@ -59,9 +59,9 @@
         "react-refresh": "0.11.0"
     },
     "peerDependencies": {
-        "@navikt/ds-css": "0.18.x",
+        "@navikt/ds-css": "0.18.x || 0.19.x ",
         "@navikt/ds-datepicker": "3.0.0",
-        "@navikt/ds-react": "0.18.x",
+        "@navikt/ds-react": "0.18.x || 0.19.x",
         "formik": "2.2.x",
         "react": "17.0.x",
         "react-dom": "17.0.x",

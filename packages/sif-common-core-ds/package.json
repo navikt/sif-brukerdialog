@@ -59,8 +59,8 @@
     },
     "peerDependencies": {
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "0.18.x",
-        "@navikt/ds-react": "0.18.x",
+        "@navikt/ds-css": "0.18.x || 0.19.x",
+        "@navikt/ds-react": "0.18.x || 0.19.x",
         "@navikt/sif-common-formik-ds": "*",
         "react": "17.0.x",
         "react-dom": "17.0.x",
