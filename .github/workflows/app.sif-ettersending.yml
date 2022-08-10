@@ -1,6 +1,7 @@
 # This workflow trigger on push to apps/sif-ettersending
 name: Ettersending
 on:
+    create:
     push:
         paths:
             - 'apps/sif-ettersending/**/*'
