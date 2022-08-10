@@ -32,16 +32,16 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 16
-                  cache: 'yarn'
+                  cache: 'npm'
             - name: Install dependencies
-              run: yarn install
+              run: npm i
 
             - name: Run tests
-              run: yarn test
+              run: npm run test
 
             - name: Build application
               run: |
-                  yarn build-${{ inputs.app-name }}
+                  npm run build-${{ inputs.app-name }}
 
             - name: Build and publish Docker image
               run: |

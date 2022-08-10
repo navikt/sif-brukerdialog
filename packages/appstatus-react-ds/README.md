@@ -9,5 +9,5 @@ Baserer seg på @navikt/ds komponenter og styling.
 Starter app som viser noen av komponentene
 
 ```
-yarn dev
+npm run dev
 ```
