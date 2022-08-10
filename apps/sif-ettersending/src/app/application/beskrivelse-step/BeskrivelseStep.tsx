@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { StepConfigProps, StepID } from '../../config/stepConfig';
 import { ApplicationFormField } from '../../types/ApplicationFormData';
 import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';

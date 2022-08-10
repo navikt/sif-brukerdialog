@@ -1,9 +1,9 @@
-import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
 
 export enum AppFieldValidationErrors {

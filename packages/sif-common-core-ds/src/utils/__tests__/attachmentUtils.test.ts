@@ -8,7 +8,7 @@ import {
     getAttachmentFromFile,
     getPendingAttachmentFromFile,
     VALID_EXTENSIONS,
-} from '../../components/file-uploader/fileUploaderUtils';
+} from '../attachmentUtils';
 
 const fileMock = new File([''], 'filename.png', { type: 'text/png' });
 const invalidFileMock = new File([''], 'filename.docx', { type: 'text/png' });

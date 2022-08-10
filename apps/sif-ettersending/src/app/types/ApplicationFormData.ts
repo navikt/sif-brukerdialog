@@ -1,4 +1,4 @@
-import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { ApplicationType } from './ApplicationType';
 
 export enum ApplicationFormField {

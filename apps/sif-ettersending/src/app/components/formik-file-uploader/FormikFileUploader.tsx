@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Attachment, PersistedFile } from '@navikt/sif-common-core/lib/types/Attachment';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core/lib/utils/apiUtils';
+import { Attachment, PersistedFile } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import {
     attachmentShouldBeProcessed,
     attachmentShouldBeUploaded,
@@ -8,7 +8,7 @@ import {
     getPendingAttachmentFromFile,
     isFileObject,
     VALID_EXTENSIONS,
-} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { ArrayHelpers, useFormikContext } from 'formik';

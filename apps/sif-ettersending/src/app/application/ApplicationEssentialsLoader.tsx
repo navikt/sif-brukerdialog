@@ -13,7 +13,7 @@ import {
 import appSentryLogger from '../utils/appSentryLogger';
 import { useHistory } from 'react-router';
 import { AxiosResponse } from 'axios';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core/lib/utils/apiUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import IkkeTilgangPage from '../components/pages/ikke-tilgang-page/ikkeTilgangPage';
 
 interface Props {

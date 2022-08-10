@@ -5,7 +5,7 @@ import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import appSentryLogger from './utils/appSentryLogger';

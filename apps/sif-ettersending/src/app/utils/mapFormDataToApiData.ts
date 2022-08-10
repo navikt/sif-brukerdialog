@@ -1,6 +1,6 @@
-import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
-import { attachmentUploadHasFailed } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import { getLocaleForApi } from '@navikt/sif-common-core/lib/utils/localeUtils';
+import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
+import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { ApplicationApiData, YtelseTypeApi } from '../types/ApplicationApiData';
 import { ApplicationFormData } from '../types/ApplicationFormData';
 import { ApplicationType } from '../types/ApplicationType';

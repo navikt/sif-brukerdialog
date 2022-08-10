@@ -1,7 +1,7 @@
 import { Button, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import ApplicationFormComponents from '../../../application/ApplicationFormComponents';

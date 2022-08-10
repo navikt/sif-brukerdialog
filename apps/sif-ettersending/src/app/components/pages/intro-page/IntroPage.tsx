@@ -4,7 +4,7 @@ import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitud
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
