@@ -1,16 +1,11 @@
 {
     "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
-    "changelog": ["@changesets/changelog-github", { "repo": "navikt/sif-brukerdialog" }],
+    "changelog": "@changesets/cli/changelog",
     "commit": false,
     "fixed": [],
     "linked": [],
     "access": "restricted",
     "baseBranch": "main",
     "updateInternalDependencies": "patch",
-    "ignore": [
-        "config",
-        "@navikt/omsorgsdager-deling-dialog",
-        "*@navikt/sif-ettersending*",
-        "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
-    ]
+    "ignore": ["config", "@navikt/omsorgsdager-deling-dialog", "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"]
 }
