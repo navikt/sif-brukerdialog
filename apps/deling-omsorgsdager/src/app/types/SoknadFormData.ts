@@ -1,6 +1,6 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
-import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 
 export enum Arbeidssituasjon {
     'arbeidstaker' = 'arbeidstaker',

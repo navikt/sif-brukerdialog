@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
 
 export const aldersBegrensingOver = (fødselsdato: Date, maxGrenseYears: number): boolean => {
     return dayjs().diff(fødselsdato, 'year') <= maxGrenseYears;

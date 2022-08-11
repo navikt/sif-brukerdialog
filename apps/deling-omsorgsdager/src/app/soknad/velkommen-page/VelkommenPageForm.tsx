@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import InfoDialog from '@navikt/sif-common-core/lib/components/dialogs/info-dialog/InfoDialog';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import InfoDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/info-dialog/InfoDialog';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
@@ -47,7 +47,7 @@ const VelkommenPageForm: React.FunctionComponent<Props> = ({ onStart }) => {
                         }}
                     />
                 </SoknadFormComponents.ConfirmationCheckbox>
-                <Box textAlignCenter={true} margin="xl">
+                <Block textAlignCenter={true} margin="xl">
                     <Hovedknapp>{intlHelper(intl, 'step.velkommen.button.start')}</Hovedknapp>
                     <FormBlock>
                         <Lenke
@@ -56,20 +56,20 @@ const VelkommenPageForm: React.FunctionComponent<Props> = ({ onStart }) => {
                             <FormattedMessage id="step.velkommen.personopplysninger.lenketekst" />
                         </Lenke>
                     </FormBlock>
-                </Box>
+                </Block>
             </FormBlock>
 
             <InfoDialog
-                contentLabel={intlHelper(intl, 'modal.dinePlikter.dialog.tittel')}
-                isOpen={dinePlikterModalOpen === true}
-                onRequestClose={(): void => setDialogState({ dinePlikterModalOpen: false })}>
+                aria-label={intlHelper(intl, 'modal.dinePlikter.dialog.tittel')}
+                open={dinePlikterModalOpen === true}
+                onClose={(): void => setDialogState({ dinePlikterModalOpen: false })}>
                 <DinePlikterContent />
             </InfoDialog>
 
             <InfoDialog
-                isOpen={behandlingAvPersonopplysningerModalOpen === true}
-                onRequestClose={(): void => setDialogState({ behandlingAvPersonopplysningerModalOpen: false })}
-                contentLabel={intlHelper(intl, 'modal.personopplysninger.dialogtittel')}>
+                aria-label={intlHelper(intl, 'modal.personopplysninger.dialogtittel')}
+                open={behandlingAvPersonopplysningerModalOpen === true}
+                onClose={(): void => setDialogState({ behandlingAvPersonopplysningerModalOpen: false })}>
                 <BehandlingAvPersonopplysningerContent />
             </InfoDialog>
         </SoknadFormComponents.Form>

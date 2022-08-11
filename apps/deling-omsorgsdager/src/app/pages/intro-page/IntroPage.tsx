@@ -6,10 +6,10 @@ import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import StepBanner from '@navikt/sif-common-core-ds/lib/components/step-banner/StepBanner';
 import { navigateToSoknadFrontpage } from '../../utils/navigationUtils';
 import IntroForm from './IntroForm';
 
@@ -21,7 +21,7 @@ const IntroPage: React.FunctionComponent = () => {
         <Page
             title={intlHelper(intl, 'application.title')}
             topContentRenderer={() => <StepBanner tag="h1" text={intlHelper(intl, 'application.title')} />}>
-            <Box margin="xxxl">
+            <Block margin="xxxl">
                 <section aria-label="Introduksjon">
                     <SifGuidePanel poster>
                         <BodyLong as="div">
@@ -58,7 +58,7 @@ const IntroPage: React.FunctionComponent = () => {
                         </BodyLong>
                     </SifGuidePanel>
                 </section>
-            </Box>
+            </Block>
             <FormBlock>
                 <IntroForm
                     onValidSubmit={() => {

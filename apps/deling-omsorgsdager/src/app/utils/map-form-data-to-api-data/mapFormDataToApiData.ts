@@ -1,5 +1,5 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { getLocaleForApi } from '@navikt/sif-common-core/lib/utils/localeUtils';
+import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
 import {
     SoknadApiData,

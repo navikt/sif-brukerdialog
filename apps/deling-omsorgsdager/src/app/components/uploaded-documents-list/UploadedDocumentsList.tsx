@@ -1,12 +1,12 @@
 import * as React from 'react';
-import AttachmentListWithDeletion from '@navikt/sif-common-core/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
-import AttachmentList from '@navikt/sif-common-core/lib/components/attachment-list/AttachmentList';
-import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
+import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
     containsAnyUploadedAttachments,
     fileExtensionIsValid,
-} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import { removeElementFromArray } from '@navikt/sif-common-core/lib/utils/listUtils';
+} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
 import { useFormikContext } from 'formik';
 import api from '../../api/api';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';

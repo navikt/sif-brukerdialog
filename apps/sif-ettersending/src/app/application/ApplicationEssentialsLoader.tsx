@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { AxiosResponse } from 'axios';
 import { getSøker } from '../api/api';
-import LoadWrapper from '../components/load-wrapper/LoadWrapper';
+import IkkeTilgangPage from '../components/pages/ikke-tilgang-page/ikkeTilgangPage';
 import { SøkerdataContextProvider } from '../context/ApplicantDataContext';
 import { ApplicantData, Person } from '../types/ApplicantData';
 import { ApplicationType } from '../types/ApplicationType';
+import appSentryLogger from '../utils/appSentryLogger';
 import {
     navigateToErrorPage,
     navigateToLoginPage,
     navigateToWelcomePage,
     userIsCurrentlyOnErrorPage,
 } from '../utils/navigationUtils';
-import appSentryLogger from '../utils/appSentryLogger';
-import { useHistory } from 'react-router';
-import { AxiosResponse } from 'axios';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import IkkeTilgangPage from '../components/pages/ikke-tilgang-page/ikkeTilgangPage';
 
 interface Props {
     contentLoadedRenderer: (søkerdata?: ApplicantData) => React.ReactNode;

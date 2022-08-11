@@ -1,7 +1,7 @@
 import { MottakerFormQuestions, MottakerFormQuestionsPayload } from '../mottakerStepFormConfig';
 import { initialSoknadFormData } from '../../initialSoknadValues';
 import { Mottaker, SoknadFormField } from '../../../types/SoknadFormData';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 
 describe('mottakerStepFormConfig', () => {
     const payload: MottakerFormQuestionsPayload = {

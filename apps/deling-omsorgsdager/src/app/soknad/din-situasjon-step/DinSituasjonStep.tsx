@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getListValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import FormQuestion from '@navikt/sif-common-soknad-ds/lib/form-question/FormQuestion';

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import LoadWrapper from '@navikt/sif-common-core/lib/components/load-wrapper/LoadWrapper';
+import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { SoknadApplicationType, StepConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';

@@ -1,12 +1,12 @@
-import { ApiStringDate } from '@navikt/sif-common-core/lib/types/ApiStringDate';
-import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
+import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { ISODate } from '@navikt/sif-common-utils/lib';
 import { Arbeidssituasjon, Mottaker } from './SoknadFormData';
 import { Søknadstype } from './Soknadstype';
 
 export interface ApiBarn {
     identitetsnummer?: string;
     aktørId?: string;
-    fødselsdato: ApiStringDate;
+    fødselsdato: ISODate;
     navn: string;
     aleneOmOmsorgen?: boolean;
     utvidetRett: boolean;

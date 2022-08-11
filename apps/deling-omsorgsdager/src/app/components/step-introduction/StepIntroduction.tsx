@@ -3,7 +3,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import './stepIntroduction.less';
+import './stepIntroduction.scss';
 
 interface Props {
     ariaTitle?: string;

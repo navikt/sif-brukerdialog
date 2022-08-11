@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 
 export enum IntroFormField {
     'erArbeidstakerSnEllerFrilanser' = 'erArbeidstakerSnEllerFrilanser',

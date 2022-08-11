@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { Mottaker, SoknadFormData } from './SoknadFormData';
 
 export enum Søknadstype {

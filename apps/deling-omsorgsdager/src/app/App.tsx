@@ -11,7 +11,7 @@ import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-import '@navikt/sif-common-core/lib/styles/globalStyles.less';
+// import '@navikt/sif-common-core-ds/lib/styles/globalStyles.less';
 
 export const APPLICATION_KEY = 'deling-omsorgsdager';
 export const SKJEMANAVN = 'Deling av omsorgsdager';

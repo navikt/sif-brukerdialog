@@ -1,5 +1,5 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { yesOrNoIsAnswered } from '@navikt/sif-common-core/lib/utils/yesOrNoUtils';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { yesOrNoIsAnswered } from '@navikt/sif-common-core-ds/lib/utils/yesOrNoUtils';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import { QuestionConfig, Questions } from '@navikt/sif-common-formik-ds';
 import { Barn, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';

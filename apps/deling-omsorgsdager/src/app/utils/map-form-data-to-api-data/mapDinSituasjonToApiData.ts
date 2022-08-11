@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
 import { SoknadApiData, SoknadApiDataField } from '../../types/SoknadApiData';
 import { DinSituasjonFormData } from '../../types/SoknadFormData';

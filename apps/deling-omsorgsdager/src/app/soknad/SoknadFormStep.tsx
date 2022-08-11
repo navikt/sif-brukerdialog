@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds/lib';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
@@ -79,11 +79,11 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
                 onValidSubmit={onSendSoknad ? onSendSoknad : (): void => gotoNextStepFromStep(id)}
                 formFooter={
                     showSubmitButton ? (
-                        <Box textAlignCenter={true} margin="xl">
+                        <Block textAlignCenter={true} margin="xl">
                             <StepSubmitButton disabled={buttonDisabled} showSpinner={showButtonSpinner}>
                                 {texts.nextButtonLabel}
                             </StepSubmitButton>
-                        </Box>
+                        </Block>
                     ) : undefined
                 }>
                 {children}

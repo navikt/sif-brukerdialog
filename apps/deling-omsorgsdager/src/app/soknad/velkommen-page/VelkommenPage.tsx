@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FrontPageBanner from '@navikt/sif-common-core/lib/components/front-page-banner/FrontPageBanner';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FrontPageBanner from '@navikt/sif-common-core-ds/lib/components/front-page-banner/FrontPageBanner';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { useSoknadContext } from '../SoknadContext';
@@ -25,13 +25,13 @@ const VelkommenPage: React.FunctionComponent = () => {
                     }}
                 />
             )}>
-            <Box margin="xxxl" textAlignCenter={true}>
+            <Block margin="xxxl" textAlignCenter={true}>
                 <Sidetittel>{intlHelper(intl, 'step.velkommen.tittel')}</Sidetittel>
-            </Box>
+            </Block>
 
-            <Box margin="xxxl">
+            <Block margin="xxxl">
                 <VelkommenPageForm onStart={startSoknad} />
-            </Box>
+            </Block>
         </Page>
     );
 };
