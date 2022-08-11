@@ -47,7 +47,7 @@
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "dev": "npm run compile-lib-script-watch",
+        "dev": "yarn compile-lib-script-watch",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test"
     },
