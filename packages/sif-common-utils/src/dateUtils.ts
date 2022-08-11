@@ -23,7 +23,6 @@ export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODate
 export const ISODateToDate = (isoDate: ISODate): Date => {
     return dayjs(isoDate).toDate();
 };
-
 export const getISOWeekdayFromISODate = (isoDate: ISODate): number => {
     return dayjs(ISODateToDate(isoDate)).isoWeekday();
 };
