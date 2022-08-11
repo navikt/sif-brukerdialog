@@ -1,7 +1,7 @@
 
 FROM node:16.15.1-alpine AS base
 RUN apk update && apk add git
-RUN npm i turbo -g
+RUN yarn global add turbo
 
 WORKDIR /app
 
@@ -9,8 +9,8 @@ ENV SCOPE=@navikt/sif-ettersending
 
 FROM base AS pruner
 COPY . .
-RUN npm i
-RUN npx turbo run build-app --filter=${SCOPE}
+RUN yarn
+RUN yarn turbo run build-app --filter=${SCOPE}
 
 FROM pruner AS server
 WORKDIR /apps/sif-ettersending
@@ -24,4 +24,4 @@ COPY --from=pruner /app/apps/sif-ettersending/src/build/scripts/decorator.js ./s
 COPY --from=pruner /app/apps/sif-ettersending/dist ./dist
 
 EXPOSE 8080
-CMD ["npm","run","--cwd", "apps/sif-ettersending", "start-express"]
+CMD ["yarn","--cwd", "apps/sif-ettersending", "start-express"]

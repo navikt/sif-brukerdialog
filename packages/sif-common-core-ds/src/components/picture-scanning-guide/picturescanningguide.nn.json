@@ -1,0 +1,20 @@
+{
+    "psg.expandable.tittel": "Slik tek du eit godt bilete av dokumentet",
+    "psg.section1.tittel": "Slik tek du eit godt bilete:",
+    "psg.section1.liste.1": "Hald mobilen eller kameraet direkte over dokumentet.",
+    "psg.section1.liste.2": "Dokumentet skal fylle heile biletet. Biletet skal ikkje innehalde annan dokumentasjon eller gjenstandar.",
+    "psg.section1.liste.3": "Biletet må innehalde all tekst i dokumentet. Dersom dokumentet er skriven på meir enn éi side, bør du laste opp fleire bilete.",
+    "psg.section2.tittel": "Etter at du har teke biletet, sjekk følgjande før du lastar opp:",
+    "psg.section2.liste.1": "Dokumentet har rett retning.",
+    "psg.section2.liste.2": "Teksten til dokumentet er godt leseleg.",
+    "psg.section2.liste.3": "Biletet er godt opplyst, utan skuggar.",
+    "psg.icon.heading": "Bra og dårlige eksempler på bilder av dokument",
+    "psg.good": "Bra",
+    "psg.bad": "Dårlig",
+    "psg.icon.label.good": "Dokumentet fyller heile biletet",
+    "psg.icon.label.keystone": "Biletet er ikkje tatt ovanfrå",
+    "psg.icon.label.horizontal": "Biletet har ikkje rett retning",
+    "psg.icon.label.shadow": "Biletet har skugge oppå dokumentet",
+    "psg.lenkepanel.url": "https://www.nav.no/no/nav-og-samfunn/kontakt-nav/relatert-informasjon/ta-bilde-av-vedleggene-med-mobilen",
+    "psg.lenkepanel.text": "Meir hjelp til opplasting av vedlegg (vert åpna i nytt vindauge)."
+}

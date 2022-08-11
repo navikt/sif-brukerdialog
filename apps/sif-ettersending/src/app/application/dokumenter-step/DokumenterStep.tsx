@@ -7,11 +7,11 @@ import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upl
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/content/picture-scanning-guide/PictureScanningGuide';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';

@@ -6,12 +6,12 @@ Kildekode til frontend-appen for ettersending av dokumenter innenfor sykdom i fa
 
 For å kjøre opp app-en i dev:
 
-1.  `npm install`.
-2.  `npm run dev`.
+1.  `yarn`.
+2.  `yarn dev`.
 
 For å kjøre enhetstester:
 
-1.  `npm install && npm run test`.
+1.  `yarn && yarn test`.
 
 ## Henvendelser
 

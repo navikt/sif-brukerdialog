@@ -1,0 +1,21 @@
+.expandableInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    /* Justere på grunn av animasjon */
+    &__content,
+    &__toggler {
+        width: 100%;
+    }
+    &__toggler {
+        &--open {
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+.ReactCollapse--collapse {
+    transition: height 0.25s ease-in-out !important;
+}

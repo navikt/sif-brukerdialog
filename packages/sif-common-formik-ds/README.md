@@ -7,5 +7,5 @@ Wrapper skjemakomponenter fra @navikt/react-ds
 Starter app som viser noen av komponentene
 
 ```
-npm run dev
+yarn dev
 ```

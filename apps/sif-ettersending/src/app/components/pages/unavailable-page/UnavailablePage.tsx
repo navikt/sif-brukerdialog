@@ -4,8 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import './unavailablePage.less';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 

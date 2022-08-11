@@ -1,4 +1,4 @@
-import { Attachment, PersistedFile } from '../../types/Attachment';
+import { Attachment, PersistedFile } from '../types/Attachment';
 
 export const VALID_EXTENSIONS = ['.pdf', '.jpeg', '.jpg', '.png'];
 

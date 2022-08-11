@@ -70,7 +70,7 @@
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
-        "dev": "npm run compile-lib-script-watch",
+        "dev": "yarn compile-lib-script-watch",
         "test": "react-scripts test --watchAll=false --passWithNoTests"
     },
     "private": false

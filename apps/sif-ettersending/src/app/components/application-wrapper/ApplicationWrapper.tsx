@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import useDecoratorLanguageSelector from '@navikt/sif-common-core-ds/lib/hooks/useDecoratorLanguageSelector';
-import ApplicationMessages from '@navikt/sif-common-core/lib/dev-utils/intl/application-messages/ApplicationMessages';
-import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
-import { ApplicantData } from '../../types/ApplicantData';
+import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { ApplicantData } from '../../types/ApplicantData';
 import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
-import IntlProvider, { appMessages } from '../intl-provider/IntlProvider';
-// import { setAvailableLanguages, onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
+import IntlProvider from '../intl-provider/IntlProvider';
 
 interface ApplicationWrapperProps {
     søkerdata?: ApplicantData;
@@ -24,10 +22,7 @@ const ApplicationWrapper = ({ locale, children, onChangeLocale }: ApplicationWra
 
     return (
         <IntlProvider locale={locale}>
-            <Router basename={getEnvironmentVariable('PUBLIC_PATH')}>
-                {children}
-                <ApplicationMessages messages={appMessages} title="Ettersending av dokumenter" />
-            </Router>
+            <Router basename={getEnvironmentVariable('PUBLIC_PATH')}>{children}</Router>
         </IntlProvider>
     );
 };

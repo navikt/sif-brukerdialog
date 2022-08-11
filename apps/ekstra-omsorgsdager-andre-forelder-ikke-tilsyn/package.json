@@ -88,7 +88,7 @@
         "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
         "clean": "rm -rf node_modules .dist",
-        "prepare": "npm run snyk-protect",
+        "prepare": "yarn snyk-protect",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "dev-deling": "npm-run-all -p rm:dist dev-api start-no-decorator",
         "rm:dist": "rimraf dist/",

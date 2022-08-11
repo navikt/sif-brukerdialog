@@ -2,7 +2,7 @@ import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import prettyBytes from 'pretty-bytes';
-import { fileSizeIsValid } from '../file-uploader/fileUploaderUtils';
+import { fileSizeIsValid } from '../../utils/attachmentUtils';
 
 interface Props {
     filesThatDidntGetUploaded: File[];

@@ -1,0 +1,27 @@
+@import '~nav-frontend-core/less/_variabler';
+@import '~nav-frontend-lenker-style/src/lenker-mixins';
+@import '~nav-frontend-paneler-style/src/mixins';
+
+.validationErrorSummary {
+    background-color: @redErrorLighten20;
+    color: @white;
+    padding: 1.75rem;
+
+    .panel-focus-mixin();
+
+    &__list {
+        line-height: 1.75rem;
+    }
+
+    &__link {
+        .lenke-mixin();
+        color: white;
+        font-style: italic;
+
+        &:hover,
+        &--hover {
+            color: @navBlaLighten80;
+            border-bottom: 0;
+        }
+    }
+}
