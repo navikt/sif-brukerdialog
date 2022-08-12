@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ANTALL_DAGER_RANGE } from '../soknad/mottaker-step/MottakerStep';

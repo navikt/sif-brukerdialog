@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Lenke from 'nav-frontend-lenker';
 import { Ingress, Systemtittel } from 'nav-frontend-typografi';
 import getLenker from '../../../lenker';
@@ -12,10 +12,10 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
             <Systemtittel tag="h1">
                 <FormattedMessage id="modal.personopplysninger.1" />
             </Systemtittel>
-            <Box margin="xl">
+            <Block margin="xl">
                 <FormattedMessage id="modal.personopplysninger.2" />
-            </Box>
-            <Box margin="xl">
+            </Block>
+            <Block margin="xl">
                 <Ingress tag="h2">
                     <FormattedMessage id="modal.personopplysninger.3" />
                 </Ingress>
@@ -53,16 +53,16 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                         <FormattedMessage id="modal.personopplysninger.5.2" />
                     </li>
                 </ul>
-            </Box>
-            <Box margin="xl">
+            </Block>
+            <Block margin="xl">
                 <Ingress tag="h2">
                     <FormattedMessage id="modal.personopplysninger.6" />
                 </Ingress>
                 <p>
                     <FormattedMessage id="modal.personopplysninger.7" />
                 </p>
-            </Box>
-            <Box margin="xl">
+            </Block>
+            <Block margin="xl">
                 <p>
                     <FormattedMessage id="modal.personopplysninger.8.1" />
                     {` `}
@@ -71,7 +71,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     </Lenke>
                     <FormattedMessage id="modal.personopplysninger.8.3" />
                 </p>
-            </Box>
+            </Block>
         </>
     );
 };

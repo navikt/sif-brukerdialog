@@ -1,14 +1,14 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+} from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import Lenke from 'nav-frontend-lenker';
@@ -38,9 +38,9 @@ const SamværsavtaleStep: React.FunctionComponent = () => {
     return (
         <SoknadFormStep id={StepID.SAMVÆRSAVTALE} buttonDisabled={hasPendingUploads || sizeOver24Mb}>
             <StepIntroduction>{intlHelper(intl, 'step.samværsavtale.info.title')}</StepIntroduction>
-            <Box margin={'l'}>
+            <Block margin={'l'}>
                 <PictureScanningGuide />
-            </Box>
+            </Block>
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <FormBlock>
                     <FormikFileUploader
@@ -70,7 +70,7 @@ const SamværsavtaleStep: React.FunctionComponent = () => {
             )}
 
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <Box margin={'l'}>
+                <Block margin={'l'}>
                     <Alert variant="warning">
                         <FormattedMessage id={'step.samværsavtale.vedlegg.totalstørrelse.1'} />
                         <Lenke
@@ -81,15 +81,15 @@ const SamværsavtaleStep: React.FunctionComponent = () => {
                         </Lenke>
                         <FormattedMessage id={'step.samværsavtale.vedlegg.totalstørrelse.3'} />
                     </Alert>
-                </Box>
+                </Block>
             )}
 
-            <Box margin="m">
+            <Block margin="m">
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-            </Box>
-            <Box margin="l">
+            </Block>
+            <Block margin="l">
                 <UploadedDocumentsList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
-            </Box>
+            </Block>
         </SoknadFormStep>
     );
 };

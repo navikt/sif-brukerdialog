@@ -1,0 +1,20 @@
+.counsellorWithSpeechBubble {
+    .speechBubble {
+        margin: 0 auto;
+        max-width: 30rem;
+    }
+
+    .counsellor {
+        margin: 0.5rem auto;
+        right: 8px;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+
+        svg {
+            position: relative;
+            margin: 0 auto;
+        }
+    }
+}

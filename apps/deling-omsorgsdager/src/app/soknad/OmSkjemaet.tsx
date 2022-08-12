@@ -1,7 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { Element } from 'nav-frontend-typografi';
 
 interface Props {
@@ -26,7 +26,7 @@ const OmSkjemaet: React.FunctionComponent<Props> = ({ showAlertstripe = false })
         {plain === false && (
             <>
                 {showAlertstripe && (
-                    <Box margin="xl">
+                    <Block margin="xl">
                         <Alert variant="info" size="small">
                             <Element tag="h2">Kort om skjemaet</Element>
                             Dette skjemaet består av fem sider og har rundt 20 spørsmål til sammen, avhengig av hva du
@@ -37,10 +37,10 @@ const OmSkjemaet: React.FunctionComponent<Props> = ({ showAlertstripe = false })
                                 slettes denne informasjonen og du må da fylle ut alt på nytt.
                             </p>
                         </Alert>
-                    </Box>
+                    </Block>
                 )}
                 {!showAlertstripe && (
-                    <Box margin="l">
+                    <Block margin="l">
                         <ExpandableInfo title={'Kort om skjemaet'}>
                             Dette skjemaet består av fem sider og har rundt 20 spørsmål til sammen, avhengig av hva du
                             svarer.
@@ -50,7 +50,7 @@ const OmSkjemaet: React.FunctionComponent<Props> = ({ showAlertstripe = false })
                                 denne informasjonen og du må da fylle ut alt på nytt.
                             </p>
                         </ExpandableInfo>
-                    </Box>
+                    </Block>
                 )}
             </>
         )}

@@ -3,10 +3,11 @@ import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import ItemList from '@navikt/sif-common-core/lib/components/item-list/ItemList';
-import { dateToday, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
+import { dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
+import { prettifyDate } from '@navikt/sif-common-utils/lib/dateFormatter';
+import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/AnnetBarnListAndDialog';
 import { useFormikContext } from 'formik';
 import { Person } from '../../types/Person';
@@ -45,7 +46,7 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
     return (
         <SoknadFormStep id={StepID.DINE_BARN} showSubmitButton={kanFortsette}>
             {barn.length > 0 && (
-                <Box margin="xl">
+                <Block margin="xl">
                     <ContentWithHeader
                         level="2"
                         size="xsmall"
@@ -59,9 +60,9 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
                             />
                         </BodyLong>
                     </ContentWithHeader>
-                </Box>
+                </Block>
             )}
-            <Box margin="xl">
+            <Block margin="xl">
                 <ContentWithHeader
                     level="2"
                     size="xsmall"
@@ -72,8 +73,8 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
                     }>
                     <BodyLong>{intlHelper(intl, 'step.dine-barn.info.spm.text')}</BodyLong>
                 </ContentWithHeader>
-            </Box>
-            <Box margin="l">
+            </Block>
+            <Block margin="l">
                 <AnnetBarnListAndDialog<SoknadFormField>
                     name={SoknadFormField.andreBarn}
                     labels={{
@@ -86,11 +87,11 @@ const DineBarnStep: React.FunctionComponent<Props> = ({ barn, søker }) => {
                     disallowedFødselsnumre={[søker.fødselsnummer]}
                     aldersGrenseText={intlHelper(intl, 'step.dine-barn.formLeggTilBarn.aldersGrenseInfo')}
                 />
-            </Box>
+            </Block>
             {andreBarn.length === 0 && barn.length === 0 && (
-                <Box margin="l">
+                <Block margin="l">
                     <Alert variant="warning">{intlHelper(intl, 'step.dine-barn.info.ingenbarn.2')}</Alert>
-                </Box>
+                </Block>
             )}
         </SoknadFormStep>
     );

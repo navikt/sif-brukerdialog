@@ -1,9 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
-import { apiStringDateToDate, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import SummaryList from '@navikt/sif-common-core-ds/lib/components/summary-list/SummaryList';
+import { prettifyDate } from '@navikt/sif-common-utils/lib/dateFormatter';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ApiBarn } from '../../types/SoknadApiData';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 
 interface Props {
     barn: ApiBarn[];
@@ -17,7 +18,7 @@ const BarnSummaryList: React.FunctionComponent<Props> = ({ barn }) => {
             itemRenderer={({ identitetsnummer, fødselsdato, navn }: ApiBarn): string => {
                 const fnr = identitetsnummer ? ` (fnr. ${identitetsnummer})` : '';
                 return `${intlHelper(intl, 'step.oppsummering.dine-barn.født')} ${prettifyDate(
-                    apiStringDateToDate(fødselsdato)
+                    ISODateToDate(fødselsdato)
                 )} – ${navn}${fnr}`;
             }}
         />

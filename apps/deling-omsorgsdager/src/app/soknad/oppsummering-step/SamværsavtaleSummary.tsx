@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
@@ -18,12 +18,12 @@ const SamværsavtaleSummary: React.FunctionComponent<Props> = ({
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.samværsavtale.header')}>
-            <Box margin="l">
+            <Block margin="l">
                 {samværsavtale.length === 0 && (
                     <FormattedMessage id={'steg.oppsummering.samværsavtale.ikkelastetopp'} />
                 )}
                 {samværsavtale.length > 0 && <UploadedDocumentsList includeDeletionFunctionality={false} />}
-            </Box>
+            </Block>
         </SummarySection>
     );
 };

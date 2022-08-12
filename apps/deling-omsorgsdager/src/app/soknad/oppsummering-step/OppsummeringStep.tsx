@@ -4,9 +4,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import ResponsivePanel from '@navikt/sif-common-core-ds/lib/components/responsive-panel/ResponsivePanel';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { Person } from '../../types/Person';
 import { SoknadApiData } from '../../types/SoknadApiData';
@@ -43,7 +43,7 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
             showButtonSpinner={isPending(sendSoknadStatus.status)}
             buttonDisabled={isPending(sendSoknadStatus.status) || apiDataIsValid === false}
             onSendSoknad={apiValues ? (): void => sendSoknad(apiValues) : undefined}>
-            <Box margin="xl">
+            <Block margin="xl">
                 <SifGuidePanel>
                     <BodyLong as="div">
                         <FormattedMessage id="step.oppsummering.info" />
@@ -51,23 +51,23 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
                 </SifGuidePanel>
 
                 {apiValues === undefined && (
-                    <Box margin="l">
+                    <Block margin="l">
                         <Alert variant="error">
                             <FormattedMessage id="oppsummering.advarsel.ingenApiValues" />
                         </Alert>
-                    </Box>
+                    </Block>
                 )}
 
                 {apiValues !== undefined && apiDataIsValid === false && (
-                    <Box margin="l">
+                    <Block margin="l">
                         <Alert variant="error">
                             <FormattedMessage id="oppsummering.advarsel.invalidApiValues" />
                         </Alert>
-                    </Box>
+                    </Block>
                 )}
                 {apiValues !== undefined && (
                     <>
-                        <Box margin="xxl">
+                        <Block margin="xxl">
                             <ResponsivePanel border={true}>
                                 <SøkerSummary søker={søker} />
                                 <SøknadstypeSummary apiValues={apiValues} />
@@ -79,18 +79,18 @@ const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues })
                                     <SamværsavtaleSummary apiValues={apiValues} />
                                 )}
                             </ResponsivePanel>
-                        </Box>
+                        </Block>
 
-                        <Box margin="l">
+                        <Block margin="l">
                             <SoknadFormComponents.ConfirmationCheckbox
                                 label={intlHelper(intl, 'step.oppsummering.bekrefterOpplysninger')}
                                 name={SoknadFormField.harBekreftetOpplysninger}
                                 validate={getCheckedValidator()}
                             />
-                        </Box>
+                        </Block>
                     </>
                 )}
-            </Box>
+            </Block>
             {isFailure(sendSoknadStatus.status) && (
                 <FormBlock>
                     {sendSoknadStatus.failures === 1 && (

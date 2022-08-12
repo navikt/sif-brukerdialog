@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
 import { BarnStepApiData } from '../../types/SoknadApiData';
@@ -19,9 +19,9 @@ const DineBarnSummary: React.FunctionComponent<Props> = ({ apiValues: { barn } }
                     ? intlHelper(intl, 'step.oppsummering.dine-barn.header.ettBarn')
                     : intlHelper(intl, 'step.oppsummering.dine-barn.header.flereBarn')
             }>
-            <Box margin="l">
+            <Block margin="l">
                 <BarnSummaryList barn={barn} />
-            </Box>
+            </Block>
         </SummarySection>
     );
 };
