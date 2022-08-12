@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { jsonSort } from '@navikt/sif-common-utils';
+import { dateToISODate, jsonSort } from '@navikt/sif-common-utils';
 import { AnnetBarn, AnnetBarnFormValues } from './types';
 import annetBarnUtils from './annetBarnUtils';
-import { dateToISOFormattedDateString } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 
 const id = '123';
@@ -19,7 +18,7 @@ const annetBarn: AnnetBarn = {
 
 const formValues: AnnetBarnFormValues = {
     fnr,
-    fødselsdato: dateToISOFormattedDateString(fødselsdato),
+    fødselsdato: dateToISODate(fødselsdato),
     navn,
 };
 

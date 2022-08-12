@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import TextareaSummary from '@navikt/sif-common-core/lib/components/textarea-summary/TextareaSummary';
-import { apiStringDateToDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import TextareaSummary from '@navikt/sif-common-core-ds/lib/components/textarea-summary/TextareaSummary';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
@@ -11,6 +10,7 @@ import SummaryBlock from '../../components/summary/SummaryBlock';
 import TallSvar from '../../components/summary/TallSvar';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -68,7 +68,7 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Int
 
 const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFlereVirksomheter }) => {
     const intl = useIntl();
-    const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(apiStringDateToDate(virksomhet.fraOgMed));
+    const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
         <>
@@ -116,7 +116,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                     {virksomhet.varigEndring && (
                         <>
                             <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.dato')}>
-                                <DatoSvar apiDato={virksomhet.varigEndring.dato} />
+                                <DatoSvar isoDate={virksomhet.varigEndring.dato} />
                             </SummaryBlock>
                             <SummaryBlock
                                 header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.næringsinntekt')}>

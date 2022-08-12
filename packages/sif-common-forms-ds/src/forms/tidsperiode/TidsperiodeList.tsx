@@ -1,7 +1,7 @@
 import React from 'react';
 import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
-import { prettifyDateExtended } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { prettifyDateExtended } from '@navikt/sif-common-utils/lib/dateFormatter';
 import { DateTidsperiode } from './types';
 
 interface Props {

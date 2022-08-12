@@ -1,4 +1,4 @@
-import { DateRange, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { DateRange, prettifyDate } from '@navikt/sif-common-utils';
 import {
     ValidateDateError,
     ValidateDateRangeError,

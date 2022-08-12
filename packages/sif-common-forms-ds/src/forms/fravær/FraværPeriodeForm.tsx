@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { DateRange, dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { DateRange, dateToday } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import {

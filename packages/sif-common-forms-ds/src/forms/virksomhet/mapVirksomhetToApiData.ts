@@ -1,5 +1,5 @@
-import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import { YesOrNo, getCountryName } from '@navikt/sif-common-formik-ds/lib';
+import { getCountryName, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { Virksomhet, VirksomhetApiData } from './types';
 import { erFiskerNæringstype, erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
@@ -29,8 +29,8 @@ export const mapVirksomhetToVirksomhetApiData = (
                         }
                       : undefined,
               }),
-        fraOgMed: formatDateToApiFormat(virksomhet.fom),
-        tilOgMed: virksomhet.erPågående || virksomhet.tom === undefined ? null : formatDateToApiFormat(virksomhet.tom),
+        fraOgMed: dateToISODate(virksomhet.fom),
+        tilOgMed: virksomhet.erPågående || virksomhet.tom === undefined ? null : dateToISODate(virksomhet.tom),
         erNyoppstartet,
         harFlereAktiveVirksomheter: harFlereVirksomheter === true ? true : false,
     };
@@ -45,7 +45,7 @@ export const mapVirksomhetToVirksomhetApiData = (
         const harBlittAktiv = virksomhet.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES;
         if (harBlittAktiv && virksomhet.blittYrkesaktivDato) {
             data.yrkesaktivSisteTreFerdigliknedeÅrene = {
-                oppstartsdato: formatDateToApiFormat(virksomhet.blittYrkesaktivDato),
+                oppstartsdato: dateToISODate(virksomhet.blittYrkesaktivDato),
             };
         }
     }
@@ -65,7 +65,7 @@ export const mapVirksomhetToVirksomhetApiData = (
             varigEndringINæringsinntekt_forklaring
         ) {
             data.varigEndring = {
-                dato: formatDateToApiFormat(varigEndringINæringsinntekt_dato),
+                dato: dateToISODate(varigEndringINæringsinntekt_dato),
                 forklaring: varigEndringINæringsinntekt_forklaring,
                 inntektEtterEndring: varigEndringINæringsinntekt_inntektEtterEndring,
             };

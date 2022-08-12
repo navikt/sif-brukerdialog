@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { countryIsMemberOfEøsOrEfta } from '@navikt/sif-common-core/lib/utils/countryUtils';
+import { countryIsMemberOfEøsOrEfta } from '@navikt/sif-common-core-ds/lib/utils/countryUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getCountryName, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
@@ -19,8 +19,8 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
+import TidsperiodeListAndDialog from '../tidsperiode/TidsperiodeListAndDialog';
 import { Utenlandsopphold, UtenlandsoppholdFormValues, UtenlandsoppholdÅrsak } from './types';
 import utils from './utenlandsoppholdUtils';
 

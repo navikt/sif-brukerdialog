@@ -1,5 +1,5 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { DateRange } from '@navikt/sif-common-utils';
 import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 import { FraværDagFormFields } from '../FraværDagForm';
 import {

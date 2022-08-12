@@ -1,7 +1,7 @@
 import React from 'react';
-import ActionLink from '@navikt/sif-common-core/lib/components/action-link/ActionLink';
+import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
-import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
+import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { Fosterbarn } from './types';
 
 interface Props {

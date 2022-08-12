@@ -1,6 +1,6 @@
-import { DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import { ValidationFunction } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 import {
     dateCollideWithRanges,
     dateErHelg,

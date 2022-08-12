@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import TextareaSummary from '@navikt/sif-common-core/lib/components/textarea-summary/TextareaSummary';
-import { apiStringDateToDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import TextareaSummary from '@navikt/sif-common-core-ds/lib/components/textarea-summary/TextareaSummary';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
@@ -69,7 +69,7 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape)
 
 const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
     const intl = useIntl();
-    const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(apiStringDateToDate(virksomhet.fraOgMed));
+    const erRegnetSomNyoppstartet = erVirksomhetRegnetSomNyoppstartet(ISODateToDate(virksomhet.fraOgMed));
 
     return (
         <>
@@ -115,7 +115,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                 <>
                                     <SummaryBlock
                                         header={intlHelper(intl, 'sifForms.virksomhet.summary.varigEndring.dato')}>
-                                        <DatoSvar apiDato={virksomhet.varigEndring.dato} />
+                                        <DatoSvar isoDate={virksomhet.varigEndring.dato} />
                                     </SummaryBlock>
                                     <SummaryBlock
                                         header={intlHelper(

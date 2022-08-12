@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import ActionLink from '@navikt/sif-common-core/lib/components/action-link/ActionLink';
+import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { prettifyDateExtended } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { BostedUtland } from './types';
 import './bostedUtlandList.less';

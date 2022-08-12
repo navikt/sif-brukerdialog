@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 
 export enum FraværÅrsak {
     'stengtSkoleBhg' = 'STENGT_SKOLE_ELLER_BARNEHAGE',

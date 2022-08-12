@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { prettifyDate } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import {

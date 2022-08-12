@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
-import { prettifyDateExtended } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import FraværListItem from './FraværListItem';
 import { timeText } from './fraværUtilities';
 import { FraværDag } from './types';

@@ -1,5 +1,5 @@
-import { ApiStringDate } from '@navikt/sif-common-core/lib/types/ApiStringDate';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { ISODate } from '@navikt/sif-common-utils/lib';
 
 export enum Næringstype {
     'FISKE' = 'FISKE',
@@ -80,8 +80,8 @@ export const isVirksomhet = (virksomhet: Partial<Virksomhet>): virksomhet is Vir
 export interface VirksomhetApiData {
     næringstyper: Næringstype[];
     fiskerErPåBladB?: boolean;
-    fraOgMed: ApiStringDate;
-    tilOgMed?: ApiStringDate | null;
+    fraOgMed: ISODate;
+    tilOgMed?: ISODate | null;
     erNyoppstartet: boolean;
     næringsinntekt?: number;
     navnPåVirksomheten: string;
@@ -92,10 +92,10 @@ export interface VirksomhetApiData {
         landnavn: string;
     };
     yrkesaktivSisteTreFerdigliknedeÅrene?: {
-        oppstartsdato: ApiStringDate;
+        oppstartsdato: ISODate;
     };
     varigEndring?: {
-        dato: ApiStringDate;
+        dato: ISODate;
         inntektEtterEndring: number;
         forklaring: string;
     };

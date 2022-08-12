@@ -5,8 +5,14 @@ dayjs.locale('nb');
 
 const compactFormat = 'DD.MM.YYYY';
 
+/** Brukt i eldre apper */
 export const prettifyDate = (date: Date): string => {
     return dateFormatter.compact(date);
+};
+
+/** Brukt i eldre apper */
+export const prettifyDateExtended = (date: Date): string => {
+    return dateFormatter.dateShortMonthYear(date);
 };
 
 export const dateFormatter = {

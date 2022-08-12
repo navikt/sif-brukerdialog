@@ -6,7 +6,7 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { date3YearsAgo, date4YearsAgo, dateToday, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { date3YearsAgo, date4YearsAgo, dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import {
     getNumberFromNumberInputValue,
     getTypedFormComponents,

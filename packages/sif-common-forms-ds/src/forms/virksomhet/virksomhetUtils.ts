@@ -1,4 +1,4 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { date4YearsAgo } from '@navikt/sif-common-utils';
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
