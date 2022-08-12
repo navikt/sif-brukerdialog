@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 1.1.0
+
+### Minor Changes
+
+-   9c61932: Utvide med komponenter fra sif-common-core
+-   9c61932: Oppdatere omsorgsdager-deling-dialog til å bruke designsystemet
+
 ## 1.0.0
 
 ### Minor Changes
