@@ -22,7 +22,7 @@
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@sentry/browser": "^7.9.0",
+        "@sentry/browser": "^7.10.0",
         "@snyk/protect": "^1.986.0",
         "@testing-library/react": "^12.1.4",
         "@types/amplitude-js": "^8.16.2",
