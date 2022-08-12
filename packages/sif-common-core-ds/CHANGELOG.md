@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 1.2.0
+
+### Minor Changes
+
+-   96a4526: Erstatte sif-common-core med sif-common-core-ds i sif-common-forms
+
 ## 1.1.0
 
 ### Minor Changes
