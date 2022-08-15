@@ -4,7 +4,7 @@
     "homepage": "https://navikt.github.io/sif-brukerdialog",
     "license": "MIT",
     "name": "@navikt/sif-common-soknad-ds",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
@@ -16,7 +16,7 @@
         "@navikt/ds-react": "^0.19.27",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
-        "@navikt/sif-common-sentry": "0.3.1",
+        "@navikt/sif-common-sentry": "0.3.3",
         "@storybook/addon-a11y": "^6.5.10",
         "@storybook/addon-actions": "^6.5.10",
         "@storybook/addon-essentials": "^6.5.10",

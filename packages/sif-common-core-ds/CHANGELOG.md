@@ -1,5 +1,17 @@
 # @navikt/sif-common-core-ds
 
+## 1.3.0
+
+### Minor Changes
+
+-   863393c: Erstatte nav-frontend-moduler komponenter, starte på storybook i sif-common-core-ds
+
+### Patch Changes
+
+-   Updated dependencies [863393c]
+    -   @navikt/appstatus-react-ds@1.1.3
+    -   @navikt/sif-common-formik-ds@0.2.1
+
 ## 1.2.0
 
 ### Minor Changes
