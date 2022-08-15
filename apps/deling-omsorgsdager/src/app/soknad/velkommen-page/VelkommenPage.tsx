@@ -1,3 +1,4 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
@@ -5,7 +6,6 @@ import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FrontPageBanner from '@navikt/sif-common-core-ds/lib/components/front-page-banner/FrontPageBanner';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { Sidetittel } from 'nav-frontend-typografi';
 import { useSoknadContext } from '../SoknadContext';
 import VelkommenPageForm from './VelkommenPageForm';
 
@@ -26,10 +26,12 @@ const VelkommenPage: React.FunctionComponent = () => {
                 />
             )}>
             <Block margin="xxxl" textAlignCenter={true}>
-                <Sidetittel>{intlHelper(intl, 'step.velkommen.tittel')}</Sidetittel>
+                <Heading level="1" size="large">
+                    {intlHelper(intl, 'step.velkommen.tittel')}
+                </Heading>
             </Block>
 
-            <Block margin="xxxl">
+            <Block margin="xxl">
                 <VelkommenPageForm onStart={startSoknad} />
             </Block>
         </Page>

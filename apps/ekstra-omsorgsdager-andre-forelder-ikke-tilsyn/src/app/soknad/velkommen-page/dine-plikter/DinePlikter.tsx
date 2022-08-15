@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Lenke from 'nav-frontend-lenker';
+import { Link } from '@navikt/ds-react';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import getLenker from '../../../lenker';
 
@@ -33,9 +33,9 @@ const DinePlikterContent: React.FunctionComponent = () => {
                     <span>
                         <Normaltekst>
                             <FormattedMessage id="modal.dinePlikter.part2a" />{' '}
-                            <Lenke href={getLenker(intl.locale).rettOgPlikt} target="_blank">
+                            <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
                                 <FormattedMessage id="modal.dinePlikter.part2b" />
-                            </Lenke>
+                            </Link>
                         </Normaltekst>
                     </span>
                 </li>

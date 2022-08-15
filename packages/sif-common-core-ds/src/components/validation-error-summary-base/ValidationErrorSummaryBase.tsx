@@ -1,5 +1,5 @@
+import { Heading } from '@navikt/ds-react';
 import React, { Component } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
 import bemUtils from '../../utils/bemUtils';
 import ActionLink from '../action-link/ActionLink';
 import './validationErrorSummaryBase.scss';
@@ -41,7 +41,9 @@ class ValidationErrorSummaryBase extends Component<ValidationErrorSummaryBasePro
 
         return (
             <article tabIndex={-1} className={`${bem.block} ${className}`}>
-                <Undertittel>{title}</Undertittel>
+                <Heading size="small" level="2">
+                    {title}
+                </Heading>
                 <ul className={bem.element('list')}>{listItems}</ul>
             </article>
         );

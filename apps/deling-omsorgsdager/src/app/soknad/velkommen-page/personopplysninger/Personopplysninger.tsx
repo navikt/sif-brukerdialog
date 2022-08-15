@@ -1,24 +1,23 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import Lenke from 'nav-frontend-lenker';
-import { Ingress, Systemtittel } from 'nav-frontend-typografi';
+import { Heading, Link } from '@navikt/ds-react';
 import getLenker from '../../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     const intl = useIntl();
     return (
         <>
-            <Systemtittel tag="h1">
+            <Heading level="1" size="medium">
                 <FormattedMessage id="modal.personopplysninger.1" />
-            </Systemtittel>
+            </Heading>
             <Block margin="xl">
                 <FormattedMessage id="modal.personopplysninger.2" />
             </Block>
             <Block margin="xl">
-                <Ingress tag="h2">
+                <Heading level="2" size="small">
                     <FormattedMessage id="modal.personopplysninger.3" />
-                </Ingress>
+                </Heading>
                 <p>
                     <FormattedMessage id="modal.personopplysninger.4" />
                 </p>
@@ -55,9 +54,9 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                 </ul>
             </Block>
             <Block margin="xl">
-                <Ingress tag="h2">
+                <Heading level="2" size="small">
                     <FormattedMessage id="modal.personopplysninger.6" />
-                </Ingress>
+                </Heading>
                 <p>
                     <FormattedMessage id="modal.personopplysninger.7" />
                 </p>
@@ -66,9 +65,9 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                 <p>
                     <FormattedMessage id="modal.personopplysninger.8.1" />
                     {` `}
-                    <Lenke href={getLenker(intl.locale).personvern} target="_blank">
+                    <Link href={getLenker(intl.locale).personvern} target="_blank">
                         <FormattedMessage id="modal.personopplysninger.8.2" />
-                    </Lenke>
+                    </Link>
                     <FormattedMessage id="modal.personopplysninger.8.3" />
                 </p>
             </Block>

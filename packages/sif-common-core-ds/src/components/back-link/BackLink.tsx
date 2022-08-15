@@ -1,9 +1,9 @@
+import { Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Back } from '@navikt/ds-icons';
 import { History } from 'history';
-import Chevron from 'nav-frontend-chevron';
-import Lenke from 'nav-frontend-lenker';
 import bemUtils from '../../utils/bemUtils';
 import './backLink.scss';
 
@@ -30,11 +30,13 @@ const BackLink = ({ className, href, history, onClick, ariaLabel }: Props) => {
 
     return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
-        <div className={`${bem.block} ${className}`} onClick={handleOnClick}>
-            <Chevron className={bem.element('chevron')} type="venstre" />
-            <Lenke className={bem.element('link')} href={href} ariaLabel={ariaLabel}>
+        <div className={`${bem.block} ${className || ''}`} onClick={handleOnClick}>
+            <span className={bem.element('chevron')}>
+                <Back />
+            </span>
+            <Link className={bem.element('link')} href={href} aria-label={ariaLabel}>
                 <FormattedMessage id="backlink.label" />
-            </Lenke>
+            </Link>
         </div>
     );
 };

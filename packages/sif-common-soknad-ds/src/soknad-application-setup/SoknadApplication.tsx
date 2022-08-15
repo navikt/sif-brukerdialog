@@ -6,6 +6,7 @@ import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
+import useDecoratorLanguageSelector from '@navikt/sif-common-core-ds/lib/hooks/useDecoratorLanguageSelector';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 import {
@@ -18,10 +19,9 @@ import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
-import { Normaltekst } from 'nav-frontend-typografi';
 import ErrorPage from '../soknad-common-pages/ErrorPage';
 import SoknadErrorMessages from '../soknad-error-messages/SoknadErrorMessages';
-import useDecoratorLanguageSelector from '@navikt/sif-common-core-ds/lib/hooks/useDecoratorLanguageSelector';
+
 interface AppStatus {
     applicationKey: string;
     sanityConfig: SanityConfig;
@@ -64,24 +64,22 @@ const SoknadApplication = ({ intlMessages: messages, sentryKey, appStatus, publi
     });
 
     return (
-        <Normaltekst tag="div">
-            <IntlProvider locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()} messages={localeMessages}>
-                <BrowserRouter basename={publicPath}>
-                    {isValidAppStatus(appStatus) ? (
-                        <AppStatusWrapper
-                            applicationKey={appStatus.applicationKey}
-                            sanityConfig={appStatus.sanityConfig}
-                            contentRenderer={() => <>{children}</>}
-                            unavailableContentRenderer={() => (
-                                <ErrorPage contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />} />
-                            )}
-                        />
-                    ) : (
-                        children
-                    )}
-                </BrowserRouter>
-            </IntlProvider>
-        </Normaltekst>
+        <IntlProvider locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()} messages={localeMessages}>
+            <BrowserRouter basename={publicPath}>
+                {isValidAppStatus(appStatus) ? (
+                    <AppStatusWrapper
+                        applicationKey={appStatus.applicationKey}
+                        sanityConfig={appStatus.sanityConfig}
+                        contentRenderer={() => <>{children}</>}
+                        unavailableContentRenderer={() => (
+                            <ErrorPage contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />} />
+                        )}
+                    />
+                ) : (
+                    children
+                )}
+            </BrowserRouter>
+        </IntlProvider>
     );
 };
 export default SoknadApplication;

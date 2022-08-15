@@ -1,12 +1,12 @@
+import { Link } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import CounsellorPanel from '@navikt/sif-common-core-ds/lib/components/counsellor-panel/CounsellorPanel';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import StepBanner from '@navikt/sif-common-core-ds/lib/components/step-banner/StepBanner';
-import Lenke from 'nav-frontend-lenker';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../lenker';
 
 const IkkeTilgangPage = () => {
@@ -16,16 +16,16 @@ const IkkeTilgangPage = () => {
         <Page
             className="ikkeTilgangPage"
             title={intlHelper(intl, 'application.title')}
-            topContentRenderer={() => <StepBanner text={intlHelper(intl, 'application.title')} />}>
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
             <Block margin="xxl">
-                <CounsellorPanel type="plakat">
+                <SifGuidePanel poster={true}>
                     <p>
                         <FormattedMessage id="page.ikkeTilgang.tekst" />
                     </p>
-                    <Lenke href={getLenker(intl.locale).meldingOmDelingAvOmsorgsdager} target="_blank">
+                    <Link href={getLenker(intl.locale).meldingOmDelingAvOmsorgsdager} target="_blank">
                         <FormattedMessage id="page.ikkeTilgang.lastNed" />
-                    </Lenke>
-                </CounsellorPanel>
+                    </Link>
+                </SifGuidePanel>
             </Block>
         </Page>
     );

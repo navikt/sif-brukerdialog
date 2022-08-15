@@ -51,8 +51,6 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
     const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut } = useAmplitudeInstance();
 
     const resetSoknad = async (redirectToFrontpage = true): Promise<void> => {
-        // eslint-disable-next-line no-console
-        console.log('reset');
         await soknadTempStorage.purge();
         setInitialFormData({ ...initialSoknadFormData });
         setSoknadId(undefined);

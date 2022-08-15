@@ -10,8 +10,8 @@ function VeilederSVG({ mood = 'happy' }: Props) {
     return (
         <svg
             width="90"
-            height="80"
-            viewBox="0 10 90 80"
+            height="90"
+            viewBox="0 0 90 90"
             fill="none"
             xmlSpace="preserve"
             focusable={false}
@@ -28,7 +28,7 @@ function VeilederSVG({ mood = 'happy' }: Props) {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M53.0412 54.6718C52.9682 58.5337 49.396 62.4958 45 62.4958C40.5849 62.4958 37.0007 58.4992 36.9581 54.6214C34.6705 55.1991 31.1785 56.9414 28.2962 59.8532C25.5051 62.6729 23.2859 66.9113 23.2859 70.1992V90H66.7142V70.1992C66.7142 66.9046 64.447 62.659 61.6043 59.8361C58.7616 57.0131 55.3434 55.2944 53.0412 54.6718Z"
-                fill="#523874"
+                fill="#0056B4"
             />
             <path
                 fillRule="evenodd"

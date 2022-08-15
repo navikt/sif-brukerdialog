@@ -11,7 +11,7 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
-import Lenke from 'nav-frontend-lenker';
+import { Link } from '@navikt/ds-react';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
@@ -73,12 +73,9 @@ const SamværsavtaleStep: React.FunctionComponent = () => {
                 <Block margin={'l'}>
                     <Alert variant="warning">
                         <FormattedMessage id={'step.samværsavtale.vedlegg.totalstørrelse.1'} />
-                        <Lenke
-                            target={'_blank'}
-                            rel={'noopener noreferrer'}
-                            href={getLenker(intl.locale).ettersendelse}>
+                        <Link target={'_blank'} rel={'noopener noreferrer'} href={getLenker(intl.locale).ettersendelse}>
                             <FormattedMessage id={'step.samværsavtale.vedlegg.totalstørrelse.2'} />
-                        </Lenke>
+                        </Link>
                         <FormattedMessage id={'step.samværsavtale.vedlegg.totalstørrelse.3'} />
                     </Alert>
                 </Block>

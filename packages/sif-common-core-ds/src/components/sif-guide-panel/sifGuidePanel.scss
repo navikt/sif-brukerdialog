@@ -1,0 +1,13 @@
+.sif-guidePanel {
+    &--compact {
+        &:not(.navds-guide-panel--poster) {
+            padding-left: 0;
+            .navds-guide {
+                transform: translateX(1rem);
+            }
+            .navds-guide-panel__content {
+                padding-left: 7rem;
+            }
+        }
+    }
+}

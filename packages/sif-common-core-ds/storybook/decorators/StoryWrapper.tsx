@@ -1,5 +1,9 @@
 import { Modal } from '@navikt/ds-react';
 import * as React from 'react';
+import { IntlProvider } from 'react-intl';
+import { allCommonMessages } from '../../src/i18n/allCommonMessages';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
@@ -16,9 +20,13 @@ const StoryWrapper = ({ children }: IntlProviderProps) => {
     });
 
     return (
-        <div id="story-wrapper" style={{ maxWidth: '600px', fontSize: '1rem' }}>
-            <div style={{ fontSize: '1rem' }}>{children}</div>
-        </div>
+        <Router>
+            <IntlProvider messages={allCommonMessages.nb} locale="nb">
+                <div id="story-wrapper" style={{ maxWidth: '600px', fontSize: '1rem' }}>
+                    <div style={{ fontSize: '1rem' }}>{children}</div>
+                </div>
+            </IntlProvider>
+        </Router>
     );
 };
 

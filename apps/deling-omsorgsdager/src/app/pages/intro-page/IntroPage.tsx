@@ -3,13 +3,13 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import StepBanner from '@navikt/sif-common-core-ds/lib/components/step-banner/StepBanner';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { navigateToSoknadFrontpage } from '../../utils/navigationUtils';
 import IntroForm from './IntroForm';
 
@@ -20,7 +20,7 @@ const IntroPage: React.FunctionComponent = () => {
     return (
         <Page
             title={intlHelper(intl, 'application.title')}
-            topContentRenderer={() => <StepBanner tag="h1" text={intlHelper(intl, 'application.title')} />}>
+            topContentRenderer={() => <SoknadHeader level="1" title={intlHelper(intl, 'application.title')} />}>
             <Block margin="xxxl">
                 <section aria-label="Introduksjon">
                     <SifGuidePanel poster>

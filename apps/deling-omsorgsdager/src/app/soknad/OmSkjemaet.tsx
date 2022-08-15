@@ -1,8 +1,7 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import React from 'react';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { Element } from 'nav-frontend-typografi';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 interface Props {
     showAlertstripe?: boolean;
@@ -28,7 +27,9 @@ const OmSkjemaet: React.FunctionComponent<Props> = ({ showAlertstripe = false })
                 {showAlertstripe && (
                     <Block margin="xl">
                         <Alert variant="info" size="small">
-                            <Element tag="h2">Kort om skjemaet</Element>
+                            <Heading level="2" size="xsmall">
+                                Kort om skjemaet
+                            </Heading>
                             Dette skjemaet består av fem sider og har rundt 20 spørsmål til sammen, avhengig av hva du
                             svarer.
                             <p>

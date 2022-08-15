@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import Lenke from 'nav-frontend-lenker';
+import { Link } from '@navikt/ds-react';
 import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import getLenker from '../../../lenker';
 
@@ -49,9 +49,9 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
             <Box margin="xl">
                 <Normaltekst>
                     {getText('personvern.part1a')}{' '}
-                    <Lenke href={getLenker(intl.locale).personvern} target="_blank">
+                    <Link href={getLenker(intl.locale).personvern} target="_blank">
                         {getText('personvern.part1b')}
-                    </Lenke>
+                    </Link>
                     .
                 </Normaltekst>
             </Box>

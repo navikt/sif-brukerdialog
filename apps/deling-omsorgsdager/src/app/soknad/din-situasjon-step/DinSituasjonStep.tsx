@@ -6,7 +6,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getListValidator, getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import FormQuestion from '@navikt/sif-common-soknad-ds/lib/form-question/FormQuestion';
 import { useFormikContext } from 'formik';
-import Lenke from 'nav-frontend-lenker';
+import { Link } from '@navikt/ds-react';
 import StepIntroduction from '../../components/step-introduction/StepIntroduction';
 import getLenker from '../../lenker';
 import { Arbeidssituasjon, DinSituasjonFormData, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
@@ -54,9 +54,9 @@ const DinSituasjonStep: React.FunctionComponent = () => {
                 </p>
                 <p>
                     <FormattedMessage id="step.din_situasjon.veileder.intro.2" />
-                    <Lenke href={getLenker(intl.locale).medlemskapIFolketrygden} target="_blank">
+                    <Link href={getLenker(intl.locale).medlemskapIFolketrygden} target="_blank">
                         {intlHelper(intl, 'nav.no')}
-                    </Lenke>
+                    </Link>
                 </p>
             </StepIntroduction>
             <FormQuestion

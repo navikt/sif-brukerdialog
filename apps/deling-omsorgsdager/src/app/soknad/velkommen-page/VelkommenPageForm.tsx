@@ -1,11 +1,10 @@
+import { Button, Link } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/info-dialog/InfoDialog';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import DinePlikterContent from './dine-plikter/DinePlikter';
@@ -40,21 +39,23 @@ const VelkommenPageForm: React.FunctionComponent<Props> = ({ onStart }) => {
                         id="samtykke.harForståttLabel"
                         values={{
                             plikterLink: (
-                                <Lenke href="#" onClick={(): void => setDialogState({ dinePlikterModalOpen: true })}>
+                                <Link href="#" onClick={(): void => setDialogState({ dinePlikterModalOpen: true })}>
                                     {intlHelper(intl, 'samtykke.harForståttLabel.lenketekst')}
-                                </Lenke>
+                                </Link>
                             ),
                         }}
                     />
                 </SoknadFormComponents.ConfirmationCheckbox>
                 <Block textAlignCenter={true} margin="xl">
-                    <Hovedknapp>{intlHelper(intl, 'step.velkommen.button.start')}</Hovedknapp>
+                    <Button variant="primary" type="submit">
+                        {intlHelper(intl, 'step.velkommen.button.start')}
+                    </Button>
                     <FormBlock>
-                        <Lenke
+                        <Link
                             href="#"
                             onClick={(): void => setDialogState({ behandlingAvPersonopplysningerModalOpen: true })}>
                             <FormattedMessage id="step.velkommen.personopplysninger.lenketekst" />
-                        </Lenke>
+                        </Link>
                     </FormBlock>
                 </Block>
             </FormBlock>

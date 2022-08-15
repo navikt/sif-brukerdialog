@@ -10,7 +10,7 @@ export type CounsellorWithSpeechBubbleProps = SpeechBubbleProps;
 
 const CounsellorWithSpeechBubble = ({ strongText, normalText, bottomContent }: SpeechBubbleProps) => (
     <section className={bem.block}>
-        <SpeechBubble strongText={strongText} normalText={normalText} bottomContent={bottomContent} titleTag="h2" />
+        <SpeechBubble strongText={strongText} normalText={normalText} bottomContent={bottomContent} />
         <Counsellor theme="dark" />
     </section>
 );

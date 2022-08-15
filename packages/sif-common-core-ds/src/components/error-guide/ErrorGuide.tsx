@@ -1,8 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '../block/Block';
-import Guide from '../guide/Guide';
-import VeilederSVG from '../veileder-svg/VeilederSVG';
+import SifGuidePanel from '../sif-guide-panel/SifGuidePanel';
 
 interface Props {
     title: string;
@@ -11,18 +10,14 @@ interface Props {
 }
 
 const ErrorGuide = ({ title, stillHappy, children }: Props) => (
-    <Guide
-        type="plakat"
-        kompakt={true}
-        fargetema="normal"
-        svg={<VeilederSVG mood={stillHappy ? 'happy' : 'uncertain'} />}>
+    <SifGuidePanel poster={true} mood={stillHappy ? 'happy' : 'uncertain'}>
         <Heading level="2" size="medium">
             {title}
         </Heading>
         <Block margin="m" padBottom="l">
             {children}
         </Block>
-    </Guide>
+    </SifGuidePanel>
 );
 
 export default ErrorGuide;

@@ -17,6 +17,14 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "0.3.1",
+        "@storybook/addon-a11y": "^6.5.10",
+        "@storybook/addon-actions": "^6.5.10",
+        "@storybook/addon-essentials": "^6.5.10",
+        "@storybook/addon-interactions": "^6.5.10",
+        "@storybook/addon-links": "^6.5.10",
+        "@storybook/node-logger": "^6.5.10",
+        "@storybook/react": "^6.5.10",
+        "@storybook/testing-library": "^0.0.13",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^12.1.4",
         "@testing-library/user-event": "^14.4.3",
@@ -63,6 +71,7 @@
     "scripts": {
         "build": "npm-run-all build-package",
         "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
+        "build-storybook": "build-storybook -s public",
         "clean": "rm -rf node_modules lib",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
@@ -70,6 +79,7 @@
         "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
         "dev": "yarn compile-lib-script-watch",
+        "storybook": "start-storybook -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --passWithNoTests"
     },
     "private": false
