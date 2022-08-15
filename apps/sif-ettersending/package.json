@@ -11,11 +11,10 @@
         "@navikt/ds-css": "^0.18.28",
         "@navikt/ds-datepicker": "^3.1.1",
         "@navikt/ds-icons": "^0.8.20",
-        "@navikt/ds-react": "^0.19.26",
+        "@navikt/ds-react": "^0.19.27",
         "@navikt/ds-tailwind": "^0.2.9",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
         "@navikt/sif-common-amplitude": "*",
-        "@navikt/sif-common-core": "12.0.4",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
@@ -63,7 +62,7 @@
         "tailwindcss": "^3.1.8",
         "ts-loader": "^9.3.1",
         "webpack": "^5.74.0",
-        "webpack-dev-server": "^4.9.3"
+        "webpack-dev-server": "^4.10.0"
     },
     "jest": {
         "transformIgnorePatterns": [
