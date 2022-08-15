@@ -9,7 +9,7 @@
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
     "devDependencies": {
-        "@changesets/cli": "^2.24.2",
+        "@changesets/cli": "^2.24.3",
         "@navikt/ds-tailwind": "^0.2.9",
         "@snyk/protect": "^1.986.0",
         "@storybook/builder-webpack5": "^6.5.10",
