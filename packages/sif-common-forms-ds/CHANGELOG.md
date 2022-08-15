@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 1.1.0
+
+### Minor Changes
+
+-   863393c: Erstatte nav-frontend-moduler komponenter, starte på storybook i sif-common-core-ds
+
 ## 1.0.0
 
 ### Major Changes
