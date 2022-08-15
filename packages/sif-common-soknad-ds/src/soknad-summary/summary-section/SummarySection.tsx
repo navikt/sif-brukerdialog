@@ -1,7 +1,7 @@
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { Undertittel } from 'nav-frontend-typografi';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import './summarySection.less';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
     header: string;
@@ -11,13 +11,36 @@ interface Props {
 
 const bem = bemUtils('summarySection');
 
-const SummarySection = ({ header, headerTag = 'h2', children }: Props) => (
-    <div className={bem.block}>
-        <Undertittel tag={headerTag} className={bem.element('header')}>
-            {header}
-        </Undertittel>
-        {children}
-    </div>
-);
+const getLevelAndSize = (headerTag: string): { level: '2' | '3' | '4'; size: 'medium' | 'small' | 'xsmall' } => {
+    switch (headerTag) {
+        case 'h3':
+            return {
+                level: '3',
+                size: 'small',
+            };
+        case 'h4':
+            return {
+                level: '4',
+                size: 'xsmall',
+            };
+        default:
+            return {
+                level: '2',
+                size: 'medium',
+            };
+    }
+};
+
+const SummarySection = ({ header, headerTag = 'h2', children }: Props) => {
+    const { level, size } = getLevelAndSize(headerTag);
+    return (
+        <div className={bem.block}>
+            <Heading level={level} size={size} className={bem.element('header')}>
+                {header}
+            </Heading>
+            {children}
+        </div>
+    );
+};
 
 export default SummarySection;

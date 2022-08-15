@@ -1,28 +1,26 @@
+import { SanityConfig } from '@navikt/appstatus-react/lib/types';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
+import { BrowserRouter } from 'react-router-dom';
 import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
-import { BrowserRouter } from 'react-router-dom';
-import AppStatusWrapper from '@navikt/sif-common-core/lib/components/app-status-wrapper/AppStatusWrapper';
-import LanguageToggle from '@navikt/sif-common-core/lib/components/language-toggle/LanguageToggle';
-import ApplicationMessages from '@navikt/sif-common-core/lib/dev-utils/intl/application-messages/ApplicationMessages';
-import { MessageFileFormat } from '@navikt/sif-common-core/lib/dev-utils/intl/devIntlUtils';
-import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
+import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
+import useDecoratorLanguageSelector from '@navikt/sif-common-core-ds/lib/hooks/useDecoratorLanguageSelector';
+import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 import {
     getBokmålLocale,
     getLocaleFromSessionStorage,
     getNynorskLocale,
     setLocaleInSessionStorage,
-} from '@navikt/sif-common-core/lib/utils/localeUtils';
+} from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import dayjs from 'dayjs';
-import { Normaltekst } from 'nav-frontend-typografi';
-import ErrorPage from '../soknad-common-pages/ErrorPage';
-import SoknadErrorMessages from '../soknad-error-messages/SoknadErrorMessages';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
-import { SanityConfig } from '@navikt/appstatus-react/lib/types';
+import ErrorPage from '../soknad-common-pages/ErrorPage';
+import SoknadErrorMessages from '../soknad-error-messages/SoknadErrorMessages';
 
 interface AppStatus {
     applicationKey: string;
@@ -51,44 +49,37 @@ const isValidAppStatus = (appStatus: AppStatus | any): appStatus is AppStatus =>
     appStatus.sanityConfig?.dataset !== undefined &&
     appStatus.sanityConfig?.projectId !== undefined;
 
-const SoknadApplication = ({ intlMessages: messages, appName, sentryKey, appStatus, publicPath, children }: Props) => {
+const SoknadApplication = ({ intlMessages: messages, sentryKey, appStatus, publicPath, children }: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = messages[locale] || messages['nb'];
-    const hasMultipleLocales = Object.keys(messages).length > 1;
+    const locales = Object.keys(messages) as any;
 
     if (sentryKey) {
         getSentryLoggerForApp(sentryKey, [/sykdom-i-familien/]).init();
     }
 
+    useDecoratorLanguageSelector([locales], (locale: any) => {
+        setLocaleInSessionStorage(locale);
+        setLocale(locale);
+    });
+
     return (
-        <Normaltekst tag="div">
-            <IntlProvider locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()} messages={localeMessages}>
-                {hasMultipleLocales && (
-                    <LanguageToggle
-                        locale={locale}
-                        toggle={(activeLocale: Locale): void => {
-                            setLocaleInSessionStorage(activeLocale);
-                            setLocale(activeLocale);
-                        }}
+        <IntlProvider locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()} messages={localeMessages}>
+            <BrowserRouter basename={publicPath}>
+                {isValidAppStatus(appStatus) ? (
+                    <AppStatusWrapper
+                        applicationKey={appStatus.applicationKey}
+                        sanityConfig={appStatus.sanityConfig}
+                        contentRenderer={() => <>{children}</>}
+                        unavailableContentRenderer={() => (
+                            <ErrorPage contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />} />
+                        )}
                     />
+                ) : (
+                    children
                 )}
-                <BrowserRouter basename={publicPath}>
-                    {isValidAppStatus(appStatus) ? (
-                        <AppStatusWrapper
-                            applicationKey={appStatus.applicationKey}
-                            sanityConfig={appStatus.sanityConfig}
-                            contentRenderer={() => <>{children}</>}
-                            unavailableContentRenderer={() => (
-                                <ErrorPage contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />} />
-                            )}
-                        />
-                    ) : (
-                        children
-                    )}
-                    <ApplicationMessages messages={messages} title={appName} />
-                </BrowserRouter>
-            </IntlProvider>
-        </Normaltekst>
+            </BrowserRouter>
+        </IntlProvider>
     );
 };
 export default SoknadApplication;

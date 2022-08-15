@@ -1,6 +1,6 @@
 import React from 'react';
-import LoadingSpinner from '@navikt/sif-common-core/lib/components/loading-spinner/LoadingSpinner';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 
 const LoadingPage = () => (
     <Page title={'Henter informasjon'}>

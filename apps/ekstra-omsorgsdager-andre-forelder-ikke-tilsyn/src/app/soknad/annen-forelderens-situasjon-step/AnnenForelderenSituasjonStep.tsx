@@ -1,25 +1,24 @@
 import React from 'react';
-import SoknadFormStep from '../SoknadFormStep';
-import { StepID } from '../soknadStepsConfig';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import SoknadFormComponents from '../SoknadFormComponents';
-import { AnnenForeldrenSituasjon, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import { useFormikContext } from 'formik';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import AlertStripe from 'nav-frontend-alertstriper';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
-import dayjs from 'dayjs';
-
 import {
-    getYesOrNoValidator,
     getRequiredFieldValidator,
     getStringValidator,
+    getYesOrNoValidator,
 } from '@navikt/sif-common-formik/lib/validation';
+import dayjs from 'dayjs';
+import { useFormikContext } from 'formik';
+import AlertStripe from 'nav-frontend-alertstriper';
+import { AnnenForeldrenSituasjon, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { validateFradato, validateTildato } from '../../validation/fieldValidations';
+import SoknadFormComponents from '../SoknadFormComponents';
+import SoknadFormStep from '../SoknadFormStep';
+import { StepID } from '../soknadStepsConfig';
 
 export const isPeriodeLess6month = (periodeFom: string, periodeTom: string): boolean => {
     return dayjs(periodeTom).add(1, 'day').diff(periodeFom, 'month', true) < 6;
@@ -162,7 +161,7 @@ const AnnenForelderenSituasjonStep = () => {
 
     return (
         <SoknadFormStep id={StepID.ANNEN_FORELDER_SITUASJON} onStepCleanup={cleanupAnnenForelderenSituasjonStep}>
-            <CounsellorPanel>{intlHelper(intl, 'step.annen-foreldrens-situasjon.banner.1')}</CounsellorPanel>
+            <SifGuidePanel>{intlHelper(intl, 'step.annen-foreldrens-situasjon.banner.1')}</SifGuidePanel>
 
             <Box margin="xxl">
                 <SoknadFormComponents.RadioPanelGroup

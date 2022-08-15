@@ -1,6 +1,5 @@
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { Element } from 'nav-frontend-typografi';
-import bemUtils from '../../utils/bemUtils';
 import StatusIkon, { StatusIconStatusKey } from './status-icon/StatusIcon';
 
 interface Props {
@@ -10,19 +9,15 @@ interface Props {
     description: string;
 }
 
-const bem = bemUtils('pictureScanningGuide').child('example');
-
 const PictureScanningExample = ({ image, status, statusText, description }: Props) => (
-    <div className={bem.block}>
-        <div className={bem.element('image')}>{image}</div>
-        <Element tag="div" className={bem.element('title')}>
-            <span className={bem.element('statusIcon')} role="presentation">
-                <StatusIkon status={status} />
-            </span>
-            {statusText}
-        </Element>
-        <div className={bem.element('description')}>{description}</div>
-    </div>
+    <BodyLong as="div">
+        <div className="pl-4 mb-3">{image}</div>
+        <Heading size="xsmall" level="4" spacing={true} className="flex">
+            <StatusIkon status={status} />
+            <span className="pl-2">{statusText}</span>
+        </Heading>
+        <p>{description}</p>
+    </BodyLong>
 );
 
 export default PictureScanningExample;

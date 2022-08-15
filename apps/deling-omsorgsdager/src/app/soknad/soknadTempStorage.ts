@@ -57,8 +57,6 @@ const soknadTempStorage: SoknadTemporaryStorage = {
         });
     },
     purge: () => {
-        // eslint-disable-next-line no-console
-        console.log('purge');
         return persistSetup.purge();
     },
     rehydrate: persistSetup.rehydrate,

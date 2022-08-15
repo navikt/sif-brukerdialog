@@ -1,8 +1,7 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { Undertittel } from 'nav-frontend-typografi';
 import { createMultiLocaleObject, getMissingMessageKeys, MessageFileFormat } from '../devIntlUtils';
 import MessagesPreviewExplanation from './MessagePreviewExplanation';
 import MessagesList from './MessagesList';
@@ -29,7 +28,9 @@ const MessagesPreview = ({
         <div className={bem.block}>
             {missingMessages && showMissingTextSummary && (
                 <>
-                    <Undertittel>Tekstnøkler som ikke er oversatt</Undertittel>
+                    <Heading level="2" size="medium">
+                        Tekstnøkler som ikke er oversatt
+                    </Heading>
                     <Block margin="m">
                         <Alert variant="warning">
                             <pre className={bem.element('missingList')}>
@@ -44,7 +45,9 @@ const MessagesPreview = ({
                 </>
             )}
             <Block margin="xl" padBottom="l">
-                <Undertittel>{title}</Undertittel>
+                <Heading level="2" size="medium">
+                    {title}
+                </Heading>
             </Block>
             {showExplanation && (
                 <Block>

@@ -1,14 +1,14 @@
 import React from 'react';
-import SoknadFormStep from '../SoknadFormStep';
-import { StepID } from '../soknadStepsConfig';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik/lib/validation';
+import { Person } from 'app/types/Person';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
-import { Person } from 'app/types/Person';
-import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik/lib/validation';
+import SoknadFormStep from '../SoknadFormStep';
+import { StepID } from '../soknadStepsConfig';
 
 type Props = {
     søker: Person;
@@ -19,13 +19,13 @@ const OmAnnenForelderStep = ({ søker }: Props) => {
 
     return (
         <SoknadFormStep id={StepID.OM_ANNEN_FORELDER}>
-            <CounsellorPanel>
+            <SifGuidePanel>
                 {intlHelper(intl, 'step.om-annen-forelder.banner')}
                 <ul>
                     <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.1')}</li>
                     <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.2')}</li>
                 </ul>
-            </CounsellorPanel>
+            </SifGuidePanel>
 
             <FormBlock>
                 <SoknadFormComponents.Input

@@ -1,5 +1,5 @@
+import { Panel, PanelProps } from '@navikt/ds-react';
 import React from 'react';
-import Panel, { PanelProps } from 'nav-frontend-paneler';
 import bemUtils from '../../utils/bemUtils';
 import './responsivePanel.scss';
 

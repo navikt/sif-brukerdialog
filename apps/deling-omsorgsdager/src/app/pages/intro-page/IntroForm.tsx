@@ -8,7 +8,7 @@ import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import FormQuestion from '@navikt/sif-common-soknad-ds/lib/form-question/FormQuestion';
-import Lenke from 'nav-frontend-lenker';
+import { Link } from '@navikt/ds-react';
 import getLenker from '../../lenker';
 import { IntroFormData, IntroFormField, introFormInitialValues } from './introFormConfig';
 
@@ -86,9 +86,9 @@ const getCommonQuestions = (intl: IntlShape, values: IntroFormData, addAleneomss
                                 {intlHelper(intl, 'introForm.form.harAleneomsorg.spm.nedtrekk.1')}
                                 <p>{intlHelper(intl, 'introForm.form.harAleneomsorg.spm.nedtrekk.2')}</p>
                                 <p>
-                                    <Lenke href={getLenker().merOmFastBostedOgSamvær}>
+                                    <Link href={getLenker().merOmFastBostedOgSamvær}>
                                         {intlHelper(intl, 'introForm.form.harAleneomsorg.spm.nedtrekk.link')}
-                                    </Lenke>
+                                    </Link>
                                 </p>
                             </ExpandableInfo>
                         }

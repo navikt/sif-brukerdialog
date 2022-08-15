@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
-import './page.less';
+import './page.scss';
 
 interface PageProps {
     className?: string;

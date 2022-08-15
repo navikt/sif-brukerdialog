@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import bemUtils from '../../utils/bemUtils';
 import CollapsableContainer from './CollapsableContainer';
 import InfoToggleButton from './InfoToggleButton';
-import './expandableInfo.less';
+import './expandableInfo.scss';
 
 interface Props {
     children: React.ReactNode;

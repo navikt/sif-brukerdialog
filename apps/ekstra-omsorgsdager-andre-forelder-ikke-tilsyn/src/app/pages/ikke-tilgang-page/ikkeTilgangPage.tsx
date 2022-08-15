@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { Link } from '@navikt/ds-react';
 import getLenker from '../../lenker';
-import Lenke from 'nav-frontend-lenker';
 
 const IkkeTilgangPage = () => {
     const intl = useIntl();
@@ -16,16 +16,16 @@ const IkkeTilgangPage = () => {
         <Page
             className="ikkeTilgangPage"
             title={intlHelper(intl, 'application.title')}
-            topContentRenderer={() => <StepBanner text={intlHelper(intl, 'application.title')} />}>
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
             <Box margin="xxl">
-                <CounsellorPanel type="plakat">
+                <SifGuidePanel poster={true}>
                     <p>
                         <FormattedMessage id="page.ikkeTilgang.tekst" />
                     </p>
-                    <Lenke href={getLenker(intl.locale).soknadRegnetSomAleneBrev} target="_blank">
+                    <Link href={getLenker(intl.locale).soknadRegnetSomAleneBrev} target="_blank">
                         <FormattedMessage id="page.ikkeTilgang.lastNed" />
-                    </Lenke>
-                </CounsellorPanel>
+                    </Link>
+                </SifGuidePanel>
             </Box>
         </Page>
     );

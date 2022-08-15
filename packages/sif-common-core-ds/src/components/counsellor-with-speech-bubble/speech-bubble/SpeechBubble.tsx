@@ -1,5 +1,5 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { Element, Normaltekst as NormalText } from 'nav-frontend-typografi';
 import bemHelper from '../../../utils/bemUtils';
 import Block from '../../block/Block';
 import './speechBubble.scss';
@@ -9,17 +9,16 @@ const bem = bemHelper('speechBubble');
 export interface SpeechBubbleProps {
     strongText: string;
     normalText: React.ReactNode;
-    titleTag?: 'h1' | 'h2' | 'h3' | string;
     bottomContent?: React.ReactNode;
 }
 
-const SpeechBubble = ({ titleTag, strongText, normalText, bottomContent }: SpeechBubbleProps) => (
+const SpeechBubble = ({ strongText, normalText, bottomContent }: SpeechBubbleProps) => (
     <div className={bem.block}>
-        <Element tag={titleTag} className={bem.element('strongText')}>
+        <Heading level="2" size="xsmall" className={bem.element('strongText')}>
             {strongText}
-        </Element>
+        </Heading>
         <Block margin="m">
-            <NormalText className={bem.element('normalText')}>{normalText}</NormalText>
+            <p className={bem.element('normalText')}>{normalText}</p>
         </Block>
         {bottomContent && (
             <Block margin="m">

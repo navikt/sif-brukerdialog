@@ -1,5 +1,5 @@
 import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { StepIndicatorStep } from './step-indicator/StepIndicator';
 import { SoknadApplicationType, SoknadStepsConfig, StepConfig } from './soknadStepTypes';
 

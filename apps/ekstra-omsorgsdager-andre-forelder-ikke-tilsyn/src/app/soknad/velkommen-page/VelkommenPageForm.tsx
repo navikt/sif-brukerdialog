@@ -5,7 +5,7 @@ import InfoDialog from '@navikt/sif-common-core/lib/components/dialogs/info-dial
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
+import { Link } from '@navikt/ds-react';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import DinePlikterContent from './dine-plikter/DinePlikter';
@@ -41,9 +41,9 @@ const VelkommenPageForm = ({ onStart }: Props) => {
                         id="samtykke.harForståttLabel"
                         values={{
                             plikterLink: (
-                                <Lenke href="#" onClick={() => setDialogState({ dinePlikterModalOpen: true })}>
+                                <Link href="#" onClick={() => setDialogState({ dinePlikterModalOpen: true })}>
                                     {intlHelper(intl, 'samtykke.harForståttLabel.lenketekst')}
-                                </Lenke>
+                                </Link>
                             ),
                         }}
                     />
@@ -51,11 +51,11 @@ const VelkommenPageForm = ({ onStart }: Props) => {
                 <Box textAlignCenter={true} margin="xl">
                     <Hovedknapp>{intlHelper(intl, 'step.velkommen.button.start')}</Hovedknapp>
                     <FormBlock>
-                        <Lenke
+                        <Link
                             href="#"
                             onClick={() => setDialogState({ behandlingAvPersonopplysningerModalOpen: true })}>
                             <FormattedMessage id="step.velkommen.personopplysninger.lenketekst" />
-                        </Lenke>
+                        </Link>
                     </FormBlock>
                 </Box>
             </FormBlock>

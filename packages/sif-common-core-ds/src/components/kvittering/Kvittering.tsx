@@ -1,5 +1,5 @@
+import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import Block from '../block/Block';
 import CheckmarkIcon from '../checkmark-icon/CheckmarkIcon';
 import './kvittering.scss';
@@ -19,7 +19,9 @@ const Kvittering = ({ tittel, liste, children }: Props) => {
             <Block textAlignCenter={true} margin="none">
                 <CheckmarkIcon />
                 <Block margin="xl">
-                    <Innholdstittel>{tittel}</Innholdstittel>
+                    <Heading level="1" size="medium">
+                        {tittel}
+                    </Heading>
                 </Block>
             </Block>
             {liste && (

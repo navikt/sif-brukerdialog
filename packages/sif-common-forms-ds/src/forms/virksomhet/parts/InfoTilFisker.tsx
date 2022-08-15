@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import CounsellorPanel from '@navikt/sif-common-core-ds/lib/components/counsellor-panel/CounsellorPanel';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
@@ -10,9 +10,7 @@ interface Props {
 const InfoTilFisker = ({ navnPåVirksomheten }: Props) => {
     const intl = useIntl();
     return (
-        <CounsellorPanel>
-            {intlHelper(intl, 'sifForms.virksomhet.veileder_fisker', { navnPåVirksomheten })}
-        </CounsellorPanel>
+        <SifGuidePanel>{intlHelper(intl, 'sifForms.virksomhet.veileder_fisker', { navnPåVirksomheten })}</SifGuidePanel>
     );
 };
 

@@ -1,10 +1,9 @@
+import { Link as DSLink } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import ErrorGuide from '@navikt/sif-common-core/lib/components/error-guide/ErrorGuide';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import Lenke from 'nav-frontend-lenker';
-import { Ingress } from 'nav-frontend-typografi';
 import { Link } from 'react-router-dom';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface ErrorWithFrontpageUrlProps {
     soknadFrontpageUrl?: string;
@@ -28,19 +27,17 @@ const SoknadErrorMessage = ({
 }) => {
     const intl = useIntl();
     return (
-        <ErrorGuide title={intlHelper(intl, titleKey)}>
-            <Ingress tag="div">
-                <p>
-                    <FormattedMessage id={contentKey} />
-                </p>
-                {soknadFrontpageUrl && (
-                    <Lenke href={soknadFrontpageUrl}>
-                        <FormattedMessage id="common.soknadErrorMessages.gotoSoknadFrontpage" />
-                    </Lenke>
-                )}
-                {children}
-            </Ingress>
-        </ErrorGuide>
+        <SifGuidePanel mood="uncertain" title={intlHelper(intl, titleKey)}>
+            <p>
+                <FormattedMessage id={contentKey} />
+            </p>
+            {soknadFrontpageUrl && (
+                <DSLink href={soknadFrontpageUrl}>
+                    <FormattedMessage id="common.soknadErrorMessages.gotoSoknadFrontpage" />
+                </DSLink>
+            )}
+            {children}
+        </SifGuidePanel>
     );
 };
 
