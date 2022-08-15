@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 1.3.1
+
+### Patch Changes
+
+-   662119d: Fallback på landnavn ved ukjent locale og noen småjusteringer på layout. Kontrastfiks på feilmeldingsboks.
+-   Updated dependencies [662119d]
+    -   @navikt/sif-common-formik-ds@0.2.2
+
 ## 1.3.0
 
 ### Minor Changes

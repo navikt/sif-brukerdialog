@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.2.2
+
+### Patch Changes
+
+-   662119d: Fallback på landnavn ved ukjent locale og noen småjusteringer på layout. Kontrastfiks på feilmeldingsboks.
+
 ## 0.2.1
 
 ### Patch Changes
