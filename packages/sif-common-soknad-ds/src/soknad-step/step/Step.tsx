@@ -1,9 +1,9 @@
 import React from 'react';
-import BackLink from '@navikt/sif-common-core/lib/components/back-link/BackLink';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
+import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import StepFooter from '@navikt/sif-common-core-ds/lib/components/step-footer/StepFooter';
-import bemHelper from '@navikt/sif-common-core/lib/utils/bemUtils';
+import bemHelper from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { History } from 'history';
 import StepIndicator, { StepIndicatorStep } from '../step-indicator/StepIndicator';
@@ -85,13 +85,13 @@ function Step({
                 </>
             )}
             <section aria-label={`Steg ${currentStepIndex + 1} av ${steps.length}:  ${pageTitle}`}>
-                <Box margin="xxl">
+                <Block margin="xxl">
                     <Heading level="2" size="large" className={bem.element('title')}>
                         {stepTitle}
                     </Heading>
-                </Box>
+                </Block>
 
-                <Box margin="xl">{children}</Box>
+                <Block margin="xl">{children}</Block>
 
                 {(onCancel || onContinueLater) && (
                     <div

@@ -1,11 +1,10 @@
 import React from 'react';
-import { ApiStringDate } from '@navikt/sif-common-core/lib/types/ApiStringDate';
-import { apiStringDateToDate, prettifyDateExtended } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { ISODate, ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 
 interface Props {
-    apiDato: ApiStringDate;
+    apiDato: ISODate;
 }
-export const prettifyApiDate = (apiDato: ApiStringDate): string => prettifyDateExtended(apiStringDateToDate(apiDato));
+export const prettifyApiDate = (apiDato: ISODate): string => prettifyDateExtended(ISODateToDate(apiDato));
 
 const DatoSvar = ({ apiDato }: Props) => <>{prettifyApiDate(apiDato)}</>;
 

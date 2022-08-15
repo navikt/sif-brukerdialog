@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import StepBanner from '@navikt/sif-common-core-ds/lib/components/step-banner/StepBanner';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadErrorMessages from '../soknad-error-messages/SoknadErrorMessages';
 
 interface Props {
@@ -17,9 +17,9 @@ const ErrorPage = ({ contentRenderer, pageTitle, bannerTitle }: Props) => {
         <Page
             title={pageTitle || intlHelper(intl, 'page.error.pageTitle')}
             topContentRenderer={() => <StepBanner text={bannerTitle || intlHelper(intl, 'application.title')} />}>
-            <Box margin="xxxl">
+            <Block margin="xxxl">
                 {contentRenderer ? contentRenderer() : <SoknadErrorMessages.GeneralApplicationError />}
-            </Box>
+            </Block>
         </Page>
     );
 };

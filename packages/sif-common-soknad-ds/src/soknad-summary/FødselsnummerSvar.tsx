@@ -1,5 +1,5 @@
 import React from 'react';
-import SpacedCharString from '@navikt/sif-common-core/lib/components/spaced-char-string/SpacedCharString';
+import SpacedCharString from '@navikt/sif-common-core-ds/lib/components/spaced-char-string/SpacedCharString';
 
 interface Props {
     fødselsnummer: string;
