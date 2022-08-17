@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 1.3.2
+
+### Patch Changes
+
+-   c63fb31: Oppdatere layout for attachment-list, lage story, justere velkommen pages
+
 ## 1.3.1
 
 ### Patch Changes

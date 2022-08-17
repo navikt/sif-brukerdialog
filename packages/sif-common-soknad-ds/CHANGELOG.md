@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 1.0.2
+
+### Patch Changes
+
+-   c63fb31: Oppdatere layout for attachment-list, lage story, justere velkommen pages
+
 ## 1.0.1
 
 ### Patch Changes
