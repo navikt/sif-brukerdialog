@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-deling-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "3.1.1",
+    "version": "3.2.0",
     "private": true,
     "dependencies": {
         "@devexperts/remote-data-ts": "^2.1.1",
@@ -23,7 +23,7 @@
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-utils": "*",
         "@sentry/browser": "^7.11.0",
-        "@snyk/protect": "^1.987.0",
+        "@snyk/protect": "^1.988.0",
         "@testing-library/react": "^13.3.0",
         "@types/amplitude-js": "^8.16.2",
         "amplitude-js": "^8.19.0",
