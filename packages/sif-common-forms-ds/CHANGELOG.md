@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 1.2.0
+
+### Minor Changes
+
+-   dfd8398: Oppdatere til React 18
+
 ## 1.1.0
 
 ### Minor Changes

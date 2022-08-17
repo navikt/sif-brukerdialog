@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.14.0
+
+### Minor Changes
+
+-   dfd8398: Oppdatere til React 18
+
 ## 3.13.1
 
 ### Patch Changes

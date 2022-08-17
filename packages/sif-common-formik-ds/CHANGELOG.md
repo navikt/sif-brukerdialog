@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.3.0
+
+### Minor Changes
+
+-   dfd8398: Oppdatere til React 18
+
 ## 0.2.2
 
 ### Patch Changes
