@@ -1,10 +1,11 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import FrontPageBanner from '@navikt/sif-common-core-ds/lib/components/front-page-banner/FrontPageBanner';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useSoknadContext } from '../SoknadContext';
 import VelkommenPageForm from './VelkommenPageForm';
@@ -17,21 +18,23 @@ const VelkommenPage: React.FunctionComponent = () => {
         <Page
             title={intlHelper(intl, 'application.title')}
             topContentRenderer={(): JSX.Element => (
-                <FrontPageBanner
-                    bannerSize="large"
-                    counsellorWithSpeechBubbleProps={{
-                        strongText: intlHelper(intl, 'step.velkommen.banner.tittel'),
-                        normalText: intlHelper(intl, 'step.velkommen.banner.tekst'),
-                    }}
-                />
+                <SoknadHeader level="2" title={intlHelper(intl, 'application.title')} />
             )}>
-            <Block margin="xxxl" textAlignCenter={true}>
+            <Block textAlignCenter={true}>
                 <Heading level="1" size="large">
                     {intlHelper(intl, 'step.velkommen.tittel')}
                 </Heading>
             </Block>
+            <Block margin="xl">
+                <SifGuidePanel poster={false}>
+                    <Heading level="2" size="small">
+                        {intlHelper(intl, 'step.velkommen.banner.tittel')}
+                    </Heading>
+                    <Ingress>{intlHelper(intl, 'step.velkommen.banner.tekst')}</Ingress>
+                </SifGuidePanel>
+            </Block>
 
-            <Block margin="xxl">
+            <Block margin="xl">
                 <VelkommenPageForm onStart={startSoknad} />
             </Block>
         </Page>

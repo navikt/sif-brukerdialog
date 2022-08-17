@@ -24,6 +24,8 @@
     "timerOgMinutter": "{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}",
     "dager": "{dager, plural, one {# dag} other {# dager}}",
 
+    "vedleggsliste.fjernKnapp": "Fjern",
+
     "dataRangeValidation.form.validation.required": "Feltet er påkrevd",
     "dataRangeValidation.form.validation.dateOutsideRange": "Første gyldige dato er {fom}, og siste gyldige dato er {tom}",
     "dataRangeValidation.form.validation.dateBeforeMinDate": "Første gyldige dato er {fom}",

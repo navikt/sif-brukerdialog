@@ -68,6 +68,15 @@
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
+    "watch": {
+        "copy-files": {
+            "patterns": [
+                "src"
+            ],
+            "extensions": "css,scss,less",
+            "runOnChangeOnly": true
+        }
+    },
     "scripts": {
         "build": "npm-run-all build-package",
         "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
@@ -76,9 +85,15 @@
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "copy-files": "copyfiles -u 1 \"src/**/*.less\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
+        "copy-files-watch": "npm-watch copy-files",
+        "copy-files": "npm-run-all copy-sass-files copy-less-files copy-css-files copy-asset-files copy-json-files",
+        "copy-sass-files": "copyfiles -u 1 \"src/**/*.scss\" lib/",
+        "copy-less-files": "copyfiles -u 1 \"src/**/*.less\" lib/",
+        "copy-css-files": "copyfiles -u 1 \"src/**/*.css\" lib/",
+        "copy-asset-files": "copyfiles -u 1 \"src/**/assets/**/*\" lib/",
+        "copy-json-files": "copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
-        "dev": "yarn compile-lib-script-watch",
+        "dev": "yarn compile-lib-script-watch & yarn copy-files-watch",
         "storybook": "start-storybook -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --passWithNoTests"
     },

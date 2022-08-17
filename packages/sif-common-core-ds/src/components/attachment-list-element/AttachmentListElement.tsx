@@ -13,7 +13,9 @@ interface Props {
 
 const AttachmentListElement = ({ attachment, renderRightAlignedContent }: Props) => (
     <li className={listElementBem.block}>
-        <AttachmentLabel attachment={attachment} />
+        <span className={listElementBem.element('label')}>
+            <AttachmentLabel attachment={attachment} />
+        </span>
         {renderRightAlignedContent && (
             <span className={listElementBem.element('rightAlignedContent')}>{renderRightAlignedContent()}</span>
         )}

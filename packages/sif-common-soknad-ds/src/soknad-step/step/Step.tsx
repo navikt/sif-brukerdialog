@@ -1,16 +1,15 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import StepFooter from '@navikt/sif-common-core-ds/lib/components/step-footer/StepFooter';
 import bemHelper from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { History } from 'history';
 import StepIndicator, { StepIndicatorStep } from '../step-indicator/StepIndicator';
-
-import './step.less';
-import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
-import { Heading } from '@navikt/ds-react';
+import './step.scss';
 
 const bem = bemHelper('step');
 

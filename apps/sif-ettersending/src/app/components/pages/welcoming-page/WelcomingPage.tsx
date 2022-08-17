@@ -6,12 +6,12 @@ import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/info-dialog/InfoDialog';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
 import BehandlingAvPersonopplysningerContent from '../../information/behandling-av-personopplysninger-content/BehandlingAvPersonopplysningerContent';
 import DinePlikterContent from '../../information/dine-plikter-content/DinePlikterContent';
 import SamtykkeForm from './SamtykkeForm';
-import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 
 type Props = Omit<StepConfigProps, 'formValues'>;
 
@@ -37,8 +37,8 @@ const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
             <Page
                 title={intlHelper(intl, `application.title.${søknadstype}`)}
                 topContentRenderer={() => <SoknadHeader title={intlHelper(intl, `banner.${søknadstype}`)} level="1" />}>
-                <Block margin="xl">
-                    <SifGuidePanel poster>
+                <Block margin="l">
+                    <SifGuidePanel poster={true}>
                         <BodyLong as="div">{intlHelper(intl, 'welcomingPage.counsellor')}</BodyLong>
                     </SifGuidePanel>
                 </Block>
