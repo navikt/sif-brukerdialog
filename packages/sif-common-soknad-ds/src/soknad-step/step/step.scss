@@ -1,5 +1,5 @@
 .step {
-    padding-top: 1rem;
+    padding-top: 2rem;
     min-height: 3rem;
     &__button {
         display: block;
@@ -16,7 +16,6 @@
             top: -16px;
         }
     }
-
     &__validationErrorSummary {
         margin: 1rem auto 1rem auto;
         max-width: 704px;

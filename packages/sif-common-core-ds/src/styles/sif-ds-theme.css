@@ -1,7 +1,17 @@
-.sif-ds-theme {
+body.sif-ds-theme {
     --navds-guide-panel-color-border: var(--navds-global-color-purple-200);
     --navds-guide-panel-color-illustration-background: var(--navds-global-color-purple-200);
 }
+
+.soknadHeader,
+.decorator-utils-container {
+    background-color: white;
+}
+
+#appContainer {
+    background-color: #f1f1f1;
+}
+
 .navds-label {
     line-height: var(--navds-font-line-height-xlarge) !important;
 }

@@ -14,7 +14,6 @@ const DeleteButton = ({ ariaLabel, useTrashcan = true, onClick, children }: Prop
         <>
             <Button
                 type="button"
-                size="small"
                 variant="tertiary"
                 onClick={(e) => {
                     e.stopPropagation();

@@ -37,8 +37,8 @@ const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
             <Page
                 title={intlHelper(intl, `application.title.${søknadstype}`)}
                 topContentRenderer={() => <SoknadHeader title={intlHelper(intl, `banner.${søknadstype}`)} level="1" />}>
-                <Block margin="xl">
-                    <SifGuidePanel poster>
+                <Block margin="l">
+                    <SifGuidePanel poster={true}>
                         <BodyLong as="div">{intlHelper(intl, 'welcomingPage.counsellor')}</BodyLong>
                     </SifGuidePanel>
                 </Block>
