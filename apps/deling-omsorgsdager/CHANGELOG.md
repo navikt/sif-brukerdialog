@@ -1,5 +1,14 @@
 # @navikt/omsorgsdager-deling-dialog
 
+## 3.1.1
+
+### Patch Changes
+
+-   c63fb31: Oppdatere layout for attachment-list, lage story, justere velkommen pages
+-   Updated dependencies [c63fb31]
+    -   @navikt/sif-common-core-ds@1.3.2
+    -   @navikt/sif-common-soknad-ds@1.0.2
+
 ## 3.1.0
 
 ### Minor Changes
