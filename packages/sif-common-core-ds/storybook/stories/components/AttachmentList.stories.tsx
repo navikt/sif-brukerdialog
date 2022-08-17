@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { useState } from 'react';
 import AttachmentListWithDeletion from '../../../src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
@@ -6,7 +5,7 @@ import { Attachment, PersistedFile } from '../../../src/types/Attachment';
 import StoryWrapper from '../../decorators/StoryWrapper';
 
 export default {
-    title: 'Component/Attac',
+    title: 'Component/AttachmentListWithDeletion',
     component: AttachmentListWithDeletion,
     decorators: [
         (Story) => (
