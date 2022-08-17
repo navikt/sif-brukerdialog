@@ -9,7 +9,7 @@ ENV SCOPE=@navikt/deling-omsorgsdager
 
 FROM base AS pruner
 COPY . .
-RUN yarn install
+RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
 FROM pruner AS server
