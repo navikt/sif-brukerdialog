@@ -23,5 +23,5 @@ jobs:
         secrets:
             NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
         with:
-            app-name: 'sif-ettersending'
-            working-directory: 'apps/sif-ettersending'
+            app-name: '${{ inputs.app-name }}'
+            working-directory: 'apps/${{ inputs.app-name }}'
