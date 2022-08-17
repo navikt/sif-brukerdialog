@@ -5,6 +5,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
     labelKey: string;
+    children: React.ReactNode;
 }
 
 const bem = bemUtils('summaryLabelValue');

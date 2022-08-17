@@ -4,6 +4,7 @@ import './buttonRow.scss';
 export interface Props {
     align?: 'left' | 'right' | 'center';
     layout?: 'normal' | 'mobile-50-50' | 'stretch';
+    children: React.ReactNode;
 }
 
 const ButtonRow: React.FunctionComponent<Props> = ({ children, align = 'left', layout = 'normal' }) => {

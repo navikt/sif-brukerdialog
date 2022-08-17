@@ -84,7 +84,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
         });
     };
 
-    const continueSoknadLater = async (sId: string, stepID: StepID, values: SoknadFormData): Promise<void> => {
+    const continueSoknadLater = async (sId: string, stepID: StepID, values: Partial<SoknadFormData>): Promise<void> => {
         await soknadTempStorage.update(sId, values, stepID, { søker, barn });
         await logHendelse(ApplikasjonHendelse.fortsettSenere);
         relocateToNavFrontpage();
@@ -133,7 +133,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
     };
 
     const persistAndNavigate = async (
-        values: SoknadFormData,
+        values: Partial<SoknadFormData>,
         step: StepConfig<StepID>,
         nextStep?: StepID
     ): Promise<void> => {

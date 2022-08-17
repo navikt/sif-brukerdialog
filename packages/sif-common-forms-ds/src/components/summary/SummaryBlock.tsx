@@ -3,6 +3,7 @@ import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content
 import Block, { BlockMargin } from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface Props {
+    children: React.ReactNode;
     header: string;
     margin?: BlockMargin;
 }
