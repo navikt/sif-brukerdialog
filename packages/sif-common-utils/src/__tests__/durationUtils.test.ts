@@ -170,7 +170,7 @@ describe('durationUtils', () => {
             expect(result.minutes).toEqual('59');
         });
     });
-    describe('ISODurationToDateDuration', () => {
+    describe('ISODurationToMaybeDuration', () => {
         it('returns undefined if duration is invalid', () => {
             expect(ISODurationToMaybeDuration('TABC')).toBeFalsy();
         });
@@ -178,9 +178,8 @@ describe('durationUtils', () => {
             expect(ISODurationToMaybeDuration('PT1H')?.hours).toEqual('1');
             expect(ISODurationToMaybeDuration('PT1M')?.minutes).toEqual('1');
         });
-        it('returns 0 hours and 0 minutes when duration is valid, but hours and minutes not set', () => {
-            expect(ISODurationToMaybeDuration('PT')?.hours).toEqual('0');
-            expect(ISODurationToMaybeDuration('PT')?.minutes).toEqual('0');
+        it('returns undefined when hours and minutes not set', () => {
+            expect(ISODurationToMaybeDuration('PT')).toBeUndefined();
         });
     });
     describe('isValidDuration', () => {
