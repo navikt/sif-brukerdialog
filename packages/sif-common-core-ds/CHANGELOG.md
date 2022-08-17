@@ -1,5 +1,17 @@
 # @navikt/sif-common-core-ds
 
+## 2.0.0
+
+### Minor Changes
+
+-   dfd8398: Oppdatere til React 18
+
+### Patch Changes
+
+-   Updated dependencies [dfd8398]
+    -   @navikt/appstatus-react-ds@1.2.0
+    -   @navikt/sif-common-formik-ds@0.3.0
+
 ## 1.3.2
 
 ### Patch Changes

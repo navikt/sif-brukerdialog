@@ -1,5 +1,22 @@
 # @navikt/omsorgsdager-deling-dialog
 
+## 3.2.0
+
+### Minor Changes
+
+-   dfd8398: Oppdatere til React 18
+
+### Patch Changes
+
+-   Updated dependencies [dfd8398]
+    -   @navikt/sif-common-amplitude@2.5.0
+    -   @navikt/sif-common-core-ds@2.0.0
+    -   @navikt/sif-common-formik-ds@0.3.0
+    -   @navikt/sif-common-forms-ds@1.2.0
+    -   @navikt/sif-common-sentry@0.4.0
+    -   @navikt/sif-common-soknad-ds@2.0.0
+    -   @navikt/sif-common-utils@3.14.0
+
 ## 3.1.1
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 2.0.0
+
+### Minor Changes
+
+-   dfd8398: Oppdatere til React 18
+
+### Patch Changes
+
+-   Updated dependencies [dfd8398]
+    -   @navikt/sif-common-formik-ds@0.3.0
+    -   @navikt/sif-common-sentry@0.4.0
+
 ## 1.0.2
 
 ### Patch Changes

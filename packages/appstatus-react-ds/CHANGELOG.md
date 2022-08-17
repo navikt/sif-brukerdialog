@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.2.0
+
+### Minor Changes
+
+-   dfd8398: Oppdatere til React 18
+
 ## 1.1.3
 
 ### Patch Changes
