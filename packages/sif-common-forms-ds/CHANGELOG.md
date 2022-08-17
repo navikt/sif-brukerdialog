@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 1.2.1
+
+### Patch Changes
+
+-   334b887: Pakkeoppdatering
+
 ## 1.2.0
 
 ### Minor Changes
