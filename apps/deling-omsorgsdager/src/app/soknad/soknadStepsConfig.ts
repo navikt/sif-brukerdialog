@@ -12,7 +12,7 @@ export enum StepID {
     'OPPSUMMERING' = 'oppsummering',
 }
 
-const getSoknadSteps = (values: SoknadFormData): StepID[] => {
+const getSoknadSteps = (values: Partial<SoknadFormData>): StepID[] => {
     const inkluderSamværsforelder =
         values.gjelderMidlertidigPgaKorona === YesOrNo.NO && values.mottakerType === Mottaker.samværsforelder;
     return [
@@ -25,5 +25,5 @@ const getSoknadSteps = (values: SoknadFormData): StepID[] => {
     ];
 };
 
-export const getSoknadStepsConfig = (values: SoknadFormData): SoknadStepsConfig<StepID> =>
+export const getSoknadStepsConfig = (values: Partial<SoknadFormData>): SoknadStepsConfig<StepID> =>
     soknadStepUtils.getStepsConfig(getSoknadSteps(values), SoknadApplicationType.MELDING);

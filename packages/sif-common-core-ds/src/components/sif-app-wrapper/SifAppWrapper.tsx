@@ -1,7 +1,11 @@
 import { Modal } from '@navikt/ds-react';
 import React from 'react';
 
-const SifAppWrapper: React.FunctionComponent = ({ children }) => {
+interface Props {
+    children: React.ReactNode;
+}
+
+const SifAppWrapper: React.FunctionComponent<Props> = ({ children }) => {
     React.useEffect(() => {
         if (Modal.setAppElement) {
             Modal.setAppElement('#app');

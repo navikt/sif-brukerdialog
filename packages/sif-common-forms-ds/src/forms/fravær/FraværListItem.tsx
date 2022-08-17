@@ -14,7 +14,7 @@ const FraværListItem: React.FunctionComponent<Props> = ({ title, årsak, onEdit
     const intl = useIntl();
     return (
         <div style={{ padding: '.5rem 0' }}>
-            <div>{onEdit ? <ActionLink onClick={() => onEdit()}>{title}</ActionLink> : { title }}</div>
+            <div>{onEdit ? <ActionLink onClick={() => onEdit()}>{title}</ActionLink> : <>{title}</>}</div>
             {årsak && årsak !== FraværÅrsak.ordinært && (
                 <div style={{ marginTop: '.25rem' }}>
                     <FormattedMessage

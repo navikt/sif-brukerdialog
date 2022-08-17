@@ -2,6 +2,7 @@ import { Link } from '@navikt/ds-react';
 import React from 'react';
 
 interface Props {
+    children: React.ReactNode;
     className?: string;
     onClick: () => void;
 }

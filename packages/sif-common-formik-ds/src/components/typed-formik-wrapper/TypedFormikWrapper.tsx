@@ -3,14 +3,14 @@ import { Formik, FormikConfig, FormikProps } from 'formik';
 
 export interface TypedFormikWrapperProps<FormValues> extends Omit<Partial<FormikProps<FormValues>>, 'initialValues'> {
     initialValues: Partial<FormValues>;
-    renderForm: (formik: FormikProps<FormValues>) => React.ReactNode;
+    renderForm: (formik: FormikProps<Partial<FormValues>>) => React.ReactNode;
     onSubmit: (values: Partial<FormValues>) => void;
 }
 
 type Props<FormValues> = TypedFormikWrapperProps<FormValues> & FormikConfig<Partial<FormValues>>;
 
 function TypedFormikWrapper<FormValues>(props: Props<FormValues>) {
-    const { onSubmit, initialValues, renderForm: renderFormContent, ...restProps } = props;
+    const { onSubmit, initialValues, renderForm, ...restProps } = props;
     return (
         <Formik<Partial<FormValues>>
             initialValues={initialValues}
@@ -22,7 +22,7 @@ function TypedFormikWrapper<FormValues>(props: Props<FormValues>) {
                 });
             }}
             {...restProps}>
-            {(formik: FormikProps<FormValues>) => renderFormContent(formik)}
+            {(formik: FormikProps<Partial<FormValues>>) => renderForm(formik)}
         </Formik>
     );
 }

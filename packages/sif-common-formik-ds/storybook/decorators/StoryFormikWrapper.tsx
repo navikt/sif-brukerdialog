@@ -10,6 +10,7 @@ interface Props {
         includeButtons?: boolean;
         maxWidth?: string;
     };
+    children: React.ReactNode;
 }
 
 export const withFormikWrapper = (Story, args) => (

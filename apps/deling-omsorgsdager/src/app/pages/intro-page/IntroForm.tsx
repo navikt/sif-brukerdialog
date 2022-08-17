@@ -18,7 +18,7 @@ interface Props {
 
 const IntroFormComponents = getTypedFormComponents<IntroFormField, IntroFormData, ValidationError>();
 
-const erStoppet = (values: IntroFormData): boolean => {
+const erStoppet = (values: Partial<IntroFormData>): boolean => {
     if (values.korona === YesOrNo.YES) {
         if (values.mottakersArbeidssituasjonErOk === YesOrNo.NO) {
             return true;
@@ -45,7 +45,7 @@ const erStoppet = (values: IntroFormData): boolean => {
     return false;
 };
 
-const getArbeidstakerSnEllerFrilanserSpm = (intl: IntlShape, values: IntroFormData) => {
+const getArbeidstakerSnEllerFrilanserSpm = (intl: IntlShape, values: Partial<IntroFormData>) => {
     return (
         <FormQuestion
             legend={intlHelper(intl, `introForm.form.${IntroFormField.erArbeidstakerSnEllerFrilanser}.spm`)}
@@ -57,7 +57,7 @@ const getArbeidstakerSnEllerFrilanserSpm = (intl: IntlShape, values: IntroFormDa
     );
 };
 
-const getMottakersArbeidssituasjonErOk = (intl: IntlShape, values: IntroFormData) => {
+const getMottakersArbeidssituasjonErOk = (intl: IntlShape, values: Partial<IntroFormData>) => {
     return (
         <FormQuestion
             legend={intlHelper(intl, `introForm.form.${IntroFormField.mottakersArbeidssituasjonErOk}.spm`)}
@@ -69,7 +69,7 @@ const getMottakersArbeidssituasjonErOk = (intl: IntlShape, values: IntroFormData
     );
 };
 
-const getCommonQuestions = (intl: IntlShape, values: IntroFormData, addAleneomssorgQuestion?: boolean) => {
+const getCommonQuestions = (intl: IntlShape, values: Partial<IntroFormData>, addAleneomssorgQuestion?: boolean) => {
     return (
         <>
             {addAleneomssorgQuestion && (
@@ -107,7 +107,7 @@ const getCommonQuestions = (intl: IntlShape, values: IntroFormData, addAleneomss
     );
 };
 
-const getQuestions = (intl: IntlShape, values: IntroFormData) => {
+const getQuestions = (intl: IntlShape, values: Partial<IntroFormData>) => {
     switch (values.korona) {
         case YesOrNo.YES:
             return getCommonQuestions(intl, values);

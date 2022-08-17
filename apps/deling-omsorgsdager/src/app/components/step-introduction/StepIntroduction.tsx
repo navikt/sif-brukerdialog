@@ -7,6 +7,7 @@ import './stepIntroduction.scss';
 
 interface Props {
     ariaTitle?: string;
+    children: React.ReactNode;
 }
 
 const StepIntroduction: React.FunctionComponent<Props> = ({ ariaTitle, children }) => {
