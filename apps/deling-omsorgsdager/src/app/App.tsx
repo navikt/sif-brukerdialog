@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
@@ -11,15 +11,16 @@ import IntroPage from './pages/intro-page/IntroPage';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-// import '@navikt/sif-common-core-ds/lib/styles/globalStyles.less';
 
 export const APPLICATION_KEY = 'deling-omsorgsdager';
 export const SKJEMANAVN = 'Deling av omsorgsdager';
 
-const root = document.getElementById('app');
+const container = document.getElementById('app');
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
-render(
+root.render(
     <SifAppWrapper>
         <AmplitudeProvider
             applicationKey={APPLICATION_KEY}
@@ -44,6 +45,5 @@ render(
                 />
             </SoknadApplication>
         </AmplitudeProvider>
-    </SifAppWrapper>,
-    root
+    </SifAppWrapper>
 );
