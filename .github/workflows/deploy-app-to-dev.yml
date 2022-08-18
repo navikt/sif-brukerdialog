@@ -1,4 +1,4 @@
-name: Deploy application to dev
+name: (helper) Deploy app to dev
 
 on:
     workflow_call:
