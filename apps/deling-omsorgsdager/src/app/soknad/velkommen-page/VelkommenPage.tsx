@@ -1,4 +1,4 @@
-import { Heading, Ingress } from '@navikt/ds-react';
+import { Ingress } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
@@ -18,18 +18,10 @@ const VelkommenPage: React.FunctionComponent = () => {
         <Page
             title={intlHelper(intl, 'application.title')}
             topContentRenderer={(): JSX.Element => (
-                <SoknadHeader level="2" title={intlHelper(intl, 'application.title')} />
+                <SoknadHeader level="1" title={intlHelper(intl, 'application.title')} />
             )}>
-            <Block textAlignCenter={true}>
-                <Heading level="1" size="large">
-                    {intlHelper(intl, 'step.velkommen.tittel')}
-                </Heading>
-            </Block>
-            <Block margin="xl">
-                <SifGuidePanel poster={false}>
-                    <Heading level="2" size="small">
-                        {intlHelper(intl, 'step.velkommen.banner.tittel')}
-                    </Heading>
+            <Block margin="l">
+                <SifGuidePanel poster={true}>
                     <Ingress>{intlHelper(intl, 'step.velkommen.banner.tekst')}</Ingress>
                 </SifGuidePanel>
             </Block>

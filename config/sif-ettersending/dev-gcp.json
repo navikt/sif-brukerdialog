@@ -19,7 +19,7 @@
         "LIVETS_SLUTTFASE": "on",
         "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://k9-ettersending-soknad.dev.nav.no/familie/sykdom-i-familien/soknad/ettersending",
         "NPM_CONFIG_CACHE": "/tmp",
-        "NYNORSK": "on",
+        "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
         "USE_AMPLITUDE": "true"
     },
