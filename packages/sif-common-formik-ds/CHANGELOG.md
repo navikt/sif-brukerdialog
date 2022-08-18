@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.4.0
+
+### Minor Changes
+
+-   9707071: Oppdatere til ds-datepicker-4.beta og til ds-1.0 pakker
+
 ## 0.3.0
 
 ### Minor Changes

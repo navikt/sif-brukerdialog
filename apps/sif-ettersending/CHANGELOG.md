@@ -1,5 +1,17 @@
 # @navikt/sif-ettersending
 
+## 1.3.0
+
+### Minor Changes
+
+-   9707071: Oppdatere til ds-datepicker-4.beta og til ds-1.0 pakker
+
+### Patch Changes
+
+-   Updated dependencies [9707071]
+    -   @navikt/sif-common-core-ds@3.0.0
+    -   @navikt/sif-common-formik-ds@0.4.0
+
 ## 1.2.0
 
 ### Minor Changes
