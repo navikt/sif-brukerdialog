@@ -61,7 +61,7 @@
     },
     "peerDependencies": {
         "@navikt/ds-css": "1",
-        "@navikt/ds-datepicker": "4.0.0-beta.3",
+        "@navikt/ds-datepicker": "4.0.0-beta.x",
         "@navikt/ds-react": "1",
         "formik": "2.2.x",
         "react-intl": "6.0.5"
