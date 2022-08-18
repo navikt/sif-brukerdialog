@@ -11,6 +11,7 @@ import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import datepickerUtils from './datepickerUtils';
 import '@navikt/ds-datepicker/lib/index.css';
 import './datepicker.css';
+import { DatepickerLocales } from '@navikt/ds-datepicker/lib/types';
 
 export interface DatepickerLimitiations {
     minDate?: Date;
@@ -31,7 +32,7 @@ export interface DatePickerBaseProps<FieldName, ErrorType>
     placeholder?: string;
     dayPickerProps?: Omit<DayPickerProps, 'disabledDays'>;
     invalidFormatError?: string;
-    locale?: 'nb' | 'nn' | 'en';
+    locale?: DatepickerLocales;
     onChange?: (date: string) => void;
 }
 export interface DatePickerPresentationProps {
@@ -49,16 +50,14 @@ export type FormikDatepickerProps<FieldName, ErrorType> = OwnProps<FieldName, Er
     DatepickerLimitiations &
     UseFastFieldProps;
 
-const getLocaleToUse = (locale: string): 'nb' | 'nn' | 'en' | undefined => {
+const getLocaleToUse = (locale: string): DatepickerLocales | undefined => {
     switch (locale) {
-        case 'nb':
-            return 'nb';
         case 'nn':
             return 'nn';
         case 'en':
             return 'en';
         default:
-            return undefined;
+            return 'nb';
     }
 };
 

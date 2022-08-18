@@ -68,7 +68,7 @@ const createCountryOptions = (
     locale: string,
     useAlpha3Code = true
 ): React.ReactNode[] => {
-    const lang = locale === 'en' ? 'nn' : 'nb';
+    const lang = locale === 'en' || locale === 'en-GP' ? 'nn' : 'nb';
     const countries = getCountries();
 
     const names: [string, any][] = Object.entries(countries.getNames(lang));

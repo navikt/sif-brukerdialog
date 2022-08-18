@@ -152,7 +152,7 @@ const FraværDagFormView = ({
                         name: FraværDagFormFields.dato,
                         fullscreenOverlay: true,
                         dayPickerProps: {
-                            initialMonth: dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
+                            defaultMonth: dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
                         },
                         minDate,
                         maxDate,

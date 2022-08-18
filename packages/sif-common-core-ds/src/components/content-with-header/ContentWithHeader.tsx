@@ -11,7 +11,7 @@ interface Props {
 
 const bem = bemUtils('contentWithHeader');
 
-const ContentWithHeader = ({ header, level = '3', size = 'small', children }: Props) => {
+const ContentWithHeader = ({ header, level = '3', size = 'xsmall', children }: Props) => {
     return (
         <div className={bem.block}>
             <Heading level={level} size={size} spacing={true}>

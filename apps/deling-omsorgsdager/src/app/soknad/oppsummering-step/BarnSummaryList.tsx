@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import SummaryList from '@navikt/sif-common-core-ds/lib/components/summary-list/SummaryList';
+import SummaryList from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-list/SummaryList';
 import { prettifyDate } from '@navikt/sif-common-utils/lib/dateFormatter';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ApiBarn } from '../../types/SoknadApiData';
