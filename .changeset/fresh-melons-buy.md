@@ -1,0 +1,11 @@
+---
+'@navikt/omsorgsdager-deling-dialog': minor
+'@navikt/sif-ettersending': minor
+'@navikt/appstatus-react-ds': minor
+'@navikt/sif-common-core-ds': minor
+'@navikt/sif-common-formik-ds': minor
+'@navikt/sif-common-forms-ds': minor
+'@navikt/sif-common-soknad-ds': minor
+---
+
+Oppdatere til ds-datepicker-4.beta og til ds-1.0 pakker
