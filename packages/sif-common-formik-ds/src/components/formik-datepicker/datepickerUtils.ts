@@ -23,7 +23,7 @@ const parseDateLimitations = ({
         maxDate: maxDate ? dateToISOString(maxDate) : undefined,
         weekendsNotSelectable: disableWeekend,
         invalidDateRanges,
-        disabledDaysOfWeek: disabledDaysOfWeek ? { daysOfWeek: disabledDaysOfWeek } : undefined,
+        disabledDaysOfWeek: disabledDaysOfWeek ? { dayOfWeek: disabledDaysOfWeek } : undefined,
     };
 };
 

@@ -16,8 +16,8 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/ds-css": "^0.18.29",
-        "@navikt/ds-react": "^0.19.27",
+        "@navikt/ds-css": "^1.0.1",
+        "@navikt/ds-react": "^1.0.1",
         "@storybook/addon-a11y": "^6.5.10",
         "@storybook/addon-actions": "^6.5.10",
         "@storybook/addon-essentials": "^6.5.10",
@@ -46,7 +46,7 @@
         "react": "^18.2.0",
         "react-aria-menubutton": "^7.0.3",
         "react-collapse": "^5.1.1",
-        "react-day-picker": "^7.4.10",
+        "react-day-picker": "^8.1.0",
         "react-dom": "^18.2.0",
         "react-intl": "6.0.5",
         "react-modal": "^3.15.1",
@@ -69,8 +69,8 @@
         ]
     },
     "peerDependencies": {
-        "@navikt/ds-css": "^0.18.x",
-        "@navikt/ds-react": "^0.19.x",
+        "@navikt/ds-css": "1",
+        "@navikt/ds-react": "1",
         "@navikt/sif-common-core": ">= 11.3.0 <=12.0"
     },
     "repository": {
