@@ -20,11 +20,9 @@ const VelkommenPage: React.FunctionComponent = () => {
             topContentRenderer={(): JSX.Element => (
                 <SoknadHeader level="1" title={intlHelper(intl, 'application.title')} />
             )}>
-            <Block margin="l">
-                <SifGuidePanel poster={true}>
-                    <Ingress>{intlHelper(intl, 'step.velkommen.banner.tekst')}</Ingress>
-                </SifGuidePanel>
-            </Block>
+            <SifGuidePanel poster={true}>
+                <Ingress>{intlHelper(intl, 'step.velkommen.banner.tekst')}</Ingress>
+            </SifGuidePanel>
 
             <Block margin="xl">
                 <VelkommenPageForm onStart={startSoknad} />
