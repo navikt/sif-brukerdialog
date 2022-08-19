@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.5.0
+
+### Minor Changes
+
+-   dcfb798: Bugfix av cleanup og submit av formik skjema etter oppdatering til react 18.
+
 ## 0.4.0
 
 ### Minor Changes
