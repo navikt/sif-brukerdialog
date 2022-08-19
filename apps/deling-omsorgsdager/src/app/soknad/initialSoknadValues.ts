@@ -5,6 +5,8 @@ export const initialSoknadFormData: Partial<SoknadFormData> = {
     [SoknadFormField.harForståttRettigheterOgPlikter]: false,
     [SoknadFormField.harBekreftetOpplysninger]: false,
     [SoknadFormField.andreBarn]: [],
+    [SoknadFormField.gjelderMidlertidigPgaKorona]: YesOrNo.UNANSWERED,
+    [SoknadFormField.skalDeleMedAndreForelderSamboerEktefelle]: YesOrNo.UNANSWERED,
     [SoknadFormField.harAleneomsorg]: YesOrNo.UNANSWERED,
     [SoknadFormField.harAleneomsorgFor]: [],
     [SoknadFormField.harUtvidetRett]: YesOrNo.UNANSWERED,

@@ -101,17 +101,22 @@ function TypedFormikForm<FormValues, ErrorType>({
         }
     }
 
-    const runCleanup = (evt: React.FormEvent<HTMLFormElement>) => {
+    const runCleanup = async (evt: React.FormEvent<HTMLFormElement>) => {
         evt.stopPropagation();
         evt.preventDefault();
-        formik.setValues(cleanup ? cleanup(formik.values) : formik.values);
-        setCleanupState({ hasCleanedUp: true, counter: cleanupState.counter + 1 });
+        return new Promise((resolve) => {
+            formik.setValues(cleanup ? cleanup(formik.values) : formik.values);
+            setCleanupState({ hasCleanedUp: true, counter: cleanupState.counter + 1 });
+            resolve(true);
+        });
     };
 
     const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         setCleanupState({ ...cleanupState, hasCleanedUp: false });
         if (cleanup !== undefined) {
-            runCleanup(evt);
+            runCleanup(evt).then(() => {
+                handleSubmit(evt);
+            });
         } else {
             handleSubmit(evt);
         }
