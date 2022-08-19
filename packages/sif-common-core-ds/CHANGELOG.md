@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 4.0.0
+
+### Patch Changes
+
+-   Updated dependencies [dcfb798]
+    -   @navikt/sif-common-formik-ds@0.5.0
+
 ## 3.0.0
 
 ### Minor Changes

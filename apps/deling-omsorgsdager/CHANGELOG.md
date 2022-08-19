@@ -1,5 +1,19 @@
 # @navikt/omsorgsdager-deling-dialog
 
+## 3.4.0
+
+### Minor Changes
+
+-   dcfb798: Bugfix av cleanup og submit av formik skjema etter oppdatering til react 18.
+-   62e1089: Bytte til å bruke createRoot i App (react 18 endring)
+
+### Patch Changes
+
+-   Updated dependencies [dcfb798]
+    -   @navikt/sif-common-formik-ds@0.5.0
+    -   @navikt/sif-common-core-ds@4.0.0
+    -   @navikt/sif-common-soknad-ds@4.0.0
+
 ## 3.3.0
 
 ### Minor Changes
