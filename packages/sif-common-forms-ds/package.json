@@ -12,7 +12,7 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "@formatjs/intl-pluralrules": "^5.0.3",
+        "@formatjs/intl-pluralrules": "^5.1.2",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",

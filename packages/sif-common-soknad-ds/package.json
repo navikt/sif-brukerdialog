@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@devexperts/remote-data-ts": "^2.1.1",
-        "@formatjs/intl-pluralrules": "^5.0.3",
+        "@formatjs/intl-pluralrules": "^5.1.2",
         "@navikt/appstatus-react": "^3.1.0",
         "@navikt/ds-css": "^1.0.2",
         "@navikt/ds-react": "^1.0.2",
