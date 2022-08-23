@@ -4,6 +4,7 @@ import { appMessages } from './messages';
 
 export interface IntlProviderProps {
     locale: string;
+    children: React.ReactNode;
     onError?: (error: any) => void;
 }
 

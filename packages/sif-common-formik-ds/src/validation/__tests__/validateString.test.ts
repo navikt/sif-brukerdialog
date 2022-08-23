@@ -42,4 +42,15 @@ describe(`validateString`, () => {
             expect(getStringValidator({ formatRegExp })('asd,')).toBe(ValidateStringError.stringHasInvalidFormat);
         });
     });
+    describe('disableUnicodeCharacters validation', () => {
+        const unicodeChar = '👍';
+        it(`returns undefined when string passes unicode test`, () => {
+            expect(getStringValidator({ disallowUnicodeCharacters: true })('asd')).toBeUndefined();
+        });
+        it(`returns ${ValidateStringError.stringContainsUnicodeChacters} when string failes regexp test()`, () => {
+            expect(getStringValidator({ disallowUnicodeCharacters: true })(`${unicodeChar}asd`)).toBe(
+                ValidateStringError.stringContainsUnicodeChacters
+            );
+        });
+    });
 });

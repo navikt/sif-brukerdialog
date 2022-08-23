@@ -7,6 +7,7 @@ export enum ValidateStringError {
     stringIsTooShort = 'stringIsTooShort',
     stringIsTooLong = 'stringIsTooLong',
     stringHasInvalidFormat = 'stringHasInvalidFormat',
+    stringContainsUnicodeChacters = 'stringContainsUnicodeChacters',
 }
 
 type StringValidationResult =
@@ -15,14 +16,20 @@ type StringValidationResult =
     | ValidateStringError.stringIsNotAString
     | ValidateStringError.stringIsTooLong
     | ValidateStringError.stringIsTooShort
-    | ValidateStringError.stringHasInvalidFormat;
+    | ValidateStringError.stringHasInvalidFormat
+    | ValidateStringError.stringContainsUnicodeChacters;
 
 interface Options {
     required?: boolean;
     minLength?: number;
     maxLength?: number;
     formatRegExp?: RegExp;
+    disallowUnicodeCharacters?: boolean;
 }
+
+const containsNonLatinCodepoints = (s: string): boolean => {
+    return /[^\u0000-\u00ff]/.test(s);
+};
 
 const getStringValidator =
     (options: Options = {}): ValidationFunction<StringValidationResult> =>
@@ -48,6 +55,11 @@ const getStringValidator =
             if (formatRegExp !== undefined) {
                 if (formatRegExp.test(value) === false) {
                     return ValidateStringError.stringHasInvalidFormat;
+                }
+            }
+            if (options.disallowUnicodeCharacters) {
+                if (containsNonLatinCodepoints(value)) {
+                    return ValidateStringError.stringContainsUnicodeChacters;
                 }
             }
         }
