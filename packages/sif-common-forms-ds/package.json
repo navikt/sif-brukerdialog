@@ -17,7 +17,7 @@
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
         "@navikt/ds-css": "^1.0.2",
-        "@navikt/ds-react": "^1.0.2",
+        "@navikt/ds-react": "^1.1.0",
         "@storybook/addon-a11y": "^6.5.10",
         "@storybook/addon-actions": "^6.5.10",
         "@storybook/addon-essentials": "^6.5.10",
