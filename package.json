@@ -11,7 +11,7 @@
     "devDependencies": {
         "@changesets/cli": "^2.24.3",
         "@navikt/ds-tailwind": "^1.0.2",
-        "@snyk/protect": "^1.988.0",
+        "@snyk/protect": "^1.990.0",
         "@storybook/builder-webpack5": "^6.5.10",
         "@storybook/manager-webpack5": "^6.5.10",
         "@testing-library/jest-dom": "^5.16.5",
