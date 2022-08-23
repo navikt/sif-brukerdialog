@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.0
+
+### Minor Changes
+
+-   eb3c47c: Utvide validering av TextField - sjekk på om felt inneholder unicode-tegn.
+
 ## 0.5.0
 
 ### Minor Changes
