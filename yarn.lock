@@ -2159,15 +2159,10 @@
     "@sanity/block-content-to-react" "^3.0.0"
     "@sanity/client" "^2.10.5"
 
-"@navikt/ds-css@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.0.1.tgz#f88702bd204b610a58e190e90820bc75e98b52b4"
-  integrity sha512-BRZcnEJ0dIzSVQqG35bBXr0Y0BCrRclxbNU5TkgUAjpxH6/E0FgaXtcGp5rIF+fEUX9bSTb+WaTUKvNSsMPFAw==
-
-"@navikt/ds-css@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.0.2.tgz#411b1e6f149b0833f4c5247f1aec89f88ebf00ec"
-  integrity sha512-BCD8lj5XKPyIlQXd4071Wl+/LpCiMkofPbFSgV+ewp2sfEDhPTYkupMbArn4kC0k5iJ3ksj0AXCk3QKquUIS6w==
+"@navikt/ds-css@^1.0.0", "@navikt/ds-css@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.2.0.tgz#83a97cc9f65805820522e543a903b7c34b50611b"
+  integrity sha512-6BJ/gNvIiroEOtYOsfpwc2M1ZoM21rWgO0qgcJNgUsTXrThEdQI9L//SnehsVLsDAnzvM2mNauofpXVbKnSUZw==
 
 "@navikt/ds-datepicker@^4.0.0-beta.7":
   version "4.0.0-beta.7"
