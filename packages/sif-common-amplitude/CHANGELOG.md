@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.5.1
+
+### Patch Changes
+
+-   e6878a0: Legge til react 17 som peerDep, ikke bare react 18
+
 ## 2.5.0
 
 ### Minor Changes
