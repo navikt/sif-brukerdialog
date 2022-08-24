@@ -3,7 +3,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import FormattedHtmlMessage from '../../components/formatted-html-message/FormattedHtmlMessage';
+import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/components/formatted-html-message/FormattedHtmlMessage';
 
 const ÅrsakInfo: React.FunctionComponent = () => {
     const intl = useIntl();

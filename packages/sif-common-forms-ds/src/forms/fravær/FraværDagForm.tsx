@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/components/formatted-html-message/FormattedHtmlMessage';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { DateRange, dateToday } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
@@ -20,8 +20,8 @@ import {
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { DateRange, dateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import FormattedHtmlMessage from '../../components/formatted-html-message/FormattedHtmlMessage';
 import FraværTimerSelect from './FraværTimerSelect';
 import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {
