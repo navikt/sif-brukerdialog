@@ -2289,10 +2289,10 @@
     react-responsive "^8.2.0"
     react-router-dom "^5.2.0"
 
-"@navikt/sif-common-formik@^23.1.0":
-  version "23.1.1"
-  resolved "https://registry.yarnpkg.com/@navikt/sif-common-formik/-/sif-common-formik-23.1.1.tgz#6a1e8c3135d16e1bb889f175724330ed9ebc2cfb"
-  integrity sha512-hGax9/SgsQa9Gm22R9Ej60DcX8V0ev7reCTQ9j8so9VgPp7NZcdEx5QoXr7CkEos9Jfq/L6JZAfq3sOMrcbEiw==
+"@navikt/sif-common-formik@^23.2.0":
+  version "23.2.0"
+  resolved "https://registry.yarnpkg.com/@navikt/sif-common-formik/-/sif-common-formik-23.2.0.tgz#0236566446d55062c42587323f7f8b7914fbf6e8"
+  integrity sha512-G9xCOHuKunl+DiG7vZBEiTOOt84gnKWQgP44LhfjnIyKdDjygqwKjCVB2XZK9TcTeNf2gylITGAhrQSn36wyMw==
   dependencies:
     flat "^5.0.2"
     i18n-iso-countries "^7.4.0"
