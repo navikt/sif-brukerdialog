@@ -19,7 +19,7 @@ import {
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import dayjs from 'dayjs';
-import FormattedHtmlMessage from '../../components/formatted-html-message/FormattedHtmlMessage';
+import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/components/formatted-html-message/FormattedHtmlMessage';
 import { handleDateRangeValidationError } from '../../utils';
 import { isFraværPeriode, mapFormValuesToFraværPeriode, mapFraværPeriodeToFormValues } from './fraværUtilities';
 import {
