@@ -61,6 +61,8 @@ export const VirksomhetFormErrors = {
     },
     [VirksomhetFormField.navnPåVirksomheten]: {
         [ValidateStringError.stringHasNoValue]: 'virksomhetForm.navnPåVirksomheten.stringHasNoValue',
+        [ValidateStringError.stringContainsUnicodeChacters]:
+            'virksomhetForm.navnPåVirksomheten.stringContainsUnicodeChacters',
     },
     [VirksomhetFormField.registrertINorge]: {
         [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'virksomhetForm.registrertINorge.yesOrNoIsUnanswered',
@@ -135,11 +137,15 @@ export const VirksomhetFormErrors = {
         [ValidateStringError.stringHasNoValue]: 'virksomhetForm.regnskapsfører_navn.stringHasNoValue',
         [ValidateStringError.stringIsTooLong]: 'virksomhetForm.regnskapsfører_navn.stringIsTooLong',
         [ValidateStringError.stringIsTooShort]: 'virksomhetForm.regnskapsfører_navn.stringIsTooShort',
+        [ValidateStringError.stringContainsUnicodeChacters]:
+            'virksomhetForm.regnskapsfører_navn.stringContainsUnicodeChacters',
     },
     [VirksomhetFormField.regnskapsfører_telefon]: {
         [ValidateStringError.stringHasNoValue]: 'virksomhetForm.regnskapsfører_telefon.stringHasNoValue',
         [ValidateStringError.stringIsTooLong]: 'virksomhetForm.regnskapsfører_telefon.stringIsTooLong',
         [ValidateStringError.stringIsTooShort]: 'virksomhetForm.regnskapsfører_telefon.stringIsTooShort',
+        [ValidateStringError.stringContainsUnicodeChacters]:
+            'virksomhetForm.regnskapsfører_telefon.stringContainsUnicodeChacters',
     },
 };
 
@@ -226,7 +232,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                             <Form.TextField
                                 name={VirksomhetFormField.navnPåVirksomheten}
                                 label={getText('sifForms.virksomhet.hva_heter_virksomheten')}
-                                validate={getStringValidator({ required: true })}
+                                validate={getStringValidator({ required: true, disallowUnicodeCharacters: true })}
                                 maxLength={50}
                             />
                         </Block>
@@ -584,6 +590,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                             required: true,
                                                             minLength: 2,
                                                             maxLength: 50,
+                                                            disallowUnicodeCharacters: true,
                                                         })(value);
 
                                                         return error
@@ -609,6 +616,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                                 minLength: 5,
                                                                 maxLength: 15,
                                                                 formatRegExp: /^[\w+\s()]+$/,
+                                                                disallowUnicodeCharacters: true,
                                                             })(value);
 
                                                             return error
