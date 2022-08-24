@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 4.1.1
+
+### Patch Changes
+
+-   b46c74a: defaultExport i apiUtils
+
 ## 4.1.0
 
 ### Patch Changes
