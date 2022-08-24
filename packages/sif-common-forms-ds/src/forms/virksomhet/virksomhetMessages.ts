@@ -81,6 +81,8 @@ const virksomhetMessages = {
         'virksomhetForm.fiskerErPåBladB.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på spørsmålet om du er fisker på Blad B.',
         'virksomhetForm.navnPåVirksomheten.stringHasNoValue': 'Skriv inn navnet på virksomheten din.',
+        'virksomhetForm.navnPåVirksomheten.stringContainsUnicodeChacters':
+            'Navnet på virksomheten du har lagt inn inneholder ugyldige tegn. Hvis du har limt inn navnet kan det være at du har fått med tegn som ikke vises. Prøv derfor å skrive det inn selv, i stedet for å lime det inn.',
         'virksomhetForm.registrertINorge.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på spørsmålet om virksomheten din er registrert i Norge.',
         'virksomhetForm.registrertILand.noValue':
@@ -158,11 +160,15 @@ const virksomhetMessages = {
             'Navnet på regnskapsfører kan ikke inneholde flere enn {maks} tegn.',
         'virksomhetForm.regnskapsfører_navn.stringIsTooShort':
             'Navnet på regnskapsfører må inneholde minst {min} tegn.',
+        'virksomhetForm.regnskapsfører_navn.stringContainsUnicodeChacters':
+            'Navnet til regnskapsføreren du har lagt inn inneholder ugyldige tegn. Hvis du har limt inn navnet kan det være at du har fått med tegn som ikke vises. Prøv derfor å skrive det inn selv, i stedet for å lime det inn.',
         'virksomhetForm.regnskapsfører_telefon.stringHasNoValue': 'Skriv inn telefonnummeret til regnskapsføreren din.',
         'virksomhetForm.regnskapsfører_telefon.stringIsTooLong':
             'Telefonnummeret til regnskapsfører kan ikke inneholde flere enn {maks} tegn.',
         'virksomhetForm.regnskapsfører_telefon.stringIsTooShort':
             'Telefonnummeret til regnskapsfører må inneholde minst {min} tegn.',
+        'virksomhetForm.regnskapsfører_telefon.stringContainsUnicodeChacters':
+            'Telefonnummeret du har lagt inn inneholder ugyldige tegn. Hvis du har limt inn telefonnummeret kan det være at du har fått med tegn som ikke vises. Prøv derfor å skrive det inn selv, i stedet for å lime det inn. Telefonnummeret kan kun inneholde tall, mellomrom og +-tegnet.',
         'virksomhetForm.regnskapsfører_telefon.stringHasInvalidFormat':
             'Telefonnummeret du har lagt inn inneholder ugyldige tegn. Hvis du har limt inn telefonnummeret kan det være at du har fått med tegn som ikke vises. Prøv derfor å skrive det inn selv, i stedet for å lime det inn. Telefonnummeret kan kun inneholde tall, mellomrom og +-tegnet.',
     },
