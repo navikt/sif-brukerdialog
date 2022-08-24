@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 1.4.0
+
+### Minor Changes
+
+-   991b878: Validere virksomhetsnavn og regnskapsførers navn og telefon for ugyldige tegn
+
 ## 1.3.0
 
 ### Minor Changes
