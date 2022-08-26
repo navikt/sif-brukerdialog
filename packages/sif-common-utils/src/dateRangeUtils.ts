@@ -102,6 +102,29 @@ export const dateRangesCollide = (dateRanges: DateRange[], fromDateCanBeSameAsPr
 };
 
 /**
+ * Check if multiple date ranges exceeds one date range
+ * @param ranges
+ * @param allowedRange
+ * @returns boolean
+ */
+export const dateRangesExceedsRange = (ranges: DateRange[], allowedRange: DateRange): boolean => {
+    if (ranges.length === 0) {
+        return false;
+    }
+    const sortedRanges = ranges.sort(sortDateRange);
+    const from = sortedRanges[0].from;
+    const to = sortedRanges[sortedRanges.length - 1].to;
+
+    if (
+        !dayjs(from).isBetween(allowedRange.from, allowedRange.to, 'day', '[]') ||
+        !dayjs(to).isBetween(allowedRange.from, allowedRange.to, 'day', '[]')
+    ) {
+        return true;
+    }
+    return false;
+};
+
+/**
  * Check if one or more dates are within dateranges
  * @param dates
  * @param dateRanges

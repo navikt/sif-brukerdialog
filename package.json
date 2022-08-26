@@ -54,7 +54,6 @@
         "build-app": "turbo run build-app",
         "build-sif-ettersending": "turbo run build-app --filter=@navikt/sif-ettersending",
         "build-deling-omsorgsdager": "turbo run build-app --filter=@navikt/omsorgsdager-deling-dialog",
-        "build-ekstra-omsorgsdager": "turbo run build-app --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",

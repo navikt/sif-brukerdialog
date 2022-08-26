@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import {
     DateRange,
     dateRangesCollide,
+    dateRangesExceedsRange,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
     dateToISODate,
@@ -497,6 +498,52 @@ describe('dateRangeUtils', () => {
         it('returns correctIsoDateRange', () => {
             const result = ISODateToISODateRange('2021-01-01');
             expect(result).toEqual('2021-01-01/2021-01-01');
+        });
+    });
+
+    describe('dateRangesExceedsRange', () => {
+        const range = {
+            from: dayjs().toDate(),
+            to: dayjs().add(2, 'week').toDate(),
+        };
+
+        const ranges: DateRange[] = [
+            {
+                from: dayjs().toDate(),
+                to: dayjs().add(1, 'week').toDate(),
+            },
+        ];
+
+        it('should return false if ranges are within valid range', () => {
+            expect(dateRangesExceedsRange(ranges, range)).toBeFalsy();
+        });
+        it('should return true if ranges are ahead of valid range', () => {
+            expect(
+                dateRangesExceedsRange(
+                    [
+                        ...ranges,
+                        {
+                            from: dayjs().subtract(2, 'day').toDate(),
+                            to: dayjs().subtract(1, 'day').toDate(),
+                        },
+                    ],
+                    range
+                )
+            ).toBeTruthy();
+        });
+        it('should return true if ranges are after valid range', () => {
+            expect(
+                dateRangesExceedsRange(
+                    [
+                        ...ranges,
+                        {
+                            from: dayjs().add(3, 'week').toDate(),
+                            to: dayjs().add(4, 'week').toDate(),
+                        },
+                    ],
+                    range
+                )
+            ).toBeTruthy();
         });
     });
 });

@@ -9,7 +9,6 @@ on:
             options:
             - sif-ettersending
             - deling-omsorgsdager
-            - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
             required: true
     secrets:
         NAIS_DEPLOY_APIKEY:
