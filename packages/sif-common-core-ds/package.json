@@ -12,6 +12,7 @@
     "dependencies": {
         "http-status-codes": "^2.2.0",
         "i18n-iso-countries": "^7.5.0",
+        "browser-image-compression": "^2.0.0",
         "react-collapse": "^5.1.1",
         "tailwindcss": "^3.1.8",
         "uuid": "^8.3.2"
