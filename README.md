@@ -38,4 +38,4 @@ Samling av kode for søknadsdialoger under Sykdom i familien
     - Skriv en kort oppsummering på hva som er gjort
     - commit og push
 2. Når PR merges inn på main, vil det bli laget en `Changeset version`-PR med oppdaterte versjonsnumre. NB! Se over at PR'en ikke inneholder noen bumps som er feil. Den tar av og til med pakker som ikke skal være med. Korriger dersom det er feil.
-3. Når `Changeset verson` er merget til main, kan en hente ned `main`-branchen og kjøre `yarn changeset publish`. Da vil alle versjoner som er oppdatert pushes til npmjs.
+3. Når `Changeset version` er merget til main, kan en hente ned `main`-branchen bygg alle pakker `yarn bp` og kjøre `yarn changeset publish`. Da vil alle versjoner som er oppdatert pushes til npmjs.
