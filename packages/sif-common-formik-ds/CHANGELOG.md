@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.7.0
+
+### Minor Changes
+
+-   1af13af: Legge til default value "" for FormikRadioGroup slik at en ikke får varsel om controller/uncontrolled fra React.
+
 ## 0.6.0
 
 ### Minor Changes
