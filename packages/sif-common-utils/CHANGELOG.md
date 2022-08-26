@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.15.0
+
+### Minor Changes
+
+-   b0a905c: Legge til funksjon - dateRangesExceedsRange
+
 ## 3.14.1
 
 ### Patch Changes
