@@ -2272,25 +2272,6 @@
     react-responsive "^8.2.0"
     react-router-dom "^5.2.0"
 
-"@navikt/sif-common-formik@^23.2.0":
-  version "23.2.0"
-  resolved "https://registry.yarnpkg.com/@navikt/sif-common-formik/-/sif-common-formik-23.2.0.tgz#0236566446d55062c42587323f7f8b7914fbf6e8"
-  integrity sha512-G9xCOHuKunl+DiG7vZBEiTOOt84gnKWQgP44LhfjnIyKdDjygqwKjCVB2XZK9TcTeNf2gylITGAhrQSn36wyMw==
-  dependencies:
-    flat "^5.0.2"
-    i18n-iso-countries "^7.4.0"
-    react-responsive "^8.2.0"
-
-"@navikt/sif-common-question-config@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@navikt/sif-common-question-config/-/sif-common-question-config-0.0.7.tgz#e4487c0b61f3253a794ca42376b79b6a4c2b3f43"
-  integrity sha512-6K8cnhWk4CZ5t7FUXWK06mhpNP4YRMYNVXjbEhgiqmAH2Lz6ZjDsd9dvagMbekv0rzVty93aY8Ap+gY+dAFBEg==
-
-"@navikt/sif-common-soknad@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@navikt/sif-common-soknad/-/sif-common-soknad-5.3.1.tgz#99f6caf5f4e5dc70970dfbdaddb6b7d9eb0b6d0e"
-  integrity sha512-VPJqxJfDS/2pylq+PtDlhBpWczdQ7VDZDmaqVx/UzjrQGk9VSTC3quDXi+yN9xCPqabY87xucATVCQJRyyz4dQ==
-
 "@next/eslint-plugin-next@12.2.5":
   version "12.2.5"
   resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.2.5.tgz#4f3acccd2ed4f9300fbf9fd480cc8a0b261889a8"
@@ -8294,7 +8275,7 @@ eslint-plugin-prettier@^4.2.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@^4.3.0, eslint-plugin-react-hooks@^4.5.0, eslint-plugin-react-hooks@^4.6.0:
+eslint-plugin-react-hooks@^4.3.0, eslint-plugin-react-hooks@^4.5.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.6.0.tgz#4c3e697ad95b77e93f8646aaa1630c1ba607edd3"
   integrity sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==
@@ -8397,7 +8378,7 @@ eslint-visitor-keys@^3.3.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz#f6480fa6b1f30efe2d1968aa8ac745b862469826"
   integrity sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==
 
-eslint-webpack-plugin@^3.1.1, eslint-webpack-plugin@^3.2.0:
+eslint-webpack-plugin@^3.1.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/eslint-webpack-plugin/-/eslint-webpack-plugin-3.2.0.tgz#1978cdb9edc461e4b0195a20da950cf57988347c"
   integrity sha512-avrKcGncpPbPSUHX6B3stNGzkKFto3eL+DKM4+VyMrVnhPc3vRczVlCq3uhuFOdRvDHTVXuzwk1ZKUrqDQHQ9w==
@@ -9004,13 +8985,6 @@ focus-lock@^0.8.0:
   integrity sha512-/LFZOIo82WDsyyv7h7oc0MJF9ACOvDRdx9rWPZ2pgMfNWu/z8hQDBtOchuB/0BVLmuFOZjV02YwUVzNsWx/EzA==
   dependencies:
     tslib "^1.9.3"
-
-focus-trap-react@^8.6.0:
-  version "8.11.3"
-  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-8.11.3.tgz#aa0ba3b17676abf8faf78c5e51d8cd8df83eec41"
-  integrity sha512-y126gMYuB1aVYiEZSP6/v9bAfVmAIUVixanhcoMelkz7bOh+l0c3h05CEHC8S63ztxdRI2AAPS9AsTat6jlDeQ==
-  dependencies:
-    focus-trap "^6.9.4"
 
 focus-trap-react@^9.0.2:
   version "9.0.2"
@@ -10119,7 +10093,7 @@ hyphenate-style-name@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
-i18n-iso-countries@^7.4.0, i18n-iso-countries@^7.5.0:
+i18n-iso-countries@^7.5.0:
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/i18n-iso-countries/-/i18n-iso-countries-7.5.0.tgz#74fedd72619526a195cfb2e768fe1d82eed2123f"
   integrity sha512-PtfKJNWLVhhU0KBX/8asmywjAcuyQk07mmmMwxFJcddTNBJJ1yvpY2qxVmyxbtVF+9+6eg9phgpv83XPUKU5CA==
@@ -11480,7 +11454,7 @@ jest@^27.4.3:
     import-local "^3.0.2"
     jest-cli "^27.5.1"
 
-jose@^4.1.4, jose@^4.8.3, jose@^4.9.0:
+jose@^4.1.4, jose@^4.9.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/jose/-/jose-4.9.0.tgz#98ecaf81b13361d1931c0126e3f765549c782f92"
   integrity sha512-RgaqEOZLkVO+ViN3KkN44XJt9g7+wMveUv59sVLaTxONcUPc8ZpfqOCeLphVBZyih2dgkvZ0Ap1CNcokvY7Uyw==
@@ -12666,13 +12640,6 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
-
-nav-datovelger@^12.6.0:
-  version "12.6.0"
-  resolved "https://registry.yarnpkg.com/nav-datovelger/-/nav-datovelger-12.6.0.tgz#e3b4020429584e71d2d16f5483e67e32fd3298b6"
-  integrity sha512-z7hmVcPSqZAoOX40hG/a7E9QQNZoPjRfL2Qn+ylYIYLv5Nx0lzFVZPHnubzdUFTYBf5SFJ6EGWcv9u6ISn2FDA==
-  dependencies:
-    focus-trap-react "^8.6.0"
 
 nav-frontend-alertstriper-style@^3.0.2:
   version "3.0.2"
@@ -15038,7 +15005,7 @@ react-responsive@^9.0.0-beta.10:
     prop-types "^15.6.1"
     shallow-equal "^1.2.1"
 
-react-router-dom@^5.2.0, react-router-dom@^5.2.1, react-router-dom@^5.3.3:
+react-router-dom@^5.2.0, react-router-dom@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.3.3.tgz#8779fc28e6691d07afcaf98406d3812fe6f11199"
   integrity sha512-Ov0tGPMBgqmbu5CDmN++tv2HQ9HlWDuWIIqn4b88gjlAN5IHI+4ZUZRcpz9Hl0azFIwihbLDYw1OiHGRo7ZIng==

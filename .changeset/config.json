@@ -7,5 +7,5 @@
     "access": "public",
     "baseBranch": "main",
     "updateInternalDependencies": "patch",
-    "ignore": ["config", "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"]
+    "ignore": ["config"]
 }
