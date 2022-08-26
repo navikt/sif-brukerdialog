@@ -20,4 +20,22 @@ Samling av kode for søknadsdialoger under Sykdom i familien
 ## Utvikling, endringer og publisering
 
 -   Vi bruker @changesets/cli for å holde orden på versjoner. Se https://www.npmjs.com/package/@changesets/cli for mer informasjon om hvordan det brukes.
--   Egne rutiner finner vi ut av og dokumenterer her.
+
+### Lage PR fra branch med endret kode, og som medfører versjons-bump
+
+#### Oppsummert
+
+-   Lag PR med oppdatert kode og changeset fil
+-   PR merges til main og ny PR med oppdaterte versjoner lages automatisk
+-   PR med versjoner merges inn og en publiserer til npmjs
+
+#### Detaljert
+
+1. Lag PR med oppdatert kode, samt en changeset fil:
+    - Kjør `yarn changeset`
+    - Velg pakker som skal oppdateres
+    - Velg riktig bump for pakken
+    - Skriv en kort oppsummering på hva som er gjort
+    - commit og push
+2. Når PR merges inn på main, vil det bli laget en `Changeset version`-PR med oppdaterte versjonsnumre. NB! Se over at PR'en ikke inneholder noen bumps som er feil. Den tar av og til med pakker som ikke skal være med. Korriger dersom det er feil.
+3. Når `Changeset verson` er merget til main, kan en hente ned `main`-branchen og kjøre `yarn changeset publish`. Da vil alle versjoner som er oppdatert pushes til npmjs.
