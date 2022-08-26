@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 4.2.0
+
+### Minor Changes
+
+-   ba4b573: Lagt til funksjon til å komprimere bilder
+
 ## 4.1.1
 
 ### Patch Changes
