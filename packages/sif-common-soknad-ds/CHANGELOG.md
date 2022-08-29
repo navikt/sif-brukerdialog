@@ -1,6 +1,6 @@
 # @navikt/sif-common-soknad-ds
 
-## 5.0.0
+## 4.2.0
 
 ### Patch Changes
 
