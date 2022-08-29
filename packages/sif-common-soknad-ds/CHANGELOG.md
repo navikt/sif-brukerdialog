@@ -1,5 +1,13 @@
 # @navikt/sif-common-soknad-ds
 
+## 4.2.0
+
+### Patch Changes
+
+-   ec2e55b: Legge til apiVersion for sanity-config
+-   Updated dependencies [ec2e55b]
+    -   @navikt/appstatus-react-ds@1.4.0
+
 ## 4.1.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.4.0
+
+### Minor Changes
+
+-   ec2e55b: Legge til apiVersion for sanity-config
+
 ## 1.3.0
 
 ### Minor Changes
