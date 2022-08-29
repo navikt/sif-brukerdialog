@@ -1,4 +1,5 @@
 import { Attachment, PersistedFile } from '../types/Attachment';
+import imageCompression from 'browser-image-compression';
 
 export const VALID_EXTENSIONS = ['.pdf', '.jpeg', '.jpg', '.png'];
 
@@ -61,3 +62,25 @@ export const containsAnyUploadedAttachments = (attachmentList: Attachment[]) =>
     attachmentList &&
     attachmentList.length > 0 &&
     attachmentList.length !== attachmentList.filter(attachmentUploadHasFailed).length;
+
+export type CompressOptions = {
+    maxSizeMB: number;
+    maxWidthOrHeight?: number;
+};
+
+export async function compressImageFile(imageFile: File, { maxSizeMB, maxWidthOrHeight }: CompressOptions) {
+    if (imageFile.size / 1024 / 1024 < maxSizeMB) {
+        return imageFile;
+    }
+
+    if (imageFile.type.toLowerCase() === 'image/jpeg') {
+        const options = {
+            maxSizeMB,
+            maxWidthOrHeight,
+            useWebWorker: true,
+        };
+
+        const compressedFile = await imageCompression(imageFile, options);
+        return compressedFile;
+    } else return imageFile;
+}
