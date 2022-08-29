@@ -2479,13 +2479,12 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz#0c8b74c50f29ee44f423f7416829c0bf8bb5eb27"
   integrity sha512-LwzQKA4vzIct1zNZzBmRKI9QuNpLgTQMEjsQLf3BXuGYb3QPTP4Yjf6mkdX+X1mYttZ808QpOwAzZjv28kq7DA==
 
-"@sanity/client@^3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-3.3.3.tgz#2eea3410b49365a1d5e05b4590eec4253ebe13a8"
-  integrity sha512-2n4S/d49abreTa1hLehtrQ9lLR8KhnXdIb7kZajkGPGh2yWwbtMXpB7e1dxNvySmFehrJx5rtwdeO3l2IhnHBA==
+"@sanity/client@^3.3.6":
+  version "3.3.6"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-3.3.6.tgz#9c2d397d61fbc85419f5599e0cb84be5aa083322"
+  integrity sha512-UgCHWnpb0N0q1K8NYqAZ4iWpja0ts9LEnuUXcYYbx2xmA57LgA6myCxIVXsF/XH1ArbCQNth0r7zcVpxYH++bQ==
   dependencies:
     "@sanity/eventsource" "^4.0.0"
-    "@sanity/generate-help-url" "^3.0.0"
     get-it "^6.1.1"
     make-error "^1.3.0"
     object-assign "^4.1.1"
@@ -2498,11 +2497,6 @@
   dependencies:
     event-source-polyfill "1.0.25"
     eventsource "^2.0.2"
-
-"@sanity/generate-help-url@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-3.0.0.tgz#60e9cba61b82103ea3761730a53cd9310b98892d"
-  integrity sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==
 
 "@sanity/timed-out@^4.0.2":
   version "4.0.2"
@@ -14416,10 +14410,10 @@ react-collapse@^5.1.1:
   resolved "https://registry.yarnpkg.com/react-collapse/-/react-collapse-5.1.1.tgz#a2fa08ef13f372141b02e6a7d49ef72427bcbc2b"
   integrity sha512-k6cd7csF1o9LBhQ4AGBIdxB60SUEUMQDAnL2z1YvYNr9KoKr+nDkhN6FK7uGaBd/rYrYfrMpzpmJEIeHRYogBw==
 
-react-day-picker@^8.1.2:
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.1.2.tgz#1e7d7e6ea5783950a6c34cfb2fc3d492620d0911"
-  integrity sha512-ynUm1hmsqkNEwxuHfgAUetSeDNlDktI1KcHG4ekVCMhYMq0xe4U77ITYL+ZF6Qa5oReSAHuGzxm02d3SoVrmNQ==
+react-day-picker@^8.1.4:
+  version "8.1.4"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.1.4.tgz#6ee449eb2227f889ce04d9e97dcf5bbb29b3afca"
+  integrity sha512-t5papqTrFreBvzez8miQHy9glhxcydK+uPBqyQiuLFcBEtgejtZqcydUsJmr1u9sh8rmvisPK4mVDociFuqdhg==
 
 react-dev-utils@^12.0.1:
   version "12.0.1"
