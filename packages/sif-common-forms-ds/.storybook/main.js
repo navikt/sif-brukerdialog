@@ -26,21 +26,6 @@ module.exports = {
                 use: { loader: 'svg-sprite-loader', options: {} },
             },
             {
-                test: /\.less$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            lessOptions: {
-                                math: 'always',
-                            },
-                        },
-                    },
-                ],
-            },
-            {
                 test: /\.s[ac]ss$/i,
                 use: [
                     // Creates `style` nodes from JS strings

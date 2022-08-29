@@ -38,7 +38,6 @@
         "formik": "^2.2.9",
         "gh-pages": "^3.2.3",
         "intl": "^1.2.5",
-        "less-plugin-npm-import": "^2.1.0",
         "react": "^18.2.0",
         "react-day-picker": "^8.1.2",
         "react-intl": "^6.0.8",
@@ -59,7 +58,6 @@
         "@navikt/appstatus-react": "^3.0.0",
         "@navikt/ds-css": "^1.2.0",
         "@navikt/ds-react": "^1.2.0",
-        "@navikt/sif-common-core": "12.x",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
         "dayjs": "^1.10.x"
@@ -73,7 +71,7 @@
             "patterns": [
                 "src"
             ],
-            "extensions": "css,scss,less",
+            "extensions": "css,scss",
             "runOnChangeOnly": true
         }
     },
@@ -86,9 +84,8 @@
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "copy-files-watch": "npm-watch copy-files",
-        "copy-files": "npm-run-all copy-sass-files copy-less-files copy-css-files copy-asset-files copy-json-files",
+        "copy-files": "npm-run-all copy-sass-files copy-css-files copy-asset-files copy-json-files",
         "copy-sass-files": "copyfiles -u 1 \"src/**/*.scss\" lib/",
-        "copy-less-files": "copyfiles -u 1 \"src/**/*.less\" lib/",
         "copy-css-files": "copyfiles -u 1 \"src/**/*.css\" lib/",
         "copy-asset-files": "copyfiles -u 1 \"src/**/assets/**/*\" lib/",
         "copy-json-files": "copyfiles -u 1 \"src/**/*.json\" lib/",

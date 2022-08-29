@@ -6,7 +6,7 @@ import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { BostedUtland } from './types';
-import './bostedUtlandList.less';
+import './bostedUtlandList.scss';
 
 interface Props {
     bosteder: BostedUtland[];
