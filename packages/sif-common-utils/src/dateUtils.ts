@@ -21,8 +21,9 @@ export const date1YearFromNow = dayjs().add(1, 'year').endOf('day').toDate();
 export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODateFormat);
 
 export const ISODateToDate = (isoDate: ISODate): Date => {
-    return dayjs(isoDate).toDate();
+    return dayjs.utc(isoDate, ISODateFormat).toDate();
 };
+
 export const getISOWeekdayFromISODate = (isoDate: ISODate): number => {
     return dayjs(ISODateToDate(isoDate)).isoWeekday();
 };
