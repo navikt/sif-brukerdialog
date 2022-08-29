@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 5.0.0
+
+### Patch Changes
+
+-   Updated dependencies [ec2e55b]
+    -   @navikt/appstatus-react-ds@1.4.0
+
 ## 4.2.1
 
 ### Patch Changes
