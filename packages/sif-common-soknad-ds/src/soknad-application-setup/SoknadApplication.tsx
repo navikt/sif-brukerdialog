@@ -1,4 +1,4 @@
-import { SanityConfig } from '@navikt/appstatus-react/lib/types';
+import { SanityConfig } from '@navikt/appstatus-react-ds/lib/types';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
