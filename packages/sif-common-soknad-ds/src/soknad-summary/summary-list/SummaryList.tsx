@@ -1,6 +1,6 @@
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import React from 'react';
-import './summaryList.less';
+import './summaryList.scss';
 
 interface Props {
     items: any[];

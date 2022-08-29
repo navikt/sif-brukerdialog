@@ -28,7 +28,7 @@ import { navigateTo, navigateToLoginPage } from '../../utils/navigationUtils';
 import ApplicationFormComponents from '../ApplicationFormComponents';
 import ApplicationStep from '../ApplicationStep';
 import SummaryBlock from './SummaryBlock';
-import './oppsummering.less';
+import './oppsummeringStep.css';
 
 interface Props {
     søknadstype: ApplicationType;

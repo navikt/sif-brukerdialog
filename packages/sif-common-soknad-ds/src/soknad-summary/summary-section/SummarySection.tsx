@@ -1,7 +1,7 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import './summarySection.less';
-import { Heading } from '@navikt/ds-react';
+import './summarySection.scss';
 
 interface Props {
     header: string;

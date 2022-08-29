@@ -6,7 +6,7 @@ import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import { Utenlandsopphold } from './types';
-import './utenlandsoppholdList.less';
+import './utenlandsoppholdList.scss';
 
 interface Props {
     utenlandsopphold: Utenlandsopphold[];

@@ -1,12 +1,12 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
-import { prettifyDate } from '@navikt/sif-common-utils';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { AnnetBarn } from './types';
-import './annetBarnList.less';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { useIntl } from 'react-intl';
+import { prettifyDate } from '@navikt/sif-common-utils';
+import { AnnetBarn } from './types';
+import './annetBarnList.scss';
 
 interface Props {
     annetBarn: AnnetBarn[];

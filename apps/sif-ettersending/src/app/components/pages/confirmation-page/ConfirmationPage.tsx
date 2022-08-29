@@ -9,7 +9,7 @@ import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../../lenker';
 import { ApplicationType } from '../../../types/ApplicationType';
-import './confirmationPage.less';
+import './confirmationPage.css';
 
 interface Props {
     søknadstype: ApplicationType;
