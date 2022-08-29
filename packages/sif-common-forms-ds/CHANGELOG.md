@@ -1,5 +1,13 @@
 # @navikt/sif-common-forms-ds
 
+## 1.4.1
+
+### Patch Changes
+
+-   2c42521: Fjerne referanser til less filer
+-   Updated dependencies [2c42521]
+    -   @navikt/sif-common-core-ds@4.2.1
+
 ## 1.4.0
 
 ### Minor Changes

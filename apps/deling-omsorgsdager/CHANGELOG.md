@@ -1,5 +1,18 @@
 # @navikt/omsorgsdager-deling-dialog
 
+## 3.4.1
+
+### Patch Changes
+
+-   2c42521: Fjerne referanser til less filer
+-   Updated dependencies [2c42521]
+-   Updated dependencies [679c335]
+    -   @navikt/sif-common-core-ds@4.2.1
+    -   @navikt/sif-common-formik-ds@0.6.1
+    -   @navikt/sif-common-forms-ds@1.4.1
+    -   @navikt/sif-common-soknad-ds@4.1.1
+    -   @navikt/sif-common-utils@3.15.1
+
 ## 3.4.0
 
 ### Minor Changes
