@@ -1,5 +1,13 @@
 # @navikt/sif-common-soknad-ds
 
+## 4.1.1
+
+### Patch Changes
+
+-   2c42521: Fjerne referanser til less filer
+-   Updated dependencies [2c42521]
+    -   @navikt/sif-common-formik-ds@0.6.1
+
 ## 4.1.0
 
 ### Patch Changes

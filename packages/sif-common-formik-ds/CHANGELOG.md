@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.1
+
+### Patch Changes
+
+-   2c42521: Fjerne referanser til less filer
+
 ## 0.6.0
 
 ### Minor Changes

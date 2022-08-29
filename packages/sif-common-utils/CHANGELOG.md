@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.15.1
+
+### Patch Changes
+
+-   679c335: Endre til å bruke .utc i dateToISODate - da likt som det har vært i sif-common-core
+
 ## 3.15.0
 
 ### Minor Changes
