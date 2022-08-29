@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@changesets/cli": "^2.24.3",
-        "@navikt/ds-tailwind": "^1.2.0",
+        "@navikt/ds-tailwind": "^1.2.4",
         "@snyk/protect": "^1.991.0",
         "@storybook/builder-webpack5": "^6.5.10",
         "@storybook/manager-webpack5": "^6.5.10",
@@ -32,7 +32,7 @@
         "postcss-loader": "^7.0.1",
         "postcss-nested": "^5.0.6",
         "prettier": "^2.7.1",
-        "react-day-picker": "^8.1.2",
+        "react-day-picker": "^8.1.4",
         "react-scripts": "5.0.1",
         "react-syntax-highlighter": "^15.5.0",
         "turbo": "^1.4.3",
