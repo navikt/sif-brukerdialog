@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import React from 'react';
 import { FastField, Field, FieldProps } from 'formik';
 import { FormError, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
@@ -5,7 +6,7 @@ import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import ModalFormAndList, { ModalFormAndListProps } from './modal-form-and-list/ModalFormAndList';
 import './formikModalForm.scss';
 
-export interface FormikModalFormAndListProps<FieldName, ItemType, ErrorType>
+export interface FormikModalFormAndListProps<FieldName, ItemType extends {}, ErrorType>
     extends ModalFormAndListProps<ItemType>,
         UseFastFieldProps,
         TypedFormInputValidationProps<FieldName, ErrorType> {
@@ -15,7 +16,7 @@ export interface FormikModalFormAndListProps<FieldName, ItemType, ErrorType>
     onAfterChange?: (values: ItemType[]) => void;
 }
 
-function FormikModalFormAndList<FieldName, ItemType, ErrorType>({
+function FormikModalFormAndList<FieldName, ItemType extends {}, ErrorType>({
     name,
     labels,
     listRenderer,

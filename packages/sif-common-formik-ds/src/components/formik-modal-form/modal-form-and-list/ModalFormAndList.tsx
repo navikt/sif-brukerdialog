@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { Alert, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
@@ -33,7 +34,7 @@ interface PrivateProps<ItemType> {
     error?: React.ReactNode | boolean;
 }
 
-type Props<ItemType> = ModalFormAndListProps<ItemType> & PrivateProps<ItemType>;
+type Props<ItemType extends {}> = ModalFormAndListProps<ItemType> & PrivateProps<ItemType>;
 
 const bem = bemUtils('formikModalForm').child('modal');
 
