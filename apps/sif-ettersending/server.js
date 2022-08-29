@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
-const express = require('express');
-const mustacheExpress = require('mustache-express');
-const compression = require('compression');
-const getDecorator = require('./src/build/scripts/decorator');
-const envSettings = require('./envSettings');
-const cookieParser = require('cookie-parser');
-const { initTokenX, exchangeToken } = require('./tokenx');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const Promise = require('promise');
+const { initTokenX, exchangeToken } = require('./tokenx');
+const compression = require('compression');
+const cookieParser = require('cookie-parser');
+const envSettings = require('./envSettings');
+const express = require('express');
+const getDecorator = require('./src/build/scripts/decorator');
 const helmet = require('helmet');
-const path = require('path');
 const jose = require('jose');
+const mustacheExpress = require('mustache-express');
+const path = require('path');
+const Promise = require('promise');
 
 const server = express();
 server.use(

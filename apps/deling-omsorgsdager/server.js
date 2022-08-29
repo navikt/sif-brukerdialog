@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-const express = require('express');
-const path = require('path');
-const mustacheExpress = require('mustache-express');
-const Promise = require('promise');
 const compression = require('compression');
-const helmet = require('helmet');
-const getDecorator = require('./src/build/scripts/decorator');
 const envSettings = require('./envSettings');
+const express = require('express');
+const getDecorator = require('./src/build/scripts/decorator');
+const helmet = require('helmet');
+const mustacheExpress = require('mustache-express');
+const path = require('path');
+const Promise = require('promise');
 
 const server = express();
 server.use(
