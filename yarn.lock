@@ -2151,10 +2151,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@navikt/ds-css@^1.0.0", "@navikt/ds-css@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.2.0.tgz#83a97cc9f65805820522e543a903b7c34b50611b"
-  integrity sha512-6BJ/gNvIiroEOtYOsfpwc2M1ZoM21rWgO0qgcJNgUsTXrThEdQI9L//SnehsVLsDAnzvM2mNauofpXVbKnSUZw==
+"@navikt/ds-css@^1.0.0", "@navikt/ds-css@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.2.4.tgz#f6450b5322a366c0e8e73fbdfb4184f9029b5c2a"
+  integrity sha512-6Yxz2udG6pv1ew8A6gtYLCc16Vwx+vzFmapir0wX/qo3ow90iFgqWZwEg4dNajg3MDgYdS9Jhe+FMSEc0Sx8SQ==
 
 "@navikt/ds-datepicker@^4.0.0-beta.7":
   version "4.0.0-beta.7"
