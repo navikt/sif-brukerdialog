@@ -11243,10 +11243,10 @@ jest@^27.4.3:
     import-local "^3.0.2"
     jest-cli "^27.5.1"
 
-jose@^4.1.4, jose@^4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-4.9.0.tgz#98ecaf81b13361d1931c0126e3f765549c782f92"
-  integrity sha512-RgaqEOZLkVO+ViN3KkN44XJt9g7+wMveUv59sVLaTxONcUPc8ZpfqOCeLphVBZyih2dgkvZ0Ap1CNcokvY7Uyw==
+jose@^4.1.4, jose@^4.9.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-4.9.1.tgz#c1eef9f20f479d8aa55cdfd4bbc3d76322dd1b48"
+  integrity sha512-ETgCfJ2yxJavpJdVMgznN8ot3MJyZUiLyY2xiZ2sSNL/uEZh1EH74cmNYWhZgMSBwSdSz03ja5cMZU/9BSlqXg==
 
 js-cookie@^3.0.1:
   version "3.0.1"
@@ -14416,10 +14416,10 @@ react-collapse@^5.1.1:
   resolved "https://registry.yarnpkg.com/react-collapse/-/react-collapse-5.1.1.tgz#a2fa08ef13f372141b02e6a7d49ef72427bcbc2b"
   integrity sha512-k6cd7csF1o9LBhQ4AGBIdxB60SUEUMQDAnL2z1YvYNr9KoKr+nDkhN6FK7uGaBd/rYrYfrMpzpmJEIeHRYogBw==
 
-react-day-picker@^8.1.2:
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.1.2.tgz#1e7d7e6ea5783950a6c34cfb2fc3d492620d0911"
-  integrity sha512-ynUm1hmsqkNEwxuHfgAUetSeDNlDktI1KcHG4ekVCMhYMq0xe4U77ITYL+ZF6Qa5oReSAHuGzxm02d3SoVrmNQ==
+react-day-picker@^8.1.4:
+  version "8.1.4"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.1.4.tgz#6ee449eb2227f889ce04d9e97dcf5bbb29b3afca"
+  integrity sha512-t5papqTrFreBvzez8miQHy9glhxcydK+uPBqyQiuLFcBEtgejtZqcydUsJmr1u9sh8rmvisPK4mVDociFuqdhg==
 
 react-dev-utils@^12.0.1:
   version "12.0.1"
