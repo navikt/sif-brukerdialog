@@ -2182,10 +2182,10 @@
     clsx "^1.1.1"
     react-modal "3.15.1"
 
-"@navikt/ds-tailwind@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-1.2.0.tgz#ad295ec457971cae54843e5ec02077334859e911"
-  integrity sha512-tAeAZ7ALmjU5sOJhVKkFlJgrvwnPT2xA/9YpMAcooVZqnDUdU1QosJOcH7hdb7oSxl6N6T0+1RmmYeV2LG3R2w==
+"@navikt/ds-tailwind@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-1.2.4.tgz#98e2a9c0b2a93f06d70b0c287d6ff0a4b0e4d759"
+  integrity sha512-S3TYK0rwzEqJyavR6IEy2hz+5d6eRnibJcOpI+MdWo9PVU73P/JYQD9HM5l/4FDcSuxkdXJYDll64ViYz9xZAw==
 
 "@navikt/fnrvalidator@^1.3.0":
   version "1.3.0"

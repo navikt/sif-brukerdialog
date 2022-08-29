@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@changesets/cli": "^2.24.3",
-        "@navikt/ds-tailwind": "^1.2.0",
+        "@navikt/ds-tailwind": "^1.2.4",
         "@snyk/protect": "^1.991.0",
         "@storybook/builder-webpack5": "^6.5.10",
         "@storybook/manager-webpack5": "^6.5.10",
