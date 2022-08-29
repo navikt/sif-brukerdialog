@@ -24,7 +24,7 @@
     "devDependencies": {
         "@formatjs/intl-pluralrules": "^5.1.2",
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "^1.2.0",
+        "@navikt/ds-css": "^1.2.4",
         "@navikt/ds-datepicker": "^4.0.0-beta.7",
         "@navikt/ds-react": "^1.2.0",
         "@navikt/ds-tailwind": "^1.2.0",
