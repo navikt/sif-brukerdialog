@@ -25,7 +25,7 @@
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
         "date-fns": "2.29.2",
-        "dotenv": "^16.0.1",
+        "dotenv": "^16.0.2",
         "express": "^4.18.1",
         "formik": "^2.2.9",
         "helmet": "^6.0.0",
