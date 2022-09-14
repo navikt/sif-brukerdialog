@@ -97,5 +97,9 @@
             "runOnChangeOnly": true
         }
     },
+    "files": [
+        "package.json",
+        "/lib"
+    ],
     "private": false
 }

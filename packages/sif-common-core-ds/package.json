@@ -103,5 +103,9 @@
         "test-coverage": "react-scripts test a --coverage --watchAll=false",
         "test-coverage-watch": "react-scripts test a --coverage --watchAll=true"
     },
+    "files": [
+        "package.json",
+        "/lib"
+    ],
     "private": false
 }
