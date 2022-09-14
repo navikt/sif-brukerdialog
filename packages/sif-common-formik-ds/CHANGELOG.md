@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.2
+
+### Patch Changes
+
+-   092103d: Legge til files i package.json slik at kun nødvendige filer publiseres.
+
 ## 0.6.1
 
 ### Patch Changes

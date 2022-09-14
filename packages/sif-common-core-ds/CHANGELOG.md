@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 4.3.1
+
+### Patch Changes
+
+-   092103d: Legge til files i package.json slik at kun nødvendige filer publiseres.
+-   Updated dependencies [092103d]
+    -   @navikt/sif-common-formik-ds@0.6.2
+
 ## 4.3.0
 
 ### Minor Changes
