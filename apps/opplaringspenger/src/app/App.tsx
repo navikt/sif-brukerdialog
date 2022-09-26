@@ -9,7 +9,6 @@ import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/sokn
 import { applicationIntlMessages } from './i18n/applicationMessages';
 import IntroPage from './pages/intro-page/IntroPage';
 import Søknad from './søknad/Søknad';
-import { getEnvVariableOrDefault } from './utils/envUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
@@ -20,17 +19,6 @@ const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
-
-function prepare() {
-    if (
-        getEnvironmentVariable('APP_VERSION') !== 'production' &&
-        getEnvVariableOrDefault('MSW_MODE', 'dev') === 'dev'
-    ) {
-        const { worker } = require('../../api-mock/msw/browser');
-        worker.start();
-    }
-    return Promise.resolve();
-}
 
 const App = () => (
     <SifAppWrapper>
@@ -60,6 +48,4 @@ const App = () => (
     </SifAppWrapper>
 );
 
-prepare().then(() => {
-    root.render(<App />);
-});
+root.render(<App />);
