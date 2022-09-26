@@ -20,7 +20,7 @@ const container = document.getElementById('app');
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
-const App = () => (
+export const App1 = () => (
     <SifAppWrapper>
         <AmplitudeProvider
             applicationKey={APPLICATION_KEY}
@@ -48,4 +48,27 @@ const App = () => (
     </SifAppWrapper>
 );
 
-root.render(<App />);
+const App2 = () => (
+    <SifAppWrapper>
+        <AmplitudeProvider
+            applicationKey={APPLICATION_KEY}
+            isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
+            <SoknadApplication
+                appName="Søknad om opplæringspenger"
+                intlMessages={applicationIntlMessages}
+                sentryKey={APPLICATION_KEY}
+                appStatus={{
+                    applicationKey: APPLICATION_KEY,
+                    sanityConfig: {
+                        projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
+                        dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                    },
+                }}
+                publicPath={publicPath}>
+                <Søknad />
+            </SoknadApplication>
+        </AmplitudeProvider>
+    </SifAppWrapper>
+);
+
+root.render(<App2 />);
