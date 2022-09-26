@@ -85,13 +85,16 @@ const startExpressServer = () => {
     server.get('/soker', (req, res) => {
         setTimeout(() => {
             readMockFile(søkerFileName, res);
-        }, 1500);
+        }, 250);
     });
     server.get('/barn', (req, res) => {
         readMockFile(barnFileName, res);
     });
     server.get('/arbeidsgivere', (req, res) => {
         readMockFile(arbeidsgiverFileName, res);
+    });
+    server.get('/mellomlagring', (req, res) => {
+        res.send({});
     });
 
     server.get('/soker-401', (req, res) => {

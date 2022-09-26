@@ -6,6 +6,8 @@ import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
+import { SøknadMellomlagring } from '../types/SøknadMellomlagring';
+import mellomlagringEndpoint from './endpoints/mellomlagringEndpoint';
 
 export enum RequestStatus {
     'loading' = 'loading',
@@ -13,37 +15,44 @@ export enum RequestStatus {
     'error' = 'error',
 }
 
+export interface SøknadInitialData {
+    søker: Søker;
+    registrerteBarn: RegistrertBarn[];
+    mellomlagring: SøknadMellomlagring;
+}
+
 type SøknadInitialSuccess = {
     status: RequestStatus.success;
-    data: {
-        søker: Søker;
-        registrerteBarn: RegistrertBarn[];
-    };
+    data: SøknadInitialData;
 };
+
 type SøknadInitialFailed = {
     status: RequestStatus.error;
     error: any;
 };
+
 type SøknadInitialLoading = {
     status: RequestStatus.loading;
 };
 
-export type SøknadInitialData = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
+export type SøknadInitialDataState = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
 
-function useSøknadInitialData(): SøknadInitialData {
-    const [initialData, setInitialData] = useState<SøknadInitialData>({ status: RequestStatus.loading });
+function useSøknadInitialData(): SøknadInitialDataState {
+    const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
 
     const fetch = async () => {
         try {
-            const [søker, registrerteBarn] = await Promise.all([
+            const [søker, registrerteBarn, mellomlagring] = await Promise.all([
                 søkerEndpoint.fetch(),
                 registrerteBarnEndpoint.fetch(),
+                mellomlagringEndpoint.fetch(),
             ]);
             setInitialData({
                 status: RequestStatus.success,
                 data: {
                     søker,
                     registrerteBarn,
+                    mellomlagring,
                 },
             });
             return Promise.resolve();
