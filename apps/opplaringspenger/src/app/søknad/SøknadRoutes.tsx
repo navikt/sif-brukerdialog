@@ -7,8 +7,8 @@ import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import { useSøknadContext } from './SøknadContext';
 import { SøknadStepRoutes } from './SøknadStepRoutes';
 
-const getSøknadStepRoute = (route: SøknadStepRoutes) => {
-    return `/soknad/${route}`;
+const getSøknadStepRoute = (route?: SøknadStepRoutes) => {
+    return `/soknad${route ? `/${route}` : ''}`;
 };
 
 const SøknadRoutes = () => {
@@ -17,7 +17,7 @@ const SøknadRoutes = () => {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
-                <Route path="*" element={<Navigate to={getSøknadStepRoute(SøknadStepRoutes.VELKOMMEN)} />} />
+                <Route path="*" element={<Navigate to={getSøknadStepRoute()} />} />
             </Routes>
         );
     }
@@ -27,7 +27,7 @@ const SøknadRoutes = () => {
             <Route path={SøknadStepRoutes.BARN} element={<BarnStep />} />
             <Route path={SøknadStepRoutes.ARBEID} element={<ArbeidStep />} />
             <Route path={SøknadStepRoutes.OPPSUMMERING} element={<OppsummeringStep />} />
-            <Route path="*" element={<Navigate to={getSøknadStepRoute(SøknadStepRoutes.VELKOMMEN)} />} />
+            <Route path="*" element={<Navigate to={getSøknadStepRoute()} />} />
         </Routes>
     );
 };
