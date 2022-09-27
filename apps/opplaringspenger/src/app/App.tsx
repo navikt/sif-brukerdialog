@@ -39,7 +39,7 @@ const App = () => (
                 publicPath={publicPath}>
                 <SoknadApplicationCommonRoutes
                     contentRoutes={[
-                        <Route path="/" key="intro" element={<IntroPage />} />,
+                        <Route index key="intro" element={<IntroPage />} />,
                         <Route path="/soknad/*" key="soknad" element={<Søknad />} />,
                     ]}
                 />

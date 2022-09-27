@@ -1,18 +1,33 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import VelkommenPage from '../pages/velkommen/VelkommenPage';
+import ArbeidStep from './steps/arbeid/ArbeidStep';
+import BarnStep from './steps/barn/BarnStep';
+import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import { useSøknadContext } from './SøknadContext';
 import { SøknadStepRoutes } from './SøknadStepRoutes';
 
+const getSøknadStepRoute = (route: SøknadStepRoutes) => {
+    return `/soknad/${route}`;
+};
+
 const SøknadRoutes = () => {
-    const { step, søker } = useSøknadContext();
-    if (step) {
-        // eslint-disable-next-line no-console
-        console.log({ step });
+    const { søknadId } = useSøknadContext();
+    if (!søknadId) {
+        return (
+            <Routes>
+                <Route index element={<VelkommenPage />} />
+                <Route path="*" element={<Navigate to={getSøknadStepRoute(SøknadStepRoutes.VELKOMMEN)} />} />
+            </Routes>
+        );
     }
     return (
         <Routes>
-            <Route path={SøknadStepRoutes.VELKOMMEN} element={<Page title="velkommen">Hei {søker.etternavn} </Page>} />
+            <Route index element={<VelkommenPage />} />
+            <Route path={SøknadStepRoutes.BARN} element={<BarnStep />} />
+            <Route path={SøknadStepRoutes.ARBEID} element={<ArbeidStep />} />
+            <Route path={SøknadStepRoutes.OPPSUMMERING} element={<OppsummeringStep />} />
+            <Route path="*" element={<Navigate to={getSøknadStepRoute(SøknadStepRoutes.VELKOMMEN)} />} />
         </Routes>
     );
 };

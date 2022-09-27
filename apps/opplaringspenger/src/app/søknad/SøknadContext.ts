@@ -1,15 +1,5 @@
 import { createContext, useContext } from 'react';
-import { RegistrertBarn } from '../types/RegistrertBarn';
-import { Søker } from '../types/Søker';
-import { SøknadFormValues } from '../types/SøknadFormValues';
-import { StepID } from './søknadStepsConfig';
-
-export interface SøknadContextState {
-    søker: Søker;
-    barn: RegistrertBarn[];
-    step?: StepID;
-    søknadFormValues?: SøknadFormValues;
-}
+import { SøknadContextState } from '../types/SøknadContextState';
 
 export const SøknadContext = createContext<SøknadContextState | undefined>(undefined);
 
