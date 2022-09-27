@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
--   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
 
 ### Patch Changes
 

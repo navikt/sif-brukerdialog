@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
--   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
 -   Updated dependencies [03aeac4]
     -   @navikt/sif-common-core-ds@4.4.0
     -   @navikt/sif-common-amplitude@2.5.2
