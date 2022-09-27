@@ -153,7 +153,7 @@ const startExpressServer = () => {
         console.log('[POST] body', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 200);
     });
 
     // Vanlig deling av dager
@@ -162,7 +162,7 @@ const startExpressServer = () => {
         console.log('[POST] - dele med ektefelle/samboer', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 200);
     });
 
     // Fordeling med samværsforelder
@@ -171,7 +171,7 @@ const startExpressServer = () => {
         console.log('[POST] - fordeling samvær', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 200);
     });
 
     // Koronaoverføring
@@ -180,7 +180,7 @@ const startExpressServer = () => {
         console.log('[POST] - koronaoverføring', body);
         setTimeout(() => {
             res.sendStatus(200);
-        }, 2500);
+        }, 200);
     });
 
     server.post('/melding/dele-dager-err', (req, res) => {
@@ -188,7 +188,7 @@ const startExpressServer = () => {
         console.log('[POST] body', body);
         setTimeout(() => {
             res.sendStatus(501);
-        }, 2000);
+        }, 200);
     });
 
     server.post('/soknad-logget-ut', (req, res) => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { isFailure, isInitial, isPending, isSuccess } from '@devexperts/remote-data-ts';
-import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import SoknadErrorMessages, {
     LastAvailableStepInfo,
@@ -23,6 +22,7 @@ import SamværsavtaleStep from './samværsavtale-step/SamværsavtaleStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import VelkommenPage from './velkommen-page/VelkommenPage';
+import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 
 interface Props {
     soknadId?: string;
@@ -34,40 +34,43 @@ const SoknadRoutes: React.FunctionComponent<Props> = ({ soknadId, søker, barn =
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const { soknadStepsConfig, sendSoknadStatus } = useSoknadContext();
+    const location = useLocation();
+
+    if (location.pathname === AppRoutes.SOKNAD_SENT && soknadId === undefined) {
+        return <Navigate replace={true} to={AppRoutes.SOKNAD} />;
+    }
 
     return (
         <Routes>
             <Route path="/" element={<VelkommenPage />} />
-            <Route path={StepID.MOTTAKER} element={<MottakerStep søker={søker} />} />
-            <Route path={StepID.DINE_BARN} element={<DineBarnStep barn={barn} søker={søker} />} />
-            <Route path={StepID.OM_BARNA} element={<OmBarnaStep barn={barn} />} />
-            <Route path={StepID.DIN_SITUASJON} element={<DinSituasjonStep />} />
-            <Route path={StepID.SAMVÆRSAVTALE} element={<SamværsavtaleStep />} />
             {soknadId && (
-                <Route
-                    path={StepID.OPPSUMMERING}
-                    element={<OppsummeringStep soknadId={soknadId} søker={søker} barn={barn} />}
-                />
+                <>
+                    <Route path={StepID.MOTTAKER} element={<MottakerStep søker={søker} />} />
+                    <Route path={StepID.DINE_BARN} element={<DineBarnStep barn={barn} søker={søker} />} />
+                    <Route path={StepID.OM_BARNA} element={<OmBarnaStep barn={barn} />} />
+                    <Route path={StepID.DIN_SITUASJON} element={<DinSituasjonStep />} />
+                    <Route path={StepID.SAMVÆRSAVTALE} element={<SamværsavtaleStep />} />
+                    <Route
+                        path={StepID.OPPSUMMERING}
+                        element={<OppsummeringStep soknadId={soknadId} søker={søker} barn={barn} />}
+                    />
+                </>
             )}
             <Route
                 path={AppRoutes.SOKNAD_SENT}
                 element={
-                    soknadId === undefined && isInitial(sendSoknadStatus.status) ? (
-                        <Navigate replace={true} to={AppRoutes.SOKNAD} />
-                    ) : (
-                        <LoadWrapper
-                            isLoading={isPending(sendSoknadStatus.status) || isInitial(sendSoknadStatus.status)}
-                            contentRenderer={(): React.ReactNode => {
-                                if (isSuccess(sendSoknadStatus.status)) {
-                                    return <KvitteringPage />;
-                                }
-                                if (isFailure(sendSoknadStatus.status)) {
-                                    return <ErrorPage />;
-                                }
-                                return <div>Det oppstod en feil</div>;
-                            }}
-                        />
-                    )
+                    <LoadWrapper
+                        isLoading={isPending(sendSoknadStatus.status) || isInitial(sendSoknadStatus.status)}
+                        contentRenderer={(): React.ReactNode => {
+                            if (isSuccess(sendSoknadStatus.status)) {
+                                return <KvitteringPage />;
+                            }
+                            if (isFailure(sendSoknadStatus.status)) {
+                                return <ErrorPage />;
+                            }
+                            return <div>Det oppstod en feil</div>;
+                        }}
+                    />
                 }
             />
             <Route element={soknadId === undefined ? <Navigate replace={true} to={AppRoutes.SOKNAD} /> : undefined} />

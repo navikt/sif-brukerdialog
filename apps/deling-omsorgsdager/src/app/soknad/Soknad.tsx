@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { SoknadApplicationType, StepConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+import { FormikState } from 'formik';
 import { ulid } from 'ulid';
 import { sendSoknad } from '../api/sendSoknad';
 import { SKJEMANAVN } from '../App';
-import AppRoutes, { getRouteUrl } from '../config/routeConfig';
+import AppRoutes, { getKvitteringRoute, getRouteUrl } from '../config/routeConfig';
 import { Person } from '../types/Person';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { Barn, SoknadFormData } from '../types/SoknadFormData';
@@ -38,7 +39,7 @@ interface Props {
     route?: string;
 }
 
-type resetFormFunc = () => void;
+type resetFormFunc = (nextState?: Partial<FormikState<Partial<SoknadFormData>>>) => void;
 
 const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorage: tempStorage }) => {
     const navigate = useNavigate();
@@ -47,8 +48,35 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
     const [initialFormData, setInitialFormData] = useState<Partial<SoknadFormData>>({ ...initialSoknadFormData });
     const [sendSoknadStatus, setSendSoknadStatus] = useState<SendSoknadStatus>(initialSendSoknadState);
     const [soknadId, setSoknadId] = useState<string | undefined>();
+    const [soknadSent, setSoknadSent] = useState<boolean>(false);
 
     const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut } = useAmplitudeInstance();
+
+    useEffectOnce(() => {
+        if (isStorageDataValid(tempStorage, { søker, barn })) {
+            setInitialFormData(tempStorage.formData);
+            setSoknadId(tempStorage.metadata.soknadId);
+            const currentRoute = location.pathname;
+            const lastStepRoute = soknadStepUtils.getStepRoute(
+                tempStorage.metadata.lastStepID,
+                SoknadApplicationType.MELDING
+            );
+            if (currentRoute !== lastStepRoute) {
+                navigate(soknadStepUtils.getStepRoute(tempStorage.metadata.lastStepID, SoknadApplicationType.MELDING));
+                setInitializing(false);
+            } else {
+                setInitializing(false);
+            }
+        } else {
+            resetSoknad(location.pathname !== AppRoutes.SOKNAD);
+        }
+    });
+
+    /** Forhindre at bruker kommer til søknad med verdier etter at søknad er sendt inn  */
+    if (soknadSent && getKvitteringRoute() !== location.pathname) {
+        setInitializing(true);
+        relocateToSoknad();
+    }
 
     const resetSoknad = async (redirectToFrontpage = true): Promise<void> => {
         await soknadTempStorage.purge();
@@ -97,7 +125,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
             navigateToKvitteringPage(navigate);
             setSoknadId(undefined);
-            resetFormikForm();
+            resetFormikForm({ values: initialFormData });
+            setSoknadSent(true);
+            // setInitialFormData(initialFormData);
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
@@ -148,26 +178,6 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
             navigate(step.nextStepRoute);
         }
     };
-
-    useEffectOnce(() => {
-        if (isStorageDataValid(tempStorage, { søker, barn })) {
-            setInitialFormData(tempStorage.formData);
-            setSoknadId(tempStorage.metadata.soknadId);
-            const currentRoute = location.pathname;
-            const lastStepRoute = soknadStepUtils.getStepRoute(
-                tempStorage.metadata.lastStepID,
-                SoknadApplicationType.MELDING
-            );
-            if (currentRoute !== lastStepRoute) {
-                navigate(soknadStepUtils.getStepRoute(tempStorage.metadata.lastStepID, SoknadApplicationType.MELDING));
-                setInitializing(false);
-            } else {
-                setInitializing(false);
-            }
-        } else {
-            resetSoknad(location.pathname !== AppRoutes.SOKNAD);
-        }
-    });
 
     return (
         <LoadWrapper
