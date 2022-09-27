@@ -1,11 +1,9 @@
-import { History } from 'history';
+import { NavigateFunction } from 'react-router-dom';
 import { getRouteConfig } from '../../config/routeConfig';
 import { ApplicationType } from '../../types/ApplicationType';
 import { navigateTo, navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';
 
-const historyMock: Partial<History> = {
-    push: jest.fn(),
-};
+const navigate: NavigateFunction = jest.fn();
 
 jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return { getEnvironmentVariable: () => '' };
@@ -30,15 +28,15 @@ describe('navigationUtils', () => {
     describe('navigateTo', () => {
         it('should navigate user to the provided route', () => {
             const route = '/someRoute';
-            navigateTo(route, historyMock as History);
-            expect(historyMock.push).toHaveBeenCalledWith(route);
+            navigateTo(route, navigate);
+            expect(navigate).toHaveBeenCalledWith(route);
         });
     });
 
     describe('navigateToErrorPage', () => {
         it('should navigate user to the path specified by routeConfig.ERROR_PAGE_ROUTE', () => {
-            navigateToErrorPage(søknadstype, historyMock as History);
-            expect(historyMock.push).toHaveBeenCalledWith(routeConfig.ERROR_PAGE_ROUTE);
+            navigateToErrorPage(søknadstype, navigate);
+            expect(navigate).toHaveBeenCalledWith(routeConfig.ERROR_PAGE_ROUTE);
         });
     });
 

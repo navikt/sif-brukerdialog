@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ErrorPage from '../soknad-common-pages/ErrorPage';
 import SoknadErrorMessages from '../soknad-error-messages/SoknadErrorMessages';
 
@@ -23,36 +23,45 @@ const SoknadApplicationCommonRoutes = ({
     unknownRouteContentRenderer,
 }: Props) => {
     return (
-        <Switch>
+        <Routes>
             {...contentRoutes}
-            <Route path={GlobalSoknadApplicationRoutes.error} exact={true}>
-                <ErrorPage
-                    contentRenderer={
-                        errorContentRenderer
-                            ? errorContentRenderer
-                            : () => <SoknadErrorMessages.GeneralApplicationError />
-                    }
-                />
-            </Route>
-            <Route path={GlobalSoknadApplicationRoutes.unavailable}>
-                <ErrorPage
-                    contentRenderer={
-                        unavailableContentRenderer
-                            ? unavailableContentRenderer
-                            : () => <SoknadErrorMessages.GeneralApplicationError />
-                    }
-                />
-            </Route>
-            <Route path={GlobalSoknadApplicationRoutes.unknownRoute}>
-                <ErrorPage
-                    contentRenderer={
-                        unknownRouteContentRenderer
-                            ? unknownRouteContentRenderer
-                            : () => <SoknadErrorMessages.GeneralApplicationError />
-                    }
-                />
-            </Route>
-        </Switch>
+            <Route
+                path={GlobalSoknadApplicationRoutes.error}
+                element={
+                    <ErrorPage
+                        contentRenderer={
+                            errorContentRenderer
+                                ? errorContentRenderer
+                                : () => <SoknadErrorMessages.GeneralApplicationError />
+                        }
+                    />
+                }
+            />
+            <Route
+                path={GlobalSoknadApplicationRoutes.unavailable}
+                element={
+                    <ErrorPage
+                        contentRenderer={
+                            unavailableContentRenderer
+                                ? unavailableContentRenderer
+                                : () => <SoknadErrorMessages.GeneralApplicationError />
+                        }
+                    />
+                }
+            />
+            <Route
+                path={GlobalSoknadApplicationRoutes.unknownRoute}
+                element={
+                    <ErrorPage
+                        contentRenderer={
+                            unknownRouteContentRenderer
+                                ? unknownRouteContentRenderer
+                                : () => <SoknadErrorMessages.GeneralApplicationError />
+                        }
+                    />
+                }
+            />
+        </Routes>
     );
 };
 

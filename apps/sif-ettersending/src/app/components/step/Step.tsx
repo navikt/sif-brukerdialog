@@ -1,12 +1,12 @@
 import { Heading } from '@navikt/ds-react';
 import * as React from 'react';
 import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
-import { History } from 'history';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../../config/stepConfig';
 import { getStepTexts } from '../../utils/stepUtils';
 import StepIndicator from './step-indicator/StepIndicator';
@@ -27,6 +27,7 @@ type Props = OwnProps & StepProps;
 const Step = ({ id, bannerTitle, stepConfig, useValidationErrorSummary, children }: Props) => {
     const intl = useIntl();
     const conf = stepConfig[id];
+    const navigate = useNavigate();
     const stepTexts: StepConfigItemTexts = getStepTexts(intl, id, stepConfig);
     return (
         <Page
@@ -41,9 +42,9 @@ const Step = ({ id, bannerTitle, stepConfig, useValidationErrorSummary, children
                 <BackLink
                     href={conf.backLinkHref}
                     className="absolute"
-                    onClick={(nextHref: string, history: History, event: React.SyntheticEvent) => {
+                    onClick={(nextHref: string, event: React.SyntheticEvent) => {
                         event.preventDefault();
-                        history.push(nextHref);
+                        navigate(nextHref);
                     }}
                 />
             )}

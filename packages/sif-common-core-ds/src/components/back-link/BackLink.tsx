@@ -1,9 +1,8 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Back } from '@navikt/ds-icons';
-import { History } from 'history';
 import bemUtils from '../../utils/bemUtils';
 import './backLink.scss';
 
@@ -11,20 +10,20 @@ interface BackLinkProps {
     className?: string;
     href: string;
     ariaLabel?: string;
-    onClick?: (href: string, history: History, event: React.SyntheticEvent) => void;
+    onClick?: (href: string, event: React.SyntheticEvent) => void;
 }
 
-type Props = BackLinkProps & RouteComponentProps;
+type Props = BackLinkProps;
 const bem = bemUtils('backLink');
-const BackLink = ({ className, href, history, onClick, ariaLabel }: Props) => {
-    const navigate = () => history.push(href);
+const BackLink = ({ className, href, onClick, ariaLabel }: Props) => {
+    const navigate = useNavigate();
 
     const handleOnClick = (event: React.SyntheticEvent) => {
         if (onClick) {
-            onClick(href, history, event);
+            onClick(href, event);
         } else {
             event.preventDefault();
-            navigate();
+            navigate(href);
         }
     };
 
@@ -41,4 +40,4 @@ const BackLink = ({ className, href, history, onClick, ariaLabel }: Props) => {
     );
 };
 
-export default withRouter(BackLink);
+export default BackLink;
