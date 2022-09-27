@@ -1,16 +1,16 @@
-import { History } from 'history';
+import { NavigateFunction } from 'react-router-dom';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { getRouteConfig, getRouteUrl } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 const getLoginUrl = (søknadstype: ApplicationType) => `${getEnvironmentVariable('LOGIN_URL')}/${søknadstype}`;
 
 export const redirectTo = (route: string) => window.location.assign(route);
-export const navigateTo = (route: string, history: History) => history.push(route);
-export const navigateToErrorPage = (søknadstype: ApplicationType, history?: History) => {
+export const navigateTo = (route: string, navigate: NavigateFunction) => navigate(route);
+export const navigateToErrorPage = (søknadstype: ApplicationType, navigate?: NavigateFunction) => {
     const routeConfig = getRouteConfig(søknadstype);
-    if (history) {
-        history.push(routeConfig.ERROR_PAGE_ROUTE);
+    if (navigate) {
+        navigate(routeConfig.ERROR_PAGE_ROUTE);
     } else {
         window.location.assign(getRouteUrl(routeConfig.ERROR_PAGE_ROUTE));
     }

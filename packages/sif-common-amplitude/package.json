@@ -12,9 +12,9 @@
     },
     "devDependencies": {
         "@types/amplitude-js": "^8.16.2",
-        "@types/node": "^18.7.14",
-        "@types/react": "18.0.17",
-        "amplitude-js": "^8.20.0",
+        "@types/node": "^18.7.23",
+        "@types/react": "18.0.21",
+        "amplitude-js": "^8.21.1",
         "constate": "^3.3.2",
         "gh-pages": "^4.0.0",
         "react": "^18.2.0",

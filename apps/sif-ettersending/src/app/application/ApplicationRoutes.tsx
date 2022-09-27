@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { useFormikContext } from 'formik';
 import ConfirmationPage from '../components/pages/confirmation-page/ConfirmationPage';
 import GeneralErrorPage from '../components/pages/general-error-page/GeneralErrorPage';
 import WelcomingPage from '../components/pages/welcoming-page/WelcomingPage';
 import { getRouteConfig, getRouteUrl } from '../config/routeConfig';
-import { StepID, getFirstStep } from '../config/stepConfig';
+import { getFirstStep, StepID } from '../config/stepConfig';
 import { ApplicationTypeContext } from '../context/ApplicationTypeContext';
 import { ApplicationFormData } from '../types/ApplicationFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import { getSkjemanavn } from '../types/skjemanavn';
-import { navigateTo } from '../utils/navigationUtils';
 import { getApplicationRoute, getNextStepRoute, isAvailable } from '../utils/routeUtils';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
 import DokumenterStep from './dokumenter-step/DokumenterStep';
@@ -26,11 +25,11 @@ const ApplicationRoutes = () => {
     const { values } = useFormikContext<ApplicationFormData>();
     const { søknadstype } = React.useContext(ApplicationTypeContext);
 
-    const history = useHistory() as any;
+    const navigate = useNavigate();
     const { logSoknadStartet } = useAmplitudeInstance();
 
     if (!søknadstype) {
-        return <Route path={getRouteConfig(ApplicationType.ukjent).ERROR_PAGE_ROUTE} component={GeneralErrorPage} />;
+        return <Route path={getRouteConfig(ApplicationType.ukjent).ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />;
     }
     const routeConfig = getRouteConfig(søknadstype);
 
@@ -38,7 +37,7 @@ const ApplicationRoutes = () => {
         setTimeout(() => {
             const nextStepRoute = getNextStepRoute(søknadstype, stepId);
             if (nextStepRoute) {
-                navigateTo(nextStepRoute, history);
+                navigate(nextStepRoute);
             }
         });
     };
@@ -46,15 +45,15 @@ const ApplicationRoutes = () => {
     const startSoknad = async () => {
         await logSoknadStartet(getSkjemanavn(søknadstype));
         setTimeout(() => {
-            navigateTo(`${routeConfig.APPLICATION_ROUTE_PREFIX}/${getFirstStep(søknadstype)}`, history);
+            navigate(`${routeConfig.APPLICATION_ROUTE_PREFIX}/${getFirstStep(søknadstype)}`);
         });
     };
 
     return (
-        <Switch>
+        <Routes>
             <Route
                 path={routeConfig.WELCOMING_PAGE_ROUTE}
-                render={() => <WelcomingPage søknadstype={søknadstype} onValidSubmit={startSoknad} />}
+                element={<WelcomingPage søknadstype={søknadstype} onValidSubmit={startSoknad} />}
             />
 
             {(søknadstype === ApplicationType.pleiepengerBarn ||
@@ -62,61 +61,61 @@ const ApplicationRoutes = () => {
                 isAvailable(søknadstype, StepID.BESKRIVELSE, values) && (
                     <Route
                         path={getApplicationRoute(søknadstype, StepID.BESKRIVELSE)}
-                        render={() => (
+                        element={
                             <BeskrivelseStep
                                 søknadstype={søknadstype}
                                 onValidSubmit={() => navigateToNextStep(StepID.BESKRIVELSE)}
                             />
-                        )}
+                        }
                     />
                 )}
             {søknadstype === ApplicationType.omsorgspenger && isAvailable(søknadstype, StepID.OMS_TYPE, values) && (
                 <Route
                     path={getApplicationRoute(søknadstype, StepID.OMS_TYPE)}
-                    render={() => (
+                    element={
                         <ValgOmsTypeStep
                             søknadstype={søknadstype}
                             onValidSubmit={() => navigateToNextStep(StepID.OMS_TYPE)}
                         />
-                    )}
+                    }
                 />
             )}
 
             {isAvailable(søknadstype, StepID.DOKUMENTER, values) && (
                 <Route
                     path={getApplicationRoute(søknadstype, StepID.DOKUMENTER)}
-                    render={() => (
+                    element={
                         <DokumenterStep
                             søknadstype={søknadstype}
                             onValidSubmit={() => navigateToNextStep(StepID.DOKUMENTER)}
                         />
-                    )}
+                    }
                 />
             )}
 
             {isAvailable(søknadstype, StepID.OPPSUMMERING, values) && (
                 <Route
                     path={getApplicationRoute(søknadstype, StepID.OPPSUMMERING)}
-                    render={() => (
+                    element={
                         <OppsummeringStep
                             søknadstype={søknadstype}
                             onApplicationSent={() => {
                                 window.location.href = getRouteUrl(getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE); // Ensures history is lost
                             }}
                         />
-                    )}
+                    }
                 />
             )}
 
             <Route
                 path={routeConfig.APPLICATION_SENDT_ROUTE}
-                render={() => <ConfirmationPage søknadstype={søknadstype} />}
+                element={<ConfirmationPage søknadstype={søknadstype} />}
             />
 
-            <Route path={routeConfig.ERROR_PAGE_ROUTE} component={GeneralErrorPage} />
+            <Route path={routeConfig.ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />
 
-            <Redirect to={routeConfig.WELCOMING_PAGE_ROUTE} />
-        </Switch>
+            <Route path="*" element={<Navigate to={routeConfig.WELCOMING_PAGE_ROUTE} />} />
+        </Routes>
     );
 };
 
