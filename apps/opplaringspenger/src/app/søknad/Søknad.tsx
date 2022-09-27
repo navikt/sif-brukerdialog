@@ -1,10 +1,8 @@
 import React from 'react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
-
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import useSøknadInitialData, { SøknadInitialData } from '../api/useSøknadInitialData';
 import { SøknadContextState, SøknadsdataContextProvider } from './SøknadContext';
-import { BrowserRouter } from 'react-router-dom';
 import SøknadRoutes from './SøknadRoutes';
 
 const getInitialSøknadContext = (data: SøknadInitialData): SøknadContextState => {
@@ -28,9 +26,7 @@ const Søknad = () => {
     const { data } = initialData;
     return (
         <SøknadsdataContextProvider value={getInitialSøknadContext(data)}>
-            <BrowserRouter>
-                <SøknadRoutes />
-            </BrowserRouter>
+            <SøknadRoutes />
         </SøknadsdataContextProvider>
     );
 };

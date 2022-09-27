@@ -1,5 +1,5 @@
 export enum SøknadStepRoutes {
-    VELKOMMEN = '/',
+    VELKOMMEN = '/soknad/',
     BARN = '/soknad/barn',
     ARBEID = '/soknad/arbeid',
 }

@@ -39,8 +39,8 @@ export const App1 = () => (
                 publicPath={publicPath}>
                 <SoknadApplicationCommonRoutes
                     contentRoutes={[
-                        <Route path="/" key="intro" exact={true} component={IntroPage} />,
-                        <Route path="/soknad" key="soknad" component={Søknad} />,
+                        <Route path="/" key="intro" element={<IntroPage />} />,
+                        <Route path="/soknad/*" key="soknad" element={<Søknad />} />,
                     ]}
                 />
             </SoknadApplication>
