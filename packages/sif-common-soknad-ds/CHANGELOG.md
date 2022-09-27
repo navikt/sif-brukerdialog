@@ -1,5 +1,18 @@
 # @navikt/sif-common-soknad-ds
 
+## 4.3.0
+
+### Minor Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
+### Patch Changes
+
+-   Updated dependencies [03aeac4]
+    -   @navikt/appstatus-react-ds@1.4.1
+    -   @navikt/sif-common-formik-ds@0.6.3
+    -   @navikt/sif-common-sentry@0.4.1
+
 ## 4.2.0
 
 ### Patch Changes

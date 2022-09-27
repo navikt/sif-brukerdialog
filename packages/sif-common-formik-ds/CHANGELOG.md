@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.3
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
 ## 0.6.2
 
 ### Patch Changes

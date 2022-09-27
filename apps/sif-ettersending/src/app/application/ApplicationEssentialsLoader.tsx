@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { AxiosResponse } from 'axios';
@@ -33,9 +33,9 @@ interface Essentials {
 }
 
 const ApplicationEssentialsLoader = ({ contentLoadedRenderer, søknadstype }: Props) => {
-    const history = useHistory() as any;
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: true, doApiCalls: true });
     const [essentials, setEssentials] = useState<Essentials | undefined>();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleEssentialsFetchSuccess = (søkerResponse: AxiosResponse<Person>) => {
@@ -64,7 +64,7 @@ const ApplicationEssentialsLoader = ({ contentLoadedRenderer, søknadstype }: Pr
                         setLoadState({ isLoading: false, doApiCalls: false, error: false, hasNoAccess: true });
                     } else if (!userIsCurrentlyOnErrorPage(søknadstype)) {
                         appSentryLogger.logApiError(error);
-                        navigateToErrorPage(history as any);
+                        navigateToErrorPage(søknadstype, navigate);
                         setLoadState({ isLoading: false, doApiCalls: false, error: true });
                     } else {
                         setLoadState({ isLoading: false, doApiCalls: false, error: true });
@@ -75,7 +75,7 @@ const ApplicationEssentialsLoader = ({ contentLoadedRenderer, søknadstype }: Pr
         if (loadState.doApiCalls) {
             loadEssentials();
         }
-    }, [essentials, loadState, history, søknadstype]);
+    }, [essentials, loadState, søknadstype]);
 
     const { isLoading, error, hasNoAccess } = loadState;
 

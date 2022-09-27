@@ -1,7 +1,7 @@
 import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -14,7 +14,7 @@ import IntroForm from './IntroForm';
 
 const IntroPage: React.FunctionComponent = () => {
     const intl = useIntl();
-    const history = useHistory() as any;
+    const navigate = useNavigate();
     useLogSidevisning('intro');
     return (
         <Page
@@ -61,7 +61,7 @@ const IntroPage: React.FunctionComponent = () => {
                 <IntroForm
                     onValidSubmit={() => {
                         setTimeout(() => {
-                            navigateToSoknadFrontpage(history);
+                            navigateToSoknadFrontpage(navigate);
                         });
                     }}
                 />

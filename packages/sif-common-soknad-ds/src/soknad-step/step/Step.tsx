@@ -1,13 +1,13 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
+import { useNavigate } from 'react-router-dom';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import StepFooter from '@navikt/sif-common-core-ds/lib/components/step-footer/StepFooter';
 import bemHelper from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
-import { History } from 'history';
 import StepIndicator, { StepIndicatorStep } from '../step-indicator/StepIndicator';
 import './step.scss';
 
@@ -48,6 +48,7 @@ function Step({
     previousStepTitle,
 }: Props) {
     const currentStepIndex = steps.findIndex((s) => s.id === activeStepId);
+    const navigate = useNavigate();
     return (
         <Page
             className={bem.block}
@@ -69,9 +70,9 @@ function Step({
                             href={backLinkHref}
                             ariaLabel={previousStepTitle}
                             className={bem.element('backLink')}
-                            onClick={(nextHref: string, history: History, event: React.SyntheticEvent) => {
+                            onClick={(nextHref, event) => {
                                 event.preventDefault();
-                                history.push(nextHref);
+                                navigate(nextHref);
                                 if (onBackClick) {
                                     onBackClick();
                                 }
