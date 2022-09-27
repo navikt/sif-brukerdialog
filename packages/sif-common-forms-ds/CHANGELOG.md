@@ -1,5 +1,13 @@
 # @navikt/sif-common-forms-ds
 
+## 2.0.0
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+-   Updated dependencies [03aeac4]
+    -   @navikt/sif-common-core-ds@4.4.0
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,5 +1,22 @@
 # @navikt/omsorgsdager-deling-dialog
 
+## 3.5.0
+
+### Minor Changes
+
+-   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+
+### Patch Changes
+
+-   Updated dependencies [03aeac4]
+    -   @navikt/sif-common-core-ds@4.4.0
+    -   @navikt/sif-common-soknad-ds@4.3.0
+    -   @navikt/sif-common-amplitude@2.5.2
+    -   @navikt/sif-common-formik-ds@0.6.3
+    -   @navikt/sif-common-forms-ds@2.0.0
+    -   @navikt/sif-common-sentry@0.4.1
+    -   @navikt/sif-common-utils@3.15.2
+
 ## 3.4.1
 
 ### Patch Changes

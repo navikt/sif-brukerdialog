@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.5.2
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+
 ## 2.5.1
 
 ### Patch Changes

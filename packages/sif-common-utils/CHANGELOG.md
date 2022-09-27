@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.15.2
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+
 ## 3.15.1
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @navikt/sif-common-core-ds
 
+## 4.4.0
+
+### Minor Changes
+
+-   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+
+### Patch Changes
+
+-   Updated dependencies [03aeac4]
+    -   @navikt/appstatus-react-ds@1.4.1
+    -   @navikt/sif-common-formik-ds@0.6.3
+
 ## 4.3.1
 
 ### Patch Changes

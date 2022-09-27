@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-utils",
     "types": "lib/index.d.js",
-    "version": "3.15.1",
+    "version": "3.15.2",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-utils/issues"
     },

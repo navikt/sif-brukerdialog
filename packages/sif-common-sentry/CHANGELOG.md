@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.4.1
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Oppdatert react-router-dom medførte mange breaking changes.
+
 ## 0.4.0
 
 ### Minor Changes
