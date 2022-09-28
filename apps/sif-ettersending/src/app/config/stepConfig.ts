@@ -1,6 +1,6 @@
 import { ApplicationType } from '../types/ApplicationType';
-import { getApplicationRoute } from '../utils/routeUtils';
-import { getRouteConfig } from './routeConfig';
+import { getApplicationPageRoute } from '../utils/routeUtils';
+import { WELCOME_PAGE } from './routeConfig';
 
 export enum StepID {
     'BESKRIVELSE' = 'beskrivelse',
@@ -50,16 +50,16 @@ const getbackLinkHrefDok = (søknadstype: ApplicationType): string => {
     switch (søknadstype) {
         case ApplicationType.pleiepengerBarn:
         case ApplicationType.pleiepengerLivetsSluttfase:
-            return getApplicationRoute(søknadstype, StepID.BESKRIVELSE);
+            return getApplicationPageRoute(søknadstype, StepID.BESKRIVELSE);
         case ApplicationType.omsorgspenger:
-            return getApplicationRoute(søknadstype, StepID.OMS_TYPE);
+            return getApplicationPageRoute(søknadstype, StepID.OMS_TYPE);
         default:
-            return getRouteConfig(søknadstype).WELCOMING_PAGE_ROUTE;
+            return getApplicationPageRoute(søknadstype, WELCOME_PAGE);
     }
 };
 export const getStepConfig = (søknadstype: ApplicationType): StepConfigInterface => {
     let idx = 0;
-    let config = {};
+    let config: StepConfigInterface = {};
 
     switch (søknadstype) {
         case ApplicationType.pleiepengerBarn:
@@ -91,7 +91,7 @@ export const getStepConfig = (søknadstype: ApplicationType): StepConfigInterfac
         [StepID.OPPSUMMERING]: {
             ...getStepConfigItemTextKeys(StepID.OPPSUMMERING),
             index: idx++,
-            backLinkHref: getApplicationRoute(søknadstype, StepID.DOKUMENTER),
+            backLinkHref: getApplicationPageRoute(søknadstype, StepID.DOKUMENTER),
             nextButtonLabel: 'step.sendButtonLabel',
         },
     };
