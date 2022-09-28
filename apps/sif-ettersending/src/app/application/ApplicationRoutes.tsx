@@ -5,17 +5,18 @@ import { useFormikContext } from 'formik';
 import ConfirmationPage from '../components/pages/confirmation-page/ConfirmationPage';
 import GeneralErrorPage from '../components/pages/general-error-page/GeneralErrorPage';
 import WelcomingPage from '../components/pages/welcoming-page/WelcomingPage';
-import { getRouteConfig, getRouteUrl } from '../config/routeConfig';
+import { getRouteConfig, APPLICATION_SENDT_PAGE, ERROR_PAGE } from '../config/routeConfig';
 import { getFirstStep, StepID } from '../config/stepConfig';
 import { ApplicationTypeContext } from '../context/ApplicationTypeContext';
 import { ApplicationFormData } from '../types/ApplicationFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import { getSkjemanavn } from '../types/skjemanavn';
-import { getApplicationRoute, getNextStepRoute, isAvailable } from '../utils/routeUtils';
+import { getNextStepRoute, isStepAvailable } from '../utils/routeUtils';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
 import DokumenterStep from './dokumenter-step/DokumenterStep';
 import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
+import { relocatoToKvitteringPage } from '../utils/navigationUtils';
 
 export interface KvitteringInfo {
     søkernavn: string;
@@ -31,7 +32,6 @@ const ApplicationRoutes = () => {
     if (!søknadstype) {
         return <Route path={getRouteConfig(ApplicationType.ukjent).ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />;
     }
-    const routeConfig = getRouteConfig(søknadstype);
 
     const navigateToNextStep = (stepId: StepID) => {
         setTimeout(() => {
@@ -44,34 +44,31 @@ const ApplicationRoutes = () => {
 
     const startSoknad = async () => {
         await logSoknadStartet(getSkjemanavn(søknadstype));
+        const firstStep = getFirstStep(søknadstype);
         setTimeout(() => {
-            navigate(`${routeConfig.APPLICATION_ROUTE_PREFIX}/${getFirstStep(søknadstype)}`);
+            navigate(firstStep);
         });
     };
 
     return (
         <Routes>
-            <Route
-                path={routeConfig.WELCOMING_PAGE_ROUTE}
-                element={<WelcomingPage søknadstype={søknadstype} onValidSubmit={startSoknad} />}
-            />
+            <Route index={true} element={<Navigate to="velkommen" replace={false} />} />
+            <Route path="velkommen" element={<WelcomingPage søknadstype={søknadstype} onValidSubmit={startSoknad} />} />
 
-            {(søknadstype === ApplicationType.pleiepengerBarn ||
-                søknadstype === ApplicationType.pleiepengerLivetsSluttfase) &&
-                isAvailable(søknadstype, StepID.BESKRIVELSE, values) && (
-                    <Route
-                        path={getApplicationRoute(søknadstype, StepID.BESKRIVELSE)}
-                        element={
-                            <BeskrivelseStep
-                                søknadstype={søknadstype}
-                                onValidSubmit={() => navigateToNextStep(StepID.BESKRIVELSE)}
-                            />
-                        }
-                    />
-                )}
-            {søknadstype === ApplicationType.omsorgspenger && isAvailable(søknadstype, StepID.OMS_TYPE, values) && (
+            {isStepAvailable(søknadstype, StepID.BESKRIVELSE, values) && (
                 <Route
-                    path={getApplicationRoute(søknadstype, StepID.OMS_TYPE)}
+                    path={StepID.BESKRIVELSE}
+                    element={
+                        <BeskrivelseStep
+                            søknadstype={søknadstype}
+                            onValidSubmit={() => navigateToNextStep(StepID.BESKRIVELSE)}
+                        />
+                    }
+                />
+            )}
+            {isStepAvailable(søknadstype, StepID.OMS_TYPE, values) && (
+                <Route
+                    path={StepID.OMS_TYPE}
                     element={
                         <ValgOmsTypeStep
                             søknadstype={søknadstype}
@@ -81,9 +78,9 @@ const ApplicationRoutes = () => {
                 />
             )}
 
-            {isAvailable(søknadstype, StepID.DOKUMENTER, values) && (
+            {isStepAvailable(søknadstype, StepID.DOKUMENTER, values) && (
                 <Route
-                    path={getApplicationRoute(søknadstype, StepID.DOKUMENTER)}
+                    path={StepID.DOKUMENTER}
                     element={
                         <DokumenterStep
                             søknadstype={søknadstype}
@@ -93,28 +90,20 @@ const ApplicationRoutes = () => {
                 />
             )}
 
-            {isAvailable(søknadstype, StepID.OPPSUMMERING, values) && (
+            {isStepAvailable(søknadstype, StepID.OPPSUMMERING, values) && (
                 <Route
-                    path={getApplicationRoute(søknadstype, StepID.OPPSUMMERING)}
+                    path={StepID.OPPSUMMERING}
                     element={
                         <OppsummeringStep
                             søknadstype={søknadstype}
-                            onApplicationSent={() => {
-                                window.location.href = getRouteUrl(getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE); // Ensures history is lost
-                            }}
+                            onApplicationSent={() => relocatoToKvitteringPage(søknadstype)}
                         />
                     }
                 />
             )}
-
-            <Route
-                path={routeConfig.APPLICATION_SENDT_ROUTE}
-                element={<ConfirmationPage søknadstype={søknadstype} />}
-            />
-
-            <Route path={routeConfig.ERROR_PAGE_ROUTE} element={<GeneralErrorPage />} />
-
-            <Route path="*" element={<Navigate to={routeConfig.WELCOMING_PAGE_ROUTE} />} />
+            <Route path={APPLICATION_SENDT_PAGE} element={<ConfirmationPage søknadstype={søknadstype} />} />
+            <Route path={ERROR_PAGE} element={<GeneralErrorPage />} />
+            <Route path="*" element={<Navigate to="" />} />
         </Routes>
     );
 };
