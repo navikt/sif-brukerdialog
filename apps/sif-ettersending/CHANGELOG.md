@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 1.5.0
+
+### Minor Changes
+
+-   7f95812: Router
+
 ## 1.4.3
 
 ### Patch Changes
