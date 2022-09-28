@@ -1,5 +1,15 @@
 # @navikt/sif-common-soknad-ds
 
+## 4.3.1
+
+### Patch Changes
+
+-   4b84bf9: Oppdatere parametre
+-   Updated dependencies [8533e79]
+    -   @navikt/appstatus-react-ds@1.4.2
+    -   @navikt/sif-common-formik-ds@0.6.4
+    -   @navikt/sif-common-sentry@0.4.2
+
 ## 4.3.0
 
 ### Minor Changes

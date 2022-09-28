@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.4.2
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+
 ## 1.4.1
 
 ### Patch Changes
