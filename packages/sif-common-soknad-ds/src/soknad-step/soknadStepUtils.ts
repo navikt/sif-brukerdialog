@@ -27,7 +27,7 @@ const getRootRoute = (applicationType: SoknadApplicationType): string => {
     return `/${applicationType}/`;
 };
 
-const getStepRoute = <STEPS>(stepId: STEPS, applicationType?: SoknadApplicationType): string => {
+const getStepRoute = <STEPS>(stepId: STEPS, applicationType: SoknadApplicationType): string => {
     return applicationType ? `${getRootRoute(applicationType)}${stepId}` : `${stepId}`;
 };
 
@@ -48,7 +48,7 @@ const getStepsConfig = <STEPS extends string>(
             pageTitleIntlKey: `step.${stepId}.pageTitle`,
             stepTitleIntlKey: `step.${stepId}.stepTitle`,
             nextButtonLabelIntlKey: `step.${stepId}.nextButtonLabel`,
-            route: getStepRoute(stepId),
+            route: getStepRoute(stepId, applicationType),
             index: idx,
             backLinkHref: prevStepId ? getStepRoute(prevStepId, applicationType) : undefined,
             previousStepTitleIntlKey: prevStepId ? `step.${prevStepId}.pageTitle` : undefined,
