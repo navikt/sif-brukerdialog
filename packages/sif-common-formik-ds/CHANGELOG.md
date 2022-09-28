@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.4
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+
 ## 0.6.3
 
 ### Patch Changes

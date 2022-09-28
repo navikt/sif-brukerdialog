@@ -1,5 +1,19 @@
 # @navikt/omsorgsdager-deling-dialog
 
+## 3.5.1
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+-   Updated dependencies [8533e79]
+-   Updated dependencies [4b84bf9]
+    -   @navikt/sif-common-core-ds@4.4.1
+    -   @navikt/sif-common-formik-ds@0.6.4
+    -   @navikt/sif-common-forms-ds@2.0.1
+    -   @navikt/sif-common-sentry@0.4.2
+    -   @navikt/sif-common-utils@3.15.3
+    -   @navikt/sif-common-soknad-ds@4.3.1
+
 ## 3.5.0
 
 ### Minor Changes

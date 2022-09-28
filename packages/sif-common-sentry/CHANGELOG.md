@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.4.2
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+
 ## 0.4.1
 
 ### Patch Changes
