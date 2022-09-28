@@ -1,5 +1,22 @@
 # @navikt/sif-ettersending
 
+## 1.5.0
+
+### Minor Changes
+
+-   7f95812: Router
+
+## 1.4.3
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+-   Updated dependencies [8533e79]
+    -   @navikt/sif-common-core-ds@4.4.1
+    -   @navikt/sif-common-formik-ds@0.6.4
+    -   @navikt/sif-common-sentry@0.4.2
+    -   @navikt/sif-common-utils@3.15.3
+
 ## 1.4.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { getRouteConfig, getRouteUrl } from '../config/routeConfig';
+import { getRouteConfig, getAbsoluteUrlForRoute } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
 
 const getLoginUrl = (søknadstype: ApplicationType) => `${getEnvironmentVariable('LOGIN_URL')}/${søknadstype}`;
@@ -12,12 +12,15 @@ export const navigateToErrorPage = (søknadstype: ApplicationType, navigate?: Na
     if (navigate) {
         navigate(routeConfig.ERROR_PAGE_ROUTE);
     } else {
-        window.location.assign(getRouteUrl(routeConfig.ERROR_PAGE_ROUTE));
+        window.location.assign(getAbsoluteUrlForRoute(routeConfig.ERROR_PAGE_ROUTE));
     }
 };
 
+export const relocatoToKvitteringPage = (søknadstype: ApplicationType) =>
+    window.location.assign(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE));
+
 export const navigateToLoginPage = (søknadstype: ApplicationType) => window.location.assign(getLoginUrl(søknadstype));
 export const navigateToWelcomePage = (søknadstype: ApplicationType) =>
-    window.location.assign(getRouteUrl(getRouteConfig(søknadstype).WELCOMING_PAGE_ROUTE));
+    window.location.assign(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).WELCOMING_PAGE_ROUTE));
 export const userIsCurrentlyOnErrorPage = (søknadstype: ApplicationType) =>
-    window.location.pathname === getRouteUrl(getRouteConfig(søknadstype).ERROR_PAGE_ROUTE);
+    window.location.pathname === getAbsoluteUrlForRoute(getRouteConfig(søknadstype).ERROR_PAGE_ROUTE);

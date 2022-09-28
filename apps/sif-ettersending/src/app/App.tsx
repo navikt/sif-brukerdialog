@@ -10,7 +10,7 @@ import ApplicationWrapper from './components/application-wrapper/ApplicationWrap
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import appSentryLogger from './utils/appSentryLogger';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
-import YtelseSwitch from './YtelseSwitch';
+import RootRoutes from './RootRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
@@ -49,11 +49,11 @@ const App = () => {
                         <AppStatusWrapper
                             applicationKey={APPLICATION_KEY}
                             sanityConfig={appStatusSanityConfig}
-                            contentRenderer={() => <YtelseSwitch />}
+                            contentRenderer={() => <RootRoutes />}
                             unavailableContentRenderer={() => <UnavailablePage />}
                         />
                     ) : (
-                        <YtelseSwitch />
+                        <RootRoutes />
                     )}
                 </ApplicationWrapper>
             </AmplitudeProvider>

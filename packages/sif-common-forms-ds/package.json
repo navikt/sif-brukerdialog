@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-forms-ds",
     "types": "lib/index.d.js",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
@@ -34,7 +34,7 @@
         "@types/react-responsive": "^8.0.5",
         "axios": "^0.27.2",
         "copyfiles": "^2.4.1",
-        "core-js": "^3.25.0",
+        "core-js": "^3.25.3",
         "dayjs": "^1.11.5",
         "flat": "^5.0.2",
         "formik": "^2.2.9",
