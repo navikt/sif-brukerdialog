@@ -26,8 +26,12 @@ const Søknad = () => {
 
     /** Success */
     const { data } = initialData;
+
     return (
-        <SøknadsdataContextProvider value={getInitialSøknadContext(data)}>
+        <SøknadsdataContextProvider
+            value={{
+                ...getInitialSøknadContext(data),
+            }}>
             <Link to="velkommen">Velkommen</Link>
             <Link to="barn">Barn</Link>
             <Link to="arbeid">Arbeid</Link>

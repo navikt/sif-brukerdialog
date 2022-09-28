@@ -1,19 +1,30 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import ArbeidStep from './steps/arbeid/ArbeidStep';
 import BarnStep from './steps/barn/BarnStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import { useSøknadContext } from './SøknadContext';
-import { SøknadStepRoutes } from './SøknadStepRoutes';
+import { StepID } from './søknadStepsConfig';
 
-const getSøknadStepRoute = (route?: SøknadStepRoutes) => {
-    return `/soknad${route ? `/${route}` : ''}`;
+const getSøknadStepRoute = (stepID?: StepID) => {
+    return `/soknad${stepID ? `/${stepID}` : ''}`;
 };
 
+export const SOKNAD_SENDT_ROUTE = 'soknad/soknad_sendt';
+
 const SøknadRoutes = () => {
-    const { søknadId } = useSøknadContext();
-    if (!søknadId) {
+    const { søknadID, søknadSendt } = useSøknadContext();
+    const { pathname } = useLocation();
+
+    if (søknadSendt && pathname !== SOKNAD_SENDT_ROUTE) {
+        return (
+            <Routes>
+                <Route path="*" element={<Navigate to={SOKNAD_SENDT_ROUTE} replace={true} />} />
+            </Routes>
+        );
+    }
+    if (!søknadID) {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
@@ -24,9 +35,9 @@ const SøknadRoutes = () => {
     return (
         <Routes>
             <Route index element={<VelkommenPage />} />
-            <Route path={SøknadStepRoutes.BARN} element={<BarnStep />} />
-            <Route path={SøknadStepRoutes.ARBEID} element={<ArbeidStep />} />
-            <Route path={SøknadStepRoutes.OPPSUMMERING} element={<OppsummeringStep />} />
+            <Route path={StepID.BARN} element={<BarnStep />} />
+            <Route path={StepID.ARBEID} element={<ArbeidStep />} />
+            <Route path={StepID.OPPSUMMERING} element={<OppsummeringStep />} />
             <Route path="*" element={<Navigate to={getSøknadStepRoute()} />} />
         </Routes>
     );
