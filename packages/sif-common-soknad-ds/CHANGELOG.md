@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 4.3.1
+
+### Patch Changes
+
+-   4b84bf9: Oppdatere parametre
+
 ## 4.3.0
 
 ### Minor Changes
