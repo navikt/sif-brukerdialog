@@ -5,7 +5,7 @@ import { Søknadsdata } from './Søknadsdata';
 
 export interface SøknadContextState {
     søker: Søker;
-    barn: RegistrertBarn[];
+    registrerteBarn: RegistrertBarn[];
     søknadID?: string;
     søknadsdata?: Søknadsdata;
     søknadSendt?: boolean;

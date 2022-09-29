@@ -4,7 +4,7 @@ import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import ArbeidStep from './steps/arbeid/ArbeidStep';
 import BarnStep from './steps/barn/BarnStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import { useSøknadContext } from './SøknadContext';
+import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { StepID } from './søknadStepsConfig';
 
 const getSøknadStepRoute = (stepID?: StepID) => {
@@ -14,8 +14,9 @@ const getSøknadStepRoute = (stepID?: StepID) => {
 export const SOKNAD_SENDT_ROUTE = 'soknad/soknad_sendt';
 
 const SøknadRoutes = () => {
-    const { søknadID, søknadSendt } = useSøknadContext();
     const { pathname } = useLocation();
+    const { state } = useSøknadContext();
+    const { søknadSendt, søknadID } = state;
 
     if (søknadSendt && pathname !== SOKNAD_SENDT_ROUTE) {
         return (
