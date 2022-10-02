@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { RegistrertBarn } from './RegistrertBarn';
+// import { RegistrertBarn } from './RegistrertBarn';
 
 export interface Utenlandsopphold {
     periode: DateRange;
@@ -8,14 +8,15 @@ export interface Utenlandsopphold {
 }
 
 export interface Søknadsdata {
-    barn: {
-        erBarnetHjemme: boolean;
-        barnetSøknadenGjelder: RegistrertBarn;
+    barn?: {
+        fornavn: string;
+        etternavn: string;
+        fødselsdato: Date;
     };
-    arbeid: {
+    arbeid?: {
         periode: DateRange;
     };
-    medlemsskap: {
+    medlemsskap?: {
         harBoddIUtlandet: boolean;
         utenlandsopphold: Utenlandsopphold[];
     };

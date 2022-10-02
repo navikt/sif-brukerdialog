@@ -7,7 +7,7 @@ export interface SøknadContextState {
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
     søknadID?: string;
-    søknadsdata?: Søknadsdata;
+    søknad?: Søknadsdata;
     søknadSendt?: boolean;
     søknadFormValues?: SøknadFormValues;
 }
