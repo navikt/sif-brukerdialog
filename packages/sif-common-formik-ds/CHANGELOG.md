@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.7.0
+
+### Minor Changes
+
+-   2cb7212: Typing fix for TypedFormikWrapperProps
+
 ## 0.6.4
 
 ### Patch Changes
