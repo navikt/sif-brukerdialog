@@ -1,7 +1,6 @@
 // import { History } from 'history';
 // import RouteConfig from '../config/routeConfig';
 // import routeConfig, { getRouteUrl } from '../config/routeConfig';
-// import { StepID } from '../søknad/søknadStepsConfig';
 
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 

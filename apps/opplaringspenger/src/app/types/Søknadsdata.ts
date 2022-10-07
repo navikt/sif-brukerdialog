@@ -8,6 +8,8 @@ export interface Utenlandsopphold {
 }
 
 export interface Søknadsdata {
+    id: string;
+    harForståttRettigheterOgPlikter: boolean;
     barn?: {
         fornavn: string;
         etternavn: string;

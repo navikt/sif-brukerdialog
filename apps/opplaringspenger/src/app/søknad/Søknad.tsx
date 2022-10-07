@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import SøknadContextProvider from './context/SøknadContext';
-import SøknadRoutes from './SøknadRoutes';
+import SøknadRouter from './SøknadRouter';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -24,11 +24,7 @@ const Søknad = () => {
 
     return (
         <SøknadContextProvider initialData={data}>
-            <Link to="velkommen">Velkommen</Link>
-            <Link to="barn">Barn</Link>
-            <Link to="arbeid">Arbeid</Link>
-            <Link to="oppsummering">Oppsummering</Link>
-            <SøknadRoutes />
+            <SøknadRouter />
         </SøknadContextProvider>
     );
 };

@@ -2,20 +2,20 @@ import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/li
 import { jsonSort } from '@navikt/sif-common-utils/lib';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
-import { StepID } from '../../søknad/søknadStepsConfig';
+import { SøknadStegID } from '../../søknad/søknadStepsConfig';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { Søker } from '../../types/Søker';
-import { SøknadFormValues } from '../../types/SøknadFormValues';
 import { MELLOMLAGRING_VERSION, SøknadMellomlagring } from '../../types/SøknadMellomlagring';
+import { Søknadsdata } from '../../types/Søknadsdata';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
-export interface UserHashInfo {
+export interface BrukerHashInfo {
     søker: Søker;
     barn: RegistrertBarn[];
 }
 
 interface MellomlagringEndpoint extends Omit<PersistenceInterface<SøknadMellomlagring>, 'update' | 'rehydrate'> {
-    update: (formValues: SøknadFormValues, lastStepID: StepID, søkerInfo: UserHashInfo) => Promise<AxiosResponse>;
+    update: (søknad: Søknadsdata, stegID: SøknadStegID, søkerInfo: BrukerHashInfo) => Promise<AxiosResponse>;
     fetch: () => Promise<SøknadMellomlagring>;
 }
 
@@ -24,7 +24,7 @@ const persistSetup = persistence<SøknadMellomlagring>({
     requestConfig: { ...axiosConfigPsb },
 });
 
-export const createUserHashInfoString = (info: UserHashInfo) => {
+export const createUserHashInfoString = (info: BrukerHashInfo) => {
     const trimmedInfo: any = { ...info };
     delete trimmedInfo.sak.mottattDato;
     return hash(JSON.stringify(jsonSort(trimmedInfo)));
@@ -33,7 +33,7 @@ export const createUserHashInfoString = (info: UserHashInfo) => {
 const isMellomlagringValid = (mellomlagring: SøknadMellomlagring): boolean => {
     return (
         mellomlagring.metadata?.versjon === MELLOMLAGRING_VERSION &&
-        mellomlagring.formValues?.harForståttRettigheterOgPlikter === true
+        mellomlagring.søknad?.harForståttRettigheterOgPlikter === true
     );
 };
 
@@ -41,11 +41,11 @@ const mellomlagringEndpoint: MellomlagringEndpoint = {
     create: () => {
         return persistSetup.create();
     },
-    update: (formValues: SøknadFormValues, lastStepID: StepID, userHashInfo: UserHashInfo) => {
+    update: (søknad: Søknadsdata, stegID: SøknadStegID, userHashInfo: BrukerHashInfo) => {
         return persistSetup.update({
-            formValues,
+            søknad,
             metadata: {
-                lastStepID,
+                stegID,
                 versjon: MELLOMLAGRING_VERSION,
                 userHash: createUserHashInfoString(userHashInfo),
                 updatedTimestemp: new Date().toISOString(),
