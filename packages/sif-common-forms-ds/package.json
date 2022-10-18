@@ -47,7 +47,7 @@
         "react-collapse": "^5.1.1",
         "react-day-picker": "^8.3.0",
         "react-dom": "^18.2.0",
-        "react-intl": "6.1.1",
+        "react-intl": "6.2.1",
         "react-modal": "^3.15.1",
         "react-responsive": "^8.2.0",
         "react-router-dom": "^6.4.1",
