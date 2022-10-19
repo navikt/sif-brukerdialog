@@ -1,6 +1,6 @@
 import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import { SøknadRoutes } from './SøknadRoutes';
+import { SøknadRoutes } from '../types/SøknadRoutes';
 
 export enum StegID {
     'VELKOMMEN' = 'velkommen',

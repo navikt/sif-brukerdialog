@@ -3,8 +3,15 @@
     "page.error.pageTitle": "Det oppstod en feil",
     "common.soknadErrorMessages.generalError.content": "Feil ja",
 
+    "step.barn.pageTitle": "Søknad - Barn",
     "step.barn.stepTitle": "Barn",
+
+    "step.arbeid.pageTitle": "Søknad - Arbeid",
     "step.arbeid.stepTitle": "Arbeid",
+
+    "step.opplaring.pageTitle": "Søknad - Opplæring",
     "step.opplaring.stepTitle": "Opplæring",
+
+    "step.oppsummering.pageTitle": "Søknad - Oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering"
 }

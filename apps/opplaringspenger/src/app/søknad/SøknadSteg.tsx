@@ -5,7 +5,6 @@ import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknad
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import { SøknadRoutes } from './SøknadRoutes';
 import { getSøknadStegConfig, StegID } from './søknadStegConfig';
 
 interface Props {
@@ -13,41 +12,30 @@ interface Props {
     children: React.ReactNode;
 }
 
-const getPreviousRoute = (steg: StegID): SøknadRoutes | undefined => {
-    switch (steg) {
-        case StegID.BARN:
-            return undefined;
-        case StegID.ARBEID:
-            return SøknadRoutes.BARN;
-        case StegID.OPPLÆRING:
-            return SøknadRoutes.ARBEID;
-        case StegID.OPPSUMMERING:
-            return SøknadRoutes.OPPLÆRING;
-    }
-    return undefined;
-};
-
 const SøknadSteg: React.FunctionComponent<Props> = ({ stegID, children }) => {
     const intl = useIntl();
-    const soknadStepsConfig = getSøknadStegConfig();
+    const stegConfig = getSøknadStegConfig();
     const { dispatch } = useSøknadContext();
 
-    const { stepTitleIntlKey, backLinkHref } = soknadStepsConfig[stegID];
+    const { stepTitleIntlKey, backLinkHref, previousStepRoute, pageTitleIntlKey } = stegConfig[stegID];
 
     return (
         <Step
             activeStepId={stegID}
-            pageTitle="Sidetittel"
-            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(soknadStepsConfig, intl)}
+            pageTitle={intlHelper(intl, pageTitleIntlKey)}
+            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(stegConfig, intl)}
             stepTitle={intlHelper(intl, stepTitleIntlKey)}
             backLinkHref={backLinkHref}
-            onBackClick={() => {
-                const previousRoute = getPreviousRoute(stegID);
-                if (previousRoute) {
-                    dispatch(actionsCreator.setSøknadRoute(previousRoute));
-                    dispatch(actionsCreator.requestLagreSøknad());
-                }
-            }}>
+            onBackClick={
+                previousStepRoute
+                    ? () => {
+                          if (previousStepRoute) {
+                              dispatch(actionsCreator.setSøknadRoute(previousStepRoute));
+                              dispatch(actionsCreator.requestLagreSøknad());
+                          }
+                      }
+                    : undefined
+            }>
             {children}
         </Step>
     );

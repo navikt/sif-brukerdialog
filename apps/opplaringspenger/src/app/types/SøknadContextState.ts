@@ -1,4 +1,4 @@
-import { SøknadRoutes } from '../søknad/SøknadRoutes';
+import { SøknadRoutes } from './SøknadRoutes';
 import { RegistrertBarn } from './RegistrertBarn';
 import { Søker } from './Søker';
 import { Søknadsdata } from './Søknadsdata';

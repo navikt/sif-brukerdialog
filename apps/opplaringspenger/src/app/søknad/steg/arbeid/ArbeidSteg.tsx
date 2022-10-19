@@ -6,7 +6,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useOnValidSubmit } from '../../context/hooks/useOnValidSubmit';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { SøknadRoutes } from '../../SøknadRoutes';
+import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import SøknadStep from '../../SøknadSteg';
 import { StegID } from '../../søknadStegConfig';
 

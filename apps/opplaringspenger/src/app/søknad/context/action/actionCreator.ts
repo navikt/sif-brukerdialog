@@ -1,7 +1,7 @@
 import { ArbeidFormValues } from '../../steg/arbeid/ArbeidSteg';
 import { BarnFormValues } from '../../steg/barn/BarnSteg';
 import { OpplæringFormValues } from '../../steg/opplæring/OpplæringSteg';
-import { SøknadRoutes } from '../../SøknadRoutes';
+import { SøknadRoutes } from '../../../types/SøknadRoutes';
 
 export enum SøknadContextActionKeys {
     START_SØKNAD = 'startSøknad',

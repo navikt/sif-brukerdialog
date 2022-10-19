@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../SøknadRoutes';
+import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import actionsCreator, { SøknadContextAction } from '../action/actionCreator';
 import { useSøknadContext } from './useSøknadContext';
 

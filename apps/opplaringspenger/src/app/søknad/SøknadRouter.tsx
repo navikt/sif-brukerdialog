@@ -8,7 +8,7 @@ import ArbeidStep from './steg/arbeid/ArbeidSteg';
 import BarnSteg from './steg/barn/BarnSteg';
 import OpplæringSteg from './steg/opplæring/OpplæringSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
-import { SøknadRoutes } from './SøknadRoutes';
+import { SøknadRoutes } from '../types/SøknadRoutes';
 import { StegID } from './søknadStegConfig';
 
 const getSøknadStegRoute = (stegID?: StegID) => {

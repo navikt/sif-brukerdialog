@@ -1,6 +1,6 @@
 import { guid, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../SøknadRoutes';
+import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {

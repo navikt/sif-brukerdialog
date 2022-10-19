@@ -7,7 +7,7 @@ import SøknadSteg from '../../SøknadSteg';
 import { StegID } from '../../søknadStegConfig';
 import { useOnValidSubmit } from '../../context/hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../SøknadRoutes';
+import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../api/endpoints/mellomlagringEndpoint';
 import { getBarnStegInitialValues } from './barnStegUtils';
 
