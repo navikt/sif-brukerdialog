@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { lagreSøknadState } from '../api/endpoints/mellomlagringEndpoint';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import actionsCreator from './context/action/actionCreator';
+import { SøknadRoutes } from '../types/SøknadRoutes';
+import { useBørSøknadMellomlagres } from './context/hooks/useBørSøknadMellomlagres';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidStep from './steg/arbeid/ArbeidSteg';
 import BarnSteg from './steg/barn/BarnSteg';
 import OpplæringSteg from './steg/opplæring/OpplæringSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
-import { SøknadRoutes } from '../types/SøknadRoutes';
 import { StegID } from './søknadStegConfig';
-
-const getSøknadStegRoute = (stegID?: StegID) => {
-    return `/soknad${stegID ? `/${stegID}` : ''}`;
-};
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
-    const { state, dispatch } = useSøknadContext();
+    const {
+        state: { søknadSendt, søknadsdata, søknadRoute },
+    } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-
-    const { søknadSendt, søknadsdata, søknadRoute } = state;
+    useBørSøknadMellomlagres();
 
     useEffect(() => {
         if (søknadRoute && isFirstTimeLoadingApp) {
@@ -29,14 +25,6 @@ const SøknadRouter = () => {
             navigateTo(søknadRoute);
         }
     }, [navigateTo, søknadRoute, isFirstTimeLoadingApp]);
-
-    useEffect(() => {
-        if (state.børMellomlagres) {
-            lagreSøknadState(state).then(() => {
-                dispatch(actionsCreator.setSøknadLagret());
-            });
-        }
-    }, [state, dispatch]);
 
     if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT) {
         return (
@@ -50,7 +38,7 @@ const SøknadRouter = () => {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
-                <Route path="*" element={<Navigate to={getSøknadStegRoute()} />} />
+                <Route path="*" element={<Navigate to={StegID.VELKOMMEN} />} />
             </Routes>
         );
     }
@@ -62,7 +50,7 @@ const SøknadRouter = () => {
             <Route path={StegID.ARBEID} element={<ArbeidStep />} />
             <Route path={StegID.OPPLÆRING} element={<OpplæringSteg />} />
             <Route path={StegID.OPPSUMMERING} element={<OppsummeringSteg />} />
-            <Route path="*" element={<Navigate to={getSøknadStegRoute()} />} />
+            <Route path="*" element={<Navigate to={StegID.VELKOMMEN} />} />
         </Routes>
     );
 };

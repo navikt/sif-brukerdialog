@@ -42,9 +42,7 @@ const getStepsConfig = <STEPS extends string, SøknadRoutes>(
     let idx = 0;
     steps.forEach((stepId) => {
         const nextStep = idx < numSteps - 1 ? steps[idx + 1] : undefined;
-        const nextStepRoute = nextStep ? getStepRoute<STEPS, SøknadRoutes>(nextStep, applicationType) : undefined;
         const prevStepId = idx > 0 ? steps[idx - 1] : undefined;
-
         config[stepId] = {
             id: stepId,
             pageTitleIntlKey: `step.${stepId}.pageTitle`,
@@ -53,10 +51,11 @@ const getStepsConfig = <STEPS extends string, SøknadRoutes>(
             route: getStepRoute(stepId, applicationType),
             index: idx,
             backLinkHref: prevStepId ? getStepRoute(prevStepId, applicationType) : undefined,
-            previousStepTitleIntlKey: prevStepId ? `step.${prevStepId}.pageTitle` : undefined,
             previousStep: prevStepId,
+            previousStepRoute: prevStepId ? getStepRoute<STEPS, SøknadRoutes>(prevStepId, applicationType) : undefined,
+            previousStepTitleIntlKey: prevStepId ? `step.${prevStepId}.pageTitle` : undefined,
             nextStep,
-            nextStepRoute,
+            nextStepRoute: nextStep ? getStepRoute<STEPS, SøknadRoutes>(nextStep, applicationType) : undefined,
         };
         idx++;
     });
