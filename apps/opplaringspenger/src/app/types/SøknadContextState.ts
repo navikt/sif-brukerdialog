@@ -1,12 +1,14 @@
-import { SøknadStegID } from '../søknad/søknadStepsConfig';
+import { SøknadRoutes } from '../søknad/SøknadRoutes';
 import { RegistrertBarn } from './RegistrertBarn';
 import { Søker } from './Søker';
 import { Søknadsdata } from './Søknadsdata';
 
 export interface SøknadContextState {
+    versjon: string;
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
-    steg?: SøknadStegID;
-    søknad?: Søknadsdata;
+    søknadsdata: Søknadsdata;
+    søknadRoute?: SøknadRoutes;
     søknadSendt?: boolean;
+    børMellomlagres?: boolean;
 }

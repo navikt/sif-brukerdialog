@@ -1,44 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { lagreSøknadState } from '../api/endpoints/mellomlagringEndpoint';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
+import actionsCreator from './context/action/actionCreator';
+import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidStep from './steg/arbeid/ArbeidSteg';
 import BarnSteg from './steg/barn/BarnSteg';
+import OpplæringSteg from './steg/opplæring/OpplæringSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
-import { useSøknadContext } from './context/hooks/useSøknadContext';
-import { SøknadStegID } from './søknadStepsConfig';
+import { SøknadRoutes } from './SøknadRoutes';
+import { StegID } from './søknadStegConfig';
 
-const getSøknadStegRoute = (stegID?: SøknadStegID) => {
+const getSøknadStegRoute = (stegID?: StegID) => {
     return `/soknad${stegID ? `/${stegID}` : ''}`;
 };
 
-export const SOKNAD_SENDT_ROUTE = 'soknad/soknad_sendt';
-
 const SøknadRouter = () => {
     const { pathname } = useLocation();
-    const { state } = useSøknadContext();
-    const { søknadSendt, søknad, steg } = state;
+    const { state, dispatch } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
 
+    const { søknadSendt, søknadsdata, søknadRoute } = state;
+
     useEffect(() => {
-        if (steg && isFirstTimeLoadingApp) {
+        if (søknadRoute && isFirstTimeLoadingApp) {
             setIsFirstTimeLoadingApp(false);
-            navigateTo(steg);
+            navigateTo(søknadRoute);
         }
-    }, [navigateTo, steg, isFirstTimeLoadingApp]);
+    }, [navigateTo, søknadRoute, isFirstTimeLoadingApp]);
 
-    if (steg && søknad && getSøknadStegRoute(steg) !== pathname) {
-        return <Navigate to={steg} />;
-    }
+    useEffect(() => {
+        if (state.børMellomlagres) {
+            lagreSøknadState(state).then(() => {
+                dispatch(actionsCreator.setSøknadLagret());
+            });
+        }
+    }, [state, dispatch]);
 
-    if (søknadSendt && pathname !== SOKNAD_SENDT_ROUTE) {
+    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT) {
         return (
             <Routes>
-                <Route path="*" element={<Navigate to={SOKNAD_SENDT_ROUTE} replace={true} />} />
+                <Route path="*" element={<Navigate to={SøknadRoutes.SØKNAD_SENDT} replace={true} />} />
             </Routes>
         );
     }
-    if (!søknad) {
+
+    if (!søknadsdata) {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
@@ -50,9 +58,10 @@ const SøknadRouter = () => {
     return (
         <Routes>
             <Route index element={<VelkommenPage />} />
-            <Route path={SøknadStegID.BARN} element={<BarnSteg />} />
-            <Route path={SøknadStegID.ARBEID} element={<ArbeidStep />} />
-            <Route path={SøknadStegID.OPPSUMMERING} element={<OppsummeringSteg />} />
+            <Route path={StegID.BARN} element={<BarnSteg />} />
+            <Route path={StegID.ARBEID} element={<ArbeidStep />} />
+            <Route path={StegID.OPPLÆRING} element={<OpplæringSteg />} />
+            <Route path={StegID.OPPSUMMERING} element={<OppsummeringSteg />} />
             <Route path="*" element={<Navigate to={getSøknadStegRoute()} />} />
         </Routes>
     );

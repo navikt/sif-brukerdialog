@@ -1,9 +1,9 @@
 import React from 'react';
 import SøknadSteg from '../../SøknadSteg';
-import { SøknadStegID } from '../../søknadStepsConfig';
+import { StegID } from '../../søknadStegConfig';
 
 const OppsummeringSteg = () => {
-    return <SøknadSteg stegID={SøknadStegID.OPPSUMMERING}>Oppsummering</SøknadSteg>;
+    return <SøknadSteg stegID={StegID.OPPSUMMERING}>Oppsummering</SøknadSteg>;
 };
 
 export default OppsummeringSteg;

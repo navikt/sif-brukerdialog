@@ -2,20 +2,22 @@ import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/li
 import { jsonSort } from '@navikt/sif-common-utils/lib';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
-import { SøknadStegID } from '../../søknad/søknadStepsConfig';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { Søker } from '../../types/Søker';
-import { MELLOMLAGRING_VERSION, SøknadMellomlagring } from '../../types/SøknadMellomlagring';
-import { Søknadsdata } from '../../types/Søknadsdata';
+import { SøknadContextState } from '../../types/SøknadContextState';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
-export interface BrukerHashInfo {
+export const MELLOMLAGRING_VERSION = '0.0.1';
+export interface SøknadHashInfo {
     søker: Søker;
-    barn: RegistrertBarn[];
+    registrerteBarn: RegistrertBarn[];
 }
 
+type SøknadMellomlagring = Omit<SøknadContextState, 'søker' | 'registrerteBarn'> & {
+    søknadHashString: string;
+};
 interface MellomlagringEndpoint extends Omit<PersistenceInterface<SøknadMellomlagring>, 'update' | 'rehydrate'> {
-    update: (søknad: Søknadsdata, stegID: SøknadStegID, søkerInfo: BrukerHashInfo) => Promise<AxiosResponse>;
+    update: (state: SøknadContextState) => Promise<AxiosResponse>;
     fetch: () => Promise<SøknadMellomlagring>;
 }
 
@@ -24,32 +26,25 @@ const persistSetup = persistence<SøknadMellomlagring>({
     requestConfig: { ...axiosConfigPsb },
 });
 
-export const createUserHashInfoString = (info: BrukerHashInfo) => {
-    const trimmedInfo: any = { ...info };
-    delete trimmedInfo.sak.mottattDato;
-    return hash(JSON.stringify(jsonSort(trimmedInfo)));
+export const createSøknadHashInfoString = (info: SøknadHashInfo) => {
+    return hash(JSON.stringify(jsonSort(info)));
 };
 
-const isMellomlagringValid = (mellomlagring: SøknadMellomlagring): boolean => {
-    return (
-        mellomlagring.metadata?.versjon === MELLOMLAGRING_VERSION &&
-        mellomlagring.søknad?.harForståttRettigheterOgPlikter === true
-    );
+const isMellomlagringValid = (state: SøknadMellomlagring): boolean => {
+    return state.versjon === MELLOMLAGRING_VERSION && state.søknadsdata?.harForståttRettigheterOgPlikter === true;
 };
 
 const mellomlagringEndpoint: MellomlagringEndpoint = {
     create: () => {
         return persistSetup.create();
     },
-    update: (søknad: Søknadsdata, stegID: SøknadStegID, userHashInfo: BrukerHashInfo) => {
+    update: ({ registrerteBarn, søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
         return persistSetup.update({
-            søknad,
-            metadata: {
-                stegID,
-                versjon: MELLOMLAGRING_VERSION,
-                userHash: createUserHashInfoString(userHashInfo),
-                updatedTimestemp: new Date().toISOString(),
-            },
+            søknadHashString: createSøknadHashInfoString({ registrerteBarn, søker }),
+            søknadsdata,
+            søknadRoute,
+            søknadSendt,
+            versjon: MELLOMLAGRING_VERSION,
         });
     },
     purge: persistSetup.purge,
@@ -65,6 +60,10 @@ const mellomlagringEndpoint: MellomlagringEndpoint = {
         }
         return Promise.resolve(data);
     },
+};
+
+export const lagreSøknadState = (state: SøknadContextState) => {
+    return mellomlagringEndpoint.update(state);
 };
 
 export default mellomlagringEndpoint;

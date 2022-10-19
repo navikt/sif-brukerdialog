@@ -27,20 +27,22 @@ const getRootRoute = (applicationType: SoknadApplicationType): string => {
     return `/${applicationType}/`;
 };
 
-const getStepRoute = <STEPS>(stepId: STEPS, applicationType: SoknadApplicationType): string => {
-    return applicationType ? `${getRootRoute(applicationType)}${stepId}` : `${stepId}`;
+const getStepRoute = <STEPS, SøknadRoutes>(stepId: STEPS, applicationType: SoknadApplicationType): SøknadRoutes => {
+    return applicationType
+        ? (`${getRootRoute(applicationType)}${stepId}` as SøknadRoutes)
+        : (`${stepId}` as SøknadRoutes);
 };
 
-const getStepsConfig = <STEPS extends string>(
+const getStepsConfig = <STEPS extends string, SøknadRoutes>(
     steps: STEPS[],
     applicationType: SoknadApplicationType
-): SoknadStepsConfig<STEPS> => {
+): SoknadStepsConfig<STEPS, SøknadRoutes> => {
     const numSteps = steps.length;
-    const config: SoknadStepsConfig<STEPS> = {};
+    const config: SoknadStepsConfig<STEPS, SøknadRoutes> = {};
     let idx = 0;
     steps.forEach((stepId) => {
         const nextStep = idx < numSteps - 1 ? steps[idx + 1] : undefined;
-        const nextStepRoute = nextStep ? getStepRoute(nextStep, applicationType) : undefined;
+        const nextStepRoute = nextStep ? getStepRoute<STEPS, SøknadRoutes>(nextStep, applicationType) : undefined;
         const prevStepId = idx > 0 ? steps[idx - 1] : undefined;
 
         config[stepId] = {
@@ -52,6 +54,7 @@ const getStepsConfig = <STEPS extends string>(
             index: idx,
             backLinkHref: prevStepId ? getStepRoute(prevStepId, applicationType) : undefined,
             previousStepTitleIntlKey: prevStepId ? `step.${prevStepId}.pageTitle` : undefined,
+            previousStep: prevStepId,
             nextStep,
             nextStepRoute,
         };
@@ -60,8 +63,8 @@ const getStepsConfig = <STEPS extends string>(
     return config;
 };
 
-function getStepIndicatorStepsFromConfig<Steps>(
-    stepsConfig: SoknadStepsConfig<Steps>,
+function getStepIndicatorStepsFromConfig<Steps, SøknadRoutes extends string>(
+    stepsConfig: SoknadStepsConfig<Steps, SøknadRoutes>,
     intl: IntlShape
 ): StepIndicatorStep[] {
     return Object.keys(stepsConfig).map((key) => {

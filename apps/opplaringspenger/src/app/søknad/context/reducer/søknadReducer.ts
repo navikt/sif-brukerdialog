@@ -1,6 +1,6 @@
 import { guid, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadStegID } from '../../søknadStepsConfig';
+import { SøknadRoutes } from '../../SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
@@ -8,31 +8,42 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
         case SøknadContextActionKeys.START_SØKNAD:
             return {
                 ...state,
-                søknad: {
+                søknadsdata: {
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
                 },
-                steg: SøknadStegID.BARN,
+                søknadRoute: SøknadRoutes.BARN,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
             return {
                 ...state,
-                søknad: undefined,
-                steg: undefined,
+                søknadsdata: {},
+                søknadRoute: undefined,
             };
     }
-    if (state.søknad) {
+
+    if (state.søknadsdata) {
         switch (action.type) {
-            case SøknadContextActionKeys.SET_SØKNAD_STEG:
+            case SøknadContextActionKeys.SET_SØKNAD_ROUTE:
                 return {
                     ...state,
-                    steg: action.payload,
+                    søknadRoute: action.payload,
+                };
+            case SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD:
+                return {
+                    ...state,
+                    børMellomlagres: true,
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_LAGRET:
+                return {
+                    ...state,
+                    børMellomlagres: false,
                 };
             case SøknadContextActionKeys.SET_SØKNAD_BARN:
                 return {
                     ...state,
-                    søknad: {
-                        ...state.søknad,
+                    søknadsdata: {
+                        ...state.søknadsdata,
                         barn: {
                             ...action.payload,
                             fødselsdato: ISODateToDate(action.payload.fødselsdato),

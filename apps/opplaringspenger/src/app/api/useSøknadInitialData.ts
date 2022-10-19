@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { RegistrertBarn } from '../types/RegistrertBarn';
-import { Søker } from '../types/Søker';
+import { SøknadContextState } from '../types/SøknadContextState';
 import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToNoAccessPage } from '../utils/navigationUtils';
+import mellomlagringEndpoint from './endpoints/mellomlagringEndpoint';
 import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
-import { SøknadMellomlagring } from '../types/SøknadMellomlagring';
-import mellomlagringEndpoint from './endpoints/mellomlagringEndpoint';
 
 export enum RequestStatus {
     'loading' = 'loading',
@@ -15,11 +13,7 @@ export enum RequestStatus {
     'error' = 'error',
 }
 
-export interface SøknadInitialData {
-    søker: Søker;
-    registrerteBarn: RegistrertBarn[];
-    mellomlagring: SøknadMellomlagring;
-}
+export type SøknadInitialData = SøknadContextState;
 
 type SøknadInitialSuccess = {
     status: RequestStatus.success;
@@ -52,7 +46,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 data: {
                     søker,
                     registrerteBarn,
-                    mellomlagring,
+                    ...mellomlagring,
                 },
             });
             return Promise.resolve();

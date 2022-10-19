@@ -1,15 +1,17 @@
 import { ArbeidFormValues } from '../../steg/arbeid/ArbeidSteg';
 import { BarnFormValues } from '../../steg/barn/BarnSteg';
-import { SøknadStegID } from '../../søknadStepsConfig';
+import { OpplæringFormValues } from '../../steg/opplæring/OpplæringSteg';
+import { SøknadRoutes } from '../../SøknadRoutes';
 
 export enum SøknadContextActionKeys {
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
-    SET_SØKNAD_STEG = 'setSøknadSteg',
-    GÅ_TIL_NESTE_STEG = 'gåTilNesteSteg',
-    GÅ_TIL_FORRIGE_STEG = 'gåTilForrigeSteg',
+    SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_BARN = 'setSøknadBarn',
     SET_SØKNAD_ARBEID = 'setSøknadArbeid',
+    SET_SØKNAD_OPPLÆRING = 'setSøknadOpplæring',
+    REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
+    SET_SØKNAD_LAGRET = 'setSøknadLagret',
 }
 
 interface StartSøknad {
@@ -18,17 +20,15 @@ interface StartSøknad {
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
 }
-interface SetSøknadSteg {
-    type: SøknadContextActionKeys.SET_SØKNAD_STEG;
-    payload: SøknadStegID;
+interface RequestLagreSøknad {
+    type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD;
 }
-interface GåTilNesteSteg {
-    type: SøknadContextActionKeys.GÅ_TIL_NESTE_STEG;
-    fraSteg: SøknadStegID;
+interface SetSøknadLagret {
+    type: SøknadContextActionKeys.SET_SØKNAD_LAGRET;
 }
-interface GåTilForrigeSteg {
-    type: SøknadContextActionKeys.GÅ_TIL_FORRIGE_STEG;
-    fraSteg: SøknadStegID;
+interface SetSøknadRoute {
+    type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
+    payload: SøknadRoutes;
 }
 interface SetSøknadBarn {
     type: SøknadContextActionKeys.SET_SØKNAD_BARN;
@@ -37,6 +37,10 @@ interface SetSøknadBarn {
 interface SetSøknadArbeid {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEID;
     payload: ArbeidFormValues;
+}
+interface SetSøknadOpplæring {
+    type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING;
+    payload: OpplæringFormValues;
 }
 
 const startSøknad = (): StartSøknad => ({
@@ -47,6 +51,14 @@ const avbrytSøknad = (): AvbrytSøknad => ({
     type: SøknadContextActionKeys.AVBRYT_SØKNAD,
 });
 
+const requestLagreSøknad = (): RequestLagreSøknad => ({
+    type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD,
+});
+
+const setSøknadLagret = (): SetSøknadLagret => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
+});
+
 const setSøknadBarn = (payload: BarnFormValues): SetSøknadBarn => ({
     type: SøknadContextActionKeys.SET_SØKNAD_BARN,
     payload,
@@ -55,36 +67,34 @@ const setSøknadArbeid = (payload: ArbeidFormValues): SetSøknadArbeid => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEID,
     payload,
 });
-const setSøknadSteg = (payload: SøknadStegID): SetSøknadSteg => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_STEG,
+const setSøknadOpplæring = (payload: OpplæringFormValues): SetSøknadOpplæring => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING,
     payload,
 });
-const gåTilNesteSteg = (fraSteg: SøknadStegID): GåTilNesteSteg => ({
-    type: SøknadContextActionKeys.GÅ_TIL_NESTE_STEG,
-    fraSteg,
-});
-const gåTilForrigeSteg = (fraSteg: SøknadStegID): GåTilForrigeSteg => ({
-    type: SøknadContextActionKeys.GÅ_TIL_FORRIGE_STEG,
-    fraSteg,
+const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_ROUTE,
+    payload,
 });
 
 export type SøknadContextAction =
     | AvbrytSøknad
     | StartSøknad
+    | RequestLagreSøknad
+    | SetSøknadLagret
     | SetSøknadBarn
-    | SetSøknadSteg
-    | SetSøknadArbeid
-    | GåTilNesteSteg
-    | GåTilForrigeSteg;
+    | SetSøknadOpplæring
+    | SetSøknadRoute
+    | SetSøknadArbeid;
 
-const actions = {
+const actionsCreator = {
     startSøknad,
     avbrytSøknad,
-    setSøknadSteg,
+    requestLagreSøknad,
+    setSøknadRoute,
     setSøknadBarn,
     setSøknadArbeid,
-    gåTilForrigeSteg,
-    gåTilNesteSteg,
+    setSøknadOpplæring,
+    setSøknadLagret,
 };
 
-export default actions;
+export default actionsCreator;

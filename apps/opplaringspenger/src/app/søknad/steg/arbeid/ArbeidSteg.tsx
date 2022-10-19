@@ -1,11 +1,14 @@
-import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import actions from '../../context/action/actionCreator';
+import { lagreSøknadState } from '../../../api/endpoints/mellomlagringEndpoint';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useOnValidSubmit } from '../../context/hooks/useOnValidSubmit';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { SøknadRoutes } from '../../SøknadRoutes';
 import SøknadStep from '../../SøknadSteg';
-import { SøknadStegID } from '../../søknadStepsConfig';
+import { StegID } from '../../søknadStegConfig';
 
 export enum ArbeidFormFields {
     'startdato' = 'startdato',
@@ -19,30 +22,39 @@ const ArbeidFormComponents = getTypedFormComponents<ArbeidFormFields, ArbeidForm
 
 const ArbeidSteg = () => {
     const {
-        dispatch,
-        state: { søknad },
+        state: { søknadsdata },
     } = useSøknadContext();
 
-    if (!søknad) {
+    const onValidSubmitHandler = (values: Partial<ArbeidFormValues>) => {
+        const { startdato } = values;
+        if (startdato) {
+            return [actionsCreator.setSøknadArbeid({ startdato })];
+        }
+        return [];
+    };
+
+    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+        onValidSubmitHandler,
+        SøknadRoutes.OPPLÆRING,
+        (state: SøknadContextState) => {
+            return lagreSøknadState(state);
+        }
+    );
+
+    if (!søknadsdata) {
         return <>!Søknad</>;
     }
 
     return (
-        <SøknadStep stegID={SøknadStegID.ARBEID}>
-            <Heading level="1" size="xlarge">
-                Arbeidssituasjon
-            </Heading>
+        <SøknadStep stegID={StegID.ARBEID}>
             <ArbeidFormComponents.FormikWrapper
                 initialValues={{}}
-                onSubmit={(values) => {
-                    const { startdato } = values;
-                    if (startdato) {
-                        dispatch(actions.setSøknadArbeid({ startdato }));
-                        dispatch(actions.setSøknadSteg(SøknadStegID.ARBEID));
-                    }
-                }}
+                onSubmit={handleSubmit}
                 renderForm={() => (
-                    <ArbeidFormComponents.Form>
+                    <ArbeidFormComponents.Form
+                        submitButtonLabel="Gå videre"
+                        includeValidationSummary={true}
+                        submitPending={isSubmitting}>
                         <ArbeidFormComponents.DatePicker
                             label="Når skal du starte å arbeide?"
                             name={ArbeidFormFields.startdato}

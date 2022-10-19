@@ -12,6 +12,7 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
@@ -40,7 +41,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
         <ApplicationStep
             id={StepID.DOKUMENTER}
             onValidFormSubmit={onValidSubmit}
-            useValidationErrorSummary={true}
+            validationSummary={<FormikValidationErrorSummary />}
             buttonDisabled={hasPendingUploads || sizeOver24Mb}>
             <SifGuidePanel>
                 <BodyLong as="div">

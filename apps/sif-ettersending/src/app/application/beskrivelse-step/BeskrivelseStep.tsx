@@ -9,11 +9,15 @@ import ApplicationStep from '../ApplicationStep';
 import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { BodyLong, Link } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 
 const BeskrivelseStep = ({ onValidSubmit }: StepConfigProps) => {
     const intl = useIntl();
     return (
-        <ApplicationStep id={StepID.BESKRIVELSE} onValidFormSubmit={onValidSubmit} useValidationErrorSummary={true}>
+        <ApplicationStep
+            id={StepID.BESKRIVELSE}
+            onValidFormSubmit={onValidSubmit}
+            validationSummary={<FormikValidationErrorSummary />}>
             <FormBlock>
                 <ApplicationFormComponents.Textarea
                     name={ApplicationFormField.beskrivelse}

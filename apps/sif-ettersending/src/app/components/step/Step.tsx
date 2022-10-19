@@ -6,15 +6,14 @@ import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLi
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../../config/stepConfig';
 import { getStepTexts } from '../../utils/stepUtils';
 import StepIndicator from './step-indicator/StepIndicator';
 
 export interface StepProps {
     id: StepID;
-    useValidationErrorSummary?: boolean;
     bannerTitle?: string;
+    validationSummary?: React.ReactNode;
 }
 
 interface OwnProps {
@@ -24,7 +23,7 @@ interface OwnProps {
 
 type Props = OwnProps & StepProps;
 
-const Step = ({ id, bannerTitle, stepConfig, useValidationErrorSummary, children }: Props) => {
+const Step = ({ id, bannerTitle, stepConfig, validationSummary, children }: Props) => {
     const intl = useIntl();
     const conf = stepConfig[id];
     const navigate = useNavigate();
@@ -35,7 +34,7 @@ const Step = ({ id, bannerTitle, stepConfig, useValidationErrorSummary, children
             topContentRenderer={() => (
                 <>
                     <SoknadHeader title={bannerTitle || intlHelper(intl, 'banner.title')} level="2" />
-                    {useValidationErrorSummary !== false && <FormikValidationErrorSummary />}
+                    {validationSummary !== undefined && validationSummary}
                 </>
             )}>
             {conf.backLinkHref && (

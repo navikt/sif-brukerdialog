@@ -3,7 +3,7 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import TypedFormikForm from '@navikt/sif-common-formik-ds/lib/components/typed-formik-form/TypedFormikForm';
 import TypedFormikWrapper from '@navikt/sif-common-formik-ds/lib/components/typed-formik-wrapper/TypedFormikWrapper';
 import React from 'react';
-import actions from '../../søknad/context/action/actionCreator';
+import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 
 const VelkommenPage = () => {
@@ -13,7 +13,7 @@ const VelkommenPage = () => {
     } = useSøknadContext();
 
     const startSøknad = () => {
-        dispatch(actions.startSøknad());
+        dispatch(actionsCreator.startSøknad());
     };
     return (
         <Page title="Velkommen">
