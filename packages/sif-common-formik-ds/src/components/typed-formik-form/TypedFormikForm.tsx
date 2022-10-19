@@ -20,6 +20,8 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     formErrorHandler?: CustomFormErrorHandler<ErrorType>;
     formFooter?: React.ReactNode;
     errorSummaryTitle?: string;
+    submitPending?: boolean;
+    submitDisabled?: boolean;
     noButtonsContentRenderer?: () => React.ReactNode;
     cleanup?: (values: FormValues) => FormValues;
     onValidSubmit?: () => void;
@@ -58,6 +60,8 @@ function TypedFormikForm<FormValues, ErrorType>({
     formErrorHandler,
     formFooter,
     errorSummaryTitle,
+    submitPending,
+    submitDisabled,
     onCancel,
     onValidSubmit,
     noButtonsContentRenderer,
@@ -152,9 +156,10 @@ function TypedFormikForm<FormValues, ErrorType>({
                 {includeButtons && (
                     <div style={{ marginTop: '2rem' }}>
                         <ButtonRow layout={'normal'}>
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" type="submit" loading={submitPending} disabled={submitDisabled}>
                                 {submitButtonLabel || 'Ok'}
                             </Button>
+
                             {onCancel && (
                                 <Button
                                     type="button"
