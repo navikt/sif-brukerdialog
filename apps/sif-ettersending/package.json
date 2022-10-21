@@ -39,7 +39,7 @@
         "react": "^18.2.0",
         "react-collapse": "^5.1.1",
         "react-intl": "6.1.1",
-        "@snyk/protect": "^1.1013.0",
+        "@snyk/protect": "^1.1038.0",
         "uuid": "^9.0.0"
     },
     "devDependencies": {
