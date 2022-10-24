@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import { useSøknadStatePersistence } from '../hooks/useSøknadStatePersistence';
+import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidStep from './steg/arbeid/ArbeidSteg';
 import BarnSteg from './steg/barn/BarnSteg';
@@ -17,7 +17,8 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    useSøknadStatePersistence();
+
+    usePersistSøknadState();
 
     useEffect(() => {
         if (søknadRoute && isFirstTimeLoadingApp) {

@@ -108,7 +108,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
         await soknadTempStorage.create();
         await logSoknadStartet(SKJEMANAVN);
         const nextRoute = soknadStepUtils.getStepRoute(firstStep, SoknadApplicationType.MELDING);
-        navigate(nextRoute);
+        if (nextRoute) {
+            navigate(nextRoute);
+        }
     };
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: Partial<SoknadFormData>): Promise<void> => {

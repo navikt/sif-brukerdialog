@@ -3,7 +3,7 @@ import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { lagreSøknadState } from '../utils/lagreSøknadState';
 
-export const useSøknadStatePersistence = () => {
+export const usePersistSøknadState = () => {
     const { dispatch, state } = useSøknadContext();
     const [pending, setPending] = useState(false);
 
