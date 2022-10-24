@@ -90,6 +90,9 @@ const startExpressServer = () => {
     server.get('/soker-401', (req, res) => {
         res.sendStatus(401);
     });
+    server.get('/soker-403', (req, res) => {
+        res.sendStatus(403);
+    });
 
     server.get('/barn', (req, res) => {
         readMockFile(barnFileName, res);

@@ -12,6 +12,7 @@ import Søknad from './søknad/Søknad';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import { SøknadRoutes } from './types/SøknadRoutes';
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';
@@ -42,7 +43,9 @@ const App = () => (
                     <SoknadApplicationCommonRoutes
                         contentRoutes={[
                             <Route index key="intro" element={<IntroPage />} />,
-                            <Route path="/soknad/*" key="soknad" element={<Søknad />} />,
+                            <Route path={SøknadRoutes.INTRO} key="intro" element={<IntroPage />} />,
+                            <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
+                            <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
                         ]}
                     />
                 </SoknadApplication>

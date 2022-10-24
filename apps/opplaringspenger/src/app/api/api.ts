@@ -2,7 +2,7 @@ import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/util
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { getEnvVariableOrDefault } from '../utils/envUtils';
-import { relocateToLoginPage } from '../utils/navigationUtils';
+import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpointPsb {
     'soker' = 'soker',
@@ -47,6 +47,7 @@ axios.interceptors.response.use(
             return Promise.reject(error);
         }
         if (isForbidden(error)) {
+            relocateToNoAccessPage();
             return Promise.reject(error);
         }
         return Promise.reject(error);

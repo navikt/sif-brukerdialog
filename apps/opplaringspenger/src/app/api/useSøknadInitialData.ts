@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
 import { RegistrertBarn } from '../types/RegistrertBarn';
 import { RequestStatus } from '../types/RequestStatus';
@@ -7,13 +6,12 @@ import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
+import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
+import søkerEndpoint from './endpoints/søkerEndpoint';
 import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
-import søkerEndpoint from './endpoints/søkerEndpoint';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -74,14 +72,6 @@ function useSøknadInitialData(): SøknadInitialDataState {
             });
             return Promise.resolve();
         } catch (error: any) {
-            if (isUnauthorized(error)) {
-                relocateToLoginPage();
-                return;
-            }
-            if (isForbidden(error)) {
-                relocateToNoAccessPage();
-                return;
-            }
             appSentryLogger.logError('fetchInitialData', error);
             setInitialData({
                 status: RequestStatus.error,
