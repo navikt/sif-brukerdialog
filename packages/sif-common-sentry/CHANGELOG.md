@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.4.3
+
+### Patch Changes
+
+-   9f5168f: Håndtere undefined headers
+
 ## 0.4.2
 
 ### Patch Changes
