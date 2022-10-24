@@ -1,6 +1,10 @@
 import React from 'react';
-import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import appSentryLogger from '../../utils/appSentryLogger';
+import { Heading } from '@navikt/ds-react';
 
 interface State {
     eventId: string | null;
@@ -24,10 +28,18 @@ class ErrorBoundary extends React.Component<any, State> {
     render() {
         if (this.state.hasError) {
             return (
-                <ErrorPage
-                    pageTitle="Det oppstod en feil"
-                    contentRenderer={() => <p>Dette er feilmeldingen ved error boundary</p>}
-                />
+                <Page
+                    title={'Det oppstod en feil'}
+                    topContentRenderer={() => <SoknadHeader title="Søknad om opplæringspenger" />}>
+                    <Block margin="xxxl">
+                        <SifGuidePanel mood="uncertain">
+                            <Heading level="2" size="medium">
+                                Det oppstod en feil
+                            </Heading>
+                            <p>Her kommer det mer info</p>
+                        </SifGuidePanel>
+                    </Block>
+                </Page>
             );
         }
         return this.props.children;

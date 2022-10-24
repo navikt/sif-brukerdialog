@@ -8,10 +8,10 @@ import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
-import søknadStatePersistenceEndpoint, {
+import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
-} from './endpoints/søknadStatePersistenceEndpoint';
+} from './endpoints/søknadStateEndpoint';
 import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
 
@@ -45,7 +45,7 @@ const getSøknadInitialData = async (
     const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker, registrerteBarn });
 
     if (!isValid) {
-        await søknadStatePersistenceEndpoint.purge();
+        await søknadStateEndpoint.purge();
     }
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({
@@ -65,7 +65,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const [søker, registrerteBarn, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
                 registrerteBarnEndpoint.fetch(),
-                søknadStatePersistenceEndpoint.fetch(),
+                søknadStateEndpoint.fetch(),
             ]);
 
             setInitialData({

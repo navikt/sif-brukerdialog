@@ -43,7 +43,7 @@ export const isPersistedSøknadStateValid = (
     );
 };
 
-const søknadStatePersistenceEndpoint: SøknadStatePersistenceEndpoint = {
+const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: ({ registrerteBarn, søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
@@ -61,4 +61,4 @@ const søknadStatePersistenceEndpoint: SøknadStatePersistenceEndpoint = {
     },
 };
 
-export default søknadStatePersistenceEndpoint;
+export default søknadStateEndpoint;
