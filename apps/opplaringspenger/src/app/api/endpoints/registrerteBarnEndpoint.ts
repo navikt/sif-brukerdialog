@@ -43,4 +43,5 @@ const registrerteBarnEndpoint = {
         return Promise.reject();
     },
 };
+
 export default registrerteBarnEndpoint;

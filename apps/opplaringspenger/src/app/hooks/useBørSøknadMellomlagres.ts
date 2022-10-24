@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { lagreSøknadState } from '../../../api/endpoints/mellomlagringEndpoint';
-import actionsCreator from '../action/actionCreator';
-import { useSøknadContext } from './useSøknadContext';
+import { lagreSøknadState } from '../api/endpoints/mellomlagringEndpoint';
+import actionsCreator from '../søknad/context/action/actionCreator';
+import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 
 export const useBørSøknadMellomlagres = () => {
     const { dispatch, state } = useSøknadContext();

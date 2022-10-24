@@ -13,7 +13,7 @@ export interface SøknadHashInfo {
     registrerteBarn: RegistrertBarn[];
 }
 
-type SøknadMellomlagring = Omit<SøknadContextState, 'søker' | 'registrerteBarn'> & {
+export type SøknadMellomlagring = Omit<SøknadContextState, 'søker' | 'registrerteBarn'> & {
     søknadHashString: string;
 };
 interface MellomlagringEndpoint extends Omit<PersistenceInterface<SøknadMellomlagring>, 'update' | 'rehydrate'> {
@@ -30,8 +30,12 @@ export const createSøknadHashInfoString = (info: SøknadHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
-const isMellomlagringValid = (state: SøknadMellomlagring): boolean => {
-    return state.versjon === MELLOMLAGRING_VERSION && state.søknadsdata?.harForståttRettigheterOgPlikter === true;
+export const isMellomlagringValid = (mellomlagring: SøknadMellomlagring, info: SøknadHashInfo): boolean => {
+    return (
+        mellomlagring.versjon === MELLOMLAGRING_VERSION &&
+            mellomlagring.søknadsdata?.harForståttRettigheterOgPlikter === true,
+        mellomlagring.søknadHashString === createSøknadHashInfoString(info)
+    );
 };
 
 const mellomlagringEndpoint: MellomlagringEndpoint = {
@@ -50,16 +54,20 @@ const mellomlagringEndpoint: MellomlagringEndpoint = {
     purge: persistSetup.purge,
     fetch: async () => {
         const { data } = await persistSetup.rehydrate();
-        if (data) {
-            if (isMellomlagringValid(data)) {
-                return data;
-            } else if (Object.keys(data).length > 0) {
-                /** Mellomlagring inneholder data, men er ikke gyldig - slettes */
-                await mellomlagringEndpoint.purge();
-            }
-        }
         return Promise.resolve(data);
     },
+    //     Promise.resolve()
+    //     debugger;
+    //     if (data) {
+    //         if (isMellomlagringValid(data, { søker, registrerteBarn })) {
+    //             return Promise.resolve(data);
+    //         } else if (Object.keys(data).length > 0) {
+    //             /** Mellomlagring inneholder data, men er ikke gyldig - slettes */
+    //             await mellomlagringEndpoint.purge();
+    //         }
+    //     }
+    //     return Promise.resolve(undefined);
+    // },
 };
 
 export const lagreSøknadState = (state: SøknadContextState) => {

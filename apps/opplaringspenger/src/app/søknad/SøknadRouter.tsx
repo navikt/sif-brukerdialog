@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import { useBørSøknadMellomlagres } from './context/hooks/useBørSøknadMellomlagres';
+import { useBørSøknadMellomlagres } from '../hooks/useBørSøknadMellomlagres';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidStep from './steg/arbeid/ArbeidSteg';
 import BarnSteg from './steg/barn/BarnSteg';

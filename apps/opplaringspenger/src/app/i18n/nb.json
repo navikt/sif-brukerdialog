@@ -13,5 +13,8 @@
     "step.opplaring.stepTitle": "Opplæring",
 
     "step.oppsummering.pageTitle": "Søknad - Oppsummering",
-    "step.oppsummering.stepTitle": "Oppsummering"
+    "step.oppsummering.stepTitle": "Oppsummering",
+
+    "steg.footer.avbryt": "Avbryt og slett søknad",
+    "steg.footer.fortsettSenere": "Avslutt og fortsett senere"
 }

@@ -5,7 +5,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadSteg from '../../SøknadSteg';
 import { StegID } from '../../søknadStegConfig';
-import { useOnValidSubmit } from '../../context/hooks/useOnValidSubmit';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../api/endpoints/mellomlagringEndpoint';

@@ -11,6 +11,7 @@ import IntroPage from './pages/intro-page/IntroPage';
 import Søknad from './søknad/Søknad';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';
@@ -22,29 +23,31 @@ const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 const App = () => (
     <SifAppWrapper>
-        <AmplitudeProvider
-            applicationKey={APPLICATION_KEY}
-            isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
-            <SoknadApplication
-                appName="Søknad om opplæringspenger"
-                intlMessages={applicationIntlMessages}
-                sentryKey={APPLICATION_KEY}
-                appStatus={{
-                    applicationKey: APPLICATION_KEY,
-                    sanityConfig: {
-                        projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                        dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
-                    },
-                }}
-                publicPath={publicPath}>
-                <SoknadApplicationCommonRoutes
-                    contentRoutes={[
-                        <Route index key="intro" element={<IntroPage />} />,
-                        <Route path="/soknad/*" key="soknad" element={<Søknad />} />,
-                    ]}
-                />
-            </SoknadApplication>
-        </AmplitudeProvider>
+        <ErrorBoundary>
+            <AmplitudeProvider
+                applicationKey={APPLICATION_KEY}
+                isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
+                <SoknadApplication
+                    appName="Søknad om opplæringspenger"
+                    intlMessages={applicationIntlMessages}
+                    sentryKey={APPLICATION_KEY}
+                    appStatus={{
+                        applicationKey: APPLICATION_KEY,
+                        sanityConfig: {
+                            projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
+                            dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                        },
+                    }}
+                    publicPath={publicPath}>
+                    <SoknadApplicationCommonRoutes
+                        contentRoutes={[
+                            <Route index key="intro" element={<IntroPage />} />,
+                            <Route path="/soknad/*" key="soknad" element={<Søknad />} />,
+                        ]}
+                    />
+                </SoknadApplication>
+            </AmplitudeProvider>
+        </ErrorBoundary>
     </SifAppWrapper>
 );
 

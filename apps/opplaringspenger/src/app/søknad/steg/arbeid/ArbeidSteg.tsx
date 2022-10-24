@@ -4,7 +4,7 @@ import { getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { lagreSøknadState } from '../../../api/endpoints/mellomlagringEndpoint';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import actionsCreator from '../../context/action/actionCreator';
-import { useOnValidSubmit } from '../../context/hooks/useOnValidSubmit';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import SøknadStep from '../../SøknadSteg';

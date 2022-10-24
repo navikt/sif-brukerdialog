@@ -6,6 +6,7 @@ import { SøknadRoutes } from '../../../types/SøknadRoutes';
 export enum SøknadContextActionKeys {
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
+    FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_BARN = 'setSøknadBarn',
     SET_SØKNAD_ARBEID = 'setSøknadArbeid',
@@ -19,6 +20,9 @@ interface StartSøknad {
 }
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
+}
+interface FortsettSøknadSenere {
+    type: SøknadContextActionKeys.FORTSETT_SØKNAD_SENERE;
 }
 interface RequestLagreSøknad {
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD;
@@ -51,6 +55,10 @@ const avbrytSøknad = (): AvbrytSøknad => ({
     type: SøknadContextActionKeys.AVBRYT_SØKNAD,
 });
 
+const fortsettSøknadSenere = (): FortsettSøknadSenere => ({
+    type: SøknadContextActionKeys.FORTSETT_SØKNAD_SENERE,
+});
+
 const requestLagreSøknad = (): RequestLagreSøknad => ({
     type: SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD,
 });
@@ -77,8 +85,9 @@ const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
 });
 
 export type SøknadContextAction =
-    | AvbrytSøknad
     | StartSøknad
+    | AvbrytSøknad
+    | FortsettSøknadSenere
     | RequestLagreSøknad
     | SetSøknadLagret
     | SetSøknadBarn
@@ -89,6 +98,7 @@ export type SøknadContextAction =
 const actionsCreator = {
     startSøknad,
     avbrytSøknad,
+    fortsettSøknadSenere,
     requestLagreSøknad,
     setSøknadRoute,
     setSøknadBarn,

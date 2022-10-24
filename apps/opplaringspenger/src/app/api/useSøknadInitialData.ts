@@ -3,7 +3,11 @@ import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/util
 import { SøknadContextState } from '../types/SøknadContextState';
 import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToNoAccessPage } from '../utils/navigationUtils';
-import mellomlagringEndpoint from './endpoints/mellomlagringEndpoint';
+import mellomlagringEndpoint, {
+    isMellomlagringValid,
+    MELLOMLAGRING_VERSION,
+    SøknadMellomlagring,
+} from './endpoints/mellomlagringEndpoint';
 import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
 
@@ -41,12 +45,21 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 registrerteBarnEndpoint.fetch(),
                 mellomlagringEndpoint.fetch(),
             ]);
+
+            let mellomlagringToUse: SøknadMellomlagring | undefined = mellomlagring;
+            if (isMellomlagringValid(mellomlagring, { søker, registrerteBarn }) === false) {
+                await mellomlagringEndpoint.purge();
+                mellomlagringToUse = undefined;
+            }
+
             setInitialData({
                 status: RequestStatus.success,
                 data: {
+                    versjon: MELLOMLAGRING_VERSION,
                     søker,
                     registrerteBarn,
-                    ...mellomlagring,
+                    søknadsdata: {},
+                    // ...mellomlagringToUse,
                 },
             });
             return Promise.resolve();
