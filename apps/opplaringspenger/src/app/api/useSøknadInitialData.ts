@@ -10,6 +10,8 @@ import mellomlagringEndpoint, {
 } from './endpoints/mellomlagringEndpoint';
 import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
+import { Søker } from '../types/Søker';
+import { RegistrertBarn } from '../types/RegistrertBarn';
 
 export enum RequestStatus {
     'loading' = 'loading',
@@ -35,6 +37,21 @@ type SøknadInitialLoading = {
 
 export type SøknadInitialDataState = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
 
+const getSøknadInitialData = (
+    søker: Søker,
+    registrerteBarn: RegistrertBarn[],
+    mellomlagring: SøknadMellomlagring
+): SøknadInitialData => {
+    const validMellomlagring = isMellomlagringValid(mellomlagring, { søker, registrerteBarn }) ? mellomlagring : {};
+    return {
+        versjon: MELLOMLAGRING_VERSION,
+        søker,
+        registrerteBarn,
+        søknadsdata: {},
+        ...validMellomlagring,
+    };
+};
+
 function useSøknadInitialData(): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
 
@@ -45,22 +62,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 registrerteBarnEndpoint.fetch(),
                 mellomlagringEndpoint.fetch(),
             ]);
-
-            let mellomlagringToUse: SøknadMellomlagring | undefined = mellomlagring;
-            if (isMellomlagringValid(mellomlagring, { søker, registrerteBarn }) === false) {
-                await mellomlagringEndpoint.purge();
-                mellomlagringToUse = undefined;
-            }
-
             setInitialData({
                 status: RequestStatus.success,
-                data: {
-                    versjon: MELLOMLAGRING_VERSION,
-                    søker,
-                    registrerteBarn,
-                    søknadsdata: {},
-                    // ...mellomlagringToUse,
-                },
+                data: getSøknadInitialData(søker, registrerteBarn, mellomlagring),
             });
             return Promise.resolve();
         } catch (error: any) {

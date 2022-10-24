@@ -26,7 +26,7 @@ const persistSetup = persistence<SøknadMellomlagring>({
     requestConfig: { ...axiosConfigPsb },
 });
 
-export const createSøknadHashInfoString = (info: SøknadHashInfo) => {
+const createSøknadHashInfoString = (info: SøknadHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
@@ -39,9 +39,8 @@ export const isMellomlagringValid = (mellomlagring: SøknadMellomlagring, info: 
 };
 
 const mellomlagringEndpoint: MellomlagringEndpoint = {
-    create: () => {
-        return persistSetup.create();
-    },
+    create: persistSetup.create,
+    purge: persistSetup.purge,
     update: ({ registrerteBarn, søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
         return persistSetup.update({
             søknadHashString: createSøknadHashInfoString({ registrerteBarn, søker }),
@@ -51,23 +50,10 @@ const mellomlagringEndpoint: MellomlagringEndpoint = {
             versjon: MELLOMLAGRING_VERSION,
         });
     },
-    purge: persistSetup.purge,
     fetch: async () => {
         const { data } = await persistSetup.rehydrate();
         return Promise.resolve(data);
     },
-    //     Promise.resolve()
-    //     debugger;
-    //     if (data) {
-    //         if (isMellomlagringValid(data, { søker, registrerteBarn })) {
-    //             return Promise.resolve(data);
-    //         } else if (Object.keys(data).length > 0) {
-    //             /** Mellomlagring inneholder data, men er ikke gyldig - slettes */
-    //             await mellomlagringEndpoint.purge();
-    //         }
-    //     }
-    //     return Promise.resolve(undefined);
-    // },
 };
 
 export const lagreSøknadState = (state: SøknadContextState) => {
