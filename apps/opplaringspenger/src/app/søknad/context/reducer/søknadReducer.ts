@@ -13,6 +13,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     harForståttRettigheterOgPlikter: true,
                 },
                 søknadRoute: SøknadRoutes.BARN,
+                børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
             return {

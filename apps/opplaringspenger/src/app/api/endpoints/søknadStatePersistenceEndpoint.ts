@@ -2,52 +2,57 @@ import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/li
 import { jsonSort } from '@navikt/sif-common-utils/lib';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
+import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
-export const MELLOMLAGRING_VERSION = '0.0.1';
-export interface SøknadHashInfo {
+export interface SøknadStateHashInfo {
     søker: Søker;
     registrerteBarn: RegistrertBarn[];
 }
 
-export type SøknadMellomlagring = Omit<SøknadContextState, 'søker' | 'registrerteBarn'> & {
+export type SøknadStatePersistence = Omit<SøknadContextState, 'søker' | 'registrerteBarn'> & {
     søknadHashString: string;
 };
-interface MellomlagringEndpoint extends Omit<PersistenceInterface<SøknadMellomlagring>, 'update' | 'rehydrate'> {
+
+interface SøknadStatePersistenceEndpoint
+    extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {
     update: (state: SøknadContextState) => Promise<AxiosResponse>;
-    fetch: () => Promise<SøknadMellomlagring>;
+    fetch: () => Promise<SøknadStatePersistence>;
 }
 
-const persistSetup = persistence<SøknadMellomlagring>({
+const persistSetup = persistence<SøknadStatePersistence>({
     url: ApiEndpointPsb.mellomlagring,
     requestConfig: { ...axiosConfigPsb },
 });
 
-const createSøknadHashInfoString = (info: SøknadHashInfo) => {
+const createHashString = (info: SøknadStateHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
-export const isMellomlagringValid = (mellomlagring: SøknadMellomlagring, info: SøknadHashInfo): boolean => {
+export const isPersistedSøknadStateValid = (
+    søknadState: SøknadStatePersistence,
+    info: SøknadStateHashInfo
+): boolean => {
     return (
-        mellomlagring.versjon === MELLOMLAGRING_VERSION &&
-            mellomlagring.søknadsdata?.harForståttRettigheterOgPlikter === true,
-        mellomlagring.søknadHashString === createSøknadHashInfoString(info)
+        søknadState.versjon === SØKNAD_VERSJON &&
+        søknadState.søknadsdata?.harForståttRettigheterOgPlikter === true &&
+        søknadState.søknadHashString === createHashString(info)
     );
 };
 
-const mellomlagringEndpoint: MellomlagringEndpoint = {
+const søknadStatePersistenceEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: ({ registrerteBarn, søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
         return persistSetup.update({
-            søknadHashString: createSøknadHashInfoString({ registrerteBarn, søker }),
+            søknadHashString: createHashString({ registrerteBarn, søker }),
             søknadsdata,
             søknadRoute,
             søknadSendt,
-            versjon: MELLOMLAGRING_VERSION,
+            versjon: SØKNAD_VERSJON,
         });
     },
     fetch: async () => {
@@ -56,8 +61,4 @@ const mellomlagringEndpoint: MellomlagringEndpoint = {
     },
 };
 
-export const lagreSøknadState = (state: SøknadContextState) => {
-    return mellomlagringEndpoint.update(state);
-};
-
-export default mellomlagringEndpoint;
+export default søknadStatePersistenceEndpoint;

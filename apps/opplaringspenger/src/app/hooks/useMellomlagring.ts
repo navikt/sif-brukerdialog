@@ -1,9 +1,9 @@
-import mellomlagringEndpoint from '../api/endpoints/mellomlagringEndpoint';
+import søknadStatePersistenceEndpoint from '../api/endpoints/søknadStatePersistenceEndpoint';
 
 export const useMellomlagring = () => {
     return {
-        hentMellomlagring: mellomlagringEndpoint.fetch,
-        slettMellomlagring: mellomlagringEndpoint.purge,
-        oppdaterMellomlagring: mellomlagringEndpoint.update,
+        hentMellomlagring: søknadStatePersistenceEndpoint.fetch,
+        slettMellomlagring: søknadStatePersistenceEndpoint.purge,
+        oppdaterMellomlagring: søknadStatePersistenceEndpoint.update,
     };
 };

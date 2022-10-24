@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
+import { RegistrertBarn } from '../types/RegistrertBarn';
+import { RequestStatus } from '../types/RequestStatus';
+import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
+import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import { relocateToNoAccessPage } from '../utils/navigationUtils';
-import mellomlagringEndpoint, {
-    isMellomlagringValid,
-    MELLOMLAGRING_VERSION,
-    SøknadMellomlagring,
-} from './endpoints/mellomlagringEndpoint';
+import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
+import søknadStatePersistenceEndpoint, {
+    isPersistedSøknadStateValid,
+    SøknadStatePersistence,
+} from './endpoints/søknadStatePersistenceEndpoint';
 import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
-import { Søker } from '../types/Søker';
-import { RegistrertBarn } from '../types/RegistrertBarn';
-
-export enum RequestStatus {
-    'loading' = 'loading',
-    'success' = 'success',
-    'error' = 'error',
-}
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -37,19 +33,28 @@ type SøknadInitialLoading = {
 
 export type SøknadInitialDataState = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
 
-const getSøknadInitialData = (
+export const defaultSøknadState: Partial<SøknadContextState> = {
+    søknadRoute: SøknadRoutes.VELKOMMEN,
+};
+
+const getSøknadInitialData = async (
     søker: Søker,
     registrerteBarn: RegistrertBarn[],
-    mellomlagring: SøknadMellomlagring
-): SøknadInitialData => {
-    const validMellomlagring = isMellomlagringValid(mellomlagring, { søker, registrerteBarn }) ? mellomlagring : {};
-    return {
-        versjon: MELLOMLAGRING_VERSION,
+    lagretSøknadState: SøknadStatePersistence
+): Promise<SøknadInitialData> => {
+    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker, registrerteBarn });
+
+    if (!isValid) {
+        await søknadStatePersistenceEndpoint.purge();
+    }
+    const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
+    return Promise.resolve({
+        versjon: SØKNAD_VERSJON,
         søker,
         registrerteBarn,
         søknadsdata: {},
-        ...validMellomlagring,
-    };
+        ...lagretSøknadStateToUse,
+    });
 };
 
 function useSøknadInitialData(): SøknadInitialDataState {
@@ -57,18 +62,20 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const [søker, registrerteBarn, mellomlagring] = await Promise.all([
+            const [søker, registrerteBarn, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
                 registrerteBarnEndpoint.fetch(),
-                mellomlagringEndpoint.fetch(),
+                søknadStatePersistenceEndpoint.fetch(),
             ]);
+
             setInitialData({
                 status: RequestStatus.success,
-                data: getSøknadInitialData(søker, registrerteBarn, mellomlagring),
+                data: await getSøknadInitialData(søker, registrerteBarn, lagretSøknadState),
             });
             return Promise.resolve();
         } catch (error: any) {
             if (isUnauthorized(error)) {
+                relocateToLoginPage();
                 return;
             }
             if (isForbidden(error)) {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { lagreSøknadState } from '../../../api/endpoints/mellomlagringEndpoint';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import actionsCreator from '../../context/action/actionCreator';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadSteg';
 import { StegID } from '../../søknadStegConfig';
 

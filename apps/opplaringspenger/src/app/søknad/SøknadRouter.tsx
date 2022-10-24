@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import { useBørSøknadMellomlagres } from '../hooks/useBørSøknadMellomlagres';
+import { useSøknadStatePersistence } from '../hooks/useSøknadStatePersistence';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidStep from './steg/arbeid/ArbeidSteg';
 import BarnSteg from './steg/barn/BarnSteg';
@@ -17,7 +17,7 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    useBørSøknadMellomlagres();
+    useSøknadStatePersistence();
 
     useEffect(() => {
         if (søknadRoute && isFirstTimeLoadingApp) {
@@ -46,6 +46,7 @@ const SøknadRouter = () => {
     return (
         <Routes>
             <Route index element={<VelkommenPage />} />
+            <Route path={StegID.VELKOMMEN} element={<VelkommenPage />} />
             <Route path={StegID.BARN} element={<BarnSteg />} />
             <Route path={StegID.ARBEID} element={<ArbeidStep />} />
             <Route path={StegID.OPPLÆRING} element={<OpplæringSteg />} />

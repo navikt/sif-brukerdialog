@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { lagreSøknadState } from '../api/endpoints/mellomlagringEndpoint';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
+import { lagreSøknadState } from '../utils/lagreSøknadState';
 
-export const useBørSøknadMellomlagres = () => {
+export const useSøknadStatePersistence = () => {
     const { dispatch, state } = useSøknadContext();
     const [pending, setPending] = useState(false);
 

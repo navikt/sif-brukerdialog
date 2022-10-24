@@ -8,8 +8,8 @@ import { StegID } from '../../søknadStegConfig';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
-import { lagreSøknadState } from '../../../api/endpoints/mellomlagringEndpoint';
 import { getBarnStegInitialValues } from './barnStegUtils';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 
 export enum BarnFormFields {
     'fødselsdato' = 'fødselsdato',
