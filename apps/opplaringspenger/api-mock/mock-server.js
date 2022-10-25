@@ -9,6 +9,7 @@ server.use((req, res, next) => {
         'http://host.docker.internal:8090',
         'http://host.docker.internal:8080',
         'http://localhost:8090',
+        'http://localhost:8089',
         'http://localhost:8080',
         'http://web:8090',
         'http://web:8080',
@@ -16,8 +17,11 @@ server.use((req, res, next) => {
         'http://127.0.0.1:8080',
         '*',
     ];
+
     const requestOrigin = req.headers.origin;
+
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
+        console.log(1);
         res.set('Access-Control-Allow-Origin', requestOrigin);
     }
 
@@ -99,6 +103,10 @@ const startExpressServer = () => {
     });
     server.get('/arbeidsgivere', (req, res) => {
         readMockFile(arbeidsgiverFileName, res);
+    });
+
+    server.post('/soknad', (req, res) => {
+        res.sendStatus(200);
     });
 
     /** --- Mellomlagring ---------- */
