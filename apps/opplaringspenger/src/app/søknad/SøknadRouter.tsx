@@ -25,7 +25,10 @@ const SøknadRouter = () => {
             setIsFirstTimeLoadingApp(false);
             navigateTo(søknadRoute);
         }
-    }, [navigateTo, søknadRoute, isFirstTimeLoadingApp]);
+        if (pathname === SøknadRoutes.VELKOMMEN && søknadRoute) {
+            navigateTo(søknadRoute); // Send til steg dersom bruker kommer til velkommen via annen navigasjon
+        }
+    }, [navigateTo, pathname, søknadRoute, isFirstTimeLoadingApp]);
 
     if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT) {
         return (
@@ -35,7 +38,7 @@ const SøknadRouter = () => {
         );
     }
 
-    if (!søknadsdata) {
+    if (søknadsdata.harForståttRettigheterOgPlikter === false) {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />

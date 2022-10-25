@@ -51,6 +51,34 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+            case SøknadContextActionKeys.SET_SØKNAD_ARBEID:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        arbeid: {
+                            startdato: ISODateToDate(action.payload.startdato),
+                        },
+                    },
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        opplæring: {
+                            beskrivelse: action.payload.beskrivelse,
+                        },
+                    },
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                    },
+                };
         }
     }
     return state;

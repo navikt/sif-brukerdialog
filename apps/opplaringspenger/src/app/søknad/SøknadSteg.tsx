@@ -15,7 +15,11 @@ interface Props {
 
 const SøknadSteg: React.FunctionComponent<Props> = ({ stegID, children }) => {
     const intl = useIntl();
-    const stegConfig = getSøknadStegConfig();
+    const {
+        state: { søknadsdata },
+    } = useSøknadContext();
+
+    const stegConfig = getSøknadStegConfig(søknadsdata);
     const { dispatch } = useSøknadContext();
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();

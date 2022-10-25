@@ -44,10 +44,6 @@ const BarnSteg = () => {
         }
     );
 
-    if (!state.søknadsdata) {
-        return <>!Søknad</>;
-    }
-
     return (
         <SøknadSteg stegID={StegID.BARN}>
             <BarnFormComponents.FormikWrapper

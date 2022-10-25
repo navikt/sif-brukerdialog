@@ -2,6 +2,7 @@ import { ArbeidFormValues } from '../../steg/arbeid/ArbeidSteg';
 import { BarnFormValues } from '../../steg/barn/BarnSteg';
 import { OpplæringFormValues } from '../../steg/opplæring/OpplæringSteg';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { OppsummeringFormValues } from '../../steg/oppsummering/OppsummeringSteg';
 
 export enum SøknadContextActionKeys {
     START_SØKNAD = 'startSøknad',
@@ -11,6 +12,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_BARN = 'setSøknadBarn',
     SET_SØKNAD_ARBEID = 'setSøknadArbeid',
     SET_SØKNAD_OPPLÆRING = 'setSøknadOpplæring',
+    SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
 }
@@ -46,6 +48,10 @@ interface SetSøknadOpplæring {
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING;
     payload: OpplæringFormValues;
 }
+interface SetSøknadHarBekreftetOpplysninger {
+    type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
+    payload: OppsummeringFormValues;
+}
 
 const startSøknad = (): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
@@ -79,6 +85,10 @@ const setSøknadOpplæring = (payload: OpplæringFormValues): SetSøknadOpplæri
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING,
     payload,
 });
+const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): SetSøknadHarBekreftetOpplysninger => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER,
+    payload,
+});
 const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE,
     payload,
@@ -92,6 +102,7 @@ export type SøknadContextAction =
     | SetSøknadLagret
     | SetSøknadBarn
     | SetSøknadOpplæring
+    | SetSøknadHarBekreftetOpplysninger
     | SetSøknadRoute
     | SetSøknadArbeid;
 
@@ -104,6 +115,7 @@ const actionsCreator = {
     setSøknadBarn,
     setSøknadArbeid,
     setSøknadOpplæring,
+    setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
 };
 

@@ -9,20 +9,17 @@ export interface Utenlandsopphold {
 export interface Søknadsdata {
     id?: string;
     harForståttRettigheterOgPlikter?: boolean;
+    harBekreftetOpplysninger?: boolean;
     barn?: {
         fornavn: string;
         etternavn: string;
         fødselsdato: Date;
     };
     arbeid?: {
-        periode: DateRange;
+        startdato: Date;
     };
     opplæring?: {
         beskrivelse: string;
-        periode: {
-            fra: string;
-            til: string;
-        };
     };
     medlemsskap?: {
         harBoddIUtlandet: boolean;

@@ -9,6 +9,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadSteg';
 import { StegID } from '../../søknadStegConfig';
+import { getArbeidStegInitialValues } from './barnStegUtils';
 
 export enum ArbeidFormFields {
     'startdato' = 'startdato',
@@ -41,14 +42,10 @@ const ArbeidSteg = () => {
         }
     );
 
-    if (!søknadsdata) {
-        return <>!Søknad</>;
-    }
-
     return (
         <SøknadStep stegID={StegID.ARBEID}>
             <ArbeidFormComponents.FormikWrapper
-                initialValues={{}}
+                initialValues={getArbeidStegInitialValues(søknadsdata)}
                 onSubmit={handleSubmit}
                 renderForm={() => (
                     <ArbeidFormComponents.Form
