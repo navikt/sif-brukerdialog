@@ -16,7 +16,7 @@ export enum ArbeidFormFields {
 }
 
 export interface ArbeidFormValues {
-    [ArbeidFormFields.startdato]: string;
+    [ArbeidFormFields.startdato]?: string;
 }
 
 const ArbeidFormComponents = getTypedFormComponents<ArbeidFormFields, ArbeidFormValues>();
@@ -28,10 +28,7 @@ const ArbeidSteg = () => {
 
     const onValidSubmitHandler = (values: Partial<ArbeidFormValues>) => {
         const { startdato } = values;
-        if (startdato) {
-            return [actionsCreator.setSøknadArbeid({ startdato })];
-        }
-        return [];
+        return [actionsCreator.setSøknadArbeid({ startdato })];
     };
 
     const { handleSubmit, isSubmitting } = useOnValidSubmit(

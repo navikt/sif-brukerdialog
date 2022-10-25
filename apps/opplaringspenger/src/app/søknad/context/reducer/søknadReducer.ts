@@ -57,7 +57,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {
                         ...state.søknadsdata,
                         arbeid: {
-                            startdato: ISODateToDate(action.payload.startdato),
+                            startdato: action.payload.startdato ? ISODateToDate(action.payload.startdato) : undefined,
                         },
                     },
                 };

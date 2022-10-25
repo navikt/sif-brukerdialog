@@ -1,28 +1,22 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
+export interface BarnSøknadsdata {
+    fornavn: string;
+    etternavn: string;
+    fødselsdato: Date;
+}
 
-export interface Utenlandsopphold {
-    periode: DateRange;
-    landkode: string;
-    landnavn: string;
+export interface ArbeidSøknadsdata {
+    startdato?: Date;
+}
+
+export interface OpplæringSøknadsdata {
+    beskrivelse: string;
 }
 
 export interface Søknadsdata {
     id?: string;
     harForståttRettigheterOgPlikter?: boolean;
     harBekreftetOpplysninger?: boolean;
-    barn?: {
-        fornavn: string;
-        etternavn: string;
-        fødselsdato: Date;
-    };
-    arbeid?: {
-        startdato: Date;
-    };
-    opplæring?: {
-        beskrivelse: string;
-    };
-    medlemsskap?: {
-        harBoddIUtlandet: boolean;
-        utenlandsopphold: Utenlandsopphold[];
-    };
+    barn?: BarnSøknadsdata;
+    arbeid?: ArbeidSøknadsdata;
+    opplæring?: OpplæringSøknadsdata;
 }
