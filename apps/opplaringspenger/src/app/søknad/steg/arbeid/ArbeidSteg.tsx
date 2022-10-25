@@ -1,6 +1,7 @@
 import React from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
@@ -9,7 +10,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadSteg';
 import { StegID } from '../../søknadStegConfig';
-import { getArbeidStegInitialValues } from './barnStegUtils';
+import { getArbeidStegInitialValues } from './arbeidStegUtils';
 
 export enum ArbeidFormFields {
     'startdato' = 'startdato',
@@ -28,7 +29,11 @@ const ArbeidSteg = () => {
 
     const onValidSubmitHandler = (values: Partial<ArbeidFormValues>) => {
         const { startdato } = values;
-        return [actionsCreator.setSøknadArbeid({ startdato })];
+        return [
+            actionsCreator.setSøknadArbeid({
+                startdato: startdato ? ISODateToDate(startdato) : undefined,
+            }),
+        ];
     };
 
     const { handleSubmit, isSubmitting } = useOnValidSubmit(

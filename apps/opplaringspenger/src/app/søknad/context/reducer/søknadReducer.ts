@@ -1,4 +1,4 @@
-import { guid, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { guid } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
@@ -12,7 +12,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
                 },
-                søknadRoute: SøknadRoutes.BARN,
+                søknadRoute: SøknadRoutes.PLEIETRENGENDE,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -40,15 +40,22 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_BARN:
+            case SøknadContextActionKeys.SET_SØKNAD_PLEIETRENGENDE:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        barn: {
+                        pleietrengende: {
                             ...action.payload,
-                            fødselsdato: ISODateToDate(action.payload.fødselsdato),
                         },
+                    },
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_INSTITUSJON:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        institusjon: action.payload,
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_ARBEID:
@@ -56,9 +63,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        arbeid: {
-                            startdato: action.payload.startdato ? ISODateToDate(action.payload.startdato) : undefined,
-                        },
+                        arbeid: action.payload,
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING:

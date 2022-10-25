@@ -4,13 +4,14 @@ import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import ArbeidStep from './steg/arbeid/ArbeidSteg';
-import BarnSteg from './steg/barn/BarnSteg';
+import ArbeidSteg from './steg/arbeid/ArbeidSteg';
+import PleietrengendeSteg from './steg/pleietrengende/PleietrengendeSteg';
 import OpplæringSteg from './steg/opplæring/OpplæringSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { StegID } from './søknadStegConfig';
 import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
 import actionsCreator from './context/action/actionCreator';
+import InstitusjonSteg from './steg/institusjon/InstitusjonSteg';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -58,8 +59,9 @@ const SøknadRouter = () => {
         <Routes>
             <Route index element={<VelkommenPage />} />
             <Route path={StegID.VELKOMMEN} element={<VelkommenPage />} />
-            <Route path={StegID.BARN} element={<BarnSteg />} />
-            <Route path={StegID.ARBEID} element={<ArbeidStep />} />
+            <Route path={StegID.PLEIETRENGENDE} element={<PleietrengendeSteg />} />
+            <Route path={StegID.INSTITUSJON} element={<InstitusjonSteg />} />
+            <Route path={StegID.ARBEID} element={<ArbeidSteg />} />
             <Route path={StegID.OPPLÆRING} element={<OpplæringSteg />} />
             <Route path={StegID.OPPSUMMERING} element={<OppsummeringSteg />} />
             <Route path={StegID.SØKNAD_SENDT} element={<SøknadSendtPage />} />

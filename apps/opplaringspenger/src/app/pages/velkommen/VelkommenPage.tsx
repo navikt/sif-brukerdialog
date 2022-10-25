@@ -18,7 +18,7 @@ const VelkommenPage = () => {
 
     const startSøknad = () => {
         dispatch(actionsCreator.startSøknad());
-        navigateTo(SøknadRoutes.BARN);
+        navigateTo(SøknadRoutes.PLEIETRENGENDE);
     };
     return (
         <Page title="Velkommen">

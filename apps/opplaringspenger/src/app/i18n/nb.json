@@ -3,8 +3,11 @@
     "page.error.pageTitle": "Det oppstod en feil",
     "common.soknadErrorMessages.generalError.content": "Feil ja",
 
-    "step.barn.pageTitle": "Søknad - Barn",
-    "step.barn.stepTitle": "Barn",
+    "step.pleietrengende.pageTitle": "Søknad - Pleietrengende",
+    "step.pleietrengende.stepTitle": "Pleietrengende",
+
+    "step.institusjon.pageTitle": "Søknad - Institusjon",
+    "step.institusjon.stepTitle": "Institusjon",
 
     "step.arbeid.pageTitle": "Søknad - Arbeid",
     "step.arbeid.stepTitle": "Arbeid",

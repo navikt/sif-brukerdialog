@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
-import { RegistrertBarn } from '../types/RegistrertBarn';
+import { Institusjon } from '../types/Institusjon';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
-import registrerteBarnEndpoint from './endpoints/registrerteBarnEndpoint';
+import institusjonEndpoint from './endpoints/institusjonEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
 import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
@@ -37,10 +37,10 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 
 const getSøknadInitialData = async (
     søker: Søker,
-    registrerteBarn: RegistrertBarn[],
+    institusjoner: Institusjon[],
     lagretSøknadState: SøknadStatePersistence
 ): Promise<SøknadInitialData> => {
-    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker, registrerteBarn });
+    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
 
     if (!isValid) {
         await søknadStateEndpoint.purge();
@@ -49,7 +49,7 @@ const getSøknadInitialData = async (
     return Promise.resolve({
         versjon: SØKNAD_VERSJON,
         søker,
-        registrerteBarn,
+        institusjoner,
         søknadsdata: {},
         ...lagretSøknadStateToUse,
     });
@@ -60,15 +60,15 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const [søker, registrerteBarn, lagretSøknadState] = await Promise.all([
+            const [søker, institusjoner, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
-                registrerteBarnEndpoint.fetch(),
+                institusjonEndpoint.fetch(),
                 søknadStateEndpoint.fetch(),
             ]);
 
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, registrerteBarn, lagretSøknadState),
+                data: await getSøknadInitialData(søker, institusjoner, lagretSøknadState),
             });
             return Promise.resolve();
         } catch (error: any) {

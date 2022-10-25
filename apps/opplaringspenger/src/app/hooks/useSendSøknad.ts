@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import sendSøknadEndpoint from '../api/endpoints/sendSøknadEndpoint';
+import søknadEndpoint from '../api/endpoints/søknadEndpoint';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
@@ -17,7 +17,7 @@ export const useSendSøknad = () => {
 
     const sendSøknad = (apiData: SøknadApiData) => {
         resetSendSøknad();
-        sendSøknadEndpoint
+        søknadEndpoint
             .send(apiData)
             .then(() => {
                 slettMellomlagring();

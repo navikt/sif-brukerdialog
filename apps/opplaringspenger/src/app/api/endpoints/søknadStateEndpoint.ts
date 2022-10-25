@@ -3,17 +3,15 @@ import { jsonSort } from '@navikt/sif-common-utils/lib';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
-import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export interface SøknadStateHashInfo {
     søker: Søker;
-    registrerteBarn: RegistrertBarn[];
 }
 
-export type SøknadStatePersistence = Omit<SøknadContextState, 'søker' | 'registrerteBarn'> & {
+export type SøknadStatePersistence = Omit<SøknadContextState, 'søker' | 'institusjoner'> & {
     søknadHashString: string;
 };
 
@@ -46,9 +44,9 @@ export const isPersistedSøknadStateValid = (
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ registrerteBarn, søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
+    update: ({ søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
         return persistSetup.update({
-            søknadHashString: createHashString({ registrerteBarn, søker }),
+            søknadHashString: createHashString({ søker }),
             søknadsdata,
             søknadRoute,
             søknadSendt,

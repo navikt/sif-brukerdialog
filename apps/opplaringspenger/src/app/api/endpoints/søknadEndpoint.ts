@@ -1,8 +1,8 @@
 import { SøknadApiData } from '../../types/SøknadApiData';
 import api, { ApiEndpointPsb } from '../api';
 
-const sendSøknadEndpoint = {
+const søknadEndpoint = {
     send: async (apiData: SøknadApiData) => await api.psb.post<any>(ApiEndpointPsb.send_søknad, apiData),
 };
 
-export default sendSøknadEndpoint;
+export default søknadEndpoint;

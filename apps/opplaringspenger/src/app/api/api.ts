@@ -7,7 +7,8 @@ import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigation
 export enum ApiEndpointPsb {
     'soker' = 'soker',
     'arbeidsgiver' = 'arbeidsgiver',
-    'barn' = 'barn',
+    'pleietrengende' = 'pleietrengende',
+    'institusjoner' = 'institusjoner',
     'send_søknad' = 'soknad',
     'mellomlagring' = 'mellomlagring',
     'vedlegg' = 'vedlegg',

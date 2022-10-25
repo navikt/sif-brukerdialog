@@ -3,7 +3,7 @@ import { StegID } from '../../søknadStegConfig';
 
 export const getNesteSteg = (fraSteg: StegID, søknad: Søknadsdata): StegID => {
     switch (fraSteg) {
-        case StegID.BARN:
+        case StegID.PLEIETRENGENDE:
             return StegID.ARBEID;
         case StegID.ARBEID:
             return StegID.ARBEID;

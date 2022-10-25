@@ -1,8 +1,17 @@
-export interface BarnSøknadsdata {
-    fornavn: string;
-    etternavn: string;
-    fødselsdato: Date;
+export interface PleietrengendeSøknadsdata {
+    fødselsnummer: string;
 }
+
+export interface InstitusjonSøknadsdataRegistrert {
+    type: 'registrert';
+    institusjonId: string;
+}
+export interface InstitusjonSøknadsdataAnnen {
+    type: 'egendefinert';
+    navn: string;
+}
+
+export type InstitusjonSøknadsdata = InstitusjonSøknadsdataRegistrert | InstitusjonSøknadsdataAnnen;
 
 export interface ArbeidSøknadsdata {
     startdato?: Date;
@@ -16,7 +25,8 @@ export interface Søknadsdata {
     id?: string;
     harForståttRettigheterOgPlikter?: boolean;
     harBekreftetOpplysninger?: boolean;
-    barn?: BarnSøknadsdata;
+    pleietrengende?: PleietrengendeSøknadsdata;
+    institusjon?: InstitusjonSøknadsdata;
     arbeid?: ArbeidSøknadsdata;
     opplæring?: OpplæringSøknadsdata;
 }

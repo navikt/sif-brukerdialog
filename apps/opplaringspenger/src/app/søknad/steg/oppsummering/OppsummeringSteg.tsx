@@ -13,7 +13,7 @@ import SøknadSteg from '../../SøknadSteg';
 import { StegID } from '../../søknadStegConfig';
 import { getOppsummeringStegInitialValues } from './oppsummeringUtils';
 import ArbeidOppsummering from './parts/ArbeidOppsummering';
-import BarnOppsummering from './parts/BarnOppsummering';
+import PleietrengendeOppsummering from './parts/PleietrengendeOppsummering';
 import OpplæringOppsummering from './parts/OpplæringOppsummering';
 
 enum OppsummeringFormFields {
@@ -57,7 +57,7 @@ const OppsummeringSteg = () => {
 
     return (
         <SøknadSteg stegID={StegID.OPPSUMMERING}>
-            <BarnOppsummering barn={apiData.barn} />
+            <PleietrengendeOppsummering pleietrengende={apiData.pleietrengende} />
             <ArbeidOppsummering arbeid={apiData.arbeid} />
             <OpplæringOppsummering opplæring={apiData.opplæring} />
             <FormikWrapper

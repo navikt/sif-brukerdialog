@@ -4,10 +4,8 @@ export interface ArbeidApiData {
     startdato?: ISODate;
 }
 
-export interface BarnApiData {
-    fornavn: string;
-    etternavn: string;
-    fødselsdato: ISODate;
+export interface PleietrengendeApiData {
+    fødselsnummer: string;
 }
 
 export interface OpplæringApiData {
@@ -15,7 +13,7 @@ export interface OpplæringApiData {
 }
 
 export interface SøknadApiData {
-    barn: BarnApiData;
+    pleietrengende: PleietrengendeApiData;
     arbeid: ArbeidApiData | undefined;
     opplæring: OpplæringApiData;
 }

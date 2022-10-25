@@ -1,7 +1,10 @@
-import { ArbeidFormValues } from '../../steg/arbeid/ArbeidSteg';
-import { BarnFormValues } from '../../steg/barn/BarnSteg';
-import { OpplæringFormValues } from '../../steg/opplæring/OpplæringSteg';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import {
+    ArbeidSøknadsdata,
+    InstitusjonSøknadsdata,
+    OpplæringSøknadsdata,
+    PleietrengendeSøknadsdata,
+} from '../../../types/Søknadsdata';
 import { OppsummeringFormValues } from '../../steg/oppsummering/OppsummeringSteg';
 
 export enum SøknadContextActionKeys {
@@ -10,7 +13,8 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
-    SET_SØKNAD_BARN = 'setSøknadBarn',
+    SET_SØKNAD_PLEIETRENGENDE = 'setSøknadPleietrengende',
+    SET_SØKNAD_INSTITUSJON = 'setSøknadInstitusjon',
     SET_SØKNAD_ARBEID = 'setSøknadArbeid',
     SET_SØKNAD_OPPLÆRING = 'setSøknadOpplæring',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
@@ -44,17 +48,21 @@ interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
     payload: SøknadRoutes;
 }
-interface SetSøknadBarn {
-    type: SøknadContextActionKeys.SET_SØKNAD_BARN;
-    payload: BarnFormValues;
+interface SetSøknadPleietrengende {
+    type: SøknadContextActionKeys.SET_SØKNAD_PLEIETRENGENDE;
+    payload: PleietrengendeSøknadsdata;
+}
+interface SetSøknadInstitusjon {
+    type: SøknadContextActionKeys.SET_SØKNAD_INSTITUSJON;
+    payload: InstitusjonSøknadsdata;
 }
 interface SetSøknadArbeid {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEID;
-    payload: ArbeidFormValues;
+    payload: ArbeidSøknadsdata;
 }
 interface SetSøknadOpplæring {
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING;
-    payload: OpplæringFormValues;
+    payload: OpplæringSøknadsdata;
 }
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
@@ -88,15 +96,19 @@ const setSøknadSendt = (): SetSøknadSendt => ({
     type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
 });
 
-const setSøknadBarn = (payload: BarnFormValues): SetSøknadBarn => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_BARN,
+const setSøknadPleietrengende = (payload: PleietrengendeSøknadsdata): SetSøknadPleietrengende => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_PLEIETRENGENDE,
     payload,
 });
-const setSøknadArbeid = (payload: ArbeidFormValues): SetSøknadArbeid => ({
+const setSøknadInstitusjon = (payload: InstitusjonSøknadsdata): SetSøknadInstitusjon => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_INSTITUSJON,
+    payload,
+});
+const setSøknadArbeid = (payload: ArbeidSøknadsdata): SetSøknadArbeid => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEID,
     payload,
 });
-const setSøknadOpplæring = (payload: OpplæringFormValues): SetSøknadOpplæring => ({
+const setSøknadOpplæring = (payload: OpplæringSøknadsdata): SetSøknadOpplæring => ({
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING,
     payload,
 });
@@ -117,7 +129,8 @@ export type SøknadContextAction =
     | RequestLagreSøknad
     | SetSøknadLagret
     | SetSøknadSendt
-    | SetSøknadBarn
+    | SetSøknadPleietrengende
+    | SetSøknadInstitusjon
     | SetSøknadOpplæring
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadRoute
@@ -130,7 +143,8 @@ const actionsCreator = {
     fortsettSøknadSenere,
     requestLagreSøknad,
     setSøknadRoute,
-    setSøknadBarn,
+    setSøknadPleietrengende,
+    setSøknadInstitusjon,
     setSøknadArbeid,
     setSøknadOpplæring,
     setSøknadHarBekreftetOpplysninger,

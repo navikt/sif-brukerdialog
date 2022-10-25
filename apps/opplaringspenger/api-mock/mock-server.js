@@ -63,8 +63,8 @@ const mockPath = `${__dirname}/data`;
 const soker = 'søker1';
 
 const søkerFileName = `søker-mock.json`;
+const institusjonerFileName = `institusjoner-mock.json`;
 const arbeidsgiverFileName = `arbeidsgiver-mock.json`;
-const barnFileName = `barn-mock.json`;
 
 const readMockFile = (file, responseObject) => {
     const filePath = `${mockPath}/${soker}/${file}`;
@@ -97,11 +97,12 @@ const startExpressServer = () => {
         res.sendStatus(403);
     });
 
-    server.get('/barn', (req, res) => {
-        readMockFile(barnFileName, res);
-    });
     server.get('/arbeidsgivere', (req, res) => {
         readMockFile(arbeidsgiverFileName, res);
+    });
+
+    server.get('/institusjoner', (req, res) => {
+        readMockFile(institusjonerFileName, res);
     });
 
     server.post('/soknad', (req, res) => {

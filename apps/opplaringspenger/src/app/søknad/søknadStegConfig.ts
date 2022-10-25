@@ -5,7 +5,8 @@ import { Søknadsdata } from '../types/Søknadsdata';
 
 export enum StegID {
     'VELKOMMEN' = 'velkommen',
-    'BARN' = 'barn',
+    'PLEIETRENGENDE' = 'pleietrengende',
+    'INSTITUSJON' = 'institusjon',
     'ARBEID' = 'arbeid',
     'OPPLÆRING' = 'opplaring',
     'OPPSUMMERING' = 'oppsummering',
@@ -13,7 +14,7 @@ export enum StegID {
 }
 
 const getSøknadSteg = (søknadsdata: Søknadsdata): StegID[] => {
-    return [StegID.BARN, StegID.ARBEID, StegID.OPPLÆRING, StegID.OPPSUMMERING];
+    return [StegID.PLEIETRENGENDE, StegID.INSTITUSJON, StegID.ARBEID, StegID.OPPLÆRING, StegID.OPPSUMMERING];
 };
 
 export const getSøknadStegConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StegID, SøknadRoutes> =>

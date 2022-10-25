@@ -1,18 +1,18 @@
 import { SøknadApiData } from '../../types/SøknadApiData';
 import { Søknadsdata } from '../../types/Søknadsdata';
 import { getArbeidApiDataFromSøknadsdata } from './getArbeidApiDataFromSøknadsdata';
-import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata copy';
+import { getPleietrengendeApiDataFromSøknadsdata } from './getPleietrengendeApiDataFromSøknadsdata';
 import { getOpplæringApiDataFromSøknadsdata } from './getOpplæringApiDataFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
-    const { barn, arbeid, opplæring } = søknadsdata;
+    const { pleietrengende, arbeid, opplæring } = søknadsdata;
 
-    if (!barn || !opplæring) {
+    if (!pleietrengende || !opplæring) {
         return undefined;
     }
 
     return {
-        barn: getBarnApiDataFromSøknadsdata(barn),
+        pleietrengende: getPleietrengendeApiDataFromSøknadsdata(pleietrengende),
         arbeid: arbeid ? getArbeidApiDataFromSøknadsdata(arbeid) : undefined,
         opplæring: getOpplæringApiDataFromSøknadsdata(opplæring),
     };
