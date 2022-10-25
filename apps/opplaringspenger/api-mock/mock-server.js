@@ -21,7 +21,6 @@ server.use((req, res, next) => {
     const requestOrigin = req.headers.origin;
 
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
-        console.log(1);
         res.set('Access-Control-Allow-Origin', requestOrigin);
     }
 
