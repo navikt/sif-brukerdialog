@@ -5,6 +5,7 @@ import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { OppsummeringFormValues } from '../../steg/oppsummering/OppsummeringSteg';
 
 export enum SøknadContextActionKeys {
+    RESET_SØKNAD = 'resetSøknad',
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
@@ -15,8 +16,12 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
+    SET_SØKNAD_SENDT = 'setSøknadSendt',
 }
 
+interface ResetSøknad {
+    type: SøknadContextActionKeys.RESET_SØKNAD;
+}
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
 }
@@ -31,6 +36,9 @@ interface RequestLagreSøknad {
 }
 interface SetSøknadLagret {
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET;
+}
+interface SetSøknadSendt {
+    type: SøknadContextActionKeys.SET_SØKNAD_SENDT;
 }
 interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
@@ -53,6 +61,10 @@ interface SetSøknadHarBekreftetOpplysninger {
     payload: OppsummeringFormValues;
 }
 
+const resetSøknad = (): ResetSøknad => ({
+    type: SøknadContextActionKeys.RESET_SØKNAD,
+});
+
 const startSøknad = (): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
 });
@@ -71,6 +83,9 @@ const requestLagreSøknad = (): RequestLagreSøknad => ({
 
 const setSøknadLagret = (): SetSøknadLagret => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
+});
+const setSøknadSendt = (): SetSøknadSendt => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
 });
 
 const setSøknadBarn = (payload: BarnFormValues): SetSøknadBarn => ({
@@ -97,9 +112,11 @@ const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
 export type SøknadContextAction =
     | StartSøknad
     | AvbrytSøknad
+    | ResetSøknad
     | FortsettSøknadSenere
     | RequestLagreSøknad
     | SetSøknadLagret
+    | SetSøknadSendt
     | SetSøknadBarn
     | SetSøknadOpplæring
     | SetSøknadHarBekreftetOpplysninger
@@ -107,6 +124,7 @@ export type SøknadContextAction =
     | SetSøknadArbeid;
 
 const actionsCreator = {
+    resetSøknad,
     startSøknad,
     avbrytSøknad,
     fortsettSøknadSenere,
@@ -117,6 +135,7 @@ const actionsCreator = {
     setSøknadOpplæring,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
+    setSøknadSendt,
 };
 
 export default actionsCreator;

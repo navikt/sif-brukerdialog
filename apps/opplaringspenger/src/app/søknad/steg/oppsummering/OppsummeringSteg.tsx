@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
@@ -10,6 +10,7 @@ import { getOppsummeringStegInitialValues } from './oppsummeringUtils';
 import ArbeidOppsummering from './parts/ArbeidOppsummering';
 import BarnOppsummering from './parts/BarnOppsummering';
 import OpplæringOppsummering from './parts/OpplæringOppsummering';
+import { useSendSøknad } from '../../../hooks/useSendSøknad';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -26,21 +27,15 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 
 const OppsummeringSteg = () => {
     const { state } = useSøknadContext();
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = () => {
-        setIsSubmitting(true);
-        setTimeout(() => {
-            setIsSubmitting(false);
-        }, 2000);
-    };
+    const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
 
     const apiData = getApiDataFromSøknadsdata(state.søknadsdata);
 
     if (!apiData) {
         return (
             <ErrorPage
-                pageTitle="En feil oppstod "
+                pageTitle="ApiData er ikke gyldig"
                 contentRenderer={() => {
                     return <>Hva gjør vi nå?</>;
                 }}
@@ -48,23 +43,24 @@ const OppsummeringSteg = () => {
         );
     }
 
+    if (sendSøknadError) {
+        return <>{sendSøknadError}</>;
+    }
+
     return (
         <SøknadSteg stegID={StegID.OPPSUMMERING}>
             <BarnOppsummering barn={apiData.barn} />
-
             <ArbeidOppsummering arbeid={apiData.arbeid} />
-
             <OpplæringOppsummering opplæring={apiData.opplæring} />
-
             <FormikWrapper
                 initialValues={getOppsummeringStegInitialValues(state.søknadsdata)}
-                onSubmit={handleSubmit}
+                onSubmit={() => sendSøknad(apiData)}
                 renderForm={() => {
                     return (
                         <Form
                             submitDisabled={isSubmitting}
                             includeValidationSummary={true}
-                            submitButtonLabel="Gå videre"
+                            submitButtonLabel="Send søknad"
                             submitPending={isSubmitting}>
                             <ConfirmationCheckbox
                                 label="Bekrefter opplysninger"

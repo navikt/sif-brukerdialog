@@ -9,14 +9,18 @@ import BarnSteg from './steg/barn/BarnSteg';
 import OpplæringSteg from './steg/opplæring/OpplæringSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
 import { StegID } from './søknadStegConfig';
+import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
+import actionsCreator from './context/action/actionCreator';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
+        dispatch,
         state: { søknadSendt, søknadsdata, søknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
+    const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
 
     usePersistSøknadState();
 
@@ -30,12 +34,15 @@ const SøknadRouter = () => {
         }
     }, [navigateTo, pathname, søknadRoute, isFirstTimeLoadingApp]);
 
-    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT) {
-        return (
-            <Routes>
-                <Route path="*" element={<Navigate to={SøknadRoutes.SØKNAD_SENDT} replace={true} />} />
-            </Routes>
-        );
+    useEffect(() => {
+        if (shouldResetSøknad) {
+            dispatch(actionsCreator.resetSøknad());
+            navigateTo(SøknadRoutes.VELKOMMEN);
+        }
+    }, [shouldResetSøknad, navigateTo, dispatch]);
+
+    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
+        setShouldResetSøknad(true);
     }
 
     if (søknadsdata.harForståttRettigheterOgPlikter === false) {
@@ -55,6 +62,7 @@ const SøknadRouter = () => {
             <Route path={StegID.ARBEID} element={<ArbeidStep />} />
             <Route path={StegID.OPPLÆRING} element={<OpplæringSteg />} />
             <Route path={StegID.OPPSUMMERING} element={<OppsummeringSteg />} />
+            <Route path={StegID.SØKNAD_SENDT} element={<SøknadSendtPage />} />
             <Route path="*" element={<Navigate to={StegID.VELKOMMEN} />} />
         </Routes>
     );

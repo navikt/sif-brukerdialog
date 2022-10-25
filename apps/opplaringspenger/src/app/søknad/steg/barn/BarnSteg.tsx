@@ -68,7 +68,7 @@ const BarnSteg = () => {
                             label="Fødselsdato"
                             name={BarnFormFields.fødselsdato}
                             maxDate={new Date()}
-                            validate={getDateValidator({ max: new Date() })}
+                            validate={getDateValidator({ required: true, max: new Date() })}
                         />
                     </BarnFormComponents.Form>
                 )}
