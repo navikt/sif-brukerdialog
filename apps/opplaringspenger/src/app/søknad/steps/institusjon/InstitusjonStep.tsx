@@ -4,12 +4,11 @@ import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/vali
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { InstitusjonSøknadsdata } from '../../../types/Søknadsdata';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getInstitusjonStepInitialValues } from './institusjonStepUtils';
+import { getInstitusjonStepInitialValues, getInstitusjonSøknadsdata } from './institusjonStepUtils';
 
 export enum InstitusjonFormFields {
     'institusjonId' = 'institusjonId',
@@ -34,27 +33,7 @@ const InstitusjonStep = () => {
     } = useSøknadContext();
     const harInstitusjoner = institusjoner.length > 0;
 
-    const getInstitusjonSøknadsdata = ({
-        annen_navn,
-        erAnnenInstitusjon,
-        institusjonId,
-    }: InstitusjonFormValues): InstitusjonSøknadsdata | undefined => {
-        if (erAnnenInstitusjon && annen_navn) {
-            return {
-                type: 'egendefinert',
-                navn: annen_navn,
-            };
-        }
-        if (institusjonId) {
-            return {
-                type: 'registrert',
-                institusjonId,
-            };
-        }
-        return undefined;
-    };
-
-    const onValidSubmitHandler = (values: Partial<InstitusjonFormValues>) => {
+    const onValidSubmitHandler = (values: InstitusjonFormValues) => {
         const søknadsdata = getInstitusjonSøknadsdata(values);
         if (søknadsdata) {
             return [actionsCreator.setSøknadInstitusjon(søknadsdata)];

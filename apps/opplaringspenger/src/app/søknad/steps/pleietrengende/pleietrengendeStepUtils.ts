@@ -1,4 +1,4 @@
-import { Søknadsdata } from '../../../types/Søknadsdata';
+import { PleietrengendeSøknadsdata, Søknadsdata } from '../../../types/Søknadsdata';
 import { PleietrengendeFormValues } from './PleietrengendeStep';
 
 export const getPleietrengendeStepInitialValues = (søknadsdata: Søknadsdata): PleietrengendeFormValues => {
@@ -6,4 +6,10 @@ export const getPleietrengendeStepInitialValues = (søknadsdata: Søknadsdata): 
     return {
         fødselsnummer,
     };
+};
+
+export const getPleietrengendeSøknadsdataFromFormValues = (
+    values: PleietrengendeFormValues
+): PleietrengendeSøknadsdata => {
+    return { fødselsnummer: values.fødselsnummer };
 };

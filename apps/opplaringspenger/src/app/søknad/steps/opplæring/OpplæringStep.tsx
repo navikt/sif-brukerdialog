@@ -8,7 +8,7 @@ import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getOpplæringStepInitialValues } from './opplæringStepUtils';
+import { getOpplæringStepInitialValues, getOpplæringSøknadsdataFromFormValues } from './opplæringStepUtils';
 
 export enum OpplæringFormFields {
     'beskrivelse' = 'beskrivelse',
@@ -22,14 +22,13 @@ const OpplæringFormComponents = getTypedFormComponents<OpplæringFormFields, Op
 
 const OpplæringStep = () => {
     const {
-        dispatch,
         state: { søknadsdata },
     } = useSøknadContext();
 
-    const onValidSubmitHandler = (values: Partial<OpplæringFormValues>) => {
-        const { beskrivelse } = values;
-        if (beskrivelse) {
-            dispatch(actionsCreator.setSøknadOpplæring({ beskrivelse }));
+    const onValidSubmitHandler = (values: OpplæringFormValues) => {
+        const opplæringSøknadsdata = getOpplæringSøknadsdataFromFormValues(values);
+        if (opplæringSøknadsdata) {
+            return [actionsCreator.setSøknadOpplæring(opplæringSøknadsdata)];
         }
         return [];
     };

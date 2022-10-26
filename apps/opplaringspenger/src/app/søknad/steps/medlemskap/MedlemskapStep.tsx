@@ -1,5 +1,7 @@
 import React from 'react';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -7,10 +9,7 @@ import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getMedlemskapStepInitialValues } from './medlemskapStepUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
-import { getMedlemskapSøknadsdataFromFormValues } from './getMedlemskapSøknadsdata';
+import { getMedlemskapStepInitialValues, getMedlemskapSøknadsdataFromFormValues } from './medlemskapStepUtils';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',

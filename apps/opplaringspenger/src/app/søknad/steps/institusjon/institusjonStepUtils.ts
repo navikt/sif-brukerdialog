@@ -20,3 +20,23 @@ export const getInstitusjonStepInitialValues = (institusjon?: InstitusjonSøknad
             };
     }
 };
+
+export const getInstitusjonSøknadsdata = ({
+    annen_navn,
+    erAnnenInstitusjon,
+    institusjonId,
+}: InstitusjonFormValues): InstitusjonSøknadsdata | undefined => {
+    if (erAnnenInstitusjon && annen_navn) {
+        return {
+            type: 'egendefinert',
+            navn: annen_navn,
+        };
+    }
+    if (institusjonId) {
+        return {
+            type: 'registrert',
+            institusjonId,
+        };
+    }
+    return undefined;
+};

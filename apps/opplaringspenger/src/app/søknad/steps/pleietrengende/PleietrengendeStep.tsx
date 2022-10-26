@@ -8,7 +8,10 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import { StepId } from '../../../types/StepId';
-import { getPleietrengendeStepInitialValues } from './pleietrengendeStepUtils';
+import {
+    getPleietrengendeStepInitialValues,
+    getPleietrengendeSøknadsdataFromFormValues,
+} from './pleietrengendeStepUtils';
 
 export enum PleietrengendeFormFields {
     'fødselsnummer' = 'fødselsnummer',
@@ -23,10 +26,10 @@ const { FormikWrapper, Form, TextField } = getTypedFormComponents<Pleietrengende
 const PleietrengendeStep = () => {
     const { state } = useSøknadContext();
 
-    const onValidSubmitHandler = (values: Partial<PleietrengendeFormValues>) => {
-        const { fødselsnummer } = values;
-        if (fødselsnummer) {
-            return [actionsCreator.setSøknadPleietrengende({ fødselsnummer })];
+    const onValidSubmitHandler = (values: PleietrengendeFormValues) => {
+        const pleietrengendeSøknadsdata = getPleietrengendeSøknadsdataFromFormValues(values);
+        if (pleietrengendeSøknadsdata) {
+            return [actionsCreator.setSøknadPleietrengende(pleietrengendeSøknadsdata)];
         }
         return [];
     };
