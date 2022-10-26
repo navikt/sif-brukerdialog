@@ -12,6 +12,7 @@ import {
     getPleietrengendeStepInitialValues,
     getPleietrengendeSøknadsdataFromFormValues,
 } from './pleietrengendeStepUtils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export enum PleietrengendeFormFields {
     'fødselsnummer' = 'fødselsnummer',
@@ -59,6 +60,11 @@ const PleietrengendeStep = () => {
                             type="tel"
                             maxLength={11}
                             width="s"
+                            description={
+                                <ExpandableInfo title="Hva gjør jeg når jeg ikke har fødselsnummer til den pleietrengende">
+                                    Hey
+                                </ExpandableInfo>
+                            }
                         />
                     </Form>
                 )}
