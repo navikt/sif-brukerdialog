@@ -6,7 +6,6 @@ interface Props {
     children: React.ReactNode;
     title?: string;
     initialOpen?: boolean;
-    filledBackground?: boolean;
 }
 
 const ExpandableInfo = ({ children, initialOpen, title }: Props) => {
