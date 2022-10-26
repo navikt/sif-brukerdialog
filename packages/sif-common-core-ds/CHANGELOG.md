@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 4.4.3
+
+### Patch Changes
+
+-   1542735: Bytte til ds-react ReadMore
+
 ## 4.4.2
 
 ### Patch Changes
