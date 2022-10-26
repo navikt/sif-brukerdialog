@@ -1,3 +1,5 @@
+import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
+
 export interface PleietrengendeSøknadsdata {
     fødselsnummer: string;
 }
@@ -27,6 +29,7 @@ export interface Søknadsdata {
     harBekreftetOpplysninger?: boolean;
     pleietrengende?: PleietrengendeSøknadsdata;
     institusjon?: InstitusjonSøknadsdata;
+    medlemskap?: MedlemskapSøknadsdata;
     arbeid?: ArbeidSøknadsdata;
     opplæring?: OpplæringSøknadsdata;
 }

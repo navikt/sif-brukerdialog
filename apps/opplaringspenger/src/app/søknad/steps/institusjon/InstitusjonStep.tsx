@@ -1,16 +1,15 @@
 import React from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { InstitusjonSøknadsdata } from '../../../types/Søknadsdata';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { StepId } from '../../../types/StepId';
 import { getInstitusjonStepInitialValues } from './institusjonStepUtils';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 
 export enum InstitusjonFormFields {
     'institusjonId' = 'institusjonId',
@@ -52,7 +51,6 @@ const InstitusjonStep = () => {
                 institusjonId,
             };
         }
-        debugger;
         return undefined;
     };
 
@@ -66,7 +64,7 @@ const InstitusjonStep = () => {
 
     const { handleSubmit, isSubmitting } = useOnValidSubmit(
         onValidSubmitHandler,
-        SøknadRoutes.ARBEID,
+        StepId.INSTITUSJON,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
         }
@@ -90,7 +88,7 @@ const InstitusjonStep = () => {
                                         label="Velg institusjon"
                                         disabled={erAnnenInstitusjon}
                                         validate={
-                                            erAnnenInstitusjon === false ? getRequiredFieldValidator() : undefined
+                                            erAnnenInstitusjon !== true ? getRequiredFieldValidator() : undefined
                                         }>
                                         <option value="">Velg institusjon</option>
                                         {institusjoner.map((i) => {

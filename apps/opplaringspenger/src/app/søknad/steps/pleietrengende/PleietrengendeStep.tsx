@@ -3,7 +3,6 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import { getFødselsnummerValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -34,7 +33,7 @@ const PleietrengendeStep = () => {
 
     const { handleSubmit, isSubmitting } = useOnValidSubmit(
         onValidSubmitHandler,
-        SøknadRoutes.INSTITUSJON,
+        StepId.PLEIETRENGENDE,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
         }

@@ -1,3 +1,4 @@
+import { MedlemskapSøknadsdata } from '../../../types/MedlemskapSøknadsdata';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
     ArbeidSøknadsdata,
@@ -17,6 +18,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_INSTITUSJON = 'setSøknadInstitusjon',
     SET_SØKNAD_ARBEID = 'setSøknadArbeid',
     SET_SØKNAD_OPPLÆRING = 'setSøknadOpplæring',
+    SET_SØKNAD_MEDLEMSKAP = 'setSøknadMedlemskap',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -63,6 +65,10 @@ interface SetSøknadArbeid {
 interface SetSøknadOpplæring {
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING;
     payload: OpplæringSøknadsdata;
+}
+interface SetSøknadMedlemskap {
+    type: SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP;
+    payload: MedlemskapSøknadsdata;
 }
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
@@ -112,6 +118,10 @@ const setSøknadOpplæring = (payload: OpplæringSøknadsdata): SetSøknadOpplæ
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLÆRING,
     payload,
 });
+const setSøknadMedlemskap = (payload: MedlemskapSøknadsdata): SetSøknadMedlemskap => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP,
+    payload,
+});
 const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): SetSøknadHarBekreftetOpplysninger => ({
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER,
     payload,
@@ -132,6 +142,7 @@ export type SøknadContextAction =
     | SetSøknadPleietrengende
     | SetSøknadInstitusjon
     | SetSøknadOpplæring
+    | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadRoute
     | SetSøknadArbeid;
@@ -147,6 +158,7 @@ const actionsCreator = {
     setSøknadInstitusjon,
     setSøknadArbeid,
     setSøknadOpplæring,
+    setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
     setSøknadSendt,

@@ -3,13 +3,12 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import { getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { StepId } from '../../../types/StepId';
 import { getArbeidStepInitialValues } from './arbeidStepUtils';
 
 export enum ArbeidFormFields {
@@ -38,7 +37,7 @@ const ArbeidStep = () => {
 
     const { handleSubmit, isSubmitting } = useOnValidSubmit(
         onValidSubmitHandler,
-        SøknadRoutes.OPPLÆRING,
+        StepId.ARBEID,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
         }

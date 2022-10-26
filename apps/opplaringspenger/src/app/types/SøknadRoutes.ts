@@ -6,7 +6,9 @@ export enum SøknadRoutes {
     INSTITUSJON = '/soknad/institusjon',
     ARBEID = '/soknad/arbeid',
     OPPLÆRING = '/soknad/opplaring',
+    MEDLEMSKAP = '/soknad/medlemskap',
     OPPSUMMERING = '/soknad/oppsummering',
     SØKNAD_SENDT = '/soknad/soknad_sendt',
+    UKJENT_STEG = '/soknad/ukjent-steg',
     IKKE_TILGANG = '/ikke-tilgang',
 }

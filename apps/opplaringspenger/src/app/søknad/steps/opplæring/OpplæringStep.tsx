@@ -2,13 +2,12 @@ import React from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { StepId } from '../../../types/StepId';
 import { getOpplæringStepInitialValues } from './opplæringStepUtils';
 
 export enum OpplæringFormFields {
@@ -37,7 +36,7 @@ const OpplæringStep = () => {
 
     const { handleSubmit, isSubmitting } = useOnValidSubmit(
         onValidSubmitHandler,
-        SøknadRoutes.OPPSUMMERING,
+        StepId.OPPLÆRING,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
         }

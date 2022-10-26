@@ -4,7 +4,7 @@ export enum StepId {
     'INSTITUSJON' = 'institusjon',
     'OPPLÆRING' = 'opplaring',
     'ARBEID' = 'arbeid',
-    'MEDLEMSSKAP' = 'medlemsskap',
+    'MEDLEMSKAP' = 'medlemskap',
     'OPPSUMMERING' = 'oppsummering',
     'SØKNAD_SENDT' = 'soknad_sendt',
 }

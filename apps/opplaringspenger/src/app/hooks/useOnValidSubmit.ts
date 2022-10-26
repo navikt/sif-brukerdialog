@@ -4,10 +4,12 @@ import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
+import { StepId } from '../types/StepId';
+import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
-    nextRoute: SøknadRoutes,
+    stepId: StepId,
     postSubmit?: (state: SøknadContextState) => Promise<any>
 ) => {
     const { dispatch, state } = useSøknadContext();
@@ -16,17 +18,22 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
+    const { nextStepRoute } = getSøknadStepConfig(state.søknadsdata)[stepId];
+
     useEffect(() => {
         if (hasSubmitted && postSubmit) {
             postSubmit(state)
                 .then(() => {
-                    if (nextRoute === SøknadRoutes.SØKNAD_SENDT) {
-                        navigate(nextRoute);
-                    } else {
-                        if (nextRoute) {
-                            navigate(nextRoute);
-                        }
+                    if (nextStepRoute) {
+                        navigate(nextStepRoute);
                     }
+                    // if (nextStepRoute === SøknadRoutes.SØKNAD_SENDT) {
+                    //     navigate(nextStepRoute);
+                    // } else {
+                    //     if (nextRoute) {
+                    //         navigate(nextRoute);
+                    //     }
+                    // }
                 })
                 .catch((error) => {
                     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
@@ -37,7 +44,7 @@ export const useOnValidSubmit = <T>(
                     }
                 });
         }
-    }, [hasSubmitted, navigate, nextRoute, state, postSubmit]);
+    }, [hasSubmitted, navigate, nextStepRoute, state, postSubmit]);
 
     useEffect(() => {
         if (submitError) {
@@ -54,7 +61,9 @@ export const useOnValidSubmit = <T>(
     const handleSubmit = (values: T) => {
         setIsSubmitting(true);
         const actions = [
-            nextRoute === SøknadRoutes.SØKNAD_SENDT ? undefined : dispatch(actionsCreator.setSøknadRoute(nextRoute)),
+            nextStepRoute === undefined || nextStepRoute === SøknadRoutes.SØKNAD_SENDT
+                ? undefined
+                : dispatch(actionsCreator.setSøknadRoute(nextStepRoute)),
             ...submitHandler(values),
         ];
         Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));

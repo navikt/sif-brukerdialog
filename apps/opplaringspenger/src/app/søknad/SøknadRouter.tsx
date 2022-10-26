@@ -1,17 +1,21 @@
+import { Button } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
+import VelkommenPage from '../pages/velkommen/VelkommenPage';
+import { StepId } from '../types/StepId';
+import { SøknadRoutes } from '../types/SøknadRoutes';
+import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidStep from './steps/arbeid/ArbeidStep';
-import PleietrengendeStep from './steps/pleietrengende/PleietrengendeStep';
+import InstitusjonStep from './steps/institusjon/InstitusjonStep';
+import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OpplæringStep from './steps/opplæring/OpplæringStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
-import actionsCreator from './context/action/actionCreator';
-import InstitusjonStep from './steps/institusjon/InstitusjonStep';
-import { StepId } from '../types/StepId';
+import PleietrengendeStep from './steps/pleietrengende/PleietrengendeStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -22,6 +26,7 @@ const SøknadRouter = () => {
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
     const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
+    const { slettMellomlagring } = useMellomlagring();
 
     usePersistSøknadState();
 
@@ -38,6 +43,7 @@ const SøknadRouter = () => {
     useEffect(() => {
         if (shouldResetSøknad) {
             dispatch(actionsCreator.resetSøknad());
+            setShouldResetSøknad(false);
             navigateTo(SøknadRoutes.VELKOMMEN);
         }
     }, [shouldResetSøknad, navigateTo, dispatch]);
@@ -63,9 +69,29 @@ const SøknadRouter = () => {
             <Route path={StepId.INSTITUSJON} element={<InstitusjonStep />} />
             <Route path={StepId.ARBEID} element={<ArbeidStep />} />
             <Route path={StepId.OPPLÆRING} element={<OpplæringStep />} />
+            <Route path={StepId.MEDLEMSKAP} element={<MedlemskapStep />} />
             <Route path={StepId.OPPSUMMERING} element={<OppsummeringStep />} />
             <Route path={StepId.SØKNAD_SENDT} element={<SøknadSendtPage />} />
-            <Route path="*" element={<Navigate to={StepId.VELKOMMEN} />} />
+            <Route
+                path="*"
+                element={
+                    <>
+                        Ukjent steg: {pathname}.
+                        <FormBlock>
+                            <Button
+                                type="button"
+                                onClick={() => {
+                                    slettMellomlagring().then(() => {
+                                        dispatch(actionsCreator.resetSøknad());
+                                        navigateTo(SøknadRoutes.VELKOMMEN);
+                                    });
+                                }}>
+                                Reset søknad
+                            </Button>
+                        </FormBlock>
+                    </>
+                }
+            />
         </Routes>
     );
 };
