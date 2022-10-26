@@ -1,38 +1,19 @@
-import { Alert } from '@navikt/ds-react';
-import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
-import bemUtils from '../../utils/bemUtils';
-import CollapsableContainer from './CollapsableContainer';
-import InfoToggleButton from './InfoToggleButton';
-import './expandableInfo.scss';
+import { ReadMore } from '@navikt/ds-react';
+import React from 'react';
+import './expandableInfo.css';
 
 interface Props {
     children: React.ReactNode;
     title?: string;
-    closeTitle?: string;
     initialOpen?: boolean;
     filledBackground?: boolean;
 }
 
-const bem = bemUtils('expandableInfo');
-
-const ExpandableInfo = ({ children, initialOpen, closeTitle, title, filledBackground = true }: Props) => {
-    const [isOpen, setIsOpen] = useState<boolean>(initialOpen || false);
-    const [toggleContentId] = useState(uuid());
-
+const ExpandableInfo = ({ children, initialOpen, title }: Props) => {
     return (
-        <div className={bem.block}>
-            <div className={bem.element('toggler', isOpen ? 'open' : undefined)}>
-                <InfoToggleButton onToggle={() => setIsOpen(!isOpen)} isOpen={isOpen} controlsId={toggleContentId}>
-                    {isOpen ? closeTitle || title : title}
-                </InfoToggleButton>
-            </div>
-            <div className={bem.element('content')} id={toggleContentId}>
-                <CollapsableContainer isOpen={isOpen} animated={true} ariaLive="polite">
-                    {filledBackground ? <Alert variant="info">{children}</Alert> : children}
-                </CollapsableContainer>
-            </div>
-        </div>
+        <ReadMore header={title} defaultOpen={initialOpen} className={'sif-read-more'}>
+            {children}
+        </ReadMore>
     );
 };
 
