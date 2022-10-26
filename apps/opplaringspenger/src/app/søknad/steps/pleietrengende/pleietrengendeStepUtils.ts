@@ -1,4 +1,4 @@
-import { PleietrengendeSøknadsdata, Søknadsdata } from '../../../types/Søknadsdata';
+import { Søknadsdata, PleietrengendeSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { PleietrengendeFormValues } from './PleietrengendeStep';
 
 export const getPleietrengendeStepInitialValues = (søknadsdata: Søknadsdata): PleietrengendeFormValues => {

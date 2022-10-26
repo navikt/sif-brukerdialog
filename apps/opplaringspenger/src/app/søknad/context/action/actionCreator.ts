@@ -1,11 +1,11 @@
-import { MedlemskapSøknadsdata } from '../../../types/MedlemskapSøknadsdata';
+import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapSøknadsdata';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
     ArbeidSøknadsdata,
     InstitusjonSøknadsdata,
     OpplæringSøknadsdata,
     PleietrengendeSøknadsdata,
-} from '../../../types/Søknadsdata';
+} from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
 export enum SøknadContextActionKeys {

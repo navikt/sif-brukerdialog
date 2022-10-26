@@ -1,7 +1,7 @@
 import { Institusjon } from './Institusjon';
 import { Søker } from './Søker';
 import { SøknadRoutes } from './SøknadRoutes';
-import { Søknadsdata } from './Søknadsdata';
+import { Søknadsdata } from './søknadsdata/Søknadsdata';
 
 export interface SøknadContextState {
     versjon: string;

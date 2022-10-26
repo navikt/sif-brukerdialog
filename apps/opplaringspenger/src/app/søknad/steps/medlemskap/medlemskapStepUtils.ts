@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
-import { MedlemskapSøknadsdata } from '../../../types/MedlemskapSøknadsdata';
-import { Søknadsdata } from '../../../types/Søknadsdata';
+import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapSøknadsdata';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { MedlemskapFormValues } from './MedlemskapStep';
 
 export const getMedlemskapStepInitialValues = (søknadsdata: Søknadsdata): MedlemskapFormValues => {

@@ -1,4 +1,4 @@
-import { InstitusjonSøknadsdata } from '../../../types/Søknadsdata';
+import { InstitusjonSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { InstitusjonFormValues } from './InstitusjonStep';
 
 export const getInstitusjonStepInitialValues = (institusjon?: InstitusjonSøknadsdata): InstitusjonFormValues => {

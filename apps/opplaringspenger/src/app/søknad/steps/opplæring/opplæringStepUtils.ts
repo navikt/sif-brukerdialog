@@ -1,4 +1,4 @@
-import { OpplæringSøknadsdata, Søknadsdata } from '../../../types/Søknadsdata';
+import { OpplæringSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OpplæringFormValues } from './OpplæringStep';
 
 export const getOpplæringStepInitialValues = (søknadsdata: Søknadsdata): OpplæringFormValues => {

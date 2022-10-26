@@ -1,5 +1,5 @@
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { ArbeidSøknadsdata, Søknadsdata } from '../../../types/Søknadsdata';
+import { ArbeidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { ArbeidFormValues } from './ArbeidStep';
 
 export const getArbeidStepInitialValues = (søknadsdata: Søknadsdata): ArbeidFormValues => {

@@ -7,13 +7,13 @@ import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
-export interface SøknadStateHashInfo {
-    søker: Søker;
-}
-
 export type SøknadStatePersistence = Omit<SøknadContextState, 'søker' | 'institusjoner'> & {
     søknadHashString: string;
 };
+
+interface SøknadStateHashInfo {
+    søker: Søker;
+}
 
 interface SøknadStatePersistenceEndpoint
     extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {

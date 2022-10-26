@@ -1,4 +1,4 @@
-import { SøknadApiData } from '../../types/SøknadApiData';
+import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import api, { ApiEndpointPsb } from '../api';
 
 const søknadEndpoint = {

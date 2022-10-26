@@ -1,5 +1,5 @@
-import { PleietrengendeApiData } from '../../types/SøknadApiData';
-import { PleietrengendeSøknadsdata } from '../../types/Søknadsdata';
+import { PleietrengendeApiData } from '../../types/søknadApiData/SøknadApiData';
+import { PleietrengendeSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const getPleietrengendeApiDataFromSøknadsdata = ({
     fødselsnummer,

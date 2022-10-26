@@ -5,7 +5,7 @@ import søknadEndpoint from '../api/endpoints/søknadEndpoint';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { SøknadApiData } from '../types/SøknadApiData';
+import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 
 export const useSendSøknad = () => {

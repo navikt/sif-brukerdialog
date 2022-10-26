@@ -1,6 +1,6 @@
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
-import { ArbeidApiData } from '../../types/SøknadApiData';
-import { ArbeidSøknadsdata } from '../../types/Søknadsdata';
+import { ArbeidApiData } from '../../types/søknadApiData/SøknadApiData';
+import { ArbeidSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const getArbeidApiDataFromSøknadsdata = ({ startdato }: ArbeidSøknadsdata): ArbeidApiData => {
     return {

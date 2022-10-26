@@ -1,12 +1,12 @@
 import api, { ApiEndpointPsb } from '../api';
 
-type PleietrengendeResponse = {
+type PleietrengendeDTO = {
     isValid: boolean;
 };
 
 const pleietrengendeEndpoint = {
     isValid: async (): Promise<boolean> => {
-        const response = await api.psb.get<PleietrengendeResponse>(ApiEndpointPsb.pleietrengende);
+        const response = await api.psb.get<PleietrengendeDTO>(ApiEndpointPsb.pleietrengende);
         if (response && response.data) {
             const { data } = response;
             if (data.isValid === true || data.isValid === false) {

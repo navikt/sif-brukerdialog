@@ -2,7 +2,7 @@ import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-sok
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import { Søknadsdata } from '../types/Søknadsdata';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     return [
