@@ -18,7 +18,7 @@ export interface OpplæringFormValues {
     [OpplæringFormFields.beskrivelse]: string;
 }
 
-const OpplæringFormComponents = getTypedFormComponents<OpplæringFormFields, OpplæringFormValues>();
+const { FormikWrapper, Form, Textarea } = getTypedFormComponents<OpplæringFormFields, OpplæringFormValues>();
 
 const OpplæringStep = () => {
     const {
@@ -43,18 +43,18 @@ const OpplæringStep = () => {
 
     return (
         <SøknadStep stepId={StepId.OPPLÆRING}>
-            <OpplæringFormComponents.FormikWrapper
+            <FormikWrapper
                 initialValues={getOpplæringStepInitialValues(søknadsdata)}
                 isSubmitting={isSubmitting}
                 onSubmit={handleSubmit}
                 renderForm={() => (
-                    <OpplæringFormComponents.Form>
-                        <OpplæringFormComponents.Textarea
+                    <Form>
+                        <Textarea
                             label="Beskriv opplæringen"
                             name={OpplæringFormFields.beskrivelse}
                             validate={getRequiredFieldValidator()}
                         />
-                    </OpplæringFormComponents.Form>
+                    </Form>
                 )}
             />
         </SøknadStep>

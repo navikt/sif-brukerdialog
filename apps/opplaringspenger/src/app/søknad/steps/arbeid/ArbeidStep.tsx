@@ -18,7 +18,7 @@ export interface ArbeidFormValues {
     [ArbeidFormFields.startdato]?: string;
 }
 
-const ArbeidFormComponents = getTypedFormComponents<ArbeidFormFields, ArbeidFormValues>();
+const { FormikWrapper, Form, DatePicker } = getTypedFormComponents<ArbeidFormFields, ArbeidFormValues>();
 
 const ArbeidStep = () => {
     const {
@@ -43,21 +43,18 @@ const ArbeidStep = () => {
 
     return (
         <SøknadStep stepId={StepId.ARBEID}>
-            <ArbeidFormComponents.FormikWrapper
+            <FormikWrapper
                 initialValues={getArbeidStepInitialValues(søknadsdata)}
                 onSubmit={handleSubmit}
                 renderForm={() => (
-                    <ArbeidFormComponents.Form
-                        submitButtonLabel="Gå videre"
-                        includeValidationSummary={true}
-                        submitPending={isSubmitting}>
-                        <ArbeidFormComponents.DatePicker
+                    <Form submitButtonLabel="Gå videre" includeValidationSummary={true} submitPending={isSubmitting}>
+                        <DatePicker
                             label="Når skal du starte å arbeide?"
                             name={ArbeidFormFields.startdato}
                             minDate={new Date()}
-                            validate={getDateValidator({ min: new Date() })}
+                            validate={getDateValidator({ required: true, min: new Date() })}
                         />
-                    </ArbeidFormComponents.Form>
+                    </Form>
                 )}
             />
         </SøknadStep>

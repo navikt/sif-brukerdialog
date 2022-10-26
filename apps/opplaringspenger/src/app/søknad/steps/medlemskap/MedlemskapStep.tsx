@@ -25,7 +25,7 @@ export interface MedlemskapFormValues {
     [MedlemskapFormFields.utenlandsoppholdNeste12Mnd]: BostedUtland[];
 }
 
-const MedlemskapFormComponents = getTypedFormComponents<MedlemskapFormFields, MedlemskapFormValues>();
+const { FormikWrapper, Form } = getTypedFormComponents<MedlemskapFormFields, MedlemskapFormValues>();
 
 const MedlemskapStep = () => {
     const {
@@ -51,11 +51,11 @@ const MedlemskapStep = () => {
 
     return (
         <SøknadStep stepId={StepId.MEDLEMSKAP}>
-            <MedlemskapFormComponents.FormikWrapper
+            <FormikWrapper
                 initialValues={getMedlemskapStepInitialValues(søknadsdata)}
                 isSubmitting={isSubmitting}
                 onSubmit={handleSubmit}
-                renderForm={() => <MedlemskapFormComponents.Form>Skjema ikke laget</MedlemskapFormComponents.Form>}
+                renderForm={() => <Form>Skjema ikke laget</Form>}
             />
         </SøknadStep>
     );
