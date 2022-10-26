@@ -4,14 +4,14 @@ import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import ArbeidSteg from './steg/arbeid/ArbeidSteg';
-import PleietrengendeSteg from './steg/pleietrengende/PleietrengendeSteg';
-import OpplæringSteg from './steg/opplæring/OpplæringSteg';
-import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
-import { StegID } from './søknadStegConfig';
+import ArbeidStep from './steps/arbeid/ArbeidStep';
+import PleietrengendeStep from './steps/pleietrengende/PleietrengendeStep';
+import OpplæringStep from './steps/opplæring/OpplæringStep';
+import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
 import actionsCreator from './context/action/actionCreator';
-import InstitusjonSteg from './steg/institusjon/InstitusjonSteg';
+import InstitusjonStep from './steps/institusjon/InstitusjonStep';
+import { StepId } from '../types/StepId';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -31,7 +31,7 @@ const SøknadRouter = () => {
             navigateTo(søknadRoute);
         }
         if (pathname === SøknadRoutes.VELKOMMEN && søknadRoute) {
-            navigateTo(søknadRoute); // Send til steg dersom bruker kommer til velkommen via annen navigasjon
+            navigateTo(søknadRoute); // Send til sider dersom bruker kommer til velkommen via annen navigasjon
         }
     }, [navigateTo, pathname, søknadRoute, isFirstTimeLoadingApp]);
 
@@ -50,7 +50,7 @@ const SøknadRouter = () => {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
-                <Route path="*" element={<Navigate to={StegID.VELKOMMEN} />} />
+                <Route path="*" element={<Navigate to={StepId.VELKOMMEN} />} />
             </Routes>
         );
     }
@@ -58,14 +58,14 @@ const SøknadRouter = () => {
     return (
         <Routes>
             <Route index element={<VelkommenPage />} />
-            <Route path={StegID.VELKOMMEN} element={<VelkommenPage />} />
-            <Route path={StegID.PLEIETRENGENDE} element={<PleietrengendeSteg />} />
-            <Route path={StegID.INSTITUSJON} element={<InstitusjonSteg />} />
-            <Route path={StegID.ARBEID} element={<ArbeidSteg />} />
-            <Route path={StegID.OPPLÆRING} element={<OpplæringSteg />} />
-            <Route path={StegID.OPPSUMMERING} element={<OppsummeringSteg />} />
-            <Route path={StegID.SØKNAD_SENDT} element={<SøknadSendtPage />} />
-            <Route path="*" element={<Navigate to={StegID.VELKOMMEN} />} />
+            <Route path={StepId.VELKOMMEN} element={<VelkommenPage />} />
+            <Route path={StepId.PLEIETRENGENDE} element={<PleietrengendeStep />} />
+            <Route path={StepId.INSTITUSJON} element={<InstitusjonStep />} />
+            <Route path={StepId.ARBEID} element={<ArbeidStep />} />
+            <Route path={StepId.OPPLÆRING} element={<OpplæringStep />} />
+            <Route path={StepId.OPPSUMMERING} element={<OppsummeringStep />} />
+            <Route path={StepId.SØKNAD_SENDT} element={<SøknadSendtPage />} />
+            <Route path="*" element={<Navigate to={StepId.VELKOMMEN} />} />
         </Routes>
     );
 };

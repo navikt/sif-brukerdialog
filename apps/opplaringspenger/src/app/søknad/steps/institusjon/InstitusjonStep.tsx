@@ -7,9 +7,9 @@ import { InstitusjonSøknadsdata } from '../../../types/Søknadsdata';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import SøknadSteg from '../../SøknadSteg';
-import { StegID } from '../../søknadStegConfig';
-import { getInstitusjonStegInitialValues } from './institusjonStegUtils';
+import SøknadStep from '../../SøknadStep';
+import { StepId } from '../../../types/StepId';
+import { getInstitusjonStepInitialValues } from './institusjonStepUtils';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 
 export enum InstitusjonFormFields {
@@ -29,7 +29,7 @@ const { FormikWrapper, Form, Select, Checkbox, TextField } = getTypedFormCompone
     InstitusjonFormValues
 >();
 
-const InstitusjonSteg = () => {
+const InstitusjonStep = () => {
     const {
         state: { institusjoner, søknadsdata },
     } = useSøknadContext();
@@ -73,9 +73,9 @@ const InstitusjonSteg = () => {
     );
 
     return (
-        <SøknadSteg stegID={StegID.INSTITUSJON}>
+        <SøknadStep stepId={StepId.INSTITUSJON}>
             <FormikWrapper
-                initialValues={getInstitusjonStegInitialValues(søknadsdata.institusjon)}
+                initialValues={getInstitusjonStepInitialValues(søknadsdata.institusjon)}
                 onSubmit={handleSubmit}
                 renderForm={({ values: { erAnnenInstitusjon } }) => {
                     return (
@@ -119,8 +119,8 @@ const InstitusjonSteg = () => {
                     );
                 }}
             />
-        </SøknadSteg>
+        </SøknadStep>
     );
 };
 
-export default InstitusjonSteg;
+export default InstitusjonStep;

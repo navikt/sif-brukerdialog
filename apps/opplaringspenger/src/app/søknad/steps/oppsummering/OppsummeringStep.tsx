@@ -9,9 +9,9 @@ import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/Erro
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import SøknadSteg from '../../SøknadSteg';
-import { StegID } from '../../søknadStegConfig';
-import { getOppsummeringStegInitialValues } from './oppsummeringUtils';
+import SøknadStep from '../../SøknadStep';
+import { StepId } from '../../../types/StepId';
+import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import ArbeidOppsummering from './parts/ArbeidOppsummering';
 import PleietrengendeOppsummering from './parts/PleietrengendeOppsummering';
 import OpplæringOppsummering from './parts/OpplæringOppsummering';
@@ -29,7 +29,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
     OppsummeringFormValues
 >();
 
-const OppsummeringSteg = () => {
+const OppsummeringStep = () => {
     const { state } = useSøknadContext();
 
     const { sendSøknad, isSubmitting, sendSøknadError, resetSendSøknad } = useSendSøknad();
@@ -56,12 +56,12 @@ const OppsummeringSteg = () => {
     }
 
     return (
-        <SøknadSteg stegID={StegID.OPPSUMMERING}>
+        <SøknadStep stepId={StepId.OPPSUMMERING}>
             <PleietrengendeOppsummering pleietrengende={apiData.pleietrengende} />
             <ArbeidOppsummering arbeid={apiData.arbeid} />
             <OpplæringOppsummering opplæring={apiData.opplæring} />
             <FormikWrapper
-                initialValues={getOppsummeringStegInitialValues(state.søknadsdata)}
+                initialValues={getOppsummeringStepInitialValues(state.søknadsdata)}
                 onSubmit={() => {
                     sendSøknad(apiData);
                 }}
@@ -99,8 +99,8 @@ const OppsummeringSteg = () => {
                         </>
                     );
                 }}></FormikWrapper>
-        </SøknadSteg>
+        </SøknadStep>
     );
 };
 
-export default OppsummeringSteg;
+export default OppsummeringStep;

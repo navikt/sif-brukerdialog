@@ -7,9 +7,9 @@ import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import SøknadSteg from '../../SøknadSteg';
-import { StegID } from '../../søknadStegConfig';
-import { getPleietrengendeStegInitialValues } from './pleietrengendeStegUtils';
+import SøknadStep from '../../SøknadStep';
+import { StepId } from '../../../types/StepId';
+import { getPleietrengendeStepInitialValues } from './pleietrengendeStepUtils';
 
 export enum PleietrengendeFormFields {
     'fødselsnummer' = 'fødselsnummer',
@@ -21,7 +21,7 @@ export interface PleietrengendeFormValues {
 
 const { FormikWrapper, Form, TextField } = getTypedFormComponents<PleietrengendeFormFields, PleietrengendeFormValues>();
 
-const PleietrengendeSteg = () => {
+const PleietrengendeStep = () => {
     const { state } = useSøknadContext();
 
     const onValidSubmitHandler = (values: Partial<PleietrengendeFormValues>) => {
@@ -41,9 +41,9 @@ const PleietrengendeSteg = () => {
     );
 
     return (
-        <SøknadSteg stegID={StegID.PLEIETRENGENDE}>
+        <SøknadStep stepId={StepId.PLEIETRENGENDE}>
             <FormikWrapper
-                initialValues={getPleietrengendeStegInitialValues(state.søknadsdata)}
+                initialValues={getPleietrengendeStepInitialValues(state.søknadsdata)}
                 onSubmit={handleSubmit}
                 renderForm={() => (
                     <Form includeValidationSummary={true} submitButtonLabel="Gå videre" submitPending={isSubmitting}>
@@ -61,8 +61,8 @@ const PleietrengendeSteg = () => {
                     </Form>
                 )}
             />
-        </SøknadSteg>
+        </SøknadStep>
     );
 };
 
-export default PleietrengendeSteg;
+export default PleietrengendeStep;

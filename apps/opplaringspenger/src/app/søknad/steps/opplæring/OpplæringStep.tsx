@@ -7,9 +7,9 @@ import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import SøknadStep from '../../SøknadSteg';
-import { StegID } from '../../søknadStegConfig';
-import { getOpplæringStegInitialValues } from './opplæringStegUtils';
+import SøknadStep from '../../SøknadStep';
+import { StepId } from '../../../types/StepId';
+import { getOpplæringStepInitialValues } from './opplæringStepUtils';
 
 export enum OpplæringFormFields {
     'beskrivelse' = 'beskrivelse',
@@ -21,7 +21,7 @@ export interface OpplæringFormValues {
 
 const OpplæringFormComponents = getTypedFormComponents<OpplæringFormFields, OpplæringFormValues>();
 
-const OpplæringSteg = () => {
+const OpplæringStep = () => {
     const {
         dispatch,
         state: { søknadsdata },
@@ -44,9 +44,9 @@ const OpplæringSteg = () => {
     );
 
     return (
-        <SøknadStep stegID={StegID.OPPLÆRING}>
+        <SøknadStep stepId={StepId.OPPLÆRING}>
             <OpplæringFormComponents.FormikWrapper
-                initialValues={getOpplæringStegInitialValues(søknadsdata)}
+                initialValues={getOpplæringStepInitialValues(søknadsdata)}
                 isSubmitting={isSubmitting}
                 onSubmit={handleSubmit}
                 renderForm={() => (
@@ -63,4 +63,4 @@ const OpplæringSteg = () => {
     );
 };
 
-export default OpplæringSteg;
+export default OpplæringStep;

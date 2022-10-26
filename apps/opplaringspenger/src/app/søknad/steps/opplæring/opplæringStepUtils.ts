@@ -1,7 +1,7 @@
 import { Søknadsdata } from '../../../types/Søknadsdata';
-import { OpplæringFormValues } from './OpplæringSteg';
+import { OpplæringFormValues } from './OpplæringStep';
 
-export const getOpplæringStegInitialValues = (søknadsdata: Søknadsdata): OpplæringFormValues => {
+export const getOpplæringStepInitialValues = (søknadsdata: Søknadsdata): OpplæringFormValues => {
     const { beskrivelse } = søknadsdata.opplæring || {};
     return {
         beskrivelse: beskrivelse || '',

@@ -8,9 +8,9 @@ import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import SøknadStep from '../../SøknadSteg';
-import { StegID } from '../../søknadStegConfig';
-import { getArbeidStegInitialValues } from './arbeidStegUtils';
+import SøknadStep from '../../SøknadStep';
+import { StepId } from '../../../types/StepId';
+import { getArbeidStepInitialValues } from './arbeidStepUtils';
 
 export enum ArbeidFormFields {
     'startdato' = 'startdato',
@@ -22,7 +22,7 @@ export interface ArbeidFormValues {
 
 const ArbeidFormComponents = getTypedFormComponents<ArbeidFormFields, ArbeidFormValues>();
 
-const ArbeidSteg = () => {
+const ArbeidStep = () => {
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -45,9 +45,9 @@ const ArbeidSteg = () => {
     );
 
     return (
-        <SøknadStep stegID={StegID.ARBEID}>
+        <SøknadStep stepId={StepId.ARBEID}>
             <ArbeidFormComponents.FormikWrapper
-                initialValues={getArbeidStegInitialValues(søknadsdata)}
+                initialValues={getArbeidStepInitialValues(søknadsdata)}
                 onSubmit={handleSubmit}
                 renderForm={() => (
                     <ArbeidFormComponents.Form
@@ -67,4 +67,4 @@ const ArbeidSteg = () => {
     );
 };
 
-export default ArbeidSteg;
+export default ArbeidStep;

@@ -5,7 +5,7 @@ import {
     OpplæringSøknadsdata,
     PleietrengendeSøknadsdata,
 } from '../../../types/Søknadsdata';
-import { OppsummeringFormValues } from '../../steg/oppsummering/OppsummeringSteg';
+import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',

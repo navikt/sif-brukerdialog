@@ -4,33 +4,34 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
+import { StepId } from '../types/StepId';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import { getSøknadStegConfig, StegID } from './søknadStegConfig';
+import { getSøknadStepConfig } from './søknadStepConfig';
 
 interface Props {
-    stegID: StegID;
+    stepId: StepId;
     children: React.ReactNode;
 }
 
-const SøknadSteg: React.FunctionComponent<Props> = ({ stegID, children }) => {
+const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const intl = useIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
 
-    const stegConfig = getSøknadStegConfig(søknadsdata);
+    const stepConfig = getSøknadStepConfig(søknadsdata);
     const { dispatch } = useSøknadContext();
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
-    const { stepTitleIntlKey, backLinkHref, previousStepRoute, pageTitleIntlKey } = stegConfig[stegID];
+    const { stepTitleIntlKey, backLinkHref, previousStepRoute, pageTitleIntlKey } = stepConfig[stepId];
 
     return (
         <Step
-            activeStepId={stegID}
+            activeStepId={stepId}
             pageTitle={intlHelper(intl, pageTitleIntlKey)}
-            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(stegConfig, intl)}
+            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(stepConfig, intl)}
             stepTitle={intlHelper(intl, stepTitleIntlKey)}
             backLinkHref={backLinkHref}
             onCancel={avbrytSøknad}
@@ -50,4 +51,4 @@ const SøknadSteg: React.FunctionComponent<Props> = ({ stegID, children }) => {
     );
 };
 
-export default SøknadSteg;
+export default SøknadStep;
