@@ -1,0 +1,61 @@
+[
+    {
+        "barn": {
+            "fødselsdato": "2005-02-12",
+            "fornavn": "TVILSOM",
+            "mellomnavn": null,
+            "etternavn": "KNOTT",
+            "aktørId": "2829719526754",
+            "identitetsnummer": "12020567099"
+        },
+        "søknad": {
+            "søknadId": "e185a3c6-803c-4f24-a1b8-8012a7a3accf",
+            "versjon": "1.0.0",
+            "mottattDato": "2021-12-14T15:43:01.265Z",
+            "søker": { "norskIdentitetsnummer": "14026223262" },
+            "ytelse": {
+                "type": "PLEIEPENGER_SYKT_BARN",
+                "barn": { "norskIdentitetsnummer": "12020567099", "fødselsdato": null },
+                "søknadsperiode": ["2021-12-01/2021-12-18"],
+                "opptjeningAktivitet": {
+                    "arbeidstaker": []
+                },
+                "tilsynsordning": { "perioder": { "2021-12-01/2021-12-18": { "etablertTilsynTimerPerDag": "PT0S" } } },
+                "arbeidstid": {
+                    "arbeidstakerList": [
+                        {
+                            "norskIdentitetsnummer": null,
+                            "organisasjonsnummer": "feil",
+                            "arbeidstidInfo": {
+                                "perioder": {
+                                    "2021-12-01/2021-12-13": {
+                                        "jobberNormaltTimerPerDag": "PT6H36M",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    },
+                                    "2021-12-14/2021-12-18": {
+                                        "jobberNormaltTimerPerDag": "PT6H36M",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "norskIdentitetsnummer": null,
+                            "organisasjonsnummer": "839942907",
+                            "arbeidstidInfo": {
+                                "perioder": {
+                                    "2021-12-01/2021-12-18": {
+                                        "jobberNormaltTimerPerDag": "PT0S",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "frilanserArbeidstidInfo": null,
+                    "selvstendigNæringsdrivendeArbeidstidInfo": null
+                }
+            }
+        }
+    }
+]
