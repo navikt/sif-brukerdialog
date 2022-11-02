@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/sif-ettersending",
     "repository": "https://github.com/navikt/sif-ettersending",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "private": true,
     "dependencies": {
         "@formatjs/intl-pluralrules": "^5.1.4",

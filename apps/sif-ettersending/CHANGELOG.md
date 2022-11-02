@@ -1,5 +1,20 @@
 # @navikt/sif-ettersending
 
+## 1.6.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+### Patch Changes
+
+-   Updated dependencies [509383d]
+    -   @navikt/sif-common-amplitude@2.6.0
+    -   @navikt/sif-common-core-ds@5.0.0
+    -   @navikt/sif-common-formik-ds@0.8.0
+    -   @navikt/sif-common-sentry@0.5.0
+    -   @navikt/sif-common-utils@3.16.0
+
 ## 1.5.0
 
 ### Minor Changes

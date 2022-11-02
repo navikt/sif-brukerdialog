@@ -1,5 +1,18 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.0.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+### Patch Changes
+
+-   Updated dependencies [509383d]
+    -   @navikt/appstatus-react-ds@1.5.0
+    -   @navikt/sif-common-formik-ds@0.8.0
+    -   @navikt/sif-common-sentry@0.5.0
+
 ## 4.3.2
 
 ### Patch Changes
