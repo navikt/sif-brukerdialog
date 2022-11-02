@@ -7,7 +7,7 @@ const axiosConfig = {
     withCredentials: true,
 };
 
-export const axiosJsonConfig = { ...axiosConfig, headers: { 'Content-type': 'application/json; charset=utf-8' } };
+export const axiosJsonConfig = { ...axiosConfig };
 export const axiosMultipartConfig = { ...axiosConfig, headers: { 'Content-Type': 'multipart/form-data' } };
 
 const sendMultipartPostRequest = (url: string, formData: FormData) => {
