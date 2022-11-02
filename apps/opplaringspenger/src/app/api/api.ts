@@ -1,5 +1,5 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
+import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { getEnvVariableOrDefault } from '../utils/envUtils';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
