@@ -1,5 +1,17 @@
 # @navikt/sif-common-core-ds
 
+## 5.0.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+### Patch Changes
+
+-   Updated dependencies [509383d]
+    -   @navikt/appstatus-react-ds@1.5.0
+    -   @navikt/sif-common-formik-ds@0.8.0
+
 ## 4.4.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.5.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
 ## 0.4.3
 
 ### Patch Changes

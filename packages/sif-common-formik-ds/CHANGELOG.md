@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.8.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
 ## 0.7.0
 
 ### Minor Changes

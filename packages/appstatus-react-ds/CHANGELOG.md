@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
 ## 1.4.2
 
 ### Patch Changes
