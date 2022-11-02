@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.6.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
 ## 2.5.2
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 3.0.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+### Patch Changes
+
+-   Updated dependencies [509383d]
+    -   @navikt/sif-common-core-ds@5.0.0
+
 ## 2.0.2
 
 ### Patch Changes
