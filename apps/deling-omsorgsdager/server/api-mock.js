@@ -28,7 +28,7 @@ server.use((req, res, next) => {
     next();
 });
 
-const MELLOMLAGRING_JSON = `${os.tmpdir()}/deling-omsorgsdager-mellomlagring.json`;
+const MELLOMLAGRING_JSON = `${os.tmpdir()}/deling-omsorgsdager-mellomlagring-new.json`;
 
 const isJSON = (str) => {
     try {
@@ -206,6 +206,7 @@ const startExpressServer = () => {
 
     server.post('/mellomlagring', (req, res) => {
         const body = req.body;
+        console.log('a');
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
@@ -214,6 +215,7 @@ const startExpressServer = () => {
     server.put('/mellomlagring', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        console.log(req.body);
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
