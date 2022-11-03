@@ -11,21 +11,21 @@
         "url": "https://github.com/navikt/appstatus-react-ds/issues"
     },
     "dependencies": {
-        "@portabletext/react": "^1.0.6",
-        "@sanity/client": "^3.4.1"
+        "@portabletext/react": "1.0.6",
+        "@sanity/client": "3.4.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "^1.5.1",
-        "@navikt/ds-react": "^1.5.1",
-        "@types/node": "^18.11.9",
+        "@navikt/ds-css": "1.5.1",
+        "@navikt/ds-react": "1.5.1",
+        "@types/node": "18.11.9",
         "@types/react": "18.0.24",
-        "@types/react-dom": "^18.0.8",
-        "copyfiles": "^2.4.1",
-        "prop-types": "^15.8.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "rimraf": "^3.0.2",
-        "sass": "^1.55.0"
+        "@types/react-dom": "18.0.8",
+        "copyfiles": "2.4.1",
+        "prop-types": "15.8.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "rimraf": "3.0.2",
+        "sass": "1.55.0"
     },
     "directories": {
         "lib": "lib"
@@ -37,8 +37,8 @@
     "peerDependencies": {
         "@navikt/ds-css": "1",
         "@navikt/ds-react": "1",
-        "sass": "^1.52.x",
-        "sass-loader": "^13.x"
+        "sass": "1.52.x",
+        "sass-loader": "13.x"
     },
     "repository": {
         "type": "git",
