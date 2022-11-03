@@ -28,12 +28,12 @@ const DinSituasjonSummary: React.FunctionComponent<Props> = ({ apiValues }) => {
             <SummaryBlock header={intlHelper(intl, 'step.oppsummering.dinSituasjon.arbeiderINorge')}>
                 <JaNeiSvar harSvartJa={apiValues.arbeiderINorge} />
             </SummaryBlock>
-            {apiValues.antallDagerBruktEtter1Juli && (
+            {apiValues.antallDagerBruktIÅr && (
                 <SummaryBlock header={intlHelper(intl, 'step.oppsummering.dinSituasjon.harBruktOmsorgsdager2021')}>
-                    <TallSvar verdi={apiValues.antallDagerBruktEtter1Juli} />
+                    <TallSvar verdi={apiValues.antallDagerBruktIÅr} />
                 </SummaryBlock>
             )}
-            {apiValues.antallDagerBruktEtter1Juli === undefined && (
+            {apiValues.antallDagerBruktIÅr === undefined && (
                 <SummaryBlock header={intlHelper(intl, 'step.oppsummering.dinSituasjon.harBruktOmsorgsdager2021')}>
                     <JaNeiSvar harSvartJa={false} />
                 </SummaryBlock>

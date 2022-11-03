@@ -17,10 +17,11 @@ WORKDIR /apps/deling-omsorgsdager
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/deling-omsorgsdager/node_modules ./node_modules/
 COPY --from=pruner /app/apps/deling-omsorgsdager/envSettings.js .
+COPY --from=pruner /app/apps/deling-omsorgsdager/dist ./dist
 COPY --from=pruner /app/apps/deling-omsorgsdager/server.js .
+COPY --from=pruner /app/apps/deling-omsorgsdager/tokenx.js .
 COPY --from=pruner /app/apps/deling-omsorgsdager/package.json .
 COPY --from=pruner /app/apps/deling-omsorgsdager/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
-COPY --from=pruner /app/apps/deling-omsorgsdager/dist ./dist
 
 EXPOSE 8080
 CMD ["yarn","--cwd", "apps/deling-omsorgsdager", "start-express"]

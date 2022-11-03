@@ -10,27 +10,26 @@ describe('mapFormDataToApiData', () => {
             arbeiderINorge: YesOrNo.YES,
 
             arbeidssituasjon: [Arbeidssituasjon.arbeidstaker],
-            harBruktOmsorgsdagerEtter1Juli: YesOrNo.YES,
-            antallDagerBruktEtter1Juli: '5',
+            harBruktOmsorgsdagerIÅr: YesOrNo.YES,
+            antallDagerBruktIÅr: '5',
         };
         it('maps standard formData correctly', () => {
             const expectedResult: DinSituasjonApiData = {
                 erYrkesaktiv: true,
                 arbeiderINorge: true,
-
-                antallDagerBruktEtter1Juli: 5,
+                antallDagerBruktIÅr: 5,
                 arbeidssituasjon: [Arbeidssituasjon.arbeidstaker],
             };
             const result = mapDinSituasjonToApiData(mockData);
             expect(JSON.stringify(jsonSort(result))).toEqual(JSON.stringify(jsonSort(expectedResult)));
         });
-        it(`maps does not include ${SoknadFormField.antallDagerBruktEtter1Juli} if ${SoknadFormField.harBruktOmsorgsdagerEtter1Juli} === false`, () => {
+        it(`maps does not include ${SoknadFormField.antallDagerBruktIÅr} if ${SoknadFormField.harBruktOmsorgsdagerIÅr} === false`, () => {
             const expectedResult: DinSituasjonApiData = {
                 erYrkesaktiv: true,
                 arbeiderINorge: true,
                 arbeidssituasjon: [Arbeidssituasjon.arbeidstaker],
             };
-            const result = mapDinSituasjonToApiData({ ...mockData, harBruktOmsorgsdagerEtter1Juli: YesOrNo.NO });
+            const result = mapDinSituasjonToApiData({ ...mockData, harBruktOmsorgsdagerIÅr: YesOrNo.NO });
             expect(JSON.stringify(jsonSort(result))).toEqual(JSON.stringify(jsonSort(expectedResult)));
         });
     });

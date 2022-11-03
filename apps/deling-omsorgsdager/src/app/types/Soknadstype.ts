@@ -2,9 +2,9 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { Mottaker, SoknadFormData } from './SoknadFormData';
 
 export enum Søknadstype {
-    'overføring' = 'overføring',
-    'fordeling' = 'fordeling',
-    'koronaoverføring' = 'koronaoverføring',
+    'overføring' = 'OVERFORING',
+    'fordeling' = 'FORDELING',
+    'koronaoverføring' = 'KORONA',
 }
 
 export const getSøknadstype = (formData: SoknadFormData): Søknadstype | undefined => {

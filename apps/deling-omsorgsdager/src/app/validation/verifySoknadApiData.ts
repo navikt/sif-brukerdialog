@@ -59,8 +59,8 @@ export const SoknadApiFellesVerification: SoknadApiVerification<SoknadApiDataFel
     [SoknadApiDataField.erYrkesaktiv]: ({ erYrkesaktiv }) => erYrkesaktiv !== undefined,
     [SoknadApiDataField.arbeiderINorge]: ({ arbeiderINorge }) => arbeiderINorge !== undefined,
     [SoknadApiDataField.arbeidssituasjon]: ({ arbeidssituasjon }) => arbeidssituasjon !== undefined,
-    [SoknadApiDataField.antallDagerBruktEtter1Juli]: ({ antallDagerBruktEtter1Juli }) =>
-        antallDagerBruktEtter1Juli === undefined || antallDagerBruktEtter1Juli >= 0,
+    [SoknadApiDataField.antallDagerBruktIÅr]: ({ antallDagerBruktIÅr }) =>
+        antallDagerBruktIÅr === undefined || antallDagerBruktIÅr >= 0,
     [SoknadApiDataField.barn]: ({ barn }) => barn !== undefined && barn.length > 0,
     [SoknadApiDataField.korona]: verifyKoronaoverføringApiData,
     [SoknadApiDataField.fordeling]: verifyFordelingApiData,
