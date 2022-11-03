@@ -32,10 +32,7 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 16
-                  # cache: 'yarn'
-            - name: Install dependencies
-              run: yarn add turbo
-
+                  cache: 'yarn'
             - name: Install dependencies
               run: yarn
 
