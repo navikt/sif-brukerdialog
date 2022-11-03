@@ -1,4 +1,4 @@
-name: (helper) Deploy app to dev
+name: (helper) Deploy application to dev
 
 on:
     workflow_call:
@@ -33,7 +33,8 @@ jobs:
               with:
                   node-version: 16
                   cache: 'yarn'
-            - name: Install dependencies
+
+            - name: Install dependencies (yarn)
               run: yarn
 
             - name: Run tests
