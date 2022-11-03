@@ -210,12 +210,12 @@
     "step.oppsummering.samværsavtale.header": "Samværsavtale",
     "steg.oppsummering.samværsavtale.ikkelastetopp": "Ikke lastet opp, må ettersendes",
 
-    "kvittering.tittel": "Melding om å dele omsorgsdager er mottatt",
+    "kvittering.tittel": "Vi har mottatt melding om å dele omsorgsdager",
     "kvittering.info.tittel": "Hva skjer videre nå?",
     "kvittering.info.1": "Vi behandler meldingen fra deg om å dele omsorgsdager.",
-    "kvittering.info.2": "Vi kontakter deg hvis vi trenger flere opplysninger fra deg.",
-    "kvittering.info.3a": "Når vi har behandlet meldingen din får både du og den du deler omsorgsdager med et svar fra oss i posten og på ",
-    "kvittering.info.3b": "Ditt NAV",
+    "kvittering.info.2": "Vi kontakter deg hvis vi trenger flere opplysninger.",
+    "kvittering.info.3a": "Når vi har behandlet meldingen, får både du og den du deler omsorgsdager med et svar fra oss i posten og på",
+    "kvittering.info.3b": "Min side",
     "kvittering.info.3c": ".",
 
     "avbrytSøknadDialog.avbrytSøknadLabel": "Ja, slett melding",
