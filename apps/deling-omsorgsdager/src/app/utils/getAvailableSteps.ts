@@ -44,8 +44,8 @@ const dinSituasjonIsComplete = ({
     erYrkesaktiv,
     arbeiderINorge,
     arbeidssituasjon,
-    harBruktOmsorgsdagerEtter1Juli,
-    antallDagerBruktEtter1Juli,
+    harBruktOmsorgsdagerIÅr,
+    antallDagerBruktIÅr,
 }: Partial<DinSituasjonFormData>): boolean => {
     if (erYrkesaktiv !== YesOrNo.YES) {
         return false;
@@ -57,10 +57,10 @@ const dinSituasjonIsComplete = ({
     if (arbeidssituasjon?.length === 0) {
         return false;
     }
-    if (harBruktOmsorgsdagerEtter1Juli === YesOrNo.UNANSWERED) {
+    if (harBruktOmsorgsdagerIÅr === YesOrNo.UNANSWERED) {
         return false;
     }
-    if (harBruktOmsorgsdagerEtter1Juli === YesOrNo.YES && antallDagerBruktEtter1Juli === undefined) {
+    if (harBruktOmsorgsdagerIÅr === YesOrNo.YES && antallDagerBruktIÅr === undefined) {
         return false;
     }
     return true;

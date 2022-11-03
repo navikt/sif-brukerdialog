@@ -95,26 +95,50 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
     };
 
     const abortSoknad = async (): Promise<void> => {
-        await soknadTempStorage.purge();
-        await logHendelse(ApplikasjonHendelse.avbryt);
-        relocateToSoknad();
+        try {
+            await soknadTempStorage.purge();
+            await logHendelse(ApplikasjonHendelse.avbryt);
+            relocateToSoknad();
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved abort av søknad');
+                relocateToLoginPage();
+            } else {
+                navigateToErrorPage(navigate);
+            }
+        }
     };
 
     const startSoknad = async (): Promise<void> => {
-        await resetSoknad(false);
-        const sId = ulid();
-        setSoknadId(sId);
-        const firstStep = StepID.MOTTAKER;
-        await soknadTempStorage.create();
-        await logSoknadStartet(SKJEMANAVN);
-        const nextRoute = soknadStepUtils.getStepRoute(firstStep, SoknadApplicationType.MELDING);
-        navigate(nextRoute);
+        try {
+            await resetSoknad();
+            setSoknadId(ulid());
+            await soknadTempStorage.create();
+            await logSoknadStartet(SKJEMANAVN);
+            navigate(soknadStepUtils.getStepRoute(StepID.MOTTAKER, SoknadApplicationType.MELDING));
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved start av søknad');
+                relocateToLoginPage();
+            } else {
+                navigateToErrorPage(navigate);
+            }
+        }
     };
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: Partial<SoknadFormData>): Promise<void> => {
-        await soknadTempStorage.update(sId, values, stepID, { søker, barn });
-        await logHendelse(ApplikasjonHendelse.fortsettSenere);
-        relocateToNavFrontpage();
+        try {
+            await soknadTempStorage.update(sId, values, stepID, { søker, barn });
+            await logHendelse(ApplikasjonHendelse.fortsettSenere);
+            relocateToNavFrontpage();
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved continueSoknadLater');
+                relocateToLoginPage();
+            } else {
+                navigateToErrorPage(navigate);
+            }
+        }
     };
 
     const doSendSoknad = async (apiValues: SoknadApiData, resetFormikForm: resetFormFunc): Promise<void> => {
@@ -125,9 +149,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
             navigateToKvitteringPage(navigate);
             setSoknadId(undefined);
-            resetFormikForm({ values: initialFormData });
+            setInitialFormData({ ...initialSoknadFormData });
+            resetFormikForm({ values: initialSoknadFormData });
             setSoknadSent(true);
-            // setInitialFormData(initialFormData);
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved innsending av søknad');

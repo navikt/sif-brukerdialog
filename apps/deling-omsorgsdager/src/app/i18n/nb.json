@@ -13,17 +13,17 @@
     "page.ikkeTilgang.lastNed": "Melding om deling av omsorgsdager",
     "page.loadingPage.tekst": "Laster side",
 
-    "arbeidssituasjon.arbeidstaker": "Arbeidstaker",
-    "arbeidssituasjon.selvstendigNæringsdrivende": "Selvstendig næringsdrivende",
-    "arbeidssituasjon.frilanser": "Frilanser",
+    "arbeidssituasjon.ARBEIDSTAKER": "Arbeidstaker",
+    "arbeidssituasjon.SELVSTENDIG_NÆRINGSDRIVENDE": "Selvstendig næringsdrivende",
+    "arbeidssituasjon.FRILANSER": "Frilanser",
 
     "arbeidstaker": "arbeidstaker",
     "selvstendigNæringsdrivende": "selvstendig næringsdrivende",
     "frilanser": "frilanser",
 
-    "mottaker.ektefelle": "ektefelle",
-    "mottaker.samboer": "samboer",
-    "mottaker.samværsforelder": "samværsforelder",
+    "mottaker.EKTEFELLE": "ektefelle",
+    "mottaker.SAMBOER": "samboer",
+    "mottaker.SAMVÆRSFORELDER": "samværsforelder",
 
     "Fødselsnummer": "Fødselsnummer",
 
@@ -111,9 +111,9 @@
     "step.mottaker.form.stopMessage.korona.html": "Du kan kun dele omsorgsdager med enten den andre forelderen, eller nåværende samboer/ektefelle. Hvis du ikke skal dele dager med noen av disse, kan du ikke gå videre.",
     "step.mottaker.form.mottakerType.spm": "Hvem skal du dele omsorgsdager med?",
     "step.mottaker.form.mottakerType.korona.spm": "Hvem skal du dele omsorgsdager med?",
-    "step.mottaker.form.mottakerType.ektefelle": "Nåværende ektefelle",
-    "step.mottaker.form.mottakerType.samboer": "En samboer du har bodd med i minst 12 måneder",
-    "step.mottaker.form.mottakerType.samværsforelder": "Den andre forelderen som har samvær med felles barn",
+    "step.mottaker.form.mottakerType.EKTEFELLE": "Nåværende ektefelle",
+    "step.mottaker.form.mottakerType.SAMBOER": "En samboer du har bodd med i minst 12 måneder",
+    "step.mottaker.form.mottakerType.SAMVÆRSFORELDER": "Den andre forelderen som har samvær med felles barn",
     "step.mottaker.form.mottakerType.ingenValgt.infoVarsel.hvaBetyr": "Kan jeg velge andre personer?",
     "step.mottaker.form.mottakerType.ingenValgt.infoVarsel": "Når du skal dele omsorgsdager, er det kun mulig å dele med én av de som er listet opp under.",
     "common.fieldvalidation.ugyldigTall": "Feltet må inneholde et gyldig tall",
@@ -197,10 +197,10 @@
     "step.oppsummering.korona.periode.verdi": "Fra og med {fraDato}, til og med {tilDato}",
 
     "step.oppsummering.søknadstype.header": "Meldingen gjelder",
-    "step.oppsummering.søknadstype.overføring.ektefelle": "Dele omsorgsdager med nåværende ektefelle",
-    "step.oppsummering.søknadstype.overføring.samboer": "Dele omsorgdager med en samboer du har bodd med i minst 12 måneder",
-    "step.oppsummering.søknadstype.fordeling": "Dele omsorgsdager med den andre forelderen",
-    "step.oppsummering.søknadstype.koronaoverføring": "Deling av omsorgsdager på grunn av stengt barnehage/skole/SFO",
+    "step.oppsummering.søknadstype.OVERFORING.EKTEFELLE": "Dele omsorgsdager med nåværende ektefelle",
+    "step.oppsummering.søknadstype.OVERFORING.SAMBOER": "Dele omsorgdager med en samboer du har bodd med i minst 12 måneder",
+    "step.oppsummering.søknadstype.FORDELING": "Dele omsorgsdager med den andre forelderen",
+    "step.oppsummering.søknadstype.KORONA": "Deling av omsorgsdager på grunn av stengt barnehage/skole/SFO",
 
     "step.oppsummering.bekrefterOpplysninger": "Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgsdager.",
 
@@ -210,12 +210,12 @@
     "step.oppsummering.samværsavtale.header": "Samværsavtale",
     "steg.oppsummering.samværsavtale.ikkelastetopp": "Ikke lastet opp, må ettersendes",
 
-    "kvittering.tittel": "Melding om å dele omsorgsdager er mottatt",
+    "kvittering.tittel": "Vi har mottatt melding om å dele omsorgsdager",
     "kvittering.info.tittel": "Hva skjer videre nå?",
     "kvittering.info.1": "Vi behandler meldingen fra deg om å dele omsorgsdager.",
-    "kvittering.info.2": "Vi kontakter deg hvis vi trenger flere opplysninger fra deg.",
-    "kvittering.info.3a": "Når vi har behandlet meldingen din får både du og den du deler omsorgsdager med et svar fra oss i posten og på ",
-    "kvittering.info.3b": "Ditt NAV",
+    "kvittering.info.2": "Vi kontakter deg hvis vi trenger flere opplysninger.",
+    "kvittering.info.3a": "Når vi har behandlet meldingen, får både du og den du deler omsorgsdager med et svar fra oss i posten og på",
+    "kvittering.info.3b": "Min side",
     "kvittering.info.3c": ".",
 
     "avbrytSøknadDialog.avbrytSøknadLabel": "Ja, slett melding",
@@ -253,9 +253,9 @@
     "validation.erYrkesaktiv.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du er yrkesaktiv.",
     "validation.arbeidssituasjon.listIsEmpty": "Du må velge hva som er din arbeidssituasjon.",
     "validation.arbeiderINorge.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du jobber i Norge.",
-    "validation.harBruktOmsorgsdagerEtter1Juli.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har brukt omsorgsdager i år.",
-    "validation.antallDagerBruktEtter1Juli.numberHasNoValue": "Skriv inn hvor mange omsorgsdager du har brukt i år.",
-    "validation.antallDagerBruktEtter1Juli.numberHasInvalidFormat": "Du må oppgi et gyldig tall for hvor mange omsorgsdager du har brukt i år. Et gyldig tall inneholder kun siffer.",
-    "validation.antallDagerBruktEtter1Juli.numberIsTooSmall": "Tallet du har oppgitt for hvor mange omsorgsdager du har brukt i år, er for lavt. Tallet kan ikke være lavere enn {min}.",
+    "validation.harBruktOmsorgsdagerIÅr.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har brukt omsorgsdager i år.",
+    "validation.antallDagerBruktIÅr.numberHasNoValue": "Skriv inn hvor mange omsorgsdager du har brukt i år.",
+    "validation.antallDagerBruktIÅr.numberHasInvalidFormat": "Du må oppgi et gyldig tall for hvor mange omsorgsdager du har brukt i år. Et gyldig tall inneholder kun siffer.",
+    "validation.antallDagerBruktIÅr.numberIsTooSmall": "Tallet du har oppgitt for hvor mange omsorgsdager du har brukt i år, er for lavt. Tallet kan ikke være lavere enn {min}.",
     "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte opplysningene."
 }

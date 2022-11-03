@@ -8,14 +8,14 @@ export type DinSituasjonApiData = Pick<
     | SoknadApiDataField.erYrkesaktiv
     | SoknadApiDataField.arbeiderINorge
     | SoknadApiDataField.arbeidssituasjon
-    | SoknadApiDataField.antallDagerBruktEtter1Juli
+    | SoknadApiDataField.antallDagerBruktIÅr
 >;
 
 export const mapDinSituasjonToApiData = (formData: DinSituasjonFormData): DinSituasjonApiData | undefined => {
-    const harBruktOmsorgsdagerEtter1Juli = formData.harBruktOmsorgsdagerEtter1Juli === YesOrNo.YES;
-    const antallDagerBruktEtter1Juli = getNumberFromNumberInputValue(formData.antallDagerBruktEtter1Juli);
+    const harBruktOmsorgsdagerIÅr = formData.harBruktOmsorgsdagerIÅr === YesOrNo.YES;
+    const antallDagerBruktIÅr = getNumberFromNumberInputValue(formData.antallDagerBruktIÅr);
 
-    if (harBruktOmsorgsdagerEtter1Juli && antallDagerBruktEtter1Juli === undefined) {
+    if (harBruktOmsorgsdagerIÅr && antallDagerBruktIÅr === undefined) {
         return undefined;
     }
 
@@ -23,6 +23,6 @@ export const mapDinSituasjonToApiData = (formData: DinSituasjonFormData): DinSit
         erYrkesaktiv: formData.erYrkesaktiv === YesOrNo.YES,
         arbeiderINorge: formData.arbeiderINorge === YesOrNo.YES,
         arbeidssituasjon: formData.arbeidssituasjon,
-        antallDagerBruktEtter1Juli: harBruktOmsorgsdagerEtter1Juli ? antallDagerBruktEtter1Juli : undefined,
+        antallDagerBruktIÅr: harBruktOmsorgsdagerIÅr ? antallDagerBruktIÅr : undefined,
     };
 };
