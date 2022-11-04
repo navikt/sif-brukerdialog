@@ -111,7 +111,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
 
     const startSoknad = async (): Promise<void> => {
         try {
-            await resetSoknad();
+            await resetSoknad(false);
             setSoknadId(ulid());
             await soknadTempStorage.create();
             await logSoknadStartet(SKJEMANAVN);

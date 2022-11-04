@@ -220,7 +220,7 @@ const startExpressServer = () => {
         res.sendStatus(200);
     });
 
-    server.delete('/mellomlagring', (req, res) => {
+    server.delete('/mellomlagring/OMSORGSDAGER_MELDING', (req, res) => {
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(200);
     });
