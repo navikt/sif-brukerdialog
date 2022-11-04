@@ -1,0 +1,1 @@
+nais-config for apper er flyttet til /config på root
