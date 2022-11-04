@@ -12,11 +12,14 @@
     "env": {
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false",
         "API_URL": "https://omsorgsdager-melding-api.nav.no",
+        "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/deling-omsorgsdager/api",
+        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/deling-omsorgsdager/api",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/deling-omsorgsdager",
         "APP_VERSION": "prod",
         "LOGIN_URL": "https://loginservice.nav.no/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/deling-omsorgsdager/melding",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "production",
+        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
         "USE_AMPLITUDE": "true"
     }
 }
