@@ -3,19 +3,19 @@ import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/env
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 
-const axiosConfig = {
-    withCredentials: true,
+const axiosConfig: AxiosRequestConfig = {
+    withCredentials: false,
 };
 
-export const axiosJsonConfig = { ...axiosConfig };
+export const axiosJsonConfig = { ...axiosConfig, headers: { 'Content-type': 'application/json; charset=utf-8' } };
 export const axiosMultipartConfig = { ...axiosConfig, headers: { 'Content-Type': 'multipart/form-data' } };
 
 const sendMultipartPostRequest = (url: string, formData: FormData) => {
     return axios.post(url, formData, axiosMultipartConfig);
 };
 
-axios.defaults.baseURL = getEnvironmentVariable('API_URL');
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = getEnvironmentVariable('FRONTEND_API_PATH');
+axios.defaults.withCredentials = false;
 axios.interceptors.request.use((config) => {
     return config;
 });

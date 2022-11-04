@@ -4,7 +4,7 @@ on:
     push:
         paths:
             - 'apps/sif-ettersending/**/*'
-            - 'config/sif-ettersending/**/*'
+            - 'nais-config/sif-ettersending/**/*'
 
 jobs:
     deploy-to-dev:

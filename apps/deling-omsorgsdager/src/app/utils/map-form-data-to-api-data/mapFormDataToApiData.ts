@@ -14,6 +14,7 @@ import appSentryLogger from '../appSentryLogger';
 import { mapBarnStepToApiData } from './mapBarnStepToApiData';
 import { mapDinSituasjonToApiData } from './mapDinSituasjonToApiData';
 import { mapMottakerToApiData } from './mapMottakerToApiData';
+import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 
 interface MapFormDataToApiDataValues {
     soknadId: string;
@@ -65,7 +66,7 @@ export const getSøknadKoronaoverføring = (
 
     if (commonApiData === undefined) {
         logErrorToSentry(
-            'getSøknadKoronaoverføring: harBruktOmsorgsdagerEtter1Juli && antallDagerBruktEtter1Juli === undefined (konvertering feil)'
+            'getSøknadKoronaoverføring: harBruktOmsorgsdagerIÅr && antallDagerBruktIÅr === undefined (konvertering feil)'
         );
         return undefined;
     }
@@ -87,14 +88,14 @@ export const getSøknadFordeling = (values: MapFormDataToApiDataValues): Søknad
     const samværsavtaleVedleggUrl: string[] = [];
     samværsavtale.forEach((s) => {
         if (s.url) {
-            samværsavtaleVedleggUrl.push(s.url);
+            samværsavtaleVedleggUrl.push(getAttachmentURLBackend(s.url));
         }
     });
     const commonApiData = getCommonApiData(values);
 
     if (commonApiData === undefined) {
         logErrorToSentry(
-            'getSøknadFordeling: harBruktOmsorgsdagerEtter1Juli && antallDagerBruktEtter1Juli === undefined (konvertering feil)'
+            'getSøknadFordeling: harBruktOmsorgsdagerIÅr && antallDagerBruktIÅr === undefined (konvertering feil)'
         );
         return undefined;
     }
@@ -124,7 +125,7 @@ export const getSøknadOverføring = (values: MapFormDataToApiDataValues): Søkn
 
     if (commonApiData === undefined) {
         logErrorToSentry(
-            'getSøknadOverføring: harBruktOmsorgsdagerEtter1Juli && antallDagerBruktEtter1Juli === undefined (konvertering feil)'
+            'getSøknadOverføring: harBruktOmsorgsdagerIÅr && antallDagerBruktIÅr === undefined (konvertering feil)'
         );
         return undefined;
     }

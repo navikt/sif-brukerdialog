@@ -3,16 +3,16 @@ import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/type
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 
 export enum Arbeidssituasjon {
-    'arbeidstaker' = 'arbeidstaker',
-    'selvstendigNæringsdrivende' = 'selvstendigNæringsdrivende',
-    'frilanser' = 'frilanser',
-    'annen' = 'annen',
+    'arbeidstaker' = 'ARBEIDSTAKER',
+    'selvstendigNæringsdrivende' = 'SELVSTENDIG_NÆRINGSDRIVENDE',
+    'frilanser' = 'FRILANSER',
+    'annen' = 'ANNEN',
 }
 
 export enum Mottaker {
-    'samværsforelder' = 'samværsforelder',
-    'ektefelle' = 'ektefelle',
-    'samboer' = 'samboer',
+    'samværsforelder' = 'SAMVÆRSFORELDER',
+    'ektefelle' = 'EKTEFELLE',
+    'samboer' = 'SAMBOER',
 }
 
 export enum SoknadFormField {
@@ -24,7 +24,6 @@ export enum SoknadFormField {
     fnrMottaker = 'fnrMottaker',
     navnMottaker = 'navnMottaker',
     antallDagerSomSkalOverføres = 'antallDagerSomSkalOverføres',
-
     andreBarn = 'andreBarn',
     harAleneomsorg = 'harAleneomsorg',
     harAleneomsorgFor = 'harAleneomsorgFor',
@@ -33,9 +32,8 @@ export enum SoknadFormField {
     erYrkesaktiv = 'erYrkesaktiv',
     arbeiderINorge = 'arbeiderINorge',
     arbeidssituasjon = 'arbeidssituasjon',
-    harBruktOmsorgsdagerEtter1Juli = 'harBruktOmsorgsdagerEtter1Juli',
-    antallDagerBruktEtter1Juli = 'antallDagerBruktEtter1Juli',
-
+    harBruktOmsorgsdagerIÅr = 'harBruktOmsorgsdagerIÅr',
+    antallDagerBruktIÅr = 'antallDagerBruktIÅr',
     samværsavtale = 'samværsavtale',
 }
 
@@ -66,8 +64,8 @@ export interface SoknadFormData {
     [SoknadFormField.erYrkesaktiv]: YesOrNo;
     [SoknadFormField.arbeiderINorge]: YesOrNo;
     [SoknadFormField.arbeidssituasjon]: Arbeidssituasjon[];
-    [SoknadFormField.harBruktOmsorgsdagerEtter1Juli]: YesOrNo;
-    [SoknadFormField.antallDagerBruktEtter1Juli]?: string;
+    [SoknadFormField.harBruktOmsorgsdagerIÅr]: YesOrNo;
+    [SoknadFormField.antallDagerBruktIÅr]?: string;
 
     [SoknadFormField.samværsavtale]: Attachment[];
 }
@@ -87,8 +85,8 @@ export type DinSituasjonFormData = Pick<
     | SoknadFormField.erYrkesaktiv
     | SoknadFormField.arbeiderINorge
     | SoknadFormField.arbeidssituasjon
-    | SoknadFormField.harBruktOmsorgsdagerEtter1Juli
-    | SoknadFormField.antallDagerBruktEtter1Juli
+    | SoknadFormField.harBruktOmsorgsdagerIÅr
+    | SoknadFormField.antallDagerBruktIÅr
 >;
 
 export type MottakerFormData = Pick<

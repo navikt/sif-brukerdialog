@@ -44,7 +44,7 @@ export enum SoknadApiDataField {
     'erYrkesaktiv' = 'erYrkesaktiv',
     'arbeiderINorge' = 'arbeiderINorge',
     'arbeidssituasjon' = 'arbeidssituasjon',
-    'antallDagerBruktEtter1Juli' = 'antallDagerBruktEtter1Juli',
+    'antallDagerBruktIÅr' = 'antallDagerBruktIÅr',
     'barn' = 'barn',
     'korona' = 'korona',
     'fordeling' = 'fordeling',
@@ -63,7 +63,7 @@ export interface SoknadApiDataFelles {
     [SoknadApiDataField.erYrkesaktiv]: boolean;
     [SoknadApiDataField.arbeiderINorge]: boolean;
     [SoknadApiDataField.arbeidssituasjon]: Arbeidssituasjon[];
-    [SoknadApiDataField.antallDagerBruktEtter1Juli]?: number;
+    [SoknadApiDataField.antallDagerBruktIÅr]?: number;
     [SoknadApiDataField.barn]: ApiBarn[];
 }
 
