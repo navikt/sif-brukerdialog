@@ -15,10 +15,10 @@
         "@sanity/client": "3.4.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "1.5.3",
-        "@navikt/ds-react": "1.5.3",
+        "@navikt/ds-css": "1.5.4",
+        "@navikt/ds-react": "1.5.4",
         "@types/node": "18.11.9",
-        "@types/react": "18.0.24",
+        "@types/react": "18.0.25",
         "@types/react-dom": "18.0.8",
         "copyfiles": "2.4.1",
         "prop-types": "15.8.1",

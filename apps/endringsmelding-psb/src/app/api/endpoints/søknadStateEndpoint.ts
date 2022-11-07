@@ -23,7 +23,7 @@ interface SøknadStatePersistenceEndpoint
 
 const persistSetup = persistence<SøknadStatePersistence>({
     url: ApiEndpointPsb.mellomlagring,
-    requestConfig: { ...axiosConfigPsb },
+    requestConfig: { ...axiosConfigPsb, transformRequest: undefined },
 });
 
 const createHashString = (info: SøknadStateHashInfo) => {
