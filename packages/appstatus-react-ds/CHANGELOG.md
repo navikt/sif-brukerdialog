@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.1
+
+### Patch Changes
+
+-   827d044: Diverse UU justeringer
+
 ## 1.5.0
 
 ### Minor Changes

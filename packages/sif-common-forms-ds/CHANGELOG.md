@@ -1,5 +1,13 @@
 # @navikt/sif-common-forms-ds
 
+## 3.0.1
+
+### Patch Changes
+
+-   827d044: Diverse UU justeringer
+-   Updated dependencies [827d044]
+    -   @navikt/sif-common-core-ds@5.0.1
+
 ## 3.0.0
 
 ### Minor Changes

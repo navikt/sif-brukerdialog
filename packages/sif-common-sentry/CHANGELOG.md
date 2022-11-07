@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.5.1
+
+### Patch Changes
+
+-   827d044: Diverse UU justeringer
+
 ## 0.5.0
 
 ### Minor Changes
