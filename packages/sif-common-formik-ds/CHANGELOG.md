@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.8.1
+
+### Patch Changes
+
+-   827d044: Diverse UU justeringer
+
 ## 0.8.0
 
 ### Minor Changes

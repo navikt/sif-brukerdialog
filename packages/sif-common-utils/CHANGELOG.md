@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.16.1
+
+### Patch Changes
+
+-   827d044: Diverse UU justeringer
+
 ## 3.16.0
 
 ### Minor Changes

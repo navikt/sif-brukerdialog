@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.6.1
+
+### Patch Changes
+
+-   827d044: Diverse UU justeringer
+
 ## 2.6.0
 
 ### Minor Changes
