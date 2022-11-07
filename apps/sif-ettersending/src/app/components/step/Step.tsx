@@ -1,5 +1,5 @@
 import { Heading } from '@navikt/ds-react';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
@@ -9,11 +9,13 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../../config/stepConfig';
 import { getStepTexts } from '../../utils/stepUtils';
 import StepIndicator from './step-indicator/StepIndicator';
+import AriaStepInfo from './aria-step-info/AriaStepInfo';
 
 export interface StepProps {
     id: StepID;
     bannerTitle?: string;
     validationSummary?: React.ReactNode;
+    renderAriaStepInfo?: boolean;
 }
 
 interface OwnProps {
@@ -23,11 +25,18 @@ interface OwnProps {
 
 type Props = OwnProps & StepProps;
 
-const Step = ({ id, bannerTitle, stepConfig, validationSummary, children }: Props) => {
+const Step = ({ id, bannerTitle, stepConfig, validationSummary, renderAriaStepInfo, children }: Props) => {
     const intl = useIntl();
     const conf = stepConfig[id];
     const navigate = useNavigate();
     const stepTexts: StepConfigItemTexts = getStepTexts(intl, id, stepConfig);
+
+    useEffect(() => {
+        const stepTitle = document.getElementById('stepTitle');
+        if (stepTitle) {
+            stepTitle.focus();
+        }
+    }, []);
     return (
         <Page
             title={stepTexts.pageTitle}
@@ -51,8 +60,17 @@ const Step = ({ id, bannerTitle, stepConfig, validationSummary, children }: Prop
                 <StepIndicator stepConfig={stepConfig} activeStep={conf.index} />
             </div>
             <div className="mt-12">
-                <Heading level="1" size="large" className="text-center">
+                <Heading
+                    level="1"
+                    size="large"
+                    className="text-center"
+                    style={{ outline: 'none' }}
+                    id="stepTitle"
+                    tabIndex={-1}>
                     {stepTexts.stepTitle}
+                    {renderAriaStepInfo ? (
+                        <AriaStepInfo steps={Object.keys(stepConfig).length} currentStep={conf.index + 1} />
+                    ) : undefined}
                 </Heading>
             </div>
             <div className="mt-8">{children}</div>

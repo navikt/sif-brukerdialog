@@ -1,10 +1,10 @@
+import { TextFieldProps } from '@navikt/ds-react';
 import React from 'react';
 import { ArrayHelpers, Field, FieldArray, FieldProps } from 'formik';
 import { FormError, TypedFormInputValidationProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import FileInput from './file-input/FileInput';
-import { TextFieldProps } from '@navikt/ds-react';
 
 interface OwnProps<FieldName> {
     name: FieldName;

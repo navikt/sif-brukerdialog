@@ -26,7 +26,10 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
     return (
         <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
             <div className={bem.element('centeredContent')}>
-                <CheckmarkIcon />
+                <div role="presentation" aria-hidden="true">
+                    <CheckmarkIcon />
+                </div>
+
                 <Block margin="xl">
                     <Heading level="1" size="large">
                         <FormattedMessage id="page.confirmation.tittel" />

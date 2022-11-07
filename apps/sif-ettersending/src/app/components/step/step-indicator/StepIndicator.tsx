@@ -20,9 +20,13 @@ const renderSteps = (stepConfig: StepConfigInterface, intl: IntlShape) =>
 const StepIndicator = ({ activeStep, stepConfig }: Props) => {
     const intl = useIntl();
     return (
-        <StegIndikator visLabel={false} autoResponsiv={false} aktivtSteg={activeStep}>
-            {renderSteps(stepConfig, intl)}
-        </StegIndikator>
+        <div>
+            <div role="presentation" aria-hidden={true}>
+                <StegIndikator visLabel={false} autoResponsiv={false} aktivtSteg={activeStep}>
+                    {renderSteps(stepConfig, intl)}
+                </StegIndikator>
+            </div>
+        </div>
     );
 };
 

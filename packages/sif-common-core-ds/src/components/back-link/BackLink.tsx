@@ -31,7 +31,7 @@ const BackLink = ({ className, href, onClick, ariaLabel }: Props) => {
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div className={`${bem.block} ${className || ''}`} onClick={handleOnClick}>
             <span className={bem.element('chevron')}>
-                <Back />
+                <Back title="Tilbakepil" />
             </span>
             <Link className={bem.element('link')} href={href} aria-label={ariaLabel}>
                 <FormattedMessage id="backlink.label" />
