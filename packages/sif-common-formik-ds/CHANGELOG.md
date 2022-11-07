@@ -1,5 +1,29 @@
 # @navikt/sif-common-formik-ds
 
+## 0.8.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+## 0.7.0
+
+### Minor Changes
+
+-   2cb7212: Typing fix for TypedFormikWrapperProps
+
+## 0.6.4
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+
+## 0.6.3
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
 ## 0.6.2
 
 ### Patch Changes

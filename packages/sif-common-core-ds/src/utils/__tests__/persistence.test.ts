@@ -1,4 +1,4 @@
-import { dateStringToDateObjectMapper, storageParser } from '../persistence/persistence';
+import { dateStringToDateObjectMapper, storageParser } from '../persistence/storageParser';
 
 const validISODate = '2000-10-10';
 

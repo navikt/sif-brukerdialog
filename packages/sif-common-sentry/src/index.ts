@@ -37,7 +37,8 @@ const logToSentryOrConsole = (message: string, severity: SeverityLevel, applicat
 };
 
 const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string): void => {
-    const maybeXRequestId: string | undefined = error?.response?.headers['x-request-id'];
+    const headers = error?.response?.headers;
+    const maybeXRequestId: string | undefined = headers ? headers['x-request-id'] : undefined;
     const errorMsg: string | undefined = error?.message;
 
     logToSentryOrConsole('Api call error', 'fatal', application, {

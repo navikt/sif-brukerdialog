@@ -1,5 +1,23 @@
 # @navikt/sif-common-utils
 
+## 3.16.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+## 3.15.3
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+
+## 3.15.2
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
 ## 3.15.1
 
 ### Patch Changes

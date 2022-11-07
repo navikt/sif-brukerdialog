@@ -15,7 +15,7 @@ const bem = bemHelper('attachmentLabel');
 const AttachmentLabel = ({ attachment: { url, file } }: Props) => (
     <span className={bem.block}>
         <span className={bem.element('icon')}>
-            <DSAttachment />
+            <DSAttachment title="Filikon" />
         </span>
         {url === undefined && <span>{file.name}</span>}
         {url !== undefined && (

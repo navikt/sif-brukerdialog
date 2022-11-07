@@ -1,5 +1,23 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+## 1.4.2
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+
+## 1.4.1
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
 ## 1.4.0
 
 ### Minor Changes

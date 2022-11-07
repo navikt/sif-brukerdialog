@@ -1,5 +1,17 @@
 # @navikt/sif-common-amplitude
 
+## 2.6.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+## 2.5.2
+
+### Patch Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
 ## 2.5.1
 
 ### Patch Changes

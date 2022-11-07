@@ -1,5 +1,51 @@
 # @navikt/sif-common-core-ds
 
+## 5.0.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+### Patch Changes
+
+-   Updated dependencies [509383d]
+    -   @navikt/appstatus-react-ds@1.5.0
+    -   @navikt/sif-common-formik-ds@0.8.0
+
+## 4.4.3
+
+### Patch Changes
+
+-   1542735: Bytte til ds-react ReadMore
+
+## 4.4.2
+
+### Patch Changes
+
+-   Updated dependencies [2cb7212]
+    -   @navikt/sif-common-formik-ds@0.7.0
+
+## 4.4.1
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+-   Updated dependencies [8533e79]
+    -   @navikt/appstatus-react-ds@1.4.2
+    -   @navikt/sif-common-formik-ds@0.6.4
+
+## 4.4.0
+
+### Minor Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
+### Patch Changes
+
+-   Updated dependencies [03aeac4]
+    -   @navikt/appstatus-react-ds@1.4.1
+    -   @navikt/sif-common-formik-ds@0.6.3
+
 ## 4.3.1
 
 ### Patch Changes

@@ -75,7 +75,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
         <>
             {renderVirksomhetSummary(virksomhet, intl)}
             <Block margin="m">
-                <ExpandableInfo title="Vis flere detaljer" filledBackground={false}>
+                <ExpandableInfo title="Vis flere detaljer">
                     {virksomhet.næringsinntekt !== undefined && (
                         <SummaryBlock header={intlHelper(intl, 'sifForms.virksomhet.næringsinntekt')}>
                             <FormattedMessage id="sifForms.virksomhet.summary.næringsinntekst" />
