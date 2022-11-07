@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
+import { useNavigate } from 'react-router-dom';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
