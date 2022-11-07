@@ -27,16 +27,12 @@ const IntroPage: React.FunctionComponent = () => {
                         <p>{intlHelper(intl, 'introForm.info.2')}</p>
                         <ul>
                             <li>
-                                <ExpandableInfo
-                                    title={intlHelper(intl, 'introForm.info.2.nedtrek.tittel')}
-                                    filledBackground={false}>
+                                <ExpandableInfo title={intlHelper(intl, 'introForm.info.2.nedtrek.tittel')}>
                                     {intlHelper(intl, 'introForm.info.2.nedtrek')}
                                 </ExpandableInfo>
                             </li>
                             <li>
-                                <ExpandableInfo
-                                    title={intlHelper(intl, 'introForm.info.3.nedterk.tittel')}
-                                    filledBackground={false}>
+                                <ExpandableInfo title={intlHelper(intl, 'introForm.info.3.nedterk.tittel')}>
                                     <p>{intlHelper(intl, 'introForm.info.4')}</p>
                                     <ul>
                                         <li>{intlHelper(intl, 'introForm.info.4.1')}</li>
@@ -46,9 +42,7 @@ const IntroPage: React.FunctionComponent = () => {
                                 </ExpandableInfo>
                             </li>
                             <li>
-                                <ExpandableInfo
-                                    title={intlHelper(intl, 'introForm.info.5.nedtrek.1.tittel')}
-                                    filledBackground={false}>
+                                <ExpandableInfo title={intlHelper(intl, 'introForm.info.5.nedtrek.1.tittel')}>
                                     {intlHelper(intl, 'introForm.info.5.nedtrek.1.2021')}
                                 </ExpandableInfo>
                             </li>

@@ -13,7 +13,7 @@ interface Props {
 const bem = bemUtils('soknadHeader');
 
 const SoknadHeader: React.FunctionComponent<Props> = ({ title, subtitle, level = '1', icon }) => (
-    <header className={bem.block}>
+    <div className={bem.block}>
         <div className={bem.element('content')}>
             {icon && <div className={bem.element('icon')}>{icon}</div>}
             <div className={bem.element('text')}>
@@ -29,7 +29,7 @@ const SoknadHeader: React.FunctionComponent<Props> = ({ title, subtitle, level =
                 )}
             </div>
         </div>
-    </header>
+    </div>
 );
 
 export default SoknadHeader;

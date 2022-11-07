@@ -81,7 +81,7 @@ export default class FileInput extends React.Component<FileInputProps> {
                     <div className="attachmentButton__icon">
                         <UploadSvg />
                     </div>
-                    <Label className="attachmentButton__label">{buttonLabel}</Label>
+                    <span className="attachmentButton__label">{buttonLabel}</span>
                     <input
                         id={inputId}
                         name={name}

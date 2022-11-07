@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { prettifyDate } from '@navikt/sif-common-utils/lib/dateFormatter';
 import { getTypedFormComponents } from '../../../lib';
 import datepickerUtils from '../../../src/components/formik-datepicker/datepickerUtils';
 import TypedFormikWrapper from '../../../src/components/typed-formik-wrapper/TypedFormikWrapper';

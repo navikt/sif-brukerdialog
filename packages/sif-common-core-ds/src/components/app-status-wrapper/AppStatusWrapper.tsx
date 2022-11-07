@@ -20,9 +20,7 @@ const AppStatusWrapper = ({ applicationKey, contentRenderer, sanityConfig, unava
     };
 
     return isLoading ? (
-        <div style={{ display: 'flex', justifyContent: 'center', minHeight: '15rem', alignItems: 'center' }}>
-            <LoadingSpinner type="XXL" />
-        </div>
+        <LoadingSpinner size="3xlarge" style="block" />
     ) : (
         <>
             {message !== undefined && (

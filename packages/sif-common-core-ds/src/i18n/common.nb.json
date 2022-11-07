@@ -26,6 +26,8 @@
 
     "vedleggsliste.fjernKnapp": "Fjern",
 
+    "ariaStepInfo": "Steg {currentStep} av {steps}",
+
     "dataRangeValidation.form.validation.required": "Feltet er påkrevd",
     "dataRangeValidation.form.validation.dateOutsideRange": "Første gyldige dato er {fom}, og siste gyldige dato er {tom}",
     "dataRangeValidation.form.validation.dateBeforeMinDate": "Første gyldige dato er {fom}",

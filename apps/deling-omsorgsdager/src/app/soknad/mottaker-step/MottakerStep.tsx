@@ -92,16 +92,12 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                 <p>{intlHelper(intl, 'step.mottaker.veileder.2')}</p>
                 <ul>
                     <li>
-                        <ExpandableInfo
-                            title={intlHelper(intl, 'step.mottaker.veileder.2.nedtrek.tittel')}
-                            filledBackground={false}>
+                        <ExpandableInfo title={intlHelper(intl, 'step.mottaker.veileder.2.nedtrek.tittel')}>
                             {intlHelper(intl, 'step.mottaker.veileder.2.nedtrek')}
                         </ExpandableInfo>
                     </li>
                     <li>
-                        <ExpandableInfo
-                            title={intlHelper(intl, 'step.mottaker.veileder.3.nedterk.tittel')}
-                            filledBackground={false}>
+                        <ExpandableInfo title={intlHelper(intl, 'step.mottaker.veileder.3.nedterk.tittel')}>
                             <p>{intlHelper(intl, 'step.mottaker.veileder.4')}</p>
                             <ul>
                                 <li>{intlHelper(intl, 'step.mottaker.veileder.4.1')}</li>
@@ -111,9 +107,7 @@ const MottakerStep: React.FunctionComponent<Props> = ({ søker }) => {
                         </ExpandableInfo>
                     </li>
                     <li>
-                        <ExpandableInfo
-                            title={intlHelper(intl, 'step.mottaker.veileder.5.nedtrek.1.tittel')}
-                            filledBackground={false}>
+                        <ExpandableInfo title={intlHelper(intl, 'step.mottaker.veileder.5.nedtrek.1.tittel')}>
                             {intlHelper(intl, 'step.mottaker.veileder.5.nedtrek.1.2021')}
                         </ExpandableInfo>
                     </li>

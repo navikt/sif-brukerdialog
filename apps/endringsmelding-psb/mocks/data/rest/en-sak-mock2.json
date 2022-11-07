@@ -1,0 +1,65 @@
+[
+    {
+        "barn": {
+            "fødselsdato": "2005-10-30",
+            "fornavn": "TYKKMAGET",
+            "mellomnavn": null,
+            "etternavn": "VEGGPRYD",
+            "aktørId": "2922001168945",
+            "identitetsnummer": "30100577255"
+        },
+        "søknad": {
+            "søknadId": "generert",
+            "versjon": "1.0.0.",
+            "mottattDato": "2021-12-15T12:55:10.405Z",
+            "søker": { "norskIdentitetsnummer": "00000000000" },
+            "ytelse": {
+                "type": "PLEIEPENGER_SYKT_BARN",
+                "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
+                "søknadsperiode": ["2021-12-01/2021-12-17", "2021-12-14/2021-12-17", "2022-01-01/2022-03-31"],
+                "opptjeningAktivitet": {
+                    "arbeidstaker": []
+                },
+                "tilsynsordning": { "perioder": { "2022-01-01/2022-03-31": { "etablertTilsynTimerPerDag": "PT0S" } } },
+                "arbeidstid": {
+                    "arbeidstakerList": [
+                        {
+                            "norskIdentitetsnummer": null,
+                            "organisasjonsnummer": "805824352",
+                            "arbeidstidInfo": {
+                                "perioder": {
+                                    "2021-12-01/2021-12-13": {
+                                        "jobberNormaltTimerPerDag": "PT6H36M",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    },
+                                    "2021-12-14/2021-12-17": {
+                                        "jobberNormaltTimerPerDag": "PT6H36M",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    },
+                                    "2022-01-01/2022-03-31": {
+                                        "jobberNormaltTimerPerDag": "PT8H",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "norskIdentitetsnummer": null,
+                            "organisasjonsnummer": "839942907",
+                            "arbeidstidInfo": {
+                                "perioder": {
+                                    "2022-01-01/2022-03-31": {
+                                        "jobberNormaltTimerPerDag": "PT0S",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "frilanserArbeidstidInfo": null,
+                    "selvstendigNæringsdrivendeArbeidstidInfo": null
+                }
+            }
+        }
+    }
+]

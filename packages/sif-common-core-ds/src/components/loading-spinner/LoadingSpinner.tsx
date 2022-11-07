@@ -3,16 +3,15 @@ import React from 'react';
 
 interface OwnProps {
     style?: 'inline' | 'block';
-    blockTitle?: string;
     'data-testid'?: string;
 }
 
-type Props = OwnProps & LoaderProps;
+type Props = OwnProps & Pick<LoaderProps, 'size' | 'type' | 'title' | 'transparent' | 'variant'>;
 
-const LoadingSpinner = ({ type, size, style = 'inline', blockTitle, ...rest }: Props) => {
-    const spinner = <Loader type={type} size={size} data-testid={rest['data-testid']} />;
+const LoadingSpinner = ({ type, style = 'inline', ...rest }: Props) => {
+    const spinner = <Loader type={type} {...rest} data-testid={rest['data-testid']} />;
     if (style === 'inline') {
-        return spinner;
+        return <>{spinner}</>;
     }
     return (
         <div
@@ -23,10 +22,10 @@ const LoadingSpinner = ({ type, size, style = 'inline', blockTitle, ...rest }: P
                 minHeight: '15rem',
                 alignItems: 'center',
             }}>
-            <LoadingSpinner type="XXL" />
-            {blockTitle && (
-                <Heading size="medium" style={{ marginTop: '1rem' }}>
-                    {blockTitle}
+            {spinner}
+            {rest.title && (
+                <Heading size="small" style={{ marginTop: '1rem' }}>
+                    {rest.title}
                 </Heading>
             )}
         </div>

@@ -9,7 +9,7 @@ interface Props extends BlockProps {
 
 const SummaryBlock = ({ header, children, margin = 'l' }: Props) => (
     <Block margin={margin}>
-        <Heading size="small" level="3" spacing={true}>
+        <Heading size="small" level="2" spacing={true}>
             {header}
         </Heading>
         {children}

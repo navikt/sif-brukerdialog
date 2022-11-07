@@ -8,11 +8,15 @@ import { ApplicationFormField } from '../../types/ApplicationFormData';
 import { ApplicationType } from '../../types/ApplicationType';
 import ApplicationFormComponents from '../ApplicationFormComponents';
 import ApplicationStep from '../ApplicationStep';
+import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 
 const ValgOmsTypeStep = ({ onValidSubmit }: StepConfigProps) => {
     const intl = useIntl();
     return (
-        <ApplicationStep id={StepID.OMS_TYPE} onValidFormSubmit={onValidSubmit} useValidationErrorSummary={true}>
+        <ApplicationStep
+            id={StepID.OMS_TYPE}
+            onValidFormSubmit={onValidSubmit}
+            validationSummary={<FormikValidationErrorSummary />}>
             <FormBlock>
                 <ApplicationFormComponents.RadioGroup
                     name={ApplicationFormField.søknadstype}
