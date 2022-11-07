@@ -1,23 +1,28 @@
-/* eslint-disable no-console */
-const { createProxyMiddleware } = require('http-proxy-middleware');
-const { initTokenX, exchangeToken } = require('./tokenx');
-const compression = require('compression');
-const cookieParser = require('cookie-parser');
-const envSettings = require('./envSettings');
 const express = require('express');
-const getDecorator = require('./src/build/scripts/decorator');
-const helmet = require('helmet');
-const jose = require('jose');
 const mustacheExpress = require('mustache-express');
-const path = require('path');
+const compression = require('compression');
+const getDecorator = require('./src/build/scripts/decorator');
+const envSettings = require('./envSettings');
+const cookieParser = require('cookie-parser');
+const { initTokenX, exchangeToken } = require('./tokenx');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const Promise = require('promise');
+const helmet = require('helmet');
+const path = require('path');
+const jose = require('jose');
 
 const server = express();
 server.use(
     helmet({
         contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
     })
 );
+server.use((req, res, next) => {
+    res.set('X-XSS-Protection', '1; mode=block');
+    res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
+    next();
+});
 server.use(compression());
 server.use(cookieParser());
 server.set('views', `${__dirname}/dist`);
@@ -60,6 +65,13 @@ const isExpiredOrNotAuthorized = (token) => {
 const startServer = async (html) => {
     await Promise.all([initTokenX()]);
     server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
+    server.use(`${process.env.PUBLIC_PATH}/dist/css`, (req, res, next) => {
+        const requestReferer = req.headers.referer;
+        if (requestReferer !== undefined && requestReferer === 'https://nav.psplugin.com/') {
+            res.set('cross-origin-resource-policy', 'cross-origin');
+        }
+        next();
+    });
     server.use(`${process.env.PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (req, res) => res.sendStatus(200));
