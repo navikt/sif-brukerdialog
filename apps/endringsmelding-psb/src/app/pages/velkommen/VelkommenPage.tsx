@@ -32,7 +32,7 @@ const VelkommenPage = () => {
 
     const startSøknad = () => {
         dispatch(actionsCreator.startSøknad());
-        navigateTo(SøknadRoutes.ARBEIDSTID);
+        navigateTo(SøknadRoutes.OPPSUMMERING);
     };
     return (
         <Page title="Velkommen">

@@ -12,7 +12,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
                 },
-                søknadRoute: SøknadRoutes.ARBEIDSTID,
+                søknadRoute: SøknadRoutes.OPPSUMMERING,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:

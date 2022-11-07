@@ -6,7 +6,7 @@ import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
-import { useSendEndringsmelding } from '../../../hooks/useSendEndringsmelding';
+import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
@@ -29,7 +29,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const { state } = useSøknadContext();
 
-    const { sendSøknad, isSubmitting, sendSøknadError, resetSendSøknad } = useSendEndringsmelding();
+    const { sendSøknad, isSubmitting, sendSøknadError, resetSendSøknad } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 

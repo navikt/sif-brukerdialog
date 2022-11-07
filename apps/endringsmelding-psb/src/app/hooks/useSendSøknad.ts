@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { sendEndringsmeldingEndpoint } from '../api/endpoints/sendEndringsmeldingEndpoint';
+import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
 import { useMellomlagring } from './useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 
-export const useSendEndringsmelding = () => {
+export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
@@ -17,7 +17,7 @@ export const useSendEndringsmelding = () => {
 
     const sendSøknad = (apiData: SøknadApiData) => {
         resetSendSøknad();
-        sendEndringsmeldingEndpoint
+        sendSøknadEndpoint
             .send(apiData)
             .then(() => {
                 slettMellomlagring();
