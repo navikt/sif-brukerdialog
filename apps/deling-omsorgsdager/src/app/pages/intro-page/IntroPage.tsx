@@ -1,7 +1,7 @@
 import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -14,7 +14,7 @@ import IntroForm from './IntroForm';
 
 const IntroPage: React.FunctionComponent = () => {
     const intl = useIntl();
-    const history = useHistory() as any;
+    const navigate = useNavigate();
     useLogSidevisning('intro');
     return (
         <Page
@@ -27,16 +27,12 @@ const IntroPage: React.FunctionComponent = () => {
                         <p>{intlHelper(intl, 'introForm.info.2')}</p>
                         <ul>
                             <li>
-                                <ExpandableInfo
-                                    title={intlHelper(intl, 'introForm.info.2.nedtrek.tittel')}
-                                    filledBackground={false}>
+                                <ExpandableInfo title={intlHelper(intl, 'introForm.info.2.nedtrek.tittel')}>
                                     {intlHelper(intl, 'introForm.info.2.nedtrek')}
                                 </ExpandableInfo>
                             </li>
                             <li>
-                                <ExpandableInfo
-                                    title={intlHelper(intl, 'introForm.info.3.nedterk.tittel')}
-                                    filledBackground={false}>
+                                <ExpandableInfo title={intlHelper(intl, 'introForm.info.3.nedterk.tittel')}>
                                     <p>{intlHelper(intl, 'introForm.info.4')}</p>
                                     <ul>
                                         <li>{intlHelper(intl, 'introForm.info.4.1')}</li>
@@ -46,9 +42,7 @@ const IntroPage: React.FunctionComponent = () => {
                                 </ExpandableInfo>
                             </li>
                             <li>
-                                <ExpandableInfo
-                                    title={intlHelper(intl, 'introForm.info.5.nedtrek.1.tittel')}
-                                    filledBackground={false}>
+                                <ExpandableInfo title={intlHelper(intl, 'introForm.info.5.nedtrek.1.tittel')}>
                                     {intlHelper(intl, 'introForm.info.5.nedtrek.1.2021')}
                                 </ExpandableInfo>
                             </li>
@@ -61,7 +55,7 @@ const IntroPage: React.FunctionComponent = () => {
                 <IntroForm
                     onValidSubmit={() => {
                         setTimeout(() => {
-                            navigateToSoknadFrontpage(history);
+                            navigateToSoknadFrontpage(navigate);
                         });
                     }}
                 />

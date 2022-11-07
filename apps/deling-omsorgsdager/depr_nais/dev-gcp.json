@@ -1,0 +1,26 @@
+{
+    "app": "deling-omsorgsdager",
+    "cluster": "dev-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "minReplicas": "1",
+    "maxReplicas": "1",
+    "ingresses": ["https://deling-omsorgsdager.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/deling-omsorgsdager/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/deling-omsorgsdager/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no", "sanity.io"],
+    "env": {
+        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://deling-omsorgsdager.dev.nav.no/oauth2/logout&redirectToApp=true",
+        "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
+        "FRONTEND_VEDLEGG_URL": "https://deling-omsorgsdager.dev.nav.no/api",
+        "FRONTEND_API_PATH": "/api",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/deling-omsorgsdager",
+        "APP_VERSION": "dev",
+        "LOGIN_URL": "https://deling-omsorgsdager.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/deling-omsorgsdager/melding",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "staging",
+        "USE_AMPLITUDE": "true",
+        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
+        "NPM_CONFIG_CACHE": "/tmp"
+    }
+}

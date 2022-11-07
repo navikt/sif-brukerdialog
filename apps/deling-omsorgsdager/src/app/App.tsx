@@ -39,8 +39,8 @@ root.render(
                 publicPath={publicPath}>
                 <SoknadApplicationCommonRoutes
                     contentRoutes={[
-                        <Route path="/" key="intro" exact={true} component={IntroPage} />,
-                        <Route path="/melding" key="soknad" component={SoknadRemoteDataFetcher} />,
+                        <Route path="/" key="intro" element={<IntroPage />} />,
+                        <Route path="/melding/*" key="soknad" element={<SoknadRemoteDataFetcher />} />,
                     ]}
                 />
             </SoknadApplication>

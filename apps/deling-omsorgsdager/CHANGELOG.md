@@ -1,5 +1,53 @@
 # @navikt/omsorgsdager-deling-dialog
 
+## 3.6.0
+
+### Minor Changes
+
+-   509383d: Pakkeoppdateringer, inkl axios
+
+### Patch Changes
+
+-   Updated dependencies [509383d]
+    -   @navikt/sif-common-amplitude@2.6.0
+    -   @navikt/sif-common-core-ds@5.0.0
+    -   @navikt/sif-common-formik-ds@0.8.0
+    -   @navikt/sif-common-forms-ds@3.0.0
+    -   @navikt/sif-common-sentry@0.5.0
+    -   @navikt/sif-common-soknad-ds@5.0.0
+    -   @navikt/sif-common-utils@3.16.0
+
+## 3.5.1
+
+### Patch Changes
+
+-   8533e79: Pakkeoppdateringer
+-   Updated dependencies [8533e79]
+-   Updated dependencies [4b84bf9]
+    -   @navikt/sif-common-core-ds@4.4.1
+    -   @navikt/sif-common-formik-ds@0.6.4
+    -   @navikt/sif-common-forms-ds@2.0.1
+    -   @navikt/sif-common-sentry@0.4.2
+    -   @navikt/sif-common-utils@3.15.3
+    -   @navikt/sif-common-soknad-ds@4.3.1
+
+## 3.5.0
+
+### Minor Changes
+
+-   03aeac4: Oppdatere pakker. Ink. major update av react-router-dom.
+
+### Patch Changes
+
+-   Updated dependencies [03aeac4]
+    -   @navikt/sif-common-core-ds@4.4.0
+    -   @navikt/sif-common-soknad-ds@4.3.0
+    -   @navikt/sif-common-amplitude@2.5.2
+    -   @navikt/sif-common-formik-ds@0.6.3
+    -   @navikt/sif-common-forms-ds@2.0.0
+    -   @navikt/sif-common-sentry@0.4.1
+    -   @navikt/sif-common-utils@3.15.2
+
 ## 3.4.1
 
 ### Patch Changes

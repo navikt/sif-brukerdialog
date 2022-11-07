@@ -9,8 +9,7 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/Form
 import ResponsivePanel from '@navikt/sif-common-core-ds/lib/components/responsive-panel/ResponsivePanel';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { Person } from '../../types/Person';
-import { SoknadApiData } from '../../types/SoknadApiData';
-import { Barn, SoknadFormField } from '../../types/SoknadFormData';
+import { Barn, SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { Søknadstype } from '../../types/Soknadstype';
 import { verifySoknadApiData } from '../../validation/verifySoknadApiData';
 import { useSoknadContext } from '../SoknadContext';
@@ -24,16 +23,25 @@ import OmBarnaSummary from './OmBarnaSummary';
 import SamværsavtaleSummary from './SamværsavtaleSummary';
 import SøknadstypeSummary from './SoknadstypeSummary';
 import SøkerSummary from './SøkerSummary';
+import { mapFormDataToApiData } from '../../utils/map-form-data-to-api-data/mapFormDataToApiData';
+import { useFormikContext } from 'formik';
 
 type Props = {
+    soknadId: string;
     søker: Person;
     barn: Barn[];
-    apiValues?: SoknadApiData;
 };
 
-const OppsummeringStep: React.FunctionComponent<Props> = ({ søker, apiValues }) => {
+const OppsummeringStep: React.FunctionComponent<Props> = ({ soknadId, søker, barn }) => {
     const intl = useIntl();
     const { sendSoknadStatus, sendSoknad } = useSoknadContext();
+    const { values } = useFormikContext<SoknadFormData>();
+    const apiValues = mapFormDataToApiData({
+        soknadId,
+        locale: intl.locale,
+        formData: values,
+        registrerteBarn: barn,
+    });
 
     const apiDataIsValid = apiValues !== undefined && verifySoknadApiData(apiValues);
 

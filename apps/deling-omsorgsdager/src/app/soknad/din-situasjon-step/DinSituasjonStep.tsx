@@ -16,8 +16,8 @@ import { StepID } from '../soknadStepsConfig';
 
 const cleanupDinSituasjonStep = (values: SoknadFormData): SoknadFormData => {
     const cleanedValues = { ...values };
-    if (values.harBruktOmsorgsdagerEtter1Juli === YesOrNo.NO) {
-        cleanedValues.antallDagerBruktEtter1Juli = undefined;
+    if (values.harBruktOmsorgsdagerIÅr === YesOrNo.NO) {
+        cleanedValues.antallDagerBruktIÅr = undefined;
     }
     return cleanedValues;
 };
@@ -26,7 +26,7 @@ const DinSituasjonStep: React.FunctionComponent = () => {
     const intl = useIntl();
     const { values } = useFormikContext<DinSituasjonFormData>();
 
-    const { harBruktOmsorgsdagerEtter1Juli } = values;
+    const { harBruktOmsorgsdagerIÅr } = values;
     const stepId = StepID.DIN_SITUASJON;
 
     const { erYrkesaktiv } = values;
@@ -103,16 +103,16 @@ const DinSituasjonStep: React.FunctionComponent = () => {
 
                     <FormBlock>
                         <SoknadFormComponents.YesOrNoQuestion
-                            name={SoknadFormField.harBruktOmsorgsdagerEtter1Juli}
+                            name={SoknadFormField.harBruktOmsorgsdagerIÅr}
                             legend={intlHelper(intl, 'step.din_situasjon.form.harBruktOmsorgsdagerI2021.spm')}
                             validate={getYesOrNoValidator()}
                         />
                     </FormBlock>
 
-                    {harBruktOmsorgsdagerEtter1Juli === YesOrNo.YES && (
+                    {harBruktOmsorgsdagerIÅr === YesOrNo.YES && (
                         <FormBlock>
                             <SoknadFormComponents.NumberInput
-                                name={SoknadFormField.antallDagerBruktEtter1Juli}
+                                name={SoknadFormField.antallDagerBruktIÅr}
                                 label={intlHelper(intl, 'step.din_situasjon.form.antallDagerBruktEtter1Januar.spm')}
                                 validate={getNumberValidator({ required: true, min: 1 })}
                                 style={{ maxWidth: '4rem' }}

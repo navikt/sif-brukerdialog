@@ -9,9 +9,10 @@ import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/sokn
 import { applicationIntlMessages } from './i18n/applicationMessages';
 import IntroPage from './pages/intro-page/IntroPage';
 import Søknad from './søknad/Søknad';
-import { getEnvVariableOrDefault } from './utils/envUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import { SøknadRoutes } from './types/SøknadRoutes';
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';
@@ -21,45 +22,36 @@ const container = document.getElementById('app');
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
-function prepare() {
-    if (
-        getEnvironmentVariable('APP_VERSION') !== 'production' &&
-        getEnvVariableOrDefault('MSW_MODE', 'dev') === 'dev'
-    ) {
-        const { worker } = require('../../api-mock/msw/browser');
-        worker.start();
-    }
-    return Promise.resolve();
-}
-
 const App = () => (
     <SifAppWrapper>
-        <AmplitudeProvider
-            applicationKey={APPLICATION_KEY}
-            isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
-            <SoknadApplication
-                appName="Søknad om opplæringspenger"
-                intlMessages={applicationIntlMessages}
-                sentryKey={APPLICATION_KEY}
-                appStatus={{
-                    applicationKey: APPLICATION_KEY,
-                    sanityConfig: {
-                        projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
-                        dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
-                    },
-                }}
-                publicPath={publicPath}>
-                <SoknadApplicationCommonRoutes
-                    contentRoutes={[
-                        <Route path="/" key="intro" exact={true} component={IntroPage} />,
-                        <Route path="/soknad" key="soknad" component={Søknad} />,
-                    ]}
-                />
-            </SoknadApplication>
-        </AmplitudeProvider>
+        <ErrorBoundary>
+            <AmplitudeProvider
+                applicationKey={APPLICATION_KEY}
+                isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
+                <SoknadApplication
+                    appName="Søknad om opplæringspenger"
+                    intlMessages={applicationIntlMessages}
+                    sentryKey={APPLICATION_KEY}
+                    appStatus={{
+                        applicationKey: APPLICATION_KEY,
+                        sanityConfig: {
+                            projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
+                            dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                        },
+                    }}
+                    publicPath={publicPath}>
+                    <SoknadApplicationCommonRoutes
+                        contentRoutes={[
+                            <Route index key="intro" element={<IntroPage />} />,
+                            <Route path={SøknadRoutes.INTRO} key="intro" element={<IntroPage />} />,
+                            <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
+                            <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                        ]}
+                    />
+                </SoknadApplication>
+            </AmplitudeProvider>
+        </ErrorBoundary>
     </SifAppWrapper>
 );
 
-prepare().then(() => {
-    root.render(<App />);
-});
+root.render(<App />);
