@@ -1,15 +1,16 @@
 import { BodyLong, Panel } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/components/textarea-summary/TextareaSummary';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useFormikContext } from 'formik';
 import { sendApplication } from '../../api/api';
@@ -24,7 +25,7 @@ import { ApplicationType } from '../../types/ApplicationType';
 import { getSkjemanavn } from '../../types/skjemanavn';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { mapFormDataToApiData } from '../../utils/mapFormDataToApiData';
-import { navigateTo, navigateToLoginPage } from '../../utils/navigationUtils';
+import { navigateToLoginPage } from '../../utils/navigationUtils';
 import ApplicationFormComponents from '../ApplicationFormComponents';
 import ApplicationStep from '../ApplicationStep';
 import SummaryBlock from './SummaryBlock';
@@ -38,9 +39,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<ApplicationFormData>();
     const søkerdata = React.useContext(SøkerdataContext);
-    const history = useHistory() as any;
     const { logSoknadSent, logSoknadFailed, logUserLoggedOut, logInfo } = useAmplitudeInstance();
     const [sendingInProgress, setSendingInProgress] = useState(false);
+    const navigate = useNavigate();
 
     if (!søkerdata) {
         return null;
@@ -65,7 +66,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
             } else {
                 await logSoknadFailed(skjemanavn);
                 appSentryLogger.logApiError(error);
-                navigateTo(getRouteConfig(søknadstype).ERROR_PAGE_ROUTE, history);
+                navigate(getRouteConfig(søknadstype).ERROR_PAGE_ROUTE);
             }
         }
     }
@@ -79,7 +80,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
                     sendApiData(apiValues, søkerdata);
                 });
             }}
-            useValidationErrorSummary={true}
+            validationSummary={<FormikValidationErrorSummary />}
             buttonDisabled={sendingInProgress || apiValues.søknadstype === YtelseTypeApi.ukjent}
             showButtonSpinner={sendingInProgress}>
             <SifGuidePanel>

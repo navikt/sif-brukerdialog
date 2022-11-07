@@ -36,7 +36,11 @@ const ApplicationStep = (props: Props) => {
     const stepConfig = getStepConfig(søknadstype);
     const texts = getStepTexts(intl, id, stepConfig);
     return (
-        <Step stepConfig={stepConfig} {...props} bannerTitle={intlHelper(intl, `banner.${søknadstype}`)}>
+        <Step
+            stepConfig={stepConfig}
+            {...props}
+            bannerTitle={intlHelper(intl, `banner.${søknadstype}`)}
+            renderAriaStepInfo={true}>
             <ApplicationFormComponents.Form
                 onValidSubmit={onValidFormSubmit}
                 includeButtons={false}

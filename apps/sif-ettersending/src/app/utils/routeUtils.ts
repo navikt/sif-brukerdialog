@@ -1,32 +1,36 @@
-import { getRouteConfig } from '../config/routeConfig';
+import { getApplicationRoute } from '../config/routeConfig';
 import { getStepConfig, StepID } from '../config/stepConfig';
 import { ApplicationFormData } from '../types/ApplicationFormData';
 import { ApplicationType } from '../types/ApplicationType';
-import { documentsStepIsAvailable, summaryStepAvailable } from './stepUtils';
+import { beskrivelseStepIsAvailable, documentsStepIsAvailable, summaryStepAvailable } from './stepUtils';
 
-export const getApplicationRoute = (søknadstype: ApplicationType, stepId: StepID): string => {
-    return `${getRouteConfig(søknadstype).APPLICATION_ROUTE_PREFIX}/${stepId}`;
+export const getApplicationPageRoute = (søknadstype: ApplicationType, page: StepID | string): string => {
+    const route = `${getApplicationRoute(søknadstype)}/${page}`;
+    return route;
 };
 
 export const getNextStepRoute = (søknadstype: ApplicationType, stepId: StepID): string | undefined => {
     const stepConfig = getStepConfig(søknadstype);
     const nextStep = stepConfig[stepId]?.nextStep;
-    return nextStep ? getApplicationRoute(søknadstype, nextStep) : undefined;
+    return nextStep || undefined;
 };
 
-export const isAvailable = (
-    søknadstype: ApplicationType,
-    path: StepID | string,
-    values: ApplicationFormData,
-    soknadSendt?: boolean
-) => {
+export const isStepAvailable = (søknadstype: ApplicationType, path: StepID | string, values: ApplicationFormData) => {
+    if (beskrivelseStepIsAvailable(values) === false) {
+        return false;
+    }
     switch (path) {
+        case StepID.BESKRIVELSE:
+            return (
+                søknadstype === ApplicationType.pleiepengerBarn ||
+                søknadstype === ApplicationType.pleiepengerLivetsSluttfase
+            );
+        case StepID.OMS_TYPE:
+            return søknadstype === ApplicationType.omsorgspenger;
         case StepID.DOKUMENTER:
             return documentsStepIsAvailable(values, søknadstype);
         case StepID.OPPSUMMERING:
             return summaryStepAvailable(values);
-        case getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE:
-            return soknadSendt === true;
     }
     return true;
 };
