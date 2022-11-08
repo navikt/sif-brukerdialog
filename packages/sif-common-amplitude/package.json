@@ -30,7 +30,7 @@
     ],
     "peerDependencies": {
         "amplitude-js": "8.x",
-        "constate": "3.3.0",
+        "constate": "3.3.x",
         "react": "17.x || ^18.x"
     },
     "repository": {
