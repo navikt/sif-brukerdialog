@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.6.2
+
+### Patch Changes
+
+-   4c58f4b: Oppdatere peerDeps for sif-common-amplitude
+
 ## 2.6.1
 
 ### Patch Changes
