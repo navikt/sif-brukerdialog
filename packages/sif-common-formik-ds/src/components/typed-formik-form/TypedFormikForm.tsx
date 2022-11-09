@@ -72,6 +72,8 @@ function TypedFormikForm<FormValues, ErrorType>({
     const [formSubmitCount, setFormSubmitCout] = useState(submitCount);
 
     const ref = useRef<any>({ isSubmitting, isValid });
+    const summaryRef = useRef<HTMLDivElement>(null);
+
     const showErrors = formik?.status?.showErrors === true || formik?.initialStatus?.showErrors === true;
 
     useEffect(() => {
@@ -85,6 +87,9 @@ function TypedFormikForm<FormValues, ErrorType>({
                     setFormSubmitCout(submitCount);
                 } else {
                     setStatus({ showErrors: true });
+                    if (summaryRef && summaryRef.current) {
+                        summaryRef.current.focus();
+                    }
                 }
             } else {
                 if (showErrors) {
@@ -150,7 +155,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                 {children}
                 {includeValidationSummary && !formik.isValid && isValidationErrorsVisible(formik) && (
                     <div style={{ marginTop: '2rem' }}>
-                        <FormikValidationErrorSummary heading={errorSummaryTitle} />
+                        <FormikValidationErrorSummary heading={errorSummaryTitle} summaryRef={summaryRef} />
                     </div>
                 )}
                 {includeButtons && (

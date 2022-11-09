@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { useFormikContext } from 'formik';
 import { getAllFieldsWithErrors, getErrorForField } from '../../utils/typedFormErrorUtils';
 import ValidationSummary, { ValidationSummaryError } from '../helpers/ValidationSummary';
@@ -6,10 +6,11 @@ import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 
 interface Props {
     heading?: string;
+    summaryRef?: RefObject<HTMLDivElement>;
     wrapper?: (errorSummary: JSX.Element) => JSX.Element;
 }
 
-const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({ heading, wrapper }) => {
+const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({ heading, summaryRef, wrapper }) => {
     const context = React.useContext(TypedFormikFormContext);
     const formik = useFormikContext();
     if (formik && context && context.showErrors) {
@@ -32,7 +33,7 @@ const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({ heading,
             if (wrapper) {
                 return wrapper(<ValidationSummary errors={errors} />);
             }
-            return <ValidationSummary heading={heading || 'Feil i skjema'} errors={errors} />;
+            return <ValidationSummary heading={heading || 'Feil i skjema'} errors={errors} summaryRef={summaryRef} />;
         }
     }
     return null;
