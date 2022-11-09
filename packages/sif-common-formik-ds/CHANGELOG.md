@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.8.2
+
+### Patch Changes
+
+-   f88b2f7: Sette fokus på oppsummering hver gang bruker submitter og det er skjemafeil
+
 ## 0.8.1
 
 ### Patch Changes
