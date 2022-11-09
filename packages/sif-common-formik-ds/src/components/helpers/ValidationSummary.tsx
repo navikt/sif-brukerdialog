@@ -1,9 +1,10 @@
 import { ErrorSummary, ErrorSummaryProps } from '@navikt/ds-react';
-import React, { useEffect, useRef } from 'react';
+import React, { RefObject } from 'react';
 import ValidationErrorLink from './ValidationErrorLink';
 
 export interface Props extends Pick<ErrorSummaryProps, 'heading' | 'headingTag'> {
     errors: ValidationSummaryError[];
+    summaryRef?: RefObject<HTMLDivElement>;
 }
 
 export interface ValidationSummaryError {
@@ -11,16 +12,9 @@ export interface ValidationSummaryError {
     fieldName: string;
 }
 
-const ValidationSummary: React.FunctionComponent<Props> = ({ errors, heading, headingTag }) => {
-    const summaryEl = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        const { current } = summaryEl;
-        if (current !== null) {
-            current.focus();
-        }
-    }, []);
+const ValidationSummary: React.FunctionComponent<Props> = ({ errors, heading, headingTag, summaryRef }) => {
     return (
-        <ErrorSummary ref={summaryEl} heading={heading || 'Feil i skjema'} headingTag={headingTag}>
+        <ErrorSummary ref={summaryRef} heading={heading || 'Feil i skjema'} headingTag={headingTag}>
             {errors.map((error, idx) => (
                 <ValidationErrorLink
                     key={`validation_error_key_${idx}`}
