@@ -14,7 +14,7 @@
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&logoutUrl=https://k9-ettersending-soknad.dev.nav.no/oauth2/logout&redirectToApp=true",
         "DITT_NAV_URL": "https://www.dev.nav.no/person/dittnav/",
-        "FRONTEND_API_PATH": "https://k9-ettersending-soknad.dev.nav.no/api",
+        "FRONTEND_API_PATH": "/api",
         "FRONTEND_VEDLEGG_URL": "https://k9-ettersending-soknad.dev.nav.no/api",
         "INNSYN_PP": "https://sif-innsyn.dev.nav.no/familie/sykdom-i-familien/soknad/innsyn/dine-pleiepenger",
         "LIVETS_SLUTTFASE": "on",
