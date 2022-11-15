@@ -4,6 +4,7 @@ import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { ApplicationApiData, YtelseTypeApi } from '../types/ApplicationApiData';
 import { ApplicationFormData } from '../types/ApplicationFormData';
 import { ApplicationType } from '../types/ApplicationType';
+import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
 
 const getSøknadstypeApi = (søknadstype: ApplicationType): YtelseTypeApi => {
     switch (søknadstype) {
@@ -43,7 +44,9 @@ export const mapFormDataToApiData = (
         søknadstype: søknadstype ? getSøknadstypeApi(søknadstype) : getSøknadstypeApi(søknadstypeFraURL),
         beskrivelse,
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        vedlegg: dokumenter.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!),
+        vedlegg: dokumenter
+            .filter((attachment) => !attachmentUploadHasFailed(attachment))
+            .map(({ url }) => getAttachmentURLBackend(url)),
     };
     return apiData;
 };

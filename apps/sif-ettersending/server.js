@@ -55,6 +55,7 @@ const isExpiredOrNotAuthorized = (token) => {
             const exp = jose.decodeJwt(token).exp;
             return Date.now() >= exp * 1000;
         } catch (err) {
+            // eslint-disable-next-line no-console
             console.error('Feilet med dekoding av token: ', err);
             return true;
         }
@@ -89,17 +90,27 @@ const startServer = async (html) => {
                 return path.replace(process.env.FRONTEND_API_PATH, '');
             },
 
-            router: async (req, res) => {
-                const selvbetjeningIdtoken = req.cookies['selvbetjening-idtoken'];
+            router: async (req) => {
+                if (req.headers['authorization'] !== undefined) {
+                    const token = req.headers['authorization'].replace('Bearer ', '');
+                    if (isExpiredOrNotAuthorized(token)) {
+                        return undefined;
+                    }
+                    const exchangedToken = await exchangeToken(token);
+                    if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                        req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+                    }
+                } else if (req.cookies['selvbetjening-idtoken'] !== undefined) {
+                    const selvbetjeningIdtoken = req.cookies['selvbetjening-idtoken'];
+                    if (isExpiredOrNotAuthorized(selvbetjeningIdtoken)) {
+                        return undefined;
+                    }
 
-                if (isExpiredOrNotAuthorized(selvbetjeningIdtoken)) {
-                    return undefined;
-                }
-
-                const exchangedToken = await exchangeToken(selvbetjeningIdtoken);
-                if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
-                    req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
-                }
+                    const exchangedToken = await exchangeToken(selvbetjeningIdtoken);
+                    if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                        req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+                    }
+                } else return undefined;
 
                 return undefined;
             },
@@ -115,10 +126,12 @@ const startServer = async (html) => {
 
     const port = process.env.PORT || 8080;
     server.listen(port, () => {
+        // eslint-disable-next-line no-console
         console.log(`App listening on port: ${port}`);
     });
 };
 
+// eslint-disable-next-line no-console
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
 verifyLoginUrl()
