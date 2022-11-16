@@ -69,7 +69,6 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
                                         target="_blank">
                                         <FormattedMessage id="page.confirmation.check.3.2" />
                                     </Link>
-                                    <FormattedMessage id="page.confirmation.check.3.3" />
                                 </li>
                             </ul>
                         </>
