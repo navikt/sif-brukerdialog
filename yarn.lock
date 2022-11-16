@@ -2335,6 +2335,11 @@
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.5.4.tgz#6313f0e196f65f276110fc82803e001d4eea4cbd"
   integrity sha512-uEfBJRwlh7DdPGQAMQogNsnuBFI0OjCOQig7NklYIvSds7kAULruiUpk+R0bUDRl2QBi4/ufhOSLTu47OTsOiQ==
 
+"@navikt/ds-css@1.5.7":
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.5.7.tgz#77c0bc1d1242d793b4c8e45f57047aa94f1df9a1"
+  integrity sha512-6CHKHdvx/Jv+fykwpAdhWh8Sa+RG5+TjIhphi/61C17v7l3JZ1d46bY+w7jK4sX3rigBtNO/0akMMq3UvYDRKg==
+
 "@navikt/ds-css@^1.0.0":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.5.3.tgz#e08b2a3ca4299954dce1bde5438ea55a877837c9"
@@ -2354,6 +2359,11 @@
   resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-1.5.4.tgz#f95ac8bb0c12100e8fc7ab8c2f116655c6c7df2d"
   integrity sha512-Aet2cGZwmE8pGTWEQb3eTNbMwL+gEVBQy6UhqlqDTjVsgGcRUNJCcVLIH2eGUV1zDhtMFzGU6Bw14Es6KwUHJA==
 
+"@navikt/ds-icons@1.5.7", "@navikt/ds-icons@^1.5.7":
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-1.5.7.tgz#37f674b90455657dece01d0183d29427421723f7"
+  integrity sha512-4gYScPF+9cxjXbUSlRAn67elJQEh42FfPORCT2PvNK4wazIXW1WaS77d+651R0KLrz3lvaon6C9RtAGsT44AJA==
+
 "@navikt/ds-icons@^1.5.3":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-1.5.3.tgz#ff3afe36c03465365a6f9f49f507d871e22bd7ad"
@@ -2366,6 +2376,20 @@
   dependencies:
     "@floating-ui/react-dom-interactions" "0.9.2"
     "@navikt/ds-icons" "^1.5.4"
+    "@radix-ui/react-tabs" "1.0.0"
+    "@radix-ui/react-toggle-group" "1.0.0"
+    clsx "^1.2.1"
+    date-fns "2.29.3"
+    react-day-picker "8.3.4"
+    react-modal "3.15.1"
+
+"@navikt/ds-react@1.5.7":
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-1.5.7.tgz#87d9fa8b83dd00edc87abe1796e768e8f97d3a9a"
+  integrity sha512-T8YYc7RhWYebsz9og/rNUyLarFCa7wZGs1t4xwGh/QMpGaxQ+mWsTbhaXAE15lHzWn8MW9X1ABDTfxiY7h9ITw==
+  dependencies:
+    "@floating-ui/react-dom-interactions" "0.9.2"
+    "@navikt/ds-icons" "^1.5.7"
     "@radix-ui/react-tabs" "1.0.0"
     "@radix-ui/react-toggle-group" "1.0.0"
     clsx "^1.2.1"
@@ -2391,6 +2415,11 @@
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-1.5.4.tgz#754d8302d0362cb54162f4879715a40277258257"
   integrity sha512-zfzmzqBaBoYOdcoi7OfKLIUmEgnajbRwZzFDePfr+7pJlj2OTmJ608NYVVCjtVmoH8cChgXfj1jnUaeekm1uqA==
+
+"@navikt/ds-tailwind@1.5.7":
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-1.5.7.tgz#a66bd1d565b38a1dde3ba2f37864b57f341843cd"
+  integrity sha512-TygqLTB3eImcUdcftRCsTeuegTwTIuuE5M1Rg/WKvABerOBukGJLc5fZSIuc6E2+DggomYxcW9cEPsSZzy408Q==
 
 "@navikt/fnrvalidator@1.3.0":
   version "1.3.0"
@@ -2815,6 +2844,11 @@
   version "1.1054.0"
   resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1054.0.tgz#cac3cee1f177cd5511336166823b4bbe72fa5d9c"
   integrity sha512-N2kpUyvbC5T43zm9f7aPXflDN7droj5CQ+yJNCIxyq5EsubX5+7r7muRMLDBVyaBF8SEuMciKalqhDah50r36A==
+
+"@snyk/protect@1.1059.0":
+  version "1.1059.0"
+  resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1059.0.tgz#83b4aa1ba7acfd8d0dc3c0551277a5a37d569a38"
+  integrity sha512-Wg1Hxhr4k/UFHhUh2Xxw39Xj3xePviYoGO21BUTZw6Ll8LJELcqNNY3Kxa+wEY82wF1DK27P3jkNcAt0HsiFBg==
 
 "@storybook/addon-a11y@6.5.13":
   version "6.5.13"
@@ -4447,6 +4481,13 @@
   version "18.0.8"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.8.tgz#d2606d855186cd42cc1b11e63a71c39525441685"
   integrity sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-dom@18.0.9":
+  version "18.0.9"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.9.tgz#ffee5e4bfc2a2f8774b15496474f8e7fe8d0b504"
+  integrity sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==
   dependencies:
     "@types/react" "*"
 
@@ -11820,7 +11861,12 @@ jest@^27.4.3:
     import-local "^3.0.2"
     jest-cli "^27.5.1"
 
-jose@4.10.4, jose@^4.10.0:
+jose@4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-4.11.0.tgz#1c7f5c7806383d3e836434e8f49da531cb046a9d"
+  integrity sha512-wLe+lJHeG8Xt6uEubS4x0LVjS/3kXXu9dGoj9BNnlhYq7Kts0Pbb2pvv5KiI0yaKH/eaiR0LUOBhOVo9ktd05A==
+
+jose@^4.10.0:
   version "4.10.4"
   resolved "https://registry.yarnpkg.com/jose/-/jose-4.10.4.tgz#5f934b2fcf2995776e8f671f7523c6ac52c138f7"
   integrity sha512-eBH77Xs9Yc/oTDvukhAEDVMijhekPuNktXJL4tUlB22jqKP1k48v5nmsUmc8feoJPsxB3HsfEt2LbVSoz+1mng==
@@ -13464,10 +13510,10 @@ open@^8.0.9, open@^8.4.0:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
-openid-client@5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-5.2.1.tgz#dd26298aca237625298ef34ff11ad9276917df28"
-  integrity sha512-KPxqWnxobG/70Cxqyvd43RWfCfHedFnCdHSBpw5f7WnTnuBAeBnvot/BIo+brrcTr0wyAYUlL/qejQSGwWtdIg==
+openid-client@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-5.3.0.tgz#e0fa433bb7a156b09d8cbb100abe95b322aa42be"
+  integrity sha512-SykPCeZBZ/SxiBH5AWynvFUIDX3//2pgwc/3265alUmGHeCN03+X8uP+pHOVnCXCKfX/XOhO90qttAQ76XcGxA==
   dependencies:
     jose "^4.10.0"
     lru-cache "^6.0.0"
@@ -14613,6 +14659,15 @@ postcss@8.4.18, postcss@^8.2.15, postcss@^8.3.5, postcss@^8.4.17, postcss@^8.4.1
   version "8.4.18"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.18.tgz#6d50046ea7d3d66a85e0e782074e7203bc7fbca2"
   integrity sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA==
+  dependencies:
+    nanoid "^3.3.4"
+    picocolors "^1.0.0"
+    source-map-js "^1.0.2"
+
+postcss@8.4.19:
+  version "8.4.19"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.19.tgz#61178e2add236b17351897c8bcc0b4c8ecab56fc"
+  integrity sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==
   dependencies:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
@@ -17034,35 +17089,6 @@ tabbable@^5.3.3:
   resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-5.3.3.tgz#aac0ff88c73b22d6c3c5a50b1586310006b47fbf"
   integrity sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==
 
-tailwindcss@3.2.1, tailwindcss@^3.0.2:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.2.1.tgz#1bd828fff3172489962357f8d531c184080a6786"
-  integrity sha512-Uw+GVSxp5CM48krnjHObqoOwlCt5Qo6nw1jlCRwfGy68dSYb/LwS9ZFidYGRiM+w6rMawkZiu1mEMAsHYAfoLg==
-  dependencies:
-    arg "^5.0.2"
-    chokidar "^3.5.3"
-    color-name "^1.1.4"
-    detective "^5.2.1"
-    didyoumean "^1.2.2"
-    dlv "^1.1.3"
-    fast-glob "^3.2.12"
-    glob-parent "^6.0.2"
-    is-glob "^4.0.3"
-    lilconfig "^2.0.6"
-    micromatch "^4.0.5"
-    normalize-path "^3.0.0"
-    object-hash "^3.0.0"
-    picocolors "^1.0.0"
-    postcss "^8.4.17"
-    postcss-import "^14.1.0"
-    postcss-js "^4.0.0"
-    postcss-load-config "^3.1.4"
-    postcss-nested "6.0.0"
-    postcss-selector-parser "^6.0.10"
-    postcss-value-parser "^4.2.0"
-    quick-lru "^5.1.1"
-    resolve "^1.22.1"
-
 tailwindcss@3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.2.2.tgz#705f78cec8f4de2feb52abdb7a8a056e67f2d736"
@@ -17083,6 +17109,64 @@ tailwindcss@3.2.2:
     object-hash "^3.0.0"
     picocolors "^1.0.0"
     postcss "^8.4.18"
+    postcss-import "^14.1.0"
+    postcss-js "^4.0.0"
+    postcss-load-config "^3.1.4"
+    postcss-nested "6.0.0"
+    postcss-selector-parser "^6.0.10"
+    postcss-value-parser "^4.2.0"
+    quick-lru "^5.1.1"
+    resolve "^1.22.1"
+
+tailwindcss@3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.2.4.tgz#afe3477e7a19f3ceafb48e4b083e292ce0dc0250"
+  integrity sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==
+  dependencies:
+    arg "^5.0.2"
+    chokidar "^3.5.3"
+    color-name "^1.1.4"
+    detective "^5.2.1"
+    didyoumean "^1.2.2"
+    dlv "^1.1.3"
+    fast-glob "^3.2.12"
+    glob-parent "^6.0.2"
+    is-glob "^4.0.3"
+    lilconfig "^2.0.6"
+    micromatch "^4.0.5"
+    normalize-path "^3.0.0"
+    object-hash "^3.0.0"
+    picocolors "^1.0.0"
+    postcss "^8.4.18"
+    postcss-import "^14.1.0"
+    postcss-js "^4.0.0"
+    postcss-load-config "^3.1.4"
+    postcss-nested "6.0.0"
+    postcss-selector-parser "^6.0.10"
+    postcss-value-parser "^4.2.0"
+    quick-lru "^5.1.1"
+    resolve "^1.22.1"
+
+tailwindcss@^3.0.2:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.2.1.tgz#1bd828fff3172489962357f8d531c184080a6786"
+  integrity sha512-Uw+GVSxp5CM48krnjHObqoOwlCt5Qo6nw1jlCRwfGy68dSYb/LwS9ZFidYGRiM+w6rMawkZiu1mEMAsHYAfoLg==
+  dependencies:
+    arg "^5.0.2"
+    chokidar "^3.5.3"
+    color-name "^1.1.4"
+    detective "^5.2.1"
+    didyoumean "^1.2.2"
+    dlv "^1.1.3"
+    fast-glob "^3.2.12"
+    glob-parent "^6.0.2"
+    is-glob "^4.0.3"
+    lilconfig "^2.0.6"
+    micromatch "^4.0.5"
+    normalize-path "^3.0.0"
+    object-hash "^3.0.0"
+    picocolors "^1.0.0"
+    postcss "^8.4.17"
     postcss-import "^14.1.0"
     postcss-js "^4.0.0"
     postcss-load-config "^3.1.4"
@@ -18327,6 +18411,36 @@ webpack@5, webpack@5.74.0, "webpack@>=4.43.0 <6.0.0", webpack@^5.64.4, webpack@^
   version "5.74.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.74.0.tgz#02a5dac19a17e0bb47093f2be67c695102a55980"
   integrity sha512-A2InDwnhhGN4LYctJj6M1JEaGL7Luj6LOmyBHjcI8529cm5p6VXiTIW2sn6ffvEAKmveLzvu4jrihwXtPojlAA==
+  dependencies:
+    "@types/eslint-scope" "^3.7.3"
+    "@types/estree" "^0.0.51"
+    "@webassemblyjs/ast" "1.11.1"
+    "@webassemblyjs/wasm-edit" "1.11.1"
+    "@webassemblyjs/wasm-parser" "1.11.1"
+    acorn "^8.7.1"
+    acorn-import-assertions "^1.7.6"
+    browserslist "^4.14.5"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^5.10.0"
+    es-module-lexer "^0.9.0"
+    eslint-scope "5.1.1"
+    events "^3.2.0"
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.2.9"
+    json-parse-even-better-errors "^2.3.1"
+    loader-runner "^4.2.0"
+    mime-types "^2.1.27"
+    neo-async "^2.6.2"
+    schema-utils "^3.1.0"
+    tapable "^2.1.1"
+    terser-webpack-plugin "^5.1.3"
+    watchpack "^2.4.0"
+    webpack-sources "^3.2.3"
+
+webpack@5.75.0:
+  version "5.75.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.75.0.tgz#1e440468647b2505860e94c9ff3e44d5b582c152"
+  integrity sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^0.0.51"
