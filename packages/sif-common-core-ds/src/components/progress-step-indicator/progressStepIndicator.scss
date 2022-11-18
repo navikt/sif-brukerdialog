@@ -1,0 +1,58 @@
+.progressStepIndicator {
+    &__heading {
+        margin-bottom: 0.5rem;
+    }
+    &__progressBarWrapper {
+        margin-bottom: 0.5rem;
+    }
+    &__info {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        &__aktivtSteg {
+            flex-grow: 1;
+            justify-self: flex-start;
+        }
+        &__alleSteg {
+            justify-self: flex-end;
+        }
+        @media screen and (max-width: 20rem) {
+            display: block;
+        }
+    }
+    &__allSteps {
+        margin-top: 0.5rem;
+        border: 4px solid var(--navds-global-color-deepblue-100);
+        border-radius: 0.5rem;
+        padding: 1rem 1rem 0rem 1rem;
+    }
+    &__allStepsFooter,
+    &__allStepsHeader {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        p:first-child {
+            margin-top: 0;
+        }
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__expandCollapseIcon {
+        font-size: 1.25rem;
+        margin-top: 0.125rem;
+    }
+}
+
+.progressBar {
+    $border-radius: 0.5rem;
+    background-color: var(--navds-global-color-deepblue-100);
+    width: 100%;
+    border-radius: $border-radius;
+    &__progress {
+        height: 1rem;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+        background-color: var(--navds-global-color-deepblue-300);
+    }
+}
