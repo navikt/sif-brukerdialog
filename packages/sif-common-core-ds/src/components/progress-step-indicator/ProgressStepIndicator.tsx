@@ -16,10 +16,23 @@ export interface ProgressStep extends Pick<StepperStepProps, 'completed'> {
 interface Props {
     steps: ProgressStep[];
     currentStepIndex: number;
+    labels?: Labels;
     titleHeadingLevel?: '1' | '2';
     allStepsHeader?: React.ReactNode;
     allStepsFooter?: React.ReactNode;
 }
+
+interface Labels {
+    showAllStepsLabel?: string;
+    allStepsSectionAriaLabel?: string;
+    stepProgressLabelFunc: (currentStep: number, totalSteps: number) => string;
+}
+
+const defaultLabels: Labels = {
+    showAllStepsLabel: 'Vis alle steg',
+    allStepsSectionAriaLabel: 'Alle steg',
+    stepProgressLabelFunc: (currentStep, totalSteps) => `Steg ${currentStep} av ${totalSteps}`,
+};
 
 const bem = bemUtils('progressStepIndicator');
 
@@ -28,6 +41,7 @@ const ProgressStepIndicator: React.FunctionComponent<Props> = ({
     currentStepIndex,
     allStepsHeader,
     allStepsFooter,
+    labels = defaultLabels,
     titleHeadingLevel = '1',
 }) => {
     const [allStepsVisible, setAllStepsVisible] = useState(false);
@@ -48,9 +62,7 @@ const ProgressStepIndicator: React.FunctionComponent<Props> = ({
             </div>
             <div className={bem.element('info')}>
                 <div className={bem.element('info__aktivtSteg')}>
-                    <BodyShort>
-                        Steg {stepNum} av {totalSteps}
-                    </BodyShort>
+                    <BodyShort>{labels.stepProgressLabelFunc(stepNum, totalSteps)}</BodyShort>
                 </div>
                 <div className={bem.element('info__alleSteg')}>
                     <button
@@ -65,13 +77,13 @@ const ProgressStepIndicator: React.FunctionComponent<Props> = ({
                             <Expand className={bem.element('expandCollapseIcon')} aria-hidden />
                         )}
                         {allStepsVisible && <Collapse className={bem.element('expandCollapseIcon')} aria-hidden />}
-                        Vis alle steg
+                        {labels.showAllStepsLabel}
                     </button>
                 </div>
             </div>
             <div id={contentContainerID} aria-hidden={allStepsVisible === false} aria-live="polite">
                 {allStepsVisible && (
-                    <section className={bem.element('allSteps')} aria-label="Alle steg">
+                    <section className={bem.element('allSteps')} aria-label={labels.allStepsSectionAriaLabel}>
                         {allStepsHeader && (
                             <BodyShort as="div" className={bem.element('allStepsHeader')}>
                                 {allStepsHeader}
