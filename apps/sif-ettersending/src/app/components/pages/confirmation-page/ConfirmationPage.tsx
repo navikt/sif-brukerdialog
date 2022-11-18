@@ -45,6 +45,7 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
                                 <Link href={getLenker().INNSYN_PP} target="_blank">
                                     <FormattedMessage id="page.confirmation.check.1.pp.lenke" />
                                 </Link>
+                                {'.'}
                             </li>
                         </ul>
                     )}
@@ -69,6 +70,7 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
                                         target="_blank">
                                         <FormattedMessage id="page.confirmation.check.3.2" />
                                     </Link>
+                                    {'.'}
                                 </li>
                             </ul>
                         </>
