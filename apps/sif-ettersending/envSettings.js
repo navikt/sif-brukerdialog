@@ -13,11 +13,13 @@ const envSettings = () => {
     const APPSTATUS_DATASET = process.env.APPSTATUS_DATASET;
     const USE_AMPLITUDE = process.env.USE_AMPLITUDE;
     const LIVETS_SLUTTFASE = process.env.LIVETS_SLUTTFASE;
+    const FRONTEND_VEDLEGG_URL = process.env.FRONTEND_VEDLEGG_URL;
 
     const appSettings = `
      window.appSettings = {
          API_URL: '${API_URL}',
          FRONTEND_API_PATH: '${FRONTEND_API_PATH}',
+         FRONTEND_VEDLEGG_URL: '${FRONTEND_VEDLEGG_URL}',
          PUBLIC_PATH: '${PUBLIC_PATH}',
          LOGIN_URL: '${LOGIN_URL}',
          NYNORSK: '${NYNORSK}',

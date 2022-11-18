@@ -16,6 +16,7 @@ import { uploadFile } from '../../api/api';
 import ApplicationFormComponents from '../../application/ApplicationFormComponents';
 import { ApplicationFormData, ApplicationFormField } from '../../types/ApplicationFormData';
 import appSentryLogger from '../../utils/appSentryLogger';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
@@ -88,7 +89,8 @@ const FormikFileUploader = ({
             try {
                 const response = await uploadFile(file);
                 attachment = setAttachmentPendingToFalse(attachment);
-                attachment.url = response.headers.location;
+                attachment.url = getAttachmentURLFrontend(response.headers.location);
+
                 attachment.uploaded = true;
             } catch (error) {
                 if (isForbidden(error) || isUnauthorized(error)) {
