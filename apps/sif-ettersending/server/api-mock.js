@@ -143,46 +143,34 @@ const startServer = () => {
     server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
-        console.log(req.body);
+        // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
     server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
-        console.log(req.body);
+        // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
     server.put('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
-        console.log(req.body);
+        // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
     server.delete('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
-        // setTimeout(() => {
-        //     writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify({}, null, 2));
-        //     res.sendStatus(202);
-        // }, 2000);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(202);
     });
     server.delete('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
-        // setTimeout(() => {
-        //     writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify({}, null, 2));
-        //     res.sendStatus(202);
-        // }, 2000);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(202);
     });
     server.delete('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
-        // setTimeout(() => {
-        //     writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
-        //     res.sendStatus(202);
-        // }, 2000);
         writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(202);
     });

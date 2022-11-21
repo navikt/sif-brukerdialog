@@ -1,4 +1,4 @@
-const { Issuer, TokenSet } = require('openid-client');
+const { Issuer } = require('openid-client');
 let tokenxClient;
 
 async function initTokenX() {
@@ -28,6 +28,7 @@ async function getTokenXToken(token, additionalClaims) {
             additionalClaims
         );
     } catch (err) {
+        // eslint-disable-next-line no-console
         console.error('Noe gikk galt ved exchange token', err);
     }
     return tokenSet;
