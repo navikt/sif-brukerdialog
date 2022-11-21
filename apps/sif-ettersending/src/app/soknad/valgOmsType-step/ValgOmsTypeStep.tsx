@@ -3,22 +3,18 @@ import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { StepConfigProps, StepID } from '../../config/stepConfig';
+import { StepID } from '../../config/stepConfig';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { ApplicationType } from '../../types/ApplicationType';
-import ApplicationFormComponents from '../ApplicationFormComponents';
-import ApplicationStep from '../ApplicationStep';
-import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
+import SoknadFormComponents from '../SoknadFormComponents';
+import SoknadFormStep from '../SoknadFormStep';
 
-const ValgOmsTypeStep = ({ onValidSubmit }: StepConfigProps) => {
+const ValgOmsTypeStep: React.FC = () => {
     const intl = useIntl();
     return (
-        <ApplicationStep
-            id={StepID.OMS_TYPE}
-            onValidFormSubmit={onValidSubmit}
-            validationSummary={<FormikValidationErrorSummary />}>
+        <SoknadFormStep id={StepID.OMS_TYPE}>
             <FormBlock>
-                <ApplicationFormComponents.RadioGroup
+                <SoknadFormComponents.RadioGroup
                     name={SoknadFormField.søknadstype}
                     legend={intlHelper(intl, 'step.omsorgspenger_type.søknadstype.spm')}
                     validate={getRequiredFieldValidator()}
@@ -46,7 +42,7 @@ const ValgOmsTypeStep = ({ onValidSubmit }: StepConfigProps) => {
                     ]}
                 />
             </FormBlock>
-        </ApplicationStep>
+        </SoknadFormStep>
     );
 };
 

@@ -1,25 +1,21 @@
 import * as React from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { StepConfigProps, StepID } from '../../config/stepConfig';
+import { StepID } from '../../config/stepConfig';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';
-import ApplicationFormComponents from '../ApplicationFormComponents';
-import ApplicationStep from '../ApplicationStep';
+import SoknadFormComponents from '../SoknadFormComponents';
 import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { BodyLong, Link } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
+import SoknadFormStep from '../SoknadFormStep';
 
-const BeskrivelseStep = ({ onValidSubmit }: StepConfigProps) => {
+const BeskrivelseStep: React.FC = () => {
     const intl = useIntl();
     return (
-        <ApplicationStep
-            id={StepID.BESKRIVELSE}
-            onValidFormSubmit={onValidSubmit}
-            validationSummary={<FormikValidationErrorSummary />}>
+        <SoknadFormStep id={StepID.BESKRIVELSE}>
             <FormBlock>
-                <ApplicationFormComponents.Textarea
+                <SoknadFormComponents.Textarea
                     name={SoknadFormField.beskrivelse}
                     label={intlHelper(intl, 'step.beskrivelse.hvaSendes.spm')}
                     maxLength={MAX_BESKRIVELSE_LENGTH}
@@ -72,7 +68,7 @@ const BeskrivelseStep = ({ onValidSubmit }: StepConfigProps) => {
                     }
                 />
             </FormBlock>
-        </ApplicationStep>
+        </SoknadFormStep>
     );
 };
 

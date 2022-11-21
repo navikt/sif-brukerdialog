@@ -12,17 +12,21 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { FormikValidationErrorSummary } from '@navikt/sif-common-formik-ds/lib';
 import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
-import { StepConfigProps, StepID } from '../../config/stepConfig';
+import { StepID } from '../../config/stepConfig';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
-import ApplicationStep from '../ApplicationStep';
+import SoknadFormStep from '../SoknadFormStep';
+import { ApplicationType } from '../../types/ApplicationType';
 
-const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
+interface Props {
+    søknadstype: ApplicationType;
+}
+
+const DokumenterStep: React.FC<Props> = ({ søknadstype }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -38,11 +42,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
     };
 
     return (
-        <ApplicationStep
-            id={StepID.DOKUMENTER}
-            onValidFormSubmit={onValidSubmit}
-            validationSummary={<FormikValidationErrorSummary />}
-            buttonDisabled={hasPendingUploads || sizeOver24Mb}>
+        <SoknadFormStep id={StepID.DOKUMENTER} buttonDisabled={hasPendingUploads || sizeOver24Mb}>
             <SifGuidePanel>
                 <BodyLong as="div">
                     <p>
@@ -90,7 +90,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
             <Block margin="l">
                 <UploadedDocumentsList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
             </Block>
-        </ApplicationStep>
+        </SoknadFormStep>
     );
 };
 

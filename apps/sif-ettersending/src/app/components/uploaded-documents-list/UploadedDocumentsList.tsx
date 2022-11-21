@@ -8,7 +8,7 @@ import {
     fileExtensionIsValid,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
-import { deleteFile } from '../../api/api';
+import api from '../../api/api';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 
 interface Props {
@@ -35,7 +35,7 @@ const UploadedDocumentsList = ({ includeDeletionFunctionality }: Props) => {
                     attachment.pending = true;
                     setFieldValue(SoknadFormField.dokumenter, dokumenter);
                     if (attachment.url) {
-                        deleteFile(attachment.url).then(
+                        api.deleteFile(attachment.url).then(
                             () => {
                                 setFieldValue(
                                     SoknadFormField.dokumenter,

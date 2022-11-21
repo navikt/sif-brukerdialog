@@ -28,7 +28,7 @@ import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 import { ApplicationType } from '../types/ApplicationType';
 import { getSkjemanavn } from '../types/skjemanavn';
 import { getFirstStep, StepID } from '../config/stepConfig';
-import { getApplicationPageRoute } from 'app/utils/routeUtils';
+import { getApplicationPageRoute } from '../utils/routeUtils';
 import { getSoknadStepsConfig } from './soknadStepsConfig';
 import SoknadRoutes from './SoknadRoutes';
 

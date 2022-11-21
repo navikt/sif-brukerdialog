@@ -4,26 +4,26 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import ApplicationFormComponents from '../../../soknad/ApplicationFormComponents';
 import { SoknadFormField } from '../../../types/SoknadFormData';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import SoknadFormComponents from '../../../soknad/SoknadFormComponents';
 
 interface Props {
-    onConfirm: () => void;
+    onStart: () => void;
     onOpenDinePlikterModal: () => void;
     openBehandlingAvPersonopplysningerModal: () => void;
 }
 
-const SamtykkeForm = ({ onConfirm, onOpenDinePlikterModal, openBehandlingAvPersonopplysningerModal }: Props) => {
+const SamtykkeForm = ({ onStart, onOpenDinePlikterModal, openBehandlingAvPersonopplysningerModal }: Props) => {
     const intl = useIntl();
     return (
-        <ApplicationFormComponents.Form
-            onValidSubmit={onConfirm}
+        <SoknadFormComponents.Form
+            onValidSubmit={onStart}
             includeButtons={false}
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
             <FormBlock>
                 <FormBlock>
-                    <ApplicationFormComponents.ConfirmationCheckbox
+                    <SoknadFormComponents.ConfirmationCheckbox
                         label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
                         name={SoknadFormField.harForståttRettigheterOgPlikter}
                         validate={getCheckedValidator()}>
@@ -37,7 +37,7 @@ const SamtykkeForm = ({ onConfirm, onOpenDinePlikterModal, openBehandlingAvPerso
                                 ),
                             }}
                         />
-                    </ApplicationFormComponents.ConfirmationCheckbox>
+                    </SoknadFormComponents.ConfirmationCheckbox>
                 </FormBlock>
                 <FormBlock>
                     <div className="text-center">
@@ -52,7 +52,7 @@ const SamtykkeForm = ({ onConfirm, onOpenDinePlikterModal, openBehandlingAvPerso
                     </div>
                 </FormBlock>
             </FormBlock>
-        </ApplicationFormComponents.Form>
+        </SoknadFormComponents.Form>
     );
 };
 export default SamtykkeForm;

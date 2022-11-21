@@ -7,27 +7,31 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { StepConfigProps } from '../../../config/stepConfig';
 import BehandlingAvPersonopplysningerContent from '../../information/behandling-av-personopplysninger-content/BehandlingAvPersonopplysningerContent';
 import DinePlikterContent from '../../information/dine-plikter-content/DinePlikterContent';
 import SamtykkeForm from './SamtykkeForm';
-
-type Props = Omit<StepConfigProps, 'formValues'>;
-
-interface DialogState {
-    dinePlikterModalOpen?: boolean;
-    behandlingAvPersonopplysningerModalOpen?: boolean;
-}
+import { ApplicationType } from '../../../types/ApplicationType';
+import { useSoknadContext } from '../../../soknad/SoknadContext';
 
 interface DialogState {
     dinePlikterModalOpen?: boolean;
     behandlingAvPersonopplysningerModalOpen?: boolean;
 }
 
-const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
+interface DialogState {
+    dinePlikterModalOpen?: boolean;
+    behandlingAvPersonopplysningerModalOpen?: boolean;
+}
+
+interface Props {
+    søknadstype: ApplicationType;
+}
+
+const WelcomingPage: React.FC<Props> = ({ søknadstype }) => {
     const [dialogState, setDialogState] = useState<DialogState>({});
     const { dinePlikterModalOpen, behandlingAvPersonopplysningerModalOpen } = dialogState;
     const intl = useIntl();
+    const { startSoknad } = useSoknadContext();
 
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
@@ -45,7 +49,7 @@ const WelcomingPage = ({ onValidSubmit, søknadstype }: Props) => {
                     openBehandlingAvPersonopplysningerModal={() =>
                         setDialogState({ behandlingAvPersonopplysningerModalOpen: true })
                     }
-                    onConfirm={onValidSubmit}
+                    onStart={startSoknad}
                 />
             </Page>
             <InfoDialog

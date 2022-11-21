@@ -13,7 +13,7 @@ import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib'
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { ArrayHelpers, useFormikContext } from 'formik';
 import api from '../../api/api';
-import ApplicationFormComponents from '../../soknad/ApplicationFormComponents';
+import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
@@ -119,7 +119,7 @@ const FormikFileUploader = ({
     }
 
     return (
-        <ApplicationFormComponents.FileInput
+        <SoknadFormComponents.FileInput
             name={name}
             legend="Dokumenter"
             accept={VALID_EXTENSIONS.join(', ')}
