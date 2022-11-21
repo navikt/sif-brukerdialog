@@ -1,12 +1,30 @@
 import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { ApplicationType } from '../types/ApplicationType';
-import { StepID } from '../config/stepConfig';
+
+export enum StepID {
+    'BESKRIVELSE' = 'beskrivelse',
+    'DOKUMENTER' = 'dokumenter',
+    'OPPSUMMERING' = 'oppsummering',
+    'OMS_TYPE' = 'omsorgspenger_type',
+}
 
 interface ConfigStepHelperType {
     stepID: StepID;
     included: boolean;
 }
+
+export const getFirstStep = (applicationType: ApplicationType): StepID => {
+    switch (applicationType) {
+        case ApplicationType.pleiepengerBarn:
+        case ApplicationType.pleiepengerLivetsSluttfase:
+            return StepID.BESKRIVELSE;
+        case ApplicationType.omsorgspenger:
+            return StepID.OMS_TYPE;
+        default:
+            return StepID.DOKUMENTER;
+    }
+};
 
 const getSoknadSteps = (søknadstype: ApplicationType): StepID[] => {
     const visBeskrivelseStep =

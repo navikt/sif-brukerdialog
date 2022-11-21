@@ -7,17 +7,17 @@ import {
     attachmentUploadHasFailed,
     getPendingAttachmentFromFile,
     isFileObject,
+    mapFileToPersistedFile,
     VALID_EXTENSIONS,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { ArrayHelpers } from 'formik';
+import { ArrayHelpers, useFormikContext } from 'formik';
 import api from '../../api/api';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
-import { SoknadFormField } from '../../types/SoknadFormData';
-import appSentryLogger from '../../utils/appSentryLogger';
-import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 import { ApiEndpoint } from '../../types/ApiEndpoint';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
@@ -29,61 +29,18 @@ interface FormikFileUploader extends TypedFormInputValidationProps<SoknadFormFie
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
-    listOfAttachments: Attachment[];
 }
 
 type Props = FormikFileUploader;
 
-const FormikFileUploader = ({
+const FormikFileUploader: React.FunctionComponent<Props> = ({
     name,
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
-    listOfAttachments,
     ...otherProps
-}: Props) => {
-    function findAttachmentsToProcess(attachments: Attachment[]): Attachment[] {
-        return attachments.filter(attachmentShouldBeProcessed);
-    }
-
-    function findAttachmentsToUpload(attachments: Attachment[]): Attachment[] {
-        return attachments.filter(attachmentShouldBeUploaded);
-    }
-
-    function updateAttachmentListElement(
-        attachments: Attachment[],
-        attachment: Attachment,
-        replaceFn: FieldArrayReplaceFn
-    ) {
-        replaceFn(attachments.indexOf(attachment), attachment);
-    }
-
-    function setAttachmentPendingToFalse(attachment: Attachment) {
-        attachment.pending = false;
-        return attachment;
-    }
-
-    function addPendingAttachmentToFieldArray(file: File, pushFn: FieldArrayPushFn) {
-        const attachment = getPendingAttachmentFromFile(file);
-        pushFn(attachment);
-        return attachment;
-    }
-    function updateFailedAttachments(
-        allAttachments: Attachment[],
-        failedAttachments: Attachment[],
-        replaceFn: FieldArrayReplaceFn
-    ) {
-        failedAttachments.forEach((attachment) => {
-            attachment = setAttachmentPendingToFalse(attachment);
-            updateAttachmentListElement(allAttachments, attachment, replaceFn);
-        });
-        const failedFiles: File[] = failedAttachments
-            .map(({ file }) => file)
-            .filter((f: File | PersistedFile) => isFileObject(f)) as File[];
-
-        onErrorUploadingAttachments(failedFiles);
-    }
-
+}) => {
+    const { values } = useFormikContext<SoknadFormData>();
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;
         if (isFileObject(file)) {
@@ -91,13 +48,10 @@ const FormikFileUploader = ({
                 const response = await api.uploadFile(ApiEndpoint.VEDLEGG, file);
                 attachment = setAttachmentPendingToFalse(attachment);
                 attachment.url = getAttachmentURLFrontend(response.headers.location);
-
                 attachment.uploaded = true;
             } catch (error) {
                 if (isForbidden(error) || isUnauthorized(error)) {
                     onUnauthorizedOrForbiddenUpload();
-                } else {
-                    appSentryLogger.logApiError(error);
                 }
                 setAttachmentPendingToFalse(attachment);
             }
@@ -118,14 +72,57 @@ const FormikFileUploader = ({
         updateFailedAttachments(allAttachments, failedAttachments, replaceFn);
     }
 
+    function updateFailedAttachments(
+        allAttachments: Attachment[],
+        failedAttachments: Attachment[],
+        replaceFn: FieldArrayReplaceFn
+    ) {
+        failedAttachments.forEach((attachment) => {
+            attachment = setAttachmentPendingToFalse(attachment);
+            updateAttachmentListElement(allAttachments, attachment, replaceFn);
+        });
+        const failedFiles: File[] = failedAttachments
+            .map(({ file }) => file)
+            .filter((f: File | PersistedFile) => isFileObject(f)) as File[];
+
+        onErrorUploadingAttachments(failedFiles);
+    }
+
+    function findAttachmentsToProcess(attachments: Attachment[]): Attachment[] {
+        return attachments.filter(attachmentShouldBeProcessed);
+    }
+
+    function findAttachmentsToUpload(attachments: Attachment[]): Attachment[] {
+        return attachments.filter(attachmentShouldBeUploaded);
+    }
+
+    function updateAttachmentListElement(
+        attachments: Attachment[],
+        attachment: Attachment,
+        replaceFn: FieldArrayReplaceFn
+    ) {
+        replaceFn(attachments.indexOf(attachment), { ...attachment, file: mapFileToPersistedFile(attachment.file) });
+    }
+
+    function setAttachmentPendingToFalse(attachment: Attachment) {
+        attachment.pending = false;
+        return attachment;
+    }
+
+    function addPendingAttachmentToFieldArray(file: File, pushFn: FieldArrayPushFn) {
+        const attachment = getPendingAttachmentFromFile(file);
+        pushFn(attachment);
+        return attachment;
+    }
+
     return (
         <SoknadFormComponents.FileInput
             name={name}
             legend="Dokumenter"
             accept={VALID_EXTENSIONS.join(', ')}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
-                const attachments: Attachment[] = files.map((file) => addPendingAttachmentToFieldArray(file, push));
-                await uploadAttachments([...listOfAttachments, ...attachments], replace);
+                const attachments = files.map((file) => addPendingAttachmentToFieldArray(file, push));
+                await uploadAttachments([...(values as any)[name], ...attachments], replace);
             }}
             onClick={onFileInputClick}
             {...otherProps}

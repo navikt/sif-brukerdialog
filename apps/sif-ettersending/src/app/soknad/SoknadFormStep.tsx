@@ -13,8 +13,6 @@ import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from '../config/stepConfig';
 import { ApplicationType } from '../types/ApplicationType';
-import { getApplicationPageRoute } from '../utils/routeUtils';
-import { WELCOME_PAGE } from '../config/routeConfig';
 
 interface OwnProps {
     id: StepID;
@@ -54,17 +52,6 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
     const applicationTitle = intlHelper(intl, `application.title.${søknadstype}`);
 
-    const getbackLinkHrefDok = (): string => {
-        switch (søknadstype) {
-            case ApplicationType.pleiepengerBarn:
-            case ApplicationType.pleiepengerLivetsSluttfase:
-                return getApplicationPageRoute(søknadstype, StepID.BESKRIVELSE);
-            case ApplicationType.omsorgspenger:
-                return getApplicationPageRoute(søknadstype, StepID.OMS_TYPE);
-            default:
-                return getApplicationPageRoute(søknadstype, WELCOME_PAGE);
-        }
-    };
     useLogSidevisning(id);
 
     return (
@@ -73,7 +60,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
             cancelOrContinueLaterAriaLabel={intlHelper(intl, 'application.cancelOrContinueLaterLabel')}
             stepTitle={stepTitle || texts.stepTitle}
             pageTitle={pageTitle || texts.pageTitle}
-            backLinkHref={getbackLinkHrefDok()}
+            backLinkHref={stepConfig.previousStepRoute ? `/${søknadstype}${stepConfig.previousStepRoute}` : undefined}
             steps={soknadStepUtils.getStepIndicatorStepsFromConfig(soknadStepsConfig, intl)}
             activeStepId={id}
             onCancel={resetSoknad}

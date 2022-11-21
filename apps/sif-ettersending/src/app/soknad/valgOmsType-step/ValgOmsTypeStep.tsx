@@ -3,11 +3,11 @@ import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { StepID } from '../../config/stepConfig';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { ApplicationType } from '../../types/ApplicationType';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
+import { StepID } from '../soknadStepsConfig';
 
 interface Props {
     søknadstype: ApplicationType;

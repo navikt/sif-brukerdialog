@@ -15,12 +15,12 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
-import { StepID } from '../../config/stepConfig';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';
 import { ApplicationType } from '../../types/ApplicationType';
+import { StepID } from '../soknadStepsConfig';
 
 interface Props {
     søknadstype: ApplicationType;
@@ -75,7 +75,6 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype }: Props) => {
                         }}
                         onUnauthorizedOrForbiddenUpload={userLoggedOut}
                         validate={validateDocuments}
-                        listOfAttachments={values.dokumenter}
                     />
                 </FormBlock>
             )}

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { StepID } from '../../config/stepConfig';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';
 import SoknadFormComponents from '../SoknadFormComponents';
@@ -10,6 +9,7 @@ import { BodyLong, Link } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadFormStep from '../SoknadFormStep';
 import { ApplicationType } from '../../types/ApplicationType';
+import { StepID } from '../soknadStepsConfig';
 interface Props {
     søknadstype: ApplicationType;
 }

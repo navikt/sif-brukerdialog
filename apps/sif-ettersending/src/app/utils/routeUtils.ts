@@ -1,5 +1,4 @@
 import { getApplicationRoute } from '../config/routeConfig';
-import { StepID } from '../config/stepConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import {
@@ -8,6 +7,7 @@ import {
     omsTypeStepIsAvailable,
     summaryStepAvailable,
 } from './stepUtils';
+import { StepID } from '../soknad/soknadStepsConfig';
 
 export const getApplicationPageRoute = (søknadstype: ApplicationType, page: StepID | string): string => {
     const route = `${getApplicationRoute(søknadstype)}/${page}`;

@@ -28,9 +28,8 @@ import SoknadFormComponents from './SoknadFormComponents';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 import { ApplicationType } from '../types/ApplicationType';
 import { getSkjemanavn } from '../types/skjemanavn';
-import { getFirstStep, StepID } from '../config/stepConfig';
 import { getApplicationPageRoute } from '../utils/routeUtils';
-import { getSoknadStepsConfig } from './soknadStepsConfig';
+import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import SoknadRoutes from './SoknadRoutes';
 
 interface Props {
