@@ -19,7 +19,7 @@ import { getRouteConfig } from '../../config/routeConfig';
 import { StepID } from '../../config/stepConfig';
 import { SøkerdataContext } from '../../context/ApplicantDataContext';
 import { ApplicantData } from '../../types/ApplicantData';
-import { ApplicationApiData, YtelseTypeApi } from '../../types/ApplicationApiData';
+import { SoknadApiData, YtelseTypeApi } from '../../types/SoknadApiData';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { ApplicationType } from '../../types/ApplicationType';
 import { getSkjemanavn } from '../../types/skjemanavn';
@@ -33,7 +33,7 @@ import './oppsummeringStep.css';
 
 interface Props {
     søknadstype: ApplicationType;
-    onApplicationSent: (apiValues: ApplicationApiData, søkerdata: ApplicantData) => void;
+    onApplicationSent: (apiValues: SoknadApiData, søkerdata: ApplicantData) => void;
 }
 const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
     const intl = useIntl();
@@ -52,7 +52,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
     } = søkerdata;
 
     const apiValues = mapFormDataToApiData(values, søknadstype, intl.locale as Locale);
-    async function sendApiData(data: ApplicationApiData, søker: ApplicantData) {
+    async function sendApiData(data: SoknadApiData, søker: ApplicantData) {
         const skjemanavn = getSkjemanavn(søknadstype);
         try {
             await sendApplication(data);

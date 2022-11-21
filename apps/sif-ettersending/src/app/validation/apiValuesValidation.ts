@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import { ValidationSummaryError } from '@navikt/sif-common-core-ds/lib/components/validation-error-summary-base/ValidationErrorSummaryBase';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ApplicationApiData } from '../types/ApplicationApiData';
+import { SoknadApiData } from '../types/SoknadApiData';
 
 export const apiVedleggIsInvalid = (vedlegg: string[]): boolean => {
     vedlegg.find((v) => {
@@ -10,10 +10,7 @@ export const apiVedleggIsInvalid = (vedlegg: string[]): boolean => {
     return vedlegg.length === 0 || vedlegg.find((v) => v === undefined || v === '' || v === null) !== undefined;
 };
 
-export const validateApiValues = (
-    values: ApplicationApiData,
-    intl: IntlShape
-): ValidationSummaryError[] | undefined => {
+export const validateApiValues = (values: SoknadApiData, intl: IntlShape): ValidationSummaryError[] | undefined => {
     const errors: ValidationSummaryError[] = [];
 
     if (apiVedleggIsInvalid(values.vedlegg)) {

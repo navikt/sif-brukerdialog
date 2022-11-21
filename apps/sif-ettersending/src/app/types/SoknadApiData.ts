@@ -13,7 +13,7 @@ export enum YtelseTypeApi {
     'OMP_DELE_DAGER' = 'OMP_DELE_DAGER',
     'ukjent' = 'ukjent',
 }
-export interface ApplicationApiData {
+export interface SoknadApiData {
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;

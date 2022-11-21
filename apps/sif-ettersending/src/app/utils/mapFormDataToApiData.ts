@@ -1,7 +1,7 @@
 import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import { ApplicationApiData, YtelseTypeApi } from '../types/ApplicationApiData';
+import { SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
@@ -30,8 +30,8 @@ export const mapFormDataToApiData = (
     { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, beskrivelse, dokumenter, søknadstype }: SoknadFormData,
     søknadstypeFraURL: ApplicationType,
     locale: Locale
-): ApplicationApiData => {
-    const apiData: ApplicationApiData = {
+): SoknadApiData => {
+    const apiData: SoknadApiData = {
         språk: getLocaleForApi(locale),
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
