@@ -1,68 +1,54 @@
-import { Modal } from '@navikt/ds-react';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
-import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
-import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
-import appSentryLogger from './utils/appSentryLogger';
-import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
-import RootRoutes from './RootRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
+import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
+import { Navigate, Route } from 'react-router-dom';
+import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
+import GeneralErrorPage from './components/pages/general-error-page/GeneralErrorPage';
+import IntroPage from './components/pages/intro-page/IntroPage';
 import './app.css';
+import { applicationIntlMessages } from './i18n/applicationMessages';
 
 export const APPLICATION_KEY = 'ettersending';
-
-appSentryLogger.init();
-
-const localeFromSessionStorage = getLocaleFromSessionStorage();
-
-const getAppStatusSanityConfig = () => {
-    const projectId = getEnvironmentVariable('APPSTATUS_PROJECT_ID');
-    const dataset = getEnvironmentVariable('APPSTATUS_DATASET');
-    return !projectId || !dataset ? undefined : { projectId, dataset };
-};
-
-const App = () => {
-    const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
-    const appStatusSanityConfig = getAppStatusSanityConfig();
-
-    React.useEffect(() => {
-        if (Modal.setAppElement) {
-            Modal.setAppElement('#app');
-        }
-    });
-    return (
-        <SifAppWrapper>
-            <AmplitudeProvider applicationKey={APPLICATION_KEY}>
-                <ApplicationWrapper
-                    locale={locale}
-                    onChangeLocale={(activeLocale: Locale) => {
-                        setLocaleInSessionStorage(activeLocale);
-                        setLocale(activeLocale);
-                    }}>
-                    {appStatusSanityConfig ? (
-                        <AppStatusWrapper
-                            applicationKey={APPLICATION_KEY}
-                            sanityConfig={appStatusSanityConfig}
-                            contentRenderer={() => <RootRoutes />}
-                            unavailableContentRenderer={() => <UnavailablePage />}
-                        />
-                    ) : (
-                        <RootRoutes />
-                    )}
-                </ApplicationWrapper>
-            </AmplitudeProvider>
-        </SifAppWrapper>
-    );
-};
+export const SKJEMANAVN = 'Ettersending av dokumenter innenfor sykdom i familien';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
-root.render(<App />);
-/** build */
+const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+
+root.render(
+    <SifAppWrapper>
+        <AmplitudeProvider
+            applicationKey={APPLICATION_KEY}
+            isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
+            <SoknadApplication
+                appName={SKJEMANAVN}
+                intlMessages={applicationIntlMessages}
+                sentryKey={APPLICATION_KEY}
+                appStatus={{
+                    applicationKey: APPLICATION_KEY,
+                    sanityConfig: {
+                        projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
+                        dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                    },
+                }}
+                publicPath={publicPath}>
+                <SoknadApplicationCommonRoutes
+                    contentRoutes={[
+                        <Route path={'/:ytelse/melding/*'} key="soknad" element={<SoknadRemoteDataFetcher />} />,
+                        <Route path={'/:ytelse/'} key="ytelse" element={<Navigate to={'melding'} />} />,
+                        <Route path={'/:ytelse/feil'} key="ytelseFeil" element={<GeneralErrorPage />} />,
+                        <Route path={'/feil'} key="feil" element={<GeneralErrorPage />} />,
+                        <Route path={'/'} key="intro" element={<IntroPage />} />,
+                    ]}
+                />
+            </SoknadApplication>
+        </AmplitudeProvider>
+    </SifAppWrapper>
+);
