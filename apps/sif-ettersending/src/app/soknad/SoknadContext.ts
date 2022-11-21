@@ -5,7 +5,7 @@ import {
     SoknadContextInterface,
 } from '@navikt/sif-common-soknad-ds/lib/soknad-context/SoknadContext';
 import { SoknadApiData } from '../types/SoknadApiData';
-import { StepID } from '../config/stepConfig';
+import { StepID } from './soknadStepsConfig';
 
 export type SendSoknadStatus = SendSoknadStatusInterface<SoknadApiData>;
 export type SoknadContext = SoknadContextInterface<StepID, SoknadApiData>;

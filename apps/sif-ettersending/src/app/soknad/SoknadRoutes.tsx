@@ -46,7 +46,10 @@ const SoknadRoutes = ({ søker, søknadstype, soknadId = '123' }: Props) => {
                 <>
                     <Route path={StepID.BESKRIVELSE} element={<BeskrivelseStep søknadstype={søknadstype} />} />
                     <Route path={StepID.OMS_TYPE} element={<ValgOmsTypeStep søknadstype={søknadstype} />} />
-                    <Route path={StepID.DOKUMENTER} element={<DokumenterStep søknadstype={søknadstype} />} />
+                    <Route
+                        path={StepID.DOKUMENTER}
+                        element={<DokumenterStep søknadstype={søknadstype} soknadId={soknadId} søker={søker} />}
+                    />
                     <Route
                         path={StepID.OPPSUMMERING}
                         element={<OppsummeringStep soknadId={soknadId} søknadstype={søknadstype} søker={søker} />}

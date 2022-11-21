@@ -5,8 +5,6 @@ import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-am
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-// import { SoknadApplicationType } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
-// import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { FormikState } from 'formik';
 import { ulid } from 'ulid';
 import { sendSoknad } from '../api/sendSoknad';

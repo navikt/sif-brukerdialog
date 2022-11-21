@@ -21,18 +21,28 @@ import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';
 import { ApplicationType } from '../../types/ApplicationType';
 import { StepID } from '../soknadStepsConfig';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import SøknadTempStorage from '../soknadTempStorage';
+import { Person } from '../../types/Person';
 
 interface Props {
     søknadstype: ApplicationType;
+    søker: Person;
+    soknadId: string;
 }
 
-const DokumenterStep: React.FC<Props> = ({ søknadstype }: Props) => {
+const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Props) => {
     const intl = useIntl();
-    const { values } = useFormikContext<SoknadFormData>();
+    const { values, setFieldValue } = useFormikContext<SoknadFormData>();
+    const dokumenter: Attachment[] = React.useMemo(() => {
+        return values ? values[SoknadFormField.dokumenter] : [];
+    }, [values]);
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
-    const hasPendingUploads: boolean = (values.dokumenter || []).find((a) => a.pending === true) !== undefined;
+    const hasPendingUploads: boolean = dokumenter.find((a) => a.pending === true) !== undefined;
+
     const totalSize = getTotalSizeOfAttachments(values.dokumenter);
     const sizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+    const ref = React.useRef({ dokumenter });
 
     const { logUserLoggedOut } = useAmplitudeInstance();
 
@@ -40,6 +50,28 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype }: Props) => {
         await logUserLoggedOut('Ved opplasting av vedlegg');
         navigateToLoginPage(søknadstype);
     };
+    React.useEffect(() => {
+        const hasPendingAttachments = dokumenter.find((a) => a.pending === true);
+        if (hasPendingAttachments) {
+            return;
+        }
+        if (dokumenter.length !== ref.current.dokumenter.length) {
+            const formValues = { ...values, dokumenter: dokumenter };
+            setFieldValue(SoknadFormField.dokumenter, dokumenter);
+            SøknadTempStorage.update(
+                soknadId,
+                formValues,
+                StepID.DOKUMENTER,
+                {
+                    søker,
+                },
+                søknadstype
+            );
+        }
+        ref.current = {
+            dokumenter,
+        };
+    }, [dokumenter, setFieldValue, soknadId, søker, søknadstype, values]);
 
     return (
         <SoknadFormStep

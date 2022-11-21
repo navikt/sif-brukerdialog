@@ -11,8 +11,8 @@ import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
-import { StepID } from '../config/stepConfig';
 import { ApplicationType } from '../types/ApplicationType';
+import { StepID } from './soknadStepsConfig';
 
 interface OwnProps {
     id: StepID;

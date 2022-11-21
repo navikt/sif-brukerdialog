@@ -1,4 +1,4 @@
-import { StepID } from '../config/stepConfig';
+import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from './SoknadFormData';
 
 export interface SoknadTempStorageData {
