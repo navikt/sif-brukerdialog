@@ -8,7 +8,7 @@ import WelcomingPage from '../components/pages/welcoming-page/WelcomingPage';
 import { getRouteConfig, APPLICATION_SENDT_PAGE, ERROR_PAGE } from '../config/routeConfig';
 import { getFirstStep, StepID } from '../config/stepConfig';
 import { ApplicationTypeContext } from '../context/ApplicationTypeContext';
-import { ApplicationFormData } from '../types/ApplicationFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import { getSkjemanavn } from '../types/skjemanavn';
 import { getNextStepRoute, isStepAvailable } from '../utils/routeUtils';
@@ -23,7 +23,7 @@ export interface KvitteringInfo {
 }
 
 const ApplicationRoutes = () => {
-    const { values } = useFormikContext<ApplicationFormData>();
+    const { values } = useFormikContext<SoknadFormData>();
     const { søknadstype } = React.useContext(ApplicationTypeContext);
 
     const navigate = useNavigate();

@@ -17,14 +17,14 @@ import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import { StepConfigProps, StepID } from '../../config/stepConfig';
-import { ApplicationFormData, ApplicationFormField } from '../../types/ApplicationFormData';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import ApplicationStep from '../ApplicationStep';
 
 const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
     const intl = useIntl();
-    const { values } = useFormikContext<ApplicationFormData>();
+    const { values } = useFormikContext<SoknadFormData>();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const hasPendingUploads: boolean = (values.dokumenter || []).find((a) => a.pending === true) !== undefined;
     const totalSize = getTotalSizeOfAttachments(values.dokumenter);
@@ -64,7 +64,7 @@ const DokumenterStep = ({ onValidSubmit, søknadstype }: StepConfigProps) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <FormBlock>
                     <FormikFileUploader
-                        name={ApplicationFormField.dokumenter}
+                        name={SoknadFormField.dokumenter}
                         buttonLabel={intlHelper(intl, 'steg.dokumenter.vedlegg')}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {

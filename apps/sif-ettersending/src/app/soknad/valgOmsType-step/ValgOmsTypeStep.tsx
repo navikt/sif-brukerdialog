@@ -4,7 +4,7 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/Form
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { StepConfigProps, StepID } from '../../config/stepConfig';
-import { ApplicationFormField } from '../../types/ApplicationFormData';
+import { SoknadFormField } from '../../types/SoknadFormData';
 import { ApplicationType } from '../../types/ApplicationType';
 import ApplicationFormComponents from '../ApplicationFormComponents';
 import ApplicationStep from '../ApplicationStep';
@@ -19,7 +19,7 @@ const ValgOmsTypeStep = ({ onValidSubmit }: StepConfigProps) => {
             validationSummary={<FormikValidationErrorSummary />}>
             <FormBlock>
                 <ApplicationFormComponents.RadioGroup
-                    name={ApplicationFormField.søknadstype}
+                    name={SoknadFormField.søknadstype}
                     legend={intlHelper(intl, 'step.omsorgspenger_type.søknadstype.spm')}
                     validate={getRequiredFieldValidator()}
                     radios={[

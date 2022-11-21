@@ -1,18 +1,45 @@
-import axios from 'axios';
-import axiosConfig from '../config/axiosConfig';
-import { ApplicationApiData } from '../types/ApplicationApiData';
-import { ResourceType } from '../types/ResourceType';
-import { getApiUrl, sendMultipartPostRequest } from '../utils/apiUtils';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { axiosJsonConfig, axiosMultipartConfig } from '../config/axiosConfig';
+import { ApiEndpoint } from '../types/ApiEndpoint';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 
-export const getSøker = () => axios.get(getApiUrl(ResourceType.SØKER), axiosConfig);
-
-export const sendApplication = (data: ApplicationApiData) =>
-    axios.post(getApiUrl(ResourceType.SEND_DOKUMENTER), data, axiosConfig);
-
-export const uploadFile = (file: File) => {
-    const formData = new FormData();
-    formData.append('vedlegg', file);
-    return sendMultipartPostRequest(getApiUrl(ResourceType.VEDLEGG), formData);
+const sendMultipartPostRequest = (url: string, formData: FormData) => {
+    return axios.post(url, formData, axiosMultipartConfig);
 };
 
-export const deleteFile = (url: string) => axios.delete(url, axiosConfig);
+axios.defaults.baseURL = getEnvironmentVariable('FRONTEND_API_PATH');
+axios.defaults.withCredentials = false;
+axios.interceptors.request.use((config) => {
+    return config;
+});
+
+axios.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error: AxiosError) => {
+        if (isForbidden(error) || isUnauthorized(error)) {
+            return Promise.reject(error);
+        }
+        return Promise.reject(error);
+    }
+);
+
+const api = {
+    get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {
+        const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
+        return axios.get<ResponseType>(url, config || axiosJsonConfig);
+    },
+    post: <DataType = any, ResponseType = any>(endpoint: ApiEndpoint, data: DataType) => {
+        return axios.post<ResponseType>(endpoint, data, axiosJsonConfig);
+    },
+    uploadFile: (endpoint: ApiEndpoint, file: File) => {
+        const formData = new FormData();
+        formData.append('vedlegg', file);
+        return sendMultipartPostRequest(endpoint, formData);
+    },
+    deleteFile: (url: string) => axios.delete(url, axiosJsonConfig),
+};
+
+export default api;

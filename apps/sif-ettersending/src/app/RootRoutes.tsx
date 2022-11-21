@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import GeneralErrorPage from './components/pages/general-error-page/GeneralErrorPage';
 import IntroPage from './components/pages/intro-page/IntroPage';
-import Application from './application/Application';
+import Application from './soknad/Application';
 
 const RootRoutes = () => (
     <Routes>

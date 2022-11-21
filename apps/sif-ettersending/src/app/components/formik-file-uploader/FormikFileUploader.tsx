@@ -12,18 +12,19 @@ import {
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { ArrayHelpers, useFormikContext } from 'formik';
-import { uploadFile } from '../../api/api';
-import ApplicationFormComponents from '../../application/ApplicationFormComponents';
-import { ApplicationFormData, ApplicationFormField } from '../../types/ApplicationFormData';
+import api from '../../api/api';
+import ApplicationFormComponents from '../../soknad/ApplicationFormComponents';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
+import { ApiEndpoint } from '../../types/ApiEndpoint';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
 
-interface FormikFileUploader extends TypedFormInputValidationProps<ApplicationFormField, ValidationError> {
-    name: ApplicationFormField;
+interface FormikFileUploader extends TypedFormInputValidationProps<SoknadFormField, ValidationError> {
+    name: SoknadFormField;
     buttonLabel: string;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
@@ -39,7 +40,7 @@ const FormikFileUploader = ({
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
 }: Props) => {
-    const { values } = useFormikContext<ApplicationFormData>();
+    const { values } = useFormikContext<SoknadFormData>();
 
     function findAttachmentsToProcess(attachments: Attachment[]): Attachment[] {
         return attachments.filter(attachmentShouldBeProcessed);
@@ -87,7 +88,7 @@ const FormikFileUploader = ({
         const { file } = attachment;
         if (isFileObject(file)) {
             try {
-                const response = await uploadFile(file);
+                const response = await api.uploadFile(ApiEndpoint.VEDLEGG, file);
                 attachment = setAttachmentPendingToFalse(attachment);
                 attachment.url = getAttachmentURLFrontend(response.headers.location);
 

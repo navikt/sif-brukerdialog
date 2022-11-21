@@ -4,8 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import ApplicationFormComponents from '../../../application/ApplicationFormComponents';
-import { ApplicationFormField } from '../../../types/ApplicationFormData';
+import ApplicationFormComponents from '../../../soknad/ApplicationFormComponents';
+import { SoknadFormField } from '../../../types/SoknadFormData';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
@@ -25,7 +25,7 @@ const SamtykkeForm = ({ onConfirm, onOpenDinePlikterModal, openBehandlingAvPerso
                 <FormBlock>
                     <ApplicationFormComponents.ConfirmationCheckbox
                         label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
-                        name={ApplicationFormField.harForståttRettigheterOgPlikter}
+                        name={SoknadFormField.harForståttRettigheterOgPlikter}
                         validate={getCheckedValidator()}>
                         <FormattedMessage
                             id="welcomingPage.samtykke.harForståttLabel"

@@ -1,6 +1,6 @@
 import { getApplicationRoute } from '../config/routeConfig';
 import { getStepConfig, StepID } from '../config/stepConfig';
-import { ApplicationFormData } from '../types/ApplicationFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import { beskrivelseStepIsAvailable, documentsStepIsAvailable, summaryStepAvailable } from './stepUtils';
 
@@ -15,7 +15,7 @@ export const getNextStepRoute = (søknadstype: ApplicationType, stepId: StepID):
     return nextStep || undefined;
 };
 
-export const isStepAvailable = (søknadstype: ApplicationType, path: StepID | string, values: ApplicationFormData) => {
+export const isStepAvailable = (søknadstype: ApplicationType, path: StepID | string, values: SoknadFormData) => {
     if (beskrivelseStepIsAvailable(values) === false) {
         return false;
     }

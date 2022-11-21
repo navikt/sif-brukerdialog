@@ -20,7 +20,7 @@ import { StepID } from '../../config/stepConfig';
 import { SøkerdataContext } from '../../context/ApplicantDataContext';
 import { ApplicantData } from '../../types/ApplicantData';
 import { ApplicationApiData, YtelseTypeApi } from '../../types/ApplicationApiData';
-import { ApplicationFormData, ApplicationFormField } from '../../types/ApplicationFormData';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { ApplicationType } from '../../types/ApplicationType';
 import { getSkjemanavn } from '../../types/skjemanavn';
 import appSentryLogger from '../../utils/appSentryLogger';
@@ -37,7 +37,7 @@ interface Props {
 }
 const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
     const intl = useIntl();
-    const { values } = useFormikContext<ApplicationFormData>();
+    const { values } = useFormikContext<SoknadFormData>();
     const søkerdata = React.useContext(SøkerdataContext);
     const { logSoknadSent, logSoknadFailed, logUserLoggedOut, logInfo } = useAmplitudeInstance();
     const [sendingInProgress, setSendingInProgress] = useState(false);
@@ -116,7 +116,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadstype }: Props) => {
             <Block margin="l">
                 <ApplicationFormComponents.ConfirmationCheckbox
                     label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
-                    name={ApplicationFormField.harBekreftetOpplysninger}
+                    name={SoknadFormField.harBekreftetOpplysninger}
                     validate={getCheckedValidator()}
                 />
             </Block>
