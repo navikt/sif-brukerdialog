@@ -10,37 +10,38 @@ import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknad
 import { FormikState } from 'formik';
 import { ulid } from 'ulid';
 import { sendSoknad } from '../api/sendSoknad';
-import { SKJEMANAVN } from '../App';
-import AppRoutes, { getKvitteringRoute, getRouteUrl } from '../config/routeConfig';
+import { getAbsoluteUrlForRoute, getRouteConfig } from '../config/routeConfig';
 import { Person } from '../types/Person';
 import { SoknadApiData } from '../types/SoknadApiData';
-import { Barn, SoknadFormData } from '../types/SoknadFormData';
+import { SoknadFormData, initialSoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
-import appSentryLogger from '../utils/appSentryLogger';
 import {
     navigateToErrorPage,
     navigateToKvitteringPage,
-    relocateToLoginPage,
+    navigateToLoginPage,
     relocateToNavFrontpage,
-    relocateToSoknad,
+    relocateToApplication,
 } from '../utils/navigationUtils';
-import { verifySoknadApiData } from '../validation/verifySoknadApiData';
-import { initialSoknadFormData } from './initialSoknadValues';
 import { initialSendSoknadState, SendSoknadStatus, SoknadContextProvider } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
-import SoknadRoutes from './SoknadRoutes';
-import { getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
+import { ApplicationType } from '../types/ApplicationType';
+import { getSkjemanavn } from '../types/skjemanavn';
+import { getFirstStep, StepID } from '../config/stepConfig';
+import { getApplicationPageRoute } from 'app/utils/routeUtils';
+import { getSoknadStepsConfig } from './soknadStepsConfig';
+import SoknadRoutes from './SoknadRoutes';
 
 interface Props {
     søker: Person;
+    søknadstype: ApplicationType;
     soknadTempStorage: SoknadTempStorageData;
     route?: string;
 }
 
 type resetFormFunc = (nextState?: Partial<FormikState<Partial<SoknadFormData>>>) => void;
 
-const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tempStorage }) => {
+const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTempStorage: tempStorage }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [initializing, setInitializing] = useState(true);
@@ -48,18 +49,17 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
     const [sendSoknadStatus, setSendSoknadStatus] = useState<SendSoknadStatus>(initialSendSoknadState);
     const [soknadId, setSoknadId] = useState<string | undefined>();
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
-
-    const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut } = useAmplitudeInstance();
+    const skjemanavn = getSkjemanavn(søknadstype);
+    const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut, logInfo } =
+        useAmplitudeInstance();
 
     useEffectOnce(() => {
         if (isStorageDataValid(tempStorage, { søker })) {
             setInitialFormData(tempStorage.formData);
             setSoknadId(tempStorage.metadata.soknadId);
             const currentRoute = location.pathname;
-            const lastStepRoute = soknadStepUtils.getStepRoute(
-                tempStorage.metadata.lastStepID,
-                SoknadApplicationType.MELDING
-            );
+            const lastStepRoute = getApplicationPageRoute(søknadstype, tempStorage.metadata.lastStepID);
+
             if (currentRoute !== lastStepRoute) {
                 navigate(soknadStepUtils.getStepRoute(tempStorage.metadata.lastStepID, SoknadApplicationType.MELDING));
                 setInitializing(false);
@@ -67,14 +67,14 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
                 setInitializing(false);
             }
         } else {
-            resetSoknad(location.pathname !== AppRoutes.SOKNAD);
+            resetSoknad(location.pathname !== getRouteConfig(søknadstype).APPLICATION_ROUTE_PREFIX);
         }
     });
 
     /** Forhindre at bruker kommer til søknad med verdier etter at søknad er sendt inn  */
-    if (soknadSent && getKvitteringRoute() !== location.pathname) {
+    if (soknadSent && getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE !== location.pathname) {
         setInitializing(true);
-        relocateToSoknad();
+        relocateToApplication(søknadstype);
     }
 
     const resetSoknad = async (redirectToFrontpage = true): Promise<void> => {
@@ -82,8 +82,8 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
         setInitialFormData({ ...initialSoknadFormData });
         setSoknadId(undefined);
         if (redirectToFrontpage) {
-            if (location.pathname !== getRouteUrl(AppRoutes.SOKNAD)) {
-                relocateToSoknad();
+            if (location.pathname !== getAbsoluteUrlForRoute(getRouteConfig(søknadstype).APPLICATION_ROUTE_PREFIX)) {
+                relocateToApplication(søknadstype);
                 setInitializing(false);
             } else {
                 setInitializing(false);
@@ -97,13 +97,13 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
         try {
             await soknadTempStorage.purge();
             await logHendelse(ApplikasjonHendelse.avbryt);
-            relocateToSoknad();
+            relocateToApplication(søknadstype);
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved abort av søknad');
-                relocateToLoginPage();
+                navigateToLoginPage(søknadstype);
             } else {
-                navigateToErrorPage(navigate);
+                navigateToErrorPage(søknadstype, navigate);
             }
         }
     };
@@ -113,14 +113,15 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
             await resetSoknad(false);
             setSoknadId(ulid());
             await soknadTempStorage.create();
-            await logSoknadStartet(SKJEMANAVN);
-            navigate(soknadStepUtils.getStepRoute(StepID, SoknadApplicationType.MELDING));
+            await logSoknadStartet(skjemanavn);
+            const firstStepID = getFirstStep(søknadstype);
+            navigate(soknadStepUtils.getStepRoute(firstStepID, SoknadApplicationType.MELDING));
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved start av søknad');
-                relocateToLoginPage();
+                navigateToLoginPage(søknadstype);
             } else {
-                navigateToErrorPage(navigate);
+                navigateToErrorPage(søknadstype, navigate);
             }
         }
     };
@@ -133,9 +134,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved continueSoknadLater');
-                relocateToLoginPage();
+                navigateToLoginPage(søknadstype);
             } else {
-                navigateToErrorPage(navigate);
+                navigateToErrorPage(søknadstype, navigate);
             }
         }
     };
@@ -144,21 +145,23 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
         try {
             await sendSoknad(apiValues);
             await soknadTempStorage.purge();
-            await logSoknadSent(apiValues.type);
+            await logSoknadSent(skjemanavn);
+            await logInfo({ 'Antall vedlegg sendt': apiValues.vedlegg.length });
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
-            navigateToKvitteringPage(navigate);
+            navigateToKvitteringPage(søknadstype, navigate);
+
             setSoknadId(undefined);
             setInitialFormData({ ...initialSoknadFormData });
             resetFormikForm({ values: initialSoknadFormData });
             setSoknadSent(true);
         } catch (error) {
             if (isUserLoggedOut(error)) {
-                logUserLoggedOut('Ved innsending av søknad');
-                relocateToLoginPage();
+                logUserLoggedOut('Logget ut ved innsending');
+                navigateToLoginPage(søknadstype);
             } else {
-                await logSoknadFailed(apiValues.type);
+                await logSoknadFailed(skjemanavn);
                 if (sendSoknadStatus.failures >= 2) {
-                    navigateToErrorPage(navigate);
+                    navigateToErrorPage(søknadstype, navigate);
                 } else {
                     setSendSoknadStatus({
                         failures: sendSoknadStatus.failures + 1,
@@ -169,8 +172,17 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
         }
     };
 
-    const triggerSend = async (apiValues: SoknadApiData, resetForm: resetFormFunc): Promise<void> => {
-        const apiDataIsValid = verifySoknadApiData(apiValues);
+    const triggerSend = (apiValues: SoknadApiData, resetForm: resetFormFunc) => {
+        setTimeout(() => {
+            setSendSoknadStatus({ ...sendSoknadStatus, status: pending });
+            setTimeout(() => {
+                doSendSoknad(apiValues, resetForm);
+            });
+        });
+    };
+
+    /* const triggerSend = async (apiValues: SoknadApiData, resetForm: resetFormFunc): Promise<void> => {
+        const apiDataIsValid = validateApiValues(apiValues) === undefined;
         if (apiDataIsValid) {
             setTimeout(() => {
                 setSendSoknadStatus({ ...sendSoknadStatus, status: pending });
@@ -178,9 +190,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
             });
         } else {
             await appSentryLogger.logError('ApiVerificationFailed');
-            navigateToErrorPage(navigate);
+            navigateToErrorPage(søknadstype, navigate);
         }
-    };
+    };*/
 
     const persistAndNavigate = async (
         values: Partial<SoknadFormData>,
@@ -189,11 +201,11 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
     ): Promise<void> => {
         if (nextStep && soknadId) {
             try {
-                await soknadTempStorage.update(soknadId, values, nextStep, { søker, barn });
+                await soknadTempStorage.update(soknadId, values, nextStep, { søker });
             } catch (error) {
                 if (isUserLoggedOut(error)) {
                     await logUserLoggedOut('ved mellomlagring');
-                    relocateToLoginPage();
+                    navigateToLoginPage(søknadstype);
                 }
             }
         }
@@ -211,7 +223,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
                         initialValues={initialFormData}
                         onSubmit={() => null}
                         renderForm={({ values, resetForm }) => {
-                            const soknadStepsConfig = getSoknadStepsConfig(values);
+                            const soknadStepsConfig = getSoknadStepsConfig(søknadstype);
                             return (
                                 <SoknadContextProvider
                                     value={{
@@ -232,7 +244,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, soknadTempStorage: tem
                                             );
                                         },
                                     }}>
-                                    <SoknadRoutes soknadId={soknadId} søker={søker} />
+                                    <SoknadRoutes søker={søker} søknadstype={søknadstype} soknadId={soknadId} />
                                 </SoknadContextProvider>
                             );
                         }}

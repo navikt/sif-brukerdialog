@@ -62,7 +62,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
                 </>
             )}
             success={([person, soknadTempStorage]): React.ReactNode => {
-                return <Soknad søker={person} soknadTempStorage={soknadTempStorage} />;
+                return <Soknad søker={person} søknadstype={søknadstype} soknadTempStorage={soknadTempStorage} />;
             }}
         />
     );

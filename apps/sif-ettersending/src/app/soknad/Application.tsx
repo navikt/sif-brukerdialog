@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { ApplicationTypeContext } from '../context/ApplicationTypeContext';
-import { initialValues } from '../types/SoknadFormData';
+import { initialSoknadFormData } from '../types/SoknadFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import ApplicationEssentialsLoader from './ApplicationEssentialsLoader';
 import ApplicationFormComponents from './ApplicationFormComponents';
@@ -40,7 +40,7 @@ const Application = () => {
                 søknadstype={søknadstype}
                 contentLoadedRenderer={() => (
                     <ApplicationFormComponents.FormikWrapper
-                        initialValues={initialValues}
+                        initialValues={initialSoknadFormData}
                         onSubmit={() => null}
                         renderForm={() => <ApplicationRoutes />}
                     />

@@ -18,7 +18,7 @@ export interface SoknadFormData {
     [SoknadFormField.dokumenter]: Attachment[];
 }
 
-export const initialValues: SoknadFormData = {
+export const initialSoknadFormData: SoknadFormData = {
     [SoknadFormField.harForståttRettigheterOgPlikter]: false,
     [SoknadFormField.harBekreftetOpplysninger]: false,
     [SoknadFormField.dokumenter]: [],
