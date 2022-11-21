@@ -28,7 +28,9 @@ server.use((req, res, next) => {
     next();
 });
 
-const MELLOMLAGRING_JSON = `${os.tmpdir()}/sif-ettersending-mellomlagring.json`;
+const MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON = `${os.tmpdir()}/sif-ettersending-pp-mellomlagring.json`;
+const MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON = `${os.tmpdir()}/sif-ettersending-pils-mellomlagring.json`;
+const MELLOMLAGRING_OMP_JSON = `${os.tmpdir()}/sif-ettersending-omp-mellomlagring.json`;
 
 const isJSON = (str) => {
     try {
@@ -95,33 +97,93 @@ const startServer = () => {
         res.sendStatus(200);
     });
 
-    server.get('/mellomlagring/ETTERSENDING', (req, res) => {
-        if (existsSync(MELLOMLAGRING_JSON)) {
-            const body = readFileSync(MELLOMLAGRING_JSON);
+    server.get('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
+        if (existsSync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON)) {
+            const body = readFileSync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON);
             res.send(JSON.parse(body));
         } else {
             res.send({});
         }
     });
-    server.post('/mellomlagring/ETTERSENDING', (req, res) => {
+    server.get('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
+        if (existsSync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON)) {
+            const body = readFileSync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON);
+            res.send(JSON.parse(body));
+        } else {
+            res.send({});
+        }
+    });
+    server.get('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
+        if (existsSync(MELLOMLAGRING_OMP_JSON)) {
+            const body = readFileSync(MELLOMLAGRING_OMP_JSON);
+            res.send(JSON.parse(body));
+        } else {
+            res.send({});
+        }
+    });
+    server.post('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
-        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
-    server.put('/mellomlagring/ETTERSENDING', (req, res) => {
+    server.post('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+    server.post('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+
+    server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         console.log(req.body);
-        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
-    server.delete('/mellomlagring/ETTERSENDING', (req, res) => {
+    server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        console.log(req.body);
+        writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+    server.put('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        console.log(req.body);
+        writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+
+    server.delete('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
+        // setTimeout(() => {
+        //     writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify({}, null, 2));
+        //     res.sendStatus(202);
+        // }, 2000);
+        writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify({}, null, 2));
+        res.sendStatus(202);
+    });
+    server.delete('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
+        // setTimeout(() => {
+        //     writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify({}, null, 2));
+        //     res.sendStatus(202);
+        // }, 2000);
+        writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify({}, null, 2));
+        res.sendStatus(202);
+    });
+    server.delete('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
         // setTimeout(() => {
         //     writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         //     res.sendStatus(202);
         // }, 2000);
-        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
+        writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(202);
     });
 };

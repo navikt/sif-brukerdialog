@@ -13,13 +13,13 @@ export type SoknadEssentials = [Person, SoknadTempStorageData];
 
 export type SoknadEssentialsRemoteData = RemoteData<AxiosError, SoknadEssentials>;
 
-function useSoknadEssentials(søknadstype?: ApplicationType): SoknadEssentialsRemoteData {
+function useSoknadEssentials(søknadstype: ApplicationType): SoknadEssentialsRemoteData {
     const [data, setData] = useState<SoknadEssentialsRemoteData>(initial);
     const fetch = async () => {
         try {
             const [sokerResult, soknadTempStorageResult] = await Promise.all([
                 getSokerRemoteData(),
-                getSoknadTempStorage(),
+                getSoknadTempStorage(søknadstype),
             ]);
             setData(combine(sokerResult, soknadTempStorageResult));
         } catch (remoteDataError) {

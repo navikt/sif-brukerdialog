@@ -38,13 +38,13 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
     const intl = useIntl();
     const { ytelse } = useParams();
     const søknadstype = getSøknadstypeFromYtelse(ytelse);
-    //TODO - IF søknadstype undefined
-    const soknadEssentials = useSoknadEssentials(søknadstype);
 
     if (!søknadstype) {
         return <>ugyldig path</>;
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const soknadEssentials = useSoknadEssentials(søknadstype);
     return (
         <RemoteDataHandler<SoknadEssentials>
             remoteData={soknadEssentials}

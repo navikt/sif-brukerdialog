@@ -78,7 +78,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
     }
 
     const resetSoknad = async (redirectToFrontpage = true): Promise<void> => {
-        await soknadTempStorage.purge();
+        await soknadTempStorage.purge(søknadstype);
         setInitialFormData({ ...initialSoknadFormData });
         setSoknadId(undefined);
         if (redirectToFrontpage) {
@@ -95,7 +95,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
 
     const abortSoknad = async (): Promise<void> => {
         try {
-            await soknadTempStorage.purge();
+            await soknadTempStorage.purge(søknadstype);
             await logHendelse(ApplikasjonHendelse.avbryt);
             relocateToApplication(søknadstype);
         } catch (error) {
@@ -112,7 +112,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         try {
             await resetSoknad(false);
             setSoknadId(ulid());
-            await soknadTempStorage.create();
+            await soknadTempStorage.create(søknadstype);
             await logSoknadStartet(skjemanavn);
             const firstStepID = getFirstStep(søknadstype);
             const route = getApplicationPageRoute(søknadstype, firstStepID);
@@ -129,7 +129,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: Partial<SoknadFormData>): Promise<void> => {
         try {
-            await soknadTempStorage.update(sId, values, stepID, { søker });
+            await soknadTempStorage.update(sId, values, stepID, { søker }, søknadstype);
             await logHendelse(ApplikasjonHendelse.fortsettSenere);
             relocateToNavFrontpage();
         } catch (error) {
@@ -145,7 +145,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
     const doSendSoknad = async (apiValues: SoknadApiData, resetFormikForm: resetFormFunc): Promise<void> => {
         try {
             await sendSoknad(apiValues);
-            await soknadTempStorage.purge();
+            await soknadTempStorage.purge(søknadstype);
             await logSoknadSent(skjemanavn);
             await logInfo({ 'Antall vedlegg sendt': apiValues.vedlegg.length });
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
@@ -182,41 +182,6 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         });
     };
 
-    /* const triggerSend = async (apiValues: SoknadApiData, resetForm: resetFormFunc): Promise<void> => {
-        const apiDataIsValid = validateApiValues(apiValues) === undefined;
-        if (apiDataIsValid) {
-            setTimeout(() => {
-                setSendSoknadStatus({ ...sendSoknadStatus, status: pending });
-                doSendSoknad(apiValues, resetForm);
-            });
-        } else {
-            await appSentryLogger.logError('ApiVerificationFailed');
-            navigateToErrorPage(søknadstype, navigate);
-        }
-    };*/
-
-    /*const persistAndNavigate = async (
-        values: Partial<SoknadFormData>,
-        step: StepConfig<StepID>,
-        nextStep?: StepID
-    ): Promise<void> => {
-        // eslint-disable-next-line no-console
-        console.log('nextStep:', nextStep);
-        if (nextStep && soknadId) {
-            try {
-                await soknadTempStorage.update(soknadId, values, nextStep, { søker });
-            } catch (error) {
-                if (isUserLoggedOut(error)) {
-                    await logUserLoggedOut('ved mellomlagring');
-                    navigateToLoginPage(søknadstype);
-                }
-            }
-        }
-        if (step.nextStepRoute) {
-            navigate(step.nextStepRoute);
-        }
-    };*/
-
     return (
         <LoadWrapper
             isLoading={initializing}
@@ -231,9 +196,15 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                 const stepToPersist = soknadStepsConfig[stepID].nextStep;
                                 if (stepToPersist && soknadId) {
                                     try {
-                                        await soknadTempStorage.update(soknadId, values, stepToPersist, {
-                                            søker,
-                                        });
+                                        await soknadTempStorage.update(
+                                            soknadId,
+                                            values,
+                                            stepToPersist,
+                                            {
+                                                søker,
+                                            },
+                                            søknadstype
+                                        );
                                     } catch (error) {
                                         if (isUserLoggedOut(error)) {
                                             await logUserLoggedOut('ved mellomlagring');
