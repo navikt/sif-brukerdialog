@@ -42,7 +42,10 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype }: Props) => {
     };
 
     return (
-        <SoknadFormStep id={StepID.DOKUMENTER} buttonDisabled={hasPendingUploads || sizeOver24Mb}>
+        <SoknadFormStep
+            id={StepID.DOKUMENTER}
+            søknadstype={søknadstype}
+            buttonDisabled={hasPendingUploads || sizeOver24Mb}>
             <SifGuidePanel>
                 <BodyLong as="div">
                     <p>
@@ -72,6 +75,7 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype }: Props) => {
                         }}
                         onUnauthorizedOrForbiddenUpload={userLoggedOut}
                         validate={validateDocuments}
+                        listOfAttachments={values.dokumenter}
                     />
                 </FormBlock>
             )}

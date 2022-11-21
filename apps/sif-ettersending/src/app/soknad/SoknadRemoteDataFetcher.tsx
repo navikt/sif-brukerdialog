@@ -55,7 +55,7 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
                     {isForbidden(error) && <IkkeTilgangPage søknadstype={søknadstype} />}
                     {!isForbidden(error) && (
                         <ErrorPage
-                            bannerTitle={intlHelper(intl, 'application.title')}
+                            bannerTitle={intlHelper(intl, `application.title.${søknadstype}`)}
                             contentRenderer={(): JSX.Element => <SoknadErrorMessages.GeneralApplicationError />}
                         />
                     )}

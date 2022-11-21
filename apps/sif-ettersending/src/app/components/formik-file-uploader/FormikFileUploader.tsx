@@ -11,10 +11,10 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { ArrayHelpers, useFormikContext } from 'formik';
+import { ArrayHelpers } from 'formik';
 import api from '../../api/api';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
-import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
+import { SoknadFormField } from '../../types/SoknadFormData';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 import { ApiEndpoint } from '../../types/ApiEndpoint';
@@ -29,6 +29,7 @@ interface FormikFileUploader extends TypedFormInputValidationProps<SoknadFormFie
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
+    listOfAttachments: Attachment[];
 }
 
 type Props = FormikFileUploader;
@@ -38,10 +39,9 @@ const FormikFileUploader = ({
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
+    listOfAttachments,
     ...otherProps
 }: Props) => {
-    const { values } = useFormikContext<SoknadFormData>();
-
     function findAttachmentsToProcess(attachments: Attachment[]): Attachment[] {
         return attachments.filter(attachmentShouldBeProcessed);
     }
@@ -125,7 +125,7 @@ const FormikFileUploader = ({
             accept={VALID_EXTENSIONS.join(', ')}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
                 const attachments: Attachment[] = files.map((file) => addPendingAttachmentToFieldArray(file, push));
-                await uploadAttachments([...(values as any)[name], ...attachments], replace);
+                await uploadAttachments([...listOfAttachments, ...attachments], replace);
             }}
             onClick={onFileInputClick}
             {...otherProps}

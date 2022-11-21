@@ -1,16 +1,17 @@
+/* eslint-disable no-console */
+const os = require('os');
+const fs = require('fs');
 const express = require('express');
+const server = express();
 const busboyCons = require('busboy');
 
-const server = express();
-
+server.use(express.json());
 server.use((req, res, next) => {
     const allowedOrigins = [
+        'http://host.docker.internal:8080',
         'http://localhost:8080',
-        'http://localhost:8081',
-        'http://localhost:8082',
-        'http://localhost:8083',
-        'http://localhost:8084',
-        'http://localhost:8085',
+        'http://web:8080',
+        'http://192.168.0.115:8080',
     ];
     const requestOrigin = req.headers.origin;
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
@@ -22,9 +23,35 @@ server.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Access-Control-Allow-Headers', 'content-type');
+    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE', 'PUT']);
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
+
+const MELLOMLAGRING_JSON = `${os.tmpdir()}/sif-ettersending-mellomlagring.json`;
+
+const isJSON = (str) => {
+    try {
+        return JSON.parse(str) && !!str;
+    } catch (e) {
+        return false;
+    }
+};
+
+const writeFileAsync = async (path, text) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(path, text, 'utf8', (err) => {
+            if (err) reject(err);
+            else resolve();
+        });
+    });
+};
+
+const readFileSync = (path) => {
+    return fs.readFileSync(path, 'utf8');
+};
+
+const existsSync = (path) => fs.existsSync(path);
 
 const søkerMock = {
     fornavn: 'Test',
@@ -62,6 +89,40 @@ const startServer = () => {
             res.end();
         });
         req.pipe(busboy);
+    });
+
+    server.delete('/vedlegg', (req, res) => {
+        res.sendStatus(200);
+    });
+
+    server.get('/mellomlagring/ETTERSENDING', (req, res) => {
+        if (existsSync(MELLOMLAGRING_JSON)) {
+            const body = readFileSync(MELLOMLAGRING_JSON);
+            res.send(JSON.parse(body));
+        } else {
+            res.send({});
+        }
+    });
+    server.post('/mellomlagring/ETTERSENDING', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+    server.put('/mellomlagring/ETTERSENDING', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        console.log(req.body);
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+    server.delete('/mellomlagring/ETTERSENDING', (req, res) => {
+        // setTimeout(() => {
+        //     writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
+        //     res.sendStatus(202);
+        // }, 2000);
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
+        res.sendStatus(202);
     });
 };
 

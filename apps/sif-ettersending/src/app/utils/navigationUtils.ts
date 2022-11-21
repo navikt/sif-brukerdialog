@@ -17,7 +17,7 @@ export const navigateToErrorPage = (søknadstype: ApplicationType, navigate?: Na
 };
 
 export const navigateToKvitteringPage = (søknadstype: ApplicationType, navigate: NavigateFunction) =>
-    navigate(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE));
+    navigate(getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE);
 
 export const navigateToLoginPage = (søknadstype: ApplicationType) => window.location.assign(getLoginUrl(søknadstype));
 export const navigateToWelcomePage = (søknadstype: ApplicationType) =>

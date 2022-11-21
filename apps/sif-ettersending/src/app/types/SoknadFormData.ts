@@ -7,7 +7,6 @@ export enum SoknadFormField {
     beskrivelse = 'beskrivelse',
     søknadstype = 'søknadstype',
     dokumenter = 'dokumenter',
-    dokumenterGruppe = 'dokumenterGruppe',
 }
 
 export interface SoknadFormData {

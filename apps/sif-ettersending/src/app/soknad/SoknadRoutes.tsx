@@ -44,8 +44,8 @@ const SoknadRoutes = ({ søker, søknadstype, soknadId = '123' }: Props) => {
             <Route path="velkommen" element={<WelcomingPage søknadstype={søknadstype} />} />
             {soknadId && (
                 <>
-                    <Route path={StepID.BESKRIVELSE} element={<BeskrivelseStep />} />
-                    <Route path={StepID.OMS_TYPE} element={<ValgOmsTypeStep />} />
+                    <Route path={StepID.BESKRIVELSE} element={<BeskrivelseStep søknadstype={søknadstype} />} />
+                    <Route path={StepID.OMS_TYPE} element={<ValgOmsTypeStep søknadstype={søknadstype} />} />
                     <Route path={StepID.DOKUMENTER} element={<DokumenterStep søknadstype={søknadstype} />} />
                     <Route
                         path={StepID.OPPSUMMERING}

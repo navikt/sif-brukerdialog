@@ -1,8 +1,14 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { axiosJsonConfig, axiosMultipartConfig } from '../config/axiosConfig';
-import { ApiEndpoint } from '../types/ApiEndpoint';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { ApiEndpoint } from '../types/ApiEndpoint';
+
+const axiosConfig: AxiosRequestConfig = {
+    withCredentials: false,
+};
+
+export const axiosJsonConfig = { ...axiosConfig, headers: { 'Content-type': 'application/json; charset=utf-8' } };
+export const axiosMultipartConfig = { ...axiosConfig, headers: { 'Content-Type': 'multipart/form-data' } };
 
 const sendMultipartPostRequest = (url: string, formData: FormData) => {
     return axios.post(url, formData, axiosMultipartConfig);

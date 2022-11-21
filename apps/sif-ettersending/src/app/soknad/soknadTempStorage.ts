@@ -5,11 +5,10 @@ import hash from 'object-hash';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 import { Person } from '../types/Person';
 import { SoknadFormData } from '../types/SoknadFormData';
-import { axiosJsonConfig } from '../config/axiosConfig';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
-// import { StepID } from './soknadStepsConfig';
+import { axiosJsonConfig } from '../api/api';
 
-export const STORAGE_VERSION = '1.0';
+export const STORAGE_VERSION = '2.0';
 
 interface UserHashInfo {
     søker: Person;
@@ -46,20 +45,16 @@ export const isStorageDataValid = (
     return undefined;
 };
 
-const soknadTempStorage: SoknadTemporaryStorage = {
-    create: () => {
-        return persistSetup.create();
-    },
+const SøknadTempStorage: SoknadTemporaryStorage = {
     update: (soknadId: string, formData: SoknadFormData, lastStepID: StepID, userHashInfo: UserHashInfo) => {
         return persistSetup.update({
             formData,
             metadata: { soknadId, lastStepID, version: STORAGE_VERSION, userHash: hash(userHashInfo) },
         });
     },
-    purge: () => {
-        return persistSetup.purge();
-    },
+    create: persistSetup.create,
+    purge: persistSetup.purge,
     rehydrate: persistSetup.rehydrate,
 };
 
-export default soknadTempStorage;
+export default SøknadTempStorage;

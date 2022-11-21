@@ -8,7 +8,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useFormikContext } from 'formik';
-import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
+// import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import { StepID } from '../../config/stepConfig';
 import { YtelseTypeApi } from '../../types/SoknadApiData';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
@@ -38,6 +38,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
     return (
         <SoknadFormStep
             id={StepID.OPPSUMMERING}
+            søknadstype={søknadstype}
             includeValidationSummary={false}
             showButtonSpinner={isPending(sendSoknadStatus.status)}
             buttonDisabled={
@@ -69,10 +70,9 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                             <TextareaSummary text={apiValues.beskrivelse} />
                         </SummaryBlock>
                     )}
-
-                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumenter.header')}>
+                    {/*<SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumenter.header')}>
                         <UploadedDocumentsList includeDeletionFunctionality={false} />
-                    </SummaryBlock>
+                    </SummaryBlock>*/}
                 </Panel>
             </Block>
 

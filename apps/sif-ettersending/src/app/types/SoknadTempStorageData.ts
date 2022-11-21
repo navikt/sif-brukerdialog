@@ -1,4 +1,3 @@
-// import { StepID } from '../soknad/soknadStepsConfig';
 import { StepID } from '../config/stepConfig';
 import { SoknadFormData } from './SoknadFormData';
 

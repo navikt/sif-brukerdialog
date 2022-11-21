@@ -14,6 +14,7 @@ export enum YtelseTypeApi {
     'ukjent' = 'ukjent',
 }
 export interface SoknadApiData {
+    id: string;
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;

@@ -9,11 +9,15 @@ import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation'
 import { BodyLong, Link } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadFormStep from '../SoknadFormStep';
+import { ApplicationType } from '../../types/ApplicationType';
+interface Props {
+    søknadstype: ApplicationType;
+}
 
-const BeskrivelseStep: React.FC = () => {
+const BeskrivelseStep: React.FC<Props> = ({ søknadstype }) => {
     const intl = useIntl();
     return (
-        <SoknadFormStep id={StepID.BESKRIVELSE}>
+        <SoknadFormStep id={StepID.BESKRIVELSE} søknadstype={søknadstype}>
             <FormBlock>
                 <SoknadFormComponents.Textarea
                     name={SoknadFormField.beskrivelse}

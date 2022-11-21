@@ -9,10 +9,14 @@ import { ApplicationType } from '../../types/ApplicationType';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 
-const ValgOmsTypeStep: React.FC = () => {
+interface Props {
+    søknadstype: ApplicationType;
+}
+
+const ValgOmsTypeStep: React.FC<Props> = ({ søknadstype }) => {
     const intl = useIntl();
     return (
-        <SoknadFormStep id={StepID.OMS_TYPE}>
+        <SoknadFormStep id={StepID.OMS_TYPE} søknadstype={søknadstype}>
             <FormBlock>
                 <SoknadFormComponents.RadioGroup
                     name={SoknadFormField.søknadstype}

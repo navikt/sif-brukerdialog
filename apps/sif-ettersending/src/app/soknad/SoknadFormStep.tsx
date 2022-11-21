@@ -12,6 +12,9 @@ import { SoknadFormData } from '../types/SoknadFormData';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from '../config/stepConfig';
+import { ApplicationType } from '../types/ApplicationType';
+import { getApplicationPageRoute } from '../utils/routeUtils';
+import { WELCOME_PAGE } from '../config/routeConfig';
 
 interface OwnProps {
     id: StepID;
@@ -23,6 +26,7 @@ interface OwnProps {
     buttonDisabled?: boolean;
     stepTitle?: string;
     pageTitle?: string;
+    søknadstype: ApplicationType;
     showNotAllQuestionsAnsweredMessage?: boolean;
     children: React.ReactNode;
 }
@@ -41,13 +45,26 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     pageTitle,
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
+    søknadstype,
 }) => {
     const intl = useIntl();
     const { soknadStepsConfig, resetSoknad, gotoNextStepFromStep, continueSoknadLater } = useSoknadContext();
     const stepConfig = soknadStepsConfig[id];
-    const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
-    const applicationTitle = intlHelper(intl, 'application.title');
 
+    const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
+    const applicationTitle = intlHelper(intl, `application.title.${søknadstype}`);
+
+    const getbackLinkHrefDok = (): string => {
+        switch (søknadstype) {
+            case ApplicationType.pleiepengerBarn:
+            case ApplicationType.pleiepengerLivetsSluttfase:
+                return getApplicationPageRoute(søknadstype, StepID.BESKRIVELSE);
+            case ApplicationType.omsorgspenger:
+                return getApplicationPageRoute(søknadstype, StepID.OMS_TYPE);
+            default:
+                return getApplicationPageRoute(søknadstype, WELCOME_PAGE);
+        }
+    };
     useLogSidevisning(id);
 
     return (
@@ -56,7 +73,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
             cancelOrContinueLaterAriaLabel={intlHelper(intl, 'application.cancelOrContinueLaterLabel')}
             stepTitle={stepTitle || texts.stepTitle}
             pageTitle={pageTitle || texts.pageTitle}
-            backLinkHref={stepConfig.backLinkHref}
+            backLinkHref={getbackLinkHrefDok()}
             steps={soknadStepUtils.getStepIndicatorStepsFromConfig(soknadStepsConfig, intl)}
             activeStepId={id}
             onCancel={resetSoknad}

@@ -5,8 +5,8 @@ import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-am
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { SoknadApplicationType, StepConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+// import { SoknadApplicationType } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
+// import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { FormikState } from 'formik';
 import { ulid } from 'ulid';
 import { sendSoknad } from '../api/sendSoknad';
@@ -17,10 +17,11 @@ import { SoknadFormData, initialSoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import {
     navigateToErrorPage,
-    navigateToKvitteringPage,
     navigateToLoginPage,
     relocateToNavFrontpage,
     relocateToApplication,
+    navigateToKvitteringPage,
+    navigateTo,
 } from '../utils/navigationUtils';
 import { initialSendSoknadState, SendSoknadStatus, SoknadContextProvider } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
@@ -61,7 +62,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
             const lastStepRoute = getApplicationPageRoute(søknadstype, tempStorage.metadata.lastStepID);
 
             if (currentRoute !== lastStepRoute) {
-                navigate(soknadStepUtils.getStepRoute(tempStorage.metadata.lastStepID, SoknadApplicationType.MELDING));
+                navigateTo(lastStepRoute, navigate);
                 setInitializing(false);
             } else {
                 setInitializing(false);
@@ -115,7 +116,8 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
             await soknadTempStorage.create();
             await logSoknadStartet(skjemanavn);
             const firstStepID = getFirstStep(søknadstype);
-            navigate(soknadStepUtils.getStepRoute(firstStepID, SoknadApplicationType.MELDING));
+            const route = getApplicationPageRoute(søknadstype, firstStepID);
+            navigate(route);
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved start av søknad');
@@ -194,11 +196,13 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         }
     };*/
 
-    const persistAndNavigate = async (
+    /*const persistAndNavigate = async (
         values: Partial<SoknadFormData>,
         step: StepConfig<StepID>,
         nextStep?: StepID
     ): Promise<void> => {
+        // eslint-disable-next-line no-console
+        console.log('nextStep:', nextStep);
         if (nextStep && soknadId) {
             try {
                 await soknadTempStorage.update(soknadId, values, nextStep, { søker });
@@ -212,7 +216,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         if (step.nextStepRoute) {
             navigate(step.nextStepRoute);
         }
-    };
+    };*/
 
     return (
         <LoadWrapper
@@ -223,12 +227,34 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                         initialValues={initialFormData}
                         onSubmit={() => null}
                         renderForm={({ values, resetForm }) => {
-                            const soknadStepsConfig = getSoknadStepsConfig(søknadstype);
+                            const navigateToNextStepFromStep = async (stepID: StepID) => {
+                                const soknadStepsConfig = getSoknadStepsConfig(søknadstype);
+                                const stepToPersist = soknadStepsConfig[stepID].nextStep;
+                                if (stepToPersist && soknadId) {
+                                    try {
+                                        await soknadTempStorage.update(soknadId, values, stepToPersist, {
+                                            søker,
+                                        });
+                                    } catch (error) {
+                                        if (isUserLoggedOut(error)) {
+                                            await logUserLoggedOut('ved mellomlagring');
+                                            navigateToLoginPage(søknadstype);
+                                        }
+                                    }
+                                }
+                                const step = soknadStepsConfig[stepID];
+
+                                setTimeout(() => {
+                                    if (step.nextStep) {
+                                        navigateTo(step.nextStep, navigate);
+                                    }
+                                });
+                            };
                             return (
                                 <SoknadContextProvider
                                     value={{
                                         soknadId,
-                                        soknadStepsConfig,
+                                        soknadStepsConfig: getSoknadStepsConfig(søknadstype),
                                         sendSoknadStatus,
                                         resetSoknad: abortSoknad,
                                         continueSoknadLater: soknadId
@@ -236,12 +262,8 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                             : undefined,
                                         startSoknad,
                                         sendSoknad: (values) => triggerSend(values, resetForm),
-                                        gotoNextStepFromStep: (stepId: StepID) => {
-                                            persistAndNavigate(
-                                                values,
-                                                soknadStepsConfig[stepId],
-                                                soknadStepsConfig[stepId].nextStep
-                                            );
+                                        gotoNextStepFromStep: (stepID: StepID) => {
+                                            navigateToNextStepFromStep(stepID);
                                         },
                                     }}>
                                     <SoknadRoutes søker={søker} søknadstype={søknadstype} soknadId={soknadId} />
