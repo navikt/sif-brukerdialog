@@ -73,7 +73,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
         <BodyShort as="div">{labels.stepProgressLabelFunc(currentStepNumber, totalSteps)}</BodyShort>
     );
     const includeGotoPreviousStepLink = onStepSelect !== undefined && includeBackLink === true;
-    const headingStepInfo = includeGotoPreviousStepLink ? (
+    const currentStepInfoInHeader = includeGotoPreviousStepLink ? (
         <div className="progressStepper__heading__stepInfo">{currentStepInfo}</div>
     ) : undefined;
 
@@ -82,7 +82,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
             <div className="progressStepper__heading">
                 <Heading size="xlarge" level={titleHeadingLevel} className="progressStepper__heading__title">
                     {step.label}
-                    {headingStepInfo}
+                    {currentStepInfoInHeader}
                 </Heading>
             </div>
             <div className="progressStepper__progressBarWrapper" role="presentation" aria-hidden={true}>

@@ -5,6 +5,9 @@
             display: flex;
             flex-direction: column-reverse;
         }
+        &__stepInfo {
+            margin-bottom: 0.5rem;
+        }
     }
     &__progressBarWrapper {
         margin-bottom: 0.5rem;
