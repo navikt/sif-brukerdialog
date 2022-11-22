@@ -3,17 +3,11 @@ $mobile-breakpoint: 576px;
 .buttonRow {
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
     flex-direction: row;
     justify-content: center;
-    &__button {
-        margin-bottom: 1rem;
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    .buttonRow__buttonWrapper + .buttonRow__buttonWrapper {
-        padding-left: 1rem;
+    button {
+        min-width: 5rem;
     }
     &--left {
         justify-content: left;
@@ -21,42 +15,26 @@ $mobile-breakpoint: 576px;
     &--stretch {
         display: flex;
         justify-items: stretch;
-        .buttonRow__buttonWrapper {
+        .buttonRow__button {
             flex: 1 1 0;
             button {
                 width: 100%;
             }
-            &:first-child {
-                margin-right: 1rem;
-            }
         }
         @media (max-width: $mobile-breakpoint) {
-            .buttonRow__buttonWrapper {
-                &:first-child {
-                    margin-right: 0;
-                }
-                &:last-child {
-                    padding-left: 0;
-                    margin-bottom: 1rem;
-                }
-            }
+            flex-direction: column;
+            gap: 0.5rem;
         }
     }
     &--mobile-50-50 {
         @media (max-width: $mobile-breakpoint) {
-            .buttonRow__buttonWrapper + .buttonRow__buttonWrapper {
+            .buttonRow__button + .buttonRow__button {
                 padding: 0;
             }
-            .buttonRow__buttonWrapper {
+            .buttonRow__button {
                 padding: 0;
                 width: 50%;
-                &:first-child {
-                    padding-right: 0.25rem;
-                }
-                &:last-child {
-                    padding-left: 0.25rem;
-                }
-                > .buttonWrapper {
+                > .knapp {
                     height: 100%;
                     white-space: normal;
                     width: 100%;

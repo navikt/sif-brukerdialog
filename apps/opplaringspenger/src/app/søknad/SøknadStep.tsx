@@ -29,6 +29,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
         <Step
             activeStepId={stepId}
             pageTitle={intlHelper(intl, pageTitleIntlKey)}
+            bannerTitle="Søknad om opplæringspenger"
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>

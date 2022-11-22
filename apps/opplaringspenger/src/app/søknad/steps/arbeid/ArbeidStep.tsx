@@ -64,7 +64,8 @@ const ArbeidStep = () => {
                         <>
                             <PersistStepFormValues stepId={stepId} />
                             <Form
-                                submitButtonLabel="Gå videre"
+                                submitButtonLabel="Fortsett"
+                                backButtonLabel="Tilbake"
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 onBack={goBack}>

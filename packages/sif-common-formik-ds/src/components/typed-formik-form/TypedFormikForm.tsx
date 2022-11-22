@@ -1,11 +1,12 @@
 import { Button } from '@navikt/ds-react';
 import React, { createContext, useEffect, useRef, useState } from 'react';
+import { Back, Next } from '@navikt/ds-icons';
 import { FieldInputProps, FormikProps, useFormikContext } from 'formik';
 import { CancelButtonTypes, CustomFormErrorHandler, ErrorTypeChecker, FieldErrorHandler, FormError } from '../../types';
 import { getErrorForField, isValidationErrorsVisible } from '../../utils/typedFormErrorUtils';
 import FormikValidationErrorSummary from '../formik-validation-error-summary/FormikValidationErrorSummary';
 import ButtonRow from '../helpers/button-row/ButtonRow';
-
+import './typed-formik-form.scss';
 export interface TypedFormikFormProps<FormValues, ErrorType> {
     children: React.ReactNode;
     className?: string;
@@ -23,6 +24,7 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     errorSummaryTitle?: string;
     submitPending?: boolean;
     submitDisabled?: boolean;
+    showButtonArrows?: boolean;
     noButtonsContentRenderer?: () => React.ReactNode;
     cleanup?: (values: FormValues) => FormValues;
     onValidSubmit?: () => void;
@@ -65,6 +67,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     errorSummaryTitle,
     submitPending,
     submitDisabled,
+    showButtonArrows = true,
     onCancel,
     onBack,
     onValidSubmit,
@@ -167,7 +170,12 @@ function TypedFormikForm<FormValues, ErrorType>({
                         <ButtonRow layout={'normal'}>
                             {onBack && (
                                 <Button variant="secondary" type="button" onClick={() => onBack(formik.values)}>
-                                    {backButtonLabel || 'Tilbake'}
+                                    <span className="typedFormikForm__buttonLabel">
+                                        {showButtonArrows && (
+                                            <Back aria-hidden className="typedFormikForm__buttonLabel__icon" />
+                                        )}
+                                        {backButtonLabel || 'Tilbake'}
+                                    </span>
                                 </Button>
                             )}
 
@@ -177,7 +185,12 @@ function TypedFormikForm<FormValues, ErrorType>({
                                 loading={submitPending}
                                 disabled={submitDisabled}
                                 name="submit">
-                                {submitButtonLabel || 'Ok'}
+                                <span className="typedFormikForm__buttonLabel">
+                                    {submitButtonLabel || 'Ok'}
+                                    {showButtonArrows && (
+                                        <Next aria-hidden className="typedFormikForm__buttonLabel__icon" />
+                                    )}
+                                </span>
                             </Button>
 
                             {onCancel && (
