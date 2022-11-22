@@ -65,11 +65,7 @@ const PleietrengendeStep = () => {
                 renderForm={() => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <Form
-                            includeValidationSummary={true}
-                            submitButtonLabel="Gå videre"
-                            submitPending={isSubmitting}
-                            onBack={goBack}>
+                        <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
                             <TextField
                                 label="Fødselsnummer"
                                 name={PleietrengendeFormFields.fødselsnummer}

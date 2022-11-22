@@ -71,9 +71,7 @@ const MedlemskapStep = () => {
                 renderForm={() => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <Form submitButtonLabel="Gå videre" onBack={goBack}>
-                            Skjema ikke laget
-                        </Form>
+                        <Form onBack={goBack}>Skjema ikke laget</Form>
                     </>
                 )}
             />

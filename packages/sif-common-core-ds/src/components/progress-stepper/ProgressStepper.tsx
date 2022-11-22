@@ -47,7 +47,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
     allStepsFooter,
     labels = defaultLabels,
     titleHeadingLevel = '1',
-    includeBackLink = true,
+    includeBackLink = false,
     setFocusOnHeadingOnMount = true,
     onStepSelect,
 }) => {

@@ -174,7 +174,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                                         {showButtonArrows && (
                                             <Back aria-hidden className="typedFormikForm__buttonLabel__icon" />
                                         )}
-                                        {backButtonLabel || 'Tilbake'}
+                                        {backButtonLabel || 'Forrige'}
                                     </span>
                                 </Button>
                             )}
@@ -186,7 +186,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                                 disabled={submitDisabled}
                                 name="submit">
                                 <span className="typedFormikForm__buttonLabel">
-                                    {submitButtonLabel || 'Ok'}
+                                    {submitButtonLabel || 'Neste'}
                                     {showButtonArrows && (
                                         <Next aria-hidden className="typedFormikForm__buttonLabel__icon" />
                                     )}

@@ -1,6 +1,6 @@
 body.sif-ds-theme {
-    --navds-guide-panel-color-border: var(--navds-global-color-purple-300);
-    --navds-guide-panel-color-illustration-background: var(--navds-global-color-purple-200);
+    --navds-guide-panel-color-border: var(--navds-global-color-deepblue-400);
+    --navds-guide-panel-color-illustration-background: var(--navds-global-color-deepblue-200);
 }
 
 .soknadHeader,

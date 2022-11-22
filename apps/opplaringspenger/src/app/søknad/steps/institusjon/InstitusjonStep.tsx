@@ -70,11 +70,7 @@ const InstitusjonStep = () => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
-                            <Form
-                                includeValidationSummary={true}
-                                submitButtonLabel="Gå videre"
-                                submitPending={isSubmitting}
-                                onBack={goBack}>
+                            <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
                                 {harInstitusjoner && (
                                     <>
                                         <Select

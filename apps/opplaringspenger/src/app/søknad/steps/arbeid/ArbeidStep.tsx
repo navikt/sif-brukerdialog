@@ -63,12 +63,7 @@ const ArbeidStep = () => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
-                            <Form
-                                submitButtonLabel="Fortsett"
-                                backButtonLabel="Tilbake"
-                                includeValidationSummary={true}
-                                submitPending={isSubmitting}
-                                onBack={goBack}>
+                            <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
                                 <DatePicker
                                     label="Når skal du starte å arbeide?"
                                     name={ArbeidFormFields.startdato}

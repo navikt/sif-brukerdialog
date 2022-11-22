@@ -62,7 +62,7 @@ const OpplæringStep = () => {
                 renderForm={() => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <Form submitButtonLabel="Gå videre" onBack={goBack}>
+                        <Form onBack={goBack}>
                             <Textarea
                                 label="Beskriv opplæringen"
                                 name={OpplæringFormFields.beskrivelse}
