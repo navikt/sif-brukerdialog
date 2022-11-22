@@ -4,12 +4,22 @@ import './stepButtonRow.scss';
 interface Props {
     backButton?: ReactNode;
     nextButton?: ReactNode;
+    reversedButtonDOMOrder?: boolean;
 }
 
-const StepButtonRow: React.FunctionComponent<Props> = ({ backButton, nextButton }) => (
-    <div className="stepButtonRow">
-        {backButton && <div className="back">{backButton}</div>}
-        {nextButton && <div className="next">{nextButton}</div>}
+const StepButtonRow: React.FunctionComponent<Props> = ({ backButton, nextButton, reversedButtonDOMOrder = true }) => (
+    <div className={`stepButtonRow ${reversedButtonDOMOrder ? 'stepButtonRow--reversed' : ''}`}>
+        {reversedButtonDOMOrder ? (
+            <>
+                {nextButton && <div className="stepButtonRow__next">{nextButton}</div>}
+                {backButton && <div className="stepButtonRow__back">{backButton}</div>}
+            </>
+        ) : (
+            <>
+                {backButton && <div className="stepButtonRow__back">{backButton}</div>}
+                {nextButton && <div className="stepButtonRow__next">{nextButton}</div>}
+            </>
+        )}
     </div>
 );
 

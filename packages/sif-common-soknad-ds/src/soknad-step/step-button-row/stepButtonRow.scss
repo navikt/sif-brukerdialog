@@ -2,13 +2,18 @@
     display: flex;
     justify-content: flex-start;
 
-    .next {
+    &--reversed {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+    &__next {
         min-width: 25%;
         button {
             width: 100%;
         }
     }
-    .back {
+    &__back {
         margin-right: 1rem;
     }
 }
