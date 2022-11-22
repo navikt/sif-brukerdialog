@@ -1,4 +1,4 @@
-import { Radio, RadioGroup, RadioGroupProps, RadioProps } from '@navikt/ds-react';
+import { BodyShort, Radio, RadioGroup, RadioGroupProps, RadioProps } from '@navikt/ds-react';
 import React, { useContext } from 'react';
 import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
@@ -35,14 +35,16 @@ function FormikRadioGroup<FieldName, ErrorType>({
                 return (
                     <RadioGroup
                         {...restProps}
+                        description={restProps.description ? <BodyShort>{restProps.description}</BodyShort> : undefined}
                         name={field.name}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         value={field.value || ''}>
                         {radios.map((rb, idx) => {
+                            const { label, ...rest } = rb;
                             return (
                                 <Radio
                                     key={idx}
-                                    {...rb}
+                                    {...rest}
                                     name={field.name as any}
                                     onChange={(evt) => {
                                         form.setFieldValue(field.name, evt.target.value);
@@ -50,7 +52,7 @@ function FormikRadioGroup<FieldName, ErrorType>({
                                             context.onAfterFieldValueSet();
                                         }
                                     }}>
-                                    {rb.label}
+                                    {label}
                                 </Radio>
                             );
                         })}
