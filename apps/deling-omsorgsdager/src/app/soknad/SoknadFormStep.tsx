@@ -26,6 +26,7 @@ interface OwnProps {
     pageTitle?: string;
     backLinkHref?: string;
     showNotAllQuestionsAnsweredMessage?: boolean;
+    includeBackButton?: boolean;
     children: React.ReactNode;
 }
 
@@ -42,12 +43,14 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     pageTitle,
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
+    includeBackButton = false,
 }) => {
     const intl = useIntl();
     const { soknadStepsConfig, resetSoknad, gotoNextStepFromStep, continueSoknadLater } = useSoknadContext();
     const stepConfig = soknadStepsConfig[id];
     const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
     const applicationTitle = intlHelper(intl, 'application.title');
+
     const { backLinkHref } = stepConfig;
 
     const navigateTo = useNavigate();
@@ -84,7 +87,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
                         <Block textAlignCenter={true} margin="xxl">
                             <StepButtonRow
                                 backButton={
-                                    backLinkHref ? (
+                                    includeBackButton && backLinkHref ? (
                                         <Button
                                             onClick={() => navigateTo(backLinkHref)}
                                             variant="secondary"
