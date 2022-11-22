@@ -12,7 +12,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
                 },
-                søknadRoute: SøknadRoutes.PLEIETRENGENDE,
+                søknadRoute: SøknadRoutes.OM_BARNET,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -40,12 +40,12 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_PLEIETRENGENDE:
+            case SøknadContextActionKeys.SET_SØKNAD_OM_BARNET:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        pleietrengende: {
+                        omBarnet: {
                             ...action.payload,
                         },
                     },

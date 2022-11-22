@@ -1,7 +1,8 @@
 export enum StepId {
     'VELKOMMEN' = 'velkommen',
-    'PLEIETRENGENDE' = 'pleietrengende',
-    'MEDLEMSKAP' = 'medlemskap',
+    'OM_BARNET' = 'om-barnet',
+    'DELT_BOSTED' = 'delt-bosted',
+    'LEGEERKLÆRING' = 'legeerklaring',
     'OPPSUMMERING' = 'oppsummering',
     'SØKNAD_SENDT' = 'soknad_sendt',
 }

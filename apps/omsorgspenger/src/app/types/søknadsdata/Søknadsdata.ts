@@ -1,13 +1,16 @@
-import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
-import { PleietrengendeSøknadsdata } from './PleietrengendeSøknadsdata';
+import { DeltBostedSøknadsdata } from './DeltBostedSøknadsdata';
+import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
+import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
 
-export * from './MedlemskapSøknadsdata';
-export * from './PleietrengendeSøknadsdata';
+export * from './DeltBostedSøknadsdata';
+export * from './OmBarnetSøknadsdata';
+export * from './LegeerklæringSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;
     harForståttRettigheterOgPlikter?: boolean;
     harBekreftetOpplysninger?: boolean;
-    pleietrengende?: PleietrengendeSøknadsdata;
-    medlemskap?: MedlemskapSøknadsdata;
+    deltBosted?: DeltBostedSøknadsdata;
+    omBarnet?: OmBarnetSøknadsdata;
+    legeerklæring?: LegeerklæringSøknadsdata;
 }

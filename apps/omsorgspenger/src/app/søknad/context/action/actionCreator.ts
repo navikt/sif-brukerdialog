@@ -1,6 +1,6 @@
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
-import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapSøknadsdata';
-import { PleietrengendeSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
+import { LegeerklæringSøknadsdata, OmBarnetSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
 export enum SøknadContextActionKeys {
@@ -9,8 +9,9 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
-    SET_SØKNAD_PLEIETRENGENDE = 'setSøknadPleietrengende',
-    SET_SØKNAD_MEDLEMSKAP = 'setSøknadMedlemskap',
+    SET_SØKNAD_OM_BARNET = 'setSøknadOmBarnet',
+    SET_SØKNAD_DELT_BOSTED = 'setSøknadDeltBosted',
+    SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -43,13 +44,17 @@ interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
     payload: SøknadRoutes;
 }
-interface SetSøknadPleietrengende {
-    type: SøknadContextActionKeys.SET_SØKNAD_PLEIETRENGENDE;
-    payload: PleietrengendeSøknadsdata;
+interface SetSøknadOmBarnet {
+    type: SøknadContextActionKeys.SET_SØKNAD_OM_BARNET;
+    payload: OmBarnetSøknadsdata;
 }
-interface SetSøknadMedlemskap {
-    type: SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP;
-    payload: MedlemskapSøknadsdata;
+interface SetSøknadDeltBosted {
+    type: SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED;
+    payload: DeltBostedSøknadsdata;
+}
+interface SetSøknadLegeerklæring {
+    type: SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING;
+    payload: LegeerklæringSøknadsdata;
 }
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
@@ -83,12 +88,16 @@ const setSøknadSendt = (): SetSøknadSendt => ({
     type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
 });
 
-const setSøknadPleietrengende = (payload: PleietrengendeSøknadsdata): SetSøknadPleietrengende => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_PLEIETRENGENDE,
+const setSøknadOmBarnet = (payload: OmBarnetSøknadsdata): SetSøknadOmBarnet => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_OM_BARNET,
     payload,
 });
-const setSøknadMedlemskap = (payload: MedlemskapSøknadsdata): SetSøknadMedlemskap => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP,
+const setSøknadDeltBosted = (payload: DeltBostedSøknadsdata): SetSøknadDeltBosted => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED,
+    payload,
+});
+const setSøknadLegeerklæring = (payload: LegeerklæringSøknadsdata): SetSøknadLegeerklæring => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING,
     payload,
 });
 const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): SetSøknadHarBekreftetOpplysninger => ({
@@ -108,8 +117,9 @@ export type SøknadContextAction =
     | RequestLagreSøknad
     | SetSøknadLagret
     | SetSøknadSendt
-    | SetSøknadPleietrengende
-    | SetSøknadMedlemskap
+    | SetSøknadOmBarnet
+    | SetSøknadDeltBosted
+    | SetSøknadLegeerklæring
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadRoute;
 
@@ -120,8 +130,9 @@ const actionsCreator = {
     fortsettSøknadSenere,
     requestLagreSøknad,
     setSøknadRoute,
-    setSøknadPleietrengende,
-    setSøknadMedlemskap,
+    setSøknadOmBarnet,
+    setSøknadDeltBosted,
+    setSøknadLegeerklæring,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
     setSøknadSendt,

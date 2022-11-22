@@ -32,7 +32,7 @@ const VelkommenPage = () => {
 
     const startSøknad = () => {
         dispatch(actionsCreator.startSøknad());
-        navigateTo(SøknadRoutes.PLEIETRENGENDE);
+        navigateTo(SøknadRoutes.OM_BARNET);
     };
     return (
         <Page title="Velkommen">

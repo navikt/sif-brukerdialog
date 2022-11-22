@@ -5,15 +5,14 @@ import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig } from '../../søknadStepConfig';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import PleietrengendeOppsummering from './parts/PleietrengendeOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -62,7 +61,6 @@ const OppsummeringStep = () => {
 
     return (
         <SøknadStep stepId={StepId.OPPSUMMERING}>
-            <PleietrengendeOppsummering pleietrengende={apiData.pleietrengende} />
             <FormikWrapper
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={() => {

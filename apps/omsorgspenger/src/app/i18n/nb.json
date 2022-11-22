@@ -4,11 +4,11 @@
     "page.error.pageTitle": "Det oppstod en feil",
     "common.soknadErrorMessages.generalError.content": "Feil ja",
 
-    "step.pleietrengende.pageTitle": "Søknad - Pleietrengende",
-    "step.pleietrengende.stepTitle": "Pleietrengende",
+    "step.omBarnet.pageTitle": "Søknad - om barnet",
+    "step.omBarnet.stepTitle": "Om barnet",
 
-    "step.medlemskap.pageTitle": "Søknad - Medlemskap",
-    "step.medlemskap.stepTitle": "Medlemskap",
+    "step.deltBosted.pageTitle": "Søknad - Delt bosted",
+    "step.deltBosted.stepTitle": "Delt bosted",
 
     "step.oppsummering.pageTitle": "Søknad - Oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",

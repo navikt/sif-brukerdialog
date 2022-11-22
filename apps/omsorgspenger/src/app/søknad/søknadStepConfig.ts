@@ -5,16 +5,18 @@ import { SøknadRoutes } from '../types/SøknadRoutes';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
-    return [StepId.PLEIETRENGENDE, StepId.MEDLEMSKAP, StepId.OPPSUMMERING];
+    return [StepId.OM_BARNET, StepId.DELT_BOSTED, StepId.LEGEERKLÆRING, StepId.OPPSUMMERING];
 };
 
 export const getNextStep = (stepId: StepId): SøknadRoutes => {
     switch (stepId) {
         case StepId.VELKOMMEN:
-            return SøknadRoutes.PLEIETRENGENDE;
-        case StepId.PLEIETRENGENDE:
-            return SøknadRoutes.MEDLEMSKAP;
-        case StepId.MEDLEMSKAP:
+            return SøknadRoutes.OM_BARNET;
+        case StepId.OM_BARNET:
+            return SøknadRoutes.DELT_BOSTED;
+        case StepId.DELT_BOSTED:
+            return SøknadRoutes.LEGEERKLÆRING;
+        case StepId.LEGEERKLÆRING:
             return SøknadRoutes.OPPSUMMERING;
         case StepId.OPPSUMMERING:
             return SøknadRoutes.SØKNAD_SENDT;
