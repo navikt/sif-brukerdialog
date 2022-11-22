@@ -1,5 +1,16 @@
 # @navikt/sif-ettersending
 
+## 2.0.0
+
+### Major Changes
+
+-   5a82fae: Endret loginservice til idporten
+
+### Patch Changes
+
+-   Updated dependencies [1a6f39e]
+    -   @navikt/sif-common-formik-ds@0.8.3
+
 ## 1.6.1
 
 ### Patch Changes
