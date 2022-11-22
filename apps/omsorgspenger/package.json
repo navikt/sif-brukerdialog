@@ -1,8 +1,8 @@
 {
     "author": "NAV",
-    "description": "Søknad om omsorgspenger",
+    "description": "Søknad om omsorgspengesoknad",
     "license": "MIT",
-    "name": "@navikt/omsorgspenger",
+    "name": "@navikt/omsorgspengesoknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "0.0.2",
     "private": true,

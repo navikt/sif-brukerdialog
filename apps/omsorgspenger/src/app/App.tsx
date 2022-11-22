@@ -15,7 +15,7 @@ import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { SøknadRoutes } from './types/SøknadRoutes';
 
 export const APPLICATION_KEY = 'opplaringspenger';
-export const SKJEMANAVN = 'omsorgspenger';
+export const SKJEMANAVN = 'omsorgspengesoknad';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -29,7 +29,7 @@ const App = () => (
                 applicationKey={APPLICATION_KEY}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om omsorgspenger"
+                    appName="Søknad om omsorgspengesoknad"
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
                     appStatus={{

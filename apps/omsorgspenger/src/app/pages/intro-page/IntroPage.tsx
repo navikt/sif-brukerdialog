@@ -8,7 +8,7 @@ const IntroPage = () => {
     return (
         <Page title="Introside">
             <Heading level="1" size="large">
-                Søknad om omsorgspenger
+                Søknad om omsorgspengesoknad
             </Heading>
             <>
                 <Ingress>Introduksjonsside</Ingress>

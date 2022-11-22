@@ -1,6 +1,6 @@
-# omsorgspenger
+# omsorgspengesoknad
 
-Kildekode til frontend-appen for omsorgspenger.
+Kildekode til frontend-appen for omsorgspengesoknad.
 
 ## Komme i gang
 
