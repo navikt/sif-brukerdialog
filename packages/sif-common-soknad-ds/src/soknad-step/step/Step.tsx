@@ -54,19 +54,18 @@ function Step({
                     {validationSummary}
                 </>
             )}>
-            <section>
+            <section aria-label="Skjemasteg">
                 <ProgressStepper steps={steps} currentStepIndex={currentStepIndex} onStepSelect={handleOnStepSelect} />
 
                 <Block margin="xxl">{children}</Block>
-
-                {(onCancel || onContinueLater) && (
-                    <div
-                        role={cancelOrContinueLaterAriaLabel ? 'complementary' : undefined}
-                        aria-label={cancelOrContinueLaterAriaLabel}>
-                        <StepFooter onAvbrytOgSlett={onCancel} onAvbrytOgFortsettSenere={onContinueLater} />
-                    </div>
-                )}
             </section>
+            {(onCancel || onContinueLater) && (
+                <div
+                    role={cancelOrContinueLaterAriaLabel ? 'complementary' : undefined}
+                    aria-label={cancelOrContinueLaterAriaLabel}>
+                    <StepFooter onAvbrytOgSlett={onCancel} onAvbrytOgFortsettSenere={onContinueLater} />
+                </div>
+            )}
         </Page>
     );
 }

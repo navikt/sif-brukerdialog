@@ -7,13 +7,29 @@
         justify-content: flex-end;
     }
 
-    &__next {
-        min-width: 25%;
+    &__next,
+    &__back {
+        min-width: 30%;
         button {
             width: 100%;
         }
     }
     &__back {
         margin-right: 1rem;
+    }
+    @media screen and (max-width: 40rem) {
+        &__next,
+        &__back {
+            min-width: calc(50% - 0.5rem);
+        }
+    }
+    @media screen and (max-width: 20rem) {
+        display: block;
+        &__next {
+            margin-bottom: 1rem;
+        }
+        &__back {
+            margin: 0;
+        }
     }
 }
