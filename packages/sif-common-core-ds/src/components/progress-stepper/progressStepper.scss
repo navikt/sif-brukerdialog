@@ -1,9 +1,13 @@
 .progressStepper {
     &__heading {
         margin-bottom: 1rem;
+        &:focus {
+            border: none;
+            outline: none;
+        }
         &__title {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
         }
         &__stepInfo {
             margin-bottom: 0.5rem;

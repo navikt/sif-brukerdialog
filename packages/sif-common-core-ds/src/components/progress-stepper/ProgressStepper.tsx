@@ -1,6 +1,6 @@
 import { BodyShort, Heading, Stepper } from '@navikt/ds-react';
 import Step, { StepperStepProps } from '@navikt/ds-react/esm/stepper/Step';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Back, Collapse, Expand } from '@navikt/ds-icons';
 import { guid } from '@navikt/sif-common-utils/lib';
 import './progressStepper.scss';
@@ -10,17 +10,6 @@ export interface ProgressStep extends Pick<StepperStepProps, 'completed'> {
     index: number;
     label: string;
     href?: string;
-}
-
-interface Props {
-    steps: ProgressStep[];
-    currentStepIndex: number;
-    labels?: Labels;
-    titleHeadingLevel?: '1' | '2';
-    allStepsHeader?: React.ReactNode;
-    allStepsFooter?: React.ReactNode;
-    includeBackLink?: boolean;
-    onStepSelect?: (step: ProgressStep) => void;
 }
 
 interface Labels {
@@ -39,6 +28,18 @@ const defaultLabels: Labels = {
     stepProgressLabelFunc: (currentStep, totalSteps) => `Steg ${currentStep} av ${totalSteps}`,
 };
 
+interface Props {
+    steps: ProgressStep[];
+    currentStepIndex: number;
+    labels?: Labels;
+    titleHeadingLevel?: '1' | '2';
+    allStepsHeader?: React.ReactNode;
+    allStepsFooter?: React.ReactNode;
+    includeBackLink?: boolean;
+    setFocusOnHeadingOnMount?: boolean;
+    onStepSelect?: (step: ProgressStep) => void;
+}
+
 const ProgressStepper: React.FunctionComponent<Props> = ({
     steps,
     currentStepIndex,
@@ -47,6 +48,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
     labels = defaultLabels,
     titleHeadingLevel = '1',
     includeBackLink = true,
+    setFocusOnHeadingOnMount = true,
     onStepSelect,
 }) => {
     const [allStepsVisible, setAllStepsVisible] = useState(false);
@@ -77,12 +79,24 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
         <div className="progressStepper__heading__stepInfo">{currentStepInfo}</div>
     ) : undefined;
 
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    useEffect(() => {
+        if (setFocusOnHeadingOnMount && headingRef.current) {
+            headingRef.current.focus();
+        }
+    }, []);
+
     return (
         <div className="progressStepper">
             <div className="progressStepper__heading">
-                <Heading size="xlarge" level={titleHeadingLevel} className="progressStepper__heading__title">
-                    {step.label}
+                <Heading
+                    tabIndex={-1}
+                    size="xlarge"
+                    level={titleHeadingLevel}
+                    className="progressStepper__heading__title"
+                    ref={headingRef}>
                     {currentStepInfoInHeader}
+                    {step.label}
                 </Heading>
             </div>
             <div className="progressStepper__progressBarWrapper" role="presentation" aria-hidden={true}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
@@ -38,6 +38,7 @@ function Step({
 }: Props) {
     const currentStepIndex = steps.findIndex((s) => s.id === activeStepId);
     const navigate = useNavigate();
+    const sectionRef = useRef<HTMLElement>(null);
 
     const handleOnStepSelect = (step: ProgressStep) => {
         if (step.href) {
@@ -54,7 +55,7 @@ function Step({
                     {validationSummary}
                 </>
             )}>
-            <section aria-label="Skjemasteg">
+            <section aria-label="Skjemasteg" ref={sectionRef}>
                 <ProgressStepper steps={steps} currentStepIndex={currentStepIndex} onStepSelect={handleOnStepSelect} />
 
                 <Block margin="xxl">{children}</Block>
