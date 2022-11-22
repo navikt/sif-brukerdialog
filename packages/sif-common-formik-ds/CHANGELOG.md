@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.8.3
+
+### Patch Changes
+
+-   1a6f39e: Bugfix - fjerne ugyldig label-attributt på Radio i RadioGroup
+
 ## 0.8.2
 
 ### Patch Changes
