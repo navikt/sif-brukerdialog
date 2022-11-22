@@ -5,7 +5,6 @@ import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknad
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
-import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from './søknadStepConfig';
 
@@ -21,11 +20,10 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     } = useSøknadContext();
 
     const stepConfig = getSøknadStepConfig(søknadsdata);
-    const { dispatch } = useSøknadContext();
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
-    const { index, previousStepRoute, pageTitleIntlKey } = stepConfig[stepId];
+    const { index, pageTitleIntlKey } = stepConfig[stepId];
 
     return (
         <Step
@@ -33,17 +31,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
             pageTitle={intlHelper(intl, pageTitleIntlKey)}
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
-            onContinueLater={fortsettSøknadSenere}
-            onBackClick={
-                previousStepRoute
-                    ? () => {
-                          if (previousStepRoute) {
-                              dispatch(actionsCreator.setSøknadRoute(previousStepRoute));
-                              dispatch(actionsCreator.requestLagreSøknad());
-                          }
-                      }
-                    : undefined
-            }>
+            onContinueLater={fortsettSøknadSenere}>
             {children}
         </Step>
     );

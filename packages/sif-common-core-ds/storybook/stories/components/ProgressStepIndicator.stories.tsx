@@ -61,7 +61,7 @@ const steps: ProgressStep[] = [
 ];
 
 const Template: ComponentStory<typeof ProgressStepper> = () => {
-    return <ProgressStepper steps={steps} currentStepIndex={2} />;
+    return <ProgressStepper steps={steps} currentStepIndex={2} onStepSelect={() => null} />;
 };
 
 export const Default = Template.bind({});

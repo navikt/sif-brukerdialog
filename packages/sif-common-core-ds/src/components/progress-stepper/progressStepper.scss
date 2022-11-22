@@ -1,6 +1,10 @@
 .progressStepper {
     &__heading {
         margin-bottom: 1rem;
+        &__title {
+            display: flex;
+            flex-direction: column-reverse;
+        }
     }
     &__progressBarWrapper {
         margin-bottom: 0.5rem;
@@ -15,6 +19,13 @@
             &__allSteps {
                 margin-top: 0.5rem;
             }
+        }
+    }
+    &__backLink {
+        vertical-align: middle;
+        &__icon {
+            font-size: 1.25rem;
+            // margin-top: 0.125rem;
         }
     }
     &__allSteps {
