@@ -95,8 +95,31 @@ const startExpressServer = () => {
         res.sendStatus(403);
     });
 
-    server.post('/soknad', (req, res) => {
-        res.sendStatus(200);
+    server.get('/oppslag/barn', (req, res) => res.send(barnMock));
+
+    /** --- Send søknad ---------- */
+
+    server.post('/omsorgspenger-utvidet-rett/innsending', (req, res) => {
+        const body = req.body;
+        console.log('[POST] body', body);
+        setTimeout(() => {
+            res.sendStatus(200);
+        }, 2500);
+    });
+
+    /** --- Vedlegg ---------- */
+
+    server.post('/vedlegg', (req, res) => {
+        res.set('Access-Control-Expose-Headers', 'Location');
+        res.set('Location', 'nav.no');
+        const busboy = busboyCons({ headers: req.headers });
+        busboy.on('finish', () => {
+            res.writeHead(200, {
+                Location: 'http://localhost:8088/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',
+            });
+            res.end();
+        });
+        req.pipe(busboy);
     });
 
     /** --- Mellomlagring ---------- */
