@@ -1,21 +1,20 @@
 .soknadHeader {
-    box-shadow: 0 -4px 0 var(--navds-global-color-purple-500) inset;
+    box-shadow: 0 -4px 0 var(--navds-global-color-deepblue-400) inset;
 
     &__content {
-        max-width: 704px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
-        padding-bottom: 1.25rem;
-        padding-top: 1rem;
-        @media (max-width: 768px) {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        @media (max-width: 400px) {
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-        }
+        padding-bottom: 1rem;
+        padding-top: 0.75rem;
+        // @media (max-width: 768px) {
+        //     padding-left: 1rem;
+        //     padding-right: 1rem;
+        // }
+        // @media (max-width: 400px) {
+        //     padding-left: 0.5rem;
+        //     padding-right: 0.5rem;
+        // }
     }
     &__text {
         width: 100%;

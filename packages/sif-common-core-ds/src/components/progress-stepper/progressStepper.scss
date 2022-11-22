@@ -1,23 +1,20 @@
-.progressStepIndicator {
+.progressStepper {
     &__heading {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
     &__progressBarWrapper {
         margin-bottom: 0.5rem;
     }
-    &__info {
+    &__stepsInfo {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
-        &__aktivtSteg {
-            flex-grow: 1;
-            justify-self: flex-start;
-        }
-        &__alleSteg {
-            justify-self: flex-end;
-        }
         @media screen and (max-width: 20rem) {
             display: block;
+            &__allSteps {
+                margin-top: 0.5rem;
+            }
         }
     }
     &__allSteps {
@@ -38,21 +35,20 @@
         }
     }
 
-    &__expandCollapseIcon {
+    &__toggleAllStepsIcon {
         font-size: 1.25rem;
         margin-top: 0.125rem;
     }
-}
-
-.progressBar {
-    $border-radius: 0.5rem;
-    background-color: var(--navds-global-color-deepblue-100);
-    width: 100%;
-    border-radius: $border-radius;
-    &__progress {
-        height: 1rem;
-        border-top-left-radius: $border-radius;
-        border-bottom-left-radius: $border-radius;
-        background-color: var(--navds-global-color-deepblue-300);
+    &__progressBar {
+        $border-radius: 0.5rem;
+        background-color: var(--navds-global-color-deepblue-100);
+        width: 100%;
+        border-radius: $border-radius;
+        &__progress {
+            height: 1rem;
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+            background-color: var(--navds-global-color-deepblue-300);
+        }
     }
 }

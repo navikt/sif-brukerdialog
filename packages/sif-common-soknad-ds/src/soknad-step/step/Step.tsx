@@ -1,29 +1,24 @@
-import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
 import { useNavigate } from 'react-router-dom';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import ProgressStepper, {
+    ProgressStep,
+} from '@navikt/sif-common-core-ds/lib/components/progress-stepper/ProgressStepper';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import StepFooter from '@navikt/sif-common-core-ds/lib/components/step-footer/StepFooter';
 import bemHelper from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import StepIndicator, { StepIndicatorStep } from '../step-indicator/StepIndicator';
 import './step.scss';
 
 const bem = bemHelper('step');
 
 interface Props {
     pageTitle: string;
-    stepTitle: string;
     bannerTitle?: string;
-    backLinkHref?: string;
-    steps: StepIndicatorStep[];
+    steps: ProgressStep[];
     activeStepId: string;
-    previousStepTitle?: string;
     children: React.ReactNode;
-    showStepIndicator?: boolean;
     validationSummary?: React.ReactNode;
-    onBackClick?: () => void;
     topContentRenderer?: () => React.ReactElement<any>;
     onCancel?: () => void;
     onContinueLater?: () => void;
@@ -33,64 +28,36 @@ interface Props {
 function Step({
     bannerTitle,
     pageTitle,
-    stepTitle,
-    backLinkHref,
     steps,
     activeStepId,
     onCancel,
     onContinueLater,
-    onBackClick,
     validationSummary,
     cancelOrContinueLaterAriaLabel,
-    showStepIndicator = true,
     children,
-    previousStepTitle,
 }: Props) {
     const currentStepIndex = steps.findIndex((s) => s.id === activeStepId);
     const navigate = useNavigate();
+
+    const handleOnStepSelect = (step: ProgressStep) => {
+        if (step.href) {
+            navigate(step.href);
+        }
+    };
     return (
         <Page
             className={bem.block}
             title={pageTitle}
             topContentRenderer={() => (
                 <>
-                    {bannerTitle && (
-                        <>
-                            <SoknadHeader title={bannerTitle} />
-                        </>
-                    )}
+                    {bannerTitle && <SoknadHeader title={bannerTitle} level="2" />}
                     {validationSummary}
                 </>
             )}>
-            {(showStepIndicator || backLinkHref) && (
-                <>
-                    {backLinkHref && (
-                        <BackLink
-                            href={backLinkHref}
-                            ariaLabel={previousStepTitle}
-                            className={bem.element('backLink')}
-                            onClick={(nextHref, event) => {
-                                event.preventDefault();
-                                navigate(nextHref);
-                                if (onBackClick) {
-                                    onBackClick();
-                                }
-                            }}
-                        />
-                    )}
-                    <div role="presentation" aria-hidden={true}>
-                        <StepIndicator steps={steps} activeStep={currentStepIndex} />
-                    </div>
-                </>
-            )}
-            <section aria-label={`Steg ${currentStepIndex + 1} av ${steps.length}:  ${pageTitle}`}>
-                <Block margin="xxl">
-                    <Heading level="2" size="large" className={bem.element('title')}>
-                        {stepTitle}
-                    </Heading>
-                </Block>
+            <section>
+                <ProgressStepper steps={steps} currentStepIndex={currentStepIndex} onStepSelect={handleOnStepSelect} />
 
-                <Block margin="xl">{children}</Block>
+                <Block margin="xxl">{children}</Block>
 
                 {(onCancel || onContinueLater) && (
                     <div

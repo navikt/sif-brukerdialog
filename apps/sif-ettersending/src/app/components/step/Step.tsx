@@ -1,15 +1,15 @@
-import { Heading } from '@navikt/ds-react';
+// import { Heading } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
-import { useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
-import BackLink from '@navikt/sif-common-core-ds/lib/components/back-link/BackLink';
+import { IntlShape, useIntl } from 'react-intl';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../../config/stepConfig';
 import { getStepTexts } from '../../utils/stepUtils';
-import StepIndicator from './step-indicator/StepIndicator';
-import AriaStepInfo from './aria-step-info/AriaStepInfo';
+import ProgressStepper, {
+    ProgressStep,
+} from '@navikt/sif-common-core-ds/lib/components/progress-stepper/ProgressStepper';
+import { useNavigate } from 'react-router-dom';
 
 export interface StepProps {
     id: StepID;
@@ -25,10 +25,22 @@ interface OwnProps {
 
 type Props = OwnProps & StepProps;
 
-const Step = ({ id, bannerTitle, stepConfig, validationSummary, renderAriaStepInfo, children }: Props) => {
+const getProgressSteps = (stepConfig: StepConfigInterface, currentStepIndex: number, intl: IntlShape): ProgressStep[] =>
+    Object.keys(stepConfig).map((id) => {
+        const { stepIndicatorLabel } = getStepTexts(intl, id as any, stepConfig);
+        const { index } = stepConfig[id];
+        return {
+            index,
+            label: stepIndicatorLabel,
+            id,
+            completed: index < currentStepIndex,
+        };
+    });
+
+const Step = ({ id, bannerTitle, stepConfig, validationSummary, children }: Props) => {
     const intl = useIntl();
     const conf = stepConfig[id];
-    const navigate = useNavigate();
+    const navigateTo = useNavigate();
     const stepTexts: StepConfigItemTexts = getStepTexts(intl, id, stepConfig);
 
     useEffect(() => {
@@ -37,6 +49,12 @@ const Step = ({ id, bannerTitle, stepConfig, validationSummary, renderAriaStepIn
             stepTitle.focus();
         }
     }, []);
+
+    const handleStepSelect = (step: ProgressStep) => {
+        if (step.href) {
+            navigateTo(step.href);
+        }
+    };
     return (
         <Page
             title={stepTexts.pageTitle}
@@ -46,32 +64,12 @@ const Step = ({ id, bannerTitle, stepConfig, validationSummary, renderAriaStepIn
                     {validationSummary !== undefined && validationSummary}
                 </>
             )}>
-            {conf.backLinkHref && (
-                <BackLink
-                    href={conf.backLinkHref}
-                    className="absolute"
-                    onClick={(nextHref: string, event: React.SyntheticEvent) => {
-                        event.preventDefault();
-                        navigate(nextHref);
-                    }}
+            <div className="mt-4 mb-4">
+                <ProgressStepper
+                    steps={getProgressSteps(stepConfig, conf.index, intl)}
+                    currentStepIndex={conf.index}
+                    onStepSelect={handleStepSelect}
                 />
-            )}
-            <div className="mt-8 text-center">
-                <StepIndicator stepConfig={stepConfig} activeStep={conf.index} />
-            </div>
-            <div className="mt-12">
-                <Heading
-                    level="1"
-                    size="large"
-                    className="text-center"
-                    style={{ outline: 'none' }}
-                    id="stepTitle"
-                    tabIndex={-1}>
-                    {stepTexts.stepTitle}
-                    {renderAriaStepInfo ? (
-                        <AriaStepInfo steps={Object.keys(stepConfig).length} currentStep={conf.index + 1} />
-                    ) : undefined}
-                </Heading>
             </div>
             <div className="mt-8">{children}</div>
         </Page>

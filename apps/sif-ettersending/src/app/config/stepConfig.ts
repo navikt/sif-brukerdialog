@@ -14,11 +14,13 @@ export interface StepConfigItemTexts {
     stepTitle: string;
     stepIndicatorLabel: string;
     nextButtonLabel?: string;
+    previousButtonLabel?: string;
 }
 export interface StepItemConfigInterface extends StepConfigItemTexts {
     index: number;
     nextStep?: StepID;
     backLinkHref?: string;
+    linkHref: string;
 }
 
 export interface StepConfigInterface {
@@ -31,6 +33,7 @@ const getStepConfigItemTextKeys = (stepId: StepID): StepConfigItemTexts => {
         stepTitle: `step.${stepId}.stepTitle`,
         stepIndicatorLabel: `step.${stepId}.stepIndicatorLabel`,
         nextButtonLabel: 'step.nextButtonLabel',
+        previousButtonLabel: 'step.previousButtonLabel',
     };
 };
 
@@ -57,6 +60,7 @@ const getbackLinkHrefDok = (søknadstype: ApplicationType): string => {
             return getApplicationPageRoute(søknadstype, WELCOME_PAGE);
     }
 };
+
 export const getStepConfig = (søknadstype: ApplicationType): StepConfigInterface => {
     let idx = 0;
     let config: StepConfigInterface = {};
@@ -68,6 +72,7 @@ export const getStepConfig = (søknadstype: ApplicationType): StepConfigInterfac
                 ...getStepConfigItemTextKeys(StepID.BESKRIVELSE),
                 index: idx++,
                 nextStep: StepID.DOKUMENTER,
+                linkHref: getApplicationPageRoute(søknadstype, StepID.BESKRIVELSE),
             };
             break;
         case ApplicationType.omsorgspenger:
@@ -75,6 +80,7 @@ export const getStepConfig = (søknadstype: ApplicationType): StepConfigInterfac
                 ...getStepConfigItemTextKeys(StepID.OMS_TYPE),
                 index: idx++,
                 nextStep: StepID.DOKUMENTER,
+                linkHref: getApplicationPageRoute(søknadstype, StepID.OMS_TYPE),
             };
             break;
         default:
@@ -87,12 +93,14 @@ export const getStepConfig = (søknadstype: ApplicationType): StepConfigInterfac
             index: idx++,
             nextStep: StepID.OPPSUMMERING,
             backLinkHref: getbackLinkHrefDok(søknadstype),
+            linkHref: getApplicationPageRoute(søknadstype, StepID.DOKUMENTER),
         },
         [StepID.OPPSUMMERING]: {
             ...getStepConfigItemTextKeys(StepID.OPPSUMMERING),
             index: idx++,
             backLinkHref: getApplicationPageRoute(søknadstype, StepID.DOKUMENTER),
             nextButtonLabel: 'step.sendButtonLabel',
+            linkHref: getApplicationPageRoute(søknadstype, StepID.OPPSUMMERING),
         },
     };
     config = { ...config, ...configFelles };

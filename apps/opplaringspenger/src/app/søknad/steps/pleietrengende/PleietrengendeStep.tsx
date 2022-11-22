@@ -13,6 +13,10 @@ import {
     getPleietrengendeSøknadsdataFromFormValues,
 } from './pleietrengendeStepUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 
 export enum PleietrengendeFormFields {
     'fødselsnummer' = 'fødselsnummer',
@@ -25,11 +29,21 @@ export interface PleietrengendeFormValues {
 const { FormikWrapper, Form, TextField } = getTypedFormComponents<PleietrengendeFormFields, PleietrengendeFormValues>();
 
 const PleietrengendeStep = () => {
-    const { state } = useSøknadContext();
+    const {
+        state: { søker, søknadsdata },
+    } = useSøknadContext();
+
+    const stepId = StepId.PLEIETRENGENDE;
+    const step = getSøknadStepConfig(søknadsdata)[stepId];
+
+    const { goBack } = useStepNavigation(step);
+
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: PleietrengendeFormValues) => {
         const pleietrengendeSøknadsdata = getPleietrengendeSøknadsdataFromFormValues(values);
         if (pleietrengendeSøknadsdata) {
+            clearStepFormValues(stepId);
             return [actionsCreator.setSøknadPleietrengende(pleietrengendeSøknadsdata)];
         }
         return [];
@@ -46,27 +60,34 @@ const PleietrengendeStep = () => {
     return (
         <SøknadStep stepId={StepId.PLEIETRENGENDE}>
             <FormikWrapper
-                initialValues={getPleietrengendeStepInitialValues(state.søknadsdata)}
+                initialValues={getPleietrengendeStepInitialValues(søknadsdata, stepFormValues?.pleietrengende)}
                 onSubmit={handleSubmit}
                 renderForm={() => (
-                    <Form includeValidationSummary={true} submitButtonLabel="Gå videre" submitPending={isSubmitting}>
-                        <TextField
-                            label="Fødselsnummer"
-                            name={PleietrengendeFormFields.fødselsnummer}
-                            validate={getFødselsnummerValidator({
-                                required: true,
-                                disallowedValues: [state.søker.fødselsnummer],
-                            })}
-                            type="tel"
-                            maxLength={11}
-                            width="s"
-                            description={
-                                <ExpandableInfo title="Hva gjør jeg når jeg ikke har fødselsnummer til den pleietrengende">
-                                    Hey
-                                </ExpandableInfo>
-                            }
-                        />
-                    </Form>
+                    <>
+                        <PersistStepFormValues stepId={stepId} />
+                        <Form
+                            includeValidationSummary={true}
+                            submitButtonLabel="Gå videre"
+                            submitPending={isSubmitting}
+                            onBack={goBack}>
+                            <TextField
+                                label="Fødselsnummer"
+                                name={PleietrengendeFormFields.fødselsnummer}
+                                validate={getFødselsnummerValidator({
+                                    required: true,
+                                    disallowedValues: [søker.fødselsnummer],
+                                })}
+                                type="tel"
+                                maxLength={11}
+                                width="s"
+                                description={
+                                    <ExpandableInfo title="Hva gjør jeg når jeg ikke har fødselsnummer til den pleietrengende">
+                                        Hey
+                                    </ExpandableInfo>
+                                }
+                            />
+                        </Form>
+                    </>
                 )}
             />
         </SøknadStep>

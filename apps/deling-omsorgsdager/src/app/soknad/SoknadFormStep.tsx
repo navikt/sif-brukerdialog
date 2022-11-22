@@ -12,7 +12,9 @@ import { SoknadFormData } from '../types/SoknadFormData';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
-
+import StepButtonRow from '@navikt/sif-common-soknad-ds/lib/soknad-step/step-button-row/StepButtonRow';
+import { Button } from '@navikt/ds-react';
+import { useNavigate } from 'react-router-dom';
 interface OwnProps {
     id: StepID;
     onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
@@ -21,8 +23,8 @@ interface OwnProps {
     showButtonSpinner?: boolean;
     includeValidationSummary?: boolean;
     buttonDisabled?: boolean;
-    stepTitle?: string;
     pageTitle?: string;
+    backLinkHref?: string;
     showNotAllQuestionsAnsweredMessage?: boolean;
     children: React.ReactNode;
 }
@@ -37,7 +39,6 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     showButtonSpinner,
     showSubmitButton = true,
     includeValidationSummary = true,
-    stepTitle,
     pageTitle,
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
@@ -47,6 +48,9 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     const stepConfig = soknadStepsConfig[id];
     const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
     const applicationTitle = intlHelper(intl, 'application.title');
+    const { backLinkHref } = stepConfig;
+
+    const navigateTo = useNavigate();
 
     useLogSidevisning(id);
 
@@ -54,10 +58,8 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
         <Step
             bannerTitle={applicationTitle}
             cancelOrContinueLaterAriaLabel={intlHelper(intl, 'application.cancelOrContinueLaterLabel')}
-            stepTitle={stepTitle || texts.stepTitle}
             pageTitle={pageTitle || texts.pageTitle}
-            backLinkHref={stepConfig.backLinkHref}
-            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(soknadStepsConfig, intl)}
+            steps={soknadStepUtils.getProgressStepsFromConfig(soknadStepsConfig, stepConfig.index, intl)}
             activeStepId={id}
             onCancel={resetSoknad}
             onContinueLater={continueSoknadLater ? () => continueSoknadLater(id) : undefined}>
@@ -79,10 +81,24 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
                 onValidSubmit={onSendSoknad ? onSendSoknad : (): void => gotoNextStepFromStep(id)}
                 formFooter={
                     showSubmitButton ? (
-                        <Block textAlignCenter={true} margin="xl">
-                            <StepSubmitButton disabled={buttonDisabled} showSpinner={showButtonSpinner}>
-                                {texts.nextButtonLabel}
-                            </StepSubmitButton>
+                        <Block textAlignCenter={true} margin="xxl">
+                            <StepButtonRow
+                                backButton={
+                                    backLinkHref ? (
+                                        <Button
+                                            onClick={() => navigateTo(backLinkHref)}
+                                            variant="secondary"
+                                            type="button">
+                                            Forrige steg
+                                        </Button>
+                                    ) : undefined
+                                }
+                                nextButton={
+                                    <StepSubmitButton disabled={buttonDisabled} showSpinner={showButtonSpinner}>
+                                        {texts.nextButtonLabel}
+                                    </StepSubmitButton>
+                                }
+                            />
                         </Block>
                     ) : undefined
                 }>

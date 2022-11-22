@@ -2,8 +2,17 @@ import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { ArbeidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { ArbeidFormValues } from './ArbeidStep';
 
-export const getArbeidStepInitialValues = (søknadsdata: Søknadsdata): ArbeidFormValues => {
-    const { startdato } = søknadsdata.arbeid || {};
+export const getArbeidStepInitialValues = (
+    søknadsdata: Søknadsdata,
+    stepFormValues?: ArbeidFormValues
+): ArbeidFormValues => {
+    if (stepFormValues) {
+        return stepFormValues;
+    }
+    if (søknadsdata.arbeid === undefined) {
+        return {};
+    }
+    const { startdato } = søknadsdata.arbeid;
     return {
         startdato: startdato ? dateToISODate(startdato) : '',
     };

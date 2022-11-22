@@ -1,0 +1,14 @@
+.stepButtonRow {
+    display: flex;
+    justify-content: flex-start;
+
+    .next {
+        min-width: 25%;
+        button {
+            width: 100%;
+        }
+    }
+    .back {
+        margin-right: 1rem;
+    }
+}

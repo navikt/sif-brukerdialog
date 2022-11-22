@@ -10,6 +10,10 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import { getMedlemskapStepInitialValues, getMedlemskapSøknadsdataFromFormValues } from './medlemskapStepUtils';
+import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 
 export enum MedlemskapFormFields {
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -33,9 +37,18 @@ const MedlemskapStep = () => {
         state: { søknadsdata },
     } = useSøknadContext();
 
+    const stepId = StepId.MEDLEMSKAP;
+
+    const step = getSøknadStepConfig(søknadsdata)[stepId];
+
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const { goBack } = useStepNavigation(step);
+
     const onValidSubmitHandler = (values: MedlemskapFormValues) => {
         const medlemskapSøknadsdata = getMedlemskapSøknadsdataFromFormValues(values);
         if (medlemskapSøknadsdata) {
+            clearStepFormValues(stepId);
             dispatch(actionsCreator.setSøknadMedlemskap(medlemskapSøknadsdata));
         }
         return [];
@@ -52,10 +65,17 @@ const MedlemskapStep = () => {
     return (
         <SøknadStep stepId={StepId.MEDLEMSKAP}>
             <FormikWrapper
-                initialValues={getMedlemskapStepInitialValues(søknadsdata)}
+                initialValues={getMedlemskapStepInitialValues(søknadsdata, stepFormValues?.medlemskap)}
                 isSubmitting={isSubmitting}
                 onSubmit={handleSubmit}
-                renderForm={() => <Form>Skjema ikke laget</Form>}
+                renderForm={() => (
+                    <>
+                        <PersistStepFormValues stepId={stepId} />
+                        <Form submitButtonLabel="Gå videre" onBack={goBack}>
+                            Skjema ikke laget
+                        </Form>
+                    </>
+                )}
             />
         </SøknadStep>
     );

@@ -4,7 +4,13 @@ import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapS�
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { MedlemskapFormValues } from './MedlemskapStep';
 
-export const getMedlemskapStepInitialValues = (søknadsdata: Søknadsdata): MedlemskapFormValues => {
+export const getMedlemskapStepInitialValues = (
+    søknadsdata: Søknadsdata,
+    formValues?: MedlemskapFormValues
+): MedlemskapFormValues => {
+    if (formValues) {
+        return formValues;
+    }
     const { medlemskap } = søknadsdata;
 
     let harBoddUtenforNorgeSiste12Mnd: YesOrNo = YesOrNo.UNANSWERED;

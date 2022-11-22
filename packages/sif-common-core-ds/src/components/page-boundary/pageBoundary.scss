@@ -1,0 +1,13 @@
+.pageBoundary {
+    max-width: 704px;
+    margin-left: auto;
+    margin-right: auto;
+    @media (max-width: 768px) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    @media (max-width: 400px) {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}

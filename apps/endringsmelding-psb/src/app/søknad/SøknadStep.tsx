@@ -25,15 +25,13 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
-    const { stepTitleIntlKey, backLinkHref, previousStepRoute, pageTitleIntlKey } = stepConfig[stepId];
+    const { index, previousStepRoute, pageTitleIntlKey } = stepConfig[stepId];
 
     return (
         <Step
             activeStepId={stepId}
             pageTitle={intlHelper(intl, pageTitleIntlKey)}
-            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(stepConfig, intl)}
-            stepTitle={intlHelper(intl, stepTitleIntlKey)}
-            backLinkHref={backLinkHref}
+            steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}
             onBackClick={

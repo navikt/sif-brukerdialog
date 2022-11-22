@@ -14,6 +14,7 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     resetFormOnCancel?: boolean;
     submitButtonLabel?: string;
     cancelButtonLabel?: string;
+    backButtonLabel?: string;
     id?: string;
     cancelButtonType?: CancelButtonTypes;
     runDelayedFormValidation?: boolean;
@@ -26,6 +27,7 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     cleanup?: (values: FormValues) => FormValues;
     onValidSubmit?: () => void;
     onCancel?: () => void;
+    onBack?: (values: FormValues) => void;
 }
 
 export type TypedFormikFormContextType = {
@@ -53,6 +55,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     includeValidationSummary,
     submitButtonLabel,
     cancelButtonLabel,
+    backButtonLabel,
     id,
     includeButtons = true,
     runDelayedFormValidation,
@@ -63,6 +66,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     submitPending,
     submitDisabled,
     onCancel,
+    onBack,
     onValidSubmit,
     noButtonsContentRenderer,
     cleanup,
@@ -161,7 +165,18 @@ function TypedFormikForm<FormValues, ErrorType>({
                 {includeButtons && (
                     <div style={{ marginTop: '2rem' }}>
                         <ButtonRow layout={'normal'}>
-                            <Button variant="primary" type="submit" loading={submitPending} disabled={submitDisabled}>
+                            {onBack && (
+                                <Button variant="secondary" type="button" onClick={() => onBack(formik.values)}>
+                                    {backButtonLabel || 'Tilbake'}
+                                </Button>
+                            )}
+
+                            <Button
+                                variant="primary"
+                                type="submit"
+                                loading={submitPending}
+                                disabled={submitDisabled}
+                                name="submit">
                                 {submitButtonLabel || 'Ok'}
                             </Button>
 
