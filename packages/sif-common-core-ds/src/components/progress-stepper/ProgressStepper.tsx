@@ -84,7 +84,7 @@ const ProgressStepper: React.FunctionComponent<Props> = ({
         if (setFocusOnHeadingOnMount && headingRef.current) {
             headingRef.current.focus();
         }
-    }, []);
+    }, [setFocusOnHeadingOnMount]);
 
     return (
         <div className="progressStepper">
