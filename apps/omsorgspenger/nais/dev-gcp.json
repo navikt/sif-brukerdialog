@@ -1,0 +1,23 @@
+{
+    "app": "omsorgspenger",
+    "cluster": "dev-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "minReplicas": "1",
+    "maxReplicas": "1",
+    "ingresses": ["https://omsorgspenger.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no", "sanity.io"],
+    "env": {
+        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
+        "API_URL": "https://omsorgspenger-api.dev.nav.no",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
+        "APP_VERSION": "dev",
+        "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://omsorgspenger.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "staging",
+        "USE_AMPLITUDE": "true",
+        "NPM_CONFIG_CACHE": "/tmp"
+    }
+}
