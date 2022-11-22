@@ -43,7 +43,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     pageTitle,
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
-    includeBackButton = false,
+    includeBackButton = true,
 }) => {
     const intl = useIntl();
     const { soknadStepsConfig, resetSoknad, gotoNextStepFromStep, continueSoknadLater } = useSoknadContext();
