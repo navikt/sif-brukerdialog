@@ -1,0 +1,23 @@
+{
+    "app": "{SIF_SOKNAD_TEMPLATE}",
+    "cluster": "dev-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "minReplicas": "1",
+    "maxReplicas": "1",
+    "ingresses": ["https://{SIF_SOKNAD_TEMPLATE}.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/{SIF_SOKNAD_TEMPLATE}/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/{SIF_SOKNAD_TEMPLATE}/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no", "sanity.io"],
+    "env": {
+        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
+        "API_URL": "https://{SIF_SOKNAD_TEMPLATE}-api.dev.nav.no",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/{SIF_SOKNAD_TEMPLATE}",
+        "APP_VERSION": "dev",
+        "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://{SIF_SOKNAD_TEMPLATE}.dev.nav.no/familie/sykdom-i-familien/soknad/{SIF_SOKNAD_TEMPLATE}/soknad",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "staging",
+        "USE_AMPLITUDE": "true",
+        "NPM_CONFIG_CACHE": "/tmp"
+    }
+}

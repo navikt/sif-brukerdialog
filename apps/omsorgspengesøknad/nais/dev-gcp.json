@@ -1,0 +1,26 @@
+{
+    "app": "omsorgspengesoknad",
+    "cluster": "dev-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "minReplicas": "1",
+    "maxReplicas": "1",
+    "ingresses": ["https://omsorgspengesoknad.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
+    "env": {
+        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengesoknad.dev.nav.no/oauth2/logout&redirectToApp=true",
+        "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
+        "FRONTEND_VEDLEGG_URL": "https://omsorgspengesoknad.dev.nav.no/api",
+        "FRONTEND_API_PATH": "/api",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
+        "LOGIN_URL": "https://omsorgspengesoknad.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
+        "NYNORSK": "on",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "staging",
+        "USE_AMPLITUDE": "true",
+        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
+        "NPM_CONFIG_CACHE": "/tmp"
+    }
+}

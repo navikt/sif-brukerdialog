@@ -11,11 +11,13 @@ const ButtonRow: React.FunctionComponent<Props> = ({ children, align = 'left', l
     const cls = `buttonRow buttonRow--${align} buttonRow--${layout}`;
     return (
         <div className={cls}>
-            {React.Children.map(children, (knapp, index) => (
-                <span key={index} className="buttonRow__button">
-                    {knapp}
-                </span>
-            ))}
+            {React.Children.map(children, (knapp, index) =>
+                knapp ? (
+                    <span key={index} className="buttonRow__button">
+                        {knapp}
+                    </span>
+                ) : undefined
+            )}
         </div>
     );
 };

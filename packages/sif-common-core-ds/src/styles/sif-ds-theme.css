@@ -1,19 +1,11 @@
 body.sif-ds-theme {
-    --navds-guide-panel-color-border: var(--navds-global-color-purple-200);
-    --navds-guide-panel-color-illustration-background: var(--navds-global-color-purple-200);
+    --ac-guide-panel-border: var(--a-deepblue-400);
+    --ac-guide-panel-illustration-bg: var(--a-deepblue-100);
 }
 
 .soknadHeader,
 .decorator-utils-container {
     background-color: white;
-}
-
-#appContainer {
-    background-color: #f1f1f1;
-}
-
-.navds-label {
-    line-height: var(--navds-font-line-height-xlarge) !important;
 }
 
 /** Skal flyttes/endres: */

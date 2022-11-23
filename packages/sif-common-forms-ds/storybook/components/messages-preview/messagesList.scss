@@ -14,9 +14,9 @@
             vertical-align: top;
             padding: 0.5rem;
             border: 1px solid #dfdfdf;
-            font-size: var(--navds-font-size-small);
+            font-size: var(--a-font-size-small);
             &.missingText {
-                background-color: var(--navds-global-color-red-100);
+                background-color: var(--a-red-100);
             }
         }
     }

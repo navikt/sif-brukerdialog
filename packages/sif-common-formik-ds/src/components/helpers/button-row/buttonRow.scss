@@ -3,11 +3,9 @@ $mobile-breakpoint: 576px;
 .buttonRow {
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
     flex-direction: row;
     justify-content: center;
-    .buttonRow__button + .buttonRow__button {
-        padding-left: 1rem;
-    }
     button {
         min-width: 5rem;
     }
@@ -22,21 +20,10 @@ $mobile-breakpoint: 576px;
             button {
                 width: 100%;
             }
-            &:first-child {
-                margin-right: 1rem;
-            }
         }
         @media (max-width: $mobile-breakpoint) {
             flex-direction: column;
-            .buttonRow__button {
-                margin-bottom: 0.5rem;
-                &:first-child {
-                    margin-right: 0;
-                }
-                &:last-child {
-                    padding-left: 0;
-                }
-            }
+            gap: 0.5rem;
         }
     }
     &--mobile-50-50 {
@@ -47,12 +34,6 @@ $mobile-breakpoint: 576px;
             .buttonRow__button {
                 padding: 0;
                 width: 50%;
-                &:first-child {
-                    padding-right: 0.25rem;
-                }
-                &:last-child {
-                    padding-left: 0.25rem;
-                }
                 > .knapp {
                     height: 100%;
                     white-space: normal;

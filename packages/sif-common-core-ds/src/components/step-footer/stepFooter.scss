@@ -1,45 +1,39 @@
 .stepFooter {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
     padding-bottom: 2rem;
-    padding-top: 2rem;
+    padding-top: 2.5rem;
 
-    &__divider {
+    &__horizontalDivider {
         width: 100%;
-        border-top: 1px solid #c6c2bf;
-        padding: 1rem;
+        border-top: 1px dashed #c6c2bf;
+        padding: 1rem 0 0.5rem 0;
         margin-left: 0;
         margin-right: 0;
     }
+
     &__avbrytSoknadLenke {
-        color: var(--navds-semantic-error);
+        color: var(--a-surface-danger);
         &:focus {
             color: white;
         }
     }
-    &__links {
+    &__actions {
         display: flex;
         align-items: center;
+        > * {
+            margin-right: 1rem;
+        }
     }
 
-    &__dot:after {
-        content: ' \00b7';
-        font-size: 25px;
-        display: inline-block;
-        color: #c6c2bf;
-        margin: 0.2rem 0.5rem 0;
-    }
-
-    @media screen and (max-width: 600px) {
-        &__links {
+    @media screen and (max-width: 20rem) {
+        &__actions {
             flex-direction: column;
+            align-items: flex-start;
         }
         &__divider,
-        &__dot {
-            display: none;
-        }
-        .lenke {
+        button {
             margin-bottom: 0.5rem;
         }
     }

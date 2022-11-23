@@ -1,11 +1,12 @@
 import { Button } from '@navikt/ds-react';
 import React, { createContext, useEffect, useRef, useState } from 'react';
+import { Back, Next } from '@navikt/ds-icons';
 import { FieldInputProps, FormikProps, useFormikContext } from 'formik';
 import { CancelButtonTypes, CustomFormErrorHandler, ErrorTypeChecker, FieldErrorHandler, FormError } from '../../types';
 import { getErrorForField, isValidationErrorsVisible } from '../../utils/typedFormErrorUtils';
 import FormikValidationErrorSummary from '../formik-validation-error-summary/FormikValidationErrorSummary';
 import ButtonRow from '../helpers/button-row/ButtonRow';
-
+import './typed-formik-form.scss';
 export interface TypedFormikFormProps<FormValues, ErrorType> {
     children: React.ReactNode;
     className?: string;
@@ -14,6 +15,7 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     resetFormOnCancel?: boolean;
     submitButtonLabel?: string;
     cancelButtonLabel?: string;
+    backButtonLabel?: string;
     id?: string;
     cancelButtonType?: CancelButtonTypes;
     runDelayedFormValidation?: boolean;
@@ -22,10 +24,13 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     errorSummaryTitle?: string;
     submitPending?: boolean;
     submitDisabled?: boolean;
+    showButtonArrows?: boolean;
     noButtonsContentRenderer?: () => React.ReactNode;
     cleanup?: (values: FormValues) => FormValues;
     onValidSubmit?: () => void;
     onCancel?: () => void;
+    onBack?: (values: FormValues) => void;
+    onValuesChange?: (values: FormValues) => void;
 }
 
 export type TypedFormikFormContextType = {
@@ -53,6 +58,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     includeValidationSummary,
     submitButtonLabel,
     cancelButtonLabel,
+    backButtonLabel,
     id,
     includeButtons = true,
     runDelayedFormValidation,
@@ -62,8 +68,11 @@ function TypedFormikForm<FormValues, ErrorType>({
     errorSummaryTitle,
     submitPending,
     submitDisabled,
+    showButtonArrows = true,
     onCancel,
+    onBack,
     onValidSubmit,
+    onValuesChange,
     noButtonsContentRenderer,
     cleanup,
 }: TypedFormikFormProps<FormValues, ErrorType>) {
@@ -161,8 +170,29 @@ function TypedFormikForm<FormValues, ErrorType>({
                 {includeButtons && (
                     <div style={{ marginTop: '2rem' }}>
                         <ButtonRow layout={'normal'}>
-                            <Button variant="primary" type="submit" loading={submitPending} disabled={submitDisabled}>
-                                {submitButtonLabel || 'Ok'}
+                            {onBack && (
+                                <Button variant="secondary" type="button" onClick={() => onBack(formik.values)}>
+                                    <span className="typedFormikForm__buttonLabel">
+                                        {showButtonArrows && (
+                                            <Back aria-hidden className="typedFormikForm__buttonLabel__icon" />
+                                        )}
+                                        {backButtonLabel || 'Forrige'}
+                                    </span>
+                                </Button>
+                            )}
+
+                            <Button
+                                variant="primary"
+                                type="submit"
+                                loading={submitPending}
+                                disabled={submitDisabled}
+                                name="submit">
+                                <span className="typedFormikForm__buttonLabel">
+                                    {submitButtonLabel || 'Neste'}
+                                    {showButtonArrows && (
+                                        <Next aria-hidden className="typedFormikForm__buttonLabel__icon" />
+                                    )}
+                                </span>
                             </Button>
 
                             {onCancel && (

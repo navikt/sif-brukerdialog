@@ -76,8 +76,7 @@ const OmBarnaStep: React.FunctionComponent<Props> = ({ barn }) => {
         <SoknadFormStep
             id={StepID.OM_BARNA}
             showSubmitButton={kanFortsette}
-            onStepCleanup={(values): SoknadFormData => cleanupOmBarnaStep(values, barn, andreBarn)}
-            stepTitle={intlHelper(intl, 'step.om-barna.stepTitle')}>
+            onStepCleanup={(values): SoknadFormData => cleanupOmBarnaStep(values, barn, andreBarn)}>
             <StepIntroduction>
                 {values.gjelderMidlertidigPgaKorona === YesOrNo.NO && (
                     <>

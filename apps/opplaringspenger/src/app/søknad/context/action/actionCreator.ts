@@ -1,5 +1,5 @@
-import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapSøknadsdata';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapSøknadsdata';
 import {
     ArbeidSøknadsdata,
     InstitusjonSøknadsdata,
@@ -23,6 +23,7 @@ export enum SøknadContextActionKeys {
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
     SET_SØKNAD_SENDT = 'setSøknadSendt',
+    SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
 }
 
 interface ResetSøknad {

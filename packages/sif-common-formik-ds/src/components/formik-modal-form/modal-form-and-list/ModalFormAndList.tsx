@@ -74,8 +74,6 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         setModalState({ isVisible: false, selectedItem: undefined });
     };
 
-    const showListTitle = items.length > 0;
-
     return (
         <>
             <Modal
@@ -85,7 +83,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                 shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
                 aria-label={labels.modalTitle}>
                 <Modal.Content>
-                    <div style={{ marginTop: 'var(--navds-spacing-1)', paddingBottom: 'var(--navds-spacing-2)' }}>
+                    <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
                         <Heading spacing={true} size="medium" level="1">
                             {labels.modalTitle}
                         </Heading>
@@ -98,7 +96,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     })}
                 </Modal.Content>
             </Modal>
-            <SkjemagruppeQuestion legend={showListTitle ? labels.listTitle : undefined} error={error}>
+            <SkjemagruppeQuestion legend={labels.listTitle} error={error}>
                 {items.length > 0 && (
                     <div className="modalFormAndList__listWrapper">
                         {listRenderer({ items, onEdit: handleEdit, onDelete: handleDelete })}
@@ -110,9 +108,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </div>
                 )}
                 {(maxItems === undefined || maxItems > items.length) && (
-                    <div
-                        style={showListTitle ? { marginTop: '1rem' } : undefined}
-                        className={'modalFormAndList__addButton'}>
+                    <div style={{ marginTop: '1rem' }} className={'modalFormAndList__addButton'}>
                         <Button
                             type="button"
                             onClick={() => setModalState({ isVisible: true })}

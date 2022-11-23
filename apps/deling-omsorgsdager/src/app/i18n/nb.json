@@ -41,7 +41,7 @@
     "step.dine-barn.stepTitle": "Om barn",
     "step.dine-barn.født": "Født",
     "step.dine-barn.listHeader.registrerteBarn": "Registrerte barn",
-    "step.dine-barn.nextButtonLabel": "Fortsett",
+    "step.dine-barn.nextButtonLabel": "Neste steg",
     "step.dine-barn.info.ingenbarn.1": "Vi fant ingen barn registrert på deg. Har du  barn som ikke er registrert her, kan du selv legge inn disse. Dette kan være fosterbarn, eller om du har barn som er fylt 18 år og som har ekstra omsorgsdager på grunn av kronisk sykdom eller funksjonshemning.",
     "step.dine-barn.info.ingenbarn.2": "Du må legge til minst ett barn for å kunne gå videre.",
     "step.dine-barn.info.spm.andreBarn": "Har du andre barn?",
@@ -71,15 +71,15 @@
     "step.om-barna.form.spm.harNoenUtvidetRett.ettBarn": "Har du søkt om og fått ekstra omsorgsdager fordi barnet har funksjonshemning eller kronisk sykdom?",
     "step.om-barna.form.spm.harNoenUtvidetRett.hvaBetyr.svar": "Hvis du har barn med funksjonshemning eller kronisk sykdom kan du ha rett på ekstra omsorgsdager. Du kan svare ja på dette spørsmålet hvis du har søkt og fått innvilget ekstra omsorgsdager.",
     "step.om-barna.form.spm.hvilkeAvBarnaUtvRett": "Kryss av for barn du har fått ekstra omsorgsdager for:",
-    "step.om-barna.nextButtonLabel": "Fortsett",
+    "step.om-barna.nextButtonLabel": "Neste steg",
 
     "step.din-situasjon.pageTitle": "Din situasjon",
     "step.din-situasjon.stepTitle": "Din situasjon",
-    "step.din-situasjon.nextButtonLabel": "Fortsett",
+    "step.din-situasjon.nextButtonLabel": "Neste steg",
 
     "step.omsorgsdager.pageTitle": "Omsorgsdager",
     "step.omsorgsdager.stepTitle": "Omsorgsdager",
-    "step.omsorgsdager.nextButtonLabel": "Fortsett",
+    "step.omsorgsdager.nextButtonLabel": "Neste steg",
 
     "step.mottaker.pageTitle": "Mottaker",
 
@@ -118,7 +118,7 @@
     "step.mottaker.form.mottakerType.ingenValgt.infoVarsel": "Når du skal dele omsorgsdager, er det kun mulig å dele med én av de som er listet opp under.",
     "common.fieldvalidation.ugyldigTall": "Feltet må inneholde et gyldig tall",
 
-    "step.mottaker.nextButtonLabel": "Fortsett",
+    "step.mottaker.nextButtonLabel": "Neste steg",
 
     "step.oppsummering.pageTitle": "Oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
@@ -126,7 +126,7 @@
 
     "step.samværsavtale.pageTitle": "Avtale om samvær",
     "step.samværsavtale.stepTitle": "Avtale om samvær",
-    "step.samværsavtale.nextButtonLabel": "Fortsett",
+    "step.samværsavtale.nextButtonLabel": "Neste steg",
     "step.samværsavtale.info.title": "Her skal du laste opp en skriftlig avtale om samvær, som er signert av begge foreldrene. Det gjør du ved å ta bilde av avtalen, eller ved å skanne den.",
     "step.samværsavtale.vedlegg": "Last opp avtale om samvær",
     "step.samværsavtale.vedlegg.totalstørrelse.1": "Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ",
@@ -226,7 +226,7 @@
 
     "fortsettSøknadSenereDialog.avbrytSøknadLabel": "Ja, fortsett senere",
     "fortsettSøknadSenereDialog.fortsettSøknadLabel": "Nei",
-    "fortsettSøknadSenereDialog.intro": "Vi lagrer meldingen din for deg i 24 timer.",
+    "fortsettSøknadSenereDialog.intro": "Vi lagrer meldingen din for deg i 72 timer.",
     "fortsettSøknadSenereDialog.spørsmål": "Vil du avslutte nå og fortsette senere?",
     "fortsettSøknadSenereDialog.tittel": "Avslutt og fortsett senere",
 

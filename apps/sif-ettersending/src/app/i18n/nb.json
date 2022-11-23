@@ -10,6 +10,7 @@
     "gotoApplicationLink.lenketekst": "Gå til den digitale søknaden",
     "backlink.label": "Tilbake",
     "step.button.gåVidere": "Gå videre",
+    "step.button.startSøknad": "Start søknad",
     "page.form.ubesvarteSpørsmålInfo": "For å komme videre må du svare på spørsmålet ovenfor.",
 
     "application.cancelOrContinueLaterLabel": "Avbryt eller fortsett senere",
@@ -75,7 +76,8 @@
     "modal.minePlikter.part2a": "Jeg har lest og forstått det som står på",
     "modal.minePlikter.part2b": "nav.no/rettogplikt",
 
-    "step.nextButtonLabel": "Fortsett",
+    "step.nextButtonLabel": "Neste steg",
+    "step.previousButtonLabel": "Forrige steg",
     "step.sendButtonLabel": "Send inn",
     "step.sendButtonAriaLabel": "Send inn",
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import AppIntlProvider from '../stories/components/app-intl-provider/AppIntlProvider';
+import AppIntlProvider from './AppIntlProvider';
 
 export const withIntl = (Story) => (
     <AppIntlProvider locale="nb">

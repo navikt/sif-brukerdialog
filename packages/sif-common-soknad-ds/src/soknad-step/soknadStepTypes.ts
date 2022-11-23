@@ -11,6 +11,7 @@ export interface StepConfig<STEPS, SøknadRoutes = string> {
     pageTitleIntlKey: string;
     stepTitleIntlKey: string;
     nextButtonLabelIntlKey: string;
+    previousButtonLabelIntlKey: string;
 }
 
 export interface SoknadStepsConfig<STEPS, SøknadRoutes = string> {

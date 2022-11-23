@@ -1,22 +1,13 @@
-// .skjemagruppe--feil {
-//     .modalFormAndInfo__infoWrapper {
-//         border: 2px dashed #ba3a26;
-//         border-radius: 0.5rem;
-//         padding: 0.5rem;
-//     }
-// }
-
 .modalFormAndInfo__buttons {
     display: flex;
     width: 100%;
     gap: 1rem;
     margin-top: 1rem;
-    button {
-        @media (max-width: 600px) {
-            white-space: pre-wrap;
-        }
-    }
+    flex-wrap: wrap;
 }
-.modalFormAndInfo__infoWrapper__panel {
+.navds-panel.modalFormAndInfo__infoWrapper__panel {
     padding: 1rem;
+    @media screen and (max-width: 20rem) {
+        padding: 0.5rem;
+    }
 }

@@ -1,12 +1,13 @@
 import { IntlShape } from 'react-intl';
+import { ProgressStep } from '@navikt/sif-common-core-ds/lib/components/progress-stepper/ProgressStepper';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { StepIndicatorStep } from './step-indicator/StepIndicator';
 import { SoknadApplicationType, SoknadStepsConfig, StepConfig } from './soknadStepTypes';
 
 interface StepTexts {
     pageTitle: string;
     stepTitle: string;
     nextButtonLabel: string;
+    previousButtonLabel?: string;
     previousStepTitle?: string;
 }
 
@@ -15,6 +16,7 @@ const getStepTexts = <Step>(intl: IntlShape, stepConfig: StepConfig<Step>): Step
         pageTitle: intlHelper(intl, stepConfig.pageTitleIntlKey),
         stepTitle: intlHelper(intl, stepConfig.stepTitleIntlKey),
         nextButtonLabel: intlHelper(intl, stepConfig.nextButtonLabelIntlKey),
+        // previousButtonLabel: intlHelper(intl, stepConfig.previousButtonLabelIntlKey),
         previousStepTitle: stepConfig.previousStepTitleIntlKey
             ? intlHelper(intl, 'sif-common-soknad.tilbakeLenke', {
                   title: intlHelper(intl, stepConfig.previousStepTitleIntlKey),
@@ -51,6 +53,7 @@ const getStepsConfig = <STEPS extends string, SøknadRoutes>(
             route: getStepRoute(stepId, applicationType),
             index: idx,
             backLinkHref: prevStepId ? getStepRoute(prevStepId, applicationType) : undefined,
+            previousButtonLabelIntlKey: `step.previousButtonLabel`,
             previousStep: prevStepId,
             previousStepRoute: prevStepId ? getStepRoute<STEPS, SøknadRoutes>(prevStepId, applicationType) : undefined,
             previousStepTitleIntlKey: prevStepId ? `step.${prevStepId}.pageTitle` : undefined,
@@ -62,16 +65,19 @@ const getStepsConfig = <STEPS extends string, SøknadRoutes>(
     return config;
 };
 
-function getStepIndicatorStepsFromConfig<Steps, SøknadRoutes extends string>(
+function getProgressStepsFromConfig<Steps, SøknadRoutes extends string>(
     stepsConfig: SoknadStepsConfig<Steps, SøknadRoutes>,
+    currentStepIndex: number,
     intl: IntlShape
-): StepIndicatorStep[] {
+): ProgressStep[] {
     return Object.keys(stepsConfig).map((key) => {
         const stepConfig = stepsConfig[key];
-        const step: StepIndicatorStep = {
+        const step: ProgressStep = {
             id: stepConfig.id,
             index: stepConfig.index,
             label: intlHelper(intl, stepConfig.stepTitleIntlKey),
+            href: stepConfig.route,
+            completed: stepConfig.index < currentStepIndex,
         };
         return step;
     });
@@ -82,7 +88,7 @@ const soknadStepUtils = {
     getRootRoute,
     getStepRoute,
     getStepsConfig,
-    getStepIndicatorStepsFromConfig,
+    getProgressStepsFromConfig,
 };
 
 export default soknadStepUtils;

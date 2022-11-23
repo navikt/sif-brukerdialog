@@ -22,8 +22,8 @@ const ConfirmationDialog = (props: Props) => {
                 <Modal.Content className="confirmationDialog">
                     <div
                         style={{
-                            marginTop: 'var(--navds-spacing-1)',
-                            paddingBottom: 'var(--navds-spacing-2)',
+                            marginTop: 'var(--a-spacing-1)',
+                            paddingBottom: 'var(--a-spacing-2)',
                         }}>
                         <Heading size="medium" level="1">
                             {title}

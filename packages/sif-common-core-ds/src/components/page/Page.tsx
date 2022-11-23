@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
+import PageBoundary from '../page-boundary/PageBoundary';
 import './page.scss';
 
 interface PageProps {
@@ -20,7 +21,9 @@ const Page = ({ id = 'pageMainContent', className = '', title, topContentRendere
     return (
         <div role="main" aria-label="Hovedinnhold" id={id}>
             {topContentRenderer && topContentRenderer()}
-            <div className={`page ${className}`}>{children}</div>
+            <PageBoundary>
+                <div className={`page ${className}`}>{children}</div>
+            </PageBoundary>
         </div>
     );
 };

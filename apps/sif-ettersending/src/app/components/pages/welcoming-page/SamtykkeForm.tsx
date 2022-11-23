@@ -41,7 +41,7 @@ const SamtykkeForm = ({ onStart, onOpenDinePlikterModal, openBehandlingAvPersono
                 </FormBlock>
                 <FormBlock>
                     <div className="text-center">
-                        <Button type="submit">{intlHelper(intl, 'step.button.gåVidere')}</Button>
+                        <Button type="submit">{intlHelper(intl, 'step.button.startSøknad')}</Button>
                     </div>
                 </FormBlock>
                 <FormBlock>

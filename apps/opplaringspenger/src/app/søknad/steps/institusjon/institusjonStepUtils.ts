@@ -1,7 +1,13 @@
 import { InstitusjonSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { InstitusjonFormValues } from './InstitusjonStep';
 
-export const getInstitusjonStepInitialValues = (institusjon?: InstitusjonSøknadsdata): InstitusjonFormValues => {
+export const getInstitusjonStepInitialValues = (
+    institusjon?: InstitusjonSøknadsdata,
+    formValues?: InstitusjonFormValues
+): InstitusjonFormValues => {
+    if (formValues) {
+        return formValues;
+    }
     switch (institusjon?.type) {
         case 'egendefinert':
             return {

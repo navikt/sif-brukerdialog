@@ -4,6 +4,7 @@ import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/Erro
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import SøknadContextProvider from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
+import StepFormValuesContextProvider from './context/StepFormValuesContext';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -23,7 +24,9 @@ const Søknad = () => {
 
     return (
         <SøknadContextProvider initialData={data}>
-            <SøknadRouter />
+            <StepFormValuesContextProvider>
+                <SøknadRouter />
+            </StepFormValuesContextProvider>
         </SøknadContextProvider>
     );
 };

@@ -4,9 +4,9 @@
     list-style: none;
     &__item {
         padding: 0.5rem;
-        border-bottom: 1px solid var(--navds-semantic-color-divider);
+        border-bottom: 1px solid var(--a-border-divider);
         &:first-child {
-            border-top: 1px solid var(--navds-semantic-color-divider);
+            border-top: 1px solid var(--a-border-divider);
         }
         display: flex;
         align-items: center;

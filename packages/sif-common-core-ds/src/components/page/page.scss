@@ -1,20 +1,12 @@
 .page {
-    max-width: 704px;
-    margin: 2rem auto 3rem;
-    padding: 1.5rem;
-    background: white;
-
+    margin: 3.5rem auto 3rem;
     .poster {
         max-width: 100%;
     }
-
-    @media (max-width: 768px) {
-        padding: 1rem 1rem;
-        margin: 1rem;
+    @media (max-width: 40rem) {
+        margin-top: 2.5rem;
     }
-
-    @media (max-width: 400px) {
-        padding: 0.5rem 0.5rem;
-        margin: 0.5rem;
+    @media (max-width: 25rem) {
+        margin-top: 1.5rem;
     }
 }

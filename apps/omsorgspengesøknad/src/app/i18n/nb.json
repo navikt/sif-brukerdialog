@@ -1,0 +1,18 @@
+{
+    "application.title": "Omsorgspengesøknad",
+    "application.bannerTitle": "Søknad om ekstra omsorgsdager",
+    "page.error.pageTitle": "Det oppstod en feil",
+    "common.soknadErrorMessages.generalError.content": "Generell feilmelding",
+
+    "step.om-barnet.pageTitle": "Omsorgspengesøknad - opplysninger om barnet",
+    "step.om-barnet.stepTitle": "Barn",
+
+    "step.deltBosted.pageTitle": "Omsorgspengesøknad - Delt bosted",
+    "step.deltBosted.stepTitle": "Delt bosted",
+
+    "step.oppsummering.pageTitle": "Omsorgspengesøknad - Oppsummering",
+    "step.oppsummering.stepTitle": "Oppsummering",
+
+    "steg.footer.avbryt": "Avbryt og slett søknad",
+    "steg.footer.fortsettSenere": "Avslutt og fortsett senere"
+}

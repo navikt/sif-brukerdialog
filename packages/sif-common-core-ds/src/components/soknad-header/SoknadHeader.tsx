@@ -1,6 +1,7 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import bemUtils from '../../utils/bemUtils';
+import PageBoundary from '../page-boundary/PageBoundary';
 import './soknadHeader.scss';
 
 interface Props {
@@ -14,21 +15,23 @@ const bem = bemUtils('soknadHeader');
 
 const SoknadHeader: React.FunctionComponent<Props> = ({ title, subtitle, level = '1', icon }) => (
     <div className={bem.block}>
-        <div className={bem.element('content')}>
-            {icon && <div className={bem.element('icon')}>{icon}</div>}
-            <div className={bem.element('text')}>
-                <div className={bem.element('title')}>
-                    <Heading size="medium" level={level}>
-                        {title}
-                    </Heading>
-                </div>
-                {subtitle && (
-                    <div className={bem.element('subtitle')}>
-                        <BodyLong size="small">{subtitle}</BodyLong>
+        <PageBoundary>
+            <div className={bem.element('content')}>
+                {icon && <div className={bem.element('icon')}>{icon}</div>}
+                <div className={bem.element('text')}>
+                    <div className={bem.element('title')}>
+                        <Heading size="small" level={level}>
+                            {title}
+                        </Heading>
                     </div>
-                )}
+                    {subtitle && (
+                        <div className={bem.element('subtitle')}>
+                            <BodyLong size="small">{subtitle}</BodyLong>
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </PageBoundary>
     </div>
 );
 
