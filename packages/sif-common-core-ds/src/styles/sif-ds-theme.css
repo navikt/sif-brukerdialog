@@ -1,6 +1,6 @@
 body.sif-ds-theme {
-    --navds-guide-panel-color-border: var(--navds-global-color-deepblue-400);
-    --navds-guide-panel-color-illustration-background: var(--navds-global-color-deepblue-200);
+    --ac-guide-panel-border: var(--a-deepblue-400);
+    --ac-guide-panel-illustration-bg: var(--a-deepblue-100);
 }
 
 .soknadHeader,
@@ -9,7 +9,7 @@ body.sif-ds-theme {
 }
 
 .navds-label {
-    line-height: var(--navds-font-line-height-xlarge) !important;
+    line-height: var(--a-font-line-height-xlarge) !important;
 }
 
 /** Skal flyttes/endres: */

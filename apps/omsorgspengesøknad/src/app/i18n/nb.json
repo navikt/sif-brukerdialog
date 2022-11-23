@@ -2,7 +2,7 @@
     "application.title": "Omsorgspengesøknad",
     "application.bannerTitle": "Søknad om ekstra omsorgsdager",
     "page.error.pageTitle": "Det oppstod en feil",
-    "common.soknadErrorMessages.generalError.content": "Feil ja",
+    "common.soknadErrorMessages.generalError.content": "Generell feilmelding",
 
     "step.om-barnet.pageTitle": "Omsorgspengesøknad - opplysninger om barnet",
     "step.om-barnet.stepTitle": "Barn",

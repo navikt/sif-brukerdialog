@@ -126,7 +126,7 @@ function ModalFormAndInfo<DataType>({
                 onClose={resetModal}
                 aria-label={labels.modalTitle}>
                 <Modal.Content>
-                    <div style={{ marginTop: 'var(--navds-spacing-1)', paddingBottom: 'var(--navds-spacing-2)' }}>
+                    <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
                         <Heading spacing={true} size="medium" level="1">
                             {labels.modalTitle}
                         </Heading>
