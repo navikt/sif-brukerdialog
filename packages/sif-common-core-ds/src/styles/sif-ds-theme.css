@@ -8,10 +8,6 @@ body.sif-ds-theme {
     background-color: white;
 }
 
-.navds-label {
-    line-height: var(--a-font-line-height-xlarge) !important;
-}
-
 /** Skal flyttes/endres: */
 .languageToggle__wrapper {
     min-width: 15rem;
