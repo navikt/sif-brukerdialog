@@ -8,8 +8,8 @@ import {
     fileExtensionIsValid,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
-import { deleteFile } from '../../api/api';
-import { ApplicationFormData, ApplicationFormField } from '../../types/ApplicationFormData';
+import api from '../../api/api';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const UploadedDocumentsList = ({ includeDeletionFunctionality }: Props) => {
-    const { values, setFieldValue } = useFormikContext<ApplicationFormData>();
+    const { values, setFieldValue } = useFormikContext<SoknadFormData>();
 
     const dokumenter: Attachment[] = values.dokumenter.filter(({ file }: Attachment) =>
         fileExtensionIsValid(file.name)
@@ -33,18 +33,18 @@ const UploadedDocumentsList = ({ includeDeletionFunctionality }: Props) => {
                 attachments={dokumenter}
                 onRemoveAttachmentClick={(attachment: Attachment) => {
                     attachment.pending = true;
-                    setFieldValue(ApplicationFormField.dokumenter, dokumenter);
+                    setFieldValue(SoknadFormField.dokumenter, dokumenter);
                     if (attachment.url) {
-                        deleteFile(attachment.url).then(
+                        api.deleteFile(attachment.url).then(
                             () => {
                                 setFieldValue(
-                                    ApplicationFormField.dokumenter,
+                                    SoknadFormField.dokumenter,
                                     removeElementFromArray(attachment, dokumenter)
                                 );
                             },
                             () => {
                                 setFieldValue(
-                                    ApplicationFormField.dokumenter,
+                                    SoknadFormField.dokumenter,
                                     removeElementFromArray(attachment, dokumenter)
                                 );
                             }

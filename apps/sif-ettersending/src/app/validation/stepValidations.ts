@@ -1,10 +1,10 @@
-import { ApplicationFormData } from '../types/ApplicationFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 
-export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: ApplicationFormData): boolean =>
+export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: SoknadFormData): boolean =>
     harForståttRettigheterOgPlikter === true;
 
-export const beskrivelseStepIsValid = (values: ApplicationFormData) =>
+export const beskrivelseStepIsValid = (values: SoknadFormData) =>
     hasValue(values.beskrivelse) && welcomingPageIsValid(values);
 
-export const documentsStepIsValid = ({ dokumenter }: ApplicationFormData) => dokumenter.length > 0;
+export const documentsStepIsValid = ({ dokumenter }: SoknadFormData) => dokumenter.length > 0;
