@@ -29,7 +29,7 @@ interface Props {
     soknadId?: string;
 }
 
-const SoknadRoutes = ({ søker, søknadstype, soknadId = '123' }: Props) => {
+const SoknadRouter = ({ søker, søknadstype, soknadId = '123' }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const { soknadStepsConfig, sendSoknadStatus } = useSoknadContext();
@@ -101,4 +101,4 @@ const SoknadRoutes = ({ søker, søknadstype, soknadId = '123' }: Props) => {
     );
 };
 
-export default SoknadRoutes;
+export default SoknadRouter;

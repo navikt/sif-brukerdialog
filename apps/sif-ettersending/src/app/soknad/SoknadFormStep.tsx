@@ -2,16 +2,17 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import { ProgressStep } from '@navikt/sif-common-core-ds/lib/components/progress-stepper/ProgressStepper';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds/lib';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import StepSubmitButton from '@navikt/sif-common-soknad-ds/lib/soknad-step/step-submit-button/StepSubmitButton';
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
+import { ApplicationType } from '../types/ApplicationType';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
-import { ApplicationType } from '../types/ApplicationType';
 import { StepID } from './soknadStepsConfig';
 
 interface OwnProps {
@@ -22,7 +23,6 @@ interface OwnProps {
     showButtonSpinner?: boolean;
     includeValidationSummary?: boolean;
     buttonDisabled?: boolean;
-    stepTitle?: string;
     pageTitle?: string;
     søknadstype: ApplicationType;
     showNotAllQuestionsAnsweredMessage?: boolean;
@@ -39,7 +39,6 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     showButtonSpinner,
     showSubmitButton = true,
     includeValidationSummary = true,
-    stepTitle,
     pageTitle,
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
@@ -54,14 +53,14 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
 
     useLogSidevisning(id);
 
+    const steps: ProgressStep[] = soknadStepUtils.getProgressStepsFromConfig(soknadStepsConfig, stepConfig.index, intl);
+
     return (
         <Step
             bannerTitle={applicationTitle}
             cancelOrContinueLaterAriaLabel={intlHelper(intl, 'application.cancelOrContinueLaterLabel')}
-            stepTitle={stepTitle || texts.stepTitle}
             pageTitle={pageTitle || texts.pageTitle}
-            backLinkHref={stepConfig.previousStepRoute ? `/${søknadstype}${stepConfig.previousStepRoute}` : undefined}
-            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(soknadStepsConfig, intl)}
+            steps={steps}
             activeStepId={id}
             onCancel={resetSoknad}
             onContinueLater={continueSoknadLater ? () => continueSoknadLater(id) : undefined}>

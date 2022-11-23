@@ -30,6 +30,7 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     onValidSubmit?: () => void;
     onCancel?: () => void;
     onBack?: (values: FormValues) => void;
+    onValuesChange?: (values: FormValues) => void;
 }
 
 export type TypedFormikFormContextType = {
@@ -71,6 +72,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     onCancel,
     onBack,
     onValidSubmit,
+    onValuesChange,
     noButtonsContentRenderer,
     cleanup,
 }: TypedFormikFormProps<FormValues, ErrorType>) {

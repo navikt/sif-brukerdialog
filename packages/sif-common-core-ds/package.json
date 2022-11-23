@@ -64,8 +64,8 @@
     },
     "peerDependencies": {
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "1",
-        "@navikt/ds-react": "1",
+        "@navikt/ds-css": "2",
+        "@navikt/ds-react": "2",
         "@navikt/sif-common-formik-ds": "*",
         "react-intl": "6.2.1"
     },

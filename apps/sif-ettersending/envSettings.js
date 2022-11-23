@@ -2,6 +2,7 @@ const process = require('process');
 require('dotenv').config();
 
 const envSettings = () => {
+    const DEKORATOR_URL = process.env.DEKORATOR_URL;
     const API_URL = process.env.API_URL;
     const FRONTEND_API_PATH = process.env.FRONTEND_API_PATH;
     const PUBLIC_PATH = process.env.PUBLIC_PATH;
@@ -17,18 +18,19 @@ const envSettings = () => {
 
     const appSettings = `
      window.appSettings = {
-         API_URL: '${API_URL}',
-         FRONTEND_API_PATH: '${FRONTEND_API_PATH}',
-         FRONTEND_VEDLEGG_URL: '${FRONTEND_VEDLEGG_URL}',
-         PUBLIC_PATH: '${PUBLIC_PATH}',
-         LOGIN_URL: '${LOGIN_URL}',
-         NYNORSK: '${NYNORSK}',
-         INNSYN_PP: '${INNSYN_PP}',
-         DITT_NAV_URL: '${DITT_NAV_URL}',
-         APPSTATUS_PROJECT_ID: '${APPSTATUS_PROJECT_ID}',
-         APPSTATUS_DATASET: '${APPSTATUS_DATASET}',
-         USE_AMPLITUDE: '${USE_AMPLITUDE}',
-         LIVETS_SLUTTFASE: '${LIVETS_SLUTTFASE}',
+        DEKORATOR_URL: '${DEKORATOR_URL}',
+        API_URL: '${API_URL}',
+        FRONTEND_API_PATH: '${FRONTEND_API_PATH}',
+        FRONTEND_VEDLEGG_URL: '${FRONTEND_VEDLEGG_URL}',
+        PUBLIC_PATH: '${PUBLIC_PATH}',
+        LOGIN_URL: '${LOGIN_URL}',
+        NYNORSK: '${NYNORSK}',
+        INNSYN_PP: '${INNSYN_PP}',
+        DITT_NAV_URL: '${DITT_NAV_URL}',
+        APPSTATUS_PROJECT_ID: '${APPSTATUS_PROJECT_ID}',
+        APPSTATUS_DATASET: '${APPSTATUS_DATASET}',
+        USE_AMPLITUDE: '${USE_AMPLITUDE}',
+        LIVETS_SLUTTFASE: '${LIVETS_SLUTTFASE}',
      };`
         .trim()
         .replace(/ /g, '');

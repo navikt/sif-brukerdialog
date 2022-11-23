@@ -28,7 +28,7 @@ import { ApplicationType } from '../types/ApplicationType';
 import { getSkjemanavn } from '../types/skjemanavn';
 import { getApplicationPageRoute } from '../utils/routeUtils';
 import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
-import SoknadRoutes from './SoknadRoutes';
+import SoknadRouter from './SoknadRouter';
 
 interface Props {
     søker: Person;
@@ -234,7 +234,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                             navigateToNextStepFromStep(stepID);
                                         },
                                     }}>
-                                    <SoknadRoutes søker={søker} søknadstype={søknadstype} soknadId={soknadId} />
+                                    <SoknadRouter søker={søker} søknadstype={søknadstype} soknadId={soknadId} />
                                 </SoknadContextProvider>
                             );
                         }}
