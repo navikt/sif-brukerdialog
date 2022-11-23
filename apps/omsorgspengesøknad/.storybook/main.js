@@ -2,7 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
-    stories: ['../src/storybook/**/*.stories.tsx'],
+    stories: ['../src/storybook/**/*.stories.mdx', '../src/storybook/**/*.stories.@(js|jsx|ts|tsx)'],
     addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
     framework: '@storybook/react',
     core: {

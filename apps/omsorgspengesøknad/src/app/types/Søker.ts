@@ -2,11 +2,12 @@ import { isObject, isString } from 'formik';
 import { isStringOrNull } from '../utils/typeGuardUtilities';
 
 export interface Søker {
-    etternavn: string;
+    aktørId: string;
+    fødselsdato: Date;
+    fødselsnummer: string;
     fornavn: string;
     mellomnavn?: string;
-    kjønn: string;
-    fødselsnummer: string;
+    etternavn: string;
 }
 
 export const isValidSøkerResponse = (response: any): response is Søker => {
