@@ -16,11 +16,16 @@ export const navigateToErrorPage = (søknadstype: ApplicationType, navigate?: Na
     }
 };
 
-export const relocatoToKvitteringPage = (søknadstype: ApplicationType) =>
-    window.location.assign(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE));
+export const navigateToKvitteringPage = (søknadstype: ApplicationType, navigate: NavigateFunction) =>
+    navigate(getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE);
 
 export const navigateToLoginPage = (søknadstype: ApplicationType) => window.location.assign(getLoginUrl(søknadstype));
 export const navigateToWelcomePage = (søknadstype: ApplicationType) =>
     window.location.assign(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).WELCOMING_PAGE_ROUTE));
 export const userIsCurrentlyOnErrorPage = (søknadstype: ApplicationType) =>
     window.location.pathname === getAbsoluteUrlForRoute(getRouteConfig(søknadstype).ERROR_PAGE_ROUTE);
+
+export const relocateToNavFrontpage = (): void => redirectTo('https://www.nav.no/');
+
+export const relocateToApplication = (søknadstype: ApplicationType) =>
+    redirectTo(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).APPLICATION_ROUTE_PREFIX));

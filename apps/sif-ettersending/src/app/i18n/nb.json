@@ -13,6 +13,11 @@
     "step.button.startSøknad": "Start søknad",
     "page.form.ubesvarteSpørsmålInfo": "For å komme videre må du svare på spørsmålet ovenfor.",
 
+    "application.cancelOrContinueLaterLabel": "Avbryt eller fortsett senere",
+
+    "steg.footer.avbryt": "Avbryt",
+    "steg.footer.fortsettSenere": "Fortsett senere",
+
     "banner.title": "Ettersending av dokumenter",
 
     "søknadstype.pleiepenger": "pleiepengesøknad",
@@ -29,6 +34,7 @@
     "banner.regnetsomalene": "Ettersendelse av dokumentasjon for omsorgspenger",
     "banner.deling": "Ettersendelse av dokumentasjon for omsorgspenger",
 
+    "application.title": "TODO",
     "application.title.pleiepenger": "Ettersendelse av dokumentasjon til søknad om pleiepenger",
     "application.title.pleiepenger-livets-sluttfase": "Ettersendelse av dokumentasjon til søknad om pleiepenger livets sluttfase",
     "application.title.omsorgspenger": "Ettersendelse av dokumentasjon for omsorgspenger",
@@ -78,6 +84,7 @@
     "step.beskrivelse.stepTitle": "Ettersendelse av dokumentasjon",
     "step.beskrivelse.pageTitle": "Ettersendelse av dokumentasjon",
     "step.beskrivelse.stepIndicatorLabel": "Ettersendelse av dokumentasjon",
+    "step.beskrivelse.nextButtonLabel": "Fortsett",
     "step.beskrivelse.hvaSendes.spm": "Hva skal du ettersende?",
     "step.beskrivelse.intro.1": "Her beskriver du hvilken dokumentasjon du skal sende. Det er også til hjelp for oss, om du forteller at du ettersender fordi:",
     "step.beskrivelse.intro.li.1": "vi har etterspurt mer dokumentasjon fra deg, eller",
@@ -88,6 +95,7 @@
     "step.omsorgspenger_type.stepTitle": "Hva skal du ettersende til?",
     "step.omsorgspenger_type.pageTitle": "Omsorgspenger type",
     "step.omsorgspenger_type.stepIndicatorLabel": "Omsorgspenger type",
+    "step.omsorgspenger_type.nextButtonLabel": "Fortsett",
     "step.omsorgspenger_type.radio.label.ekstraomsorgsdager": "Søknad om ekstra omsorgsdager ved kronisk sykt eller funksjonshemmet barn",
     "step.omsorgspenger_type.radio.label.utbetaling": "Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere",
     "step.omsorgspenger_type.radio.label.utbetalingarbeidstaker": "Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler",
@@ -98,6 +106,7 @@
     "step.dokumenter.pageTitle": "Last opp dokumenter",
     "step.dokumenter.stepTitle": "Nå skal du laste opp dokumentene dine",
     "step.dokumenter.stepIndicatorLabel": "Last opp dokumenter",
+    "step.dokumenter.nextButtonLabel": "Fortsett",
     "steg.dokumenter.vedlegg": "Last opp vedlegg",
     "steg.dokumenter.infopanel.1": "Når du skal laste opp dokumenter må du enten ta bilde av dokumentene, eller scanne dem.",
     "steg.dokumenter.infopanel.2": "Du kan laste opp disse filtypene: JPG, JPEG, PDF og PNG. Det er ikke mulig å laste opp andre filtyper enn disse.",
@@ -107,6 +116,7 @@
     "step.oppsummering.pageTitle": "Oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
     "step.oppsummering.stepIndicatorLabel": "Oppsummering",
+    "step.oppsummering.nextButtonLabel": "Send inn",
     "steg.oppsummering.info": "Les gjennom oppsummeringen før du sender inn dokumentene. Hvis du vil gjøre endringer, kan du gå tilbake.",
     "steg.oppsummering.søker.header": "Navn på søker",
     "steg.oppsummering.søker.fnr": "Fødselsnummer",

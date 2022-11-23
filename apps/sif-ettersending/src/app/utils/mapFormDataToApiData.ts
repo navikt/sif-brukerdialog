@@ -1,10 +1,11 @@
-import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+// import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
-import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import { ApplicationApiData, YtelseTypeApi } from '../types/ApplicationApiData';
-import { ApplicationFormData } from '../types/ApplicationFormData';
+import { SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { ApplicationType } from '../types/ApplicationType';
 import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
+import { IntlShape } from 'react-intl';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 
 const getSøknadstypeApi = (søknadstype: ApplicationType): YtelseTypeApi => {
     switch (søknadstype) {
@@ -26,27 +27,30 @@ const getSøknadstypeApi = (søknadstype: ApplicationType): YtelseTypeApi => {
     return YtelseTypeApi.ukjent;
 };
 
+const getVedleggUrlFromAttachments = (attachments: Attachment[]): string[] => {
+    const vedleggUrl: string[] = [];
+    attachments.forEach((s) => {
+        if (s.url) {
+            vedleggUrl.push(getAttachmentURLBackend(s.url));
+        }
+    });
+    return vedleggUrl;
+};
+
 export const mapFormDataToApiData = (
-    {
-        harBekreftetOpplysninger,
-        harForståttRettigheterOgPlikter,
-        beskrivelse,
-        dokumenter,
-        søknadstype,
-    }: ApplicationFormData,
+    soknadId: string,
+    { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, beskrivelse, dokumenter, søknadstype }: SoknadFormData,
     søknadstypeFraURL: ApplicationType,
-    locale: Locale
-): ApplicationApiData => {
-    const apiData: ApplicationApiData = {
-        språk: getLocaleForApi(locale),
+    intl: IntlShape
+): SoknadApiData => {
+    const apiData: SoknadApiData = {
+        id: soknadId,
+        språk: getLocaleForApi(intl.locale),
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
         søknadstype: søknadstype ? getSøknadstypeApi(søknadstype) : getSøknadstypeApi(søknadstypeFraURL),
         beskrivelse,
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        vedlegg: dokumenter
-            .filter((attachment) => !attachmentUploadHasFailed(attachment))
-            .map(({ url }) => getAttachmentURLBackend(url)),
+        vedlegg: getVedleggUrlFromAttachments(dokumenter),
     };
     return apiData;
 };
