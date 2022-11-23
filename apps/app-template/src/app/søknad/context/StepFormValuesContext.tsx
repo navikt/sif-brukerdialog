@@ -18,7 +18,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const StepFormValuesContextProvider: FunctionComponent<Props> = ({ children }) => {
+export const StepFormValuesContextProvider: FunctionComponent<Props> = ({ children }) => {
     const [values, setValues] = useState<StepFormValues>({});
     return (
         <StepFormValuesContext.Provider
@@ -38,5 +38,3 @@ const StepFormValuesContextProvider: FunctionComponent<Props> = ({ children }) =
         </StepFormValuesContext.Provider>
     );
 };
-
-export default StepFormValuesContextProvider;

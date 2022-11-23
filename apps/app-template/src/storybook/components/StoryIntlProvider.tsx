@@ -1,6 +1,7 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { applicationIntlMessages } from '../../../app/i18n/applicationMessages';
+import { applicationIntlMessages } from '../../app/i18n/applicationMessages';
+
 export interface IntlProviderProps {
     locale: string;
     children: React.ReactNode;
@@ -16,7 +17,7 @@ const allMessages = {
     },
 };
 
-const AppIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, onError, children }) => {
+const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, onError, children }) => {
     const messages = locale === 'nb' ? allMessages.nb : allMessages.nn;
     return (
         <IntlProvider locale={locale} messages={messages} onError={onError}>
@@ -25,4 +26,4 @@ const AppIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, o
     );
 };
 
-export default AppIntlProvider;
+export default StoryIntlProvider;
