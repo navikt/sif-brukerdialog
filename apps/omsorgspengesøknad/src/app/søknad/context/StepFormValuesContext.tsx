@@ -16,10 +16,11 @@ export const useStepFormValuesContext = () => useContext(StepFormValuesContext);
 
 interface Props {
     children: React.ReactNode;
+    initialValues?: StepFormValues;
 }
 
-export const StepFormValuesContextProvider: FunctionComponent<Props> = ({ children }) => {
-    const [values, setValues] = useState<StepFormValues>({});
+export const StepFormValuesContextProvider: FunctionComponent<Props> = ({ children, initialValues }) => {
+    const [values, setValues] = useState<StepFormValues>(initialValues || {});
     return (
         <StepFormValuesContext.Provider
             value={{

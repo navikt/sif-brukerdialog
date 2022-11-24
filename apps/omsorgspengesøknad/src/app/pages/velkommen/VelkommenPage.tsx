@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
@@ -22,7 +22,8 @@ export interface VelkommenFormValues {
 
 const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
     VelkommenFormFields,
-    VelkommenFormValues
+    VelkommenFormValues,
+    ValidationError
 >();
 
 const VelkommenPage = () => {

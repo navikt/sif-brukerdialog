@@ -14,14 +14,26 @@ export const getOmBarnetStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    const {} = søknadsdata.omBarnet || {};
-    return {};
+    const { registrertBarn, søknadenGjelderEtAnnetBarn } = søknadsdata.omBarnet || {};
+    return {
+        barnetSøknadenGjelder: registrertBarn,
+        søknadenGjelderEtAnnetBarn,
+        barnetsFødselsnummer: '',
+        barnetsNavn: '',
+        søkersRelasjonTilBarnet: undefined,
+    };
 };
 
 export const getOmBarnetSøknadsdataFromFormValues = (values: OmBarnetFormValues): OmBarnetSøknadsdata => {
+    if (values.søknadenGjelderEtAnnetBarn) {
+        return {
+            registrertBarn: undefined,
+            søknadenGjelderEtAnnetBarn: true,
+        };
+    }
     return {
-        ...values,
-    } as any;
+        registrertBarn: values.barnetSøknadenGjelder,
+    };
 };
 
 export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): FormikRadioProp => {

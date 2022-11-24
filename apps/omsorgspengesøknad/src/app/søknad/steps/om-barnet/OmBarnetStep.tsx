@@ -13,18 +13,28 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig } from '../../søknadStepConfig';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
 import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
+import AnnetBarnpart from './form-parts/AnnetBarnPart';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 
 export enum OmBarnetFormFields {
-    'barnetSøknadenGjelder' = 'barnetSøknadenGjelder',
-    'søknadenGjelderEtAnnetBarn' = 'søknadenGjelderEtAnnetBarn',
+    barnetSøknadenGjelder = 'barnetSøknadenGjelder',
+    søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
+    barnetsNavn = 'barnetsNavn',
+    barnetsFødselsnummer = 'barnetsFødselsnummer',
+    søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
 }
 
 export interface OmBarnetFormValues {
     [OmBarnetFormFields.barnetSøknadenGjelder]?: string;
     [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
+    [OmBarnetFormFields.barnetsNavn]: string;
+    [OmBarnetFormFields.barnetsFødselsnummer]: string;
+    [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues>();
+const { FormikWrapper, Form } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
 
 const OmBarnetStep = () => {
     const {
@@ -60,17 +70,24 @@ const OmBarnetStep = () => {
             <FormikWrapper
                 initialValues={getOmBarnetStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => (
-                    <>
-                        <PersistStepFormValues stepId={stepId} />
-                        <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
-                            <VelgRegistrertBarn
-                                registrerteBarn={registrerteBarn}
-                                søknadenGjelderEtAnnetBarn={values.søknadenGjelderEtAnnetBarn}
-                            />
-                        </Form>
-                    </>
-                )}
+                renderForm={({ values: { søknadenGjelderEtAnnetBarn } }) => {
+                    return (
+                        <>
+                            <PersistStepFormValues stepId={stepId} />
+                            <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
+                                <VelgRegistrertBarn
+                                    registrerteBarn={registrerteBarn}
+                                    søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
+                                />
+                                {søknadenGjelderEtAnnetBarn && (
+                                    <FormBlock>
+                                        <AnnetBarnpart />
+                                    </FormBlock>
+                                )}
+                            </Form>
+                        </>
+                    );
+                }}
             />
         </SøknadStep>
     );

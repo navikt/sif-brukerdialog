@@ -1,3 +1,4 @@
 export interface OmBarnetSøknadsdata {
-    registrertBarn: string;
+    registrertBarn?: string;
+    søknadenGjelderEtAnnetBarn?: boolean;
 }

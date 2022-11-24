@@ -4,9 +4,8 @@ import { StepId } from '../types/StepId';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
-const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
+const getSøknadSteps = (_: Søknadsdata): StepId[] => {
     // eslint-disable-next-line no-console
-    console.log(søknadsdata);
     return [StepId.OM_BARNET, StepId.DELT_BOSTED, StepId.LEGEERKLÆRING, StepId.OPPSUMMERING];
 };
 
