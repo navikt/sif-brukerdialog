@@ -5,6 +5,7 @@ import hash from 'object-hash';
 import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
 import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
+import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export type SøknadStatePersistence = Omit<SøknadContextState, 'søker'> & {
@@ -37,7 +38,8 @@ export const isPersistedSøknadStateValid = (
     return (
         søknadState.versjon === SØKNAD_VERSJON &&
         søknadState.søknadsdata?.harForståttRettigheterOgPlikter === true &&
-        søknadState.søknadHashString === createHashString(info)
+        søknadState.søknadHashString === createHashString(info) &&
+        isValidSøknadRoute(søknadState.søknadRoute)
     );
 };
 

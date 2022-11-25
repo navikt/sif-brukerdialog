@@ -7,7 +7,7 @@ import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
@@ -62,12 +62,12 @@ const SøknadRouter = () => {
     return (
         <Routes>
             <Route index element={<VelkommenPage />} />
-            <Route path={StepId.VELKOMMEN} element={<VelkommenPage />} />
-            <Route path={StepId.OM_BARNET} element={<OmBarnetStep />} />
-            <Route path={StepId.DELT_BOSTED} element={<DeltBostedStep />} />
-            <Route path={StepId.LEGEERKLÆRING} element={<LegeerklæringStep />} />
-            <Route path={StepId.OPPSUMMERING} element={<OppsummeringStep />} />
-            <Route path={StepId.SØKNAD_SENDT} element={<SøknadSendtPage />} />
+            <Route path={SøknadStepRoutePath[StepId.VELKOMMEN]} element={<VelkommenPage />} />
+            <Route path={SøknadStepRoutePath[StepId.OM_BARNET]} element={<OmBarnetStep />} />
+            <Route path={SøknadStepRoutePath[StepId.DELT_BOSTED]} element={<DeltBostedStep />} />
+            <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
+            <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
+            <Route path={SøknadStepRoutePath[StepId.SØKNAD_SENDT]} element={<SøknadSendtPage />} />
             <Route
                 path="*"
                 element={
