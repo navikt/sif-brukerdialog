@@ -286,7 +286,7 @@ export const getYearsInDateRanges = (dateRanges: DateRange[]): number[] =>
 export const getNumberOfDaysInDateRange = (dateRange: DateRange, onlyWeekDays = false): number =>
     onlyWeekDays
         ? getDatesInDateRange(dateRange, onlyWeekDays).length
-        : Math.abs(dayjs(dateRange.to).diff(dateRange.from, 'days')) + 1;
+        : Math.abs(dayjs(dateRange.to).startOf('day').diff(dayjs(dateRange.from).startOf('day'), 'days')) + 1;
 
 /**
  * Gets a dateRange spanning all @ranges
