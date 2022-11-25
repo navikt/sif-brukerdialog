@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 5.1.0
+
+### Minor Changes
+
+-   b0621a7: Legge til ny komponent - progress stepper
+
+### Patch Changes
+
+-   Updated dependencies [b0621a7]
+    -   @navikt/sif-common-formik-ds@0.8.4
+
 ## 5.0.1
 
 ### Patch Changes

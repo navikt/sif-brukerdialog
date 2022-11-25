@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.8.4
+
+### Patch Changes
+
+-   b0621a7: Legge til ny komponent - progress stepper
+
 ## 0.8.3
 
 ### Patch Changes
