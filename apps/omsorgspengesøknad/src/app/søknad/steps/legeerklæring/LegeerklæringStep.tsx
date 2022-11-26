@@ -12,6 +12,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig } from '../../søknadStepConfig';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { useIntl } from 'react-intl';
 
 export enum LegeerklæringFormFields {}
 
@@ -22,6 +24,7 @@ export interface LegeerklæringFormValues {
 const { FormikWrapper, Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
 const LegeerklæringStep = () => {
+    const intl = useIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -58,7 +61,11 @@ const LegeerklæringStep = () => {
                 renderForm={() => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
+                        <Form
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                            includeValidationSummary={true}
+                            submitPending={isSubmitting}
+                            onBack={goBack}>
                             Ikke satt opp
                         </Form>
                     </>

@@ -17,6 +17,8 @@ import AnnetBarnpart from './form-parts/AnnetBarnPart';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { useIntl } from 'react-intl';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -37,6 +39,7 @@ export interface OmBarnetFormValues {
 const { FormikWrapper, Form } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
 
 const OmBarnetStep = () => {
+    const intl = useIntl();
     const {
         state: { søknadsdata, registrerteBarn },
     } = useSøknadContext();
@@ -74,7 +77,11 @@ const OmBarnetStep = () => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
-                            <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
+                            <Form
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                                includeValidationSummary={true}
+                                submitPending={isSubmitting}
+                                onBack={goBack}>
                                 <VelgRegistrertBarn
                                     registrerteBarn={registrerteBarn}
                                     søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
