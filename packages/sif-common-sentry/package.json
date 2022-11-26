@@ -6,12 +6,12 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-sentry",
     "types": "lib/index.d.js",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "7.17.4",
+        "@sentry/browser": "7.21.1",
         "@sentry/react": "7.17.4",
         "@sentry/types": "7.17.4"
     },

@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.5.2
+
+### Patch Changes
+
+-   6e38566: Oppdate dependencies - minor og patch
+
 ## 0.5.1
 
 ### Patch Changes

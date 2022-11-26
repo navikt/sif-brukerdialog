@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-utils",
     "types": "lib/index.d.js",
-    "version": "3.16.1",
+    "version": "3.17.1",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-utils/issues"
     },
@@ -20,13 +20,13 @@
         "@types/lodash.uniq": "4.5.7",
         "@types/node": "18.11.9",
         "@types/react": "18.0.25",
-        "@types/react-dom": "18.0.8",
+        "@types/react-dom": "18.0.9",
         "dayjs": "1.11.6",
         "eslint-config-custom": "*",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-scripts": "5.0.1",
-        "typedoc": "0.23.20"
+        "typedoc": "0.23.21"
     },
     "directories": {
         "lib": "lib"

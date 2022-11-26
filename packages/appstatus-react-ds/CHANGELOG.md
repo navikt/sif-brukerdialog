@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.2
+
+### Patch Changes
+
+-   6e38566: Oppdate dependencies - minor og patch
+
 ## 1.5.1
 
 ### Patch Changes

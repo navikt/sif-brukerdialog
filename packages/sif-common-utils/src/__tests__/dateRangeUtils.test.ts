@@ -342,6 +342,13 @@ describe('dateRangeUtils', () => {
                 });
                 expect(result).toBe(2);
             });
+            it('returns 2 even if time of day 1 is after time of day 2', () => {
+                const result = getNumberOfDaysInDateRange({
+                    from: new Date(2022, 1, 1, 5),
+                    to: new Date(2022, 1, 2, 2),
+                });
+                expect(result).toBe(2);
+            });
             it('returns 3 when to date is two days after from date', () => {
                 const result = getNumberOfDaysInDateRange({
                     from: ISODateToDate('2021-02-01'),

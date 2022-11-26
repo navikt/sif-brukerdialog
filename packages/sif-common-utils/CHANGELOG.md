@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.17.1
+
+### Patch Changes
+
+-   6e38566: Oppdate dependencies - minor og patch
+
+## 3.17.0
+
+### Minor Changes
+
+-   f3bfff7: Ta høyde for ulikt tidspunkt på fra og til dato når en teller dager i en periode.
+
 ## 3.16.1
 
 ### Patch Changes
