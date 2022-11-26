@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.8.5
+
+### Patch Changes
+
+-   6e38566: Oppdate dependencies - minor og patch
+
 ## 0.8.4
 
 ### Patch Changes

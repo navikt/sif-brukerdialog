@@ -1,5 +1,17 @@
 # @navikt/sif-ettersending
 
+## 2.0.1
+
+### Patch Changes
+
+-   6e38566: Oppdate dependencies - minor og patch
+-   Updated dependencies [6e38566]
+    -   @navikt/sif-common-core-ds@5.1.1
+    -   @navikt/sif-common-formik-ds@0.8.5
+    -   @navikt/sif-common-sentry@0.5.2
+    -   @navikt/sif-common-soknad-ds@5.0.2
+    -   @navikt/sif-common-utils@3.17.1
+
 ## 2.0.0
 
 ### Major Changes

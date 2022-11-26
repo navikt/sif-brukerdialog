@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.17.1
+
+### Patch Changes
+
+-   6e38566: Oppdate dependencies - minor og patch
+
 ## 3.17.0
 
 ### Minor Changes
