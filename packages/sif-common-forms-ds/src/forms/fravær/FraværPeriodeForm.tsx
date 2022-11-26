@@ -189,7 +189,7 @@ const FraværPeriodeForm = ({
                                     disableWeekend: helgedagerIkkeTillat || false,
                                     disabledDateRanges,
                                     dayPickerProps: {
-                                        initialMonth:
+                                        defaultMonth:
                                             fromDate || toDate || dayjs(dateToday).isAfter(maxDate)
                                                 ? maxDate
                                                 : dateToday,
@@ -219,7 +219,7 @@ const FraværPeriodeForm = ({
                                     disableWeekend: helgedagerIkkeTillat || false,
                                     disabledDateRanges,
                                     dayPickerProps: {
-                                        initialMonth:
+                                        defaultMonth:
                                             toDate || fromDate || dayjs(dateToday).isAfter(maxDate)
                                                 ? maxDate
                                                 : dateToday,
