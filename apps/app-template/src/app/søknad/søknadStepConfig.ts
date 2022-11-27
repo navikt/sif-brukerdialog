@@ -4,7 +4,8 @@ import { StepId } from '../types/StepId';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
-const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     return [StepId.PLEIETRENGENDE, StepId.MEDLEMSKAP, StepId.OPPSUMMERING];
 };
 

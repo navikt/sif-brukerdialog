@@ -1,23 +1,23 @@
 import React from 'react';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getNumberValidator, getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { StepId } from '../../../types/StepId';
+import { getSøknadStepConfig } from '../../søknadStepConfig';
 import {
     getPleietrengendeStepInitialValues,
     getPleietrengendeSøknadsdataFromFormValues,
 } from './pleietrengendeStepUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import { getSøknadStepConfig } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 
 export enum PleietrengendeFormFields {
     'navn' = 'navn',
@@ -35,13 +35,13 @@ const PleietrengendeStep = () => {
     const {
         state: { søknadsdata },
     } = useSøknadContext();
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const stepId = StepId.PLEIETRENGENDE;
-    const step = getSøknadStepConfig(søknadsdata)[stepId];
+    const stepConfig = getSøknadStepConfig(søknadsdata);
+    const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
-
-    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: PleietrengendeFormValues) => {
         const pleietrengendeSøknadsdata = getPleietrengendeSøknadsdataFromFormValues(values);
@@ -75,7 +75,7 @@ const PleietrengendeStep = () => {
                                     name={PleietrengendeFormFields.navn}
                                     validate={getStringValidator({
                                         required: true,
-                                        minLength: 5,
+                                        minLength: 1,
                                         maxLength: 30,
                                     })}
                                     maxLength={30}
@@ -89,11 +89,11 @@ const PleietrengendeStep = () => {
                             </FormBlock>
                             <FormBlock>
                                 <TextField
-                                    label="Navn"
+                                    label="Alder"
                                     name={PleietrengendeFormFields.alder}
                                     validate={getNumberValidator({
                                         required: true,
-                                        max: 18,
+                                        max: 40,
                                         min: 0,
                                     })}
                                     type="tel"

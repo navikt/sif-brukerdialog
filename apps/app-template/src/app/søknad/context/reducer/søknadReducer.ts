@@ -50,6 +50,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+            case SøknadContextActionKeys.SET_SØKNAD_MEDLEMSKAP:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        medlemskap: {
+                            ...action.payload,
+                        },
+                    },
+                };
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
                     ...state,
@@ -72,6 +82,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {},
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
+                };
+            case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        [action.payload.stepId]: undefined,
+                    },
                 };
         }
     }
