@@ -4,7 +4,6 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/Form
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../søknad/context/StepFormValuesContext';
 import './stateInfo.scss';
-import { useLocation } from 'react-router-dom';
 
 const StateInfo = () => {
     const {
@@ -13,7 +12,6 @@ const StateInfo = () => {
             søknadsdata: { id, harBekreftetOpplysninger, harForståttRettigheterOgPlikter, ...rest },
         },
     } = useSøknadContext();
-    const location = useLocation();
     const { stepFormValues } = useStepFormValuesContext();
     return (
         <FormBlock>
@@ -31,7 +29,6 @@ const StateInfo = () => {
                     <pre>{JSON.stringify(stepFormValues, null, 2)}</pre>
                 </div>
             </Panel>
-            {location.pathname}
         </FormBlock>
     );
 };

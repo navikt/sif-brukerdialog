@@ -12,6 +12,7 @@ interface Props {
 
 const StepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+
     if (invalidSteps.length > 0) {
         return (
             <FormBlock paddingBottom="xl">

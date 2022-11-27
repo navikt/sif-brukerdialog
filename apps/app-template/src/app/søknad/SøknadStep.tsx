@@ -30,7 +30,10 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const { pageTitleIntlKey, index } = stepConfig[stepId];
 
     useEffect(() => {
-        dispatch(actionsCreator.clearStepSøknadsdata(stepId));
+        if (1 + 1 === 3) {
+            /** TODO muligens denne ikke trengs lenger - ref sjekk på like søknadsdata */
+            dispatch(actionsCreator.clearStepSøknadsdata(stepId));
+        }
     }, [dispatch, stepId]);
 
     return (
