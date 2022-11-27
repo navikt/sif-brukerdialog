@@ -28,6 +28,9 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
             })
             .forEach((step) => {
                 const stepSøknadsdata = søknadsdata[step];
+                if (!getSøknadsdateFromStepFormValues[step]) {
+                    throw new Error(`Missing getSøknadsdateFromStepFormValues for step [${step}]`);
+                }
                 const tempSøknadsdata = getSøknadsdateFromStepFormValues[step](stepFormValues[step]);
                 if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
                     iSteps.push(step);
