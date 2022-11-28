@@ -46,6 +46,7 @@ const getSøknadInitialData = async (
     return Promise.resolve({
         versjon: SØKNAD_VERSJON,
         søker,
+        søknadsdato: new Date(),
         søknadsdata: {},
         ...lagretSøknadStateToUse,
     });

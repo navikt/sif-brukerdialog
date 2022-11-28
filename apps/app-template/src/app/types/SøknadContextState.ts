@@ -5,6 +5,7 @@ import { Søknadsdata } from './søknadsdata/Søknadsdata';
 export interface SøknadContextState {
     versjon: string;
     søker: Søker;
+    søknadsdato: Date;
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     søknadSendt?: boolean;

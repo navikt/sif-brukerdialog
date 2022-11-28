@@ -1,8 +1,20 @@
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
+import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import dayjs from 'dayjs';
 import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { MedlemskapFormValues } from './MedlemskapStep';
+import { MedlemskapFormValues } from './MedlemskapForm';
+
+interface MedlemsskapDateRanges {
+    siste12Måneder: DateRange;
+    neste12Måneder: DateRange;
+}
+
+const medlemskapInitialFormValues: MedlemskapFormValues = {
+    harBoddUtenforNorgeSiste12Mnd: YesOrNo.UNANSWERED,
+    skalBoUtenforNorgeNeste12Mnd: YesOrNo.UNANSWERED,
+    utenlandsoppholdNeste12Mnd: [],
+    utenlandsoppholdSiste12Mnd: [],
+};
 
 export const getMedlemskapStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -11,31 +23,44 @@ export const getMedlemskapStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    const { medlemskap } = søknadsdata;
 
-    let harBoddUtenforNorgeSiste12Mnd: YesOrNo = YesOrNo.UNANSWERED;
-    let skalBoUtenforNorgeNeste12Mnd: YesOrNo = YesOrNo.UNANSWERED;
-    let utenlandsoppholdNeste12Mnd: BostedUtland[] = [];
-    let utenlandsoppholdSiste12Mnd: BostedUtland[] = [];
-
-    if (medlemskap) {
-        const { type } = medlemskap;
-        if (type === 'harBodd' || type === 'harBoddSkalBo') {
-            harBoddUtenforNorgeSiste12Mnd = YesOrNo.YES;
-            utenlandsoppholdSiste12Mnd = medlemskap.utenlandsoppholdSiste12Mnd;
-        }
-        if (type === 'skalBo' || type === 'harBoddSkalBo') {
-            skalBoUtenforNorgeNeste12Mnd = YesOrNo.YES;
-            utenlandsoppholdNeste12Mnd = medlemskap.utenlandsoppholdNeste12Mnd;
-        }
+    if (søknadsdata.medlemskap === undefined) {
+        return medlemskapInitialFormValues;
     }
 
-    return {
-        harBoddUtenforNorgeSiste12Mnd,
-        skalBoUtenforNorgeNeste12Mnd,
-        utenlandsoppholdNeste12Mnd,
-        utenlandsoppholdSiste12Mnd,
-    };
+    const { medlemskap } = søknadsdata;
+
+    const { type } = medlemskap;
+    switch (type) {
+        case 'harBodd':
+            return {
+                harBoddUtenforNorgeSiste12Mnd: YesOrNo.YES,
+                utenlandsoppholdSiste12Mnd: medlemskap.utenlandsoppholdSiste12Mnd,
+                skalBoUtenforNorgeNeste12Mnd: YesOrNo.NO,
+                utenlandsoppholdNeste12Mnd: [],
+            };
+        case 'skalBo':
+            return {
+                harBoddUtenforNorgeSiste12Mnd: YesOrNo.NO,
+                utenlandsoppholdSiste12Mnd: [],
+                skalBoUtenforNorgeNeste12Mnd: YesOrNo.YES,
+                utenlandsoppholdNeste12Mnd: medlemskap.utenlandsoppholdNeste12Mnd,
+            };
+        case 'harBoddSkalBo':
+            return {
+                harBoddUtenforNorgeSiste12Mnd: YesOrNo.YES,
+                utenlandsoppholdSiste12Mnd: medlemskap.utenlandsoppholdSiste12Mnd,
+                skalBoUtenforNorgeNeste12Mnd: YesOrNo.YES,
+                utenlandsoppholdNeste12Mnd: medlemskap.utenlandsoppholdNeste12Mnd,
+            };
+        case 'harIkkeBoddSkalIkkeBo':
+            return {
+                harBoddUtenforNorgeSiste12Mnd: YesOrNo.NO,
+                utenlandsoppholdSiste12Mnd: [],
+                skalBoUtenforNorgeNeste12Mnd: YesOrNo.NO,
+                utenlandsoppholdNeste12Mnd: [],
+            };
+    }
 };
 
 export const getMedlemskapSøknadsdataFromFormValues = ({
@@ -80,4 +105,17 @@ export const getMedlemskapSøknadsdataFromFormValues = ({
     }
 
     return undefined;
+};
+
+export const getMedlemsskapDateRanges = (søknadsdato: Date): MedlemsskapDateRanges => {
+    return {
+        siste12Måneder: {
+            from: dayjs(søknadsdato).subtract(1, 'year').toDate(),
+            to: dayjs(søknadsdato).subtract(1, 'day').toDate(),
+        },
+        neste12Måneder: {
+            from: søknadsdato,
+            to: dayjs(søknadsdato).add(1, 'year').toDate(),
+        },
+    };
 };

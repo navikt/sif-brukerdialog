@@ -1,6 +1,11 @@
 import { Søknadsdata, PleietrengendeSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { PleietrengendeFormValues } from './PleietrengendeStep';
 
+const pleietrengendeInitialFormValues: PleietrengendeFormValues = {
+    navn: '',
+    alder: '',
+};
+
 export const getPleietrengendeStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues?: PleietrengendeFormValues
@@ -8,10 +13,13 @@ export const getPleietrengendeStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    const { navn = '', alder } = søknadsdata.pleietrengende || {};
+    if (søknadsdata.pleietrengende === undefined) {
+        return pleietrengendeInitialFormValues;
+    }
+    const { navn, alder } = søknadsdata.pleietrengende;
     return {
         navn,
-        alder: alder !== undefined ? `${alder}` : '',
+        alder: `${alder}`,
     };
 };
 

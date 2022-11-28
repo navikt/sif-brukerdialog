@@ -21,6 +21,8 @@ class ErrorBoundary extends React.Component<any, State> {
     componentDidCatch(error: Error | null, errorInfo: any): void {
         if (error && error.message !== 'window.hasFocus is not a function') {
             this.setState({ ...this.state, hasError: true, error });
+            // eslint-disable-next-line no-console
+            console.log(error);
             appSentryLogger.logError(error.message, errorInfo);
         }
     }
@@ -36,7 +38,9 @@ class ErrorBoundary extends React.Component<any, State> {
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
-                            <p>Her kommer det mer info</p>
+                            <p>
+                                Vi beklager men her har det vist nok skjedd en feil. Vennligst gå tilbake og prøv igjen.{' '}
+                            </p>
                         </SifGuidePanel>
                     </Block>
                 </Page>

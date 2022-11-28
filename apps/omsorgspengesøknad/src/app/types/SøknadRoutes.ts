@@ -1,3 +1,14 @@
+import { StepId } from './StepId';
+
+export const SøknadStepRoutePath = {
+    [StepId.VELKOMMEN]: 'velkommen',
+    [StepId.OM_BARNET]: 'om-barnet',
+    [StepId.DELT_BOSTED]: 'delt-bosted',
+    [StepId.LEGEERKLÆRING]: 'legeerklaring',
+    [StepId.OPPSUMMERING]: 'oppsummering',
+    [StepId.SØKNAD_SENDT]: 'soknad_sendt',
+};
+
 export enum SøknadRoutes {
     INTRO = '/intro',
     INNLOGGET_ROOT = '/soknad/*',

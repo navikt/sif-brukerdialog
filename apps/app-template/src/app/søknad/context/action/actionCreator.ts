@@ -1,3 +1,4 @@
+import { StepId } from '../../../types/StepId';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { MedlemskapSøknadsdata } from '../../../types/søknadsdata/MedlemskapSøknadsdata';
 import { PleietrengendeSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
@@ -16,6 +17,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
     SET_SØKNAD_SENDT = 'setSøknadSendt',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
+    CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
 }
 
 interface ResetSøknad {
@@ -54,6 +56,10 @@ interface SetSøknadMedlemskap {
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
     payload: OppsummeringFormValues;
+}
+interface ClearStepSøknadsdata {
+    type: SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA;
+    payload: { stepId: StepId };
 }
 
 const resetSøknad = (): ResetSøknad => ({
@@ -100,31 +106,40 @@ const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     payload,
 });
 
+const clearStepSøknadsdata = (stepId: StepId): ClearStepSøknadsdata => ({
+    type: SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA,
+    payload: {
+        stepId,
+    },
+});
+
 export type SøknadContextAction =
-    | StartSøknad
     | AvbrytSøknad
-    | ResetSøknad
+    | ClearStepSøknadsdata
     | FortsettSøknadSenere
     | RequestLagreSøknad
-    | SetSøknadLagret
-    | SetSøknadSendt
-    | SetSøknadPleietrengende
-    | SetSøknadMedlemskap
+    | ResetSøknad
     | SetSøknadHarBekreftetOpplysninger
-    | SetSøknadRoute;
+    | SetSøknadLagret
+    | SetSøknadMedlemskap
+    | SetSøknadPleietrengende
+    | SetSøknadRoute
+    | SetSøknadSendt
+    | StartSøknad;
 
 const actionsCreator = {
-    resetSøknad,
-    startSøknad,
     avbrytSøknad,
+    clearStepSøknadsdata,
     fortsettSøknadSenere,
     requestLagreSøknad,
-    setSøknadRoute,
-    setSøknadPleietrengende,
-    setSøknadMedlemskap,
+    resetSøknad,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
+    setSøknadMedlemskap,
+    setSøknadPleietrengende,
+    setSøknadRoute,
     setSøknadSendt,
+    startSøknad,
 };
 
 export default actionsCreator;

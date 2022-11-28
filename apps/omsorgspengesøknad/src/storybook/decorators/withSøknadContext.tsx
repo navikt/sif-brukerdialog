@@ -1,10 +1,9 @@
 import React from 'react';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
-import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { RegistrerteBarnMock, SøkerMock } from '../mock-data';
 
-const initialState: SøknadContextState = {
+export const mockInitialSøknadContextState: SøknadContextState = {
     versjon: '1.0.0',
     søker: SøkerMock,
     registrerteBarn: RegistrerteBarnMock,
@@ -15,9 +14,7 @@ const initialState: SøknadContextState = {
 };
 
 export const withSøknadContextProvider = (Story: any, state: Partial<SøknadContextState> = {}) => (
-    <SøknadContextProvider initialData={{ ...initialState, ...state }}>
-        <StepFormValuesContextProvider>
-            <Story />
-        </StepFormValuesContextProvider>
+    <SøknadContextProvider initialData={{ ...mockInitialSøknadContextState, ...state }}>
+        <Story />
     </SøknadContextProvider>
 );

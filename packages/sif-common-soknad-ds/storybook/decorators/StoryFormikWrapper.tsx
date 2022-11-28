@@ -5,6 +5,7 @@ import TypedFormikWrapper from '../../src/components/typed-formik-wrapper/TypedF
 import '@navikt/ds-css';
 
 interface Props {
+    children: React.ReactNode;
     parameters?: {
         formik?: any;
         includeButtons?: boolean;

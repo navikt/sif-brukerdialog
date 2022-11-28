@@ -11,7 +11,7 @@ import IntroPage from './pages/intro-page/IntroPage';
 import Søknad from './søknad/Søknad';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { SøknadRoutes } from './types/SøknadRoutes';
 
 export const APPLICATION_KEY = 'opplaringspenger';
