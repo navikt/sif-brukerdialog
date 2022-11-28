@@ -8,6 +8,7 @@ import { StepId } from '../types/StepId';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from './søknadStepConfig';
 import StateInfo from '../components/state-info/StateInfo';
+import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 
 interface Props {
     stepId: StepId;
@@ -34,6 +35,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
+            <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
             {children}
             <StateInfo />
         </Step>
