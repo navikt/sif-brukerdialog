@@ -10,7 +10,8 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
 import getLenker from '../../lenker';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -40,13 +41,14 @@ const VelkommenPage = () => {
         navigateTo(SøknadRoutes.OM_BARNET);
     };
     return (
-        <Page title="Velkommen">
+        <Page title={intlHelper(intl, 'welcomingPage.sidetittel')}>
             <GuidePanel>
                 <Heading level="1" size="large">
-                    Hei {søker.fornavn}
+                    <FormattedMessage id="welcomingPage.banner.tittel" values={{ navn: søker.fornavn }} />
                 </Heading>
-                <p>Velkommen til søknad om ekstra omsorgsdager.</p>
-                <p>INTRO</p>
+                <p>
+                    <FormattedMessage id="welcomingPage.banner.tekst" />
+                </p>
             </GuidePanel>
 
             <OmSøknaden />

@@ -1,4 +1,5 @@
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+
 export interface DeltBostedSøknadsdata {
-    navn: string;
-    alder: number;
+    samværsavtale: Attachment[];
 }

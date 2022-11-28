@@ -3,7 +3,7 @@ import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { isStringOrNull } from '../../utils/typeGuardUtilities';
-import api, { ApiEndpointPsb } from '../api';
+import api, { ApiEndpoint } from '../api';
 
 export interface BarnDTO {
     barn: {
@@ -31,7 +31,7 @@ export const isValidRegistrertBarnResponse = (response: any): response is Regist
 
 const barnEndpoint = {
     fetch: async (): Promise<RegistrertBarn[]> => {
-        const { data } = await api.psb.get<BarnDTO>(ApiEndpointPsb.barn);
+        const { data } = await api.get<BarnDTO>(ApiEndpoint.barn);
         const registrerteBarn: RegistrertBarn[] = [];
 
         if (data?.barn && isArray(data.barn)) {
