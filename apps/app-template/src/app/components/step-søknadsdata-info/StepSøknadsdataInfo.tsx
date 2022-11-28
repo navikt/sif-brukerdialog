@@ -22,26 +22,26 @@ const StepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConf
         const step = invalidSteps[0];
         const stepTitle = intlHelper(intl, stepConfig[step].stepTitleIntlKey);
         const stepRoute = intlHelper(intl, stepConfig[step].route);
+        const getStepLink = () => (
+            <Link
+                href="#"
+                onClick={(evt) => {
+                    evt.stopPropagation();
+                    evt.preventDefault();
+                    navigate(stepRoute);
+                }}>
+                {stepTitle}
+            </Link>
+        );
         return (
             <FormBlock paddingBottom="xl">
                 <Alert variant="warning">
                     <p style={{ marginTop: 0 }}>
-                        <Heading level="2" size="small">
+                        <Heading level="2" size="small" spacing={true}>
                             Oops, dette stemmer ikke helt
                         </Heading>
-                        Vennligst gå tilbake og se over steget &quot;{stepTitle}&quot;, og bruk knappene nederst i
-                        skjemaet for å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.
-                    </p>
-                    <p>
-                        <Link
-                            href="#"
-                            onClick={(evt) => {
-                                evt.stopPropagation();
-                                evt.preventDefault();
-                                navigate(stepRoute);
-                            }}>
-                            Gå til {stepTitle}
-                        </Link>
+                        Vennligst gå tilbake til steget &quot;{getStepLink()}&quot;, og bruk knappene nederst i skjemaet
+                        for å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.
                     </p>
                 </Alert>
             </FormBlock>
