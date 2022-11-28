@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import prettyBytes from 'pretty-bytes';
@@ -23,10 +23,10 @@ const FileUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
                             {name}
                             {type}
                             {size && !fileSizeIsValid(size) && (
-                                <div className="text-small">
+                                <BodyShort size="small">
                                     Fila er for stor ({prettyBytes(size)}). Maks filstørrelse er {prettyBytes(10000000)}
                                     .
-                                </div>
+                                </BodyShort>
                             )}
                         </li>
                     );
