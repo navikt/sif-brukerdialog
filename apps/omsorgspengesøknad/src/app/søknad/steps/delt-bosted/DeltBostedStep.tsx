@@ -29,10 +29,10 @@ const DeltBostedStep = () => {
     const { stepFormValues = {}, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: DeltBostedFormValues) => {
-        const DeltBostedSøknadsdata = getDeltBostedSøknadsdataFromFormValues(values);
-        if (DeltBostedSøknadsdata) {
+        const deltBostedSøknadsdata = getDeltBostedSøknadsdataFromFormValues(values);
+        if (deltBostedSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadDeltBosted(DeltBostedSøknadsdata)];
+            return [actionsCreator.setSøknadDeltBosted(deltBostedSøknadsdata)];
         }
         return [];
     };

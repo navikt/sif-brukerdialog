@@ -2,6 +2,11 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const omBarnetMessages: MessageFileFormat = {
     nb: {
+        'relasjonTilBarnet.mor': 'Mor',
+        'relasjonTilBarnet.far': 'Far',
+        'relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
+        'relasjonTilBarnet.fosterforelder': 'Fosterforelder',
+
         'steg.omBarnet.pageTitle': 'Omsorgspengesøknad - opplysninger om barnet',
         'steg.omBarnet.stepTitle': 'Barn',
         'steg.omBarnet.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',

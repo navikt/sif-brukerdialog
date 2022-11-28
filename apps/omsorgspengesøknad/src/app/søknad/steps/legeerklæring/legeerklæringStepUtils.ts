@@ -6,8 +6,6 @@ export const getLegeerklæringStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues?: LegeerklæringFormValues
 ): LegeerklæringFormValues => {
-    console.log(søknadsdata);
-
     if (formValues) {
         return formValues;
     }

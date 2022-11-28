@@ -10,7 +10,7 @@ export const getDeltBostedStepInitialValues = (
     }
     const {} = søknadsdata.deltBosted || {};
     return {
-        samværsavtale: [],
+        samværsavtale: [...(søknadsdata.deltBosted?.samværsavtale || [])],
     };
 };
 

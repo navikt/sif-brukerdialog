@@ -14,24 +14,56 @@ export const getOmBarnetStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    const { registrertBarn, søknadenGjelderEtAnnetBarn } = søknadsdata.omBarnet || {};
-    return {
-        barnetSøknadenGjelder: registrertBarn,
-        søknadenGjelderEtAnnetBarn,
+
+    const defaultValues: OmBarnetFormValues = {
+        barnetSøknadenGjelder: undefined,
+        søknadenGjelderEtAnnetBarn: undefined,
         barnetsFødselsnummer: '',
         barnetsNavn: '',
         søkersRelasjonTilBarnet: undefined,
     };
+
+    const { omBarnet } = søknadsdata;
+    if (omBarnet) {
+        switch (omBarnet.type) {
+            case 'registrertBarn':
+                return {
+                    ...defaultValues,
+                    søknadenGjelderEtAnnetBarn: false,
+                    barnetSøknadenGjelder: omBarnet.registrertBarn,
+                };
+            case 'annetBarn':
+                return {
+                    ...defaultValues,
+                    søknadenGjelderEtAnnetBarn: true,
+                    barnetsFødselsnummer: omBarnet.barnetsFødselsnummer,
+                    barnetsNavn: omBarnet.barnetsNavn,
+                    søkersRelasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
+                };
+        }
+    }
+    return defaultValues;
 };
 
-export const getOmBarnetSøknadsdataFromFormValues = (values: OmBarnetFormValues): OmBarnetSøknadsdata => {
+export const getOmBarnetSøknadsdataFromFormValues = (values: OmBarnetFormValues): OmBarnetSøknadsdata | undefined => {
     if (values.søknadenGjelderEtAnnetBarn) {
+        const { barnetsFødselsnummer, barnetsNavn, søkersRelasjonTilBarnet } = values;
+        if (søkersRelasjonTilBarnet === undefined) {
+            return undefined;
+        }
         return {
-            registrertBarn: undefined,
+            type: 'annetBarn',
             søknadenGjelderEtAnnetBarn: true,
+            barnetsFødselsnummer,
+            barnetsNavn,
+            søkersRelasjonTilBarnet,
         };
     }
+    if (!values.barnetSøknadenGjelder) {
+        return undefined;
+    }
     return {
+        type: 'registrertBarn',
         registrertBarn: values.barnetSøknadenGjelder,
     };
 };

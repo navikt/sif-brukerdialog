@@ -7,6 +7,7 @@ import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from './søknadStepConfig';
+import StateInfo from '../components/state-info/StateInfo';
 
 interface Props {
     stepId: StepId;
@@ -34,6 +35,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
             {children}
+            <StateInfo />
         </Step>
     );
 };
