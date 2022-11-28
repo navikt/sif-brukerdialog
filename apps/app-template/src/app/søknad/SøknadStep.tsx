@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
+import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import StateInfo from '../components/state-info/StateInfo';
-import StepSøknadsdataInfo from '../components/step-søknadsdata-info/StepSøknadsdataInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
-import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from './søknadStepConfig';
 
@@ -20,21 +19,12 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const intl = useIntl();
     const {
         state: { søknadsdata },
-        dispatch,
     } = useSøknadContext();
-
-    const stepConfig = getSøknadStepConfig(søknadsdata);
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
+    const stepConfig = getSøknadStepConfig(søknadsdata);
     const { pageTitleIntlKey, index } = stepConfig[stepId];
-
-    useEffect(() => {
-        if (1 + 1 === 3) {
-            /** TODO muligens denne ikke trengs lenger - ref sjekk på like søknadsdata */
-            dispatch(actionsCreator.clearStepSøknadsdata(stepId));
-        }
-    }, [dispatch, stepId]);
 
     return (
         <Step
@@ -44,7 +34,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
-            <StepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
+            <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
             {children}
             <StateInfo />
         </Step>

@@ -13,7 +13,7 @@ interface Props {
     stepConfig: SoknadStepsConfig<StepId>;
 }
 
-const StepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
+const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
     const intl = useIntl();
     const navigate = useNavigate();
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
@@ -50,4 +50,4 @@ const StepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConf
     return null;
 };
 
-export default StepSøknadsdataInfo;
+export default InvalidStepSøknadsdataInfo;

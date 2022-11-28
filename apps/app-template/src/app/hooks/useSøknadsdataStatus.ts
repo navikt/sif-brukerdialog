@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import isEqual from 'react-fast-compare';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { StepId } from '../types/StepId';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
+import { StepId } from '../types/StepId';
 import { getSøknadsdateFromStepFormValues } from '../utils/stepFormValuesToSøknadsdata';
-import isEqual from 'react-fast-compare';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
