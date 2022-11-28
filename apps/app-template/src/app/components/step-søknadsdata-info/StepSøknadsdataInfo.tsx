@@ -1,9 +1,12 @@
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import React from 'react';
 import { StepId } from '../../types/StepId';
-import { Alert } from '@navikt/ds-react';
+import { Alert, Heading, Link } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
+import { useIntl } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
     stepId: StepId;
@@ -11,21 +14,34 @@ interface Props {
 }
 
 const StepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
+    const intl = useIntl();
+    const navigate = useNavigate();
     const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
     if (invalidSteps.length > 0) {
+        const step = invalidSteps[0];
+        const stepTitle = intlHelper(intl, stepConfig[step].stepTitleIntlKey);
+        const stepRoute = intlHelper(intl, stepConfig[step].route);
         return (
             <FormBlock paddingBottom="xl">
                 <Alert variant="warning">
-                    Steg som ikke er verifisert:{' '}
-                    <ol>
-                        {invalidSteps.map((step) => (
-                            <li key={step}>{step}</li>
-                        ))}
-                    </ol>
+                    <p style={{ marginTop: 0 }}>
+                        <Heading level="2" size="small">
+                            Oops, dette stemmer ikke helt
+                        </Heading>
+                        Vennligst gå tilbake og se over steget &quot;{stepTitle}&quot;, og bruk knappene nederst i
+                        skjemaet for å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.
+                    </p>
                     <p>
-                        Du må gå tilbake til disse stegene og trykke gå-videre knappen, for å kontrollere at
-                        informasjonen du har oppgitt er riktig
+                        <Link
+                            href="#"
+                            onClick={(evt) => {
+                                evt.stopPropagation();
+                                evt.preventDefault();
+                                navigate(stepRoute);
+                            }}>
+                            Gå til {stepTitle}
+                        </Link>
                     </p>
                 </Alert>
             </FormBlock>
