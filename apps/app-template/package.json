@@ -128,7 +128,7 @@
         "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
         "clean": "rm -rf node_modules .dist",
-        "dev-api": "PORT=8089 node ./api-mock/mock-server.js",
+        "dev-api": "PORT=8089 node ./mocks/mock-server.js",
         "prepare": "npm run snyk-protect",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
         "snyk-protect": "snyk-protect",

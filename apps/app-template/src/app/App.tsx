@@ -6,16 +6,28 @@ import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wra
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { applicationIntlMessages } from './i18n/applicationMessages';
 import IntroPage from './pages/intro-page/IntroPage';
 import Søknad from './søknad/Søknad';
+import { SøknadRoutes } from './types/SøknadRoutes';
+import { getEnvVariableOrDefault } from './utils/envUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-import { SøknadRoutes } from './types/SøknadRoutes';
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'SIF_SOKNAD_TEMPLATE';
+
+function prepare() {
+    if (getEnvironmentVariable('APP_VERSION') !== 'production') {
+        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test' || 1 + 1 === 2) {
+            return import('../../mocks/msw/browser').then(({ worker }) => {
+                worker.start({ onUnhandledRequest: 'bypass' });
+            });
+        }
+    }
+    return Promise.resolve();
+}
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -54,4 +66,6 @@ const App = () => (
     </SifAppWrapper>
 );
 
-root.render(<App />);
+prepare().then(() => {
+    root.render(<App />);
+});
