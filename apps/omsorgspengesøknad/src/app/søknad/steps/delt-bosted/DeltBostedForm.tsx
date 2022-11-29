@@ -71,6 +71,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             includeValidationSummary={true}
             submitPending={isSubmitting}
             submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
+            runDelayedFormValidation={true}
             onBack={goBack}>
             <Block padBottom="xl">
                 <SifGuidePanel>

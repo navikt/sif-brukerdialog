@@ -1,9 +1,17 @@
+import { Alert } from '@navikt/ds-react';
 import React from 'react';
+import { useIntl } from 'react-intl';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
+import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
@@ -11,17 +19,9 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig } from '../../søknadStepConfig';
-import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
-import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
 import AnnetBarnpart from './form-parts/AnnetBarnPart';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
-import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { Alert } from '@navikt/ds-react';
+import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
+import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -94,7 +94,8 @@ const OmBarnetStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
-                                onBack={goBack}>
+                                onBack={goBack}
+                                runDelayedFormValidation={true}>
                                 {registrerteBarn.length > 0 && (
                                     <VelgRegistrertBarn
                                         registrerteBarn={registrerteBarn}

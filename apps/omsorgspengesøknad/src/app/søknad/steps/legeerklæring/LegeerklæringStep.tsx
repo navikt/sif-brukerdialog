@@ -65,6 +65,7 @@ const LegeerklæringStep = () => {
                             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
+                            runDelayedFormValidation={true}
                             onBack={goBack}>
                             Ikke satt opp
                         </Form>
