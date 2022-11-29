@@ -34,11 +34,7 @@ export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo
 ): boolean => {
-    return (
-        søknadState.versjon === APP_VERSJON &&
-        søknadState.søknadsdata?.harForståttRettigheterOgPlikter === true &&
-        søknadState.søknadHashString === createHashString(info)
-    );
+    return søknadState.versjon === APP_VERSJON && søknadState.søknadHashString === createHashString(info);
 };
 
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
