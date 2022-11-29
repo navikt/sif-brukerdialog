@@ -3,6 +3,8 @@ import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 interface OmBarnetSøknadsdata_registrertBarn {
     type: 'registrertBarn';
     registrertBarn: string;
+    sammeAdresse: boolean;
+    kroniskEllerFunksjonshemming: boolean;
 }
 
 interface OmBarnetSøknadsdata_annetBarn {
@@ -11,6 +13,8 @@ interface OmBarnetSøknadsdata_annetBarn {
     barnetsFødselsnummer: string;
     barnetsNavn: string;
     søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet;
+    sammeAdresse: boolean;
+    kroniskEllerFunksjonshemming: boolean;
 }
 
 export type OmBarnetSøknadsdata = OmBarnetSøknadsdata_annetBarn | OmBarnetSøknadsdata_registrertBarn;

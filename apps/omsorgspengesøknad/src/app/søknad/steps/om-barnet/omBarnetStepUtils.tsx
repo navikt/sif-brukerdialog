@@ -6,6 +6,8 @@ import { Søknadsdata, OmBarnetSøknadsdata } from '../../../types/søknadsdata/
 import { OmBarnetFormValues } from './OmBarnetStep';
 import { FormattedMessage } from 'react-intl';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/lib/utils/yesOrNoUtils';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -21,16 +23,23 @@ export const getOmBarnetStepInitialValues = (
         barnetsFødselsnummer: '',
         barnetsNavn: '',
         søkersRelasjonTilBarnet: undefined,
+        sammeAdresse: YesOrNo.UNANSWERED,
+        kroniskEllerFunksjonshemming: YesOrNo.UNANSWERED,
     };
 
     const { omBarnet } = søknadsdata;
     if (omBarnet) {
+        const sammeAdresse = getYesOrNoFromBoolean(omBarnet.sammeAdresse);
+        const kroniskEllerFunksjonshemming = getYesOrNoFromBoolean(omBarnet.kroniskEllerFunksjonshemming);
+
         switch (omBarnet.type) {
             case 'registrertBarn':
                 return {
                     ...defaultValues,
                     søknadenGjelderEtAnnetBarn: false,
                     barnetSøknadenGjelder: omBarnet.registrertBarn,
+                    sammeAdresse,
+                    kroniskEllerFunksjonshemming,
                 };
             case 'annetBarn':
                 return {
@@ -39,6 +48,8 @@ export const getOmBarnetStepInitialValues = (
                     barnetsFødselsnummer: omBarnet.barnetsFødselsnummer,
                     barnetsNavn: omBarnet.barnetsNavn,
                     søkersRelasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
+                    sammeAdresse,
+                    kroniskEllerFunksjonshemming,
                 };
         }
     }
@@ -46,17 +57,21 @@ export const getOmBarnetStepInitialValues = (
 };
 
 export const getOmBarnetSøknadsdataFromFormValues = (values: OmBarnetFormValues): OmBarnetSøknadsdata | undefined => {
+    const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
+    const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
+
     if (values.søknadenGjelderEtAnnetBarn) {
-        const { barnetsFødselsnummer, barnetsNavn, søkersRelasjonTilBarnet } = values;
-        if (søkersRelasjonTilBarnet === undefined) {
+        if (values.søkersRelasjonTilBarnet === undefined) {
             return undefined;
         }
         return {
             type: 'annetBarn',
             søknadenGjelderEtAnnetBarn: true,
-            barnetsFødselsnummer,
-            barnetsNavn,
-            søkersRelasjonTilBarnet,
+            barnetsFødselsnummer: values.barnetsFødselsnummer,
+            barnetsNavn: values.barnetsNavn,
+            søkersRelasjonTilBarnet: values.søkersRelasjonTilBarnet,
+            sammeAdresse,
+            kroniskEllerFunksjonshemming,
         };
     }
     if (!values.barnetSøknadenGjelder) {
@@ -65,6 +80,8 @@ export const getOmBarnetSøknadsdataFromFormValues = (values: OmBarnetFormValues
     return {
         type: 'registrertBarn',
         registrertBarn: values.barnetSøknadenGjelder,
+        sammeAdresse,
+        kroniskEllerFunksjonshemming,
     };
 };
 

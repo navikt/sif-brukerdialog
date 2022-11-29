@@ -16,9 +16,12 @@ import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
 import AnnetBarnpart from './form-parts/AnnetBarnPart';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { Alert } from '@navikt/ds-react';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -26,6 +29,8 @@ export enum OmBarnetFormFields {
     barnetsNavn = 'barnetsNavn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
+    sammeAdresse = 'sammeAdresse',
+    kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
 }
 
 export interface OmBarnetFormValues {
@@ -34,9 +39,15 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.barnetsNavn]: string;
     [OmBarnetFormFields.barnetsFødselsnummer]: string;
     [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
+    [OmBarnetFormFields.sammeAdresse]?: YesOrNo;
+    [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
+const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
+    OmBarnetFormFields,
+    OmBarnetFormValues,
+    ValidationError
+>();
 
 const OmBarnetStep = () => {
     const intl = useIntl();
@@ -73,7 +84,9 @@ const OmBarnetStep = () => {
             <FormikWrapper
                 initialValues={getOmBarnetStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values: { søknadenGjelderEtAnnetBarn } }) => {
+                renderForm={({
+                    values: { barnetSøknadenGjelder, søknadenGjelderEtAnnetBarn, kroniskEllerFunksjonshemming },
+                }) => {
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -82,14 +95,44 @@ const OmBarnetStep = () => {
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 onBack={goBack}>
-                                <VelgRegistrertBarn
-                                    registrerteBarn={registrerteBarn}
-                                    søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                                />
+                                {registrerteBarn.length > 0 && (
+                                    <VelgRegistrertBarn
+                                        registrerteBarn={registrerteBarn}
+                                        søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
+                                    />
+                                )}
                                 {søknadenGjelderEtAnnetBarn && (
                                     <FormBlock>
                                         <AnnetBarnpart />
                                     </FormBlock>
+                                )}
+                                {(barnetSøknadenGjelder !== undefined || søknadenGjelderEtAnnetBarn) && (
+                                    <>
+                                        <FormBlock>
+                                            <YesOrNoQuestion
+                                                legend={intlHelper(intl, 'steg.omBarnet.spm.sammeAdresse')}
+                                                name={OmBarnetFormFields.sammeAdresse}
+                                                validate={getYesOrNoValidator()}
+                                            />
+                                        </FormBlock>
+                                        <FormBlock>
+                                            <YesOrNoQuestion
+                                                name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
+                                                legend={intlHelper(
+                                                    intl,
+                                                    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende'
+                                                )}
+                                                validate={getYesOrNoValidator()}
+                                            />
+                                        </FormBlock>
+                                        {kroniskEllerFunksjonshemming === YesOrNo.NO && (
+                                            <FormBlock margin="l">
+                                                <Alert variant="info">
+                                                    {intlHelper(intl, 'steg.omBarnet.alert.ikkeKroniskSykdom')}
+                                                </Alert>
+                                            </FormBlock>
+                                        )}
+                                    </>
                                 )}
                             </Form>
                         </>
