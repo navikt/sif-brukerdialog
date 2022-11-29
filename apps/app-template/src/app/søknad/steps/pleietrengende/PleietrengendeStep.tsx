@@ -68,7 +68,11 @@ const PleietrengendeStep = () => {
                 renderForm={() => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <Form includeValidationSummary={true} submitPending={isSubmitting} onBack={goBack}>
+                        <Form
+                            includeValidationSummary={true}
+                            submitPending={isSubmitting}
+                            runDelayedFormValidation={true}
+                            onBack={goBack}>
                             <FormBlock>
                                 <TextField
                                     label="Navn"
