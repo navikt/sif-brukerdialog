@@ -1,24 +1,21 @@
-/* eslint-disable no-console */
 import { Søknadsdata, LegeerklæringSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { LegeerklæringFormValues } from './LegeerklæringStep';
+import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 
 export const getLegeerklæringStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues?: LegeerklæringFormValues
 ): LegeerklæringFormValues => {
-    console.log(søknadsdata);
-
     if (formValues) {
         return formValues;
     }
+    const {} = søknadsdata.legeerklæring || {};
     return {
-        vedlegg: undefined,
+        vedlegg: [...(søknadsdata.legeerklæring?.vedlegg || [])],
     };
 };
 
 export const getLegeerklæringSøknadsdataFromFormValues = (
     values: LegeerklæringFormValues
 ): LegeerklæringSøknadsdata => {
-    console.log(values);
-    return {};
+    return { vedlegg: values[LegeerklæringFormFields.vedlegg] };
 };

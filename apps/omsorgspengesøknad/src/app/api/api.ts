@@ -1,18 +1,14 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { getEnvVariableOrDefault } from '../utils/envUtils';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
-export enum ApiEndpointPsb {
+export enum ApiEndpoint {
     'soker' = 'soker',
     'barn' = 'oppslag/barn',
     'send_søknad' = 'soknad',
+    'vedlegg' = 'vedlegg',
     'mellomlagring' = 'mellomlagring',
-}
-
-export enum ApiEndpointInnsyn {
-    'forrigeSøknad' = 'soknad/psb/siste',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {
@@ -20,15 +16,14 @@ const axiosConfigCommon: AxiosRequestConfig = {
     headers: { 'Content-type': 'application/json; charset=utf-8' },
 };
 
-export const axiosConfigPsb: AxiosRequestConfig = {
+export const axiosConfig: AxiosRequestConfig = {
     ...axiosConfigCommon,
     baseURL: getEnvVariableOrDefault('API_URL', 'http://localhost:8080'),
 };
 
-export const axiosConfigInnsyn = {
-    ...axiosConfigCommon,
-    transformResponse: storageParser,
-    baseURL: getEnvVariableOrDefault('API_URL_INNSYN', 'http://localhost:8082'),
+export const axiosMultipartConfig: AxiosRequestConfig = {
+    ...axiosConfig,
+    headers: { 'Content-Type': 'multipart/form-data' },
 };
 
 axios.interceptors.request.use((config) => {
@@ -53,21 +48,19 @@ axios.interceptors.response.use(
 );
 
 const api = {
-    innsyn: {
-        get: <ResponseType>(endpoint: ApiEndpointInnsyn, paramString?: string) => {
-            const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
-            return axios.get<ResponseType>(url, axiosConfigInnsyn);
-        },
+    get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {
+        const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
+        return axios.get<ResponseType>(url, config || axiosConfig);
     },
-    psb: {
-        get: <ResponseType>(endpoint: ApiEndpointPsb, paramString?: string, config?: AxiosRequestConfig) => {
-            const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
-            return axios.get<ResponseType>(url, config || axiosConfigPsb);
-        },
-        post: <DataType = any, ResponseType = any>(endpoint: ApiEndpointPsb, data: DataType) => {
-            return axios.post<ResponseType>(endpoint, data, axiosConfigPsb);
-        },
+    post: <DataType = any, ResponseType = any>(endpoint: ApiEndpoint, data: DataType) => {
+        return axios.post<ResponseType>(endpoint, data, axiosConfig);
     },
+    uploadFile: (endpoint: ApiEndpoint, file: File) => {
+        const formData = new FormData();
+        formData.append('vedlegg', file);
+        return axios.post(endpoint, formData, axiosMultipartConfig);
+    },
+    deleteFile: (url: string) => axios.delete(url, axiosConfig),
 };
 
 export default api;

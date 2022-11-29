@@ -6,7 +6,7 @@ import { SØKNAD_VERSJON } from '../../constants/SØKNAD_VERSJON';
 import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
-import { ApiEndpointPsb, axiosConfigPsb } from '../api';
+import { ApiEndpoint, axiosConfig } from '../api';
 
 export type SøknadStatePersistence = Omit<SøknadContextState, 'søker'> & {
     søknadHashString: string;
@@ -23,8 +23,8 @@ interface SøknadStatePersistenceEndpoint
 }
 
 const persistSetup = persistence<SøknadStatePersistence>({
-    url: ApiEndpointPsb.mellomlagring,
-    requestConfig: { ...axiosConfigPsb, transformResponse: axiosConfigPsb.transformResponse },
+    url: ApiEndpoint.mellomlagring,
+    requestConfig: { ...axiosConfig, transformResponse: axiosConfig.transformResponse },
 });
 
 const createHashString = (info: SøknadStateHashInfo) => {

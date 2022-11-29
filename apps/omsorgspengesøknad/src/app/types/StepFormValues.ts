@@ -1,5 +1,5 @@
 import { VelkommenFormValues } from '../pages/velkommen/VelkommenPage';
-import { DeltBostedFormValues } from '../søknad/steps/delt-bosted/DeltBostedStep';
+import { DeltBostedFormValues } from '../søknad/steps/delt-bosted/DeltBostedForm';
 import { OmBarnetFormValues } from '../søknad/steps/om-barnet/OmBarnetStep';
 import { OppsummeringFormValues } from '../søknad/steps/oppsummering/OppsummeringStep';
 

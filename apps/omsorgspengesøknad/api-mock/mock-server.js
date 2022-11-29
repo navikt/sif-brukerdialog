@@ -2,6 +2,7 @@ const os = require('os');
 const fs = require('fs');
 const express = require('express');
 const server = express();
+const busboyCons = require('busboy');
 
 server.use(express.json());
 server.use((req, res, next) => {
@@ -100,6 +101,21 @@ const startExpressServer = () => {
         setTimeout(() => {
             readMockFile(barnFileName, res);
         }, 250);
+    });
+
+    server.post('/vedlegg', (req, res) => {
+        res.set('Access-Control-Expose-Headers', 'Location');
+        res.set('Location', 'nav.no');
+        const busboy = busboyCons({ headers: req.headers });
+        busboy.on('finish', () => {
+            res.writeHead(200, { Location: '/vedlegg' });
+            res.end();
+        });
+        req.pipe(busboy);
+    });
+
+    server.delete('/vedlegg', (req, res) => {
+        res.sendStatus(200);
     });
 
     /** --- Send søknad ---------- */

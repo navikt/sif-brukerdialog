@@ -11,20 +11,12 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig } from '../../søknadStepConfig';
+import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
 
-export enum LegeerklæringFormFields {}
-
-export interface LegeerklæringFormValues {
-    vedlegg: any;
-}
-
-const { FormikWrapper, Form } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
+const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
 const LegeerklæringStep = () => {
-    const intl = useIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
@@ -58,16 +50,10 @@ const LegeerklæringStep = () => {
             <FormikWrapper
                 initialValues={getLegeerklæringStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={() => (
+                renderForm={({ values }) => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <Form
-                            formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                            includeValidationSummary={true}
-                            submitPending={isSubmitting}
-                            onBack={goBack}>
-                            Ikke satt opp
-                        </Form>
+                        <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
                     </>
                 )}
             />

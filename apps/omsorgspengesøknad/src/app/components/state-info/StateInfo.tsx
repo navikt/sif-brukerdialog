@@ -16,13 +16,13 @@ const StateInfo = () => {
     return (
         <FormBlock>
             <Panel className="stateInfo" border={true}>
-                <div className="stateInfo__panel">
+                <div className="stateInfo__panel" title="State">
                     <Heading level="2" size="small">
                         Søknadsdata
                     </Heading>
                     <pre>{JSON.stringify(rest, null, 2)}</pre>
                 </div>
-                <div className="stateInfo__panel">
+                <div className="stateInfo__panel" title="State">
                     <Heading level="2" size="small">
                         FormValues
                     </Heading>

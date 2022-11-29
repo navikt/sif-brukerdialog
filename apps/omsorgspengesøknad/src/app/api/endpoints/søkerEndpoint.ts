@@ -1,5 +1,5 @@
 import { isValidSøkerResponse, Søker } from '../../types/Søker';
-import api, { ApiEndpointPsb } from '../api';
+import api, { ApiEndpoint } from '../api';
 
 type SøkerDTO = {
     etternavn: string;
@@ -11,7 +11,7 @@ type SøkerDTO = {
 
 const søkerEndpoint = {
     fetch: async (): Promise<Søker> => {
-        const { data } = await api.psb.get<SøkerDTO>(ApiEndpointPsb.soker);
+        const { data } = await api.get<SøkerDTO>(ApiEndpoint.soker);
         if (!isValidSøkerResponse(data)) {
             return Promise.reject('Invalid søkerdata');
         }

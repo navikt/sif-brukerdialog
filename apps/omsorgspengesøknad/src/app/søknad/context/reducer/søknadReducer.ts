@@ -50,6 +50,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+            case SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        deltBosted: {
+                            ...action.payload,
+                        },
+                    },
+                };
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
                     ...state,
@@ -73,6 +83,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
+            default:
+                // eslint-disable-next-line no-console
+                console.error(`Missing handler for ${action.type}`);
         }
     }
     return state;

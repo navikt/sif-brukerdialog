@@ -49,7 +49,7 @@ const MedlemskapForm: React.FunctionComponent<Props> = ({ values, goBack, søkna
     const intl = useIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemsskapDateRanges(søknadsdato);
     return (
-        <Form onBack={goBack} submitDisabled={submitDisabled}>
+        <Form onBack={goBack} submitDisabled={submitDisabled} runDelayedFormValidation={true}>
             <Block padBottom="xxl">
                 <SifGuidePanel>
                     {intlHelper(intl, 'steg.medlemskap.veileder')}{' '}
