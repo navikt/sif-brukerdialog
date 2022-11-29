@@ -7,6 +7,7 @@ import { introPageMessages } from '../pages/intro-page/introPageMessages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { appMessages } from './appMessages';
 import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
+import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -16,6 +17,7 @@ const bokmålstekster = {
     ...velkommenPageMessages.nb,
     ...omBarnetMessages.nb,
     ...deltBostedMessages.nb,
+    ...legeerklæringMessages.nb,
     ...appMessages.nb,
 };
 

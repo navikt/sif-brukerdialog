@@ -6,7 +6,7 @@ import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getSøknadSteps = (_: Søknadsdata): StepId[] => {
     // eslint-disable-next-line no-console
-    return [StepId.OM_BARNET, StepId.DELT_BOSTED, StepId.LEGEERKLÆRING, StepId.OPPSUMMERING];
+    return [StepId.OM_BARNET, StepId.LEGEERKLÆRING, StepId.DELT_BOSTED, StepId.OPPSUMMERING];
 };
 
 export const getSøknadStepConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StepId, SøknadRoutes> =>

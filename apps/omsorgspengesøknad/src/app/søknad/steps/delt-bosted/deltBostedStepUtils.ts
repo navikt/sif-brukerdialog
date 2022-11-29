@@ -10,10 +10,10 @@ export const getDeltBostedStepInitialValues = (
     }
     const {} = søknadsdata.deltBosted || {};
     return {
-        samværsavtale: [...(søknadsdata.deltBosted?.samværsavtale || [])],
+        samværsavtale: [...(søknadsdata.deltBosted?.vedlegg || [])],
     };
 };
 
 export const getDeltBostedSøknadsdataFromFormValues = (values: DeltBostedFormValues): DeltBostedSøknadsdata => {
-    return { samværsavtale: values[DeltBostedFormFields.samværsavtale] };
+    return { vedlegg: values[DeltBostedFormFields.samværsavtale] };
 };
