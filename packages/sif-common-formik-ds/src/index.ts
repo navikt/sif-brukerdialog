@@ -21,6 +21,7 @@ export { default as TypedFormikWrapper } from './components/typed-formik-wrapper
 
 export { default as UnansweredQuestionsInfo } from './components/helpers/unanswerd-questions-info/UnansweredQuestionsInfo';
 export { default as SkjemagruppeQuestion } from './components/helpers/skjemagruppe-question/SkjemagruppeQuestion';
+export { default as FormikValuesObserver } from './components/helpers/formik-values-observer/FormikValuesObserver';
 
 export * from './types';
 export * from './utils/countryUtils';

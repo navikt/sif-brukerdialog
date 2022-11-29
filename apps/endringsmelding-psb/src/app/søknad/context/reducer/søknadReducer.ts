@@ -12,7 +12,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
                 },
-                søknadRoute: SøknadRoutes.OPPSUMMERING,
+                søknadRoute: SøknadRoutes.ARBEIDSTID,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -40,6 +40,17 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
+            case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        arbeidstid: {
+                            ...action.payload,
+                        },
+                    },
+                };
+
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
                     ...state,
@@ -62,6 +73,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {},
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
+                };
+            case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        [action.payload.stepId]: undefined,
+                    },
                 };
         }
     }

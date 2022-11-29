@@ -10,6 +10,7 @@ import { StepId } from '../types/StepId';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
+import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 
 const SøknadRouter = () => {
@@ -51,7 +52,7 @@ const SøknadRouter = () => {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
-                <Route path="*" element={<Navigate to={StepId.VELKOMMEN} />} />
+                <Route path="*" element={<Navigate to={StepId.VELKOMMEN} replace={true} />} />
             </Routes>
         );
     }
@@ -60,6 +61,7 @@ const SøknadRouter = () => {
         <Routes>
             <Route index element={<VelkommenPage />} />
             <Route path={StepId.VELKOMMEN} element={<VelkommenPage />} />
+            <Route path={StepId.ARBEIDSTID} element={<ArbeidstidStep />} />
             <Route path={StepId.OPPSUMMERING} element={<OppsummeringStep />} />
             <Route path={StepId.SØKNAD_SENDT} element={<SøknadSendtPage />} />
             <Route

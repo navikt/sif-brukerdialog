@@ -1,7 +1,8 @@
 export enum SøknadRoutes {
-    INTRO = '/intro',
+    APP_ROOT = '/',
     INNLOGGET_ROOT = '/melding/*',
     VELKOMMEN = '/melding/velkommen',
+    ARBEIDSTID = '/melding/arbeidstid',
     OPPSUMMERING = '/melding/oppsummering',
     SØKNAD_SENDT = '/melding/melding_sendt',
     UKJENT_STEG = '/melding/ukjent-steg',
