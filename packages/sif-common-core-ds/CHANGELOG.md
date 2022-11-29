@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 5.1.2
+
+### Patch Changes
+
+-   Utvide yesOrNoUtils + layout for FileErrorList
+
 ## 5.1.1
 
 ### Patch Changes
