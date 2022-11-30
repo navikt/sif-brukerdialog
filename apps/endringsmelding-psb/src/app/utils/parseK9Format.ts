@@ -1,5 +1,6 @@
 import {
     DateRange,
+    dateRangeUtils,
     Duration,
     getISODatesInISODateRange,
     isDateInDateRange,
@@ -13,17 +14,20 @@ import {
     K9FormatArbeidstaker,
     K9FormatArbeidstidPeriode,
     K9FormatBarn,
-    K9FormatTilsynsordningPerioder,
     K9FormatOpptjeningAktivitetFrilanser,
+    K9FormatOpptjeningAktivitetSelvstendig,
+    K9FormatTilsynsordningPerioder,
 } from '../types/k9Format';
 import {
     ArbeidstakerMap,
     ArbeidstidEnkeltdagSak,
     Barn,
+    OpptjeningAktivitetArbeidstaker,
     OpptjeningAktivitetFrilanser,
-    Sak,
+    OpptjeningAktivitetSelvstendig,
+    K9Sak,
     TidEnkeltdag,
-} from '../types/Sak';
+} from '../types/K9Sak';
 import { getEndringsdato, getSøknadsperioderInnenforTillattEndringsperiode } from './endringsperiode';
 
 export const getTilsynsdagerFromK9Format = (data: K9FormatTilsynsordningPerioder): TidEnkeltdag => {
@@ -102,6 +106,20 @@ const getBarn = (barn: K9FormatBarn): Barn => {
     };
 };
 
+export const getOppgjeningsaktivitetArbeidstaker = (
+    k9Arbeidstaker: K9FormatArbeidstaker[]
+): OpptjeningAktivitetArbeidstaker[] => {
+    return k9Arbeidstaker.map(({ arbeidstidInfo, organisasjonsnummer }) => {
+        const allePerioder = dateRangeUtils.getDateRangesFromISODateRangeMap(arbeidstidInfo.perioder);
+        const samletPeriode = dateRangeUtils.getDateRangeFromDateRanges(allePerioder);
+        return {
+            organisasjonsnummer,
+            samletPeriode,
+            allePerioder,
+        };
+    });
+};
+
 export const getOppgjeningsaktivitetFrilanser = ({
     jobberFortsattSomFrilanser,
     startdato,
@@ -114,7 +132,19 @@ export const getOppgjeningsaktivitetFrilanser = ({
     };
 };
 
-export const parseK9Format = (data: K9Format): Sak => {
+export const getOppgjeningsaktivitetSelvstendig = ({
+    organisasjonsnummer,
+    startdato,
+    sluttdato,
+}: K9FormatOpptjeningAktivitetSelvstendig): OpptjeningAktivitetSelvstendig => {
+    return {
+        organisasjonsnummer,
+        startdato: ISODateToDate(startdato),
+        sluttdato: sluttdato ? ISODateToDate(sluttdato) : undefined,
+    };
+};
+
+export const parseK9Format = (data: K9Format): K9Sak => {
     const {
         søknad: { ytelse, søker, søknadId },
         barn,
@@ -125,7 +155,7 @@ export const parseK9Format = (data: K9Format): Sak => {
         ytelse.søknadsperiode.map((periode) => ISODateRangeToDateRange(periode))
     );
 
-    const sak: Sak = {
+    const sak: K9Sak = {
         søker: søker,
         søknadId: søknadId,
         språk: data.søknad.språk,
@@ -139,6 +169,11 @@ export const parseK9Format = (data: K9Format): Sak => {
             },
             søknadsperioder,
             opptjeningAktivitet: {
+                arbeidstaker: getOppgjeningsaktivitetArbeidstaker(ytelse.arbeidstid.arbeidstakerList),
+                selvstendig: ytelse.opptjeningAktivitet.selvstendig
+                    ? getOppgjeningsaktivitetSelvstendig(ytelse.opptjeningAktivitet.selvstendig)
+                    : undefined,
+
                 frilanser: ytelse.opptjeningAktivitet.frilanser
                     ? getOppgjeningsaktivitetFrilanser(ytelse.opptjeningAktivitet.frilanser)
                     : undefined,

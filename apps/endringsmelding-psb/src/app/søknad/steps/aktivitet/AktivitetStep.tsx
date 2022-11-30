@@ -20,7 +20,6 @@ import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues }
 export enum AktivitetFormFields {
     aktivitet = 'aktivitet',
 }
-
 export interface AktivitetFormValues {
     [AktivitetFormFields.aktivitet]: [];
 }

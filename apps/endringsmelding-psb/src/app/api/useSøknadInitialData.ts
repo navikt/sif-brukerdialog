@@ -3,13 +3,13 @@ import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { RequestStatus } from '../types/RequestStatus';
-import { Sak } from '../types/Sak';
+import { K9Sak } from '../types/K9Sak';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getEndringsperiode } from '../utils/endringsperiode';
-import { getDateRangeForSaker } from '../utils/sakUtils';
+import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
@@ -17,6 +17,7 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -42,21 +43,25 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 
 const setupSøknadInitialData = async (loadedData: {
     søker: Søker;
-    saker: Sak[];
+    k9saker: K9Sak[];
     arbeidsgivere: Arbeidsgiver[];
     lagretSøknadState: SøknadStatePersistence;
 }): Promise<SøknadInitialData> => {
-    const { arbeidsgivere, lagretSøknadState, saker, søker } = loadedData;
+    const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
     const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
 
     if (!isValid) {
         await søknadStateEndpoint.purge();
     }
+
+    const sak = k9saker.length === 1 ? getSakFromK9Sak(k9saker[0], arbeidsgivere) : undefined;
+
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({
         versjon: APP_VERSJON,
         søker,
-        saker,
+        sak,
+        k9saker,
         arbeidsgivere,
         søknadsdata: {},
         ...lagretSøknadStateToUse,
@@ -73,7 +78,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 sakerEndpoint.fetch(),
                 søknadStateEndpoint.fetch(),
             ]);
-            const dateRangeForSaker = getDateRangeForSaker(saker);
+            const dateRangeForSaker = getDateRangeForK9Saker(saker);
             if (!dateRangeForSaker) {
                 throw 'ugyldigTidsrom';
             }
@@ -84,7 +89,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             );
             setInitialData({
                 status: RequestStatus.success,
-                data: await setupSøknadInitialData({ søker, arbeidsgivere, saker, lagretSøknadState }),
+                data: await setupSøknadInitialData({ søker, arbeidsgivere, k9saker: saker, lagretSøknadState }),
             });
             return Promise.resolve();
         } catch (error: any) {

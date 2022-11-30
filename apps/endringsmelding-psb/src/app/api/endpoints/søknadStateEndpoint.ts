@@ -44,7 +44,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
         return persistSetup.update({
             søknadHashString: createHashString({ søker }),
             søknadsdata,
-            saker: [],
+            k9saker: [],
             arbeidsgivere: [],
             søknadRoute,
             søknadSendt,

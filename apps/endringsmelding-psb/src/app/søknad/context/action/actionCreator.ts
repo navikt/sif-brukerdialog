@@ -2,7 +2,7 @@ import { StepId } from '../../config/StepId';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
-import { SakSøknadsdata } from '../../../types/søknadsdata/SakSøknadsdata';
+import { Sak } from '../../../types/Sak';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
@@ -25,7 +25,7 @@ interface ResetSøknad {
 }
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
-    payload: { sak: SakSøknadsdata };
+    payload: { sak: Sak };
 }
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
@@ -68,7 +68,7 @@ const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
 });
 
-const startSøknad = (sak: SakSøknadsdata): StartSøknad => ({
+const startSøknad = (sak: Sak): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
     payload: { sak },
 });

@@ -412,12 +412,20 @@ export const ISODateToISODateRange = (isoDate: ISODate): ISODateRange => {
     return `${isoDate}/${isoDate}`;
 };
 
+interface ISODateRangeMap {
+    [key: ISODateRange]: any;
+}
+export const getDateRangesFromISODateRangeMap = (map: ISODateRangeMap): DateRange[] => {
+    return Object.keys(map).map((isoDateRange) => dateRangeUtils.ISODateRangeToDateRange(isoDateRange));
+};
+
 export const dateRangeUtils = {
     dateRangesCollide,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
+    getDateRangesFromISODateRangeMap,
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,

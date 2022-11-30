@@ -1,16 +1,16 @@
 import { isK9Format, K9Format } from '../../types/k9Format';
-import { Sak } from '../../types/Sak';
+import { K9Sak } from '../../types/K9Sak';
 import { parseK9Format } from '../../utils/parseK9Format';
 import api from '../api';
-import { ApiEndpointInnsyn } from '.';
+import { ApiEndpointInnsyn } from './';
 
 export type SakerDTO = K9Format[];
 
 const sakerEndpoint = {
-    fetch: async (): Promise<Sak[]> => {
+    fetch: async (): Promise<K9Sak[]> => {
         try {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
-            const saker: Sak[] = [];
+            const saker: K9Sak[] = [];
 
             let harUgyldigSak;
             data.forEach((sak) => {

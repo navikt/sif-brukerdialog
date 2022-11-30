@@ -1,7 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -12,7 +11,7 @@ import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import SakInfo from './SakInfo';
-import { getSakSøknadsdata } from '../../utils/getSakSøknadsdataFromSak';
+import { Sak } from '../../types/Sak';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -30,19 +29,16 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const VelkommenPage = () => {
     const intl = useIntl();
     const {
-        state: { søker, saker, arbeidsgivere },
+        state: { søker, k9saker, sak },
         dispatch,
     } = useSøknadContext();
 
-    const navigateTo = useNavigate();
-
-    const startSøknad = () => {
-        const sakSøknadsdata = getSakSøknadsdata(sak, arbeidsgivere);
-        dispatch(actionsCreator.startSøknad(sakSøknadsdata));
-        navigateTo(SøknadRoutes.AKTIVITET);
+    const startSøknad = (sak: Sak) => {
+        dispatch(actionsCreator.startSøknad(sak));
+        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.AKTIVITET));
     };
 
-    if (saker.length === 0) {
+    if (k9saker.length === 0) {
         return (
             <Page title="Velkommen">
                 <SifGuidePanel>
@@ -54,7 +50,7 @@ const VelkommenPage = () => {
             </Page>
         );
     }
-    if (saker.length > 1) {
+    if (k9saker.length > 1) {
         return (
             <Page title="Velkommen">
                 <SifGuidePanel>
@@ -67,7 +63,10 @@ const VelkommenPage = () => {
         );
     }
 
-    const sak = saker[0];
+    if (sak === undefined) {
+        return <>OkiDoki - hva skjedde her</>;
+    }
+
     return (
         <Page title="Velkommen">
             <SifGuidePanel>
@@ -86,7 +85,7 @@ const VelkommenPage = () => {
 
             <FormikWrapper
                 initialValues={{ harForståttRettigheterOgPlikter: false }}
-                onSubmit={startSøknad}
+                onSubmit={() => startSøknad(sak)}
                 renderForm={() => (
                     <Form
                         includeButtons={true}
