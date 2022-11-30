@@ -38,6 +38,19 @@ export interface OpptjeningAktivitetFrilanser {
     jobberFortsattSomFrilanser: boolean;
 }
 
+interface Ytelse {
+    type: 'PLEIEPENGER_SYKT_BARN';
+    barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
+    søknadsperioder: DateRange[];
+    opptjeningAktivitet: {
+        frilanser?: OpptjeningAktivitetFrilanser;
+    };
+    tilsynsordning: {
+        enkeltdager: DateDurationMap;
+    };
+    arbeidstid: YtelseArbeidstid;
+}
+
 export interface Sak {
     søknadId: string;
     språk: string;
@@ -46,18 +59,7 @@ export interface Sak {
     søker: {
         norskIdentitetsnummer: string;
     };
-    ytelse: {
-        type: 'PLEIEPENGER_SYKT_BARN';
-        barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
-        søknadsperioder: DateRange[];
-        opptjeningAktivitet: {
-            frilanser?: OpptjeningAktivitetFrilanser;
-        };
-        tilsynsordning: {
-            enkeltdager: DateDurationMap;
-        };
-        arbeidstid: YtelseArbeidstid;
-    };
+    ytelse: Ytelse;
 }
 
 export interface SakMetadata {

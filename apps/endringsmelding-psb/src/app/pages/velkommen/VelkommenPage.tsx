@@ -11,6 +11,8 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import SakInfo from './SakInfo';
+import { getSakSøknadsdata } from '../../utils/getSakSøknadsdataFromSak';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -28,17 +30,44 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const VelkommenPage = () => {
     const intl = useIntl();
     const {
-        state: { søker },
+        state: { søker, saker, arbeidsgivere },
         dispatch,
     } = useSøknadContext();
 
     const navigateTo = useNavigate();
 
     const startSøknad = () => {
-        dispatch(actionsCreator.startSøknad());
+        const sakSøknadsdata = getSakSøknadsdata(sak, arbeidsgivere);
+        dispatch(actionsCreator.startSøknad(sakSøknadsdata));
         navigateTo(SøknadRoutes.AKTIVITET);
     };
 
+    if (saker.length === 0) {
+        return (
+            <Page title="Velkommen">
+                <SifGuidePanel>
+                    <Heading level="1" size="large">
+                        Velkommen {søker.fornavn}
+                    </Heading>
+                    <p>Vi kan ikke finne en aktiv sak på deg</p>
+                </SifGuidePanel>
+            </Page>
+        );
+    }
+    if (saker.length > 1) {
+        return (
+            <Page title="Velkommen">
+                <SifGuidePanel>
+                    <Heading level="1" size="large">
+                        Velkommen {søker.fornavn}
+                    </Heading>
+                    <p>Du har flere enn én sak ... info</p>
+                </SifGuidePanel>
+            </Page>
+        );
+    }
+
+    const sak = saker[0];
     return (
         <Page title="Velkommen">
             <SifGuidePanel>
@@ -50,6 +79,9 @@ const VelkommenPage = () => {
                     melde fra om endringer utenfor denne tidsrammen, eller du har behov for å melde fra om andre
                     endringer, send inn en melding via Skriv til oss.
                 </p>
+                <FormBlock>
+                    <SakInfo sak={sak} />
+                </FormBlock>
             </SifGuidePanel>
 
             <FormikWrapper

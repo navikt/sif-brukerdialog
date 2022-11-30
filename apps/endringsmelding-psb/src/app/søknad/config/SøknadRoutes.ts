@@ -1,6 +1,6 @@
 import { StepId } from './StepId';
 
-export const SøknadStepRoutePath = {
+export const SøknadStepRoute = {
     [StepId.VELKOMMEN]: 'velkommen',
     [StepId.AKTIVITET]: 'aktivitet',
     [StepId.ARBEIDSTID]: 'arbeidstid',

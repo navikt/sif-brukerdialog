@@ -7,7 +7,7 @@ import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from './config/StepId';
-import { SøknadRoutes, SøknadStepRoutePath } from './config/SøknadRoutes';
+import { SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
@@ -61,11 +61,11 @@ const SøknadRouter = () => {
     return (
         <Routes>
             <Route index element={<VelkommenPage />} />
-            <Route path={SøknadStepRoutePath[StepId.VELKOMMEN]} element={<VelkommenPage />} />
-            <Route path={SøknadStepRoutePath[StepId.AKTIVITET]} element={<AktivitetStep />} />
-            <Route path={SøknadStepRoutePath[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
-            <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoutePath[StepId.SØKNAD_SENDT]} element={<SøknadSendtPage />} />
+            <Route path={SøknadStepRoute[StepId.VELKOMMEN]} element={<VelkommenPage />} />
+            <Route path={SøknadStepRoute[StepId.AKTIVITET]} element={<AktivitetStep />} />
+            <Route path={SøknadStepRoute[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
+            <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
+            <Route path={SøknadStepRoute[StepId.SØKNAD_SENDT]} element={<SøknadSendtPage />} />
             <Route
                 path="*"
                 element={
