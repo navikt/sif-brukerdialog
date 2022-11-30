@@ -55,6 +55,9 @@ const setupSøknadInitialData = async (loadedData: {
     }
 
     const sak = k9saker.length === 1 ? getSakFromK9Sak(k9saker[0], arbeidsgivere) : undefined;
+    if (sak === undefined) {
+        throw 'Ingen sak';
+    }
 
     const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
     return Promise.resolve({

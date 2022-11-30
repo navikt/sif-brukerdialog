@@ -22,9 +22,9 @@ import {
     ArbeidstakerMap,
     ArbeidstidEnkeltdagSak,
     Barn,
-    OpptjeningAktivitetArbeidstaker,
-    OpptjeningAktivitetFrilanser,
-    OpptjeningAktivitetSelvstendig,
+    K9OpptjeningAktivitetArbeidstaker,
+    K9OpptjeningAktivitetFrilanser,
+    K9OpptjeningAktivitetSelvstendig,
     K9Sak,
     TidEnkeltdag,
 } from '../types/K9Sak';
@@ -108,7 +108,7 @@ const getBarn = (barn: K9FormatBarn): Barn => {
 
 export const getOppgjeningsaktivitetArbeidstaker = (
     k9Arbeidstaker: K9FormatArbeidstaker[]
-): OpptjeningAktivitetArbeidstaker[] => {
+): K9OpptjeningAktivitetArbeidstaker[] => {
     return k9Arbeidstaker.map(({ arbeidstidInfo, organisasjonsnummer }) => {
         const allePerioder = dateRangeUtils.getDateRangesFromISODateRangeMap(arbeidstidInfo.perioder);
         const samletPeriode = dateRangeUtils.getDateRangeFromDateRanges(allePerioder);
@@ -124,7 +124,7 @@ export const getOppgjeningsaktivitetFrilanser = ({
     jobberFortsattSomFrilanser,
     startdato,
     sluttdato,
-}: K9FormatOpptjeningAktivitetFrilanser): OpptjeningAktivitetFrilanser => {
+}: K9FormatOpptjeningAktivitetFrilanser): K9OpptjeningAktivitetFrilanser => {
     return {
         startdato: ISODateToDate(startdato),
         jobberFortsattSomFrilanser,
@@ -136,7 +136,7 @@ export const getOppgjeningsaktivitetSelvstendig = ({
     organisasjonsnummer,
     startdato,
     sluttdato,
-}: K9FormatOpptjeningAktivitetSelvstendig): OpptjeningAktivitetSelvstendig => {
+}: K9FormatOpptjeningAktivitetSelvstendig): K9OpptjeningAktivitetSelvstendig => {
     return {
         organisasjonsnummer,
         startdato: ISODateToDate(startdato),

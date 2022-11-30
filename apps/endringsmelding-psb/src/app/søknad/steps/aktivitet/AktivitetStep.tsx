@@ -6,7 +6,7 @@ import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { Arbeidsgiver, ArbeidsgiverType } from '../../../types/Arbeidsgiver';
+import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -16,6 +16,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
+import { OpptjeningAktivitetArbeidstakerSøknad } from '../../../types/Sak';
 
 export enum AktivitetFormFields {
     aktivitet = 'aktivitet',
@@ -30,7 +31,7 @@ const AktivitetStep = () => {
     const stepId = StepId.AKTIVITET;
 
     const {
-        state: { søknadsdata, arbeidsgivere },
+        state: { søknadsdata, sak },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const stepConfig = getSøknadStepConfig();
@@ -75,9 +76,9 @@ const AktivitetStep = () => {
                                 }
                                 name={AktivitetFormFields.aktivitet}
                                 validate={getListValidator({ required: true })}
-                                checkboxes={arbeidsgivere.map((a) => ({
+                                checkboxes={sak.opptjeningAktivitet.arbeidstaker.map((a) => ({
                                     label: getAktivitetCheckboxLabel(a),
-                                    value: a.id,
+                                    value: a.arbeidsgiver.id,
                                 }))}
                             />
                         </Form>
@@ -90,7 +91,7 @@ const AktivitetStep = () => {
 
 export default AktivitetStep;
 
-const getAktivitetCheckboxLabel = (arbeidsgiver: Arbeidsgiver): React.ReactNode => {
+const getAktivitetCheckboxLabel = ({ arbeidsgiver }: OpptjeningAktivitetArbeidstakerSøknad): React.ReactNode => {
     return (
         <BodyShort>
             <strong>{arbeidsgiver.navn}</strong>

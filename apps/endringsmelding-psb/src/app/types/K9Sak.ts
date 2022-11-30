@@ -32,36 +32,36 @@ export interface Barn {
     identitetsnummer: string;
 }
 
-export interface OpptjeningAktivitetArbeidstaker {
+export interface K9OpptjeningAktivitetArbeidstaker {
     organisasjonsnummer: string;
     samletPeriode: DateRange;
     allePerioder: DateRange[];
 }
 
-export interface OpptjeningAktivitetFrilanser {
+export interface K9OpptjeningAktivitetFrilanser {
     startdato: Date;
     sluttdato?: Date;
     jobberFortsattSomFrilanser: boolean;
 }
 
-export interface OpptjeningAktivitetSelvstendig {
+export interface K9OpptjeningAktivitetSelvstendig {
     /** TODO - må avklares hvordan denne kommer fra K9 */
     startdato: Date;
     sluttdato?: Date;
     organisasjonsnummer: string;
 }
 
-export interface OpptjeningAktivitet {
-    arbeidstaker?: OpptjeningAktivitetArbeidstaker[];
-    selvstendig?: OpptjeningAktivitetSelvstendig;
-    frilanser?: OpptjeningAktivitetFrilanser;
+export interface K9OpptjeningAktivitet {
+    arbeidstaker?: K9OpptjeningAktivitetArbeidstaker[];
+    selvstendig?: K9OpptjeningAktivitetSelvstendig;
+    frilanser?: K9OpptjeningAktivitetFrilanser;
 }
 
 interface Ytelse {
     type: 'PLEIEPENGER_SYKT_BARN';
     barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
     søknadsperioder: DateRange[];
-    opptjeningAktivitet: OpptjeningAktivitet;
+    opptjeningAktivitet: K9OpptjeningAktivitet;
     tilsynsordning: {
         enkeltdager: DateDurationMap;
     };

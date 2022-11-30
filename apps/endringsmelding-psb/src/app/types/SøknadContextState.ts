@@ -9,7 +9,7 @@ export interface SøknadContextState {
     versjon: string;
     søker: Søker;
     k9saker: K9Sak[];
-    sak?: Sak;
+    sak: Sak;
     arbeidsgivere: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;

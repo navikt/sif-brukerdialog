@@ -16,7 +16,7 @@ export const getAktivitetStepInitialValues = (
         return aktivitetInitialFormValues;
     }
     return {
-        aktivitet: [],
+        aktivitet: søknadsdata.aktivitet.aktivitet,
     };
 };
 

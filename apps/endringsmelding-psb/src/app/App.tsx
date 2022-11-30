@@ -10,23 +10,11 @@ import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { applicationIntlMessages } from './i18n/applicationMessages';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
-import { getEnvVariableOrDefault } from './utils/envUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';
-
-function prepare() {
-    if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test' || 1 + 1 === 2) {
-            return import('../../mocks/msw/browser').then(({ worker }) =>
-                worker.start({ onUnhandledRequest: 'bypass' })
-            );
-        }
-    }
-    return Promise.resolve();
-}
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -68,6 +56,5 @@ const App = () => (
         </ErrorBoundary>
     </SifAppWrapper>
 );
-prepare().then(() => {
-    root.render(<App />);
-});
+
+root.render(<App />);

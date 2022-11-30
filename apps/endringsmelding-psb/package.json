@@ -132,7 +132,7 @@
         "build-storybook": "build-storybook",
         "build": "npm-run-all build-app",
         "clean": "rm -rf node_modules .dist",
-        "dev-api": "PORT=8089 node ./api-mock/mock-server.js",
+        "dev-api": "PORT=8089 node ./mocks/server.js",
         "msw-init": "msw init dist",
         "prepare": "npm run snyk-protect",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
