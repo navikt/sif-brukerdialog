@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { StepConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { StepId } from '../types/StepId';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import { StepId } from '../søknad/config/StepId';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 
 export const useStepNavigation = (step: StepConfig<StepId, SøknadRoutes>) => {
     const { dispatch } = useSøknadContext();

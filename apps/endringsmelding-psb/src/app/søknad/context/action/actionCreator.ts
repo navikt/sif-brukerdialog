@@ -1,6 +1,6 @@
-import { StepId } from '../../../types/StepId';
-import { SøknadRoutes } from '../../../types/SøknadRoutes';
-import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { StepId } from '../../config/StepId';
+import { SøknadRoutes } from '../../config/SøknadRoutes';
+import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
 export enum SøknadContextActionKeys {
@@ -9,6 +9,7 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
+    SET_SØKNAD_AKTIVITET = 'setSøknadAktivitet',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
@@ -42,6 +43,10 @@ interface SetSøknadSendt {
 interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
     payload: SøknadRoutes;
+}
+interface SetSøknadAktivitet {
+    type: SøknadContextActionKeys.SET_SØKNAD_AKTIVITET;
+    payload: AktivitetSøknadsdata;
 }
 interface SetSøknadArbeidstid {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID;
@@ -84,6 +89,10 @@ const setSøknadSendt = (): SetSøknadSendt => ({
     type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
 });
 
+const setSøknadAktivitet = (payload: AktivitetSøknadsdata): SetSøknadAktivitet => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_AKTIVITET,
+    payload,
+});
 const setSøknadArbeidstid = (payload: ArbeidstidSøknadsdata): SetSøknadArbeidstid => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID,
     payload,
@@ -113,6 +122,7 @@ export type SøknadContextAction =
     | ResetSøknad
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadLagret
+    | SetSøknadAktivitet
     | SetSøknadArbeidstid
     | SetSøknadRoute
     | SetSøknadSendt
@@ -126,6 +136,7 @@ const actionsCreator = {
     resetSøknad,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
+    setSøknadAktivitet,
     setSøknadArbeidstid,
     setSøknadRoute,
     setSøknadSendt,

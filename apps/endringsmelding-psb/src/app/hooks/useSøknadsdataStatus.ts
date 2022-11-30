@@ -4,7 +4,7 @@ import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
-import { StepId } from '../types/StepId';
+import { StepId } from '../søknad/config/StepId';
 import { getSøknadsdateFromStepFormValues } from '../utils/stepFormValuesToSøknadsdata';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {

@@ -7,11 +7,11 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { StepId } from '../../../types/StepId';
+import { StepId } from '../../config/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
@@ -28,12 +28,12 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
+    const stepId = StepId.OPPSUMMERING;
     const {
         state: { søknadsdata },
     } = useSøknadContext();
 
-    const stepId = StepId.OPPSUMMERING;
-    const stepConfig = getSøknadStepConfig(søknadsdata);
+    const stepConfig = getSøknadStepConfig();
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
@@ -52,7 +52,7 @@ const OppsummeringStep = () => {
     const apiData = getApiDataFromSøknadsdata(søknadsdata);
 
     return (
-        <SøknadStep stepId={StepId.OPPSUMMERING}>
+        <SøknadStep stepId={stepId}>
             {!apiData ? (
                 <FormBlock paddingBottom="xl">
                     <Alert variant="error">Ugyldig apiData?</Alert>

@@ -1,6 +1,6 @@
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import React from 'react';
-import { StepId } from '../../types/StepId';
+import { StepId } from '../../søknad/config/StepId';
 import { Alert, Heading, Link } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';

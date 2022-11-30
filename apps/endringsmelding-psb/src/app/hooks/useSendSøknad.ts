@@ -6,7 +6,7 @@ import { useMellomlagring } from './useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();

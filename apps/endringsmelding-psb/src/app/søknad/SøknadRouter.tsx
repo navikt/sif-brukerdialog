@@ -6,12 +6,13 @@ import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import { StepId } from '../types/StepId';
-import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
+import { StepId } from './config/StepId';
+import { SøknadRoutes, SøknadStepRoutePath } from './config/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import AktivitetStep from './steps/aktivitet/AktivitetStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -61,6 +62,7 @@ const SøknadRouter = () => {
         <Routes>
             <Route index element={<VelkommenPage />} />
             <Route path={SøknadStepRoutePath[StepId.VELKOMMEN]} element={<VelkommenPage />} />
+            <Route path={SøknadStepRoutePath[StepId.AKTIVITET]} element={<AktivitetStep />} />
             <Route path={SøknadStepRoutePath[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route path={SøknadStepRoutePath[StepId.SØKNAD_SENDT]} element={<SøknadSendtPage />} />

@@ -1,7 +1,7 @@
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { Sak } from './Sak';
 import { Søker } from './Søker';
-import { SøknadRoutes } from './SøknadRoutes';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 
 export interface SøknadContextState {

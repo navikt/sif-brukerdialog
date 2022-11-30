@@ -1,5 +1,5 @@
-import { StepId } from '../types/StepId';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import { StepId } from '../søknad/config/StepId';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 
 export const getNextStep = (stepId: StepId): SøknadRoutes => {
     switch (stepId) {

@@ -9,7 +9,7 @@ import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/sokn
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { applicationIntlMessages } from './i18n/applicationMessages';
 import Søknad from './søknad/Søknad';
-import { SøknadRoutes } from './types/SøknadRoutes';
+import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import { getEnvVariableOrDefault } from './utils/envUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';

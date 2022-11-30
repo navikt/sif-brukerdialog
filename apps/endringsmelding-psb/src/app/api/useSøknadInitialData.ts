@@ -6,7 +6,7 @@ import { RequestStatus } from '../types/RequestStatus';
 import { Sak } from '../types/Sak';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getEndringsperiode } from '../utils/endringsperiode';
 import { getDateRangeForSaker } from '../utils/sakUtils';

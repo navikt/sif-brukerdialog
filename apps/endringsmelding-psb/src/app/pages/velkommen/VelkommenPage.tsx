@@ -1,50 +1,34 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { getCheckedValidator, getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import { SøknadRoutes } from '../../types/SøknadRoutes';
-import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
-    arbeidsgivere = 'arbeidsgivere',
 }
 
 export interface VelkommenFormValues {
     [VelkommenFormFields.harForståttRettigheterOgPlikter]: boolean;
-    [VelkommenFormFields.arbeidsgivere]: string[];
 }
 
-const { FormikWrapper, Form, ConfirmationCheckbox, CheckboxGroup } = getTypedFormComponents<
+const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
     VelkommenFormFields,
     VelkommenFormValues
 >();
 
-const getArbeidsgiverLabel = (arbeidsgiver: Arbeidsgiver): React.ReactNode => {
-    return (
-        <BodyShort>
-            <strong>{arbeidsgiver.navn}</strong>
-            <div>
-                {arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON ? `Orgnr. ${arbeidsgiver.id}` : 'Privatperson'}
-            </div>
-        </BodyShort>
-    );
-};
-
 const VelkommenPage = () => {
     const intl = useIntl();
     const {
-        state: { søker, arbeidsgivere },
+        state: { søker },
         dispatch,
     } = useSøknadContext();
 
@@ -52,8 +36,9 @@ const VelkommenPage = () => {
 
     const startSøknad = () => {
         dispatch(actionsCreator.startSøknad());
-        navigateTo(SøknadRoutes.ARBEIDSTID);
+        navigateTo(SøknadRoutes.AKTIVITET);
     };
+
     return (
         <Page title="Velkommen">
             <SifGuidePanel>
@@ -73,27 +58,8 @@ const VelkommenPage = () => {
                 renderForm={() => (
                     <Form
                         includeButtons={true}
-                        submitButtonLabel="Start søknad"
+                        submitButtonLabel="Start endring"
                         formErrorHandler={getIntlFormErrorHandler(intl)}>
-                        <Block margin="xxl">
-                            <Heading level="2" size="medium">
-                                Velg arbeidsaktivtet
-                            </Heading>
-                        </Block>
-                        <FormBlock>
-                            <CheckboxGroup
-                                legend={'For hvilket arbeidsaktivitet gjelder endringen?'}
-                                description={
-                                    <ExpandableInfo title="Mangler du noen arbeidsforhold?">Mer info</ExpandableInfo>
-                                }
-                                name={VelkommenFormFields.arbeidsgivere}
-                                validate={getListValidator({ required: true })}
-                                checkboxes={arbeidsgivere.map((a) => ({
-                                    label: getArbeidsgiverLabel(a),
-                                    value: a.id,
-                                }))}
-                            />
-                        </FormBlock>
                         <FormBlock>
                             <ConfirmationCheckbox
                                 label="Jeg forstår og bekrefter"

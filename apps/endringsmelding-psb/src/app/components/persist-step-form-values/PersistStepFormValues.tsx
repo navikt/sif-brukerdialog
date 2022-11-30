@@ -1,7 +1,7 @@
 import React from 'react';
 import FormikValuesObserver from '@navikt/sif-common-formik-ds/lib/components/helpers/formik-values-observer/FormikValuesObserver';
 import { useStepFormValuesContext } from '../../søknad/context/StepFormValuesContext';
-import { StepId } from '../../types/StepId';
+import { StepId } from '../../søknad/config/StepId';
 
 interface Props {
     stepId: StepId;

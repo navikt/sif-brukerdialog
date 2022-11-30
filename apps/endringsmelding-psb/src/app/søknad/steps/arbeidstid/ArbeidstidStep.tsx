@@ -3,14 +3,14 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { StepId } from '../../../types/StepId';
+import { StepId } from '../../config/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 
 export enum ArbeidstidFormFields {
@@ -24,13 +24,14 @@ export interface ArbeidstidFormValues {
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues>();
 
 const ArbeidstidStep = () => {
+    const stepId = StepId.ARBEIDSTID;
+
     const {
         state: { søknadsdata },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const stepId = StepId.ARBEIDSTID;
-    const stepConfig = getSøknadStepConfig(søknadsdata);
+    const stepConfig = getSøknadStepConfig();
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -46,14 +47,14 @@ const ArbeidstidStep = () => {
 
     const { handleSubmit, isSubmitting } = useOnValidSubmit(
         onValidSubmitHandler,
-        StepId.ARBEIDSTID,
+        stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
         }
     );
 
     return (
-        <SøknadStep stepId={StepId.ARBEIDSTID}>
+        <SøknadStep stepId={stepId}>
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
                 onSubmit={handleSubmit}

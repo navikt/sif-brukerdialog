@@ -1,6 +1,6 @@
 import React, { createContext, FunctionComponent, useContext, useState } from 'react';
-import { StepFormValues } from '../../types/StepFormValues';
-import { StepId } from '../../types/StepId';
+import { StepFormValues } from '../config/StepFormValues';
+import { StepId } from '../config/StepId';
 
 interface StepFormValuesContextInterface {
     stepFormValues: StepFormValues;

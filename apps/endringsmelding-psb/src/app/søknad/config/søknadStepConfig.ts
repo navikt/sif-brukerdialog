@@ -1,17 +1,18 @@
 import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import { StepId } from '../types/StepId';
-import { SøknadRoutes } from '../types/SøknadRoutes';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { StepId } from './StepId';
+import { SøknadRoutes } from './SøknadRoutes';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
-    return [StepId.ARBEIDSTID, StepId.OPPSUMMERING];
+export const getSøknadSteps = (): StepId[] => {
+    return [StepId.AKTIVITET, StepId.ARBEIDSTID, StepId.OPPSUMMERING];
 };
 
+/** Denne kan nok endres til å kun hente "neste" fra getSøknadSteps */
 export const getNextStep = (stepId: StepId): SøknadRoutes => {
     switch (stepId) {
         case StepId.VELKOMMEN:
+            return SøknadRoutes.AKTIVITET;
+        case StepId.AKTIVITET:
             return SøknadRoutes.ARBEIDSTID;
         case StepId.ARBEIDSTID:
             return SøknadRoutes.OPPSUMMERING;
@@ -22,5 +23,5 @@ export const getNextStep = (stepId: StepId): SøknadRoutes => {
     }
 };
 
-export const getSøknadStepConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StepId, SøknadRoutes> =>
-    soknadStepUtils.getStepsConfig(getSøknadSteps(søknadsdata), SoknadApplicationType.MELDING);
+export const getSøknadStepConfig = (): SoknadStepsConfig<StepId, SøknadRoutes> =>
+    soknadStepUtils.getStepsConfig(getSøknadSteps(), SoknadApplicationType.MELDING);
