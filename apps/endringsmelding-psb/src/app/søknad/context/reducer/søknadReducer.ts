@@ -10,9 +10,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 ...state,
                 søknadsdata: {
                     id: guid(),
-                    sak: action.payload.sak,
                     harForståttRettigheterOgPlikter: true,
                 },
+                sak: action.payload.sak,
                 søknadRoute: SøknadRoutes.ARBEIDSTID,
                 børMellomlagres: true,
             };

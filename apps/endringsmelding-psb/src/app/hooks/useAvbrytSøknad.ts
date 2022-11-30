@@ -12,7 +12,9 @@ const useAvbrytEllerFortsettSenere = () => {
     const avbrytSøknad = useCallback(() => {
         dispatch(actionsCreator.avbrytSøknad());
         slettMellomlagring();
-        navigate('/');
+        setTimeout(() => {
+            navigate('/');
+        });
     }, [navigate, slettMellomlagring, dispatch]);
 
     const fortsettSøknadSenere = useCallback(() => {
