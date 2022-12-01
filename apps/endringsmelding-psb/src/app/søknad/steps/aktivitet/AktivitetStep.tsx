@@ -20,10 +20,10 @@ import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
 
 export enum AktivitetFormFields {
-    aktivitet = 'aktivitet',
+    aktiviteterSomSkalEndres = 'aktiviteterSomSkalEndres',
 }
 export interface AktivitetFormValues {
-    [AktivitetFormFields.aktivitet]: [];
+    [AktivitetFormFields.aktiviteterSomSkalEndres]: string[];
 }
 
 const { FormikWrapper, Form, CheckboxGroup } = getTypedFormComponents<AktivitetFormFields, AktivitetFormValues>();
@@ -75,7 +75,7 @@ const AktivitetStep = () => {
                                 description={
                                     <ExpandableInfo title="Mangler du noen arbeidsforhold?">Mer info</ExpandableInfo>
                                 }
-                                name={AktivitetFormFields.aktivitet}
+                                name={AktivitetFormFields.aktiviteterSomSkalEndres}
                                 validate={getListValidator({ required: true })}
                                 checkboxes={getOpptjeningAktivitetCheckboxes(sak.arbeidAktivitet)}
                             />
@@ -91,7 +91,7 @@ export default AktivitetStep;
 
 const getAktivitetCheckboxLabel = ({ title, info }: { title: string; info?: React.ReactNode }): React.ReactNode => {
     return (
-        <BodyShort>
+        <BodyShort as="div">
             <strong>{title}</strong>
             {info ? <div>{info}</div> : null}
         </BodyShort>
@@ -103,13 +103,13 @@ export const getOpptjeningAktivitetCheckboxes = (
 ): FormikCheckboxGroupCheckboxProp[] => {
     const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
 
-    const { arbeidstaker, frilanser, selvstendingNæringsdrivende } = arbeidAktiviteter;
+    const { arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
-    arbeidstaker.forEach(({ arbeidsgiver: { id, navn, type } }) => {
+    arbeidstaker.forEach(({ id, arbeidsgiver: { id: orgnr, navn, type } }) => {
         checkboxProps.push({
             label: getAktivitetCheckboxLabel({
                 title: navn,
-                info: type === ArbeidsgiverType.ORGANISASJON ? `Orgnr. ${id}` : 'Privatperson',
+                info: type === ArbeidsgiverType.ORGANISASJON ? `Orgnr. ${orgnr}` : 'Privatperson',
             }),
             value: id,
         });
@@ -123,7 +123,7 @@ export const getOpptjeningAktivitetCheckboxes = (
             value: ArbeidAktivitetType.frilanser,
         });
     }
-    if (selvstendingNæringsdrivende) {
+    if (selvstendigNæringsdrivende) {
         checkboxProps.push({
             label: getAktivitetCheckboxLabel({
                 title: 'Selvstendig næringsdrivende',

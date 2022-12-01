@@ -14,16 +14,19 @@ interface ArbeidAktivitetPerioder {
     samletPeriode: DateRange;
 }
 export interface ArbeidAktivitetArbeidstaker {
+    id: string;
     type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
     perioder: ArbeidAktivitetPerioder;
 }
 export interface ArbeidAktivitetFrilanser {
+    id: string;
     type: ArbeidAktivitetType.frilanser;
     perioder: ArbeidAktivitetPerioder;
 }
 
-export interface ArbeidAktivitetSelvstendigNæringsdrivence {
+export interface ArbeidAktivitetSelvstendigNæringsdrivende {
+    id: string;
     type: ArbeidAktivitetType.selvstendigNæringsdrivende;
     perioder: ArbeidAktivitetPerioder;
 }
@@ -31,12 +34,12 @@ export interface ArbeidAktivitetSelvstendigNæringsdrivence {
 export type ArbeidAktivitet =
     | ArbeidAktivitetArbeidstaker
     | ArbeidAktivitetFrilanser
-    | ArbeidAktivitetSelvstendigNæringsdrivence;
+    | ArbeidAktivitetSelvstendigNæringsdrivende;
 
 export interface ArbeidAktiviteter {
     arbeidstaker: ArbeidAktivitetArbeidstaker[];
     frilanser?: ArbeidAktivitetFrilanser;
-    selvstendingNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivence;
+    selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
 
 export interface Sak {

@@ -57,7 +57,6 @@ function Step({
             )}>
             <section aria-label="Skjemasteg" ref={sectionRef}>
                 <ProgressStepper steps={steps} currentStepIndex={currentStepIndex} onStepSelect={handleOnStepSelect} />
-
                 <Block margin="xxl">{children}</Block>
             </section>
             {(onCancel || onContinueLater) && (

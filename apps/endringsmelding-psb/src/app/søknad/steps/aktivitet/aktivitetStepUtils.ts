@@ -2,7 +2,7 @@ import { Søknadsdata, AktivitetSøknadsdata } from '../../../types/søknadsdata
 import { AktivitetFormFields, AktivitetFormValues } from './AktivitetStep';
 
 const aktivitetInitialFormValues: AktivitetFormValues = {
-    aktivitet: [],
+    aktiviteterSomSkalEndres: [],
 };
 
 export const getAktivitetStepInitialValues = (
@@ -12,14 +12,14 @@ export const getAktivitetStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    if (søknadsdata.aktivitet === undefined) {
+    if (søknadsdata.arbeidAktivitet === undefined) {
         return aktivitetInitialFormValues;
     }
     return {
-        aktivitet: søknadsdata.aktivitet.aktivitet,
+        aktiviteterSomSkalEndres: søknadsdata.arbeidAktivitet.aktiviteterSomSkalEndres,
     };
 };
 
 export const getAktivitetSøknadsdataFromFormValues = (values: AktivitetFormValues): AktivitetSøknadsdata => {
-    return { aktivitet: values[AktivitetFormFields.aktivitet] };
+    return { aktiviteterSomSkalEndres: values[AktivitetFormFields.aktiviteterSomSkalEndres] };
 };

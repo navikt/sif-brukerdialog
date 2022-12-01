@@ -1,10 +1,11 @@
-import { Heading } from '@navikt/ds-react';
+import { Panel } from '@navikt/ds-react';
 import React from 'react';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+// import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { ArbeidAktivitetArbeidstaker } from '../../../types/Sak';
+import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -14,13 +15,15 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import { ArbeidIPeriodeFormValues } from './arbeid-i-periode/ArbeidIPeriodeFormValues';
+import ArbeidAktivitetFormPart from './arbeid-i-periode/ArbeidAktivitetFormPart';
 
 export enum ArbeidstidFormFields {
-    arbeidsgivere = 'arbeidsgivere',
+    arbeidAktivitet = 'arbeidAktivitet',
 }
 
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidsgivere]: [];
+    [ArbeidstidFormFields.arbeidAktivitet]: { [key: string]: ArbeidIPeriodeFormValues };
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues>();
@@ -55,36 +58,44 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const arbeidsgivere = getAktiviteterSomSkalEndres(
-        sak.arbeidAktivitet.arbeidstaker,
-        søknadsdata.aktivitet?.aktivitet
-    );
+    const valgteAktiviteter = søknadsdata.arbeidAktivitet?.aktiviteterSomSkalEndres || [];
 
-    // console.log(arbeidsgivere);
+    const aktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktivitet, valgteAktiviteter);
 
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
                 onSubmit={handleSubmit}
-                renderForm={() => (
+                renderForm={({ values }) => (
                     <>
-                        <PersistStepFormValues stepId={stepId} />
+                        {/* <PersistStepFormValues stepId={stepId} /> */}
                         <Form
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            {arbeidsgivere.length > 0 && (
-                                <>
-                                    <Heading level="2" size="small">
-                                        Arbeidsgivere
-                                    </Heading>
-                                    {arbeidsgivere.map((a) => {
-                                        <p key={a.arbeidsgiver.id}>sad{a.arbeidsgiver.navn}</p>;
-                                    })}
-                                </>
-                            )}
+                            {aktiviteter.map((a) => {
+                                const aktivitetValues = (values.arbeidAktivitet || {})[a.id];
+                                return (
+                                    <FormBlock key={a.id}>
+                                        <Panel
+                                            border={true}
+                                            style={{
+                                                backgroundColor: 'var(--a-bg-subtle)',
+                                                borderStyle: 'dashed',
+                                            }}>
+                                            <ArbeidAktivitetFormPart
+                                                parentFieldName={
+                                                    `${ArbeidstidFormFields.arbeidAktivitet}.${a.id}` as any
+                                                }
+                                                arbeidAktivitet={a}
+                                                values={aktivitetValues || {}}
+                                            />
+                                        </Panel>
+                                    </FormBlock>
+                                );
+                            })}
                         </Form>
                     </>
                 )}
@@ -96,8 +107,21 @@ const ArbeidstidStep = () => {
 export default ArbeidstidStep;
 
 const getAktiviteterSomSkalEndres = (
-    aktivitet: ArbeidAktivitetArbeidstaker[],
-    valgteAktiviteter?: string[]
-): ArbeidAktivitetArbeidstaker[] => {
-    return aktivitet.filter((a) => (valgteAktiviteter || []).includes(a.arbeidsgiver.id));
+    arbeidAktiviteter: ArbeidAktiviteter,
+    valgteAktiviteter: string[] = []
+): ArbeidAktivitet[] => {
+    const { arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+
+    const aktiviteter: ArbeidAktivitet[] = arbeidstaker.filter((a) => (valgteAktiviteter || []).includes(a.id));
+    if (frilanser !== undefined && valgteAktiviteter.includes(ArbeidAktivitetType.frilanser)) {
+        aktiviteter.push({ ...frilanser });
+    }
+
+    if (
+        selvstendigNæringsdrivende !== undefined &&
+        valgteAktiviteter.includes(ArbeidAktivitetType.selvstendigNæringsdrivende)
+    ) {
+        aktiviteter.push({ ...selvstendigNæringsdrivende });
+    }
+    return aktiviteter;
 };

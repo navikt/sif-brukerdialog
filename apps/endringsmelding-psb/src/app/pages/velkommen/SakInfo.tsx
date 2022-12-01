@@ -15,7 +15,7 @@ const SakInfo: React.FunctionComponent<Props> = ({ sak }) => {
             <Heading level="2" size="small" spacing={true}>
                 Ditt barn
             </Heading>
-            <BodyShort>
+            <BodyShort as="div">
                 <div>
                     <strong>{barnetsNavn}</strong>
                 </div>

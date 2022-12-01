@@ -16,6 +16,7 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
         const arbeidsgiver = arbeidsgivere.find((arbeidsgiver) => arbeidsgiver.id === key);
         if (arbeidsgiver) {
             aktivitetArbeidstaker.push({
+                id: `id_${arbeidsgiver.id}`,
                 type: ArbeidAktivitetType.arbeidstaker,
                 arbeidsgiver,
                 perioder: {
@@ -31,6 +32,7 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
         frilanser:
             frilanserArbeidstidInfo !== undefined
                 ? {
+                      id: ArbeidAktivitetType.frilanser,
                       type: ArbeidAktivitetType.frilanser,
                       perioder: {
                           samletPeriode: frilanserArbeidstidInfo.samletPeriode,
@@ -38,9 +40,10 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
                       },
                   }
                 : undefined,
-        selvstendingNæringsdrivende:
+        selvstendigNæringsdrivende:
             selvstendigNæringsdrivendeArbeidstidInfo !== undefined
                 ? {
+                      id: ArbeidAktivitetType.selvstendigNæringsdrivende,
                       type: ArbeidAktivitetType.selvstendigNæringsdrivende,
                       perioder: {
                           samletPeriode: selvstendigNæringsdrivendeArbeidstidInfo.samletPeriode,

@@ -6,7 +6,7 @@ export * from './ArbeidstidSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;
-    aktivitet?: AktivitetSøknadsdata;
+    arbeidAktivitet?: AktivitetSøknadsdata;
     arbeidstid?: ArbeidstidSøknadsdata;
     harForståttRettigheterOgPlikter?: boolean;
     harBekreftetOpplysninger?: boolean;

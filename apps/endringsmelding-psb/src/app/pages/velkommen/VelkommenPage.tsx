@@ -96,9 +96,8 @@ const VelkommenPage = () => {
                                 label="Jeg forstår og bekrefter"
                                 name={VelkommenFormFields.harForståttRettigheterOgPlikter}
                                 validate={getCheckedValidator()}>
-                                <div>
-                                    <strong>Takk for at du er ærlig!</strong>
-                                </div>
+                                <strong>Takk for at du er ærlig!</strong>
+
                                 <ul>
                                     <li>
                                         Jeg forstår at hvis jeg gir uriktige eller holder tilbake opplysninger kan det
