@@ -24,14 +24,14 @@ export interface K9FormatArbeidstaker {
     organisasjonsnummer: string;
     arbeidstidInfo: K9FormatArbeidstidInfo;
 }
+
+export interface K9FormatArbeidstidInfo {
+    perioder: K9FormatArbeidstidPeriode;
+}
 export interface K9FormatArbeidstid {
     arbeidstakerList: K9FormatArbeidstaker[];
-    frilanserArbeidstidInfo: {
-        perioder: K9FormatArbeidstidPeriode;
-    } | null;
-    selvstendigNæringsdrivendeArbeidstidInfo: {
-        perioder: K9FormatArbeidstidPeriode;
-    } | null;
+    frilanserArbeidstidInfo: K9FormatArbeidstidInfo | null;
+    selvstendigNæringsdrivendeArbeidstidInfo: K9FormatArbeidstidInfo | null;
 }
 
 export interface K9FormatArbeidsgiverPrivat {

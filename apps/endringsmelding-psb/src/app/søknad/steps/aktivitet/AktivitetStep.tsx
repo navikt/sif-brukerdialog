@@ -16,7 +16,9 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
-import { OpptjeningAktivitetArbeidstakerSøknad } from '../../../types/Sak';
+import { OpptjeningAktivitet, OpptjeningAktivitetType } from '../../../types/Sak';
+import { FormikCheckboxGroupCheckboxProp } from '@navikt/sif-common-formik-ds/lib/components/formik-checkbox-group/FormikCheckboxGroup';
+import { dateFormatter } from '@navikt/sif-common-utils/lib';
 
 export enum AktivitetFormFields {
     aktivitet = 'aktivitet',
@@ -70,16 +72,13 @@ const AktivitetStep = () => {
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             <CheckboxGroup
-                                legend={'For hvilket arbeidsaktivitet gjelder endringen?'}
+                                legend={'Velg hvilke arbeidsforhold du ønsker å endre arbeidstiden for:'}
                                 description={
                                     <ExpandableInfo title="Mangler du noen arbeidsforhold?">Mer info</ExpandableInfo>
                                 }
                                 name={AktivitetFormFields.aktivitet}
                                 validate={getListValidator({ required: true })}
-                                checkboxes={sak.opptjeningAktivitet.arbeidstaker.map((a) => ({
-                                    label: getAktivitetCheckboxLabel(a),
-                                    value: a.arbeidsgiver.id,
-                                }))}
+                                checkboxes={getOpptjeningAktivitetCheckboxes(sak.opptjeningAktivitet)}
                             />
                         </Form>
                     </>
@@ -91,13 +90,63 @@ const AktivitetStep = () => {
 
 export default AktivitetStep;
 
-const getAktivitetCheckboxLabel = ({ arbeidsgiver }: OpptjeningAktivitetArbeidstakerSøknad): React.ReactNode => {
+const getAktivitetCheckboxLabel = ({ title, info }: { title: string; info?: React.ReactNode }): React.ReactNode => {
     return (
         <BodyShort>
-            <strong>{arbeidsgiver.navn}</strong>
-            <div>
-                {arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON ? `Orgnr. ${arbeidsgiver.id}` : 'Privatperson'}
-            </div>
+            <strong>{title}</strong>
+            {info ? <div>{info}</div> : null}
         </BodyShort>
     );
+};
+
+export const getOpptjeningAktivitetCheckboxes = (
+    opptjeningAktivitet: OpptjeningAktivitet
+): FormikCheckboxGroupCheckboxProp[] => {
+    const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
+
+    const { arbeidstaker, frilanser, selvstendingNæringsdrivende } = opptjeningAktivitet;
+
+    arbeidstaker.forEach(({ arbeidsgiver: { id, navn, type } }) => {
+        checkboxProps.push({
+            label: getAktivitetCheckboxLabel({
+                title: navn,
+                info: type === ArbeidsgiverType.ORGANISASJON ? `Orgnr. ${id}` : 'Privatperson',
+            }),
+            value: id,
+        });
+    });
+
+    const getStartetSluttetInfo = (startdato: Date, sluttdato?: Date): string => {
+        const fra = dateFormatter.compact(startdato);
+        const til = sluttdato ? dateFormatter.compact(startdato) : undefined;
+        return `Startdato: ${fra} ${til ? ` til ${til}` : ''}`;
+    };
+
+    if (frilanser) {
+        checkboxProps.push({
+            label: getAktivitetCheckboxLabel({
+                title: 'Frilanser',
+                info: frilanser.info
+                    ? getStartetSluttetInfo(frilanser.info.startdato, frilanser.info.sluttdato)
+                    : undefined,
+            }),
+            value: OpptjeningAktivitetType.frilanser,
+        });
+    }
+    if (selvstendingNæringsdrivende) {
+        checkboxProps.push({
+            label: getAktivitetCheckboxLabel({
+                title: 'Selvstendig næringsdrivende',
+                info: selvstendingNæringsdrivende.info
+                    ? getStartetSluttetInfo(
+                          selvstendingNæringsdrivende.info.startdato,
+                          selvstendingNæringsdrivende.info.sluttdato
+                      )
+                    : undefined,
+            }),
+            value: OpptjeningAktivitetType.selvstendigNæringsdrivende,
+        });
+    }
+
+    return checkboxProps;
 };

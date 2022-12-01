@@ -31,24 +31,34 @@ export interface Barn {
     aktørId: string;
     identitetsnummer: string;
 }
-
-export interface K9OpptjeningAktivitetArbeidstaker {
-    organisasjonsnummer: string;
+export interface K9OpptjeningAktivitetPerioder {
     samletPeriode: DateRange;
     allePerioder: DateRange[];
 }
+export interface K9OpptjeningAktivitetArbeidstaker {
+    info: {
+        organisasjonsnummer: string;
+    };
+    perioder: K9OpptjeningAktivitetPerioder;
+}
 
 export interface K9OpptjeningAktivitetFrilanser {
-    startdato: Date;
-    sluttdato?: Date;
-    jobberFortsattSomFrilanser: boolean;
+    perioder: K9OpptjeningAktivitetPerioder;
+    info?: {
+        startdato: Date;
+        sluttdato?: Date;
+        jobberFortsattSomFrilanser: boolean;
+    };
 }
 
 export interface K9OpptjeningAktivitetSelvstendig {
-    /** TODO - må avklares hvordan denne kommer fra K9 */
-    startdato: Date;
-    sluttdato?: Date;
-    organisasjonsnummer: string;
+    perioder: K9OpptjeningAktivitetPerioder;
+    info?: {
+        /** TODO - må avklares hvordan denne kommer fra K9 */
+        startdato: Date;
+        sluttdato?: Date;
+        organisasjonsnummer: string;
+    };
 }
 
 export interface K9OpptjeningAktivitet {
