@@ -11,7 +11,7 @@ export const erArbeidsgivereIK9SakOgIAAreg = (
         : false;
 
 export const getArbeidsgivereIK9Sak = (arbeidsgivere: Arbeidsgiver[], sak: K9Sak): Arbeidsgiver[] => {
-    const { arbeidstakerMap } = sak.ytelse.arbeidstid;
+    const { arbeidstakerMap } = sak.ytelse.arbeidstidInfo;
     if (arbeidstakerMap === undefined) {
         return [];
     }

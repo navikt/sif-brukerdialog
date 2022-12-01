@@ -4,7 +4,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { OpptjeningAktivitetArbeidstaker } from '../../../types/Sak';
+import { ArbeidAktivitetArbeidstaker } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -56,7 +56,7 @@ const ArbeidstidStep = () => {
     );
 
     const arbeidsgivere = getAktiviteterSomSkalEndres(
-        sak.opptjeningAktivitet.arbeidstaker,
+        sak.arbeidAktivitet.arbeidstaker,
         søknadsdata.aktivitet?.aktivitet
     );
 
@@ -96,8 +96,8 @@ const ArbeidstidStep = () => {
 export default ArbeidstidStep;
 
 const getAktiviteterSomSkalEndres = (
-    aktivitet: OpptjeningAktivitetArbeidstaker[],
-    valgteAktiviteter: string[]
-): OpptjeningAktivitetArbeidstaker[] => {
-    return aktivitet.filter((a) => valgteAktiviteter.includes(a.arbeidsgiver.id));
+    aktivitet: ArbeidAktivitetArbeidstaker[],
+    valgteAktiviteter?: string[]
+): ArbeidAktivitetArbeidstaker[] => {
+    return aktivitet.filter((a) => (valgteAktiviteter || []).includes(a.arbeidsgiver.id));
 };

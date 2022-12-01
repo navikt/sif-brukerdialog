@@ -87,7 +87,7 @@ interface K9FormatYtelse {
     søknadsperiode: ISODateRange[];
     opptjeningAktivitet: {
         frilanser?: K9FormatOpptjeningAktivitetFrilanser;
-        selvstendig?: K9FormatOpptjeningAktivitetSelvstendig;
+        selvstendigNæringsdrivende?: K9FormatOpptjeningAktivitetSelvstendig;
     };
     tilsynsordning: {
         perioder: K9FormatTilsynsordningPerioder;

@@ -1,12 +1,14 @@
 import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import { FormikCheckboxGroupCheckboxProp } from '@navikt/sif-common-formik-ds/lib/components/formik-checkbox-group/FormikCheckboxGroup';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
+import { ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -16,9 +18,6 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
-import { OpptjeningAktiviteter, OpptjeningAktivitetType } from '../../../types/Sak';
-import { FormikCheckboxGroupCheckboxProp } from '@navikt/sif-common-formik-ds/lib/components/formik-checkbox-group/FormikCheckboxGroup';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
 
 export enum AktivitetFormFields {
     aktivitet = 'aktivitet',
@@ -78,7 +77,7 @@ const AktivitetStep = () => {
                                 }
                                 name={AktivitetFormFields.aktivitet}
                                 validate={getListValidator({ required: true })}
-                                checkboxes={getOpptjeningAktivitetCheckboxes(sak.opptjeningAktivitet)}
+                                checkboxes={getOpptjeningAktivitetCheckboxes(sak.arbeidAktivitet)}
                             />
                         </Form>
                     </>
@@ -100,11 +99,11 @@ const getAktivitetCheckboxLabel = ({ title, info }: { title: string; info?: Reac
 };
 
 export const getOpptjeningAktivitetCheckboxes = (
-    opptjeningAktivitet: OpptjeningAktiviteter
+    arbeidAktiviteter: ArbeidAktiviteter
 ): FormikCheckboxGroupCheckboxProp[] => {
     const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
 
-    const { arbeidstaker, frilanser, selvstendingNæringsdrivende } = opptjeningAktivitet;
+    const { arbeidstaker, frilanser, selvstendingNæringsdrivende } = arbeidAktiviteter;
 
     arbeidstaker.forEach(({ arbeidsgiver: { id, navn, type } }) => {
         checkboxProps.push({
@@ -116,35 +115,20 @@ export const getOpptjeningAktivitetCheckboxes = (
         });
     });
 
-    const getStartetSluttetInfo = (startdato: Date, sluttdato?: Date): string => {
-        const fra = dateFormatter.compact(startdato);
-        const til = sluttdato ? dateFormatter.compact(startdato) : undefined;
-        return `Startdato: ${fra} ${til ? ` til ${til}` : ''}`;
-    };
-
     if (frilanser) {
         checkboxProps.push({
             label: getAktivitetCheckboxLabel({
                 title: 'Frilanser',
-                info: frilanser.info
-                    ? getStartetSluttetInfo(frilanser.info.startdato, frilanser.info.sluttdato)
-                    : undefined,
             }),
-            value: OpptjeningAktivitetType.frilanser,
+            value: ArbeidAktivitetType.frilanser,
         });
     }
     if (selvstendingNæringsdrivende) {
         checkboxProps.push({
             label: getAktivitetCheckboxLabel({
                 title: 'Selvstendig næringsdrivende',
-                info: selvstendingNæringsdrivende.info
-                    ? getStartetSluttetInfo(
-                          selvstendingNæringsdrivende.info.startdato,
-                          selvstendingNæringsdrivende.info.sluttdato
-                      )
-                    : undefined,
             }),
-            value: OpptjeningAktivitetType.selvstendigNæringsdrivende,
+            value: ArbeidAktivitetType.selvstendigNæringsdrivende,
         });
     }
 

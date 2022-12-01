@@ -1,42 +1,45 @@
+import { DateRange } from 'react-day-picker';
 import { Arbeidsgiver } from './Arbeidsgiver';
 
-import {
-    Barn,
-    K9OpptjeningAktivitetArbeidstaker,
-    K9OpptjeningAktivitetFrilanser,
-    K9OpptjeningAktivitetSelvstendig,
-} from './K9Sak';
+import { Barn } from './K9Sak';
 
-export enum OpptjeningAktivitetType {
+export enum ArbeidAktivitetType {
     arbeidstaker = 'arbeidstaker',
     frilanser = 'frilanser',
     selvstendigNæringsdrivende = 'selvstendigNæringsdrivende',
 }
 
-export interface OpptjeningAktivitetArbeidstaker extends K9OpptjeningAktivitetArbeidstaker {
-    type: OpptjeningAktivitetType.arbeidstaker;
+interface ArbeidAktivitetPerioder {
+    allePerioder: DateRange[];
+    samletPeriode: DateRange;
+}
+export interface ArbeidAktivitetArbeidstaker {
+    type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
+    perioder: ArbeidAktivitetPerioder;
 }
-export interface OpptjeningAktivitetFrilanser extends K9OpptjeningAktivitetFrilanser {
-    type: OpptjeningAktivitetType.frilanser;
-}
-
-export interface OpptjeningAktivitetSelvstendigNæringsdrivende extends K9OpptjeningAktivitetSelvstendig {
-    type: OpptjeningAktivitetType.selvstendigNæringsdrivende;
+export interface ArbeidAktivitetFrilanser {
+    type: ArbeidAktivitetType.frilanser;
+    perioder: ArbeidAktivitetPerioder;
 }
 
-export type OpptjeningAktivitet =
-    | OpptjeningAktivitetArbeidstaker
-    | OpptjeningAktivitetFrilanser
-    | OpptjeningAktivitetSelvstendigNæringsdrivende;
+export interface ArbeidAktivitetSelvstendigNæringsdrivence {
+    type: ArbeidAktivitetType.selvstendigNæringsdrivende;
+    perioder: ArbeidAktivitetPerioder;
+}
 
-export interface OpptjeningAktiviteter {
-    arbeidstaker: OpptjeningAktivitetArbeidstaker[];
-    frilanser?: OpptjeningAktivitetFrilanser;
-    selvstendingNæringsdrivende?: OpptjeningAktivitetSelvstendigNæringsdrivende;
+export type ArbeidAktivitet =
+    | ArbeidAktivitetArbeidstaker
+    | ArbeidAktivitetFrilanser
+    | ArbeidAktivitetSelvstendigNæringsdrivence;
+
+export interface ArbeidAktiviteter {
+    arbeidstaker: ArbeidAktivitetArbeidstaker[];
+    frilanser?: ArbeidAktivitetFrilanser;
+    selvstendingNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivence;
 }
 
 export interface Sak {
     barn: Barn;
-    opptjeningAktivitet: OpptjeningAktiviteter;
+    arbeidAktivitet: ArbeidAktiviteter;
 }

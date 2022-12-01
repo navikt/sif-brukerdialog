@@ -12,24 +12,28 @@ import dayjs from 'dayjs';
 import {
     K9Format,
     K9FormatArbeidstaker,
-    K9FormatArbeidstidInfo,
     K9FormatArbeidstidPeriode,
     K9FormatBarn,
-    K9FormatOpptjeningAktivitetFrilanser,
-    K9FormatOpptjeningAktivitetSelvstendig,
     K9FormatTilsynsordningPerioder,
 } from '../types/k9Format';
 import {
+    AktivitetArbeidstid,
     ArbeidstakerMap,
     ArbeidstidEnkeltdagSak,
     Barn,
-    K9OpptjeningAktivitetArbeidstaker,
-    K9OpptjeningAktivitetFrilanser,
-    K9OpptjeningAktivitetSelvstendig,
     K9Sak,
     TidEnkeltdag,
 } from '../types/K9Sak';
 import { getEndringsdato, getSøknadsperioderInnenforTillattEndringsperiode } from './endringsperiode';
+
+export const getArbeidAktivitetPerioderFromPerioder = (perioder: K9FormatArbeidstidPeriode) => {
+    const allePerioder = dateRangeUtils.getDateRangesFromISODateRangeMap(perioder);
+    const samletPeriode = dateRangeUtils.getDateRangeFromDateRanges(allePerioder);
+    return {
+        allePerioder,
+        samletPeriode,
+    };
+};
 
 export const getTilsynsdagerFromK9Format = (data: K9FormatTilsynsordningPerioder): TidEnkeltdag => {
     const enkeltdager: TidEnkeltdag = {};
@@ -53,7 +57,7 @@ const dateIsIWithinDateRanges = (date: Date, dateRanges: DateRange[]) =>
 export const getAktivitetArbeidstidFromK9Format = (
     arbeidstidPerioder: K9FormatArbeidstidPeriode,
     søknadsperioder: DateRange[]
-): ArbeidstidEnkeltdagSak => {
+): AktivitetArbeidstid => {
     const arbeidstid: ArbeidstidEnkeltdagSak = {
         faktisk: {},
         normalt: {},
@@ -81,7 +85,12 @@ export const getAktivitetArbeidstidFromK9Format = (
         });
     });
 
-    return arbeidstid;
+    const { samletPeriode, allePerioder } = getArbeidAktivitetPerioderFromPerioder(arbeidstidPerioder);
+    return {
+        samletPeriode,
+        allePerioder,
+        arbeidstid,
+    };
 };
 
 const getArbeidstidArbeidsgivere = (
@@ -107,62 +116,52 @@ const getBarn = (barn: K9FormatBarn): Barn => {
     };
 };
 
-export const getOpptjeningAktivitetPerioderFromArbeidstidInfo = (arbeidstidInfo: K9FormatArbeidstidInfo) => {
-    const allePerioder = dateRangeUtils.getDateRangesFromISODateRangeMap(arbeidstidInfo.perioder);
-    const samletPeriode = dateRangeUtils.getDateRangeFromDateRanges(allePerioder);
-    return {
-        allePerioder,
-        samletPeriode,
-    };
-};
+// export const getOppgjeningsaktivitetArbeidstaker = (
+//     k9Arbeidstaker: K9FormatArbeidstaker[]
+// ): K9OpptjeningAktivitetArbeidstaker[] => {
+//     return k9Arbeidstaker.map(({ arbeidstidInfo, organisasjonsnummer }) => {
+//         return {
+//             perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
+//             info: {
+//                 organisasjonsnummer,
+//             },
+//         };
+//     });
+// };
 
-export const getOppgjeningsaktivitetArbeidstaker = (
-    k9Arbeidstaker: K9FormatArbeidstaker[]
-): K9OpptjeningAktivitetArbeidstaker[] => {
-    return k9Arbeidstaker.map(({ arbeidstidInfo, organisasjonsnummer }) => {
-        return {
-            perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
-            info: {
-                organisasjonsnummer,
-            },
-        };
-    });
-};
+// export const getOpptjeningsaktivitetFrilanser = (
+//     info?: K9FormatOpptjeningAktivitetFrilanser
+// ): K9OpptjeningAktivitetFrilanser => {
+//     return {
+//         perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
+//         info: info
+//             ? {
+//                   startdato: ISODateToDate(info.startdato),
+//                   jobberFortsattSomFrilanser: info.jobberFortsattSomFrilanser,
+//                   sluttdato:
+//                       info.jobberFortsattSomFrilanser === false && info.sluttdato
+//                           ? ISODateToDate(info.sluttdato)
+//                           : undefined,
+//               }
+//             : undefined,
+//     };
+// };
 
-export const getOpptjeningsaktivitetFrilanser = (
-    arbeidstidInfo: K9FormatArbeidstidInfo,
-    info?: K9FormatOpptjeningAktivitetFrilanser
-): K9OpptjeningAktivitetFrilanser => {
-    return {
-        perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
-        info: info
-            ? {
-                  startdato: ISODateToDate(info.startdato),
-                  jobberFortsattSomFrilanser: info.jobberFortsattSomFrilanser,
-                  sluttdato:
-                      info.jobberFortsattSomFrilanser === false && info.sluttdato
-                          ? ISODateToDate(info.sluttdato)
-                          : undefined,
-              }
-            : undefined,
-    };
-};
-
-export const getOppgjeningsaktivitetSelvstendig = (
-    arbeidstidInfo: K9FormatArbeidstidInfo,
-    info?: K9FormatOpptjeningAktivitetSelvstendig
-): K9OpptjeningAktivitetSelvstendig => {
-    return {
-        perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
-        info: info
-            ? {
-                  organisasjonsnummer: info.organisasjonsnummer,
-                  startdato: ISODateToDate(info.startdato),
-                  sluttdato: info.sluttdato ? ISODateToDate(info.sluttdato) : undefined,
-              }
-            : undefined,
-    };
-};
+// export const getOppgjeningsaktivitetSelvstendig = (
+//     arbeidstidInfo: K9FormatArbeidstidInfo,
+//     info?: K9FormatOpptjeningAktivitetSelvstendig
+// ): K9OpptjeningAktivitetSelvstendig => {
+//     return {
+//         perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
+//         info: info
+//             ? {
+//                   organisasjonsnummer: info.organisasjonsnummer,
+//                   startdato: ISODateToDate(info.startdato),
+//                   sluttdato: info.sluttdato ? ISODateToDate(info.sluttdato) : undefined,
+//               }
+//             : undefined,
+//     };
+// };
 
 export const parseK9Format = (data: K9Format): K9Sak => {
     const {
@@ -189,32 +188,29 @@ export const parseK9Format = (data: K9Format): K9Sak => {
             },
             søknadsperioder,
             opptjeningAktivitet: {
-                arbeidstaker: getOppgjeningsaktivitetArbeidstaker(ytelse.arbeidstid.arbeidstakerList),
-                frilanser: ytelse.arbeidstid.frilanserArbeidstidInfo
-                    ? getOpptjeningsaktivitetFrilanser(
-                          ytelse.arbeidstid.frilanserArbeidstidInfo,
-                          ytelse.opptjeningAktivitet.frilanser
-                      )
-                    : undefined,
-                selvstendig: ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo
-                    ? getOppgjeningsaktivitetSelvstendig(
-                          ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo,
-                          ytelse.opptjeningAktivitet.selvstendig
-                      )
+                frilanser: ytelse.opptjeningAktivitet.frilanser
+                    ? {
+                          jobberFortsattSomFrilanser: ytelse.opptjeningAktivitet.frilanser.jobberFortsattSomFrilanser,
+                          startdato: ISODateToDate(ytelse.opptjeningAktivitet.frilanser.startdato),
+                          sluttdato: ytelse.opptjeningAktivitet.frilanser.sluttdato
+                              ? ISODateToDate(ytelse.opptjeningAktivitet.frilanser.sluttdato)
+                              : undefined,
+                      }
                     : undefined,
             },
             tilsynsordning: {
                 enkeltdager: getTilsynsdagerFromK9Format(ytelse.tilsynsordning.perioder),
             },
-            arbeidstid: {
+            arbeidstidInfo: {
                 arbeidstakerMap: getArbeidstidArbeidsgivere(ytelse.arbeidstid.arbeidstakerList, søknadsperioder),
-                frilanser: ytelse.arbeidstid.frilanserArbeidstidInfo?.perioder
+                frilanserArbeidstidInfo: ytelse.arbeidstid.frilanserArbeidstidInfo?.perioder
                     ? getAktivitetArbeidstidFromK9Format(
                           ytelse.arbeidstid.frilanserArbeidstidInfo.perioder,
                           søknadsperioder
                       )
                     : undefined,
-                selvstendig: ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo?.perioder
+                selvstendigNæringsdrivendeArbeidstidInfo: ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo
+                    ?.perioder
                     ? getAktivitetArbeidstidFromK9Format(
                           ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo.perioder,
                           søknadsperioder

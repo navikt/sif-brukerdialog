@@ -3,19 +3,25 @@ import { DagerIkkeSøktForMap, DagerSøktForMap } from '.';
 
 export type TidEnkeltdag = DateDurationMap; // { [isoDateString: string]: { hours: string; minutes: string } };
 
+export interface AktivitetArbeidstid {
+    allePerioder: DateRange[];
+    samletPeriode: DateRange;
+    arbeidstid: ArbeidstidEnkeltdagSak;
+}
+
 export type ArbeidstidEnkeltdagSak = {
     faktisk: DateDurationMap;
     normalt: DateDurationMap;
 };
 
 export type ArbeidstakerMap = {
-    [id: string]: ArbeidstidEnkeltdagSak;
+    [id: string]: AktivitetArbeidstid; //ArbeidstidEnkeltdagSak;
 };
 
 export interface YtelseArbeidstid {
     arbeidstakerMap?: ArbeidstakerMap;
-    frilanser?: ArbeidstidEnkeltdagSak;
-    selvstendig?: ArbeidstidEnkeltdagSak;
+    frilanserArbeidstidInfo?: AktivitetArbeidstid; //ArbeidstidEnkeltdagSak;
+    selvstendigNæringsdrivendeArbeidstidInfo?: AktivitetArbeidstid; // ArbeidstidEnkeltdagSak;
 }
 
 export interface SakMedMeta {
@@ -31,51 +37,23 @@ export interface Barn {
     aktørId: string;
     identitetsnummer: string;
 }
-export interface K9OpptjeningAktivitetPerioder {
-    samletPeriode: DateRange;
-    allePerioder: DateRange[];
-}
-export interface K9OpptjeningAktivitetArbeidstaker {
-    info: {
-        organisasjonsnummer: string;
-    };
-    perioder: K9OpptjeningAktivitetPerioder;
-}
-
 export interface K9OpptjeningAktivitetFrilanser {
-    perioder: K9OpptjeningAktivitetPerioder;
-    info?: {
-        startdato: Date;
-        sluttdato?: Date;
-        jobberFortsattSomFrilanser: boolean;
-    };
-}
-
-export interface K9OpptjeningAktivitetSelvstendig {
-    perioder: K9OpptjeningAktivitetPerioder;
-    info?: {
-        /** TODO - må avklares hvordan denne kommer fra K9 */
-        startdato: Date;
-        sluttdato?: Date;
-        organisasjonsnummer: string;
-    };
-}
-
-export interface K9OpptjeningAktivitet {
-    arbeidstaker?: K9OpptjeningAktivitetArbeidstaker[];
-    selvstendig?: K9OpptjeningAktivitetSelvstendig;
-    frilanser?: K9OpptjeningAktivitetFrilanser;
+    startdato: Date;
+    sluttdato?: Date;
+    jobberFortsattSomFrilanser: boolean;
 }
 
 interface Ytelse {
     type: 'PLEIEPENGER_SYKT_BARN';
     barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
     søknadsperioder: DateRange[];
-    opptjeningAktivitet: K9OpptjeningAktivitet;
+    opptjeningAktivitet: {
+        frilanser?: K9OpptjeningAktivitetFrilanser;
+    };
     tilsynsordning: {
         enkeltdager: DateDurationMap;
     };
-    arbeidstid: YtelseArbeidstid;
+    arbeidstidInfo: YtelseArbeidstid;
 }
 
 export interface K9Sak {

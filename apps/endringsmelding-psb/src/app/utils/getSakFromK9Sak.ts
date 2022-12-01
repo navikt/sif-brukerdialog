@@ -1,37 +1,51 @@
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { K9Sak } from '../types/K9Sak';
-import { OpptjeningAktivitetArbeidstaker, OpptjeningAktiviteter, Sak, OpptjeningAktivitetType } from '../types/Sak';
+import { Sak, ArbeidAktivitetType, ArbeidAktiviteter, ArbeidAktivitetArbeidstaker } from '../types/Sak';
 
-export const getOpptjeningsaktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]): OpptjeningAktiviteter => {
-    const opptjeningArbeidstaker: OpptjeningAktivitetArbeidstaker[] = [];
+export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]): ArbeidAktiviteter => {
+    const aktivitetArbeidstaker: ArbeidAktivitetArbeidstaker[] = [];
 
-    const { arbeidstaker, frilanser, selvstendig } = k9Sak.ytelse.opptjeningAktivitet;
+    const {
+        arbeidstakerMap = {},
+        frilanserArbeidstidInfo,
+        selvstendigNæringsdrivendeArbeidstidInfo,
+    } = k9Sak.ytelse.arbeidstidInfo;
 
-    (arbeidstaker || []).forEach((aktivitet) => {
-        const arbeidsgiver = arbeidsgivere.find(({ id }) => id === aktivitet.info.organisasjonsnummer);
+    Object.keys(arbeidstakerMap).forEach((key) => {
+        const { allePerioder, samletPeriode } = arbeidstakerMap[key];
+        const arbeidsgiver = arbeidsgivere.find((arbeidsgiver) => arbeidsgiver.id === key);
         if (arbeidsgiver) {
-            opptjeningArbeidstaker.push({
-                type: OpptjeningAktivitetType.arbeidstaker,
+            aktivitetArbeidstaker.push({
+                type: ArbeidAktivitetType.arbeidstaker,
                 arbeidsgiver,
-                ...aktivitet,
+                perioder: {
+                    allePerioder,
+                    samletPeriode,
+                },
             });
         }
     });
 
     return {
-        arbeidstaker: opptjeningArbeidstaker,
+        arbeidstaker: aktivitetArbeidstaker,
         frilanser:
-            frilanser !== undefined
+            frilanserArbeidstidInfo !== undefined
                 ? {
-                      type: OpptjeningAktivitetType.frilanser,
-                      ...frilanser,
+                      type: ArbeidAktivitetType.frilanser,
+                      perioder: {
+                          samletPeriode: frilanserArbeidstidInfo.samletPeriode,
+                          allePerioder: frilanserArbeidstidInfo.allePerioder,
+                      },
                   }
                 : undefined,
         selvstendingNæringsdrivende:
-            selvstendig !== undefined
+            selvstendigNæringsdrivendeArbeidstidInfo !== undefined
                 ? {
-                      type: OpptjeningAktivitetType.selvstendigNæringsdrivende,
-                      ...selvstendig,
+                      type: ArbeidAktivitetType.selvstendigNæringsdrivende,
+                      perioder: {
+                          samletPeriode: selvstendigNæringsdrivendeArbeidstidInfo.samletPeriode,
+                          allePerioder: selvstendigNæringsdrivendeArbeidstidInfo.allePerioder,
+                      },
                   }
                 : undefined,
     };
@@ -40,6 +54,6 @@ export const getOpptjeningsaktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgi
 export const getSakFromK9Sak = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]): Sak | undefined => {
     return {
         barn: k9Sak.barn,
-        opptjeningAktivitet: getOpptjeningsaktiviteter(k9Sak, arbeidsgivere),
+        arbeidAktivitet: getArbeidAktiviteter(k9Sak, arbeidsgivere),
     };
 };
