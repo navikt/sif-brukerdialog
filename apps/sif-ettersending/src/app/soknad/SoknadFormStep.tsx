@@ -1,13 +1,12 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { ProgressStep } from '@navikt/sif-common-core-ds/lib/components/progress-stepper/ProgressStepper';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds/lib';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import StepSubmitButton from '@navikt/sif-common-soknad-ds/lib/soknad-step/step-submit-button/StepSubmitButton';
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import { ApplicationType } from '../types/ApplicationType';
 import { SoknadFormData } from '../types/SoknadFormData';
@@ -19,6 +18,7 @@ interface OwnProps {
     id: StepID;
     onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
     onSendSoknad?: () => void;
+    submitButtonLabel?: string;
     showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
     includeValidationSummary?: boolean;
@@ -37,16 +37,17 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     onSendSoknad,
     children,
     showButtonSpinner,
-    showSubmitButton = true,
     includeValidationSummary = true,
     pageTitle,
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
+    submitButtonLabel,
     søknadstype,
 }) => {
     const intl = useIntl();
     const { soknadStepsConfig, resetSoknad, gotoNextStepFromStep, continueSoknadLater } = useSoknadContext();
     const stepConfig = soknadStepsConfig[id];
+    const navigate = useNavigate();
 
     const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
     const applicationTitle = intlHelper(intl, `application.title.${søknadstype}`);
@@ -54,6 +55,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     useLogSidevisning(id);
 
     const steps: ProgressStep[] = soknadStepUtils.getProgressStepsFromConfig(soknadStepsConfig, stepConfig.index, intl);
+    const { previousStepRoute } = stepConfig;
 
     return (
         <Step
@@ -65,9 +67,13 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
             onCancel={resetSoknad}
             onContinueLater={continueSoknadLater ? () => continueSoknadLater(id) : undefined}>
             <SoknadFormComponents.Form
-                includeButtons={false}
+                includeButtons={true}
                 includeValidationSummary={includeValidationSummary}
                 formErrorHandler={getFormErrorHandler(intl, 'validation')}
+                submitPending={showButtonSpinner}
+                submitDisabled={buttonDisabled}
+                submitButtonLabel={submitButtonLabel}
+                onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
                 noButtonsContentRenderer={
                     showNotAllQuestionsAnsweredMessage
                         ? (): React.ReactNode => (
@@ -79,16 +85,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
                 }
                 runDelayedFormValidation={true}
                 cleanup={onStepCleanup}
-                onValidSubmit={onSendSoknad ? onSendSoknad : (): void => gotoNextStepFromStep(id)}
-                formFooter={
-                    showSubmitButton ? (
-                        <Block textAlignCenter={true} margin="xl">
-                            <StepSubmitButton disabled={buttonDisabled} showSpinner={showButtonSpinner}>
-                                {texts.nextButtonLabel}
-                            </StepSubmitButton>
-                        </Block>
-                    ) : undefined
-                }>
+                onValidSubmit={onSendSoknad ? onSendSoknad : (): void => gotoNextStepFromStep(id)}>
                 {children}
             </SoknadFormComponents.Form>
         </Step>

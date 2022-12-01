@@ -41,6 +41,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             søknadstype={søknadstype}
             includeValidationSummary={false}
             showButtonSpinner={isPending(sendSoknadStatus.status)}
+            submitButtonLabel={intlHelper(intl, 'step.sendButtonLabel')}
             buttonDisabled={
                 isPending(sendSoknadStatus.status) ||
                 apiValues === undefined ||
