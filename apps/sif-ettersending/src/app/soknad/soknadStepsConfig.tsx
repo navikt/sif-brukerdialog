@@ -1,6 +1,11 @@
-import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
+import {
+    SoknadApplicationType,
+    SoknadStepsConfig,
+    StepConfig,
+} from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { ApplicationType } from '../types/ApplicationType';
+import { getApplicationPageRoute } from '../utils/routeUtils';
 
 export enum StepID {
     'BESKRIVELSE' = 'beskrivelse',
@@ -43,5 +48,22 @@ const getSoknadSteps = (søknadstype: ApplicationType): StepID[] => {
     return steps;
 };
 
-export const getSoknadStepsConfig = (søknadstype: ApplicationType): SoknadStepsConfig<StepID> =>
-    soknadStepUtils.getStepsConfig(getSoknadSteps(søknadstype), SoknadApplicationType.MELDING);
+export const getSoknadStepsConfig = (søknadstype: ApplicationType): SoknadStepsConfig<StepID> => {
+    const søknadStepConfig = soknadStepUtils.getStepsConfig(getSoknadSteps(søknadstype), SoknadApplicationType.MELDING);
+    const updatedConfig: SoknadStepsConfig<StepID> = {};
+
+    /** Oppdatere routes med søknadstype */
+    Object.keys(søknadStepConfig).forEach((key: StepID) => {
+        const config = søknadStepConfig[key] as StepConfig<StepID>;
+        updatedConfig[config.id] = {
+            ...config,
+            route: getApplicationPageRoute(søknadstype, config.id),
+            previousStepRoute: config.previousStep
+                ? getApplicationPageRoute(søknadstype, config.previousStep)
+                : undefined,
+            nextStepRoute: config.nextStep ? getApplicationPageRoute(søknadstype, config.nextStep) : undefined,
+        };
+    });
+
+    return updatedConfig;
+};
