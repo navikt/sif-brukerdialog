@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude';
 import { ProgressStep } from '@navikt/sif-common-core-ds/lib/components/progress-stepper/ProgressStepper';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
@@ -12,9 +13,6 @@ import { SoknadFormData } from '../types/SoknadFormData';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
-import { useNavigate } from 'react-router-dom';
-import { navigateTo } from '../utils/navigationUtils';
-import { getApplicationPageRoute } from '../utils/routeUtils';
 
 interface OwnProps {
     id: StepID;
@@ -57,7 +55,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     useLogSidevisning(id);
 
     const steps: ProgressStep[] = soknadStepUtils.getProgressStepsFromConfig(soknadStepsConfig, stepConfig.index, intl);
-    const { previousStep } = stepConfig;
+    const { previousStepRoute } = stepConfig;
 
     return (
         <Step
@@ -75,11 +73,7 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
                 submitPending={showButtonSpinner}
                 submitDisabled={buttonDisabled}
                 submitButtonLabel={submitButtonLabel}
-                onBack={
-                    previousStep
-                        ? () => navigateTo(getApplicationPageRoute(søknadstype, previousStep), navigate)
-                        : undefined
-                }
+                onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
                 noButtonsContentRenderer={
                     showNotAllQuestionsAnsweredMessage
                         ? (): React.ReactNode => (
