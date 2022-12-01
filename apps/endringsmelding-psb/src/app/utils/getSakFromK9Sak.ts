@@ -1,8 +1,8 @@
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { K9Sak } from '../types/K9Sak';
-import { OpptjeningAktivitetArbeidstaker, OpptjeningAktivitet, Sak, OpptjeningAktivitetType } from '../types/Sak';
+import { OpptjeningAktivitetArbeidstaker, OpptjeningAktiviteter, Sak, OpptjeningAktivitetType } from '../types/Sak';
 
-export const getOpptjeningsaktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]): OpptjeningAktivitet => {
+export const getOpptjeningsaktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]): OpptjeningAktiviteter => {
     const opptjeningArbeidstaker: OpptjeningAktivitetArbeidstaker[] = [];
 
     const { arbeidstaker, frilanser, selvstendig } = k9Sak.ytelse.opptjeningAktivitet;

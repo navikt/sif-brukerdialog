@@ -25,7 +25,12 @@ export interface OpptjeningAktivitetSelvstendigNæringsdrivende extends K9Opptje
     type: OpptjeningAktivitetType.selvstendigNæringsdrivende;
 }
 
-export interface OpptjeningAktivitet {
+export type OpptjeningAktivitet =
+    | OpptjeningAktivitetArbeidstaker
+    | OpptjeningAktivitetFrilanser
+    | OpptjeningAktivitetSelvstendigNæringsdrivende;
+
+export interface OpptjeningAktiviteter {
     arbeidstaker: OpptjeningAktivitetArbeidstaker[];
     frilanser?: OpptjeningAktivitetFrilanser;
     selvstendingNæringsdrivende?: OpptjeningAktivitetSelvstendigNæringsdrivende;
@@ -33,5 +38,5 @@ export interface OpptjeningAktivitet {
 
 export interface Sak {
     barn: Barn;
-    opptjeningAktivitet: OpptjeningAktivitet;
+    opptjeningAktivitet: OpptjeningAktiviteter;
 }

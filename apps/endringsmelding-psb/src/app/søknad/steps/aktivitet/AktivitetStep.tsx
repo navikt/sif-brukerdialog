@@ -16,7 +16,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
-import { OpptjeningAktivitet, OpptjeningAktivitetType } from '../../../types/Sak';
+import { OpptjeningAktiviteter, OpptjeningAktivitetType } from '../../../types/Sak';
 import { FormikCheckboxGroupCheckboxProp } from '@navikt/sif-common-formik-ds/lib/components/formik-checkbox-group/FormikCheckboxGroup';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 
@@ -100,7 +100,7 @@ const getAktivitetCheckboxLabel = ({ title, info }: { title: string; info?: Reac
 };
 
 export const getOpptjeningAktivitetCheckboxes = (
-    opptjeningAktivitet: OpptjeningAktivitet
+    opptjeningAktivitet: OpptjeningAktiviteter
 ): FormikCheckboxGroupCheckboxProp[] => {
     const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
 

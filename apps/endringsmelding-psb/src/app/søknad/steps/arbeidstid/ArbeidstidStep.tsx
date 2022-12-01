@@ -1,16 +1,18 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { StepId } from '../../config/StepId';
+import { OpptjeningAktivitetArbeidstaker } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { StepId } from '../../config/StepId';
+import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 
 export enum ArbeidstidFormFields {
@@ -27,7 +29,7 @@ const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
 
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, sak },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
@@ -53,6 +55,13 @@ const ArbeidstidStep = () => {
         }
     );
 
+    const arbeidsgivere = getAktiviteterSomSkalEndres(
+        sak.opptjeningAktivitet.arbeidstaker,
+        søknadsdata.aktivitet?.aktivitet
+    );
+
+    // console.log(arbeidsgivere);
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -66,7 +75,16 @@ const ArbeidstidStep = () => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            Content
+                            {arbeidsgivere.length > 0 && (
+                                <>
+                                    <Heading level="2" size="small">
+                                        Arbeidsgivere
+                                    </Heading>
+                                    {arbeidsgivere.map((a) => {
+                                        <p key={a.arbeidsgiver.id}>sad{a.arbeidsgiver.navn}</p>;
+                                    })}
+                                </>
+                            )}
                         </Form>
                     </>
                 )}
@@ -76,3 +94,10 @@ const ArbeidstidStep = () => {
 };
 
 export default ArbeidstidStep;
+
+const getAktiviteterSomSkalEndres = (
+    aktivitet: OpptjeningAktivitetArbeidstaker[],
+    valgteAktiviteter: string[]
+): OpptjeningAktivitetArbeidstaker[] => {
+    return aktivitet.filter((a) => valgteAktiviteter.includes(a.arbeidsgiver.id));
+};
