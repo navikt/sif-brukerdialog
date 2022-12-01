@@ -12,6 +12,7 @@ import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import { getEnvVariableOrDefault } from './utils/envUtils';
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';
@@ -20,6 +21,17 @@ const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+
+function prepare() {
+    if (getEnvironmentVariable('APP_VERSION') !== 'production') {
+        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test' || 1 + 1 === 2) {
+            return import('../../mocks/msw/browser').then(({ worker }) =>
+                worker.start({ onUnhandledRequest: 'bypass' })
+            );
+        }
+    }
+    return Promise.resolve();
+}
 
 const App = () => (
     <SifAppWrapper>
@@ -57,4 +69,6 @@ const App = () => (
     </SifAppWrapper>
 );
 
-root.render(<App />);
+prepare().then(() => {
+    root.render(<App />);
+});
