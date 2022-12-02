@@ -7,7 +7,10 @@ import { Søker } from '../../types/Søker';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
-export type SøknadStatePersistence = Omit<SøknadContextState, 'søker' | 'institusjoner'> & {
+export type SøknadStatePersistence = Omit<
+    SøknadContextState,
+    'søker' | 'institusjoner' | 'arbeidsgivere' | 'k9saker'
+> & {
     søknadHashString: string;
 };
 
@@ -34,22 +37,23 @@ export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo
 ): boolean => {
-    return (
-        søknadState.versjon === APP_VERSJON &&
-        søknadState.søknadsdata?.harForståttRettigheterOgPlikter === true &&
-        søknadState.søknadHashString === createHashString(info)
-    );
+    return søknadState.versjon === APP_VERSJON && søknadState.søknadHashString === createHashString(info);
 };
 
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
+    update: ({
+        søker,
+        søknadsdata,
+        søknadRoute,
+        sak,
+        søknadSendt,
+    }: Omit<SøknadContextState, 'k9saker' | 'arbeidsgivere'>) => {
         return persistSetup.update({
             søknadHashString: createHashString({ søker }),
             søknadsdata,
-            saker: [],
-            arbeidsgivere: [],
+            sak,
             søknadRoute,
             søknadSendt,
             versjon: APP_VERSJON,

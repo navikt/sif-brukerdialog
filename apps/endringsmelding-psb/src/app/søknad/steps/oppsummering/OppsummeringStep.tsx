@@ -1,16 +1,17 @@
-import { Button, ErrorSummary } from '@navikt/ds-react';
+import { Alert, ErrorSummary } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import ButtonRow from '@navikt/sif-common-core-ds/lib/components/button-row/ButtonRow';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { StepId } from '../../config/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { StepId } from '../../../types/StepId';
+import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
@@ -27,7 +28,16 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
-    const { state } = useSøknadContext();
+    const stepId = StepId.OPPSUMMERING;
+    const {
+        state: { søknadsdata },
+    } = useSøknadContext();
+
+    const stepConfig = getSøknadStepConfig();
+    const step = stepConfig[stepId];
+    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+
+    const { goBack } = useStepNavigation(step);
 
     const { sendSøknad, isSubmitting, sendSøknadError, resetSendSøknad } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
@@ -39,51 +49,39 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(state.søknadsdata);
-
-    if (!apiData) {
-        return (
-            <ErrorPage
-                pageTitle="ApiData er ikke gyldig"
-                contentRenderer={() => {
-                    return <>Hva gjør vi nå?</>;
-                }}
-            />
-        );
-    }
+    const apiData = getApiDataFromSøknadsdata(søknadsdata);
 
     return (
-        <SøknadStep stepId={StepId.OPPSUMMERING}>
+        <SøknadStep stepId={stepId}>
+            {!apiData ? (
+                <FormBlock paddingBottom="xl">
+                    <Alert variant="error">Ugyldig apiData?</Alert>
+                </FormBlock>
+            ) : (
+                <>Oppsummering</>
+            )}
             <FormikWrapper
-                initialValues={getOppsummeringStepInitialValues(state.søknadsdata)}
+                initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={() => {
-                    sendSøknad(apiData);
+                    apiData ? sendSøknad(apiData) : undefined;
                 }}
                 renderForm={() => {
                     return (
                         <>
                             <Form
-                                includeButtons={false}
-                                submitDisabled={isSubmitting}
+                                submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
                                 submitButtonLabel="Send søknad"
-                                submitPending={isSubmitting}>
+                                submitPending={isSubmitting}
+                                onValidSubmit={() => {
+                                    resetSendSøknad();
+                                }}
+                                onBack={goBack}>
                                 <ConfirmationCheckbox
                                     label="Bekrefter opplysninger"
                                     validate={getCheckedValidator()}
                                     name={OppsummeringFormFields.harBekreftetOpplysninger}
                                 />
-                                <FormBlock>
-                                    <ButtonRow align="left">
-                                        <Button
-                                            type="submit"
-                                            onClick={() => {
-                                                resetSendSøknad();
-                                            }}>
-                                            Send melding
-                                        </Button>
-                                    </ButtonRow>
-                                </FormBlock>
                             </Form>
                             {sendSøknadError && (
                                 <FormBlock>

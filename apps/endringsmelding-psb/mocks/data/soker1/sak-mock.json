@@ -1,12 +1,12 @@
 [
     {
         "barn": {
-            "fødselsdato": "2005-02-12",
-            "fornavn": "TVILSOM",
+            "fødselsdato": "2020-04-20",
+            "fornavn": "SKRIVEFØR",
             "mellomnavn": null,
-            "etternavn": "KNOTT",
-            "aktørId": "2829719526754",
-            "identitetsnummer": "12020567099"
+            "etternavn": "FRENDE",
+            "aktørId": "2990893847132",
+            "identitetsnummer": "20842099774"
         },
         "søknad": {
             "søknadId": "generert",
@@ -15,7 +15,7 @@
             "søker": { "norskIdentitetsnummer": "00000000000" },
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
-                "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
+                "barn": { "norskIdentitetsnummer": "20842099774", "fødselsdato": "2020-04-20" },
                 "søknadsperiode": ["2022-09-01/2022-12-31"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],

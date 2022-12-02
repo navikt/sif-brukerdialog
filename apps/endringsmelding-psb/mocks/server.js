@@ -66,8 +66,6 @@ const organisasjonFileName = `organisasjon-mock.json`;
 
 const readMockFile = (file, responseObject) => {
     const filePath = `${mockPath}/${soker}/${file}`;
-    console.log(filePath);
-    console.log(existsSync(filePath));
     if (existsSync(filePath)) {
         const body = readFileSync(filePath);
         responseObject.send(JSON.parse(body));
@@ -77,7 +75,7 @@ const readMockFile = (file, responseObject) => {
 };
 
 const startExpressServer = () => {
-    const port = process.env.PORT || 8099;
+    const port = 8099;
 
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
 

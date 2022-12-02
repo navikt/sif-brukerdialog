@@ -11,9 +11,10 @@ dayjs.extend(isSameOrBefore);
 
 export const getEndringsdato = (): Date => new Date();
 
+/** 3 måneder bakover og 12 måneder fremover */
 export const getMaksEndringsperiode = (endringsdato: Date): DateRange => ({
     from: dayjs(endringsdato).subtract(3, 'months').startOf('day').toDate(),
-    to: dayjs(endringsdato).add(6, 'months').endOf('day').toDate(),
+    to: dayjs(endringsdato).add(12, 'months').startOf('day').toDate(),
 });
 
 /**

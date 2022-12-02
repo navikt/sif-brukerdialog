@@ -1,102 +1,48 @@
-import { DateDurationMap, DateRange } from '@navikt/sif-common-utils';
-import { DagerIkkeSøktForMap, DagerSøktForMap } from '.';
+import { DateRange } from 'react-day-picker';
+import { Arbeidsgiver } from './Arbeidsgiver';
 
-export type TidEnkeltdag = DateDurationMap; // { [isoDateString: string]: { hours: string; minutes: string } };
+import { Barn } from './K9Sak';
 
-export type ArbeidstidEnkeltdagSak = {
-    faktisk: DateDurationMap;
-    normalt: DateDurationMap;
-};
-
-export type ArbeidstakerMap = {
-    [id: string]: ArbeidstidEnkeltdagSak;
-};
-
-export interface YtelseArbeidstid {
-    arbeidstakerMap?: ArbeidstakerMap;
-    frilanser?: ArbeidstidEnkeltdagSak;
-    selvstendig?: ArbeidstidEnkeltdagSak;
+export enum ArbeidAktivitetType {
+    arbeidstaker = 'arbeidstaker',
+    frilanser = 'frilanser',
+    selvstendigNæringsdrivende = 'selvstendigNæringsdrivende',
 }
 
-export interface SakMedMeta {
-    sak: Sak;
-    meta: SakMetadata;
+interface ArbeidAktivitetPerioder {
+    allePerioder: DateRange[];
+    samletPeriode: DateRange;
+}
+export interface ArbeidAktivitetArbeidstaker {
+    id: string;
+    type: ArbeidAktivitetType.arbeidstaker;
+    arbeidsgiver: Arbeidsgiver;
+    perioder: ArbeidAktivitetPerioder;
+}
+export interface ArbeidAktivitetFrilanser {
+    id: string;
+    type: ArbeidAktivitetType.frilanser;
+    perioder: ArbeidAktivitetPerioder;
 }
 
-export interface Barn {
-    fødselsdato: Date;
-    fornavn: string;
-    mellomnavn?: string;
-    etternavn: string;
-    aktørId: string;
-    identitetsnummer: string;
+export interface ArbeidAktivitetSelvstendigNæringsdrivende {
+    id: string;
+    type: ArbeidAktivitetType.selvstendigNæringsdrivende;
+    perioder: ArbeidAktivitetPerioder;
 }
 
-export interface OpptjeningAktivitetFrilanser {
-    startdato: Date;
-    sluttdato?: Date;
-    jobberFortsattSomFrilanser: boolean;
+export type ArbeidAktivitet =
+    | ArbeidAktivitetArbeidstaker
+    | ArbeidAktivitetFrilanser
+    | ArbeidAktivitetSelvstendigNæringsdrivende;
+
+export interface ArbeidAktiviteter {
+    arbeidstaker: ArbeidAktivitetArbeidstaker[];
+    frilanser?: ArbeidAktivitetFrilanser;
+    selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
 
 export interface Sak {
-    søknadId: string;
-    språk: string;
-    mottattDato: Date;
     barn: Barn;
-    søker: {
-        norskIdentitetsnummer: string;
-    };
-    ytelse: {
-        type: 'PLEIEPENGER_SYKT_BARN';
-        barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
-        søknadsperioder: DateRange[];
-        opptjeningAktivitet: {
-            frilanser?: OpptjeningAktivitetFrilanser;
-        };
-        tilsynsordning: {
-            enkeltdager: DateDurationMap;
-        };
-        arbeidstid: YtelseArbeidstid;
-    };
+    arbeidAktivitet: ArbeidAktiviteter;
 }
-
-export interface SakMetadata {
-    /** Dato endring gjennomføres på (dagens dato) */
-    endringsdato: Date;
-
-    /** Hele perioden som bruker kan gjøre endringer innenfor, avgrenset til 3 måned bakover og 12 måneder
-     * fremover i tid. Avkortet dersom søknadsperioder er kortere.
-     */
-    endringsperiode: DateRange;
-
-    /** Dager det er søkt for */
-    dagerSøktForMap: DagerSøktForMap;
-
-    /** Dager det ikke er søkt for */
-    dagerIkkeSøktForMap: DagerIkkeSøktForMap;
-
-    /** Søknadsperioder */
-    søknadsperioder: DateRange[];
-
-    /** Måneder som har dager det er søkt om */
-    alleMånederISøknadsperiode: DateRange[];
-
-    /** Måneder som har dager det er søkt om */
-    månederMedSøknadsperiodeMap: MånedMedSøknadsperioderMap;
-
-    /** Antall måneder som ikke har dager det er søkt for */
-    antallMånederUtenSøknadsperiode: number;
-
-    /** Flagg dersom månedene går over flere år */
-    søknadsperioderGårOverFlereÅr: boolean;
-
-    /** Utilgjengelige datoer */
-    datoerIkkeSøktFor: Date[];
-
-    /** Utilgjengelige datoer per måned */
-    datoerIkkeSøktForIMåned: { [månedIsoString: string]: Date[] };
-}
-
-export type MånedMedSøknadsperioderMap = {
-    [yearMonthKey: string]: DateRange[];
-};

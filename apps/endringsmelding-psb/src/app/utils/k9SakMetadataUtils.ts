@@ -13,7 +13,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import flatten from 'lodash.flatten';
 import { DagerIkkeSøktForMap, DagerSøktForMap } from '../types';
-import { MånedMedSøknadsperioderMap, SakMetadata } from '../types/Sak';
+import { MånedMedSøknadsperioderMap, SakMetadata } from '../types/K9Sak';
 import { getEndringsperiode } from './endringsperiode';
 
 const getUtilgjengeligeDatoerIMåned = (
@@ -61,7 +61,7 @@ const getDateRangeFromYearMonthKey = (yearMonthKey: string): DateRange => {
     return getMonthDateRange(new Date(parseInt(year, 10), parseInt(month, 10) - 1));
 };
 
-export const getSakMetadata = (endringsdato: Date, søknadsperioder: DateRange[]): SakMetadata => {
+export const getK9SakMetadata = (endringsdato: Date, søknadsperioder: DateRange[]): SakMetadata => {
     const endringsperiode = getEndringsperiode(endringsdato, søknadsperioder);
     const dagerIkkeSøktForMap = getDagerIkkeSøktFor(søknadsperioder);
     const dagerSøktForMap = getDagerSøktFor(søknadsperioder);

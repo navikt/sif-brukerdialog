@@ -1,13 +1,15 @@
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from './Arbeidsgiver';
-import { Sak } from './Sak';
+import { K9Sak } from './K9Sak';
 import { Søker } from './Søker';
-import { SøknadRoutes } from './SøknadRoutes';
+import { Sak } from './Sak';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 
 export interface SøknadContextState {
     versjon: string;
     søker: Søker;
-    saker: Sak[];
+    k9saker: K9Sak[];
+    sak: Sak;
     arbeidsgivere: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;

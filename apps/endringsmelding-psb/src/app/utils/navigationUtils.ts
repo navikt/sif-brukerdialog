@@ -1,5 +1,5 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 
 const relocateTo = (url: string): void => {
     /** Hard redirect enforcing page reload */

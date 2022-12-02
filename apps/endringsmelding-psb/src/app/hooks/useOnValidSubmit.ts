@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SøknadContextState } from '../types/SøknadContextState';
-import { SøknadRoutes } from '../types/SøknadRoutes';
+import { StepId } from '../søknad/config/StepId';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
+import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { StepId } from '../types/StepId';
-import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
+import { SøknadContextState } from '../types/SøknadContextState';
 
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
@@ -18,7 +18,7 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStepRoute } = getSøknadStepConfig(state.søknadsdata)[stepId];
+    const { nextStepRoute } = getSøknadStepConfig()[stepId];
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {

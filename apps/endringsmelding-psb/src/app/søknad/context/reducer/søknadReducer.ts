@@ -1,6 +1,6 @@
 import { guid } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
@@ -12,7 +12,8 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
                 },
-                søknadRoute: SøknadRoutes.OPPSUMMERING,
+                sak: action.payload.sak,
+                søknadRoute: SøknadRoutes.ARBEIDSTID,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -40,6 +41,27 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
+            case SøknadContextActionKeys.SET_SØKNAD_AKTIVITET:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        arbeidAktivitet: {
+                            ...action.payload,
+                        },
+                    },
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        arbeidstid: {
+                            ...action.payload,
+                        },
+                    },
+                };
+
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
                     ...state,
@@ -62,6 +84,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {},
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
+                };
+            case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        [action.payload.stepId]: undefined,
+                    },
                 };
         }
     }

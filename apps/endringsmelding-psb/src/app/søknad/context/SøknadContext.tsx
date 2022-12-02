@@ -17,7 +17,7 @@ interface Props {
     children: ReactNode;
 }
 
-const SøknadContextProvider: FunctionComponent<Props> = ({ children, initialData }) => {
+export const SøknadContextProvider: FunctionComponent<Props> = ({ children, initialData }) => {
     const [state, dispatch] = useReducer(søknadReducer, initialData);
 
     const contextValue = useMemo(() => {
@@ -26,5 +26,3 @@ const SøknadContextProvider: FunctionComponent<Props> = ({ children, initialDat
 
     return <SøknadContext.Provider value={contextValue}>{children}</SøknadContext.Provider>;
 };
-
-export default SøknadContextProvider;

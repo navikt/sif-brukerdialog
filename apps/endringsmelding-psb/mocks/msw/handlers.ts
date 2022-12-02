@@ -6,6 +6,8 @@ const arbeidsgiverJson = require('../data/soker1/arbeidsgiver-mock.json');
 
 const baseUrl = 'http://localhost:8099';
 
+const MellomlagringStorageKey = 'mellomlagring-endring-psb';
+
 const handlers = [
     rest.get(`${baseUrl}/health/isAlive`, (req, res, ctx) => res(ctx.status(200))),
     rest.get(`${baseUrl}/health/isReady`, (req, res, ctx) => res(ctx.status(200))),
@@ -19,15 +21,22 @@ const handlers = [
         return res(ctx.status(200), ctx.json(arbeidsgiverJson));
     }),
     rest.get(`${baseUrl}/endringsmelding/mellomlagring`, (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json({}));
+        const data = localStorage.getItem(MellomlagringStorageKey);
+        const jsonData = JSON.parse(data || '{}');
+        return res(ctx.status(200), ctx.json(jsonData));
     }),
-    rest.post(`${baseUrl}/endringsmelding/mellomlagring`, (req, res, ctx) => {
+    rest.post(`${baseUrl}/endringsmelding/mellomlagring`, async (req, res, ctx) => {
+        const data = await req.text();
+        localStorage.setItem(MellomlagringStorageKey, data);
         return res(ctx.status(200));
     }),
-    rest.put(`${baseUrl}/endringsmelding/mellomlagring`, (req, res, ctx) => {
+    rest.put(`${baseUrl}/endringsmelding/mellomlagring`, async (req, res, ctx) => {
+        const data = await req.text();
+        localStorage.setItem(MellomlagringStorageKey, data);
         return res(ctx.status(200));
     }),
     rest.delete(`${baseUrl}/endringsmelding/mellomlagring`, (req, res, ctx) => {
+        localStorage.setItem(MellomlagringStorageKey, '');
         return res(ctx.status(200));
     }),
 ];

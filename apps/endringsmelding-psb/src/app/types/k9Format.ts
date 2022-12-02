@@ -24,14 +24,14 @@ export interface K9FormatArbeidstaker {
     organisasjonsnummer: string;
     arbeidstidInfo: K9FormatArbeidstidInfo;
 }
+
+export interface K9FormatArbeidstidInfo {
+    perioder: K9FormatArbeidstidPeriode;
+}
 export interface K9FormatArbeidstid {
     arbeidstakerList: K9FormatArbeidstaker[];
-    frilanserArbeidstidInfo: {
-        perioder: K9FormatArbeidstidPeriode;
-    } | null;
-    selvstendigNæringsdrivendeArbeidstidInfo: {
-        perioder: K9FormatArbeidstidPeriode;
-    } | null;
+    frilanserArbeidstidInfo: K9FormatArbeidstidInfo | null;
+    selvstendigNæringsdrivendeArbeidstidInfo: K9FormatArbeidstidInfo | null;
 }
 
 export interface K9FormatArbeidsgiverPrivat {
@@ -58,6 +58,13 @@ export interface K9FormatOpptjeningAktivitetFrilanser {
     jobberFortsattSomFrilanser: boolean;
 }
 
+/** TODO: format ikke avklart */
+export interface K9FormatOpptjeningAktivitetSelvstendig {
+    startdato: ISODate;
+    sluttdato?: ISODate;
+    organisasjonsnummer: string;
+}
+
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;
     trekkKravPerioder: any;
@@ -80,6 +87,7 @@ interface K9FormatYtelse {
     søknadsperiode: ISODateRange[];
     opptjeningAktivitet: {
         frilanser?: K9FormatOpptjeningAktivitetFrilanser;
+        selvstendigNæringsdrivende?: K9FormatOpptjeningAktivitetSelvstendig;
     };
     tilsynsordning: {
         perioder: K9FormatTilsynsordningPerioder;
