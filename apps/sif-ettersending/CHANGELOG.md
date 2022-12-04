@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 2.1.0
+
+### Minor Changes
+
+-   2992e9a: Bruke standardknapper og fikse navigasjon
+
 ## 2.0.1
 
 ### Patch Changes
