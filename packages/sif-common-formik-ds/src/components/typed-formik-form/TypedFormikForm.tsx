@@ -24,13 +24,13 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     errorSummaryTitle?: string;
     submitPending?: boolean;
     submitDisabled?: boolean;
+    backButtonDisabled?: boolean;
     showButtonArrows?: boolean;
     noButtonsContentRenderer?: () => React.ReactNode;
     cleanup?: (values: FormValues) => FormValues;
     onValidSubmit?: () => void;
     onCancel?: () => void;
     onBack?: (values: FormValues) => void;
-    onValuesChange?: (values: FormValues) => void;
 }
 
 export type TypedFormikFormContextType = {
@@ -68,11 +68,11 @@ function TypedFormikForm<FormValues, ErrorType>({
     errorSummaryTitle,
     submitPending,
     submitDisabled,
+    backButtonDisabled: backDisabled,
     showButtonArrows = true,
     onCancel,
     onBack,
     onValidSubmit,
-    onValuesChange,
     noButtonsContentRenderer,
     cleanup,
 }: TypedFormikFormProps<FormValues, ErrorType>) {
@@ -171,7 +171,11 @@ function TypedFormikForm<FormValues, ErrorType>({
                     <div style={{ marginTop: '2rem' }}>
                         <ButtonRow layout={'normal'}>
                             {onBack && (
-                                <Button variant="secondary" type="button" onClick={() => onBack(formik.values)}>
+                                <Button
+                                    variant="secondary"
+                                    type="button"
+                                    onClick={() => onBack(formik.values)}
+                                    disabled={backDisabled}>
                                     <span className="typedFormikForm__buttonLabel">
                                         {showButtonArrows && (
                                             <Back aria-hidden className="typedFormikForm__buttonLabel__icon" />

@@ -1,5 +1,5 @@
 import { Button, Link } from '@navikt/ds-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
@@ -16,9 +16,13 @@ interface Props {
 
 const SamtykkeForm = ({ onStart, onOpenDinePlikterModal, openBehandlingAvPersonopplysningerModal }: Props) => {
     const intl = useIntl();
+    const [pending, setPending] = useState(false);
     return (
         <SoknadFormComponents.Form
-            onValidSubmit={onStart}
+            onValidSubmit={() => {
+                setPending(true);
+                onStart();
+            }}
             includeButtons={false}
             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
             <FormBlock>
@@ -41,7 +45,9 @@ const SamtykkeForm = ({ onStart, onOpenDinePlikterModal, openBehandlingAvPersono
                 </FormBlock>
                 <FormBlock>
                     <div className="text-center">
-                        <Button type="submit">{intlHelper(intl, 'step.button.startSøknad')}</Button>
+                        <Button loading={pending} type="submit">
+                            {intlHelper(intl, 'step.button.startSøknad')}
+                        </Button>
                     </div>
                 </FormBlock>
                 <FormBlock>
