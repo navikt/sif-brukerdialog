@@ -9,6 +9,7 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from './søknadStepConfig';
 import StateInfo from '../components/state-info/StateInfo';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 interface Props {
     stepId: StepId;
@@ -27,17 +28,20 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
 
     const { pageTitleIntlKey, index } = stepConfig[stepId];
 
+    const steps = soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl);
+    const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
+
     return (
         <Step
             activeStepId={stepId}
             pageTitle={intlHelper(intl, pageTitleIntlKey)}
             bannerTitle={intlHelper(intl, 'application.bannerTitle')}
-            steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
+            steps={steps}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
             <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
             {children}
-            <StateInfo />
+            {isDevMode ? <StateInfo /> : null}
         </Step>
     );
 };

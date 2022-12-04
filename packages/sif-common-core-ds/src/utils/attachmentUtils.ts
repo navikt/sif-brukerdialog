@@ -58,6 +58,9 @@ export const attachmentUploadHasFailed = ({ pending, uploaded, file: { name } }:
 export const attachmentHasBeenUploaded = ({ pending, uploaded, file: { name } }: Attachment): boolean =>
     !pending && uploaded && fileExtensionIsValid(name);
 
+export const attachmentIsUploadedAndIsValidFileFormat = (attachment: Attachment): boolean =>
+    attachmentHasBeenUploaded(attachment) || fileExtensionIsValid(attachment.file.name);
+
 export const containsAnyUploadedAttachments = (attachmentList: Attachment[]) =>
     attachmentList &&
     attachmentList.length > 0 &&

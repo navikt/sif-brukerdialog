@@ -16,7 +16,7 @@ const getLevelAndSize = (headerTag: string): { level: '2' | '3' | '4'; size: 'me
         case 'h3':
             return {
                 level: '3',
-                size: 'xsmall',
+                size: 'small',
             };
         case 'h4':
             return {
@@ -26,7 +26,7 @@ const getLevelAndSize = (headerTag: string): { level: '2' | '3' | '4'; size: 'me
         default:
             return {
                 level: '2',
-                size: 'small',
+                size: 'medium',
             };
     }
 };

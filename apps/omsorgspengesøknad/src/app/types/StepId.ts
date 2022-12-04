@@ -4,5 +4,5 @@ export enum StepId {
     'DELT_BOSTED' = 'deltBosted',
     'LEGEERKLÆRING' = 'legeerklaering',
     'OPPSUMMERING' = 'oppsummering',
-    'SØKNAD_SENDT' = 'soknad_sendt',
+    'KVITTERING' = 'soknad_sendt',
 }

@@ -18,7 +18,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import AnnetBarnpart from './form-parts/AnnetBarnPart';
 import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
 import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
@@ -56,14 +56,14 @@ const OmBarnetStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.OM_BARNET;
-    const step = getSøknadStepConfig(søknadsdata)[stepId];
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: OmBarnetFormValues) => {
-        const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values);
+        const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values, registrerteBarn);
         if (OmBarnetSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadOmBarnet(OmBarnetSøknadsdata)];

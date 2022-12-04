@@ -13,7 +13,7 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
             return SøknadRoutes.LEGEERKLÆRING;
         case StepId.OPPSUMMERING:
             return SøknadRoutes.OPPSUMMERING;
-        case StepId.SØKNAD_SENDT:
+        case StepId.KVITTERING:
             return SøknadRoutes.SØKNAD_SENDT;
     }
 };

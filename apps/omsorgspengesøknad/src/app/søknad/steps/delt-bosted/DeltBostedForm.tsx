@@ -76,10 +76,10 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             <Block padBottom="xl">
                 <SifGuidePanel>
                     <p style={{ marginTop: 0 }}>
-                        <FormattedMessage id={'step.deltBosted.helperTextPanel.1'} />
+                        <FormattedMessage id={'steg.deltBosted.helperTextPanel.1'} />
                     </p>
                     <p>
-                        <FormattedMessage id={'step.deltBosted.helperTextPanel.2'} />
+                        <FormattedMessage id={'steg.deltBosted.helperTextPanel.2'} />
                     </p>
                 </SifGuidePanel>
             </Block>
@@ -91,7 +91,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     <FormikFileUploader
                         attachments={samværsavtaleAttachments}
                         name={DeltBostedFormFields.samværsavtale}
-                        buttonLabel={intlHelper(intl, 'step.deltBosted.vedlegg.knappLabel')}
+                        buttonLabel={intlHelper(intl, 'steg.deltBosted.vedlegg.knappLabel')}
                         apiEndpoint={ApiEndpoint.vedlegg}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {

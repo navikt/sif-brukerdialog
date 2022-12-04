@@ -4,11 +4,11 @@ import { getEnvVariableOrDefault } from '../utils/envUtils';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpoint {
-    'soker' = 'soker',
+    'soker' = 'oppslag/soker',
     'barn' = 'oppslag/barn',
-    'send_søknad' = 'soknad',
+    'send_søknad' = 'omsorgspenger-utvidet-rett/innsending',
     'vedlegg' = 'vedlegg',
-    'mellomlagring' = 'mellomlagring',
+    'mellomlagring' = 'mellomlagring/OMSORGSPENGER_UTVIDET_RETT',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {

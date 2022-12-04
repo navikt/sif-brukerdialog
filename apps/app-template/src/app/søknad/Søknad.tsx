@@ -5,6 +5,8 @@ import useSøknadInitialData from '../api/useSøknadInitialData';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
+import { Alert, BodyShort } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -16,7 +18,22 @@ const Søknad = () => {
     }
     /** Error */
     if (status === 'error') {
-        return <ErrorPage pageTitle="Det oppstod en feil" contentRenderer={() => <p>Dette er feilmeldingen</p>} />;
+        return (
+            <ErrorPage
+                pageTitle="Det oppstod en feil"
+                contentRenderer={() => (
+                    <>
+                        <Alert variant="error">
+                            Det oppstod en feil da vi hentet nødvendig informasjon. Vennligst prøv å laste siden på
+                            nytt.
+                        </Alert>
+                        <Block margin="l">
+                            <BodyShort size="small">ErrorCode: ApiError</BodyShort>
+                        </Block>
+                    </>
+                )}
+            />
+        );
     }
 
     /** Success */

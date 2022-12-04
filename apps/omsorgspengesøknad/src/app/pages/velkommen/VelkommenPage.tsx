@@ -1,17 +1,19 @@
-import { GuidePanel, Heading, Link } from '@navikt/ds-react';
+import { Heading, Link } from '@navikt/ds-react';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getLenker from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
-import getLenker from '../../lenker';
-import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import VelkommenGuide from './VelkommenGuide';
+import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -34,22 +36,13 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
-    const navigateTo = useNavigate();
-
     const startSøknad = () => {
         dispatch(actionsCreator.startSøknad());
-        navigateTo(SøknadRoutes.OM_BARNET);
+        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_BARNET));
     };
     return (
-        <Page title={intlHelper(intl, 'welcomingPage.sidetittel')}>
-            <GuidePanel>
-                <Heading level="1" size="large">
-                    <FormattedMessage id="welcomingPage.banner.tittel" values={{ navn: søker.fornavn }} />
-                </Heading>
-                <p>
-                    <FormattedMessage id="welcomingPage.banner.tekst" />
-                </p>
-            </GuidePanel>
+        <Page title={intlHelper(intl, 'page.velkommen.sidetittel')}>
+            <VelkommenGuide navn={søker.fornavn} />
 
             <OmSøknaden />
 
@@ -57,27 +50,32 @@ const VelkommenPage = () => {
                 initialValues={{ harForståttRettigheterOgPlikter: false }}
                 onSubmit={startSøknad}
                 renderForm={() => (
-                    <Form includeButtons={true} submitButtonLabel="Start søknad">
+                    <Form
+                        includeButtons={true}
+                        submitButtonLabel="Start søknad"
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'page.velkommen')}>
                         <FormBlock>
                             <ConfirmationCheckbox
-                                label="Jeg bekrefter at jeg har lest og forstått"
+                                label={intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
                                 name={VelkommenFormFields.harForståttRettigheterOgPlikter}
                                 validate={getCheckedValidator()}>
-                                <Heading level="3" size="small">
-                                    <strong>Ditt ansvar som søker</strong>
+                                <Heading level="2" size="small">
+                                    <strong>
+                                        <FormattedMessage id="page.velkommen.form.ansvar.tittel" />
+                                    </strong>
                                 </Heading>
-                                <ul>
+                                <InfoList>
                                     <li>
-                                        Jeg forstår at hvis jeg gir uriktige opplysninger, kan det få konsekvenser for
-                                        retten min til det jeg søker om
+                                        <FormattedMessage id="page.velkommen.form.ansvar.list.1" />
                                     </li>
                                     <li>
-                                        Jeg har lest og forstått det som står på{' '}
+                                        <FormattedMessage id="page.velkommen.form.ansvar.list.2.1" />{' '}
                                         <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
-                                            nav.no/rett og plikt
+                                            <FormattedMessage id="page.velkommen.form.ansvar.list.2.2" />
                                         </Link>
+                                        <FormattedMessage id="page.velkommen.form.ansvar.list.2.3" />
                                     </li>
-                                </ul>
+                                </InfoList>
                             </ConfirmationCheckbox>
                         </FormBlock>
                     </Form>

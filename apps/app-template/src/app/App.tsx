@@ -20,9 +20,11 @@ export const SKJEMANAVN = 'SIF_SOKNAD_TEMPLATE';
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test' || 1 + 1 === 2) {
+        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test') {
             return import('../../mocks/msw/browser').then(({ worker }) => {
-                worker.start({ onUnhandledRequest: 'bypass' });
+                worker.start({
+                    onUnhandledRequest: 'bypass',
+                });
             });
         }
     }

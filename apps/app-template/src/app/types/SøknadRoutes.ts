@@ -1,3 +1,20 @@
+import { StepId } from './StepId';
+
+export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
+    switch (stepId) {
+        case StepId.VELKOMMEN:
+            return SøknadRoutes.VELKOMMEN;
+        case StepId.PLEIETRENGENDE:
+            return SøknadRoutes.PLEIETRENGENDE;
+        case StepId.MEDLEMSKAP:
+            return SøknadRoutes.MEDLEMSKAP;
+        case StepId.OPPSUMMERING:
+            return SøknadRoutes.OPPSUMMERING;
+        case StepId.SØKNAD_SENDT:
+            return SøknadRoutes.SØKNAD_SENDT;
+    }
+};
+
 export enum SøknadRoutes {
     INTRO = '/intro',
     INNLOGGET_ROOT = '/soknad/*',

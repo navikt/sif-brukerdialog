@@ -37,7 +37,7 @@ export const getOmBarnetStepInitialValues = (
                 return {
                     ...defaultValues,
                     søknadenGjelderEtAnnetBarn: false,
-                    barnetSøknadenGjelder: omBarnet.registrertBarn,
+                    barnetSøknadenGjelder: omBarnet.registrertBarn.aktørId,
                     sammeAdresse,
                     kroniskEllerFunksjonshemming,
                 };
@@ -56,7 +56,10 @@ export const getOmBarnetStepInitialValues = (
     return defaultValues;
 };
 
-export const getOmBarnetSøknadsdataFromFormValues = (values: OmBarnetFormValues): OmBarnetSøknadsdata | undefined => {
+export const getOmBarnetSøknadsdataFromFormValues = (
+    values: OmBarnetFormValues,
+    registrerteBarn: RegistrertBarn[]
+): OmBarnetSøknadsdata | undefined => {
     const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
     const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
 
@@ -74,12 +77,17 @@ export const getOmBarnetSøknadsdataFromFormValues = (values: OmBarnetFormValues
             kroniskEllerFunksjonshemming,
         };
     }
-    if (!values.barnetSøknadenGjelder) {
+    const registrertBarn = values.barnetSøknadenGjelder
+        ? registrerteBarn.find((b) => b.aktørId === values.barnetSøknadenGjelder)
+        : undefined;
+
+    if (!registrertBarn) {
         return undefined;
     }
+
     return {
         type: 'registrertBarn',
-        registrertBarn: values.barnetSøknadenGjelder,
+        registrertBarn,
         sammeAdresse,
         kroniskEllerFunksjonshemming,
     };

@@ -55,6 +55,8 @@ const readFileSync = (path) => {
 
 const existsSync = (path) => fs.existsSync(path);
 
+const RESPONSE_DELAY = 200;
+
 const søkerMock = {
     fornavn: 'Test',
     mellomnavn: undefined,
@@ -71,11 +73,13 @@ const startServer = () => {
     server.get('/oppslag/soker', (req, res) => {
         setTimeout(() => {
             res.send(søkerMock);
-        }, 1000);
+        }, RESPONSE_DELAY);
     });
 
     server.post('/ettersending/innsending', (req, res) => {
-        res.sendStatus(200);
+        setTimeout(() => {
+            res.send(søkerMock);
+        }, RESPONSE_DELAY);
     });
 
     server.listen(port, () => {
@@ -125,7 +129,9 @@ const startServer = () => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
-        res.sendStatus(200);
+        setTimeout(() => {
+            res.sendStatus(200);
+        }, RESPONSE_DELAY);
     });
     server.post('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;
@@ -145,7 +151,9 @@ const startServer = () => {
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
-        res.sendStatus(200);
+        setTimeout(() => {
+            res.sendStatus(300);
+        }, RESPONSE_DELAY);
     });
     server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;

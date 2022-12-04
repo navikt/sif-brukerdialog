@@ -1,8 +1,9 @@
+import { RegistrertBarn } from '../RegistrertBarn';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 
 interface OmBarnetSøknadsdata_registrertBarn {
     type: 'registrertBarn';
-    registrertBarn: string;
+    registrertBarn: RegistrertBarn;
     sammeAdresse: boolean;
     kroniskEllerFunksjonshemming: boolean;
 }

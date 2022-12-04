@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { combine, initial, pending, RemoteData } from '@devexperts/remote-data-ts';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { AxiosError } from 'axios';
 import getSokerRemoteData from '../api/getSoker';
 import getSoknadTempStorage from '../api/getSoknadTempStorage';
+import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { navigateToLoginPage } from '../utils/navigationUtils';
-import { ApplicationType } from '../types/ApplicationType';
 
 export type SoknadEssentials = [Person, SoknadTempStorageData];
 
@@ -31,11 +32,9 @@ function useSoknadEssentials(søknadstype: ApplicationType): SoknadEssentialsRem
             }
         }
     };
-    useEffect(() => {
+    useEffectOnce(() => {
         fetch();
-        //TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    });
     return data;
 }
 

@@ -24,7 +24,7 @@ const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test' || 1 + 1 === 2) {
+        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test') {
             return import('../../mocks/msw/browser').then(({ worker }) =>
                 worker.start({ onUnhandledRequest: 'bypass' })
             );

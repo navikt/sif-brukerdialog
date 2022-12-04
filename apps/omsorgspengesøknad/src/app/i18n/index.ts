@@ -3,21 +3,23 @@ import { allCommonMessages } from '@navikt/sif-common-core-ds/lib/i18n/allCommon
 import soknadIntlMessages from '@navikt/sif-common-soknad-ds/lib/soknad-intl-messages/soknadIntlMessages';
 import { omBarnetMessages } from '../søknad/steps/om-barnet/stegOmBarnetMessages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
-import { introPageMessages } from '../pages/intro-page/introPageMessages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { appMessages } from './appMessages';
 import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
+import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
     ...soknadIntlMessages.nb,
     ...personalOpplysningerMessages.nb,
-    ...introPageMessages.nb,
     ...velkommenPageMessages.nb,
     ...omBarnetMessages.nb,
     ...deltBostedMessages.nb,
     ...legeerklæringMessages.nb,
+    ...oppsummeringMessages.nb,
+    ...kvitteringMessages.nb,
     ...appMessages.nb,
 };
 

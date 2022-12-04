@@ -61,7 +61,7 @@ export const useOnValidSubmit = <T>(
     const handleSubmit = (values: T) => {
         setIsSubmitting(true);
         const actions = [
-            nextStep === undefined || nextStep === StepId.SØKNAD_SENDT
+            nextStep === undefined || nextStep === StepId.KVITTERING
                 ? undefined
                 : dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(nextStep))),
             ...submitHandler(values),

@@ -5,6 +5,7 @@ export const parameters = {
     options: {
         storySort: {
             method: 'alphabetical',
+            order: ['Steps', ['OmBarnetStep', 'LegeerklæringStep', 'DeltBostedStep', 'OppsummeringStep'], 'Pages'],
         },
     },
     controls: {
