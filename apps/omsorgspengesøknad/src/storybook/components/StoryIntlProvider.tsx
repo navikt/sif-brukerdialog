@@ -1,6 +1,6 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { applicationIntlMessages } from '../../app/i18n/applicationMessages';
+import { applicationIntlMessages } from '../../app/i18n';
 
 export interface IntlProviderProps {
     locale: string;

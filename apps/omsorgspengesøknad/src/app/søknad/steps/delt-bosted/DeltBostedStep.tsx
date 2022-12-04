@@ -10,7 +10,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues } from './deltBostedStepUtils';
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 
@@ -22,7 +22,7 @@ const DeltBostedStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.DELT_BOSTED;
-    const step = getSøknadStepConfig(søknadsdata)[stepId];
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 

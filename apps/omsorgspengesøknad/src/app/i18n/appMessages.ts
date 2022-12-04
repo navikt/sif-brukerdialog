@@ -14,6 +14,9 @@ export const appMessages: MessageFileFormat = {
         'step.deltBosted.pageTitle': 'Omsorgspengesøknad - Delt bosted',
         'step.deltBosted.stepTitle': 'Delt bosted',
 
+        'step.legeerklaering.pageTitle': 'Omsorgspengesøknad - legeerklæring',
+        'step.legeerklaering.stepTitle': 'Legeerklæring',
+
         'step.oppsummering.pageTitle': 'Omsorgspengesøknad - Oppsummering',
         'step.oppsummering.stepTitle': 'Oppsummering',
 

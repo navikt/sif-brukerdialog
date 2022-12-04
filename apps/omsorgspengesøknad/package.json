@@ -125,18 +125,18 @@
         "babel-core": "7.0.0-bridge.0"
     },
     "scripts": {
-        "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
+        "build-storybook": "build-storybook",
+        "build": "npm-run-all build-app",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.js",
         "prepare": "npm run snyk-protect",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
         "snyk-protect": "snyk-protect",
-        "start": "node ./src/build/scripts/start-dev.js",
         "start-express": "node ./server.js",
-        "test": "react-scripts test --watchAll=false --env=jsdom",
+        "start": "node ./src/build/scripts/start-dev.js",
         "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "test": "react-scripts test --watchAll=false --env=jsdom"
     },
     "snyk": true,
     "eslintConfig": {

@@ -6,11 +6,10 @@ export const SøknadStepRoutePath = {
     [StepId.DELT_BOSTED]: 'delt-bosted',
     [StepId.LEGEERKLÆRING]: 'legeerklaring',
     [StepId.OPPSUMMERING]: 'oppsummering',
-    [StepId.SØKNAD_SENDT]: 'soknad_sendt',
+    [StepId.KVITTERING]: 'soknad_sendt',
 };
 
 export enum SøknadRoutes {
-    INTRO = '/intro',
     INNLOGGET_ROOT = '/soknad/*',
     VELKOMMEN = '/soknad/velkommen',
     OM_BARNET = '/soknad/om-barnet',

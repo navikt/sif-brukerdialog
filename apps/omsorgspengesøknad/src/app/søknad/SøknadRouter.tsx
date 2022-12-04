@@ -4,7 +4,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
-import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
+import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
@@ -67,7 +67,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.DELT_BOSTED]} element={<DeltBostedStep />} />
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoutePath[StepId.SØKNAD_SENDT]} element={<SøknadSendtPage />} />
+            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
             <Route
                 path="*"
                 element={

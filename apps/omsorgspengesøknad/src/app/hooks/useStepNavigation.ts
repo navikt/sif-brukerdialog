@@ -3,12 +3,11 @@ import { StepConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadS
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { StepId } from '../types/StepId';
-import { SøknadRoutes } from '../types/SøknadRoutes';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
 /** Bør nok brukes med måte, i og med en denne ikke vil submitte skjema og oppdatere søknadsdata */
 
-export const useStepNavigation = (step: StepConfig<StepId, SøknadRoutes>) => {
+export const useStepNavigation = (step?: StepConfig<StepId>) => {
     const { dispatch } = useSøknadContext();
     const navigate = useNavigate();
 
@@ -22,21 +21,21 @@ export const useStepNavigation = (step: StepConfig<StepId, SøknadRoutes>) => {
     };
 
     const goToPreviousStep = () => {
-        if (step.previousStep) {
-            gotoStep(step.previousStep);
+        if (step?.previousStep) {
+            gotoStep(step?.previousStep);
         }
     };
 
     const goToNextStep = () => {
-        if (step.nextStep) {
-            if (step.previousStep) {
-                gotoStep(step.nextStep);
+        if (step?.nextStep) {
+            if (step?.previousStep) {
+                gotoStep(step?.nextStep);
             }
         }
     };
 
     return {
-        goBack: step.previousStep ? goToPreviousStep : undefined,
-        goNext: step.nextStep ? goToNextStep : undefined,
+        goBack: step?.previousStep ? goToPreviousStep : undefined,
+        goNext: step?.nextStep ? goToNextStep : undefined,
     };
 };

@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import VelkommenPage from '../../../app/pages/velkommen/VelkommenPage';
-import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
@@ -9,7 +8,7 @@ import { withSøknadContextProvider } from '../../decorators/withSøknadContext'
 export default {
     title: 'Pages/VelkommenPage',
     component: VelkommenPage,
-    decorators: [withIntl, withRouterProvider, withSøknadContextProvider, withFormikWrapper],
+    decorators: [withIntl, withRouterProvider, withSøknadContextProvider],
 } as ComponentMeta<typeof VelkommenPage>;
 
 const Template: ComponentStory<typeof VelkommenPage> = () => <VelkommenPage />;

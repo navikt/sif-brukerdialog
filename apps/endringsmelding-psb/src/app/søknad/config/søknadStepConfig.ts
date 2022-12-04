@@ -23,5 +23,5 @@ export const getNextStep = (stepId: StepId): SøknadRoutes => {
     }
 };
 
-export const getSøknadStepConfig = (): SoknadStepsConfig<StepId, SøknadRoutes> =>
+export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>
     soknadStepUtils.getStepsConfig(getSøknadSteps(), SoknadApplicationType.MELDING);

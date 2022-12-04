@@ -1,5 +1,20 @@
 import { StepId } from './StepId';
 
+export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
+    switch (stepId) {
+        case StepId.VELKOMMEN:
+            return SøknadRoutes.VELKOMMEN;
+        case StepId.AKTIVITET:
+            return SøknadRoutes.AKTIVITET;
+        case StepId.ARBEIDSTID:
+            return SøknadRoutes.ARBEIDSTID;
+        case StepId.OPPSUMMERING:
+            return SøknadRoutes.OPPSUMMERING;
+        case StepId.SØKNAD_SENDT:
+            return SøknadRoutes.SØKNAD_SENDT;
+    }
+};
+
 export const SøknadStepRoute = {
     [StepId.VELKOMMEN]: 'velkommen',
     [StepId.AKTIVITET]: 'aktivitet',

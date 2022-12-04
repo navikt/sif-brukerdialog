@@ -10,7 +10,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
 
@@ -22,7 +22,7 @@ const LegeerklæringStep = () => {
     } = useSøknadContext();
 
     const stepId = StepId.LEGEERKLÆRING;
-    const step = getSøknadStepConfig(søknadsdata)[stepId];
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 

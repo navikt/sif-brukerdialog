@@ -11,10 +11,13 @@ import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfig } from '../../søknadStepConfig';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
+import OmSøkerOppsummering from './OmSøkerOppsummering';
+import OmBarnetOppsummering from './OmBarnetOppsummering';
+import VedleggOppsummering from './VedleggOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -32,11 +35,11 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, søker, registrerteBarn },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
-    const step = getSøknadStepConfig(søknadsdata)[stepId];
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 
@@ -80,9 +83,16 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 onValidSubmit={() => {
                                     resetSendSøknad();
-                                    // eslint-disable-next-line no-console
                                 }}
                                 onBack={goBack}>
+                                <OmSøkerOppsummering søker={søker} />
+                                <OmBarnetOppsummering apiData={apiData} registrerteBarn={registrerteBarn} />
+                                <VedleggOppsummering
+                                    apiData={apiData}
+                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                    samværsavtaleSøknadsdata={søknadsdata.deltBosted}
+                                />
+
                                 <ConfirmationCheckbox
                                     label="Bekrefter opplysninger"
                                     validate={getCheckedValidator()}

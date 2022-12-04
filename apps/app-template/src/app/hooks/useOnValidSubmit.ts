@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SøknadContextState } from '../types/SøknadContextState';
-import { SøknadRoutes } from '../types/SøknadRoutes';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { StepId } from '../types/StepId';
 import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
+import { StepId } from '../types/StepId';
+import { SøknadContextState } from '../types/SøknadContextState';
+import { getSøknadStepRoute } from '../types/SøknadRoutes';
 
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
@@ -18,14 +18,14 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStepRoute } = getSøknadStepConfig(state.søknadsdata)[stepId];
+    const { nextStep } = getSøknadStepConfig(state.søknadsdata)[stepId];
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {
             postSubmit(state)
                 .then(() => {
-                    if (nextStepRoute) {
-                        navigate(nextStepRoute);
+                    if (nextStep) {
+                        navigate(getSøknadStepRoute(nextStep));
                     }
                     // if (nextStepRoute === SøknadRoutes.SØKNAD_SENDT) {
                     //     navigate(nextStepRoute);
@@ -44,7 +44,7 @@ export const useOnValidSubmit = <T>(
                     }
                 });
         }
-    }, [hasSubmitted, navigate, nextStepRoute, state, postSubmit]);
+    }, [hasSubmitted, navigate, nextStep, state, postSubmit]);
 
     useEffect(() => {
         if (submitError) {
@@ -61,9 +61,9 @@ export const useOnValidSubmit = <T>(
     const handleSubmit = (values: T) => {
         setIsSubmitting(true);
         const actions = [
-            nextStepRoute === undefined || nextStepRoute === SøknadRoutes.SØKNAD_SENDT
+            nextStep === undefined || nextStep === StepId.SØKNAD_SENDT
                 ? undefined
-                : dispatch(actionsCreator.setSøknadRoute(nextStepRoute)),
+                : dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(nextStep))),
             ...submitHandler(values),
         ];
         Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));

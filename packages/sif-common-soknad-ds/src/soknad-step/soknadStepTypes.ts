@@ -1,12 +1,12 @@
-export interface StepConfig<STEPS, SøknadRoutes = string> {
+export interface StepConfig<STEPS> {
     id: string;
     index: number;
     route: string;
     nextStep?: STEPS;
-    nextStepRoute?: SøknadRoutes;
+    nextStepRoute?: string;
     backLinkHref?: string;
     previousStep?: STEPS;
-    previousStepRoute?: SøknadRoutes;
+    previousStepRoute?: string;
     previousStepTitleIntlKey?: string;
     pageTitleIntlKey: string;
     stepTitleIntlKey: string;
@@ -14,8 +14,8 @@ export interface StepConfig<STEPS, SøknadRoutes = string> {
     previousButtonLabelIntlKey: string;
 }
 
-export interface SoknadStepsConfig<STEPS, SøknadRoutes = string> {
-    [key: string]: StepConfig<STEPS, SøknadRoutes>;
+export interface SoknadStepsConfig<STEPS> {
+    [key: string]: StepConfig<STEPS>;
 }
 
 export enum SoknadApplicationType {

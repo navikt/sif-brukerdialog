@@ -13,6 +13,7 @@ const envSettings = () => {
          APPSTATUS_PROJECT_ID: '${process.env.APPSTATUS_PROJECT_ID}',
          APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
          USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
+         APP_VERSION: '${process.env.APP_VERSION}',
      };`
         .trim()
         .replace(/ /g, '');

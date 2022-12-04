@@ -16,7 +16,6 @@ const getStepTexts = <Step>(intl: IntlShape, stepConfig: StepConfig<Step>): Step
         pageTitle: intlHelper(intl, stepConfig.pageTitleIntlKey),
         stepTitle: intlHelper(intl, stepConfig.stepTitleIntlKey),
         nextButtonLabel: intlHelper(intl, stepConfig.nextButtonLabelIntlKey),
-        // previousButtonLabel: intlHelper(intl, stepConfig.previousButtonLabelIntlKey),
         previousStepTitle: stepConfig.previousStepTitleIntlKey
             ? intlHelper(intl, 'sif-common-soknad.tilbakeLenke', {
                   title: intlHelper(intl, stepConfig.previousStepTitleIntlKey),
@@ -29,18 +28,17 @@ const getRootRoute = (applicationType: SoknadApplicationType): string => {
     return `/${applicationType}/`;
 };
 
-const getStepRoute = <STEPS, SøknadRoutes>(stepId: STEPS, applicationType: SoknadApplicationType): SøknadRoutes => {
-    return applicationType
-        ? (`${getRootRoute(applicationType)}${stepId}` as SøknadRoutes)
-        : (`${stepId}` as SøknadRoutes);
+const getStepRoute = <STEPS>(stepId: STEPS, applicationType: SoknadApplicationType): string => {
+    return applicationType ? `${getRootRoute(applicationType)}${stepId}` : `${stepId}`;
 };
 
-const getStepsConfig = <STEPS extends string, SøknadRoutes>(
+const getStepsConfig = <STEPS extends string>(
     steps: STEPS[],
-    applicationType: SoknadApplicationType
-): SoknadStepsConfig<STEPS, SøknadRoutes> => {
+    applicationType: SoknadApplicationType,
+    routeCreator?: (step: STEPS) => string
+): SoknadStepsConfig<STEPS> => {
     const numSteps = steps.length;
-    const config: SoknadStepsConfig<STEPS, SøknadRoutes> = {};
+    const config: SoknadStepsConfig<STEPS> = {};
     let idx = 0;
     steps.forEach((stepId) => {
         const nextStep = idx < numSteps - 1 ? steps[idx + 1] : undefined;
@@ -50,23 +48,31 @@ const getStepsConfig = <STEPS extends string, SøknadRoutes>(
             pageTitleIntlKey: `step.${stepId}.pageTitle`,
             stepTitleIntlKey: `step.${stepId}.stepTitle`,
             nextButtonLabelIntlKey: `step.${stepId}.nextButtonLabel`,
-            route: getStepRoute(stepId, applicationType),
+            route: routeCreator ? routeCreator(stepId) : getStepRoute(stepId, applicationType),
             index: idx,
             backLinkHref: prevStepId ? getStepRoute(prevStepId, applicationType) : undefined,
             previousButtonLabelIntlKey: `step.previousButtonLabel`,
             previousStep: prevStepId,
-            previousStepRoute: prevStepId ? getStepRoute<STEPS, SøknadRoutes>(prevStepId, applicationType) : undefined,
+            previousStepRoute: prevStepId
+                ? routeCreator
+                    ? routeCreator(prevStepId)
+                    : getStepRoute<STEPS>(prevStepId, applicationType)
+                : undefined,
             previousStepTitleIntlKey: prevStepId ? `step.${prevStepId}.pageTitle` : undefined,
             nextStep,
-            nextStepRoute: nextStep ? getStepRoute<STEPS, SøknadRoutes>(nextStep, applicationType) : undefined,
+            nextStepRoute: nextStep
+                ? routeCreator
+                    ? routeCreator(nextStep)
+                    : getStepRoute<STEPS>(nextStep, applicationType)
+                : undefined,
         };
         idx++;
     });
     return config;
 };
 
-function getProgressStepsFromConfig<Steps, SøknadRoutes extends string>(
-    stepsConfig: SoknadStepsConfig<Steps, SøknadRoutes>,
+function getProgressStepsFromConfig<Steps>(
+    stepsConfig: SoknadStepsConfig<Steps>,
     currentStepIndex: number,
     intl: IntlShape
 ): ProgressStep[] {

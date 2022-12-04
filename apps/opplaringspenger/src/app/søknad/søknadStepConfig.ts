@@ -4,6 +4,28 @@ import { StepId } from '../types/StepId';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
+export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
+    switch (stepId) {
+        case StepId.VELKOMMEN:
+            return SøknadRoutes.VELKOMMEN;
+        case StepId.PLEIETRENGENDE:
+            return SøknadRoutes.PLEIETRENGENDE;
+        case StepId.ARBEID:
+            return SøknadRoutes.ARBEID;
+        case StepId.OPPLÆRING:
+            return SøknadRoutes.OPPLÆRING;
+        case StepId.MEDLEMSKAP:
+            return SøknadRoutes.MEDLEMSKAP;
+        case StepId.INSTITUSJON:
+            return SøknadRoutes.INSTITUSJON;
+        case StepId.OPPSUMMERING:
+            return SøknadRoutes.OPPSUMMERING;
+        case StepId.SØKNAD_SENDT:
+            return SøknadRoutes.SØKNAD_SENDT;
+    }
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     return [
         StepId.PLEIETRENGENDE,
@@ -15,24 +37,5 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     ];
 };
 
-export const getNextStep = (stepId: StepId): SøknadRoutes => {
-    switch (stepId) {
-        case StepId.VELKOMMEN:
-            return SøknadRoutes.PLEIETRENGENDE;
-        case StepId.PLEIETRENGENDE:
-            return SøknadRoutes.INSTITUSJON;
-        case StepId.INSTITUSJON:
-            return SøknadRoutes.OPPLÆRING;
-        case StepId.OPPLÆRING:
-            return SøknadRoutes.MEDLEMSKAP;
-        case StepId.MEDLEMSKAP:
-            return SøknadRoutes.OPPSUMMERING;
-        case StepId.OPPSUMMERING:
-            return SøknadRoutes.SØKNAD_SENDT;
-        default:
-            return SøknadRoutes.VELKOMMEN;
-    }
-};
-
-export const getSøknadStepConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StepId, SøknadRoutes> =>
+export const getSøknadStepConfig = (søknadsdata: Søknadsdata): SoknadStepsConfig<StepId> =>
     soknadStepUtils.getStepsConfig(getSøknadSteps(søknadsdata), SoknadApplicationType.SOKNAD);

@@ -19,7 +19,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
             return {
                 ...state,
                 søknadsdata: {},
-                søknadRoute: undefined,
+                søknadRoute: SøknadRoutes.VELKOMMEN,
             };
     }
 
@@ -56,6 +56,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {
                         ...state.søknadsdata,
                         deltBosted: {
+                            ...action.payload,
+                        },
+                    },
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        legeerklæring: {
                             ...action.payload,
                         },
                     },
