@@ -16,10 +16,3 @@ body.sif-ds-theme {
 .navds-fieldset__description > .expandableInfo:first-child {
     margin-top: 1rem;
 }
-
-ul.infoList > li {
-    margin-bottom: 0.5rem;
-}
-ul.infoList > li:last-child {
-    margin-bottom: 0;
-}
