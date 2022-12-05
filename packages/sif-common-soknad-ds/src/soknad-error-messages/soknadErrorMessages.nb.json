@@ -6,10 +6,10 @@
     "common.soknadErrorMessages.gotoSoknadFrontpage": "Gå tilbake til startsiden for søknaden",
 
     "common.soknadErrorMessages.missingSoknadData.title": "Det oppstod en feil under visning av siden",
-    "common.soknadErrorMessages.missingSoknadData.content": "Noe gikk feil under visning av denne siden. Du må dessverre fylle ut søknaden på nytt. Vi beklager ulempen det medfører for deg.",
+    "common.soknadErrorMessages.missingSoknadData.content": "Noe gikk feil under visning av denne siden. Vennligst gå tilbake og se over søknaden på nytt.",
 
     "common.soknadErrorMessages.unavailableSoknadStep.title": "Det oppstod en feil under visning av siden",
-    "common.soknadErrorMessages.unavailableSoknadStep.content": "Noe gikk feil under visning av denne siden. Du må dessverre fylle ut søknaden på nytt. Vi beklager ulempen det medfører for deg.",
+    "common.soknadErrorMessages.unavailableSoknadStep.content": "Noe gikk feil under visning av denne siden, vennligst gå tilbake og se over søknaden. Dersom feilen vedvarer, prøv igjen senere.",
     "common.soknadErrorMessages.unavailableSoknadStep.linkText": "Gå tilbake til {steg}",
 
     "common.soknadErrorMessages.missingApiData.title": "Det oppstod en feil under visning av siden",

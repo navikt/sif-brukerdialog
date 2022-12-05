@@ -11,6 +11,7 @@ export interface SoknadContextInterface<StepID, SoknadApiData> {
     soknadStepsConfig: SoknadStepsConfig<StepID>;
     sendSoknadStatus: SendSoknadStatusInterface<SoknadApiData>;
     startSoknad: () => void;
+    resetSendSøknadStatus: () => void;
     gotoNextStepFromStep: (stepId: StepID) => void;
     sendSoknad: (apiValues: SoknadApiData) => void;
     resetSoknad: () => void;

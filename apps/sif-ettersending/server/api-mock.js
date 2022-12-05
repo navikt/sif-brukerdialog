@@ -78,7 +78,13 @@ const startServer = () => {
 
     server.post('/ettersending/innsending', (req, res) => {
         setTimeout(() => {
-            res.send(søkerMock);
+            res.sendStatus(200);
+        }, RESPONSE_DELAY);
+    });
+
+    server.post('/ettersending/innsending', (req, res) => {
+        setTimeout(() => {
+            res.sendStatus(500);
         }, RESPONSE_DELAY);
     });
 

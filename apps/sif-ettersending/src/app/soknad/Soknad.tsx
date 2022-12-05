@@ -224,6 +224,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                         soknadId,
                                         soknadStepsConfig: getSoknadStepsConfig(søknadstype),
                                         sendSoknadStatus,
+                                        resetSendSøknadStatus: () => setSendSoknadStatus(initialSendSoknadState),
                                         resetSoknad: abortSoknad,
                                         continueSoknadLater: soknadId
                                             ? (stepId) => continueSoknadLater(soknadId, stepId, values)

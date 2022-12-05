@@ -1,27 +1,27 @@
 import * as React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { useFormikContext } from 'formik';
-import ConfirmationPage from '../components/pages/confirmation-page/ConfirmationPage';
-import WelcomingPage from '../components/pages/welcoming-page/WelcomingPage';
-import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
-import { SoknadFormData } from '../types/SoknadFormData';
-import { ApplicationType } from '../types/ApplicationType';
-import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
-import DokumenterStep from './dokumenter-step/DokumenterStep';
-import OppsummeringStep from './oppsummering-step/OppsummeringStep';
-import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
-import { Person } from '../types/Person';
-import { useSoknadContext } from './SoknadContext';
 import { useIntl } from 'react-intl';
-import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { isFailure, isInitial, isPending, isSuccess } from '@devexperts/remote-data-ts';
+import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import SoknadErrorMessages, {
     LastAvailableStepInfo,
 } from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+import { useFormikContext } from 'formik';
+import ConfirmationPage from '../components/pages/confirmation-page/ConfirmationPage';
+import WelcomingPage from '../components/pages/welcoming-page/WelcomingPage';
+import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
+import { ApplicationType } from '../types/ApplicationType';
+import { Person } from '../types/Person';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { getAvailableSteps } from '../utils/routeUtils';
+import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
+import DokumenterStep from './dokumenter-step/DokumenterStep';
+import OppsummeringStep from './oppsummering-step/OppsummeringStep';
+import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
+import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
 
 interface Props {
     søker: Person;

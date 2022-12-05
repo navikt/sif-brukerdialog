@@ -1,26 +1,28 @@
-import { BodyLong, Panel } from '@navikt/ds-react';
+import { Alert, BodyLong, Panel } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/components/textarea-summary/TextareaSummary';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useFormikContext } from 'formik';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
+import { ApplicationType } from '../../types/ApplicationType';
+import { Person } from '../../types/Person';
 import { YtelseTypeApi } from '../../types/SoknadApiData';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import { ApplicationType } from '../../types/ApplicationType';
 import { mapFormDataToApiData } from '../../utils/mapFormDataToApiData';
+import { useSoknadContext } from '../SoknadContext';
+import SoknadFormComponents from '../SoknadFormComponents';
+import SoknadFormStep from '../SoknadFormStep';
+import { StepID } from '../soknadStepsConfig';
 import SummaryBlock from './SummaryBlock';
 import './oppsummeringStep.css';
-import { Person } from '../../types/Person';
-import { useSoknadContext } from '../SoknadContext';
-import SoknadFormStep from '../SoknadFormStep';
-import { isPending } from '@devexperts/remote-data-ts';
-import SoknadFormComponents from '../SoknadFormComponents';
-import { StepID } from '../soknadStepsConfig';
 
 interface Props {
     soknadId: string;
@@ -30,10 +32,14 @@ interface Props {
 
 const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
     const intl = useIntl();
-    const { sendSoknadStatus, sendSoknad } = useSoknadContext();
+    const { sendSoknadStatus, sendSoknad, resetSendSøknadStatus } = useSoknadContext();
     const { values } = useFormikContext<SoknadFormData>();
     const { fornavn, mellomnavn, etternavn, fødselsnummer } = søker;
     const apiValues = mapFormDataToApiData(soknadId, values, søknadstype, intl);
+
+    useEffectOnce(() => {
+        resetSendSøknadStatus();
+    });
 
     return (
         <SoknadFormStep
@@ -92,6 +98,21 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                     validate={getCheckedValidator()}
                 />
             </Block>
+
+            {isFailure(sendSoknadStatus.status) && (
+                <FormBlock>
+                    {sendSoknadStatus.failures === 1 && (
+                        <Alert variant="error">
+                            <FormattedMessage id="step.oppsummering.sendMelding.feilmelding.førsteGang" />
+                        </Alert>
+                    )}
+                    {sendSoknadStatus.failures === 2 && (
+                        <Alert variant="error">
+                            <FormattedMessage id="step.oppsummering.sendMelding.feilmelding.andreGang" />
+                        </Alert>
+                    )}
+                </FormBlock>
+            )}
         </SoknadFormStep>
     );
 };

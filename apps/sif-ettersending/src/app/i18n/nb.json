@@ -135,6 +135,9 @@
     "steg.oppsummering.typeSøknad.type.OMP_UTV_MA": "Søknad om å bli regnet som at du er alene om omsorgen for barn",
     "steg.oppsummering.typeSøknad.type.OMP_DELE_DAGER": "Melding om deling av omsorgsdager",
 
+    "step.oppsummering.sendMelding.feilmelding.førsteGang": "Det oppstod en feil under innsending. Vennligst prøv på nytt.",
+    "step.oppsummering.sendMelding.feilmelding.andreGang": "Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.",
+
     "vedleggsliste.fjernKnapp": "Fjern dokument",
     "vedleggsliste.ingenVedleggLastetOpp": "Ingen dokumenter er lastet opp",
 
