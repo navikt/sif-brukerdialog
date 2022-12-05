@@ -175,7 +175,8 @@ function TypedFormikForm<FormValues, ErrorType>({
                                     variant="secondary"
                                     type="button"
                                     onClick={() => onBack(formik.values)}
-                                    disabled={backDisabled}>
+                                    disabled={backDisabled}
+                                    data-testid="typedFormikForm-goBackButton">
                                     <span className="typedFormikForm__buttonLabel">
                                         {showButtonArrows && (
                                             <Back aria-hidden className="typedFormikForm__buttonLabel__icon" />
@@ -190,7 +191,7 @@ function TypedFormikForm<FormValues, ErrorType>({
                                 type="submit"
                                 loading={submitPending}
                                 disabled={submitDisabled}
-                                name="submit">
+                                data-testid="typedFormikForm-submitButton">
                                 <span className="typedFormikForm__buttonLabel">
                                     {submitButtonLabel || 'Neste'}
                                     {showButtonArrows && (

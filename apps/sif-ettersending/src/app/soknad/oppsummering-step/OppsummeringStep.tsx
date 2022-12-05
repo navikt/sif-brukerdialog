@@ -54,32 +54,40 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                 </BodyLong>
             </SifGuidePanel>
             <Block margin="xl">
-                <Panel border={true}>
-                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
-                        <div>{formatName(fornavn, etternavn, mellomnavn)}</div>
-                        <div>
-                            {intlHelper(intl, 'steg.oppsummering.fødselsnummer')}: {fødselsnummer}
-                        </div>
-                    </SummaryBlock>
-
-                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.typeSøknad.tittel')}>
-                        {intlHelper(intl, `steg.oppsummering.typeSøknad.type.${apiValues.søknadstype}`)}
-                    </SummaryBlock>
-
-                    {apiValues.beskrivelse && (
-                        <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.hvaGjelder.header')}>
-                            <TextareaSummary text={apiValues.beskrivelse} />
+                <div data-testid="oppsummering">
+                    <Panel border={true}>
+                        <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
+                            <div>{formatName(fornavn, etternavn, mellomnavn)}</div>
+                            <div>
+                                {intlHelper(intl, 'steg.oppsummering.fødselsnummer')}: {fødselsnummer}
+                            </div>
                         </SummaryBlock>
-                    )}
-                    <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumenter.header')}>
-                        <UploadedDocumentsList includeDeletionFunctionality={false} />
-                    </SummaryBlock>
-                </Panel>
+
+                        <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.typeSøknad.tittel')}>
+                            {intlHelper(intl, `steg.oppsummering.typeSøknad.type.${apiValues.søknadstype}`)}
+                        </SummaryBlock>
+
+                        {apiValues.beskrivelse && (
+                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.hvaGjelder.header')}>
+                                <TextareaSummary text={apiValues.beskrivelse} />
+                            </SummaryBlock>
+                        )}
+                        <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.dokumenter.header')}>
+                            <div data-testid="vedlegg-liste">
+                                <UploadedDocumentsList includeDeletionFunctionality={false} />
+                            </div>
+                        </SummaryBlock>
+                    </Panel>
+                </div>
             </Block>
 
             <Block margin="l">
                 <SoknadFormComponents.ConfirmationCheckbox
-                    label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
+                    label={
+                        <span data-testid="bekreft-label">
+                            {intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
+                        </span>
+                    }
                     name={SoknadFormField.harBekreftetOpplysninger}
                     validate={getCheckedValidator()}
                 />

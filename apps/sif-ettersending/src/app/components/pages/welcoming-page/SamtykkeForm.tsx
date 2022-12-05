@@ -28,7 +28,9 @@ const SamtykkeForm = ({ onStart, onOpenDinePlikterModal, openBehandlingAvPersono
             <FormBlock>
                 <FormBlock>
                     <SoknadFormComponents.ConfirmationCheckbox
-                        label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
+                        label={
+                            <span data-testid="bekreft-label">{intlHelper(intl, 'welcomingPage.samtykke.tekst')}</span>
+                        }
                         name={SoknadFormField.harForståttRettigheterOgPlikter}
                         validate={getCheckedValidator()}>
                         <FormattedMessage
@@ -45,7 +47,7 @@ const SamtykkeForm = ({ onStart, onOpenDinePlikterModal, openBehandlingAvPersono
                 </FormBlock>
                 <FormBlock>
                     <div className="text-center">
-                        <Button loading={pending} type="submit">
+                        <Button loading={pending} type="submit" data-testid="samtykke-button">
                             {intlHelper(intl, 'step.button.startSøknad')}
                         </Button>
                     </div>

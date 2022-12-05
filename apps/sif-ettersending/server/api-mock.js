@@ -152,7 +152,7 @@ const startServer = () => {
         // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
         setTimeout(() => {
-            res.sendStatus(300);
+            res.sendStatus(200);
         }, RESPONSE_DELAY);
     });
     server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
