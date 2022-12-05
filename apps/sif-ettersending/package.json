@@ -82,7 +82,7 @@
     "scripts": {
         "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
-        "cypress": "cypress open",
+        "cypress": "cypress open --project $PWD/e2e",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8090 node ./server/api-mock.js",
         "prepare": "yarn snyk-protect",
