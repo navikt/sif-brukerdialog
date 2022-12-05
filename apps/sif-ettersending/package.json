@@ -57,6 +57,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "cypress": "11.2.0",
+        "cypress-file-upload": "5.0.8",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.0",
         "less-loader": "11.1.0",
@@ -81,6 +82,7 @@
     "scripts": {
         "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
+        "cypress": "cypress open --project $PWD/e2e",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8090 node ./server/api-mock.js",
         "prepare": "yarn snyk-protect",

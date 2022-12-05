@@ -20,6 +20,7 @@ const BeskrivelseStep: React.FC<Props> = ({ søknadstype }) => {
         <SoknadFormStep id={StepID.BESKRIVELSE} søknadstype={søknadstype}>
             <FormBlock>
                 <SoknadFormComponents.Textarea
+                    data-testid="beskrivelse"
                     name={SoknadFormField.beskrivelse}
                     label={intlHelper(intl, 'step.beskrivelse.hvaSendes.spm')}
                     maxLength={MAX_BESKRIVELSE_LENGTH}

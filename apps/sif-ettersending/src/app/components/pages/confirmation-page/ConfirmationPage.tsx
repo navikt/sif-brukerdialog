@@ -31,7 +31,7 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
                 </div>
 
                 <Block margin="xl">
-                    <Heading level="1" size="large">
+                    <Heading level="1" size="large" data-testid="søknad-mottatt">
                         <FormattedMessage id="page.confirmation.tittel" />
                     </Heading>
                 </Block>

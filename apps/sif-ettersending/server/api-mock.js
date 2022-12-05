@@ -78,7 +78,13 @@ const startServer = () => {
 
     server.post('/ettersending/innsending', (req, res) => {
         setTimeout(() => {
-            res.send(søkerMock);
+            res.sendStatus(200);
+        }, RESPONSE_DELAY);
+    });
+
+    server.post('/ettersending/innsending', (req, res) => {
+        setTimeout(() => {
+            res.sendStatus(500);
         }, RESPONSE_DELAY);
     });
 
@@ -152,7 +158,7 @@ const startServer = () => {
         // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
         setTimeout(() => {
-            res.sendStatus(300);
+            res.sendStatus(200);
         }, RESPONSE_DELAY);
     });
     server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
