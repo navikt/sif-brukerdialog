@@ -16,7 +16,14 @@ const Søknad = () => {
     }
     /** Error */
     if (status === 'error') {
-        return <ErrorPage pageTitle="Det oppstod en feil" contentRenderer={() => <p>Dette er feilmeldingen</p>} />;
+        return (
+            <ErrorPage
+                pageTitle="Det oppstod en feil"
+                contentRenderer={() => (
+                    <p>Det oppstod en feil under oppstartet av søknaden. Vennligst prøv igjen senere.</p>
+                )}
+            />
+        );
     }
 
     /** Success */
