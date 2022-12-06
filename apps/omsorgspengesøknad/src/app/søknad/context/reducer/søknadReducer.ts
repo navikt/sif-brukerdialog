@@ -1,6 +1,8 @@
 import { guid } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { includeDeltBostedStep } from '../../søknadStepConfig';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
@@ -41,14 +43,20 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                 };
             case SøknadContextActionKeys.SET_SØKNAD_OM_BARNET:
+                const søknadsdata: Søknadsdata = {
+                    ...state.søknadsdata,
+                    omBarnet: {
+                        ...action.payload,
+                    },
+                };
+
+                if (includeDeltBostedStep(søknadsdata) === false) {
+                    søknadsdata.deltBosted = undefined;
+                }
+
                 return {
                     ...state,
-                    søknadsdata: {
-                        ...state.søknadsdata,
-                        omBarnet: {
-                            ...action.payload,
-                        },
-                    },
+                    søknadsdata,
                 };
             case SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED:
                 return {

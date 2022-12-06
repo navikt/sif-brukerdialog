@@ -29,7 +29,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
         ? samværsavtaleSøknadsdata.vedlegg.filter((v) => {
               return v.url && apiData.samværsavtale && apiData.samværsavtale.includes(v.url);
           })
-        : [];
+        : undefined;
 
     return (
         <SummarySection header={intlHelper(intl, 'steg.oppsummering.vedlegg.header')}>

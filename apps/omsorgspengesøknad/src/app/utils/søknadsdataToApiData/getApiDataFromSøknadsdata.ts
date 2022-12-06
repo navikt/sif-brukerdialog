@@ -1,7 +1,6 @@
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
-import { getSøknadStepConfigForStep } from '../../søknad/søknadStepConfig';
-import { StepId } from '../../types/StepId';
+import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
@@ -20,7 +19,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         return undefined;
     }
 
-    const inkluderDeltBosted = getSøknadStepConfigForStep(søknadsdata, StepId.DELT_BOSTED) !== undefined;
+    const inkluderDeltBosted = includeDeltBostedStep(søknadsdata);
 
     return {
         språk: 'nb',
