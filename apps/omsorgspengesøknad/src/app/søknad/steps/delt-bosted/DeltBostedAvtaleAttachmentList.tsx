@@ -11,8 +11,8 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
 import { useFormikContext } from 'formik';
-import api from '../../api/api';
-import { DeltBostedFormFields, DeltBostedFormValues } from '../../søknad/steps/delt-bosted/DeltBostedForm';
+import api from '../../../api/api';
+import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 
 interface Props {
     includeDeletionFunctionality: boolean;

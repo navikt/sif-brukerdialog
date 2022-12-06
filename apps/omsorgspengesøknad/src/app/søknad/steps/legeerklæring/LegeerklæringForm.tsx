@@ -18,7 +18,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import { ApiEndpoint } from '../../../api/api';
 import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
-import LegeerklæringAvtaleAttachmentList from '../../../components/legeerklæring-attachment-list/LegeerklæringAttachmentList';
+import LegeerklæringAvtaleAttachmentList from './LegeerklæringAttachmentList';
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 
