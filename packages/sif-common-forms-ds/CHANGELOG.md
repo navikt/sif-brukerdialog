@@ -1,5 +1,15 @@
 # @navikt/sif-common-forms-ds
 
+## 3.2.0
+
+### Patch Changes
+
+-   c735b7f: Oppdatere pakker
+-   369914d: Oppdatert pakke av designsystemet
+-   Updated dependencies [c735b7f]
+-   Updated dependencies [369914d]
+    -   @navikt/sif-common-core-ds@5.2.1
+
 ## 3.1.1
 
 ### Patch Changes

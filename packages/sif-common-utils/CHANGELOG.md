@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.17.2
+
+### Patch Changes
+
+-   c735b7f: Oppdatere pakker
+
 ## 3.17.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.3
+
+### Patch Changes
+
+-   c735b7f: Oppdatere pakker
+-   369914d: Oppdatert pakke av designsystemet
+
 ## 1.5.2
 
 ### Patch Changes

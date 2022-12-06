@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 0.9.0
+
+### Minor Changes
+
+-   9afe1a5: Cypress test for utfylling av dialog
+
+### Patch Changes
+
+-   c735b7f: Oppdatere pakker
+-   369914d: Oppdatert pakke av designsystemet
+-   9afe1a5: Utvide SoknadContextInterface med resetSendSøknadStatus
+
 ## 0.8.5
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @navikt/sif-common-core-ds
 
+## 5.2.1
+
+### Patch Changes
+
+-   c735b7f: Oppdatere pakker
+-   369914d: Oppdatert pakke av designsystemet
+-   Updated dependencies [c735b7f]
+-   Updated dependencies [369914d]
+-   Updated dependencies [9afe1a5]
+-   Updated dependencies [9afe1a5]
+    -   @navikt/appstatus-react-ds@1.5.3
+    -   @navikt/sif-common-formik-ds@0.9.0
+    -   @navikt/sif-common-utils@3.17.2
+
 ## 5.1.2
 
 ### Patch Changes

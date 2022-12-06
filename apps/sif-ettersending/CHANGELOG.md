@@ -1,5 +1,24 @@
 # @navikt/sif-ettersending
 
+## 2.1.1
+
+### Patch Changes
+
+-   c735b7f: Oppdatere pakker
+-   369914d: Oppdatert pakke av designsystemet
+-   9afe1a5: Cypress test for utfylling av dialog
+-   9afe1a5: Utvide SoknadContextInterface med resetSendSøknadStatus
+-   Updated dependencies [c735b7f]
+-   Updated dependencies [369914d]
+-   Updated dependencies [9afe1a5]
+-   Updated dependencies [9afe1a5]
+    -   @navikt/sif-common-amplitude@2.6.3
+    -   @navikt/sif-common-core-ds@6.0.0
+    -   @navikt/sif-common-formik-ds@0.9.0
+    -   @navikt/sif-common-sentry@0.5.3
+    -   @navikt/sif-common-soknad-ds@6.0.0
+    -   @navikt/sif-common-utils@3.17.2
+
 ## 2.1.0
 
 ### Minor Changes

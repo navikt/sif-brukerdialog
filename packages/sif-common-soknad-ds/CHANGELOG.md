@@ -1,5 +1,21 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.1.1
+
+### Patch Changes
+
+-   c735b7f: Oppdatere pakker
+-   369914d: Oppdatert pakke av designsystemet
+-   9afe1a5: Cypress test for utfylling av dialog
+-   9afe1a5: Utvide SoknadContextInterface med resetSendSøknadStatus
+-   Updated dependencies [c735b7f]
+-   Updated dependencies [369914d]
+-   Updated dependencies [9afe1a5]
+-   Updated dependencies [9afe1a5]
+    -   @navikt/appstatus-react-ds@1.5.3
+    -   @navikt/sif-common-formik-ds@0.9.0
+    -   @navikt/sif-common-sentry@0.5.3
+
 ## 5.0.2
 
 ### Patch Changes
