@@ -13,6 +13,6 @@ jobs:
       - name: Run application cypress tests
         uses: cypress-io/github-action@v4 # use the explicit version number
         with:
-            project: ./apps/omsorgspengesøknad
+            project: ./apps/omsorgspengesøknad/e2e
             build: yarn build-omsorgspengesoknad
             start: yarn e2e-omsorgspengesoknad
