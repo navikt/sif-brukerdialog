@@ -14,4 +14,4 @@ jobs:
         uses: cypress-io/github-action@v4 # use the explicit version number
         with:
             build: yarn build
-            start: yarn e2e-${{inputs.app-name}}
+            start: yarn e2e-omsorgspengesoknad
