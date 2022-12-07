@@ -38,6 +38,9 @@
         "clean": {
             "cache": false
         },
-        "e2e-omsorgspengesoknad": {}
+        "e2e-omsorgspengesoknad": {
+            "outputs": [],
+            "dependsOn": []
+        }
     }
 }
