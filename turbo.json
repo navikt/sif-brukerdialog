@@ -38,9 +38,13 @@
         "clean": {
             "cache": false
         },
+        "build-omsorgspengesoknad": {
+            "outputs": ["dist/**"],
+            "dependsOn": ["^build-package"]
+        },
         "e2e-omsorgspengesoknad": {
             "outputs": [],
-            "dependsOn": []
+            "dependsOn": ["^build-omsorgspengesoknad"]
         }
     }
 }
