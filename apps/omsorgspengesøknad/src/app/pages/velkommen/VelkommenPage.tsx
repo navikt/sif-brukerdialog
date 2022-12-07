@@ -77,7 +77,6 @@ const VelkommenPage = () => {
                                         <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
                                             <FormattedMessage id="page.velkommen.form.ansvar.list.2.2" />
                                         </Link>
-                                        <FormattedMessage id="page.velkommen.form.ansvar.list.2.3" />
                                     </li>
                                 </InfoList>
                             </ConfirmationCheckbox>
