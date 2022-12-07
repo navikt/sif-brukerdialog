@@ -9,6 +9,7 @@ on:
             options:
             - sif-ettersending
             - deling-omsorgsdager
+            - omsorgspengesoknad
             required: true
     secrets:
         NAIS_DEPLOY_APIKEY:
