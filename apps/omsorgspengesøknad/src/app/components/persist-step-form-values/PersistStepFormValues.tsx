@@ -8,7 +8,7 @@ interface Props {
 }
 
 const PersistStepFormValues: React.FunctionComponent<Props> = ({ stepId }) => {
-    const { setStepFormValues: setStepFormValues } = useStepFormValuesContext();
+    const { setStepFormValues } = useStepFormValuesContext();
     return (
         <FormikValuesObserver
             onChange={(formValues) => {

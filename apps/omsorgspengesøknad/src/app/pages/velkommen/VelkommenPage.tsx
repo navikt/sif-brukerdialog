@@ -56,7 +56,11 @@ const VelkommenPage = () => {
                         formErrorHandler={getIntlFormErrorHandler(intl, 'page.velkommen')}>
                         <FormBlock>
                             <ConfirmationCheckbox
-                                label={intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
+                                label={
+                                    <span data-testid="bekreft-label">
+                                        {intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
+                                    </span>
+                                }
                                 name={VelkommenFormFields.harForståttRettigheterOgPlikter}
                                 validate={getCheckedValidator()}>
                                 <Heading level="2" size="small">
@@ -73,7 +77,6 @@ const VelkommenPage = () => {
                                         <Link href={getLenker(intl.locale).rettOgPlikt} target="_blank">
                                             <FormattedMessage id="page.velkommen.form.ansvar.list.2.2" />
                                         </Link>
-                                        <FormattedMessage id="page.velkommen.form.ansvar.list.2.3" />
                                     </li>
                                 </InfoList>
                             </ConfirmationCheckbox>

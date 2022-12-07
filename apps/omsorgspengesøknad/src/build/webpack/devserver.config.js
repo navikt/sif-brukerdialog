@@ -30,7 +30,7 @@ const configureDevServer = (decoratorFragments) => ({
     devMiddleware: {
         stats: 'minimal',
     },
-    port: 8090,
+    port: 8080,
 });
 
 module.exports = configureDevServer;

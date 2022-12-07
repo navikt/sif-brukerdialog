@@ -19,7 +19,7 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søknadRoute },
+        state: { søknadSendt, søknadsdata, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -29,14 +29,14 @@ const SøknadRouter = () => {
     usePersistSøknadState();
 
     useEffect(() => {
-        if (søknadRoute && isFirstTimeLoadingApp) {
+        if (stateSøknadRoute && isFirstTimeLoadingApp) {
             setIsFirstTimeLoadingApp(false);
-            navigateTo(søknadRoute);
+            navigateTo(stateSøknadRoute);
         }
-        if (pathname === SøknadRoutes.VELKOMMEN && søknadRoute) {
-            navigateTo(søknadRoute); // Send til sider dersom bruker kommer til velkommen via annen navigasjon
+        if (pathname === SøknadRoutes.VELKOMMEN && stateSøknadRoute) {
+            navigateTo(stateSøknadRoute); // Send til sider dersom bruker kommer til velkommen via annen navigasjon
         }
-    }, [navigateTo, pathname, søknadRoute, isFirstTimeLoadingApp]);
+    }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
     useEffect(() => {
         if (shouldResetSøknad) {

@@ -7,14 +7,9 @@ const busboyCons = require('busboy');
 server.use(express.json());
 server.use((req, res, next) => {
     const allowedOrigins = [
-        'http://host.docker.internal:8090',
         'http://host.docker.internal:8080',
-        'http://localhost:8090',
-        'http://localhost:8089',
         'http://localhost:8080',
-        'http://web:8090',
         'http://web:8080',
-        'http://192.168.0.121:8090',
         'http://127.0.0.1:8080',
         '*',
     ];

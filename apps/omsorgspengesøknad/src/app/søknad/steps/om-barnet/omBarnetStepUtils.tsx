@@ -8,6 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/lib/utils/yesOrNoUtils';
+import { SøknadContextState } from '../../../types/SøknadContextState';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -58,7 +59,7 @@ export const getOmBarnetStepInitialValues = (
 
 export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
-    registrerteBarn: RegistrertBarn[]
+    { registrerteBarn = [] }: Partial<SøknadContextState>
 ): OmBarnetSøknadsdata | undefined => {
     const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
     const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
@@ -77,17 +78,17 @@ export const getOmBarnetSøknadsdataFromFormValues = (
             kroniskEllerFunksjonshemming,
         };
     }
-    const registrertBarn = values.barnetSøknadenGjelder
+    const barn = values.barnetSøknadenGjelder
         ? registrerteBarn.find((b) => b.aktørId === values.barnetSøknadenGjelder)
         : undefined;
 
-    if (!registrertBarn) {
+    if (!barn) {
         return undefined;
     }
 
     return {
         type: 'registrertBarn',
-        registrertBarn,
+        registrertBarn: barn,
         sammeAdresse,
         kroniskEllerFunksjonshemming,
     };
@@ -98,6 +99,7 @@ export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): 
     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
     return {
         value: aktørId,
+        'data-testid': `barn-${aktørId}`,
         label: (
             <>
                 <div>{barnetsNavn}</div>

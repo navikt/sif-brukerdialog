@@ -7,7 +7,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import DeltBostedAvtaleAttachmentList from '../../../components/delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
+import DeltBostedAvtaleAttachmentList from './DeltBostedAvtaleAttachmentList';
 import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import {
     attachmentHasBeenUploaded,
@@ -126,7 +126,9 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
             <Block margin={'l'}>
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
-            <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
+            <div data-testid="samværsavtale-liste">
+                <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
+            </div>
         </Form>
     );
 };

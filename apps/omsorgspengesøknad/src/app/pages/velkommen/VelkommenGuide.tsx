@@ -1,5 +1,4 @@
 import { GuidePanel, Heading, Ingress } from '@navikt/ds-react';
-import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -21,20 +20,6 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
         <p>
             <FormattedMessage id="page.velkommen.guide.tekst.2" />
         </p>
-        <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.3" />
-        </p>
-        <InfoList>
-            <li>
-                <FormattedMessage id="page.velkommen.guide.list.1" />
-            </li>
-            <li>
-                <FormattedMessage id="page.velkommen.guide.list.2" />
-            </li>
-            <li>
-                <FormattedMessage id="page.velkommen.guide.list.3" />
-            </li>
-        </InfoList>
     </GuidePanel>
 );
 

@@ -11,8 +11,8 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
 import { useFormikContext } from 'formik';
-import api from '../../api/api';
-import { LegeerklæringFormFields, LegeerklæringFormValues } from '../../søknad/steps/legeerklæring/LegeerklæringForm';
+import api from '../../../api/api';
+import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 
 interface Props {
     includeDeletionFunctionality: boolean;
