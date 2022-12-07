@@ -36,5 +36,9 @@ export const omBarnetMessages: MessageFileFormat = {
         'validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
         'validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks}.',
         'validation.søkersRelasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
+        'validation.sammeAdresse.yesOrNoIsUnanswered':
+            'Du må svare ja eller nei på om du er folkeregistrert på samme adresse som barnet.',
+        'validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
+            'Du må svare ja eller nei på om barnet har en en kronisk sykdom eller funksjonshemming.',
     },
 };
