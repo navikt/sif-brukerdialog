@@ -18,7 +18,7 @@
         },
         "cypress-e2e": {
             "outputs": [],
-            "dependsOn": ["^build-package", "^build-app"]
+            "dependsOn": ["^build-package"]
         },
         "test-watch": {
             "outputs": [],
@@ -38,8 +38,6 @@
         "clean": {
             "cache": false
         },
-        "e2e-omsorgspengesoknad": {
-            "cache": false
-        }
+        "e2e-omsorgspengesoknad": {}
     }
 }
