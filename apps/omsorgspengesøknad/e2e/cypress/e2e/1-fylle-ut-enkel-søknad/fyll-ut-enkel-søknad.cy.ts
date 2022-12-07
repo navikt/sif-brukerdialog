@@ -21,7 +21,7 @@ const startSøknad = () => {
 
 const fyllUtOmBarn = (deltBosted = true) => {
     it('Fyller ut om barnet', () => {
-        getTestElement('barn-1').click();
+        getTestElement('barn-2811762539343').click();
         selectRadioYesOrNo('sammeAdresse', deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         submitSkjema();

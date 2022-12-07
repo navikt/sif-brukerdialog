@@ -2,6 +2,7 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const appMessages: MessageFileFormat = {
     nb: {
+        '.a': 'a',
         'application.title': 'Omsorgspengesøknad',
         'application.bannerTitle': 'Søknad om ekstra omsorgsdager',
         'page.error.pageTitle': 'Det oppstod en feil',

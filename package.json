@@ -52,7 +52,7 @@
         "bp": "turbo run build-package",
         "build-app": "turbo run build-app",
         "build-sif-ettersending": "turbo run build-app --filter=@navikt/sif-ettersending",
-        "build-deling-omsorgsdager": "turbo run build-app --filter=@navikt/omsorgsdager-deling-dialog",
+        "e2e-omsorgspengesoknad": "turbo run cypress-e2e --filter=@navikt/omsorgspengesoknad",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",

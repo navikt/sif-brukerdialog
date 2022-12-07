@@ -220,6 +220,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, barn, soknadTempStorag
                                         soknadStepsConfig,
                                         sendSoknadStatus,
                                         resetSoknad: abortSoknad,
+                                        resetSendSøknadStatus: () => setSendSoknadStatus({ ...initialSendSoknadState }),
                                         continueSoknadLater: soknadId
                                             ? (stepId) => continueSoknadLater(soknadId, stepId, values)
                                             : undefined,
