@@ -17,5 +17,9 @@ export const getLegeerklæringStepInitialValues = (
 export const getLegeerklæringSøknadsdataFromFormValues = (
     values: LegeerklæringFormValues
 ): LegeerklæringSøknadsdata => {
-    return { vedlegg: values[LegeerklæringFormFields.vedlegg] };
+    return {
+        vedlegg: values[LegeerklæringFormFields.vedlegg].filter(
+            (vedlegg) => vedlegg.pending === false && vedlegg.uploaded === true
+        ),
+    };
 };

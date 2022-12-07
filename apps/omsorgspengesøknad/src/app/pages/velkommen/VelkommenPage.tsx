@@ -56,7 +56,11 @@ const VelkommenPage = () => {
                         formErrorHandler={getIntlFormErrorHandler(intl, 'page.velkommen')}>
                         <FormBlock>
                             <ConfirmationCheckbox
-                                label={intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
+                                label={
+                                    <span data-testid="bekreft-label">
+                                        {intlHelper(intl, 'page.velkommen.form.bekreftLabel')}
+                                    </span>
+                                }
                                 name={VelkommenFormFields.harForståttRettigheterOgPlikter}
                                 validate={getCheckedValidator()}>
                                 <Heading level="2" size="small">

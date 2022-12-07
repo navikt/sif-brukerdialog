@@ -14,9 +14,8 @@ const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConf
 export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsConfig<StepId>) => {
     const [invalidSteps, setInvalidSteps] = useState<StepId[]>([]);
 
-    const {
-        state: { søknadsdata },
-    } = useSøknadContext();
+    const { state } = useSøknadContext();
+    const { søknadsdata } = state;
     const { stepFormValues } = useStepFormValuesContext();
 
     useEffectOnce(() => {
@@ -31,7 +30,7 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
                 if (!getSøknadsdateFromStepFormValues[step]) {
                     throw new Error(`Missing getSøknadsdateFromStepFormValues for step [${step}]`);
                 }
-                const tempSøknadsdata = getSøknadsdateFromStepFormValues[step](stepFormValues[step]);
+                const tempSøknadsdata = getSøknadsdateFromStepFormValues[step](stepFormValues[step], state);
                 if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
                     iSteps.push(step);
                 }

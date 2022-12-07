@@ -1,6 +1,6 @@
 import { ErrorSummary } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
@@ -84,7 +84,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <>
+                        <div data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting}
@@ -104,7 +104,11 @@ const OppsummeringStep = () => {
                                 />
 
                                 <ConfirmationCheckbox
-                                    label="Bekrefter opplysninger"
+                                    label={
+                                        <span data-testid="bekreft-label">
+                                            <FormattedMessage id="steg.oppsummering.bekrefterOpplysninger" />
+                                        </span>
+                                    }
                                     validate={getCheckedValidator()}
                                     name={OppsummeringFormFields.harBekreftetOpplysninger}
                                 />
@@ -114,7 +118,7 @@ const OppsummeringStep = () => {
                                     <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
                                 </FormBlock>
                             )}
-                        </>
+                        </div>
                     );
                 }}></FormikWrapper>
         </SøknadStep>

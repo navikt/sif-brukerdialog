@@ -63,7 +63,7 @@ const OmBarnetStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: OmBarnetFormValues) => {
-        const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values, registrerteBarn);
+        const OmBarnetSøknadsdata = getOmBarnetSøknadsdataFromFormValues(values, { registrerteBarn });
         if (OmBarnetSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadOmBarnet(OmBarnetSøknadsdata)];
@@ -113,6 +113,7 @@ const OmBarnetStep = () => {
                                             <YesOrNoQuestion
                                                 legend={intlHelper(intl, 'steg.omBarnet.spm.sammeAdresse')}
                                                 name={OmBarnetFormFields.sammeAdresse}
+                                                data-testid="sammeAdresse"
                                                 validate={getYesOrNoValidator()}
                                             />
                                         </FormBlock>
@@ -123,6 +124,7 @@ const OmBarnetStep = () => {
                                                     intl,
                                                     'steg.omBarnet.spm.kroniskEllerFunksjonshemmende'
                                                 )}
+                                                data-testid="kroniskEllerFunksjonshemming"
                                                 validate={getYesOrNoValidator()}
                                             />
                                         </FormBlock>
