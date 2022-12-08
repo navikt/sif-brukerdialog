@@ -22,6 +22,8 @@ const container = document.getElementById('app');
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
+/** Trigger build */
+
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
         if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test') {

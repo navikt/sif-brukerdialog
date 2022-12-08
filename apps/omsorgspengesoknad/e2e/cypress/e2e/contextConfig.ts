@@ -11,8 +11,6 @@ interface ConfigProps {
     step?: string;
 }
 
-/** Trigger build */
-
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step } = props || {};
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
