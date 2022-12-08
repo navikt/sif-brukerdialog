@@ -30,7 +30,7 @@ jobs:
             node-version: 16
             cache: 'yarn'
 
-      - name: Install dependencies
+      - name: Install dependencies (yarn)
         run: yarn
 
       - name: Run code tests
