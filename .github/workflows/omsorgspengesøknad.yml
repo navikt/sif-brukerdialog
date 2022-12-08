@@ -7,11 +7,6 @@ on:
       - 'nais-config/omsorgspengesoknad/**/*'
       - 'packages/**/*'
 
-  workflow_call:
-    secrets:
-        NAIS_DEPLOY_APIKEY:
-            description: Nais deploy APIKEY
-            required: false
 
 
 env:
