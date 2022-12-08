@@ -12,9 +12,6 @@ jobs:
       # and run all Cypress tests
       - name: Run application cypress tests
         uses: cypress-io/github-action@v4 # use the explicit version number
-        env:
-          DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-          PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspenger
         with:
             project: ./apps/omsorgspengesøknad/e2e
             build: yarn build-omsorgspengesoknad

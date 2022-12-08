@@ -11,6 +11,7 @@ import {
 } from '../utils';
 
 const fileName = 'navlogopng.png';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
 const startSøknad = () => {
     it('Starter søknad', () => {
@@ -104,7 +105,7 @@ describe('Fylle ut søknad', () => {
 
     describe('Med registrert barn', () => {
         before(() => {
-            cy.visit('http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen');
+            cy.visit(startUrl);
         });
         startSøknad();
         fyllUtOmBarn();
@@ -116,7 +117,7 @@ describe('Fylle ut søknad', () => {
     describe('Registrert barn med delt omsorg', () => {
         const deltBosted = false;
         before(() => {
-            cy.visit('/');
+            cy.visit(startUrl);
         });
         startSøknad();
         fyllUtOmBarn(deltBosted);
@@ -128,7 +129,7 @@ describe('Fylle ut søknad', () => {
     });
     describe('Med annet barn', () => {
         before(() => {
-            cy.visit('/');
+            cy.visit(startUrl);
         });
         startSøknad();
         fyllUtOmAnnetBarn();
