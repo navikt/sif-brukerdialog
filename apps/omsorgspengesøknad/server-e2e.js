@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const compression = require('compression');
-const envSettings = require('../../envSettings');
+const envSettings = require('./envSettings');
 const express = require('express');
 const helmet = require('helmet');
 const mustacheExpress = require('mustache-express');
@@ -22,7 +22,8 @@ server.engine('html', mustacheExpress());
 
 const renderApp = (decoratorFragments) =>
     new Promise((resolve, reject) => {
-        server.render(path.resolve(`./src/app/index.html`), decoratorFragments, (err, html) => {
+        console.log(decoratorFragments);
+        server.render(`index.html`, decoratorFragments, (err, html) => {
             if (err) {
                 reject(err);
             } else {
@@ -32,6 +33,7 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = (html) => {
+    console.log(process.env.PUBLIC_PATH);
     server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
     server.use(`${process.env.PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
@@ -58,7 +60,7 @@ const startServer = (html) => {
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
 const getDecoratorMock = async () => {
-    return fs.readFileSync(path.resolve(`./e2e/server/mock-decorator.html`), 'utf8');
+    return fs.readFileSync('./e2e/server/mock-decorator.html', 'utf8');
 };
 
 getDecoratorMock()
