@@ -39,7 +39,7 @@
             "cache": false
         },
         "build-omsorgspengesoknad": {
-            "outputs": ["dist/**"],
+            "outputs": [],
             "dependsOn": ["^build-package"]
         },
         "e2e-omsorgspengesoknad": {
