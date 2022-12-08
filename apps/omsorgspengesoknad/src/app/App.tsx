@@ -22,8 +22,6 @@ const container = document.getElementById('app');
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
-// Trigger build
-
 const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>

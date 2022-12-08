@@ -3,7 +3,7 @@ name: Omsorgspengesøknad
 on:
   push:
     paths:
-      - 'apps/omsorgspengesoknad'
+      - 'apps/omsorgspengesoknad/**/*'
       - 'nais-config/omsorgspengesoknad/**/*'
       - 'packages/**/*'
 
