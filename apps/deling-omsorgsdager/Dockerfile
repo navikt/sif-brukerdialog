@@ -1,6 +1,8 @@
 
 FROM node:16.15.1-alpine AS base
 RUN apk update && apk add git
+RUN apk add --no-cache libc6-compat
+
 RUN yarn global add turbo
 
 WORKDIR /app
