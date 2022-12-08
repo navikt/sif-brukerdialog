@@ -7,8 +7,6 @@ on:
       - 'nais-config/omsorgspengesoknad/**/*'
       - 'packages/**/*'
 
-
-
 env:
     APP_NAME: 'omsorgspengesoknad'
 
