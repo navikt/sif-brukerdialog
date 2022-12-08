@@ -11,7 +11,7 @@ const webpackConfig = {
     output: {
         path: path.resolve(__dirname, './../../../dist'),
         filename: 'js/[name].js',
-        publicPath: '/familie/sykdom-i-familien/soknad/deling-omsorgsdager/dist',
+        publicPath: '/familie/sykdom-i-familien/soknad/endringsmelding/dist',
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
