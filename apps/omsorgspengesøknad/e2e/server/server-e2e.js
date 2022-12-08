@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const compression = require('compression');
-const envSettings = require('../envSettings');
+const envSettings = require('../../envSettings');
 const express = require('express');
 const helmet = require('helmet');
 const mustacheExpress = require('mustache-express');
@@ -22,7 +22,7 @@ server.engine('html', mustacheExpress());
 
 const renderApp = (decoratorFragments) =>
     new Promise((resolve, reject) => {
-        server.render('index.html', decoratorFragments, (err, html) => {
+        server.render(path.resolve(`./src/app/index.html`), decoratorFragments, (err, html) => {
             if (err) {
                 reject(err);
             } else {
@@ -58,7 +58,7 @@ const startServer = (html) => {
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
 const getDecoratorMock = async () => {
-    return fs.readFileSync('./api-mock/mock-decorator.html', 'utf8');
+    return fs.readFileSync(path.resolve(`./e2e/server/mock-decorator.html`), 'utf8');
 };
 
 getDecoratorMock()

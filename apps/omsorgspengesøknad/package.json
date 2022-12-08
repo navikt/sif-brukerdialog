@@ -141,7 +141,7 @@
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
         "snyk-protect": "snyk-protect",
         "start-express": "node ./server.js",
-        "start-e2e-server": "node ./e2e/server-e2e.js",
+        "start-e2e-server": "node ./e2e/server/server-e2e.js",
         "start": "npm run start-express",
         "storybook": "start-storybook -p 6006",
         "test": "react-scripts test --watchAll=false --env=jsdom"
