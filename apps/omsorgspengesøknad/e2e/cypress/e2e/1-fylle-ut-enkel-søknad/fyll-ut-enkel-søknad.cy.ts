@@ -107,34 +107,34 @@ describe('Fylle ut søknad', () => {
             cy.visit('http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen');
         });
         startSøknad();
-        // fyllUtOmBarn();
-        // lastOppLegeerklæring();
-        // kontrollerOppsummering();
-        // sendInnSøknad();
-        // kontrollerKvittering();
+        fyllUtOmBarn();
+        lastOppLegeerklæring();
+        kontrollerOppsummering();
+        sendInnSøknad();
+        kontrollerKvittering();
     });
-    // describe('Registrert barn med delt omsorg', () => {
-    //     const deltBosted = false;
-    //     before(() => {
-    //         cy.visit('/');
-    //     });
-    //     startSøknad();
-    //     fyllUtOmBarn(deltBosted);
-    //     lastOppLegeerklæring();
-    //     lastOppSamværsavtale();
-    //     kontrollerOppsummering(deltBosted);
-    //     sendInnSøknad();
-    //     kontrollerKvittering();
-    // });
-    // describe('Med annet barn', () => {
-    //     before(() => {
-    //         cy.visit('/');
-    //     });
-    //     startSøknad();
-    //     fyllUtOmAnnetBarn();
-    //     lastOppLegeerklæring();
-    //     kontrollerOppsummering();
-    //     sendInnSøknad();
-    //     kontrollerKvittering();
-    // });
+    describe('Registrert barn med delt omsorg', () => {
+        const deltBosted = false;
+        before(() => {
+            cy.visit('/');
+        });
+        startSøknad();
+        fyllUtOmBarn(deltBosted);
+        lastOppLegeerklæring();
+        lastOppSamværsavtale();
+        kontrollerOppsummering(deltBosted);
+        sendInnSøknad();
+        kontrollerKvittering();
+    });
+    describe('Med annet barn', () => {
+        before(() => {
+            cy.visit('/');
+        });
+        startSøknad();
+        fyllUtOmAnnetBarn();
+        lastOppLegeerklæring();
+        kontrollerOppsummering();
+        sendInnSøknad();
+        kontrollerKvittering();
+    });
 });
