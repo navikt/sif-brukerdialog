@@ -53,7 +53,7 @@
         "build-app": "turbo run build-app",
         "build-sif-ettersending": "turbo run build-app --filter=@navikt/sif-ettersending",
         "build-omsorgspengesoknad": "turbo run build-app --filter=@navikt/omsorgspengesoknad",
-        "e2e-omsorgspengesoknad": "turbo run cypress-e2e --filter=@navikt/omsorgspengesoknad",
+        "e2e-omsorgspengesoknad": "turbo run ci --filter=@navikt/omsorgspengesoknad",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",

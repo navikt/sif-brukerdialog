@@ -132,7 +132,7 @@
         "build-storybook": "build-storybook",
         "build": "npm-run-all build-app",
         "clean": "rm -rf node_modules .dist",
-        "ci": "start-server-and-test start-express http://localhost:8080 cypress-run",
+        "ci": "start-server-and-test snd http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/alive cypress-run",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.js",
