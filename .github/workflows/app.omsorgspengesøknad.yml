@@ -6,6 +6,7 @@ on:
       - 'apps/omsorgspengesoknad/**/*'
       - 'nais-config/omsorgspengesoknad/**/*'
       - 'packages/**/*'
+      - .github/workflows/app.omsorgspengesøknad.yml
 
 env:
     APP_NAME: 'omsorgspengesoknad'
