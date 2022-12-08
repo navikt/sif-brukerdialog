@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
+const fs = require('fs');
 const compression = require('compression');
 const envSettings = require('./envSettings');
 const express = require('express');
-const getDecorator = require('./src/build/scripts/decorator');
 const helmet = require('helmet');
 const mustacheExpress = require('mustache-express');
 const path = require('path');
@@ -40,6 +40,10 @@ const startServer = (html) => {
         res.set('content-type', 'application/javascript');
         res.send(`${envSettings()}`);
     });
+    server.get(`/dist/settings.js`, (req, res) => {
+        res.set('content-type', 'application/javascript');
+        res.send(`${envSettings()}`);
+    });
 
     server.get(/^\/(?!.*dist).*$/, (req, res) => {
         res.send(html);
@@ -53,7 +57,11 @@ const startServer = (html) => {
 
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
-getDecorator()
+const getDecoratorMock = async () => {
+    return fs.readFileSync('./api-mock/mock-decorator.html', 'utf8');
+};
+
+getDecoratorMock()
     .then(renderApp, (error) => {
         logError('Failed to get decorator', error);
         process.exit(1);
