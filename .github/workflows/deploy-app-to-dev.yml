@@ -39,7 +39,7 @@ jobs:
               run: yarn
 
             - name: Run tests
-              run: yarn test
+              run: yarn test --filter=${{inputs.app-name}}
 
             - name: Build application
               run: |
