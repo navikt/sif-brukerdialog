@@ -1,12 +1,6 @@
 {
     "app": "sif-ettersending",
     "cluster": "dev-gcp",
-    "livenessPath": "/familie/sykdom-i-familien/soknad/ettersending/health/isAlive",
-    "maxReplicas": "1",
-    "minReplicas": "1",
-    "namespace": "dusseldorf",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/ettersending/health/isReady",
-    "team": "dusseldorf",
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
@@ -25,5 +19,11 @@
         "USE_AMPLITUDE": "true"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "ingresses": ["https://k9-ettersending-soknad.dev.nav.no"]
+    "ingresses": ["https://k9-ettersending-soknad.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/ettersending/health/isAlive",
+    "maxReplicas": "1",
+    "minReplicas": "1",
+    "namespace": "dusseldorf",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/ettersending/health/isReady",
+    "team": "dusseldorf"
 }

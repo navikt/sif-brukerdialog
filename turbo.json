@@ -16,7 +16,7 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "cypress-e2e": {
+        "ci": {
             "outputs": [],
             "dependsOn": ["^build-package", "^build-app"]
         },
@@ -38,8 +38,13 @@
         "clean": {
             "cache": false
         },
+        "build-omsorgspengesoknad": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
         "e2e-omsorgspengesoknad": {
-            "cache": false
+            "outputs": [],
+            "dependsOn": ["^build-omsorgspengesoknad"]
         }
     }
 }
