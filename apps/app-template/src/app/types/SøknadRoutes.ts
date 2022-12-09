@@ -16,7 +16,6 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
 };
 
 export enum SøknadRoutes {
-    INTRO = '/intro',
     INNLOGGET_ROOT = '/soknad/*',
     VELKOMMEN = '/soknad/velkommen',
     PLEIETRENGENDE = '/soknad/pleietrengende',

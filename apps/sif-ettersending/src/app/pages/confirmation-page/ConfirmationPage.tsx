@@ -7,8 +7,8 @@ import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/components/checkmark-i
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import getLenker from '../../../lenker';
-import { ApplicationType } from '../../../types/ApplicationType';
+import getLenker from '../../lenker';
+import { ApplicationType } from '../../types/ApplicationType';
 import './confirmationPage.css';
 
 interface Props {
