@@ -14,18 +14,11 @@ export const velkommenPageMessages: MessageFileFormat = {
         'page.velkommen.omSøknaden.fremoverITid':
             'Hvis du søker frem i tid, har vi forståelse for at du kan bli usikker på hva du skal svare på noen spørsmål som handler om tiden fremover. Da svarer du så godt du kan ut fra hva situasjonen er nå, og så kan du melde fra om eventuelle endringer senere.',
         'page.velkommen.omSøknaden.2':
-            'Vi tar vare på svarene dine i 72 timer. Så, hvis du innenfor den tiden for eksempel vil ta en pause eller blir automatisk logget ut, fortsetter du der du var når du kommer tilbake.',
+            'Vi tar vare på svarene dine i 72 timer. Hvis du innenfor den tiden for eksempel vil ta en pause eller blir automatisk logget ut, fortsetter du der du var når du kommer tilbake.',
         'page.velkommen.omSøknaden.3':
             'Du må svare på alle spørsmålene for å kunne gå videre. Hvis du mangler etterspurt dokumentasjon, kan du ettersende det så snart du kan.',
         'page.velkommen.omSøknaden.4': 'Om hvordan vi innhenter opplysninger om deg',
-        'page.velkommen.form.bekreftLabel': 'Jeg bekrefter at jeg har forstått mitt ansvar som søker',
-        'page.velkommen.form.ansvar.tittel': 'Ditt ansvar som søker',
-        'page.velkommen.form.ansvar.list.1':
-            'Jeg forstår at hvis jeg gir uriktige opplysninger, kan det få konsekvenser for retten min til det jeg søker om',
-        'page.velkommen.form.ansvar.list.2.1': 'Jeg har lest og forstått det som står på',
-        'page.velkommen.form.ansvar.list.2.2': 'nav.no/rett og plikt',
-        'page.velkommen.harForståttRettigheterOgPlikter.notChecked':
-            'Du må velge at du har forstått ditt ansvar som søker',
+
         'personopplysninger.1': 'Slik behandler NAV personopplysningene dine',
         'personopplysninger.2':
             'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Deler av saken din behandles automatisk.',
