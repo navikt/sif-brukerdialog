@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.1.2
+
+### Patch Changes
+
+-   1faa7ad: Oppdatering av velkommensider og nye felles komponenter
+
 ## 5.1.1
 
 ### Patch Changes

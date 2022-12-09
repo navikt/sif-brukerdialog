@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 5.2.2
+
+### Patch Changes
+
+-   1faa7ad: Oppdatering av velkommensider og nye felles komponenter
+
 ## 5.2.1
 
 ### Patch Changes
