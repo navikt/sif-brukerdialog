@@ -16,6 +16,10 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
+        "ci": {
+            "outputs": [],
+            "dependsOn": ["^build-package", "^build-app"]
+        },
         "test-watch": {
             "outputs": [],
             "dependsOn": ["^build-package"]
@@ -33,6 +37,14 @@
         },
         "clean": {
             "cache": false
+        },
+        "build-omsorgspengesoknad": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
+        "e2e-omsorgspengesoknad": {
+            "outputs": [],
+            "dependsOn": ["^build-omsorgspengesoknad"]
         }
     }
 }

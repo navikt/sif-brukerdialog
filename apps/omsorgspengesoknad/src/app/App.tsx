@@ -7,33 +7,22 @@ import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/env
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
-import { applicationIntlMessages } from './i18n/applicationMessages';
+import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
-import { SøknadRoutes } from './søknad/config/SøknadRoutes';
+import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-import { getEnvVariableOrDefault } from './utils/envUtils';
+import './app.css';
 
 export const APPLICATION_KEY = 'opplaringspenger';
-export const SKJEMANAVN = 'Opplæringspenger';
+export const SKJEMANAVN = 'omsorgspengesoknad';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
-/** Trigger build */
-
-function prepare() {
-    if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test') {
-            return import('../../mocks/msw/browser').then(({ worker }) =>
-                worker.start({ onUnhandledRequest: 'bypass' })
-            );
-        }
-    }
-    return Promise.resolve();
-}
+/** Trigger */
 
 const App = () => (
     <SifAppWrapper>
@@ -42,7 +31,7 @@ const App = () => (
                 applicationKey={APPLICATION_KEY}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om opplæringspenger"
+                    appName="Søknad om omsorgspengesoknad"
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
                     appStatus={{
@@ -55,14 +44,10 @@ const App = () => (
                     publicPath={publicPath}>
                     <SoknadApplicationCommonRoutes
                         contentRoutes={[
-                            <Route
-                                key="root"
-                                index={true}
-                                path={SøknadRoutes.APP_ROOT}
-                                element={<Navigate to={SøknadRoutes.INNLOGGET_ROOT} replace={true} />}
-                            />,
+                            <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                             <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
                             <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                            <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                         ]}
                     />
                 </SoknadApplication>
@@ -71,6 +56,4 @@ const App = () => (
     </SifAppWrapper>
 );
 
-prepare().then(() => {
-    root.render(<App />);
-});
+root.render(<App />);

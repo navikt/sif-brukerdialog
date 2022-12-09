@@ -1,0 +1,59 @@
+name: Omsorgspengesøknad
+
+on:
+  push:
+    paths:
+      - 'apps/omsorgspengesoknad/**/*'
+      - 'nais-config/omsorgspengesoknad/**/*'
+      - 'packages/**/*'
+      - .github/workflows/app.omsorgspengesøknad.yml
+
+env:
+    APP_NAME: 'omsorgspengesoknad'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+            node-version: 16
+            cache: 'yarn'
+
+      - name: Install dependencies (yarn)
+        run: yarn
+
+      - name: Run code tests
+        run: yarn test
+
+  run-cypress-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run cypress tests
+        uses: cypress-io/github-action@v4 # use the explicit version number
+        env:
+          DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+          PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspenger
+        with:
+            project: ./apps/omsorgspengesoknad/e2e
+            build: yarn build-omsorgspengesoknad
+            start: yarn e2e-omsorgspengesoknad
+
+  deploy-to-dev:
+      name: Deploy omsorgspengesøknad to dev
+      if: startsWith(github.ref, 'refs/heads/dev-')
+      needs: [build-and-test, run-cypress-test]
+      uses: navikt/sif-brukerdialog/.github/workflows/deploy-app-to-dev.yml@main
+      secrets:
+          NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+      with:
+          app-name: 'omsorgspengesoknad'
+          working-directory: 'apps/omsorgspengesoknad'
+
