@@ -7,11 +7,11 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import BehandlingAvPersonopplysningerContent from '../../information/behandling-av-personopplysninger-content/BehandlingAvPersonopplysningerContent';
-import DinePlikterContent from '../../information/dine-plikter-content/DinePlikterContent';
+import BehandlingAvPersonopplysningerContent from '../../components/information/behandling-av-personopplysninger-content/BehandlingAvPersonopplysningerContent';
+import DinePlikterContent from '../../components/information/dine-plikter-content/DinePlikterContent';
 import SamtykkeForm from './SamtykkeForm';
-import { ApplicationType } from '../../../types/ApplicationType';
-import { useSoknadContext } from '../../../soknad/SoknadContext';
+import { ApplicationType } from '../../types/ApplicationType';
+import { useSoknadContext } from '../../soknad/SoknadContext';
 
 interface DialogState {
     dinePlikterModalOpen?: boolean;

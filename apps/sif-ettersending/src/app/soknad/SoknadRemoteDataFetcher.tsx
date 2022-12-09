@@ -9,7 +9,7 @@ import useSoknadEssentials, { SoknadEssentials } from '../hooks/useSoknadEssenti
 import Soknad from './Soknad';
 import { isForbidden } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { ApplicationType } from '../types/ApplicationType';
-import IkkeTilgangPage from '../components/pages/ikke-tilgang-page/ikkeTilgangPage';
+import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
 import { useParams } from 'react-router-dom';
 
 const getSøknadstypeFromYtelse = (param?: string): ApplicationType | undefined => {

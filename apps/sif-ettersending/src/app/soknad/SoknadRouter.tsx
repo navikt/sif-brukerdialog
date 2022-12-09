@@ -9,8 +9,8 @@ import SoknadErrorMessages, {
 } from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { useFormikContext } from 'formik';
-import ConfirmationPage from '../components/pages/confirmation-page/ConfirmationPage';
-import WelcomingPage from '../components/pages/welcoming-page/WelcomingPage';
+import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
+import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';

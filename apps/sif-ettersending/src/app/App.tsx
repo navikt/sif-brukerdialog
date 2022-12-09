@@ -7,9 +7,9 @@ import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-applicati
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
 import { Navigate, Route } from 'react-router-dom';
 import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
-import IntroPage from './components/pages/intro-page/IntroPage';
+import IntroPage from './pages/intro-page/IntroPage';
 import { applicationIntlMessages } from './i18n/applicationMessages';
-import GeneralErrorPage from './components/pages/general-error-page/GeneralErrorPage';
+import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import '@navikt/ds-css';
 import './app.css';
