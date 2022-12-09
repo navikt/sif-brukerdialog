@@ -10,7 +10,7 @@ import SoknadErrorMessages, {
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { useFormikContext } from 'formik';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
-import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
+import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
@@ -41,7 +41,7 @@ const SoknadRouter = ({ søker, søknadstype, soknadId = '123' }: Props) => {
     return (
         <Routes>
             <Route index={true} element={<Navigate to="velkommen" replace={false} />} />
-            <Route path="velkommen" element={<WelcomingPage søknadstype={søknadstype} />} />
+            <Route path="velkommen" element={<VelkommenPage søknadstype={søknadstype} />} />
             {soknadId && (
                 <>
                     <Route path={StepID.BESKRIVELSE} element={<BeskrivelseStep søknadstype={søknadstype} />} />
