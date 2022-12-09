@@ -63,7 +63,7 @@
         "react-dom": "18.2.0",
         "react-intl": "6.2.5",
         "react-modal": "3.16.1",
-        "react-router-dom": "6.4.4",
+        "react-router-dom": "6.4.5",
         "ulid": "2.3.0"
     },
     "devDependencies": {
