@@ -8,7 +8,7 @@ import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { FormikState } from 'formik';
 import { ulid } from 'ulid';
 import { sendSoknad } from '../api/sendSoknad';
-import { getAbsoluteUrlForRoute, getRouteConfig } from '../config/routeConfig';
+import { getRouteConfig } from '../config/routeConfig';
 import { Person } from '../types/Person';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { SoknadFormData, initialSoknadFormData } from '../types/SoknadFormData';
@@ -33,11 +33,16 @@ import SoknadRouter from './SoknadRouter';
 interface Props {
     søker: Person;
     søknadstype: ApplicationType;
-    soknadTempStorage: SoknadTempStorageData;
+    soknadTempStorage?: SoknadTempStorageData;
     route?: string;
 }
 
 type resetFormFunc = (nextState?: Partial<FormikState<Partial<SoknadFormData>>>) => void;
+
+const isOnWelcomingPage = (path: string, søknadstype: ApplicationType) => {
+    const config = getRouteConfig(søknadstype);
+    return path === config.WELCOMING_PAGE_ROUTE || path === config.APPLICATION_ROUTE_PREFIX;
+};
 
 const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTempStorage: tempStorage }) => {
     const navigate = useNavigate();
@@ -52,7 +57,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         useAmplitudeInstance();
 
     useEffectOnce(() => {
-        if (isStorageDataValid(tempStorage, { søker })) {
+        if (tempStorage && isStorageDataValid(tempStorage, { søker })) {
             setInitialFormData(tempStorage.formData);
             setSoknadId(tempStorage.metadata.soknadId);
             const currentRoute = location.pathname;
@@ -65,7 +70,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                 setInitializing(false);
             }
         } else {
-            resetSoknad(location.pathname !== getRouteConfig(søknadstype).APPLICATION_ROUTE_PREFIX);
+            resetSoknad(true);
         }
     });
 
@@ -75,12 +80,12 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         relocateToApplication(søknadstype);
     }
 
-    const resetSoknad = async (redirectToFrontpage = true): Promise<void> => {
+    const resetSoknad = async (checkIfRedirectToFrontpage = true): Promise<void> => {
         await soknadTempStorage.purge(søknadstype);
         setInitialFormData({ ...initialSoknadFormData });
         setSoknadId(undefined);
-        if (redirectToFrontpage) {
-            if (location.pathname !== getAbsoluteUrlForRoute(getRouteConfig(søknadstype).APPLICATION_ROUTE_PREFIX)) {
+        if (checkIfRedirectToFrontpage) {
+            if (isOnWelcomingPage(location.pathname, søknadstype) === false) {
                 relocateToApplication(søknadstype);
                 setInitializing(false);
             } else {

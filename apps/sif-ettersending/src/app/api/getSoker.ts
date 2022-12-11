@@ -1,17 +1,13 @@
-import { failure, RemoteData, success } from '@devexperts/remote-data-ts';
-import { AxiosError } from 'axios';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 import { Person } from '../types/Person';
 import api from './api';
 
-export type SokerRemoteData = RemoteData<AxiosError, Person>;
-
-const getSokerRemoteData = async (): Promise<SokerRemoteData> => {
+const getSokerRemoteData = async (): Promise<Person> => {
     try {
         const { data } = await api.get<Person>(ApiEndpoint.SØKER, 'ytelse=ettersending');
-        return Promise.resolve(success(data));
+        return Promise.resolve(data);
     } catch (error) {
-        return Promise.reject(failure(error));
+        return Promise.reject(error);
     }
 };
 

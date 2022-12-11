@@ -18,3 +18,5 @@ out
 
 packages/**/*/coverage
 packages/**/*/lib
+**/cypress/videos/**/*
+**/cypress/screenshots/**/*

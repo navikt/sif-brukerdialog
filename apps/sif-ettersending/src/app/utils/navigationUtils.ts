@@ -28,4 +28,4 @@ export const userIsCurrentlyOnErrorPage = (søknadstype: ApplicationType) =>
 export const relocateToNavFrontpage = (): void => redirectTo('https://www.nav.no/');
 
 export const relocateToApplication = (søknadstype: ApplicationType) =>
-    redirectTo(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).APPLICATION_ROUTE_PREFIX));
+    redirectTo(getAbsoluteUrlForRoute(getRouteConfig(søknadstype).WELCOMING_PAGE_ROUTE));

@@ -1,16 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import RemoteDataHandler from '@navikt/sif-common-soknad-ds/lib/remote-data-handler/RemoteDataHandler';
-import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
-import LoadingPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/LoadingPage';
-import SoknadErrorMessages from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
-import useSoknadEssentials, { SoknadEssentials } from '../hooks/useSoknadEssentials';
-import Soknad from './Soknad';
-import { isForbidden } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { ApplicationType } from '../types/ApplicationType';
-import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
 import { useParams } from 'react-router-dom';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
+import SoknadErrorMessages from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
+import useSoknadEssentials from '../hooks/useSoknadEssentials';
+import { ApplicationType } from '../types/ApplicationType';
+import Soknad from './Soknad';
 
 const getSøknadstypeFromYtelse = (param?: string): ApplicationType | undefined => {
     switch (param) {
@@ -44,26 +41,31 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
     }
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const soknadEssentials = useSoknadEssentials(søknadstype);
+    const initialData = useSoknadEssentials(søknadstype);
+    const { status } = initialData;
+
+    if (status === 'loading') {
+        return <LoadingSpinner size="3xlarge" style="block" />;
+    }
+
+    if (status === 'error') {
+        return (
+            <ErrorPage
+                bannerTitle={intlHelper(intl, `application.title.${søknadstype}`)}
+                contentRenderer={(): JSX.Element => (
+                    <>
+                        <SoknadErrorMessages.GeneralApplicationError />
+                    </>
+                )}
+            />
+        );
+    }
+
     return (
-        <RemoteDataHandler<SoknadEssentials>
-            remoteData={soknadEssentials}
-            initializing={(): React.ReactNode => <LoadingPage />}
-            loading={(): React.ReactNode => <LoadingPage />}
-            error={(error): React.ReactNode => (
-                <>
-                    {isForbidden(error) && <IkkeTilgangPage søknadstype={søknadstype} />}
-                    {!isForbidden(error) && (
-                        <ErrorPage
-                            bannerTitle={intlHelper(intl, `application.title.${søknadstype}`)}
-                            contentRenderer={(): JSX.Element => <SoknadErrorMessages.GeneralApplicationError />}
-                        />
-                    )}
-                </>
-            )}
-            success={([person, soknadTempStorage]): React.ReactNode => {
-                return <Soknad søker={person} søknadstype={søknadstype} soknadTempStorage={soknadTempStorage} />;
-            }}
+        <Soknad
+            søker={initialData.data.søker}
+            søknadstype={søknadstype}
+            soknadTempStorage={initialData.data.mellomlagring}
         />
     );
 };

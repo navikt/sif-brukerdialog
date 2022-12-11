@@ -1,28 +1,37 @@
-/* eslint-disable no-console */
-const fs = require('fs');
+const express = require('express');
+const mustacheExpress = require('mustache-express');
 const compression = require('compression');
 const envSettings = require('./envSettings');
-const express = require('express');
-const helmet = require('helmet');
-const mustacheExpress = require('mustache-express');
-const path = require('path');
+const cookieParser = require('cookie-parser');
+const { exchangeToken } = require('./tokenx');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const fs = require('fs');
 const Promise = require('promise');
+const helmet = require('helmet');
+const path = require('path');
+const jose = require('jose');
 
 const server = express();
 server.use(
     helmet({
         contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
     })
 );
-
+server.use((req, res, next) => {
+    res.set('X-XSS-Protection', '1; mode=block');
+    res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
+    next();
+});
 server.use(compression());
-server.set('views', path.resolve(`${__dirname}/dist`));
+server.use(cookieParser());
+server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
 
 const renderApp = (decoratorFragments) =>
     new Promise((resolve, reject) => {
-        server.render(`index.html`, decoratorFragments, (err, html) => {
+        server.render('index.html', decoratorFragments, (err, html) => {
             if (err) {
                 reject(err);
             } else {
@@ -31,8 +40,30 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
-const startServer = (html) => {
+const isExpiredOrNotAuthorized = (token) => {
+    if (token) {
+        try {
+            const exp = jose.decodeJwt(token).exp;
+            return Date.now() >= exp * 1000;
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error('Feilet med dekoding av token: ', err);
+            return true;
+        }
+    }
+    return true;
+};
+
+const startServer = async (html) => {
+    // await Promise.all([initTokenX()]);
     server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
+    server.use(`${process.env.PUBLIC_PATH}/dist/css`, (req, res, next) => {
+        const requestReferer = req.headers.referer;
+        if (requestReferer !== undefined && requestReferer === 'https://nav.psplugin.com/') {
+            res.set('cross-origin-resource-policy', 'cross-origin');
+        }
+        next();
+    });
     server.use(`${process.env.PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (req, res) => res.sendStatus(200));
@@ -45,16 +76,18 @@ const startServer = (html) => {
         res.send(`${envSettings()}`);
     });
 
-    server.get(/^\/(?!.*dist).*$/, (req, res) => {
+    server.get(/^\/(?!.*api)(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });
 
     const port = process.env.PORT || 8080;
     server.listen(port, () => {
+        // eslint-disable-next-line no-console
         console.log(`App listening on port: ${port}`);
     });
 };
 
+// eslint-disable-next-line no-console
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
 const getDecoratorMock = async () => {
