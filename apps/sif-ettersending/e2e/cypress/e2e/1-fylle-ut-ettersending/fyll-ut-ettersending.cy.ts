@@ -10,8 +10,8 @@ const velgYtelse = () => {
         cy.wait(1500);
         cy.get('[type="radio"]').first().check();
         getTestElement('typedFormikForm-submitButton').click({ force: true });
-        const el = getElement('h1');
-        el.should('contain', 'Ettersendelse av dokumentasjon');
+        const el = getElement('h2').first();
+        el.should('contain', 'Ettersendelse av dokumentasjon til søknad om pleiepenger');
     });
 };
 
