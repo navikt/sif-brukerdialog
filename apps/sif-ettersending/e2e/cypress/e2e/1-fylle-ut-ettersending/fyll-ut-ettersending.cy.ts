@@ -11,7 +11,7 @@ const velgYtelse = () => {
         cy.get('[type="radio"]').first().check();
         getTestElement('typedFormikForm-submitButton').click({ force: true });
         const el = getElement('h1');
-        el.should('contain', 'Ettersendelse av dokumentasjon til søknad om pleiepenger');
+        el.should('contain', 'Ettersendelse av dokumentasjon');
     });
 };
 
