@@ -1,3 +1,4 @@
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { useEffect, useState } from 'react';
 import { SØKNAD_VERSJON } from '../constants/SØKNAD_VERSJON';
 import { RegistrertBarn } from '../types/RegistrertBarn';
@@ -6,6 +7,7 @@ import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
+import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 import barnEndpoint from './endpoints/barnEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
 import søknadStateEndpoint, {
@@ -72,11 +74,20 @@ function useSøknadInitialData(): SøknadInitialDataState {
             });
             return Promise.resolve();
         } catch (error: any) {
+            if (isUnauthorized(error)) {
+                relocateToLoginPage();
+                return Promise.reject(error);
+            }
+            if (isForbidden(error)) {
+                relocateToNoAccessPage();
+                return Promise.reject(error);
+            }
             appSentryLogger.logError('fetchInitialData', error);
             setInitialData({
                 status: RequestStatus.error,
                 error,
             });
+            return Promise.reject(error);
         }
     };
 
