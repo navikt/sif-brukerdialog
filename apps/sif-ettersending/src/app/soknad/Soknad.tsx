@@ -193,7 +193,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                     <SoknadFormComponents.FormikWrapper
                         initialValues={initialFormData}
                         onSubmit={() => null}
-                        renderForm={({ values, resetForm }) => {
+                        renderForm={({ values, setValues, resetForm }) => {
                             const navigateToNextStepFromStep = async (stepID: StepID) => {
                                 const soknadStepsConfig = getSoknadStepsConfig(søknadstype);
                                 const stepToPersist = soknadStepsConfig[stepID].nextStep;
@@ -234,7 +234,10 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                         continueSoknadLater: soknadId
                                             ? (stepId) => continueSoknadLater(soknadId, stepId, values)
                                             : undefined,
-                                        startSoknad,
+                                        startSoknad: () => {
+                                            setValues({ ...values, harForståttRettigheterOgPlikter: true });
+                                            startSoknad();
+                                        },
                                         sendSoknad: (values) => triggerSend(values, resetForm),
                                         gotoNextStepFromStep: (stepID: StepID) => {
                                             navigateToNextStepFromStep(stepID);
