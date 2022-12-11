@@ -14,7 +14,7 @@
         "@types/amplitude-js": "8.16.2",
         "@types/node": "18.11.11",
         "@types/react": "18.0.26",
-        "amplitude-js": "8.21.2",
+        "amplitude-js": "8.21.3",
         "constate": "3.3.2",
         "gh-pages": "4.0.0",
         "react": "18.2.0",
