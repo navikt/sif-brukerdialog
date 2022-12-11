@@ -45,6 +45,14 @@
         "e2e-omsorgspengesoknad": {
             "outputs": [],
             "dependsOn": ["^build-omsorgspengesoknad"]
+        },
+        "build-ettersending": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
+        "e2e-ettersending": {
+            "outputs": [],
+            "dependsOn": ["^build-ettersending"]
         }
     }
 }

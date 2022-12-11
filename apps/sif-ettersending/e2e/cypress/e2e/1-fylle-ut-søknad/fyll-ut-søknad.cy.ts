@@ -7,7 +7,7 @@ const fileName = 'navlogopng.png';
 
 const velgYtelse = () => {
     it('Velg ytelse', () => {
-        getElement('label[for="radio-ra"]').click({ force: true });
+        getElement('.navds-radio__label').first().click({ force: true });
         getElement('button[type="submit"]').click({ force: true });
         const el = getElement('h1');
         el.should('contain', 'Ettersendelse av dokumentasjon til søknad om pleiepenger');
@@ -17,7 +17,7 @@ const velgYtelse = () => {
 const startSøknad = () => {
     it('Starter søknad', () => {
         getTestElement('bekreft-label').click();
-        getTestElement('samtykke-button').click();
+        getTestElement('typedFormikForm-submitButton').click();
     });
 };
 
