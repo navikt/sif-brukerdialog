@@ -1,41 +1,63 @@
 import { useState } from 'react';
-import { combine, initial, pending, RemoteData } from '@devexperts/remote-data-ts';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
-import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { AxiosError } from 'axios';
 import getSokerRemoteData from '../api/getSoker';
 import getSoknadTempStorage from '../api/getSoknadTempStorage';
 import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
+import { RequestStatus } from '../types/RequestStatus';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
+import appSentryLogger from '../utils/appSentryLogger';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { navigateToLoginPage } from '../utils/navigationUtils';
 
-export type SoknadEssentials = [Person, SoknadTempStorageData];
+export type SoknadEssentials = { søker: Person; mellomlagring?: SoknadTempStorageData };
 
-export type SoknadEssentialsRemoteData = RemoteData<AxiosError, SoknadEssentials>;
+type SøknadInitialSuccess = {
+    status: RequestStatus.success;
+    data: SoknadEssentials;
+};
 
-function useSoknadEssentials(søknadstype: ApplicationType): SoknadEssentialsRemoteData {
-    const [data, setData] = useState<SoknadEssentialsRemoteData>(initial);
+type SøknadInitialFailed = {
+    status: RequestStatus.error;
+    error: any;
+};
+
+type SøknadInitialLoading = {
+    status: RequestStatus.loading;
+};
+
+export type SøknadInitialDataState = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
+
+function useSoknadEssentials(søknadstype: ApplicationType): SøknadInitialDataState {
+    const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
+
     const fetch = async () => {
         try {
-            const [sokerResult, soknadTempStorageResult] = await Promise.all([
-                getSokerRemoteData(),
-                getSoknadTempStorage(søknadstype),
-            ]);
-            setData(combine(sokerResult, soknadTempStorageResult));
-        } catch (remoteDataError) {
-            if (isUserLoggedOut(remoteDataError.error) && søknadstype) {
-                setData(pending);
+            const [søker, mellomlagring] = await Promise.all([getSokerRemoteData(), getSoknadTempStorage(søknadstype)]);
+            setInitialData({
+                status: RequestStatus.success,
+                data: { søker, mellomlagring },
+            });
+            return Promise.resolve();
+        } catch (error) {
+            if (isForbidden(error) || isUnauthorized(error)) {
                 navigateToLoginPage(søknadstype);
+                return Promise.reject(error);
             } else {
-                setData(remoteDataError);
+                appSentryLogger.logError('fetchInitialData', error);
+                setInitialData({
+                    status: RequestStatus.error,
+                    error,
+                });
             }
         }
     };
+
     useEffectOnce(() => {
         fetch();
     });
-    return data;
+
+    return initialData;
 }
 
 export default useSoknadEssentials;

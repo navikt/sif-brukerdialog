@@ -5,6 +5,9 @@ export default defineConfig({
         setupNodeEvents(on, config) {
             // implement node event listeners here
         },
-        baseUrl: 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending',
+        screenshotOnRunFailure: false,
+        video: false,
+        projectId: '5485qe',
+        baseUrl: 'http://localhost:8080/soknad',
     },
 });

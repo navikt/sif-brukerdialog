@@ -1,6 +1,5 @@
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 
 const axiosConfig: AxiosRequestConfig = {
@@ -19,18 +18,6 @@ axios.defaults.withCredentials = false;
 axios.interceptors.request.use((config) => {
     return config;
 });
-
-axios.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error: AxiosError) => {
-        if (isForbidden(error) || isUnauthorized(error)) {
-            return Promise.reject(error);
-        }
-        return Promise.reject(error);
-    }
-);
 
 const api = {
     get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {

@@ -1,18 +1,35 @@
 # This workflow trigger on push to apps/sif-ettersending
-name: Ettersending
+name: app.ettersending
 on:
     push:
         paths:
             - 'apps/sif-ettersending/**/*'
             - 'nais-config/sif-ettersending/**/*'
+            - 'packages/**/*'
+            - .github/workflows/app.sif-ettersending.yml
+
+env:
+    APP_NAME: 'ettersending'
 
 jobs:
-    deploy-to-dev:
-        name: Build and deploy sif-ettersending to dev
-        if: startsWith(github.ref, 'refs/heads/dev-') || github.event.deployment.payload.triggered
-        uses: navikt/sif-brukerdialog/.github/workflows/deploy-app-to-dev.yml@main
-        secrets:
-            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+
+  run-cypress-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run cypress tests
+        uses: cypress-io/github-action@v4.2.2 # use the explicit version number
+        env:
+            API_URL: http://localhost:8089/
+            FRONTEND_API_PATH: http://localhost:8089/
+            FRONTEND_VEDLEGG_URL: https://k9-ettersending-soknad.dev.nav.no/api
+            LIVETS_SLUTTFASE: on
+            NPM_CONFIG_CACHE: /tmp
+            PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending
         with:
-            app-name: 'sif-ettersending'
-            working-directory: 'apps/sif-ettersending'
+            project: ./apps/sif-ettersending/e2e
+            build: yarn build-sif-ettersending
+            start: yarn e2e-sif-ettersending
+            record: false

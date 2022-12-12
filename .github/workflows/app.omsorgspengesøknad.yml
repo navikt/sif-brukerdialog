@@ -1,4 +1,4 @@
-name: Omsorgspengesøknad
+name: app.omsorgspengesøknad
 
 on:
   push:

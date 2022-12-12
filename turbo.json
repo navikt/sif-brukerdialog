@@ -45,6 +45,14 @@
         "e2e-omsorgspengesoknad": {
             "outputs": [],
             "dependsOn": ["^build-omsorgspengesoknad"]
+        },
+        "build-sif-ettersending": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
+        "e2e-sif-ettersending": {
+            "outputs": [],
+            "dependsOn": ["^build-sif-ettersending"]
         }
     }
 }

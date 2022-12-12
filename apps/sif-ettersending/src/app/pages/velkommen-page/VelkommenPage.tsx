@@ -24,7 +24,7 @@ const VelkommenPage: React.FC<Props> = ({ søknadstype }) => {
         <>
             <Page
                 title={intlHelper(intl, `application.title.${søknadstype}`)}
-                topContentRenderer={() => <SoknadHeader title={intlHelper(intl, `banner.${søknadstype}`)} level="1" />}>
+                topContentRenderer={() => <SoknadHeader title={intlHelper(intl, `banner.${søknadstype}`)} level="2" />}>
                 <VelkommenGuide />
 
                 <OmSøknaden />

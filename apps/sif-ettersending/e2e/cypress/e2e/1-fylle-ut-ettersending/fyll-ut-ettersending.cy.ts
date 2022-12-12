@@ -1,15 +1,16 @@
-// import { contextConfig } from '../contextConfig';
 import { contextConfig } from '../contextConfig';
 import { cyApiMockData } from '../data/cyApiMockData';
 import { getElement, getTestElement, getTestElementByType, submitSkjema } from '../utils';
 
 const fileName = 'navlogopng.png';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
 
 const velgYtelse = () => {
     it('Velg ytelse', () => {
-        getElement('label[for="radio-ra"]').click({ force: true });
-        getElement('button[type="submit"]').click({ force: true });
-        const el = getElement('h1');
+        cy.wait(1500);
+        cy.get('[type="radio"]').first().check();
+        getTestElement('typedFormikForm-submitButton').click({ force: true });
+        const el = getElement('h2').first();
         el.should('contain', 'Ettersendelse av dokumentasjon til søknad om pleiepenger');
     });
 };
@@ -17,7 +18,7 @@ const velgYtelse = () => {
 const startSøknad = () => {
     it('Starter søknad', () => {
         getTestElement('bekreft-label').click();
-        getTestElement('samtykke-button').click();
+        getTestElement('typedFormikForm-submitButton').click();
     });
 };
 
@@ -68,7 +69,7 @@ describe('Fylle ut skjema med vedlegg', () => {
     context('med utmocket, tom mellomlagring', () => {
         contextConfig();
         before(() => {
-            cy.visit('/');
+            cy.visit(startUrl);
         });
         velgYtelse();
         startSøknad();
