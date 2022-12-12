@@ -12,7 +12,7 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
     } = k9Sak.ytelse.arbeidstidInfo;
 
     Object.keys(arbeidstakerMap).forEach((key) => {
-        const { allePerioder, samletPeriode } = arbeidstakerMap[key];
+        const { allePerioder, samletPeriode, arbeidsuker } = arbeidstakerMap[key];
         const arbeidsgiver = arbeidsgivere.find((arbeidsgiver) => arbeidsgiver.id === key);
         if (arbeidsgiver) {
             aktivitetArbeidstaker.push({
@@ -22,6 +22,7 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
                 perioder: {
                     allePerioder,
                     samletPeriode,
+                    arbeidsuker,
                 },
             });
         }
@@ -37,6 +38,7 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
                       perioder: {
                           samletPeriode: frilanserArbeidstidInfo.samletPeriode,
                           allePerioder: frilanserArbeidstidInfo.allePerioder,
+                          arbeidsuker: frilanserArbeidstidInfo.arbeidsuker,
                       },
                   }
                 : undefined,
@@ -48,6 +50,7 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
                       perioder: {
                           samletPeriode: selvstendigNæringsdrivendeArbeidstidInfo.samletPeriode,
                           allePerioder: selvstendigNæringsdrivendeArbeidstidInfo.allePerioder,
+                          arbeidsuker: selvstendigNæringsdrivendeArbeidstidInfo.arbeidsuker,
                       },
                   }
                 : undefined,

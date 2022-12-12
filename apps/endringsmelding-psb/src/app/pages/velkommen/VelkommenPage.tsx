@@ -1,33 +1,17 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
 import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import SakInfo from './SakInfo';
 import { Sak } from '../../types/Sak';
-
-export enum VelkommenFormFields {
-    harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
-}
-
-export interface VelkommenFormValues {
-    [VelkommenFormFields.harForståttRettigheterOgPlikter]: boolean;
-}
-
-const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
-    VelkommenFormFields,
-    VelkommenFormValues
->();
+import SakInfo from './SakInfo';
+import ArbeidstidUkeListe from '../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
 
 const VelkommenPage = () => {
-    const intl = useIntl();
     const {
         state: { søker, k9saker, sak },
         dispatch,
@@ -83,33 +67,11 @@ const VelkommenPage = () => {
                 </FormBlock>
             </SifGuidePanel>
 
-            <FormikWrapper
-                initialValues={{ harForståttRettigheterOgPlikter: false }}
-                onSubmit={() => startSøknad(sak)}
-                renderForm={() => (
-                    <Form
-                        includeButtons={true}
-                        submitButtonLabel="Start endring"
-                        formErrorHandler={getIntlFormErrorHandler(intl)}>
-                        <FormBlock>
-                            <ConfirmationCheckbox
-                                label="Jeg forstår og bekrefter"
-                                name={VelkommenFormFields.harForståttRettigheterOgPlikter}
-                                validate={getCheckedValidator()}>
-                                <strong>Takk for at du er ærlig!</strong>
+            {sak.arbeidAktivitet.selvstendigNæringsdrivende && (
+                <ArbeidstidUkeListe arbeidsuker={sak.arbeidAktivitet.selvstendigNæringsdrivende.perioder.arbeidsuker} />
+            )}
 
-                                <ul>
-                                    <li>
-                                        Jeg forstår at hvis jeg gir uriktige eller holder tilbake opplysninger kan det
-                                        få konsekvenser for retten min til pleiepenger.
-                                    </li>
-                                    <li>Jeg har lest og forstått det som står på nav.no/rettogplikt</li>
-                                </ul>
-                            </ConfirmationCheckbox>
-                        </FormBlock>
-                    </Form>
-                )}
-            />
+            <SamtykkeForm onValidSubmit={() => startSøknad(sak)} />
         </Page>
     );
 };

@@ -7,12 +7,12 @@ import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/env
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
-import { applicationIntlMessages } from './i18n/applicationMessages';
-import Søknad from './søknad/Søknad';
+import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
+import Søknad from './søknad/Søknad';
+import { getEnvVariableOrDefault } from './utils/envUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-import { getEnvVariableOrDefault } from './utils/envUtils';
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';

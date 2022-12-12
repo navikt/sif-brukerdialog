@@ -1,7 +1,11 @@
 import {
     DateRange,
+    dateRangeToISODateRange,
     dateRangeUtils,
+    dateToISODate,
+    decimalDurationToDuration,
     Duration,
+    durationToDecimalDuration,
     getISODatesInISODateRange,
     isDateInDateRange,
     ISODateRangeToDateRange,
@@ -20,6 +24,8 @@ import {
     AktivitetArbeidstid,
     ArbeidstakerMap,
     ArbeidstidEnkeltdagSak,
+    Arbeidsuke,
+    ArbeidsukeMap,
     Barn,
     K9Sak,
     TidEnkeltdag,
@@ -54,6 +60,15 @@ export const getTilsynsdagerFromK9Format = (data: K9FormatTilsynsordningPerioder
 const dateIsIWithinDateRanges = (date: Date, dateRanges: DateRange[]) =>
     dateRanges.some((dateRange) => isDateInDateRange(date, dateRange));
 
+const getIsoWeekDateRangeForDate = (date: Date) => {
+    const from = dayjs(date).startOf('isoWeek').toDate();
+    const to = dayjs(date).endOf('isoWeek').toDate();
+    return {
+        from,
+        to,
+    };
+};
+
 export const getAktivitetArbeidstidFromK9Format = (
     arbeidstidPerioder: K9FormatArbeidstidPeriode,
     søknadsperioder: DateRange[]
@@ -69,27 +84,64 @@ export const getAktivitetArbeidstidFromK9Format = (
             minutes: tid?.minutes || '0',
         };
     };
+
+    const arbeidsuker: ArbeidsukeMap = {};
+
     Object.keys(arbeidstidPerioder).forEach((isoDateRange) => {
         const isoDates = getISODatesInISODateRange(isoDateRange, true);
         isoDates.forEach((isoDate) => {
             const date = ISODateToDate(isoDate);
             const dateIsInSøknadsperioder = dateIsIWithinDateRanges(date, søknadsperioder);
             if (dateIsInSøknadsperioder) {
-                arbeidstid.faktisk[isoDate] = getTid(
-                    ISODurationToDuration(arbeidstidPerioder[isoDateRange].faktiskArbeidTimerPerDag)
-                );
-                arbeidstid.normalt[isoDate] = getTid(
-                    ISODurationToDuration(arbeidstidPerioder[isoDateRange].jobberNormaltTimerPerDag)
-                );
+                const faktisk = ISODurationToDuration(arbeidstidPerioder[isoDateRange].faktiskArbeidTimerPerDag);
+                const normalt = ISODurationToDuration(arbeidstidPerioder[isoDateRange].jobberNormaltTimerPerDag);
+
+                const weekKey = dateRangeToISODateRange(getIsoWeekDateRangeForDate(date));
+                if (arbeidsuker[weekKey] === undefined) {
+                    arbeidsuker[weekKey] = { days: {} } as any;
+                }
+                arbeidsuker[weekKey].days[dateToISODate(date)] = {
+                    faktisk,
+                    normalt,
+                };
+                arbeidstid.faktisk[isoDate] = getTid(faktisk);
+                arbeidstid.normalt[isoDate] = getTid(normalt);
             }
         });
     });
 
+    Object.keys(arbeidsuker).forEach((key) => {
+        const { days } = arbeidsuker[key];
+
+        const dayKeys = Object.keys(days);
+        const from = ISODateToDate(dayKeys[0]);
+        const to = ISODateToDate(dayKeys[dayKeys.length - 1]);
+
+        let samletFaktiskArbeidstid = 0;
+        let samletNormaltArbeidstid = 0;
+
+        dayKeys.forEach((key) => {
+            const day = days[key];
+            samletFaktiskArbeidstid += durationToDecimalDuration(day.faktisk);
+            samletNormaltArbeidstid += durationToDecimalDuration(day.normalt);
+        });
+
+        const arbeidsuke: Arbeidsuke = {
+            days,
+            faktisk: decimalDurationToDuration(samletFaktiskArbeidstid),
+            normalt: decimalDurationToDuration(samletNormaltArbeidstid),
+            periode: { from, to },
+        };
+        arbeidsuker[key] = arbeidsuke;
+    });
+
     const { samletPeriode, allePerioder } = getArbeidAktivitetPerioderFromPerioder(arbeidstidPerioder);
+
     return {
         samletPeriode,
         allePerioder,
         arbeidstid,
+        arbeidsuker,
     };
 };
 

@@ -1,7 +1,7 @@
 import { DateRange } from 'react-day-picker';
 import { Arbeidsgiver } from './Arbeidsgiver';
 
-import { Barn } from './K9Sak';
+import { ArbeidsukeMap, Barn } from './K9Sak';
 
 export enum ArbeidAktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -12,6 +12,7 @@ export enum ArbeidAktivitetType {
 interface ArbeidAktivitetPerioder {
     allePerioder: DateRange[];
     samletPeriode: DateRange;
+    arbeidsuker: ArbeidsukeMap;
 }
 export interface ArbeidAktivitetArbeidstaker {
     id: string;
