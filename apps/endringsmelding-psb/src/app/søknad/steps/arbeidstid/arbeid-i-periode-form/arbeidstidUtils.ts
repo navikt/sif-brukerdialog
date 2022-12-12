@@ -1,5 +1,5 @@
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { DateRange, InputTime, OpenDateRange } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange, InputTime } from '@navikt/sif-common-formik-ds/lib';
 import {
     dateFormatter,
     dateRangeUtils,
@@ -12,7 +12,6 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { IntlShape } from 'react-intl';
-import { ArbeidsukeInfo } from '../ArbeidsukeInfo';
 import { getArbeidsukeInfoIPeriode } from './arbeidIPeriodeFormConfig';
 
 dayjs.extend(isSameOrBefore);
@@ -61,35 +60,36 @@ export const periodeInneholderToHeleArbeidsuker = (periode: DateRange): boolean 
 export const skalSvarePåOmEnJobberLiktIPerioden = (periode?: DateRange) =>
     periode ? periodeInneholderToHeleArbeidsuker(periode) : true;
 
-export enum ArbeidsperiodeIForholdTilSøknadsperiode {
-    'starterIPerioden' = 'starterIPerioden',
-    'slutterIPerioden' = 'slutterIPerioden',
-    'starterOgSlutterIPerioden' = 'starterOgSlutterIPerioden',
-    'gjelderHelePerioden' = 'gjelderHelePerioden',
-}
-export const getArbeidsperiodeIForholdTilSøknadsperiode = (
-    periode: OpenDateRange,
-    søknadsperiode: DateRange
-): ArbeidsperiodeIForholdTilSøknadsperiode => {
-    if (
-        dateRangeUtils.isDateInsideDateRange(periode.from, søknadsperiode) &&
-        periode.to &&
-        dateRangeUtils.isDateInsideDateRange(periode.to, søknadsperiode)
-    ) {
-        return ArbeidsperiodeIForholdTilSøknadsperiode.starterOgSlutterIPerioden;
-    } else if (dateRangeUtils.isDateInsideDateRange(periode.from, søknadsperiode)) {
-        return ArbeidsperiodeIForholdTilSøknadsperiode.starterIPerioden;
-    } else if (periode.to && dateRangeUtils.isDateInsideDateRange(periode.to, søknadsperiode)) {
-        return ArbeidsperiodeIForholdTilSøknadsperiode.slutterIPerioden;
-    }
-    return ArbeidsperiodeIForholdTilSøknadsperiode.gjelderHelePerioden;
-};
+// export enum ArbeidsperiodeIForholdTilSøknadsperiode {
+//     'starterIPerioden' = 'starterIPerioden',
+//     'slutterIPerioden' = 'slutterIPerioden',
+//     'starterOgSlutterIPerioden' = 'starterOgSlutterIPerioden',
+//     'gjelderHelePerioden' = 'gjelderHelePerioden',
+// }
 
-export const getArbeidsukerIPerioden = (periode: DateRange): ArbeidsukeInfo[] => {
-    return getWeeksInDateRange(periode)
-        .filter((uke) => dayjs(uke.from).isoWeekday() <= 5) // Ikke ta med uker som starter lørdag eller søndag
-        .map(getArbeidsukeInfoIPeriode);
-};
+// export const getArbeidsperiodeIForholdTilSøknadsperiode = (
+//     periode: OpenDateRange,
+//     søknadsperiode: DateRange
+// ): ArbeidsperiodeIForholdTilSøknadsperiode => {
+//     if (
+//         dateRangeUtils.isDateInsideDateRange(periode.from, søknadsperiode) &&
+//         periode.to &&
+//         dateRangeUtils.isDateInsideDateRange(periode.to, søknadsperiode)
+//     ) {
+//         return ArbeidsperiodeIForholdTilSøknadsperiode.starterOgSlutterIPerioden;
+//     } else if (dateRangeUtils.isDateInsideDateRange(periode.from, søknadsperiode)) {
+//         return ArbeidsperiodeIForholdTilSøknadsperiode.starterIPerioden;
+//     } else if (periode.to && dateRangeUtils.isDateInsideDateRange(periode.to, søknadsperiode)) {
+//         return ArbeidsperiodeIForholdTilSøknadsperiode.slutterIPerioden;
+//     }
+//     return ArbeidsperiodeIForholdTilSøknadsperiode.gjelderHelePerioden;
+// };
+
+// export const getArbeidsukerIPerioden = (periode: DateRange): ArbeidsukeInfo[] => {
+//     return getWeeksInDateRange(periode)
+//         .filter((uke) => dayjs(uke.from).isoWeekday() <= 5) // Ikke ta med uker som starter lørdag eller søndag
+//         .map(getArbeidsukeInfoIPeriode);
+// };
 
 export const getArbeidsdagerIUkeTekst = ({ from, to }: DateRange): string => {
     const fraDag = dateFormatter.day(from);

@@ -18,7 +18,7 @@ export const useStepNavigation = (step: StepConfig<StepId>) => {
             dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(previousStep)));
             dispatch(actionsCreator.requestLagreSøknad());
             setTimeout(() => {
-                navigate(previousStep);
+                navigate(getSøknadStepRoute(previousStep));
             });
         }
     };
@@ -29,7 +29,7 @@ export const useStepNavigation = (step: StepConfig<StepId>) => {
             dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(nextStep)));
             dispatch(actionsCreator.requestLagreSøknad());
             setTimeout(() => {
-                navigate(nextStep);
+                navigate(getSøknadStepRoute(nextStep));
             });
         }
     };

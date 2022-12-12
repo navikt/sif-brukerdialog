@@ -5,6 +5,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 // import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { ArbeidsukeMap } from '../../../types/K9Sak';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -14,16 +15,15 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
+import Arbeidsaktivitet from './Arbeidsaktivitet';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
-import { ArbeidIPeriodeFormValues } from './arbeid-i-periode/ArbeidIPeriodeFormValues';
-import ArbeidAktivitetFormPart from './arbeid-i-periode/ArbeidAktivitetFormPart';
 
 export enum ArbeidstidFormFields {
     arbeidAktivitet = 'arbeidAktivitet',
 }
 
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitet]: { [key: string]: ArbeidIPeriodeFormValues };
+    [ArbeidstidFormFields.arbeidAktivitet]: { [key: string]: ArbeidsukeMap };
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues>();
@@ -67,7 +67,7 @@ const ArbeidstidStep = () => {
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => (
+                renderForm={({}) => (
                     <>
                         {/* <PersistStepFormValues stepId={stepId} /> */}
                         <Form
@@ -76,22 +76,14 @@ const ArbeidstidStep = () => {
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             {aktiviteter.map((a) => {
-                                const aktivitetValues = (values.arbeidAktivitet || {})[a.id];
                                 return (
                                     <FormBlock key={a.id}>
                                         <Panel
                                             border={true}
                                             style={{
-                                                backgroundColor: 'var(--a-bg-subtle)',
                                                 borderStyle: 'dashed',
                                             }}>
-                                            <ArbeidAktivitetFormPart
-                                                parentFieldName={
-                                                    `${ArbeidstidFormFields.arbeidAktivitet}.${a.id}` as any
-                                                }
-                                                arbeidAktivitet={a}
-                                                values={aktivitetValues || {}}
-                                            />
+                                            <Arbeidsaktivitet arbeidAktivitet={a} />
                                         </Panel>
                                     </FormBlock>
                                 );

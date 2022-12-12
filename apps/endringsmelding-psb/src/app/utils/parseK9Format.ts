@@ -3,14 +3,14 @@ import {
     dateRangeToISODateRange,
     dateRangeUtils,
     dateToISODate,
-    decimalDurationToDuration,
     Duration,
-    durationToDecimalDuration,
+    durationUtils,
     getISODatesInISODateRange,
     isDateInDateRange,
     ISODateRangeToDateRange,
     ISODateToDate,
     ISODurationToDuration,
+    numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import {
@@ -112,24 +112,26 @@ export const getAktivitetArbeidstidFromK9Format = (
 
     Object.keys(arbeidsuker).forEach((key) => {
         const { days } = arbeidsuker[key];
-
         const dayKeys = Object.keys(days);
+
         const from = ISODateToDate(dayKeys[0]);
         const to = ISODateToDate(dayKeys[dayKeys.length - 1]);
 
-        let samletFaktiskArbeidstid = 0;
-        let samletNormaltArbeidstid = 0;
+        // let samletFaktiskArbeidstid = 0;
+        // let samletNormaltArbeidstid = 0;
 
-        dayKeys.forEach((key) => {
-            const day = days[key];
-            samletFaktiskArbeidstid += durationToDecimalDuration(day.faktisk);
-            samletNormaltArbeidstid += durationToDecimalDuration(day.normalt);
-        });
+        // dayKeys.forEach((key) => {
+        //     const day = days[key];
+        //     samletFaktiskArbeidstid += durationToDecimalDuration(day.faktisk);
+        //     samletNormaltArbeidstid += durationToDecimalDuration(day.normalt);
+        // });
 
+        const faktisk = dayKeys.map((key) => days[key].faktisk);
+        const normalt = dayKeys.map((key) => days[key].normalt);
         const arbeidsuke: Arbeidsuke = {
             days,
-            faktisk: decimalDurationToDuration(samletFaktiskArbeidstid),
-            normalt: decimalDurationToDuration(samletNormaltArbeidstid),
+            faktisk: numberDurationAsDuration(durationUtils.summarizeDurations(faktisk)),
+            normalt: numberDurationAsDuration(durationUtils.summarizeDurations(normalt)),
             periode: { from, to },
         };
         arbeidsuker[key] = arbeidsuke;

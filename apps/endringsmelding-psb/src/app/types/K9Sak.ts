@@ -7,6 +7,7 @@ export interface Arbeidsuke {
     days: ArbeidstidEnkeltdagSak;
     faktisk: Duration;
     normalt: Duration;
+    endretFaktisk?: Duration;
 }
 
 export interface ArbeidsukeMap {

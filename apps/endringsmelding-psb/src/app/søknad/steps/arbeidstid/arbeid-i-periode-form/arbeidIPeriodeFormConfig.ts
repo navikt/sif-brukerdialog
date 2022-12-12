@@ -75,14 +75,6 @@ const ArbeidIPeriodeFormConfig: QuestionConfig<ArbeidIPeriodePayload, ArbeidIPer
         isAnswered: ({ formValues: { snittTimerPerUke } }) =>
             snittTimerPerUke !== undefined && snittTimerPerUke.length > 0,
     },
-    [ArbeidIPeriodeFormField.arbeidsuker]: {
-        isIncluded: ({ formValues, arbeidsperiode }) => {
-            return (
-                formValues.erLiktHverUke === YesOrNo.NO || skalSvarePåOmEnJobberLiktIPerioden(arbeidsperiode) === false
-            );
-        },
-        isAnswered: () => true,
-    },
 };
 
 export const arbeidIPeriodeSpørsmålConfig = Questions<ArbeidIPeriodePayload, ArbeidIPeriodeFormField>(

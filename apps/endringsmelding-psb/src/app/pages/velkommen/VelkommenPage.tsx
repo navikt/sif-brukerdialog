@@ -9,7 +9,6 @@ import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { Sak } from '../../types/Sak';
 import SakInfo from './SakInfo';
-import ArbeidstidUkeListe from '../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
 
 const VelkommenPage = () => {
     const {
@@ -66,11 +65,6 @@ const VelkommenPage = () => {
                     <SakInfo sak={sak} />
                 </FormBlock>
             </SifGuidePanel>
-
-            {sak.arbeidAktivitet.selvstendigNæringsdrivende && (
-                <ArbeidstidUkeListe arbeidsuker={sak.arbeidAktivitet.selvstendigNæringsdrivende.perioder.arbeidsuker} />
-            )}
-
             <SamtykkeForm onValidSubmit={() => startSøknad(sak)} />
         </Page>
     );

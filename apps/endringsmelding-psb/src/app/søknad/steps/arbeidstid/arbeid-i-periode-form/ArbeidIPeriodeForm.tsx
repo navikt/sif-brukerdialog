@@ -1,15 +1,14 @@
+import React from 'react';
+import { IntlShape, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../../types/Sak';
+import { ArbeidstidFormFields } from '../ArbeidstidStep';
 import { arbeidIPeriodeSpørsmålConfig } from './arbeidIPeriodeFormConfig';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues, TimerEllerProsent } from './ArbeidIPeriodeFormValues';
-import { ArbeidstidFormFields } from '../ArbeidstidStep';
-import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
-import ArbeidstidUkerSpørsmål from './ArbeidstidUkerSpørsmål';
 import ArbeidstidInput from './ArbeidstidInput';
+import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
 
 interface Props {
     values?: ArbeidIPeriodeFormValues;
@@ -71,7 +70,6 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({
                     <YesOrNoQuestion
                         name={getFieldName(ArbeidIPeriodeFormField.erLiktHverUke)}
                         legend={intlHelper(intl, `arbeidIPeriode.erLiktHverUke.spm`, intlValues)}
-                        // validate={getArbeidIPeriodeErLiktHverUkeValidator(intlValues)}
                         data-testid="er-likt-hver-uke"
                         labels={{
                             yes: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.ja`),
@@ -86,18 +84,6 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({
                         name={getFieldName(ArbeidIPeriodeFormField.timerEllerProsent)}
                         legend={intlHelper(intl, `arbeidIPeriode.timerEllerProsent.spm`, intlValues)}
                         radios={getTimerEllerProsentRadios(intl, intlValues)}
-                        // validate={getArbeidIPeriodeTimerEllerProsentValidator(intlValues)}
-                    />
-                </FormBlock>
-            )}
-            {visibility.isVisible(ArbeidIPeriodeFormField.arbeidsuker) && values && (
-                <FormBlock>
-                    <ArbeidstidUkerSpørsmål
-                        periode={arbeidsperiode}
-                        parentFieldName={getFieldName(ArbeidIPeriodeFormField.arbeidsuker)}
-                        timerEllerProsent={TimerEllerProsent.TIMER}
-                        arbeidIPeriode={values}
-                        intlValues={intlValues}
                     />
                 </FormBlock>
             )}
