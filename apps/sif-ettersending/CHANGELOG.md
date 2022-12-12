@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 2.2.0
+
+### Minor Changes
+
+-   3a9498a: Sette opp ci-cypress test
+
 ## 2.1.2
 
 ### Patch Changes
