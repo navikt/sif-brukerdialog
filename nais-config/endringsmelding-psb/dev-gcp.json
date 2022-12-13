@@ -6,7 +6,7 @@
         "API_URL_INNSYN": "https://sif-innsyn-api.dev.nav.no",
         "APPSTATUS_DATASET": "staging",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
-        "APP_VERSION": "dev",
+        "APP_VERSION": "test",
         "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
         "INNSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn",
         "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://endringsmelding-pleiepenger.dev.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding",
