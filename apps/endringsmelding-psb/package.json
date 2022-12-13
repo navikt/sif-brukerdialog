@@ -2,7 +2,7 @@
     "author": "NAV",
     "description": "Endringsmelding - pleiepenger sykt barn",
     "license": "MIT",
-    "name": "@navikt/endingsmelding-psb",
+    "name": "@navikt/endringsmelding-psb",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "0.1.1",
     "private": true,
