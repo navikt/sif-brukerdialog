@@ -71,7 +71,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
                 </>
             )}
 
-            <FormBlock>
+            <FormBlock paddingBottom="l">
                 <Heading
                     level="3"
                     size="medium"
@@ -110,7 +110,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
                     </Accordion>
                 )}
             </FormBlock>
-            <p>En kommentar</p>
+
             <ArbeidIPeriodeModal
                 arbeidAktivitet={arbeidAktivitet}
                 isVisible={visArbeidIPeriodeModal}

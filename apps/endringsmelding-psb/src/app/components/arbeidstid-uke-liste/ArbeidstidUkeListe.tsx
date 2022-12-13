@@ -1,5 +1,6 @@
 import { Button, Table } from '@navikt/ds-react';
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { Edit } from '@navikt/ds-icons';
 import { dateFormatter, decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
@@ -15,12 +16,18 @@ interface Props {
 }
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({ arbeidsuker, visNormaltid = false, onVelgUke }) => {
+    const isWide = useMediaQuery({ minWidth: 736 });
+    const compactTable = isWide === false;
+
     const renderDato = (date: Date) => {
         return (
             <span style={{ textTransform: 'capitalize' }}>
                 {dateFormatter.day(date).substring(0, 3)}. {dateFormatter.compact(date)}
             </span>
         );
+    };
+    const renderDatoKompakt = (date: Date) => {
+        return <span style={{ textTransform: 'capitalize' }}>{dateFormatter.compact(date)}</span>;
     };
 
     const getTid = (uke: ArbeidsukeMedEndring) => {
@@ -36,7 +43,9 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({ arbeidsuker, visNo
                 <div>
                     <strong>
                         {endring.type === TimerEllerProsent.PROSENT ? (
-                            <>{endring.prosent} prosent</>
+                            <>
+                                {endring.prosent} {compactTable ? '%' : 'prosent'}
+                            </>
                         ) : (
                             <DurationText duration={decimalDurationToDuration(nyTid)} />
                         )}
@@ -48,49 +57,93 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({ arbeidsuker, visNo
             </>
         );
     };
+
     return (
         <div className="arbeidstidUkeList">
             <Table zebraStripes={true}>
                 <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Uke</Table.HeaderCell>
-                        <Table.HeaderCell>Periode</Table.HeaderCell>
-                        <Table.HeaderCell>Dager</Table.HeaderCell>
-                        {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
-                        <Table.HeaderCell colSpan={2}>Arbeidstid</Table.HeaderCell>
-                    </Table.Row>
+                    {compactTable && (
+                        <Table.Row>
+                            <Table.HeaderCell>Periode</Table.HeaderCell>
+                            {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
+                            <Table.HeaderCell colSpan={2}>Arbeidstid</Table.HeaderCell>
+                        </Table.Row>
+                    )}
+                    {compactTable === false && (
+                        <Table.Row>
+                            <Table.HeaderCell>Uke</Table.HeaderCell>
+                            <Table.HeaderCell>Periode</Table.HeaderCell>
+                            <Table.HeaderCell>Dager</Table.HeaderCell>
+                            {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
+                            <Table.HeaderCell colSpan={2}>Arbeidstid</Table.HeaderCell>
+                        </Table.Row>
+                    )}
                 </Table.Header>
                 <Table.Body>
                     {arbeidsuker.map((uke, idx) => {
-                        const periode = (
-                            <>
-                                {renderDato(uke.periode.from)} - {` `}
-                                {renderDato(uke.periode.to)}
-                            </>
-                        );
+                        const ukenummer = dayjs(uke.periode.from).isoWeek();
                         return (
-                            <Table.Row key={idx}>
-                                <Table.DataCell>{dayjs(uke.periode.from).isoWeek()}</Table.DataCell>
-                                <Table.DataCell>
-                                    <>{periode}</>
-                                </Table.DataCell>
-                                <Table.DataCell>{Object.keys(uke.days).length}</Table.DataCell>
-                                {visNormaltid && (
-                                    <Table.DataCell>
-                                        <DurationText duration={uke.normalt} />
-                                    </Table.DataCell>
+                            <>
+                                {compactTable && (
+                                    <Table.Row key={idx}>
+                                        <Table.DataCell>
+                                            <>
+                                                Uke {ukenummer}
+                                                <br />
+                                                <span style={{ textTransform: 'capitalize' }}>
+                                                    {dateFormatter.day(uke.periode.from)} -{' '}
+                                                    {dateFormatter.day(uke.periode.to)}
+                                                </span>
+                                                <br />
+                                                {renderDatoKompakt(uke.periode.from)} - {` `}
+                                                {renderDatoKompakt(uke.periode.to)}
+                                            </>
+                                        </Table.DataCell>
+                                        {visNormaltid && (
+                                            <Table.DataCell>
+                                                <DurationText duration={uke.normalt} />
+                                            </Table.DataCell>
+                                        )}
+                                        <Table.DataCell>{getTid(uke)}</Table.DataCell>
+                                        <Table.DataCell>
+                                            <Button
+                                                icon={<Edit />}
+                                                type="button"
+                                                variant="primary"
+                                                size="small"
+                                                onClick={() => onVelgUke(uke)}
+                                            />
+                                        </Table.DataCell>
+                                    </Table.Row>
                                 )}
-                                <Table.DataCell>{getTid(uke)}</Table.DataCell>
-                                <Table.DataCell>
-                                    <Button
-                                        icon={<Edit />}
-                                        type="button"
-                                        variant="primary"
-                                        size="small"
-                                        onClick={() => onVelgUke(uke)}
-                                    />
-                                </Table.DataCell>
-                            </Table.Row>
+                                {!compactTable && (
+                                    <Table.Row key={idx}>
+                                        <Table.DataCell>{ukenummer}</Table.DataCell>
+                                        <Table.DataCell>
+                                            <>
+                                                {renderDato(uke.periode.from)} - {` `}
+                                                {renderDato(uke.periode.to)}
+                                            </>
+                                        </Table.DataCell>
+                                        <Table.DataCell>{Object.keys(uke.days).length}</Table.DataCell>
+                                        {visNormaltid && (
+                                            <Table.DataCell>
+                                                <DurationText duration={uke.normalt} />
+                                            </Table.DataCell>
+                                        )}
+                                        <Table.DataCell>{getTid(uke)}</Table.DataCell>
+                                        <Table.DataCell>
+                                            <Button
+                                                icon={<Edit />}
+                                                type="button"
+                                                variant="primary"
+                                                size="small"
+                                                onClick={() => onVelgUke(uke)}
+                                            />
+                                        </Table.DataCell>
+                                    </Table.Row>
+                                )}
+                            </>
                         );
                     })}
                 </Table.Body>
