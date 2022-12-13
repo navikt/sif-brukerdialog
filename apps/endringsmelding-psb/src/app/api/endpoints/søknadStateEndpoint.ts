@@ -3,14 +3,15 @@ import { jsonSort } from '@navikt/sif-common-utils/lib';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
+import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { Søker } from '../../types/Søker';
-import { SøknadContextState } from '../../types/SøknadContextState';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
-export type SøknadStatePersistence = Omit<
-    SøknadContextState,
-    'søker' | 'institusjoner' | 'arbeidsgivere' | 'k9saker'
-> & {
+export type SøknadStatePersistence = {
+    versjon: string;
+    søknadsdata: Søknadsdata;
+    søknadRoute?: SøknadRoutes;
     søknadHashString: string;
 };
 
@@ -20,7 +21,7 @@ interface SøknadStateHashInfo {
 
 interface SøknadStatePersistenceEndpoint
     extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {
-    update: (state: SøknadContextState) => Promise<AxiosResponse>;
+    update: (state: Omit<SøknadStatePersistence, 'søknadHashString'>, søker: Søker) => Promise<AxiosResponse>;
     fetch: () => Promise<SøknadStatePersistence>;
 }
 
@@ -43,20 +44,12 @@ export const isPersistedSøknadStateValid = (
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({
-        søker,
-        søknadsdata,
-        søknadRoute,
-        sak,
-        søknadSendt,
-    }: Omit<SøknadContextState, 'k9saker' | 'arbeidsgivere'>) => {
+    update: ({ søknadsdata, søknadRoute }, søker) => {
         return persistSetup.update({
+            versjon: APP_VERSJON,
             søknadHashString: createHashString({ søker }),
             søknadsdata,
-            sak,
             søknadRoute,
-            søknadSendt,
-            versjon: APP_VERSJON,
         });
     },
     fetch: async () => {

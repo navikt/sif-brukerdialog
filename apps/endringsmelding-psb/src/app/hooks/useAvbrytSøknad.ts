@@ -9,12 +9,10 @@ const useAvbrytEllerFortsettSenere = () => {
     const { dispatch } = useSøknadContext();
     const { slettMellomlagring } = useMellomlagring();
 
-    const avbrytSøknad = useCallback(() => {
+    const avbrytSøknad = useCallback(async () => {
         dispatch(actionsCreator.avbrytSøknad());
-        slettMellomlagring();
-        setTimeout(() => {
-            navigate('/');
-        });
+        await slettMellomlagring();
+        navigate('/');
     }, [navigate, slettMellomlagring, dispatch]);
 
     const fortsettSøknadSenere = useCallback(() => {

@@ -2,7 +2,12 @@ import { Button, Table } from '@navikt/ds-react';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Edit } from '@navikt/ds-icons';
-import { dateFormatter, decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
+import {
+    dateFormatter,
+    dateRangeToISODateRange,
+    decimalDurationToDuration,
+    durationToDecimalDuration,
+} from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { TimerEllerProsent } from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
 import { Arbeidsuke, ArbeidsukeMedEndring } from '../../types/K9Sak';
@@ -80,12 +85,13 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({ arbeidsuker, visNo
                     )}
                 </Table.Header>
                 <Table.Body>
-                    {arbeidsuker.map((uke, idx) => {
+                    {arbeidsuker.map((uke) => {
+                        const rowKey = dateRangeToISODateRange(uke.periode);
                         const ukenummer = dayjs(uke.periode.from).isoWeek();
                         return (
                             <>
                                 {compactTable && (
-                                    <Table.Row key={idx}>
+                                    <Table.Row key={rowKey}>
                                         <Table.DataCell>
                                             <>
                                                 Uke {ukenummer}
@@ -117,7 +123,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({ arbeidsuker, visNo
                                     </Table.Row>
                                 )}
                                 {!compactTable && (
-                                    <Table.Row key={idx}>
+                                    <Table.Row key={rowKey}>
                                         <Table.DataCell>{ukenummer}</Table.DataCell>
                                         <Table.DataCell>
                                             <>

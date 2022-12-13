@@ -37,7 +37,9 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
     }));
     const startInneværendeUke = dayjs(dateToday).startOf('isoWeek').toDate();
     const ukerSomHarVært = arbeidsuker.filter((d) => dayjs(d.periode.to).isBefore(startInneværendeUke, 'day'));
-    const ukerSomKommer = arbeidsuker.filter((d) => dayjs(d.periode.from).isSameOrAfter(startInneværendeUke, 'day'));
+    const ukerSomKommer = arbeidsuker
+        .filter((d) => dayjs(d.periode.from).isSameOrAfter(startInneværendeUke, 'day'))
+        .slice(0, 50);
 
     return (
         <>
