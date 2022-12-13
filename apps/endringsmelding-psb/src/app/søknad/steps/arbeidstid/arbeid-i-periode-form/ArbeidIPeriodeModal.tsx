@@ -2,7 +2,6 @@ import { Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import { ArbeidstidAktivitetEndring } from '../../../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet } from '../../../../types/Sak';
-import ArbeidIPeriodeForm from './ArbeidIPeriodeForm';
 import './arbeidIPeriodeModal.scss';
 
 interface Props {
@@ -20,12 +19,6 @@ const ArbeidIPeriodeModal: FunctionComponent<Props> = ({ arbeidAktivitet, isVisi
                     <Heading spacing={true} size="medium" level="1">
                         Endre arbeidstid i perioden
                     </Heading>
-                    <ArbeidIPeriodeForm
-                        arbeidAktivitet={arbeidAktivitet}
-                        arbeidsstedNavn="abc"
-                        onCancel={onClose}
-                        onSubmit={onSubmit}
-                    />
                 </div>
             </Modal.Content>
         </Modal>

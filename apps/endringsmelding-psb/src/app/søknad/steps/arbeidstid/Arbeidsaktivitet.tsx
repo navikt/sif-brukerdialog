@@ -14,6 +14,7 @@ import { Arbeidsuke, ArbeidsukeMedEndring } from '../../../types/K9Sak';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
 import ArbeidIPeriodeModal from './arbeid-i-periode-form/ArbeidIPeriodeModal';
 import ArbeidstidEnkeltukeModal from './arbeidstid-enkeltuke/ArbeidstidEnkeltukeModal';
+import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -24,9 +25,9 @@ interface Props {
 
 const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
     arbeidAktivitet,
-    onArbeidsukeChange,
     endringer,
     kanEndrePeriode = false,
+    onArbeidsukeChange,
 }) => {
     const [visArbeidIPeriodeModal, setVisArbeidIPeriodeModal] = useState(false);
     const [arbeidsukeForEndring, setArbeidsukeForEndring] = useState<Arbeidsuke | undefined>();
@@ -130,17 +131,6 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
 };
 
 export default Arbeidsaktivitet;
-
-const getArbeidAktivitetNavn = (arbeidAktivitet: ArbeidAktivitet): string => {
-    switch (arbeidAktivitet.type) {
-        case ArbeidAktivitetType.arbeidstaker:
-            return arbeidAktivitet.arbeidsgiver.navn;
-        case ArbeidAktivitetType.frilanser:
-            return 'Frilanser';
-        case ArbeidAktivitetType.selvstendigNæringsdrivende:
-            return 'Selvstendig næringsdrivende';
-    }
-};
 
 const ArbeidAktivitetInfo = ({ arbeidAktivitet }: { arbeidAktivitet: ArbeidAktivitet }) => {
     if (arbeidAktivitet.type !== ArbeidAktivitetType.arbeidstaker) {

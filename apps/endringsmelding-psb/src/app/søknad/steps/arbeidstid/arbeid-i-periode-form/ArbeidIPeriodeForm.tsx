@@ -4,8 +4,11 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/Form
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidAktivitetEndring } from '../../../../types/ArbeidstidAktivitetEndring';
+import { Arbeidsuke } from '../../../../types/K9Sak';
 import { ArbeidAktivitet } from '../../../../types/Sak';
+import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues, TimerEllerProsent } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
 import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
@@ -21,9 +24,8 @@ interface ArbeidIPeriodeProsent {
 export type ArbeidPeriodeData = ArbeidIPeriodeTimer | ArbeidIPeriodeProsent;
 
 interface Props {
-    arbeidsuke?: DateRange;
+    arbeidsuke: Arbeidsuke;
     arbeidAktivitet: ArbeidAktivitet;
-    arbeidsstedNavn: string;
     onSubmit: (endring: ArbeidstidAktivitetEndring) => void;
     onCancel: () => void;
 }
@@ -40,18 +42,12 @@ export const getPeriodeFraFormValues = (formValues: ArbeidIPeriodeFormValues): D
     return from && to ? { from, to } : undefined;
 };
 
-const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({
-    arbeidAktivitet,
-    arbeidsuke,
-    arbeidsstedNavn,
-    onSubmit,
-    onCancel,
-}) => {
+const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, arbeidsuke, onSubmit, onCancel }) => {
     const intl = useIntl();
 
     const onFormSubmit = (values: ArbeidIPeriodeFormValues) => {
         const gjelderEnkeltuke = arbeidsuke !== undefined;
-        const periode = gjelderEnkeltuke ? arbeidsuke : getPeriodeFraFormValues(values);
+        const periode: DateRange | undefined = gjelderEnkeltuke ? arbeidsuke.periode : getPeriodeFraFormValues(values);
 
         if (!periode) {
             return;
@@ -86,14 +82,18 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({
             onSubmit={onFormSubmit}
             renderForm={({ values }) => {
                 const { timerEllerProsent } = values;
+                const timerNormaltString = intlHelper(intl, 'arbeidstidPeriode.timer', {
+                    timer: intl.formatNumber(durationToDecimalDuration(arbeidsuke.normalt), {
+                        maximumFractionDigits: 2,
+                    }),
+                });
                 const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+                    timerNormaltString,
                     arbeidsforhold: {
                         type: arbeidAktivitet.type,
-                        arbeidsstedNavn,
+                        arbeidsstedNavn: getArbeidAktivitetNavn(arbeidAktivitet),
                     },
-                    // periode: arbeidsperiode,
                 });
-                // const valgtPeriode = arbeidsperiode === undefined ? getPeriodeFraFormValues(values) : undefined;
                 return (
                     <Form
                         includeValidationSummary={true}
@@ -140,6 +140,7 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({
                                 arbeidIPeriode={values}
                                 intlValues={intlValues}
                                 timerEllerProsent={timerEllerProsent}
+                                maksTimer={durationToDecimalDuration(arbeidsuke.normalt)}
                             />
                         )}
                     </Form>

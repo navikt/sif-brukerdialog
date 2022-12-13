@@ -157,9 +157,10 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                         <Table.DataCell>{getTid(uke)}</Table.DataCell>
                                         <Table.DataCell>
                                             <Button
+                                                aria-label={`Endre uke ${ukenummer}`}
                                                 icon={<Edit />}
                                                 type="button"
-                                                variant="primary"
+                                                variant={'primary'}
                                                 size="small"
                                                 onClick={() => onVelgUke(uke)}
                                             />
@@ -171,9 +172,6 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     })}
                 </Table.Body>
             </Table>
-            {/* <p>
-                Viser {antallSynlig} av {antallUkerTotalt} uker
-            </p> */}
             {paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt && (
                 <FormBlock margin="m">
                     <Button
