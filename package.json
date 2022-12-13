@@ -11,7 +11,7 @@
     "devDependencies": {
         "@changesets/cli": "2.25.2",
         "@navikt/ds-tailwind": "2.0.8",
-        "@snyk/protect": "^1.1070.0",
+        "@snyk/protect": "^1.1071.0",
         "@storybook/builder-webpack5": "6.5.14",
         "@storybook/manager-webpack5": "6.5.14",
         "@testing-library/jest-dom": "5.16.5",
@@ -55,7 +55,7 @@
         "e2e-sif-ettersending": "turbo run ci --filter=@navikt/sif-ettersending",
         "build-omsorgspengesoknad": "turbo run build-app --filter=@navikt/omsorgspengesoknad",
         "e2e-omsorgspengesoknad": "turbo run ci --filter=@navikt/omsorgspengesoknad",
-        "build-endringsmelding-psb": "turbo run build-app --filter=@navikt/endringsmelding-psb",
+        "build-endringsmelding-psb": "turbo run build-app --filter=@navikt/endringsmelding-pleiepenger",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",

@@ -7,7 +7,7 @@ RUN yarn global add turbo
 
 WORKDIR /app
 
-ENV SCOPE=@navikt/endringsmelding-psb
+ENV SCOPE=@navikt/endringsmelding-pleiepenger
 
 FROM base AS pruner
 COPY . .
