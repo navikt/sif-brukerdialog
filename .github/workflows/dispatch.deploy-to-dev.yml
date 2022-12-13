@@ -7,8 +7,9 @@ on:
             description: Choose application
             type: choice
             options:
-            - sif-ettersending
+            - endringsmelding-pleiepenger
             - omsorgspengesoknad
+            - sif-ettersending
             required: true
     secrets:
         NAIS_DEPLOY_APIKEY:
