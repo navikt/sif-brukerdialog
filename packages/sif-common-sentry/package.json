@@ -12,7 +12,7 @@
     },
     "dependencies": {
         "@sentry/browser": "7.25.0",
-        "@sentry/react": "7.25.0",
+        "@sentry/react": "7.26.0",
         "@sentry/types": "7.25.0"
     },
     "devDependencies": {
