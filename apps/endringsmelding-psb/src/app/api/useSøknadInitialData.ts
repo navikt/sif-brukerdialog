@@ -54,7 +54,15 @@ const setupSøknadInitialData = async (loadedData: {
         await søknadStateEndpoint.purge();
     }
 
-    const sak = k9saker.length === 1 ? getSakFromK9Sak(k9saker[0], arbeidsgivere) : undefined;
+    const saker: K9Sak[] = [...k9saker.slice(0, 1)];
+
+    if (k9saker.length > 1) {
+        /** TODO */
+        // eslint-disable-next-line no-console
+        console.log('Flere enn èn sak');
+        // throw 'Flere enn én sak';
+    }
+    const sak = saker.length === 1 ? getSakFromK9Sak(saker[0], arbeidsgivere) : undefined;
     if (sak === undefined) {
         throw 'Ingen sak';
     }
@@ -64,7 +72,7 @@ const setupSøknadInitialData = async (loadedData: {
         versjon: APP_VERSJON,
         søker,
         sak,
-        k9saker,
+        k9saker: saker,
         arbeidsgivere,
         søknadsdata: {},
         ...lagretSøknadStateToUse,
@@ -76,12 +84,12 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const [søker, saker, lagretSøknadState] = await Promise.all([
+            const [søker, k9saker, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
                 sakerEndpoint.fetch(),
                 søknadStateEndpoint.fetch(),
             ]);
-            const dateRangeForSaker = getDateRangeForK9Saker(saker);
+            const dateRangeForSaker = getDateRangeForK9Saker(k9saker);
             if (!dateRangeForSaker) {
                 throw 'ugyldigTidsrom';
             }
@@ -92,7 +100,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             );
             setInitialData({
                 status: RequestStatus.success,
-                data: await setupSøknadInitialData({ søker, arbeidsgivere, k9saker: saker, lagretSøknadState }),
+                data: await setupSøknadInitialData({ søker, arbeidsgivere, k9saker, lagretSøknadState }),
             });
             return Promise.resolve();
         } catch (error: any) {

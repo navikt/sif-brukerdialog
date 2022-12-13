@@ -11,7 +11,6 @@ const sakerEndpoint = {
         try {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
             const saker: K9Sak[] = [];
-
             let harUgyldigSak;
             data.forEach((sak) => {
                 const erGyldig = isK9Format(sak);
