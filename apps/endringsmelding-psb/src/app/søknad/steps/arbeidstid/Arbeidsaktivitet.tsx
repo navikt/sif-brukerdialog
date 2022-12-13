@@ -74,15 +74,8 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
             )}
 
             <FormBlock paddingBottom="l">
-                <Heading
-                    level="3"
-                    size="medium"
-                    spacing={false}
-                    style={{ borderBottom: '2px solid var(--a-border-strong)', paddingBottom: '1rem' }}>
-                    Arbeidsuker
-                </Heading>
                 {ukerSomHarVært.length > 0 && (
-                    <Accordion>
+                    <Accordion style={{ borderTop: '2px solid var(--a-border-strong)' }}>
                         <Accordion.Item defaultOpen={true}>
                             <Accordion.Header>Uker som har vært</Accordion.Header>
                             <Accordion.Content>

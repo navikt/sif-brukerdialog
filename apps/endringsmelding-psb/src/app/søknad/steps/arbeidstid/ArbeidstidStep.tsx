@@ -1,4 +1,4 @@
-import { Panel } from '@navikt/ds-react';
+import { BodyLong, Panel } from '@navikt/ds-react';
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -87,8 +87,10 @@ const ArbeidstidStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SifGuidePanel>
-                Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake i tid,
-                og 12 måneder frem i tid. Uker du ikke har søkt for vil ikke være med i listene nedefor.
+                <BodyLong>
+                    Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake i
+                    tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
+                </BodyLong>
             </SifGuidePanel>
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
