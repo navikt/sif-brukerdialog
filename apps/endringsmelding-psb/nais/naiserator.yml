@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-    name: endringsmelding-pleiepenger
+    name: endringsmelding-psb
     namespace: dusseldorf
     labels:
         team: dusseldorf
@@ -9,13 +9,13 @@ spec:
     image: {{ image }}
     port: 8080
     liveness:
-        path: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isAlive
+        path: /familie/sykdom-i-familien/soknad/endringsmelding-psb/health/isAlive
         initialDelay: 20
         timeout: 1
         periodSeconds: 5
         failureThreshold: 10
     readiness:
-        path: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isReady
+        path: /familie/sykdom-i-familien/soknad/endringsmelding-psb/health/isReady
         initialDelay: 20
         timeout: 1
     resources:

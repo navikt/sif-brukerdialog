@@ -7,7 +7,7 @@ on:
             description: Choose application
             type: choice
             options:
-            - endringsmelding-pleiepenger
+            - endringsmelding-psb
             - omsorgspengesoknad
             - sif-ettersending
             required: true

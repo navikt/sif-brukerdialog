@@ -53,6 +53,10 @@
         "e2e-sif-ettersending": {
             "outputs": [],
             "dependsOn": ["^build-sif-ettersending"]
+        },
+        "build-endringsmelding-psb": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
         }
     }
 }
