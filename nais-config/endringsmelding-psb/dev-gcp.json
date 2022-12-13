@@ -1,23 +1,26 @@
 {
     "app": "endringsmelding-pleiepenger",
     "cluster": "dev-gcp",
-    "namespace": "dusseldorf",
-    "team": "dusseldorf",
-    "minReplicas": "1",
-    "maxReplicas": "1",
-    "ingresses": ["https://endringsmelding-pleiepenger.dev.nav.no"],
     "env": {
-        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
         "API_URL": "https://pleiepengesoknad-api.dev.nav.no",
         "API_URL_INNSYN": "https://sif-innsyn-api.dev.nav.no",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "APP_VERSION": "dev",
-        "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://endringsmelding-pleiepenger.dev.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding",
-        "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
-        "USE_AMPLITUDE": "true",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APP_VERSION": "dev",
+        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false",
         "INNSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn",
+        "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://endringsmelding-pleiepenger.dev.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding",
         "MSW_MODE": "dev",
-        "NPM_CONFIG_CACHE": "/tmp"
-    }
+        "NPM_CONFIG_CACHE": "/tmp",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
+        "USE_AMPLITUDE": "true"
+    },
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "ingresses": ["https://endringsmelding-pleiepenger.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isAlive",
+    "maxReplicas": "1",
+    "minReplicas": "1",
+    "namespace": "dusseldorf",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isReady",
+    "team": "dusseldorf"
 }
