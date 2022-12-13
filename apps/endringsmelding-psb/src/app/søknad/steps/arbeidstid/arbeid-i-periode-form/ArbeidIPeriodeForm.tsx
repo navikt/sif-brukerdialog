@@ -3,100 +3,149 @@ import { IntlShape, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../../types/Sak';
-import { ArbeidstidFormFields } from '../ArbeidstidStep';
-import { arbeidIPeriodeSpørsmålConfig } from './arbeidIPeriodeFormConfig';
+import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { ArbeidstidAktivitetEndring } from '../../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidAktivitet } from '../../../../types/Sak';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues, TimerEllerProsent } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
 import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
 
+interface ArbeidIPeriodeTimer {
+    periode: DateRange;
+    timer: number;
+}
+interface ArbeidIPeriodeProsent {
+    periode: DateRange;
+    prosent: number;
+}
+export type ArbeidPeriodeData = ArbeidIPeriodeTimer | ArbeidIPeriodeProsent;
+
 interface Props {
-    values?: ArbeidIPeriodeFormValues;
-    arbeidsperiode: DateRange;
-    parentFieldName: ArbeidstidFormFields;
+    arbeidsuke?: DateRange;
     arbeidAktivitet: ArbeidAktivitet;
+    arbeidsstedNavn: string;
+    onSubmit: (endring: ArbeidstidAktivitetEndring) => void;
+    onCancel: () => void;
 }
 
-const { YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
+const { RadioGroup, FormikWrapper, Form, DateRangePicker } = getTypedFormComponents<
     ArbeidIPeriodeFormField,
     ArbeidIPeriodeFormValues,
     ValidationError
 >();
 
+export const getPeriodeFraFormValues = (formValues: ArbeidIPeriodeFormValues): DateRange | undefined => {
+    const from = datepickerUtils.getDateFromDateString(formValues.periodeFra);
+    const to = datepickerUtils.getDateFromDateString(formValues.periodeTil);
+    return from && to ? { from, to } : undefined;
+};
+
 const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({
     arbeidAktivitet,
-    arbeidsperiode,
-    parentFieldName,
-    values,
+    arbeidsuke,
+    arbeidsstedNavn,
+    onSubmit,
+    onCancel,
 }) => {
     const intl = useIntl();
 
-    const getFieldName = (field: ArbeidIPeriodeFormField): any => {
-        return `${parentFieldName}.${field}`;
-    };
+    const onFormSubmit = (values: ArbeidIPeriodeFormValues) => {
+        const gjelderEnkeltuke = arbeidsuke !== undefined;
+        const periode = gjelderEnkeltuke ? arbeidsuke : getPeriodeFraFormValues(values);
 
-    const getHeading = (): string => {
-        switch (arbeidAktivitet.type) {
-            case ArbeidAktivitetType.arbeidstaker:
-                return arbeidAktivitet.arbeidsgiver.navn;
-            case ArbeidAktivitetType.frilanser:
-                return 'Frilanser';
-            case ArbeidAktivitetType.selvstendigNæringsdrivende:
-                return 'Selvstendig næringsdrivende';
+        if (!periode) {
+            return;
+        }
+        if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
+            onSubmit({
+                gjelderEnkeltuke,
+                arbeidAktivitetId: arbeidAktivitet.id,
+                periode,
+                endring: {
+                    type: TimerEllerProsent.PROSENT,
+                    prosent: parseFloat(values.prosentAvNormalt),
+                },
+            });
+        }
+        if (values.timerEllerProsent === TimerEllerProsent.TIMER && values.snittTimerPerUke) {
+            onSubmit({
+                gjelderEnkeltuke,
+                arbeidAktivitetId: arbeidAktivitet.id,
+                periode,
+                endring: {
+                    type: TimerEllerProsent.TIMER,
+                    timer: parseFloat(values.snittTimerPerUke),
+                },
+            });
         }
     };
 
-    const arbeidsstedNavn = getHeading();
-
-    const visibility = arbeidIPeriodeSpørsmålConfig.getVisbility({
-        formValues: values || {},
-        arbeidsperiode,
-    });
-
-    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
-        arbeidsforhold: {
-            type: arbeidAktivitet.type,
-            arbeidsstedNavn,
-        },
-        periode: arbeidsperiode,
-    });
-
-    const timerEllerProsent = values?.timerEllerProsent;
-
     return (
-        <>
-            {visibility.isIncluded(ArbeidIPeriodeFormField.erLiktHverUke) && (
-                <FormBlock>
-                    <YesOrNoQuestion
-                        name={getFieldName(ArbeidIPeriodeFormField.erLiktHverUke)}
-                        legend={intlHelper(intl, `arbeidIPeriode.erLiktHverUke.spm`, intlValues)}
-                        data-testid="er-likt-hver-uke"
-                        labels={{
-                            yes: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.ja`),
-                            no: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.nei`),
-                        }}
-                    />
-                </FormBlock>
-            )}
-            {visibility.isIncluded(ArbeidIPeriodeFormField.timerEllerProsent) && (
-                <FormBlock>
-                    <RadioGroup
-                        name={getFieldName(ArbeidIPeriodeFormField.timerEllerProsent)}
-                        legend={intlHelper(intl, `arbeidIPeriode.timerEllerProsent.spm`, intlValues)}
-                        radios={getTimerEllerProsentRadios(intl, intlValues)}
-                    />
-                </FormBlock>
-            )}
+        <FormikWrapper
+            initialValues={{}}
+            onSubmit={onFormSubmit}
+            renderForm={({ values }) => {
+                const { timerEllerProsent } = values;
+                const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+                    arbeidsforhold: {
+                        type: arbeidAktivitet.type,
+                        arbeidsstedNavn,
+                    },
+                    // periode: arbeidsperiode,
+                });
+                // const valgtPeriode = arbeidsperiode === undefined ? getPeriodeFraFormValues(values) : undefined;
+                return (
+                    <Form
+                        includeValidationSummary={true}
+                        submitButtonLabel="Ok"
+                        cancelButtonLabel="Avbryt"
+                        onCancel={onCancel}
+                        showButtonArrows={false}>
+                        {arbeidsuke === undefined && (
+                            <>
+                                <DateRangePicker
+                                    legend={intlHelper(intl, 'arbeidIPeriode.periode.tittel')}
+                                    fromInputProps={{
+                                        label: intlHelper(intl, 'arbeidIPeriode.fraOgMed.label'),
+                                        name: ArbeidIPeriodeFormField.periodeFra,
+                                        dayPickerProps: {
+                                            showWeekNumber: true,
+                                        },
+                                    }}
+                                    toInputProps={{
+                                        label: intlHelper(intl, 'arbeidIPeriode.tilOgMed.label'),
+                                        name: ArbeidIPeriodeFormField.periodeTil,
+                                        dayPickerProps: {
+                                            defaultMonth: values?.periodeFra ? new Date(values?.periodeFra) : undefined,
+                                            showWeekNumber: true,
+                                        },
+                                    }}
+                                    disableWeekend={false}
+                                    fullscreenOverlay={true}
+                                    fullScreenOnMobile={true}
+                                />
+                            </>
+                        )}
 
-            {visibility.isVisible(ArbeidIPeriodeFormField.timerEllerProsent) && timerEllerProsent && (
-                <ArbeidstidInput
-                    arbeidIPeriode={values}
-                    parentFieldName={parentFieldName}
-                    intlValues={intlValues}
-                    timerEllerProsent={timerEllerProsent}
-                />
-            )}
-        </>
+                        <FormBlock>
+                            <RadioGroup
+                                name={ArbeidIPeriodeFormField.timerEllerProsent}
+                                legend={intlHelper(intl, `arbeidIPeriode.timerEllerProsent.spm`, intlValues)}
+                                radios={getTimerEllerProsentRadios(intl, intlValues)}
+                            />
+                        </FormBlock>
+
+                        {timerEllerProsent && (
+                            <ArbeidstidInput
+                                arbeidIPeriode={values}
+                                intlValues={intlValues}
+                                timerEllerProsent={timerEllerProsent}
+                            />
+                        )}
+                    </Form>
+                );
+            }}
+        />
     );
 };
 

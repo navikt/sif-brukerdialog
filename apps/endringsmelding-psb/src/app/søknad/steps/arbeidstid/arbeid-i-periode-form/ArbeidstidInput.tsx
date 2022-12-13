@@ -5,14 +5,16 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { dateFormatter, dateRangeUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import { ArbeidsukeInfo } from '../ArbeidsukeInfo';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues, TimerEllerProsent } from './ArbeidIPeriodeFormValues';
 import { ArbeidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
 import { BodyShort } from '@navikt/ds-react';
 
+dayjs.extend(isoWeek);
+
 interface Props {
     arbeidsuke?: ArbeidsukeInfo;
-    parentFieldName: string;
     timerEllerProsent: TimerEllerProsent;
     intlValues: ArbeidIPeriodeIntlValues;
     arbeidIPeriode: ArbeidIPeriodeFormValues;
@@ -28,18 +30,8 @@ export const søkerKunHeleUker = (periode: DateRange): boolean => {
     );
 };
 
-const ArbeidstidInput: React.FunctionComponent<Props> = ({
-    arbeidsuke,
-    parentFieldName,
-    timerEllerProsent,
-    intlValues,
-}) => {
+const ArbeidstidInput: React.FunctionComponent<Props> = ({ arbeidsuke, timerEllerProsent, intlValues }) => {
     const intl = useIntl();
-
-    const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.${field}`;
-
-    const prosentFieldName: any = getFieldName(ArbeidIPeriodeFormField.prosentAvNormalt);
-    const timerFieldName: any = getFieldName(ArbeidIPeriodeFormField.snittTimerPerUke);
 
     const formatPeriode = (periode: DateRange): string =>
         `${dateFormatter.compact(periode.from)} - ${dateFormatter.compact(periode.to)}`;
@@ -80,26 +72,12 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
         );
     };
 
-    // const getTimerSuffix = () => {
-    //     if (arbeidsuke && arbeidsuke.arbeidsdagerPeriode) {
-    //         return `timer (${getArbeidsdagerIUkeTekst(arbeidsuke.arbeidsdagerPeriode)})`;
-    //     }
-    //     return 'timer';
-    // };
-
-    // const getProsentSuffix = () => {
-    //     if (arbeidsuke && arbeidsuke.arbeidsdagerPeriode) {
-    //         return `prosent av normalt (${getArbeidsdagerIUkeTekst(arbeidsuke.arbeidsdagerPeriode)})`;
-    //     }
-    //     return `prosent av normalt`;
-    // };
-
     return (
         <FormBlock paddingBottom="l" margin={arbeidsuke ? 'm' : undefined}>
             {timerEllerProsent === TimerEllerProsent.PROSENT && (
                 <NumberInput
                     className="arbeidstidUkeInput"
-                    name={prosentFieldName}
+                    name={ArbeidIPeriodeFormField.prosentAvNormalt}
                     label={getProsentLabel()}
                     data-testid="prosent-verdi"
                     width="xs"
@@ -109,7 +87,7 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
             {timerEllerProsent === TimerEllerProsent.TIMER && (
                 <NumberInput
                     className="arbeidstidUkeInput"
-                    name={timerFieldName}
+                    name={ArbeidIPeriodeFormField.snittTimerPerUke}
                     label={getTimerLabel()}
                     data-testid="timer-verdi"
                     width="xs"

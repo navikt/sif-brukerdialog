@@ -1,20 +1,20 @@
 import { IntlShape } from 'react-intl';
-import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
+// import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidAktivitetType } from '../../../../types/Sak';
 import { getArbeidstidPeriodeIntl } from './arbeidIPeriodeMessages';
 
 export type ArbeidIPeriodeIntlValues = {
     hvor: string;
     skalEllerHarJobbet: string;
-    fra: string;
-    til: string;
-    iPerioden: string;
+    // fra: string;
+    // til: string;
+    // iPerioden: string;
 };
 
 export const getArbeidstidIPeriodeIntlValues = (
     intl: IntlShape,
     info: {
-        periode: DateRange;
+        // periode?: DateRange;
         arbeidsforhold:
             | {
                   type: ArbeidAktivitetType.arbeidstaker;
@@ -43,11 +43,11 @@ export const getArbeidstidIPeriodeIntlValues = (
     return {
         skalEllerHarJobbet: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
         hvor: getHvorTekst(),
-        fra: dateFormatter.full(info.periode.from),
-        til: dateFormatter.full(info.periode.to),
-        iPerioden: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden', {
-            fra: dateFormatter.compact(info.periode.from),
-            til: dateFormatter.compact(info.periode.to),
-        }),
+        // fra: dateFormatter.full(info.periode.from),
+        // til: dateFormatter.full(info.periode.to),
+        // iPerioden: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden', {
+        //     fra: dateFormatter.compact(info.periode.from),
+        //     til: dateFormatter.compact(info.periode.to),
+        // }),
     };
 };

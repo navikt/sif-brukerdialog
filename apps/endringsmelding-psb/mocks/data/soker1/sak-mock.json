@@ -87,7 +87,7 @@
                                     },
                                     "2022-12-05/2022-12-19": {
                                         "jobberNormaltTimerPerDag": "PT8H",
-                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                        "faktiskArbeidTimerPerDag": "PT2H"
                                     }
                                 }
                             }

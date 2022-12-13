@@ -3,6 +3,7 @@ import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 import { Sak } from '../../../types/Sak';
+import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
@@ -12,6 +13,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_AKTIVITET = 'setSøknadAktivitet',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
+    SET_ARBEIDSTID_AKTIVITET_ENDRING = 'setArbeidstidAktivitetEndring',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -62,6 +64,11 @@ interface SetSøknadHarBekreftetOpplysninger {
 interface ClearStepSøknadsdata {
     type: SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA;
     payload: { stepId: StepId };
+}
+
+interface SetArbeidstidAktivitetEndring {
+    type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING;
+    payload: { endring: ArbeidstidAktivitetEndring };
 }
 
 const resetSøknad = (): ResetSøknad => ({
@@ -117,6 +124,13 @@ const clearStepSøknadsdata = (stepId: StepId): ClearStepSøknadsdata => ({
     },
 });
 
+const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetEndring): SetArbeidstidAktivitetEndring => ({
+    type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING,
+    payload: {
+        endring,
+    },
+});
+
 export type SøknadContextAction =
     | AvbrytSøknad
     | ClearStepSøknadsdata
@@ -129,7 +143,8 @@ export type SøknadContextAction =
     | SetSøknadArbeidstid
     | SetSøknadRoute
     | SetSøknadSendt
-    | StartSøknad;
+    | StartSøknad
+    | SetArbeidstidAktivitetEndring;
 
 const actionsCreator = {
     avbrytSøknad,
@@ -144,6 +159,7 @@ const actionsCreator = {
     setSøknadRoute,
     setSøknadSendt,
     startSøknad,
+    setArbeidstidAktivitetEndring,
 };
 
 export default actionsCreator;

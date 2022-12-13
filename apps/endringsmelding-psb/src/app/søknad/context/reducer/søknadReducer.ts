@@ -93,6 +93,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         [action.payload.stepId]: undefined,
                     },
                 };
+            case SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING:
         }
     }
     return state;

@@ -85,7 +85,7 @@ export const getAktivitetArbeidstidFromK9Format = (
         };
     };
 
-    const arbeidsuker: ArbeidsukeMap = {};
+    const tempArbeidsuker: ArbeidsukeMap = {};
 
     Object.keys(arbeidstidPerioder).forEach((isoDateRange) => {
         const isoDates = getISODatesInISODateRange(isoDateRange, true);
@@ -96,11 +96,12 @@ export const getAktivitetArbeidstidFromK9Format = (
                 const faktisk = ISODurationToDuration(arbeidstidPerioder[isoDateRange].faktiskArbeidTimerPerDag);
                 const normalt = ISODurationToDuration(arbeidstidPerioder[isoDateRange].jobberNormaltTimerPerDag);
 
+                /** Midlertidig nøkkel som tar hele uken */
                 const weekKey = dateRangeToISODateRange(getIsoWeekDateRangeForDate(date));
-                if (arbeidsuker[weekKey] === undefined) {
-                    arbeidsuker[weekKey] = { days: {} } as any;
+                if (tempArbeidsuker[weekKey] === undefined) {
+                    tempArbeidsuker[weekKey] = { days: {} } as any;
                 }
-                arbeidsuker[weekKey].days[dateToISODate(date)] = {
+                tempArbeidsuker[weekKey].days[dateToISODate(date)] = {
                     faktisk,
                     normalt,
                 };
@@ -110,21 +111,14 @@ export const getAktivitetArbeidstidFromK9Format = (
         });
     });
 
-    Object.keys(arbeidsuker).forEach((key) => {
-        const { days } = arbeidsuker[key];
+    /** Summer of korriger key til å kun omfavne faktiske dager med arbeid i uken */
+    const arbeidsuker: ArbeidsukeMap = {};
+    Object.keys(tempArbeidsuker).forEach((key) => {
+        const { days } = tempArbeidsuker[key];
         const dayKeys = Object.keys(days);
 
         const from = ISODateToDate(dayKeys[0]);
         const to = ISODateToDate(dayKeys[dayKeys.length - 1]);
-
-        // let samletFaktiskArbeidstid = 0;
-        // let samletNormaltArbeidstid = 0;
-
-        // dayKeys.forEach((key) => {
-        //     const day = days[key];
-        //     samletFaktiskArbeidstid += durationToDecimalDuration(day.faktisk);
-        //     samletNormaltArbeidstid += durationToDecimalDuration(day.normalt);
-        // });
 
         const faktisk = dayKeys.map((key) => days[key].faktisk);
         const normalt = dayKeys.map((key) => days[key].normalt);
@@ -134,7 +128,7 @@ export const getAktivitetArbeidstidFromK9Format = (
             normalt: numberDurationAsDuration(durationUtils.summarizeDurations(normalt)),
             periode: { from, to },
         };
-        arbeidsuker[key] = arbeidsuke;
+        arbeidsuker[dateRangeToISODateRange({ from, to })] = arbeidsuke;
     });
 
     const { samletPeriode, allePerioder } = getArbeidAktivitetPerioderFromPerioder(arbeidstidPerioder);
