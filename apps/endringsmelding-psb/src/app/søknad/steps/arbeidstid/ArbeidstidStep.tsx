@@ -22,6 +22,11 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import Arbeidsaktivitet from './Arbeidsaktivitet';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import getValidateArbeidAktivitetEndring from './validateArbeidAktivitetEndring';
+import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
+import { useIntl } from 'react-intl';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 
 export enum ArbeidstidFormFields {
     arbeidAktivitetEndring = 'arbeidAktivitetEndring',
@@ -30,12 +35,18 @@ export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringPeriodeMap };
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues>();
+const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
+    ArbeidstidFormFields,
+    ArbeidstidFormValues,
+    ValidationError
+>();
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
+    const intl = useIntl();
 
     const {
+        dispatch,
         state: { søknadsdata, sak },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -82,6 +93,13 @@ const ArbeidstidStep = () => {
             },
         };
         setValues(newValues);
+
+        /** Oppdater state før mellomlagring */
+        const arbeidstidSøknadsdata = getArbeidstidSøknadsdataFromFormValues(newValues);
+        if (arbeidstidSøknadsdata) {
+            dispatch(actionsCreator.setSøknadArbeidstid(arbeidstidSøknadsdata));
+            dispatch(actionsCreator.requestLagreSøknad());
+        }
     };
 
     return (
@@ -101,21 +119,40 @@ const ArbeidstidStep = () => {
                         <>
                             <PersistStepFormValues stepId={stepId} />
                             <Form
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidAktivitetForm')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
+                                    const arbeidAktivitetNavn = getArbeidAktivitetNavn(arbeidAktivitet);
                                     return (
                                         <FormBlock key={arbeidAktivitet.id}>
                                             <Panel border={true}>
-                                                <Arbeidsaktivitet
-                                                    arbeidAktivitet={arbeidAktivitet}
-                                                    endringer={endringer[arbeidAktivitet.id]}
-                                                    onArbeidsukeChange={(endring) => {
-                                                        onArbeidsukeChange(endring, values, setValues);
-                                                    }}
-                                                />
+                                                <InputGroup
+                                                    name={arbeidAktivitet.id as any}
+                                                    legend={getArbeidAktivitetNavn(arbeidAktivitet)}
+                                                    hideLegend={true}
+                                                    validate={() => {
+                                                        const error = getValidateArbeidAktivitetEndring(
+                                                            arbeidAktivitet
+                                                        )(endringer[arbeidAktivitet.id]);
+                                                        return error
+                                                            ? {
+                                                                  key: `arbeidAktivitetForm.arbeidAktivitet.${error}`,
+                                                                  keepKeyUnaltered: true,
+                                                                  values: { arbeidAktivitetNavn },
+                                                              }
+                                                            : undefined;
+                                                    }}>
+                                                    <Arbeidsaktivitet
+                                                        arbeidAktivitet={arbeidAktivitet}
+                                                        endringer={endringer[arbeidAktivitet.id]}
+                                                        onArbeidsukeChange={(endring) => {
+                                                            onArbeidsukeChange(endring, values, setValues);
+                                                        }}
+                                                    />
+                                                </InputGroup>
                                             </Panel>
                                         </FormBlock>
                                     );

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
+import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { RequestStatus } from '../types/RequestStatus';
 import { K9Sak } from '../types/K9Sak';
+import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
-import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getEndringsperiode } from '../utils/endringsperiode';
+import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -17,9 +18,8 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 
-export type SøknadInitialData = SøknadContextState;
+export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
 type SøknadInitialSuccess = {
     status: RequestStatus.success;
@@ -48,31 +48,29 @@ const setupSøknadInitialData = async (loadedData: {
     lagretSøknadState: SøknadStatePersistence;
 }): Promise<SøknadInitialData> => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
-    const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
+    const persistedSøknadStateIsValid = isPersistedSøknadStateValid(lagretSøknadState, {
+        søker,
+        barnAktørId: lagretSøknadState.barnAktørId,
+    });
 
-    if (!isValid) {
+    if (!persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
     }
-
-    const saker: K9Sak[] = [...k9saker.slice(0, 1)];
-
-    if (k9saker.length > 1) {
-        /** TODO */
-        // eslint-disable-next-line no-console
-        console.log('Flere enn èn sak');
-        // throw 'Flere enn én sak';
-    }
-    const sak = saker.length === 1 ? getSakFromK9Sak(saker[0], arbeidsgivere) : undefined;
-    if (sak === undefined) {
+    if (k9saker.length === 0) {
         throw 'Ingen sak';
     }
 
-    const lagretSøknadStateToUse = isValid ? lagretSøknadState : defaultSøknadState;
+    const lagretSøknadStateToUse = persistedSøknadStateIsValid ? lagretSøknadState : defaultSøknadState;
+
+    const k9sak = persistedSøknadStateIsValid
+        ? k9saker.find((s) => s.barn.aktørId === lagretSøknadState.barnAktørId)
+        : undefined;
+
     return Promise.resolve({
         versjon: APP_VERSJON,
         søker,
-        sak,
-        k9saker: saker,
+        k9saker,
+        sak: k9sak ? getSakFromK9Sak(k9sak, arbeidsgivere) : undefined,
         arbeidsgivere,
         søknadsdata: {},
         ...lagretSøknadStateToUse,

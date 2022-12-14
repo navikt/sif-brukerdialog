@@ -13,12 +13,13 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import AktivitetStep from './steps/aktivitet/AktivitetStep';
+import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søknadRoute },
+        state: { søknadSendt, søknadsdata, søknadRoute, k9saker, sak },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -56,6 +57,10 @@ const SøknadRouter = () => {
                 <Route path="*" element={<Navigate to={StepId.VELKOMMEN} replace={true} />} />
             </Routes>
         );
+    }
+
+    if (!sak && k9saker.length > 1) {
+        return <VelgSakPage />;
     }
 
     return (

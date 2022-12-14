@@ -18,6 +18,8 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { useIntl } from 'react-intl';
 
 export enum AktivitetFormFields {
     aktiviteterSomSkalEndres = 'aktiviteterSomSkalEndres',
@@ -30,6 +32,7 @@ const { FormikWrapper, Form, CheckboxGroup } = getTypedFormComponents<AktivitetF
 
 const AktivitetStep = () => {
     const stepId = StepId.AKTIVITET;
+    const intl = useIntl();
 
     const {
         state: { søknadsdata, sak },
@@ -66,6 +69,7 @@ const AktivitetStep = () => {
                     <>
                         <PersistStepFormValues stepId={stepId} />
                         <Form
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'aktivitetForm')}
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}

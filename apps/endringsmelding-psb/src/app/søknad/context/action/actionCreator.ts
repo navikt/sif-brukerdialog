@@ -1,11 +1,12 @@
+import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
+import { Sak } from '../../../types/Sak';
+import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { StepId } from '../../config/StepId';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
-import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
-import { Sak } from '../../../types/Sak';
-import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
 
 export enum SøknadContextActionKeys {
+    SET_SAK = 'setSak',
     RESET_SØKNAD = 'resetSøknad',
     START_SØKNAD = 'startSøknad',
     AVBRYT_SØKNAD = 'avbrytSøknad',
@@ -22,6 +23,10 @@ export enum SøknadContextActionKeys {
     CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
 }
 
+interface SetSak {
+    type: SøknadContextActionKeys.SET_SAK;
+    payload: { sak: Sak };
+}
 interface ResetSøknad {
     type: SøknadContextActionKeys.RESET_SØKNAD;
 }
@@ -70,6 +75,11 @@ interface SetArbeidstidAktivitetEndring {
     type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING;
     payload: { endring: ArbeidstidAktivitetEndring };
 }
+
+const setSak = (sak: Sak): SetSak => ({
+    type: SøknadContextActionKeys.SET_SAK,
+    payload: { sak },
+});
 
 const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
@@ -132,6 +142,7 @@ const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetEndring): Set
 });
 
 export type SøknadContextAction =
+    | SetSak
     | AvbrytSøknad
     | ClearStepSøknadsdata
     | FortsettSøknadSenere
@@ -147,6 +158,7 @@ export type SøknadContextAction =
     | SetArbeidstidAktivitetEndring;
 
 const actionsCreator = {
+    setSak,
     avbrytSøknad,
     clearStepSøknadsdata,
     fortsettSøknadSenere,

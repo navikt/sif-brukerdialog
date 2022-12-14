@@ -12,7 +12,7 @@ import SakInfo from './SakInfo';
 
 const VelkommenPage = () => {
     const {
-        state: { søker, k9saker, sak },
+        state: { søker, sak },
         dispatch,
     } = useSøknadContext();
 
@@ -21,7 +21,7 @@ const VelkommenPage = () => {
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.AKTIVITET));
     };
 
-    if (k9saker.length === 0) {
+    if (!sak) {
         return (
             <Page title="Velkommen">
                 <SifGuidePanel>
@@ -32,22 +32,6 @@ const VelkommenPage = () => {
                 </SifGuidePanel>
             </Page>
         );
-    }
-    if (k9saker.length > 1) {
-        return (
-            <Page title="Velkommen">
-                <SifGuidePanel>
-                    <Heading level="1" size="large">
-                        Velkommen {søker.fornavn}
-                    </Heading>
-                    <p>Du har flere enn én sak ... info</p>
-                </SifGuidePanel>
-            </Page>
-        );
-    }
-
-    if (sak === undefined) {
-        return <>OkiDoki - hva skjedde her</>;
     }
 
     return (

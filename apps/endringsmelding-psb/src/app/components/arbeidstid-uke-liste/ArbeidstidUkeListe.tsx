@@ -1,7 +1,8 @@
 import { Button, Table } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Edit, Add } from '@navikt/ds-icons';
+import { Add, Edit } from '@navikt/ds-icons';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import {
     dateFormatter,
     dateRangeToISODateRange,
@@ -12,8 +13,6 @@ import dayjs from 'dayjs';
 import { TimerEllerProsent } from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
 import { Arbeidsuke, ArbeidsukeMedEndring } from '../../types/K9Sak';
 import DurationText from '../duration-text/DurationText';
-import './arbeidstidUkeListe.css';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 
 interface Props {
     arbeidsuker: ArbeidsukeMedEndring[];
@@ -82,7 +81,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 
     return (
         <div className="arbeidstidUkeList">
-            <Table zebraStripes={true}>
+            <Table>
                 <Table.Header>
                     {compactTable && (
                         <Table.Row>

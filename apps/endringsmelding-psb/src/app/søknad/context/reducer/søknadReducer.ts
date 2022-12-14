@@ -93,7 +93,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         [action.payload.stepId]: undefined,
                     },
                 };
-            case SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING:
+            case SøknadContextActionKeys.SET_SAK:
+                return {
+                    ...state,
+                    sak: action.payload.sak,
+                };
+            default:
+                // eslint-disable-next-line no-console
+                console.log('Unhandled action', action);
         }
     }
     return state;

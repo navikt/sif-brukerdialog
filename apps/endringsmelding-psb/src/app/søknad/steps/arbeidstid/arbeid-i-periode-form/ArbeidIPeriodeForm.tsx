@@ -12,6 +12,7 @@ import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues, TimerEllerProsent } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
 import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -96,6 +97,7 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
                 });
                 return (
                     <Form
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidIPeriodeForm')}
                         includeValidationSummary={true}
                         submitButtonLabel="Ok"
                         cancelButtonLabel="Avbryt"

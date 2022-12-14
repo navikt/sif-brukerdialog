@@ -15,7 +15,7 @@ const envSettings = () => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         INNSYN_URL: '${process.env.INNSYN_URL}',
         MELLOMLAGRING: '${process.env.MELLOMLAGRING}',
-        MSW_MODE: '${process.env.MSW_MODE}',
+        MSW: '${process.env.MSW}',
     };`
         .trim()
         .replace(/ /g, '');

@@ -10,6 +10,7 @@ import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export type SøknadStatePersistence = {
     versjon: string;
+    barnAktørId: string;
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
@@ -17,6 +18,7 @@ export type SøknadStatePersistence = {
 
 interface SøknadStateHashInfo {
     søker: Søker;
+    barnAktørId: string;
 }
 
 interface SøknadStatePersistenceEndpoint
@@ -44,10 +46,11 @@ export const isPersistedSøknadStateValid = (
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søknadsdata, søknadRoute }, søker) => {
+    update: ({ søknadsdata, søknadRoute, barnAktørId }, søker) => {
         return persistSetup.update({
             versjon: APP_VERSJON,
-            søknadHashString: createHashString({ søker }),
+            søknadHashString: createHashString({ søker, barnAktørId }),
+            barnAktørId,
             søknadsdata,
             søknadRoute,
         });
