@@ -3,16 +3,16 @@ import { IntlShape, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
-import { ArbeidstidAktivitetEndring } from '../../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetUkeEndring } from '../../../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../../../types/K9Sak';
 import { ArbeidAktivitet } from '../../../../types/Sak';
+import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
 import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
-import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues, TimerEllerProsent } from './ArbeidIPeriodeFormValues';
+import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
 import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -27,35 +27,27 @@ export type ArbeidPeriodeData = ArbeidIPeriodeTimer | ArbeidIPeriodeProsent;
 interface Props {
     arbeidsuke: Arbeidsuke;
     arbeidAktivitet: ArbeidAktivitet;
-    onSubmit: (endring: ArbeidstidAktivitetEndring) => void;
+    onSubmit: (endring: ArbeidstidAktivitetUkeEndring) => void;
     onCancel: () => void;
 }
 
-const { RadioGroup, FormikWrapper, Form, DateRangePicker } = getTypedFormComponents<
+const { RadioGroup, FormikWrapper, Form } = getTypedFormComponents<
     ArbeidIPeriodeFormField,
     ArbeidIPeriodeFormValues,
     ValidationError
 >();
 
-export const getPeriodeFraFormValues = (formValues: ArbeidIPeriodeFormValues): DateRange | undefined => {
-    const from = datepickerUtils.getDateFromDateString(formValues.periodeFra);
-    const to = datepickerUtils.getDateFromDateString(formValues.periodeTil);
-    return from && to ? { from, to } : undefined;
-};
-
 const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, arbeidsuke, onSubmit, onCancel }) => {
     const intl = useIntl();
 
     const onFormSubmit = (values: ArbeidIPeriodeFormValues) => {
-        const gjelderEnkeltuke = arbeidsuke !== undefined;
-        const periode: DateRange | undefined = gjelderEnkeltuke ? arbeidsuke.periode : getPeriodeFraFormValues(values);
+        const { periode } = arbeidsuke;
 
         if (!periode) {
             return;
         }
         if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
             onSubmit({
-                gjelderEnkeltuke,
                 arbeidAktivitetId: arbeidAktivitet.id,
                 periode,
                 endring: {
@@ -66,7 +58,6 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
         }
         if (values.timerEllerProsent === TimerEllerProsent.TIMER && values.snittTimerPerUke) {
             onSubmit({
-                gjelderEnkeltuke,
                 arbeidAktivitetId: arbeidAktivitet.id,
                 periode,
                 endring: {
@@ -103,32 +94,6 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
                         cancelButtonLabel="Avbryt"
                         onCancel={onCancel}
                         showButtonArrows={false}>
-                        {arbeidsuke === undefined && (
-                            <>
-                                <DateRangePicker
-                                    legend={intlHelper(intl, 'arbeidIPeriode.periode.tittel')}
-                                    fromInputProps={{
-                                        label: intlHelper(intl, 'arbeidIPeriode.fraOgMed.label'),
-                                        name: ArbeidIPeriodeFormField.periodeFra,
-                                        dayPickerProps: {
-                                            showWeekNumber: true,
-                                        },
-                                    }}
-                                    toInputProps={{
-                                        label: intlHelper(intl, 'arbeidIPeriode.tilOgMed.label'),
-                                        name: ArbeidIPeriodeFormField.periodeTil,
-                                        dayPickerProps: {
-                                            defaultMonth: values?.periodeFra ? new Date(values?.periodeFra) : undefined,
-                                            showWeekNumber: true,
-                                        },
-                                    }}
-                                    disableWeekend={false}
-                                    fullscreenOverlay={true}
-                                    fullScreenOnMobile={true}
-                                />
-                            </>
-                        )}
-
                         <FormBlock>
                             <RadioGroup
                                 name={ArbeidIPeriodeFormField.timerEllerProsent}

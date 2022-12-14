@@ -1,11 +1,6 @@
-export enum TimerEllerProsent {
-    PROSENT = 'prosent',
-    TIMER = 'timer',
-}
+import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
 
 export enum ArbeidIPeriodeFormField {
-    periodeFra = 'periodeFra',
-    periodeTil = 'periodeTil',
     timerEllerProsent = 'timerEllerProsent',
     prosentAvNormalt = 'prosentAvNormalt',
     snittTimerPerUke = 'snittTimerPerUke',
@@ -19,8 +14,6 @@ export type ArbeidsukerFormValues = {
 };
 
 export interface ArbeidIPeriodeFormValues {
-    [ArbeidIPeriodeFormField.periodeFra]?: string;
-    [ArbeidIPeriodeFormField.periodeTil]?: string;
     [ArbeidIPeriodeFormField.timerEllerProsent]?: TimerEllerProsent;
     [ArbeidIPeriodeFormField.prosentAvNormalt]?: string;
     [ArbeidIPeriodeFormField.snittTimerPerUke]?: string;

@@ -5,10 +5,10 @@ import { Add, Edit } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { TimerEllerProsent } from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
 import { Arbeidsuke, ArbeidsukeMedEndring } from '../../types/K9Sak';
-import DurationText from '../duration-text/DurationText';
+import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretArbeidstidEnkeltdag } from '../../utils/arbeidAktivitetUtils';
+import DurationText from '../duration-text/DurationText';
 
 interface Props {
     arbeidsuker: ArbeidsukeMedEndring[];

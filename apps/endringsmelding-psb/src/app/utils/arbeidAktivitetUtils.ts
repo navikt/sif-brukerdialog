@@ -1,7 +1,7 @@
 import { decimalDurationToDuration, Duration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
-import { TimerEllerProsent } from '../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
 import { ArbeidstidEndring } from '../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../types/Sak';
+import { TimerEllerProsent } from '../types/TimerEllerProsent';
 
 export const getArbeidAktivitetNavn = (arbeidAktivitet: ArbeidAktivitet): string => {
     switch (arbeidAktivitet.type) {

@@ -1,6 +1,6 @@
 import { DateDurationMap, DateRange, Duration, ISODate, ISODateRange } from '@navikt/sif-common-utils';
 import { DagerIkkeSøktForMap, DagerSøktForMap } from '.';
-import { ArbeidstidAktivitetEndring } from './ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetUkeEndring } from './ArbeidstidAktivitetEndring';
 
 export type TidEnkeltdag = DateDurationMap; // { [isoDateString: string]: { hours: string; minutes: string } };
 
@@ -13,7 +13,7 @@ export interface Arbeidsuke {
 }
 
 export interface ArbeidsukeMedEndring extends Arbeidsuke {
-    endring?: ArbeidstidAktivitetEndring;
+    endring?: ArbeidstidAktivitetUkeEndring;
 }
 
 export interface ArbeidsukeMap {

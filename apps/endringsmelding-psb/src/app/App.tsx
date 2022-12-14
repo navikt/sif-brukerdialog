@@ -6,6 +6,8 @@ import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wra
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
+import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
@@ -13,6 +15,8 @@ import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+
+dayjs.extend(isoWeek);
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';

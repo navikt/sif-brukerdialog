@@ -8,8 +8,8 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import {
-    ArbeidstidAktivitetEndring,
-    ArbeidstidAktivitetEndringUkeMap,
+    ArbeidstidAktivitetUkeEndring,
+    ArbeidstidAktivitetUkeEndringMap,
 } from '../../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -32,7 +32,7 @@ export enum ArbeidstidFormFields {
     arbeidAktivitetEndring = 'arbeidAktivitetEndring',
 }
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringUkeMap };
+    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetUkeEndringMap };
 }
 
 const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
@@ -77,12 +77,12 @@ const ArbeidstidStep = () => {
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidsukeChange = (
-        endring: ArbeidstidAktivitetEndring,
+        endring: ArbeidstidAktivitetUkeEndring,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
         const alleEndringer = values[ArbeidstidFormFields.arbeidAktivitetEndring] || {};
-        const endringerForAktivitet: ArbeidstidAktivitetEndringUkeMap = alleEndringer[endring.arbeidAktivitetId];
+        const endringerForAktivitet: ArbeidstidAktivitetUkeEndringMap = alleEndringer[endring.arbeidAktivitetId];
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitetEndring: {
                 ...values[ArbeidstidFormFields.arbeidAktivitetEndring],

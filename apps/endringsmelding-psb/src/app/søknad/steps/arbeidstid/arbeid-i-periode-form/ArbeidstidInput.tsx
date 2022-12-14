@@ -7,7 +7,8 @@ import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation'
 import { dateRangeUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues, TimerEllerProsent } from './ArbeidIPeriodeFormValues';
+import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
+import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 import { ArbeidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
 
 dayjs.extend(isoWeek);

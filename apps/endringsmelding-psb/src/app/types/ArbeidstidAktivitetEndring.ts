@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { TimerEllerProsent } from '../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
+import { TimerEllerProsent } from './TimerEllerProsent';
 
 export interface ArbeidstidEndringProsent {
     type: TimerEllerProsent.PROSENT;
@@ -13,13 +13,12 @@ export interface ArbeidstidEndringTimer {
 
 export type ArbeidstidEndring = ArbeidstidEndringProsent | ArbeidstidEndringTimer;
 
-export interface ArbeidstidAktivitetEndring {
+export interface ArbeidstidAktivitetUkeEndring {
     arbeidAktivitetId: string;
-    gjelderEnkeltuke: boolean;
     periode: DateRange;
     endring: ArbeidstidEndring;
 }
 
-export type ArbeidstidAktivitetEndringUkeMap = {
-    [isoDateRange: string]: ArbeidstidAktivitetEndring;
+export type ArbeidstidAktivitetUkeEndringMap = {
+    [isoDateRange: string]: ArbeidstidAktivitetUkeEndring;
 };

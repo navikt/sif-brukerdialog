@@ -1,7 +1,7 @@
 import { Heading, Ingress, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import dayjs from 'dayjs';
-import { ArbeidstidAktivitetEndring } from '../../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetUkeEndring } from '../../../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../../../types/K9Sak';
 import { ArbeidAktivitet } from '../../../../types/Sak';
 import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
@@ -15,7 +15,7 @@ interface Props {
     arbeidsuke?: Arbeidsuke;
     isVisible?: boolean;
     onClose: () => void;
-    onSubmit: (endring: ArbeidstidAktivitetEndring) => void;
+    onSubmit: (endring: ArbeidstidAktivitetUkeEndring) => void;
 }
 
 const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({

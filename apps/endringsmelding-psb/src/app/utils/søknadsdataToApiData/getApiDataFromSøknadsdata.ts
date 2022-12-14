@@ -4,9 +4,8 @@ import {
     durationToDecimalDuration,
     durationToISODuration,
 } from '@navikt/sif-common-utils/lib';
-import { TimerEllerProsent } from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import { ArbeidstidAktivitetEndringUkeMap } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetUkeEndringMap } from '../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
 import {
     ArbeidstakerApiData,
@@ -15,10 +14,11 @@ import {
     SøknadApiData,
 } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretArbeidstidEnkeltdag } from '../arbeidAktivitetUtils';
 
 export const getArbeidstidEndringUtFraNormaltid = (
-    endringUkeMap: ArbeidstidAktivitetEndringUkeMap,
+    endringUkeMap: ArbeidstidAktivitetUkeEndringMap,
     arbeidAktivitet: ArbeidAktivitet
 ): ArbeidstidPeriodeApiDataMap => {
     const arbeidsdagerMedEndretTid: ArbeidstidPeriodeApiDataMap = {};
@@ -55,7 +55,7 @@ export const getArbeidstidEndringUtFraNormaltid = (
 };
 
 export const getArbeidstidInfo = (
-    aktivitetEndring?: ArbeidstidAktivitetEndringUkeMap,
+    aktivitetEndring?: ArbeidstidAktivitetUkeEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
     if (aktivitetEndring && aktivitet) {

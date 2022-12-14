@@ -1,4 +1,4 @@
-import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetUkeEndring } from '../../../types/ArbeidstidAktivitetEndring';
 import { Sak } from '../../../types/Sak';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { StepId } from '../../config/StepId';
@@ -73,7 +73,7 @@ interface ClearStepSøknadsdata {
 
 interface SetArbeidstidAktivitetEndring {
     type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING;
-    payload: { endring: ArbeidstidAktivitetEndring };
+    payload: { endring: ArbeidstidAktivitetUkeEndring };
 }
 
 const setSak = (sak: Sak): SetSak => ({
@@ -134,7 +134,7 @@ const clearStepSøknadsdata = (stepId: StepId): ClearStepSøknadsdata => ({
     },
 });
 
-const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetEndring): SetArbeidstidAktivitetEndring => ({
+const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetUkeEndring): SetArbeidstidAktivitetEndring => ({
     type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING,
     payload: {
         endring,

@@ -1,4 +1,4 @@
-import { Accordion, BodyLong, Button, Heading } from '@navikt/ds-react';
+import { Accordion, BodyLong, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -7,31 +7,27 @@ import dayjs from 'dayjs';
 import ArbeidstidUkeListe from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
 import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import {
-    ArbeidstidAktivitetEndring,
-    ArbeidstidAktivitetEndringUkeMap,
+    ArbeidstidAktivitetUkeEndring,
+    ArbeidstidAktivitetUkeEndringMap,
 } from '../../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke, ArbeidsukeMedEndring } from '../../../types/K9Sak';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
-import ArbeidIPeriodeModal from './arbeid-i-periode-form/ArbeidIPeriodeModal';
 import ArbeidstidEnkeltukeModal from './arbeidstid-enkeltuke/ArbeidstidEnkeltukeModal';
 import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
-    endringer: ArbeidstidAktivitetEndringUkeMap | undefined;
-    kanEndrePeriode?: boolean;
+    endringer: ArbeidstidAktivitetUkeEndringMap | undefined;
     visSamletListe?: boolean;
-    onArbeidsukeChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetEndring) => void;
+    onArbeidsukeChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetUkeEndring) => void;
 }
 
 const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
     arbeidAktivitet,
     endringer,
-    kanEndrePeriode = false,
     visSamletListe = true,
     onArbeidsukeChange,
 }) => {
-    const [visArbeidIPeriodeModal, setVisArbeidIPeriodeModal] = useState(false);
     const [arbeidsukeForEndring, setArbeidsukeForEndring] = useState<Arbeidsuke | undefined>();
     const navn = getArbeidAktivitetNavn(arbeidAktivitet);
     const arbeidsuker: ArbeidsukeMedEndring[] = Object.keys(arbeidAktivitet.perioder.arbeidsuker).map((key) => ({
@@ -51,30 +47,6 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
             </Heading>
             <ArbeidAktivitetInfo arbeidAktivitet={arbeidAktivitet} />
 
-            {kanEndrePeriode && (
-                <>
-                    <Block margin="xl">
-                        <Heading level="3" size="xsmall" spacing={true}>
-                            Du kan endre arbeidstid på to måter:
-                        </Heading>
-                        <BodyLong as="div">
-                            <ul>
-                                <li>du kan endre enkeltuker direkte i listen, eller</li>
-                                <li>du kan endre flere uker samtidig ved å følge knappen for dette</li>
-                            </ul>
-                        </BodyLong>
-                    </Block>
-                    <FormBlock>
-                        <Button
-                            style={{ alignSelf: 'flex-end' }}
-                            variant="secondary"
-                            type="button"
-                            onClick={() => setVisArbeidIPeriodeModal(true)}>
-                            Endre arbeidstid for flere uker
-                        </Button>
-                    </FormBlock>
-                </>
-            )}
             {visSamletListe && (
                 <Block padBottom="l">
                     <ArbeidstidUkeListe
@@ -123,15 +95,6 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
                 </>
             )}
 
-            <ArbeidIPeriodeModal
-                arbeidAktivitet={arbeidAktivitet}
-                isVisible={visArbeidIPeriodeModal}
-                onClose={() => setVisArbeidIPeriodeModal(false)}
-                onSubmit={(endring) => {
-                    onArbeidsukeChange(endring);
-                    setVisArbeidIPeriodeModal(false);
-                }}
-            />
             <ArbeidstidEnkeltukeModal
                 arbeidAktivitet={arbeidAktivitet}
                 isVisible={arbeidsukeForEndring !== undefined}

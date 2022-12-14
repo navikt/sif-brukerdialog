@@ -1,5 +1,4 @@
 import { IntlShape } from 'react-intl';
-// import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidAktivitetType } from '../../../../types/Sak';
 import { getArbeidstidPeriodeIntl } from './arbeidIPeriodeMessages';
 
@@ -7,9 +6,6 @@ export type ArbeidIPeriodeIntlValues = {
     hvor: string;
     skalEllerHarJobbet: string;
     timerNormalt: string;
-    // fra: string;
-    // til: string;
-    // iPerioden: string;
 };
 
 export const getArbeidstidIPeriodeIntlValues = (
@@ -45,11 +41,5 @@ export const getArbeidstidIPeriodeIntlValues = (
         skalEllerHarJobbet: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
         hvor: getHvorTekst(),
         timerNormalt: info.timerNormaltString,
-        // fra: dateFormatter.full(info.periode.from),
-        // til: dateFormatter.full(info.periode.to),
-        // iPerioden: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden', {
-        //     fra: dateFormatter.compact(info.periode.from),
-        //     til: dateFormatter.compact(info.periode.to),
-        // }),
     };
 };
