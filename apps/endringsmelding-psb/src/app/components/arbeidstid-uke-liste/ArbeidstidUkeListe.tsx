@@ -1,14 +1,9 @@
-import { Button, Table } from '@navikt/ds-react';
+import { Button, Checkbox, Table } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Add, Edit } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import {
-    dateFormatter,
-    dateRangeToISODateRange,
-    decimalDurationToDuration,
-    durationToDecimalDuration,
-} from '@navikt/sif-common-utils/lib';
+import { dateFormatter, decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { TimerEllerProsent } from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
 import { Arbeidsuke, ArbeidsukeMedEndring } from '../../types/K9Sak';
@@ -21,12 +16,14 @@ interface Props {
         antall: number;
     };
     onVelgUke: (uke: Arbeidsuke) => void;
+    onVelgUker?: (uke: Arbeidsuke[]) => void;
 }
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     arbeidsuker,
     visNormaltid = false,
     onVelgUke,
+    onVelgUker,
     paginering = {
         antall: 10,
     },
@@ -37,6 +34,8 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     );
     const isWide = useMediaQuery({ minWidth: 736 });
     const compactTable = isWide === false;
+
+    const [valgteUker, setValgteUker] = useState<string[]>([]);
 
     const renderDato = (date: Date) => {
         return (
@@ -77,7 +76,18 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
         );
     };
 
+    const onToggleUke = (id: string, selected: boolean) => {
+        if (selected) {
+            setValgteUker(valgteUker.filter((ukeId) => ukeId !== id));
+        } else {
+            setValgteUker([...valgteUker, id]);
+        }
+    };
+
     const synligeUker = antallSynlig ? arbeidsuker.slice(0, antallSynlig) : arbeidsuker;
+
+    const velgUkerHeaderCell = onVelgUker ? getVelgUkeHeaderCell(valgteUker, synligeUker, setValgteUker) : null;
+    const visUkeEditButton: boolean = onVelgUker === undefined || valgteUker.length === 0;
 
     return (
         <div className="arbeidstidUkeList">
@@ -85,6 +95,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                 <Table.Header>
                     {compactTable && (
                         <Table.Row>
+                            {velgUkerHeaderCell}
                             <Table.HeaderCell>Periode</Table.HeaderCell>
                             {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
                             <Table.HeaderCell colSpan={2}>Arbeidstid</Table.HeaderCell>
@@ -92,6 +103,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     )}
                     {compactTable === false && (
                         <Table.Row>
+                            {velgUkerHeaderCell}
                             <Table.HeaderCell>Uke</Table.HeaderCell>
                             <Table.HeaderCell>Periode</Table.HeaderCell>
                             <Table.HeaderCell>Dager</Table.HeaderCell>
@@ -102,12 +114,13 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                 </Table.Header>
                 <Table.Body>
                     {synligeUker.map((uke) => {
-                        const rowKey = dateRangeToISODateRange(uke.periode);
                         const ukenummer = dayjs(uke.periode.from).isoWeek();
+                        const selected = onVelgUker !== undefined && valgteUker.includes(uke.id);
                         return (
-                            <Table.Row key={rowKey}>
+                            <Table.Row key={uke.id} selected={selected}>
                                 {compactTable && (
                                     <>
+                                        {onVelgUker && getVelgUkeDataCell(uke.id, selected, onToggleUke)}
                                         <Table.DataCell>
                                             <>
                                                 Uke {ukenummer}
@@ -128,18 +141,22 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                         )}
                                         <Table.DataCell>{getTid(uke)}</Table.DataCell>
                                         <Table.DataCell>
-                                            <Button
-                                                icon={<Edit />}
-                                                type="button"
-                                                variant="primary"
-                                                size="small"
-                                                onClick={() => onVelgUke(uke)}
-                                            />
+                                            {visUkeEditButton && (
+                                                <Button
+                                                    disabled={!visUkeEditButton}
+                                                    icon={<Edit />}
+                                                    type="button"
+                                                    variant="primary"
+                                                    size="small"
+                                                    onClick={() => onVelgUke(uke)}
+                                                />
+                                            )}
                                         </Table.DataCell>
                                     </>
                                 )}
                                 {!compactTable && (
                                     <>
+                                        {onVelgUker && getVelgUkeDataCell(uke.id, selected, onToggleUke)}
                                         <Table.DataCell>{ukenummer}</Table.DataCell>
                                         <Table.DataCell>
                                             <>
@@ -156,6 +173,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                         <Table.DataCell>{getTid(uke)}</Table.DataCell>
                                         <Table.DataCell>
                                             <Button
+                                                disabled={!visUkeEditButton}
                                                 aria-label={`Endre uke ${ukenummer}`}
                                                 icon={<Edit />}
                                                 type="button"
@@ -171,6 +189,18 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     })}
                 </Table.Body>
             </Table>
+            {onVelgUker && valgteUker.length > 0 && (
+                <FormBlock margin="l" paddingBottom="m">
+                    <Button
+                        variant="primary"
+                        type="button"
+                        onClick={() => {
+                            onVelgUker(arbeidsuker.filter((uke) => valgteUker.includes(uke.id)));
+                        }}>
+                        Endre valgte uker
+                    </Button>
+                </FormBlock>
+            )}
             {paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt && (
                 <FormBlock margin="m">
                     <Button
@@ -187,3 +217,43 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 };
 
 export default ArbeidstidUkeListe;
+
+export const getVelgUkeHeaderCell = (
+    valgteUker: string[],
+    synligeUker: Arbeidsuke[],
+    setValgteUker: (uker: string[]) => void
+) => {
+    return (
+        <Table.DataCell>
+            <Checkbox
+                checked={valgteUker.length === synligeUker.length}
+                indeterminate={valgteUker.length > 0 && valgteUker.length !== synligeUker.length}
+                onChange={() => {
+                    valgteUker.length ? setValgteUker([]) : setValgteUker(synligeUker.map(({ id }) => id));
+                }}
+                hideLabel>
+                Velg alle rader
+            </Checkbox>
+        </Table.DataCell>
+    );
+};
+
+export const getVelgUkeDataCell = (
+    id: string,
+    selected: boolean,
+    onChange: (id: string, selected: boolean) => void
+) => {
+    return (
+        <Table.DataCell>
+            <Checkbox
+                hideLabel
+                checked={selected}
+                onChange={() => {
+                    onChange(id, selected);
+                }}
+                aria-labelledby={`id-${id}`}>
+                {' '}
+            </Checkbox>
+        </Table.DataCell>
+    );
+};

@@ -122,7 +122,9 @@ export const getAktivitetArbeidstidFromK9Format = (
 
         const faktisk = dayKeys.map((key) => days[key].faktisk);
         const normalt = dayKeys.map((key) => days[key].normalt);
+
         const arbeidsuke: Arbeidsuke = {
+            id: key,
             days,
             faktisk: numberDurationAsDuration(durationUtils.summarizeDurations(faktisk)),
             normalt: numberDurationAsDuration(durationUtils.summarizeDurations(normalt)),

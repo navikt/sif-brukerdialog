@@ -20,6 +20,7 @@ interface Props {
     arbeidAktivitet: ArbeidAktivitet;
     endringer: ArbeidstidAktivitetEndringPeriodeMap | undefined;
     kanEndrePeriode?: boolean;
+    visSamletListe?: boolean;
     onArbeidsukeChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetEndring) => void;
 }
 
@@ -27,6 +28,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
     arbeidAktivitet,
     endringer,
     kanEndrePeriode = false,
+    visSamletListe = true,
     onArbeidsukeChange,
 }) => {
     const [visArbeidIPeriodeModal, setVisArbeidIPeriodeModal] = useState(false);
@@ -73,39 +75,52 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
                     </FormBlock>
                 </>
             )}
-
-            <FormBlock paddingBottom="l">
-                {ukerSomHarVært.length > 0 && (
-                    <Accordion style={{ borderTop: '2px solid var(--a-border-strong)' }}>
-                        <Accordion.Item defaultOpen={true}>
-                            <Accordion.Header>Uker som har vært</Accordion.Header>
-                            <Accordion.Content>
-                                <ArbeidstidUkeListe
-                                    arbeidsuker={ukerSomHarVært}
-                                    onVelgUke={(uke) => {
-                                        setArbeidsukeForEndring(uke);
-                                    }}
-                                />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    </Accordion>
-                )}
-                {ukerSomKommer.length > 0 && (
-                    <Accordion>
-                        <Accordion.Item>
-                            <Accordion.Header>Denne og kommende uker</Accordion.Header>
-                            <Accordion.Content>
-                                <ArbeidstidUkeListe
-                                    arbeidsuker={ukerSomKommer}
-                                    onVelgUke={(uke) => {
-                                        setArbeidsukeForEndring(uke);
-                                    }}
-                                />
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    </Accordion>
-                )}
-            </FormBlock>
+            {visSamletListe && (
+                <Block padBottom="l">
+                    <ArbeidstidUkeListe
+                        arbeidsuker={arbeidsuker}
+                        onVelgUke={(uke) => {
+                            setArbeidsukeForEndring(uke);
+                        }}
+                    />
+                </Block>
+            )}
+            {!visSamletListe && (
+                <>
+                    <FormBlock paddingBottom="l">
+                        {ukerSomHarVært.length > 0 && (
+                            <Accordion style={{ borderTop: '2px solid var(--a-border-strong)' }}>
+                                <Accordion.Item defaultOpen={true}>
+                                    <Accordion.Header>Uker som har vært</Accordion.Header>
+                                    <Accordion.Content>
+                                        <ArbeidstidUkeListe
+                                            arbeidsuker={ukerSomHarVært}
+                                            onVelgUke={(uke) => {
+                                                setArbeidsukeForEndring(uke);
+                                            }}
+                                        />
+                                    </Accordion.Content>
+                                </Accordion.Item>
+                            </Accordion>
+                        )}
+                        {ukerSomKommer.length > 0 && (
+                            <Accordion>
+                                <Accordion.Item>
+                                    <Accordion.Header>Denne og kommende uker</Accordion.Header>
+                                    <Accordion.Content>
+                                        <ArbeidstidUkeListe
+                                            arbeidsuker={ukerSomKommer}
+                                            onVelgUke={(uke) => {
+                                                setArbeidsukeForEndring(uke);
+                                            }}
+                                        />
+                                    </Accordion.Content>
+                                </Accordion.Item>
+                            </Accordion>
+                        )}
+                    </FormBlock>
+                </>
+            )}
 
             <ArbeidIPeriodeModal
                 arbeidAktivitet={arbeidAktivitet}

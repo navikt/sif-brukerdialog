@@ -4,6 +4,7 @@ import { ArbeidstidAktivitetEndring } from './ArbeidstidAktivitetEndring';
 
 export type TidEnkeltdag = DateDurationMap; // { [isoDateString: string]: { hours: string; minutes: string } };
 export interface Arbeidsuke {
+    id: string;
     periode: DateRange;
     days: ArbeidstidEnkeltdagSak;
     faktisk: Duration;
