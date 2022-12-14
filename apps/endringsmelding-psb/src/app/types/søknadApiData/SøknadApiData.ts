@@ -1,8 +1,8 @@
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export type ArbeidstidPeriodeApiData = {
-    jobberNormaltTimerPerDag: ISODuration | undefined;
-    faktiskArbeidTimerPerDag: ISODuration | undefined;
+    jobberNormaltTimerPerDag: ISODuration;
+    faktiskArbeidTimerPerDag: ISODuration;
 };
 
 export type ArbeidstidPeriodeApiDataMap = {
@@ -34,7 +34,7 @@ export interface BarnApiData {
 
 export interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
-    arbeidstid?: ArbeidstidApiData;
+    arbeidstid: ArbeidstidApiData;
     barn: BarnApiData;
 }
 

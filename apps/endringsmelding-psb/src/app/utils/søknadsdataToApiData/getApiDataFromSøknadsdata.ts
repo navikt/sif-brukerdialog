@@ -105,6 +105,9 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak): SøknadApiData | undefined => {
     const { id, arbeidstid } = søknadsdata;
+    if (!arbeidstid) {
+        return undefined;
+    }
     return {
         id,
         språk: '',
@@ -116,7 +119,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
                 fødselsdato: sak.barn.fødselsdato ? dateToISODate(sak.barn.fødselsdato) : undefined,
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
-            arbeidstid: arbeidstid ? getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter) : undefined,
+            arbeidstid: getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter),
         },
     };
 };
