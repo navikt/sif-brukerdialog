@@ -33,7 +33,7 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const intl = useIntl();
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, sak },
     } = useSøknadContext();
 
     const stepConfig = getSøknadStepConfig();
@@ -52,7 +52,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak);
 
     return (
         <SøknadStep stepId={stepId}>

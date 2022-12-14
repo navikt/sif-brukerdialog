@@ -38,12 +38,15 @@ export type ArbeidAktivitet =
     | ArbeidAktivitetSelvstendigNæringsdrivende;
 
 export interface ArbeidAktiviteter {
-    arbeidstaker: ArbeidAktivitetArbeidstaker[];
+    arbeidstakerArr: ArbeidAktivitetArbeidstaker[];
     frilanser?: ArbeidAktivitetFrilanser;
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
 
 export interface Sak {
     barn: Barn;
-    arbeidAktivitet: ArbeidAktiviteter;
+    arbeidAktiviteter: ArbeidAktiviteter;
+    ytelse: {
+        type: string;
+    };
 }

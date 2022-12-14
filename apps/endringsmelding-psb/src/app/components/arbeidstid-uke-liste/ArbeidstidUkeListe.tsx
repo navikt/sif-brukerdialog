@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Add, Edit } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { TimerEllerProsent } from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeFormValues';
 import { Arbeidsuke, ArbeidsukeMedEndring } from '../../types/K9Sak';
 import DurationText from '../duration-text/DurationText';
+import { beregnEndretArbeidstidEnkeltdag } from '../../utils/arbeidAktivitetUtils';
 
 interface Props {
     arbeidsuker: ArbeidsukeMedEndring[];
@@ -53,8 +54,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
             return <DurationText duration={uke.faktisk} />;
         }
         const { endring } = uke.endring;
-        const tid = durationToDecimalDuration(uke.normalt);
-        const nyTid = endring.type === TimerEllerProsent.PROSENT ? (tid / 100) * endring.prosent : endring.timer;
+        const nyTid = beregnEndretArbeidstidEnkeltdag(endring, uke.normalt);
 
         return (
             <>
@@ -65,7 +65,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 {endring.prosent} {compactTable ? '%' : 'prosent'}
                             </>
                         ) : (
-                            <DurationText duration={decimalDurationToDuration(nyTid)} />
+                            <DurationText duration={nyTid} />
                         )}
                     </strong>
                 </div>
@@ -164,7 +164,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                                 {renderDato(uke.periode.to)}
                                             </>
                                         </Table.DataCell>
-                                        <Table.DataCell>{Object.keys(uke.days).length}</Table.DataCell>
+                                        <Table.DataCell>{Object.keys(uke.dagerMap).length}</Table.DataCell>
                                         {visNormaltid && (
                                             <Table.DataCell>
                                                 <DurationText duration={uke.normalt} />

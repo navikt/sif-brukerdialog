@@ -81,7 +81,7 @@ const AktivitetStep = () => {
                                 }
                                 name={AktivitetFormFields.aktiviteterSomSkalEndres}
                                 validate={getListValidator({ required: true })}
-                                checkboxes={getOpptjeningAktivitetCheckboxes(sak.arbeidAktivitet)}
+                                checkboxes={getOpptjeningAktivitetCheckboxes(sak.arbeidAktiviteter)}
                             />
                         </Form>
                     </>
@@ -107,7 +107,7 @@ export const getOpptjeningAktivitetCheckboxes = (
 ): FormikCheckboxGroupCheckboxProp[] => {
     const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
 
-    const { arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+    const { arbeidstakerArr: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
     arbeidstaker.forEach(({ id, arbeidsgiver: { id: orgnr, navn, type } }) => {
         checkboxProps.push({

@@ -1,7 +1,12 @@
 import { guid } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+
+const initialSøknadsdata: Søknadsdata = {
+    id: undefined,
+} as any;
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -19,7 +24,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
             return {
                 ...state,
-                søknadsdata: {},
+                søknadsdata: initialSøknadsdata,
                 søknadRoute: undefined,
             };
     }
@@ -74,14 +79,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 return {
                     ...state,
                     børMellomlagres: false,
-                    søknadsdata: {},
+                    søknadsdata: initialSøknadsdata,
                     søknadSendt: true,
                 };
             case SøknadContextActionKeys.RESET_SØKNAD:
                 return {
                     ...state,
                     børMellomlagres: false,
-                    søknadsdata: {},
+                    søknadsdata: initialSøknadsdata,
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };

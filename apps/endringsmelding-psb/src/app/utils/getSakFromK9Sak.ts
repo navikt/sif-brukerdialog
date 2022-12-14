@@ -29,7 +29,7 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
     });
 
     return {
-        arbeidstaker: aktivitetArbeidstaker,
+        arbeidstakerArr: aktivitetArbeidstaker,
         frilanser:
             frilanserArbeidstidInfo !== undefined
                 ? {
@@ -60,6 +60,9 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
 export const getSakFromK9Sak = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]): Sak | undefined => {
     return {
         barn: k9Sak.barn,
-        arbeidAktivitet: getArbeidAktiviteter(k9Sak, arbeidsgivere),
+        arbeidAktiviteter: getArbeidAktiviteter(k9Sak, arbeidsgivere),
+        ytelse: {
+            type: k9Sak.ytelse.type,
+        },
     };
 };

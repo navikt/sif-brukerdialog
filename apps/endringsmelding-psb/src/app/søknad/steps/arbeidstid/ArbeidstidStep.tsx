@@ -9,7 +9,7 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import {
     ArbeidstidAktivitetEndring,
-    ArbeidstidAktivitetEndringPeriodeMap,
+    ArbeidstidAktivitetEndringUkeMap,
 } from '../../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -32,7 +32,7 @@ export enum ArbeidstidFormFields {
     arbeidAktivitetEndring = 'arbeidAktivitetEndring',
 }
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringPeriodeMap };
+    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringUkeMap };
 }
 
 const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
@@ -74,7 +74,7 @@ const ArbeidstidStep = () => {
     );
 
     const valgteAktiviteter = søknadsdata.arbeidAktivitet?.aktiviteterSomSkalEndres || [];
-    const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktivitet, valgteAktiviteter);
+    const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidsukeChange = (
         endring: ArbeidstidAktivitetEndring,
@@ -82,7 +82,7 @@ const ArbeidstidStep = () => {
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
         const alleEndringer = values[ArbeidstidFormFields.arbeidAktivitetEndring] || {};
-        const endringerForAktivitet: ArbeidstidAktivitetEndringPeriodeMap = alleEndringer[endring.arbeidAktivitetId];
+        const endringerForAktivitet: ArbeidstidAktivitetEndringUkeMap = alleEndringer[endring.arbeidAktivitetId];
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitetEndring: {
                 ...values[ArbeidstidFormFields.arbeidAktivitetEndring],
@@ -172,7 +172,7 @@ const getAktiviteterSomSkalEndres = (
     arbeidAktiviteter: ArbeidAktiviteter,
     valgteAktiviteter: string[] = []
 ): ArbeidAktivitet[] => {
-    const { arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+    const { arbeidstakerArr: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
     const aktiviteter: ArbeidAktivitet[] = arbeidstaker.filter((a) => (valgteAktiviteter || []).includes(a.id));
     if (frilanser !== undefined && valgteAktiviteter.includes(ArbeidAktivitetType.frilanser)) {

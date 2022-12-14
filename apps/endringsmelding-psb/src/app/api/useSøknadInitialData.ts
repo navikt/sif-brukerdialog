@@ -72,7 +72,7 @@ const setupSøknadInitialData = async (loadedData: {
         k9saker,
         sak: k9sak ? getSakFromK9Sak(k9sak, arbeidsgivere) : undefined,
         arbeidsgivere,
-        søknadsdata: {},
+        søknadsdata: {} as any,
         ...lagretSøknadStateToUse,
     });
 };

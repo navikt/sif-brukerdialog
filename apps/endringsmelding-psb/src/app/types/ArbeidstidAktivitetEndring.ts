@@ -11,7 +11,7 @@ export interface ArbeidstidEndringTimer {
     timer: number;
 }
 
-type ArbeidstidEndring = ArbeidstidEndringProsent | ArbeidstidEndringTimer;
+export type ArbeidstidEndring = ArbeidstidEndringProsent | ArbeidstidEndringTimer;
 
 export interface ArbeidstidAktivitetEndring {
     arbeidAktivitetId: string;
@@ -20,6 +20,6 @@ export interface ArbeidstidAktivitetEndring {
     endring: ArbeidstidEndring;
 }
 
-export type ArbeidstidAktivitetEndringPeriodeMap = {
+export type ArbeidstidAktivitetEndringUkeMap = {
     [isoDateRange: string]: ArbeidstidAktivitetEndring;
 };

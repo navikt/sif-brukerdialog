@@ -8,7 +8,7 @@ import ArbeidstidUkeListe from '../../../components/arbeidstid-uke-liste/Arbeids
 import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import {
     ArbeidstidAktivitetEndring,
-    ArbeidstidAktivitetEndringPeriodeMap,
+    ArbeidstidAktivitetEndringUkeMap,
 } from '../../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke, ArbeidsukeMedEndring } from '../../../types/K9Sak';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
@@ -18,7 +18,7 @@ import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
-    endringer: ArbeidstidAktivitetEndringPeriodeMap | undefined;
+    endringer: ArbeidstidAktivitetEndringUkeMap | undefined;
     kanEndrePeriode?: boolean;
     visSamletListe?: boolean;
     onArbeidsukeChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetEndring) => void;
@@ -79,6 +79,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
                 <Block padBottom="l">
                     <ArbeidstidUkeListe
                         arbeidsuker={arbeidsuker}
+                        visNormaltid={true}
                         onVelgUke={(uke) => {
                             setArbeidsukeForEndring(uke);
                         }}
