@@ -11,11 +11,13 @@ export interface ArbeidstidUkeListeItem {
     isoDateRange: string;
     periode: DateRange;
     antallDager: number;
-    faktisk: Duration;
-    normalt: Duration;
-    endring?: {
+    opprinnelig: {
+        faktisk: Duration;
+        normalt: Duration;
+    };
+    endret?: {
         endretProsent?: number;
-        endretTimer: Duration;
+        faktisk: Duration;
     };
 }
 
@@ -25,6 +27,7 @@ interface Props {
     paginering?: {
         antall: number;
     };
+    visAntallDager?: boolean;
     onVelgUke?: (uke: ArbeidstidUkeListeItem) => void;
     onVelgUker?: (uke: ArbeidstidUkeListeItem[]) => void;
 }
@@ -35,6 +38,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     paginering = {
         antall: 10,
     },
+    visAntallDager = true,
     onVelgUke,
     onVelgUker,
 }) => {
@@ -48,27 +52,35 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     const [valgteUker, setValgteUker] = useState<string[]>([]);
 
     const getTid = (uke: ArbeidstidUkeListeItem) => {
-        if (uke.endring === undefined) {
-            return <DurationText duration={uke.faktisk} />;
+        if (uke.endret === undefined) {
+            return <DurationText duration={uke.opprinnelig.faktisk} />;
         }
-        const { endring } = uke;
+        const { endret, opprinnelig } = uke;
 
         return (
             <>
                 <div>
                     <strong>
-                        {endring.endretProsent !== undefined ? (
+                        {endret.endretProsent !== undefined ? (
                             <>
-                                {endring.endretProsent} {compactTable ? '%' : 'prosent'}
+                                {endret.endretProsent} {compactTable ? '%' : 'prosent'}
                             </>
                         ) : (
-                            <DurationText duration={endring.endretTimer} />
+                            <DurationText duration={endret.faktisk} />
                         )}
                     </strong>
                 </div>
-                <span style={{ textDecoration: 'line-through' }}>
-                    <DurationText duration={uke.faktisk} />
-                </span>
+                <div>
+                    {endret.endretProsent && (
+                        <>
+                            = <DurationText duration={endret.faktisk} />
+                            {` `}
+                        </>
+                    )}
+                    <span style={{ textDecoration: 'line-through' }}>
+                        (<DurationText duration={opprinnelig.faktisk} />)
+                    </span>
+                </div>
             </>
         );
     };
@@ -102,7 +114,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             {velgUkerHeaderCell}
                             <Table.HeaderCell>Uke</Table.HeaderCell>
                             <Table.HeaderCell>Periode</Table.HeaderCell>
-                            <Table.HeaderCell>Dager</Table.HeaderCell>
+                            {visAntallDager && <Table.HeaderCell>Dager</Table.HeaderCell>}
                             {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
                             <Table.HeaderCell colSpan={2}>Arbeidstid</Table.HeaderCell>
                         </Table.Row>
@@ -112,7 +124,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     {synligeUker.map((uke) => {
                         const ukenummer = dayjs(uke.periode.from).isoWeek();
                         const selected = onVelgUker !== undefined && valgteUker.includes(uke.isoDateRange);
-                        const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.normalt);
+                        const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.opprinnelig.normalt);
                         return (
                             <Table.Row key={uke.isoDateRange} selected={selected}>
                                 {compactTable && (
@@ -133,7 +145,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                         </Table.DataCell>
                                         {visNormaltid && (
                                             <Table.DataCell>
-                                                <DurationText duration={uke.normalt} />
+                                                <DurationText duration={uke.opprinnelig.normalt} />
                                             </Table.DataCell>
                                         )}
                                         <Table.DataCell>{getTid(uke)}</Table.DataCell>
@@ -161,10 +173,10 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                                 {renderDato(uke.periode.to)}
                                             </>
                                         </Table.DataCell>
-                                        <Table.DataCell>{uke.antallDager}</Table.DataCell>
+                                        {visAntallDager && <Table.DataCell>{uke.antallDager}</Table.DataCell>}
                                         {visNormaltid && (
                                             <Table.DataCell>
-                                                <DurationText duration={uke.normalt} />
+                                                <DurationText duration={uke.opprinnelig.normalt} />
                                             </Table.DataCell>
                                         )}
                                         <Table.DataCell>{getTid(uke)}</Table.DataCell>

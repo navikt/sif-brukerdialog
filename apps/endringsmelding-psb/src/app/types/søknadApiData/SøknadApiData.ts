@@ -3,6 +3,9 @@ import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;
     faktiskArbeidTimerPerDag: ISODuration;
+    _endretProsent?: number;
+    _opprinneligNormaltPerDag: ISODuration;
+    _opprinneligFaktiskPerDag: ISODuration;
 };
 
 export type ArbeidstidPeriodeApiDataMap = {

@@ -7,3 +7,28 @@ export const beregnEndretArbeidstid = (endring: ArbeidstidEndring, normaltid: Du
     const nyTid = endring.type === TimerEllerProsent.PROSENT ? (tid / 100) * endring.prosent : endring.timer;
     return decimalDurationToDuration(nyTid);
 };
+
+export const beregnEndretFaktiskArbeidstidPerDag = (
+    normalArbeidstidIPeriode: Duration,
+    endring: ArbeidstidEndring,
+    antallDager: number
+): Duration => {
+    if (endring.type === TimerEllerProsent.TIMER) {
+        return beregnSnittTimerPerDag(decimalDurationToDuration(endring.timer), antallDager);
+    }
+    const redusertTimerIPeriode = (durationToDecimalDuration(normalArbeidstidIPeriode) / 100) * endring.prosent;
+    return beregnSnittTimerPerDag(decimalDurationToDuration(redusertTimerIPeriode), antallDager);
+};
+
+export const beregnSnittTimerPerDag = (timerIPeriode: Duration, antallDager: number): Duration => {
+    const desimaltidPerDag = avrundDesimaltid(durationToDecimalDuration(timerIPeriode) / antallDager);
+    return decimalDurationToDuration(desimaltidPerDag);
+};
+
+export const avrundDesimaltid = (num: number) => {
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+};
+
+export const summerTimerPerDag = (timerPerDag: Duration, antallDager: number): Duration => {
+    return decimalDurationToDuration(durationToDecimalDuration(timerPerDag) * antallDager);
+};

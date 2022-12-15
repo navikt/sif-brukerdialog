@@ -84,10 +84,14 @@ const arbeidsukeToArbeidstidUkeListItem = (
     return {
         ...arbeidsuke,
         antallDager: Object.keys(arbeidsuke.dagerMap).length,
-        endring: endring
+        opprinnelig: {
+            faktisk: arbeidsuke.faktisk,
+            normalt: arbeidsuke.normalt,
+        },
+        endret: endring
             ? {
+                  faktisk: beregnEndretArbeidstid(endring, arbeidsuke.normalt),
                   endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
-                  endretTimer: beregnEndretArbeidstid(endring, arbeidsuke.normalt),
               }
             : undefined,
     };

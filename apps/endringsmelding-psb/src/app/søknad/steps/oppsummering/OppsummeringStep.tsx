@@ -6,10 +6,19 @@ import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { getDatesInDateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
+import ArbeidstidUkeListe, {
+    ArbeidstidUkeListeItem,
+} from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { ArbeidstakerApiData } from '../../../types/søknadApiData/SøknadApiData';
+import {
+    ArbeidstakerApiData,
+    ArbeidstidPeriodeApiData,
+    ArbeidstidPeriodeApiDataMap,
+} from '../../../types/søknadApiData/SøknadApiData';
+import { summerTimerPerDag } from '../../../utils/beregnUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
@@ -59,27 +68,8 @@ const OppsummeringStep = () => {
         return <Alert variant="error">ApiData er undefined</Alert>;
     }
 
-    const { arbeidstakerList } = apiData.ytelse.arbeidstid;
-
-    // const lagArbeidsukerMedEndringFraApiData = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidsukeMedEndring[] => {
-    //     const arbeidsuker: ArbeidsukeMedEndring[] = [];
-
-    //     Object.keys(perioder)
-    //         .map((key) => ({ key, dateRange: ISODateRangeToDateRange(key), periodeApiData: perioder[key] }))
-    //         .forEach(({ key, dateRange, periodeApiData }) => {
-    //             const arbeidsuke: ArbeidsukeMedEndring = {
-    //                 id: key,
-    //                 periode: dateRange,
-    //                 endring: undefined,
-    //                 dagerMap: {},
-    //                 normalt: ISODurationToDuration(periodeApiData.jobberNormaltTimerPerDag),
-    //                 faktisk: ISODurationToDuration(periodeApiData.faktiskArbeidTimerPerDag),
-    //             };
-    //             arbeidsuker.push(arbeidsuke);
-    //         });
-
-    //     return arbeidsuker;
-    // };
+    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
+        apiData.ytelse.arbeidstid;
 
     return (
         <SøknadStep stepId={stepId}>
@@ -91,19 +81,55 @@ const OppsummeringStep = () => {
                 <>
                     {arbeidstakerList &&
                         Object.keys(arbeidstakerList).map((key) => {
-                            const { organisasjonsnummer }: ArbeidstakerApiData = arbeidstakerList[key];
+                            const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
                             const arbeidsgiver = arbeidsgivere.find((a) => (a.id = organisasjonsnummer));
                             if (!arbeidsgiver) {
                                 return null;
                             }
+                            const arbeidsuker = getArbeidstidUkeListeItem(arbeidstidInfo.perioder);
                             return (
-                                <FormBlock key={key}>
+                                <FormBlock key={key} paddingBottom="l">
                                     <Heading level="2" size="medium">
                                         {arbeidsgiver.navn}
                                     </Heading>
+                                    <>
+                                        <ArbeidstidUkeListe
+                                            arbeidsuker={arbeidsuker}
+                                            visNormaltid={true}
+                                            visAntallDager={false}
+                                        />
+                                    </>
                                 </FormBlock>
                             );
                         })}
+                    {frilanserArbeidstidInfo && (
+                        <FormBlock paddingBottom="l">
+                            <Heading level="2" size="medium">
+                                Frilanser
+                            </Heading>
+                            <>
+                                <ArbeidstidUkeListe
+                                    arbeidsuker={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
+                                    visNormaltid={true}
+                                />
+                            </>
+                        </FormBlock>
+                    )}
+                    {selvstendigNæringsdrivendeArbeidstidInfo && (
+                        <FormBlock paddingBottom="l">
+                            <Heading level="2" size="medium">
+                                Selvstendig næringsdrivende
+                            </Heading>
+                            <>
+                                <ArbeidstidUkeListe
+                                    arbeidsuker={getArbeidstidUkeListeItem(
+                                        selvstendigNæringsdrivendeArbeidstidInfo.perioder
+                                    )}
+                                    visNormaltid={true}
+                                />
+                            </>
+                        </FormBlock>
+                    )}
                 </>
             )}
             <FormBlock margin="xxl">
@@ -148,3 +174,34 @@ const OppsummeringStep = () => {
 };
 
 export default OppsummeringStep;
+
+const getArbeidstidUkeListeItem = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeListeItem[] => {
+    const arbeidsuker: ArbeidstidUkeListeItem[] = [];
+
+    Object.keys(perioder).forEach((isoDateRange) => {
+        const dateRange = ISODateRangeToDateRange(isoDateRange);
+        const {
+            faktiskArbeidTimerPerDag,
+            // jobberNormaltTimerPerDag,
+            _opprinneligFaktiskPerDag,
+            _opprinneligNormaltPerDag,
+            _endretProsent,
+        }: ArbeidstidPeriodeApiData = perioder[isoDateRange];
+        const antallDager = getDatesInDateRange(dateRange).length;
+        const arbeidsuke: ArbeidstidUkeListeItem = {
+            antallDager,
+            isoDateRange,
+            periode: dateRange,
+            opprinnelig: {
+                normalt: summerTimerPerDag(ISODurationToDuration(_opprinneligNormaltPerDag), antallDager),
+                faktisk: summerTimerPerDag(ISODurationToDuration(_opprinneligFaktiskPerDag), antallDager),
+            },
+            endret: {
+                faktisk: summerTimerPerDag(ISODurationToDuration(faktiskArbeidTimerPerDag), antallDager),
+                endretProsent: _endretProsent,
+            },
+        };
+        arbeidsuker.push(arbeidsuke);
+    });
+    return arbeidsuker;
+};
