@@ -27,6 +27,7 @@ interface Props {
     paginering?: {
         antall: number;
     };
+    visOpprinneligOverstreket?: boolean;
     visAntallDager?: boolean;
     arbeidstidKolonneTittel?: string;
     onVelgUke?: (uke: ArbeidstidUkeListeItem) => void;
@@ -41,6 +42,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     },
     visAntallDager = true,
     arbeidstidKolonneTittel = 'Arbeidstid',
+    visOpprinneligOverstreket = true,
     onVelgUke,
     onVelgUker,
 }) => {
@@ -67,20 +69,22 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             {endret.endretProsent} {compactTable ? '%' : 'prosent'}
                         </>
                     ) : (
-                        <DurationText type="decimal" duration={endret.faktisk} />
+                        <DurationText duration={endret.faktisk} />
                     )}
                 </strong>
 
                 <div>
-                    {endret.endretProsent && (
+                    {endret.endretProsent && visOpprinneligOverstreket === false && (
                         <>
-                            {` `}(<DurationText type={'decimal'} duration={endret.faktisk} /> av normalt{' '}
-                            {<DurationText type={'decimal'} duration={opprinnelig.normalt} />})
+                            {` `}(<DurationText duration={endret.faktisk} /> av normalt{' '}
+                            {<DurationText duration={opprinnelig.normalt} />})
                         </>
                     )}
-                    {/* <span style={{ textDecoration: 'line-through' }}>
-                        (<DurationText duration={opprinnelig.faktisk} />)
-                    </span> */}
+                    {visOpprinneligOverstreket && (
+                        <span style={{ textDecoration: 'line-through' }}>
+                            (<DurationText duration={opprinnelig.faktisk} />)
+                        </span>
+                    )}
                 </div>
             </>
         );
