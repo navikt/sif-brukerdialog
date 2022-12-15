@@ -11,7 +11,7 @@ type SøkerDTO = {
 
 const søkerEndpoint = {
     fetch: async (): Promise<Søker> => {
-        const { data } = await api.get<SøkerDTO>(ApiEndpoint.soker);
+        const { data } = await api.get<SøkerDTO>(ApiEndpoint.soker, 'ytelse=omsorgspenger-utvidet-rett');
         if (!isValidSøkerResponse(data)) {
             return Promise.reject('Invalid søkerdata');
         }

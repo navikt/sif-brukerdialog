@@ -2863,6 +2863,11 @@
   resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1070.0.tgz#fc51177307d3241a70d1248cde2767e4a84e4ee6"
   integrity sha512-wHt4XKsUpz4q1Cbqg703s/KRbX3EkZq/AHM97AOiWbhuNSJ8Cf6+mVSX4JtMv/4zYWt+TLEqQjl5I2dCIFObEA==
 
+"@snyk/protect@^1.1071.0":
+  version "1.1071.0"
+  resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1071.0.tgz#4d7980f20024e36d49ddb5dc20523ade5017abbb"
+  integrity sha512-/xoAhWLeMBEVW3mHufGPx6WrhJBy98qmJ+0jhTwdz3qerr93kk4e4dj3N6ZGI9zeBQ3+E1tPxKcC74CcmzQdhg==
+
 "@storybook/addon-a11y@6.5.14":
   version "6.5.14"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-6.5.14.tgz#3095f87396955f64d86110636e6e2fdf603dd10e"
@@ -7323,7 +7328,7 @@ convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   resolved "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.9.0.tgz"
   integrity sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==
 
-cookie-parser@1.4.6:
+cookie-parser@1.4.6, cookie-parser@^1.4.6:
   version "1.4.6"
   resolved "https://registry.npmjs.org/cookie-parser/-/cookie-parser-1.4.6.tgz"
   integrity sha512-z3IzaNjdwUC2olLIB5/ITd0/setiaFMLYiZJle7xg5Fe9KWAceil7xszYfHHBtDFYLSgJduS2Ty0P1uJdPDJeA==
@@ -10740,7 +10745,7 @@ http-proxy-agent@^5.0.0:
     agent-base "6"
     debug "4"
 
-http-proxy-middleware@2.0.6, http-proxy-middleware@^2.0.3:
+http-proxy-middleware@2.0.6, http-proxy-middleware@^2.0.3, http-proxy-middleware@^2.0.6:
   version "2.0.6"
   resolved "https://registry.npmjs.org/http-proxy-middleware/-/http-proxy-middleware-2.0.6.tgz"
   integrity sha512-ya/UeJ6HVBYxrgYotAZo1KvPWlgB48kUJLDePFeneHsVujFaW5WNj2NgWCAE//B1Dl02BIfYlpNgBy8Kf8Rjmw==
@@ -12329,7 +12334,7 @@ joi@^17.6.0:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-jose@4.11.1:
+jose@4.11.1, jose@^4.11.1:
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/jose/-/jose-4.11.1.tgz#8f7443549befe5bddcf4bae664a9cbc1a62da4fa"
   integrity sha512-YRv4Tk/Wlug8qicwqFNFVEZSdbROCHRAC6qu/i0dyNKr5JQdoa2pIGoS04lLO/jXQX7Z9omoNewYIVIxqZBd9Q==
@@ -14137,7 +14142,7 @@ open@^8.0.9, open@^8.4.0:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
-openid-client@5.3.1:
+openid-client@5.3.1, openid-client@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-5.3.1.tgz#69a5fa7d2b5ad479032f576852d40b4d4435488a"
   integrity sha512-RLfehQiHch9N6tRWNx68cicf3b1WR0x74bJWHRc25uYIbSRwjxYcTFaRnzbbpls5jroLAaB/bFIodTgA5LJMvw==
