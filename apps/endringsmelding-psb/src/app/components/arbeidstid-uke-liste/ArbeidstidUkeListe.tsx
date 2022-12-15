@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Add, Edit } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, DateRange, Duration } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, DateRange, Duration, durationUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import DurationText from '../duration-text/DurationText';
 
@@ -112,6 +112,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     {synligeUker.map((uke) => {
                         const ukenummer = dayjs(uke.periode.from).isoWeek();
                         const selected = onVelgUker !== undefined && valgteUker.includes(uke.isoDateRange);
+                        const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.normalt);
                         return (
                             <Table.Row key={uke.isoDateRange} selected={selected}>
                                 {compactTable && (
@@ -137,7 +138,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                         )}
                                         <Table.DataCell>{getTid(uke)}</Table.DataCell>
                                         <Table.DataCell>
-                                            {onVelgUke && (
+                                            {onVelgUke && ukeHarNormaltimer && (
                                                 <Button
                                                     disabled={!visUkeEditButton}
                                                     icon={<Edit />}
@@ -168,7 +169,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                         )}
                                         <Table.DataCell>{getTid(uke)}</Table.DataCell>
                                         <Table.DataCell>
-                                            {onVelgUke && (
+                                            {onVelgUke && ukeHarNormaltimer && (
                                                 <Button
                                                     disabled={!visUkeEditButton}
                                                     aria-label={`Endre uke ${ukenummer}`}

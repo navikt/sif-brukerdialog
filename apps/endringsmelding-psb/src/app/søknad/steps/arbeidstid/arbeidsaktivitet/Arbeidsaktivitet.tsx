@@ -1,9 +1,7 @@
-import { Accordion, BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
-import dayjs from 'dayjs';
+import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import ArbeidstidUkeListe, {
     ArbeidstidUkeListeItem,
 } from '../../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
@@ -15,34 +13,23 @@ import {
 } from '../../../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke, ArbeidsukeMap } from '../../../../types/K9Sak';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../../types/Sak';
-import ArbeidstidEnkeltukeModal from '../arbeidstid-enkeltuke/ArbeidstidEnkeltukeModal';
-import { beregnEndretArbeidstidEnkeltdag, getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
 import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
+import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
+import { beregnEndretArbeidstid } from '../../../../utils/beregnUtils';
+import ArbeidstidEnkeltukeModal from '../../../../components/arbeidstid-enkeltuke-modal/ArbeidstidEnkeltukeModal';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
     endringer: ArbeidstidAktivitetUkeEndringMap | undefined;
-    visSamletListe?: boolean;
     onArbeidsukeChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetUkeEndring) => void;
 }
 
-const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
-    arbeidAktivitet,
-    endringer,
-    visSamletListe = true,
-    onArbeidsukeChange,
-}) => {
+const Arbeidsaktivitet: React.FunctionComponent<Props> = ({ arbeidAktivitet, endringer, onArbeidsukeChange }) => {
     const [arbeidsukeForEndring, setArbeidsukeForEndring] = useState<Arbeidsuke | undefined>();
     const navn = getArbeidAktivitetNavn(arbeidAktivitet);
 
-    const startInneværendeUke = dayjs(dateToday).startOf('isoWeek').toDate();
     const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
-
     const uker = getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
-    const ukerSomHarVært = uker.filter((d) => dayjs(d.periode.to).isBefore(startInneværendeUke, 'day'));
-    const ukerSomKommer = uker
-        .filter((d) => dayjs(d.periode.from).isSameOrAfter(startInneværendeUke, 'day'))
-        .slice(0, 50);
 
     const onVelgUke = (uke: ArbeidstidUkeListeItem) => {
         setArbeidsukeForEndring(arbeidsukerMap[uke.isoDateRange]);
@@ -55,37 +42,9 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
             </Heading>
             <ArbeidAktivitetInfo arbeidAktivitet={arbeidAktivitet} />
 
-            {visSamletListe && (
-                <Block padBottom="l">
-                    <ArbeidstidUkeListe arbeidsuker={uker} visNormaltid={true} onVelgUke={onVelgUke} />
-                </Block>
-            )}
-            {!visSamletListe && (
-                <>
-                    <FormBlock paddingBottom="l">
-                        {ukerSomHarVært.length > 0 && (
-                            <Accordion style={{ borderTop: '2px solid var(--a-border-strong)' }}>
-                                <Accordion.Item defaultOpen={true}>
-                                    <Accordion.Header>Uker som har vært</Accordion.Header>
-                                    <Accordion.Content>
-                                        <ArbeidstidUkeListe arbeidsuker={ukerSomHarVært} onVelgUke={onVelgUke} />
-                                    </Accordion.Content>
-                                </Accordion.Item>
-                            </Accordion>
-                        )}
-                        {ukerSomKommer.length > 0 && (
-                            <Accordion>
-                                <Accordion.Item>
-                                    <Accordion.Header>Denne og kommende uker</Accordion.Header>
-                                    <Accordion.Content>
-                                        <ArbeidstidUkeListe arbeidsuker={ukerSomKommer} onVelgUke={onVelgUke} />
-                                    </Accordion.Content>
-                                </Accordion.Item>
-                            </Accordion>
-                        )}
-                    </FormBlock>
-                </>
-            )}
+            <Block padBottom="l">
+                <ArbeidstidUkeListe arbeidsuker={uker} visNormaltid={true} onVelgUke={onVelgUke} />
+            </Block>
 
             <ArbeidstidEnkeltukeModal
                 arbeidAktivitet={arbeidAktivitet}
@@ -128,7 +87,7 @@ const arbeidsukeToArbeidstidUkeListItem = (
         endring: endring
             ? {
                   endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
-                  endretTimer: beregnEndretArbeidstidEnkeltdag(endring, arbeidsuke.normalt),
+                  endretTimer: beregnEndretArbeidstid(endring, arbeidsuke.normalt),
               }
             : undefined,
     };

@@ -3,12 +3,13 @@ import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import DurationText from '../../../../components/duration-text/DurationText';
-import { ArbeidstidAktivitetUkeEndring } from '../../../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke } from '../../../../types/K9Sak';
-import { ArbeidAktivitet } from '../../../../types/Sak';
-import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
-import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
+import DurationText from '../duration-text/DurationText';
+import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEndring';
+import { Arbeidsuke } from '../../types/K9Sak';
+import { ArbeidAktivitet } from '../../types/Sak';
+import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
+import ArbeidIPeriodeForm from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeForm';
+import './arbeidstidEnkeltukeModal.css';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -29,7 +30,7 @@ const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({
         return null;
     }
     return (
-        <Modal open={isVisible} onClose={onClose} className="arbeidIPeriodeModal">
+        <Modal open={isVisible} onClose={onClose} className="arbeidstidEnkeltukeModal">
             <Modal.Content>
                 <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
                     <Heading spacing={true} size="medium" level="1">

@@ -4,6 +4,7 @@ import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
 import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { K9Sak } from '../../types/K9Sak';
 import { Søker } from '../../types/Søker';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
@@ -38,9 +39,14 @@ const createHashString = (info: SøknadStateHashInfo) => {
 
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
-    info: SøknadStateHashInfo
+    info: SøknadStateHashInfo,
+    k9saker: K9Sak[]
 ): boolean => {
-    return søknadState.versjon === APP_VERSJON && søknadState.søknadHashString === createHashString(info);
+    return (
+        søknadState.versjon === APP_VERSJON &&
+        søknadState.søknadHashString === createHashString(info) &&
+        k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId)
+    );
 };
 
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {

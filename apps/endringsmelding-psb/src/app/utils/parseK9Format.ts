@@ -102,8 +102,6 @@ export const getAktivitetArbeidstidFromK9Format = (
         arbeidsuker[dateRangeToISODateRange({ from, to })] = arbeidsuke;
     });
     return {
-        // samletPeriode,
-        // allePerioder,
         arbeidsdager,
         arbeidsuker,
     };
@@ -131,53 +129,6 @@ const getBarn = (barn: K9FormatBarn): Barn => {
         mellomnavn: barn.mellomnavn || undefined,
     };
 };
-
-// export const getOppgjeningsaktivitetArbeidstaker = (
-//     k9Arbeidstaker: K9FormatArbeidstaker[]
-// ): K9OpptjeningAktivitetArbeidstaker[] => {
-//     return k9Arbeidstaker.map(({ arbeidstidInfo, organisasjonsnummer }) => {
-//         return {
-//             perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
-//             info: {
-//                 organisasjonsnummer,
-//             },
-//         };
-//     });
-// };
-
-// export const getOpptjeningsaktivitetFrilanser = (
-//     info?: K9FormatOpptjeningAktivitetFrilanser
-// ): K9OpptjeningAktivitetFrilanser => {
-//     return {
-//         perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
-//         info: info
-//             ? {
-//                   startdato: ISODateToDate(info.startdato),
-//                   jobberFortsattSomFrilanser: info.jobberFortsattSomFrilanser,
-//                   sluttdato:
-//                       info.jobberFortsattSomFrilanser === false && info.sluttdato
-//                           ? ISODateToDate(info.sluttdato)
-//                           : undefined,
-//               }
-//             : undefined,
-//     };
-// };
-
-// export const getOppgjeningsaktivitetSelvstendig = (
-//     arbeidstidInfo: K9FormatArbeidstidInfo,
-//     info?: K9FormatOpptjeningAktivitetSelvstendig
-// ): K9OpptjeningAktivitetSelvstendig => {
-//     return {
-//         perioder: getOpptjeningAktivitetPerioderFromArbeidstidInfo(arbeidstidInfo),
-//         info: info
-//             ? {
-//                   organisasjonsnummer: info.organisasjonsnummer,
-//                   startdato: ISODateToDate(info.startdato),
-//                   sluttdato: info.sluttdato ? ISODateToDate(info.sluttdato) : undefined,
-//               }
-//             : undefined,
-//     };
-// };
 
 export const parseK9Format = (data: K9Format): K9Sak => {
     const {

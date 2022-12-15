@@ -11,12 +11,12 @@
         "søknad": {
             "søknadId": "generert",
             "versjon": "1.0.0.",
-            "mottattDato": "2022-12-01T04:52:37.581Z",
+            "mottattDato": "2022-12-13T19:42:57.387Z",
             "søker": { "norskIdentitetsnummer": "00000000000" },
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
                 "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
-                "søknadsperiode": ["2022-08-09/2022-09-10", "2022-11-03/2022-11-30"],
+                "søknadsperiode": ["2022-08-09/2022-09-10", "2022-11-03/2022-11-30", "2022-12-05/2022-12-19"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],
                 "opptjeningAktivitet": {},
@@ -29,7 +29,8 @@
                 "tilsynsordning": {
                     "perioder": {
                         "2022-08-09/2022-09-10": { "etablertTilsynTimerPerDag": "PT0S" },
-                        "2022-11-03/2022-11-30": { "etablertTilsynTimerPerDag": "PT0S" }
+                        "2022-11-03/2022-11-30": { "etablertTilsynTimerPerDag": "PT0S" },
+                        "2022-12-05/2022-12-19": { "etablertTilsynTimerPerDag": "PT0S" }
                     }
                 },
                 "lovbestemtFerie": { "perioder": {} },
@@ -53,7 +54,7 @@
                                         "faktiskArbeidTimerPerDag": "PT3H"
                                     },
                                     "2022-08-22/2022-08-23": {
-                                        "jobberNormaltTimerPerDag": "PT4H",
+                                        "jobberNormaltTimerPerDag": "PT0S",
                                         "faktiskArbeidTimerPerDag": "PT0S"
                                     },
                                     "2022-08-24/2022-08-24": {
@@ -83,6 +84,10 @@
                                     "2022-11-21/2022-11-30": {
                                         "jobberNormaltTimerPerDag": "PT4H",
                                         "faktiskArbeidTimerPerDag": "PT2H"
+                                    },
+                                    "2022-12-05/2022-12-19": {
+                                        "jobberNormaltTimerPerDag": "PT8H",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
                                     }
                                 }
                             }
@@ -105,6 +110,10 @@
                             "2022-11-28/2022-11-30": {
                                 "jobberNormaltTimerPerDag": "PT1H",
                                 "faktiskArbeidTimerPerDag": "PT1H40M"
+                            },
+                            "2022-12-05/2022-12-19": {
+                                "jobberNormaltTimerPerDag": "PT6H",
+                                "faktiskArbeidTimerPerDag": "PT0S"
                             }
                         }
                     },
@@ -130,12 +139,12 @@
         "søknad": {
             "søknadId": "generert",
             "versjon": "1.0.0.",
-            "mottattDato": "2022-12-01T04:52:37.632Z",
+            "mottattDato": "2022-12-13T19:42:57.402Z",
             "søker": { "norskIdentitetsnummer": "00000000000" },
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
                 "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
-                "søknadsperiode": ["2022-08-01/2022-10-30"],
+                "søknadsperiode": ["2022-08-01/2022-10-30", "2022-12-01/2022-12-28"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],
                 "opptjeningAktivitet": {},
@@ -170,7 +179,8 @@
                         "2022-08-29/2022-08-29": { "etablertTilsynTimerPerDag": "PT5H1M" },
                         "2022-08-30/2022-08-30": { "etablertTilsynTimerPerDag": "PT4H3M" },
                         "2022-08-31/2022-08-31": { "etablertTilsynTimerPerDag": "PT3H3M" },
-                        "2022-09-01/2022-10-30": { "etablertTilsynTimerPerDag": "PT0S" }
+                        "2022-09-01/2022-10-30": { "etablertTilsynTimerPerDag": "PT0S" },
+                        "2022-12-01/2022-12-28": { "etablertTilsynTimerPerDag": "PT0S" }
                     }
                 },
                 "lovbestemtFerie": { "perioder": {} },
@@ -296,6 +306,22 @@
                                     "2022-10-14/2022-10-30": {
                                         "jobberNormaltTimerPerDag": "PT4H",
                                         "faktiskArbeidTimerPerDag": "PT2H"
+                                    },
+                                    "2022-12-01/2022-12-05": {
+                                        "jobberNormaltTimerPerDag": "PT0S",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    },
+                                    "2022-12-06/2022-12-21": {
+                                        "jobberNormaltTimerPerDag": "PT8H",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    },
+                                    "2022-12-22/2022-12-22": {
+                                        "jobberNormaltTimerPerDag": "PT0S",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    },
+                                    "2022-12-23/2022-12-28": {
+                                        "jobberNormaltTimerPerDag": "PT8H",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
                                     }
                                 }
                             }
@@ -333,6 +359,22 @@
                             },
                             "2022-10-14/2022-10-30": {
                                 "jobberNormaltTimerPerDag": "PT1H",
+                                "faktiskArbeidTimerPerDag": "PT0S"
+                            },
+                            "2022-12-01/2022-12-05": {
+                                "jobberNormaltTimerPerDag": "PT8H",
+                                "faktiskArbeidTimerPerDag": "PT0S"
+                            },
+                            "2022-12-06/2022-12-21": {
+                                "jobberNormaltTimerPerDag": "PT0S",
+                                "faktiskArbeidTimerPerDag": "PT0S"
+                            },
+                            "2022-12-22/2022-12-22": {
+                                "jobberNormaltTimerPerDag": "PT10H",
+                                "faktiskArbeidTimerPerDag": "PT0S"
+                            },
+                            "2022-12-23/2022-12-28": {
+                                "jobberNormaltTimerPerDag": "PT0S",
                                 "faktiskArbeidTimerPerDag": "PT0S"
                             }
                         }

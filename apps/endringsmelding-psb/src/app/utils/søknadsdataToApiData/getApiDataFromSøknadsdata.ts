@@ -15,7 +15,7 @@ import {
 } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { beregnEndretArbeidstidEnkeltdag } from '../arbeidAktivitetUtils';
+import { beregnEndretArbeidstid } from '../beregnUtils';
 
 export const getArbeidstidEndringUtFraNormaltid = (
     endringUkeMap: ArbeidstidAktivitetUkeEndringMap,
@@ -43,9 +43,7 @@ export const getArbeidstidEndringUtFraNormaltid = (
             dager.forEach((key) => {
                 const normaltid = arbeidsuke.dagerMap[key].normalt;
                 arbeidsdagerMedEndretTid[key] = {
-                    faktiskArbeidTimerPerDag: durationToISODuration(
-                        beregnEndretArbeidstidEnkeltdag(endring, normaltid)
-                    ),
+                    faktiskArbeidTimerPerDag: durationToISODuration(beregnEndretArbeidstid(endring, normaltid)),
                     jobberNormaltTimerPerDag: durationToISODuration(normaltid),
                 };
             });

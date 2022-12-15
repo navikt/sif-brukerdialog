@@ -48,10 +48,14 @@ const setupSøknadInitialData = async (loadedData: {
     lagretSøknadState: SøknadStatePersistence;
 }): Promise<SøknadInitialData> => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
-    const persistedSøknadStateIsValid = isPersistedSøknadStateValid(lagretSøknadState, {
-        søker,
-        barnAktørId: lagretSøknadState.barnAktørId,
-    });
+    const persistedSøknadStateIsValid = isPersistedSøknadStateValid(
+        lagretSøknadState,
+        {
+            søker,
+            barnAktørId: lagretSøknadState.barnAktørId,
+        },
+        k9saker
+    );
 
     if (!persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
@@ -64,6 +68,8 @@ const setupSøknadInitialData = async (loadedData: {
 
     const k9sak = persistedSøknadStateIsValid
         ? k9saker.find((s) => s.barn.aktørId === lagretSøknadState.barnAktørId)
+        : k9saker.length === 1
+        ? k9saker[0]
         : undefined;
 
     return Promise.resolve({
