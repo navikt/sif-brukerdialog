@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'apps/omsorgspengesoknad/**/*'
-      - 'nais-config/omsorgspengesoknad/**/*'
+      - 'nais-config/**/*'
       - 'packages/**/*'
       - .github/workflows/app.omsorgspengesøknad.yml
 
