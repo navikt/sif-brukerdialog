@@ -4,22 +4,22 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
-import SøknadSendtPage from '../pages/søknad-sendt/SøknadSendtPage';
+import KvitteringPage from '../pages/kvittering/KvitteringPage';
+import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from './config/StepId';
 import { SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
+import AktivitetStep from './steps/aktivitet/AktivitetStep';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import AktivitetStep from './steps/aktivitet/AktivitetStep';
-import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søknadRoute, k9saker, sak },
+        state: { endringsmeldingSendt, søknadsdata, søknadRoute, k9saker, sak },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -46,7 +46,7 @@ const SøknadRouter = () => {
         }
     }, [shouldResetSøknad, navigateTo, dispatch]);
 
-    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
+    if (endringsmeldingSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
         setShouldResetSøknad(true);
     }
 
@@ -70,7 +70,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoute[StepId.AKTIVITET]} element={<AktivitetStep />} />
             <Route path={SøknadStepRoute[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
             <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoute[StepId.MELDING_SENDT]} element={<SøknadSendtPage />} />
+            <Route path={SøknadStepRoute[StepId.MELDING_SENDT]} element={<KvitteringPage />} />
             <Route
                 path="*"
                 element={

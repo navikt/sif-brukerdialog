@@ -18,7 +18,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
-    SET_SØKNAD_SENDT = 'setSøknadSendt',
+    SET_ENDRINGSMELDING_SENDT = 'setEndringsmeldingSendt',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
 }
@@ -46,8 +46,8 @@ interface RequestLagreSøknad {
 interface SetSøknadLagret {
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET;
 }
-interface SetSøknadSendt {
-    type: SøknadContextActionKeys.SET_SØKNAD_SENDT;
+interface SetEndringsmeldingSendt {
+    type: SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT;
 }
 interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
@@ -105,8 +105,8 @@ const requestLagreSøknad = (): RequestLagreSøknad => ({
 const setSøknadLagret = (): SetSøknadLagret => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LAGRET,
 });
-const setSøknadSendt = (): SetSøknadSendt => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
+const setEndringsmeldingSendt = (): SetEndringsmeldingSendt => ({
+    type: SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT,
 });
 
 const setSøknadAktivitet = (payload: AktivitetSøknadsdata): SetSøknadAktivitet => ({
@@ -153,7 +153,7 @@ export type SøknadContextAction =
     | SetSøknadAktivitet
     | SetSøknadArbeidstid
     | SetSøknadRoute
-    | SetSøknadSendt
+    | SetEndringsmeldingSendt
     | StartSøknad
     | SetArbeidstidAktivitetEndring;
 
@@ -169,7 +169,7 @@ const actionsCreator = {
     setSøknadAktivitet,
     setSøknadArbeidstid,
     setSøknadRoute,
-    setSøknadSendt,
+    setEndringsmeldingSendt,
     startSøknad,
     setArbeidstidAktivitetEndring,
 };

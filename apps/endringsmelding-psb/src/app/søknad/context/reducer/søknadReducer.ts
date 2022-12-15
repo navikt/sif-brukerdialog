@@ -75,19 +75,19 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
                     },
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_SENDT:
+            case SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT:
                 return {
                     ...state,
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
-                    søknadSendt: true,
+                    endringsmeldingSendt: true,
                 };
             case SøknadContextActionKeys.RESET_SØKNAD:
                 return {
                     ...state,
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
-                    søknadSendt: false,
+                    endringsmeldingSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
             case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:
