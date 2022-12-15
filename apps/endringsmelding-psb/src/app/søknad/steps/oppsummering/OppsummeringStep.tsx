@@ -71,6 +71,9 @@ const OppsummeringStep = () => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
         apiData.ytelse.arbeidstid;
 
+    const visNormaltid = false;
+    const visAntallDager = false;
+
     return (
         <SøknadStep stepId={stepId}>
             {!apiData ? (
@@ -95,8 +98,8 @@ const OppsummeringStep = () => {
                                     <>
                                         <ArbeidstidUkeListe
                                             arbeidsuker={arbeidsuker}
-                                            visNormaltid={true}
-                                            visAntallDager={false}
+                                            visNormaltid={visNormaltid}
+                                            visAntallDager={visAntallDager}
                                         />
                                     </>
                                 </FormBlock>
@@ -110,7 +113,8 @@ const OppsummeringStep = () => {
                             <>
                                 <ArbeidstidUkeListe
                                     arbeidsuker={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
-                                    visNormaltid={true}
+                                    visNormaltid={visNormaltid}
+                                    visAntallDager={visAntallDager}
                                 />
                             </>
                         </FormBlock>
@@ -125,7 +129,8 @@ const OppsummeringStep = () => {
                                     arbeidsuker={getArbeidstidUkeListeItem(
                                         selvstendigNæringsdrivendeArbeidstidInfo.perioder
                                     )}
-                                    visNormaltid={true}
+                                    visNormaltid={visNormaltid}
+                                    visAntallDager={visAntallDager}
                                 />
                             </>
                         </FormBlock>
