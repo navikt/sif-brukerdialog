@@ -4,16 +4,19 @@ import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import ArbeidstidUkeListe from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
-import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
+import ArbeidstidUkeListe, {
+    ArbeidstidUkeListeItem,
+} from '../../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
+import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import {
     ArbeidstidAktivitetUkeEndring,
     ArbeidstidAktivitetUkeEndringMap,
-} from '../../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke, ArbeidsukeMedEndring } from '../../../types/K9Sak';
-import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
-import ArbeidstidEnkeltukeModal from './arbeidstid-enkeltuke/ArbeidstidEnkeltukeModal';
-import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
+    ArbeidstidEndring,
+} from '../../../../types/ArbeidstidAktivitetEndring';
+import { Arbeidsuke, ArbeidsukeMap } from '../../../../types/K9Sak';
+import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../../types/Sak';
+import ArbeidstidEnkeltukeModal from '../arbeidstid-enkeltuke/ArbeidstidEnkeltukeModal';
+import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -30,15 +33,19 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
 }) => {
     const [arbeidsukeForEndring, setArbeidsukeForEndring] = useState<Arbeidsuke | undefined>();
     const navn = getArbeidAktivitetNavn(arbeidAktivitet);
-    const arbeidsuker: ArbeidsukeMedEndring[] = Object.keys(arbeidAktivitet.perioder.arbeidsuker).map((key) => ({
-        ...arbeidAktivitet.perioder.arbeidsuker[key],
-        endring: endringer ? endringer[key] : undefined,
-    }));
+
     const startInneværendeUke = dayjs(dateToday).startOf('isoWeek').toDate();
-    const ukerSomHarVært = arbeidsuker.filter((d) => dayjs(d.periode.to).isBefore(startInneværendeUke, 'day'));
-    const ukerSomKommer = arbeidsuker
+    const arbeidsukerMap = arbeidAktivitet.perioder.arbeidsuker;
+
+    const uker = getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
+    const ukerSomHarVært = uker.filter((d) => dayjs(d.periode.to).isBefore(startInneværendeUke, 'day'));
+    const ukerSomKommer = uker
         .filter((d) => dayjs(d.periode.from).isSameOrAfter(startInneværendeUke, 'day'))
         .slice(0, 50);
+
+    const onVelgUke = (uke: ArbeidstidUkeListeItem) => {
+        setArbeidsukeForEndring(arbeidsukerMap[uke.isoDateRange]);
+    };
 
     return (
         <>
@@ -49,13 +56,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
 
             {visSamletListe && (
                 <Block padBottom="l">
-                    <ArbeidstidUkeListe
-                        arbeidsuker={arbeidsuker}
-                        visNormaltid={true}
-                        onVelgUke={(uke) => {
-                            setArbeidsukeForEndring(uke);
-                        }}
-                    />
+                    <ArbeidstidUkeListe arbeidsuker={uker} visNormaltid={true} onVelgUke={onVelgUke} />
                 </Block>
             )}
             {!visSamletListe && (
@@ -66,12 +67,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
                                 <Accordion.Item defaultOpen={true}>
                                     <Accordion.Header>Uker som har vært</Accordion.Header>
                                     <Accordion.Content>
-                                        <ArbeidstidUkeListe
-                                            arbeidsuker={ukerSomHarVært}
-                                            onVelgUke={(uke) => {
-                                                setArbeidsukeForEndring(uke);
-                                            }}
-                                        />
+                                        <ArbeidstidUkeListe arbeidsuker={ukerSomHarVært} onVelgUke={onVelgUke} />
                                     </Accordion.Content>
                                 </Accordion.Item>
                             </Accordion>
@@ -81,12 +77,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
                                 <Accordion.Item>
                                     <Accordion.Header>Denne og kommende uker</Accordion.Header>
                                     <Accordion.Content>
-                                        <ArbeidstidUkeListe
-                                            arbeidsuker={ukerSomKommer}
-                                            onVelgUke={(uke) => {
-                                                setArbeidsukeForEndring(uke);
-                                            }}
-                                        />
+                                        <ArbeidstidUkeListe arbeidsuker={ukerSomKommer} onVelgUke={onVelgUke} />
                                     </Accordion.Content>
                                 </Accordion.Item>
                             </Accordion>
@@ -124,4 +115,29 @@ const ArbeidAktivitetInfo = ({ arbeidAktivitet }: { arbeidAktivitet: ArbeidAktiv
             {ansattTom && <> Sluttdato: {dateFormatter.full(ansattTom)}</>}
         </BodyLong>
     );
+};
+
+const arbeidsukeToArbeidstidUkeListItem = (
+    arbeidsuke: Arbeidsuke,
+    endring?: ArbeidstidEndring
+): ArbeidstidUkeListeItem => {
+    return {
+        ...arbeidsuke,
+        antallDager: Object.keys(arbeidsuke.dagerMap).length,
+        endring,
+    };
+};
+
+const getArbeidstidUkeListItemFromArbeidsuker = (
+    arbeidsuker: ArbeidsukeMap,
+    endringer: ArbeidstidAktivitetUkeEndringMap = {}
+): ArbeidstidUkeListeItem[] => {
+    const items: ArbeidstidUkeListeItem[] = [];
+
+    Object.keys(arbeidsuker).map((key) => {
+        const arbeidsuke = arbeidsuker[key];
+        const endring = endringer[key];
+        items.push(arbeidsukeToArbeidstidUkeListItem(arbeidsuke, endring?.endring));
+    });
+    return items;
 };

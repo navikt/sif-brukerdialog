@@ -1,14 +1,14 @@
 import { Heading, Ingress, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import DurationText from '../../../../components/duration-text/DurationText';
 import { ArbeidstidAktivitetUkeEndring } from '../../../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../../../types/K9Sak';
 import { ArbeidAktivitet } from '../../../../types/Sak';
-import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import DurationText from '../../../../components/duration-text/DurationText';
+import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;

@@ -1,6 +1,6 @@
 import { ValidationFunction } from '@navikt/sif-common-formik-ds/lib';
 import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { ArbeidAktivitet } from '../../../types/Sak';
+import { ArbeidAktivitet } from '../../../../types/Sak';
 
 export enum ValidateRequiredFieldError {
     'noValue' = 'noValue',
