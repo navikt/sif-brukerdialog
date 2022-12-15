@@ -16,7 +16,8 @@ import {
 import { Arbeidsuke, ArbeidsukeMap } from '../../../../types/K9Sak';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../../types/Sak';
 import ArbeidstidEnkeltukeModal from '../arbeidstid-enkeltuke/ArbeidstidEnkeltukeModal';
-import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
+import { beregnEndretArbeidstidEnkeltdag, getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
+import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -35,7 +36,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({
     const navn = getArbeidAktivitetNavn(arbeidAktivitet);
 
     const startInneværendeUke = dayjs(dateToday).startOf('isoWeek').toDate();
-    const arbeidsukerMap = arbeidAktivitet.perioder.arbeidsuker;
+    const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
 
     const uker = getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
     const ukerSomHarVært = uker.filter((d) => dayjs(d.periode.to).isBefore(startInneværendeUke, 'day'));
@@ -124,7 +125,12 @@ const arbeidsukeToArbeidstidUkeListItem = (
     return {
         ...arbeidsuke,
         antallDager: Object.keys(arbeidsuke.dagerMap).length,
-        endring,
+        endring: endring
+            ? {
+                  endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
+                  endretTimer: beregnEndretArbeidstidEnkeltdag(endring, arbeidsuke.normalt),
+              }
+            : undefined,
     };
 };
 

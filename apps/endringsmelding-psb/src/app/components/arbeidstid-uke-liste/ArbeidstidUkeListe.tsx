@@ -5,9 +5,6 @@ import { Add, Edit } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
-import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { beregnEndretArbeidstidEnkeltdag } from '../../utils/arbeidAktivitetUtils';
 import DurationText from '../duration-text/DurationText';
 
 export interface ArbeidstidUkeListeItem {
@@ -16,7 +13,10 @@ export interface ArbeidstidUkeListeItem {
     antallDager: number;
     faktisk: Duration;
     normalt: Duration;
-    endring?: ArbeidstidEndring;
+    endring?: {
+        endretProsent?: number;
+        endretTimer: Duration;
+    };
 }
 
 interface Props {
@@ -52,18 +52,17 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
             return <DurationText duration={uke.faktisk} />;
         }
         const { endring } = uke;
-        const nyTid = beregnEndretArbeidstidEnkeltdag(endring, uke.normalt);
 
         return (
             <>
                 <div>
                     <strong>
-                        {endring.type === TimerEllerProsent.PROSENT ? (
+                        {endring.endretProsent !== undefined ? (
                             <>
-                                {endring.prosent} {compactTable ? '%' : 'prosent'}
+                                {endring.endretProsent} {compactTable ? '%' : 'prosent'}
                             </>
                         ) : (
-                            <DurationText duration={nyTid} />
+                            <DurationText duration={endring.endretTimer} />
                         )}
                     </strong>
                 </div>

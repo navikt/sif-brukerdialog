@@ -25,7 +25,7 @@ export const getArbeidstidEndringUtFraNormaltid = (
 
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
         const { endring } = endringUkeMap[isoDateRange];
-        const arbeidsuke = arbeidAktivitet.perioder.arbeidsuker[isoDateRange];
+        const arbeidsuke = arbeidAktivitet.arbeidsuker[isoDateRange];
         const dager = Object.keys(arbeidsuke.dagerMap);
         const antallDagerMedArbeid = dager.length;
 
@@ -63,7 +63,6 @@ export const getArbeidstidInfo = (
             perioder: getArbeidstidEndringUtFraNormaltid(aktivitetEndring, aktivitet),
         };
     }
-
     return undefined;
 };
 

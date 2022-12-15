@@ -1,7 +1,6 @@
 import {
     DateRange,
     dateRangeToISODateRange,
-    dateRangeUtils,
     dateToISODate,
     Duration,
     durationUtils,
@@ -13,13 +12,7 @@ import {
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import {
-    K9Format,
-    K9FormatArbeidstaker,
-    K9FormatArbeidstidPeriode,
-    K9FormatBarn,
-    K9FormatTilsynsordningPerioder,
-} from '../types/k9Format';
+import { K9Format, K9FormatArbeidstaker, K9FormatArbeidstidPeriode, K9FormatBarn } from '../types/k9Format';
 import {
     AktivitetArbeidstid,
     ArbeidstakerMap,
@@ -28,34 +21,8 @@ import {
     ArbeidsukeMap,
     Barn,
     K9Sak,
-    TidEnkeltdag,
 } from '../types/K9Sak';
 import { getEndringsdato, getSøknadsperioderInnenforTillattEndringsperiode } from './endringsperiode';
-
-export const getArbeidAktivitetPerioderFromPerioder = (perioder: K9FormatArbeidstidPeriode) => {
-    const allePerioder = dateRangeUtils.getDateRangesFromISODateRangeMap(perioder);
-    const samletPeriode = dateRangeUtils.getDateRangeFromDateRanges(allePerioder);
-    return {
-        allePerioder,
-        samletPeriode,
-    };
-};
-
-export const getTilsynsdagerFromK9Format = (data: K9FormatTilsynsordningPerioder): TidEnkeltdag => {
-    const enkeltdager: TidEnkeltdag = {};
-
-    Object.keys(data).forEach((isoDateRange) => {
-        const duration = data[isoDateRange].etablertTilsynTimerPerDag;
-        const time = ISODurationToDuration(duration);
-        if (time) {
-            const isoDates = getISODatesInISODateRange(isoDateRange, true);
-            isoDates.forEach((isoDate) => {
-                enkeltdager[isoDate] = { hours: time.hours, minutes: time.minutes };
-            });
-        }
-    });
-    return enkeltdager;
-};
 
 const dateIsIWithinDateRanges = (date: Date, dateRanges: DateRange[]) =>
     dateRanges.some((dateRange) => isDateInDateRange(date, dateRange));
@@ -69,19 +36,18 @@ const getIsoWeekDateRangeForDate = (date: Date) => {
     };
 };
 
+const getTid = (tid: Duration | undefined): Duration => {
+    return {
+        hours: tid?.hours || '0',
+        minutes: tid?.minutes || '0',
+    };
+};
+
 export const getAktivitetArbeidstidFromK9Format = (
     arbeidstidPerioder: K9FormatArbeidstidPeriode,
     søknadsperioder: DateRange[]
 ): AktivitetArbeidstid => {
-    const arbeidstid: ArbeidstidEnkeltdagMap = {};
-
-    const getTid = (tid: Duration | undefined): Duration => {
-        return {
-            hours: tid?.hours || '0',
-            minutes: tid?.minutes || '0',
-        };
-    };
-
+    const arbeidsdager: ArbeidstidEnkeltdagMap = {};
     const tempArbeidsuker: ArbeidsukeMap = {};
 
     Object.keys(arbeidstidPerioder).forEach((isoDateRange) => {
@@ -101,12 +67,11 @@ export const getAktivitetArbeidstidFromK9Format = (
                     };
                     tempArbeidsuker[weekKey] = arbeidsuke as Arbeidsuke;
                 }
-
                 tempArbeidsuker[weekKey].dagerMap[dateToISODate(date)] = {
                     faktisk,
                     normalt,
                 };
-                arbeidstid[isoDate] = {
+                arbeidsdager[isoDate] = {
                     faktisk: getTid(faktisk),
                     normalt: getTid(normalt),
                 };
@@ -136,13 +101,10 @@ export const getAktivitetArbeidstidFromK9Format = (
         };
         arbeidsuker[dateRangeToISODateRange({ from, to })] = arbeidsuke;
     });
-
-    const { samletPeriode, allePerioder } = getArbeidAktivitetPerioderFromPerioder(arbeidstidPerioder);
-
     return {
-        samletPeriode,
-        allePerioder,
-        arbeidstid,
+        // samletPeriode,
+        // allePerioder,
+        arbeidsdager,
         arbeidsuker,
     };
 };
@@ -251,9 +213,6 @@ export const parseK9Format = (data: K9Format): K9Sak => {
                               : undefined,
                       }
                     : undefined,
-            },
-            tilsynsordning: {
-                enkeltdager: getTilsynsdagerFromK9Format(ytelse.tilsynsordning.perioder),
             },
             arbeidstidInfo: {
                 arbeidstakerMap: getArbeidstidArbeidsgivere(ytelse.arbeidstid.arbeidstakerList, søknadsperioder),
