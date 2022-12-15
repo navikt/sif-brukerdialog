@@ -73,6 +73,7 @@ const OppsummeringStep = () => {
 
     const visNormaltid = false;
     const visAntallDager = false;
+    const arbeidstidKolonneTittel = 'Endret arbeidstid';
 
     return (
         <SøknadStep stepId={stepId}>
@@ -100,6 +101,7 @@ const OppsummeringStep = () => {
                                             arbeidsuker={arbeidsuker}
                                             visNormaltid={visNormaltid}
                                             visAntallDager={visAntallDager}
+                                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                         />
                                     </>
                                 </FormBlock>
@@ -115,6 +117,7 @@ const OppsummeringStep = () => {
                                     arbeidsuker={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
                                     visNormaltid={visNormaltid}
                                     visAntallDager={visAntallDager}
+                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                 />
                             </>
                         </FormBlock>
@@ -131,6 +134,7 @@ const OppsummeringStep = () => {
                                     )}
                                     visNormaltid={visNormaltid}
                                     visAntallDager={visAntallDager}
+                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                 />
                             </>
                         </FormBlock>

@@ -28,6 +28,7 @@ interface Props {
         antall: number;
     };
     visAntallDager?: boolean;
+    arbeidstidKolonneTittel?: string;
     onVelgUke?: (uke: ArbeidstidUkeListeItem) => void;
     onVelgUker?: (uke: ArbeidstidUkeListeItem[]) => void;
 }
@@ -39,6 +40,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
         antall: 10,
     },
     visAntallDager = true,
+    arbeidstidKolonneTittel = 'Arbeidstid',
     onVelgUke,
     onVelgUker,
 }) => {
@@ -59,27 +61,26 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 
         return (
             <>
-                <div>
-                    <strong>
-                        {endret.endretProsent !== undefined ? (
-                            <>
-                                {endret.endretProsent} {compactTable ? '%' : 'prosent'}
-                            </>
-                        ) : (
-                            <DurationText duration={endret.faktisk} />
-                        )}
-                    </strong>
-                </div>
+                <strong>
+                    {endret.endretProsent !== undefined ? (
+                        <>
+                            {endret.endretProsent} {compactTable ? '%' : 'prosent'}
+                        </>
+                    ) : (
+                        <DurationText type="decimal" duration={endret.faktisk} />
+                    )}
+                </strong>
+
                 <div>
                     {endret.endretProsent && (
                         <>
-                            = <DurationText duration={endret.faktisk} />
-                            {` `}
+                            {` `}(<DurationText type={'decimal'} duration={endret.faktisk} /> av normalt{' '}
+                            {<DurationText type={'decimal'} duration={opprinnelig.normalt} />})
                         </>
                     )}
-                    <span style={{ textDecoration: 'line-through' }}>
+                    {/* <span style={{ textDecoration: 'line-through' }}>
                         (<DurationText duration={opprinnelig.faktisk} />)
-                    </span>
+                    </span> */}
                 </div>
             </>
         );
@@ -106,7 +107,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             {velgUkerHeaderCell}
                             <Table.HeaderCell>Periode</Table.HeaderCell>
                             {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
-                            <Table.HeaderCell colSpan={2}>Arbeidstid</Table.HeaderCell>
+                            <Table.HeaderCell colSpan={2}>{arbeidstidKolonneTittel}</Table.HeaderCell>
                         </Table.Row>
                     )}
                     {compactTable === false && (
@@ -116,7 +117,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             <Table.HeaderCell>Periode</Table.HeaderCell>
                             {visAntallDager && <Table.HeaderCell>Dager</Table.HeaderCell>}
                             {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
-                            <Table.HeaderCell colSpan={2}>Arbeidstid</Table.HeaderCell>
+                            <Table.HeaderCell colSpan={2}>{arbeidstidKolonneTittel}</Table.HeaderCell>
                         </Table.Row>
                     )}
                 </Table.Header>
