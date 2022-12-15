@@ -4,7 +4,7 @@ on:
     push:
         paths:
             - 'apps/sif-ettersending/**/*'
-            - 'nais-config/sif-ettersending/**/*'
+            - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/app.sif-ettersending.yml
 

@@ -9,7 +9,7 @@ const StateInfo = () => {
     const {
         state: {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            søknadsdata: { id, harBekreftetOpplysninger, harForståttRettigheterOgPlikter, ...rest },
+            søknadsdata: { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, ...rest },
         },
     } = useSøknadContext();
     const { stepFormValues } = useStepFormValuesContext();

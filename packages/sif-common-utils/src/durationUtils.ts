@@ -177,7 +177,7 @@ export const decimalDurationToISODuration = (duraction: number): ISODuration => 
 export const durationToDecimalDuration = (duration: NumberDuration | Partial<Duration>): number => {
     const { hours, minutes } = ensureNumberDuration(duration);
     const decimalTime = hours + ((100 / 60) * minutes) / 100;
-    return Math.round(decimalTime * 100) / 100;
+    return Math.round(decimalTime * 10000) / 10000;
 };
 
 /**

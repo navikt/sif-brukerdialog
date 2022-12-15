@@ -2,7 +2,7 @@ export enum ApiEndpointPsb {
     'soker' = 'soker',
     'arbeidsgiver' = 'arbeidsgiver',
     'organisasjoner' = 'organisasjoner',
-    'sendSøknad' = 'endringsmelding',
+    'sendEndringsmelding' = 'endringsmelding',
     'mellomlagring' = 'endringsmelding/mellomlagring',
 }
 

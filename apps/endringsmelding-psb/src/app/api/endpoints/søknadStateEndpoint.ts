@@ -3,24 +3,28 @@ import { jsonSort } from '@navikt/sif-common-utils/lib';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
+import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { K9Sak } from '../../types/K9Sak';
 import { Søker } from '../../types/Søker';
-import { SøknadContextState } from '../../types/SøknadContextState';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
-export type SøknadStatePersistence = Omit<
-    SøknadContextState,
-    'søker' | 'institusjoner' | 'arbeidsgivere' | 'k9saker'
-> & {
+export type SøknadStatePersistence = {
+    versjon: string;
+    barnAktørId: string;
+    søknadsdata: Søknadsdata;
+    søknadRoute?: SøknadRoutes;
     søknadHashString: string;
 };
 
 interface SøknadStateHashInfo {
     søker: Søker;
+    barnAktørId: string;
 }
 
 interface SøknadStatePersistenceEndpoint
     extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {
-    update: (state: SøknadContextState) => Promise<AxiosResponse>;
+    update: (state: Omit<SøknadStatePersistence, 'søknadHashString'>, søker: Søker) => Promise<AxiosResponse>;
     fetch: () => Promise<SøknadStatePersistence>;
 }
 
@@ -35,28 +39,26 @@ const createHashString = (info: SøknadStateHashInfo) => {
 
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
-    info: SøknadStateHashInfo
+    info: SøknadStateHashInfo,
+    k9saker: K9Sak[]
 ): boolean => {
-    return søknadState.versjon === APP_VERSJON && søknadState.søknadHashString === createHashString(info);
+    return (
+        søknadState.versjon === APP_VERSJON &&
+        søknadState.søknadHashString === createHashString(info) &&
+        k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId)
+    );
 };
 
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({
-        søker,
-        søknadsdata,
-        søknadRoute,
-        sak,
-        søknadSendt,
-    }: Omit<SøknadContextState, 'k9saker' | 'arbeidsgivere'>) => {
+    update: ({ søknadsdata, søknadRoute, barnAktørId }, søker) => {
         return persistSetup.update({
-            søknadHashString: createHashString({ søker }),
-            søknadsdata,
-            sak,
-            søknadRoute,
-            søknadSendt,
             versjon: APP_VERSJON,
+            søknadHashString: createHashString({ søker, barnAktørId }),
+            barnAktørId,
+            søknadsdata,
+            søknadRoute,
         });
     },
     fetch: async () => {

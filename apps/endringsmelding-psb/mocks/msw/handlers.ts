@@ -39,6 +39,9 @@ const handlers = [
         localStorage.setItem(MellomlagringStorageKey, '');
         return res(ctx.status(200));
     }),
+    rest.post(`${baseUrl}/endringsmelding`, (req, res, ctx) => {
+        return res(ctx.status(200));
+    }),
 ];
 
 export { handlers };

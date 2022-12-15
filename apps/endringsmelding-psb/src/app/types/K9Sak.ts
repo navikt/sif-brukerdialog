@@ -1,27 +1,41 @@
-import { DateDurationMap, DateRange } from '@navikt/sif-common-utils';
-import { DagerIkkeSøktForMap, DagerSøktForMap } from '.';
+import { DateDurationMap, DateRange, Duration, ISODate, ISODateRange } from '@navikt/sif-common-utils';
+import { DagerIkkeSøktForMap, DagerSøktForMap } from './';
 
 export type TidEnkeltdag = DateDurationMap; // { [isoDateString: string]: { hours: string; minutes: string } };
 
-export interface AktivitetArbeidstid {
-    allePerioder: DateRange[];
-    samletPeriode: DateRange;
-    arbeidstid: ArbeidstidEnkeltdagSak;
+export interface Arbeidsuke {
+    isoDateRange: string;
+    periode: DateRange;
+    dagerMap: ArbeidstidEnkeltdagMap;
+    faktisk: Duration;
+    normalt: Duration;
 }
 
-export type ArbeidstidEnkeltdagSak = {
-    faktisk: DateDurationMap;
-    normalt: DateDurationMap;
+export interface ArbeidsukeMap {
+    [key: ISODateRange]: Arbeidsuke;
+}
+export interface AktivitetArbeidstid {
+    arbeidsdager: ArbeidstidEnkeltdagMap;
+    arbeidsuker: ArbeidsukeMap;
+}
+
+export type ArbeidstidEnkeltdagMap = {
+    [key: ISODate]: ArbeidstidEnkeltdag;
+};
+
+export type ArbeidstidEnkeltdag = {
+    faktisk: Duration;
+    normalt: Duration;
 };
 
 export type ArbeidstakerMap = {
-    [id: string]: AktivitetArbeidstid; //ArbeidstidEnkeltdagSak;
+    [id: string]: AktivitetArbeidstid;
 };
 
 export interface YtelseArbeidstid {
     arbeidstakerMap?: ArbeidstakerMap;
-    frilanserArbeidstidInfo?: AktivitetArbeidstid; //ArbeidstidEnkeltdagSak;
-    selvstendigNæringsdrivendeArbeidstidInfo?: AktivitetArbeidstid; // ArbeidstidEnkeltdagSak;
+    frilanserArbeidstidInfo?: AktivitetArbeidstid;
+    selvstendigNæringsdrivendeArbeidstidInfo?: AktivitetArbeidstid;
 }
 
 export interface SakMedMeta {
@@ -49,9 +63,6 @@ interface Ytelse {
     søknadsperioder: DateRange[];
     opptjeningAktivitet: {
         frilanser?: K9OpptjeningAktivitetFrilanser;
-    };
-    tilsynsordning: {
-        enkeltdager: DateDurationMap;
     };
     arbeidstidInfo: YtelseArbeidstid;
 }

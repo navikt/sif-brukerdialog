@@ -6,13 +6,17 @@ import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wra
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
+import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
-import { applicationIntlMessages } from './i18n/applicationMessages';
-import Søknad from './søknad/Søknad';
+import DevPage from './dev/DevPage';
+import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
+import Søknad from './søknad/Søknad';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-import { getEnvVariableOrDefault } from './utils/envUtils';
+
+dayjs.extend(isoWeek);
 
 export const APPLICATION_KEY = 'opplaringspenger';
 export const SKJEMANAVN = 'Opplæringspenger';
@@ -26,7 +30,7 @@ const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvVariableOrDefault('MSW_MODE', 'test') === 'test') {
+        if (getEnvironmentVariable('MSW') === 'on') {
             return import('../../mocks/msw/browser').then(({ worker }) =>
                 worker.start({ onUnhandledRequest: 'bypass' })
             );
@@ -55,6 +59,7 @@ const App = () => (
                     publicPath={publicPath}>
                     <SoknadApplicationCommonRoutes
                         contentRoutes={[
+                            <Route key="dev" path="/dev" element={<DevPage />} />,
                             <Route
                                 key="root"
                                 index={true}
