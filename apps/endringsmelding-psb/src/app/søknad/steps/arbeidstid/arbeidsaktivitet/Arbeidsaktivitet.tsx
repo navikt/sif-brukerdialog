@@ -43,7 +43,7 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({ arbeidAktivitet, end
             <ArbeidAktivitetInfo arbeidAktivitet={arbeidAktivitet} />
 
             <Block padBottom="l">
-                <ArbeidstidUkeListe arbeidsuker={uker} visNormaltid={true} onVelgUke={onVelgUke} />
+                <ArbeidstidUkeListe arbeidsuker={uker} visNormaltid={false} onVelgUke={onVelgUke} />
             </Block>
 
             <ArbeidstidEnkeltukeModal
