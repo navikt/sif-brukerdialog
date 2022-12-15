@@ -118,7 +118,7 @@ describe('durationUtils', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 30 })).toEqual(1.5);
             });
             it('converts 1 hour and 59 minutes correctly', () => {
-                expect(durationToDecimalDuration({ hours: 1, minutes: 59 })).toEqual(1.98);
+                expect(durationToDecimalDuration({ hours: 1, minutes: 59 })).toEqual(1.9833);
             });
             it('handles overflow of minutes correctly', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 120 })).toEqual(3);
@@ -132,7 +132,7 @@ describe('durationUtils', () => {
                 expect(durationToDecimalDuration({ hours: '1', minutes: '30' })).toEqual(1.5);
             });
             it('converts 1 hour and 59 minutes correctly', () => {
-                expect(durationToDecimalDuration({ hours: '1', minutes: '59' })).toEqual(1.98);
+                expect(durationToDecimalDuration({ hours: '1', minutes: '59' })).toEqual(1.9833);
             });
         });
     });

@@ -13,6 +13,7 @@ import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
 import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
+import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -57,12 +58,17 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
             });
         }
         if (values.timerEllerProsent === TimerEllerProsent.TIMER && values.snittTimerPerUke) {
+            const timer = getNumberFromStringInput(values.snittTimerPerUke);
+            if (!timer) {
+                /** TODO */
+                return;
+            }
             onSubmit({
                 arbeidAktivitetId: arbeidAktivitet.id,
                 periode,
                 endring: {
                     type: TimerEllerProsent.TIMER,
-                    timer: parseFloat(values.snittTimerPerUke),
+                    timer,
                 },
             });
         }
