@@ -1,14 +1,20 @@
-import { Button, Checkbox, Table } from '@navikt/ds-react';
+import { Alert, Button, Checkbox, Table } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Add, Edit } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, DateRange, Duration, durationUtils } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, DateRange, Duration, durationUtils, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import DurationText from '../duration-text/DurationText';
 
-export interface ArbeidstidUkeListeItem {
-    isoDateRange: string;
+export interface PeriodeIkkeSøktForListeItem {
+    søktFor: false;
+    isoDateRange: ISODateRange;
+    periode: DateRange;
+}
+export interface PeriodeSøktForListeItem {
+    søktFor: true;
+    isoDateRange: ISODateRange;
     periode: DateRange;
     antallDager: number;
     opprinnelig: {
@@ -20,6 +26,8 @@ export interface ArbeidstidUkeListeItem {
         faktisk: Duration;
     };
 }
+
+export type ArbeidstidUkeListeItem = PeriodeSøktForListeItem | PeriodeIkkeSøktForListeItem;
 
 interface Props {
     arbeidsuker: ArbeidstidUkeListeItem[];
@@ -55,7 +63,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 
     const [valgteUker, setValgteUker] = useState<string[]>([]);
 
-    const getTid = (uke: ArbeidstidUkeListeItem) => {
+    const getTid = (uke: PeriodeSøktForListeItem) => {
         if (uke.endret === undefined) {
             return <DurationText duration={uke.opprinnelig.faktisk} />;
         }
@@ -129,6 +137,19 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     {synligeUker.map((uke) => {
                         const ukenummer = dayjs(uke.periode.from).isoWeek();
                         const selected = onVelgUker !== undefined && valgteUker.includes(uke.isoDateRange);
+                        if (uke.søktFor === false) {
+                            return (
+                                <Table.Row>
+                                    <Table.DataCell colSpan={10}>
+                                        <Alert variant="info" inline={true}>
+                                            Det er ikke søkt om pleiepenger i periode fra{' '}
+                                            {dateFormatter.dayDateMonthYear(uke.periode.from)} til{' '}
+                                            {dateFormatter.dayDateMonthYear(uke.periode.to)}.
+                                        </Alert>
+                                    </Table.DataCell>
+                                </Table.Row>
+                            );
+                        }
                         const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.opprinnelig.normalt);
                         return (
                             <Table.Row key={uke.isoDateRange} selected={selected}>
