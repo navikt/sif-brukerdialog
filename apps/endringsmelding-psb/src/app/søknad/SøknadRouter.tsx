@@ -70,7 +70,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoute[StepId.AKTIVITET]} element={<AktivitetStep />} />
             <Route path={SøknadStepRoute[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
             <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoute[StepId.SØKNAD_SENDT]} element={<SøknadSendtPage />} />
+            <Route path={SøknadStepRoute[StepId.MELDING_SENDT]} element={<SøknadSendtPage />} />
             <Route
                 path="*"
                 element={

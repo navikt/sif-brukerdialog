@@ -3,5 +3,5 @@ export enum StepId {
     'AKTIVITET' = 'aktivitet',
     'ARBEIDSTID' = 'arbeidstid',
     'OPPSUMMERING' = 'oppsummering',
-    'SØKNAD_SENDT' = 'soknad_sendt',
+    'MELDING_SENDT' = 'melding_sendt',
 }
