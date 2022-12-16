@@ -7,6 +7,7 @@ import { Person } from '../types/Person';
 import { Barn, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { StepID } from './soknadStepsConfig';
+import { jsonSort } from '@navikt/sif-common-utils/lib';
 
 export const STORAGE_VERSION = '2.1';
 
@@ -14,6 +15,10 @@ interface UserHashInfo {
     søker: Person;
     barn: Barn[];
 }
+
+const createHashString = (info: UserHashInfo) => {
+    return hash(JSON.stringify(jsonSort(info)));
+};
 
 interface SoknadTemporaryStorage extends Omit<PersistenceInterface<SoknadTempStorageData>, 'update'> {
     update: (
@@ -39,7 +44,7 @@ export const isStorageDataValid = (
         data.formData !== undefined &&
         data.metadata.soknadId !== undefined &&
         JSON.stringify(data.formData) !== JSON.stringify({}) &&
-        hash(userHashInfo) === data.metadata.userHash
+        createHashString(userHashInfo) === data.metadata.userHash
     ) {
         return data;
     }
@@ -53,7 +58,7 @@ const soknadTempStorage: SoknadTemporaryStorage = {
     update: (soknadId: string, formData: SoknadFormData, lastStepID: StepID, userHashInfo: UserHashInfo) => {
         return persistSetup.update({
             formData,
-            metadata: { soknadId, lastStepID, version: STORAGE_VERSION, userHash: hash(userHashInfo) },
+            metadata: { soknadId, lastStepID, version: STORAGE_VERSION, userHash: createHashString(userHashInfo) },
         });
     },
     purge: () => {
