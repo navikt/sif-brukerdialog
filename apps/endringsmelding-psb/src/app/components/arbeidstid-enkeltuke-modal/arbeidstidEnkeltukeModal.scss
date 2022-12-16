@@ -1,5 +1,6 @@
 .arbeidstidEnkeltukeModal {
     min-width: 40rem;
+    max-width: 40rem;
     @media (max-width: 40rem) {
         min-width: 100%;
     }

@@ -4,6 +4,7 @@ import { getArbeidstidPeriodeIntl } from './arbeidIPeriodeMessages';
 
 export type ArbeidIPeriodeIntlValues = {
     hvor: string;
+    dagerTekst: string;
     skalEllerHarJobbet: string;
     timerNormalt: string;
 };
@@ -12,6 +13,7 @@ export const getArbeidstidIPeriodeIntlValues = (
     intl: IntlShape,
     info: {
         timerNormaltString: string;
+        dagerTekst: string;
         arbeidsforhold:
             | {
                   type: ArbeidAktivitetType.arbeidstaker;
@@ -40,6 +42,7 @@ export const getArbeidstidIPeriodeIntlValues = (
     return {
         skalEllerHarJobbet: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
         hvor: getHvorTekst(),
+        dagerTekst: info.dagerTekst,
         timerNormalt: info.timerNormaltString,
     };
 };
