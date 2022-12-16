@@ -2391,10 +2391,10 @@
     "@navikt/ds-react" "^1.0.0"
     focus-trap-react "^9.0.2"
 
-"@navikt/ds-icons@2.0.8", "@navikt/ds-icons@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-2.0.8.tgz#17a37cd96b394e037b267ef39e56d120bd278522"
-  integrity sha512-EC37k+g2OjBTgkCi/FkGAhkoMVwpa0x7UWPCG83jKL+fD//0MfgGkhPZBqk1baEgn0N6Ucees4BJ1bxd/+QBhA==
+"@navikt/ds-icons@2.0.9", "@navikt/ds-icons@^2.0.8":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-2.0.9.tgz#8323a509038519bae3dc464805df2e528717176f"
+  integrity sha512-M7ndPHJTnwrMApwRgwB0LtuqgmqR8O+M81sSSxQTSMZgLZrSk5RE1dXwf01Kj9V8exLmYADueZbPBAvBHlnMAA==
 
 "@navikt/ds-icons@^1.5.7":
   version "1.5.7"
