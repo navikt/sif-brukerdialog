@@ -1,5 +1,15 @@
 # @navikt/sif-common-formik-ds
 
+## 0.9.1
+
+### Patch Changes
+
+-   225b95e: DurationText komponent + oppdatert endringsdialog
+-   dd0a865: I hovedsak utvikling av endringsdialog, men noen endringer på fellespakker, f.eks. desimaltid i sif-common-utils
+-   5101688: Oppdaterte pakker
+-   5101688: Oppdatere pakker
+-   d99ac0a: Pakkeoppdateringer - objec-hash, uuid
+
 ## 0.9.0
 
 ### Minor Changes

@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.18.0
+
+### Minor Changes
+
+-   dd0a865: I hovedsak utvikling av endringsdialog, men noen endringer på fellespakker, f.eks. desimaltid i sif-common-utils
+
+### Patch Changes
+
+-   225b95e: DurationText komponent + oppdatert endringsdialog
+-   5101688: Oppdaterte pakker
+-   5101688: Oppdatere pakker
+
 ## 3.17.2
 
 ### Patch Changes

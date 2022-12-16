@@ -1,5 +1,19 @@
 # @navikt/sif-common-forms-ds
 
+## 3.3.0
+
+### Patch Changes
+
+-   225b95e: DurationText komponent + oppdatert endringsdialog
+-   dd0a865: I hovedsak utvikling av endringsdialog, men noen endringer på fellespakker, f.eks. desimaltid i sif-common-utils
+-   5101688: Oppdaterte pakker
+-   5101688: Oppdatere pakker
+-   Updated dependencies [225b95e]
+-   Updated dependencies [dd0a865]
+-   Updated dependencies [5101688]
+-   Updated dependencies [5101688]
+    -   @navikt/sif-common-core-ds@5.3.0
+
 ## 3.2.0
 
 ### Patch Changes
