@@ -6,6 +6,7 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/Form
 import { dateFormatter, DateRange, Duration, durationUtils, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import DurationText from '../duration-text/DurationText';
+import './arbeidstidUkeList.scss';
 
 export interface PeriodeIkkeSøktForListeItem {
     søktFor: false;
@@ -50,7 +51,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     },
     visAntallDager = true,
     arbeidstidKolonneTittel = 'Arbeidstid',
-    visOpprinneligOverstreket = true,
+
     onVelgUke,
     onVelgUker,
 }) => {
@@ -62,41 +63,6 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     const compactTable = isWide === false;
 
     const [valgteUker, setValgteUker] = useState<string[]>([]);
-
-    const getTid = (uke: PeriodeSøktForListeItem) => {
-        if (uke.endret === undefined) {
-            return <DurationText duration={uke.opprinnelig.faktisk} />;
-        }
-        const { endret, opprinnelig } = uke;
-
-        return (
-            <>
-                <strong>
-                    {endret.endretProsent !== undefined ? (
-                        <>
-                            {endret.endretProsent} {compactTable ? '%' : 'prosent'}
-                        </>
-                    ) : (
-                        <DurationText duration={endret.faktisk} />
-                    )}
-                </strong>
-
-                <div>
-                    {endret.endretProsent && visOpprinneligOverstreket === false && (
-                        <>
-                            {` `}(<DurationText duration={endret.faktisk} /> av normalt{' '}
-                            {<DurationText duration={opprinnelig.normalt} />})
-                        </>
-                    )}
-                    {visOpprinneligOverstreket && (
-                        <span style={{ textDecoration: 'line-through' }}>
-                            (<DurationText duration={opprinnelig.faktisk} />)
-                        </span>
-                    )}
-                </div>
-            </>
-        );
-    };
 
     const onToggleUke = (id: string, selected: boolean) => {
         if (selected) {
@@ -139,7 +105,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                         const selected = onVelgUker !== undefined && valgteUker.includes(uke.isoDateRange);
                         if (uke.søktFor === false) {
                             return (
-                                <Table.Row>
+                                <Table.Row key={uke.isoDateRange}>
                                     <Table.DataCell colSpan={10}>
                                         <Alert variant="info" inline={true}>
                                             Det er ikke søkt om pleiepenger i periode fra{' '}
@@ -174,7 +140,10 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                                 <DurationText duration={uke.opprinnelig.normalt} />
                                             </Table.DataCell>
                                         )}
-                                        <Table.DataCell>{getTid(uke)}</Table.DataCell>
+                                        <Table.DataCell>
+                                            <Arbeidstid uke={uke} />
+                                        </Table.DataCell>
+
                                         <Table.DataCell>
                                             {onVelgUke && ukeHarNormaltimer && (
                                                 <Button
@@ -194,10 +163,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                         {onVelgUker && getVelgUkeDataCell(uke.isoDateRange, selected, onToggleUke)}
                                         <Table.DataCell>{ukenummer}</Table.DataCell>
                                         <Table.DataCell>
-                                            <>
-                                                {renderDato(uke.periode.from)} - {` `}
-                                                {renderDato(uke.periode.to)}
-                                            </>
+                                            <PeriodeTekst uke={uke} />
                                         </Table.DataCell>
                                         {visAntallDager && <Table.DataCell>{uke.antallDager}</Table.DataCell>}
                                         {visNormaltid && (
@@ -205,7 +171,9 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                                 <DurationText duration={uke.opprinnelig.normalt} />
                                             </Table.DataCell>
                                         )}
-                                        <Table.DataCell>{getTid(uke)}</Table.DataCell>
+                                        <Table.DataCell>
+                                            <Arbeidstid uke={uke} />
+                                        </Table.DataCell>
                                         <Table.DataCell>
                                             {onVelgUke && ukeHarNormaltimer && (
                                                 <Button
@@ -298,12 +266,46 @@ export const getVelgUkeDataCell = (
 };
 
 const renderDato = (date: Date) => {
-    return (
-        <span style={{ textTransform: 'capitalize' }}>
-            {dateFormatter.day(date).substring(0, 3)}. {dateFormatter.compact(date)}
-        </span>
-    );
+    return <span style={{ textTransform: 'capitalize' }}>{dateFormatter.compact(date)}</span>;
 };
+
 const renderDatoKompakt = (date: Date) => {
     return <span style={{ textTransform: 'capitalize' }}>{dateFormatter.compact(date)}</span>;
+};
+
+const Arbeidstid = ({ uke }: { uke: PeriodeSøktForListeItem }) => {
+    if (uke.endret === undefined) {
+        return <DurationText duration={uke.opprinnelig.faktisk} />;
+    }
+    const { faktisk, endretProsent } = uke.endret;
+    return (
+        <div className="endretArbeidstid">
+            <div className="endretArbeidstid__faktisk">
+                <DurationText duration={faktisk} />
+                {endretProsent && <span className="endretArbeidstid__prosent"> ({endretProsent} %)</span>}
+            </div>
+            <div className="endretArbeidstid__opprinnelig">
+                <DurationText duration={uke.opprinnelig.faktisk} />
+            </div>
+        </div>
+    );
+};
+
+const PeriodeTekst = ({
+    uke: {
+        periode: { from, to },
+    },
+}: {
+    uke: PeriodeSøktForListeItem;
+}) => {
+    const sammeDato = dayjs(from).isSame(to, 'date');
+
+    if (sammeDato) {
+        return renderDato(from);
+    }
+    return (
+        <>
+            {renderDato(from)} - {renderDato(to)}
+        </>
+    );
 };
