@@ -1,23 +1,37 @@
 /* eslint-disable no-console */
-const compression = require('compression');
-const envSettings = require('./envSettings');
 const express = require('express');
-const getDecorator = require('./src/build/scripts/decorator');
-const helmet = require('helmet');
 const mustacheExpress = require('mustache-express');
-const path = require('path');
+const compression = require('compression');
+const getDecorator = require('./src/build/scripts/decorator');
+const envSettings = require('./envSettings');
+const cookieParser = require('cookie-parser');
+const { initTokenX, exchangeToken } = require('./tokenx');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const Promise = require('promise');
+const helmet = require('helmet');
+const path = require('path');
+const jose = require('jose');
 
 const server = express();
+
 server.use(
     helmet({
         contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
     })
 );
 
+server.use((req, res, next) => {
+    res.set('X-XSS-Protection', '1; mode=block');
+    res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
+    next();
+});
 server.use(compression());
+server.use(cookieParser());
+
 server.set('views', path.resolve(`${__dirname}/dist`));
 server.set('view engine', 'mustache');
+
 server.engine('html', mustacheExpress());
 
 const verifyLoginUrl = () =>
@@ -40,8 +54,30 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
-const startServer = (html) => {
+const isExpiredOrNotAuthorized = (token) => {
+    if (token) {
+        try {
+            const exp = jose.decodeJwt(token).exp;
+            return Date.now() >= exp * 1000;
+        } catch (err) {
+            console.error('Feilet med dekoding av token: ', err);
+            return true;
+        }
+    }
+    return true;
+};
+
+const startServer = async (html) => {
+    await Promise.all([initTokenX()]);
+
     server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
+    server.use(`${process.env.PUBLIC_PATH}/dist/css`, (req, res, next) => {
+        const requestReferer = req.headers.referer;
+        if (requestReferer !== undefined && requestReferer === 'https://nav.psplugin.com/') {
+            res.set('cross-origin-resource-policy', 'cross-origin');
+        }
+        next();
+    });
     server.use(`${process.env.PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (req, res) => res.sendStatus(200));
@@ -50,11 +86,51 @@ const startServer = (html) => {
         res.send(`${envSettings()}`);
     });
 
-    server.get(/^\/(?!.*dist).*$/, (req, res) => {
+    server.use(
+        process.env.FRONTEND_API_PATH,
+        createProxyMiddleware({
+            target: process.env.API_URL,
+            changeOrigin: true,
+            pathRewrite: (path) => {
+                return path.replace(process.env.FRONTEND_API_PATH, '');
+            },
+
+            router: async (req) => {
+                if (req.headers['authorization'] !== undefined) {
+                    const token = req.headers['authorization'].replace('Bearer ', '');
+                    if (isExpiredOrNotAuthorized(token)) {
+                        return undefined;
+                    }
+                    const exchangedToken = await exchangeToken(token);
+                    if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                        req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+                    }
+                } else if (req.cookies['selvbetjening-idtoken'] !== undefined) {
+                    const selvbetjeningIdtoken = req.cookies['selvbetjening-idtoken'];
+                    if (isExpiredOrNotAuthorized(selvbetjeningIdtoken)) {
+                        return undefined;
+                    }
+
+                    const exchangedToken = await exchangeToken(selvbetjeningIdtoken);
+                    if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                        req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+                    }
+                } else return undefined;
+
+                return undefined;
+            },
+            secure: true,
+            xfwd: true,
+            logLevel: 'info',
+        })
+    );
+
+    server.get(/^\/(?!.*api)(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });
 
     const port = process.env.PORT || 8080;
+
     server.listen(port, () => {
         console.log(`App listening on port: ${port}`);
     });

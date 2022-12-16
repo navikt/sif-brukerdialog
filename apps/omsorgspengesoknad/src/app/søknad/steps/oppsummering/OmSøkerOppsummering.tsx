@@ -12,7 +12,9 @@ const OmSøkerOppsummering: React.FunctionComponent<Props> = ({ søker }) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
-            <strong>{formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}</strong>
+            <p>
+                <strong>{formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}</strong>
+            </p>
             <div>
                 <FormattedMessage id="steg.oppsummering.søker.fnr" values={{ fødselsnummer: søker.fødselsnummer }} />
             </div>

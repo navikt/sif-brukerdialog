@@ -63,7 +63,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                 <div data-testid="oppsummering">
                     <Panel border={true}>
                         <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
-                            <div>{formatName(fornavn, etternavn, mellomnavn)}</div>
+                            <p>{formatName(fornavn, etternavn, mellomnavn)}</p>
                             <div>
                                 {intlHelper(intl, 'steg.oppsummering.fødselsnummer')}: {fødselsnummer}
                             </div>

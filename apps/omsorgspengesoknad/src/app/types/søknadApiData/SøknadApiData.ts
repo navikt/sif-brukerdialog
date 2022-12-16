@@ -8,7 +8,7 @@ export interface OmBarnetApiData {
     sammeAdresse?: boolean;
 }
 export interface BarnToSendToApi {
-    navn: string | null;
+    navn: string;
     norskIdentifikator: string | null;
     aktørId: string | null;
 }

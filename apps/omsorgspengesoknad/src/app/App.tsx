@@ -14,7 +14,7 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
 
-export const APPLICATION_KEY = 'opplaringspenger';
+export const APPLICATION_KEY = 'omsorgspengersoknad';
 export const SKJEMANAVN = 'omsorgspengesoknad';
 
 const container = document.getElementById('app');
@@ -31,7 +31,7 @@ const App = () => (
                 applicationKey={APPLICATION_KEY}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om omsorgspengesoknad"
+                    appName={SKJEMANAVN}
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
                     appStatus={{
