@@ -1,3 +1,4 @@
+import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
 
@@ -9,12 +10,12 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
 
     switch (omBarnet.type) {
         case 'registrertBarn':
-            const aktørId = omBarnet.registrertBarn.aktørId;
+            const { aktørId, fornavn, etternavn, mellomnavn } = omBarnet.registrertBarn;
             return {
                 ...fellesInfo,
                 barn: {
                     aktørId,
-                    navn: null,
+                    navn: formatName(fornavn, etternavn, mellomnavn),
                     norskIdentifikator: null,
                 },
             };
