@@ -1,4 +1,4 @@
-import { Heading, Ingress, Modal } from '@navikt/ds-react';
+import { Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
@@ -9,7 +9,7 @@ import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
-import './arbeidstidEnkeltukeModal.css';
+import './arbeidstidEnkeltukeModal.scss';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -43,27 +43,20 @@ const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({
                         </Heading>
                         <Block margin="m">
                             Uke {dayjs(arbeidsuke.periode.from).isoWeek()},{' '}
-                            {dayjs(arbeidsuke.periode.from).isoWeekYear()}.
                             <span>
-                                {dateFormatter.compact(arbeidsuke.periode.from)} -{' '}
-                                {dateFormatter.compact(arbeidsuke.periode.to)}
+                                {dateFormatter.dayCompactDate(arbeidsuke.periode.from)} -{' '}
+                                {dateFormatter.dayCompactDate(arbeidsuke.periode.to)}
                             </span>
                         </Block>
 
-                        <Block margin="xl" padBottom="l">
-                            <Ingress>
-                                Du har oppgitt at du normalt jobber{' '}
-                                <DurationText duration={arbeidsuke.normalt} type="decimal" fullText={true} /> denne
-                                uken.
-                            </Ingress>
+                        <Block margin="l">
+                            <ArbeidIPeriodeForm
+                                arbeidAktivitet={arbeidAktivitet}
+                                arbeidsuke={arbeidsuke}
+                                onCancel={onClose}
+                                onSubmit={onSubmit}
+                            />
                         </Block>
-
-                        <ArbeidIPeriodeForm
-                            arbeidAktivitet={arbeidAktivitet}
-                            arbeidsuke={arbeidsuke}
-                            onCancel={onClose}
-                            onSubmit={onSubmit}
-                        />
                     </Block>
                 </div>
             </Modal.Content>

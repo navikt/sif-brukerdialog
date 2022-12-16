@@ -17,7 +17,7 @@ const arbeidIPeriodeMessages = {
         'arbeidIPeriode.timerEllerProsent.prosent': 'I prosent',
         'arbeidIPeriode.prosent.utledet.medTimer': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
         'arbeidIPeriode.prosentAvNormalt.spm': 'Hvor mange prosent av normalt {timerNormalt} jobber du denne uken?',
-        'arbeidIPeriode.timerAvNormalt.spm': 'Hvor mange timer jobber i denne uken?',
+        'arbeidIPeriode.timerAvNormalt.spm': 'Hvor mange timer av normalt {timerNormalt} jobber du denne uken?',
         'arbeidIPeriode.uke.ukenummer': 'Uke {ukenummer}',
         'arbeidIPeriode.uke.ukedatoer': '{ukedatoer}',
     },

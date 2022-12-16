@@ -15,6 +15,7 @@ import { getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUt
 import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import { Tabs } from '@navikt/ds-react';
 import { Clock } from '@navikt/ds-icons';
+import { getDurationString } from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -82,14 +83,8 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
             renderForm={({ values, setValues }) => {
                 const { timerEllerProsent } = values;
 
-                const timerNormaltString = intlHelper(intl, 'arbeidstidPeriode.timer', {
-                    timer: intl.formatNumber(durationToDecimalDuration(arbeidsuke.normalt), {
-                        maximumFractionDigits: 2,
-                    }),
-                });
-
                 const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
-                    timerNormaltString,
+                    timerNormaltString: getDurationString(intl, { duration: arbeidsuke.normalt }),
                     arbeidsforhold: {
                         type: arbeidAktivitet.type,
                         arbeidsstedNavn: getArbeidAktivitetNavn(arbeidAktivitet),
