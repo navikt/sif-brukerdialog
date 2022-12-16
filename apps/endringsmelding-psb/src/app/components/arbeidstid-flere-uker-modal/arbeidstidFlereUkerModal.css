@@ -1,0 +1,8 @@
+.arbeidstidFlereUkerModal {
+    min-width: 40rem;
+}
+@media (max-width: 600px) {
+    .arbeidstidFlereUkerModal {
+        min-width: none;
+    }
+}

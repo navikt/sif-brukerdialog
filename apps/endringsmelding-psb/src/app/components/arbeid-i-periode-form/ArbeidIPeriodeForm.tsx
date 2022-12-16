@@ -1,19 +1,20 @@
 import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
-import { ArbeidstidAktivitetUkeEndring } from '../../../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke } from '../../../../types/K9Sak';
-import { ArbeidAktivitet } from '../../../../types/Sak';
-import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
-import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
+import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEndring';
+import { Arbeidsuke } from '../../types/K9Sak';
+import { ArbeidAktivitet } from '../../types/Sak';
+import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
-import { ArbeidIPeriodeIntlValues, getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
+import { getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
 import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { Tabs } from '@navikt/ds-react';
+import { Clock } from '@navikt/ds-icons';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -32,7 +33,7 @@ interface Props {
     onCancel: () => void;
 }
 
-const { RadioGroup, FormikWrapper, Form } = getTypedFormComponents<
+const { FormikWrapper, Form } = getTypedFormComponents<
     ArbeidIPeriodeFormField,
     ArbeidIPeriodeFormValues,
     ValidationError
@@ -76,15 +77,17 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
 
     return (
         <FormikWrapper
-            initialValues={{}}
+            initialValues={{ timerEllerProsent: TimerEllerProsent.PROSENT }}
             onSubmit={onFormSubmit}
-            renderForm={({ values }) => {
+            renderForm={({ values, setValues }) => {
                 const { timerEllerProsent } = values;
+
                 const timerNormaltString = intlHelper(intl, 'arbeidstidPeriode.timer', {
                     timer: intl.formatNumber(durationToDecimalDuration(arbeidsuke.normalt), {
                         maximumFractionDigits: 2,
                     }),
                 });
+
                 const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
                     timerNormaltString,
                     arbeidsforhold: {
@@ -92,6 +95,7 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
                         arbeidsstedNavn: getArbeidAktivitetNavn(arbeidAktivitet),
                     },
                 });
+
                 return (
                     <Form
                         formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidIPeriodeForm')}
@@ -100,14 +104,20 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
                         cancelButtonLabel="Avbryt"
                         onCancel={onCancel}
                         showButtonArrows={false}>
-                        <FormBlock>
-                            <RadioGroup
-                                name={ArbeidIPeriodeFormField.timerEllerProsent}
-                                legend={intlHelper(intl, `arbeidIPeriode.timerEllerProsent.spm`, intlValues)}
-                                radios={getTimerEllerProsentRadios(intl, intlValues)}
-                            />
-                        </FormBlock>
-
+                        <Tabs
+                            value={timerEllerProsent}
+                            onChange={(value) => {
+                                setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
+                            }}>
+                            <Tabs.List>
+                                <Tabs.Tab
+                                    value="prosent"
+                                    label="Endre prosent"
+                                    icon={<div style={{ minWidth: '1rem', textAlign: 'center' }}>%</div>}
+                                />
+                                <Tabs.Tab value="timer" label="Endre timer" icon={<Clock />} />
+                            </Tabs.List>
+                        </Tabs>
                         {timerEllerProsent && (
                             <ArbeidstidInput
                                 arbeidIPeriode={values}
@@ -124,16 +134,3 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
 };
 
 export default ArbeidIPeriodeForm;
-
-const getTimerEllerProsentRadios = (intl: IntlShape, intlValues: ArbeidIPeriodeIntlValues) => [
-    {
-        label: intlHelper(intl, `arbeidIPeriode.timerEllerProsent.prosent`, intlValues),
-        value: TimerEllerProsent.PROSENT,
-        'data-testid': TimerEllerProsent.PROSENT,
-    },
-    {
-        label: intlHelper(intl, `arbeidIPeriode.timerEllerProsent.timer`, intlValues),
-        value: TimerEllerProsent.TIMER,
-        'data-testid': TimerEllerProsent.TIMER,
-    },
-];

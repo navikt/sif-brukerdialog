@@ -1,3 +1,5 @@
+import { durationTextMessages } from '../components/duration-text/durationText.messages';
+
 const commonMessagesNb = require('./common.nb.json');
 const commonMessagesNn = require('./common.nn.json');
 const validationErrorsNb = require('./validationErrors.nb.json');
@@ -9,11 +11,13 @@ const bokmålstekster = {
     ...commonMessagesNb,
     ...validationErrorsNb,
     ...pictureScanningNb,
+    ...durationTextMessages.nb,
 };
 const nynorsktekster = {
     ...commonMessagesNn,
     ...validationErrorsNn,
     ...pictureScanningNn,
+    ...durationTextMessages.nb,
 };
 
 export const allCommonMessages = {

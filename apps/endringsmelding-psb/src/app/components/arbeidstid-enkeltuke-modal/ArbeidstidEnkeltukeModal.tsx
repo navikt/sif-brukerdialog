@@ -1,14 +1,14 @@
 import { Heading, Ingress, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import DurationText from '../duration-text/DurationText';
 import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
-import ArbeidIPeriodeForm from '../../søknad/steps/arbeidstid/arbeid-i-periode-form/ArbeidIPeriodeForm';
+import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
 import './arbeidstidEnkeltukeModal.css';
 
 interface Props {
@@ -50,7 +50,7 @@ const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({
                             </span>
                         </Block>
 
-                        <Block margin="xl">
+                        <Block margin="xl" padBottom="l">
                             <Ingress>
                                 Du har oppgitt at du normalt jobber{' '}
                                 <DurationText duration={arbeidsuke.normalt} type="decimal" fullText={true} /> denne

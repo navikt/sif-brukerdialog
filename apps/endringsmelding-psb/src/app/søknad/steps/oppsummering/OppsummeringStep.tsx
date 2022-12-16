@@ -204,6 +204,7 @@ const getArbeidstidUkeListeItem = (perioder: ArbeidstidPeriodeApiDataMap): Arbei
         }: ArbeidstidPeriodeApiData = perioder[isoDateRange];
         const antallDager = getDatesInDateRange(dateRange).length;
         const arbeidsuke: ArbeidstidUkeListeItem = {
+            søktFor: true,
             antallDager,
             isoDateRange,
             periode: dateRange,

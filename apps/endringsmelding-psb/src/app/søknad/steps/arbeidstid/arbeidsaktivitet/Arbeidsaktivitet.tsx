@@ -2,21 +2,20 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
-import ArbeidstidUkeListe, {
-    ArbeidstidUkeListeItem,
-} from '../../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
+import ArbeidstidEnkeltukeModal from '../../../../components/arbeidstid-enkeltuke-modal/ArbeidstidEnkeltukeModal';
 import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
 import {
     ArbeidstidAktivitetUkeEndring,
     ArbeidstidAktivitetUkeEndringMap,
-    ArbeidstidEndring,
 } from '../../../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke, ArbeidsukeMap } from '../../../../types/K9Sak';
+import { Arbeidsuke } from '../../../../types/K9Sak';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../../types/Sak';
-import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
 import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
-import { beregnEndretArbeidstid } from '../../../../utils/beregnUtils';
-import ArbeidstidEnkeltukeModal from '../../../../components/arbeidstid-enkeltuke-modal/ArbeidstidEnkeltukeModal';
+import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
+import ArbeidstidUkeListe, {
+    ArbeidstidUkeListeItem,
+} from '../../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
+import ArbeidstidFlereUkerModal from '../../../../components/arbeidstid-flere-uker-modal/ArbeidstidFlereUkerModal';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -24,15 +23,22 @@ interface Props {
     onArbeidsukeChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetUkeEndring) => void;
 }
 
-const Arbeidsaktivitet: React.FunctionComponent<Props> = ({ arbeidAktivitet, endringer, onArbeidsukeChange }) => {
+const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidsukeChange }: Props) => {
     const [arbeidsukeForEndring, setArbeidsukeForEndring] = useState<Arbeidsuke | undefined>();
+    const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const navn = getArbeidAktivitetNavn(arbeidAktivitet);
 
     const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
-    const uker = getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
+    const ukerSøktFor = arbeidsaktivitetUtils.getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
+    const periodeIkkeSøktFor = arbeidsaktivitetUtils.finnPeriodeIkkeSøktFor(ukerSøktFor);
+    const uker = arbeidsaktivitetUtils.sorterListeItems([...ukerSøktFor, ...periodeIkkeSøktFor]);
 
     const onVelgUke = (uke: ArbeidstidUkeListeItem) => {
         setArbeidsukeForEndring(arbeidsukerMap[uke.isoDateRange]);
+    };
+
+    const onVelgUker = (uker: ArbeidstidUkeListeItem[]) => {
+        setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
     };
 
     return (
@@ -40,10 +46,16 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({ arbeidAktivitet, end
             <Heading level="2" size="medium" spacing={true}>
                 {navn}
             </Heading>
+
             <ArbeidAktivitetInfo arbeidAktivitet={arbeidAktivitet} />
 
             <Block padBottom="l">
-                <ArbeidstidUkeListe arbeidsuker={uker} visNormaltid={false} onVelgUke={onVelgUke} />
+                <ArbeidstidUkeListe
+                    arbeidsuker={uker}
+                    visNormaltid={false}
+                    onVelgUke={onVelgUke}
+                    onVelgUker={1 + 1 === 2 ? undefined : onVelgUker}
+                />
             </Block>
 
             <ArbeidstidEnkeltukeModal
@@ -54,6 +66,15 @@ const Arbeidsaktivitet: React.FunctionComponent<Props> = ({ arbeidAktivitet, end
                 onSubmit={(endring) => {
                     onArbeidsukeChange(endring);
                     setArbeidsukeForEndring(undefined);
+                }}
+            />
+            <ArbeidstidFlereUkerModal
+                arbeidAktivitet={arbeidAktivitet}
+                isVisible={arbeidsukerForEndring !== undefined}
+                arbeidsuker={arbeidsukerForEndring}
+                onClose={() => setArbeidsukerForEndring(undefined)}
+                onSubmit={() => {
+                    setArbeidsukerForEndring(undefined);
                 }}
             />
         </>
@@ -75,38 +96,4 @@ const ArbeidAktivitetInfo = ({ arbeidAktivitet }: { arbeidAktivitet: ArbeidAktiv
             {ansattTom && <> Sluttdato: {dateFormatter.full(ansattTom)}</>}
         </BodyLong>
     );
-};
-
-const arbeidsukeToArbeidstidUkeListItem = (
-    arbeidsuke: Arbeidsuke,
-    endring?: ArbeidstidEndring
-): ArbeidstidUkeListeItem => {
-    return {
-        ...arbeidsuke,
-        antallDager: Object.keys(arbeidsuke.dagerMap).length,
-        opprinnelig: {
-            faktisk: arbeidsuke.faktisk,
-            normalt: arbeidsuke.normalt,
-        },
-        endret: endring
-            ? {
-                  faktisk: beregnEndretArbeidstid(endring, arbeidsuke.normalt),
-                  endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
-              }
-            : undefined,
-    };
-};
-
-const getArbeidstidUkeListItemFromArbeidsuker = (
-    arbeidsuker: ArbeidsukeMap,
-    endringer: ArbeidstidAktivitetUkeEndringMap = {}
-): ArbeidstidUkeListeItem[] => {
-    const items: ArbeidstidUkeListeItem[] = [];
-
-    Object.keys(arbeidsuker).map((key) => {
-        const arbeidsuke = arbeidsuker[key];
-        const endring = endringer[key];
-        items.push(arbeidsukeToArbeidstidUkeListItem(arbeidsuke, endring?.endring));
-    });
-    return items;
 };
