@@ -7,7 +7,7 @@ RUN yarn global add turbo
 
 WORKDIR /app
 
-ENV SCOPE=@navikt/endingsmelding-psb
+ENV SCOPE=@navikt/endringsmelding-pleiepenger
 
 FROM base AS pruner
 COPY . .
@@ -15,14 +15,14 @@ RUN yarn
 RUN yarn turbo run build-app --filter=${SCOPE}
 
 FROM pruner AS server
-WORKDIR /apps/endingsmelding-psb
+WORKDIR /apps/endringsmelding-psb
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/endingsmelding-psb/node_modules ./node_modules/
-COPY --from=pruner /app/apps/endingsmelding-psb/envSettings.js .
-COPY --from=pruner /app/apps/endingsmelding-psb/server.js .
-COPY --from=pruner /app/apps/endingsmelding-psb/package.json .
-COPY --from=pruner /app/apps/endingsmelding-psb/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
-COPY --from=pruner /app/apps/endingsmelding-psb/dist ./dist
+COPY --from=pruner /app/apps/endringsmelding-psb/node_modules ./node_modules/
+COPY --from=pruner /app/apps/endringsmelding-psb/envSettings.js .
+COPY --from=pruner /app/apps/endringsmelding-psb/server.js .
+COPY --from=pruner /app/apps/endringsmelding-psb/package.json .
+COPY --from=pruner /app/apps/endringsmelding-psb/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
+COPY --from=pruner /app/apps/endringsmelding-psb/dist ./dist
 
 EXPOSE 8080
-CMD ["yarn","--cwd", "apps/endingsmelding-psb", "start-express"]
+CMD ["yarn","--cwd", "apps/endringsmelding-psb", "start-express"]

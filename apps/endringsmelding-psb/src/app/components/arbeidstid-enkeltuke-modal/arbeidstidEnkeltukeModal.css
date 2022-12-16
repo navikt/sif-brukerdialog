@@ -1,0 +1,8 @@
+.arbeidstidEnkeltukeModal {
+    min-width: 40rem;
+}
+@media (max-width: 600px) {
+    .arbeidstidEnkeltukeModal {
+        min-width: none;
+    }
+}

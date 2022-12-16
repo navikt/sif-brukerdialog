@@ -1,7 +1,5 @@
-import { DateRange } from 'react-day-picker';
 import { Arbeidsgiver } from './Arbeidsgiver';
-
-import { Barn } from './K9Sak';
+import { ArbeidsukeMap, Barn } from './K9Sak';
 
 export enum ArbeidAktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -9,26 +7,22 @@ export enum ArbeidAktivitetType {
     selvstendigNæringsdrivende = 'selvstendigNæringsdrivende',
 }
 
-interface ArbeidAktivitetPerioder {
-    allePerioder: DateRange[];
-    samletPeriode: DateRange;
-}
 export interface ArbeidAktivitetArbeidstaker {
     id: string;
     type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
-    perioder: ArbeidAktivitetPerioder;
+    arbeidsuker: ArbeidsukeMap;
 }
 export interface ArbeidAktivitetFrilanser {
     id: string;
     type: ArbeidAktivitetType.frilanser;
-    perioder: ArbeidAktivitetPerioder;
+    arbeidsuker: ArbeidsukeMap;
 }
 
 export interface ArbeidAktivitetSelvstendigNæringsdrivende {
     id: string;
     type: ArbeidAktivitetType.selvstendigNæringsdrivende;
-    perioder: ArbeidAktivitetPerioder;
+    arbeidsuker: ArbeidsukeMap;
 }
 
 export type ArbeidAktivitet =
@@ -37,12 +31,15 @@ export type ArbeidAktivitet =
     | ArbeidAktivitetSelvstendigNæringsdrivende;
 
 export interface ArbeidAktiviteter {
-    arbeidstaker: ArbeidAktivitetArbeidstaker[];
+    arbeidstakerArr: ArbeidAktivitetArbeidstaker[];
     frilanser?: ArbeidAktivitetFrilanser;
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
 
 export interface Sak {
     barn: Barn;
-    arbeidAktivitet: ArbeidAktiviteter;
+    arbeidAktiviteter: ArbeidAktiviteter;
+    ytelse: {
+        type: string;
+    };
 }

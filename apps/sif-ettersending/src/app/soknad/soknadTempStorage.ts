@@ -8,12 +8,17 @@ import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { axiosJsonConfig } from '../api/api';
 import { ApplicationType } from '../types/ApplicationType';
 import { StepID } from './soknadStepsConfig';
+import { jsonSort } from '@navikt/sif-common-utils/lib';
 
 export const STORAGE_VERSION = '2.0';
 
 interface UserHashInfo {
     søker: Person;
 }
+
+const createHashString = (info: UserHashInfo) => {
+    return hash(JSON.stringify(jsonSort(info)));
+};
 
 interface SoknadTemporaryStorage
     extends Omit<PersistenceInterface<SoknadTempStorageData>, 'update' | 'create' | 'purge' | 'rehydrate'> {
@@ -56,7 +61,7 @@ export const isStorageDataValid = (
         data.formData !== undefined &&
         data.metadata.soknadId !== undefined &&
         JSON.stringify(data.formData) !== JSON.stringify({}) &&
-        hash(userHashInfo) === data.metadata.userHash
+        createHashString(userHashInfo) === data.metadata.userHash
     ) {
         return data;
     }
@@ -73,7 +78,12 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
     ) => {
         return persistSetup(søknadstype).update({
             formData,
-            metadata: { soknadId, lastStepID, version: STORAGE_VERSION, userHash: hash(userHashInfo) },
+            metadata: {
+                soknadId,
+                lastStepID,
+                version: STORAGE_VERSION,
+                userHash: createHashString(userHashInfo),
+            },
         });
     },
     create: (søknadstype: ApplicationType) => persistSetup(søknadstype).create(),

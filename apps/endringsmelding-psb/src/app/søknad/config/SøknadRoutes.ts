@@ -10,7 +10,7 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
             return SøknadRoutes.ARBEIDSTID;
         case StepId.OPPSUMMERING:
             return SøknadRoutes.OPPSUMMERING;
-        case StepId.SØKNAD_SENDT:
+        case StepId.MELDING_SENDT:
             return SøknadRoutes.SØKNAD_SENDT;
     }
 };
@@ -20,7 +20,7 @@ export const SøknadStepRoute = {
     [StepId.AKTIVITET]: 'aktivitet',
     [StepId.ARBEIDSTID]: 'arbeidstid',
     [StepId.OPPSUMMERING]: 'oppsummering',
-    [StepId.SØKNAD_SENDT]: 'soknad_sendt',
+    [StepId.MELDING_SENDT]: 'melding_sendt',
 };
 
 export enum SøknadRoutes {

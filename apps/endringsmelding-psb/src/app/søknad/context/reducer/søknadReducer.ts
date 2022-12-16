@@ -1,7 +1,12 @@
 import { guid } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+
+const initialSøknadsdata: Søknadsdata = {
+    id: undefined,
+} as any;
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -19,7 +24,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
             return {
                 ...state,
-                søknadsdata: {},
+                søknadsdata: initialSøknadsdata,
                 søknadRoute: undefined,
             };
     }
@@ -70,19 +75,19 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
                     },
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_SENDT:
+            case SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT:
                 return {
                     ...state,
                     børMellomlagres: false,
-                    søknadsdata: {},
-                    søknadSendt: true,
+                    søknadsdata: initialSøknadsdata,
+                    endringsmeldingSendt: true,
                 };
             case SøknadContextActionKeys.RESET_SØKNAD:
                 return {
                     ...state,
                     børMellomlagres: false,
-                    søknadsdata: {},
-                    søknadSendt: false,
+                    søknadsdata: initialSøknadsdata,
+                    endringsmeldingSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
             case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:
@@ -93,6 +98,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         [action.payload.stepId]: undefined,
                     },
                 };
+            case SøknadContextActionKeys.SET_SAK:
+                return {
+                    ...state,
+                    sak: action.payload.sak,
+                };
+            default:
+                // eslint-disable-next-line no-console
+                console.log('Unhandled action', action);
         }
     }
     return state;

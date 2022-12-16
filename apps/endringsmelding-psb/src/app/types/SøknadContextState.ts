@@ -13,6 +13,6 @@ export interface SøknadContextState {
     arbeidsgivere: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
-    søknadSendt?: boolean;
+    endringsmeldingSendt?: boolean;
     børMellomlagres?: boolean;
 }

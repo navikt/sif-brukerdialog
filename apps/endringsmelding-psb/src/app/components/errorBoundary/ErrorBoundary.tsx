@@ -4,7 +4,7 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import appSentryLogger from '../../utils/appSentryLogger';
-import { Button, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 
 interface State {
     eventId: string | null;
@@ -38,13 +38,6 @@ class ErrorBoundary extends React.Component<any, State> {
                             </Heading>
                             <p>Her kommer det mer info</p>
                         </SifGuidePanel>
-                        <Button
-                            type="button"
-                            onClick={() => {
-                                localStorage.clear();
-                            }}>
-                            Tøm mellomlagring
-                        </Button>
                     </Block>
                 </Page>
             );

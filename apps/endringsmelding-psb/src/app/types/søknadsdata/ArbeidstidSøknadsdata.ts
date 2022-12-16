@@ -1,7 +1,7 @@
-import { ArbeidIPeriodeFormValues } from '../../søknad/steps/arbeidstid/arbeid-i-periode/ArbeidIPeriodeFormValues';
+import { ArbeidstidAktivitetUkeEndringMap } from '../ArbeidstidAktivitetEndring';
 
 export interface ArbeidstidSøknadsdata {
-    arbeidAktivitet: {
-        [key: string]: ArbeidIPeriodeFormValues;
+    arbeidAktivitetEndring: {
+        [key: string]: ArbeidstidAktivitetUkeEndringMap;
     };
 }

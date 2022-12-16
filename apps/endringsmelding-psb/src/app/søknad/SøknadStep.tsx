@@ -8,6 +8,7 @@ import StateInfo from '../components/state-info/StateInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from './config/StepId';
 import { getSøknadStepConfig } from './config/søknadStepConfig';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 interface Props {
     stepId: StepId;
@@ -16,6 +17,7 @@ interface Props {
 
 const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const intl = useIntl();
+    const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
@@ -33,7 +35,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
             onContinueLater={fortsettSøknadSenere}>
             <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
             {children}
-            <StateInfo />
+            {isDevMode ? <StateInfo /> : null}
         </Step>
     );
 };

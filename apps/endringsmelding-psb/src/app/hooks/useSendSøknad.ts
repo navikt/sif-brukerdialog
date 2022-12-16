@@ -22,7 +22,7 @@ export const useSendSøknad = () => {
             .then(() => {
                 slettMellomlagring();
                 setIsSubmitting(false);
-                dispatch(actionsCreator.setSøknadSendt());
+                dispatch(actionsCreator.setEndringsmeldingSendt());
                 navigateTo(SøknadRoutes.SØKNAD_SENDT);
             })
             .catch((error) => {

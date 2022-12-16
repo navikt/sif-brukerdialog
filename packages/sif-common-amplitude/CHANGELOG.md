@@ -1,5 +1,14 @@
 # @navikt/sif-common-amplitude
 
+## 2.6.4
+
+### Patch Changes
+
+-   225b95e: DurationText komponent + oppdatert endringsdialog
+-   dd0a865: I hovedsak utvikling av endringsdialog, men noen endringer på fellespakker, f.eks. desimaltid i sif-common-utils
+-   5101688: Oppdaterte pakker
+-   5101688: Oppdatere pakker
+
 ## 2.6.3
 
 ### Patch Changes

@@ -2,7 +2,7 @@ import { Søknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdat
 import { ArbeidstidFormValues } from './ArbeidstidStep';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
-    arbeidAktivitet: {},
+    arbeidAktivitetEndring: {},
 };
 
 export const getArbeidstidStepInitialValues = (
@@ -17,10 +17,10 @@ export const getArbeidstidStepInitialValues = (
     }
 
     return {
-        arbeidAktivitet: søknadsdata.arbeidstid.arbeidAktivitet,
+        arbeidAktivitetEndring: søknadsdata.arbeidstid.arbeidAktivitetEndring,
     };
 };
 
 export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormValues): ArbeidstidSøknadsdata => {
-    return { arbeidAktivitet: values.arbeidAktivitet };
+    return { arbeidAktivitetEndring: values.arbeidAktivitetEndring };
 };
