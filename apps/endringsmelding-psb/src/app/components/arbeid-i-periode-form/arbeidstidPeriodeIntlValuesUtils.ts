@@ -1,5 +1,5 @@
 import { IntlShape } from 'react-intl';
-import { ArbeidAktivitetType } from '../../../../types/Sak';
+import { ArbeidAktivitetType } from '../../types/Sak';
 import { getArbeidstidPeriodeIntl } from './arbeidIPeriodeMessages';
 
 export type ArbeidIPeriodeIntlValues = {

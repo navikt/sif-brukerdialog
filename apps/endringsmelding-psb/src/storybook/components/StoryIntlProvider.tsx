@@ -8,19 +8,9 @@ export interface IntlProviderProps {
     onError?: (error: any) => void;
 }
 
-const allMessages = {
-    nb: {
-        ...applicationIntlMessages.nb,
-    },
-    nn: {
-        ...applicationIntlMessages.nn,
-    },
-};
-
-const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, onError, children }) => {
-    const messages = locale === 'nb' ? allMessages.nb : allMessages.nn;
+const StoryIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ onError, children }) => {
     return (
-        <IntlProvider locale={locale} messages={messages} onError={onError}>
+        <IntlProvider locale={'no-NB'} messages={applicationIntlMessages.nb} onError={onError}>
             {children}
         </IntlProvider>
     );

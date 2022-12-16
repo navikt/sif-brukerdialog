@@ -1,4 +1,4 @@
-import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
+import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 
 export enum ArbeidIPeriodeFormField {
     timerEllerProsent = 'timerEllerProsent',
