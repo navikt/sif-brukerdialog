@@ -6,11 +6,12 @@ import ArbeidIPeriodeForm from '../../../app/components/arbeid-i-periode-form/Ar
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../app/types/Sak';
 import { Arbeidsuke } from '../../../app/types/K9Sak';
 import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
 
 export default {
     title: 'Components/ArbeidIPeriodeForm',
     component: ArbeidIPeriodeForm,
-    decorators: [withIntl, withRouterProvider],
+    decorators: [withIntl, withRouterProvider, withSøknadContextProvider],
 } as ComponentMeta<typeof ArbeidIPeriodeForm>;
 
 const arbeidsaktivitet: ArbeidAktivitet = {

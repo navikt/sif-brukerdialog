@@ -6,11 +6,12 @@ import ArbeidstidEnkeltukeModal from '../../../app/components/arbeidstid-enkeltu
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../app/types/Sak';
 import { Arbeidsuke } from '../../../app/types/K9Sak';
 import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
 
 export default {
     title: 'Components/ArbeidstidEnkeltukeModal',
     component: ArbeidstidEnkeltukeModal,
-    decorators: [withIntl, withRouterProvider],
+    decorators: [withIntl, withRouterProvider, withSøknadContextProvider],
 } as ComponentMeta<typeof ArbeidstidEnkeltukeModal>;
 
 const arbeidsaktivitet: ArbeidAktivitet = {
