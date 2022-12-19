@@ -39,7 +39,7 @@
         "gh-pages": "4.0.0",
         "intl": "1.2.5",
         "react": "18.2.0",
-        "react-day-picker": "8.3.7",
+        "react-day-picker": "8.4.1",
         "react-intl": "6.2.5",
         "react-scripts": "5.0.1",
         "rimraf": "3.0.2",
