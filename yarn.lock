@@ -2377,11 +2377,6 @@
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-2.0.10.tgz#aa781c5e89f05fba0a325ab7beb68558d60d3a23"
   integrity sha512-xFlTsWN4GnWBifOUp3SvA8c8Y6XDrKGHFxFsT+hdOs0i65f1Pa+IVPe3jbf+8rrowrzbuO00hZ3iK7RYpb2yKw==
 
-"@navikt/ds-css@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-2.0.8.tgz#54403426e5c28bb677cece3ab3b74e51bf5443bb"
-  integrity sha512-zJKV4zx+qVbKJm8ZfaKEBNDcbDF0sb4HlTPfP0gzd4BFexQU/wEY2D5barHH5uN1wlXJUdNB/+1cEHCdXKzfxw==
-
 "@navikt/ds-css@^1.0.0":
   version "1.5.7"
   resolved "https://registry.npmjs.org/@navikt/ds-css/-/ds-css-1.5.7.tgz"
