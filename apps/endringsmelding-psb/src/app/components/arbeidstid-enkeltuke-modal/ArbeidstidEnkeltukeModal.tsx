@@ -1,7 +1,6 @@
-import { Heading, Ingress, Modal } from '@navikt/ds-react';
+import { Alert, Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEndring';
@@ -9,7 +8,9 @@ import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
-import './arbeidstidEnkeltukeModal.css';
+import './arbeidstidEnkeltukeModal.scss';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -29,6 +30,7 @@ const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({
     if (arbeidsuke === undefined) {
         return null;
     }
+
     return (
         <Modal open={isVisible} onClose={onClose} className="arbeidstidEnkeltukeModal">
             <Modal.Content>
@@ -43,27 +45,26 @@ const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({
                         </Heading>
                         <Block margin="m">
                             Uke {dayjs(arbeidsuke.periode.from).isoWeek()},{' '}
-                            {dayjs(arbeidsuke.periode.from).isoWeekYear()}.
                             <span>
-                                {dateFormatter.compact(arbeidsuke.periode.from)} -{' '}
-                                {dateFormatter.compact(arbeidsuke.periode.to)}
+                                {dateFormatter.dayCompactDate(arbeidsuke.periode.from)} -{' '}
+                                {dateFormatter.dayCompactDate(arbeidsuke.periode.to)}
                             </span>
                         </Block>
-
-                        <Block margin="xl" padBottom="l">
-                            <Ingress>
-                                Du har oppgitt at du normalt jobber{' '}
-                                <DurationText duration={arbeidsuke.normalt} type="decimal" fullText={true} /> denne
-                                uken.
-                            </Ingress>
+                        {erHelArbeidsuke(arbeidsuke) === false && (
+                            <FormBlock>
+                                <Alert variant="info" inline={true}>
+                                    Ikke hel uke. Oppgi kun arbeidstid som gjelder {getDagerTekst(arbeidsuke.periode)}.
+                                </Alert>
+                            </FormBlock>
+                        )}
+                        <Block margin="l">
+                            <ArbeidIPeriodeForm
+                                arbeidAktivitet={arbeidAktivitet}
+                                arbeidsuke={arbeidsuke}
+                                onCancel={onClose}
+                                onSubmit={onSubmit}
+                            />
                         </Block>
-
-                        <ArbeidIPeriodeForm
-                            arbeidAktivitet={arbeidAktivitet}
-                            arbeidsuke={arbeidsuke}
-                            onCancel={onClose}
-                            onSubmit={onSubmit}
-                        />
                     </Block>
                 </div>
             </Modal.Content>

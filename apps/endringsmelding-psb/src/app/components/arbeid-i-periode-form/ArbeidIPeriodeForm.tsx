@@ -1,8 +1,11 @@
+import { Tabs } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { Clock } from '@navikt/ds-icons';
+import { getDurationString } from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import { durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
@@ -12,9 +15,7 @@ import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
 import { getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
-import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
-import { Tabs } from '@navikt/ds-react';
-import { Clock } from '@navikt/ds-icons';
+import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -82,14 +83,9 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
             renderForm={({ values, setValues }) => {
                 const { timerEllerProsent } = values;
 
-                const timerNormaltString = intlHelper(intl, 'arbeidstidPeriode.timer', {
-                    timer: intl.formatNumber(durationToDecimalDuration(arbeidsuke.normalt), {
-                        maximumFractionDigits: 2,
-                    }),
-                });
-
                 const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
-                    timerNormaltString,
+                    timerNormaltString: getDurationString(intl, { duration: arbeidsuke.normalt }),
+                    dagerTekst: erHelArbeidsuke(arbeidsuke) ? 'denne uken' : getDagerTekst(arbeidsuke.periode),
                     arbeidsforhold: {
                         type: arbeidAktivitet.type,
                         arbeidsstedNavn: getArbeidAktivitetNavn(arbeidAktivitet),
