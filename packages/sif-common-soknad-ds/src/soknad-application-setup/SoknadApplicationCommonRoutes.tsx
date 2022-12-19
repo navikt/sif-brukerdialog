@@ -44,7 +44,7 @@ const SoknadApplicationCommonRoutes = ({
                         contentRenderer={
                             unavailableContentRenderer
                                 ? unavailableContentRenderer
-                                : () => <SoknadErrorMessages.GeneralApplicationError />
+                                : () => <SoknadErrorMessages.ApplicationUnavailable />
                         }
                     />
                 }
@@ -56,7 +56,7 @@ const SoknadApplicationCommonRoutes = ({
                         contentRenderer={
                             unknownRouteContentRenderer
                                 ? unknownRouteContentRenderer
-                                : () => <SoknadErrorMessages.GeneralApplicationError />
+                                : () => <SoknadErrorMessages.UnknownRoute />
                         }
                     />
                 }

@@ -64,10 +64,9 @@ const App = () => (
                                 key="root"
                                 index={true}
                                 path={SøknadRoutes.APP_ROOT}
-                                element={<Navigate to={SøknadRoutes.INNLOGGET_ROOT} replace={true} />}
+                                element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />}
                             />,
                             <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                            <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
                         ]}
                     />
                 </SoknadApplication>

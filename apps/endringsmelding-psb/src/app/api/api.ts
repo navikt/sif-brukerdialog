@@ -1,9 +1,8 @@
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-
 import { getEnvVariableOrDefault } from '../utils/envUtils';
-import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
 
 export * from './endpoints';
@@ -34,10 +33,6 @@ axios.interceptors.response.use(
     (error: AxiosError) => {
         if (isUnauthorized(error)) {
             relocateToLoginPage();
-            return Promise.reject(error);
-        }
-        if (isForbidden(error)) {
-            relocateToNoAccessPage();
             return Promise.reject(error);
         }
         return Promise.reject(error);

@@ -7,7 +7,9 @@ const relocateTo = (url: string): void => {
 };
 
 const getSøknadRouteURL = (route: SøknadRoutes) => {
-    return `${getEnvironmentVariable('PUBLIC_PATH')}${route}`;
+    const INGRESS = getEnvironmentVariable('INGRESS') || '';
+    const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+    return `${INGRESS}${publicPath}${route}`;
 };
 
 export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('LOGIN_URL'));

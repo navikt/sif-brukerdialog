@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
@@ -11,6 +12,7 @@ import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
@@ -35,7 +37,20 @@ type SøknadInitialLoading = {
     status: RequestStatus.loading;
 };
 
-export type SøknadInitialDataState = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
+type SøknadRedirectLogin = {
+    status: RequestStatus.redirectingToLogin;
+};
+
+type SøknadNoAccess = {
+    status: RequestStatus.noAccess;
+};
+
+export type SøknadInitialDataState =
+    | SøknadInitialSuccess
+    | SøknadInitialFailed
+    | SøknadInitialLoading
+    | SøknadNoAccess
+    | SøknadRedirectLogin;
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -108,11 +123,22 @@ function useSøknadInitialData(): SøknadInitialDataState {
             });
             return Promise.resolve();
         } catch (error: any) {
-            appSentryLogger.logError('fetchInitialData', error);
-            setInitialData({
-                status: RequestStatus.error,
-                error,
-            });
+            if (isUnauthorized(error)) {
+                setInitialData({
+                    status: RequestStatus.redirectingToLogin,
+                });
+                relocateToLoginPage();
+            } else if (isForbidden(error)) {
+                setInitialData({
+                    status: RequestStatus.noAccess,
+                });
+            } else {
+                appSentryLogger.logError('fetchInitialData', error);
+                setInitialData({
+                    status: RequestStatus.error,
+                    error,
+                });
+            }
         }
     };
 
