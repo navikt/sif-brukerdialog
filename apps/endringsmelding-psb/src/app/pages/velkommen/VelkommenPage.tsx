@@ -37,7 +37,7 @@ const VelkommenPage = () => {
     return (
         <Page title="Velkommen">
             <SifGuidePanel>
-                <Heading level="1" size="large">
+                <Heading level="1" size="large" data-testid="velkommen-header">
                     Velkommen {søker.fornavn}
                 </Heading>
                 <p>
