@@ -3,8 +3,8 @@ const mustacheExpress = require('mustache-express');
 const envSettings = require('../../../envSettings');
 require('dotenv').config();
 
-const configureDevServer = (decoratorFragments, port) => ({
-    onBeforeSetupMiddleware: (devServer) => {
+const configureDevServer = (decoratorFragments) => ({
+    setupMiddlewares: (middlewares, devServer) => {
         devServer.app.engine('html', mustacheExpress());
         devServer.app.set('views', `${__dirname}/../../../dist`);
         devServer.app.set('view engine', 'mustache');
@@ -37,8 +37,16 @@ const configureDevServer = (decoratorFragments, port) => ({
         devServer.app.get(/^\/(?!.*dist).*$/, (req, res) => {
             res.render('index.html', Object.assign(decoratorFragments));
         });
+
+        return middlewares;
     },
-    port,
+    static: {
+        watch: false,
+    },
+    devMiddleware: {
+        stats: 'minimal',
+    },
+    port: 8080,
 });
 
 module.exports = configureDevServer;
