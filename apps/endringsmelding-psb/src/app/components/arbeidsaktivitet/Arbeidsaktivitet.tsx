@@ -2,20 +2,18 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
-import ArbeidstidEnkeltukeModal from '../../../../components/arbeidstid-enkeltuke-modal/ArbeidstidEnkeltukeModal';
-import { ArbeidsgiverType } from '../../../../types/Arbeidsgiver';
+import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import {
     ArbeidstidAktivitetUkeEndring,
     ArbeidstidAktivitetUkeEndringMap,
-} from '../../../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke } from '../../../../types/K9Sak';
-import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../../types/Sak';
-import { getArbeidAktivitetNavn } from '../../../../utils/arbeidAktivitetUtils';
+} from '../../types/ArbeidstidAktivitetEndring';
+import { Arbeidsuke } from '../../types/K9Sak';
+import { ArbeidAktivitet, ArbeidAktivitetType } from '../../types/Sak';
+import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
+import ArbeidstidEnkeltukeModal from '../arbeidstid-enkeltuke-modal/ArbeidstidEnkeltukeModal';
+import ArbeidstidFlereUkerModal from '../arbeidstid-flere-uker-modal/ArbeidstidFlereUkerModal';
+import ArbeidstidUkeListe, { ArbeidstidUkeListeItem } from '../arbeidstid-uke-liste/ArbeidstidUkeListe';
 import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
-import ArbeidstidUkeListe, {
-    ArbeidstidUkeListeItem,
-} from '../../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
-import ArbeidstidFlereUkerModal from '../../../../components/arbeidstid-flere-uker-modal/ArbeidstidFlereUkerModal';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;

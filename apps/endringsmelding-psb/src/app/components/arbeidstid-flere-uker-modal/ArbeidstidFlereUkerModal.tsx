@@ -37,6 +37,7 @@ const ArbeidstidFlereUkerModal: FunctionComponent<Props> = ({
                             {getArbeidAktivitetNavn(arbeidAktivitet)}
                         </Heading>
                     </Block>
+                    {/** TODO */}
                 </div>
             </Modal.Content>
         </Modal>

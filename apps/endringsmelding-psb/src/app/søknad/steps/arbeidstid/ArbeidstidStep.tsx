@@ -20,7 +20,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import Arbeidsaktivitet from './arbeidsaktivitet/Arbeidsaktivitet';
+import Arbeidsaktivitet from '../../../components/arbeidsaktivitet/Arbeidsaktivitet';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import getValidateArbeidAktivitetEndring from './validation/validateArbeidAktivitetEndring';
 import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';

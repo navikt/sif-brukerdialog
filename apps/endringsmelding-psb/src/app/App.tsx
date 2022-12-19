@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Navigate, Route } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
-import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
@@ -57,18 +56,16 @@ const App = () => (
                         },
                     }}
                     publicPath={publicPath}>
-                    <SoknadApplicationCommonRoutes
-                        contentRoutes={[
-                            <Route key="dev" path="/dev" element={<DevPage />} />,
-                            <Route
-                                key="root"
-                                index={true}
-                                path={SøknadRoutes.APP_ROOT}
-                                element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />}
-                            />,
-                            <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                        ]}
-                    />
+                    <Routes>
+                        <Route key="dev" path="/dev" element={<DevPage />} />,
+                        <Route
+                            key="root"
+                            index={true}
+                            path={SøknadRoutes.APP_ROOT}
+                            element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />}
+                        />
+                        <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
+                    </Routes>
                 </SoknadApplication>
             </AmplitudeProvider>
         </ErrorBoundary>

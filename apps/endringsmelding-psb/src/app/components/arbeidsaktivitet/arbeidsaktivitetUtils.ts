@@ -4,11 +4,11 @@ import {
     ArbeidstidUkeListeItem,
     PeriodeIkkeSøktForListeItem,
     PeriodeSøktForListeItem,
-} from '../../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
-import { ArbeidstidAktivitetUkeEndringMap, ArbeidstidEndring } from '../../../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke, ArbeidsukeMap } from '../../../../types/K9Sak';
-import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
-import { beregnEndretArbeidstid } from '../../../../utils/beregnUtils';
+} from '../arbeidstid-uke-liste/ArbeidstidUkeListe';
+import { ArbeidstidAktivitetUkeEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
+import { Arbeidsuke, ArbeidsukeMap } from '../../types/K9Sak';
+import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
 
 const sorterItemsPåStartdato = (u1: PeriodeSøktForListeItem, u2: PeriodeSøktForListeItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;

@@ -14,6 +14,7 @@ const getValidateArbeidAktivitetEndring =
         if (hasValue(value) === false) {
             return ValidateRequiredFieldError.noValue;
         }
+        /** ToDo - validere opp mot normaltid */
         return undefined;
     };
 
