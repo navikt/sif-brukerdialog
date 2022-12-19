@@ -4,6 +4,7 @@ import { K9Sak } from './K9Sak';
 import { Søker } from './Søker';
 import { Sak } from './Sak';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
+import { TimerEllerProsent } from './TimerEllerProsent';
 
 export interface SøknadContextState {
     versjon: string;
@@ -15,4 +16,9 @@ export interface SøknadContextState {
     søknadRoute?: SøknadRoutes;
     endringsmeldingSendt?: boolean;
     børMellomlagres?: boolean;
+    inputPreferanser: SøknadContextInputPreferanse;
+}
+
+export interface SøknadContextInputPreferanse {
+    timerEllerProsent: TimerEllerProsent;
 }

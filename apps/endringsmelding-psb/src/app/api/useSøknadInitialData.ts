@@ -20,6 +20,7 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { TimerEllerProsent } from '../types/TimerEllerProsent';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -94,6 +95,9 @@ const setupSøknadInitialData = async (loadedData: {
         sak: k9sak ? getSakFromK9Sak(k9sak, arbeidsgivere) : undefined,
         arbeidsgivere,
         søknadsdata: {} as any,
+        inputPreferanser: {
+            timerEllerProsent: TimerEllerProsent.TIMER,
+        },
         ...lagretSøknadStateToUse,
     });
 };

@@ -16,6 +16,8 @@ import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from './ArbeidIPeri
 import ArbeidstidInput from './ArbeidstidInput';
 import { getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
 import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import actionsCreator from '../../søknad/context/action/actionCreator';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -41,6 +43,11 @@ const { FormikWrapper, Form } = getTypedFormComponents<
 >();
 
 const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, arbeidsuke, onSubmit, onCancel }) => {
+    const {
+        dispatch,
+        state: { inputPreferanser },
+    } = useSøknadContext();
+
     const intl = useIntl();
 
     const onFormSubmit = (values: ArbeidIPeriodeFormValues) => {
@@ -78,7 +85,7 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
 
     return (
         <FormikWrapper
-            initialValues={{ timerEllerProsent: TimerEllerProsent.PROSENT }}
+            initialValues={{ timerEllerProsent: inputPreferanser.timerEllerProsent }}
             onSubmit={onFormSubmit}
             renderForm={({ values, setValues }) => {
                 const { timerEllerProsent } = values;
@@ -103,15 +110,20 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
                         <Tabs
                             value={timerEllerProsent}
                             onChange={(value) => {
+                                dispatch(
+                                    actionsCreator.setInputPreferanser({
+                                        timerEllerProsent: value as TimerEllerProsent,
+                                    })
+                                );
                                 setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
                             }}>
                             <Tabs.List>
                                 <Tabs.Tab
                                     value="prosent"
-                                    label="Endre prosent"
+                                    label={<strong>Endre prosent</strong>}
                                     icon={<div style={{ minWidth: '1rem', textAlign: 'center' }}>%</div>}
                                 />
-                                <Tabs.Tab value="timer" label="Endre timer" icon={<Clock />} />
+                                <Tabs.Tab value="timer" label={<strong>Endre timer</strong>} icon={<Clock />} />
                             </Tabs.List>
                         </Tabs>
                         {timerEllerProsent && (

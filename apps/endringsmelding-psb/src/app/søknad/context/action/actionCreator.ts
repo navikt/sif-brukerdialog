@@ -1,5 +1,6 @@
 import { ArbeidstidAktivitetUkeEndring } from '../../../types/ArbeidstidAktivitetEndring';
 import { Sak } from '../../../types/Sak';
+import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { StepId } from '../../config/StepId';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
@@ -21,6 +22,7 @@ export enum SøknadContextActionKeys {
     SET_ENDRINGSMELDING_SENDT = 'setEndringsmeldingSendt',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
+    SET_INPUT_PREFERANSER = 'setInputPreferanser',
 }
 
 interface SetSak {
@@ -74,6 +76,11 @@ interface ClearStepSøknadsdata {
 interface SetArbeidstidAktivitetEndring {
     type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING;
     payload: { endring: ArbeidstidAktivitetUkeEndring };
+}
+
+interface SetInputPreferanser {
+    type: SøknadContextActionKeys.SET_INPUT_PREFERANSER;
+    payload: { inputPreferanser: Partial<SøknadContextInputPreferanse> };
 }
 
 const setSak = (sak: Sak): SetSak => ({
@@ -141,6 +148,13 @@ const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetUkeEndring): 
     },
 });
 
+const setInputPreferanser = (inputPreferanser: SøknadContextInputPreferanse): SetInputPreferanser => ({
+    type: SøknadContextActionKeys.SET_INPUT_PREFERANSER,
+    payload: {
+        inputPreferanser,
+    },
+});
+
 export type SøknadContextAction =
     | SetSak
     | AvbrytSøknad
@@ -155,7 +169,8 @@ export type SøknadContextAction =
     | SetSøknadRoute
     | SetEndringsmeldingSendt
     | StartSøknad
-    | SetArbeidstidAktivitetEndring;
+    | SetArbeidstidAktivitetEndring
+    | SetInputPreferanser;
 
 const actionsCreator = {
     setSak,
@@ -172,6 +187,7 @@ const actionsCreator = {
     setEndringsmeldingSendt,
     startSøknad,
     setArbeidstidAktivitetEndring,
+    setInputPreferanser,
 };
 
 export default actionsCreator;
