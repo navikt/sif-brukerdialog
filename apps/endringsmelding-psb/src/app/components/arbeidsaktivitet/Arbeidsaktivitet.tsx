@@ -52,7 +52,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidsukeChange }: Pr
                     arbeidsuker={uker}
                     visNormaltid={false}
                     onVelgUke={onVelgUke}
-                    onVelgUker={1 + 1 === 2 ? undefined : onVelgUker}
+                    onVelgUker={onVelgUker}
                 />
             </Block>
 
