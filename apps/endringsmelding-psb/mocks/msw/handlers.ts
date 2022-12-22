@@ -15,7 +15,7 @@ const handlers = [
         return res(ctx.status(200), ctx.json(søkerJson));
     }),
     rest.get(`${baseUrl}/innsyn/sak`, (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json(sakJson));
+        return res(ctx.delay(250), ctx.status(200), ctx.json(sakJson));
     }),
     rest.get(`${baseUrl}/arbeidsgiver`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(arbeidsgiverJson));

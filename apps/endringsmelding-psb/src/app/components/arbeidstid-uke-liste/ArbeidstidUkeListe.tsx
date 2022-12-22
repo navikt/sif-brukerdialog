@@ -1,7 +1,7 @@
 import { Alert, Button, Checkbox, Table } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Add, Edit } from '@navikt/ds-icons';
+import { AddCircle, Edit } from '@navikt/ds-icons';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration, durationUtils, ISODateRange } from '@navikt/sif-common-utils/lib';
@@ -48,12 +48,12 @@ interface Props {
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     arbeidsuker,
-    visNormaltid = false,
+    visNormaltid = true,
     paginering = {
-        antall: 10,
+        antall: 5,
     },
-    visAntallDager = true,
-    arbeidstidKolonneTittel = 'Arbeidstid',
+    visAntallDager = false,
+    arbeidstidKolonneTittel = 'Arbeid i periode',
 
     onVelgUke,
     onVelgUker,
@@ -76,11 +76,23 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     };
 
     const synligeUker = antallSynlig ? arbeidsuker.slice(0, antallSynlig) : arbeidsuker;
-    // const velgUkerHeaderCell = onVelgUker ? getVelgUkeHeaderCell(valgteUker, synligeUker, setValgteUker) : null;
     const visUkeEditButton: boolean = onVelgUker === undefined || valgteUker.length === 0;
 
     return (
         <div className="arbeidstidUkeList">
+            {onVelgUker && (
+                <>
+                    <p>Marker ukene du ønsker å endre lik arbeidstid for:</p>
+                    <FormBlock margin="l" paddingBottom="m">
+                        <EndreValgteUkerButton
+                            arbeidsuker={arbeidsuker}
+                            valgteUker={valgteUker}
+                            onVelgUker={onVelgUker}
+                        />
+                    </FormBlock>
+                </>
+            )}
+
             <Table>
                 <Table.Header>
                     {compactTable && (
@@ -95,8 +107,9 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 </Table.DataCell>
                             )}
                             <Table.HeaderCell>Periode</Table.HeaderCell>
-                            {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
-                            <Table.HeaderCell colSpan={2}>{arbeidstidKolonneTittel}</Table.HeaderCell>
+                            {/* {visNormaltid && <Table.HeaderCell>Normal arbeidstid</Table.HeaderCell>} */}
+                            <Table.HeaderCell>{arbeidstidKolonneTittel}</Table.HeaderCell>
+                            <Table.HeaderCell></Table.HeaderCell>
                         </Table.Row>
                     )}
                     {compactTable === false && (
@@ -110,11 +123,12 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                     />
                                 </Table.DataCell>
                             )}
-                            <Table.HeaderCell>Uke</Table.HeaderCell>
+                            <Table.HeaderCell style={{ width: '0' }}>Uke</Table.HeaderCell>
                             <Table.HeaderCell>Periode</Table.HeaderCell>
                             {visAntallDager && <Table.HeaderCell>Dager</Table.HeaderCell>}
-                            {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
-                            <Table.HeaderCell colSpan={2}>{arbeidstidKolonneTittel}</Table.HeaderCell>
+                            {visNormaltid && <Table.HeaderCell>Normal arbeidstid</Table.HeaderCell>}
+                            <Table.HeaderCell>{arbeidstidKolonneTittel}</Table.HeaderCell>
+                            <Table.HeaderCell>Endre</Table.HeaderCell>
                         </Table.Row>
                     )}
                 </Table.Header>
@@ -125,8 +139,11 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                         if (uke.søktFor === false) {
                             return (
                                 <Table.Row key={uke.isoDateRange}>
-                                    <Table.DataCell colSpan={10}>
-                                        <Alert variant="info" inline={true}>
+                                    <Table.DataCell colSpan={10} style={{ padding: 0 }}>
+                                        <Alert
+                                            variant="info"
+                                            inline={false}
+                                            style={{ borderRadius: 0, border: 'none' }}>
                                             Det er ikke søkt om pleiepenger i periode fra{' '}
                                             {dateFormatter.dayDateMonthYear(uke.periode.from)} til{' '}
                                             {dateFormatter.dayDateMonthYear(uke.periode.to)}.
@@ -138,22 +155,23 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                         const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.opprinnelig.normalt);
 
                         return (
-                            <Table.Row key={uke.isoDateRange} selected={selected}>
+                            <Table.Row key={uke.isoDateRange} selected={selected} style={{ verticalAlign: 'top' }}>
                                 {compactTable && (
                                     <>
                                         {onVelgUker && <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />}
-                                        <Table.DataCell>
+                                        <Table.DataCell style={{ minWidth: '12rem' }}>
                                             <PeriodeInfo uke={uke} ukenummer={ukenummer} kompakt={true} />
+                                            {visNormaltid && (
+                                                <div>
+                                                    Normal arbeidstid:{` `}
+                                                    <DurationText duration={uke.opprinnelig.normalt} />
+                                                </div>
+                                            )}
                                         </Table.DataCell>
-                                        {visNormaltid && (
-                                            <Table.DataCell>
-                                                <DurationText duration={uke.opprinnelig.normalt} />
-                                            </Table.DataCell>
-                                        )}
                                         <Table.DataCell>
                                             <Arbeidstid uke={uke} />
                                         </Table.DataCell>
-                                        <Table.DataCell>
+                                        <Table.DataCell style={{ width: '0' }}>
                                             {onVelgUke && ukeHarNormaltimer && (
                                                 <EndreUke uke={uke} onVelgUke={onVelgUke} enabled={visUkeEditButton} />
                                             )}
@@ -164,15 +182,19 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                     <>
                                         {onVelgUker && <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />}
                                         <Table.DataCell>{ukenummer}</Table.DataCell>
-                                        <Table.DataCell>
+                                        <Table.DataCell style={{ minWidth: '15rem' }}>
                                             <PeriodeInfo uke={uke} ukenummer={ukenummer} kompakt={false} />
                                         </Table.DataCell>
                                         {visAntallDager && <Table.DataCell>{uke.antallDager}</Table.DataCell>}
-                                        {visNormaltid && <Table.DataCell></Table.DataCell>}
+                                        {visNormaltid && (
+                                            <Table.DataCell>
+                                                <DurationText duration={uke.opprinnelig.normalt} />
+                                            </Table.DataCell>
+                                        )}
                                         <Table.DataCell>
                                             <Arbeidstid uke={uke} />
                                         </Table.DataCell>
-                                        <Table.DataCell>
+                                        <Table.DataCell style={{ width: '0' }}>
                                             {onVelgUke && ukeHarNormaltimer && (
                                                 <EndreUke uke={uke} onVelgUke={onVelgUke} enabled={visUkeEditButton} />
                                             )}
@@ -184,27 +206,24 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     })}
                 </Table.Body>
             </Table>
-            {onVelgUker && valgteUker.length > 0 && (
-                <FormBlock margin="l" paddingBottom="m">
-                    <Button
-                        variant="primary"
-                        type="button"
-                        onClick={() => {
-                            onVelgUker(arbeidsuker.filter((uke) => valgteUker.includes(uke.isoDateRange)));
-                        }}>
-                        Endre valgte uker
-                    </Button>
-                </FormBlock>
-            )}
             {paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt && (
                 <FormBlock margin="m">
-                    <Button
-                        variant="tertiary"
-                        icon={<Add />}
-                        type="button"
-                        onClick={() => setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))}>
-                        Vis flere uker
-                    </Button>
+                    <div style={{ textAlign: 'center' }}>
+                        <Button
+                            variant="tertiary"
+                            icon={<AddCircle />}
+                            type="button"
+                            onClick={() =>
+                                setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))
+                            }>
+                            Last inn flere uker
+                        </Button>
+                    </div>
+                </FormBlock>
+            )}
+            {onVelgUker && (
+                <FormBlock margin="l" paddingBottom="m">
+                    <EndreValgteUkerButton arbeidsuker={arbeidsuker} valgteUker={valgteUker} onVelgUker={onVelgUker} />
                 </FormBlock>
             )}
         </div>
@@ -247,7 +266,7 @@ const VelgUke = ({
     onToggle: onChange,
 }: UkeDataCellProps & { selected: boolean; onToggle: (id: string, selected: boolean) => void }) => {
     return (
-        <Table.DataCell>
+        <Table.DataCell style={{ width: '0' }}>
             <Checkbox
                 hideLabel
                 checked={selected}
@@ -269,7 +288,7 @@ const EndreUke = ({
     return (
         <Button
             disabled={!visUkeEditButton}
-            icon={<Edit />}
+            icon={<Edit aria-label={`Endre`} />}
             type="button"
             variant="primary"
             size="small"
@@ -280,18 +299,20 @@ const EndreUke = ({
 
 const PeriodeInfo = ({ uke, ukenummer, kompakt }: UkeDataCellProps & { ukenummer: number; kompakt: boolean }) => {
     return kompakt ? (
-        <>
+        <div id={`id-${uke.isoDateRange}`}>
             Uke {ukenummer}
             <br />
-            <span style={{ textTransform: 'capitalize' }}>
+            {/* <span style={{ textTransform: 'capitalize' }}>
                 {dateFormatter.day(uke.periode.from)} - {dateFormatter.day(uke.periode.to)}
             </span>
-            <br />
+            <br /> */}
             {renderDatoKompakt(uke.periode.from)} - {` `}
             {renderDatoKompakt(uke.periode.to)}
-        </>
+        </div>
     ) : (
-        <PeriodeTekst uke={uke} />
+        <div id={`id-${uke.isoDateRange}`}>
+            <PeriodeTekst uke={uke} />
+        </div>
     );
 };
 
@@ -311,8 +332,12 @@ const Arbeidstid = ({ uke }: { uke: PeriodeSøktForListeItem }) => {
     return (
         <div className="endretArbeidstid">
             <div className="endretArbeidstid__faktisk">
-                <DurationText duration={faktisk} />
-                {endretProsent && <span className="endretArbeidstid__prosent"> ({endretProsent} %)</span>}
+                <DurationText duration={faktisk} />{' '}
+                {endretProsent && (
+                    <span className="endretArbeidstid__prosent" style={{ whiteSpace: 'nowrap' }}>
+                        ({endretProsent} %)
+                    </span>
+                )}
             </div>
             <div className="endretArbeidstid__opprinnelig">
                 <DurationText duration={uke.opprinnelig.faktisk} />
@@ -337,5 +362,29 @@ const PeriodeTekst = ({
         <>
             {renderDato(from)} - {renderDato(to)}
         </>
+    );
+};
+
+const EndreValgteUkerButton = ({
+    onVelgUker,
+    arbeidsuker,
+    valgteUker,
+}: {
+    onVelgUker: OnVelgUkerType;
+    arbeidsuker: ArbeidstidUkeListeItem[];
+    valgteUker: string[];
+}) => {
+    return (
+        <Button
+            icon={<Edit />}
+            variant="secondary"
+            type="button"
+            size="small"
+            disabled={valgteUker.length === 0}
+            onClick={() => {
+                onVelgUker(arbeidsuker.filter((uke) => valgteUker.includes(uke.isoDateRange)));
+            }}>
+            Endre valgte uker
+        </Button>
     );
 };

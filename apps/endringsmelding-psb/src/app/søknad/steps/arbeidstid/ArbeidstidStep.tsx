@@ -1,6 +1,7 @@
 import { BodyLong, Panel } from '@navikt/ds-react';
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
@@ -108,6 +109,11 @@ const ArbeidstidStep = () => {
                 <BodyLong>
                     Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake i
                     tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
+                    <InfoList>
+                        <li>Du må oppgi timer per uke eller periode</li>
+                        <li>Du kan velge flere uker samtidig for å endre</li>
+                        <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
+                    </InfoList>
                 </BodyLong>
             </SifGuidePanel>
             <FormikWrapper

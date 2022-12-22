@@ -1,18 +1,15 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
-import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import {
     ArbeidstidAktivitetUkeEndring,
     ArbeidstidAktivitetUkeEndringMap,
 } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
-import { ArbeidAktivitet, ArbeidAktivitetType } from '../../types/Sak';
-import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
+import { ArbeidAktivitet } from '../../types/Sak';
 import ArbeidstidEnkeltukeModal from '../arbeidstid-enkeltuke-modal/ArbeidstidEnkeltukeModal';
 import ArbeidstidFlereUkerModal from '../arbeidstid-flere-uker-modal/ArbeidstidFlereUkerModal';
 import ArbeidstidUkeListe, { ArbeidstidUkeListeItem } from '../arbeidstid-uke-liste/ArbeidstidUkeListe';
+import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
 import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
 
 interface Props {
@@ -24,8 +21,6 @@ interface Props {
 const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidsukeChange }: Props) => {
     const [arbeidsukeForEndring, setArbeidsukeForEndring] = useState<Arbeidsuke | undefined>();
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
-    const navn = getArbeidAktivitetNavn(arbeidAktivitet);
-
     const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
     const ukerSøktFor = arbeidsaktivitetUtils.getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
     const periodeIkkeSøktFor = arbeidsaktivitetUtils.finnPeriodeIkkeSøktFor(ukerSøktFor);
@@ -41,19 +36,10 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidsukeChange }: Pr
 
     return (
         <>
-            <Heading level="2" size="medium" spacing={true}>
-                {navn}
-            </Heading>
-
-            <ArbeidAktivitetInfo arbeidAktivitet={arbeidAktivitet} />
+            <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
 
             <Block padBottom="l">
-                <ArbeidstidUkeListe
-                    arbeidsuker={uker}
-                    visNormaltid={false}
-                    onVelgUke={onVelgUke}
-                    onVelgUker={onVelgUker}
-                />
+                <ArbeidstidUkeListe arbeidsuker={uker} onVelgUke={onVelgUke} onVelgUker={onVelgUker} />
             </Block>
 
             <ArbeidstidEnkeltukeModal
@@ -80,18 +66,3 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidsukeChange }: Pr
 };
 
 export default Arbeidsaktivitet;
-
-const ArbeidAktivitetInfo = ({ arbeidAktivitet }: { arbeidAktivitet: ArbeidAktivitet }) => {
-    if (arbeidAktivitet.type !== ArbeidAktivitetType.arbeidstaker) {
-        return null;
-    }
-    const { type, id, ansattFom, ansattTom } = arbeidAktivitet.arbeidsgiver;
-    return (
-        <BodyLong>
-            {type === ArbeidsgiverType.ORGANISASJON ? `Organisasjonsnummer: ${id}` : 'Privatperson'}
-            <br />
-            {ansattFom && <>Ansatt: {dateFormatter.full(ansattFom)}.</>}
-            {ansattTom && <> Sluttdato: {dateFormatter.full(ansattTom)}</>}
-        </BodyLong>
-    );
-};

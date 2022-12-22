@@ -1,7 +1,6 @@
 export enum RequestStatus {
     'loading' = 'loading',
-    'redirectingToLogin' = 'redirectingToLogin',
-    'noAccess' = 'noAccess',
     'success' = 'success',
+    'noAccess' = 'noAccess',
     'error' = 'error',
 }
