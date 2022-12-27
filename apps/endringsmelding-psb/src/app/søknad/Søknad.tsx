@@ -17,7 +17,7 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.noAccess) {
-        return <IngenTilgangPage />;
+        return <IngenTilgangPage årsak={initialData.reason} />;
     }
 
     if (status === RequestStatus.error) {

@@ -7,10 +7,9 @@ import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEn
 import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
+import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
 import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
 import './arbeidstidEnkeltukeModal.scss';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -51,11 +50,11 @@ const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({
                             </span>
                         </Block>
                         {erHelArbeidsuke(arbeidsuke) === false && (
-                            <FormBlock>
-                                <Alert variant="info" inline={true}>
+                            <Block margin="l">
+                                <Alert variant="info" inline={false}>
                                     Ikke hel uke. Oppgi kun arbeidstid som gjelder {getDagerTekst(arbeidsuke.periode)}.
                                 </Alert>
-                            </FormBlock>
+                            </Block>
                         )}
                         <Block margin="l">
                             <ArbeidIPeriodeForm

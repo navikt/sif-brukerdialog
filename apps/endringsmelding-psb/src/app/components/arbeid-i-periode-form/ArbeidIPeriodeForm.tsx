@@ -1,23 +1,23 @@
-import { Tabs } from '@navikt/ds-react';
+import { ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { Clock } from '@navikt/ds-icons';
 import { getDurationString } from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import { durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
+import actionsCreator from '../../søknad/context/action/actionCreator';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
+import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 import ArbeidstidInput from './ArbeidstidInput';
 import { getArbeidstidIPeriodeIntlValues } from './arbeidstidPeriodeIntlValuesUtils';
-import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
-import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import actionsCreator from '../../søknad/context/action/actionCreator';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface ArbeidIPeriodeTimer {
     periode: DateRange;
@@ -107,7 +107,12 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
                         cancelButtonLabel="Avbryt"
                         onCancel={onCancel}
                         showButtonArrows={false}>
-                        <Tabs
+                        <Block>
+                            <p>
+                                <strong>Hvordan vil du oppgi arbeidstid?</strong>
+                            </p>
+                        </Block>
+                        <ToggleGroup
                             value={timerEllerProsent}
                             onChange={(value) => {
                                 dispatch(
@@ -117,15 +122,10 @@ const ArbeidIPeriodeForm: React.FunctionComponent<Props> = ({ arbeidAktivitet, a
                                 );
                                 setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
                             }}>
-                            <Tabs.List>
-                                <Tabs.Tab
-                                    value="prosent"
-                                    label={<strong>Endre prosent</strong>}
-                                    icon={<div style={{ minWidth: '1rem', textAlign: 'center' }}>%</div>}
-                                />
-                                <Tabs.Tab value="timer" label={<strong>Endre timer</strong>} icon={<Clock />} />
-                            </Tabs.List>
-                        </Tabs>
+                            <ToggleGroup.Item value={TimerEllerProsent.TIMER}>Timer</ToggleGroup.Item>
+                            <ToggleGroup.Item value={TimerEllerProsent.PROSENT}>Prosent</ToggleGroup.Item>
+                        </ToggleGroup>
+
                         {timerEllerProsent && (
                             <ArbeidstidInput
                                 arbeidIPeriode={values}

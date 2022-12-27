@@ -40,12 +40,12 @@ const createHashString = (info: SøknadStateHashInfo) => {
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo,
-    k9sak: K9Sak
+    k9saker: K9Sak[]
 ): boolean => {
     return (
         søknadState.versjon === APP_VERSJON &&
         søknadState.søknadHashString === createHashString(info) &&
-        k9sak.barn.aktørId === søknadState.barnAktørId
+        k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId)
     );
 };
 

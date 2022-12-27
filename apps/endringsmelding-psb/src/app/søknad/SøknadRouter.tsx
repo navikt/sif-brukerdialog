@@ -50,6 +50,10 @@ const SøknadRouter = () => {
         setShouldResetSøknad(true);
     }
 
+    if (!sak && k9saker.length > 1) {
+        return <VelgSakPage />;
+    }
+
     if (søknadsdata.harForståttRettigheterOgPlikter === false) {
         return (
             <Routes>
@@ -57,10 +61,6 @@ const SøknadRouter = () => {
                 <Route path="*" element={<Navigate to={StepId.VELKOMMEN} replace={true} />} />
             </Routes>
         );
-    }
-
-    if (!sak && k9saker.length > 1) {
-        return <VelgSakPage />;
     }
 
     return (

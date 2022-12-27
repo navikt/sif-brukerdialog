@@ -106,7 +106,7 @@ const ArbeidstidStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SifGuidePanel>
-                <BodyLong>
+                <BodyLong as="div">
                     Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake i
                     tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
                     <InfoList>
