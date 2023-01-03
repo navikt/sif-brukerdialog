@@ -1,15 +1,15 @@
 import { IntlShape } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ArbeidAktivitetType } from '../../types/Sak';
-import { getArbeidstidPeriodeIntl } from './arbeidIPeriodeMessages';
 
-export type ArbeidIPeriodeIntlValues = {
+export type ArbeidstidEnkeltukeIntlValues = {
     hvor: string;
     dagerTekst: string;
     skalEllerHarJobbet: string;
     timerNormalt: string;
 };
 
-export const getArbeidstidIPeriodeIntlValues = (
+export const getArbeidstidEnkeltukeIntlValues = (
     intl: IntlShape,
     info: {
         timerNormaltString: string;
@@ -23,24 +23,22 @@ export const getArbeidstidIPeriodeIntlValues = (
                   type: ArbeidAktivitetType.frilanser | ArbeidAktivitetType.selvstendigNæringsdrivende;
               };
     }
-): ArbeidIPeriodeIntlValues => {
-    const arbIntl = getArbeidstidPeriodeIntl(intl);
-
+): ArbeidstidEnkeltukeIntlValues => {
     const getHvorTekst = () => {
         switch (info.arbeidsforhold.type) {
             case ArbeidAktivitetType.arbeidstaker:
-                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt', {
+                return intlHelper(intl, 'arbeidstidEnkeltuke.intlValues.somAnsatt', {
                     arbeidsstedNavn: info.arbeidsforhold.arbeidsstedNavn,
                 });
             case ArbeidAktivitetType.frilanser:
-                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser');
+                return intlHelper(intl, 'arbeidstidEnkeltuke.intlValues.somFrilanser');
             case ArbeidAktivitetType.selvstendigNæringsdrivende:
-                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN');
+                return intlHelper(intl, 'arbeidstidEnkeltuke.intlValues.somSN');
         }
     };
 
     return {
-        skalEllerHarJobbet: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
+        skalEllerHarJobbet: intlHelper(intl, 'arbeidstidEnkeltuke.intlValues.skalJobbe'),
         hvor: getHvorTekst(),
         dagerTekst: info.dagerTekst,
         timerNormalt: info.timerNormaltString,

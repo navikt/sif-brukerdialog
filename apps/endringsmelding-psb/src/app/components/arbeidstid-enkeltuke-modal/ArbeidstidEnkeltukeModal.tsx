@@ -1,4 +1,4 @@
-import { Alert, Heading, Modal } from '@navikt/ds-react';
+import { Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
@@ -7,8 +7,7 @@ import { ArbeidstidAktivitetUkeEndring } from '../../types/ArbeidstidAktivitetEn
 import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
-import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
-import ArbeidIPeriodeForm from '../arbeid-i-periode-form/ArbeidIPeriodeForm';
+import ArbeidEnkeltukeForm from '../arbeidstid-enkeltuke-form/ArbeidstidEnkeltukeForm';
 import './arbeidstidEnkeltukeModal.scss';
 
 interface Props {
@@ -49,15 +48,8 @@ const ArbeidstidEnkeltukeModal: FunctionComponent<Props> = ({
                                 {dateFormatter.dayCompactDate(arbeidsuke.periode.to)}
                             </span>
                         </Block>
-                        {erHelArbeidsuke(arbeidsuke) === false && (
-                            <Block margin="l">
-                                <Alert variant="info" inline={false}>
-                                    Ikke hel uke. Oppgi kun arbeidstid som gjelder {getDagerTekst(arbeidsuke.periode)}.
-                                </Alert>
-                            </Block>
-                        )}
-                        <Block margin="l">
-                            <ArbeidIPeriodeForm
+                        <Block margin="xl">
+                            <ArbeidEnkeltukeForm
                                 arbeidAktivitet={arbeidAktivitet}
                                 arbeidsuke={arbeidsuke}
                                 onCancel={onClose}

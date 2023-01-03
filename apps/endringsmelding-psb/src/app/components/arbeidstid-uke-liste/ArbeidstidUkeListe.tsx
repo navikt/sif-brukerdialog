@@ -77,19 +77,22 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 
     const synligeUker = antallSynlig ? arbeidsuker.slice(0, antallSynlig) : arbeidsuker;
     const visUkeEditButton: boolean = onVelgUker === undefined || valgteUker.length === 0;
+    const visEndreValgteUkerButton = onVelgUker !== undefined;
 
     return (
         <div className="arbeidstidUkeList">
             {onVelgUker && (
                 <>
-                    <p>Marker ukene du ønsker å endre lik arbeidstid for:</p>
-                    <FormBlock margin="l" paddingBottom="m">
-                        <EndreValgteUkerButton
-                            arbeidsuker={arbeidsuker}
-                            valgteUker={valgteUker}
-                            onVelgUker={onVelgUker}
-                        />
-                    </FormBlock>
+                    <p>Marker ukene du ønsker å endre lik arbeidstid for</p>
+                    {visEndreValgteUkerButton && (
+                        <FormBlock margin="l" paddingBottom="m">
+                            <EndreValgteUkerButton
+                                arbeidsuker={arbeidsuker}
+                                valgteUker={valgteUker}
+                                onVelgUker={onVelgUker}
+                            />
+                        </FormBlock>
+                    )}
                 </>
             )}
 
@@ -221,7 +224,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     </div>
                 </FormBlock>
             )}
-            {onVelgUker && (
+            {onVelgUker && visEndreValgteUkerButton && (
                 <FormBlock margin="l" paddingBottom="m">
                     <EndreValgteUkerButton arbeidsuker={arbeidsuker} valgteUker={valgteUker} onVelgUker={onVelgUker} />
                 </FormBlock>
