@@ -5,7 +5,7 @@ import {
     PeriodeIkkeSøktForListeItem,
     PeriodeSøktForListeItem,
 } from '../arbeidstid-uke-liste/ArbeidstidUkeListe';
-import { ArbeidstidAktivitetUkeEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/K9Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
@@ -61,7 +61,7 @@ const arbeidsukeToArbeidstidUkeListItem = (
 
 const getArbeidstidUkeListItemFromArbeidsuker = (
     arbeidsuker: ArbeidsukeMap,
-    endringer: ArbeidstidAktivitetUkeEndringMap = {}
+    endringer: ArbeidstidAktivitetEndringMap = {}
 ): PeriodeSøktForListeItem[] => {
     const items: PeriodeSøktForListeItem[] = [];
 

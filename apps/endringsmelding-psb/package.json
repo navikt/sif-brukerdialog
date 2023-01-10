@@ -145,7 +145,8 @@
         "start-express": "node ./server.js",
         "start": "node ./src/build/scripts/start-dev.js",
         "storybook": "start-storybook -p 6006",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "react-scripts test --watchAll=false --env=jsdom",
+        "test-watch": "react-scripts test --watchAll=true --env=jsdom"
     },
     "snyk": true,
     "eslintConfig": {

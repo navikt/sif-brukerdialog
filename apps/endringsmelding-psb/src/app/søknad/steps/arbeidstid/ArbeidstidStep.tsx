@@ -8,10 +8,7 @@ import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import {
-    ArbeidstidAktivitetUkeEndring,
-    ArbeidstidAktivitetUkeEndringMap,
-} from '../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -33,7 +30,7 @@ export enum ArbeidstidFormFields {
     arbeidAktivitetEndring = 'arbeidAktivitetEndring',
 }
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetUkeEndringMap };
+    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringMap };
 }
 
 const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
@@ -78,18 +75,22 @@ const ArbeidstidStep = () => {
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidsukeChange = (
-        endring: ArbeidstidAktivitetUkeEndring,
+        endring: ArbeidstidAktivitetEndring,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
         const alleEndringer = values[ArbeidstidFormFields.arbeidAktivitetEndring] || {};
-        const endringerForAktivitet: ArbeidstidAktivitetUkeEndringMap = alleEndringer[endring.arbeidAktivitetId];
+        const tidligereEndringer: ArbeidstidAktivitetEndringMap = alleEndringer[endring.arbeidAktivitetId];
+        const nyeEndringer: ArbeidstidAktivitetEndringMap = {};
+        endring.perioder.forEach((periode) => {
+            nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+        });
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitetEndring: {
                 ...values[ArbeidstidFormFields.arbeidAktivitetEndring],
                 [endring.arbeidAktivitetId]: {
-                    ...endringerForAktivitet,
-                    [dateRangeToISODateRange(endring.periode)]: endring,
+                    ...tidligereEndringer,
+                    ...nyeEndringer,
                 },
             },
         };
@@ -154,7 +155,7 @@ const ArbeidstidStep = () => {
                                                     <Arbeidsaktivitet
                                                         arbeidAktivitet={arbeidAktivitet}
                                                         endringer={endringer[arbeidAktivitet.id]}
-                                                        onArbeidsukeChange={(endring) => {
+                                                        onArbeidstidAktivitetChange={(endring) => {
                                                             onArbeidsukeChange(endring, values, setValues);
                                                         }}
                                                     />

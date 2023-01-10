@@ -1,6 +1,6 @@
 import { dateToISODate, durationToISODuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import { ArbeidstidAktivitetUkeEndringMap } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
 import {
     ArbeidstakerApiData,
@@ -13,7 +13,7 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 
 export const getEndretArbeidstid = (
-    endringUkeMap: ArbeidstidAktivitetUkeEndringMap,
+    endringUkeMap: ArbeidstidAktivitetEndringMap,
     arbeidAktivitet: ArbeidAktivitet
 ): ArbeidstidPeriodeApiDataMap => {
     const arbeidsdagerMedEndretTid: ArbeidstidPeriodeApiDataMap = {};
@@ -40,7 +40,7 @@ export const getEndretArbeidstid = (
 };
 
 export const getArbeidstidInfo = (
-    aktivitetEndring?: ArbeidstidAktivitetUkeEndringMap,
+    aktivitetEndring?: ArbeidstidAktivitetEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
     if (aktivitetEndring && aktivitet) {

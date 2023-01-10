@@ -13,12 +13,12 @@ export interface ArbeidstidEndringTimer {
 
 export type ArbeidstidEndring = ArbeidstidEndringProsent | ArbeidstidEndringTimer;
 
-export interface ArbeidstidAktivitetUkeEndring {
+export interface ArbeidstidAktivitetEndring {
     arbeidAktivitetId: string;
-    periode: DateRange;
+    perioder: DateRange[];
     endring: ArbeidstidEndring;
 }
 
-export type ArbeidstidAktivitetUkeEndringMap = {
-    [isoDateRange: string]: ArbeidstidAktivitetUkeEndring;
+export type ArbeidstidAktivitetEndringMap = {
+    [isoDateRange: string]: ArbeidstidAktivitetEndring;
 };

@@ -1,0 +1,8 @@
+.endreArbeidstidModal {
+    min-width: 40rem;
+}
+@media (max-width: 600px) {
+    .endreArbeidstidModal {
+        min-width: initial;
+    }
+}

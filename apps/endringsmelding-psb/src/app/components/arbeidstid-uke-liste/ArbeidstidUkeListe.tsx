@@ -50,11 +50,10 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     arbeidsuker,
     visNormaltid = true,
     paginering = {
-        antall: 5,
+        antall: 10,
     },
     visAntallDager = false,
     arbeidstidKolonneTittel = 'Arbeid i periode',
-
     onVelgUke,
     onVelgUker,
 }) => {
@@ -141,12 +140,9 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                         const selected = onVelgUker !== undefined && valgteUker.includes(uke.isoDateRange);
                         if (uke.søktFor === false) {
                             return (
-                                <Table.Row key={uke.isoDateRange}>
-                                    <Table.DataCell colSpan={10} style={{ padding: 0 }}>
-                                        <Alert
-                                            variant="info"
-                                            inline={false}
-                                            style={{ borderRadius: 0, border: 'none' }}>
+                                <Table.Row key={uke.isoDateRange} className="arbeidstidUkeList__ikkeSøktForPeriode">
+                                    <Table.DataCell colSpan={10}>
+                                        <Alert variant="info" inline={false}>
                                             Det er ikke søkt om pleiepenger i periode fra{' '}
                                             {dateFormatter.dayDateMonthYear(uke.periode.from)} til{' '}
                                             {dateFormatter.dayDateMonthYear(uke.periode.to)}.
@@ -251,7 +247,7 @@ export const VelgUkeHeader = ({
             onChange={() => {
                 valgteUker.length
                     ? setValgteUker([])
-                    : setValgteUker(synligeUker.map(({ isoDateRange }) => isoDateRange));
+                    : setValgteUker(synligeUker.filter((uke) => uke.søktFor).map(({ isoDateRange }) => isoDateRange));
             }}
             hideLabel>
             Velg alle rader

@@ -1,4 +1,4 @@
-import { ArbeidstidAktivitetUkeEndring } from '../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
 import { Sak } from '../../../types/Sak';
 import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
@@ -75,7 +75,7 @@ interface ClearStepSøknadsdata {
 
 interface SetArbeidstidAktivitetEndring {
     type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING;
-    payload: { endring: ArbeidstidAktivitetUkeEndring };
+    payload: { endring: ArbeidstidAktivitetEndring };
 }
 
 interface SetInputPreferanser {
@@ -141,7 +141,7 @@ const clearStepSøknadsdata = (stepId: StepId): ClearStepSøknadsdata => ({
     },
 });
 
-const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetUkeEndring): SetArbeidstidAktivitetEndring => ({
+const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetEndring): SetArbeidstidAktivitetEndring => ({
     type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING,
     payload: {
         endring,
