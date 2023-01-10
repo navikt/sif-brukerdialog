@@ -109,7 +109,6 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 </Table.DataCell>
                             )}
                             <Table.HeaderCell>Periode</Table.HeaderCell>
-                            {/* {visNormaltid && <Table.HeaderCell>Normal arbeidstid</Table.HeaderCell>} */}
                             <Table.HeaderCell>{arbeidstidKolonneTittel}</Table.HeaderCell>
                             <Table.HeaderCell></Table.HeaderCell>
                         </Table.Row>
@@ -130,7 +129,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             {visAntallDager && <Table.HeaderCell>Dager</Table.HeaderCell>}
                             {visNormaltid && <Table.HeaderCell>Normal arbeidstid</Table.HeaderCell>}
                             <Table.HeaderCell>{arbeidstidKolonneTittel}</Table.HeaderCell>
-                            <Table.HeaderCell>Endre</Table.HeaderCell>
+                            {onVelgUke && <Table.HeaderCell>Endre</Table.HeaderCell>}
                         </Table.Row>
                     )}
                 </Table.Header>
