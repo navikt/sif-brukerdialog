@@ -19,5 +19,7 @@
     "common.soknadErrorMessages.applicationUnavailable.content": "Vi jobber så raskt vi kan med å få den tilgjengelig.",
 
     "common.soknadErrorMessages.unknownRoute.title": "Du har kommet til en side som ikke finnes",
-    "common.soknadErrorMessages.unknownRoute.content": "Vennligst gå tilbake"
+    "common.soknadErrorMessages.unknownRoute.content": "Noe gikk feil under visning av denne siden. Vennligst gå tilbake og prøv på nytt.",
+    "common.soknadErrorMessages.unknownRoute.reset": "Dersom feilen bare fortsetter, kan du prøve å starte på nytt. Da vil det du har fylt ut i skjemaet bli slettet, og du kommer tilbake til startsiden.",
+    "common.soknadErrorMessages.unknownRoute.reset.buttonLabel": "Start på nytt"
 }
