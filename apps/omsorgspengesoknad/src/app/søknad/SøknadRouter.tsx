@@ -1,19 +1,18 @@
-import { Button } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
+import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
 import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
+import OmBarnetStep from './steps/om-barnet/OmBarnetStep';
+import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -71,21 +70,15 @@ const SøknadRouter = () => {
             <Route
                 path="*"
                 element={
-                    <>
-                        Ukjent steg: {pathname}.
-                        <FormBlock>
-                            <Button
-                                type="button"
-                                onClick={() => {
-                                    slettMellomlagring().then(() => {
-                                        dispatch(actionsCreator.resetSøknad());
-                                        navigateTo(SøknadRoutes.VELKOMMEN);
-                                    });
-                                }}>
-                                Reset søknad
-                            </Button>
-                        </FormBlock>
-                    </>
+                    <UnknownRoutePage
+                        pathName={pathname}
+                        onReset={() => {
+                            slettMellomlagring().then(() => {
+                                dispatch(actionsCreator.resetSøknad());
+                                navigateTo(SøknadRoutes.VELKOMMEN);
+                            });
+                        }}
+                    />
                 }
             />
         </Routes>

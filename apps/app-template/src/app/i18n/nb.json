@@ -1,8 +1,6 @@
 {
     "application.title": "Søknad om SIF_SOKNAD_TEMPLATE",
     "application.bannerTitle": "Søknad om SIF_SOKNAD_TEMPLATE",
-    "page.error.pageTitle": "Det oppstod en feil",
-    "common.soknadErrorMessages.generalError.content": "Generell feilmelding",
 
     "step.pleietrengende.pageTitle": "Søknad - Pleietrengende",
     "step.pleietrengende.stepTitle": "Pleietrengende",

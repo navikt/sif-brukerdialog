@@ -19,9 +19,10 @@ export const omBarnetMessages: MessageFileFormat = {
         'steg.omBarnet.relasjon': 'Min relasjon til barnet',
         'steg.omBarnet.veileder.samværsavtale': 'Senere i søknaden laster du opp avtale om delt bosted for barnet.',
         'steg.omBarnet.spm.sammeAdresse': 'Er du folkeregistrert på samme adresse som barnet?',
-        'steg.omBarnet.spm.kroniskEllerFunksjonshemmende': 'Har barnet en kronisk sykdom eller funksjonshemming?',
+        'steg.omBarnet.spm.kroniskEllerFunksjonshemmende':
+            'Har barnet kronisk sykdom, funksjonshemming eller langvarig sykdom?',
         'steg.omBarnet.alert.ikkeKroniskSykdom':
-            'Søknad om ekstra omsorgsdager gjelder kun for de som har kronisk sykt eller funksjonshemmet barn.',
+            'Søknad om ekstra omsorgsdager gjelder kun for de som har barn med kronisk sykdom, funksjonshemming eller langvarig sykdom.',
         'steg.omBarnet.annetBarn.tittel': 'Annet barn',
 
         'validation.barnetSøknadenGjelder.noValue':
