@@ -10,8 +10,10 @@
     "gotoApplicationLink.lenketekst": "Gå til den digitale søknaden",
     "backlink.label": "Tilbake",
     "step.button.gåVidere": "Gå videre",
-    "step.button.startSøknad": "Start søknad",
+    "step.button.startSøknad": "Start ettersendelsen",
     "page.form.ubesvarteSpørsmålInfo": "For å komme videre må du svare på spørsmålet ovenfor.",
+
+    "ettersendelse.samtykkeForm.submitButtonLabel": "Start ettersendelse",
 
     "application.cancelOrContinueLaterLabel": "Avbryt eller fortsett senere",
 

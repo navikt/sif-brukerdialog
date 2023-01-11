@@ -10,5 +10,6 @@ export const samtykkeFormMessages: MessageFileFormat = {
         'samtykkeForm.ansvar.list.2.2': 'nav.no/rett og plikt',
         'samtykkeForm.harForståttRettigheterOgPlikter.notChecked':
             'Du må velge at du har forstått ditt ansvar som søker',
+        'samtykkeform.submitButtonLabel': 'Start søknad',
     },
 };

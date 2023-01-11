@@ -3,6 +3,7 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 import soknadErrorIntlMessages from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/soknadErrorIntlMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad-ds/lib/soknad-intl-messages/soknadIntlMessages';
 import { velkommenPageMessages } from '../pages/velkommen-page/velkommenPageMessages';
+import { stepFooterOverrideMessages } from './stepFooterMessagesOverride';
 
 const appBokmålstekster = require('./nb.json');
 
@@ -12,6 +13,7 @@ const bokmålstekster = {
     ...velkommenPageMessages.nb,
     ...soknadErrorIntlMessages.nb,
     ...soknadIntlMessages.nb,
+    ...stepFooterOverrideMessages.nb,
 };
 
 export const applicationIntlMessages: MessageFileFormat = {

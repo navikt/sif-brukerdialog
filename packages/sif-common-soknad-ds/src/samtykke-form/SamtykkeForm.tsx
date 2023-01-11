@@ -25,10 +25,11 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 interface Props {
+    submitButtonLabel?: string;
     onValidSubmit: () => void;
 }
 
-const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit }) => {
+const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, submitButtonLabel }) => {
     const intl = useIntl();
     return (
         <FormikWrapper
@@ -37,7 +38,7 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit }) => {
             renderForm={() => (
                 <Form
                     includeButtons={true}
-                    submitButtonLabel="Start søknad"
+                    submitButtonLabel={submitButtonLabel || intlHelper(intl, 'samtykkeform.submitButtonLabel')}
                     formErrorHandler={getIntlFormErrorHandler(intl, 'samtykkeForm')}>
                     <FormBlock>
                         <ConfirmationCheckbox
