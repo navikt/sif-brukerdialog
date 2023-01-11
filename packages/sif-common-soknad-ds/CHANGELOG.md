@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.2.0
+
+### Minor Changes
+
+-   451fef8: Legge til sjekk som gjør at bruker sendes til publicPath dersom en kommer til root (/)
+
 ## 5.1.3
 
 ### Patch Changes
