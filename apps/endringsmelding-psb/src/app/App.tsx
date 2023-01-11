@@ -4,6 +4,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { ensureBaseNameForReactRouter } from '@navikt/sif-common-soknad-ds/lib';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
 import dayjs from 'dayjs';
@@ -26,7 +27,7 @@ const container = document.getElementById('app');
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
-/** Trigger build */
+ensureBaseNameForReactRouter(publicPath);
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {

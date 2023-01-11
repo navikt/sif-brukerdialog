@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
+import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { ensureBaseNameForReactRouter } from '@navikt/sif-common-soknad-ds/lib';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
-import { Navigate, Route } from 'react-router-dom';
-import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
-import IntroPage from './pages/intro-page/IntroPage';
 import { applicationIntlMessages } from './i18n/applicationMessages';
 import GeneralErrorPage from './pages/general-error-page/GeneralErrorPage';
-import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import IntroPage from './pages/intro-page/IntroPage';
+import SoknadRemoteDataFetcher from './soknad/SoknadRemoteDataFetcher';
 import '@navikt/ds-css';
+import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
 
 export const APPLICATION_KEY = 'ettersending';
@@ -21,6 +22,9 @@ const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+
+/** Redirecter fra / til publicPath */
+ensureBaseNameForReactRouter(publicPath);
 
 root.render(
     <SifAppWrapper>

@@ -17,9 +17,10 @@ export { default as SummaryBlock } from './soknad-summary/summary-block/SummaryB
 export { default as SummaryList } from './soknad-summary/summary-list/SummaryList';
 export { default as SummarySection } from './soknad-summary/summary-section/SummarySection';
 export { default as DatoSvar } from './soknad-summary/DatoSvar';
-export { default as Fø } from './soknad-summary/FødselsnummerSvar';
+export { default as FødselsnummerSvar } from './soknad-summary/FødselsnummerSvar';
 export { default as JaNeiSvar } from './soknad-summary/JaNeiSvar';
 export { default as KronerSvar } from './soknad-summary/KronerSvar';
 export { default as TallSvar } from './soknad-summary/TallSvar';
 export { default as TextareaSvar } from './soknad-summary/TextareaSvar';
+export { ensureBaseNameForReactRouter } from './utils/ensureBaseNameForReactRouter';
 export type { SoknadContextInterface, SendSoknadStatusInterface } from './soknad-context/SoknadContext';
