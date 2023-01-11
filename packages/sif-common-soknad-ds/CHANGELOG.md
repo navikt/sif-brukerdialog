@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.3.0
+
+### Minor Changes
+
+-   1492b0a: Endre unknownRoute feilmelding
+
 ## 5.2.0
 
 ### Minor Changes

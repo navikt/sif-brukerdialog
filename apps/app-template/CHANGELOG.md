@@ -1,5 +1,16 @@
 # @navikt/SIF_SOKNAD_TEMPLATE
 
+## 0.2.0
+
+### Minor Changes
+
+-   1492b0a: Endre unknownRoute feilmelding
+
+### Patch Changes
+
+-   Updated dependencies [1492b0a]
+    -   @navikt/sif-common-soknad-ds@5.3.0
+
 ## 0.1.0
 
 ### Minor Changes
