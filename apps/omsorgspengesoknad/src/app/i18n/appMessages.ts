@@ -4,9 +4,7 @@ export const appMessages: MessageFileFormat = {
     nb: {
         'application.title': 'Omsorgspengesøknad',
         'application.bannerTitle': 'Søknad om ekstra omsorgsdager',
-        'page.error.pageTitle': 'Det oppstod en feil',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
-        'common.soknadErrorMessages.generalError.content': 'Generell feilmelding',
 
         'step.omBarnet.pageTitle': 'Omsorgspengesøknad - opplysninger om barnet',
         'step.omBarnet.stepTitle': 'Barn',

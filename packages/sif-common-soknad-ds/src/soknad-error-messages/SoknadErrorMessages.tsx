@@ -1,9 +1,10 @@
-import { Link as DSLink } from '@navikt/ds-react';
+import { Button, Link as DSLink } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface ErrorWithFrontpageUrlProps {
     soknadFrontpageUrl?: string;
@@ -96,11 +97,17 @@ const ApplicationUnavailable = () => (
     />
 );
 
-const UnknownRoute = () => (
+const UnknownRoute = ({ onReset }: { onReset?: () => void }) => (
     <SoknadErrorMessage
         titleKey="common.soknadErrorMessages.unknownRoute.title"
-        contentKey="common.soknadErrorMessages.unknownRoute.content"
-    />
+        contentKey="common.soknadErrorMessages.unknownRoute.content">
+        <p>
+            <FormattedMessage id="common.soknadErrorMessages.unknownRoute.reset" />
+        </p>
+        <Button type="button" onClick={onReset} variant="secondary" size="small">
+            <FormattedMessage id="common.soknadErrorMessages.unknownRoute.reset.buttonLabel" />
+        </Button>
+    </SoknadErrorMessage>
 );
 
 const SoknadErrorMessages = {

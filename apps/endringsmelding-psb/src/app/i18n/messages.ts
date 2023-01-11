@@ -4,8 +4,6 @@ export const defaultMessages: MessageFileFormat = {
     nb: {
         'application.title': 'Endringsmelding Pleiepenger sykt barn',
         'application.bannerTitle': 'Endringsmelding Pleiepenger sykt barn',
-        'page.error.pageTitle': 'Det oppstod en feil',
-        'common.soknadErrorMessages.generalError.content': 'Generell feilmelding',
 
         'step.aktivitet.pageTitle': 'Hvilke arbeidsforhold ønsker du å endre?',
         'step.aktivitet.stepTitle': 'Hvilke arbeidsforhold ønsker du å endre?',
