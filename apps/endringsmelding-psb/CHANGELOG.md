@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 0.3.0
+
+### Minor Changes
+
+-   451fef8: Legge til sjekk som gjør at bruker sendes til publicPath dersom en kommer til root (/)
+
+### Patch Changes
+
+-   Updated dependencies [451fef8]
+    -   @navikt/sif-common-soknad-ds@5.2.0
+
 ## 0.2.0
 
 ### Minor Changes

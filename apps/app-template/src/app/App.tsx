@@ -4,6 +4,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable, getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { ensureBaseNameForReactRouter } from '@navikt/sif-common-soknad-ds/lib';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
@@ -33,6 +34,8 @@ const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
+
+ensureBaseNameForReactRouter(publicPath);
 
 const App = () => (
     <SifAppWrapper>
