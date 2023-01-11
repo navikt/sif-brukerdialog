@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 2.3.1
+
+### Patch Changes
+
+-   98a7fc7: Justere tekster i ettersendelse. Parameter for start søknad label i samtykkeForm.
+-   Updated dependencies [98a7fc7]
+    -   @navikt/sif-common-soknad-ds@5.3.1
+
 ## 2.3.0
 
 ### Minor Changes

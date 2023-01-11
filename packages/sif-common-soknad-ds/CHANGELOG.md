@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.3.1
+
+### Patch Changes
+
+-   98a7fc7: Justere tekster i ettersendelse. Parameter for start søknad label i samtykkeForm.
+
 ## 5.3.0
 
 ### Minor Changes
