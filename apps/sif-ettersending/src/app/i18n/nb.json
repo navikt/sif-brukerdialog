@@ -17,8 +17,8 @@
 
     "application.cancelOrContinueLaterLabel": "Avbryt eller fortsett senere",
 
-    "steg.footer.avbryt": "Avbryt",
-    "steg.footer.fortsettSenere": "Fortsett senere",
+    "steg.footer.avbryt": "Avbryt og slett ettersendelse",
+    "steg.footer.fortsettSenere": "Avslutt og fortsett senere",
 
     "banner.title": "Ettersending av dokumenter",
     "page.error.pageTitle": "Det oppstod en feil",
