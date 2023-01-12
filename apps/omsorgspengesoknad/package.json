@@ -18,7 +18,7 @@
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@snyk/protect": "1.1083.0",
+        "@snyk/protect": "1.1086.0",
         "@testing-library/react": "13.4.0",
         "axios": "0.27.2",
         "busboy": "1.6.0",
