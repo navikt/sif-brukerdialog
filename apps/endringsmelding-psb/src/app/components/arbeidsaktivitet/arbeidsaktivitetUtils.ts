@@ -1,14 +1,19 @@
-import { DateRange, dateRangeToISODateRange, getNumberOfDaysInDateRange } from '@navikt/sif-common-utils/lib';
+import {
+    DateRange,
+    dateRangeToISODateRange,
+    durationUtils,
+    getNumberOfDaysInDateRange,
+} from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import { ArbeidstidAktivitetEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
+import { Arbeidsuke, ArbeidsukeMap } from '../../types/K9Sak';
+import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
 import {
     ArbeidstidUkeListeItem,
     PeriodeIkkeSøktForListeItem,
     PeriodeSøktForListeItem,
 } from '../arbeidstid-uke-liste/ArbeidstidUkeListe';
-import { ArbeidstidAktivitetEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke, ArbeidsukeMap } from '../../types/K9Sak';
-import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
 
 const sorterItemsPåStartdato = (u1: PeriodeSøktForListeItem, u2: PeriodeSøktForListeItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;
@@ -45,6 +50,7 @@ const arbeidsukeToArbeidstidUkeListItem = (
     return {
         ...arbeidsuke,
         søktFor: true,
+        kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt),
         antallDager: Object.keys(arbeidsuke.dagerMap).length,
         opprinnelig: {
             faktisk: arbeidsuke.faktisk,

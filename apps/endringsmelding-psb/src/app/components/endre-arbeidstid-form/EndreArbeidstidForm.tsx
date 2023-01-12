@@ -1,4 +1,4 @@
-import { ToggleGroup } from '@navikt/ds-react';
+import { Alert, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -18,6 +18,7 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltid } from '../../utils/arbeidsukeUtils';
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
@@ -82,6 +83,9 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
     if (arbeidsuker.length === 0) {
         return null;
     }
+
+    const ukerHarLikNormaltid = arbeidsukerHarLikNormaltid(arbeidsuker);
+    const alleUkerErHeleUker = arbeidsukerErHeleArbeidsuker(arbeidsuker);
 
     const arbeidsukerDescription = getArbeidsukerDescription(arbeidsuker);
 
@@ -159,6 +163,24 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                     />
                                 )}
                             </FormBlock>
+                        )}
+                        {ukerHarLikNormaltid === false && alleUkerErHeleUker === false && (
+                            <Alert variant="info">
+                                Informasjon når noen av ukene ikke er hele arbeidsuker samtidig som det er ulik
+                                normalarbeidstid - påminnelse om at bruker må sjekke disse ukene etterpå
+                            </Alert>
+                        )}
+                        {ukerHarLikNormaltid === false && alleUkerErHeleUker === true && (
+                            <Alert variant="info">
+                                Informasjon når noen av ukene har ulike normalarbeidstid - påminnelse om at bruker må
+                                sjekke disse ukene etterpå
+                            </Alert>
+                        )}
+                        {ukerHarLikNormaltid === true && alleUkerErHeleUker === false && (
+                            <Alert variant="info">
+                                Informasjon når noen av ukene ikke er hele arbeidsuker - påminnelse om at bruker må
+                                sjekke disse ukene etterpå
+                            </Alert>
                         )}
                     </Form>
                 );

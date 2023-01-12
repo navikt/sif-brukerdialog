@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit } from '@navikt/ds-icons';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, DateRange, Duration, durationUtils, ISODateRange } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
@@ -18,6 +18,7 @@ export interface PeriodeIkkeSøktForListeItem {
 }
 export interface PeriodeSøktForListeItem {
     søktFor: true;
+    kanEndres: boolean;
     isoDateRange: ISODateRange;
     periode: DateRange;
     antallDager: number;
@@ -49,7 +50,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     paginering = {
         antall: 10,
     },
-    arbeidstidKolonneTittel = 'Arbeid i periode',
+    arbeidstidKolonneTittel = 'Arbeidstid',
     onEndreUker,
 }) => {
     const antallUkerTotalt = arbeidsuker.length;
@@ -76,8 +77,8 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
         onEndreUker(arbeidsuker.filter((uke) => valgteUker.includes(uke.isoDateRange)));
     };
 
-    const renderEditButton = (uke: PeriodeSøktForListeItem, ukeHarNormaltimer: boolean) => {
-        if (!onEndreUker || ukeHarNormaltimer !== true) {
+    const renderEditButton = (uke: PeriodeSøktForListeItem) => {
+        if (!onEndreUker || !uke.kanEndres) {
             return undefined;
         }
 
@@ -124,7 +125,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                             ? setValgteUker([])
                                             : setValgteUker(
                                                   synligeUker
-                                                      .filter((uke) => uke.søktFor)
+                                                      .filter((uke) => uke.søktFor && uke.kanEndres)
                                                       .map(({ isoDateRange }) => isoDateRange)
                                               );
                                     }}
@@ -163,12 +164,12 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 </Table.Row>
                             );
                         }
-                        const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.opprinnelig.normalt);
+
                         return (
                             <Table.Row key={uke.isoDateRange} selected={selected} style={{ verticalAlign: 'top' }}>
                                 {onEndreUker && (
                                     <Table.DataCell style={{ width: '0' }}>
-                                        {ukeHarNormaltimer && (
+                                        {uke.kanEndres && (
                                             <Checkbox
                                                 hideLabel
                                                 checked={selected}
@@ -216,9 +217,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 <Table.DataCell>
                                     <ArbeidstidUkeInfo uke={uke} />
                                 </Table.DataCell>
-                                <Table.DataCell style={{ width: '0' }}>
-                                    {renderEditButton(uke, ukeHarNormaltimer)}
-                                </Table.DataCell>
+                                <Table.DataCell style={{ width: '0' }}>{renderEditButton(uke)}</Table.DataCell>
                             </Table.Row>
                         );
                     })}

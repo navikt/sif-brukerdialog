@@ -189,7 +189,6 @@ const getArbeidstidUkeListeItem = (perioder: ArbeidstidPeriodeApiDataMap): Arbei
         const dateRange = ISODateRangeToDateRange(isoDateRange);
         const {
             faktiskArbeidTimerPerDag,
-            // jobberNormaltTimerPerDag,
             _opprinneligFaktiskPerDag,
             _opprinneligNormaltPerDag,
             _endretProsent,
@@ -197,6 +196,7 @@ const getArbeidstidUkeListeItem = (perioder: ArbeidstidPeriodeApiDataMap): Arbei
         const antallDager = getDatesInDateRange(dateRange).length;
         const arbeidsuke: ArbeidstidUkeListeItem = {
             søktFor: true,
+            kanEndres: false,
             antallDager,
             isoDateRange,
             periode: dateRange,

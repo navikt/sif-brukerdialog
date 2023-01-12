@@ -9,6 +9,11 @@ import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from './config/StepId';
 import { getSøknadStepConfig } from './config/søknadStepConfig';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { Accordion } from '@navikt/ds-react';
+import AccordionItem from '@navikt/ds-react/esm/accordion/AccordionItem';
+import AccordionHeader from '@navikt/ds-react/esm/accordion/AccordionHeader';
+import AccordionContent from '@navikt/ds-react/esm/accordion/AccordionContent';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface Props {
     stepId: StepId;
@@ -35,7 +40,18 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
             onContinueLater={fortsettSøknadSenere}>
             <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
             {children}
-            {isDevMode ? <StateInfo /> : null}
+            {isDevMode ? (
+                <Block margin="xxl">
+                    <Accordion>
+                        <AccordionItem title="Develop info">
+                            <AccordionHeader>Dev-info</AccordionHeader>
+                            <AccordionContent>
+                                <StateInfo />
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                </Block>
+            ) : null}
         </Step>
     );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
@@ -26,14 +25,12 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
         <>
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
 
-            <Block padBottom="l">
-                <ArbeidstidUkeListe
-                    arbeidsuker={uker}
-                    onEndreUker={(uker: ArbeidstidUkeListeItem[]) => {
-                        setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
-                    }}
-                />
-            </Block>
+            <ArbeidstidUkeListe
+                arbeidsuker={uker}
+                onEndreUker={(uker: ArbeidstidUkeListeItem[]) => {
+                    setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
+                }}
+            />
 
             <EndreArbeidstidModal
                 arbeidAktivitet={arbeidAktivitet}

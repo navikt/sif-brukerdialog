@@ -1,12 +1,15 @@
-import { ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { Duration, ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { Arbeidsuke } from '../../../types/K9Sak';
 import { getArbeidsukerPerÅr, getUkerSomEndresTekst } from '../endreArbeidstidFormUtils';
 
-const getMockArbeidsuke = (isoDateRange: ISODateRange): Arbeidsuke => ({
+const getMockArbeidsuke = (
+    isoDateRange: ISODateRange,
+    normalt: Duration = { hours: '7', minutes: '30' }
+): Arbeidsuke => ({
     dagerMap: {},
     faktisk: { hours: '2', minutes: '0' },
     isoDateRange,
-    normalt: { hours: '7', minutes: '30' },
+    normalt,
     periode: ISODateRangeToDateRange(isoDateRange),
 });
 
