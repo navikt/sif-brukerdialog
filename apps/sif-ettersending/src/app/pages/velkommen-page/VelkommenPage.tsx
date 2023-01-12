@@ -29,7 +29,10 @@ const VelkommenPage: React.FC<Props> = ({ søknadstype }) => {
 
                 <OmSøknaden />
 
-                <SamtykkeForm onValidSubmit={startSoknad} />
+                <SamtykkeForm
+                    onValidSubmit={startSoknad}
+                    submitButtonLabel={intlHelper(intl, 'ettersendelse.samtykkeForm.submitButtonLabel')}
+                />
             </Page>
         </>
     );
