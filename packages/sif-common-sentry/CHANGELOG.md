@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.5.5
+
+### Patch Changes
+
+-   e1997dd: Pakkeoppdateringer
+
 ## 0.5.4
 
 ### Patch Changes

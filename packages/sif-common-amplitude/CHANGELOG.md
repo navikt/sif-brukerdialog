@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.6.5
+
+### Patch Changes
+
+-   e1997dd: Pakkeoppdateringer
+
 ## 2.6.4
 
 ### Patch Changes
