@@ -13,7 +13,8 @@
         "MSW_MODE": "dev",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "USE_AMPLITUDE": "true"
+        "USE_AMPLITUDE": "true",
+        "VELG_SAK": "on"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "ingresses": ["https://endringsmelding-pleiepenger.dev.nav.no"],
