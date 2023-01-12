@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.5
+
+### Patch Changes
+
+-   e1997dd: Pakkeoppdateringer
+
 ## 1.5.4
 
 ### Patch Changes
