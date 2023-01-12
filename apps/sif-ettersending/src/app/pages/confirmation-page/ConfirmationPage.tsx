@@ -58,9 +58,6 @@ const ConfirmationPage = ({ søknadstype }: Props) => {
                             </Block>
                             <ul className="checklist">
                                 <li>
-                                    <FormattedMessage id="page.confirmation.check.1" />{' '}
-                                </li>
-                                <li>
                                     <FormattedMessage id="page.confirmation.check.2" />
                                 </li>
                                 <li>
