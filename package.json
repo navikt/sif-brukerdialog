@@ -18,7 +18,7 @@
         "@testing-library/react": "13.4.0",
         "@testing-library/react-hooks": "8.0.1",
         "@testing-library/user-event": "14.4.3",
-        "esbuild": "0.16.16",
+        "esbuild": "0.16.17",
         "esbuild-jest": "0.5.0",
         "eslint": "8.31.0",
         "eslint-plugin-prettier": "4.2.1",
