@@ -32,7 +32,7 @@ const EndreArbeidstidModal: FunctionComponent<Props> = ({
                     </Heading>
                     <Block margin="l">
                         <Heading size="large" level="1">
-                            Endre arbeidstid
+                            {arbeidsuker.length === 1 ? 'Endre arbeidstid' : 'Endre arbeidstid for flere uker'}
                         </Heading>
                     </Block>
                     <Block margin="l">

@@ -29,10 +29,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             <Block padBottom="l">
                 <ArbeidstidUkeListe
                     arbeidsuker={uker}
-                    onVelgUke={(uke: ArbeidstidUkeListeItem) => {
-                        setArbeidsukerForEndring([arbeidsukerMap[uke.isoDateRange]]);
-                    }}
-                    onVelgUker={(uker: ArbeidstidUkeListeItem[]) => {
+                    onEndreUker={(uker: ArbeidstidUkeListeItem[]) => {
                         setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
                     }}
                 />

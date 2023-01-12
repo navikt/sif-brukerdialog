@@ -71,8 +71,6 @@ const OppsummeringStep = () => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
         apiData.ytelse.arbeidstid;
 
-    const visNormaltid = false;
-    const visAntallDager = false;
     const arbeidstidKolonneTittel = 'Endret arbeidstid';
 
     return (
@@ -99,8 +97,6 @@ const OppsummeringStep = () => {
                                     <>
                                         <ArbeidstidUkeListe
                                             arbeidsuker={arbeidsuker}
-                                            visNormaltid={visNormaltid}
-                                            visAntallDager={visAntallDager}
                                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                         />
                                     </>
@@ -115,8 +111,6 @@ const OppsummeringStep = () => {
                             <>
                                 <ArbeidstidUkeListe
                                     arbeidsuker={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
-                                    visNormaltid={visNormaltid}
-                                    visAntallDager={visAntallDager}
                                     arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                 />
                             </>
@@ -132,8 +126,6 @@ const OppsummeringStep = () => {
                                     arbeidsuker={getArbeidstidUkeListeItem(
                                         selvstendigNæringsdrivendeArbeidstidInfo.perioder
                                     )}
-                                    visNormaltid={visNormaltid}
-                                    visAntallDager={visAntallDager}
                                     arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                 />
                             </>
