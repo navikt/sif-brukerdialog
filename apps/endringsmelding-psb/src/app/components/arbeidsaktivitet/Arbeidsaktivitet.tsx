@@ -15,41 +15,29 @@ interface Props {
 }
 
 const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetChange }: Props) => {
-    const [arbeidsukeForEndring, setArbeidsukeForEndring] = useState<Arbeidsuke | undefined>();
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
+
     const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
     const ukerSøktFor = arbeidsaktivitetUtils.getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
     const periodeIkkeSøktFor = arbeidsaktivitetUtils.finnPeriodeIkkeSøktFor(ukerSøktFor);
     const uker = arbeidsaktivitetUtils.sorterListeItems([...ukerSøktFor, ...periodeIkkeSøktFor]);
-
-    const onVelgUke = (uke: ArbeidstidUkeListeItem) => {
-        setArbeidsukeForEndring(arbeidsukerMap[uke.isoDateRange]);
-    };
-
-    const onVelgUker = (uker: ArbeidstidUkeListeItem[]) => {
-        setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
-    };
 
     return (
         <>
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
 
             <Block padBottom="l">
-                <ArbeidstidUkeListe arbeidsuker={uker} onVelgUke={onVelgUke} onVelgUker={onVelgUker} />
-            </Block>
-
-            {arbeidsukeForEndring && (
-                <EndreArbeidstidModal
-                    arbeidAktivitet={arbeidAktivitet}
-                    isVisible={arbeidsukeForEndring !== undefined}
-                    arbeidsuker={[arbeidsukeForEndring]}
-                    onClose={() => setArbeidsukeForEndring(undefined)}
-                    onSubmit={(endring) => {
-                        onArbeidstidAktivitetChange(endring);
-                        setArbeidsukeForEndring(undefined);
+                <ArbeidstidUkeListe
+                    arbeidsuker={uker}
+                    onVelgUke={(uke: ArbeidstidUkeListeItem) => {
+                        setArbeidsukerForEndring([arbeidsukerMap[uke.isoDateRange]]);
+                    }}
+                    onVelgUker={(uker: ArbeidstidUkeListeItem[]) => {
+                        setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
                     }}
                 />
-            )}
+            </Block>
+
             <EndreArbeidstidModal
                 arbeidAktivitet={arbeidAktivitet}
                 isVisible={arbeidsukerForEndring !== undefined}

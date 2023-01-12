@@ -39,8 +39,7 @@ interface Props {
     paginering?: {
         antall: number;
     };
-    visOpprinneligOverstreket?: boolean;
-    visAntallDager?: boolean;
+
     arbeidstidKolonneTittel?: string;
     onVelgUke?: OnVelgUkeType;
     onVelgUker?: OnVelgUkerType;
@@ -52,7 +51,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     paginering = {
         antall: 10,
     },
-    visAntallDager = false,
+
     arbeidstidKolonneTittel = 'Arbeid i periode',
     onVelgUke,
     onVelgUker,
@@ -126,7 +125,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             )}
                             <Table.HeaderCell style={{ width: '0' }}>Uke</Table.HeaderCell>
                             <Table.HeaderCell>Periode</Table.HeaderCell>
-                            {visAntallDager && <Table.HeaderCell>Dager</Table.HeaderCell>}
+
                             {visNormaltid && <Table.HeaderCell>Normal arbeidstid</Table.HeaderCell>}
                             <Table.HeaderCell>{arbeidstidKolonneTittel}</Table.HeaderCell>
                             {onVelgUke && <Table.HeaderCell>Endre</Table.HeaderCell>}
@@ -151,12 +150,15 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                             );
                         }
                         const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.opprinnelig.normalt);
-
                         return (
                             <Table.Row key={uke.isoDateRange} selected={selected} style={{ verticalAlign: 'top' }}>
                                 {compactTable && (
                                     <>
-                                        {onVelgUker && <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />}
+                                        {onVelgUker && (
+                                            <Table.DataCell style={{ width: '0' }}>
+                                                <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />
+                                            </Table.DataCell>
+                                        )}
                                         <Table.DataCell style={{ minWidth: '12rem' }}>
                                             <PeriodeInfo uke={uke} ukenummer={ukenummer} kompakt={true} />
                                             {visNormaltid && (
@@ -178,12 +180,16 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 )}
                                 {!compactTable && (
                                     <>
-                                        {onVelgUker && <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />}
+                                        {onVelgUker && (
+                                            <Table.DataCell style={{ width: '0' }}>
+                                                <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />
+                                            </Table.DataCell>
+                                        )}
                                         <Table.DataCell>{ukenummer}</Table.DataCell>
                                         <Table.DataCell style={{ minWidth: '15rem' }}>
                                             <PeriodeInfo uke={uke} ukenummer={ukenummer} kompakt={false} />
                                         </Table.DataCell>
-                                        {visAntallDager && <Table.DataCell>{uke.antallDager}</Table.DataCell>}
+
                                         {visNormaltid && (
                                             <Table.DataCell>
                                                 <DurationText duration={uke.opprinnelig.normalt} />
@@ -264,17 +270,15 @@ const VelgUke = ({
     onToggle: onChange,
 }: UkeDataCellProps & { selected: boolean; onToggle: (id: string, selected: boolean) => void }) => {
     return (
-        <Table.DataCell style={{ width: '0' }}>
-            <Checkbox
-                hideLabel
-                checked={selected}
-                onChange={() => {
-                    onChange(uke.isoDateRange, selected);
-                }}
-                aria-labelledby={`id-${uke.isoDateRange}`}>
-                {' '}
-            </Checkbox>
-        </Table.DataCell>
+        <Checkbox
+            hideLabel
+            checked={selected}
+            onChange={() => {
+                onChange(uke.isoDateRange, selected);
+            }}
+            aria-labelledby={`id-${uke.isoDateRange}`}>
+            {' '}
+        </Checkbox>
     );
 };
 
@@ -300,26 +304,14 @@ const PeriodeInfo = ({ uke, ukenummer, kompakt }: UkeDataCellProps & { ukenummer
         <div id={`id-${uke.isoDateRange}`}>
             Uke {ukenummer}
             <br />
-            {/* <span style={{ textTransform: 'capitalize' }}>
-                {dateFormatter.day(uke.periode.from)} - {dateFormatter.day(uke.periode.to)}
-            </span>
-            <br /> */}
-            {renderDatoKompakt(uke.periode.from)} - {` `}
-            {renderDatoKompakt(uke.periode.to)}
+            {dateFormatter.compact(uke.periode.from)} - {` `}
+            {dateFormatter.compact(uke.periode.to)}
         </div>
     ) : (
         <div id={`id-${uke.isoDateRange}`}>
             <PeriodeTekst uke={uke} />
         </div>
     );
-};
-
-const renderDato = (date: Date) => {
-    return <span style={{ textTransform: 'capitalize' }}>{dateFormatter.compact(date)}</span>;
-};
-
-const renderDatoKompakt = (date: Date) => {
-    return <span style={{ textTransform: 'capitalize' }}>{dateFormatter.compact(date)}</span>;
 };
 
 const Arbeidstid = ({ uke }: { uke: PeriodeSøktForListeItem }) => {
@@ -352,13 +344,12 @@ const PeriodeTekst = ({
     uke: PeriodeSøktForListeItem;
 }) => {
     const sammeDato = dayjs(from).isSame(to, 'date');
-
     if (sammeDato) {
-        return renderDato(from);
+        return <>{dateFormatter.compact(from)}</>;
     }
     return (
         <>
-            {renderDato(from)} - {renderDato(to)}
+            {dateFormatter.compact(from)} - {dateFormatter.compact(to)}
         </>
     );
 };
