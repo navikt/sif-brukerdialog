@@ -2,6 +2,7 @@ import { Alert, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
@@ -13,17 +14,16 @@ import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
-import { ArbeidAktivitet } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltid } from '../../utils/arbeidsukeUtils';
 import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltid } from '../../utils/arbeidsukeUtils';
+
+export type EndreArbeidstidFormData = Omit<ArbeidstidAktivitetEndring, 'arbeidAktivitetId'>;
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
-    arbeidAktivitet: ArbeidAktivitet;
-    onSubmit: (endring: ArbeidstidAktivitetEndring) => void;
+    onSubmit: (data: EndreArbeidstidFormData) => void;
     onCancel: () => void;
 }
 
@@ -45,7 +45,7 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidAktivitet, arbeidsuker }) => {
+const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker }) => {
     const intl = useIntl();
     const {
         dispatch,
@@ -55,7 +55,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
     const onFormSubmit = (values: EndreArbeidstidFormValues) => {
         if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
             onSubmit({
-                arbeidAktivitetId: arbeidAktivitet.id,
                 perioder: arbeidsuker.map((a) => a.periode),
                 endring: {
                     type: TimerEllerProsent.PROSENT,
@@ -70,7 +69,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                 return;
             }
             onSubmit({
-                arbeidAktivitetId: arbeidAktivitet.id,
                 perioder: arbeidsuker.map((a) => a.periode),
                 endring: {
                     type: TimerEllerProsent.TIMER,

@@ -1,29 +1,7 @@
-import { Duration, ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-import { Arbeidsuke } from '../../../types/K9Sak';
 import { getArbeidsukerPerÅr, getUkerSomEndresTekst } from '../endreArbeidstidFormUtils';
+import { arbeidsukerMockData } from '../../../../../mocks/data/app/arbeidsukerMockData';
 
-const getMockArbeidsuke = (
-    isoDateRange: ISODateRange,
-    normalt: Duration = { hours: '7', minutes: '30' }
-): Arbeidsuke => ({
-    dagerMap: {},
-    faktisk: { hours: '2', minutes: '0' },
-    isoDateRange,
-    normalt,
-    periode: ISODateRangeToDateRange(isoDateRange),
-});
-
-const ukerEttÅr: ISODateRange[] = [
-    '2022-11-03/2022-11-04',
-    '2022-11-14/2022-11-18',
-    '2022-11-07/2022-11-11',
-    '2022-11-21/2022-11-25',
-    '2022-11-28/2022-11-30',
-];
-const ukerFlereÅr: ISODateRange[] = [...ukerEttÅr, '2023-01-02/2023-01-04'];
-
-const arbeidsukerFlereÅr: Arbeidsuke[] = ukerFlereÅr.map((uke) => getMockArbeidsuke(uke));
-const arbeidsukerEttÅr: Arbeidsuke[] = ukerEttÅr.map((uke) => getMockArbeidsuke(uke));
+const { arbeidsukerEttÅr, arbeidsukerFlereÅr } = arbeidsukerMockData;
 
 describe('getArbeidsukerPerÅr', () => {
     it('fordeler sorterte uker på riktig år', () => {

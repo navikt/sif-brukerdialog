@@ -37,8 +37,8 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                 isVisible={arbeidsukerForEndring !== undefined}
                 arbeidsuker={arbeidsukerForEndring || []}
                 onClose={() => setArbeidsukerForEndring(undefined)}
-                onSubmit={(endring) => {
-                    onArbeidstidAktivitetChange(endring);
+                onSubmit={(data) => {
+                    onArbeidstidAktivitetChange({ arbeidAktivitetId: arbeidAktivitet.id, ...data });
                     setArbeidsukerForEndring(undefined);
                 }}
             />
