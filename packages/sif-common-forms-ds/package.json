@@ -34,7 +34,7 @@
         "@types/react-responsive": "8.0.5",
         "axios": "0.27.2",
         "copyfiles": "2.4.1",
-        "core-js": "3.26.1",
+        "core-js": "3.27.1",
         "dayjs": "1.11.7",
         "flat": "5.0.2",
         "formik": "2.2.9",
