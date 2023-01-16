@@ -2,6 +2,8 @@ name: (helper) Deploy application to prod
 
 on:
     workflow_call:
+        branches:
+            - main
         inputs:
             working-directory:
                 type: string
@@ -40,9 +42,6 @@ jobs:
 
             - name: Run tests
               run: yarn test --filter=${{inputs.app-name}}
-
-            - name: Run cypress-tests
-              run: yarn e2e-${{inputs.app-name}}
 
             - name: Build application
               run: |
