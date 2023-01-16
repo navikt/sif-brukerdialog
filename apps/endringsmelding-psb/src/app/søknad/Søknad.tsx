@@ -7,6 +7,7 @@ import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
+import { Alert } from '@navikt/ds-react';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -21,7 +22,16 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.error) {
-        return <ErrorPage pageTitle="Det oppstod en feil" contentRenderer={() => <p>Dette er feilmeldingen</p>} />;
+        return (
+            <ErrorPage
+                pageTitle="Det oppstod en feil"
+                contentRenderer={() => (
+                    <Alert variant="error">
+                        Det oppstod en feil under henting av informasjon. Vennligst prøv igjen senere.
+                    </Alert>
+                )}
+            />
+        );
     }
 
     return (
