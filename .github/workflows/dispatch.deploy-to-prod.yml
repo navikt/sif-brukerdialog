@@ -7,8 +7,6 @@ on:
             description: Choose application
             type: choice
             options:
-            - endringsmelding-psb
-            - omsorgspengesoknad
             - sif-ettersending
             required: true
     secrets:
