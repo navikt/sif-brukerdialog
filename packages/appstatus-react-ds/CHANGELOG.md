@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.6
+
+### Patch Changes
+
+-   af051b61: Diverse pakkeoppdateringer
+
 ## 1.5.5
 
 ### Patch Changes
