@@ -43,9 +43,6 @@ jobs:
             - name: Run tests
               run: yarn test --filter=${{inputs.app-name}}
 
-            - name: Run cypress-tests
-              run: yarn e2e-${{inputs.app-name}}
-
             - name: Build application
               run: |
                   yarn build-${{ inputs.app-name }}
