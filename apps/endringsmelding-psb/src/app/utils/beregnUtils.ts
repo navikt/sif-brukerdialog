@@ -1,6 +1,6 @@
 import { decimalDurationToDuration, Duration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidEndring } from '../types/ArbeidstidAktivitetEndring';
-import { ArbeidsukeTimer } from '../types/ArbeidstukeTimer';
+import { ArbeidsukeTimer } from '../types/K9Sak';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
 
 export const beregnEndretArbeidstid = (endring: ArbeidstidEndring, normaltid: Duration): Duration => {
