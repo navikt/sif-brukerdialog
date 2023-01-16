@@ -9,11 +9,11 @@
     "dependencies": {
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.1.8",
-        "@navikt/ds-css": "2.0.12",
+        "@navikt/ds-css": "2.0.14",
         "@navikt/ds-datepicker": "4.0.0-beta.7",
-        "@navikt/ds-icons": "2.0.12",
-        "@navikt/ds-react": "2.0.12",
-        "@navikt/ds-tailwind": "2.0.12",
+        "@navikt/ds-icons": "2.0.14",
+        "@navikt/ds-react": "2.0.14",
+        "@navikt/ds-tailwind": "2.0.14",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -34,7 +34,7 @@
         "helmet": "6.0.1",
         "http-proxy-middleware": "2.0.6",
         "jose": "4.11.2",
-        "jsdom": "20.0.3",
+        "jsdom": "21.0.0",
         "mini-css-extract-plugin": "2.7.2",
         "mustache-express": "1.3.2",
         "openid-client": "5.3.1",
@@ -42,7 +42,7 @@
         "react": "18.2.0",
         "react-collapse": "5.1.1",
         "react-intl": "6.2.5",
-        "@snyk/protect": "1.1086.0",
+        "@snyk/protect": "1.1087.0",
         "uuid": "9.0.0"
     },
     "devDependencies": {
