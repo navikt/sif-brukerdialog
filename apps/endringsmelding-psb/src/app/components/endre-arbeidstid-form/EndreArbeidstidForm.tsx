@@ -64,7 +64,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
         }
         if (values.timerEllerProsent === TimerEllerProsent.TIMER && values.snittTimerPerUke) {
             const timer = getNumberFromStringInput(values.snittTimerPerUke);
-            if (!timer) {
+            if (timer === undefined) {
                 /** TODO */
                 return;
             }
