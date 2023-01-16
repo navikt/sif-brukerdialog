@@ -1,17 +1,11 @@
-import { Duration, ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { ISODateRange } from '@navikt/sif-common-utils/lib';
+import { arbeidsukerMockData } from '../../../../mocks/data/app/arbeidsukerMockData';
 import { Arbeidsuke } from '../../types/K9Sak';
-import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltid, sorterArbeidsuker } from '../arbeidsukeUtils';
+import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltidPerDag, sorterArbeidsuker } from '../arbeidsukeUtils';
+import { getTimerPerDagOgUkeFraUke } from '../beregnUtils';
 
-const getMockArbeidsuke = (
-    isoDateRange: ISODateRange,
-    normalt: Duration = { hours: '7', minutes: '30' }
-): Arbeidsuke => ({
-    dagerMap: {},
-    faktisk: { hours: '2', minutes: '0' },
-    isoDateRange,
-    normalt,
-    periode: ISODateRangeToDateRange(isoDateRange),
-});
+const { getMockArbeidsuke } = arbeidsukerMockData;
+
 const delvisUker: ISODateRange[] = ['2022-11-03/2022-11-04', '2022-11-28/2022-11-30'];
 const heleUker: ISODateRange[] = ['2022-11-14/2022-11-18', '2022-11-07/2022-11-11', '2022-11-21/2022-11-25'];
 
@@ -19,27 +13,27 @@ const arbeidsukerHele: Arbeidsuke[] = heleUker.map((uke) => getMockArbeidsuke(uk
 const arbeidsukerDelvis: Arbeidsuke[] = delvisUker.map((uke) => getMockArbeidsuke(uke));
 const arbeidsukerHeleOgDelvis = [...arbeidsukerHele, ...arbeidsukerDelvis].sort(sorterArbeidsuker);
 
-describe('arbeidsukerHarLikNormaltid', () => {
-    const ukerMedLikNormaltid = arbeidsukerHeleOgDelvis.map(
-        (a): Arbeidsuke => ({ ...a, normalt: { hours: '1', minutes: '0' } })
-    );
+describe('arbeidsukerHarLikNormaltidPerDag', () => {
     it('returnerer true når alle uker har lik normalarbeidstid', () => {
-        expect(arbeidsukerHarLikNormaltid(ukerMedLikNormaltid)).toBeTruthy();
+        expect(arbeidsukerHarLikNormaltidPerDag(arbeidsukerHeleOgDelvis)).toBeTruthy();
+    });
+    it('returnerer true når antall uker er 0', () => {
+        expect(arbeidsukerHarLikNormaltidPerDag([])).toBeTruthy();
     });
     it('returnerer true når det kun er én uke', () => {
         const uke = arbeidsukerHele[0];
-        expect(arbeidsukerHarLikNormaltid([uke])).toBeTruthy();
+        expect(arbeidsukerHarLikNormaltidPerDag([uke])).toBeTruthy();
     });
-    it('returnerer true når antall uker er 0', () => {
-        expect(arbeidsukerHarLikNormaltid([])).toBeTruthy();
-    });
-    it('returnerer false når alle uker har lik normalarbeidstid', () => {
-        const uker = [...ukerMedLikNormaltid];
-        uker[0].normalt = {
-            hours: '10',
-            minutes: '0',
-        };
-        expect(arbeidsukerHarLikNormaltid(uker)).toBeFalsy();
+    it('returnerer false dersom noen uker har ulik normalarbeidstid - for hele uker', () => {
+        const uker = [...arbeidsukerHele];
+        uker[0].normalt = getTimerPerDagOgUkeFraUke(
+            {
+                hours: '10',
+                minutes: '30',
+            },
+            5
+        );
+        expect(arbeidsukerHarLikNormaltidPerDag(uker)).toBeFalsy();
     });
 });
 

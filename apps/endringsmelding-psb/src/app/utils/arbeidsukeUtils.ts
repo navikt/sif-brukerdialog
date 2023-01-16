@@ -19,12 +19,17 @@ export const getDagerTekst = ({ from, to }: DateRange): string => {
     return `${fra} til ${til}`;
 };
 
-export const arbeidsukerHarLikNormaltid = (arbeidsuker: Arbeidsuke[]): boolean => {
-    if (arbeidsuker.length <= 1) {
+export const arbeidsukerHarLikNormaltidPerDag = (arbeidsuker: Arbeidsuke[]): boolean => {
+    if (arbeidsuker.length === 0) {
         return true;
     }
-    const normaltid = durationToISODuration(arbeidsuker[0].normalt);
-    return arbeidsuker.some((arbeidsuke) => normaltid !== durationToISODuration(arbeidsuke.normalt)) === false;
+    const normaltidPerDagFørsteUke = durationToISODuration(arbeidsuker[0].normalt.dag);
+    const harUlikNormalarbeidstid = arbeidsuker.some((arbeidsuke) => {
+        const normaltid = durationToISODuration(arbeidsuke.normalt.dag);
+        return normaltidPerDagFørsteUke !== normaltid;
+    });
+
+    return harUlikNormalarbeidstid === false;
 };
 
 export const arbeidsukerErHeleArbeidsuker = (arbeidsuker: Arbeidsuke[]): boolean => {

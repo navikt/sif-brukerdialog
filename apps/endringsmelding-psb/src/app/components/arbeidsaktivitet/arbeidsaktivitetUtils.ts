@@ -50,15 +50,15 @@ const arbeidsukeToArbeidstidUkeListItem = (
     return {
         ...arbeidsuke,
         søktFor: true,
-        kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt),
+        kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
         antallDager: Object.keys(arbeidsuke.dagerMap).length,
         opprinnelig: {
-            faktisk: arbeidsuke.faktisk,
-            normalt: arbeidsuke.normalt,
+            faktisk: arbeidsuke.faktisk.uke,
+            normalt: arbeidsuke.normalt.uke,
         },
         endret: endring
             ? {
-                  faktisk: beregnEndretArbeidstid(endring, arbeidsuke.normalt),
+                  faktisk: beregnEndretArbeidstid(endring, arbeidsuke.normalt.uke),
                   endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
               }
             : undefined,

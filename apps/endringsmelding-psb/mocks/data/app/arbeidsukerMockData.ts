@@ -1,17 +1,34 @@
-import { Duration, ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import {
+    dateRangeUtils,
+    decimalDurationToDuration,
+    Duration,
+    durationToDecimalDuration,
+    ISODateRange,
+    ISODateRangeToDateRange,
+} from '@navikt/sif-common-utils/lib';
 import { Arbeidsuke } from '../../../src/app/types/K9Sak';
 
 const getMockArbeidsuke = (
     isoDateRange: ISODateRange,
-    normalt: Duration = { hours: '7', minutes: '30' },
-    faktisk: Duration = { hours: '2', minutes: '0' }
-): Arbeidsuke => ({
-    isoDateRange,
-    dagerMap: {},
-    faktisk,
-    normalt,
-    periode: ISODateRangeToDateRange(isoDateRange),
-});
+    normaltPerDag: Duration = { hours: '7', minutes: '30' },
+    faktiskPerDag: Duration = { hours: '2', minutes: '0' }
+): Arbeidsuke => {
+    const antallArbeidsdager = dateRangeUtils.getNumberOfDaysInDateRange(ISODateRangeToDateRange(isoDateRange), true);
+    return {
+        isoDateRange,
+        dagerMap: {},
+        antallArbeidsdager,
+        normalt: {
+            uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallArbeidsdager),
+            dag: normaltPerDag,
+        },
+        faktisk: {
+            uke: decimalDurationToDuration(durationToDecimalDuration(faktiskPerDag) * antallArbeidsdager),
+            dag: faktiskPerDag,
+        },
+        periode: ISODateRangeToDateRange(isoDateRange),
+    };
+};
 
 const ukerEttÅr: ISODateRange[] = [
     '2022-11-03/2022-11-04',

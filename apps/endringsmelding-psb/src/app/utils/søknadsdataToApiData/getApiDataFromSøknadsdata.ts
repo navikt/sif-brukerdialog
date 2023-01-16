@@ -24,15 +24,19 @@ export const getEndretArbeidstid = (
         const dager = Object.keys(arbeidsuke.dagerMap);
         const antallDager = dager.length;
 
-        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt, antallDager);
-        const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(arbeidsuke.normalt, endring, antallDager);
+        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDager);
+        const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
+            arbeidsuke.normalt.uke,
+            endring,
+            antallDager
+        );
 
         arbeidsdagerMedEndretTid[isoDateRange] = {
             jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
             faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
             _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
-            _opprinneligNormaltPerDag: durationToISODuration(beregnSnittTimerPerDag(arbeidsuke.normalt, antallDager)),
-            _opprinneligFaktiskPerDag: durationToISODuration(beregnSnittTimerPerDag(arbeidsuke.faktisk, antallDager)),
+            _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
+            _opprinneligFaktiskPerDag: durationToISODuration(arbeidsuke.faktisk.dag),
         };
     });
 

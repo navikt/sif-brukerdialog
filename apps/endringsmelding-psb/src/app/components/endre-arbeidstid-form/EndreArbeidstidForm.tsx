@@ -15,7 +15,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltid } from '../../utils/arbeidsukeUtils';
+import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltidPerDag } from '../../utils/arbeidsukeUtils';
 import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 
@@ -82,7 +82,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
         return null;
     }
 
-    const ukerHarLikNormaltid = arbeidsukerHarLikNormaltid(arbeidsuker);
+    const ukerHarLikNormaltidPerDag = arbeidsukerHarLikNormaltidPerDag(arbeidsuker);
     const alleUkerErHeleUker = arbeidsukerErHeleArbeidsuker(arbeidsuker);
 
     const arbeidsukerDescription = getArbeidsukerDescription(arbeidsuker);
@@ -162,19 +162,19 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                 )}
                             </FormBlock>
                         )}
-                        {ukerHarLikNormaltid === false && alleUkerErHeleUker === false && (
+                        {ukerHarLikNormaltidPerDag === false && alleUkerErHeleUker === false && (
                             <Alert variant="info">
                                 Informasjon når noen av ukene ikke er hele arbeidsuker samtidig som det er ulik
                                 normalarbeidstid - påminnelse om at bruker må sjekke disse ukene etterpå
                             </Alert>
                         )}
-                        {ukerHarLikNormaltid === false && alleUkerErHeleUker === true && (
+                        {ukerHarLikNormaltidPerDag === false && alleUkerErHeleUker === true && (
                             <Alert variant="info">
                                 Informasjon når noen av ukene har ulike normalarbeidstid - påminnelse om at bruker må
                                 sjekke disse ukene etterpå
                             </Alert>
                         )}
-                        {ukerHarLikNormaltid === true && alleUkerErHeleUker === false && (
+                        {ukerHarLikNormaltidPerDag === true && alleUkerErHeleUker === false && (
                             <Alert variant="info">
                                 Informasjon når noen av ukene ikke er hele arbeidsuker - påminnelse om at bruker må
                                 sjekke disse ukene etterpå

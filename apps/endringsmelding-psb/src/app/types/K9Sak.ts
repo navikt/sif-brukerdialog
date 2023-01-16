@@ -3,12 +3,18 @@ import { DagerIkkeSøktForMap, DagerSøktForMap } from './';
 
 export type TidEnkeltdag = DateDurationMap; // { [isoDateString: string]: { hours: string; minutes: string } };
 
+export interface ArbeidsukeTimer {
+    dag: Duration;
+    uke: Duration;
+}
+
 export interface Arbeidsuke {
     isoDateRange: string;
     periode: DateRange;
     dagerMap: ArbeidstidEnkeltdagMap;
-    faktisk: Duration;
-    normalt: Duration;
+    antallArbeidsdager: number;
+    faktisk: ArbeidsukeTimer;
+    normalt: ArbeidsukeTimer;
 }
 
 export interface ArbeidsukeMap {
@@ -20,12 +26,10 @@ export interface AktivitetArbeidstid {
 }
 
 export type ArbeidstidEnkeltdagMap = {
-    [key: ISODate]: ArbeidstidEnkeltdag;
-};
-
-export type ArbeidstidEnkeltdag = {
-    faktisk: Duration;
-    normalt: Duration;
+    [key: ISODate]: {
+        faktisk: Duration;
+        normalt: Duration;
+    };
 };
 
 export type ArbeidstakerMap = {
