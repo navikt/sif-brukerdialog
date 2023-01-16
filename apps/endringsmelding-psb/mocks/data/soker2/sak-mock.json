@@ -1,0 +1,70 @@
+[
+    {
+        "barn": {
+            "fødselsdato": "2006-10-08",
+            "fornavn": "SPISS",
+            "mellomnavn": null,
+            "etternavn": "KLASSE",
+            "aktørId": "2840906567176",
+            "identitetsnummer": "08900698292"
+        },
+        "søknad": {
+            "søknadId": "0a234bf2-f987-4870-b873-407918662ae7",
+            "versjon": "1.0.0",
+            "mottattDato": "2023-01-16T14:19:24.641Z",
+            "søker": { "norskIdentitetsnummer": "07908298548" },
+            "ytelse": {
+                "type": "PLEIEPENGER_SYKT_BARN",
+                "barn": { "norskIdentitetsnummer": "08900698292", "fødselsdato": null },
+                "søknadsperiode": ["2023-01-04/2023-01-26"],
+                "endringsperiode": [],
+                "trekkKravPerioder": [],
+                "opptjeningAktivitet": {},
+                "dataBruktTilUtledning": {
+                    "harForståttRettigheterOgPlikter": true,
+                    "harBekreftetOpplysninger": true,
+                    "samtidigHjemme": null,
+                    "harMedsøker": null,
+                    "bekrefterPeriodeOver8Uker": null
+                },
+                "infoFraPunsj": null,
+                "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                "tilsynsordning": { "perioder": { "2023-01-04/2023-01-26": { "etablertTilsynTimerPerDag": "PT0S" } } },
+                "lovbestemtFerie": { "perioder": {} },
+                "arbeidstid": {
+                    "arbeidstakerList": [
+                        {
+                            "norskIdentitetsnummer": null,
+                            "organisasjonsnummer": "947064649",
+                            "arbeidstidInfo": {
+                                "perioder": {
+                                    "2023-01-04/2023-01-26": {
+                                        "jobberNormaltTimerPerDag": "PT6H48M",
+                                        "faktiskArbeidTimerPerDag": "PT3H24M"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "frilanserArbeidstidInfo": {
+                        "perioder": {
+                            "2023-01-04/2023-01-26": {
+                                "jobberNormaltTimerPerDag": "PT0S",
+                                "faktiskArbeidTimerPerDag": "PT0S"
+                            }
+                        }
+                    },
+                    "selvstendigNæringsdrivendeArbeidstidInfo": null
+                },
+                "uttak": { "perioder": { "2023-01-04/2023-01-26": { "timerPleieAvBarnetPerDag": "PT7H30M" } } },
+                "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
+            },
+            "språk": "nb",
+            "journalposter": [],
+            "begrunnelseForInnsending": { "tekst": null }
+        }
+    }
+]

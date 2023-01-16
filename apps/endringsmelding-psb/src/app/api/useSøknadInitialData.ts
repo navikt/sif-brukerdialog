@@ -80,11 +80,21 @@ const setupSøknadInitialData = async (loadedData: {
         ? k9saker.find((k9sak) => k9sak.barn.aktørId === lagretSøknadState.barnAktørId)
         : undefined;
 
+    const getInitialSak = () => {
+        if (persistedSak) {
+            return getSakFromK9Sak(persistedSak, arbeidsgivere);
+        }
+        if (k9saker.length === 1) {
+            return getSakFromK9Sak(k9saker[0], arbeidsgivere);
+        }
+        return undefined;
+    };
+
     return Promise.resolve({
         versjon: APP_VERSJON,
         søker,
         k9saker,
-        sak: persistedSak ? getSakFromK9Sak(persistedSak, arbeidsgivere) : undefined,
+        sak: getInitialSak(),
         arbeidsgivere,
         søknadsdata: {} as any,
         inputPreferanser: {
