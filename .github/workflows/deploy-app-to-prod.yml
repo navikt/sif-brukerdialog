@@ -2,6 +2,8 @@ name: (helper) Deploy application to prod
 
 on:
     workflow_call:
+        branches:
+            - main
         inputs:
             working-directory:
                 type: string
