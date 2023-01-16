@@ -32,5 +32,5 @@ export enum SøknadRoutes {
     OPPSUMMERING = '/melding/oppsummering',
     SØKNAD_SENDT = '/melding/melding_sendt',
     UKJENT_STEG = '/melding/ukjent-steg',
-    IKKE_TILGANG = '/ikke-tilgang',
+    IKKE_TILGANG = '/melding/ikke-tilgang',
 }

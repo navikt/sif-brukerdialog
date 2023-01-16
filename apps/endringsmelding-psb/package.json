@@ -99,6 +99,8 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.7.3",
+        "cypress": "11.2.0",
+        "cypress-file-upload": "5.0.8",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.0",
         "jsdom": "20.0.3",
@@ -111,6 +113,7 @@
         "react-scripts": "5.0.1",
         "regenerator-runtime": "0.13.11",
         "rimraf": "3.0.2",
+        "start-server-and-test": "1.15.2",
         "source-map-loader": "4.0.1",
         "style-loader": "3.3.1",
         "ts-loader": "9.4.2",
@@ -129,7 +132,11 @@
         "build-app": "node src/build/scripts/production-build.js",
         "build-storybook": "build-storybook",
         "build": "npm-run-all build-app",
+        "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/alive 'yarn cypress-run'",
+        "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/alive",
         "clean": "rm -rf node_modules .dist",
+        "cypress-open": "cypress open --project $PWD/e2e",
+        "cypress-run": "cypress run --project $PWD/e2e",
         "dev-api": "PORT=8089 node ./mocks/server.js",
         "msw-init": "msw init dist",
         "prepare": "npm run snyk-protect",
@@ -138,7 +145,8 @@
         "start-express": "node ./server.js",
         "start": "node ./src/build/scripts/start-dev.js",
         "storybook": "start-storybook -p 6006",
-        "test": "react-scripts test --watchAll=false --env=jsdom"
+        "test": "react-scripts test --watchAll=false --env=jsdom",
+        "test-watch": "react-scripts test --watchAll=true --env=jsdom"
     },
     "snyk": true,
     "eslintConfig": {

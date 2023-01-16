@@ -1,7 +1,7 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { getEnvVariableOrDefault } from '../utils/envUtils';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpointPsb {

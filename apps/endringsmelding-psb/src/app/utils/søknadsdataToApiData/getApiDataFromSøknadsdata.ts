@@ -1,6 +1,6 @@
 import { dateToISODate, durationToISODuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import { ArbeidstidAktivitetUkeEndringMap } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
 import {
     ArbeidstakerApiData,
@@ -13,7 +13,7 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 
 export const getEndretArbeidstid = (
-    endringUkeMap: ArbeidstidAktivitetUkeEndringMap,
+    endringUkeMap: ArbeidstidAktivitetEndringMap,
     arbeidAktivitet: ArbeidAktivitet
 ): ArbeidstidPeriodeApiDataMap => {
     const arbeidsdagerMedEndretTid: ArbeidstidPeriodeApiDataMap = {};
@@ -24,15 +24,19 @@ export const getEndretArbeidstid = (
         const dager = Object.keys(arbeidsuke.dagerMap);
         const antallDager = dager.length;
 
-        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt, antallDager);
-        const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(arbeidsuke.normalt, endring, antallDager);
+        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDager);
+        const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
+            arbeidsuke.normalt.uke,
+            endring,
+            antallDager
+        );
 
         arbeidsdagerMedEndretTid[isoDateRange] = {
             jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
             faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
             _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
-            _opprinneligNormaltPerDag: durationToISODuration(beregnSnittTimerPerDag(arbeidsuke.normalt, antallDager)),
-            _opprinneligFaktiskPerDag: durationToISODuration(beregnSnittTimerPerDag(arbeidsuke.faktisk, antallDager)),
+            _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
+            _opprinneligFaktiskPerDag: durationToISODuration(arbeidsuke.faktisk.dag),
         };
     });
 
@@ -40,7 +44,7 @@ export const getEndretArbeidstid = (
 };
 
 export const getArbeidstidInfo = (
-    aktivitetEndring?: ArbeidstidAktivitetUkeEndringMap,
+    aktivitetEndring?: ArbeidstidAktivitetEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
     if (aktivitetEndring && aktivitet) {

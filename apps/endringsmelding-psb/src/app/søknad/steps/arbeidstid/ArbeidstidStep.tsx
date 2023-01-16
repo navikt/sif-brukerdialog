@@ -1,16 +1,14 @@
 import { BodyLong, Panel } from '@navikt/ds-react';
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import {
-    ArbeidstidAktivitetUkeEndring,
-    ArbeidstidAktivitetUkeEndringMap,
-} from '../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -20,7 +18,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import Arbeidsaktivitet from './arbeidsaktivitet/Arbeidsaktivitet';
+import Arbeidsaktivitet from '../../../components/arbeidsaktivitet/Arbeidsaktivitet';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import getValidateArbeidAktivitetEndring from './validation/validateArbeidAktivitetEndring';
 import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
@@ -32,7 +30,7 @@ export enum ArbeidstidFormFields {
     arbeidAktivitetEndring = 'arbeidAktivitetEndring',
 }
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetUkeEndringMap };
+    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringMap };
 }
 
 const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
@@ -77,18 +75,22 @@ const ArbeidstidStep = () => {
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidsukeChange = (
-        endring: ArbeidstidAktivitetUkeEndring,
+        endring: ArbeidstidAktivitetEndring,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
         const alleEndringer = values[ArbeidstidFormFields.arbeidAktivitetEndring] || {};
-        const endringerForAktivitet: ArbeidstidAktivitetUkeEndringMap = alleEndringer[endring.arbeidAktivitetId];
+        const tidligereEndringer: ArbeidstidAktivitetEndringMap = alleEndringer[endring.arbeidAktivitetId];
+        const nyeEndringer: ArbeidstidAktivitetEndringMap = {};
+        endring.perioder.forEach((periode) => {
+            nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+        });
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitetEndring: {
                 ...values[ArbeidstidFormFields.arbeidAktivitetEndring],
                 [endring.arbeidAktivitetId]: {
-                    ...endringerForAktivitet,
-                    [dateRangeToISODateRange(endring.periode)]: endring,
+                    ...tidligereEndringer,
+                    ...nyeEndringer,
                 },
             },
         };
@@ -105,9 +107,14 @@ const ArbeidstidStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SifGuidePanel>
-                <BodyLong>
+                <BodyLong as="div">
                     Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake i
                     tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
+                    <InfoList>
+                        <li>Du må oppgi timer per uke eller periode</li>
+                        <li>Du kan velge flere uker samtidig for å endre</li>
+                        <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
+                    </InfoList>
                 </BodyLong>
             </SifGuidePanel>
             <FormikWrapper
@@ -148,7 +155,7 @@ const ArbeidstidStep = () => {
                                                     <Arbeidsaktivitet
                                                         arbeidAktivitet={arbeidAktivitet}
                                                         endringer={endringer[arbeidAktivitet.id]}
-                                                        onArbeidsukeChange={(endring) => {
+                                                        onArbeidstidAktivitetChange={(endring) => {
                                                             onArbeidsukeChange(endring, values, setValues);
                                                         }}
                                                     />

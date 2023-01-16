@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
+import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
 import { K9Sak } from '../types/K9Sak';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
+import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getEndringsperiode } from '../utils/endringsperiode';
-import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
+import { kontrollerK9Saker } from '../utils/kontrollerK9Saker';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
 import søkerEndpoint from './endpoints/søkerEndpoint';
@@ -18,6 +22,7 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -26,16 +31,25 @@ type SøknadInitialSuccess = {
     data: SøknadInitialData;
 };
 
-type SøknadInitialFailed = {
+type SøknadInitialError = {
     status: RequestStatus.error;
     error: any;
+};
+
+type SøknadInitialNoAccess = {
+    status: RequestStatus.noAccess;
+    reason: IngenTilgangÅrsak;
 };
 
 type SøknadInitialLoading = {
     status: RequestStatus.loading;
 };
 
-export type SøknadInitialDataState = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
+export type SøknadInitialDataState =
+    | SøknadInitialSuccess
+    | SøknadInitialError
+    | SøknadInitialLoading
+    | SøknadInitialNoAccess;
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -48,6 +62,7 @@ const setupSøknadInitialData = async (loadedData: {
     lagretSøknadState: SøknadStatePersistence;
 }): Promise<SøknadInitialData> => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
+
     const persistedSøknadStateIsValid = isPersistedSøknadStateValid(
         lagretSøknadState,
         {
@@ -60,26 +75,22 @@ const setupSøknadInitialData = async (loadedData: {
     if (!persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
     }
-    if (k9saker.length === 0) {
-        throw 'Ingen sak';
-    }
 
-    const lagretSøknadStateToUse = persistedSøknadStateIsValid ? lagretSøknadState : defaultSøknadState;
-
-    const k9sak = persistedSøknadStateIsValid
-        ? k9saker.find((s) => s.barn.aktørId === lagretSøknadState.barnAktørId)
-        : k9saker.length === 1
-        ? k9saker[0]
+    const persistedSak = persistedSøknadStateIsValid
+        ? k9saker.find((k9sak) => k9sak.barn.aktørId === lagretSøknadState.barnAktørId)
         : undefined;
 
     return Promise.resolve({
         versjon: APP_VERSJON,
         søker,
         k9saker,
-        sak: k9sak ? getSakFromK9Sak(k9sak, arbeidsgivere) : undefined,
+        sak: persistedSak ? getSakFromK9Sak(persistedSak, arbeidsgivere) : undefined,
         arbeidsgivere,
         søknadsdata: {} as any,
-        ...lagretSøknadStateToUse,
+        inputPreferanser: {
+            timerEllerProsent: TimerEllerProsent.TIMER,
+        },
+        ...(persistedSøknadStateIsValid ? lagretSøknadState : defaultSøknadState),
     });
 };
 
@@ -93,11 +104,26 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 sakerEndpoint.fetch(),
                 søknadStateEndpoint.fetch(),
             ]);
-            const dateRangeForSaker = getDateRangeForK9Saker(k9saker);
-            if (!dateRangeForSaker) {
-                throw 'ugyldigTidsrom';
+
+            const resultat = kontrollerK9Saker(k9saker);
+            if (resultat.kanBrukeSøknad === false) {
+                setInitialData({
+                    status: RequestStatus.noAccess,
+                    reason: resultat.årsak,
+                });
+                return Promise.resolve();
             }
-            const endringsperiode = getEndringsperiode(getEndringsdato(), [dateRangeForSaker]);
+
+            const samletTidsperiode = getDateRangeForK9Saker(k9saker);
+            if (samletTidsperiode === undefined) {
+                setInitialData({
+                    status: RequestStatus.noAccess,
+                    reason: IngenTilgangÅrsak.harIkkeSøknadsperiode,
+                });
+                return Promise.resolve();
+            }
+
+            const endringsperiode = getEndringsperiode(getEndringsdato(), [samletTidsperiode]);
             const arbeidsgivere = await arbeidsgivereEndpoint.fetch(
                 dateToISODate(endringsperiode.from),
                 dateToISODate(endringsperiode.to)
@@ -108,11 +134,20 @@ function useSøknadInitialData(): SøknadInitialDataState {
             });
             return Promise.resolve();
         } catch (error: any) {
-            appSentryLogger.logError('fetchInitialData', error);
-            setInitialData({
-                status: RequestStatus.error,
-                error,
-            });
+            if (isUnauthorized(error)) {
+                relocateToLoginPage();
+            } else if (isForbidden(error)) {
+                setInitialData({
+                    status: RequestStatus.noAccess,
+                    reason: IngenTilgangÅrsak.code403,
+                });
+            } else {
+                appSentryLogger.logError('fetchInitialData', error);
+                setInitialData({
+                    status: RequestStatus.error,
+                    error,
+                });
+            }
         }
     };
 

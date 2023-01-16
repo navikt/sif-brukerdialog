@@ -5,3 +5,8 @@
     text-decoration: line-through;
     opacity: 0.8;
 }
+.arbeidstidUkeList__ikkeSøktForPeriode {
+    &:hover {
+        background-color: initial !important;
+    }
+}

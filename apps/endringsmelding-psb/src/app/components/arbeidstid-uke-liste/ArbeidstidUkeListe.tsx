@@ -1,11 +1,14 @@
 import { Alert, Button, Checkbox, Table } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Add, Edit } from '@navikt/ds-icons';
+import { AddCircle, Edit } from '@navikt/ds-icons';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, DateRange, Duration, durationUtils, ISODateRange } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
+import EditButton from './components/EditButton';
+import PeriodeTekst from './components/PeriodeTekst';
 import './arbeidstidUkeList.scss';
 
 export interface PeriodeIkkeSøktForListeItem {
@@ -15,6 +18,7 @@ export interface PeriodeIkkeSøktForListeItem {
 }
 export interface PeriodeSøktForListeItem {
     søktFor: true;
+    kanEndres: boolean;
     isoDateRange: ISODateRange;
     periode: DateRange;
     antallDager: number;
@@ -30,42 +34,31 @@ export interface PeriodeSøktForListeItem {
 
 export type ArbeidstidUkeListeItem = PeriodeSøktForListeItem | PeriodeIkkeSøktForListeItem;
 
-type OnVelgUkeType = (uke: ArbeidstidUkeListeItem) => void;
-type OnVelgUkerType = (uke: ArbeidstidUkeListeItem[]) => void;
-
 interface Props {
     arbeidsuker: ArbeidstidUkeListeItem[];
     visNormaltid?: boolean;
     paginering?: {
         antall: number;
     };
-    visOpprinneligOverstreket?: boolean;
-    visAntallDager?: boolean;
     arbeidstidKolonneTittel?: string;
-    onVelgUke?: OnVelgUkeType;
-    onVelgUker?: OnVelgUkerType;
+    onEndreUker?: (uke: ArbeidstidUkeListeItem[]) => void;
 }
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     arbeidsuker,
-    visNormaltid = false,
+    visNormaltid,
     paginering = {
         antall: 10,
     },
-    visAntallDager = true,
     arbeidstidKolonneTittel = 'Arbeidstid',
-
-    onVelgUke,
-    onVelgUker,
+    onEndreUker,
 }) => {
     const antallUkerTotalt = arbeidsuker.length;
     const [antallSynlig, setAntallSynlig] = useState<number | undefined>(
         paginering ? Math.min(antallUkerTotalt, paginering.antall) : undefined
     );
     const [valgteUker, setValgteUker] = useState<string[]>([]);
-
-    const isWide = useMediaQuery({ minWidth: 736 });
-    const compactTable = isWide === false;
+    const compactTable = useMediaQuery({ minWidth: 736 }) === false;
 
     const onToggleUke = (id: string, selected: boolean) => {
         if (selected) {
@@ -76,57 +69,93 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     };
 
     const synligeUker = antallSynlig ? arbeidsuker.slice(0, antallSynlig) : arbeidsuker;
-    // const velgUkerHeaderCell = onVelgUker ? getVelgUkeHeaderCell(valgteUker, synligeUker, setValgteUker) : null;
-    const visUkeEditButton: boolean = onVelgUker === undefined || valgteUker.length === 0;
+
+    const endreFlereUker = () => {
+        if (!onEndreUker) {
+            return;
+        }
+        onEndreUker(arbeidsuker.filter((uke) => valgteUker.includes(uke.isoDateRange)));
+    };
+
+    const renderEditButton = (uke: PeriodeSøktForListeItem) => {
+        if (!onEndreUker || !uke.kanEndres) {
+            return undefined;
+        }
+
+        const disabled =
+            valgteUker.length > 1 && valgteUker.some((valgtUke) => valgtUke === uke.isoDateRange) === false;
+
+        return (
+            <EditButton
+                onClick={() => (valgteUker.length > 1 ? endreFlereUker() : onEndreUker([uke]))}
+                disabled={disabled}
+            />
+        );
+    };
 
     return (
         <div className="arbeidstidUkeList">
+            {onEndreUker && (
+                <>
+                    <p>Marker ukene du ønsker å endre lik arbeidstid for</p>
+                    <FormBlock margin="l" paddingBottom="m">
+                        <Button
+                            icon={<Edit />}
+                            variant="secondary"
+                            type="button"
+                            size="small"
+                            disabled={valgteUker.length === 0}
+                            onClick={endreFlereUker}>
+                            Endre valgte uker
+                        </Button>
+                    </FormBlock>
+                </>
+            )}
+
             <Table>
                 <Table.Header>
-                    {compactTable && (
-                        <Table.Row>
-                            {onVelgUker && (
-                                <Table.DataCell>
-                                    <VelgUkeHeader
-                                        valgteUker={valgteUker}
-                                        synligeUker={synligeUker}
-                                        setValgteUker={setValgteUker}
-                                    />
-                                </Table.DataCell>
-                            )}
-                            <Table.HeaderCell>Periode</Table.HeaderCell>
-                            {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
-                            <Table.HeaderCell colSpan={2}>{arbeidstidKolonneTittel}</Table.HeaderCell>
-                        </Table.Row>
-                    )}
-                    {compactTable === false && (
-                        <Table.Row>
-                            {onVelgUker && (
-                                <Table.DataCell>
-                                    <VelgUkeHeader
-                                        valgteUker={valgteUker}
-                                        synligeUker={synligeUker}
-                                        setValgteUker={setValgteUker}
-                                    />
-                                </Table.DataCell>
-                            )}
-                            <Table.HeaderCell>Uke</Table.HeaderCell>
-                            <Table.HeaderCell>Periode</Table.HeaderCell>
-                            {visAntallDager && <Table.HeaderCell>Dager</Table.HeaderCell>}
-                            {visNormaltid && <Table.HeaderCell>Normalt</Table.HeaderCell>}
-                            <Table.HeaderCell colSpan={2}>{arbeidstidKolonneTittel}</Table.HeaderCell>
-                        </Table.Row>
-                    )}
+                    <Table.Row>
+                        {onEndreUker && (
+                            <Table.DataCell>
+                                <Checkbox
+                                    checked={valgteUker.length === synligeUker.length}
+                                    indeterminate={valgteUker.length > 0 && valgteUker.length !== synligeUker.length}
+                                    onChange={() => {
+                                        valgteUker.length
+                                            ? setValgteUker([])
+                                            : setValgteUker(
+                                                  synligeUker
+                                                      .filter((uke) => uke.søktFor && uke.kanEndres)
+                                                      .map(({ isoDateRange }) => isoDateRange)
+                                              );
+                                    }}
+                                    hideLabel>
+                                    Velg alle uker i tabellen
+                                </Checkbox>
+                            </Table.DataCell>
+                        )}
+                        {compactTable && <Table.HeaderCell>Periode</Table.HeaderCell>}
+                        {!compactTable && (
+                            <>
+                                <Table.HeaderCell style={{ width: '0' }}>Uke</Table.HeaderCell>
+                                <Table.HeaderCell>Periode</Table.HeaderCell>
+                                {visNormaltid && <Table.HeaderCell>Normal arbeidstid</Table.HeaderCell>}
+                            </>
+                        )}
+
+                        <Table.HeaderCell>{arbeidstidKolonneTittel}</Table.HeaderCell>
+                        {onEndreUker && <Table.HeaderCell>Endre</Table.HeaderCell>}
+                    </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     {synligeUker.map((uke) => {
                         const ukenummer = dayjs(uke.periode.from).isoWeek();
-                        const selected = onVelgUker !== undefined && valgteUker.includes(uke.isoDateRange);
+                        const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
                         if (uke.søktFor === false) {
                             return (
-                                <Table.Row key={uke.isoDateRange}>
+                                <Table.Row key={uke.isoDateRange} className="arbeidstidUkeList__ikkeSøktForPeriode">
                                     <Table.DataCell colSpan={10}>
-                                        <Alert variant="info" inline={true}>
+                                        <Alert variant="info" inline={false}>
                                             Det er ikke søkt om pleiepenger i periode fra{' '}
                                             {dateFormatter.dayDateMonthYear(uke.periode.from)} til{' '}
                                             {dateFormatter.dayDateMonthYear(uke.periode.to)}.
@@ -135,75 +164,90 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 </Table.Row>
                             );
                         }
-                        const ukeHarNormaltimer = durationUtils.durationIsGreatherThanZero(uke.opprinnelig.normalt);
 
                         return (
-                            <Table.Row key={uke.isoDateRange} selected={selected}>
+                            <Table.Row key={uke.isoDateRange} selected={selected} style={{ verticalAlign: 'top' }}>
+                                {onEndreUker && (
+                                    <Table.DataCell style={{ width: '0' }}>
+                                        {uke.kanEndres && (
+                                            <Checkbox
+                                                hideLabel
+                                                checked={selected}
+                                                onChange={() => {
+                                                    onToggleUke(uke.isoDateRange, selected);
+                                                }}
+                                                aria-labelledby={`id-${uke.isoDateRange}`}>
+                                                {' '}
+                                            </Checkbox>
+                                        )}
+                                    </Table.DataCell>
+                                )}
                                 {compactTable && (
+                                    <Table.DataCell style={{ minWidth: '12rem' }}>
+                                        <div id={`id-${uke.isoDateRange}`}>
+                                            Uke {ukenummer}
+                                            <br />
+                                            {dateFormatter.compact(uke.periode.from)} - {` `}
+                                            {dateFormatter.compact(uke.periode.to)}
+                                        </div>
+                                        {visNormaltid && (
+                                            <div>
+                                                Normal arbeidstid:{` `}
+                                                <DurationText duration={uke.opprinnelig.normalt} />
+                                            </div>
+                                        )}
+                                    </Table.DataCell>
+                                )}
+                                {!compactTable && (
                                     <>
-                                        {onVelgUker && <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />}
-                                        <Table.DataCell>
-                                            <PeriodeInfo uke={uke} ukenummer={ukenummer} kompakt={true} />
+                                        <Table.DataCell>{ukenummer}</Table.DataCell>
+                                        <Table.DataCell style={{ minWidth: '15rem' }}>
+                                            <div id={`id-${uke.isoDateRange}`}>
+                                                <PeriodeTekst periode={uke.periode} />
+                                            </div>
                                         </Table.DataCell>
+
                                         {visNormaltid && (
                                             <Table.DataCell>
                                                 <DurationText duration={uke.opprinnelig.normalt} />
                                             </Table.DataCell>
                                         )}
-                                        <Table.DataCell>
-                                            <Arbeidstid uke={uke} />
-                                        </Table.DataCell>
-                                        <Table.DataCell>
-                                            {onVelgUke && ukeHarNormaltimer && (
-                                                <EndreUke uke={uke} onVelgUke={onVelgUke} enabled={visUkeEditButton} />
-                                            )}
-                                        </Table.DataCell>
                                     </>
                                 )}
-                                {!compactTable && (
-                                    <>
-                                        {onVelgUker && <VelgUke uke={uke} selected={selected} onToggle={onToggleUke} />}
-                                        <Table.DataCell>{ukenummer}</Table.DataCell>
-                                        <Table.DataCell>
-                                            <PeriodeInfo uke={uke} ukenummer={ukenummer} kompakt={false} />
-                                        </Table.DataCell>
-                                        {visAntallDager && <Table.DataCell>{uke.antallDager}</Table.DataCell>}
-                                        {visNormaltid && <Table.DataCell></Table.DataCell>}
-                                        <Table.DataCell>
-                                            <Arbeidstid uke={uke} />
-                                        </Table.DataCell>
-                                        <Table.DataCell>
-                                            {onVelgUke && ukeHarNormaltimer && (
-                                                <EndreUke uke={uke} onVelgUke={onVelgUke} enabled={visUkeEditButton} />
-                                            )}
-                                        </Table.DataCell>
-                                    </>
-                                )}
+                                <Table.DataCell>
+                                    <ArbeidstidUkeInfo uke={uke} />
+                                </Table.DataCell>
+                                <Table.DataCell style={{ width: '0' }}>{renderEditButton(uke)}</Table.DataCell>
                             </Table.Row>
                         );
                     })}
                 </Table.Body>
             </Table>
-            {onVelgUker && valgteUker.length > 0 && (
-                <FormBlock margin="l" paddingBottom="m">
-                    <Button
-                        variant="primary"
-                        type="button"
-                        onClick={() => {
-                            onVelgUker(arbeidsuker.filter((uke) => valgteUker.includes(uke.isoDateRange)));
-                        }}>
-                        Endre valgte uker
-                    </Button>
-                </FormBlock>
-            )}
             {paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt && (
                 <FormBlock margin="m">
+                    <div style={{ textAlign: 'center' }}>
+                        <Button
+                            variant="tertiary"
+                            icon={<AddCircle />}
+                            type="button"
+                            onClick={() =>
+                                setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))
+                            }>
+                            Last inn flere uker
+                        </Button>
+                    </div>
+                </FormBlock>
+            )}
+            {onEndreUker && (
+                <FormBlock margin="l" paddingBottom="m">
                     <Button
-                        variant="tertiary"
-                        icon={<Add />}
+                        icon={<Edit />}
+                        variant="secondary"
                         type="button"
-                        onClick={() => setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))}>
-                        Vis flere uker
+                        size="small"
+                        disabled={valgteUker.length === 0}
+                        onClick={endreFlereUker}>
+                        Endre valgte uker
                     </Button>
                 </FormBlock>
             )}
@@ -212,130 +256,3 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 };
 
 export default ArbeidstidUkeListe;
-
-export const VelgUkeHeader = ({
-    valgteUker,
-    synligeUker,
-    setValgteUker,
-}: {
-    valgteUker: string[];
-    synligeUker: ArbeidstidUkeListeItem[];
-    setValgteUker: (uker: string[]) => void;
-}) => {
-    return (
-        <Checkbox
-            checked={valgteUker.length === synligeUker.length}
-            indeterminate={valgteUker.length > 0 && valgteUker.length !== synligeUker.length}
-            onChange={() => {
-                valgteUker.length
-                    ? setValgteUker([])
-                    : setValgteUker(synligeUker.map(({ isoDateRange }) => isoDateRange));
-            }}
-            hideLabel>
-            Velg alle rader
-        </Checkbox>
-    );
-};
-
-interface UkeDataCellProps {
-    uke: PeriodeSøktForListeItem;
-}
-
-const VelgUke = ({
-    uke,
-    selected,
-    onToggle: onChange,
-}: UkeDataCellProps & { selected: boolean; onToggle: (id: string, selected: boolean) => void }) => {
-    return (
-        <Table.DataCell>
-            <Checkbox
-                hideLabel
-                checked={selected}
-                onChange={() => {
-                    onChange(uke.isoDateRange, selected);
-                }}
-                aria-labelledby={`id-${uke.isoDateRange}`}>
-                {' '}
-            </Checkbox>
-        </Table.DataCell>
-    );
-};
-
-const EndreUke = ({
-    uke,
-    enabled: visUkeEditButton,
-    onVelgUke,
-}: UkeDataCellProps & { enabled: boolean; onVelgUke: OnVelgUkeType }) => {
-    return (
-        <Button
-            disabled={!visUkeEditButton}
-            icon={<Edit />}
-            type="button"
-            variant="primary"
-            size="small"
-            onClick={() => onVelgUke(uke)}
-        />
-    );
-};
-
-const PeriodeInfo = ({ uke, ukenummer, kompakt }: UkeDataCellProps & { ukenummer: number; kompakt: boolean }) => {
-    return kompakt ? (
-        <>
-            Uke {ukenummer}
-            <br />
-            <span style={{ textTransform: 'capitalize' }}>
-                {dateFormatter.day(uke.periode.from)} - {dateFormatter.day(uke.periode.to)}
-            </span>
-            <br />
-            {renderDatoKompakt(uke.periode.from)} - {` `}
-            {renderDatoKompakt(uke.periode.to)}
-        </>
-    ) : (
-        <PeriodeTekst uke={uke} />
-    );
-};
-
-const renderDato = (date: Date) => {
-    return <span style={{ textTransform: 'capitalize' }}>{dateFormatter.compact(date)}</span>;
-};
-
-const renderDatoKompakt = (date: Date) => {
-    return <span style={{ textTransform: 'capitalize' }}>{dateFormatter.compact(date)}</span>;
-};
-
-const Arbeidstid = ({ uke }: { uke: PeriodeSøktForListeItem }) => {
-    if (uke.endret === undefined) {
-        return <DurationText duration={uke.opprinnelig.faktisk} />;
-    }
-    const { faktisk, endretProsent } = uke.endret;
-    return (
-        <div className="endretArbeidstid">
-            <div className="endretArbeidstid__faktisk">
-                <DurationText duration={faktisk} />
-                {endretProsent && <span className="endretArbeidstid__prosent"> ({endretProsent} %)</span>}
-            </div>
-            <div className="endretArbeidstid__opprinnelig">
-                <DurationText duration={uke.opprinnelig.faktisk} />
-            </div>
-        </div>
-    );
-};
-
-const PeriodeTekst = ({
-    uke: {
-        periode: { from, to },
-    },
-}: {
-    uke: PeriodeSøktForListeItem;
-}) => {
-    const sammeDato = dayjs(from).isSame(to, 'date');
-
-    if (sammeDato) {
-        return renderDato(from);
-    }
-    return (
-        <>
-            {renderDato(from)} - {renderDato(to)}
-        </>
-    );
-};
