@@ -1,0 +1,63 @@
+name: (helper) Deploy application to prod
+
+on:
+    workflow_call:
+        inputs:
+            working-directory:
+                type: string
+                required: true
+            app-name:
+                type: string
+                required: true
+        secrets:
+            NAIS_DEPLOY_APIKEY:
+                description: Nais deploy APIKEY
+                required: false
+
+env:
+    IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
+    GITHUB_USERNAME: x-access-token
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+    deploy-to-prod:
+        name: Deploy ${{ inputs.app-name }} to prod
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 2
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
+
+            - name: Install dependencies (yarn)
+              run: yarn
+
+            - name: Run tests
+              run: yarn test --filter=${{inputs.app-name}}
+
+            - name: Run cypress-tests
+              run: yarn e2e-${{inputs.app-name}}
+
+            - name: Build application
+              run: |
+                  yarn build-${{ inputs.app-name }}
+
+            # - name: Build and publish Docker image
+            #   run: |
+            #       docker build -t ${IMAGE} -f apps/${{inputs.app-name}}/Dockerfile .
+            #       docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+            #       docker push ${IMAGE}
+
+            # - name: Deploy to prod
+            #   uses: nais/deploy/actions/deploy@v1
+            #   env:
+            #       CLUSTER: prod-gcp
+            #       RESOURCE: nais-config/nais.yml
+            #       VARS: apps/${{ inputs.app-name }}/nais/prod-gcp.json
+            #       APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
