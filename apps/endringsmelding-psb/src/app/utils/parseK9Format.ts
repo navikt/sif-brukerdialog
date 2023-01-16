@@ -36,6 +36,12 @@ const getIsoWeekDateRangeForDate = (date: Date) => {
     };
 };
 
+const getTomArbeidsuke = (): Arbeidsuke => {
+    return {
+        dagerMap: {},
+    } as Arbeidsuke;
+};
+
 /**
  *
  * @param arbeidstidPerioder K9FormatArbeidstidPeriode
@@ -67,8 +73,7 @@ export const getAktivitetArbeidstidFromK9Format = (
                 /** Midlertidig nøkkel som tar hele uken */
                 const weekKey = dateRangeToISODateRange(getIsoWeekDateRangeForDate(date));
                 if (tempArbeidsuker[weekKey] === undefined) {
-                    const arbeidsuke: Partial<Arbeidsuke> = {};
-                    tempArbeidsuker[weekKey] = arbeidsuke as Arbeidsuke;
+                    tempArbeidsuker[weekKey] = getTomArbeidsuke();
                 }
                 /** Legg til enkeltdag i arbeidsuken */
                 tempArbeidsuker[weekKey].dagerMap[dateToISODate(date)] = {
