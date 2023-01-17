@@ -45,11 +45,11 @@ jobs:
               run: |
                   yarn build-${{ inputs.app-name }}
 
-            # - name: Build and publish Docker image
-            #   run: |
-            #       docker build -t ${IMAGE} -f apps/${{inputs.app-name}}/Dockerfile .
-            #       docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-            #       docker push ${IMAGE}
+            - name: Build and publish Docker image
+              run: |
+                  docker build -t ${IMAGE} -f apps/${{inputs.app-name}}/Dockerfile .
+                  docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+                  docker push ${IMAGE}
 
             # - name: Deploy to prod
             #   uses: nais/deploy/actions/deploy@v1
