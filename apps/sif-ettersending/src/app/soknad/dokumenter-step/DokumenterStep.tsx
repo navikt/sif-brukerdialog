@@ -1,7 +1,7 @@
 import { Alert, BodyLong } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -44,12 +44,13 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
     const sizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
     const ref = React.useRef({ dokumenter });
 
-    const { logUserLoggedOut } = useAmplitudeInstance();
+    const { logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
     const userLoggedOut = async () => {
         await logUserLoggedOut('Ved opplasting av vedlegg');
         navigateToLoginPage(søknadstype);
     };
+
     React.useEffect(() => {
         const hasPendingAttachments = dokumenter.find((a) => a.pending === true);
         if (hasPendingAttachments) {
@@ -107,6 +108,9 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
                         }}
                         onUnauthorizedOrForbiddenUpload={userLoggedOut}
                         validate={validateDocuments}
+                        onFilesUploaded={(antall, antallFeilet) => {
+                            logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
+                        }}
                     />
                 </FormBlock>
             )}
@@ -123,7 +127,13 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
             <Block margin="l">
-                <UploadedDocumentsList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
+                <UploadedDocumentsList
+                    wrapNoAttachmentsInBox={true}
+                    includeDeletionFunctionality={true}
+                    onFileDeleted={() => {
+                        logEvent(SIFCommonGeneralEvents.vedleggSlettet);
+                    }}
+                />
             </Block>
         </SoknadFormStep>
     );
