@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.7.0
+
+### Minor Changes
+
+-   4d14447f: Legge til logging av når vedlegg lastes opp og slettes i ettersending. Legge til standard-events i sif-common-amplitude
+
 ## 2.6.6
 
 ### Patch Changes

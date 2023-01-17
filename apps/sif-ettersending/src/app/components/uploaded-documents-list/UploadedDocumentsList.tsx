@@ -14,9 +14,10 @@ import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 interface Props {
     includeDeletionFunctionality: boolean;
     wrapNoAttachmentsInBox?: boolean;
+    onFileDeleted?: () => void;
 }
 
-const UploadedDocumentsList = ({ includeDeletionFunctionality }: Props) => {
+const UploadedDocumentsList = ({ includeDeletionFunctionality, onFileDeleted }: Props) => {
     const { values, setFieldValue } = useFormikContext<SoknadFormData>();
 
     const dokumenter: Attachment[] = values.dokumenter.filter(({ file }: Attachment) =>
@@ -49,6 +50,9 @@ const UploadedDocumentsList = ({ includeDeletionFunctionality }: Props) => {
                                 );
                             }
                         );
+                        if (onFileDeleted) {
+                            onFileDeleted();
+                        }
                     }
                 }}
             />

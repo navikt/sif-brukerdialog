@@ -1,5 +1,19 @@
 # @navikt/sif-ettersending
 
+## 3.0.1
+
+### Patch Changes
+
+-   4d14447f: Legge til logging av når vedlegg lastes opp og slettes i ettersending. Legge til standard-events i sif-common-amplitude
+-   Updated dependencies [4d14447f]
+    -   @navikt/sif-common-amplitude@2.7.0
+
+## 3.0.0
+
+### Major Changes
+
+-   9d048ccc: Prodsette ettersending med nytt designsystem
+
 ## 2.3.3
 
 ### Patch Changes

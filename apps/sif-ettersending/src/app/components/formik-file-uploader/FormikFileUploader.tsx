@@ -26,6 +26,7 @@ export type FieldArrayRemoveFn = (index: number) => undefined;
 interface FormikFileUploader extends TypedFormInputValidationProps<SoknadFormField, ValidationError> {
     name: SoknadFormField;
     buttonLabel: string;
+    onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
@@ -35,6 +36,7 @@ type Props = FormikFileUploader;
 
 const FormikFileUploader: React.FunctionComponent<Props> = ({
     name,
+    onFilesUploaded,
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
@@ -70,6 +72,9 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
 
         const failedAttachments = [...attachmentsNotToUpload, ...attachmentsToUpload.filter(attachmentUploadHasFailed)];
         updateFailedAttachments(allAttachments, failedAttachments, replaceFn);
+        if (onFilesUploaded) {
+            onFilesUploaded(attachmentsToUpload.length, failedAttachments.length);
+        }
     }
 
     function updateFailedAttachments(
