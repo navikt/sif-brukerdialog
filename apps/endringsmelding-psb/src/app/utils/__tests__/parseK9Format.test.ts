@@ -1,6 +1,6 @@
 describe('parseK9Format', () => {
     describe('getAktivitetArbeidstidFromK9Format', () => {
-        it('runs', () => {
+        it('TODO', () => {
             expect(1).toBe(1);
         });
     });

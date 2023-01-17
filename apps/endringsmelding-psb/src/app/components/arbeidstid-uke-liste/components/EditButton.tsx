@@ -1,13 +1,17 @@
+import { Edit } from '@navikt/ds-icons';
 import { Button, ButtonProps } from '@navikt/ds-react';
 import React from 'react';
-import EditIcon from './EditIcon';
 
-interface Props extends ButtonProps {
-    multiple?: boolean;
-}
-
-const EditButton: React.FunctionComponent<Props> = ({ multiple, ...rest }) => {
-    return <Button icon={<EditIcon multiple={multiple} />} type="button" variant="primary" size="small" {...rest} />;
+const EditButton: React.FunctionComponent<ButtonProps> = ({ ...rest }) => {
+    return (
+        <Button
+            icon={<Edit role="presentation" aria-label={`Endre`} />}
+            type="button"
+            variant="primary"
+            size="small"
+            {...rest}
+        />
+    );
 };
 
 export default EditButton;

@@ -109,6 +109,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                         <Block padBottom="m">
                             <strong>Hvordan vil du oppgi arbeidstiden?</strong>
                         </Block>
+
                         <ToggleGroup
                             style={{ minWidth: '50%' }}
                             value={timerEllerProsent}
@@ -124,6 +125,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                             <ToggleGroup.Item value={TimerEllerProsent.TIMER}>I timer</ToggleGroup.Item>
                             <ToggleGroup.Item value={TimerEllerProsent.PROSENT}>I prosent</ToggleGroup.Item>
                         </ToggleGroup>
+
                         {timerEllerProsent && (
                             <FormBlock paddingBottom="l">
                                 {timerEllerProsent === TimerEllerProsent.PROSENT && (
