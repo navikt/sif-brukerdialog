@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.0.0
+
+### Major Changes
+
+-   Omsorgspengesøknad med nytt designsystem.
+
 ## 0.2.2
 
 ### Patch Changes
