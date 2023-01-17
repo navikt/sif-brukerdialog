@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.0.0
+
+### Major Changes
+
+-   9d048ccc: Prodsette ettersending med nytt designsystem
+
 ## 2.3.3
 
 ### Patch Changes
