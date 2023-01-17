@@ -26,6 +26,11 @@ export enum AmplitudeEvents {
     'apiError' = 'api-error',
 }
 
+export enum SIFCommonGeneralEvents {
+    'vedleggSlettet' = 'vedleggSlettet',
+    'vedleggLastetOpp' = 'vedleggLastetOpp',
+}
+
 export enum ApplikasjonHendelse {
     'brukerSendesTilLoggInn' = 'brukerSendesTilLoggInn',
     'vedleggOpplastingFeilet' = 'vedleggOpplastingFeilet',
@@ -72,7 +77,7 @@ export const [AmplitudeProvider, useAmplitudeInstance] = constate((props: Props)
         }
     }, [isActive]);
 
-    async function logEvent(eventName: string, eventProperties?: EventProperties) {
+    async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
         const instance = amplitude.getInstance();
         if (isActive && instance) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
