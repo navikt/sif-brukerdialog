@@ -26,14 +26,14 @@ const EndreArbeidstidModal: FunctionComponent<Props> = ({
         <Modal open={isVisible} onClose={onClose} className="endreArbeidstidModal">
             <Modal.Content>
                 <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
-                    <Heading spacing={true} size="small" level="1" id="endreArbeidstidModalHeader">
+                    <Heading
+                        spacing={true}
+                        size="small"
+                        level="1"
+                        id="endreArbeidstidModalHeader"
+                        className="endreArbeidstidModal__noFocusOutline">
                         {getArbeidAktivitetNavn(arbeidAktivitet)}
                     </Heading>
-                    <Block margin="l">
-                        <Heading size="large" level="2" tabIndex={0} className="endreArbeidstidModal__noFocusOutline">
-                            {arbeidsuker.length === 1 ? 'Endre arbeidstid' : 'Endre arbeidstid for flere uker'}
-                        </Heading>
-                    </Block>
                     <Block margin="l">
                         <EndreArbeidstidForm arbeidsuker={arbeidsuker} onCancel={onClose} onSubmit={onSubmit} />
                     </Block>

@@ -1,4 +1,4 @@
-import { Alert, ToggleGroup } from '@navikt/ds-react';
+import { Alert, Heading, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -15,7 +15,11 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { arbeidsukerErHeleArbeidsuker, arbeidsukerHarLikNormaltidPerDag } from '../../utils/arbeidsukeUtils';
+import {
+    arbeidsukerErHeleArbeidsuker,
+    arbeidsukerHarLikNormaltidPerDag,
+    getArbeidsukeUkenummer,
+} from '../../utils/arbeidsukeUtils';
 import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 
@@ -99,90 +103,106 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                 });
 
                 return (
-                    <Form
-                        formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}
-                        includeValidationSummary={true}
-                        submitButtonLabel="Ok"
-                        cancelButtonLabel="Avbryt"
-                        onCancel={onCancel}
-                        showButtonArrows={false}>
-                        <Block padBottom="m">
-                            <strong>Hvordan vil du oppgi arbeidstiden?</strong>
+                    <>
+                        <Block margin="l">
+                            <Heading size="large" level="2">
+                                {arbeidsuker.length === 1
+                                    ? `Endre arbeidstid uke ${getArbeidsukeUkenummer(arbeidsuker[0], true)}`
+                                    : 'Endre arbeidstid for flere uker'}
+                            </Heading>
                         </Block>
+                        {/* {erEnkeltuke && (
+                        <Block margin="m">
+                            <PeriodeTekst periode={arbeidsuker[0].periode} />
+                        </Block>
+                    )} */}
 
-                        <ToggleGroup
-                            style={{ minWidth: '50%' }}
-                            value={timerEllerProsent}
-                            size="small"
-                            onChange={(value) => {
-                                dispatch(
-                                    actionsCreator.setInputPreferanser({
-                                        timerEllerProsent: value as TimerEllerProsent,
-                                    })
-                                );
-                                setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
-                            }}>
-                            <ToggleGroup.Item value={TimerEllerProsent.TIMER}>I timer</ToggleGroup.Item>
-                            <ToggleGroup.Item value={TimerEllerProsent.PROSENT}>I prosent</ToggleGroup.Item>
-                        </ToggleGroup>
+                        <Form
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}
+                            includeValidationSummary={true}
+                            submitButtonLabel="Ok"
+                            cancelButtonLabel="Avbryt"
+                            onCancel={onCancel}
+                            showButtonArrows={false}>
+                            <Block padBottom="m">
+                                <strong>Hvordan vil du oppgi arbeidstiden?</strong>
+                            </Block>
 
-                        {timerEllerProsent && (
-                            <FormBlock paddingBottom="l">
-                                {timerEllerProsent === TimerEllerProsent.PROSENT && (
-                                    <NumberInput
-                                        className="arbeidstidUkeInput"
-                                        name={EndreArbeidstidFormField.prosentAvNormalt}
-                                        label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
-                                        description={arbeidsukerDescription}
-                                        data-testid="prosent-verdi"
-                                        width="xs"
-                                        maxLength={4}
-                                        validate={(value) => {
-                                            return getNumberValidator({
-                                                min: 0,
-                                                max: 100,
-                                            })(value);
-                                        }}
-                                    />
-                                )}
-                                {timerEllerProsent === TimerEllerProsent.TIMER && (
-                                    <NumberInput
-                                        className="arbeidstidUkeInput"
-                                        name={EndreArbeidstidFormField.snittTimerPerUke}
-                                        label={intlHelper(intl, 'endreArbeidstid.timerAvNormalt.spm', intlValues)}
-                                        data-testid="timer-verdi"
-                                        description={arbeidsukerDescription}
-                                        width="xs"
-                                        maxLength={4}
-                                        validate={(value) => {
-                                            return getNumberValidator({
-                                                min: 0,
-                                                max: 100,
-                                            })(value);
-                                        }}
-                                    />
-                                )}
-                            </FormBlock>
-                        )}
-                        {ukerHarLikNormaltidPerDag === false && alleUkerErHeleUker === false && (
-                            <Alert variant="info">
-                                Informasjon når noen av ukene ikke er hele arbeidsuker samtidig som det er ulik
-                                normalarbeidstid - påminnelse om at bruker må sjekke disse ukene etterpå
-                            </Alert>
-                        )}
-                        {ukerHarLikNormaltidPerDag === false && alleUkerErHeleUker === true && (
-                            <Alert variant="info">
-                                Informasjon når noen av ukene har ulike normalarbeidstid - påminnelse om at bruker må
-                                sjekke disse ukene etterpå
-                            </Alert>
-                        )}
-                        {ukerHarLikNormaltidPerDag === true && alleUkerErHeleUker === false && (
-                            <Alert variant="info">
-                                Informasjon når noen av ukene ikke er hele arbeidsuker - påminnelse om at bruker må
-                                sjekke disse ukene etterpå
-                            </Alert>
-                        )}
-                    </Form>
+                            <ToggleGroup
+                                style={{ minWidth: '50%' }}
+                                value={timerEllerProsent}
+                                size="small"
+                                onChange={(value) => {
+                                    dispatch(
+                                        actionsCreator.setInputPreferanser({
+                                            timerEllerProsent: value as TimerEllerProsent,
+                                        })
+                                    );
+                                    setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
+                                }}>
+                                <ToggleGroup.Item value={TimerEllerProsent.TIMER}>I timer</ToggleGroup.Item>
+                                <ToggleGroup.Item value={TimerEllerProsent.PROSENT}>I prosent</ToggleGroup.Item>
+                            </ToggleGroup>
+
+                            {timerEllerProsent && (
+                                <FormBlock paddingBottom="l">
+                                    {timerEllerProsent === TimerEllerProsent.PROSENT && (
+                                        <NumberInput
+                                            className="arbeidstidUkeInput"
+                                            name={EndreArbeidstidFormField.prosentAvNormalt}
+                                            label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
+                                            description={arbeidsukerDescription}
+                                            data-testid="prosent-verdi"
+                                            width="xs"
+                                            maxLength={4}
+                                            validate={(value) => {
+                                                return getNumberValidator({
+                                                    min: 0,
+                                                    max: 100,
+                                                })(value);
+                                            }}
+                                        />
+                                    )}
+                                    {timerEllerProsent === TimerEllerProsent.TIMER && (
+                                        <NumberInput
+                                            className="arbeidstidUkeInput"
+                                            name={EndreArbeidstidFormField.snittTimerPerUke}
+                                            label={intlHelper(intl, 'endreArbeidstid.timerAvNormalt.spm', intlValues)}
+                                            data-testid="timer-verdi"
+                                            description={arbeidsukerDescription}
+                                            width="xs"
+                                            maxLength={4}
+                                            validate={(value) => {
+                                                return getNumberValidator({
+                                                    min: 0,
+                                                    max: 100,
+                                                })(value);
+                                            }}
+                                        />
+                                    )}
+                                </FormBlock>
+                            )}
+                            {ukerHarLikNormaltidPerDag === false && alleUkerErHeleUker === false && (
+                                <Alert variant="info">
+                                    TODO: Informasjon når noen av ukene ikke er hele arbeidsuker samtidig som det er
+                                    ulik normalarbeidstid - påminnelse om at bruker må sjekke disse ukene etterpå
+                                </Alert>
+                            )}
+                            {ukerHarLikNormaltidPerDag === false && alleUkerErHeleUker === true && (
+                                <Alert variant="info">
+                                    TODO: Informasjon når noen av ukene har ulike normalarbeidstid - påminnelse om at
+                                    bruker må sjekke disse ukene etterpå
+                                </Alert>
+                            )}
+                            {ukerHarLikNormaltidPerDag === true && alleUkerErHeleUker === false && (
+                                <Alert variant="info">
+                                    TODO: Informasjon når noen av ukene ikke er hele arbeidsuker - påminnelse om at
+                                    bruker må sjekke disse ukene etterpå, og justere ned timetallet for de ukene som
+                                    ikke er hele.
+                                </Alert>
+                            )}
+                        </Form>
+                    </>
                 );
             }}
         />

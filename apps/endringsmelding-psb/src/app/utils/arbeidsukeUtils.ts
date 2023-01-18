@@ -10,6 +10,12 @@ export const erHelArbeidsuke = (uke: Arbeidsuke): boolean => {
     return getDatesInDateRange(uke.periode, true).length >= 5;
 };
 
+export const getArbeidsukeUkenummer = (uke: Arbeidsuke, medÅrstall?: boolean): string => {
+    const day = dayjs(uke.periode.from);
+    const ukenummer = `${day.isoWeek()}`;
+    return medÅrstall ? `${ukenummer}, ${day.isoWeekYear()}` : ukenummer;
+};
+
 export const getDagerTekst = ({ from, to }: DateRange): string => {
     const fra = dateFormatter.day(from);
     const til = dateFormatter.day(to);

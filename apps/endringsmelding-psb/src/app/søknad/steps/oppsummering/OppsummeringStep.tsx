@@ -75,63 +75,53 @@ const OppsummeringStep = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            {!apiData ? (
-                <FormBlock paddingBottom="xl">
-                    <Alert variant="error">Ugyldig apiData?</Alert>
+            {arbeidstakerList &&
+                Object.keys(arbeidstakerList).map((key) => {
+                    const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
+                    const arbeidsgiver = arbeidsgivere.find((a) => a.id === organisasjonsnummer);
+                    if (!arbeidsgiver) {
+                        return null;
+                    }
+                    const arbeidsuker = getArbeidstidUkeListeItem(arbeidstidInfo.perioder);
+                    return (
+                        <FormBlock key={key} paddingBottom="l">
+                            <Heading level="2" size="medium">
+                                {arbeidsgiver.navn}
+                            </Heading>
+                            <>
+                                <ArbeidstidUkeListe
+                                    arbeidsuker={arbeidsuker}
+                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                                />
+                            </>
+                        </FormBlock>
+                    );
+                })}
+            {frilanserArbeidstidInfo && (
+                <FormBlock paddingBottom="l">
+                    <Heading level="2" size="medium">
+                        Frilanser
+                    </Heading>
+                    <>
+                        <ArbeidstidUkeListe
+                            arbeidsuker={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
+                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                        />
+                    </>
                 </FormBlock>
-            ) : (
-                <>
-                    {arbeidstakerList &&
-                        Object.keys(arbeidstakerList).map((key) => {
-                            const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
-                            const arbeidsgiver = arbeidsgivere.find((a) => (a.id = organisasjonsnummer));
-                            if (!arbeidsgiver) {
-                                return null;
-                            }
-                            const arbeidsuker = getArbeidstidUkeListeItem(arbeidstidInfo.perioder);
-                            return (
-                                <FormBlock key={key} paddingBottom="l">
-                                    <Heading level="2" size="medium">
-                                        {arbeidsgiver.navn}
-                                    </Heading>
-                                    <>
-                                        <ArbeidstidUkeListe
-                                            arbeidsuker={arbeidsuker}
-                                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                                        />
-                                    </>
-                                </FormBlock>
-                            );
-                        })}
-                    {frilanserArbeidstidInfo && (
-                        <FormBlock paddingBottom="l">
-                            <Heading level="2" size="medium">
-                                Frilanser
-                            </Heading>
-                            <>
-                                <ArbeidstidUkeListe
-                                    arbeidsuker={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
-                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                                />
-                            </>
-                        </FormBlock>
-                    )}
-                    {selvstendigNæringsdrivendeArbeidstidInfo && (
-                        <FormBlock paddingBottom="l">
-                            <Heading level="2" size="medium">
-                                Selvstendig næringsdrivende
-                            </Heading>
-                            <>
-                                <ArbeidstidUkeListe
-                                    arbeidsuker={getArbeidstidUkeListeItem(
-                                        selvstendigNæringsdrivendeArbeidstidInfo.perioder
-                                    )}
-                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                                />
-                            </>
-                        </FormBlock>
-                    )}
-                </>
+            )}
+            {selvstendigNæringsdrivendeArbeidstidInfo && (
+                <FormBlock paddingBottom="l">
+                    <Heading level="2" size="medium">
+                        Selvstendig næringsdrivende
+                    </Heading>
+                    <>
+                        <ArbeidstidUkeListe
+                            arbeidsuker={getArbeidstidUkeListeItem(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
+                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                        />
+                    </>
+                </FormBlock>
             )}
             <FormBlock margin="xxl">
                 <FormikWrapper

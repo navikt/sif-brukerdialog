@@ -8,7 +8,7 @@ import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-co
 import dayjs from 'dayjs';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
-import PeriodeTekst from './components/PeriodeTekst';
+import PeriodeTekst, { getPeriodeTekst } from './components/PeriodeTekst';
 import './arbeidstidUkeList.scss';
 
 export interface PeriodeIkkeSøktForListeItem {
@@ -85,11 +85,15 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
         const disabled =
             valgteUker.length > 1 && valgteUker.some((valgtUke) => valgtUke === uke.isoDateRange) === false;
 
+        const title =
+            valgteUker.length > 1 ? 'Endre valgte uker' : `Endre uke ${ukenummer} (${getPeriodeTekst(uke.periode)})`;
+
         return (
             <EditButton
                 onClick={() => (valgteUker.length > 1 ? endreFlereUker() : onEndreUker([uke]))}
                 disabled={disabled}
-                aria-label={valgteUker.length > 1 ? 'Endre valgte uker' : `Endre uke ${ukenummer} `}
+                title={title}
+                aria-label={title}
             />
         );
     };

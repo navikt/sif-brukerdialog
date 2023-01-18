@@ -1,8 +1,8 @@
 import { rest } from 'msw';
 
-const søkerJson = require('../data/soker2/søker-mock.json');
-const sakJson = require('../data/soker2/sak-mock.json');
-const arbeidsgiverJson = require('../data/soker2/arbeidsgiver-mock.json');
+const søkerJson = require('../data/soker3/søker-mock.json');
+const sakJson = require('../data/soker3/sak-mock.json');
+const arbeidsgiverJson = require('../data/soker3/arbeidsgiver-mock.json');
 
 const baseUrl = 'http://localhost:8099';
 
