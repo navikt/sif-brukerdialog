@@ -45,15 +45,3 @@ jobs:
             project: ./apps/omsorgspengesoknad/e2e
             build: yarn build-omsorgspengesoknad
             start: yarn e2e-omsorgspengesoknad
-
-  # deploy-to-dev:
-  #     name: Deploy omsorgspengesøknad to dev
-  #     if: startsWith(github.ref, 'refs/heads/dev-')
-  #     needs: [build-and-test, run-cypress-test]
-  #     uses: navikt/sif-brukerdialog/.github/workflows/deploy-app-to-dev.yml@main
-  #     secrets:
-  #         NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-  #     with:
-  #         app-name: 'omsorgspengesoknad'
-  #         working-directory: 'apps/omsorgspengesoknad'
-
