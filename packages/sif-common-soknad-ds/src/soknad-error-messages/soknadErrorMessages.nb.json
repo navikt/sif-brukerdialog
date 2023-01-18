@@ -1,4 +1,6 @@
 {
+    "common.errorPage.defaultTitle": "Det oppstod en feil",
+
     "common.soknadErrorMessages.defaultTitle": "Noe gikk galt...",
     "common.soknadErrorMessages.generalError.content": "Beklager, her har det dessverre skjedd en feil. Dersom feilen fortsetter, prøv igjen litt senere.",
 
