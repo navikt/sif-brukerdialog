@@ -28,14 +28,5 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),
         legeerklæring: getVedleggApiData(søknadsdata.legeerklæring?.vedlegg),
         samværsavtale: inkluderDeltBosted ? getVedleggApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
-        // samværsavtale:
-        //     sammeAdresse === YesOrNo.NO &&
-        //     søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER &&
-        //     samværsavtale &&
-        //     samværsavtale.length > 0
-        //         ? samværsavtale
-        //               .filter((attachment) => !attachmentUploadHasFailed(attachment))
-        //               .map(({ url }) => getAttachmentURLBackend(url))
-        //         : undefined,
     };
 };
