@@ -90,7 +90,7 @@ const OppsummeringStep = () => {
                             </Heading>
                             <>
                                 <ArbeidstidUkeListe
-                                    arbeidsuker={arbeidsuker}
+                                    listItems={arbeidsuker}
                                     arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                 />
                             </>
@@ -104,7 +104,7 @@ const OppsummeringStep = () => {
                     </Heading>
                     <>
                         <ArbeidstidUkeListe
-                            arbeidsuker={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
+                            listItems={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -117,7 +117,7 @@ const OppsummeringStep = () => {
                     </Heading>
                     <>
                         <ArbeidstidUkeListe
-                            arbeidsuker={getArbeidstidUkeListeItem(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
+                            listItems={getArbeidstidUkeListeItem(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>

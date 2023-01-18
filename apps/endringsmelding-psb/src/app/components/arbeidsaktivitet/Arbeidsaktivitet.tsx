@@ -19,14 +19,15 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
     const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
     const ukerSøktFor = arbeidsaktivitetUtils.getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
     const periodeIkkeSøktFor = arbeidsaktivitetUtils.finnPeriodeIkkeSøktFor(ukerSøktFor);
-    const uker = arbeidsaktivitetUtils.sorterListeItems([...ukerSøktFor, ...periodeIkkeSøktFor]);
+
+    const arbeidstidUkeListItems = arbeidsaktivitetUtils.sorterListeItems([...ukerSøktFor, ...periodeIkkeSøktFor]);
 
     return (
         <>
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
 
             <ArbeidstidUkeListe
-                arbeidsuker={uker}
+                listItems={arbeidstidUkeListItems}
                 onEndreUker={(uker: ArbeidstidUkeListeItem[]) => {
                     setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
                 }}

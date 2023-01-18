@@ -35,7 +35,7 @@ export interface PeriodeSøktForListeItem {
 export type ArbeidstidUkeListeItem = PeriodeSøktForListeItem | PeriodeIkkeSøktForListeItem;
 
 interface Props {
-    arbeidsuker: ArbeidstidUkeListeItem[];
+    listItems: ArbeidstidUkeListeItem[];
     visNormaltid?: boolean;
     paginering?: {
         antall: number;
@@ -45,7 +45,7 @@ interface Props {
 }
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
-    arbeidsuker,
+    listItems,
     visNormaltid = true,
     paginering = {
         antall: 10,
@@ -53,7 +53,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     arbeidstidKolonneTittel,
     onEndreUker,
 }) => {
-    const antallUkerTotalt = arbeidsuker.length;
+    const antallUkerTotalt = listItems.length;
     const [antallSynlig, setAntallSynlig] = useState<number | undefined>(
         paginering ? Math.min(antallUkerTotalt, paginering.antall) : undefined
     );
@@ -68,13 +68,13 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
         }
     };
 
-    const synligeUker = antallSynlig ? arbeidsuker.slice(0, antallSynlig) : arbeidsuker;
+    const synligeUker = antallSynlig ? listItems.slice(0, antallSynlig) : listItems;
 
     const endreFlereUker = () => {
         if (!onEndreUker) {
             return;
         }
-        onEndreUker(arbeidsuker.filter((uke) => valgteUker.includes(uke.isoDateRange)));
+        onEndreUker(listItems.filter((uke) => valgteUker.includes(uke.isoDateRange)));
     };
 
     const renderEditButton = (uke: PeriodeSøktForListeItem, ukenummer: number) => {

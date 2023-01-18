@@ -92,23 +92,23 @@ export const getAktivitetArbeidstidFromK9Format = (
     /** Summer faktisk og normalt i ukene. Kort ned periode-key dersom ikke alle dager i perioden har arbeid. */
     const arbeidsuker: ArbeidsukeMap = {};
     Object.keys(tempArbeidsuker).forEach((weekKey) => {
-        const { dagerMap: days } = tempArbeidsuker[weekKey];
+        const { dagerMap } = tempArbeidsuker[weekKey];
 
-        const dayKeys = Object.keys(days);
+        const dayKeys = Object.keys(dagerMap);
         const antallArbeidsdager = dayKeys.length;
         const from = ISODateToDate(dayKeys[0]);
         const to = ISODateToDate(dayKeys[dayKeys.length - 1]);
         const periode: DateRange = { from, to };
 
-        const faktisk = dayKeys.map((key) => days[key].faktisk);
-        const normalt = dayKeys.map((key) => days[key].normalt);
+        const faktisk = dayKeys.map((key) => dagerMap[key].faktisk);
+        const normalt = dayKeys.map((key) => dagerMap[key].normalt);
         const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
         const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
 
         const arbeidsuke: Arbeidsuke = {
             periode,
             isoDateRange: dateRangeToISODateRange(periode),
-            dagerMap: days,
+            dagerMap,
             antallArbeidsdager,
             faktisk: {
                 uke: faktiskSummertHeleUken,
