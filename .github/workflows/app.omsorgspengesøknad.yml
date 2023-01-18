@@ -1,47 +1,47 @@
 name: app.omsorgspengesøknad
 
 on:
-  push:
-    paths:
-      - 'apps/omsorgspengesoknad/**/*'
-      - 'nais-config/**/*'
-      - 'packages/**/*'
-      - .github/workflows/app.omsorgspengesøknad.yml
+    push:
+        paths:
+            - 'apps/omsorgspengesoknad/**/*'
+            - 'nais-config/**/*'
+            - 'packages/**/*'
+            - .github/workflows/app.omsorgspengesøknad.yml
 
 env:
     APP_NAME: 'omsorgspengesoknad'
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    run-script-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-            node-version: 16
-            cache: 'yarn'
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
 
-      - name: Install dependencies (yarn)
-        run: yarn
+            - name: Install dependencies (yarn)
+              run: yarn
 
-      - name: Run code tests
-        run: yarn test --filter=omsorgspengesoknad
+            - name: Run code tests
+              run: yarn test --filter=omsorgspengesoknad
 
-  run-cypress-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    run-cypress-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
 
-      - name: Run cypress tests
-        uses: cypress-io/github-action@v4 # use the explicit version number
-        env:
-          DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-          PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspenger
-        with:
-            project: ./apps/omsorgspengesoknad/e2e
-            build: yarn build-omsorgspengesoknad
-            start: yarn e2e-omsorgspengesoknad
+            - name: Run cypress tests
+              uses: cypress-io/github-action@v4 # use the explicit version number
+              env:
+                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspenger
+              with:
+                  project: ./apps/omsorgspengesoknad/e2e
+                  build: yarn build-omsorgspengesoknad
+                  start: yarn e2e-omsorgspengesoknad
