@@ -106,10 +106,9 @@ export const getAktivitetArbeidstidFromK9Format = (
         const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
 
         const arbeidsuke: Arbeidsuke = {
-            periode,
             isoDateRange: dateRangeToISODateRange(periode),
+            periode,
             dagerMap,
-            antallArbeidsdager,
             faktisk: {
                 uke: faktiskSummertHeleUken,
                 dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallArbeidsdager),
@@ -117,6 +116,11 @@ export const getAktivitetArbeidstidFromK9Format = (
             normalt: {
                 uke: normaltSummertHeleUken,
                 dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallArbeidsdager),
+            },
+            meta: {
+                antallArbeidsdager,
+                ukenummer: dayjs(periode.from).isoWeek(),
+                årstall: dayjs(periode.from).isoWeekYear(),
             },
         };
         arbeidsuker[dateRangeToISODateRange({ from, to })] = arbeidsuke;

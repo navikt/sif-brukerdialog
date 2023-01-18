@@ -6,6 +6,7 @@ import {
     ISODateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
+import dayjs from 'dayjs';
 import { Arbeidsuke } from '../../../src/app/types/K9Sak';
 
 const getMockArbeidsuke = (
@@ -14,10 +15,15 @@ const getMockArbeidsuke = (
     faktiskPerDag: Duration = { hours: '2', minutes: '0' }
 ): Arbeidsuke => {
     const antallArbeidsdager = dateRangeUtils.getNumberOfDaysInDateRange(ISODateRangeToDateRange(isoDateRange), true);
+    const periode = ISODateRangeToDateRange(isoDateRange);
     return {
         isoDateRange,
         dagerMap: {},
-        antallArbeidsdager,
+        meta: {
+            antallArbeidsdager,
+            ukenummer: dayjs(periode.from).isoWeek(),
+            årstall: dayjs(periode.from).isoWeekYear(),
+        },
         normalt: {
             uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallArbeidsdager),
             dag: normaltPerDag,
@@ -26,7 +32,7 @@ const getMockArbeidsuke = (
             uke: decimalDurationToDuration(durationToDecimalDuration(faktiskPerDag) * antallArbeidsdager),
             dag: faktiskPerDag,
         },
-        periode: ISODateRangeToDateRange(isoDateRange),
+        periode,
     };
 };
 

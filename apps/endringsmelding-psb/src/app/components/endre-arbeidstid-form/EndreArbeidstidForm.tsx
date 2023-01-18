@@ -111,11 +111,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                     : 'Endre arbeidstid for flere uker'}
                             </Heading>
                         </Block>
-                        {/* {erEnkeltuke && (
-                        <Block margin="m">
-                            <PeriodeTekst periode={arbeidsuker[0].periode} />
-                        </Block>
-                    )} */}
 
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}

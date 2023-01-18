@@ -183,7 +183,8 @@ const getArbeidstidUkeListeItem = (perioder: ArbeidstidPeriodeApiDataMap): Arbei
             _opprinneligNormaltPerDag,
             _endretProsent,
         }: ArbeidstidPeriodeApiData = perioder[isoDateRange];
-        const antallDager = getDatesInDateRange(dateRange).length;
+        const antallDager = getDatesInDateRange(dateRange, true).length;
+
         const arbeidsuke: ArbeidstidUkeListeItem = {
             søktFor: true,
             kanEndres: false,

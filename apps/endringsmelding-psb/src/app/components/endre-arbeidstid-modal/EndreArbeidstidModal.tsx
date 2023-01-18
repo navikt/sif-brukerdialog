@@ -31,6 +31,7 @@ const EndreArbeidstidModal: FunctionComponent<Props> = ({
                         size="small"
                         level="1"
                         id="endreArbeidstidModalHeader"
+                        tabIndex={0}
                         className="endreArbeidstidModal__noFocusOutline">
                         {getArbeidAktivitetNavn(arbeidAktivitet)}
                     </Heading>

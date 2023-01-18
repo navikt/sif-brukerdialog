@@ -8,7 +8,7 @@ import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-co
 import dayjs from 'dayjs';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
-import PeriodeTekst, { getPeriodeTekst } from './components/PeriodeTekst';
+import { getPeriodeTekst } from './components/PeriodeTekst';
 import './arbeidstidUkeList.scss';
 
 export interface PeriodeIkkeSøktForListeItem {
@@ -223,9 +223,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                     <>
                                         <Table.DataCell>{ukenummer}</Table.DataCell>
                                         <Table.DataCell style={{ minWidth: '15rem' }}>
-                                            <div id={ukePeriodeTekstId}>
-                                                <PeriodeTekst periode={uke.periode} />
-                                            </div>
+                                            <div id={ukePeriodeTekstId}>{getPeriodeTekst(uke.periode)}</div>
                                         </Table.DataCell>
                                         {visNormaltid && (
                                             <Table.DataCell>

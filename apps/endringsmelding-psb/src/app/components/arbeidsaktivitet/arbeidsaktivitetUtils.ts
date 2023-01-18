@@ -66,13 +66,12 @@ const arbeidsukeToArbeidstidUkeListItem = (
 };
 
 const getArbeidstidUkeListItemFromArbeidsuker = (
-    arbeidsuker: ArbeidsukeMap,
+    arbeidsukeMap: ArbeidsukeMap,
     endringer: ArbeidstidAktivitetEndringMap = {}
 ): PeriodeSøktForListeItem[] => {
     const items: PeriodeSøktForListeItem[] = [];
-
-    Object.keys(arbeidsuker).map((key) => {
-        const arbeidsuke = arbeidsuker[key];
+    Object.keys(arbeidsukeMap).map((key) => {
+        const arbeidsuke = arbeidsukeMap[key];
         const endring = endringer[key];
         items.push(arbeidsukeToArbeidstidUkeListItem(arbeidsuke, endring?.endring));
     });
