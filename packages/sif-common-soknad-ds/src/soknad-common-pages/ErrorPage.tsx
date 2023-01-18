@@ -15,7 +15,7 @@ const ErrorPage = ({ contentRenderer, pageTitle, bannerTitle }: Props) => {
     const intl = useIntl();
     return (
         <Page
-            title={pageTitle || intlHelper(intl, 'page.error.pageTitle')}
+            title={pageTitle || intlHelper(intl, 'common.errorPage.defaultTitle')}
             topContentRenderer={() => <SoknadHeader title={bannerTitle || intlHelper(intl, 'application.title')} />}>
             <Block margin="xxxl">
                 {contentRenderer ? contentRenderer() : <SoknadErrorMessages.GeneralApplicationError />}
