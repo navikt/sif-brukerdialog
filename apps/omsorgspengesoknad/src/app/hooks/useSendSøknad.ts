@@ -21,15 +21,13 @@ export const useSendSøknad = () => {
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);
-        setTimeout(() => {
-            søknadEndpoint
-                .send(apiData)
-                .then(onSøknadSendSuccess)
-                .catch((error) => {
-                    setSendSøknadError(error);
-                    setIsSubmitting(false);
-                });
-        });
+        søknadEndpoint
+            .send(apiData)
+            .then(onSøknadSendSuccess)
+            .catch((error) => {
+                setSendSøknadError(error);
+                setIsSubmitting(false);
+            });
     };
 
     const onSøknadSendSuccess = async () => {

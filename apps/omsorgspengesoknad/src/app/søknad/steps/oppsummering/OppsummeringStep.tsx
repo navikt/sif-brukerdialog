@@ -46,7 +46,7 @@ const OppsummeringStep = () => {
 
     const { goBack } = useStepNavigation(step);
 
-    const { sendSøknad, isSubmitting, sendSøknadError, resetSendSøknad } = useSendSøknad();
+    const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
@@ -91,9 +91,7 @@ const OppsummeringStep = () => {
                                 includeValidationSummary={true}
                                 submitButtonLabel="Send søknad"
                                 submitPending={isSubmitting}
-                                onValidSubmit={() => {
-                                    resetSendSøknad();
-                                }}
+                                backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
                                 <OmBarnetOppsummering apiData={apiData} registrerteBarn={registrerteBarn} />
@@ -102,8 +100,8 @@ const OppsummeringStep = () => {
                                     legeerklæringSøknadsdata={søknadsdata.legeerklæring}
                                     samværsavtaleSøknadsdata={søknadsdata.deltBosted}
                                 />
-
                                 <ConfirmationCheckbox
+                                    disabled={isSubmitting}
                                     label={
                                         <span data-testid="bekreft-label">
                                             <FormattedMessage id="steg.oppsummering.bekrefterOpplysninger" />
