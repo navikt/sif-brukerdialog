@@ -28,7 +28,7 @@ jobs:
         run: yarn
 
       - name: Run code tests
-        run: yarn test
+        run: yarn test --filter=omsorgspengesoknad
 
   run-cypress-test:
     runs-on: ubuntu-latest
