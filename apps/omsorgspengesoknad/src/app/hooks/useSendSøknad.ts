@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { AxiosError } from 'axios';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
+import { SKJEMANAVN } from '../App';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import { SKJEMANAVN } from '../App';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -17,24 +17,27 @@ export const useSendSøknad = () => {
     const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent, logSoknadFailed } = useAmplitudeInstance();
+    const { logSoknadSent } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
-        resetSendSøknad();
-        søknadEndpoint
-            .send(apiData)
-            .then(async () => {
-                await logSoknadSent(SKJEMANAVN);
-                slettMellomlagring();
-                setIsSubmitting(false);
-                dispatch(actionsCreator.setSøknadSendt());
-                navigateTo(SøknadRoutes.SØKNAD_SENDT);
-            })
-            .catch(async (error) => {
-                await logSoknadFailed('Ved innsending av søknad');
-                setSendSøknadError(error);
-                setIsSubmitting(false);
-            });
+        setIsSubmitting(true);
+        setTimeout(() => {
+            søknadEndpoint
+                .send(apiData)
+                .then(onSøknadSendSuccess)
+                .catch((error) => {
+                    setSendSøknadError(error);
+                    setIsSubmitting(false);
+                });
+        });
+    };
+
+    const onSøknadSendSuccess = async () => {
+        await logSoknadSent(SKJEMANAVN);
+        slettMellomlagring();
+        setIsSubmitting(false);
+        dispatch(actionsCreator.setSøknadSendt());
+        navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };
 
     const resetSendSøknad = () => {
