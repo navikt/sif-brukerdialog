@@ -15,8 +15,8 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
 
-export const APPLICATION_KEY = 'omsorgspengesoknad';
-export const SKJEMANAVN = 'omsorgspengesoknad';
+export const APPLICATION_KEY = 'omsorgspengersoknad';
+export const SKJEMANAVN = 'Søknad om omsorgspenger - utvidet rett';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

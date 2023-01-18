@@ -7,6 +7,8 @@ import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { SKJEMANAVN } from '../App';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -15,17 +17,21 @@ export const useSendSøknad = () => {
     const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
+    const { logSoknadSent, logSoknadFailed } = useAmplitudeInstance();
+
     const sendSøknad = (apiData: SøknadApiData) => {
         resetSendSøknad();
         søknadEndpoint
             .send(apiData)
-            .then(() => {
+            .then(async () => {
+                await logSoknadSent(SKJEMANAVN);
                 slettMellomlagring();
                 setIsSubmitting(false);
                 dispatch(actionsCreator.setSøknadSendt());
                 navigateTo(SøknadRoutes.SØKNAD_SENDT);
             })
-            .catch((error) => {
+            .catch(async (error) => {
+                await logSoknadFailed('Ved innsending av søknad');
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });

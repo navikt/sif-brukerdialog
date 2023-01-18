@@ -8,6 +8,8 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuide from './VelkommenGuide';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { SKJEMANAVN } from '../../App';
 
 const VelkommenPage = () => {
     const intl = useIntl();
@@ -16,7 +18,10 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
-    const startSøknad = () => {
+    const { logSoknadStartet } = useAmplitudeInstance();
+
+    const startSøknad = async () => {
+        await logSoknadStartet(SKJEMANAVN);
         dispatch(actionsCreator.startSøknad());
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_BARNET));
     };
