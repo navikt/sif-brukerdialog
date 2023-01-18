@@ -8,6 +8,7 @@ import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summ
 import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';
+import { getAttachmentURLBackend } from '../../../utils/attachmentUtilsAuthToken';
 
 interface Props {
     apiData: SøknadApiData;
@@ -22,12 +23,14 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
 }) => {
     const intl = useIntl();
     const legeerklæringer = legeerklæringSøknadsdata
-        ? legeerklæringSøknadsdata.vedlegg.filter((v) => v.url && apiData.legeerklæring.includes(v.url))
+        ? legeerklæringSøknadsdata.vedlegg.filter(
+              (v) => v.url && apiData.legeerklæring.includes(getAttachmentURLBackend(v.url))
+          )
         : [];
 
     const samværsavtaler = samværsavtaleSøknadsdata
         ? samværsavtaleSøknadsdata.vedlegg.filter((v) => {
-              return v.url && apiData.samværsavtale && apiData.samværsavtale.includes(v.url);
+              return v.url && apiData.samværsavtale && apiData.samværsavtale.includes(getAttachmentURLBackend(v.url));
           })
         : undefined;
 
