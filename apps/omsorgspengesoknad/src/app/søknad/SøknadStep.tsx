@@ -10,6 +10,7 @@ import { getSøknadStepConfig } from './søknadStepConfig';
 import StateInfo from '../components/state-info/StateInfo';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 interface Props {
     stepId: StepId;
@@ -21,6 +22,8 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const {
         state: { søknadsdata },
     } = useSøknadContext();
+
+    useLogSidevisning(stepId);
 
     const stepConfig = getSøknadStepConfig(søknadsdata);
 

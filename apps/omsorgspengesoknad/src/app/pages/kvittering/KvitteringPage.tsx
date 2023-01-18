@@ -7,9 +7,13 @@ import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/components/checkmark-i
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import getLenker from '../../lenker';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const KvitteringPage = () => {
     const intl = useIntl();
+
+    useLogSidevisning(SIFCommonPageKey.kvittering);
+
     return (
         <Page title={intlHelper(intl, 'page.kvittering.sidetittel')}>
             <div data-testid="kvittering-page">
