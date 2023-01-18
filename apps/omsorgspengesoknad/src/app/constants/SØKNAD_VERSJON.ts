@@ -1,1 +1,1 @@
-export const SØKNAD_VERSJON = '0.0.4';
+export const SØKNAD_VERSJON = '1.0.0';
