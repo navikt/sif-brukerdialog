@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.0.2
+
+### Patch Changes
+
+-   3e5b7c76: Oppdatert logging til amplitude + noe bugfix
+
 ## 1.0.1
 
 ### Patch Changes
