@@ -1,4 +1,4 @@
-import { Alert, ErrorSummary, Heading } from '@navikt/ds-react';
+import { Alert, ErrorSummary, Heading, Link } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -73,6 +73,28 @@ const OppsummeringStep = () => {
 
     const arbeidstidKolonneTittel = 'Endret arbeidstid';
 
+    const harEndringer =
+        arbeidstakerList.length > 0 || frilanserArbeidstidInfo || selvstendigNæringsdrivendeArbeidstidInfo;
+
+    if (!harEndringer) {
+        return (
+            <SøknadStep stepId={stepId}>
+                <Alert variant="info">
+                    <Heading level="2" size="small" spacing={true}>
+                        Ingen endringer er registert
+                    </Heading>
+                    <p>
+                        Du har ikke gjort noen endringer i arbeidstiden din. Gå tilbake til forrige steg og gjør
+                        endringene.
+                    </p>
+                    <Link href="#" onClick={goBack}>
+                        Gå tilbake
+                    </Link>
+                </Alert>
+            </SøknadStep>
+        );
+    }
+
     return (
         <SøknadStep stepId={stepId}>
             {arbeidstakerList &&
@@ -123,7 +145,7 @@ const OppsummeringStep = () => {
                     </>
                 </FormBlock>
             )}
-            <FormBlock margin="xxl">
+            <FormBlock margin="l">
                 <FormikWrapper
                     initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                     onSubmit={(values) => {
