@@ -15,7 +15,6 @@ import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
@@ -127,7 +126,6 @@ const ArbeidstidStep = () => {
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
-                                    const arbeidAktivitetNavn = getArbeidAktivitetNavn(arbeidAktivitet);
                                     return (
                                         <FormBlock key={arbeidAktivitet.id}>
                                             <Panel border={true}>
