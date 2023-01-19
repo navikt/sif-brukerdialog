@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-forms-ds",
     "types": "lib/index.d.js",
-    "version": "3.3.2",
+    "version": "3.3.3",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
@@ -16,8 +16,8 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/ds-css": "2.0.14",
-        "@navikt/ds-react": "2.0.14",
+        "@navikt/ds-css": "2.0.17",
+        "@navikt/ds-react": "2.0.17",
         "@storybook/addon-a11y": "6.5.15",
         "@storybook/addon-actions": "6.5.15",
         "@storybook/addon-essentials": "6.5.15",
@@ -29,7 +29,7 @@
         "@testing-library/react": "13.4.0",
         "@testing-library/user-event": "14.4.3",
         "@types/node": "18.11.18",
-        "@types/react": "18.0.26",
+        "@types/react": "18.0.27",
         "@types/react-dom": "18.0.10",
         "@types/react-responsive": "8.0.5",
         "axios": "0.27.2",
