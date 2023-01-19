@@ -1,5 +1,18 @@
 # @navikt/SIF_SOKNAD_TEMPLATE
 
+## 0.2.3
+
+### Patch Changes
+
+-   4afefff: Oppdatere pakker
+-   Updated dependencies [4afefff]
+    -   @navikt/sif-common-amplitude@2.7.1
+    -   @navikt/sif-common-formik-ds@0.9.4
+    -   @navikt/sif-common-soknad-ds@5.3.5
+    -   @navikt/sif-common-forms-ds@3.3.3
+    -   @navikt/sif-common-core-ds@5.3.3
+    -   @navikt/sif-common-utils@3.18.2
+
 ## 0.2.2
 
 ### Patch Changes
