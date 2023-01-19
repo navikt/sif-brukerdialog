@@ -52,7 +52,7 @@ const OppsummeringStep = () => {
 
     const { goBack } = useStepNavigation(step);
 
-    const { sendSøknad, isSubmitting, sendSøknadError, resetSendSøknad } = useSendSøknad();
+    const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
@@ -144,11 +144,10 @@ const OppsummeringStep = () => {
                                     includeValidationSummary={true}
                                     submitButtonLabel="Send søknad"
                                     submitPending={isSubmitting}
-                                    onValidSubmit={() => {
-                                        resetSendSøknad();
-                                    }}
+                                    backButtonDisabled={isSubmitting}
                                     onBack={goBack}>
                                     <ConfirmationCheckbox
+                                        disabled={isSubmitting}
                                         label="Bekrefter opplysninger"
                                         validate={getCheckedValidator()}
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
