@@ -34,6 +34,9 @@ const finnPeriodeIkkeSøktFor = (uker: PeriodeSøktForListeItem[]): PeriodeIkkeS
             from: dayjs(forrigeUke.periode.to).add(1, 'day').toDate(),
             to: dayjs(uke.periode.from).subtract(1, 'day').toDate(),
         };
+        if (periode.from.getTime() > periode.to.getTime()) {
+            return;
+        }
         const uttaksdagerIPeriode = getNumberOfDaysInDateRange(periode, true);
         if (uttaksdagerIPeriode > 0) {
             perioderIkkeSøktFor.push({ isoDateRange: dateRangeToISODateRange(periode), periode, søktFor: false });

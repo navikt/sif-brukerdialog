@@ -152,6 +152,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                             maxLength={4}
                                             validate={(value) => {
                                                 return getNumberValidator({
+                                                    required: true,
                                                     min: 0,
                                                     max: 100,
                                                 })(value);
@@ -169,6 +170,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                             maxLength={4}
                                             validate={(value) => {
                                                 return getNumberValidator({
+                                                    required: true,
                                                     min: 0,
                                                     max: 100,
                                                 })(value);

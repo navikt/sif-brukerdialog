@@ -89,6 +89,31 @@ export const getAktivitetArbeidstidFromK9Format = (
         });
     });
 
+    const getUkePeriodeForDager = (dagerMap: ArbeidstidEnkeltdagMap): DateRange => {
+        const dayKeys = Object.keys(dagerMap);
+        const from = ISODateToDate(dayKeys[0]);
+
+        const sisteDag = dayjs(ISODateToDate(dayKeys[dayKeys.length - 1]));
+
+        if (sisteDag.isoWeekday() === 5) {
+            const påfølgendeMandag = sisteDag.add(3, 'days').toDate();
+            if (arbeidsdager[dateToISODate(påfølgendeMandag)] !== undefined) {
+                return {
+                    from,
+                    to: sisteDag.add(2, 'days').toDate(),
+                };
+            }
+            return {
+                from,
+                to: sisteDag.toDate(),
+            };
+        }
+        return {
+            from,
+            to: sisteDag.toDate(),
+        };
+    };
+
     /** Summer faktisk og normalt i ukene. Kort ned periode-key dersom ikke alle dager i perioden har arbeid. */
     const arbeidsuker: ArbeidsukeMap = {};
     Object.keys(tempArbeidsuker).forEach((weekKey) => {
@@ -96,9 +121,10 @@ export const getAktivitetArbeidstidFromK9Format = (
 
         const dayKeys = Object.keys(dagerMap);
         const antallArbeidsdager = dayKeys.length;
-        const from = ISODateToDate(dayKeys[0]);
-        const to = ISODateToDate(dayKeys[dayKeys.length - 1]);
-        const periode: DateRange = { from, to };
+        // const from = ISODateToDate(dayKeys[0]);
+        // const to = ISODateToDate(dayKeys[dayKeys.length - 1]);
+
+        const periode: DateRange = getUkePeriodeForDager(dagerMap); //{ from, to };
 
         const faktisk = dayKeys.map((key) => dagerMap[key].faktisk);
         const normalt = dayKeys.map((key) => dagerMap[key].normalt);
@@ -123,7 +149,7 @@ export const getAktivitetArbeidstidFromK9Format = (
                 årstall: dayjs(periode.from).isoWeekYear(),
             },
         };
-        arbeidsuker[dateRangeToISODateRange({ from, to })] = arbeidsuke;
+        arbeidsuker[dateRangeToISODateRange(periode)] = arbeidsuke;
     });
 
     return {
