@@ -1,5 +1,14 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.3.5
+
+### Patch Changes
+
+-   4afefff: Oppdatere pakker
+-   Updated dependencies [4afefff]
+    -   @navikt/sif-common-formik-ds@0.9.4
+    -   @navikt/appstatus-react-ds@1.5.7
+
 ## 5.3.4
 
 ### Patch Changes
