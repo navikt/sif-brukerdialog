@@ -1,5 +1,20 @@
 # @navikt/omsorgspengesoknad
 
+## 1.0.2
+
+### Patch Changes
+
+-   3e5b7c76: Oppdatert logging til amplitude + noe bugfix
+
+## 1.0.1
+
+### Patch Changes
+
+-   9147d2a3: Bugfix - visning av vedlegg i søknaden
+-   0f5a8918: Legge til manglende intl-key
+-   Updated dependencies [0f5a8918]
+    -   @navikt/sif-common-soknad-ds@5.3.4
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.3.4
+
+### Patch Changes
+
+-   0f5a8918: Legge til manglende intl-key
+
 ## 5.3.3
 
 ### Patch Changes
