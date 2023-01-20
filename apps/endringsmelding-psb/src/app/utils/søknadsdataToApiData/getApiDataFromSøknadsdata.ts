@@ -21,14 +21,14 @@ export const getEndretArbeidstid = (
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
         const { endring } = endringUkeMap[isoDateRange];
         const arbeidsuke = arbeidAktivitet.arbeidsuker[isoDateRange];
-        const dager = Object.keys(arbeidsuke.dagerMap);
-        const antallDager = dager.length;
+        // const dager = Object.keys(arbeidsuke.dagerMap);
+        const { antallDagerMedArbeidstid } = arbeidsuke.meta;
 
-        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDager);
+        const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);
         const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
             arbeidsuke.normalt.uke,
             endring,
-            antallDager
+            antallDagerMedArbeidstid
         );
 
         arbeidsdagerMedEndretTid[isoDateRange] = {

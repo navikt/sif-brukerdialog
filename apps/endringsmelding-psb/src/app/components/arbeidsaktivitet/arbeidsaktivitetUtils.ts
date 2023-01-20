@@ -54,7 +54,7 @@ const arbeidsukeToArbeidstidUkeListItem = (
         ...arbeidsuke,
         søktFor: true,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
-        antallDager: Object.keys(arbeidsuke.dagerMap).length,
+        antallDager: arbeidsuke.meta.antallDagerMedArbeidstid,
         opprinnelig: {
             faktisk: arbeidsuke.faktisk.uke,
             normalt: arbeidsuke.normalt.uke,

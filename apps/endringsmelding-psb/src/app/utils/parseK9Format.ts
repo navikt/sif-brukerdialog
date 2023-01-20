@@ -4,14 +4,22 @@ import {
     dateToISODate,
     durationUtils,
     getISODatesInISODateRange,
-    isDateInDateRange,
+    getIsoWeekDateRangeForDate,
+    isDateInDateRanges,
+    ISODateRange,
     ISODateRangeToDateRange,
     ISODateToDate,
     ISODurationToDuration,
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { K9Format, K9FormatArbeidstaker, K9FormatArbeidstidPeriode, K9FormatBarn } from '../types/k9Format';
+import {
+    K9Format,
+    K9FormatArbeidstaker,
+    K9FormatArbeidstid,
+    K9FormatArbeidstidPeriode,
+    K9FormatBarn,
+} from '../types/k9Format';
 import {
     AktivitetArbeidstid,
     ArbeidstakerMap,
@@ -20,26 +28,47 @@ import {
     ArbeidsukeMap,
     Barn,
     K9Sak,
+    YtelseArbeidstid,
 } from '../types/K9Sak';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getEndringsdato, getSøknadsperioderInnenforTillattEndringsperiode } from './endringsperiode';
 
-const dateIsIWithinDateRanges = (date: Date, dateRanges: DateRange[]) =>
-    dateRanges.some((dateRange) => isDateInDateRange(date, dateRange));
+/**
+ *
+ * Finner DateRange for uke. Dersom siste dag med arbeidstid er
+ * fredag og påfølgende mandag har info om arbeidstid, returneres DateRange for hele uken. Dersom siste dag
+ * er mandag-torsdag returneres perioden til og med denne dagen.
+ *
+ * @param dagerMap Dager med arbeid i uke
+ * @param alleArbeidsdager Alle arbeidsdager på sak
+ * @returns DateRange for uke
+ */
+const getUkePeriodeForDager = (
+    dagerMap: ArbeidstidEnkeltdagMap,
+    alleArbeidsdager: ArbeidstidEnkeltdagMap
+): DateRange => {
+    const dayKeys = Object.keys(dagerMap);
+    const førsteDag = ISODateToDate(dayKeys[0]);
+    const sisteDag = dayjs(ISODateToDate(dayKeys[dayKeys.length - 1]));
 
-const getIsoWeekDateRangeForDate = (date: Date) => {
-    const from = dayjs(date).startOf('isoWeek').toDate();
-    const to = dayjs(date).endOf('isoWeek').toDate();
+    if (sisteDag.isoWeekday() === 5) {
+        const påfølgendeMandag = sisteDag.add(3, 'days').toDate();
+        /** Returner tidsperiode for hele uken dersom perioden fortsetter uken etter */
+        if (alleArbeidsdager[dateToISODate(påfølgendeMandag)] !== undefined) {
+            return {
+                from: førsteDag,
+                to: sisteDag.add(2, 'days').toDate(),
+            };
+        }
+        return {
+            from: førsteDag,
+            to: sisteDag.toDate(),
+        };
+    }
     return {
-        from,
-        to,
+        from: førsteDag,
+        to: sisteDag.toDate(),
     };
-};
-
-const getTomArbeidsuke = (): Arbeidsuke => {
-    return {
-        dagerMap: {},
-    } as Arbeidsuke;
 };
 
 /**
@@ -54,8 +83,8 @@ export const getAktivitetArbeidstidFromK9Format = (
     arbeidstidPerioder: K9FormatArbeidstidPeriode,
     søknadsperioder: DateRange[]
 ): AktivitetArbeidstid => {
-    const arbeidsdager: ArbeidstidEnkeltdagMap = {};
-    const tempArbeidsuker: ArbeidsukeMap = {};
+    const enkeltdagerMedArbeid: ArbeidstidEnkeltdagMap = {};
+    const ukerMedArbeidsdagerMap: { [uke: ISODateRange]: { dagerMap: ArbeidstidEnkeltdagMap } } = {};
 
     /**
      * Gå gjennom hver periode og legg dager til uke.
@@ -65,23 +94,25 @@ export const getAktivitetArbeidstidFromK9Format = (
         const isoDates = getISODatesInISODateRange(isoDateRange, true);
         isoDates.forEach((isoDate) => {
             const date = ISODateToDate(isoDate);
-            const dateIsInSøknadsperioder = dateIsIWithinDateRanges(date, søknadsperioder);
+            const dateIsInSøknadsperioder = isDateInDateRanges(date, søknadsperioder);
             if (dateIsInSøknadsperioder) {
                 const faktisk = ISODurationToDuration(arbeidstidPerioder[isoDateRange].faktiskArbeidTimerPerDag);
                 const normalt = ISODurationToDuration(arbeidstidPerioder[isoDateRange].jobberNormaltTimerPerDag);
 
                 /** Midlertidig nøkkel som tar hele uken */
                 const weekKey = dateRangeToISODateRange(getIsoWeekDateRangeForDate(date));
-                if (tempArbeidsuker[weekKey] === undefined) {
-                    tempArbeidsuker[weekKey] = getTomArbeidsuke();
+                if (ukerMedArbeidsdagerMap[weekKey] === undefined) {
+                    ukerMedArbeidsdagerMap[weekKey] = {
+                        dagerMap: {},
+                    };
                 }
                 /** Legg til enkeltdag i arbeidsuken */
-                tempArbeidsuker[weekKey].dagerMap[dateToISODate(date)] = {
+                ukerMedArbeidsdagerMap[weekKey].dagerMap[dateToISODate(date)] = {
                     faktisk,
                     normalt,
                 };
                 /** Legg til enkeltdag */
-                arbeidsdager[isoDate] = {
+                enkeltdagerMedArbeid[isoDate] = {
                     faktisk,
                     normalt,
                 };
@@ -89,71 +120,40 @@ export const getAktivitetArbeidstidFromK9Format = (
         });
     });
 
-    const getUkePeriodeForDager = (dagerMap: ArbeidstidEnkeltdagMap): DateRange => {
-        const dayKeys = Object.keys(dagerMap);
-        const from = ISODateToDate(dayKeys[0]);
-
-        const sisteDag = dayjs(ISODateToDate(dayKeys[dayKeys.length - 1]));
-
-        if (sisteDag.isoWeekday() === 5) {
-            const påfølgendeMandag = sisteDag.add(3, 'days').toDate();
-            if (arbeidsdager[dateToISODate(påfølgendeMandag)] !== undefined) {
-                return {
-                    from,
-                    to: sisteDag.add(2, 'days').toDate(),
-                };
-            }
-            return {
-                from,
-                to: sisteDag.toDate(),
-            };
-        }
-        return {
-            from,
-            to: sisteDag.toDate(),
-        };
-    };
-
     /** Summer faktisk og normalt i ukene. Kort ned periode-key dersom ikke alle dager i perioden har arbeid. */
     const arbeidsuker: ArbeidsukeMap = {};
-    Object.keys(tempArbeidsuker).forEach((weekKey) => {
-        const { dagerMap } = tempArbeidsuker[weekKey];
+    Object.keys(ukerMedArbeidsdagerMap).forEach((weekKey) => {
+        const { dagerMap } = ukerMedArbeidsdagerMap[weekKey];
 
         const dayKeys = Object.keys(dagerMap);
-        const antallArbeidsdager = dayKeys.length;
-        // const from = ISODateToDate(dayKeys[0]);
-        // const to = ISODateToDate(dayKeys[dayKeys.length - 1]);
-
-        const periode: DateRange = getUkePeriodeForDager(dagerMap); //{ from, to };
-
+        const antallDagerMedArbeidstid = dayKeys.length;
         const faktisk = dayKeys.map((key) => dagerMap[key].faktisk);
         const normalt = dayKeys.map((key) => dagerMap[key].normalt);
         const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
         const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
+        const periode: DateRange = getUkePeriodeForDager(dagerMap, enkeltdagerMedArbeid);
 
         const arbeidsuke: Arbeidsuke = {
             isoDateRange: dateRangeToISODateRange(periode),
             periode,
-            dagerMap,
             faktisk: {
                 uke: faktiskSummertHeleUken,
-                dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallArbeidsdager),
+                dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
             },
             normalt: {
                 uke: normaltSummertHeleUken,
-                dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallArbeidsdager),
+                dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerMedArbeidstid),
             },
             meta: {
-                antallArbeidsdager,
+                antallDagerMedArbeidstid: antallDagerMedArbeidstid,
                 ukenummer: dayjs(periode.from).isoWeek(),
                 årstall: dayjs(periode.from).isoWeekYear(),
             },
         };
         arbeidsuker[dateRangeToISODateRange(periode)] = arbeidsuke;
     });
-
     return {
-        arbeidsdager,
+        arbeidsdager: enkeltdagerMedArbeid,
         arbeidsuker,
     };
 };
@@ -172,12 +172,24 @@ const getArbeidstidArbeidsgivere = (
 
 const getBarn = (barn: K9FormatBarn): Barn => {
     return {
-        aktørId: barn.aktørId,
-        identitetsnummer: barn.identitetsnummer,
+        ...barn,
         fødselsdato: ISODateToDate(barn.fødselsdato),
-        fornavn: barn.fornavn,
-        etternavn: barn.etternavn,
         mellomnavn: barn.mellomnavn || undefined,
+    };
+};
+
+const getArbeidstidInfo = (
+    { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo }: K9FormatArbeidstid,
+    søknadsperioder: DateRange[]
+): YtelseArbeidstid => {
+    return {
+        arbeidstakerMap: getArbeidstidArbeidsgivere(arbeidstakerList, søknadsperioder),
+        frilanserArbeidstidInfo: frilanserArbeidstidInfo?.perioder
+            ? getAktivitetArbeidstidFromK9Format(frilanserArbeidstidInfo.perioder, søknadsperioder)
+            : undefined,
+        selvstendigNæringsdrivendeArbeidstidInfo: selvstendigNæringsdrivendeArbeidstidInfo?.perioder
+            ? getAktivitetArbeidstidFromK9Format(selvstendigNæringsdrivendeArbeidstidInfo.perioder, søknadsperioder)
+            : undefined,
     };
 };
 
@@ -216,22 +228,7 @@ export const parseK9Format = (data: K9Format): K9Sak => {
                       }
                     : undefined,
             },
-            arbeidstidInfo: {
-                arbeidstakerMap: getArbeidstidArbeidsgivere(ytelse.arbeidstid.arbeidstakerList, søknadsperioder),
-                frilanserArbeidstidInfo: ytelse.arbeidstid.frilanserArbeidstidInfo?.perioder
-                    ? getAktivitetArbeidstidFromK9Format(
-                          ytelse.arbeidstid.frilanserArbeidstidInfo.perioder,
-                          søknadsperioder
-                      )
-                    : undefined,
-                selvstendigNæringsdrivendeArbeidstidInfo: ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo
-                    ?.perioder
-                    ? getAktivitetArbeidstidFromK9Format(
-                          ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo.perioder,
-                          søknadsperioder
-                      )
-                    : undefined,
-            },
+            arbeidstidInfo: getArbeidstidInfo(ytelse.arbeidstid, søknadsperioder),
         },
     };
 

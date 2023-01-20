@@ -11,12 +11,12 @@ export interface ArbeidsukeTimer {
 export interface Arbeidsuke {
     isoDateRange: string;
     periode: DateRange;
-    dagerMap: ArbeidstidEnkeltdagMap;
+    // dagerMap: ArbeidstidEnkeltdagMap;
     faktisk: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
     /** Utledet info */
     meta: {
-        antallArbeidsdager: number;
+        antallDagerMedArbeidstid: number;
         ukenummer: number;
         årstall: number;
     };
