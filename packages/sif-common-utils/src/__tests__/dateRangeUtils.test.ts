@@ -11,6 +11,7 @@ import {
     getDatesInDateRange,
     getDatesInMonthOutsideDateRange,
     getISODatesInISODateRange,
+    getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
@@ -18,6 +19,7 @@ import {
     getWeeksInDateRange,
     getYearsInDateRanges,
     isDateInDateRange,
+    isDateInDateRanges,
     isDateInMaybeDateRange,
     isDateInsideDateRange,
     isDateRange,
@@ -88,12 +90,12 @@ describe('dateRangeUtils', () => {
             from: ISODateToDate('2020-02-2'),
             to: ISODateToDate('2020-02-03'),
         };
-        it('detects colliding date ranges', () => {
+        it('detects colliding dateranges', () => {
             expect(dateRangesCollide([dateRange1, dateRange2, dateRange3])).toBeTruthy();
             expect(dateRangesCollide([dateRange1, dateRange3])).toBeTruthy();
             expect(dateRangesCollide([dateRange2, dateRange3])).toBeTruthy();
         });
-        it('ignores non colliding date ranges', () => {
+        it('ignores non colliding dateranges', () => {
             expect(dateRangesCollide([dateRange1, dateRange2])).toBeFalsy();
         });
         it('allows last-date and from-date be same date between ranges if specified', () => {
@@ -120,15 +122,15 @@ describe('dateRangeUtils', () => {
             from: ISODateToDate('2020-02-05'),
             to: ISODateToDate('2020-02-06'),
         };
-        it('returns false when no date ranges defined', () => {
+        it('returns false when no dateranges defined', () => {
             expect(datesCollideWithDateRanges([dateBefore], [])).toBeFalsy();
         });
-        it('detects no collision when dates is outside date ranges', () => {
+        it('detects no collision when dates is outside dateranges', () => {
             expect(
                 datesCollideWithDateRanges([dateBefore, dateBetween, dateAfter], [dateRange1, dateRange2])
             ).toBeFalsy();
         });
-        it('detects collision when dates is inside one of the date ranges', () => {
+        it('detects collision when dates is inside one of the dateranges', () => {
             expect(datesCollideWithDateRanges([dateInside1, dateBefore], [dateRange1, dateRange2])).toBeTruthy();
             expect(datesCollideWithDateRanges([dateInside2, dateBefore], [dateRange1, dateRange2])).toBeTruthy();
         });
@@ -139,7 +141,7 @@ describe('dateRangeUtils', () => {
         const from = ISODateToDate('2020-01-02');
         const to = ISODateToDate('2020-01-05');
 
-        it('returns true when date is within valid date range', () => {
+        it('returns true when date is within valid daterange', () => {
             expect(isDateInMaybeDateRange(date, { from, to })).toBeTruthy();
         });
         it('return true when to-date is undefined and date is same or after from-date', () => {
@@ -156,7 +158,7 @@ describe('dateRangeUtils', () => {
         it('returns false when from-date is undefined and date is after to-date', () => {
             expect(isDateInMaybeDateRange(date, { to: from })).toBeFalsy();
         });
-        it('returns false when date range is not valid', () => {
+        it('returns false when daterange is not valid', () => {
             expect(isDateInMaybeDateRange(date, {})).toBeFalsy();
         });
     });
@@ -175,6 +177,42 @@ describe('dateRangeUtils', () => {
         });
         it('returns false when date is after to date', () => {
             expect(isDateInDateRange(dayjs(to).add(1, 'day').toDate(), { from, to })).toBeFalsy();
+        });
+    });
+    describe('isDateInDateRanges', () => {
+        const dateRangeWithin: DateRange = { from, to };
+        const dateRangeOutside: DateRange = {
+            from: dayjs(to).add(1, 'days').toDate(),
+            to: dayjs(to).add(10, 'days').toDate(),
+        };
+
+        it('returns false if dateRanges is empty', () => {
+            expect(isDateInDateRanges(from, [])).toBeFalsy();
+        });
+        it('returns false if date is not in dateranges', () => {
+            expect(isDateInDateRanges(from, [dateRangeOutside])).toBeFalsy();
+        });
+        it('returns true if date is within first daterange', () => {
+            expect(isDateInDateRanges(from, [dateRangeWithin])).toBeTruthy();
+        });
+        it('returns true if date is within second daterange', () => {
+            expect(isDateInDateRanges(from, [dateRangeOutside, { from, to }])).toBeTruthy();
+        });
+    });
+    describe('getIsoWeekDateRangeForDate', () => {
+        const monday = ISODateToDate('2023-02-06');
+        const sunday = ISODateToDate('2023-02-12');
+
+        it('returns correct week daterange for a monday', () => {
+            expect(dateRangeToISODateRange(getIsoWeekDateRangeForDate(monday))).toEqual(`2023-02-06/2023-02-12`);
+        });
+        it('returns correct week daterange for a sunday', () => {
+            expect(dateRangeToISODateRange(getIsoWeekDateRangeForDate(sunday))).toEqual(`2023-02-06/2023-02-12`);
+        });
+        it('returns correct week daterange when the week spans two years', () => {
+            expect(dateRangeToISODateRange(getIsoWeekDateRangeForDate(ISODateToDate('2023-01-01')))).toEqual(
+                `2022-12-26/2023-01-01`
+            );
         });
     });
     describe('isDateInsideDateRange', () => {
@@ -211,7 +249,7 @@ describe('dateRangeUtils', () => {
             expect(dateToISODate(result[0].from)).toEqual('2020-01-01');
             expect(dateToISODate(result[0].to)).toEqual('2020-01-31');
         });
-        it('returns correct number of months when date range spans 15 months', () => {
+        it('returns correct number of months when daterange spans 15 months', () => {
             const from = ISODateToDate('2020-01-10');
             const to = dayjs(from).add(14, 'months').toDate();
             const result = getMonthsInDateRange({
@@ -240,7 +278,7 @@ describe('dateRangeUtils', () => {
         });
     });
     describe('getWeeksInDateRange', () => {
-        it('returns 1 week when date range is within one week', () => {
+        it('returns 1 week when daterange is within one week', () => {
             const dateRange: DateRange = {
                 from: ISODateToDate('2021-01-04'),
                 to: ISODateToDate('2021-01-10'),
@@ -250,7 +288,7 @@ describe('dateRangeUtils', () => {
             expect(dateToISODate(result[0].from)).toEqual('2021-01-04');
             expect(dateToISODate(result[0].to)).toEqual('2021-01-10');
         });
-        it('returns 2 weeks when date range starts sunday and ends following sunday', () => {
+        it('returns 2 weeks when daterange starts sunday and ends following sunday', () => {
             const dateRange: DateRange = {
                 from: ISODateToDate('2021-01-03'),
                 to: ISODateToDate('2021-01-10'),
@@ -262,7 +300,7 @@ describe('dateRangeUtils', () => {
             expect(dateToISODate(result[1].from)).toEqual('2021-01-04');
             expect(dateToISODate(result[1].to)).toEqual('2021-01-10');
         });
-        it('returns 3 weeks when date ranges starts sunday, spans one week and ends following monday', () => {
+        it('returns 3 weeks when dateranges starts sunday, spans one week and ends following monday', () => {
             const dateRange: DateRange = {
                 from: ISODateToDate('2021-01-03'),
                 to: ISODateToDate('2021-01-11'),
@@ -302,7 +340,7 @@ describe('dateRangeUtils', () => {
         });
     });
     describe('getYearsInDateRanges', () => {
-        it('returns all years defined in date ranges .from property', () => {
+        it('returns all years defined in dateranges .from property', () => {
             const dateRanges: DateRange[] = [
                 { from: ISODateToDate('2010-01-01'), to: ISODateToDate('2010-02-01') },
                 { from: ISODateToDate('2020-01-01'), to: ISODateToDate('2020-02-01') },
@@ -319,7 +357,7 @@ describe('dateRangeUtils', () => {
             { from: ISODateToDate('2010-01-01'), to: ISODateToDate('2010-02-01') },
             { from: ISODateToDate('2020-01-01'), to: ISODateToDate('2020-02-01') },
         ];
-        it('gets the spanning date range for multiple date ranges', () => {
+        it('gets the spanning daterange for multiple dateranges', () => {
             const result = getDateRangeFromDateRanges(dateRanges);
             expect(dateToISODate(result.from)).toEqual('2010-01-01');
             expect(dateToISODate(result.to)).toEqual('2020-02-01');
@@ -376,7 +414,7 @@ describe('dateRangeUtils', () => {
                 expect(result).toBe(1);
                 expect(result2).toBe(1);
             });
-            it('returns 2 when date range is friday to monday', () => {
+            it('returns 2 when daterange is friday to monday', () => {
                 const result = getNumberOfDaysInDateRange(
                     {
                         from: ISODateToDate('2021-02-05'),
@@ -397,7 +435,7 @@ describe('dateRangeUtils', () => {
     });
 
     describe('getDatesInMonthOutsideDateRange', () => {
-        it('returns all days in the month before date range from', () => {
+        it('returns all days in the month before daterange from', () => {
             const result = getDatesInMonthOutsideDateRange(ISODateToDate('2021-01-01'), {
                 from: ISODateToDate('2021-01-04'),
                 to: ISODateToDate('2021-01-31'),
@@ -406,7 +444,7 @@ describe('dateRangeUtils', () => {
             expect(dateToISODate(result[1])).toEqual('2021-01-02');
             expect(dateToISODate(result[2])).toEqual('2021-01-03');
         });
-        it('returns all days in month after date range to', () => {
+        it('returns all days in month after daterange to', () => {
             const result = getDatesInMonthOutsideDateRange(ISODateToDate('2021-01-01'), {
                 from: ISODateToDate('2021-01-01'),
                 to: ISODateToDate('2021-01-28'),
@@ -444,13 +482,13 @@ describe('dateRangeUtils', () => {
     });
 
     describe('getISODatesInISODateRange', () => {
-        it('it returns all dates in date range, excluding saturday and sunday if onlyWeekDays === true', () => {
+        it('it returns all dates in daterange, excluding saturday and sunday if onlyWeekDays === true', () => {
             const result = getISODatesInISODateRange('2021-02-05/2021-02-08', true);
             expect(result.length).toBe(2);
             expect(result[0]).toEqual('2021-02-05');
             expect(result[1]).toEqual('2021-02-08');
         });
-        it('it returns all dates in date range, including saturday and sunday if onlyWeekDays === false', () => {
+        it('it returns all dates in daterange, including saturday and sunday if onlyWeekDays === false', () => {
             const result = getISODatesInISODateRange('2021-02-05/2021-02-08', false);
             expect(result.length).toBe(4);
             expect(result[0]).toEqual('2021-02-05');
@@ -458,7 +496,7 @@ describe('dateRangeUtils', () => {
             expect(result[2]).toEqual('2021-02-07');
             expect(result[3]).toEqual('2021-02-08');
         });
-        it('it returns all dates in date range, including saturday and sunday if onlyWeekDays === undefined', () => {
+        it('it returns all dates in daterange, including saturday and sunday if onlyWeekDays === undefined', () => {
             const result = getISODatesInISODateRange('2021-02-05/2021-02-08');
             expect(result.length).toBe(4);
             expect(result[0]).toEqual('2021-02-05');
@@ -487,15 +525,15 @@ describe('dateRangeUtils', () => {
     });
 
     describe('getMonthDateRange', () => {
-        it('returns correct date range for one month when all days allowed', () => {
+        it('returns correct daterange for one month when all days allowed', () => {
             const result = getMonthDateRange(ISODateToDate('2021-01-01'));
             expect(dateRangeToISODateRange(result)).toEqual('2021-01-01/2021-01-31');
         });
-        it('returns correct date range for one month when only weekdays allowed - 1', () => {
+        it('returns correct daterange for one month when only weekdays allowed - 1', () => {
             const result = getMonthDateRange(ISODateToDate('2021-01-01'), true);
             expect(dateRangeToISODateRange(result)).toEqual('2021-01-01/2021-01-29');
         });
-        it('returns correct date range for one month when only weekdays allowed - 2', () => {
+        it('returns correct daterange for one month when only weekdays allowed - 2', () => {
             const result = getMonthDateRange(ISODateToDate('2021-08-01'), true);
             expect(dateRangeToISODateRange(result)).toEqual('2021-08-02/2021-08-31');
         });

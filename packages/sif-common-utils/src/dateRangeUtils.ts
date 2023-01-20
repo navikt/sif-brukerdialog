@@ -170,6 +170,17 @@ export const isDateInDateRange = (date: Date, dateRange: DateRange): boolean => 
 };
 
 /**
+ * Check if a date is in one of the dateranges, including date range from-date and date range to-date
+ * @param date
+ * @param dateRanges Array of DateRanges
+ * @returns boolean
+ */
+
+export const isDateInDateRanges = (date: Date, dateRanges: DateRange[]): boolean => {
+    return dateRanges.some((dateRange) => isDateInDateRange(date, dateRange));
+};
+
+/**
  * Check if a date is inside a date range, excluding date range from-date and date range to-date
  * @param date
  * @param dateRange
@@ -412,6 +423,15 @@ export const ISODateToISODateRange = (isoDate: ISODate): ISODateRange => {
     return `${isoDate}/${isoDate}`;
 };
 
+export const getIsoWeekDateRangeForDate = (date: Date): DateRange => {
+    const from = dayjs(date).startOf('isoWeek').toDate();
+    const to = dayjs(date).endOf('isoWeek').toDate();
+    return {
+        from,
+        to,
+    };
+};
+
 interface ISODateRangeMap {
     [key: ISODateRange]: any;
 }
@@ -426,11 +446,13 @@ export const dateRangeUtils = {
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
     getDateRangesFromISODateRangeMap,
+    getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
     getWeekDateRange,
     isDateInDateRange,
+    isDateInDateRanges,
     isDateInMaybeDateRange,
     isDateInsideDateRange,
     isDateRange,
