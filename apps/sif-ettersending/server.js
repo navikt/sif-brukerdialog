@@ -63,6 +63,33 @@ const isExpiredOrNotAuthorized = (token) => {
     return true;
 };
 
+const getRouterConfig = async (req, audienceInnsyn) => {
+    {
+        if (req.headers['authorization'] !== undefined) {
+            const token = req.headers['authorization'].replace('Bearer ', '');
+            if (isExpiredOrNotAuthorized(token)) {
+                return undefined;
+            }
+            const exchangedToken = await exchangeToken(token, audienceInnsyn);
+            if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+            }
+        } else if (req.cookies['selvbetjening-idtoken'] !== undefined) {
+            const selvbetjeningIdtoken = req.cookies['selvbetjening-idtoken'];
+            if (isExpiredOrNotAuthorized(selvbetjeningIdtoken)) {
+                return undefined;
+            }
+
+            const exchangedToken = await exchangeToken(selvbetjeningIdtoken, audienceInnsyn);
+            if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+            }
+        } else return undefined;
+
+        return undefined;
+    }
+};
+
 const startServer = async (html) => {
     await Promise.all([initTokenX()]);
     server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));

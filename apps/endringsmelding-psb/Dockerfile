@@ -20,6 +20,7 @@ COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/endringsmelding-psb/node_modules ./node_modules/
 COPY --from=pruner /app/apps/endringsmelding-psb/envSettings.js .
 COPY --from=pruner /app/apps/endringsmelding-psb/server.js .
+COPY --from=pruner /app/apps/endringsmelding-psb/tokenx.js .
 COPY --from=pruner /app/apps/endringsmelding-psb/package.json .
 COPY --from=pruner /app/apps/endringsmelding-psb/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
 COPY --from=pruner /app/apps/endringsmelding-psb/dist ./dist

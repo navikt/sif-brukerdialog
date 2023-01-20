@@ -13,13 +13,13 @@ const axiosConfigCommon: AxiosRequestConfig = {
 
 export const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('API_URL', 'http://localhost:8080'),
+    baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8080'),
 };
 
 export const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
     transformResponse: storageParser,
-    baseURL: getEnvVariableOrDefault('API_URL_INNSYN', 'http://localhost:8082'),
+    baseURL: getEnvVariableOrDefault('FRONTEND_INNSYN_API_PATH', 'http://localhost:8082'),
 };
 
 axios.interceptors.request.use((config) => {
