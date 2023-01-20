@@ -3,6 +3,7 @@ import {
     dateRangeToISODateRange,
     dateToISODate,
     durationUtils,
+    getDatesInDateRange,
     getISODatesInISODateRange,
     getIsoWeekDateRangeForDate,
     isDateInDateRanges,
@@ -26,12 +27,14 @@ import {
     ArbeidstidEnkeltdagMap,
     Arbeidsuke,
     ArbeidsukeMap,
+    ArbeidsukeMetaData,
     Barn,
     K9Sak,
     YtelseArbeidstid,
 } from '../types/K9Sak';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getEndringsdato, getSøknadsperioderInnenforTillattEndringsperiode } from './endringsperiode';
+import { isISODateRange } from './typeGuardUtilities';
 
 /**
  *
@@ -43,7 +46,7 @@ import { getEndringsdato, getSøknadsperioderInnenforTillattEndringsperiode } fr
  * @param alleArbeidsdager Alle arbeidsdager på sak
  * @returns DateRange for uke
  */
-const getUkePeriodeForDager = (
+const getArbeidsukeDateRangeUtFraEnkeltdager = (
     dagerMap: ArbeidstidEnkeltdagMap,
     alleArbeidsdager: ArbeidstidEnkeltdagMap
 ): DateRange => {
@@ -91,7 +94,11 @@ export const getAktivitetArbeidstidFromK9Format = (
      * Legg til enkeltdag i arbeidsdager Map.
      * */
     Object.keys(arbeidstidPerioder).forEach((isoDateRange) => {
+        if (!isISODateRange(isoDateRange)) {
+            throw 'Periode er ikke isoDateRange';
+        }
         const isoDates = getISODatesInISODateRange(isoDateRange, true);
+
         isoDates.forEach((isoDate) => {
             const date = ISODateToDate(isoDate);
             const dateIsInSøknadsperioder = isDateInDateRanges(date, søknadsperioder);
@@ -131,7 +138,7 @@ export const getAktivitetArbeidstidFromK9Format = (
         const normalt = dayKeys.map((key) => dagerMap[key].normalt);
         const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
         const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
-        const periode: DateRange = getUkePeriodeForDager(dagerMap, enkeltdagerMedArbeid);
+        const periode: DateRange = getArbeidsukeDateRangeUtFraEnkeltdager(dagerMap, enkeltdagerMedArbeid);
 
         const arbeidsuke: Arbeidsuke = {
             isoDateRange: dateRangeToISODateRange(periode),
@@ -144,17 +151,22 @@ export const getAktivitetArbeidstidFromK9Format = (
                 uke: normaltSummertHeleUken,
                 dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerMedArbeidstid),
             },
-            meta: {
-                antallDagerMedArbeidstid: antallDagerMedArbeidstid,
-                ukenummer: dayjs(periode.from).isoWeek(),
-                årstall: dayjs(periode.from).isoWeekYear(),
-            },
+            meta: getArbeidsukeMeta(periode),
         };
         arbeidsuker[dateRangeToISODateRange(periode)] = arbeidsuke;
     });
     return {
-        arbeidsdager: enkeltdagerMedArbeid,
+        enkeltdagerMedArbeid,
         arbeidsuker,
+    };
+};
+
+export const getArbeidsukeMeta = (arbeidsukePeriode: DateRange): ArbeidsukeMetaData => {
+    const antallDagerMedArbeidstid = getDatesInDateRange(arbeidsukePeriode, true).length;
+    return {
+        antallDagerMedArbeidstid: antallDagerMedArbeidstid,
+        ukenummer: dayjs(arbeidsukePeriode.from).isoWeek(),
+        årstall: dayjs(arbeidsukePeriode.from).isoWeekYear(),
     };
 };
 
@@ -233,4 +245,13 @@ export const parseK9Format = (data: K9Format): K9Sak => {
     };
 
     return sak;
+};
+
+export const parseK9FormatUtils = {
+    getArbeidsukeDateRangeUtFraEnkeltdager,
+    getAktivitetArbeidstidFromK9Format,
+    getArbeidstidArbeidsgivere,
+    getBarn,
+    getArbeidstidInfo,
+    getArbeidsukeMeta,
 };

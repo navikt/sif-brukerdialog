@@ -6,7 +6,7 @@ import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { getDatesInDateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
+import { ISODateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
 import ArbeidstidUkeListe, {
     ArbeidstidUkeListeItem,
 } from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
@@ -18,7 +18,8 @@ import {
     ArbeidstidPeriodeApiData,
     ArbeidstidPeriodeApiDataMap,
 } from '../../../types/søknadApiData/SøknadApiData';
-import { summerTimerPerDag } from '../../../utils/beregnUtils';
+import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
+import { getArbeidsukeMeta } from '../../../utils/parseK9Format';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
@@ -193,35 +194,49 @@ const OppsummeringStep = () => {
 
 export default OppsummeringStep;
 
+const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
+    {
+        faktiskArbeidTimerPerDag,
+        _opprinneligFaktiskPerDag,
+        _opprinneligNormaltPerDag,
+        _endretProsent,
+    }: ArbeidstidPeriodeApiData,
+    isoDateRange: ISODateRange
+): ArbeidstidUkeListeItem => {
+    const periode = ISODateRangeToDateRange(isoDateRange);
+    const meta = getArbeidsukeMeta(periode);
+
+    const arbeidsuke: ArbeidstidUkeListeItem = {
+        søktFor: true,
+        kanEndres: false,
+        isoDateRange,
+        periode,
+        meta,
+        opprinnelig: {
+            normalt: getTimerPerUkeFraTimerPerDag(
+                ISODurationToDuration(_opprinneligNormaltPerDag),
+                meta.antallDagerMedArbeidstid
+            ),
+            faktisk: getTimerPerUkeFraTimerPerDag(
+                ISODurationToDuration(_opprinneligFaktiskPerDag),
+                meta.antallDagerMedArbeidstid
+            ),
+        },
+        endret: {
+            faktisk: getTimerPerUkeFraTimerPerDag(
+                ISODurationToDuration(faktiskArbeidTimerPerDag),
+                meta.antallDagerMedArbeidstid
+            ),
+            endretProsent: _endretProsent,
+        },
+    };
+    return arbeidsuke;
+};
+
 const getArbeidstidUkeListeItem = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeListeItem[] => {
     const arbeidsuker: ArbeidstidUkeListeItem[] = [];
-
     Object.keys(perioder).forEach((isoDateRange) => {
-        const dateRange = ISODateRangeToDateRange(isoDateRange);
-        const {
-            faktiskArbeidTimerPerDag,
-            _opprinneligFaktiskPerDag,
-            _opprinneligNormaltPerDag,
-            _endretProsent,
-        }: ArbeidstidPeriodeApiData = perioder[isoDateRange];
-        const antallDager = getDatesInDateRange(dateRange, true).length;
-
-        const arbeidsuke: ArbeidstidUkeListeItem = {
-            søktFor: true,
-            kanEndres: false,
-            antallDager,
-            isoDateRange,
-            periode: dateRange,
-            opprinnelig: {
-                normalt: summerTimerPerDag(ISODurationToDuration(_opprinneligNormaltPerDag), antallDager),
-                faktisk: summerTimerPerDag(ISODurationToDuration(_opprinneligFaktiskPerDag), antallDager),
-            },
-            endret: {
-                faktisk: summerTimerPerDag(ISODurationToDuration(faktiskArbeidTimerPerDag), antallDager),
-                endretProsent: _endretProsent,
-            },
-        };
-        arbeidsuker.push(arbeidsuke);
+        arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
     });
     return arbeidsuker;
 };

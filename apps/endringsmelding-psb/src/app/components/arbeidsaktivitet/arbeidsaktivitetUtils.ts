@@ -51,10 +51,11 @@ const arbeidsukeToArbeidstidUkeListItem = (
     endring?: ArbeidstidEndring
 ): PeriodeSøktForListeItem => {
     return {
-        ...arbeidsuke,
+        isoDateRange: arbeidsuke.isoDateRange,
+        periode: arbeidsuke.periode,
         søktFor: true,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
-        antallDager: arbeidsuke.meta.antallDagerMedArbeidstid,
+        meta: arbeidsuke.meta,
         opprinnelig: {
             faktisk: arbeidsuke.faktisk.uke,
             normalt: arbeidsuke.normalt.uke,

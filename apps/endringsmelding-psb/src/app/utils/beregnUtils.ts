@@ -37,8 +37,12 @@ export const summerTimerPerDag = (timerPerDag: Duration, antallDager: number): D
 export const getTimerPerDagOgUkeFraDag = (timerPerDag: Duration, antallDager: number): ArbeidsukeTimer => {
     return {
         dag: timerPerDag,
-        uke: summerTimerPerDag(timerPerDag, antallDager),
+        uke: getTimerPerUkeFraTimerPerDag(timerPerDag, antallDager),
     };
+};
+
+export const getTimerPerUkeFraTimerPerDag = (tidPerDag: Duration, antallDagerMedArbeidstid: number): Duration => {
+    return summerTimerPerDag(tidPerDag, antallDagerMedArbeidstid);
 };
 
 export const getTimerPerDagOgUkeFraUke = (timerPerUke: Duration, antallDager: number): ArbeidsukeTimer => {

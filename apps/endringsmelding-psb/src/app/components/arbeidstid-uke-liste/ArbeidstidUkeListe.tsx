@@ -6,6 +6,7 @@ import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-tex
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import { ArbeidsukeMetaData } from '../../types/K9Sak';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
 import { getPeriodeTekst } from './components/PeriodeTekst';
@@ -21,7 +22,7 @@ export interface PeriodeSøktForListeItem {
     kanEndres: boolean;
     isoDateRange: ISODateRange;
     periode: DateRange;
-    antallDager: number;
+    meta: ArbeidsukeMetaData;
     opprinnelig: {
         faktisk: Duration;
         normalt: Duration;

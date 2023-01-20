@@ -8,25 +8,25 @@ export interface ArbeidsukeTimer {
     uke: Duration;
 }
 
+export interface ArbeidsukeMetaData {
+    antallDagerMedArbeidstid: number;
+    ukenummer: number;
+    årstall: number;
+}
 export interface Arbeidsuke {
     isoDateRange: string;
     periode: DateRange;
-    // dagerMap: ArbeidstidEnkeltdagMap;
     faktisk: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
     /** Utledet info */
-    meta: {
-        antallDagerMedArbeidstid: number;
-        ukenummer: number;
-        årstall: number;
-    };
+    meta: ArbeidsukeMetaData;
 }
 
 export interface ArbeidsukeMap {
     [key: ISODateRange]: Arbeidsuke;
 }
 export interface AktivitetArbeidstid {
-    arbeidsdager: ArbeidstidEnkeltdagMap;
+    enkeltdagerMedArbeid: ArbeidstidEnkeltdagMap;
     arbeidsuker: ArbeidsukeMap;
 }
 
