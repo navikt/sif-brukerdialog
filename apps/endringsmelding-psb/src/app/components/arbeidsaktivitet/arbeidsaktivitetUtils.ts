@@ -10,20 +10,20 @@ import { Arbeidsuke, ArbeidsukeMap } from '../../types/K9Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
 import {
-    ArbeidstidUkeListeItem,
+    ArbeidstidUkeTabellItem,
     PeriodeIkkeSøktForListeItem,
-    PeriodeSøktForListeItem,
-} from '../arbeidstid-uke-liste/ArbeidstidUkeListe';
+    PeriodeSøktForListeItem as PeriodeSøktForTabellItem,
+} from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
-const sorterItemsPåStartdato = (u1: PeriodeSøktForListeItem, u2: PeriodeSøktForListeItem): number => {
+const sorterItemsPåStartdato = (u1: PeriodeSøktForTabellItem, u2: PeriodeSøktForTabellItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;
 };
 
-const sorterListeItems = (items: ArbeidstidUkeListeItem[]): ArbeidstidUkeListeItem[] => {
+const sorterListeItems = (items: ArbeidstidUkeTabellItem[]): ArbeidstidUkeTabellItem[] => {
     return items.sort(sorterItemsPåStartdato);
 };
 
-const finnPeriodeIkkeSøktFor = (uker: PeriodeSøktForListeItem[]): PeriodeIkkeSøktForListeItem[] => {
+const finnPeriodeIkkeSøktFor = (uker: PeriodeSøktForTabellItem[]): PeriodeIkkeSøktForListeItem[] => {
     const perioderIkkeSøktFor: PeriodeIkkeSøktForListeItem[] = [];
     uker.sort(sorterItemsPåStartdato).forEach((uke, index) => {
         if (index === 0) {
@@ -46,10 +46,10 @@ const finnPeriodeIkkeSøktFor = (uker: PeriodeSøktForListeItem[]): PeriodeIkkeS
     return perioderIkkeSøktFor;
 };
 
-const arbeidsukeToArbeidstidUkeListItem = (
+const arbeidsukeToArbeidstidUkeTabellItem = (
     arbeidsuke: Arbeidsuke,
     endring?: ArbeidstidEndring
-): PeriodeSøktForListeItem => {
+): PeriodeSøktForTabellItem => {
     return {
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
@@ -69,21 +69,21 @@ const arbeidsukeToArbeidstidUkeListItem = (
     };
 };
 
-const getArbeidstidUkeListItemFromArbeidsuker = (
+const getArbeidstidUkeTabellItemFromArbeidsuker = (
     arbeidsukeMap: ArbeidsukeMap,
     endringer: ArbeidstidAktivitetEndringMap = {}
-): PeriodeSøktForListeItem[] => {
-    const items: PeriodeSøktForListeItem[] = [];
+): PeriodeSøktForTabellItem[] => {
+    const items: PeriodeSøktForTabellItem[] = [];
     Object.keys(arbeidsukeMap).map((key) => {
         const arbeidsuke = arbeidsukeMap[key];
         const endring = endringer[key];
-        items.push(arbeidsukeToArbeidstidUkeListItem(arbeidsuke, endring?.endring));
+        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring?.endring));
     });
     return items;
 };
 
 export const arbeidsaktivitetUtils = {
-    getArbeidstidUkeListItemFromArbeidsuker,
+    getArbeidstidUkeTabellItemFromArbeidsuker: getArbeidstidUkeTabellItemFromArbeidsuker,
     finnPeriodeIkkeSøktFor,
     sorterListeItems,
 };

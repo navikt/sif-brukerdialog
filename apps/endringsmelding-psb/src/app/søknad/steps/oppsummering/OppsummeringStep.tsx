@@ -7,9 +7,9 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ISODateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
-import ArbeidstidUkeListe, {
-    ArbeidstidUkeListeItem,
-} from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeListe';
+import ArbeidstidUkeTabell, {
+    ArbeidstidUkeTabellItem,
+} from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
@@ -105,14 +105,14 @@ const OppsummeringStep = () => {
                     if (!arbeidsgiver) {
                         return null;
                     }
-                    const arbeidsuker = getArbeidstidUkeListeItem(arbeidstidInfo.perioder);
+                    const arbeidsuker = getArbeidstidUkeTabellItem(arbeidstidInfo.perioder);
                     return (
                         <FormBlock key={key} paddingBottom="l">
                             <Heading level="2" size="medium">
                                 {arbeidsgiver.navn}
                             </Heading>
                             <>
-                                <ArbeidstidUkeListe
+                                <ArbeidstidUkeTabell
                                     listItems={arbeidsuker}
                                     arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                                 />
@@ -126,8 +126,8 @@ const OppsummeringStep = () => {
                         Frilanser
                     </Heading>
                     <>
-                        <ArbeidstidUkeListe
-                            listItems={getArbeidstidUkeListeItem(frilanserArbeidstidInfo.perioder)}
+                        <ArbeidstidUkeTabell
+                            listItems={getArbeidstidUkeTabellItem(frilanserArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -139,8 +139,8 @@ const OppsummeringStep = () => {
                         Selvstendig næringsdrivende
                     </Heading>
                     <>
-                        <ArbeidstidUkeListe
-                            listItems={getArbeidstidUkeListeItem(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
+                        <ArbeidstidUkeTabell
+                            listItems={getArbeidstidUkeTabellItem(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -202,11 +202,11 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
         _endretProsent,
     }: ArbeidstidPeriodeApiData,
     isoDateRange: ISODateRange
-): ArbeidstidUkeListeItem => {
+): ArbeidstidUkeTabellItem => {
     const periode = ISODateRangeToDateRange(isoDateRange);
     const meta = getArbeidsukeMeta(periode);
 
-    const arbeidsuke: ArbeidstidUkeListeItem = {
+    const arbeidsuke: ArbeidstidUkeTabellItem = {
         søktFor: true,
         kanEndres: false,
         isoDateRange,
@@ -233,8 +233,8 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     return arbeidsuke;
 };
 
-const getArbeidstidUkeListeItem = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeListeItem[] => {
-    const arbeidsuker: ArbeidstidUkeListeItem[] = [];
+const getArbeidstidUkeTabellItem = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
+    const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
     Object.keys(perioder).forEach((isoDateRange) => {
         arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
     });

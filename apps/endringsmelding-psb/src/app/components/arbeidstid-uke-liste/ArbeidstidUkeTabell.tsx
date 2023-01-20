@@ -10,7 +10,7 @@ import { ArbeidsukeMetaData } from '../../types/K9Sak';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
 import { getPeriodeTekst } from './components/PeriodeTekst';
-import './arbeidstidUkeList.scss';
+import './arbeidstidUkeTabell.scss';
 
 export interface PeriodeIkkeSøktForListeItem {
     søktFor: false;
@@ -33,20 +33,20 @@ export interface PeriodeSøktForListeItem {
     };
 }
 
-export type ArbeidstidUkeListeItem = PeriodeSøktForListeItem | PeriodeIkkeSøktForListeItem;
+export type ArbeidstidUkeTabellItem = PeriodeSøktForListeItem | PeriodeIkkeSøktForListeItem;
 
 interface Props {
-    listItems: ArbeidstidUkeListeItem[];
+    listItems: ArbeidstidUkeTabellItem[];
     visNormaltid?: boolean;
     paginering?: {
         antall: number;
     };
     arbeidstidKolonneTittel?: string;
     triggerClearValgteUker?: number;
-    onEndreUker?: (uke: ArbeidstidUkeListeItem[]) => void;
+    onEndreUker?: (uke: ArbeidstidUkeTabellItem[]) => void;
 }
 
-const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
+const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     listItems,
     visNormaltid = true,
     paginering = {
@@ -62,6 +62,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     );
     const [valgteUker, setValgteUker] = useState<string[]>([]);
     const compactTable = useMediaQuery({ minWidth: 736 }) === false;
+    const kanVelgeFlereUker = onEndreUker && compactTable === false;
 
     useEffect(() => {
         setValgteUker([]);
@@ -106,8 +107,8 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     };
 
     return (
-        <div className="arbeidstidUkeList">
-            {onEndreUker && (
+        <div className="arbeidstidUkeTabell">
+            {kanVelgeFlereUker && (
                 <>
                     <p>Marker ukene du ønsker å endre lik arbeidstid for</p>
                     <FormBlock margin="l" paddingBottom="m">
@@ -127,7 +128,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
             <Table>
                 <Table.Header>
                     <Table.Row>
-                        {onEndreUker && (
+                        {kanVelgeFlereUker && (
                             <Table.DataCell>
                                 <Checkbox
                                     checked={valgteUker.length === synligeUker.length}
@@ -181,7 +182,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                         const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
                         if (uke.søktFor === false) {
                             return (
-                                <Table.Row key={uke.isoDateRange} className="arbeidstidUkeList__ikkeSøktForPeriode">
+                                <Table.Row key={uke.isoDateRange} className="arbeidstidUkeTabell__ikkeSøktForPeriode">
                                     <Table.DataCell colSpan={10}>
                                         <Alert variant="info" inline={false}>
                                             Det er ikke søkt om pleiepenger i periode fra{' '}
@@ -195,7 +196,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 
                         return (
                             <Table.Row key={uke.isoDateRange} selected={selected} style={{ verticalAlign: 'top' }}>
-                                {onEndreUker && (
+                                {kanVelgeFlereUker && (
                                     <Table.DataCell style={{ width: '0' }}>
                                         {uke.kanEndres && (
                                             <Checkbox
@@ -211,7 +212,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                     </Table.DataCell>
                                 )}
                                 {compactTable && (
-                                    <Table.DataCell style={{ minWidth: '12rem' }}>
+                                    <Table.DataCell>
                                         <div id={ukePeriodeTekstId}>
                                             Uke {ukenummer}
                                             <br />
@@ -265,7 +266,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                     </div>
                 </FormBlock>
             )}
-            {onEndreUker && (
+            {kanVelgeFlereUker && (
                 <FormBlock margin="l" paddingBottom="m">
                     <Button
                         icon={<Edit role="presentation" aria-hidden={true} />}
@@ -282,4 +283,4 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     );
 };
 
-export default ArbeidstidUkeListe;
+export default ArbeidstidUkeTabell;

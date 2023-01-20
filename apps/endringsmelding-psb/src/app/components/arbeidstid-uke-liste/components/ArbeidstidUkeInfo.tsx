@@ -1,6 +1,6 @@
 import React from 'react';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
-import { PeriodeSøktForListeItem } from '../ArbeidstidUkeListe';
+import { PeriodeSøktForListeItem } from '../ArbeidstidUkeTabell';
 import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 
 interface Props {

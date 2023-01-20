@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/K9Sak';
 import { ArbeidAktivitet } from '../../types/Sak';
-import ArbeidstidUkeListe, { ArbeidstidUkeListeItem } from '../arbeidstid-uke-liste/ArbeidstidUkeListe';
+import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
 import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
@@ -17,19 +17,19 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [clearValgteUkerCounter, setClearValgteUkerCounter] = useState(0);
     const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
-    const ukerSøktFor = arbeidsaktivitetUtils.getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
+    const ukerSøktFor = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(arbeidsukerMap, endringer);
     const periodeIkkeSøktFor = arbeidsaktivitetUtils.finnPeriodeIkkeSøktFor(ukerSøktFor);
 
-    const arbeidstidUkeListItems = arbeidsaktivitetUtils.sorterListeItems([...ukerSøktFor, ...periodeIkkeSøktFor]);
+    const arbeidstidUkeItems = arbeidsaktivitetUtils.sorterListeItems([...ukerSøktFor, ...periodeIkkeSøktFor]);
 
     return (
         <>
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
 
-            <ArbeidstidUkeListe
-                listItems={arbeidstidUkeListItems}
+            <ArbeidstidUkeTabell
+                listItems={arbeidstidUkeItems}
                 triggerClearValgteUker={clearValgteUkerCounter}
-                onEndreUker={(uker: ArbeidstidUkeListeItem[]) => {
+                onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                     setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
                 }}
             />
