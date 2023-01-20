@@ -1,5 +1,5 @@
 import { Alert, Button, Checkbox, Table, Tooltip } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit } from '@navikt/ds-icons';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
@@ -42,6 +42,7 @@ interface Props {
         antall: number;
     };
     arbeidstidKolonneTittel?: string;
+    triggerClearValgteUker?: number;
     onEndreUker?: (uke: ArbeidstidUkeListeItem[]) => void;
 }
 
@@ -52,6 +53,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
         antall: 10,
     },
     arbeidstidKolonneTittel,
+    triggerClearValgteUker,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
@@ -60,6 +62,10 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     );
     const [valgteUker, setValgteUker] = useState<string[]>([]);
     const compactTable = useMediaQuery({ minWidth: 736 }) === false;
+
+    useEffect(() => {
+        setValgteUker([]);
+    }, [triggerClearValgteUker]);
 
     const onToggleUke = (id: string, selected: boolean) => {
         if (selected) {

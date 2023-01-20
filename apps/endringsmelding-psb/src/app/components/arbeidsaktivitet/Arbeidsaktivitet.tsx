@@ -15,7 +15,7 @@ interface Props {
 
 const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetChange }: Props) => {
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
-
+    const [clearValgteUkerCounter, setClearValgteUkerCounter] = useState(0);
     const arbeidsukerMap = arbeidAktivitet.arbeidsuker;
     const ukerSøktFor = arbeidsaktivitetUtils.getArbeidstidUkeListItemFromArbeidsuker(arbeidsukerMap, endringer);
     const periodeIkkeSøktFor = arbeidsaktivitetUtils.finnPeriodeIkkeSøktFor(ukerSøktFor);
@@ -28,6 +28,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
 
             <ArbeidstidUkeListe
                 listItems={arbeidstidUkeListItems}
+                triggerClearValgteUker={clearValgteUkerCounter}
                 onEndreUker={(uker: ArbeidstidUkeListeItem[]) => {
                     setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
                 }}
@@ -39,8 +40,9 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                 arbeidsuker={arbeidsukerForEndring || []}
                 onClose={() => setArbeidsukerForEndring(undefined)}
                 onSubmit={(data) => {
-                    onArbeidstidAktivitetChange({ arbeidAktivitetId: arbeidAktivitet.id, ...data });
                     setArbeidsukerForEndring(undefined);
+                    onArbeidstidAktivitetChange({ arbeidAktivitetId: arbeidAktivitet.id, ...data });
+                    setClearValgteUkerCounter(clearValgteUkerCounter + 1);
                 }}
             />
         </>

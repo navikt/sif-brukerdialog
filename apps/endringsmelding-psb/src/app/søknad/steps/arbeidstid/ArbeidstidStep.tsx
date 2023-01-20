@@ -68,7 +68,7 @@ const ArbeidstidStep = () => {
     const valgteAktiviteter = søknadsdata.arbeidAktivitet?.aktiviteterSomSkalEndres || [];
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
-    const onArbeidsukeChange = (
+    const onArbeidstidAktivitetChange = (
         endring: ArbeidstidAktivitetEndring,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
@@ -133,7 +133,7 @@ const ArbeidstidStep = () => {
                                                     arbeidAktivitet={arbeidAktivitet}
                                                     endringer={endringer[arbeidAktivitet.id]}
                                                     onArbeidstidAktivitetChange={(endring) => {
-                                                        onArbeidsukeChange(endring, values, setValues);
+                                                        onArbeidstidAktivitetChange(endring, values, setValues);
                                                     }}
                                                 />
                                             </Panel>
