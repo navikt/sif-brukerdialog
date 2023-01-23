@@ -2419,18 +2419,23 @@
     "@navikt/ds-react" "2.x"
     focus-trap-react "^10.0.2"
 
-"@navikt/ds-icons@2.0.17", "@navikt/ds-icons@^2.0.17":
+"@navikt/ds-icons@2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-2.0.17.tgz#2dde27754db96a1f11b005bb8fb847b4bba30fb7"
   integrity sha512-NnvKrFkN23QYyfm7HFB4wnSlAQaIt9Cm2ANTHvfEE0BZ5e8rzRbmnFnt8rqzngQHntyqmJf9ej7GXBfxpSQPMg==
 
-"@navikt/ds-react@2.0.17", "@navikt/ds-react@2.x":
-  version "2.0.17"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-2.0.17.tgz#0420391dd9733ef82f746e8b61820948bb2a6999"
-  integrity sha512-+kY7YFOKU73G3PJq5dovpgbZMu4qZHy5tCjfuTIDutM9pX2Ajs6wjKzObrVLP42ssHxxvaPI60SqCnNgMeBzkg==
+"@navikt/ds-icons@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-2.1.0.tgz#be6795f7999bfd6b475c977648720821582ced74"
+  integrity sha512-7Oervq+hSuMQTDrEgwmJtIDhu6beSC+yHjit1GVQQW0w7qw8S0fK0TX/nmRZ4CVRAjRwJZJX6rfpJqGYrhqghQ==
+
+"@navikt/ds-react@2.1.0", "@navikt/ds-react@2.x":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-2.1.0.tgz#3ac6934157434c2a8428ba52e1ef0e6463d21282"
+  integrity sha512-Zwgy2si0J9Q2MvVJ1GRP4sIvm8JkAbWQxPSb7RiApz9Cd4ydm4aU8vtV5NPSwlMhfR6KAaTAxZ4Q4ZSvSeM+wQ==
   dependencies:
     "@floating-ui/react" "0.17.0"
-    "@navikt/ds-icons" "^2.0.17"
+    "@navikt/ds-icons" "^2.1.0"
     "@radix-ui/react-tabs" "1.0.0"
     "@radix-ui/react-toggle-group" "1.0.0"
     clsx "^1.2.1"
