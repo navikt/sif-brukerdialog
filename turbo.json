@@ -57,6 +57,10 @@
         "build-endringsmelding-psb": {
             "outputs": [],
             "dependsOn": ["^build-package"]
+        },
+        "build-opplaringspenger": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
         }
     }
 }

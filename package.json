@@ -57,6 +57,7 @@
         "build-omsorgspengesoknad": "turbo run build-app --filter=@navikt/omsorgspengesoknad",
         "e2e-omsorgspengesoknad": "turbo run ci --filter=@navikt/omsorgspengesoknad",
         "build-endringsmelding-psb": "turbo run build-app --filter=@navikt/endringsmelding-pleiepenger",
+        "build-opplaringspenger": "turbo run build-app --filter=@navikt/opplaringspenger",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",

@@ -1,0 +1,109 @@
+import { ErrorSummary } from '@navikt/ds-react';
+import React, { useEffect, useRef } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
+import { useSendSøknad } from '../../../hooks/useSendSøknad';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { StepId } from '../../../types/StepId';
+import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import OmSøkerOppsummering from './OmSøkerOppsummering';
+import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+
+enum OppsummeringFormFields {
+    harBekreftetOpplysninger = 'harBekreftetOpplysninger',
+}
+
+export interface OppsummeringFormValues {
+    [OppsummeringFormFields.harBekreftetOpplysninger]: boolean;
+}
+
+const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
+    OppsummeringFormFields,
+    OppsummeringFormValues
+>();
+
+const OppsummeringStep = () => {
+    const intl = useIntl();
+    const {
+        state: { søknadsdata, søker },
+    } = useSøknadContext();
+
+    const stepId = StepId.OPPSUMMERING;
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+
+    const { goBack } = useStepNavigation(step);
+
+    const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
+    const previousSøknadError = usePrevious(sendSøknadError);
+    const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (previousSøknadError === undefined && sendSøknadError !== undefined) {
+            sendSøknadErrorSummary.current?.focus();
+        }
+    }, [previousSøknadError, sendSøknadError]);
+
+    const apiData = getApiDataFromSøknadsdata(søknadsdata);
+
+    if (!apiData) {
+        return (
+            <ErrorPage
+                contentRenderer={() => {
+                    return <>Ugyldig apiData?</>;
+                }}
+            />
+        );
+    }
+
+    return (
+        <SøknadStep stepId={StepId.OPPSUMMERING}>
+            <FormikWrapper
+                initialValues={getOppsummeringStepInitialValues(søknadsdata)}
+                onSubmit={() => {
+                    sendSøknad(apiData);
+                }}
+                renderForm={() => {
+                    return (
+                        <div data-testid="oppsummering">
+                            <Form
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                                submitDisabled={isSubmitting}
+                                includeValidationSummary={true}
+                                submitButtonLabel="Send søknad"
+                                submitPending={isSubmitting}
+                                backButtonDisabled={isSubmitting}
+                                onBack={goBack}>
+                                <OmSøkerOppsummering søker={søker} />
+
+                                <ConfirmationCheckbox
+                                    disabled={isSubmitting}
+                                    label={
+                                        <span data-testid="bekreft-label">
+                                            <FormattedMessage id="steg.oppsummering.bekrefterOpplysninger" />
+                                        </span>
+                                    }
+                                    validate={getCheckedValidator()}
+                                    name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                />
+                            </Form>
+                            {sendSøknadError && (
+                                <FormBlock>
+                                    <ErrorSummary ref={sendSøknadErrorSummary}>{sendSøknadError.message}</ErrorSummary>
+                                </FormBlock>
+                            )}
+                        </div>
+                    );
+                }}></FormikWrapper>
+        </SøknadStep>
+    );
+};
+
+export default OppsummeringStep;
