@@ -11,7 +11,7 @@ const MellomlagringStorageKey = 'mellomlagring-endring-psb';
 const handlers = [
     rest.get(`${baseUrl}/health/isAlive`, (req, res, ctx) => res(ctx.status(200))),
     rest.get(`${baseUrl}/health/isReady`, (req, res, ctx) => res(ctx.status(200))),
-    rest.get(`${baseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, (req, res, ctx) => {
+    rest.get(`${baseUrl}/oppslag/soker`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(søkerJson));
     }),
     rest.get(`${baseUrl}/innsyn/sak`, (req, res, ctx) => {
