@@ -12,6 +12,7 @@ import { SøknadContextState } from '../types/SøknadContextState';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getEndringsperiode } from '../utils/endringsperiode';
+import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { kontrollerK9Saker } from '../utils/kontrollerK9Saker';
 import { relocateToLoginPage } from '../utils/navigationUtils';
@@ -22,12 +23,12 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
 type SøknadInitialSuccess = {
     status: RequestStatus.success;
+    kanBrukeSøknad: true;
     data: SøknadInitialData;
 };
 
@@ -36,20 +37,27 @@ type SøknadInitialError = {
     error: any;
 };
 
-type SøknadInitialNoAccess = {
-    status: RequestStatus.noAccess;
-    reason: IngenTilgangÅrsak;
+type SøknadInitialForbidden = {
+    status: RequestStatus.forbidden;
 };
 
 type SøknadInitialLoading = {
     status: RequestStatus.loading;
 };
 
+type SøknadInitialIkkeTilgang = {
+    status: RequestStatus.success;
+    kanBrukeSøknad: false;
+    årsak: IngenTilgangÅrsak;
+    søker: Søker;
+};
+
 export type SøknadInitialDataState =
     | SøknadInitialSuccess
     | SøknadInitialError
     | SøknadInitialLoading
-    | SøknadInitialNoAccess;
+    | SøknadInitialForbidden
+    | SøknadInitialIkkeTilgang;
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -118,8 +126,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const resultat = kontrollerK9Saker(k9saker);
             if (resultat.kanBrukeSøknad === false) {
                 setInitialData({
-                    status: RequestStatus.noAccess,
-                    reason: resultat.årsak,
+                    status: RequestStatus.success,
+                    kanBrukeSøknad: false,
+                    årsak: resultat.årsak,
+                    søker,
                 });
                 return Promise.resolve();
             }
@@ -127,8 +137,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const samletTidsperiode = getDateRangeForK9Saker(k9saker);
             if (samletTidsperiode === undefined) {
                 setInitialData({
-                    status: RequestStatus.noAccess,
-                    reason: IngenTilgangÅrsak.harIkkeSøknadsperiode,
+                    status: RequestStatus.success,
+                    kanBrukeSøknad: false,
+                    årsak: IngenTilgangÅrsak.finnerIkkeTidsperiode,
+                    søker,
                 });
                 return Promise.resolve();
             }
@@ -140,6 +152,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             );
             setInitialData({
                 status: RequestStatus.success,
+                kanBrukeSøknad: true,
                 data: await setupSøknadInitialData({ søker, arbeidsgivere, k9saker, lagretSøknadState }),
             });
             return Promise.resolve();
@@ -148,8 +161,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 relocateToLoginPage();
             } else if (isForbidden(error)) {
                 setInitialData({
-                    status: RequestStatus.noAccess,
-                    reason: IngenTilgangÅrsak.code403,
+                    status: RequestStatus.forbidden,
                 });
             } else {
                 appSentryLogger.logError('fetchInitialData', error);

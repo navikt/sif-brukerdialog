@@ -1,3 +1,4 @@
+import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
@@ -7,7 +8,6 @@ import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import { Alert } from '@navikt/ds-react';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -17,8 +17,13 @@ const Søknad = () => {
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
 
-    if (status === RequestStatus.noAccess) {
-        return <IngenTilgangPage årsak={initialData.reason} />;
+    if (status === RequestStatus.forbidden) {
+        return (
+            <ErrorPage
+                pageTitle="Ingen tilgang"
+                contentRenderer={() => <Alert variant="error">Du har ikke tilgang til denne siden.</Alert>}
+            />
+        );
     }
 
     if (status === RequestStatus.error) {
@@ -32,6 +37,12 @@ const Søknad = () => {
                 )}
             />
         );
+    }
+
+    const { kanBrukeSøknad } = initialData;
+
+    if (kanBrukeSøknad === false) {
+        return <IngenTilgangPage årsak={initialData.årsak} søker={initialData.søker} />;
     }
 
     return (

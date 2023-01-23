@@ -21,9 +21,6 @@ export const getArbeidsgivereIK9Sak = (arbeidsgivere: Arbeidsgiver[], sak: K9Sak
 };
 
 export const getDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefined => {
-    if (saker.length === 0) {
-        return undefined;
-    }
     const sakerDateRanges = saker
         .filter((sak) => sak.ytelse.søknadsperioder.length > 0)
         .map((sak) => {

@@ -1,6 +1,6 @@
 export enum RequestStatus {
     'loading' = 'loading',
     'success' = 'success',
-    'noAccess' = 'noAccess',
+    'forbidden' = 'forbidden',
     'error' = 'error',
 }
