@@ -67,7 +67,7 @@ export const arbeidsgivereEndpoint = {
         try {
             const { data } = await api.psb.get<AAregArbeidsgiver>(
                 ApiEndpointPsb.arbeidsgiver,
-                `fra_og_med=${fom}&til_og_med=${tom}`
+                `ytelse=endringsmelding-pleiepenger&fra_og_med=${fom}&til_og_med=${tom}`
             );
             const aaArbeidsgivere: Arbeidsgiver[] = [];
             (data.organisasjoner || []).forEach((a) => {
