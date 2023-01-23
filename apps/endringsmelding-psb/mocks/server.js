@@ -87,7 +87,7 @@ const startExpressServer = () => {
         }, 2000);
     });
 
-    server.get('/soker', (req, res) => {
+    server.get('/oppslag/soker', (req, res) => {
         setTimeout(() => {
             readMockFile(søkerFileName, res);
         }, 200);
@@ -99,16 +99,17 @@ const startExpressServer = () => {
         }, 200);
     });
 
-    server.get('/arbeidsgiver', (req, res) => {
+    server.get('/oppslag/arbeidsgiver', (req, res) => {
         readMockFile(arbeidsgiverFileName, res);
     });
 
-    server.get('/organisasjoner', (req, res) => {
+    server.get('/oppslag/organisasjoner', (req, res) => {
         readMockFile(organisasjonFileName, res);
     });
 
-    server.post('/endringsmelding', (req, res) => {
+    server.post('/pleiepenger-sykt-barn/endringsmelding/innsending', (req, res) => {
         const body = req.body;
+        // eslint-disable-next-line no-console
         console.log('[POST] body', body);
         setTimeout(() => {
             res.sendStatus(200);
@@ -119,7 +120,7 @@ const startExpressServer = () => {
         res.sendStatus(401);
     });
 
-    server.get('/endringsmelding/mellomlagring', (req, res) => {
+    server.get('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
             const body = readFileSync(MELLOMLAGRING_JSON);
             res.send(JSON.parse(body));
@@ -128,26 +129,27 @@ const startExpressServer = () => {
         }
     });
 
-    server.post('/endringsmelding/mellomlagring', (req, res) => {
+    server.post('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.put('/endringsmelding/mellomlagring', (req, res) => {
+    server.put('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.delete('/endringsmelding/mellomlagring', (req, res) => {
+    server.delete('/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(200);
     });
 
     server.listen(port, () => {
+        // eslint-disable-next-line no-console
         console.log(`Express mock-api server listening on port: ${port}`);
     });
 };

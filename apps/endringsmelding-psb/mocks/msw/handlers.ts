@@ -11,35 +11,35 @@ const MellomlagringStorageKey = 'mellomlagring-endring-psb';
 const handlers = [
     rest.get(`${baseUrl}/health/isAlive`, (req, res, ctx) => res(ctx.status(200))),
     rest.get(`${baseUrl}/health/isReady`, (req, res, ctx) => res(ctx.status(200))),
-    rest.get(`${baseUrl}/soker`, (req, res, ctx) => {
+    rest.get(`${baseUrl}/oppslag/soker`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(søkerJson));
     }),
     rest.get(`${baseUrl}/innsyn/sak`, (req, res, ctx) => {
         return res(ctx.delay(250), ctx.status(200), ctx.json(sakJson));
     }),
-    rest.get(`${baseUrl}/arbeidsgiver`, (req, res, ctx) => {
+    rest.get(`${baseUrl}/oppslag/arbeidsgiver`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(arbeidsgiverJson));
     }),
-    rest.get(`${baseUrl}/endringsmelding/mellomlagring`, (req, res, ctx) => {
+    rest.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (req, res, ctx) => {
         const data = localStorage.getItem(MellomlagringStorageKey);
         const jsonData = JSON.parse(data || '{}');
         return res(ctx.status(200), ctx.json(jsonData));
     }),
-    rest.post(`${baseUrl}/endringsmelding/mellomlagring`, async (req, res, ctx) => {
+    rest.post(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, async (req, res, ctx) => {
         const data = await req.text();
         localStorage.setItem(MellomlagringStorageKey, data);
         return res(ctx.status(200));
     }),
-    rest.put(`${baseUrl}/endringsmelding/mellomlagring`, async (req, res, ctx) => {
+    rest.put(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, async (req, res, ctx) => {
         const data = await req.text();
         localStorage.setItem(MellomlagringStorageKey, data);
         return res(ctx.status(200));
     }),
-    rest.delete(`${baseUrl}/endringsmelding/mellomlagring`, (req, res, ctx) => {
+    rest.delete(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (req, res, ctx) => {
         localStorage.setItem(MellomlagringStorageKey, '');
         return res(ctx.status(200));
     }),
-    rest.post(`${baseUrl}/endringsmelding`, (req, res, ctx) => {
+    rest.post(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, (req, res, ctx) => {
         return res(ctx.status(200));
     }),
 ];

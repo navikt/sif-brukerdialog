@@ -5,7 +5,9 @@ const envSettings = () => {
     const appSettings = `
      window.appSettings = {
         API_URL_INNSYN: '${process.env.API_URL_INNSYN}',
+        FRONTEND_INNSYN_API_PATH: '${process.env.FRONTEND_INNSYN_API_PATH}',
         API_URL: '${process.env.API_URL}',
+        FRONTEND_API_PATH: '${process.env.FRONTEND_API_PATH}',
         APP_VERSION: '${process.env.APP_VERSION}',
         APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
         APPSTATUS_PROJECT_ID: '${process.env.APPSTATUS_PROJECT_ID}',
@@ -24,6 +26,7 @@ const envSettings = () => {
     try {
         return appSettings;
     } catch (e) {
+        // eslint-disable-next-line no-console
         console.error(e);
     }
 };

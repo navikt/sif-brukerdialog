@@ -1,9 +1,9 @@
 export enum ApiEndpointPsb {
-    'soker' = 'soker',
-    'arbeidsgiver' = 'arbeidsgiver',
-    'organisasjoner' = 'organisasjoner',
-    'sendEndringsmelding' = 'endringsmelding',
-    'mellomlagring' = 'endringsmelding/mellomlagring',
+    'soker' = 'oppslag/soker',
+    'arbeidsgiver' = 'oppslag/arbeidsgiver',
+    'organisasjoner' = 'oppslag/organisasjoner', // Brukes ikke
+    'sendEndringsmelding' = 'pleiepenger-sykt-barn/endringsmelding/innsending',
+    'mellomlagring' = 'mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN',
 }
 
 export enum ApiEndpointInnsyn {

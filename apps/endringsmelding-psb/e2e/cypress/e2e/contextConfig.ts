@@ -16,14 +16,14 @@ interface ConfigProps {
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step } = props || {};
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
-        cy.intercept(`GET`, `/endringsmelding/mellomlagring`, mellomlagring || {});
-        cy.intercept(`DELETE`, `/endringsmelding/mellomlagring`, mellomlagring || {});
-        cy.intercept(`PUT`, `/endringsmelding/mellomlagring`, {});
-        cy.intercept(`POST`, `/endringsmelding/mellomlagring`, {});
-        cy.intercept(`POST`, `/endringsmelding`, {});
+        cy.intercept(`GET`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
+        cy.intercept(`DELETE`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
+        cy.intercept(`PUT`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept(`POST`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept(`POST`, `/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
         cy.intercept('GET', `/innsyn/sak*`, sakMock);
-        cy.intercept('GET', `/arbeidsgiver*`, arbeidsgivereMock);
-        cy.intercept('GET', `/soker*`, søkerMock);
+        cy.intercept('GET', `/oppslag/arbeidsgiver*`, arbeidsgivereMock);
+        cy.intercept('GET', `/oppslag/soker*`, søkerMock);
         cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
     });
 
