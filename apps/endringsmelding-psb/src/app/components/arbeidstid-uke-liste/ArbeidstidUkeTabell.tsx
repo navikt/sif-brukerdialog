@@ -1,4 +1,4 @@
-import { Alert, Button, Checkbox, Table, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Checkbox, Table, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit } from '@navikt/ds-icons';
@@ -61,8 +61,9 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         paginering ? Math.min(antallUkerTotalt, paginering.antall) : undefined
     );
     const [valgteUker, setValgteUker] = useState<string[]>([]);
-    const compactTable = useMediaQuery({ minWidth: 736 }) === false;
-    const kanVelgeFlereUker = onEndreUker && compactTable === false;
+    const renderAsList = useMediaQuery({ minWidth: 500 }) === false;
+    const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
+    const kanVelgeFlereUker = onEndreUker !== undefined;
 
     useEffect(() => {
         setValgteUker([]);
@@ -106,24 +107,101 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         );
     };
 
+    const renderEndreUkerHeader = () => (
+        <>
+            <p>
+                Dersom du skal endre lik arbeidstid for flere uker, kan du velge ukene i listen, og deretter velge
+                &quot;Endre valgte uker&quot;.
+            </p>
+            <FormBlock margin="l" paddingBottom="m">
+                <Button
+                    icon={<Edit role="presentation" aria-hidden={true} />}
+                    variant="secondary"
+                    type="button"
+                    size="small"
+                    disabled={valgteUker.length === 0}
+                    onClick={endreFlereUker}>
+                    Endre valgte uker
+                </Button>
+            </FormBlock>
+        </>
+    );
+
+    const renderEndreUkerFooter = () => (
+        <FormBlock margin="l" paddingBottom="m">
+            <Button
+                icon={<Edit role="presentation" aria-hidden={true} />}
+                variant="secondary"
+                type="button"
+                size="small"
+                disabled={valgteUker.length === 0}
+                onClick={endreFlereUker}>
+                Endre valgte uker
+            </Button>
+        </FormBlock>
+    );
+
+    if (renderAsList) {
+        return (
+            <>
+                {kanVelgeFlereUker && renderEndreUkerHeader()}
+
+                <ol className="arbeidstidUkeListe">
+                    {synligeUker.map((uke) => {
+                        const ukenummer = dayjs(uke.periode.from).isoWeek();
+                        const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
+                        const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
+
+                        if (uke.søktFor === false) {
+                            return <li key={uke.isoDateRange}>Periode ikke søkt for</li>;
+                        }
+                        return (
+                            <li key={uke.isoDateRange}>
+                                <div className="arbeidstidUke">
+                                    {kanVelgeFlereUker && (
+                                        <div className="arbeidstidUke__velgUke">
+                                            <Checkbox
+                                                hideLabel
+                                                checked={selected}
+                                                onChange={() => {
+                                                    onToggleUke(uke.isoDateRange, selected);
+                                                }}
+                                                aria-labelledby={ukePeriodeTekstId}>
+                                                {' '}
+                                            </Checkbox>
+                                        </div>
+                                    )}
+                                    <div className="arbeidstidUke__info" id={ukePeriodeTekstId}>
+                                        <BodyShort>
+                                            Uke {ukenummer}: {dateFormatter.compact(uke.periode.from)} - {` `}
+                                            {dateFormatter.compact(uke.periode.to)}
+                                        </BodyShort>
+                                        <div style={{ padding: '.5rem 0' }}>
+                                            <ArbeidstidUkeInfo uke={uke} visOpprinneligTid={true} medLabels={true} />
+                                        </div>
+                                        {visNormaltid && (
+                                            <BodyShort size="small">
+                                                Normalarbeidstid:{` `}
+                                                <span style={{ whiteSpace: 'nowrap' }}>
+                                                    <DurationText duration={uke.opprinnelig.normalt} />
+                                                </span>
+                                            </BodyShort>
+                                        )}
+                                    </div>
+                                    <div className="arbeidstidUke__endre">{renderEditButton(uke, ukenummer)}</div>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ol>
+                {kanVelgeFlereUker && renderEndreUkerFooter()}
+            </>
+        );
+    }
+
     return (
         <div className="arbeidstidUkeTabell">
-            {kanVelgeFlereUker && (
-                <>
-                    <p>Marker ukene du ønsker å endre lik arbeidstid for</p>
-                    <FormBlock margin="l" paddingBottom="m">
-                        <Button
-                            icon={<Edit role="presentation" aria-hidden={true} />}
-                            variant="secondary"
-                            type="button"
-                            size="small"
-                            disabled={valgteUker.length === 0}
-                            onClick={endreFlereUker}>
-                            Endre valgte uker
-                        </Button>
-                    </FormBlock>
-                </>
-            )}
+            {kanVelgeFlereUker && renderEndreUkerHeader()}
 
             <Table>
                 <Table.Header>
@@ -147,8 +225,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 </Checkbox>
                             </Table.DataCell>
                         )}
-                        {compactTable && <Table.HeaderCell>Periode</Table.HeaderCell>}
-                        {!compactTable && (
+                        {renderCompactTable && <Table.HeaderCell>Periode</Table.HeaderCell>}
+                        {!renderCompactTable && (
                             <>
                                 <Table.HeaderCell style={{ width: '0' }}>Uke</Table.HeaderCell>
                                 <Table.HeaderCell>Periode</Table.HeaderCell>
@@ -211,7 +289,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         )}
                                     </Table.DataCell>
                                 )}
-                                {compactTable && (
+                                {renderCompactTable && (
                                     <Table.DataCell>
                                         <div id={ukePeriodeTekstId}>
                                             Uke {ukenummer}
@@ -227,7 +305,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         )}
                                     </Table.DataCell>
                                 )}
-                                {!compactTable && (
+                                {!renderCompactTable && (
                                     <>
                                         <Table.DataCell>{ukenummer}</Table.DataCell>
                                         <Table.DataCell style={{ minWidth: '15rem' }}>
@@ -266,19 +344,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                     </div>
                 </FormBlock>
             )}
-            {kanVelgeFlereUker && (
-                <FormBlock margin="l" paddingBottom="m">
-                    <Button
-                        icon={<Edit role="presentation" aria-hidden={true} />}
-                        variant="secondary"
-                        type="button"
-                        size="small"
-                        disabled={valgteUker.length === 0}
-                        onClick={endreFlereUker}>
-                        Endre valgte uker
-                    </Button>
-                </FormBlock>
-            )}
+            {kanVelgeFlereUker && renderEndreUkerFooter()}
         </div>
     );
 };

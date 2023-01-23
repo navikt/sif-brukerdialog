@@ -4,14 +4,14 @@ const søkerJson = require('../data/soker3/søker-mock.json');
 const sakJson = require('../data/soker3/sak-mock.json');
 const arbeidsgiverJson = require('../data/soker3/arbeidsgiver-mock.json');
 
-const baseUrl = 'http://localhost:8099';
+const baseUrl = '*';
 
 const MellomlagringStorageKey = 'mellomlagring-endring-psb';
 
 const handlers = [
     rest.get(`${baseUrl}/health/isAlive`, (req, res, ctx) => res(ctx.status(200))),
     rest.get(`${baseUrl}/health/isReady`, (req, res, ctx) => res(ctx.status(200))),
-    rest.get(`${baseUrl}/oppslag/soker`, (req, res, ctx) => {
+    rest.get(`${baseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(søkerJson));
     }),
     rest.get(`${baseUrl}/innsyn/sak`, (req, res, ctx) => {
