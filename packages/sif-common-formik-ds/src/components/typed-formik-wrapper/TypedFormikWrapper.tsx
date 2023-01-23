@@ -17,10 +17,8 @@ function TypedFormikWrapper<FormValues>(props: Props<FormValues>) {
             initialValues={initialValues}
             onSubmit={(values, { setSubmitting, setTouched }) => {
                 setTouched({});
-                setTimeout(() => {
-                    setSubmitting(false);
-                    onSubmit(values);
-                });
+                setSubmitting(false);
+                onSubmit(values);
             }}
             {...restProps}>
             {(formik: FormikProps<Partial<FormValues>>) => renderForm(formik)}
