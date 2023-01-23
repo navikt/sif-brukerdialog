@@ -5,6 +5,11 @@
     text-decoration: line-through;
     opacity: 0.8;
 }
+.endretArbeidstid__timer,
+.endretArbeidstid__prosent {
+    white-space: nowrap;
+}
+
 .arbeidstidUkeTabell__ikkeSøktForPeriode {
     &:hover {
         background-color: initial !important;
@@ -20,6 +25,11 @@
     li {
         padding: var(--a-spacing-4) var(--a-spacing-3);
         border-bottom: 1px solid var(--ac-table-row-border, var(--a-border-default));
+    }
+    .endretArbeidstid__faktisk {
+        .endretArbeidstid__timer {
+            font-size: 1.25rem;
+        }
     }
 }
 

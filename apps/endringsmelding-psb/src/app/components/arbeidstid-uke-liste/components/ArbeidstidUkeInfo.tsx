@@ -1,14 +1,16 @@
+import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
+import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { PeriodeSøktForListeItem } from '../ArbeidstidUkeTabell';
-import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
-import { BodyShort } from '@navikt/ds-react';
-
+import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 interface Props {
     uke: PeriodeSøktForListeItem;
     visOpprinneligTid?: boolean;
     medLabels?: boolean;
 }
+
+const bem = BemUtils('endretArbeidstid');
 
 const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinneligTid = true, medLabels = false }) => {
     if (uke.endret === undefined) {
@@ -23,33 +25,22 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
     }
     const { faktisk, endretProsent } = uke.endret;
     return (
-        <div className="endretArbeidstid">
-            <div className="endretArbeidstid__faktisk">
+        <div className={bem.block}>
+            <div className={bem.element('faktisk')}>
                 {medLabels && <BodyShort size="small">Arbeid i perioden:</BodyShort>}
-                <strong style={{ fontSize: '1.25rem' }}>
+                <strong className={bem.element('timer')}>
                     <DurationText duration={faktisk} />
                 </strong>
-                {endretProsent && (
-                    <span className="endretArbeidstid__prosent" style={{ whiteSpace: 'nowrap' }}>
-                        ({endretProsent} %)
-                    </span>
-                )}
+                {endretProsent && <span className={bem.element('prosent')}>({endretProsent} %)</span>}
             </div>
             {visOpprinneligTid && (
                 <div>
-                    {/* {medLabels && (
-                        <>
-                            Endret fra: <DurationText duration={uke.opprinnelig.faktisk} />{' '}
-                        </>
-                    )}
-                    {!medLabels && ( */}
-                    <span className="endretArbeidstid__opprinnelig">
+                    <span className={bem.element('opprinnelig')}>
                         <AriaText>Endret fra </AriaText>
-                        <span style={{ whiteSpace: 'nowrap' }}>
+                        <span className={bem.element('timer')}>
                             <DurationText duration={uke.opprinnelig.faktisk} />
                         </span>
                     </span>
-                    {/* )} */}
                 </div>
             )}
         </div>
