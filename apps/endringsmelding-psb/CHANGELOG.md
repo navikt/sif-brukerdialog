@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 0.5.0
+
+### Minor Changes
+
+-   3165914: Migrering endringsmelding til k9-brukerdialog api, IDporten, tokenX
+
+### Patch Changes
+
+-   Updated dependencies [c681e36]
+    -   @navikt/sif-common-formik-ds@0.9.5
+
 ## 0.4.3
 
 ### Patch Changes
