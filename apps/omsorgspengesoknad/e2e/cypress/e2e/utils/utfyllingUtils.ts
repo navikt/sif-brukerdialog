@@ -1,5 +1,3 @@
-import { contextConfig } from '../contextConfig';
-import { cyApiMockData } from '../data/cyApiMockData';
 import {
     checkCheckbuttonByName,
     getInputByName,
@@ -8,10 +6,10 @@ import {
     selectRadioYesOrNo,
     setInputByNameValue,
     submitSkjema,
-} from '../utils';
+} from '.';
+import { cyApiMockData } from '../data/cyApiMockData';
 
 const fileName = 'navlogopng.png';
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
 interface BarnOgDeltBostedProps {
     deltBosted: boolean;
@@ -111,58 +109,13 @@ const kontrollerKvittering = () => {
     });
 };
 
-describe('Fylle ut søknad uten registrert barn', () => {
-    contextConfig({ barn: [] });
-    describe('Med ingen registrerte barn', () => {
-        const props = { deltBosted: true, harRegistrertBarn: false };
-        before(() => {
-            cy.visit(startUrl);
-        });
-        startSøknad();
-        fyllUtOmAnnetBarn(props);
-        lastOppLegeerklæring();
-        kontrollerOppsummering(props);
-        sendInnSøknad();
-        kontrollerKvittering();
-    });
-});
-describe('Fylle ut søknad med registrert barn', () => {
-    contextConfig();
-    describe('Med registrert barn', () => {
-        const props = { deltBosted: true, harRegistrertBarn: true };
-        before(() => {
-            cy.visit(startUrl);
-        });
-        startSøknad();
-        fyllUtOmBarn(props);
-        lastOppLegeerklæring();
-        kontrollerOppsummering(props);
-        sendInnSøknad();
-        kontrollerKvittering();
-    });
-    describe('Registrert barn med delt omsorg (ikke delt bosted)', () => {
-        const props = { deltBosted: false, harRegistrertBarn: true };
-        before(() => {
-            cy.visit(startUrl);
-        });
-        startSøknad();
-        fyllUtOmBarn(props);
-        lastOppLegeerklæring();
-        lastOppSamværsavtale();
-        kontrollerOppsummering(props);
-        sendInnSøknad();
-        kontrollerKvittering();
-    });
-    describe('Med annet barn', () => {
-        const props = { deltBosted: true, harRegistrertBarn: true };
-        before(() => {
-            cy.visit(startUrl);
-        });
-        startSøknad();
-        fyllUtOmAnnetBarn(props);
-        lastOppLegeerklæring();
-        kontrollerOppsummering(props);
-        sendInnSøknad();
-        kontrollerKvittering();
-    });
-});
+export const utfyllingUtils = {
+    startSøknad,
+    fyllUtOmBarn,
+    fyllUtOmAnnetBarn,
+    lastOppLegeerklæring,
+    lastOppSamværsavtale,
+    sendInnSøknad,
+    kontrollerOppsummering,
+    kontrollerKvittering,
+};
