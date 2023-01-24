@@ -1,6 +1,6 @@
-import { arbeidsgivereMock } from './data/arbeidsgiver-mock';
-import { sakMock } from './data/sak-mock';
-import { søkerMock } from './data/søker-mock';
+const søkerMock = require('../../../mocks/data/soker1/søker-mock.json');
+const sakMock = require('../../../mocks/data/soker1/sak-mock.json');
+const arbeidsgivereMock = require('../../../mocks/data/soker1/arbeidsgiver-mock.json');
 
 const PUBLIC_PATH = '/soknad';
 
@@ -21,9 +21,9 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`GET`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
         cy.intercept(`DELETE`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
         cy.intercept(`PUT`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept(`POST`, `*/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept(`POST`, `*/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
-        cy.intercept(`/innsyn/sak*`, sak || sakMock);
+        cy.intercept(`POST`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept(`POST`, `/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
+        cy.intercept(`/api/innsyn/sak*`, sak || sakMock);
         cy.intercept('GET', `/oppslag/arbeidsgiver*`, arbeidsgivereMock);
         cy.intercept('GET', `/oppslag/soker*`, søkerMock);
         cy.intercept(`ryujtq87.api.sanity.io*`, {});

@@ -1,7 +1,7 @@
 const process = require('process');
 require('dotenv').config();
 
-const envSettings = () => {
+const envSettings = (MSW) => {
     const appSettings = `
      window.appSettings = {
         API_URL_INNSYN: '${process.env.API_URL_INNSYN}',
@@ -15,7 +15,7 @@ const envSettings = () => {
         INGRESS: '${process.env.INGRESS}',
         LOGIN_URL: '${process.env.LOGIN_URL}',
         MELLOMLAGRING: '${process.env.MELLOMLAGRING}',
-        MSW: '${process.env.MSW}',
+        MSW: '${MSW || process.env.MSW}',
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         VELG_SAK: '${process.env.VELG_SAK}',

@@ -1,3 +1,4 @@
+import { contextConfig } from '../../contextConfig';
 import { getTestElement, selectCheckboxByTestId, submitSkjema } from '../../utils';
 
 const startUrl = 'http://localhost:8080/';
@@ -93,18 +94,20 @@ const bekreftOpplysningerOgSendInn = () => {
 };
 
 describe('Endre én uke for én arbeidsgiver', () => {
+    contextConfig();
+
     before(() => {
         cy.clock(date);
         cy.visit(startUrl);
-        cy.window().then((window) => {
-            /** Reset mellomlagring */
-            const { worker, rest } = (window as any).msw;
-            worker.use(
-                rest.get(`*mellomlagring*`, (req, res, ctx) => {
-                    return res(ctx.status(200), ctx.json({}));
-                })
-            );
-        });
+        // cy.window().then((window) => {
+        //     /** Reset mellomlagring */
+        //     const { worker, rest } = (window as any).msw;
+        //     worker.use(
+        //         rest.get(`*mellomlagring*`, (req, res, ctx) => {
+        //             return res(ctx.status(200), ctx.json({}));
+        //         })
+        //     );
+        // });
     });
     startSøknad();
     velgArbeidsgiver();

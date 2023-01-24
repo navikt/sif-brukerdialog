@@ -87,13 +87,13 @@ const startExpressServer = () => {
         }, 2000);
     });
 
-    server.get('/oppslag/soker', (req, res) => {
+    server.get('/oppslag/soker?*', (req, res) => {
         setTimeout(() => {
             readMockFile(søkerFileName, res);
         }, 200);
     });
 
-    server.get('/innsyn/sak', (req, res) => {
+    server.get('/api/innsyn/sak', (req, res) => {
         setTimeout(() => {
             readMockFile(sakFileName, res);
         }, 200);

@@ -32,7 +32,12 @@ function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
         if (getEnvironmentVariable('MSW') === 'on') {
             return import('../../mocks/msw/browser').then(({ worker }) =>
-                worker.start({ onUnhandledRequest: 'bypass' })
+                worker.start({
+                    onUnhandledRequest: 'bypass',
+                    // serviceWorker: {
+                    //     url: `${getEnvironmentVariable('PUBLIC_PATH')}/mockServiceWorker.js`,
+                    // },
+                })
             );
         }
     }
