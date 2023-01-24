@@ -13,6 +13,11 @@ import {
 const fileName = 'navlogopng.png';
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
+interface BarnOgDeltBostedProps {
+    deltBosted: boolean;
+    harRegistrertBarn: boolean;
+}
+
 const startSøknad = () => {
     it('Starter søknad', () => {
         getTestElement('bekreft-label').click();
@@ -20,18 +25,16 @@ const startSøknad = () => {
     });
 };
 
-const fyllUtOmBarn = (deltBosted = true) => {
+const fyllUtOmBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet', () => {
         getTestElement('barn-2811762539343').click();
-        selectRadioYesOrNo('sammeAdresse', deltBosted);
+        selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         submitSkjema();
     });
 };
 
-const fyllUtOmAnnetBarn = (
-    props: { deltBosted: boolean; harRegistrertBarn: boolean } = { deltBosted: true, harRegistrertBarn: true }
-) => {
+const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet - annet barn', () => {
         if (props.harRegistrertBarn) {
             checkCheckbuttonByName('søknadenGjelderEtAnnetBarn');
@@ -80,19 +83,23 @@ const lastOppSamværsavtale = () => {
     });
 };
 
-const kontrollerOppsummering = (deltBosted = false) => {
+const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
     it('har riktig oppsummering - enkel', () => {
         const oppsummering = getTestElement('oppsummering');
         oppsummering.should('contain', cyApiMockData.søkerMock.fornavn);
         oppsummering.should('contain', cyApiMockData.søkerMock.fødselsnummer);
+        if (props.harRegistrertBarn === false) {
+            oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fødselsnummer);
+            oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fornavn);
+        }
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
-        if (deltBosted) {
+        if (props.deltBosted === false) {
             getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);
         }
     });
 };
 const sendInnSøknad = () => {
-    it('Fyller ut beskrivelse', () => {
+    it('Sender inn søknad', () => {
         getTestElement('bekreft-label').click();
         getTestElement('typedFormikForm-submitButton').click();
     });
@@ -107,13 +114,14 @@ const kontrollerKvittering = () => {
 describe('Fylle ut søknad uten registrert barn', () => {
     contextConfig({ barn: [] });
     describe('Med ingen registrerte barn', () => {
+        const props = { deltBosted: true, harRegistrertBarn: false };
         before(() => {
             cy.visit(startUrl);
         });
         startSøknad();
-        fyllUtOmAnnetBarn({ deltBosted: true, harRegistrertBarn: false });
+        fyllUtOmAnnetBarn(props);
         lastOppLegeerklæring();
-        kontrollerOppsummering();
+        kontrollerOppsummering(props);
         sendInnSøknad();
         kontrollerKvittering();
     });
@@ -121,37 +129,39 @@ describe('Fylle ut søknad uten registrert barn', () => {
 describe('Fylle ut søknad med registrert barn', () => {
     contextConfig();
     describe('Med registrert barn', () => {
+        const props = { deltBosted: true, harRegistrertBarn: true };
         before(() => {
             cy.visit(startUrl);
         });
         startSøknad();
-        fyllUtOmBarn();
+        fyllUtOmBarn(props);
         lastOppLegeerklæring();
-        kontrollerOppsummering();
+        kontrollerOppsummering(props);
         sendInnSøknad();
         kontrollerKvittering();
     });
-    describe('Registrert barn med delt omsorg', () => {
-        const deltBosted = false;
+    describe('Registrert barn med delt omsorg (ikke delt bosted)', () => {
+        const props = { deltBosted: false, harRegistrertBarn: true };
         before(() => {
             cy.visit(startUrl);
         });
         startSøknad();
-        fyllUtOmBarn(deltBosted);
+        fyllUtOmBarn(props);
         lastOppLegeerklæring();
         lastOppSamværsavtale();
-        kontrollerOppsummering(deltBosted);
+        kontrollerOppsummering(props);
         sendInnSøknad();
         kontrollerKvittering();
     });
     describe('Med annet barn', () => {
+        const props = { deltBosted: true, harRegistrertBarn: true };
         before(() => {
             cy.visit(startUrl);
         });
         startSøknad();
-        fyllUtOmAnnetBarn({ deltBosted: false, harRegistrertBarn: true });
+        fyllUtOmAnnetBarn(props);
         lastOppLegeerklæring();
-        kontrollerOppsummering();
+        kontrollerOppsummering(props);
         sendInnSøknad();
         kontrollerKvittering();
     });
