@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.9.5
+
+### Patch Changes
+
+-   c681e36: Fjerne setTimeout i onSubmit - den forhindret å bruke clock() i cypress-tester.
+
 ## 0.9.4
 
 ### Patch Changes
