@@ -148,6 +148,7 @@
         "snyk-protect": "snyk-protect",
         "start-express": "node ./server.js",
         "start": "node ./src/build/scripts/start-dev.js",
+        "start-e2e-server": "node ./server-e2e.js",
         "storybook": "start-storybook -p 6006",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test --watchAll=true --env=jsdom"

@@ -18,7 +18,7 @@ import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
-export const APPLICATION_KEY = 'endringsmelding-psb';
+export const APPLICATION_KEY = 'endringsmelding-pleiepenger';
 export const SKJEMANAVN = 'Endringsmelding pleiepenger sykt barn';
 
 const container = document.getElementById('app');

@@ -54,9 +54,13 @@
             "outputs": [],
             "dependsOn": ["^build-sif-ettersending"]
         },
-        "build-endringsmelding-psb": {
+        "build-endringsmelding-pleiepenger": {
             "outputs": [],
             "dependsOn": ["^build-package"]
+        },
+        "e2e-endringsmelding-pleiepenger": {
+            "outputs": [],
+            "dependsOn": ["^build-endringsmelding-pleiepenger"]
         }
     }
 }

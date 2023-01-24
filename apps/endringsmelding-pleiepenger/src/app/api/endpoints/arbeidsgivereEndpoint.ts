@@ -1,7 +1,7 @@
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import api from '../api';
-import { ApiEndpointPsb } from './';
+import { ApiEndpointPsb } from '.';
 
 type AAregArbeidsgiver = {
     organisasjoner?: {

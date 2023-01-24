@@ -2,7 +2,7 @@ import { isK9Format, K9Format } from '../../types/k9Format';
 import { K9Sak } from '../../types/K9Sak';
 import { parseK9Format } from '../../utils/parseK9Format';
 import api from '../api';
-import { ApiEndpointInnsyn } from './';
+import { ApiEndpointInnsyn } from '.';
 
 export type SakerDTO = K9Format[];
 
