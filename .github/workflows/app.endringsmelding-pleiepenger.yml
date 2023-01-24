@@ -39,8 +39,15 @@ jobs:
             - name: Run cypress tests
               uses: cypress-io/github-action@v4 # use the explicit version number
               env:
+                  API_URL_INNSYN: http://localhost:8099
+                  API_URL: http://localhost:8099
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger
+                  MSW: off
+                  FRONTEND_API_PATH: http://localhost:8099/
+                  FRONTEND_VEDLEGG_URL: http://localhost:8099/api
+                  FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
+                  VELG_SAK: off
               with:
                   project: ./apps/endringsmelding-pleiepenger/e2e
                   build: yarn build-endringsmelding-pleiepenger
