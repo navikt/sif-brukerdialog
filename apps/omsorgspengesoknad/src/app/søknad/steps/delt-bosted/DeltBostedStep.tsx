@@ -13,6 +13,8 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues } from './deltBostedStepUtils';
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
@@ -50,6 +52,15 @@ const DeltBostedStep = () => {
         dispatch(actionsCreator.requestLagreSøknad());
     };
 
+    const syncVedleggState = (vedlegg: Attachment[] = []) => {
+        dispatch(
+            actionsCreator.setSøknadDeltBosted({
+                vedlegg: getUploadedAttachments(vedlegg),
+            })
+        );
+        requestLagreSøknad();
+    };
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -62,7 +73,9 @@ const DeltBostedStep = () => {
                             values={values}
                             goBack={goBack}
                             isSubmitting={isSubmitting}
-                            onAttachmentDeleted={requestLagreSøknad}
+                            onAttachmentDeleted={() => {
+                                syncVedleggState(values[DeltBostedFormFields.samværsavtale]);
+                            }}
                             onAttachmentsUploaded={requestLagreSøknad}
                         />
                     </>

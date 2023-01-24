@@ -13,6 +13,8 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
@@ -30,10 +32,10 @@ const LegeerklæringStep = () => {
     const { stepFormValues = {}, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: LegeerklæringFormValues) => {
-        const LegeerklæringSøknadsdata = getLegeerklæringSøknadsdataFromFormValues(values);
-        if (LegeerklæringSøknadsdata) {
+        const legeerklæringSøknadsdata = getLegeerklæringSøknadsdataFromFormValues(values);
+        if (legeerklæringSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadLegeerklæring(LegeerklæringSøknadsdata)];
+            return [actionsCreator.setSøknadLegeerklæring(legeerklæringSøknadsdata)];
         }
         return [];
     };
@@ -50,6 +52,15 @@ const LegeerklæringStep = () => {
         dispatch(actionsCreator.requestLagreSøknad());
     };
 
+    const syncVedleggState = (vedlegg: Attachment[] = []) => {
+        dispatch(
+            actionsCreator.setSøknadLegeerklæring({
+                vedlegg: getUploadedAttachments(vedlegg),
+            })
+        );
+        requestLagreSøknad();
+    };
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -62,7 +73,9 @@ const LegeerklæringStep = () => {
                             values={values}
                             goBack={goBack}
                             isSubmitting={isSubmitting}
-                            onAttachmentDeleted={requestLagreSøknad}
+                            onAttachmentDeleted={() => {
+                                syncVedleggState(values[LegeerklæringFormFields.vedlegg]);
+                            }}
                             onAttachmentsUploaded={requestLagreSøknad}
                         />
                     </>

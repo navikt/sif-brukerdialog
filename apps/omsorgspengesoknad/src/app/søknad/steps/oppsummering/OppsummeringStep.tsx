@@ -13,13 +13,14 @@ import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getSøknadStepConfigForStep, includeDeltBostedStep } from '../../søknadStepConfig';
+import { getSøknadStepConfig, getSøknadStepConfigForStep, includeDeltBostedStep } from '../../søknadStepConfig';
 import OmBarnetOppsummering from './OmBarnetOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import VedleggOppsummering from './VedleggOppsummering';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -43,6 +44,9 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
     const { clearStepFormValues, stepFormValues } = useStepFormValuesContext();
+
+    const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
+    const hasInvalidSteps = invalidSteps.length > 0;
 
     const { goBack } = useStepNavigation(step);
 
@@ -87,7 +91,7 @@ const OppsummeringStep = () => {
                         <div data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                                submitDisabled={isSubmitting}
+                                submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
                                 submitButtonLabel="Send søknad"
                                 submitPending={isSubmitting}

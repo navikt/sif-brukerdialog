@@ -14,6 +14,12 @@ export const getDeltBostedStepInitialValues = (
     };
 };
 
-export const getDeltBostedSøknadsdataFromFormValues = (values: DeltBostedFormValues): DeltBostedSøknadsdata => {
-    return { vedlegg: values[DeltBostedFormFields.samværsavtale] };
+export const getDeltBostedSøknadsdataFromFormValues = (
+    values: DeltBostedFormValues
+): DeltBostedSøknadsdata | undefined => {
+    const vedlegg = values[DeltBostedFormFields.samværsavtale];
+    if (vedlegg.length === 0) {
+        return undefined;
+    }
+    return { vedlegg };
 };
