@@ -42,7 +42,7 @@ const IngenTilgangPage = ({ årsak, søker }: Props) => {
     return (
         <Page title="Ingen tilgang">
             <SifGuidePanel poster={true}>
-                <Heading level="1" size="large" spacing={true}>
+                <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
                     Hei {søker.fornavn}
                 </Heading>
                 {getÅrsakMelding(årsak)}

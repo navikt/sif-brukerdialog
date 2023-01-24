@@ -16,8 +16,8 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
     if (uke.endret === undefined) {
         return (
             <>
-                <BodyShort size="small">Arbeidstimer:</BodyShort>
-                <strong style={{ fontSize: '1.25rem' }}>
+                {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
+                <strong data-testid="timer-faktisk">
                     <DurationText duration={uke.opprinnelig.faktisk} />
                 </strong>
             </>
@@ -28,7 +28,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
         <div className={bem.block}>
             <div className={bem.element('faktisk')}>
                 {medLabels && <BodyShort size="small">Arbeid i perioden:</BodyShort>}
-                <strong className={bem.element('timer')}>
+                <strong className={bem.element('timer')} data-testid="timer-faktisk">
                     <DurationText duration={faktisk} />
                 </strong>
                 {endretProsent && <span className={bem.element('prosent')}>({endretProsent} %)</span>}
@@ -37,7 +37,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
                 <div>
                     <span className={bem.element('opprinnelig')}>
                         <AriaText>Endret fra </AriaText>
-                        <span className={bem.element('timer')}>
+                        <span className={bem.element('timer')} data-testid="timer-opprinnelig">
                             <DurationText duration={uke.opprinnelig.faktisk} />
                         </span>
                     </span>

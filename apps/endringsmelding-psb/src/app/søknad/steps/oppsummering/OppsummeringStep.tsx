@@ -107,7 +107,7 @@ const OppsummeringStep = () => {
                     }
                     const arbeidsuker = getArbeidstidUkeTabellItem(arbeidstidInfo.perioder);
                     return (
-                        <FormBlock key={key} paddingBottom="l">
+                        <FormBlock key={key} paddingBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
                             <Heading level="2" size="medium">
                                 {arbeidsgiver.navn}
                             </Heading>

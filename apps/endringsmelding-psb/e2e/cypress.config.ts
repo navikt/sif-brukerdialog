@@ -1,6 +1,9 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
+    env: {
+        MSW: 'off',
+    },
     e2e: {
         testIsolation: false,
         setupNodeEvents(on, config) {

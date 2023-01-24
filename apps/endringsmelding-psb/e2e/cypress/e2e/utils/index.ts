@@ -34,13 +34,16 @@ export const checkCheckbuttonByName = (name) => {
 export const selectRadioYes = (key) => {
     getTestElement(`${key}_yes`).parent().click();
 };
+export const selectCheckboxByTestId = (key) => {
+    getTestElement(`${key}`).parent().click();
+};
 
 export const selectRadioNo = (key) => {
     getTestElement(`${key}_no`).parent().click();
 };
 
-export const getTestElement = (key) => {
-    return cy.get(`[data-testid="${key}"]`);
+export const getTestElement = (key, withinElement?) => {
+    return (withinElement || cy).get(`[data-testid="${key}"]`);
 };
 
 export const getInputByName = (name) => {

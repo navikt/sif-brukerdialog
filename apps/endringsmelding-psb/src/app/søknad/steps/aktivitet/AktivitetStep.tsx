@@ -116,6 +116,7 @@ export const getOpptjeningAktivitetCheckboxes = (
                 info: type === ArbeidsgiverType.ORGANISASJON ? `Orgnr. ${orgnr}` : 'Privatperson',
             }),
             value: id,
+            'data-testid': `aktivitet-${id}`,
         });
     });
 

@@ -99,6 +99,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
         return (
             <EditButton
+                data-testid="endre-button"
                 onClick={() => (valgteUker.length > 1 ? endreFlereUker() : onEndreUker([uke]))}
                 disabled={disabled}
                 title={title}
@@ -115,6 +116,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
             </p>
             <FormBlock margin="l" paddingBottom="m">
                 <Button
+                    data-testid="endre-flere-uker-button"
                     icon={<Edit role="presentation" aria-hidden={true} />}
                     variant="secondary"
                     type="button"
@@ -273,7 +275,11 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         }
 
                         return (
-                            <Table.Row key={uke.isoDateRange} selected={selected} style={{ verticalAlign: 'top' }}>
+                            <Table.Row
+                                key={uke.isoDateRange}
+                                selected={selected}
+                                style={{ verticalAlign: 'top' }}
+                                data-testid={`uke_${ukenummer}`}>
                                 {kanVelgeFlereUker && (
                                     <Table.DataCell style={{ width: '0' }}>
                                         {uke.kanEndres && (
@@ -307,18 +313,18 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 )}
                                 {!renderCompactTable && (
                                     <>
-                                        <Table.DataCell>{ukenummer}</Table.DataCell>
-                                        <Table.DataCell style={{ minWidth: '15rem' }}>
+                                        <Table.DataCell data-testid="ukenummer">{ukenummer}</Table.DataCell>
+                                        <Table.DataCell style={{ minWidth: '15rem' }} data-testid="periode">
                                             <div id={ukePeriodeTekstId}>{getPeriodeTekst(uke.periode)}</div>
                                         </Table.DataCell>
                                         {visNormaltid && (
-                                            <Table.DataCell>
+                                            <Table.DataCell data-testid="normalt-timer">
                                                 <DurationText duration={uke.opprinnelig.normalt} />
                                             </Table.DataCell>
                                         )}
                                     </>
                                 )}
-                                <Table.DataCell>
+                                <Table.DataCell data-testid="arbeidstid-faktisk">
                                     <ArbeidstidUkeInfo uke={uke} />
                                 </Table.DataCell>
                                 <Table.DataCell style={{ width: '0' }}>

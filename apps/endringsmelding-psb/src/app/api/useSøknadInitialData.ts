@@ -67,18 +67,20 @@ const setupSøknadInitialData = async (loadedData: {
     søker: Søker;
     k9saker: K9Sak[];
     arbeidsgivere: Arbeidsgiver[];
-    lagretSøknadState: SøknadStatePersistence;
+    lagretSøknadState?: SøknadStatePersistence;
 }): Promise<SøknadInitialData> => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
 
-    const persistedSøknadStateIsValid = isPersistedSøknadStateValid(
-        lagretSøknadState,
-        {
-            søker,
-            barnAktørId: lagretSøknadState.barnAktørId,
-        },
-        k9saker
-    );
+    const persistedSøknadStateIsValid =
+        lagretSøknadState &&
+        isPersistedSøknadStateValid(
+            lagretSøknadState,
+            {
+                søker,
+                barnAktørId: lagretSøknadState.barnAktørId,
+            },
+            k9saker
+        );
 
     if (!persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
@@ -117,11 +119,14 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const [søker, k9saker, lagretSøknadState] = await Promise.all([
-                søkerEndpoint.fetch(),
-                sakerEndpoint.fetch(),
-                søknadStateEndpoint.fetch(),
-            ]);
+            // const [søker, k9saker, lagretSøknadState] = await Promise.all([
+            //     søkerEndpoint.fetch(),
+            //     sakerEndpoint.fetch(),
+            //     søknadStateEndpoint.fetch(),
+            // ]);
+            const søker = await søkerEndpoint.fetch();
+            const k9saker = await sakerEndpoint.fetch();
+            const lagretSøknadState = await søknadStateEndpoint.fetch();
 
             const resultat = kontrollerK9Saker(k9saker);
             if (resultat.kanBrukeSøknad === false) {

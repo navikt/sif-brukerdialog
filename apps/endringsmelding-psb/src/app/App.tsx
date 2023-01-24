@@ -18,8 +18,8 @@ import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
-export const APPLICATION_KEY = 'opplaringspenger';
-export const SKJEMANAVN = 'Opplæringspenger';
+export const APPLICATION_KEY = 'endringsmelding-psb';
+export const SKJEMANAVN = 'Endringsmelding pleiepenger sykt barn';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -46,7 +46,7 @@ const App = () => (
                 applicationKey={APPLICATION_KEY}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om opplæringspenger"
+                    appName="Endringsmelding - pleiepenger sykt barn"
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
                     appStatus={{
