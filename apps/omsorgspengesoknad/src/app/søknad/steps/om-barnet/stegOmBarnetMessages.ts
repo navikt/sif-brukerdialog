@@ -34,6 +34,8 @@ export const omBarnetMessages: MessageFileFormat = {
             'Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.',
         'validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
             'Du har oppgitt ditt eget fødselsnummer som barnets fødselsnummer. Skriv inn barnets fødselsnummer.',
+        'validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
+            'Du har oppgitt et fødselsnummer som ikke er tillatt.',
         'validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
         'validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks}.',
         'validation.søkersRelasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
