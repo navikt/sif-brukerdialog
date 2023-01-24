@@ -29,5 +29,10 @@ export const appMessages: MessageFileFormat = {
             'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
         'dokumenter.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
         'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
+
+        'initialLoadError.pageTitle': 'Det oppstod en feil',
+        'initialLoadError.text.1': 'Det oppstod en feil under oppstartet av søknaden. Vennligst prøv igjen senere.',
+        'initialLoadError.text.2': 'Dersom feilen vedvarer, kan du prøve å starte på nytt.',
+        'initialLoadError.startPåNytt': 'Start på nytt',
     },
 };

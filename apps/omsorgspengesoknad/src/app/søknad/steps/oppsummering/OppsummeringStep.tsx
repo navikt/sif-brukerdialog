@@ -69,7 +69,7 @@ const OppsummeringStep = () => {
         return (
             <ErrorPage
                 contentRenderer={() => {
-                    return <>Ugyldig apiData?</>;
+                    return <>Ugyldig informasjon</>;
                 }}
             />
         );
