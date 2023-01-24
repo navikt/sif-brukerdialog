@@ -19,6 +19,7 @@ const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, Legee
 const LegeerklæringStep = () => {
     const {
         state: { søknadsdata },
+        dispatch,
     } = useSøknadContext();
 
     const stepId = StepId.LEGEERKLÆRING;
@@ -45,6 +46,10 @@ const LegeerklæringStep = () => {
         }
     );
 
+    const requestLagreSøknad = () => {
+        dispatch(actionsCreator.requestLagreSøknad());
+    };
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -53,7 +58,13 @@ const LegeerklæringStep = () => {
                 renderForm={({ values }) => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                        <LegeerklæringForm
+                            values={values}
+                            goBack={goBack}
+                            isSubmitting={isSubmitting}
+                            onAttachmentDeleted={requestLagreSøknad}
+                            onAttachmentsUploaded={requestLagreSøknad}
+                        />
                     </>
                 )}
             />

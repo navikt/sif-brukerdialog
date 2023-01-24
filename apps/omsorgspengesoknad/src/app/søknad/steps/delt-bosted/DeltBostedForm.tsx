@@ -1,34 +1,36 @@
+import { Alert, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import DeltBostedAvtaleAttachmentList from './DeltBostedAvtaleAttachmentList';
-import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { relocateToLoginPage } from '../../../utils/navigationUtils';
-import { Alert, Link } from '@navikt/ds-react';
-import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
+import { getTypedFormComponents, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { getUploadedAttachments } from '../../../utils/attachmentUtils';
-import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import { ApiEndpoint } from '../../../api/api';
+import FormikFileUploader from '../../../components/formik-file-uploader/FormikFileUploader';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
+import { relocateToLoginPage } from '../../../utils/navigationUtils';
+import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
+import DeltBostedAvtaleAttachmentList from './DeltBostedAvtaleAttachmentList';
 
 interface Props {
     values: Partial<DeltBostedFormValues>;
     goBack?: () => void;
     isSubmitting?: boolean;
     andreVedlegg?: Attachment[];
+    onAttachmentsUploaded?: () => void;
+    onAttachmentDeleted?: () => void;
 }
 
 export enum DeltBostedFormFields {
@@ -56,7 +58,14 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
     return undefined;
 };
 
-const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
+const DeltBostedForm: React.FunctionComponent<Props> = ({
+    values,
+    goBack,
+    andreVedlegg = [],
+    isSubmitting,
+    onAttachmentDeleted,
+    onAttachmentsUploaded,
+}) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
 
@@ -104,6 +113,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
+                        onUploadComplete={onAttachmentsUploaded}
                     />
                 </FormBlock>
             )}
@@ -127,7 +137,11 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
             <div data-testid="samværsavtale-liste">
-                <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
+                <DeltBostedAvtaleAttachmentList
+                    wrapNoAttachmentsInBlock={true}
+                    includeDeletionFunctionality={true}
+                    onAttachmentDeleted={onAttachmentDeleted}
+                />
             </div>
         </Form>
     );

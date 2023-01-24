@@ -19,6 +19,7 @@ const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBoste
 const DeltBostedStep = () => {
     const {
         state: { søknadsdata },
+        dispatch,
     } = useSøknadContext();
 
     const stepId = StepId.DELT_BOSTED;
@@ -45,6 +46,10 @@ const DeltBostedStep = () => {
         }
     );
 
+    const requestLagreSøknad = () => {
+        dispatch(actionsCreator.requestLagreSøknad());
+    };
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -53,7 +58,13 @@ const DeltBostedStep = () => {
                 renderForm={({ values }) => (
                     <>
                         <PersistStepFormValues stepId={stepId} />
-                        <DeltBostedForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                        <DeltBostedForm
+                            values={values}
+                            goBack={goBack}
+                            isSubmitting={isSubmitting}
+                            onAttachmentDeleted={requestLagreSøknad}
+                            onAttachmentsUploaded={requestLagreSøknad}
+                        />
                     </>
                 )}
             />

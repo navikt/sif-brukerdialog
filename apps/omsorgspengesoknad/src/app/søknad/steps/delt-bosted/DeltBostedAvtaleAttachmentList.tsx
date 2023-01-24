@@ -17,11 +17,13 @@ import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 interface Props {
     includeDeletionFunctionality: boolean;
     wrapNoAttachmentsInBlock?: boolean;
+    onAttachmentDeleted?: () => void;
 }
 
 const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     wrapNoAttachmentsInBlock,
     includeDeletionFunctionality,
+    onAttachmentDeleted,
 }) => {
     const { values, setFieldValue } = useFormikContext<DeltBostedFormValues>();
     const avtale: Attachment[] = values.samværsavtale.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
@@ -52,12 +54,18 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                                     DeltBostedFormFields.samværsavtale,
                                     removeElementFromArray(attachment, avtale)
                                 );
+                                if (onAttachmentDeleted) {
+                                    onAttachmentDeleted();
+                                }
                             },
                             () => {
                                 setFieldValue(
                                     DeltBostedFormFields.samværsavtale,
                                     removeElementFromArray(attachment, avtale)
                                 );
+                                if (onAttachmentDeleted) {
+                                    onAttachmentDeleted();
+                                }
                             }
                         );
                     }
