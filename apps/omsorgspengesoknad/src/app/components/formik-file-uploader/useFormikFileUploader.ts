@@ -35,11 +35,13 @@ export const useFormikFileUploader = ({
     apiEndpoint,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
+    onUploadComplete,
 }: {
     value: Attachment[];
     apiEndpoint: ApiEndpoint;
     onUnauthorizedOrForbiddenUpload: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
+    onUploadComplete?: () => void;
 }) => {
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;
@@ -70,6 +72,9 @@ export const useFormikFileUploader = ({
 
         const failedAttachments = [...attachmentsNotToUpload, ...attachmentsToUpload.filter(attachmentUploadHasFailed)];
         updateFailedAttachments(allAttachments, failedAttachments, replaceFn);
+        if (onUploadComplete) {
+            onUploadComplete();
+        }
     }
 
     function updateFailedAttachments(

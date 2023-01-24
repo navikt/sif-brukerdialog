@@ -27,6 +27,8 @@ interface Props {
     goBack?: () => void;
     isSubmitting?: boolean;
     andreVedlegg?: Attachment[];
+    onAttachmentsUploaded?: () => void;
+    onAttachmentDeleted?: () => void;
 }
 
 export enum LegeerklæringFormFields {
@@ -54,7 +56,14 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
     return undefined;
 };
 
-const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
+const LegeerklæringForm: React.FunctionComponent<Props> = ({
+    values,
+    goBack,
+    andreVedlegg = [],
+    isSubmitting,
+    onAttachmentDeleted,
+    onAttachmentsUploaded,
+}) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
 
@@ -92,6 +101,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                         buttonLabel={intlHelper(intl, 'steg.legeerklaering.vedlegg.knappLabel')}
                         apiEndpoint={ApiEndpoint.vedlegg}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                        onUploadComplete={onAttachmentsUploaded}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
@@ -127,6 +137,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                 <LegeerklæringAvtaleAttachmentList
                     wrapNoAttachmentsInBlock={true}
                     includeDeletionFunctionality={true}
+                    onAttachmentDeleted={onAttachmentDeleted}
                 />
             </div>
         </Form>

@@ -17,11 +17,13 @@ import { LegeerklæringFormFields, LegeerklæringFormValues } from './Legeerklæ
 interface Props {
     includeDeletionFunctionality: boolean;
     wrapNoAttachmentsInBlock?: boolean;
+    onAttachmentDeleted?: () => void;
 }
 
 const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     wrapNoAttachmentsInBlock,
     includeDeletionFunctionality,
+    onAttachmentDeleted,
 }) => {
     const { values, setFieldValue } = useFormikContext<LegeerklæringFormValues>();
     const avtale: Attachment[] = values.vedlegg.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
@@ -52,12 +54,18 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                                     LegeerklæringFormFields.vedlegg,
                                     removeElementFromArray(attachment, avtale)
                                 );
+                                if (onAttachmentDeleted) {
+                                    onAttachmentDeleted();
+                                }
                             },
                             () => {
                                 setFieldValue(
                                     LegeerklæringFormFields.vedlegg,
                                     removeElementFromArray(attachment, avtale)
                                 );
+                                if (onAttachmentDeleted) {
+                                    onAttachmentDeleted();
+                                }
                             }
                         );
                     }
