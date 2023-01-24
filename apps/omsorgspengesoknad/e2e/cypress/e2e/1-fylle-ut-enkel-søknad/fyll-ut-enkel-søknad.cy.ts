@@ -29,13 +29,17 @@ const fyllUtOmBarn = (deltBosted = true) => {
     });
 };
 
-const fyllUtOmAnnetBarn = (deltBosted = true) => {
+const fyllUtOmAnnetBarn = (
+    props: { deltBosted: boolean; harRegistrertBarn: boolean } = { deltBosted: true, harRegistrertBarn: true }
+) => {
     it('Fyller ut om barnet - annet barn', () => {
-        checkCheckbuttonByName('søknadenGjelderEtAnnetBarn');
+        if (props.harRegistrertBarn) {
+            checkCheckbuttonByName('søknadenGjelderEtAnnetBarn');
+        }
         setInputByNameValue('barnetsFødselsnummer', cyApiMockData.barnMock.barn[0].fødselsnummer);
         setInputByNameValue('barnetsNavn', cyApiMockData.barnMock.barn[0].fornavn);
         getInputByName('søkersRelasjonTilBarnet').select('mor');
-        selectRadioYesOrNo('sammeAdresse', deltBosted);
+        selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         submitSkjema();
     });
@@ -100,9 +104,22 @@ const kontrollerKvittering = () => {
     });
 };
 
-describe('Fylle ut søknad', () => {
+describe('Fylle ut søknad uten registrert barn', () => {
+    contextConfig({ barn: [] });
+    describe('Med ingen registrerte barn', () => {
+        before(() => {
+            cy.visit(startUrl);
+        });
+        startSøknad();
+        fyllUtOmAnnetBarn({ deltBosted: true, harRegistrertBarn: false });
+        lastOppLegeerklæring();
+        kontrollerOppsummering();
+        sendInnSøknad();
+        kontrollerKvittering();
+    });
+});
+describe('Fylle ut søknad med registrert barn', () => {
     contextConfig();
-
     describe('Med registrert barn', () => {
         before(() => {
             cy.visit(startUrl);
@@ -132,7 +149,7 @@ describe('Fylle ut søknad', () => {
             cy.visit(startUrl);
         });
         startSøknad();
-        fyllUtOmAnnetBarn();
+        fyllUtOmAnnetBarn({ deltBosted: false, harRegistrertBarn: true });
         lastOppLegeerklæring();
         kontrollerOppsummering();
         sendInnSøknad();
