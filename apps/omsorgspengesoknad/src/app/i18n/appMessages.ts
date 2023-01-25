@@ -31,7 +31,7 @@ export const appMessages: MessageFileFormat = {
         'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
 
         'initialLoadError.pageTitle': 'Det oppstod en feil',
-        'initialLoadError.text.1': 'Det oppstod en feil under oppstartet av søknaden. Vennligst prøv igjen senere.',
+        'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
         'initialLoadError.text.2': 'Dersom feilen vedvarer, kan du prøve å starte på nytt.',
         'initialLoadError.startPåNytt': 'Start på nytt',
     },
