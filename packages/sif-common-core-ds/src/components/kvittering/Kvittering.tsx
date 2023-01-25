@@ -19,7 +19,7 @@ const Kvittering = ({ tittel, liste, children }: Props) => {
             <Block textAlignCenter={true} margin="none">
                 <CheckmarkIcon />
                 <Block margin="xl">
-                    <Heading level="1" size="medium">
+                    <Heading level="1" size="medium" data-testid="kvittering-heading">
                         {tittel}
                     </Heading>
                 </Block>

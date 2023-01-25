@@ -3,13 +3,13 @@ import isBetween from 'dayjs/plugin/isBetween';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import minMax from 'dayjs/plugin/minMax';
-import { uniq } from 'lodash';
-import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, MaybeDateRange } from '.';
+import { uniq, uniqBy } from 'lodash';
+import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, MaybeDateRange } from './';
 import {
-    isDateWeekDay,
     dateToISODate,
     getFirstWeekDayInMonth,
     getLastWeekDayInMonth,
+    isDateWeekDay,
     ISODateToDate,
 } from './dateUtils';
 
@@ -170,6 +170,17 @@ export const isDateInDateRange = (date: Date, dateRange: DateRange): boolean => 
 };
 
 /**
+ * Check if a date is in one of the dateranges, including date range from-date and date range to-date
+ * @param date
+ * @param dateRanges Array of DateRanges
+ * @returns boolean
+ */
+
+export const isDateInDateRanges = (date: Date, dateRanges: DateRange[]): boolean => {
+    return dateRanges.some((dateRange) => isDateInDateRange(date, dateRange));
+};
+
+/**
  * Check if a date is inside a date range, excluding date range from-date and date range to-date
  * @param date
  * @param dateRange
@@ -301,6 +312,46 @@ export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange =
 };
 
 /**
+ * Gets DateRanges from array of dates, where following dates are grouped in one DateRange
+ * Filters dates so only uniqe dates are used
+ * @param dates Array of dates
+ * @returns Array of DateRanges
+ */
+
+export const getDateRangesFromDates = (dates: Date[], removeDuplicateDates = true): DateRange[] => {
+    const datesToUse = removeDuplicateDates ? uniqBy(dates, dateToISODate) : dates;
+
+    const datesCount = datesToUse.length;
+    if (datesCount === 0) {
+        return [];
+    }
+    if (datesCount === 1) {
+        return [{ from: datesToUse[0], to: datesToUse[0] }];
+    }
+
+    const dateRanges: DateRange[] = [];
+    let from: Date;
+    datesToUse.forEach((date, index) => {
+        if (!from) {
+            from = date;
+        }
+        /** Siste element */
+        if (index === datesCount - 1) {
+            return dateRanges.push({ from, to: date });
+        }
+
+        const followingCalendarDate = dayjs(date).add(1, 'day');
+        const nextDateInArray = dates[index + 1];
+
+        if (!dayjs(followingCalendarDate).isSame(nextDateInArray, 'day')) {
+            dateRanges.push({ from, to: date });
+            from = nextDateInArray;
+        }
+    });
+    return dateRanges;
+};
+
+/**
  * Returns an array of DateRanges between other @dateRanges
  * @param dateRanges
  * @returns date ranges between @dateRanges
@@ -412,6 +463,15 @@ export const ISODateToISODateRange = (isoDate: ISODate): ISODateRange => {
     return `${isoDate}/${isoDate}`;
 };
 
+export const getIsoWeekDateRangeForDate = (date: Date): DateRange => {
+    const from = dayjs(date).startOf('isoWeek').toDate();
+    const to = dayjs(date).endOf('isoWeek').toDate();
+    return {
+        from,
+        to,
+    };
+};
+
 interface ISODateRangeMap {
     [key: ISODateRange]: any;
 }
@@ -425,12 +485,15 @@ export const dateRangeUtils = {
     datesCollideWithDateRanges,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
+    getDateRangesFromDates,
     getDateRangesFromISODateRangeMap,
+    getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
     getWeekDateRange,
     isDateInDateRange,
+    isDateInDateRanges,
     isDateInMaybeDateRange,
     isDateInsideDateRange,
     isDateRange,

@@ -1,0 +1,51 @@
+.endretArbeidstid__faktisk {
+    font-weight: 700;
+}
+.endretArbeidstid__opprinnelig {
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+.endretArbeidstid__timer,
+.endretArbeidstid__prosent {
+    white-space: nowrap;
+}
+
+.arbeidstidUkeTabell__ikkeSøktForPeriode {
+    &:hover {
+        background-color: initial !important;
+    }
+}
+
+.arbeidstidUkeListe {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--ac-table-row-border, var(--a-border-default));
+    border-top-width: 2px;
+    li {
+        padding: var(--a-spacing-4) var(--a-spacing-3);
+        border-bottom: 1px solid var(--ac-table-row-border, var(--a-border-default));
+    }
+    .endretArbeidstid__faktisk {
+        .endretArbeidstid__timer {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.arbeidstidUke {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    &__velgUke {
+        min-width: 2.5rem;
+        margin-top: -12px;
+        flex-grow: 0;
+    }
+    &__info {
+        flex-grow: 1;
+    }
+    &__endre {
+        flex-grow: 0;
+    }
+}
