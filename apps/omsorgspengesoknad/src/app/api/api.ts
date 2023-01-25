@@ -26,26 +26,21 @@ export const axiosMultipartConfig: AxiosRequestConfig = {
     headers: { 'Content-Type': 'multipart/form-data' },
 };
 
-axios.interceptors.request.use((config) => {
-    return config;
-});
-
-axios.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error: AxiosError) => {
-        if (isUnauthorized(error)) {
-            relocateToLoginPage();
-            return Promise.reject(error);
-        }
-        if (isForbidden(error)) {
-            relocateToNoAccessPage();
-            return Promise.reject(error);
-        }
-        return Promise.reject(error);
+export const handleAxiosError = (error: AxiosError) => {
+    if (isUnauthorized(error)) {
+        relocateToLoginPage();
+        return;
     }
-);
+    if (isForbidden(error)) {
+        relocateToNoAccessPage();
+        return;
+    }
+    return Promise.reject(error);
+};
+
+axios.interceptors.response.use((response) => {
+    return response;
+}, handleAxiosError);
 
 const api = {
     get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {
