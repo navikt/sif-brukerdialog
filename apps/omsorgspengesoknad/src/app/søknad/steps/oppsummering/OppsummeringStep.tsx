@@ -63,7 +63,7 @@ const OppsummeringStep = () => {
     }, [previousSøknadError, sendSøknadError]);
 
     useEffectOnce(() => {
-        const inkluderDeltBosted = includeDeltBostedStep(søknadsdata);
+        const inkluderDeltBosted = includeDeltBostedStep(søknadsdata.omBarnet);
         if (inkluderDeltBosted === false && stepFormValues.deltBosted) {
             clearStepFormValues(StepId.DELT_BOSTED);
         }

@@ -36,7 +36,7 @@ export const validateApiData = (
             message: intlHelper(intl, 'apiDataValidation.undefined'),
         };
     }
-    if (includeDeltBostedStep(søknadsdata) && (apiData.samværsavtale || []).length === 0) {
+    if (includeDeltBostedStep(søknadsdata.omBarnet) && (apiData.samværsavtale || []).length === 0) {
         return {
             error: API_DATA_VALIDATION_ERROR.omsorgsavtaleMangler,
             message: intlHelper(intl, 'apiDataValidation.omsorgsavtaleMangler'),
