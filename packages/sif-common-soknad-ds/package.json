@@ -42,7 +42,7 @@
         "react-day-picker": "8.4.1",
         "react-intl": "6.2.5",
         "react-scripts": "5.0.1",
-        "rimraf": "4.0.7",
+        "rimraf": "4.1.2",
         "ulid": "2.3.0"
     },
     "directories": {
