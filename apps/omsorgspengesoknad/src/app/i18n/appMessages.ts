@@ -32,7 +32,8 @@ export const appMessages: MessageFileFormat = {
 
         'initialLoadError.pageTitle': 'Det oppstod en feil',
         'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
-        'initialLoadError.text.2': 'Dersom feilen vedvarer, kan du prøve å starte på nytt.',
-        'initialLoadError.startPåNytt': 'Start på nytt',
+
+        'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+        'resetMellomlagring.startPåNytt': 'Start på nytt',
     },
 };

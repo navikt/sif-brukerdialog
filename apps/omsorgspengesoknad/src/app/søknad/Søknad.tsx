@@ -29,9 +29,9 @@ const Søknad = () => {
                             <FormattedMessage id="initialLoadError.text.1" />
                         </p>
                         <p>
-                            <FormattedMessage id="initialLoadError.text.2" />
+                            <FormattedMessage id="resetMellomlagring.text.1" />
                         </p>
-                        <ResetMellomagringButton label={intlHelper(intl, 'initialLoadError.startPåNytt')} />
+                        <ResetMellomagringButton label={intlHelper(intl, 'resetMellomlagring.startPåNytt')} />
                     </>
                 )}
             />

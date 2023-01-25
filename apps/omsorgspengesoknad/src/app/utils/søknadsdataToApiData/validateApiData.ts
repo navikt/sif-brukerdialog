@@ -13,8 +13,7 @@ export enum API_DATA_VALIDATION_ERROR {
 
 export const validateApiDataMessages: MessageFileFormat = {
     nb: {
-        'apiDataValidation.undefined':
-            'Ugyldig informason - vennligst gå tilbake til tidligere steg og se om det er noen feilmelding. Bruk Forrige og Neste knappene, ikke frem og tilbake i nettleser.',
+        'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
         'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
     },
 };
