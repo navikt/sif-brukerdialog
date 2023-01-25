@@ -8,6 +8,7 @@ import {
     dateToISODate,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
+    getDateRangesFromDates,
     getDatesInDateRange,
     getDatesInMonthOutsideDateRange,
     getISODatesInISODateRange,
@@ -589,6 +590,75 @@ describe('dateRangeUtils', () => {
                     range
                 )
             ).toBeTruthy();
+        });
+    });
+
+    describe('getDateRangesFromDates', () => {
+        it('returnerer tom array dersom dates[] = tomt', () => {
+            const result = getDateRangesFromDates([]);
+            expect(result.length).toBe(0);
+        });
+        it('returnerer array med én DateRange dersom dates[] har kun én dato', () => {
+            const isoDate = '2020-01-01';
+            const result = getDateRangesFromDates([ISODateToDate(isoDate)]);
+            expect(result.length).toBe(1);
+            expect(dateRangeToISODateRange(result[0])).toEqual(`${isoDate}/${isoDate}`);
+        });
+        it('returnerer array med én DateRange dersom dates[] har kun to datoer som etterfølger hverandre', () => {
+            const fromIsoDate = '2020-01-01';
+            const toIsoDate = '2020-01-02';
+            const result = getDateRangesFromDates([ISODateToDate(fromIsoDate), ISODateToDate(toIsoDate)]);
+            expect(result.length).toBe(1);
+            expect(dateRangeToISODateRange(result[0])).toEqual(`${fromIsoDate}/${toIsoDate}`);
+        });
+        it('returnerer array med én DateRange dersom dates[] har flere datoer som etterfølger hverandre', () => {
+            const d1 = '2020-01-01';
+            const d2 = '2020-01-02';
+            const d3 = '2020-01-03';
+            const d4 = '2020-01-04';
+            const d5 = '2020-01-05';
+
+            const result = getDateRangesFromDates([
+                ISODateToDate(d1),
+                ISODateToDate(d2),
+                ISODateToDate(d3),
+                ISODateToDate(d4),
+                ISODateToDate(d5),
+            ]);
+            expect(result.length).toBe(1);
+            expect(dateRangeToISODateRange(result[0])).toEqual(`${d1}/${d5}`);
+        });
+        it('returnerer array med to DateRanges dersom dates[] har datoer med ett opphold', () => {
+            const d1 = '2020-01-01';
+            const d2 = '2020-01-02';
+            const d3 = '2020-01-04';
+            const d4 = '2020-01-05';
+
+            const result = getDateRangesFromDates([
+                ISODateToDate(d1),
+                ISODateToDate(d2),
+                ISODateToDate(d3),
+                ISODateToDate(d4),
+            ]);
+            expect(result.length).toBe(2);
+            expect(dateRangeToISODateRange(result[0])).toEqual(`${d1}/${d2}`);
+            expect(dateRangeToISODateRange(result[1])).toEqual(`${d3}/${d4}`);
+        });
+        it('returnerer array med to DateRanges dersom dates[] har datoer med ett opphold - og siste dag er alene', () => {
+            const d1 = '2020-01-01';
+            const d2 = '2020-01-02';
+            const d3 = '2020-01-03';
+            const d4 = '2020-01-05';
+
+            const result = getDateRangesFromDates([
+                ISODateToDate(d1),
+                ISODateToDate(d2),
+                ISODateToDate(d3),
+                ISODateToDate(d4),
+            ]);
+            expect(result.length).toBe(2);
+            expect(dateRangeToISODateRange(result[0])).toEqual(`${d1}/${d3}`);
+            expect(dateRangeToISODateRange(result[1])).toEqual(`${d4}/${d4}`);
         });
     });
 });
