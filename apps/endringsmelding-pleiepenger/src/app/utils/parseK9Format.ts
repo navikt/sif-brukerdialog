@@ -3,7 +3,6 @@ import {
     dateRangeToISODateRange,
     dateToISODate,
     durationUtils,
-    getDatesInDateRange,
     getISODatesInISODateRange,
     getIsoWeekDateRangeForDate,
     isDateInDateRanges,
@@ -132,10 +131,10 @@ export const getAktivitetArbeidstidFromK9Format = (
     Object.keys(ukerMedArbeidsdagerMap).forEach((weekKey) => {
         const { dagerMap } = ukerMedArbeidsdagerMap[weekKey];
 
-        const dayKeys = Object.keys(dagerMap);
-        const antallDagerMedArbeidstid = dayKeys.length;
-        const faktisk = dayKeys.map((key) => dagerMap[key].faktisk);
-        const normalt = dayKeys.map((key) => dagerMap[key].normalt);
+        const dagerSøktFor = Object.keys(dagerMap);
+        const antallDagerMedArbeidstid = dagerSøktFor.length;
+        const faktisk = dagerSøktFor.map((key) => dagerMap[key].faktisk);
+        const normalt = dagerSøktFor.map((key) => dagerMap[key].normalt);
         const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
         const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
         const periode: DateRange = getArbeidsukeDateRangeUtFraEnkeltdager(dagerMap, enkeltdagerMedArbeid);
@@ -143,6 +142,7 @@ export const getAktivitetArbeidstidFromK9Format = (
         const arbeidsuke: Arbeidsuke = {
             isoDateRange: dateRangeToISODateRange(periode),
             periode,
+            dagerSøktFor,
             faktisk: {
                 uke: faktiskSummertHeleUken,
                 dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
@@ -151,7 +151,7 @@ export const getAktivitetArbeidstidFromK9Format = (
                 uke: normaltSummertHeleUken,
                 dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerMedArbeidstid),
             },
-            meta: getArbeidsukeMeta(periode),
+            meta: getArbeidsukeMeta(periode, dagerSøktFor.length),
         };
         arbeidsuker[dateRangeToISODateRange(periode)] = arbeidsuke;
     });
@@ -161,10 +161,12 @@ export const getAktivitetArbeidstidFromK9Format = (
     };
 };
 
-export const getArbeidsukeMeta = (arbeidsukePeriode: DateRange): ArbeidsukeMetaData => {
-    const antallDagerMedArbeidstid = getDatesInDateRange(arbeidsukePeriode, true).length;
+export const getArbeidsukeMeta = (
+    arbeidsukePeriode: DateRange,
+    antallDagerMedArbeidstid: number
+): ArbeidsukeMetaData => {
     return {
-        antallDagerMedArbeidstid: antallDagerMedArbeidstid,
+        antallDagerMedArbeidstid,
         ukenummer: dayjs(arbeidsukePeriode.from).isoWeek(),
         årstall: dayjs(arbeidsukePeriode.from).isoWeekYear(),
     };

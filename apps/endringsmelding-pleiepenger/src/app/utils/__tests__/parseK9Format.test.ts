@@ -131,11 +131,15 @@ describe('parseK9Format', () => {
                 [periodeIsoDateRange]: arbeidstidEnkeltdag,
             };
             const result = getAktivitetArbeidstidFromK9Format(arbeidstidPeriode, [søknadsperiode1]);
+            const periode = ISODateRangeToDateRange(periodeIsoDateRange);
+
+            const dagerSøktFor = [mandag, tirsdag, onsdag, torsdag, fredag];
 
             const arbeidsukeResult: Arbeidsuke = {
                 isoDateRange: periodeIsoDateRange,
-                periode: ISODateRangeToDateRange(periodeIsoDateRange),
+                periode,
                 ...arbeidstimerResultUke,
+                dagerSøktFor,
                 meta: {
                     antallDagerMedArbeidstid: 5,
                     ukenummer: 8,

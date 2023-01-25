@@ -16,6 +16,7 @@ export interface ArbeidsukeMetaData {
 export interface Arbeidsuke {
     isoDateRange: string;
     periode: DateRange;
+    dagerSøktFor: ISODate[];
     faktisk: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
     /** Utledet info */

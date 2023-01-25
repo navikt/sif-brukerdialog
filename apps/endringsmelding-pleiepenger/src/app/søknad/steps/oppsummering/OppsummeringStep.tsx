@@ -6,7 +6,12 @@ import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ISODateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
+import {
+    getDatesInDateRange,
+    ISODateRange,
+    ISODateRangeToDateRange,
+    ISODurationToDuration,
+} from '@navikt/sif-common-utils/lib';
 import ArbeidstidUkeTabell, {
     ArbeidstidUkeTabellItem,
 } from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeTabell';
@@ -204,7 +209,7 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     isoDateRange: ISODateRange
 ): ArbeidstidUkeTabellItem => {
     const periode = ISODateRangeToDateRange(isoDateRange);
-    const meta = getArbeidsukeMeta(periode);
+    const meta = getArbeidsukeMeta(periode, getDatesInDateRange(periode).length);
 
     const arbeidsuke: ArbeidstidUkeTabellItem = {
         søktFor: true,

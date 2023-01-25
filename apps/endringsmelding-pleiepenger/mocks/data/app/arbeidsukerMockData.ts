@@ -1,8 +1,10 @@
 import {
     dateRangeUtils,
+    dateToISODate,
     decimalDurationToDuration,
     Duration,
     durationToDecimalDuration,
+    getDatesInDateRange,
     ISODateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
@@ -19,9 +21,12 @@ const getMockArbeidsuke = (
         true
     );
     const periode = ISODateRangeToDateRange(isoDateRange);
+    const dagerSøktFor = getDatesInDateRange(periode, true).map((d) => dateToISODate(d)); // Alle dager i perioden
+
     return {
         isoDateRange,
         periode,
+        dagerSøktFor,
         normalt: {
             uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallDagerMedArbeidstid),
             dag: normaltPerDag,

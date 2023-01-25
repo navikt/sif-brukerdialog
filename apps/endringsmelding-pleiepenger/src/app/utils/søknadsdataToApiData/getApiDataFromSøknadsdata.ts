@@ -1,4 +1,10 @@
-import { dateToISODate, durationToISODuration } from '@navikt/sif-common-utils/lib';
+import {
+    dateRangeToISODateRange,
+    dateToISODate,
+    durationToISODuration,
+    getDateRangesFromDates,
+    ISODateToDate,
+} from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
@@ -21,6 +27,7 @@ export const getEndretArbeidstid = (
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
         const { endring } = endringUkeMap[isoDateRange];
         const arbeidsuke = arbeidAktivitet.arbeidsuker[isoDateRange];
+        const { dagerSøktFor } = arbeidsuke;
         const { antallDagerMedArbeidstid } = arbeidsuke.meta;
 
         const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);
@@ -30,13 +37,16 @@ export const getEndretArbeidstid = (
             antallDagerMedArbeidstid
         );
 
-        arbeidsdagerMedEndretTid[isoDateRange] = {
-            jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
-            faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
-            _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
-            _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
-            _opprinneligFaktiskPerDag: durationToISODuration(arbeidsuke.faktisk.dag),
-        };
+        const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
+        perioder.forEach((periode) => {
+            arbeidsdagerMedEndretTid[dateRangeToISODateRange(periode)] = {
+                jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
+                faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
+                _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
+                _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
+                _opprinneligFaktiskPerDag: durationToISODuration(arbeidsuke.faktisk.dag),
+            };
+        });
     });
 
     return arbeidsdagerMedEndretTid;
