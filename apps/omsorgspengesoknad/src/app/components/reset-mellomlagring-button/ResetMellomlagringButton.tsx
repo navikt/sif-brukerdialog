@@ -17,6 +17,8 @@ const ResetMellomagringButton = ({ label }: Props) => {
         <Button
             loading={pending}
             type="button"
+            variant="secondary"
+            size="small"
             onClick={() => {
                 setPending(true);
                 slettMellomlagring().then(() => {

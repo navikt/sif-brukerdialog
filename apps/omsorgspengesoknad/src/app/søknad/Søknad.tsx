@@ -19,7 +19,7 @@ const Søknad = () => {
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
     /** Error */
-    if (status === 'error') {
+    if (status === 'error' || 1 + 1 === 2) {
         return (
             <ErrorPage
                 pageTitle={intlHelper(intl, 'initialLoadError.pageTitle')}
