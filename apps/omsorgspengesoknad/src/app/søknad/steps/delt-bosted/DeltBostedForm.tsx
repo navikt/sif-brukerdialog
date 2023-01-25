@@ -29,8 +29,6 @@ interface Props {
     goBack?: () => void;
     isSubmitting?: boolean;
     andreVedlegg?: Attachment[];
-    onAttachmentsUploaded?: () => void;
-    onAttachmentDeleted?: () => void;
 }
 
 export enum DeltBostedFormFields {
@@ -58,14 +56,7 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
     return undefined;
 };
 
-const DeltBostedForm: React.FunctionComponent<Props> = ({
-    values,
-    goBack,
-    andreVedlegg = [],
-    isSubmitting,
-    onAttachmentDeleted,
-    onAttachmentsUploaded,
-}) => {
+const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
 
@@ -113,7 +104,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
-                        onUploadComplete={onAttachmentsUploaded}
                     />
                 </FormBlock>
             )}
@@ -137,11 +127,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
             <div data-testid="samværsavtale-liste">
-                <DeltBostedAvtaleAttachmentList
-                    wrapNoAttachmentsInBlock={true}
-                    includeDeletionFunctionality={true}
-                    onAttachmentDeleted={onAttachmentDeleted}
-                />
+                <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
             </div>
         </Form>
     );

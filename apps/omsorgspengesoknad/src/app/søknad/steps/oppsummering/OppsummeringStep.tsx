@@ -2,6 +2,7 @@ import { ErrorSummary } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
@@ -9,18 +10,17 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep, includeDeltBostedStep } from '../../søknadStepConfig';
 import OmBarnetOppsummering from './OmBarnetOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import VedleggOppsummering from './VedleggOppsummering';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -73,7 +73,7 @@ const OppsummeringStep = () => {
         return (
             <ErrorPage
                 contentRenderer={() => {
-                    return <>Ugyldig informasjon</>;
+                    return <FormattedMessage id="apiDataValidation.undefined" />;
                 }}
             />
         );

@@ -15,6 +15,7 @@ import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { getUploadedAttachments } from '../../../utils/attachmentUtils';
+import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
 
 const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
@@ -48,17 +49,13 @@ const DeltBostedStep = () => {
         }
     );
 
-    const requestLagreSøknad = () => {
-        dispatch(actionsCreator.requestLagreSøknad());
-    };
-
     const syncVedleggState = (vedlegg: Attachment[] = []) => {
         dispatch(
             actionsCreator.setSøknadDeltBosted({
                 vedlegg: getUploadedAttachments(vedlegg),
             })
         );
-        requestLagreSøknad();
+        dispatch(actionsCreator.requestLagreSøknad());
     };
 
     return (
@@ -68,16 +65,13 @@ const DeltBostedStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => (
                     <>
-                        <PersistStepFormValues stepId={stepId} />
-                        <DeltBostedForm
-                            values={values}
-                            goBack={goBack}
-                            isSubmitting={isSubmitting}
-                            onAttachmentDeleted={() => {
-                                syncVedleggState(values[DeltBostedFormFields.samværsavtale]);
+                        <FormikValuesObserver
+                            onChange={(formValues: Partial<DeltBostedFormValues>) => {
+                                syncVedleggState(formValues[DeltBostedFormFields.samværsavtale]);
                             }}
-                            onAttachmentsUploaded={requestLagreSøknad}
                         />
+                        <PersistStepFormValues stepId={stepId} />
+                        <DeltBostedForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
                     </>
                 )}
             />
