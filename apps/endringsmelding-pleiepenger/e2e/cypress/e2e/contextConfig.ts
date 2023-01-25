@@ -24,8 +24,8 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`POST`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
         cy.intercept(`POST`, `/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
         cy.intercept(`/api/innsyn/sak*`, sak || sakMock);
-        cy.intercept('GET', `/oppslag/arbeidsgiver*`, arbeidsgivereMock);
-        cy.intercept('GET', `/oppslag/soker*`, søkerMock);
+        cy.intercept('GET', `/oppslag/arbeidsgiver?ytelse=endringsmelding-pleiepenger`, arbeidsgivereMock);
+        cy.intercept('GET', `/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
         cy.intercept(`ryujtq87.api.sanity.io*`, {});
     });
 
