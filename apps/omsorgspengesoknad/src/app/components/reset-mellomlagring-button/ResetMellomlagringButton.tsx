@@ -1,8 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useMellomlagring } from '../../hooks/useMellomlagring';
-import { SøknadRoutes } from '../../types/SøknadRoutes';
+import { relocateToWelcomePage } from '../../utils/navigationUtils';
 
 interface Props {
     label: string;
@@ -10,7 +9,6 @@ interface Props {
 
 const ResetMellomagringButton = ({ label }: Props) => {
     const [pending, setPending] = useState(false);
-    const navigateTo = useNavigate();
     const { slettMellomlagring } = useMellomlagring();
 
     return (
@@ -23,7 +21,7 @@ const ResetMellomagringButton = ({ label }: Props) => {
                 setPending(true);
                 slettMellomlagring().then(() => {
                     setPending(false);
-                    navigateTo(SøknadRoutes.VELKOMMEN);
+                    relocateToWelcomePage();
                 });
             }}>
             {label}
