@@ -33,6 +33,8 @@ interface Props {
     intlMessages: MessageFileFormat;
     /** Key used in sentry logging for identifying the app in the logs */
     sentryKey?: string;
+    /** Key used in sentry logging for identifying the app in the logs */
+    sentryIgnoreErrors?: Array<string | RegExp>;
     /** Config for connecting to the appStatus sanity project */
     appStatus?: AppStatus;
     /** The content */
@@ -49,13 +51,20 @@ const isValidAppStatus = (appStatus: AppStatus | any): appStatus is AppStatus =>
     appStatus.sanityConfig?.dataset !== undefined &&
     appStatus.sanityConfig?.projectId !== undefined;
 
-const SoknadApplication = ({ intlMessages: messages, sentryKey, appStatus, publicPath, children }: Props) => {
+const SoknadApplication = ({
+    intlMessages: messages,
+    sentryKey,
+    appStatus,
+    publicPath,
+    sentryIgnoreErrors,
+    children,
+}: Props) => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = messages[locale] || messages['nb'];
     const locales = Object.keys(messages) as any;
 
     if (sentryKey) {
-        getSentryLoggerForApp(sentryKey, [/sykdom-i-familien/]).init();
+        getSentryLoggerForApp(sentryKey, { allowUrls: [/sykdom-i-familien/], ignoreErrors: sentryIgnoreErrors }).init();
     }
 
     useDecoratorLanguageSelector([locales], (locale: any) => {
