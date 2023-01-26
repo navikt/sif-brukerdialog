@@ -45,21 +45,11 @@ const LegeerklæringAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                 onRemoveAttachmentClick={(attachment: Attachment) => {
                     attachment.pending = true;
                     setFieldValue(LegeerklæringFormFields.vedlegg, avtale);
+                    const updateFieldValue = () => {
+                        setFieldValue(LegeerklæringFormFields.vedlegg, removeElementFromArray(attachment, avtale));
+                    };
                     if (attachment.url) {
-                        api.deleteFile(attachment.url).then(
-                            () => {
-                                setFieldValue(
-                                    LegeerklæringFormFields.vedlegg,
-                                    removeElementFromArray(attachment, avtale)
-                                );
-                            },
-                            () => {
-                                setFieldValue(
-                                    LegeerklæringFormFields.vedlegg,
-                                    removeElementFromArray(attachment, avtale)
-                                );
-                            }
-                        );
+                        api.deleteFile(attachment.url).then(updateFieldValue, updateFieldValue);
                     }
                 }}
             />

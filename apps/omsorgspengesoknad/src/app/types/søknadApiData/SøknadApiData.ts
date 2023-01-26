@@ -16,7 +16,6 @@ export interface BarnToSendToApi {
 export interface SøknadApiData extends OmBarnetApiData {
     språk: Locale;
     kroniskEllerFunksjonshemming: boolean;
-    sammeAdresse?: boolean;
     legeerklæring: string[];
     samværsavtale?: string[];
     harForståttRettigheterOgPlikter: boolean;

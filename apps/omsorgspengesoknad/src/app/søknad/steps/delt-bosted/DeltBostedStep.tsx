@@ -13,12 +13,16 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getDeltBostedStepInitialValues, getDeltBostedSøknadsdataFromFormValues } from './deltBostedStepUtils';
 import DeltBostedForm, { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
+import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
 
 const { FormikWrapper } = getTypedFormComponents<DeltBostedFormFields, DeltBostedFormValues>();
 
 const DeltBostedStep = () => {
     const {
         state: { søknadsdata },
+        dispatch,
     } = useSøknadContext();
 
     const stepId = StepId.DELT_BOSTED;
@@ -45,6 +49,15 @@ const DeltBostedStep = () => {
         }
     );
 
+    const syncVedleggState = (vedlegg: Attachment[] = []) => {
+        dispatch(
+            actionsCreator.setSøknadDeltBosted({
+                vedlegg: getUploadedAttachments(vedlegg),
+            })
+        );
+        dispatch(actionsCreator.requestLagreSøknad());
+    };
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -52,6 +65,11 @@ const DeltBostedStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values }) => (
                     <>
+                        <FormikValuesObserver
+                            onChange={(formValues: Partial<DeltBostedFormValues>) => {
+                                syncVedleggState(formValues[DeltBostedFormFields.samværsavtale]);
+                            }}
+                        />
                         <PersistStepFormValues stepId={stepId} />
                         <DeltBostedForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
                     </>

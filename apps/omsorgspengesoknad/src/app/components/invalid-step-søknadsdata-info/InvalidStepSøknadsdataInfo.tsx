@@ -22,7 +22,7 @@ const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, s
     if (invalidSteps.length > 0) {
         const step = invalidSteps[0];
         const stepTitle = intlHelper(intl, stepConfig[step].stepTitleIntlKey);
-        const stepRoute = intlHelper(intl, getSøknadStepRoute(step));
+        const stepRoute = getSøknadStepRoute(step);
         const getStepLink = () => (
             <Link
                 href="#"
@@ -37,13 +37,11 @@ const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, s
         return (
             <FormBlock paddingBottom="xl">
                 <Alert variant="warning">
-                    <p style={{ marginTop: 0 }}>
-                        <Heading level="2" size="small" spacing={true}>
-                            Oops, dette stemmer ikke helt
-                        </Heading>
-                        Vennligst gå tilbake til steget &quot;{getStepLink()}&quot;, og bruk knappene nederst i skjemaet
-                        for å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.
-                    </p>
+                    <Heading level="2" size="small" spacing={true}>
+                        Oops, dette stemmer ikke helt
+                    </Heading>
+                    Vennligst gå tilbake til steget &quot;{getStepLink()}&quot;, og bruk knappene nederst i skjemaet for
+                    å gå videre. Ikke bruk frem og tilbake-funksjonaliteten i nettleseren.
                 </Alert>
             </FormBlock>
         );

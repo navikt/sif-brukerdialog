@@ -19,7 +19,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         return undefined;
     }
 
-    const inkluderDeltBosted = includeDeltBostedStep(søknadsdata);
+    const inkluderDeltBosted = includeDeltBostedStep(søknadsdata.omBarnet);
 
     return {
         språk: 'nb',

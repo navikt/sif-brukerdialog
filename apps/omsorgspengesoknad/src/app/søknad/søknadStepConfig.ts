@@ -6,11 +6,10 @@ import {
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { StepId } from '../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../types/SøkersRelasjonTilBarnet';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { OmBarnetSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
-export const includeDeltBostedStep = (søknadsdata: Søknadsdata): boolean => {
-    const { omBarnet } = søknadsdata;
+export const includeDeltBostedStep = (omBarnet?: OmBarnetSøknadsdata): boolean => {
     if (!omBarnet) {
         return false;
     }
@@ -19,8 +18,8 @@ export const includeDeltBostedStep = (søknadsdata: Søknadsdata): boolean => {
             return omBarnet.sammeAdresse === false;
         case 'annetBarn':
             return (
-                omBarnet.sammeAdresse === false &&
-                omBarnet.søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER
+                omBarnet.sammeAdresse === false ||
+                omBarnet.søkersRelasjonTilBarnet === SøkersRelasjonTilBarnet.FOSTERFORELDER
             );
     }
 };
@@ -29,7 +28,7 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     return [
         StepId.OM_BARNET,
         StepId.LEGEERKLÆRING,
-        ...(includeDeltBostedStep(søknadsdata) ? [StepId.DELT_BOSTED] : []),
+        ...(includeDeltBostedStep(søknadsdata?.omBarnet) ? [StepId.DELT_BOSTED] : []),
         StepId.OPPSUMMERING,
     ];
 };

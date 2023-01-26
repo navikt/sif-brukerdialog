@@ -2,7 +2,6 @@ import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
-import { isStringOrNull } from '../../utils/typeGuardUtilities';
 import api, { ApiEndpoint } from '../api';
 
 export interface BarnDTO {
@@ -20,7 +19,6 @@ export const isValidRegistrertBarnResponse = (response: any): response is Regist
         isString(response.aktørId) &&
         isString(response.fornavn) &&
         isString(response.etternavn) &&
-        isStringOrNull(response.mellomnavn) &&
         isString(response.fødselsdato)
     ) {
         return true;
@@ -34,15 +32,22 @@ const barnEndpoint = {
         const { data } = await api.get<BarnDTO>(ApiEndpoint.barn, 'ytelse=omsorgspenger-utvidet-rett');
         const registrerteBarn: RegistrertBarn[] = [];
 
+        let hasInvalidBarnRespons = false;
         if (data?.barn && isArray(data.barn)) {
             data.barn.forEach((barn) => {
-                registrerteBarn.push({
-                    ...barn,
-                    fødselsdato: ISODateToDate(barn.fødselsdato),
-                });
+                if (isValidRegistrertBarnResponse(barn)) {
+                    registrerteBarn.push({
+                        ...barn,
+                        fødselsdato: ISODateToDate(barn.fødselsdato),
+                    });
+                } else {
+                    hasInvalidBarnRespons = true;
+                }
             });
         }
-
+        if (hasInvalidBarnRespons) {
+            return Promise.reject('Invalid barn respons');
+        }
         return Promise.resolve(registrerteBarn);
     },
 };
