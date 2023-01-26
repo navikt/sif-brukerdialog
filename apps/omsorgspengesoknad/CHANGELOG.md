@@ -1,5 +1,20 @@
 # @navikt/omsorgspengesoknad
 
+## 1.1.0
+
+### Minor Changes
+
+-   3319f51: Utvide med å la bruker selv kunne slette mellomlagring fra feilside. Bugfix dersom bruker ikke har barn - dette var ikke håndtert ordentlig.
+    Noe feilretting på sync av vedlegg som lastes opp/slettes/feiler under opplasting og søknadsstate. Kunne medføre feil ved innsending.
+
+### Patch Changes
+
+-   Updated dependencies [0c76e9d]
+-   Updated dependencies [b166e48]
+-   Updated dependencies [b166e48]
+    -   @navikt/sif-common-utils@3.19.0
+    -   @navikt/sif-common-core-ds@5.3.4
+
 ## 1.0.3
 
 ### Patch Changes
