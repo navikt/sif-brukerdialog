@@ -1,5 +1,13 @@
 # @navikt/sif-common-soknad-ds
 
+## 5.3.6
+
+### Patch Changes
+
+-   cbf4f889: Utvide sentry logger til å kunne motta props for ignoreErrors
+-   Updated dependencies [cbf4f889]
+    -   @navikt/sif-common-sentry@0.6.0
+
 ## 5.3.5
 
 ### Patch Changes
