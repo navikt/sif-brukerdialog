@@ -9,7 +9,7 @@
     "dependencies": {
         "@navikt/ds-css": "2.0.17",
         "@navikt/ds-icons": "2.0.17",
-        "@navikt/ds-react": "2.0.17",
+        "@navikt/ds-react": "2.1.1",
         "@navikt/ds-tailwind": "2.0.17",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
