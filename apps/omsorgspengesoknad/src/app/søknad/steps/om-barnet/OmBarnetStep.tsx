@@ -79,6 +79,8 @@ const OmBarnetStep = () => {
         }
     );
 
+    const harIkkeBarn = registrerteBarn.length === 0;
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -96,18 +98,18 @@ const OmBarnetStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                {registrerteBarn.length > 0 && (
+                                {harIkkeBarn === false && (
                                     <VelgRegistrertBarn
                                         registrerteBarn={registrerteBarn}
                                         søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
                                     />
                                 )}
-                                {søknadenGjelderEtAnnetBarn && (
+                                {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
                                     <FormBlock>
                                         <AnnetBarnpart />
                                     </FormBlock>
                                 )}
-                                {(barnetSøknadenGjelder !== undefined || søknadenGjelderEtAnnetBarn) && (
+                                {(barnetSøknadenGjelder !== undefined || søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
                                     <>
                                         <FormBlock>
                                             <YesOrNoQuestion

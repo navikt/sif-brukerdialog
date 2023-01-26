@@ -1,10 +1,11 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import appSentryLogger from '../../utils/appSentryLogger';
-import { Heading } from '@navikt/ds-react';
+import ResetMellomagringButton from '../reset-mellomlagring-button/ResetMellomlagringButton';
 
 interface State {
     eventId: string | null;
@@ -36,7 +37,8 @@ class ErrorBoundary extends React.Component<any, State> {
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
-                            <p>Her kommer det mer info</p>
+                            <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
+                            <ResetMellomagringButton label="Start på nytt" />
                         </SifGuidePanel>
                     </Block>
                 </Page>

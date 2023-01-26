@@ -1,5 +1,14 @@
 # @navikt/sif-common-core-ds
 
+## 5.3.4
+
+### Patch Changes
+
+-   b166e48: Legge på data-testid i FormBlock
+-   Updated dependencies [0c76e9d]
+-   Updated dependencies [b166e48]
+    -   @navikt/sif-common-utils@3.19.0
+
 ## 5.3.3
 
 ### Patch Changes

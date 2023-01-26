@@ -9,6 +9,7 @@ const getUrlForStep = (step?) => {
 interface ConfigProps {
     mellomlagring?: any;
     step?: string;
+    barn?: any[];
 }
 
 export const contextConfig = (props?: ConfigProps) => {
@@ -23,8 +24,8 @@ export const contextConfig = (props?: ConfigProps) => {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
-        cy.intercept('GET', `/oppslag/soker*`, cyApiMockData.søkerMock);
-        cy.intercept('GET', `/oppslag/barn*`, cyApiMockData.barnMock);
+        cy.intercept('GET', `/oppslag/soker?ytelse=omsorgspenger-utvidet-rett`, cyApiMockData.søkerMock);
+        cy.intercept('GET', `/oppslag/barn?ytelse=omsorgspenger-utvidet-rett`, props?.barn || cyApiMockData.barnMock);
         cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
     });
 

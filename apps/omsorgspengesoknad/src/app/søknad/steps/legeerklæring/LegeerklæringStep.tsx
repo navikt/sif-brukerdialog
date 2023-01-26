@@ -13,12 +13,16 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import LegeerklæringForm, { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
 import { getLegeerklæringStepInitialValues, getLegeerklæringSøknadsdataFromFormValues } from './legeerklæringStepUtils';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
+import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
 
 const { FormikWrapper } = getTypedFormComponents<LegeerklæringFormFields, LegeerklæringFormValues>();
 
 const LegeerklæringStep = () => {
     const {
         state: { søknadsdata },
+        dispatch,
     } = useSøknadContext();
 
     const stepId = StepId.LEGEERKLÆRING;
@@ -29,10 +33,10 @@ const LegeerklæringStep = () => {
     const { stepFormValues = {}, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: LegeerklæringFormValues) => {
-        const LegeerklæringSøknadsdata = getLegeerklæringSøknadsdataFromFormValues(values);
-        if (LegeerklæringSøknadsdata) {
+        const legeerklæringSøknadsdata = getLegeerklæringSøknadsdataFromFormValues(values);
+        if (legeerklæringSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadLegeerklæring(LegeerklæringSøknadsdata)];
+            return [actionsCreator.setSøknadLegeerklæring(legeerklæringSøknadsdata)];
         }
         return [];
     };
@@ -45,17 +49,33 @@ const LegeerklæringStep = () => {
         }
     );
 
+    const syncVedleggState = (vedlegg: Attachment[] = []) => {
+        dispatch(
+            actionsCreator.setSøknadLegeerklæring({
+                vedlegg: getUploadedAttachments(vedlegg),
+            })
+        );
+        dispatch(actionsCreator.requestLagreSøknad());
+    };
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
                 initialValues={getLegeerklæringStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => (
-                    <>
-                        <PersistStepFormValues stepId={stepId} />
-                        <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
-                    </>
-                )}
+                renderForm={({ values }) => {
+                    return (
+                        <>
+                            <FormikValuesObserver
+                                onChange={(formValues: Partial<LegeerklæringFormValues>) => {
+                                    syncVedleggState(formValues[LegeerklæringFormFields.vedlegg]);
+                                }}
+                            />
+                            <PersistStepFormValues stepId={stepId} />
+                            <LegeerklæringForm values={values} goBack={goBack} isSubmitting={isSubmitting} />
+                        </>
+                    );
+                }}
             />
         </SøknadStep>
     );

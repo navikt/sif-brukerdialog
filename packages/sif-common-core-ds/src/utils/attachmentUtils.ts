@@ -3,7 +3,7 @@ import imageCompression from 'browser-image-compression';
 
 export const VALID_EXTENSIONS = ['.pdf', '.jpeg', '.jpg', '.png'];
 
-export const MAX_FILESIZE_FOR_UPLOAD = 9999999;
+export const MAX_FILESIZE_FOR_UPLOAD = 7999999;
 export const MAX_TOTAL_ATTACHMENT_SIZE_IN_MB = 24;
 export const MAX_TOTAL_ATTACHMENT_SIZE_BYTES = 1000 * 1000 * MAX_TOTAL_ATTACHMENT_SIZE_IN_MB;
 
@@ -59,7 +59,7 @@ export const attachmentHasBeenUploaded = ({ pending, uploaded, file: { name } }:
     !pending && uploaded && fileExtensionIsValid(name);
 
 export const attachmentIsUploadedAndIsValidFileFormat = (attachment: Attachment): boolean =>
-    attachmentHasBeenUploaded(attachment) || fileExtensionIsValid(attachment.file.name);
+    attachmentHasBeenUploaded(attachment) && fileExtensionIsValid(attachment.file.name);
 
 export const containsAnyUploadedAttachments = (attachmentList: Attachment[]) =>
     attachmentList &&

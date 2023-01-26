@@ -16,17 +16,13 @@ const useAvbrytEllerFortsettSenere = () => {
         await slettMellomlagring();
         clearAllSteps();
         dispatch(actionsCreator.avbrytSøknad());
-        setTimeout(() => {
-            navigate(SøknadRoutes.VELKOMMEN);
-        });
+        navigate(SøknadRoutes.VELKOMMEN);
     }, [navigate, slettMellomlagring, clearAllSteps, dispatch]);
 
     const fortsettSøknadSenere = useCallback(() => {
         clearAllSteps();
         dispatch(actionsCreator.fortsettSøknadSenere());
-        setTimeout(() => {
-            navigate('/');
-        });
+        navigate('/');
     }, [navigate, clearAllSteps, dispatch]);
 
     return { avbrytSøknad, fortsettSøknadSenere };

@@ -64,7 +64,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
     const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
 
-    if (values.søknadenGjelderEtAnnetBarn) {
+    if (values.søknadenGjelderEtAnnetBarn || registrerteBarn.length === 0) {
         if (values.søkersRelasjonTilBarnet === undefined) {
             return undefined;
         }

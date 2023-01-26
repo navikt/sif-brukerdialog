@@ -45,21 +45,13 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                 onRemoveAttachmentClick={(attachment: Attachment) => {
                     attachment.pending = true;
                     setFieldValue(DeltBostedFormFields.samværsavtale, avtale);
+
+                    const updateFieldValue = () => {
+                        setFieldValue(DeltBostedFormFields.samværsavtale, removeElementFromArray(attachment, avtale));
+                    };
+
                     if (attachment.url) {
-                        api.deleteFile(attachment.url).then(
-                            () => {
-                                setFieldValue(
-                                    DeltBostedFormFields.samværsavtale,
-                                    removeElementFromArray(attachment, avtale)
-                                );
-                            },
-                            () => {
-                                setFieldValue(
-                                    DeltBostedFormFields.samværsavtale,
-                                    removeElementFromArray(attachment, avtale)
-                                );
-                            }
-                        );
+                        api.deleteFile(attachment.url).then(updateFieldValue, updateFieldValue);
                     }
                 }}
             />

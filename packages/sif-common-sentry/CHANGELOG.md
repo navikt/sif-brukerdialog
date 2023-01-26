@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.6.0
+
+### Minor Changes
+
+-   cbf4f889: Utvide sentry logger til å kunne motta props for ignoreErrors
+
 ## 0.5.6
 
 ### Patch Changes

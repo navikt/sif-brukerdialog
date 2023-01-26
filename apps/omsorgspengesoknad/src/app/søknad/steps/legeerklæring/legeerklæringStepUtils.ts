@@ -1,5 +1,6 @@
 import { Søknadsdata, LegeerklæringSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { LegeerklæringFormFields, LegeerklæringFormValues } from './LegeerklæringForm';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 export const getLegeerklæringStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -18,8 +19,6 @@ export const getLegeerklæringSøknadsdataFromFormValues = (
     values: LegeerklæringFormValues
 ): LegeerklæringSøknadsdata => {
     return {
-        vedlegg: values[LegeerklæringFormFields.vedlegg].filter(
-            (vedlegg) => vedlegg.pending === false && vedlegg.uploaded === true
-        ),
+        vedlegg: getUploadedAttachments(values[LegeerklæringFormFields.vedlegg] || []),
     };
 };

@@ -1,5 +1,3 @@
-import { contextConfig } from '../contextConfig';
-import { cyApiMockData } from '../data/cyApiMockData';
 import {
     checkCheckbuttonByName,
     getInputByName,
@@ -8,10 +6,15 @@ import {
     selectRadioYesOrNo,
     setInputByNameValue,
     submitSkjema,
-} from '../utils';
+} from '.';
+import { cyApiMockData } from '../data/cyApiMockData';
 
 const fileName = 'navlogopng.png';
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
+
+interface BarnOgDeltBostedProps {
+    deltBosted: boolean;
+    harRegistrertBarn: boolean;
+}
 
 const startSøknad = () => {
     it('Starter søknad', () => {
@@ -20,22 +23,24 @@ const startSøknad = () => {
     });
 };
 
-const fyllUtOmBarn = (deltBosted = true) => {
+const fyllUtOmBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet', () => {
         getTestElement('barn-2811762539343').click();
-        selectRadioYesOrNo('sammeAdresse', deltBosted);
+        selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         submitSkjema();
     });
 };
 
-const fyllUtOmAnnetBarn = (deltBosted = true) => {
+const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet - annet barn', () => {
-        checkCheckbuttonByName('søknadenGjelderEtAnnetBarn');
+        if (props.harRegistrertBarn) {
+            checkCheckbuttonByName('søknadenGjelderEtAnnetBarn');
+        }
         setInputByNameValue('barnetsFødselsnummer', cyApiMockData.barnMock.barn[0].fødselsnummer);
         setInputByNameValue('barnetsNavn', cyApiMockData.barnMock.barn[0].fornavn);
         getInputByName('søkersRelasjonTilBarnet').select('mor');
-        selectRadioYesOrNo('sammeAdresse', deltBosted);
+        selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         submitSkjema();
     });
@@ -76,19 +81,23 @@ const lastOppSamværsavtale = () => {
     });
 };
 
-const kontrollerOppsummering = (deltBosted = false) => {
+const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
     it('har riktig oppsummering - enkel', () => {
         const oppsummering = getTestElement('oppsummering');
         oppsummering.should('contain', cyApiMockData.søkerMock.fornavn);
         oppsummering.should('contain', cyApiMockData.søkerMock.fødselsnummer);
+        if (props.harRegistrertBarn === false) {
+            oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fødselsnummer);
+            oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fornavn);
+        }
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
-        if (deltBosted) {
+        if (props.deltBosted === false) {
             getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);
         }
     });
 };
 const sendInnSøknad = () => {
-    it('Fyller ut beskrivelse', () => {
+    it('Sender inn søknad', () => {
         getTestElement('bekreft-label').click();
         getTestElement('typedFormikForm-submitButton').click();
     });
@@ -100,42 +109,13 @@ const kontrollerKvittering = () => {
     });
 };
 
-describe('Fylle ut søknad', () => {
-    contextConfig();
-
-    describe('Med registrert barn', () => {
-        before(() => {
-            cy.visit(startUrl);
-        });
-        startSøknad();
-        fyllUtOmBarn();
-        lastOppLegeerklæring();
-        kontrollerOppsummering();
-        sendInnSøknad();
-        kontrollerKvittering();
-    });
-    describe('Registrert barn med delt omsorg', () => {
-        const deltBosted = false;
-        before(() => {
-            cy.visit(startUrl);
-        });
-        startSøknad();
-        fyllUtOmBarn(deltBosted);
-        lastOppLegeerklæring();
-        lastOppSamværsavtale();
-        kontrollerOppsummering(deltBosted);
-        sendInnSøknad();
-        kontrollerKvittering();
-    });
-    describe('Med annet barn', () => {
-        before(() => {
-            cy.visit(startUrl);
-        });
-        startSøknad();
-        fyllUtOmAnnetBarn();
-        lastOppLegeerklæring();
-        kontrollerOppsummering();
-        sendInnSøknad();
-        kontrollerKvittering();
-    });
-});
+export const utfyllingUtils = {
+    startSøknad,
+    fyllUtOmBarn,
+    fyllUtOmAnnetBarn,
+    lastOppLegeerklæring,
+    lastOppSamværsavtale,
+    sendInnSøknad,
+    kontrollerOppsummering,
+    kontrollerKvittering,
+};

@@ -11,6 +11,7 @@ interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     legend?: string;
     buttonLabel: string;
     apiEndpoint: ApiEndpoint;
+
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
@@ -24,6 +25,7 @@ function FormikFileUploader({
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
+
     ...otherProps
 }: Props) {
     const { onFilesSelect } = useFormikFileUploader({

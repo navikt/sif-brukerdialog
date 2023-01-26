@@ -9,6 +9,7 @@ import { deltBostedMessages } from '../søknad/steps/delt-bosted/deltBostedMessa
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
+import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -20,6 +21,7 @@ const bokmålstekster = {
     ...legeerklæringMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
+    ...validateApiDataMessages.nb,
     ...appMessages.nb,
 };
 

@@ -8,10 +8,10 @@
             "fødselsnummer": "08861999573"
         },
         {
-            "fødselsdato": "2020-04-20",
             "fornavn": "Barn",
             "mellomnavn": "Barne",
             "etternavn": "Barnesen",
+            "fødselsdato": "2020-04-20",
             "aktørId": "123"
         },
         { "fødselsdato": "2015-01-02", "fornavn": "Mock", "etternavn": "Mocknes", "aktørId": "2" }

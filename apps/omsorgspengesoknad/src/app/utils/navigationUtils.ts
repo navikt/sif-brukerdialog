@@ -10,5 +10,8 @@ const getSøknadRouteURL = (route: SøknadRoutes) => {
     return `${getEnvironmentVariable('PUBLIC_PATH')}${route}`;
 };
 
-export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('LOGIN_URL'));
+export const relocateToWelcomePage = () => {
+    relocateTo(getSøknadRouteURL(SøknadRoutes.VELKOMMEN));
+};
 export const relocateToNoAccessPage = (): void => relocateTo(getSøknadRouteURL(SøknadRoutes.IKKE_TILGANG));
+export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('LOGIN_URL'));

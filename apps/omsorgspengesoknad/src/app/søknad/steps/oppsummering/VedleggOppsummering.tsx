@@ -9,6 +9,7 @@ import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '../../../utils/attachmentUtilsAuthToken';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
     apiData: SøknadApiData;
@@ -51,7 +52,13 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
                 <Block margin="xl">
                     <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.samværsavtale.header')}>
                         <div data-testid="samværsavtale-liste">
-                            <AttachmentList attachments={samværsavtaler} />
+                            {samværsavtaler.length > 0 ? (
+                                <AttachmentList attachments={samværsavtaler} />
+                            ) : (
+                                <Alert inline={true} variant="warning">
+                                    Ingen avtale er lastet opp
+                                </Alert>
+                            )}
                         </div>
                     </ContentWithHeader>
                 </Block>

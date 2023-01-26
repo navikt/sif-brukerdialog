@@ -50,7 +50,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
 
-                if (includeDeltBostedStep(søknadsdata) === false) {
+                if (includeDeltBostedStep(søknadsdata.omBarnet) === false) {
                     søknadsdata.deltBosted = undefined;
                 }
 
