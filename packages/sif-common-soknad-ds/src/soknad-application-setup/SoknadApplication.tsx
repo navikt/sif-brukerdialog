@@ -64,7 +64,7 @@ const SoknadApplication = ({
     const locales = Object.keys(messages) as any;
 
     if (sentryKey) {
-        getSentryLoggerForApp(sentryKey, { allowUrls: [/sykdom-i-familien/], ignoreErrors: sentryIgnoreErrors }).init();
+        getSentryLoggerForApp(sentryKey, [/sykdom-i-familien/], sentryIgnoreErrors).init();
     }
 
     useDecoratorLanguageSelector([locales], (locale: any) => {

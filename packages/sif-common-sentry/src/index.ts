@@ -80,8 +80,8 @@ const initSentryForSIF = (initProps: SentryInitProps = {}) => {
     });
 };
 
-const getSentryLoggerForApp = (application: string, initProps?: SentryInitProps) => ({
-    init: () => initSentryForSIF(initProps),
+const getSentryLoggerForApp = (application: string, allowUrls: allowUrlsType, ignoreErrors?: ignoreErrorsType) => ({
+    init: () => initSentryForSIF({ allowUrls, ignoreErrors }),
     log: (message: string, severity: SeverityLevel, payload?: string) =>
         logToSentryOrConsole(message, severity, application, payload ? { info: payload } : undefined),
     logInfo: (message: string, payload?: string) =>
