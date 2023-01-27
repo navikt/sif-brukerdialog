@@ -51,7 +51,7 @@
                             "organisasjonsnummer": "947064649",
                             "arbeidstidInfo": {
                                 "perioder": {
-                                    "2022-08-09/2022-08-10": {
+                                    "2022-08-09/2022-08-13": {
                                         "jobberNormaltTimerPerDag": "PT4H",
                                         "faktiskArbeidTimerPerDag": "PT0S"
                                     },

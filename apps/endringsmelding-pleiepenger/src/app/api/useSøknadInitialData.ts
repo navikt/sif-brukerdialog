@@ -119,25 +119,11 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            // const [søker, k9saker, lagretSøknadState] = await Promise.all([
-            //     søkerEndpoint.fetch(),
-            //     sakerEndpoint.fetch(),
-            //     søknadStateEndpoint.fetch(),
-            // ]);
-            const søker = await søkerEndpoint.fetch();
-            const k9saker = await sakerEndpoint.fetch();
-            const lagretSøknadState = await søknadStateEndpoint.fetch();
-
-            const resultat = kontrollerK9Saker(k9saker);
-            if (resultat.kanBrukeSøknad === false) {
-                setInitialData({
-                    status: RequestStatus.success,
-                    kanBrukeSøknad: false,
-                    årsak: resultat.årsak,
-                    søker,
-                });
-                return Promise.resolve();
-            }
+            const [søker, k9saker, lagretSøknadState] = await Promise.all([
+                søkerEndpoint.fetch(),
+                sakerEndpoint.fetch(),
+                søknadStateEndpoint.fetch(),
+            ]);
 
             const samletTidsperiode = getDateRangeForK9Saker(k9saker);
             if (samletTidsperiode === undefined) {
@@ -155,6 +141,18 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 dateToISODate(endringsperiode.from),
                 dateToISODate(endringsperiode.to)
             );
+
+            const resultat = kontrollerK9Saker(k9saker, arbeidsgivere);
+            if (resultat.kanBrukeSøknad === false) {
+                setInitialData({
+                    status: RequestStatus.success,
+                    kanBrukeSøknad: false,
+                    årsak: resultat.årsak,
+                    søker,
+                });
+                return Promise.resolve();
+            }
+
             setInitialData({
                 status: RequestStatus.success,
                 kanBrukeSøknad: true,

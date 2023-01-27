@@ -20,6 +20,12 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>Dersom dette ikke stemmer, ta kontakt med [TODO].</p>
                 </BodyLong>
             );
+        case IngenTilgangÅrsak.arbeidsforholdUtenArbeidstid:
+            return (
+                <BodyLong as="div">
+                    <p>TODO: Bruker har arbeidsforhold hvor en ikke har registrert arbeidstid - henvise til søknad?</p>
+                </BodyLong>
+            );
         case IngenTilgangÅrsak.harMerEnnEnSak:
             return (
                 <BodyLong as="div">
