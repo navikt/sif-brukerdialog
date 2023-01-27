@@ -240,6 +240,14 @@ export const includeWeekendIfDateRangeEndsOnFridayOrLater = (dateRange: DateRang
 /**
  * Checks if two date ranges are adjacent; if the second DateRange starts on the day after the first dateRange
  */
+
+/**
+ * Checks if two date ranges are adjacent -> if the second DateRange starts on the day after the first dateRange
+ * Returns false if second dateRange starts before end of first date range
+ * @param dateRange1
+ * @param dateRange2
+ * @returns true if adjacent
+ */
 export const dateRangeIsAdjacentToDateRange = (dateRange1: DateRange, dateRange2: DateRange): boolean => {
     if (dayjs(dateRange1.to).isSameOrAfter(dateRange2.from, 'day')) {
         return false;
@@ -248,7 +256,9 @@ export const dateRangeIsAdjacentToDateRange = (dateRange1: DateRange, dateRange2
 };
 
 /**
- *
+ * Joins DateRanges which are adjacent
+ * @param dateRanges ranges to be joied
+ * @returns Joined DateRanges
  */
 export const joinAdjacentDateRanges = (dateRanges: DateRange[]): DateRange[] => {
     if (dateRanges.length === 0) {
