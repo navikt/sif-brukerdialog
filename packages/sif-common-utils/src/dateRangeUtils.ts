@@ -223,6 +223,66 @@ export const getMonthDateRange = (date: Date, onlyWeekDays = false): DateRange =
 });
 
 /**
+ * Utvider DateRange til å gå til og med søndag, dersom dateRange slutter på fredag, lørdag eller søndag
+ * @param dateRange
+ * @returns dateRange hvor to-date er endret dersom den slutter på fre/lør/søn
+ */
+export const includeWeekendIfDateRangeEndsOnFridayOrLater = (dateRange: DateRange): DateRange => {
+    if (dayjs(dateRange.to).isoWeekday() >= 5) {
+        return {
+            ...dateRange,
+            to: dayjs(dateRange.to).endOf('isoWeek').toDate(),
+        };
+    }
+    return dateRange;
+};
+
+/**
+ * Checks if two date ranges are adjacent; if the second DateRange starts on the day after the first dateRange
+ */
+export const dateRangeIsAdjacentToDateRange = (dateRange1: DateRange, dateRange2: DateRange): boolean => {
+    if (dayjs(dateRange1.to).isSameOrAfter(dateRange2.from, 'day')) {
+        return false;
+    }
+    return dayjs(dateRange1.to).startOf('day').diff(dayjs(dateRange2.from).startOf('day'), 'days') === -1;
+};
+
+/**
+ *
+ */
+export const joinAdjacentDateRanges = (dateRanges: DateRange[]): DateRange[] => {
+    if (dateRanges.length === 0) {
+        return [];
+    }
+    if (dateRanges.length === 1) {
+        return dateRanges;
+    }
+
+    const joinedDateRanges: DateRange[] = [];
+    let rangeFromDate: Date = dateRanges[0].from;
+
+    dateRanges.forEach((current, index) => {
+        if (index === dateRanges.length - 1) {
+            joinedDateRanges.push({
+                from: rangeFromDate,
+                to: current.to,
+            });
+            return;
+        }
+        const next = dateRanges[index + 1];
+        if (dateRangeIsAdjacentToDateRange(current, next) === false) {
+            joinedDateRanges.push({
+                from: rangeFromDate,
+                to: current.to,
+            });
+            rangeFromDate = next.from;
+        }
+    });
+
+    return joinedDateRanges;
+};
+
+/**
  * Returns a DateRange for the week which date is a part of.
  * @param date
  * @param onlyWeekDays Exclude saturday and sunday from dateRange
