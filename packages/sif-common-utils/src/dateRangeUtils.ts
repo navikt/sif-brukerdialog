@@ -550,7 +550,9 @@ export const getDateRangesFromISODateRangeMap = (map: ISODateRangeMap): DateRang
 };
 
 export const dateRangeUtils = {
+    includeWeekendIfDateRangeEndsOnFridayOrLater,
     dateRangesCollide,
+    dateRangeIsAdjacentToDateRange,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
     getDateRangeFromDateRanges,
@@ -570,6 +572,7 @@ export const dateRangeUtils = {
     ISODateRangeToDateRange,
     ISODateRangeToISODates,
     ISODateToISODateRange,
+    joinAdjacentDateRanges,
     sortDateRange,
     sortDateRangeByToDate,
 };
