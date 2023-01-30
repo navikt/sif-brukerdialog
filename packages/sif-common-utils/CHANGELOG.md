@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.20.0
+
+### Minor Changes
+
+-   09be8e05: Slå sammen perioder som henger sammen
+
 ## 3.19.0
 
 ### Minor Changes
