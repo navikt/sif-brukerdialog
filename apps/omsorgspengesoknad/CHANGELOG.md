@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad
 
+## 1.1.1
+
+### Patch Changes
+
+-   ef582422: Justere logging til sentry
+-   Updated dependencies [09be8e05]
+    -   @navikt/sif-common-utils@3.20.0
+
 ## 1.1.0
 
 ### Minor Changes
