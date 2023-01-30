@@ -17,6 +17,7 @@ import {
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
+import { getDagerSøktFor } from '../parseK9Format';
 
 export const getEndretArbeidstid = (
     endringUkeMap: ArbeidstidAktivitetEndringMap,
@@ -27,7 +28,7 @@ export const getEndretArbeidstid = (
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
         const { endring } = endringUkeMap[isoDateRange];
         const arbeidsuke = arbeidAktivitet.arbeidsuker[isoDateRange];
-        const { dagerSøktFor } = arbeidsuke;
+        const dagerSøktFor = getDagerSøktFor(arbeidsuke.arbeidstidEnkeltdager);
         const { antallDagerMedArbeidstid } = arbeidsuke.meta;
 
         const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);

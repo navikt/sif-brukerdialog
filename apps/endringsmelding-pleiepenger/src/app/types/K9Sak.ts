@@ -1,5 +1,6 @@
 import { DateDurationMap, DateRange, Duration, ISODate, ISODateRange } from '@navikt/sif-common-utils';
 import { DagerIkkeSøktForMap, DagerSøktForMap } from '.';
+import { ArbeidstidEndring } from './ArbeidstidAktivitetEndring';
 
 export type TidEnkeltdag = DateDurationMap;
 
@@ -10,15 +11,24 @@ export interface ArbeidsukeTimer {
 
 export interface ArbeidsukeMetaData {
     antallDagerMedArbeidstid: number;
-    ukenummer: number;
-    årstall: number;
 }
 export interface Arbeidsuke {
+    isoDateRange: string;
+    periode: DateRange;
+    // dagerSøktFor: ISODate[];
+    arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap;
+    faktisk: ArbeidsukeTimer;
+    normalt: ArbeidsukeTimer;
+    /** Utledet info */
+    meta: ArbeidsukeMetaData;
+}
+export interface ArbeidsukeForEndring {
     isoDateRange: string;
     periode: DateRange;
     dagerSøktFor: ISODate[];
     faktisk: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
+    endring?: ArbeidstidEndring;
     /** Utledet info */
     meta: ArbeidsukeMetaData;
 }
@@ -26,9 +36,15 @@ export interface Arbeidsuke {
 export interface ArbeidsukeMap {
     [key: ISODateRange]: Arbeidsuke;
 }
+
+export interface PeriodeMedArbeidsuker {
+    periode: DateRange;
+    arbeidsuker: ArbeidsukeMap;
+}
 export interface AktivitetArbeidstid {
     enkeltdagerMedArbeid: ArbeidstidEnkeltdagMap;
     arbeidsuker: ArbeidsukeMap;
+    perioder: PeriodeMedArbeidsuker[];
 }
 
 export type ArbeidstidEnkeltdagMap = {

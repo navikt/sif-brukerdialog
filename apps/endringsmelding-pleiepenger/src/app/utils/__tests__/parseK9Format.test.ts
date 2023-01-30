@@ -5,7 +5,7 @@ import {
     ISODateRangeToDateRange,
     ISODuration,
 } from '@navikt/sif-common-utils/lib';
-import { K9FormatArbeidstidPeriode } from '../../types/k9Format';
+import { K9FormatArbeidstidPerioder } from '../../types/k9Format';
 import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '../../types/K9Sak';
 import { parseK9FormatUtils } from '../parseK9Format';
 
@@ -115,7 +115,7 @@ describe('parseK9Format', () => {
             expect(result.enkeltdagerMedArbeid).toEqual({});
         });
         it('returnerer blankt når arbeidsdager ikke er en del av søknadsperioder', () => {
-            const arbeidstidPeriode: K9FormatArbeidstidPeriode = {
+            const arbeidstidPeriode: K9FormatArbeidstidPerioder = {
                 [`${fredagFør}/${fredagFør}`]: {
                     faktiskArbeidTimerPerDag: isoArbeidstid2timer,
                     jobberNormaltTimerPerDag: isoArbeidstid5timer,
@@ -127,23 +127,27 @@ describe('parseK9Format', () => {
         });
         it('returnerer riktig for en arbeidsuke', () => {
             const periodeIsoDateRange = `${mandag}/${fredag}`;
-            const arbeidstidPeriode: K9FormatArbeidstidPeriode = {
+            const arbeidstidPeriode: K9FormatArbeidstidPerioder = {
                 [periodeIsoDateRange]: arbeidstidEnkeltdag,
             };
             const result = getAktivitetArbeidstidFromK9Format(arbeidstidPeriode, [søknadsperiode1]);
             const periode = ISODateRangeToDateRange(periodeIsoDateRange);
 
             const dagerSøktFor = [mandag, tirsdag, onsdag, torsdag, fredag];
+            const arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap = {};
+            dagerSøktFor.forEach((isoDate) => {
+                arbeidstidEnkeltdager[isoDate] = {
+                    ...arbeidstimerResultDag,
+                };
+            });
 
             const arbeidsukeResult: Arbeidsuke = {
                 isoDateRange: periodeIsoDateRange,
                 periode,
                 ...arbeidstimerResultUke,
-                dagerSøktFor,
+                arbeidstidEnkeltdager,
                 meta: {
                     antallDagerMedArbeidstid: 5,
-                    ukenummer: 8,
-                    årstall: 2022,
                 },
             };
 
@@ -158,4 +162,11 @@ describe('parseK9Format', () => {
             });
         });
     });
+
+    // describe("getPerioderFraArbeidstidPerioder", () => {
+    //     it("virker", () => {
+    //         const result = getPerioderFraArbeidstidPerioder(mock);
+    //     })
+
+    // });
 });
