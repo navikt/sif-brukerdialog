@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.0.3
+
+### Patch Changes
+
+-   180aed7: Sentry ignore 401 feil
+
 ## 3.0.2
 
 ### Patch Changes
