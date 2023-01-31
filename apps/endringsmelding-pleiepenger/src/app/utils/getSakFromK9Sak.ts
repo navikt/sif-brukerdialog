@@ -1,6 +1,6 @@
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { K9Sak } from '../types/K9Sak';
-import { Sak, ArbeidAktivitetType, ArbeidAktiviteter, ArbeidAktivitetArbeidstaker } from '../types/Sak';
+import { ArbeidAktivitetArbeidstaker, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../types/Sak';
 
 export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]): ArbeidAktiviteter => {
     const aktivitetArbeidstaker: ArbeidAktivitetArbeidstaker[] = [];
@@ -12,14 +12,13 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
     } = k9Sak.ytelse.arbeidstidInfo;
 
     Object.keys(arbeidstakerMap).forEach((key) => {
-        const { perioderMedArbeidstid, aktivitetArbeidstid } = arbeidstakerMap[key];
+        const { perioderMedArbeidstid } = arbeidstakerMap[key];
         const arbeidsgiver = arbeidsgivere.find((arbeidsgiver) => arbeidsgiver.id === key);
         if (arbeidsgiver) {
             aktivitetArbeidstaker.push({
                 id: `id_${arbeidsgiver.id}`,
                 type: ArbeidAktivitetType.arbeidstaker,
                 arbeidsgiver,
-                arbeidsuker: aktivitetArbeidstid.arbeidsuker,
                 perioderMedArbeidstid,
             });
         }
@@ -32,7 +31,6 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
                 ? {
                       id: ArbeidAktivitetType.frilanser,
                       type: ArbeidAktivitetType.frilanser,
-                      arbeidsuker: frilanserArbeidstidInfo.aktivitetArbeidstid.arbeidsuker,
                       perioderMedArbeidstid: frilanserArbeidstidInfo.perioderMedArbeidstid,
                   }
                 : undefined,
@@ -41,7 +39,6 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
                 ? {
                       id: ArbeidAktivitetType.selvstendigNæringsdrivende,
                       type: ArbeidAktivitetType.selvstendigNæringsdrivende,
-                      arbeidsuker: selvstendigNæringsdrivendeArbeidstidInfo.aktivitetArbeidstid.arbeidsuker,
                       perioderMedArbeidstid: selvstendigNæringsdrivendeArbeidstidInfo.perioderMedArbeidstid,
                   }
                 : undefined,

@@ -77,7 +77,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                                         triggerClearValgteUker={clearValgteUkerCounter}
                                         onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                                             setArbeidsukerForEndring(
-                                                uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange])
+                                                uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])
                                             );
                                         }}
                                     />

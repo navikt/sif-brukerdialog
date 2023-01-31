@@ -7,6 +7,8 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidsukeMap } from '../../types/K9Sak';
+import { PeriodeMedArbeidstid } from '../../types/PeriodeMedArbeidstid';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
 import {
     ArbeidstakerApiData,
@@ -19,6 +21,16 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getDagerSøktFor } from '../parseK9Format';
 
+export const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
+    const arbeidsukerMap = {};
+    perioder.forEach(({ arbeidsuker }) => {
+        Object.keys(arbeidsuker).forEach((key) => {
+            arbeidsukerMap[key] = arbeidsuker[key];
+        });
+    });
+    return arbeidsukerMap;
+};
+
 export const getEndretArbeidstid = (
     endringUkeMap: ArbeidstidAktivitetEndringMap,
     arbeidAktivitet: ArbeidAktivitet
@@ -27,7 +39,8 @@ export const getEndretArbeidstid = (
 
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
         const { endring } = endringUkeMap[isoDateRange];
-        const arbeidsuke = arbeidAktivitet.arbeidsuker[isoDateRange];
+        const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidAktivitet.perioderMedArbeidstid);
+        const arbeidsuke = arbeidsuker[isoDateRange];
         const dagerSøktFor = getDagerSøktFor(arbeidsuke.arbeidstidEnkeltdager);
         const { antallDagerMedArbeidstid } = arbeidsuke;
 

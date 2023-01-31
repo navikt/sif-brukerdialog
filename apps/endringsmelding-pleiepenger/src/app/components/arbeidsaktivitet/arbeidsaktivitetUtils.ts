@@ -83,11 +83,12 @@ const getArbeidstidUkeTabellItemFromArbeidsukerMap = (
 };
 
 const getArbeidstidUkeTabellItemFromArbeidsuker = (
-    arbeidsuker: Arbeidsuke[],
+    arbeidsuker: ArbeidsukeMap,
     endringer: ArbeidstidAktivitetEndringMap = {}
 ): PeriodeSøktForTabellItem[] => {
     const items: PeriodeSøktForTabellItem[] = [];
-    arbeidsuker.map((arbeidsuke) => {
+    Object.keys(arbeidsuker).map((key) => {
+        const arbeidsuke = arbeidsuker[key];
         const endring = endringer[arbeidsuke.isoDateRange];
         items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring?.endring));
     });

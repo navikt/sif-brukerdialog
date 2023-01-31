@@ -62,7 +62,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     const [valgteUker, setValgteUker] = useState<string[]>([]);
     const renderAsList = useMediaQuery({ minWidth: 500 }) === false;
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
-    const kanVelgeFlereUker = onEndreUker !== undefined;
+    const kanVelgeFlereUker = onEndreUker !== undefined && antallUkerTotalt > 1;
 
     useEffect(() => {
         setValgteUker([]);

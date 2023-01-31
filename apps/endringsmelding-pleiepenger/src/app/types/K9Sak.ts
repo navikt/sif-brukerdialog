@@ -38,7 +38,7 @@ export type ArbeidstidEnkeltdagMap = {
 };
 
 interface ArbeidstidInfo {
-    aktivitetArbeidstid: AktivitetArbeidstid;
+    // aktivitetArbeidstid: AktivitetArbeidstid;
     perioderMedArbeidstid: PeriodeMedArbeidstid[];
 }
 
