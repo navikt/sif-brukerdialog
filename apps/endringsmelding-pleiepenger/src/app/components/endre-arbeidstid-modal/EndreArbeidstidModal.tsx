@@ -12,7 +12,7 @@ interface Props {
     arbeidsuker: Arbeidsuke[];
     isVisible?: boolean;
     onClose: () => void;
-    onSubmit: (endring: EndreArbeidstidFormData) => void;
+    onSubmit: (endring: EndreArbeidstidFormData[]) => void;
 }
 
 const EndreArbeidstidModal: FunctionComponent<Props> = ({

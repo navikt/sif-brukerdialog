@@ -3,6 +3,11 @@ import { rest } from 'msw';
 const søkerJson = require('../data/soker1/søker-mock.json');
 const sakJson = require('../data/soker1/sak-mock.json');
 const arbeidsgiverJson = require('../data/soker1/arbeidsgiver-mock.json');
+
+// const søkerJson = require('../data/soker3/søker-mock.json');
+// const sakJson = require('../data/soker3/sak-mock.json');
+// const arbeidsgiverJson = require('../data/soker3/arbeidsgiver-mock.json');
+
 // const søkerJson = require('../data/soker5-ukedag-ikke-søkt-for/søker-mock.json');
 // const sakJson = require('../data/soker5-ukedag-ikke-søkt-for/sak-mock.json');
 // const arbeidsgiverJson = require('../data/soker5-ukedag-ikke-søkt-for/arbeidsgiver-mock.json');

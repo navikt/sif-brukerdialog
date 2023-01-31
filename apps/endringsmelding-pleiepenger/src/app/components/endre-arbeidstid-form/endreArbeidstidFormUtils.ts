@@ -27,3 +27,61 @@ export const getUkerSomEndresTekst = (arbeidsuker: Arbeidsuke[]): React.ReactNod
     }
     return 'ett år';
 };
+
+export const getUkerForEndring = (
+    arbeidsuker: Arbeidsuke[]
+): {
+    spørOmFørsteUke?: boolean;
+    spørOmSisteUke?: boolean;
+    spørOmSnittUker?: boolean;
+} => {
+    /** Ingen uker */
+    if (arbeidsuker.length === 0) {
+        return {};
+    }
+    /** Èn uke */
+    if (arbeidsuker.length === 1) {
+        return {
+            spørOmFørsteUke: true,
+        };
+    }
+
+    const førsteUke = arbeidsuker[0];
+    const sisteUke = arbeidsuker[arbeidsuker.length - 1];
+    if (arbeidsuker.length === 2) {
+        /** Begge uker er komplette uker */
+        if (førsteUke.antallDagerMedArbeidstid + sisteUke.antallDagerMedArbeidstid === 10) {
+            return {
+                spørOmSnittUker: true,
+            };
+        }
+        return {
+            spørOmFørsteUke: true,
+            spørOmSisteUke: true,
+        };
+    }
+
+    /** Bare fulle uker */
+    const antallIkkeFulleUker = arbeidsuker.filter((uke) => uke.antallDagerMedArbeidstid !== 5).length;
+    if (antallIkkeFulleUker === 0) {
+        return {
+            spørOmSnittUker: true,
+        };
+    }
+    if (antallIkkeFulleUker === 2) {
+        return {
+            spørOmSnittUker: true,
+            spørOmFørsteUke: true,
+            spørOmSisteUke: true,
+        };
+    }
+
+    const spørOmFørsteUke = arbeidsuker[0].antallDagerMedArbeidstid < 5;
+    const spørOmSisteUke = arbeidsuker[arbeidsuker.length - 1].antallDagerMedArbeidstid < 5;
+
+    return {
+        spørOmSnittUker: true,
+        spørOmFørsteUke,
+        spørOmSisteUke,
+    };
+};

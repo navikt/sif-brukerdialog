@@ -9,7 +9,7 @@ import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-co
 import dayjs from 'dayjs';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
-import { getPeriodeTekst } from './components/PeriodeTekst';
+import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import './arbeidstidUkeTabell.scss';
 
 export interface ArbeidstidUkeTabellItem {
@@ -34,7 +34,7 @@ interface Props {
         antall: number;
     };
     arbeidstidKolonneTittel?: string;
-    triggerClearValgteUker?: number;
+    triggerResetValg?: number;
     onEndreUker?: (uke: ArbeidstidUkeTabellItem[]) => void;
 }
 
@@ -45,7 +45,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         antall: 10,
     },
     arbeidstidKolonneTittel,
-    triggerClearValgteUker,
+    triggerResetValg,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
@@ -62,7 +62,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
     useEffect(() => {
         setValgteUker([]);
-    }, [triggerClearValgteUker]);
+        setVisVelgUke(false);
+    }, [triggerResetValg]);
 
     const onToggleUke = (id: string, selected: boolean) => {
         setVisMeldingOmUkerMåVelges(false);
@@ -107,6 +108,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
             <Checkbox
                 name="abc"
                 checked={visVelgUke}
+                data-testid="endre-flere-uker-cb"
                 onChange={(evt) => {
                     setVisVelgUke(evt.target.checked);
                     setValgteUker([]);
@@ -132,7 +134,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         variant="primary"
                         type="button"
                         size="small"
-                        // disabled={valgteUker.length === 0}
+                        data-testid="endre-flere-uker-button"
                         onClick={() => {
                             if (valgteUker.length === 0) {
                                 setVisMeldingOmUkerMåVelges(true);

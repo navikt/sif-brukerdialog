@@ -18,12 +18,12 @@ import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
     endringer: ArbeidstidAktivitetEndringMap | undefined;
-    onArbeidstidAktivitetChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetEndring) => void;
+    onArbeidstidAktivitetChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetEndring[]) => void;
 }
 
 const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetChange }: Props) => {
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
-    const [clearValgteUkerCounter, setClearValgteUkerCounter] = useState(0);
+    const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
     const perioder = arbeidAktivitet.perioderMedArbeidstid;
 
@@ -75,7 +75,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                                 <Accordion.Content>
                                     <ArbeidstidUkeTabell
                                         listItems={listItems}
-                                        triggerClearValgteUker={clearValgteUkerCounter}
+                                        triggerResetValg={resetUkerTabellCounter}
                                         onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                                             setArbeidsukerForEndring(
                                                 uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])
@@ -95,8 +95,10 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                 onClose={() => setArbeidsukerForEndring(undefined)}
                 onSubmit={(data) => {
                     setArbeidsukerForEndring(undefined);
-                    onArbeidstidAktivitetChange({ arbeidAktivitetId: arbeidAktivitet.id, ...data });
-                    setClearValgteUkerCounter(clearValgteUkerCounter + 1);
+                    onArbeidstidAktivitetChange(
+                        data.map((endring) => ({ arbeidAktivitetId: arbeidAktivitet.id, ...endring }))
+                    );
+                    setResetUkerTabellCounter(resetUkerTabellCounter + 1);
                 }}
             />
         </div>

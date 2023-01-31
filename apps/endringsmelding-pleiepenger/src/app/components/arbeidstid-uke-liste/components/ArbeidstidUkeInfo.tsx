@@ -17,9 +17,9 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
         return (
             <>
                 {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
-                <strong data-testid="timer-faktisk">
+                <span data-testid="timer-faktisk">
                     <DurationText duration={uke.opprinnelig.faktisk} />
-                </strong>
+                </span>
             </>
         );
     }

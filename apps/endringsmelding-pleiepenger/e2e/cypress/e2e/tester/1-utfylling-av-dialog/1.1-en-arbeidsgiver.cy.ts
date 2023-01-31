@@ -53,7 +53,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
     });
     it('fyller ut timer', () => {
         getArbeidstimerModal().within(() => {
-            getTestElement('timer-verdi').type('10,5');
+            getTestElement('timer-førsteUke-verdi').type('10,5');
             cy.get('button[type="submit"]').click();
         });
     });
@@ -70,10 +70,13 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
 const endreFlereUker = (uker: number[] = flereUker) => {
     it('velger uker for endring', () => {
         getAktivitet().within(() => {
-            const rows = uker.map((uke) => getUkeRow(uke));
-            rows.forEach((row) => {
-                row.within(() => {
-                    cy.get('input[type=checkbox]').parent().click();
+            getPeriode().within(() => {
+                getTestElement('endre-flere-uker-cb').click();
+                const rows = uker.map((uke) => getUkeRow(uke));
+                rows.forEach((row) => {
+                    row.within(() => {
+                        cy.get('input[type=checkbox]').parent().click();
+                    });
                 });
             });
         });
@@ -86,6 +89,7 @@ const endreFlereUker = (uker: number[] = flereUker) => {
         });
         getArbeidstimerModal().within(() => {
             getTestElement('timer-verdi').type('5');
+            getTestElement('timer-sisteUke-verdi').type('5');
             cy.get('button[type="submit"]').click();
         });
     });
