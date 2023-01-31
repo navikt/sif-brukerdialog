@@ -115,12 +115,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
     if (arbeidsuker.length === 0) {
         return null;
     }
-
-    // const ukerHarLikNormaltidPerDag = arbeidsukerHarLikNormaltidPerDag(arbeidsuker);
-    // const alleUkerErHeleUker = arbeidsukerErHeleArbeidsuker(arbeidsuker);
-
-    const arbeidsukerDescription = getArbeidsukerDescription(arbeidsuker);
-
     return (
         <FormikWrapper
             initialValues={{ timerEllerProsent: inputPreferanser.timerEllerProsent }}
@@ -176,7 +170,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                             className="arbeidstidUkeInput"
                                             name={EndreArbeidstidFormField.prosentAvNormalt}
                                             label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
-                                            description={arbeidsukerDescription}
+                                            description={getArbeidsukerDescription(arbeidsuker)}
                                             data-testid="prosent-verdi"
                                             width="xs"
                                             maxLength={4}

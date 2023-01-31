@@ -58,7 +58,6 @@ export interface K9FormatOpptjeningAktivitetFrilanser {
     jobberFortsattSomFrilanser: boolean;
 }
 
-/** TODO: format ikke avklart */
 export interface K9FormatOpptjeningAktivitetSelvstendig {
     startdato: ISODate;
     sluttdato?: ISODate;
