@@ -1,5 +1,6 @@
 import {
     DateRange,
+    dateRangesCollide,
     dateRangeToISODateRange,
     durationUtils,
     getDateRangesFromISODateRangeMap,
@@ -31,7 +32,11 @@ import {
 } from '../types/K9Sak';
 import { PeriodeMedArbeidstid } from '../types/PeriodeMedArbeidstid';
 import { beregnSnittTimerPerDag } from './beregnUtils';
-import { getEndringsdato, getSøknadsperioderInnenforTillattEndringsperiode } from './endringsperiode';
+import {
+    getEndringsdato,
+    getMaksEndringsperiode,
+    getSøknadsperioderInnenforTillattEndringsperiode,
+} from './endringsperiode';
 
 export const getDagerSøktFor = (arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap) => {
     return Object.keys(arbeidstidEnkeltdager).sort();
@@ -177,13 +182,44 @@ const getgetArbeidsukerMapFromArbeidsuker = (arbeidsuker: Arbeidsuke[]) => {
     return arbeidsukerMap;
 };
 
+export const getArbeidstidPerioderInnenforTillatEndringsperiode = (
+    arbeidstidPerioder: K9FormatArbeidstidInfoPerioder,
+    tillattEndringsperiode: DateRange
+): K9FormatArbeidstidInfoPerioder => {
+    const perioder: K9FormatArbeidstidInfoPerioder = {};
+    Object.keys(arbeidstidPerioder).forEach((key) => {
+        const { from, to } = ISODateRangeToDateRange(key);
+        // Er ikke innenfor gyldig tidsrom
+        if (dateRangesCollide([{ from, to }, tillattEndringsperiode], true) === false) {
+            return;
+        }
+        const førsteDato = tillattEndringsperiode.from;
+        const sisteDato = tillattEndringsperiode.to;
+        const dateRangeToUse: DateRange = {
+            from: dayjs(from).isBefore(førsteDato, 'day') ? førsteDato : from,
+            to: dayjs(to).isAfter(sisteDato, 'day') ? sisteDato : to,
+        };
+        perioder[dateRangeToISODateRange(dateRangeToUse)] = arbeidstidPerioder[key];
+    });
+    return perioder;
+};
+
 /**
  * Mapper K9format-arbeidstid til perioder med arbeidstid
  * @param arbeidstidPerioder K9FormatArbeidstidPerioder
  * @returns PeriodeMedArbeidstid[]
  */
-const getPerioderMedArbeidstid = (arbeidstidPerioder: K9FormatArbeidstidInfoPerioder): PeriodeMedArbeidstid[] => {
-    return grupperArbeidstidPerioder(arbeidstidPerioder).map((gruppertPeriode) => {
+const getPerioderMedArbeidstid = (
+    arbeidstidPerioder: K9FormatArbeidstidInfoPerioder,
+    tillattEndringsperiode: DateRange
+): PeriodeMedArbeidstid[] => {
+    const perioder =
+        1 + 1 === 2
+            ? getArbeidstidPerioderInnenforTillatEndringsperiode(arbeidstidPerioder, tillattEndringsperiode)
+            : arbeidstidPerioder;
+    // console.log(perioder);
+
+    return grupperArbeidstidPerioder(perioder).map((gruppertPeriode) => {
         const enkeltdager = getArbeidstidEnkeltdagMapFromPerioder(gruppertPeriode.arbeidstidPerioder);
         const arbeidsuker = getgetArbeidsukerMapFromArbeidsuker(getArbeidsukerFromEnkeltdager(enkeltdager));
         const periode: PeriodeMedArbeidstid = {
@@ -238,13 +274,15 @@ export const grupperArbeidstidPerioder = (
  * @param arbeidsgivere
  * @returns
  */
-const getArbeidstidArbeidsgivere = (arbeidsgivere: K9FormatArbeidstaker[]): ArbeidstakerMap => {
+const getArbeidstidArbeidsgivere = (
+    arbeidsgivere: K9FormatArbeidstaker[],
+    tillattEndringsperiode: DateRange
+): ArbeidstakerMap => {
     const arbeidsgivereMap: ArbeidstakerMap = {};
     arbeidsgivere.forEach((a) => {
         const id = a.norskIdentitetsnummer || a.organisasjonsnummer;
         arbeidsgivereMap[id] = {
-            // aktivitetArbeidstid: getAktivitetArbeidstidFromK9Format(a.arbeidstidInfo.perioder),
-            perioderMedArbeidstid: getPerioderMedArbeidstid(a.arbeidstidInfo.perioder),
+            perioderMedArbeidstid: getPerioderMedArbeidstid(a.arbeidstidInfo.perioder, tillattEndringsperiode),
         };
     });
     return arbeidsgivereMap;
@@ -268,25 +306,26 @@ const getBarn = (barn: K9FormatBarn): Barn => {
  * @param arbeidstid: K9FormatArbeidstid
  * @returns YtelseArbeidstid
  */
-const getArbeidstidInfo = ({
-    arbeidstakerList,
-    frilanserArbeidstidInfo,
-    selvstendigNæringsdrivendeArbeidstidInfo,
-}: K9FormatArbeidstid): YtelseArbeidstid => {
+const getArbeidstidInfo = (
+    { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo }: K9FormatArbeidstid,
+    tillattEndringsperiode: DateRange
+): YtelseArbeidstid => {
     return {
-        arbeidstakerMap: getArbeidstidArbeidsgivere(arbeidstakerList),
+        arbeidstakerMap: getArbeidstidArbeidsgivere(arbeidstakerList, tillattEndringsperiode),
         frilanserArbeidstidInfo: frilanserArbeidstidInfo?.perioder
             ? {
-                  //   aktivitetArbeidstid: getAktivitetArbeidstidFromK9Format(frilanserArbeidstidInfo.perioder),
-                  perioderMedArbeidstid: getPerioderMedArbeidstid(frilanserArbeidstidInfo.perioder),
+                  perioderMedArbeidstid: getPerioderMedArbeidstid(
+                      frilanserArbeidstidInfo.perioder,
+                      tillattEndringsperiode
+                  ),
               }
             : undefined,
         selvstendigNæringsdrivendeArbeidstidInfo: selvstendigNæringsdrivendeArbeidstidInfo?.perioder
             ? {
-                  //   aktivitetArbeidstid: getAktivitetArbeidstidFromK9Format(
-                  //       selvstendigNæringsdrivendeArbeidstidInfo.perioder
-                  //   ),
-                  perioderMedArbeidstid: getPerioderMedArbeidstid(selvstendigNæringsdrivendeArbeidstidInfo.perioder),
+                  perioderMedArbeidstid: getPerioderMedArbeidstid(
+                      selvstendigNæringsdrivendeArbeidstidInfo.perioder,
+                      tillattEndringsperiode
+                  ),
               }
             : undefined,
     };
@@ -303,6 +342,7 @@ export const parseK9Format = (data: K9Format): K9Sak => {
         barn,
     } = data;
     const endringsdato = getEndringsdato();
+    const tillattEndringsperiode = getMaksEndringsperiode(endringsdato);
     const søknadsperioder = getSøknadsperioderInnenforTillattEndringsperiode(
         endringsdato,
         ytelse.søknadsperiode.map((periode) => ISODateRangeToDateRange(periode))
@@ -331,7 +371,7 @@ export const parseK9Format = (data: K9Format): K9Sak => {
                       }
                     : undefined,
             },
-            arbeidstidInfo: getArbeidstidInfo(ytelse.arbeidstid),
+            arbeidstidInfo: getArbeidstidInfo(ytelse.arbeidstid, tillattEndringsperiode),
         },
     };
 

@@ -108,7 +108,7 @@ const setupSøknadInitialData = async (loadedData: {
         arbeidsgivere,
         søknadsdata: {} as any,
         inputPreferanser: {
-            timerEllerProsent: TimerEllerProsent.TIMER,
+            timerEllerProsent: TimerEllerProsent.PROSENT,
         },
         ...(persistedSøknadStateIsValid ? lagretSøknadState : defaultSøknadState),
     });

@@ -36,58 +36,74 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                 </Heading>
             </Block>
 
-            <div style={{ borderTop: '2px solid var(--ac-accordion-header-border, var(--a-border-strong)' }}>
-                <Accordion style={{ width: '100%' }}>
-                    {perioder.map((periode, index) => {
-                        const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
-                            periode.arbeidsuker,
-                            endringer
-                        );
-                        const harEndringer =
-                            endringer !== undefined &&
-                            Object.keys(endringer)
-                                .map(ISODateRangeToDateRange)
-                                .some((dr) => isDateInDateRange(dr.from, periode.periode));
-                        return (
-                            <Accordion.Item
-                                key={dateRangeToISODateRange(periode.periode)}
-                                data-testid={`periode_${index}`}>
-                                <Accordion.Header data-testid={`periode_${index}_header`}>
-                                    <Ingress as="span" className="periodeHeader">
-                                        <span style={{ textTransform: 'capitalize' }}>
-                                            {dateFormatter.dayCompactDate(periode.periode.from)}
-                                        </span>{' '}
-                                        - {dateFormatter.dayCompactDate(periode.periode.to)}
-                                        {harEndringer && (
-                                            <span
-                                                style={{
-                                                    paddingLeft: '1rem',
-                                                    position: 'relative',
-                                                    top: '-.1rem',
-                                                }}>
-                                                <Tag variant="info" size="small">
-                                                    Endret
-                                                </Tag>
-                                            </span>
-                                        )}
-                                    </Ingress>
-                                </Accordion.Header>
-                                <Accordion.Content>
-                                    <ArbeidstidUkeTabell
-                                        listItems={listItems}
-                                        triggerResetValg={resetUkerTabellCounter}
-                                        onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
-                                            setArbeidsukerForEndring(
-                                                uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])
-                                            );
-                                        }}
-                                    />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        );
-                    })}
-                </Accordion>
-            </div>
+            {perioder.length === 1 && (
+                <ArbeidstidUkeTabell
+                    listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                        perioder[0].arbeidsuker,
+                        endringer
+                    )}
+                    triggerResetValg={resetUkerTabellCounter}
+                    onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
+                        setArbeidsukerForEndring(uker.map((uke) => perioder[0].arbeidsuker[uke.isoDateRange]));
+                    }}
+                />
+            )}
+
+            {perioder.length !== 1 && (
+                <div style={{ borderTop: '2px solid var(--ac-accordion-header-border, var(--a-border-strong)' }}>
+                    <Accordion style={{ width: '100%' }}>
+                        {perioder.map((periode, index) => {
+                            const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                                periode.arbeidsuker,
+                                endringer
+                            );
+                            const harEndringer =
+                                endringer !== undefined &&
+                                Object.keys(endringer)
+                                    .map(ISODateRangeToDateRange)
+                                    .some((dr) => isDateInDateRange(dr.from, periode.periode));
+                            return (
+                                <Accordion.Item
+                                    key={dateRangeToISODateRange(periode.periode)}
+                                    data-testid={`periode_${index}`}>
+                                    <Accordion.Header data-testid={`periode_${index}_header`}>
+                                        <Ingress as="span" className="periodeHeader">
+                                            <span style={{ textTransform: 'capitalize' }}>
+                                                {dateFormatter.dayCompactDate(periode.periode.from)}
+                                            </span>{' '}
+                                            - {dateFormatter.dayCompactDate(periode.periode.to)}
+                                            {harEndringer && (
+                                                <span
+                                                    style={{
+                                                        paddingLeft: '1rem',
+                                                        position: 'relative',
+                                                        top: '-.1rem',
+                                                    }}>
+                                                    <Tag variant="info" size="small">
+                                                        Endret
+                                                    </Tag>
+                                                </span>
+                                            )}
+                                        </Ingress>
+                                    </Accordion.Header>
+                                    <Accordion.Content>
+                                        <ArbeidstidUkeTabell
+                                            listItems={listItems}
+                                            triggerResetValg={resetUkerTabellCounter}
+                                            onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
+                                                setArbeidsukerForEndring(
+                                                    uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])
+                                                );
+                                            }}
+                                        />
+                                    </Accordion.Content>
+                                </Accordion.Item>
+                            );
+                        })}
+                    </Accordion>
+                </div>
+            )}
+
             <EndreArbeidstidModal
                 arbeidAktivitet={arbeidAktivitet}
                 isVisible={arbeidsukerForEndring !== undefined}
