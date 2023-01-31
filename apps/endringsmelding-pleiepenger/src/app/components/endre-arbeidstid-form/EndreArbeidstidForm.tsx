@@ -159,8 +159,12 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                     );
                                     setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
                                 }}>
-                                <ToggleGroup.Item value={TimerEllerProsent.PROSENT}>I prosent</ToggleGroup.Item>
-                                <ToggleGroup.Item value={TimerEllerProsent.TIMER}>I timer</ToggleGroup.Item>
+                                <ToggleGroup.Item value={TimerEllerProsent.PROSENT} data-testid="toggle-prosent">
+                                    I prosent
+                                </ToggleGroup.Item>
+                                <ToggleGroup.Item value={TimerEllerProsent.TIMER} data-testid="toggle-timer">
+                                    I timer
+                                </ToggleGroup.Item>
                             </ToggleGroup>
 
                             {timerEllerProsent && (

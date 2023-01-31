@@ -28,13 +28,12 @@ export const getUkerSomEndresTekst = (arbeidsuker: Arbeidsuke[]): React.ReactNod
     return 'ett år';
 };
 
-export const getUkerForEndring = (
-    arbeidsuker: Arbeidsuke[]
-): {
+export type UkerForEndringType = {
     spørOmFørsteUke?: boolean;
     spørOmSisteUke?: boolean;
     spørOmSnittUker?: boolean;
-} => {
+};
+export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType => {
     /** Ingen uker */
     if (arbeidsuker.length === 0) {
         return {};

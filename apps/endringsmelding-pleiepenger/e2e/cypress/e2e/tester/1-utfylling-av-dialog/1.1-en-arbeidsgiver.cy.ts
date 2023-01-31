@@ -8,7 +8,7 @@ const enkeltuke = 45;
 const flereUker = [46, 47, 48];
 
 const getAktivitet = () => getTestElement('aktivitet_id_947064649');
-const getPeriode = () => getTestElement('periode_4');
+const getPeriode = () => getTestElement('periode_0');
 const getUkeRow = (ukenummer) => cy.get('.arbeidstidUkeTabell table').get(`[data-testid=uke_${ukenummer}]`);
 const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal');
 
@@ -29,7 +29,7 @@ const velgArbeidsgiver = (orgNr?: string) => {
 const endreEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
         getAktivitet().within(() => {
-            cy.get('[data-testid=periode_4_header]').click();
+            cy.get('[data-testid=periode_0_header]').click();
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
@@ -53,6 +53,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
     });
     it('fyller ut timer', () => {
         getArbeidstimerModal().within(() => {
+            getTestElement('toggle-timer').click();
             getTestElement('timer-førsteUke-verdi').type('10,5');
             cy.get('button[type="submit"]').click();
         });
