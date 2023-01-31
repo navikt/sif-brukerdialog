@@ -29,7 +29,7 @@ export const getEndretArbeidstid = (
         const { endring } = endringUkeMap[isoDateRange];
         const arbeidsuke = arbeidAktivitet.arbeidsuker[isoDateRange];
         const dagerSøktFor = getDagerSøktFor(arbeidsuke.arbeidstidEnkeltdager);
-        const { antallDagerMedArbeidstid } = arbeidsuke.meta;
+        const { antallDagerMedArbeidstid } = arbeidsuke;
 
         const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);
         const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
@@ -75,7 +75,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
         arbeidAktivitetEndring[ArbeidAktivitetType.selvstendigNæringsdrivende];
     const arbeidstakerList: ArbeidstakerApiData[] = [];
 
-    arbeidAktiviteter.arbeidstakerArr.forEach((aktivitet) => {
+    arbeidAktiviteter.arbeidstakerArktiviteter.forEach((aktivitet) => {
         const endring = arbeidAktivitetEndring[aktivitet.id];
         const skalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some((id) => id === aktivitet.id);
 

@@ -1,6 +1,6 @@
 import { DateDurationMap, DateRange, Duration, ISODate, ISODateRange } from '@navikt/sif-common-utils';
-import { DagerIkkeSøktForMap, DagerSøktForMap } from '.';
-import { ArbeidstidEndring } from './ArbeidstidAktivitetEndring';
+import { DagerIkkeSøktForMap, DagerSøktForMap } from './';
+import { PeriodeMedArbeidstid } from './PeriodeMedArbeidstid';
 
 export type TidEnkeltdag = DateDurationMap;
 
@@ -15,36 +15,19 @@ export interface ArbeidsukeMetaData {
 export interface Arbeidsuke {
     isoDateRange: string;
     periode: DateRange;
-    // dagerSøktFor: ISODate[];
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap;
     faktisk: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
-    /** Utledet info */
-    meta: ArbeidsukeMetaData;
-}
-export interface ArbeidsukeForEndring {
-    isoDateRange: string;
-    periode: DateRange;
-    dagerSøktFor: ISODate[];
-    faktisk: ArbeidsukeTimer;
-    normalt: ArbeidsukeTimer;
-    endring?: ArbeidstidEndring;
-    /** Utledet info */
-    meta: ArbeidsukeMetaData;
+    antallDagerMedArbeidstid: number;
 }
 
 export interface ArbeidsukeMap {
     [key: ISODateRange]: Arbeidsuke;
 }
 
-export interface PeriodeMedArbeidsuker {
-    periode: DateRange;
-    arbeidsuker: ArbeidsukeMap;
-}
 export interface AktivitetArbeidstid {
     enkeltdagerMedArbeid: ArbeidstidEnkeltdagMap;
     arbeidsuker: ArbeidsukeMap;
-    perioder: PeriodeMedArbeidsuker[];
 }
 
 export type ArbeidstidEnkeltdagMap = {
@@ -54,14 +37,19 @@ export type ArbeidstidEnkeltdagMap = {
     };
 };
 
+interface ArbeidstidInfo {
+    aktivitetArbeidstid: AktivitetArbeidstid;
+    perioderMedArbeidstid: PeriodeMedArbeidstid[];
+}
+
 export type ArbeidstakerMap = {
-    [id: string]: AktivitetArbeidstid;
+    [id: string]: ArbeidstidInfo;
 };
 
 export interface YtelseArbeidstid {
     arbeidstakerMap?: ArbeidstakerMap;
-    frilanserArbeidstidInfo?: AktivitetArbeidstid;
-    selvstendigNæringsdrivendeArbeidstidInfo?: AktivitetArbeidstid;
+    frilanserArbeidstidInfo?: ArbeidstidInfo;
+    selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
 }
 
 export interface SakMedMeta {

@@ -6,7 +6,6 @@ import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-tex
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { ArbeidsukeMetaData } from '../../types/K9Sak';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
 import { getPeriodeTekst } from './components/PeriodeTekst';
@@ -22,7 +21,7 @@ export interface PeriodeSøktForListeItem {
     kanEndres: boolean;
     isoDateRange: ISODateRange;
     periode: DateRange;
-    meta: ArbeidsukeMetaData;
+    antallDagerMedArbeidstid: number;
     opprinnelig: {
         faktisk: Duration;
         normalt: Duration;
@@ -314,7 +313,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 {!renderCompactTable && (
                                     <>
                                         <Table.DataCell data-testid="ukenummer">{ukenummer}</Table.DataCell>
-                                        <Table.DataCell style={{ minWidth: '15rem' }} data-testid="periode">
+                                        <Table.DataCell data-testid="periode">
                                             <div id={ukePeriodeTekstId}>{getPeriodeTekst(uke.periode)}</div>
                                         </Table.DataCell>
                                         {visNormaltid && (

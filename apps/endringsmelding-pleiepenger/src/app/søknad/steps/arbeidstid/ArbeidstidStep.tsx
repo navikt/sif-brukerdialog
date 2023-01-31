@@ -155,7 +155,7 @@ const getAktiviteterSomSkalEndres = (
     arbeidAktiviteter: ArbeidAktiviteter,
     valgteAktiviteter: string[] = []
 ): ArbeidAktivitet[] => {
-    const { arbeidstakerArr: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+    const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
     const aktiviteter: ArbeidAktivitet[] = arbeidstaker.filter((a) => (valgteAktiviteter || []).includes(a.id));
     if (frilanser !== undefined && valgteAktiviteter.includes(ArbeidAktivitetType.frilanser)) {

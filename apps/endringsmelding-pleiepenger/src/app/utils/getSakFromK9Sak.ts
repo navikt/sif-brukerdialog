@@ -12,26 +12,28 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
     } = k9Sak.ytelse.arbeidstidInfo;
 
     Object.keys(arbeidstakerMap).forEach((key) => {
-        const { arbeidsuker } = arbeidstakerMap[key];
+        const { perioderMedArbeidstid, aktivitetArbeidstid } = arbeidstakerMap[key];
         const arbeidsgiver = arbeidsgivere.find((arbeidsgiver) => arbeidsgiver.id === key);
         if (arbeidsgiver) {
             aktivitetArbeidstaker.push({
                 id: `id_${arbeidsgiver.id}`,
                 type: ArbeidAktivitetType.arbeidstaker,
                 arbeidsgiver,
-                arbeidsuker,
+                arbeidsuker: aktivitetArbeidstid.arbeidsuker,
+                perioderMedArbeidstid,
             });
         }
     });
 
     return {
-        arbeidstakerArr: aktivitetArbeidstaker,
+        arbeidstakerArktiviteter: aktivitetArbeidstaker,
         frilanser:
             frilanserArbeidstidInfo !== undefined
                 ? {
                       id: ArbeidAktivitetType.frilanser,
                       type: ArbeidAktivitetType.frilanser,
-                      arbeidsuker: frilanserArbeidstidInfo.arbeidsuker,
+                      arbeidsuker: frilanserArbeidstidInfo.aktivitetArbeidstid.arbeidsuker,
+                      perioderMedArbeidstid: frilanserArbeidstidInfo.perioderMedArbeidstid,
                   }
                 : undefined,
         selvstendigNæringsdrivende:
@@ -39,7 +41,8 @@ export const getArbeidAktiviteter = (k9Sak: K9Sak, arbeidsgivere: Arbeidsgiver[]
                 ? {
                       id: ArbeidAktivitetType.selvstendigNæringsdrivende,
                       type: ArbeidAktivitetType.selvstendigNæringsdrivende,
-                      arbeidsuker: selvstendigNæringsdrivendeArbeidstidInfo.arbeidsuker,
+                      arbeidsuker: selvstendigNæringsdrivendeArbeidstidInfo.aktivitetArbeidstid.arbeidsuker,
+                      perioderMedArbeidstid: selvstendigNæringsdrivendeArbeidstidInfo.perioderMedArbeidstid,
                   }
                 : undefined,
     };

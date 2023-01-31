@@ -55,7 +55,7 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
         periode: arbeidsuke.periode,
         søktFor: true,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
-        meta: arbeidsuke.meta,
+        antallDagerMedArbeidstid: arbeidsuke.antallDagerMedArbeidstid,
         opprinnelig: {
             faktisk: arbeidsuke.faktisk.uke,
             normalt: arbeidsuke.normalt.uke,
@@ -69,7 +69,7 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
     };
 };
 
-const getArbeidstidUkeTabellItemFromArbeidsuker = (
+const getArbeidstidUkeTabellItemFromArbeidsukerMap = (
     arbeidsukeMap: ArbeidsukeMap,
     endringer: ArbeidstidAktivitetEndringMap = {}
 ): PeriodeSøktForTabellItem[] => {
@@ -82,8 +82,21 @@ const getArbeidstidUkeTabellItemFromArbeidsuker = (
     return items;
 };
 
+const getArbeidstidUkeTabellItemFromArbeidsuker = (
+    arbeidsuker: Arbeidsuke[],
+    endringer: ArbeidstidAktivitetEndringMap = {}
+): PeriodeSøktForTabellItem[] => {
+    const items: PeriodeSøktForTabellItem[] = [];
+    arbeidsuker.map((arbeidsuke) => {
+        const endring = endringer[arbeidsuke.isoDateRange];
+        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring?.endring));
+    });
+    return items;
+};
+
 export const arbeidsaktivitetUtils = {
-    getArbeidstidUkeTabellItemFromArbeidsuker: getArbeidstidUkeTabellItemFromArbeidsuker,
+    getArbeidstidUkeTabellItemFromArbeidsukerMap,
+    getArbeidstidUkeTabellItemFromArbeidsuker,
     finnPeriodeIkkeSøktFor,
     sorterListeItems,
 };

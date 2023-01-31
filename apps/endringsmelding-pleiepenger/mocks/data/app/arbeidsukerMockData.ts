@@ -41,9 +41,7 @@ const getMockArbeidsuke = (
             uke: decimalDurationToDuration(durationToDecimalDuration(faktiskPerDag) * antallDagerMedArbeidstid),
             dag: faktiskPerDag,
         },
-        meta: {
-            antallDagerMedArbeidstid,
-        },
+        antallDagerMedArbeidstid,
     };
 };
 
