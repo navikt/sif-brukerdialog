@@ -2,6 +2,7 @@ import { Alert, BodyShort, Button, Checkbox, Table, Tooltip } from '@navikt/ds-r
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit } from '@navikt/ds-icons';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
@@ -11,13 +12,7 @@ import EditButton from './components/EditButton';
 import { getPeriodeTekst } from './components/PeriodeTekst';
 import './arbeidstidUkeTabell.scss';
 
-export interface PeriodeIkkeSøktForListeItem {
-    søktFor: false;
-    isoDateRange: ISODateRange;
-    periode: DateRange;
-}
-export interface PeriodeSøktForListeItem {
-    søktFor: true;
+export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
     isoDateRange: ISODateRange;
     periode: DateRange;
@@ -31,8 +26,6 @@ export interface PeriodeSøktForListeItem {
         faktisk: Duration;
     };
 }
-
-export type ArbeidstidUkeTabellItem = PeriodeSøktForListeItem | PeriodeIkkeSøktForListeItem;
 
 interface Props {
     listItems: ArbeidstidUkeTabellItem[];
@@ -56,19 +49,23 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
+    const [visVelgUke, setVisVelgUke] = useState<boolean>(false);
     const [antallSynlig, setAntallSynlig] = useState<number | undefined>(
         paginering ? Math.min(antallUkerTotalt, paginering.antall) : undefined
     );
     const [valgteUker, setValgteUker] = useState<string[]>([]);
+    const [visMeldingOmUkerMåVelges, setVisMeldingOmUkerMåVelges] = useState<boolean>(false);
     const renderAsList = useMediaQuery({ minWidth: 500 }) === false;
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
     const kanVelgeFlereUker = onEndreUker !== undefined && antallUkerTotalt > 1;
+    const kanEndreEnkeltuke = onEndreUker && visVelgUke !== true;
 
     useEffect(() => {
         setValgteUker([]);
     }, [triggerClearValgteUker]);
 
     const onToggleUke = (id: string, selected: boolean) => {
+        setVisMeldingOmUkerMåVelges(false);
         if (selected) {
             setValgteUker(valgteUker.filter((ukeId) => ukeId !== id));
         } else {
@@ -85,13 +82,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         onEndreUker(listItems.filter((uke) => valgteUker.includes(uke.isoDateRange)));
     };
 
-    const renderEditButton = (uke: PeriodeSøktForListeItem, ukenummer: number) => {
+    const renderEditButton = (uke: ArbeidstidUkeTabellItem, ukenummer: number) => {
         if (!onEndreUker || !uke.kanEndres) {
             return undefined;
         }
-
-        const disabled =
-            valgteUker.length > 1 && valgteUker.some((valgtUke) => valgtUke === uke.isoDateRange) === false;
 
         const title =
             valgteUker.length > 1 ? 'Endre valgte uker' : `Endre uke ${ukenummer} (${getPeriodeTekst(uke.periode)})`;
@@ -99,8 +93,9 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         return (
             <EditButton
                 data-testid="endre-button"
-                onClick={() => (valgteUker.length > 1 ? endreFlereUker() : onEndreUker([uke]))}
-                disabled={disabled}
+                onClick={() => {
+                    valgteUker.length > 1 ? endreFlereUker() : onEndreUker([uke]);
+                }}
                 title={title}
                 aria-label={title}
             />
@@ -109,38 +104,49 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
     const renderEndreUkerHeader = () => (
         <>
-            <p>
-                Dersom du skal endre lik arbeidstid for flere uker, kan du velge ukene i listen, og deretter velge
-                &quot;Endre valgte uker&quot;.
-            </p>
-            <FormBlock margin="l" paddingBottom="m">
-                <Button
-                    data-testid="endre-flere-uker-button"
-                    icon={<Edit role="presentation" aria-hidden={true} />}
-                    variant="secondary"
-                    type="button"
-                    size="small"
-                    disabled={valgteUker.length === 0}
-                    onClick={endreFlereUker}>
-                    Endre valgte uker
-                </Button>
-            </FormBlock>
+            <Checkbox
+                name="abc"
+                checked={visVelgUke}
+                onChange={(evt) => {
+                    setVisVelgUke(evt.target.checked);
+                    setValgteUker([]);
+                }}>
+                Jeg ønsker å endre flere uker samtidig
+            </Checkbox>
         </>
     );
 
-    const renderEndreUkerFooter = () => (
-        <FormBlock margin="l" paddingBottom="m">
-            <Button
-                icon={<Edit role="presentation" aria-hidden={true} />}
-                variant="secondary"
-                type="button"
-                size="small"
-                disabled={valgteUker.length === 0}
-                onClick={endreFlereUker}>
-                Endre valgte uker
-            </Button>
-        </FormBlock>
-    );
+    const renderEndreUkerFooter = () => {
+        if (kanVelgeFlereUker && visVelgUke) {
+            return (
+                <FormBlock margin="l" paddingBottom="m">
+                    <div aria-relevant="additions removals" aria-live="polite">
+                        {visMeldingOmUkerMåVelges && valgteUker.length === 0 && (
+                            <Block padBottom="l">
+                                <Alert variant="info">Du må velge uker først</Alert>
+                            </Block>
+                        )}
+                    </div>
+                    <Button
+                        icon={<Edit role="presentation" aria-hidden={true} />}
+                        variant="primary"
+                        type="button"
+                        size="small"
+                        // disabled={valgteUker.length === 0}
+                        onClick={() => {
+                            if (valgteUker.length === 0) {
+                                setVisMeldingOmUkerMåVelges(true);
+                                return;
+                            }
+                            endreFlereUker();
+                        }}>
+                        Endre valgte uker
+                    </Button>
+                </FormBlock>
+            );
+        }
+        return null;
+    };
 
     if (renderAsList) {
         return (
@@ -153,13 +159,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
                         const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
 
-                        if (uke.søktFor === false) {
-                            return <li key={uke.isoDateRange}>Periode ikke søkt for</li>;
-                        }
                         return (
                             <li key={uke.isoDateRange}>
                                 <div className="arbeidstidUke">
-                                    {kanVelgeFlereUker && (
+                                    {visVelgUke && (
                                         <div className="arbeidstidUke__velgUke">
                                             <Checkbox
                                                 hideLabel
@@ -189,13 +192,15 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             </BodyShort>
                                         )}
                                     </div>
-                                    <div className="arbeidstidUke__endre">{renderEditButton(uke, ukenummer)}</div>
+                                    {kanEndreEnkeltuke && (
+                                        <div className="arbeidstidUke__endre">{renderEditButton(uke, ukenummer)}</div>
+                                    )}
                                 </div>
                             </li>
                         );
                     })}
                 </ol>
-                {kanVelgeFlereUker && renderEndreUkerFooter()}
+                {renderEndreUkerFooter()}
             </>
         );
     }
@@ -204,11 +209,11 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         <div className="arbeidstidUkeTabell">
             {kanVelgeFlereUker && renderEndreUkerHeader()}
 
-            <Table>
+            <Table className="arbeidstidUkeTabell">
                 <Table.Header>
                     <Table.Row>
-                        {kanVelgeFlereUker && (
-                            <Table.DataCell>
+                        {visVelgUke && (
+                            <Table.DataCell className="arbeidstidUkeTabell__velgUke">
                                 <Checkbox
                                     checked={valgteUker.length === synligeUker.length}
                                     indeterminate={valgteUker.length > 0 && valgteUker.length !== synligeUker.length}
@@ -217,7 +222,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             ? setValgteUker([])
                                             : setValgteUker(
                                                   synligeUker
-                                                      .filter((uke) => uke.søktFor && uke.kanEndres)
+                                                      .filter((uke) => uke.kanEndres)
                                                       .map(({ isoDateRange }) => isoDateRange)
                                               );
                                     }}
@@ -226,13 +231,17 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 </Checkbox>
                             </Table.DataCell>
                         )}
-                        {renderCompactTable && <Table.HeaderCell>Periode</Table.HeaderCell>}
+                        {renderCompactTable && (
+                            <Table.HeaderCell className="arbeidstidUkeTabell__periode--kompakt">
+                                Periode
+                            </Table.HeaderCell>
+                        )}
                         {!renderCompactTable && (
                             <>
-                                <Table.HeaderCell style={{ width: '0' }}>Uke</Table.HeaderCell>
-                                <Table.HeaderCell>Periode</Table.HeaderCell>
+                                <Table.HeaderCell className="arbeidstidUkeTabell__ukenummer">Uke</Table.HeaderCell>
+                                <Table.HeaderCell className="arbeidstidUkeTabell__periode">Periode</Table.HeaderCell>
                                 {visNormaltid && (
-                                    <Table.HeaderCell>
+                                    <Table.HeaderCell className="arbeidstidUkeTabell__normalt">
                                         <Tooltip content="Hvor mye du jobber normalt når du ikke har pleiepenger">
                                             <span>Normal arbeidstid</span>
                                         </Tooltip>
@@ -241,7 +250,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             </>
                         )}
 
-                        <Table.HeaderCell>
+                        <Table.HeaderCell className="arbeidstidUkeTabell__faktisk">
                             {arbeidstidKolonneTittel || (
                                 <>
                                     <Tooltip content="Hvor mye du faktisk jobber når du har pleiepenger">
@@ -250,7 +259,9 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 </>
                             )}
                         </Table.HeaderCell>
-                        {onEndreUker && <Table.HeaderCell>Endre</Table.HeaderCell>}
+                        {kanEndreEnkeltuke && (
+                            <Table.HeaderCell className="arbeidstidUkeTabell__endre">Endre</Table.HeaderCell>
+                        )}
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -259,19 +270,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
 
                         const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
-                        if (uke.søktFor === false) {
-                            return (
-                                <Table.Row key={uke.isoDateRange} className="arbeidstidUkeTabell__ikkeSøktForPeriode">
-                                    <Table.DataCell colSpan={10}>
-                                        <Alert variant="info" inline={false}>
-                                            Det er ikke søkt om pleiepenger i periode fra{' '}
-                                            {dateFormatter.dayDateMonthYear(uke.periode.from)} til{' '}
-                                            {dateFormatter.dayDateMonthYear(uke.periode.to)}.
-                                        </Alert>
-                                    </Table.DataCell>
-                                </Table.Row>
-                            );
-                        }
 
                         return (
                             <Table.Row
@@ -279,8 +277,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 selected={selected}
                                 style={{ verticalAlign: 'top' }}
                                 data-testid={`uke_${ukenummer}`}>
-                                {kanVelgeFlereUker && (
-                                    <Table.DataCell style={{ width: '0' }}>
+                                {visVelgUke && (
+                                    <Table.DataCell className="arbeidstidUkeTabell__velgUke">
                                         {uke.kanEndres && (
                                             <Checkbox
                                                 hideLabel
@@ -295,7 +293,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     </Table.DataCell>
                                 )}
                                 {renderCompactTable && (
-                                    <Table.DataCell>
+                                    <Table.DataCell className="arbeidstidUkeTabell__periode--kompakt">
                                         <div id={ukePeriodeTekstId}>
                                             Uke {ukenummer}
                                             <br />
@@ -305,30 +303,42 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         {visNormaltid && (
                                             <div>
                                                 Normal arbeidstid:{` `}
-                                                <DurationText duration={uke.opprinnelig.normalt} />
+                                                <span style={{ whiteSpace: 'nowrap' }}>
+                                                    <DurationText duration={uke.opprinnelig.normalt} />
+                                                </span>
                                             </div>
                                         )}
                                     </Table.DataCell>
                                 )}
                                 {!renderCompactTable && (
                                     <>
-                                        <Table.DataCell data-testid="ukenummer">{ukenummer}</Table.DataCell>
-                                        <Table.DataCell data-testid="periode">
+                                        <Table.DataCell
+                                            data-testid="ukenummer"
+                                            className="arbeidstidUkeTabell__ukenummer">
+                                            {ukenummer}
+                                        </Table.DataCell>
+                                        <Table.DataCell data-testid="periode" className="arbeidstidUkeTabell__periode">
                                             <div id={ukePeriodeTekstId}>{getPeriodeTekst(uke.periode)}</div>
                                         </Table.DataCell>
                                         {visNormaltid && (
-                                            <Table.DataCell data-testid="normalt-timer">
+                                            <Table.DataCell
+                                                data-testid="normalt-timer"
+                                                className="arbeidstidUkeTabell__normalt">
                                                 <DurationText duration={uke.opprinnelig.normalt} />
                                             </Table.DataCell>
                                         )}
                                     </>
                                 )}
-                                <Table.DataCell data-testid="arbeidstid-faktisk">
+                                <Table.DataCell
+                                    data-testid="arbeidstid-faktisk"
+                                    className="arbeidstidUkeTabell__faktisk">
                                     <ArbeidstidUkeInfo uke={uke} />
                                 </Table.DataCell>
-                                <Table.DataCell style={{ width: '0' }}>
-                                    {renderEditButton(uke, ukenummer)}
-                                </Table.DataCell>
+                                {kanEndreEnkeltuke && (
+                                    <Table.DataCell className="arbeidstidUkeTabell__endre">
+                                        {renderEditButton(uke, ukenummer)}
+                                    </Table.DataCell>
+                                )}
                             </Table.Row>
                         );
                     })}

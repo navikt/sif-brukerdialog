@@ -24,6 +24,7 @@ interface Props {
 const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetChange }: Props) => {
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [clearValgteUkerCounter, setClearValgteUkerCounter] = useState(0);
+
     const perioder = arbeidAktivitet.perioderMedArbeidstid;
 
     return (
@@ -87,14 +88,6 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                     })}
                 </Accordion>
             </div>
-            {/* 
-            <ArbeidstidUkeTabell
-                listItems={arbeidstidUkeItems}
-                triggerClearValgteUker={clearValgteUkerCounter}
-                onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
-                    setArbeidsukerForEndring(uker.map((uke) => arbeidAktivitet.arbeidsuker[uke.isoDateRange]));
-                }}
-            /> */}
             <EndreArbeidstidModal
                 arbeidAktivitet={arbeidAktivitet}
                 isVisible={arbeidsukerForEndring !== undefined}

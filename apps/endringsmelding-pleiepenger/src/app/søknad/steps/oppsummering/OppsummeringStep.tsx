@@ -211,7 +211,6 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
 
     const arbeidsuke: ArbeidstidUkeTabellItem = {
-        søktFor: true,
         kanEndres: false,
         isoDateRange,
         periode,
