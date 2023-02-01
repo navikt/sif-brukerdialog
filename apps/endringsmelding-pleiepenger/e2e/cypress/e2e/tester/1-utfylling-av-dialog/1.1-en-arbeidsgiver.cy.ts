@@ -22,6 +22,7 @@ const startSøknad = () => {
 const velgArbeidsgiver = (orgNr?: string) => {
     it('Velger arbeidsgiver', () => {
         selectCheckboxByTestId(`aktivitet-id_${orgNr || '947064649'}`);
+        cy.screenshot({ capture: 'fullPage' });
         submitSkjema();
     });
 };
@@ -34,6 +35,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
+            cy.screenshot({ capture: 'fullPage' });
         });
     });
     it('kontrollerer verdi før endring', () => {
@@ -42,6 +44,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
+            cy.screenshot({ capture: 'fullPage' });
         });
     });
     it('åpner dialog for uke', () => {
@@ -49,6 +52,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
             getUkeRow(ukenummer).within(() => {
                 cy.get('[data-testid=endre-button]').click();
             });
+            cy.screenshot({ capture: 'fullPage' });
         });
     });
     it('fyller ut timer', () => {
@@ -65,6 +69,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=timer-faktisk]').contains('10 t. 30 m.'));
                 expect(cy.get('[data-testid=timer-opprinnelig]').contains('4 t.'));
             });
+            cy.screenshot({ capture: 'fullPage' });
         });
     });
 };
@@ -82,6 +87,7 @@ const endreFlereUker = (uker: number[] = flereUker) => {
                 });
             });
         });
+        cy.screenshot({ capture: 'fullPage' });
     });
     it('åpner dialog og endrer timer', () => {
         getAktivitet().within(() => {
@@ -95,11 +101,13 @@ const endreFlereUker = (uker: number[] = flereUker) => {
             cy.screenshot({ capture: 'fullPage' });
             cy.get('button[type="submit"]').click();
         });
+        cy.screenshot({ capture: 'fullPage' });
     });
 };
 
 const fortsettTilOppsummering = () => {
     it('fortsetter til oppsummering fra arbeidstid', () => {
+        cy.screenshot({ capture: 'fullPage' });
         submitSkjema();
     });
 };
