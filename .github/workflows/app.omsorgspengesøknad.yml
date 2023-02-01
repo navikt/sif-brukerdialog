@@ -41,6 +41,7 @@ jobs:
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspenger
+                  FRONTEND_API_PATH: http://localhost:8089/
                   # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
                   # in GitHub repo → Settings → Secrets → Actions
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
