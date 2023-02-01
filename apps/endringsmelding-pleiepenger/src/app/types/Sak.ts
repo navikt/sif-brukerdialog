@@ -1,5 +1,6 @@
 import { Arbeidsgiver } from './Arbeidsgiver';
-import { ArbeidsukeMap, Barn } from './K9Sak';
+import { Barn } from './K9Sak';
+import { PeriodeMedArbeidstid } from './PeriodeMedArbeidstid';
 
 export enum ArbeidAktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -11,18 +12,18 @@ export interface ArbeidAktivitetArbeidstaker {
     id: string;
     type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
-    arbeidsuker: ArbeidsukeMap;
+    perioderMedArbeidstid: PeriodeMedArbeidstid[];
 }
 export interface ArbeidAktivitetFrilanser {
     id: string;
     type: ArbeidAktivitetType.frilanser;
-    arbeidsuker: ArbeidsukeMap;
+    perioderMedArbeidstid: PeriodeMedArbeidstid[];
 }
 
 export interface ArbeidAktivitetSelvstendigNæringsdrivende {
     id: string;
     type: ArbeidAktivitetType.selvstendigNæringsdrivende;
-    arbeidsuker: ArbeidsukeMap;
+    perioderMedArbeidstid: PeriodeMedArbeidstid[];
 }
 
 export type ArbeidAktivitet =
@@ -31,7 +32,7 @@ export type ArbeidAktivitet =
     | ArbeidAktivitetSelvstendigNæringsdrivende;
 
 export interface ArbeidAktiviteter {
-    arbeidstakerArr: ArbeidAktivitetArbeidstaker[];
+    arbeidstakerArktiviteter: ArbeidAktivitetArbeidstaker[];
     frilanser?: ArbeidAktivitetFrilanser;
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }

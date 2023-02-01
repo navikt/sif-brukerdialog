@@ -7,6 +7,8 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidsukeMap } from '../../types/K9Sak';
+import { PeriodeMedArbeidstid } from '../../types/PeriodeMedArbeidstid';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
 import {
     ArbeidstakerApiData,
@@ -17,6 +19,17 @@ import {
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
+import { getDagerSøktFor } from '../parseK9Format';
+
+export const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
+    const arbeidsukerMap = {};
+    perioder.forEach(({ arbeidsuker }) => {
+        Object.keys(arbeidsuker).forEach((key) => {
+            arbeidsukerMap[key] = arbeidsuker[key];
+        });
+    });
+    return arbeidsukerMap;
+};
 
 export const getEndretArbeidstid = (
     endringUkeMap: ArbeidstidAktivitetEndringMap,
@@ -26,9 +39,10 @@ export const getEndretArbeidstid = (
 
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
         const { endring } = endringUkeMap[isoDateRange];
-        const arbeidsuke = arbeidAktivitet.arbeidsuker[isoDateRange];
-        const { dagerSøktFor } = arbeidsuke;
-        const { antallDagerMedArbeidstid } = arbeidsuke.meta;
+        const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidAktivitet.perioderMedArbeidstid);
+        const arbeidsuke = arbeidsuker[isoDateRange];
+        const dagerSøktFor = getDagerSøktFor(arbeidsuke.arbeidstidEnkeltdager);
+        const { antallDagerMedArbeidstid } = arbeidsuke;
 
         const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);
         const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
@@ -74,7 +88,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
         arbeidAktivitetEndring[ArbeidAktivitetType.selvstendigNæringsdrivende];
     const arbeidstakerList: ArbeidstakerApiData[] = [];
 
-    arbeidAktiviteter.arbeidstakerArr.forEach((aktivitet) => {
+    arbeidAktiviteter.arbeidstakerArktiviteter.forEach((aktivitet) => {
         const endring = arbeidAktivitetEndring[aktivitet.id];
         const skalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some((id) => id === aktivitet.id);
 

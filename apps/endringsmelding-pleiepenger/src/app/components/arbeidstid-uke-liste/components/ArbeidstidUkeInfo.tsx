@@ -2,10 +2,10 @@ import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
-import { PeriodeSøktForListeItem } from '../ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 interface Props {
-    uke: PeriodeSøktForListeItem;
+    uke: ArbeidstidUkeTabellItem;
     visOpprinneligTid?: boolean;
     medLabels?: boolean;
 }
@@ -17,9 +17,9 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
         return (
             <>
                 {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
-                <strong data-testid="timer-faktisk">
+                <span data-testid="timer-faktisk">
                     <DurationText duration={uke.opprinnelig.faktisk} />
-                </strong>
+                </span>
             </>
         );
     }

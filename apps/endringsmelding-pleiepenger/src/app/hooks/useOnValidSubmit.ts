@@ -6,6 +6,7 @@ import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadContextState } from '../types/SøknadContextState';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
@@ -27,18 +28,10 @@ export const useOnValidSubmit = <T>(
                     if (nextStep) {
                         navigate(getSøknadStepRoute(nextStep));
                     }
-                    // if (nextStepRoute === SøknadRoutes.SØKNAD_SENDT) {
-                    //     navigate(nextStepRoute);
-                    // } else {
-                    //     if (nextRoute) {
-                    //         navigate(nextRoute);
-                    //     }
-                    // }
                 })
                 .catch((error) => {
                     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-                        // TODO
-                        // redirectToLogin();
+                        relocateToLoginPage();
                     } else {
                         setSubmitError(error);
                     }

@@ -8,8 +8,7 @@ import {
     ISODateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
-import dayjs from 'dayjs';
-import { Arbeidsuke } from '../../../src/app/types/K9Sak';
+import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '../../../src/app/types/K9Sak';
 
 const getMockArbeidsuke = (
     isoDateRange: ISODateRange,
@@ -22,11 +21,18 @@ const getMockArbeidsuke = (
     );
     const periode = ISODateRangeToDateRange(isoDateRange);
     const dagerSøktFor = getDatesInDateRange(periode, true).map((d) => dateToISODate(d)); // Alle dager i perioden
+    const arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap = {};
+    dagerSøktFor.forEach((isoDate) => {
+        arbeidstidEnkeltdager[isoDate] = {
+            normalt: normaltPerDag,
+            faktisk: faktiskPerDag,
+        };
+    });
 
     return {
         isoDateRange,
         periode,
-        dagerSøktFor,
+        arbeidstidEnkeltdager,
         normalt: {
             uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallDagerMedArbeidstid),
             dag: normaltPerDag,
@@ -35,19 +41,15 @@ const getMockArbeidsuke = (
             uke: decimalDurationToDuration(durationToDecimalDuration(faktiskPerDag) * antallDagerMedArbeidstid),
             dag: faktiskPerDag,
         },
-        meta: {
-            antallDagerMedArbeidstid,
-            ukenummer: dayjs(periode.from).isoWeek(),
-            årstall: dayjs(periode.from).isoWeekYear(),
-        },
+        antallDagerMedArbeidstid,
     };
 };
 
 const ukerEttÅr: ISODateRange[] = [
-    '2022-11-03/2022-11-04',
-    '2022-11-14/2022-11-18',
-    '2022-11-07/2022-11-11',
-    '2022-11-21/2022-11-25',
+    '2022-11-03/2022-11-06',
+    '2022-11-07/2022-11-13',
+    '2022-11-14/2022-11-20',
+    '2022-11-21/2022-11-27',
     '2022-11-28/2022-11-30',
 ];
 const ukerFlereÅr: ISODateRange[] = [...ukerEttÅr, '2023-01-02/2023-01-04'];

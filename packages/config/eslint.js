@@ -19,6 +19,7 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
         'no-console': 'error',
+        'no-unused-vars': 'error',
     },
     plugins: ['jsx-a11y', 'react-hooks'],
     settings: {

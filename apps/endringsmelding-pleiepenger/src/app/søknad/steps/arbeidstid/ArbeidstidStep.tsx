@@ -69,20 +69,23 @@ const ArbeidstidStep = () => {
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidstidAktivitetChange = (
-        endring: ArbeidstidAktivitetEndring,
+        endring: ArbeidstidAktivitetEndring[],
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
         const alleEndringer = values[ArbeidstidFormFields.arbeidAktivitetEndring] || {};
-        const tidligereEndringer: ArbeidstidAktivitetEndringMap = alleEndringer[endring.arbeidAktivitetId];
+        const { arbeidAktivitetId } = endring[0];
+        const tidligereEndringer: ArbeidstidAktivitetEndringMap = alleEndringer[arbeidAktivitetId];
         const nyeEndringer: ArbeidstidAktivitetEndringMap = {};
-        endring.perioder.forEach((periode) => {
-            nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+        endring.forEach((endring) => {
+            endring.perioder.forEach((periode) => {
+                nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+            });
         });
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitetEndring: {
                 ...values[ArbeidstidFormFields.arbeidAktivitetEndring],
-                [endring.arbeidAktivitetId]: {
+                [arbeidAktivitetId]: {
                     ...tidligereEndringer,
                     ...nyeEndringer,
                 },
@@ -132,8 +135,8 @@ const ArbeidstidStep = () => {
                                                 <Arbeidsaktivitet
                                                     arbeidAktivitet={arbeidAktivitet}
                                                     endringer={endringer[arbeidAktivitet.id]}
-                                                    onArbeidstidAktivitetChange={(endring) => {
-                                                        onArbeidstidAktivitetChange(endring, values, setValues);
+                                                    onArbeidstidAktivitetChange={(endringer) => {
+                                                        onArbeidstidAktivitetChange(endringer, values, setValues);
                                                     }}
                                                 />
                                             </Panel>
@@ -155,7 +158,7 @@ const getAktiviteterSomSkalEndres = (
     arbeidAktiviteter: ArbeidAktiviteter,
     valgteAktiviteter: string[] = []
 ): ArbeidAktivitet[] => {
-    const { arbeidstakerArr: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+    const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
     const aktiviteter: ArbeidAktivitet[] = arbeidstaker.filter((a) => (valgteAktiviteter || []).includes(a.id));
     if (frilanser !== undefined && valgteAktiviteter.includes(ArbeidAktivitetType.frilanser)) {
