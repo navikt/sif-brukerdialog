@@ -16,6 +16,10 @@ const arbeidsgiverJson = require('../data/soker1/arbeidsgiver-mock.json');
 // const sakJson = require('../data/soker5-ukedag-ikke-søkt-for/sak-mock.json');
 // const arbeidsgiverJson = require('../data/soker5-ukedag-ikke-søkt-for/arbeidsgiver-mock.json');
 
+// const søkerJson = require('../data/soker7-ugyldig-sak/søker-mock.json');
+// const sakJson = require('../data/soker7-ugyldig-sak/sak-mock.json');
+// const arbeidsgiverJson = require('../data/soker7-ugyldig-sak/arbeidsgiver-mock.json');
+
 const baseUrl = '*';
 
 const MellomlagringStorageKey = 'mellomlagring-endring-psb';
