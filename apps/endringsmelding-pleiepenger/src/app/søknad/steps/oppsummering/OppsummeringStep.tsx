@@ -151,8 +151,6 @@ const OppsummeringStep = () => {
                 </FormBlock>
             )}
             <FormBlock margin="l">
-                <pre>{JSON.stringify({ isSubmitting, hasInvalidSteps, invalidSteps }, null, 2)}</pre>
-
                 <FormikWrapper
                     initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                     onSubmit={(values) => {
