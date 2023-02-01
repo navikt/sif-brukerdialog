@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.5.8
+
+### Patch Changes
+
+-   bfd9a33: Oppdatere pakker
+
 ## 1.5.7
 
 ### Patch Changes
