@@ -16,9 +16,6 @@ export type K9FormatArbeidstidInfoPerioder = {
     [isoDateRange: ISODateRange]: K9FormatArbeidstidTid;
 };
 
-export interface K9FormatArbeidstidInfo {
-    perioder: K9FormatArbeidstidInfoPerioder;
-}
 export interface K9FormatArbeidstaker {
     norskIdentitetsnummer: string | null;
     organisasjonsnummer: string;
@@ -26,7 +23,7 @@ export interface K9FormatArbeidstaker {
 }
 
 export interface K9FormatArbeidstidInfo {
-    perioder: K9FormatArbeidstidInfoPerioder;
+    perioder?: K9FormatArbeidstidInfoPerioder;
 }
 export interface K9FormatArbeidstid {
     arbeidstakerList: K9FormatArbeidstaker[];

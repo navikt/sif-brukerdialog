@@ -213,11 +213,7 @@ const getPerioderMedArbeidstid = (
     arbeidstidPerioder: K9FormatArbeidstidInfoPerioder,
     tillattEndringsperiode: DateRange
 ): PeriodeMedArbeidstid[] => {
-    const perioder =
-        1 + 1 === 2
-            ? getArbeidstidPerioderInnenforTillatEndringsperiode(arbeidstidPerioder, tillattEndringsperiode)
-            : arbeidstidPerioder;
-    // console.log(perioder);
+    const perioder = getArbeidstidPerioderInnenforTillatEndringsperiode(arbeidstidPerioder, tillattEndringsperiode);
 
     return grupperArbeidstidPerioder(perioder).map((gruppertPeriode) => {
         const enkeltdager = getArbeidstidEnkeltdagMapFromPerioder(gruppertPeriode.arbeidstidPerioder);
@@ -281,9 +277,11 @@ const getArbeidstidArbeidsgivere = (
     const arbeidsgivereMap: ArbeidstakerMap = {};
     arbeidsgivere.forEach((a) => {
         const id = a.norskIdentitetsnummer || a.organisasjonsnummer;
-        arbeidsgivereMap[id] = {
-            perioderMedArbeidstid: getPerioderMedArbeidstid(a.arbeidstidInfo.perioder, tillattEndringsperiode),
-        };
+        if (a.arbeidstidInfo.perioder) {
+            arbeidsgivereMap[id] = {
+                perioderMedArbeidstid: getPerioderMedArbeidstid(a.arbeidstidInfo.perioder, tillattEndringsperiode),
+            };
+        }
     });
     return arbeidsgivereMap;
 };
