@@ -55,6 +55,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
         getArbeidstimerModal().within(() => {
             getTestElement('toggle-timer').click();
             getTestElement('timer-førsteUke-verdi').type('10,5');
+            cy.screenshot({ capture: 'fullPage' });
             cy.get('button[type="submit"]').click();
         });
     });
@@ -91,6 +92,7 @@ const endreFlereUker = (uker: number[] = flereUker) => {
         getArbeidstimerModal().within(() => {
             getTestElement('timer-verdi').type('5');
             getTestElement('timer-sisteUke-verdi').type('5');
+            cy.screenshot({ capture: 'fullPage' });
             cy.get('button[type="submit"]').click();
         });
     });
@@ -114,6 +116,7 @@ const kontrollerOppsummering = () => {
 const bekreftOpplysningerOgSendInn = () => {
     it('bekrefter opplysninger', () => {
         getTestElement('bekreft-opplysninger').parent().click();
+        cy.screenshot({ capture: 'fullPage' });
     });
     it('sender inn endringsmelding', () => {
         submitSkjema();
