@@ -60,7 +60,6 @@ jobs:
                   start: yarn e2e-endringsmelding-pleiepenger
                   # Records to Cypress Cloud
                   # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-                  record: true
+                  record: false
                   parallel: true # Runs test in parallel using settings above
 
-    
