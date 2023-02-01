@@ -22,10 +22,10 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`DELETE`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
         cy.intercept(`PUT`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
         cy.intercept(`POST`, `/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept(`*/endringsmelding/innsending*`, {});
-        cy.intercept(`*/innsyn/sak*`, sak || sakMock);
-        cy.intercept('GET', `/oppslag/arbeidsgiver*`, arbeidsgivereMock);
-        cy.intercept('GET', `/oppslag/soker*`, søkerMock);
+        cy.intercept('GET', `/endringsmelding/innsending`, {});
+        cy.intercept('GET', `/innsynapi/innsyn/sak`, sak || sakMock);
+        cy.intercept('GET', `/api/oppslag/arbeidsgiver*`, arbeidsgivereMock);
+        cy.intercept('GET', `/api/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
         cy.intercept(`ryujtq87.api.sanity.io*`, {});
     });
 
