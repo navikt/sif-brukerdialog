@@ -13,7 +13,7 @@
         "@formatjs/intl-pluralrules": "5.1.8",
         "@navikt/appstatus-react-ds": "*",
         "@navikt/ds-css": "2.0.17",
-        "@navikt/ds-react": "2.0.17",
+        "@navikt/ds-react": "2.1.5",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "0.6.0",
@@ -57,7 +57,7 @@
         "@formatjs/intl-pluralrules": "4.1.x",
         "@navikt/appstatus-react-ds": "1.5.7",
         "@navikt/ds-css": "2.0.17",
-        "@navikt/ds-react": "2.0.17",
+        "@navikt/ds-react": "2.1.5",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
         "dayjs": "1.10.x"
