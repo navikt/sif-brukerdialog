@@ -13,7 +13,7 @@ const søkerEndpoint = {
     fetch: async (): Promise<Søker> => {
         const { data } = await api.get<SøkerDTO>(ApiEndpoint.soker, 'ytelse=omsorgspenger-utvidet-rett');
         if (!isValidSøkerResponse(data)) {
-            return Promise.reject(`Invalid søkerdata - ${JSON.stringify(data)}`);
+            return Promise.reject(`Invalid søkerdata`);
         }
         return Promise.resolve(data);
     },

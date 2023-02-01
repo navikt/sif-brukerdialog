@@ -2,7 +2,6 @@ import { cyApiMockData } from './data/cyApiMockData';
 
 const PUBLIC_PATH = '/soknad';
 const API = 'http://localhost:8089';
-// const API = '*';
 
 const getUrlForStep = (step?) => {
     const url = `${PUBLIC_PATH}/soknad${step ? `/${step}` : '/velkommen'}`;
