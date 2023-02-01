@@ -177,6 +177,7 @@ const OppsummeringStep = () => {
                                         disabled={isSubmitting}
                                         label="Bekrefter opplysninger"
                                         validate={getCheckedValidator()}
+                                        data-testid="bekreft-opplysninger"
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
                                     />
                                 </Form>

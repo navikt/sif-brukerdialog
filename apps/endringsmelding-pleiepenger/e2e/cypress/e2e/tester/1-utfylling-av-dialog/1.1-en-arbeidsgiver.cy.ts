@@ -112,8 +112,10 @@ const kontrollerOppsummering = () => {
 };
 
 const bekreftOpplysningerOgSendInn = () => {
-    it('bekrefter opplysninger og sender inn endringsmelding', () => {
-        cy.get('[name=harBekreftetOpplysninger]').parent().click();
+    it('bekrefter opplysninger', () => {
+        getTestElement('bekreft-opplysninger').parent().click();
+    });
+    it('sender inn endringsmelding', () => {
         submitSkjema();
     });
     it('viser kvittering', () => {
