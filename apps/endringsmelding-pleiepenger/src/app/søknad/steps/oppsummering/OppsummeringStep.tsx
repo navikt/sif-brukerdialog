@@ -53,7 +53,7 @@ const OppsummeringStep = () => {
 
     const stepConfig = getSøknadStepConfig();
     const step = stepConfig[stepId];
-    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+    const { hasInvalidSteps, invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
     const { goBack } = useStepNavigation(step);
 
@@ -151,6 +151,8 @@ const OppsummeringStep = () => {
                 </FormBlock>
             )}
             <FormBlock margin="l">
+                <pre>{JSON.stringify({ isSubmitting, hasInvalidSteps, invalidSteps }, null, 2)}</pre>
+
                 <FormikWrapper
                     initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                     onSubmit={(values) => {

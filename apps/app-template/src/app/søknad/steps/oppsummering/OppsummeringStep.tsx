@@ -36,7 +36,7 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const stepConfig = getSøknadStepConfig(søknadsdata);
     const step = stepConfig[stepId];
-    const { hasInvalidSteps, invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
     const { goBack } = useStepNavigation(step);
 
@@ -71,7 +71,6 @@ const OppsummeringStep = () => {
                 renderForm={() => {
                     return (
                         <>
-                            <pre>{JSON.stringify({ isSubmitting, hasInvalidSteps, invalidSteps }, null, 2)}</pre>
                             <Form
                                 submitDisabled={isSubmitting || hasInvalidSteps}
                                 includeValidationSummary={true}
