@@ -107,7 +107,7 @@ export const getOpptjeningAktivitetCheckboxes = (
 ): FormikCheckboxGroupCheckboxProp[] => {
     const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
 
-    const { arbeidstakerArr: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+    const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
     arbeidstaker.forEach(({ id, arbeidsgiver: { id: orgnr, navn, type } }) => {
         checkboxProps.push({

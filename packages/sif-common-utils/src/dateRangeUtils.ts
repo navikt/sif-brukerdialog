@@ -248,19 +248,29 @@ export const includeWeekendIfDateRangeEndsOnFridayOrLater = (dateRange: DateRang
  * @param dateRange2
  * @returns true if adjacent
  */
-export const dateRangeIsAdjacentToDateRange = (dateRange1: DateRange, dateRange2: DateRange): boolean => {
+export const dateRangeIsAdjacentToDateRange = (
+    dateRange1: DateRange,
+    dateRange2: DateRange,
+    ignoreWeekends = false
+): boolean => {
     if (dayjs(dateRange1.to).isSameOrAfter(dateRange2.from, 'day')) {
         return false;
     }
+    if (ignoreWeekends && dayjs(dateRange1.to).isoWeekday() >= 5 && dayjs(dateRange2.from).isoWeekday() === 1) {
+        const diff = dayjs(dateRange1.to).startOf('day').diff(dayjs(dateRange2.from).startOf('day'), 'days');
+        return diff === -1 || diff === -2 || diff === -3;
+    }
+
     return dayjs(dateRange1.to).startOf('day').diff(dayjs(dateRange2.from).startOf('day'), 'days') === -1;
 };
 
 /**
  * Joins DateRanges which are adjacent
- * @param dateRanges ranges to be joied
+ * @param dateRanges ranges to be joined
+ * @param ignoreWeekends Slår sammen perioder selv om det er en helg mellom periodene
  * @returns Joined DateRanges
  */
-export const joinAdjacentDateRanges = (dateRanges: DateRange[]): DateRange[] => {
+export const joinAdjacentDateRanges = (dateRanges: DateRange[], ignoreWeekends?: boolean): DateRange[] => {
     if (dateRanges.length === 0) {
         return [];
     }
@@ -280,7 +290,7 @@ export const joinAdjacentDateRanges = (dateRanges: DateRange[]): DateRange[] => 
             return;
         }
         const next = dateRanges[index + 1];
-        if (dateRangeIsAdjacentToDateRange(current, next) === false) {
+        if (dateRangeIsAdjacentToDateRange(current, next, ignoreWeekends) === false) {
             joinedDateRanges.push({
                 from: rangeFromDate,
                 to: current.to,

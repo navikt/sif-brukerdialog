@@ -3,9 +3,22 @@ import { rest } from 'msw';
 const søkerJson = require('../data/soker1/søker-mock.json');
 const sakJson = require('../data/soker1/sak-mock.json');
 const arbeidsgiverJson = require('../data/soker1/arbeidsgiver-mock.json');
+
+// const søkerJson = require('../data/soker2/søker-mock.json');
+// const sakJson = require('../data/soker2/sak-mock.json');
+// const arbeidsgiverJson = require('../data/soker2/arbeidsgiver-mock.json');
+
+// const søkerJson = require('../data/soker4/søker-mock.json');
+// const sakJson = require('../data/soker4/sak-mock.json');
+// const arbeidsgiverJson = require('../data/soker4/arbeidsgiver-mock.json');
+
 // const søkerJson = require('../data/soker5-ukedag-ikke-søkt-for/søker-mock.json');
 // const sakJson = require('../data/soker5-ukedag-ikke-søkt-for/sak-mock.json');
 // const arbeidsgiverJson = require('../data/soker5-ukedag-ikke-søkt-for/arbeidsgiver-mock.json');
+
+// const søkerJson = require('../data/soker7-ugyldig-sak/søker-mock.json');
+// const sakJson = require('../data/soker7-ugyldig-sak/sak-mock.json');
+// const arbeidsgiverJson = require('../data/soker7-ugyldig-sak/arbeidsgiver-mock.json');
 
 const baseUrl = '*';
 

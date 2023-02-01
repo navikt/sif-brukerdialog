@@ -10,12 +10,6 @@
     white-space: nowrap;
 }
 
-.arbeidstidUkeTabell__ikkeSøktForPeriode {
-    &:hover {
-        background-color: initial !important;
-    }
-}
-
 .arbeidstidUkeListe {
     list-style: none;
     padding: 0;
@@ -29,6 +23,25 @@
     .endretArbeidstid__faktisk {
         .endretArbeidstid__timer {
             font-size: 1.25rem;
+        }
+    }
+}
+
+.arbeidstidUkeTabell {
+    &__velgUke {
+    }
+    &__ukenummer {
+        width: 3ch;
+    }
+    &__periode {
+        width: 35%;
+    }
+    &__endre {
+        width: 5ch;
+        text-align: right;
+        button {
+            margin-top: -0.3rem;
+            margin-bottom: -0.3rem;
         }
     }
 }

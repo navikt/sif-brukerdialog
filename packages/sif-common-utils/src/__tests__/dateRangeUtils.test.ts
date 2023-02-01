@@ -666,19 +666,42 @@ describe('dateRangeUtils', () => {
     });
 
     describe('dateRangeIsAdjacentToDateRange', () => {
-        const dr1 = ISODateRangeToDateRange('2023-02-01/2023-02-02');
-        const dr2 = ISODateRangeToDateRange('2023-02-03/2023-02-05');
-        const dr3 = ISODateRangeToDateRange('2023-02-04/2023-02-04');
+        describe('ignoreWeekends=false', () => {
+            const dr1 = ISODateRangeToDateRange('2023-02-01/2023-02-02'); // Ons - tors
+            const dr2 = ISODateRangeToDateRange('2023-02-03/2023-02-05'); // Fre - søn
+            const dr3 = ISODateRangeToDateRange('2023-02-04/2023-02-04'); // Lør - søn
+            it('Returnerer true når to perioder følger etter hver andre', () => {
+                expect(dateRangeIsAdjacentToDateRange(dr1, dr2)).toBeTruthy();
+            });
+            it('Returnerer false når to perioder ikke følger etter hver andre', () => {
+                expect(dateRangeIsAdjacentToDateRange(dr1, dr3)).toBeFalsy();
+            });
+            it('Returnerer false dersom fra-dato i periode 2 er før eller lik til-dato i periode 1', () => {
+                expect(dateRangeIsAdjacentToDateRange({ ...dr2, to: ISODateToDate('2023-02-04') }, dr3)).toBeFalsy();
+                expect(dateRangeIsAdjacentToDateRange({ ...dr2, to: ISODateToDate('2023-02-05') }, dr3)).toBeFalsy();
+            });
+        });
+        describe('ignoreWeekends=true', () => {
+            const ons_tor = ISODateRangeToDateRange('2023-02-01/2023-02-02');
+            const ons_fre = ISODateRangeToDateRange('2023-02-01/2023-02-03');
+            const ons_lør = ISODateRangeToDateRange('2023-02-01/2023-02-04');
+            const ons_søn = ISODateRangeToDateRange('2023-02-01/2023-02-05');
+            const man_tor = ISODateRangeToDateRange('2023-02-06/2023-02-09');
+            const tir_tor = ISODateRangeToDateRange('2023-02-07/2023-02-09');
 
-        it('Returnerer true når to perioder følger etter hver andre', () => {
-            expect(dateRangeIsAdjacentToDateRange(dr1, dr2)).toBeTruthy();
-        });
-        it('Returnerer false når to perioder ikke følger etter hver andre', () => {
-            expect(dateRangeIsAdjacentToDateRange(dr1, dr3)).toBeFalsy();
-        });
-        it('Returnerer false dersom fra-dato i periode 2 er før eller lik til-dato i periode 1', () => {
-            expect(dateRangeIsAdjacentToDateRange({ ...dr2, to: ISODateToDate('2023-02-04') }, dr3)).toBeFalsy();
-            expect(dateRangeIsAdjacentToDateRange({ ...dr2, to: ISODateToDate('2023-02-05') }, dr3)).toBeFalsy();
+            it('Returnerer true når to perioder følger etter hver andre, men det er kun helg som er mellom', () => {
+                expect(dateRangeIsAdjacentToDateRange(ons_fre, man_tor, true)).toBeTruthy();
+                expect(dateRangeIsAdjacentToDateRange(ons_lør, man_tor, true)).toBeTruthy();
+                expect(dateRangeIsAdjacentToDateRange(ons_søn, man_tor, true)).toBeTruthy();
+            });
+            it('Returnerer false dersom en ignorerer helg, men første periode slutter før fredag', () => {
+                expect(dateRangeIsAdjacentToDateRange(ons_tor, tir_tor, true)).toBeFalsy();
+            });
+            it('Returnerer false når en ignorerer helg, men neste uke starter en tirsdag', () => {
+                expect(dateRangeIsAdjacentToDateRange(ons_fre, tir_tor, true)).toBeFalsy();
+                expect(dateRangeIsAdjacentToDateRange(ons_lør, tir_tor, true)).toBeFalsy();
+                expect(dateRangeIsAdjacentToDateRange(ons_søn, tir_tor, true)).toBeFalsy();
+            });
         });
     });
 
@@ -712,6 +735,9 @@ describe('dateRangeUtils', () => {
         const dr1: DateRange = ISODateRangeToDateRange('2023-02-01/2023-02-05');
         const dr2: DateRange = ISODateRangeToDateRange('2023-02-06/2023-02-10');
         const dr3: DateRange = ISODateRangeToDateRange('2023-02-14/2023-02-20');
+        const dr4: DateRange = ISODateRangeToDateRange('2023-02-21/2023-03-05');
+        const dr5: DateRange = ISODateRangeToDateRange('2023-03-06/2023-03-07');
+        const dr6: DateRange = ISODateRangeToDateRange('2023-03-09/2023-03-09');
 
         it('Returns empty array if no dateranges', () => {
             const result = joinAdjacentDateRanges([]);
@@ -737,12 +763,14 @@ describe('dateRangeUtils', () => {
             expect(dateToISODate(result[1].to)).toEqual('2023-02-20');
         });
         it('Joins correctly adjacent ranges and keep unadjacent ranges', () => {
-            const result = joinAdjacentDateRanges([dr1, dr2, dr3]);
-            expect(result.length).toBe(2);
+            const result = joinAdjacentDateRanges([dr1, dr2, dr3, dr4, dr5, dr6]);
+            expect(result.length).toBe(3);
             expect(dateToISODate(result[0].from)).toEqual('2023-02-01');
             expect(dateToISODate(result[0].to)).toEqual('2023-02-10');
             expect(dateToISODate(result[1].from)).toEqual('2023-02-14');
-            expect(dateToISODate(result[1].to)).toEqual('2023-02-20');
+            expect(dateToISODate(result[1].to)).toEqual('2023-03-07');
+            expect(dateToISODate(result[2].from)).toEqual('2023-03-09');
+            expect(dateToISODate(result[2].to)).toEqual('2023-03-09');
         });
     });
 });

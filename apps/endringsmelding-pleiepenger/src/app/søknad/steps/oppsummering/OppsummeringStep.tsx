@@ -24,7 +24,6 @@ import {
     ArbeidstidPeriodeApiDataMap,
 } from '../../../types/søknadApiData/SøknadApiData';
 import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
-import { getArbeidsukeMeta } from '../../../utils/parseK9Format';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
@@ -54,7 +53,7 @@ const OppsummeringStep = () => {
 
     const stepConfig = getSøknadStepConfig();
     const step = stepConfig[stepId];
-    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+    const { hasInvalidSteps, invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
     const { goBack } = useStepNavigation(step);
 
@@ -152,6 +151,8 @@ const OppsummeringStep = () => {
                 </FormBlock>
             )}
             <FormBlock margin="l">
+                <pre>{JSON.stringify({ isSubmitting, hasInvalidSteps, invalidSteps }, null, 2)}</pre>
+
                 <FormikWrapper
                     initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                     onSubmit={(values) => {
@@ -178,6 +179,7 @@ const OppsummeringStep = () => {
                                         disabled={isSubmitting}
                                         label="Bekrefter opplysninger"
                                         validate={getCheckedValidator()}
+                                        data-testid="bekreft-opplysninger"
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
                                     />
                                 </Form>
@@ -209,28 +211,27 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     isoDateRange: ISODateRange
 ): ArbeidstidUkeTabellItem => {
     const periode = ISODateRangeToDateRange(isoDateRange);
-    const meta = getArbeidsukeMeta(periode, getDatesInDateRange(periode).length);
+    const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
 
     const arbeidsuke: ArbeidstidUkeTabellItem = {
-        søktFor: true,
         kanEndres: false,
         isoDateRange,
         periode,
-        meta,
+        antallDagerMedArbeidstid,
         opprinnelig: {
             normalt: getTimerPerUkeFraTimerPerDag(
                 ISODurationToDuration(_opprinneligNormaltPerDag),
-                meta.antallDagerMedArbeidstid
+                antallDagerMedArbeidstid
             ),
             faktisk: getTimerPerUkeFraTimerPerDag(
                 ISODurationToDuration(_opprinneligFaktiskPerDag),
-                meta.antallDagerMedArbeidstid
+                antallDagerMedArbeidstid
             ),
         },
         endret: {
             faktisk: getTimerPerUkeFraTimerPerDag(
                 ISODurationToDuration(faktiskArbeidTimerPerDag),
-                meta.antallDagerMedArbeidstid
+                antallDagerMedArbeidstid
             ),
             endretProsent: _endretProsent,
         },

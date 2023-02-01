@@ -16,7 +16,7 @@
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
                 "barn": { "norskIdentitetsnummer": "08900698292", "fødselsdato": null },
-                "søknadsperiode": ["2023-01-04/2023-01-26"],
+                "søknadsperiode": ["2022-01-04/2023-01-26"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],
                 "opptjeningAktivitet": {},
@@ -41,7 +41,7 @@
                             "organisasjonsnummer": "947064649",
                             "arbeidstidInfo": {
                                 "perioder": {
-                                    "2023-01-04/2023-01-26": {
+                                    "2022-11-04/2025-01-26": {
                                         "jobberNormaltTimerPerDag": "PT6H48M",
                                         "faktiskArbeidTimerPerDag": "PT3H24M"
                                     }
@@ -51,7 +51,7 @@
                     ],
                     "frilanserArbeidstidInfo": {
                         "perioder": {
-                            "2023-01-04/2023-01-26": {
+                            "2022-01-04/2023-01-26": {
                                 "jobberNormaltTimerPerDag": "PT0S",
                                 "faktiskArbeidTimerPerDag": "PT0S"
                             }

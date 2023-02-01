@@ -12,13 +12,10 @@ export type K9FormatArbeidstidTid = {
     faktiskArbeidTimerPerDag: ISODuration;
 };
 
-export type K9FormatArbeidstidPeriode = {
+export type K9FormatArbeidstidInfoPerioder = {
     [isoDateRange: ISODateRange]: K9FormatArbeidstidTid;
 };
 
-export interface K9FormatArbeidstidInfo {
-    perioder: K9FormatArbeidstidPeriode;
-}
 export interface K9FormatArbeidstaker {
     norskIdentitetsnummer: string | null;
     organisasjonsnummer: string;
@@ -26,7 +23,7 @@ export interface K9FormatArbeidstaker {
 }
 
 export interface K9FormatArbeidstidInfo {
-    perioder: K9FormatArbeidstidPeriode;
+    perioder?: K9FormatArbeidstidInfoPerioder;
 }
 export interface K9FormatArbeidstid {
     arbeidstakerList: K9FormatArbeidstaker[];
@@ -58,7 +55,6 @@ export interface K9FormatOpptjeningAktivitetFrilanser {
     jobberFortsattSomFrilanser: boolean;
 }
 
-/** TODO: format ikke avklart */
 export interface K9FormatOpptjeningAktivitetSelvstendig {
     startdato: ISODate;
     sluttdato?: ISODate;
@@ -146,7 +142,7 @@ const isK9FormatArbeidstidTid = (tid: any): tid is K9FormatArbeidstidTid => {
     return false;
 };
 
-const isK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidPeriode => {
+const isK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidInfoPerioder => {
     if (isObject(perioder)) {
         const keys = Object.keys(perioder);
         const harUgyldigISODateRangeKey = itemsAreValidISODateRanges(keys) === false;
