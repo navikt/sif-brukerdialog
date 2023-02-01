@@ -100,7 +100,7 @@
         "build-storybook": "build-storybook",
         "build": "npm-run-all build-app",
         "clean": "rm -rf node_modules .dist",
-        "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/alive 'yarn cypress-run'",
+        "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/alive 'yarn cypress-run --record'",
         "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/alive",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",
