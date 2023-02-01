@@ -27,12 +27,8 @@ export const contextConfig = (props?: ConfigProps) => {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
-        cy.intercept('GET', `${API}/oppslag/soker?ytelse=omsorgspenger-utvidet-rett`, cyApiMockData.søkerMock);
-        cy.intercept(
-            'GET',
-            `${API}/oppslag/barn?ytelse=omsorgspenger-utvidet-rett`,
-            props?.barn || cyApiMockData.barnMock
-        );
+        cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock);
+        cy.intercept('GET', `${API}/oppslag/barn*`, props?.barn || cyApiMockData.barnMock);
     });
 
     if (step) {
