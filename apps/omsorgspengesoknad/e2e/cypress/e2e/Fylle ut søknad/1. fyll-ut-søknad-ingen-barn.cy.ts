@@ -14,6 +14,7 @@ const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgs
 
 describe('Fylle ut søknad uten registrert barn', () => {
     contextConfig({ barn: [] });
+
     describe('Med ingen registrerte barn', () => {
         const props = { deltBosted: true, harRegistrertBarn: false };
         before(() => {
