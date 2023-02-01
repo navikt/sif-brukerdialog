@@ -17,16 +17,22 @@ interface ConfigProps {
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step, sak } = props || {};
 
+    const apiBaseUrl = 'http://localhost:8099/';
+
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
-        cy.intercept(`GET`, `mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
-        cy.intercept(`DELETE`, `mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
-        cy.intercept(`PUT`, `mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept(`POST`, `mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept('*/endringsmelding/innsending', {});
-        cy.intercept(`api/innsyn/sak`, sak || sakMock);
-        cy.intercept('GET', `oppslag/arbeidsgiver*`, arbeidsgivereMock);
-        cy.intercept('GET', `oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
-        cy.intercept(`ryujtq87.api.sanity.io*`, {});
+        cy.intercept(`GET`, `${apiBaseUrl}mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
+        cy.intercept(
+            `DELETE`,
+            `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
+            mellomlagring || {}
+        );
+        cy.intercept(`PUT`, `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept(`POST`, `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept('POST', `${apiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
+        cy.intercept('GET', `${apiBaseUrl}/api/innsyn/sak`, sak || sakMock);
+        cy.intercept('GET', `${apiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivereMock);
+        cy.intercept('GET', `${apiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
+        // cy.intercept(`ryujtq87.api.sanity.io*`, {});
     });
 
     if (step) {
