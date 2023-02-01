@@ -12,6 +12,10 @@ const getPeriode = () => getTestElement('periode_0');
 const getUkeRow = (ukenummer) => cy.get('.arbeidstidUkeTabell table').get(`[data-testid=uke_${ukenummer}]`);
 const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal');
 
+const captureScreenshot = () => {
+    // cy.screenshot({ capture: 'fullPage' });
+};
+
 const startSøknad = () => {
     it('Starter søknad', () => {
         getTestElement('bekreft-label').click();
@@ -22,7 +26,7 @@ const startSøknad = () => {
 const velgArbeidsgiver = (orgNr?: string) => {
     it('Velger arbeidsgiver', () => {
         selectCheckboxByTestId(`aktivitet-id_${orgNr || '947064649'}`);
-        cy.screenshot({ capture: 'fullPage' });
+        captureScreenshot();
         submitSkjema();
     });
 };
@@ -35,7 +39,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
-            cy.screenshot({ capture: 'fullPage' });
+            captureScreenshot();
         });
     });
     it('kontrollerer verdi før endring', () => {
@@ -44,7 +48,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
-            cy.screenshot({ capture: 'fullPage' });
+            captureScreenshot();
         });
     });
     it('åpner dialog for uke', () => {
@@ -52,14 +56,14 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
             getUkeRow(ukenummer).within(() => {
                 cy.get('[data-testid=endre-button]').click();
             });
-            cy.screenshot({ capture: 'fullPage' });
+            captureScreenshot();
         });
     });
     it('fyller ut timer', () => {
         getArbeidstimerModal().within(() => {
             getTestElement('toggle-timer').click();
             getTestElement('timer-førsteUke-verdi').type('10,5');
-            cy.screenshot({ capture: 'fullPage' });
+            captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
     });
@@ -69,7 +73,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=timer-faktisk]').contains('10 t. 30 m.'));
                 expect(cy.get('[data-testid=timer-opprinnelig]').contains('4 t.'));
             });
-            cy.screenshot({ capture: 'fullPage' });
+            captureScreenshot();
         });
     });
 };
@@ -87,7 +91,7 @@ const endreFlereUker = (uker: number[] = flereUker) => {
                 });
             });
         });
-        cy.screenshot({ capture: 'fullPage' });
+        captureScreenshot();
     });
     it('åpner dialog og endrer timer', () => {
         getAktivitet().within(() => {
@@ -98,16 +102,16 @@ const endreFlereUker = (uker: number[] = flereUker) => {
         getArbeidstimerModal().within(() => {
             getTestElement('timer-verdi').type('5');
             getTestElement('timer-sisteUke-verdi').type('5');
-            cy.screenshot({ capture: 'fullPage' });
+            captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
-        cy.screenshot({ capture: 'fullPage' });
+        captureScreenshot();
     });
 };
 
 const fortsettTilOppsummering = () => {
     it('fortsetter til oppsummering fra arbeidstid', () => {
-        cy.screenshot({ capture: 'fullPage' });
+        captureScreenshot();
         submitSkjema();
     });
 };
@@ -124,7 +128,7 @@ const kontrollerOppsummering = () => {
 const bekreftOpplysningerOgSendInn = () => {
     it('bekrefter opplysninger', () => {
         getTestElement('bekreft-opplysninger').parent().click();
-        cy.screenshot({ capture: 'fullPage' });
+        captureScreenshot();
     });
     it('sender inn endringsmelding', () => {
         submitSkjema();
