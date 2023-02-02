@@ -1,5 +1,19 @@
 # @navikt/sif-ettersending
 
+## 3.0.5
+
+### Patch Changes
+
+-   4140869: Pakkeoppdateringer
+-   Updated dependencies [4140869]
+-   Updated dependencies [10f034b]
+-   Updated dependencies [4e11030]
+-   Updated dependencies [4325d8d]
+    -   @navikt/sif-common-amplitude@2.7.3
+    -   @navikt/sif-common-sentry@0.6.2
+    -   @navikt/sif-common-core-ds@5.4.0
+    -   @navikt/sif-common-utils@3.21.0
+
 ## 3.0.4
 
 ### Patch Changes

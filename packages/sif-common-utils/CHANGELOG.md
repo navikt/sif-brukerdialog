@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.21.0
+
+### Minor Changes
+
+-   4e11030: Utvide dateRangeUtils
+
 ## 3.20.0
 
 ### Minor Changes

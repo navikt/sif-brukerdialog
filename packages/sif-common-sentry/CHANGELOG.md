@@ -1,5 +1,12 @@
 # @navikt/sif-common-sentry
 
+## 0.6.2
+
+### Patch Changes
+
+-   4140869: Pakkeoppdateringer
+-   4325d8d: Sentry 7.35.0
+
 ## 0.6.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @navikt/sif-common-core-ds
 
+## 5.4.0
+
+### Minor Changes
+
+-   10f034b: Oppdatere useEffectOnce til å bruke useRef. Tidligere versjon gjorde at hook ble kjørt initielt, og så én gang til.
+
+### Patch Changes
+
+-   Updated dependencies [4e11030]
+    -   @navikt/sif-common-utils@3.21.0
+
 ## 5.3.5
 
 ### Patch Changes
