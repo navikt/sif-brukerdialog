@@ -3,4 +3,5 @@ export enum RequestStatus {
     'success' = 'success',
     'forbidden' = 'forbidden',
     'error' = 'error',
+    'redirectingToLogin' = 'redirectingToLogin',
 }

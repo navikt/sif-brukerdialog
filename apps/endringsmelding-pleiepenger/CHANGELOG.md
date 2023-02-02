@@ -1,5 +1,21 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 0.5.2
+
+### Patch Changes
+
+-   10f034bd: Forbedre oppstart av applikasjon og håndtering av 401 - bruker ikke logget inn.
+-   41408691: Pakkeoppdateringer
+-   Updated dependencies [41408691]
+-   Updated dependencies [10f034bd]
+-   Updated dependencies [4e110301]
+-   Updated dependencies [4325d8dc]
+    -   @navikt/sif-common-amplitude@2.7.3
+    -   @navikt/sif-common-sentry@0.6.2
+    -   @navikt/sif-common-core-ds@5.4.0
+    -   @navikt/sif-common-utils@3.21.0
+    -   @navikt/sif-common-forms-ds@4.0.0
+
 ## 0.5.1
 
 ### Patch Changes
