@@ -191,6 +191,16 @@ export const isDateInsideDateRange = (date: Date, dateRange: DateRange): boolean
 };
 
 /**
+ * Check if a dateRange is before or equal to given date
+ * @param dateRange
+ * @param date
+ * @returns boolean
+ */
+export const isDateRangeSameOrBeforeDate = (dateRange: DateRange, date: Date): boolean => {
+    return dayjs(dateRange.to).isSameOrBefore(date, 'day');
+};
+
+/**
  * Returns array of DateRange representing the months in @dateRange.
  * @param dateRange
  * @param returnFullMonths Set to return full months, not cap the months by @dateRange
@@ -557,6 +567,24 @@ interface ISODateRangeMap {
 }
 export const getDateRangesFromISODateRangeMap = (map: ISODateRangeMap): DateRange[] => {
     return Object.keys(map).map((isoDateRange) => dateRangeUtils.ISODateRangeToDateRange(isoDateRange));
+};
+
+/**
+ * If the dateRange to-date is after maxDate, it sets the to-date to the maxDate.
+ * Does not verify that maxToDate is after DateRange from-date
+ *
+ * @param dateRange DateRange
+ * @param maxToDate Date
+ * @returns Same or adjusted DateRange
+ */
+export const setMaxToDateForDateRange = (dateRange: DateRange, maxToDate: Date): DateRange => {
+    if (dayjs(dateRange.to).isAfter(maxToDate, 'day')) {
+        return {
+            from: dateRange.from,
+            to: maxToDate,
+        };
+    }
+    return dateRange;
 };
 
 export const dateRangeUtils = {
