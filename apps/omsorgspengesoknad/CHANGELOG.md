@@ -1,5 +1,15 @@
 # @navikt/omsorgspengesoknad
 
+## 1.1.3
+
+### Patch Changes
+
+-   4140869: Pakkeoppdateringer
+-   Updated dependencies [4140869]
+-   Updated dependencies [4325d8d]
+    -   @navikt/sif-common-amplitude@2.7.3
+    -   @navikt/sif-common-sentry@0.6.2
+
 ## 1.1.2
 
 ### Patch Changes
