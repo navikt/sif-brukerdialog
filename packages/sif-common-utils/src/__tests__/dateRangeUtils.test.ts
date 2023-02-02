@@ -26,6 +26,7 @@ import {
     isDateInMaybeDateRange,
     isDateInsideDateRange,
     isDateRange,
+    isDateRangeSameOrBeforeDate,
     ISODateRangeToDateRange,
     ISODateRangeToISODates,
     ISODateToDate,
@@ -793,6 +794,21 @@ describe('dateRangeUtils', () => {
             const dateRange: DateRange = { from: onsdag, to: fredag };
             const result = setMaxToDateForDateRange(dateRange, torsdag);
             expect(dateRangeToISODateRange(result)).toEqual(dateRangeToISODateRange({ from: onsdag, to: torsdag }));
+        });
+    });
+    describe('isDateRangeSameOrBeforeDate', () => {
+        const onsdag = ISODateToDate('2023-02-01');
+        const torsdag = ISODateToDate('2023-02-02');
+        const fredag = ISODateToDate('2023-02-03');
+
+        it('returns true if dateRange ends before a date', () => {
+            expect(isDateRangeSameOrBeforeDate({ from: onsdag, to: torsdag }, fredag)).toBeTruthy();
+        });
+        it('returns true if dateRange ends on given date', () => {
+            expect(isDateRangeSameOrBeforeDate({ from: onsdag, to: torsdag }, torsdag)).toBeTruthy();
+        });
+        it('returns false if dateRange ends after a date', () => {
+            expect(isDateRangeSameOrBeforeDate({ from: onsdag, to: torsdag }, onsdag)).toBeFalsy();
         });
     });
 });
