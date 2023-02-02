@@ -5,6 +5,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
+import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
@@ -15,7 +16,7 @@ const Søknad = () => {
     const { status } = initialData;
 
     /** Loading */
-    if (status === 'loading') {
+    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
     /** Error */
