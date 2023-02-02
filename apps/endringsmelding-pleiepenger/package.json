@@ -25,7 +25,7 @@
         "@snyk/protect": "1.1093.0",
         "@testing-library/react": "13.4.0",
         "@types/amplitude-js": "8.16.2",
-        "amplitude-js": "8.21.3",
+        "amplitude-js": "8.21.4",
         "axios": "0.27.2",
         "busboy": "1.6.0",
         "classnames": "2.3.2",
