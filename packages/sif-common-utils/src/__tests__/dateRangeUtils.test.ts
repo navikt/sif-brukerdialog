@@ -31,6 +31,7 @@ import {
     ISODateToDate,
     ISODateToISODateRange,
     joinAdjacentDateRanges,
+    setMaxToDateForDateRange,
     sortDateRange,
     sortDateRangeByToDate,
 } from '..';
@@ -771,6 +772,27 @@ describe('dateRangeUtils', () => {
             expect(dateToISODate(result[1].to)).toEqual('2023-03-07');
             expect(dateToISODate(result[2].from)).toEqual('2023-03-09');
             expect(dateToISODate(result[2].to)).toEqual('2023-03-09');
+        });
+    });
+    describe('setMaxToDateForDateRange', () => {
+        const onsdag = ISODateToDate('2023-02-01');
+        const torsdag = ISODateToDate('2023-02-02');
+        const fredag = ISODateToDate('2023-02-03');
+
+        it('keeps to-date unchanged if date is before max-date ', () => {
+            const dateRange: DateRange = { from: onsdag, to: torsdag };
+            const result = setMaxToDateForDateRange(dateRange, fredag);
+            expect(dateRangeToISODateRange(result)).toEqual(dateRangeToISODateRange(dateRange));
+        });
+        it('keeps to-date unchanged if date is same as max-date ', () => {
+            const dateRange: DateRange = { from: onsdag, to: torsdag };
+            const result = setMaxToDateForDateRange(dateRange, torsdag);
+            expect(dateRangeToISODateRange(result)).toEqual(dateRangeToISODateRange(dateRange));
+        });
+        it('set to-date to max date if to-date is after as max-date ', () => {
+            const dateRange: DateRange = { from: onsdag, to: fredag };
+            const result = setMaxToDateForDateRange(dateRange, torsdag);
+            expect(dateRangeToISODateRange(result)).toEqual(dateRangeToISODateRange({ from: onsdag, to: torsdag }));
         });
     });
 });
