@@ -3,11 +3,12 @@ import { K9Sak } from '../../types/K9Sak';
 import { parseK9Format } from '../../utils/parseK9Format';
 import api from '../api';
 import { ApiEndpointInnsyn } from '.';
+import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 
 export type SakerDTO = K9Format[];
 
 const sakerEndpoint = {
-    fetch: async (): Promise<K9Sak[]> => {
+    fetch: async (arbeidsgivere: Arbeidsgiver[]): Promise<K9Sak[]> => {
         try {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
             const saker: K9Sak[] = [];
@@ -15,8 +16,7 @@ const sakerEndpoint = {
             data.forEach((sak) => {
                 const erGyldig = isK9Format(sak);
                 if (erGyldig) {
-                    const parsedSak = parseK9Format(sak);
-
+                    const parsedSak = parseK9Format(sak, arbeidsgivere);
                     if (parsedSak.ytelse.søknadsperioder.length > 0) {
                         saker.push(parsedSak);
                     }

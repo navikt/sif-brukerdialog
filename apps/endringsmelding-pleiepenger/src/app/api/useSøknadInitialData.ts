@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
@@ -11,7 +10,7 @@ import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
-import { getEndringsdato, getEndringsperiode } from '../utils/endringsperiode';
+import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { kontrollerK9Saker } from '../utils/kontrollerK9Saker';
@@ -119,9 +118,12 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
+            const endringsperiode = getMaksEndringsperiode(getEndringsdato());
+            const arbeidsgivere = await arbeidsgivereEndpoint.fetch(endringsperiode);
+
             const [søker, k9saker, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
-                sakerEndpoint.fetch(),
+                sakerEndpoint.fetch(arbeidsgivere),
                 søknadStateEndpoint.fetch(),
             ]);
 
@@ -135,12 +137,6 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 });
                 return Promise.resolve();
             }
-
-            const endringsperiode = getEndringsperiode(getEndringsdato(), [samletTidsperiode]);
-            const arbeidsgivere = await arbeidsgivereEndpoint.fetch(
-                dateToISODate(endringsperiode.from),
-                dateToISODate(endringsperiode.to)
-            );
 
             const resultat = kontrollerK9Saker(k9saker, arbeidsgivere);
             if (resultat.kanBrukeSøknad === false) {
