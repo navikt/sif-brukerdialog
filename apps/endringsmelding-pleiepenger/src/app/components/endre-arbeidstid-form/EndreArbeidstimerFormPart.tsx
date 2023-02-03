@@ -9,7 +9,7 @@ import { EndreArbeidstidFormField, EndreArbeidstidFormValues } from './EndreArbe
 import { getUkerForEndring, UkerForEndringType } from './endreArbeidstidFormUtils';
 import { EndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
-import { getWeeksInDateRange } from '@navikt/sif-common-utils/lib';
+import { getDatesInDateRange, getWeeksInDateRange } from '@navikt/sif-common-utils/lib';
 import { getDagerTekst } from '../../utils/arbeidsukeUtils';
 
 interface Props {
@@ -34,42 +34,9 @@ const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker
                 </Alert>
             )}
 
-            {spørOmFørsteUke && (
-                <FormBlock>
-                    {renderTimerSpørsmål({
-                        label: `Hvor mange timer jobber du ${getPeriodeTekst(arbeidsuker[0].periode)} (${getDagerTekst(
-                            arbeidsuker[0].periode
-                        )})?`,
-                        fieldName: EndreArbeidstidFormField.timerFørsteUke,
-                        description: `${getUkerPeriode(arbeidsuker[0].periode)}`,
-                        dateTestid: 'timer-førsteUke-verdi',
-                    })}
-                </FormBlock>
-            )}
-            {spørOmSnittUker && (
-                <FormBlock>
-                    {renderTimerSpørsmål({
-                        label: `Hvor mange timer jobber du i snitt per uke, i perioden ${getPeriodeTekst(
-                            getSnittPeriode(arbeidsuker, ukerForEndring)
-                        )}? `,
-                        fieldName: EndreArbeidstidFormField.snittTimerPerUke,
-                        description: `${getUkerPeriode(getSnittPeriode(arbeidsuker, ukerForEndring))}`,
-                        dateTestid: 'timer-verdi',
-                    })}
-                </FormBlock>
-            )}
-            {spørOmSisteUke && (
-                <FormBlock>
-                    {renderTimerSpørsmål({
-                        label: `Hvor mange timer jobber du ${getPeriodeTekst(
-                            arbeidsuker[arbeidsuker.length - 1].periode
-                        )} (${getDagerTekst(arbeidsuker[arbeidsuker.length - 1].periode)})?`,
-                        fieldName: EndreArbeidstidFormField.timerSisteUke,
-                        description: `${getUkerPeriode(arbeidsuker[arbeidsuker.length - 1].periode)}`,
-                        dateTestid: 'timer-sisteUke-verdi',
-                    })}
-                </FormBlock>
-            )}
+            {spørOmFørsteUke && renderSpørsmålFørsteUke(arbeidsuker[0])}
+            {spørOmSnittUker && renderSpørsmålSnittUker(arbeidsuker, ukerForEndring)}
+            {spørOmSisteUke && renderSpørsmålSisteUke(arbeidsuker[arbeidsuker.length - 1])}
         </>
     );
 };
@@ -102,11 +69,15 @@ const renderTimerSpørsmål = ({
     fieldName,
     dateTestid,
     description,
+    periode,
+    maksTimer,
 }: {
     label: string;
     fieldName: EndreArbeidstidFormField;
     dateTestid?: string;
     description?: React.ReactNode;
+    periode: string;
+    maksTimer: number;
 }) => (
     <NumberInput
         className="arbeidstidUkeInput"
@@ -117,11 +88,22 @@ const renderTimerSpørsmål = ({
         description={description ? <BodyShort>{description}</BodyShort> : undefined}
         maxLength={4}
         validate={(value) => {
-            return getNumberValidator({
+            const error = getNumberValidator({
                 required: true,
                 min: 0,
-                max: 100,
+                max: maksTimer,
             })(value);
+            if (error) {
+                return {
+                    key: `endreArbeidstidForm.timer.${error}`,
+                    keepKeyUnaltered: true,
+                    values: {
+                        periode,
+                        maksTimer,
+                    },
+                };
+            }
+            return undefined;
         }}
     />
 );
@@ -144,4 +126,52 @@ const getSnittPeriode = (arbeidsuker: Arbeidsuke[], ukerForEndring: UkerForEndri
         from: arbeidsuker[1].periode.from,
         to: arbeidsuker[arbeidsuker.length - 2].periode.to,
     };
+};
+
+const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke) => {
+    const periode = `${getPeriodeTekst(arbeidsuke.periode)} (${getDagerTekst(arbeidsuke.periode)})`;
+    return (
+        <FormBlock>
+            {renderTimerSpørsmål({
+                label: `Hvor mange timer jobber du ${periode}?`,
+                fieldName: EndreArbeidstidFormField.timerFørsteUke,
+                description: `${getUkerPeriode(arbeidsuke.periode)}`,
+                dateTestid: 'timer-førsteUke-verdi',
+                periode,
+                maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
+            })}
+        </FormBlock>
+    );
+};
+
+const renderSpørsmålSnittUker = (arbeidsuker: Arbeidsuke[], ukerForEndring: UkerForEndringType) => {
+    const periode = `${getPeriodeTekst(getSnittPeriode(arbeidsuker, ukerForEndring))}`;
+    return (
+        <FormBlock>
+            {renderTimerSpørsmål({
+                label: `Hvor mange timer jobber du i snitt per uke, i perioden ${periode}? `,
+                fieldName: EndreArbeidstidFormField.snittTimerPerUke,
+                description: `${getUkerPeriode(getSnittPeriode(arbeidsuker, ukerForEndring))}`,
+                dateTestid: 'timer-verdi',
+                periode,
+                maksTimer: 7 * 24,
+            })}
+        </FormBlock>
+    );
+};
+
+const renderSpørsmålSisteUke = (arbeidsuke: Arbeidsuke) => {
+    const periode = `${getPeriodeTekst(arbeidsuke.periode)} (${getDagerTekst(arbeidsuke.periode)})`;
+    return (
+        <FormBlock>
+            {renderTimerSpørsmål({
+                label: `Hvor mange timer jobber du ${periode}?`,
+                fieldName: EndreArbeidstidFormField.timerSisteUke,
+                description: `${getUkerPeriode(arbeidsuke.periode)}`,
+                dateTestid: 'timer-sisteUke-verdi',
+                periode,
+                maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
+            })}
+        </FormBlock>
+    );
 };
