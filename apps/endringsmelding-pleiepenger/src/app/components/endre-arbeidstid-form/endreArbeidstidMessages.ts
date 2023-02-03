@@ -16,9 +16,11 @@ export const endreArbeidstidMessages = {
         'endreArbeidstidForm.prosentAvNormalt.numberIsTooLarge': 'Du kan ikke oppgi med enn 100 prosent',
         'endreArbeidstidForm.prosentAvNormalt.numberHasInvalidFormat': 'Oppgitt prosent er ikke et gyldig tall',
 
-        'endreArbeidstidForm.timer.numberHasNoValue': 'Du må oppgi hvor mange timer du jobber {periode}',
-        'endreArbeidstidForm.timer.numberIsTooSmall': 'Du kan ikke oppgi mindre enn 0 timer {periode}',
-        'endreArbeidstidForm.timer.numberIsTooLarge': 'Du kan ikke oppgi mer enn {maksTimer} timer {periode}',
-        'endreArbeidstidForm.timer.numberHasInvalidFormat': 'Oppgitt timer er ikke et gyldig tall {periode}',
+        'endreArbeidstidForm.timer.numberHasNoValue': 'Du må oppgi hvor mange timer du jobber for perioden {periode}',
+        'endreArbeidstidForm.timer.numberIsTooSmall': 'Du kan ikke oppgi mindre enn 0 timer for perioden {periode}',
+        'endreArbeidstidForm.timer.numberIsTooLarge':
+            'Du kan ikke oppgi mer enn {maksTimer} timer for perioden {periode}',
+        'endreArbeidstidForm.timer.numberHasInvalidFormat':
+            'Oppgitt timer er ikke et gyldig tall for perioden {periode}',
     },
 };
