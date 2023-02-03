@@ -1,5 +1,4 @@
-import { DateRange } from 'react-day-picker';
-import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import api from '../api';
 import { ApiEndpointPsb } from './';
@@ -69,7 +68,7 @@ export const arbeidsgivereEndpoint = {
             const { from, to } = periode;
             const { data } = await api.psb.get<AAregArbeidsgiver>(
                 ApiEndpointPsb.arbeidsgiver,
-                `ytelse=endringsmelding-pleiepenger&fra_og_med=${from}&til_og_med=${to}`
+                `ytelse=endringsmelding-pleiepenger&fra_og_med=${dateToISODate(from)}&til_og_med=${dateToISODate(to)}`
             );
             const aaArbeidsgivere: Arbeidsgiver[] = [];
             (data.organisasjoner || []).forEach((a) => {

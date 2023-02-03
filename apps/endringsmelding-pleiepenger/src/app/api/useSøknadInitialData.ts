@@ -13,7 +13,7 @@ import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
-import { kontrollerK9Saker } from '../utils/kontrollerK9Saker';
+import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -138,7 +138,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 return Promise.resolve();
             }
 
-            const resultat = kontrollerK9Saker(k9saker, arbeidsgivere);
+            const resultat = tilgangskontroll(k9saker, arbeidsgivere);
             if (resultat.kanBrukeSøknad === false) {
                 setInitialData({
                     status: RequestStatus.success,

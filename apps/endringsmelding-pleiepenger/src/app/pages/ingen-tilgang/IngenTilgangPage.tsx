@@ -26,6 +26,12 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>TODO: Bruker har arbeidsforhold hvor en ikke har registrert arbeidstid - henvise til søknad?</p>
                 </BodyLong>
             );
+        case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
+            return (
+                <BodyLong as="div">
+                    <p>TODO: Endring av arbeidstid som selvstendig næringsdrivende støttes ikke enda.</p>
+                </BodyLong>
+            );
         case IngenTilgangÅrsak.harMerEnnEnSak:
             return (
                 <BodyLong as="div">

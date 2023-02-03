@@ -191,7 +191,12 @@
                             }
                         }
                     },
-                    "selvstendigNæringsdrivendeArbeidstidInfo": {}
+                    "selvstendigNæringsdrivendeArbeidstidInfo": {
+                        "2022-12-10/2022-12-11": {
+                            "jobberNormaltTimerPerDag": "PT8H",
+                            "faktiskArbeidTimerPerDag": "PT0S"
+                        }
+                    }
                 },
                 "uttak": { "perioder": {} },
                 "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }

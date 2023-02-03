@@ -15,13 +15,14 @@ type TilgangTillatt = {
 
 export type TilgangKontrollResultet = TilgangNektet | TilgangTillatt;
 
-export const kontrollerK9Saker = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]): TilgangKontrollResultet => {
+export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]): TilgangKontrollResultet => {
     if (saker.length === 0) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.harIngenSaker,
         };
     }
+
     const kanVelgeSak = getEnvironmentVariable('VELG_SAK') === 'on';
     if (saker.length > 1 && kanVelgeSak === false) {
         return {
@@ -37,12 +38,24 @@ export const kontrollerK9Saker = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[])
         };
     }
 
+    if (saker.some((sak) => harArbeidstidSomSelvstendigNæringsdrivende(sak))) {
+        return {
+            kanBrukeSøknad: false,
+            årsak: IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende,
+        };
+    }
+
     return {
         kanBrukeSøknad: true,
     };
 };
 
-export const harArbeidsforholdUtenArbeidstid = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
+const harArbeidsforholdUtenArbeidstid = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
     const arbeidsgivereISak = getArbeidsgivereIK9Sak(arbeidsgivere, sak);
     return arbeidsgivere.some((a) => arbeidsgivereISak.find((aISak) => aISak.id === a.id) === undefined);
+};
+
+const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
+    const { selvstendigNæringsdrivendeArbeidstidInfo: sn } = sak.ytelse.arbeidstidInfo;
+    return sn !== undefined && sn.perioderMedArbeidstid && sn.perioderMedArbeidstid.length > 0;
 };
