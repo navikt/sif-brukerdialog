@@ -32,7 +32,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
             <Block margin="xl">
                 <Heading level="3" size="small" spacing={true}>
-                    Perioder med pleiepenger:
+                    Perioder med pleiepenger
                 </Heading>
             </Block>
 

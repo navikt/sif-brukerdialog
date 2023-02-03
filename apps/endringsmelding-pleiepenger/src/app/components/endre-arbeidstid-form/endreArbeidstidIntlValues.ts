@@ -16,7 +16,7 @@ export const getEndreArbeidstidIntlValues = (info: { arbeidsuker: Arbeidsuke[] }
             periode = `uke ${dayjs(uke.periode.from).isoWeek()} (${getDagerTekst(uke.periode)})`;
         }
     } else {
-        periode = 'per uke, i de ukene du har valgt';
+        periode = 'ukene du har valgt';
     }
     return {
         periode,

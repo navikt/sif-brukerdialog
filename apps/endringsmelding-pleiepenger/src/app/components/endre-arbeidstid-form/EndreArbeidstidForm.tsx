@@ -1,4 +1,4 @@
-import { Heading, ToggleGroup } from '@navikt/ds-react';
+import { BodyShort, Heading, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -218,11 +218,23 @@ const getArbeidsukerDescription = (arbeidsuker: Arbeidsuke[]) => {
 
     const årKeys = Object.keys(ukerPerÅr);
 
+    const ikkeFulleUker = arbeidsuker.find((uke) => uke.antallDagerMedArbeidstid < 5);
+
     return (
-        <ExpandableInfo title={`Vis hvilke ${arbeidsuker.length} uker som er valgt`}>
-            {årKeys.map((år) => {
-                return <div key={år}>{`${år}: Uke ${getUker(ukerPerÅr[år])}`}</div>;
-            })}
-        </ExpandableInfo>
+        <>
+            {ikkeFulleUker && (
+                <BodyShort>
+                    Noen av ukene du har valgt er ikke hele uker (mandag - søndag). Du skal fortsatt oppgi hvor mye du
+                    jobber i snitt per dag for alle ukene, og ikke tenke på de dagene som er utenfor.
+                </BodyShort>
+            )}
+            <Block margin="m">
+                <ExpandableInfo title={`Vis hvilke ${arbeidsuker.length} uker som er valgt`}>
+                    {årKeys.map((år) => {
+                        return <div key={år}>{`${år}: Uke ${getUker(ukerPerÅr[år])}`}</div>;
+                    })}
+                </ExpandableInfo>
+            </Block>
+        </>
     );
 };

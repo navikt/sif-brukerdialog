@@ -14,7 +14,7 @@ export const defaultMessages: MessageFileFormat = {
         'step.oppsummering.pageTitle': 'Oppsummering',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
-        'steg.footer.avbryt': 'Avbryt og slett endringsmelding',
+        'steg.footer.avbryt': 'Avbryt og slett melding om endring',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
     },
 };

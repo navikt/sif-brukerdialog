@@ -1,4 +1,4 @@
-import { Alert, ErrorSummary, Heading, Link } from '@navikt/ds-react';
+import { Alert, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -30,6 +30,7 @@ import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -102,6 +103,15 @@ const OppsummeringStep = () => {
 
     return (
         <SøknadStep stepId={stepId}>
+            <SifGuidePanel>
+                <Ingress>
+                    <p>
+                        Nedenfor ser du endringene som du har lagt inn. Se over dem, og dersom alt stemmer, bekrefter du
+                        opplysningene og sender inn meldingen om endring.
+                    </p>
+                    <p>TODO: Hva skjer videre?</p>
+                </Ingress>
+            </SifGuidePanel>
             {arbeidstakerList &&
                 Object.keys(arbeidstakerList).map((key) => {
                     const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
@@ -169,13 +179,13 @@ const OppsummeringStep = () => {
                                     formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
                                     submitDisabled={isSubmitting || hasInvalidSteps}
                                     includeValidationSummary={true}
-                                    submitButtonLabel="Send søknad"
+                                    submitButtonLabel="Send melding om endring"
                                     submitPending={isSubmitting}
                                     backButtonDisabled={isSubmitting}
                                     onBack={goBack}>
                                     <ConfirmationCheckbox
                                         disabled={isSubmitting}
-                                        label="Bekrefter opplysninger"
+                                        label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
                                         validate={getCheckedValidator()}
                                         data-testid="bekreft-opplysninger"
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}

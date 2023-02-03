@@ -77,7 +77,18 @@ const AktivitetStep = () => {
                             <CheckboxGroup
                                 legend={'Velg hvilke arbeidsforhold du ønsker å endre arbeidstiden for:'}
                                 description={
-                                    <ExpandableInfo title="Mangler du noen arbeidsforhold?">Mer info</ExpandableInfo>
+                                    <ExpandableInfo title="Mangler du noen arbeidsforhold?">
+                                        <p>
+                                            Nedenfor ser du arbeidsforhold hvor du har oppgitt arbeidstid på saken din.
+                                            Dersom det er et arbeidsforhold du mener burde vært i listen, ta kontakt med
+                                            oss.
+                                        </p>
+                                        <p>
+                                            Endring av arbeidstid for selvstendig næringsdrivene er ikke støttet enda.
+                                            Dersom du er selvstendig næringsdrivende og ønsker å melde om endring, kan
+                                            du sende inn en ny søknad eller ta kontakt med oss.
+                                        </p>
+                                    </ExpandableInfo>
                                 }
                                 name={AktivitetFormFields.aktiviteterSomSkalEndres}
                                 validate={getListValidator({ required: true })}

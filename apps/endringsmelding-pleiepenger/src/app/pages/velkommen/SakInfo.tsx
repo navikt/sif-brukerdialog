@@ -12,8 +12,8 @@ const SakInfo: React.FunctionComponent<Props> = ({ sak }) => {
     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
     return (
         <>
-            <Heading level="2" size="small" spacing={true}>
-                Ditt barn
+            <Heading level="2" size="medium" spacing={true}>
+                Din pleiepenger
             </Heading>
             <BodyShort as="div">
                 <div>

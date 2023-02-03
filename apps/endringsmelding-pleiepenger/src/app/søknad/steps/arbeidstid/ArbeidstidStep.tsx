@@ -23,6 +23,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export enum ArbeidstidFormFields {
     arbeidAktivitetEndring = 'arbeidAktivitetEndring',
@@ -105,13 +106,37 @@ const ArbeidstidStep = () => {
         <SøknadStep stepId={stepId}>
             <SifGuidePanel>
                 <BodyLong as="div">
-                    Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake i
-                    tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
+                    {valgteAktiviteter.length === 1 ? (
+                        <p>
+                            Listen nedenfor viser arbeidsforholdet du har valgt, med de periodene du har søkt om
+                            pleiepenger for, og som du kan endre på.
+                        </p>
+                    ) : (
+                        <p>
+                            Listen nedenfor viser de arbeidsforholdene du har valgt, med de periodene du har søkt om
+                            pleiepenger for, og som du kan endre på.
+                        </p>
+                    )}
+
                     <InfoList>
-                        <li>Du må oppgi timer per uke eller periode</li>
-                        <li>Du kan velge flere uker samtidig for å endre</li>
+                        <li>Du kan velge å endre enkeltuker, eller flere uker innenfor samme periode</li>
+                        <li>Du kan oppgi arbeidstid per uke i timer eller som prosent</li>
                         <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
                     </InfoList>
+                    <p>
+                        Du kan kun endre faktisk arbeidstid, det vil si hvor mye du får jobbet i perioden med
+                        pleiepenger, og ikke hvor mye du jobbet før du startet med pleiepenger.
+                    </p>
+                    <ExpandableInfo title="Hva er forskjellen på normal og faktisk arbeidstid?">
+                        <p>
+                            Med <strong>«normal arbeidstid»</strong> mener vi hvor mye du jobbet før du startet med
+                            pleiepenger.
+                        </p>
+                        <p>
+                            Med <strong>«faktisk arbeidstid»</strong> mener vi hvor mye du får jobbet i perioden når du
+                            har pleiepenger.
+                        </p>
+                    </ExpandableInfo>
                 </BodyLong>
             </SifGuidePanel>
             <FormikWrapper
