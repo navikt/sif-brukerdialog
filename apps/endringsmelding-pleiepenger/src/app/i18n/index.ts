@@ -6,6 +6,7 @@ import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysn
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { aktivitetStepMessages } from '../søknad/steps/aktivitet/aktivitetStepMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
+import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
 import { defaultMessages } from './messages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
 
@@ -18,6 +19,7 @@ const bokmålstekster = {
     ...personalOpplysningerMessages.nb,
     ...samtykkeFormOverrideMessages.nb,
     ...aktivitetStepMessages.nb,
+    ...oppsummeringStepMessages.nb,
     ...defaultMessages.nb,
 };
 
