@@ -106,10 +106,9 @@ const OppsummeringStep = () => {
             <SifGuidePanel>
                 <Ingress>
                     <p>
-                        Nedenfor ser du endringene som du har lagt inn. Se over dem, og dersom alt stemmer, bekrefter du
-                        opplysningene og sender inn meldingen om endring.
+                        Nedenfor ser du endringene som du har lagt inn. Når du has sett over og sjekket at alt er
+                        riktig, bekrefter du opplysningene og sender inn meldingen om endring.
                     </p>
-                    <p>TODO: Hva skjer videre?</p>
                 </Ingress>
             </SifGuidePanel>
             {arbeidstakerList &&

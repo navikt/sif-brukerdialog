@@ -4,6 +4,8 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
 import { BodyLong, Heading } from '@navikt/ds-react';
+import { Link } from 'react-router-dom';
+import getLenker from '../../lenker';
 
 interface Props {
     søker: Søker;
@@ -16,20 +18,37 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
         case IngenTilgangÅrsak.harIngenSaker:
             return (
                 <BodyLong as="div">
-                    <p>Vi kan ikke finne noen sak om pleiepenger på deg.</p>
-                    <p>Dersom dette ikke stemmer, ta kontakt med [TODO].</p>
+                    <p>
+                        Vi kan ikke finne noen sak om pleiepenger på deg. Dersom du akkurat har sendt inn en søknad, kan
+                        det være du må vente litt før saken kommer opp her.
+                    </p>
+                    <p>
+                        Dersom dette ikke stemmer, send inn en melding via{' '}
+                        <Link to={getLenker().skrivTilOss}>Skriv til oss</Link>.
+                    </p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.arbeidsforholdUtenArbeidstid:
             return (
                 <BodyLong as="div">
-                    <p>TODO: Bruker har arbeidsforhold hvor en ikke har registrert arbeidstid - henvise til søknad?</p>
+                    <p>Vi kan ikke finne en sak om pleiepenger hvor du kan endre arbeidstid.</p>
+                    <p>
+                        Dersom dette ikke stemmer, send inn en melding via{' '}
+                        <Link to={getLenker().skrivTilOss}>Skriv til oss</Link>.
+                    </p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
             return (
                 <BodyLong as="div">
-                    <p>TODO: Endring av arbeidstid som selvstendig næringsdrivende støttes ikke enda.</p>
+                    <p>
+                        Saken din har registrert arbeidstid på deg som selvstendig næringsdrivende. Enn så lenge støtter
+                        ikke denne løsningen endring av arbeidstid for selvstendig næringsdrivende.
+                    </p>
+                    <p>
+                        For å melde inn endringer kan du sende inn ny søknad, eller send inn en melding via Skriv til
+                        oss.
+                    </p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.harMerEnnEnSak:
@@ -44,7 +63,10 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                         kun én sak, og vi ønsker å tilby løsningen så fort som mulig, og heller utvide etter hvert. Det
                         å støtte dem med flere saker, står høyt på listen over hva vi ønsker å utvide med.
                     </p>
-                    <p>TODO: Hvor melde endringer</p>
+                    <p>
+                        For å melde inn endring kan du sende inn en ny søknad med endringen, eller send inn en melding
+                        via <Link to={getLenker().skrivTilOss}>Skriv til oss</Link>.
+                    </p>
                 </BodyLong>
             );
     }
