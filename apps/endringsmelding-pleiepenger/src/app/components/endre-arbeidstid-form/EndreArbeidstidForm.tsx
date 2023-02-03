@@ -5,10 +5,13 @@ import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import {
+    getNumberFromNumberInputValue,
+    getTypedFormComponents,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
@@ -57,20 +60,23 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
     const onFormSubmit = (values: EndreArbeidstidFormValues) => {
         if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
-            onSubmit([
-                {
-                    perioder: arbeidsuker.map((a) => a.periode),
-                    endring: {
-                        type: TimerEllerProsent.PROSENT,
-                        prosent: parseFloat(values.prosentAvNormalt),
+            const value = getNumberFromNumberInputValue(values.prosentAvNormalt);
+            if (value) {
+                onSubmit([
+                    {
+                        perioder: arbeidsuker.map((a) => a.periode),
+                        endring: {
+                            type: TimerEllerProsent.PROSENT,
+                            prosent: value,
+                        },
                     },
-                },
-            ]);
+                ]);
+            }
         }
         if (values.timerEllerProsent === TimerEllerProsent.TIMER) {
-            const timerFørsteUke = getNumberFromStringInput(values[EndreArbeidstidFormField.timerFørsteUke]);
-            const timerSisteUke = getNumberFromStringInput(values[EndreArbeidstidFormField.timerSisteUke]);
-            const timerSnitt = getNumberFromStringInput(values.snittTimerPerUke);
+            const timerFørsteUke = getNumberFromNumberInputValue(values[EndreArbeidstidFormField.timerFørsteUke]);
+            const timerSisteUke = getNumberFromNumberInputValue(values[EndreArbeidstidFormField.timerSisteUke]);
+            const timerSnitt = getNumberFromNumberInputValue(values.snittTimerPerUke);
 
             const endringer: EndreArbeidstidFormData[] = [];
             if (timerFørsteUke) {
