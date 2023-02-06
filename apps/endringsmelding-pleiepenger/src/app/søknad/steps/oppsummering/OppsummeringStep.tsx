@@ -104,7 +104,7 @@ const OppsummeringStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SifGuidePanel>
-                <Ingress>
+                <Ingress as="div">
                     <p>
                         Nedenfor ser du endringene som du har lagt inn. Når du has sett over og sjekket at alt er
                         riktig, bekrefter du opplysningene og sender inn meldingen om endring.
@@ -114,7 +114,7 @@ const OppsummeringStep = () => {
             {arbeidstakerList &&
                 Object.keys(arbeidstakerList).map((key) => {
                     const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
-                    const arbeidsgiver = arbeidsgivere.find((a) => a.id === organisasjonsnummer);
+                    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
                     if (!arbeidsgiver) {
                         return null;
                     }

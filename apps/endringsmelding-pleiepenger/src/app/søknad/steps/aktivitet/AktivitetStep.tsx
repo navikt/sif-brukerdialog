@@ -113,14 +113,12 @@ const getAktivitetCheckboxLabel = ({ title, info }: { title: string; info?: Reac
     );
 };
 
-export const getOpptjeningAktivitetCheckboxes = (
-    arbeidAktiviteter: ArbeidAktiviteter
-): FormikCheckboxGroupCheckboxProp[] => {
+const getOpptjeningAktivitetCheckboxes = (arbeidAktiviteter: ArbeidAktiviteter): FormikCheckboxGroupCheckboxProp[] => {
     const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
 
     const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
-    arbeidstaker.forEach(({ id, arbeidsgiver: { id: orgnr, navn, type } }) => {
+    arbeidstaker.forEach(({ id, arbeidsgiver: { organisasjonsnummer: orgnr, navn, type } }) => {
         checkboxProps.push({
             label: getAktivitetCheckboxLabel({
                 title: navn,

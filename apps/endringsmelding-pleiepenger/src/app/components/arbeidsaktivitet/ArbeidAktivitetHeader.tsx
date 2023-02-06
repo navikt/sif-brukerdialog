@@ -24,7 +24,7 @@ const ArbeidAktivitetHeader: React.FunctionComponent<Props> = ({ arbeidAktivitet
                 {arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? (
                     <BodyLong>
                         {arbeidAktivitet.arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON
-                            ? `Organisasjonsnummer: ${arbeidAktivitet.arbeidsgiver.id}`
+                            ? `Organisasjonsnummer: ${arbeidAktivitet.arbeidsgiver.organisasjonsnummer}`
                             : 'Privatperson'}
                         <br />
                         {arbeidAktivitet.arbeidsgiver.ansattFom && (

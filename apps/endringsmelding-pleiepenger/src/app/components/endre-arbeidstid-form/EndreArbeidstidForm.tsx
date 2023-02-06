@@ -16,7 +16,7 @@ import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke } from '../../types/K9Sak';
+import { Arbeidsuke } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getArbeidsukeUkenummer } from '../../utils/arbeidsukeUtils';
 import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';

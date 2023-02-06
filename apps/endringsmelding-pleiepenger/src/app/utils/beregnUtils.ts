@@ -1,6 +1,6 @@
 import { decimalDurationToDuration, Duration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidEndring } from '../types/ArbeidstidAktivitetEndring';
-import { ArbeidsukeTimer } from '../types/K9Sak';
+import { ArbeidsukeTimer } from '../types/Sak';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
 
 export const beregnEndretArbeidstid = (endring: ArbeidstidEndring, normaltid: Duration): Duration => {
@@ -32,13 +32,6 @@ export const avrundDesimaltid = (num: number) => {
 
 export const summerTimerPerDag = (timerPerDag: Duration, antallDager: number): Duration => {
     return decimalDurationToDuration(durationToDecimalDuration(timerPerDag) * antallDager);
-};
-
-export const getTimerPerDagOgUkeFraDag = (timerPerDag: Duration, antallDager: number): ArbeidsukeTimer => {
-    return {
-        dag: timerPerDag,
-        uke: getTimerPerUkeFraTimerPerDag(timerPerDag, antallDager),
-    };
 };
 
 export const getTimerPerUkeFraTimerPerDag = (tidPerDag: Duration, antallDagerMedArbeidstid: number): Duration => {

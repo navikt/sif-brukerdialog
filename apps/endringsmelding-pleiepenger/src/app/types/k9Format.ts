@@ -3,59 +3,32 @@ import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
 import { isISODateOrNull, isISODateRange, isISODuration, isStringOrNull } from '../utils/typeGuardUtilities';
 
-export type K9FormatTilsynsordningPerioder = {
+interface K9FormatTilsynsordningPerioder {
     [isoDateRange: ISODateRange]: { etablertTilsynTimerPerDag: ISODuration };
-};
+}
 
-export type K9FormatArbeidstidTid = {
+interface K9FormatArbeidstidTid {
     jobberNormaltTimerPerDag: ISODuration;
     faktiskArbeidTimerPerDag: ISODuration;
-};
+}
 
-export type K9FormatArbeidstidInfoPerioder = {
+interface K9FormatArbeidstidInfoPerioder {
     [isoDateRange: ISODateRange]: K9FormatArbeidstidTid;
-};
+}
 
-export interface K9FormatArbeidstaker {
+interface K9FormatArbeidstaker {
     norskIdentitetsnummer: string | null;
     organisasjonsnummer: string;
     arbeidstidInfo: K9FormatArbeidstidInfo;
 }
 
-export interface K9FormatArbeidstidInfo {
-    perioder?: K9FormatArbeidstidInfoPerioder;
-}
-export interface K9FormatArbeidstid {
-    arbeidstakerList: K9FormatArbeidstaker[];
-    frilanserArbeidstidInfo: K9FormatArbeidstidInfo | null;
-    selvstendigNæringsdrivendeArbeidstidInfo: K9FormatArbeidstidInfo | null;
-}
-
-export interface K9FormatArbeidsgiverPrivat {
-    norskIdentitetsnummer: string;
-}
-
-export interface K9FormatArbeidsgiverOrganisasjon {
-    organisasjonsnummer: string;
-}
-
-export const isK9FormatArbeidsgiverOrganisasjon = (
-    arbeidsgiver: any
-): arbeidsgiver is K9FormatArbeidsgiverOrganisasjon =>
-    (arbeidsgiver as K9FormatArbeidsgiverOrganisasjon).organisasjonsnummer !== undefined;
-
-export const isK9FormatArbeidsgiverPrivat = (arbeidsgiver: any): arbeidsgiver is K9FormatArbeidsgiverPrivat =>
-    (arbeidsgiver as K9FormatArbeidsgiverPrivat).norskIdentitetsnummer !== undefined;
-
-export type K9FormatArbeidsgiver = K9FormatArbeidsgiverPrivat | K9FormatArbeidsgiverOrganisasjon;
-
-export interface K9FormatOpptjeningAktivitetFrilanser {
+interface K9FormatOpptjeningAktivitetFrilanser {
     startdato: ISODate;
     sluttdato?: ISODate;
     jobberFortsattSomFrilanser: boolean;
 }
 
-export interface K9FormatOpptjeningAktivitetSelvstendig {
+interface K9FormatOpptjeningAktivitetSelvstendig {
     startdato: ISODate;
     sluttdato?: ISODate;
     organisasjonsnummer: string;
@@ -100,6 +73,15 @@ export interface K9FormatBarn {
     identitetsnummer: string;
 }
 
+export interface K9FormatArbeidstidInfo {
+    perioder?: K9FormatArbeidstidInfoPerioder;
+}
+export interface K9FormatArbeidstid {
+    arbeidstakerList: K9FormatArbeidstaker[];
+    frilanserArbeidstidInfo: K9FormatArbeidstidInfo | null;
+    selvstendigNæringsdrivendeArbeidstidInfo: K9FormatArbeidstidInfo | null;
+}
+
 export interface K9Format {
     barn: K9FormatBarn;
     søknad: {
@@ -116,8 +98,7 @@ export interface K9Format {
     };
 }
 
-export const itemsAreValidISODateRanges = (keys: string[]): boolean =>
-    keys.some((key) => !isISODateRange(key)) === false;
+const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) => !isISODateRange(key)) === false;
 
 const isK9FormatBarn = (barn: any): barn is K9FormatBarn => {
     const maybeBarn = barn as K9FormatBarn;
@@ -264,18 +245,4 @@ export const isK9Format = (sak: any): sak is K9Format => {
     } else {
         return false;
     }
-};
-
-export const k9FormatTypeChecker = {
-    isK9FormatBarn,
-    isK9FormatYtelse,
-    isK9FormatArbeidsgiverOrganisasjon,
-    isK9FormatArbeidsgiverPrivat,
-    isK9FormatArbeidstaker,
-    isK9FormatArbeidstid,
-    isK9FormatArbeidstidInfo,
-    isK9FormatArbeidstidPerioder,
-    isK9FormatArbeidstidTid,
-    isK9FormatTilsynsordningPerioder,
-    isK9FormatTilsynsordning,
 };

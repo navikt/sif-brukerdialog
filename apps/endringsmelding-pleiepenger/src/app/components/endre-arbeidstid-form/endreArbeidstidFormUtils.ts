@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Arbeidsuke } from '../../types/K9Sak';
+import { Arbeidsuke } from '../../types/Sak';
 import { sorterArbeidsuker } from '../../utils/arbeidsukeUtils';
 
 interface ArbeidsukerPerÅr {

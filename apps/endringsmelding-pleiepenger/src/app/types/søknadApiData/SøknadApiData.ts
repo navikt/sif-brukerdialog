@@ -30,12 +30,12 @@ export interface ArbeidstidApiData {
     };
 }
 
-export interface BarnApiData {
+interface BarnApiData {
     fødselsdato?: ISODate;
     norskIdentitetsnummer: string;
 }
 
-export interface YtelseApiData {
+interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
     arbeidstid: ArbeidstidApiData;
     barn: BarnApiData;

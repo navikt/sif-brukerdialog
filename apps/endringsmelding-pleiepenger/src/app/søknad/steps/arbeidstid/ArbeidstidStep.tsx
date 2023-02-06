@@ -1,6 +1,7 @@
 import { BodyLong, Panel } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -23,13 +24,13 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
-export enum ArbeidstidFormFields {
-    arbeidAktivitetEndring = 'arbeidAktivitetEndring',
-}
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringMap };
+}
+
+enum ArbeidstidFormFields {
+    arbeidAktivitetEndring = 'arbeidAktivitetEndring',
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();

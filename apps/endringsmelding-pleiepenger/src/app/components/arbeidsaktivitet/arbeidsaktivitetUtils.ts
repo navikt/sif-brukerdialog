@@ -1,15 +1,12 @@
 import { durationUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { ArbeidstidAktivitetEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke, ArbeidsukeMap } from '../../types/K9Sak';
+import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
-import {
-    ArbeidstidUkeTabellItem,
-    ArbeidstidUkeTabellItem as PeriodeSøktForTabellItem,
-} from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
-const sorterItemsPåStartdato = (u1: PeriodeSøktForTabellItem, u2: PeriodeSøktForTabellItem): number => {
+const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;
 };
 
@@ -20,7 +17,7 @@ const sorterListeItems = (items: ArbeidstidUkeTabellItem[]): ArbeidstidUkeTabell
 const arbeidsukeToArbeidstidUkeTabellItem = (
     arbeidsuke: Arbeidsuke,
     endring?: ArbeidstidEndring
-): PeriodeSøktForTabellItem => {
+): ArbeidstidUkeTabellItem => {
     return {
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
@@ -42,8 +39,8 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
 const getArbeidstidUkeTabellItemFromArbeidsukerMap = (
     arbeidsukeMap: ArbeidsukeMap,
     endringer: ArbeidstidAktivitetEndringMap = {}
-): PeriodeSøktForTabellItem[] => {
-    const items: PeriodeSøktForTabellItem[] = [];
+): ArbeidstidUkeTabellItem[] => {
+    const items: ArbeidstidUkeTabellItem[] = [];
     Object.keys(arbeidsukeMap).map((key) => {
         const arbeidsuke = arbeidsukeMap[key];
         const endring = endringer[key];
@@ -55,8 +52,8 @@ const getArbeidstidUkeTabellItemFromArbeidsukerMap = (
 const getArbeidstidUkeTabellItemFromArbeidsuker = (
     arbeidsuker: ArbeidsukeMap,
     endringer: ArbeidstidAktivitetEndringMap = {}
-): PeriodeSøktForTabellItem[] => {
-    const items: PeriodeSøktForTabellItem[] = [];
+): ArbeidstidUkeTabellItem[] => {
+    const items: ArbeidstidUkeTabellItem[] = [];
     Object.keys(arbeidsuker).map((key) => {
         const arbeidsuke = arbeidsuker[key];
         const endring = endringer[arbeidsuke.isoDateRange];

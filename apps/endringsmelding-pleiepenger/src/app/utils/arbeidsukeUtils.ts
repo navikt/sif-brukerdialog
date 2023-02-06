@@ -1,6 +1,6 @@
 import { dateFormatter, DateRange, durationToISODuration, getDatesInDateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { Arbeidsuke } from '../types/K9Sak';
+import { Arbeidsuke } from '../types/Sak';
 
 export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {
     return dayjs(a1.periode.from).isBefore(a2.periode.from) ? -1 : 1;

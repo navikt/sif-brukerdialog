@@ -13,7 +13,7 @@ type TilgangTillatt = {
     kanBrukeSøknad: true;
 };
 
-export type TilgangKontrollResultet = TilgangNektet | TilgangTillatt;
+type TilgangKontrollResultet = TilgangNektet | TilgangTillatt;
 
 export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]): TilgangKontrollResultet => {
     if (saker.length === 0) {
@@ -52,10 +52,12 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
 
 const harArbeidsforholdUtenArbeidstid = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
     const arbeidsgivereISak = getArbeidsgivereIK9Sak(arbeidsgivere, sak);
-    return arbeidsgivere.some((a) => arbeidsgivereISak.find((aISak) => aISak.id === a.id) === undefined);
+    return arbeidsgivere.some(
+        (a) => arbeidsgivereISak.find((aISak) => aISak.organisasjonsnummer === a.organisasjonsnummer) === undefined
+    );
 };
 
 const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
-    const { selvstendigNæringsdrivendeArbeidstidInfo: sn } = sak.ytelse.arbeidstidInfo;
-    return sn !== undefined && sn.perioderMedArbeidstid && sn.perioderMedArbeidstid.length > 0;
+    const { selvstendigNæringsdrivendeArbeidstidInfo: sn } = sak.ytelse.arbeidstid;
+    return sn !== undefined && sn.perioder && Object.keys(sn.perioder).length > 0;
 };

@@ -7,9 +7,14 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
-import { ArbeidsukeMap } from '../../types/K9Sak';
-import { PeriodeMedArbeidstid } from '../../types/PeriodeMedArbeidstid';
-import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
+import {
+    ArbeidAktivitet,
+    ArbeidAktiviteter,
+    ArbeidAktivitetType,
+    ArbeidsukeMap,
+    PeriodeMedArbeidstid,
+    Sak,
+} from '../../types/Sak';
 import {
     ArbeidstakerApiData,
     ArbeidstidApiData,
@@ -19,9 +24,9 @@ import {
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
-import { getDagerSøktFor } from '../parseK9Format';
+import { getDagerSøktFor } from '../getSakFromK9Sak';
 
-export const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
+const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
     const arbeidsukerMap = {};
     perioder.forEach(({ arbeidsuker }) => {
         Object.keys(arbeidsuker).forEach((key) => {
@@ -31,7 +36,7 @@ export const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): A
     return arbeidsukerMap;
 };
 
-export const getEndretArbeidstid = (
+const getEndretArbeidstid = (
     endringUkeMap: ArbeidstidAktivitetEndringMap,
     arbeidAktivitet: ArbeidAktivitet
 ): ArbeidstidPeriodeApiDataMap => {
@@ -66,7 +71,7 @@ export const getEndretArbeidstid = (
     return arbeidsdagerMedEndretTid;
 };
 
-export const getArbeidstidInfo = (
+const getArbeidstidInfo = (
     aktivitetEndring?: ArbeidstidAktivitetEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
@@ -78,7 +83,7 @@ export const getArbeidstidInfo = (
     return undefined;
 };
 
-export const getArbeidstidApiDataFromSøknadsdata = (
+const getArbeidstidApiDataFromSøknadsdata = (
     { arbeidAktivitetEndring }: ArbeidstidSøknadsdata,
     arbeidAktiviteter: ArbeidAktiviteter,
     arbeidAktivitet: AktivitetSøknadsdata
@@ -94,7 +99,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
         if (endring && skalEndres) {
             const {
-                arbeidsgiver: { type, id },
+                arbeidsgiver: { type, organisasjonsnummer: id },
             } = aktivitet;
             const arbeidstidInfo = getArbeidstidInfo(endring, aktivitet);
             if (arbeidstidInfo) {

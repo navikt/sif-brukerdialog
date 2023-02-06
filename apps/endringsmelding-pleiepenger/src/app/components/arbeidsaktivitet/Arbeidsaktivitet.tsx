@@ -8,8 +8,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import React, { useState } from 'react';
 import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke } from '../../types/K9Sak';
-import { ArbeidAktivitet } from '../../types/Sak';
+import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';

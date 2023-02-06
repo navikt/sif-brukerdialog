@@ -1,17 +1,18 @@
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from './Arbeidsgiver';
-import { K9Sak } from './K9Sak';
-import { Sak } from './Sak';
 import { Søker } from './Søker';
+import { Sak } from './Sak';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from './TimerEllerProsent';
+import { K9Sak } from './K9Sak';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 
 export interface SøknadContextState {
     versjon: string;
     søker: Søker;
     k9saker: K9Sak[];
-    saker: Sak[];
     sak: Sak;
+    endringsperiode: DateRange;
     arbeidsgivere: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;

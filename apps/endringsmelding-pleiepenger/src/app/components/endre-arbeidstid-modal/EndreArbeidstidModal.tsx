@@ -1,8 +1,7 @@
 import { Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { Arbeidsuke } from '../../types/K9Sak';
-import { ArbeidAktivitet } from '../../types/Sak';
+import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import EndreArbeidstidForm, { EndreArbeidstidFormData } from '../endre-arbeidstid-form/EndreArbeidstidForm';
 import './endreArbeidstidModal.css';

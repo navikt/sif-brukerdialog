@@ -19,7 +19,7 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { endringsmeldingSendt, søknadsdata, søknadRoute, k9saker, sak },
+        state: { endringsmeldingSendt, søknadsdata, søknadRoute, k9saker: k9saker, sak },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);

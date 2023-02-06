@@ -1,13 +1,7 @@
 import { ISODateRangeToDateRange, ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { K9Format, K9FormatArbeidstid, K9FormatArbeidstidInfo, K9FormatBarn } from '../types/k9Format';
-import {
-    K9Sak2,
-    K9Sak2Arbeidstid,
-    K9Sak2ArbeidstidInfo,
-    K9Sak2ArbeidstidPeriodeMap,
-    K9Sak2Barn,
-} from '../types/K9Sak2';
+import { K9Sak, K9SakArbeidstid, K9SakArbeidstidInfo, K9SakArbeidstidPeriodeMap, K9SakBarn } from '../types/K9Sak';
 
 /**
  * Henter ut informasjon om barn fra k9sak
@@ -15,7 +9,7 @@ import {
  * @returns Barn
  */
 
-const parseBarn = (barn: K9FormatBarn): K9Sak2Barn => {
+const parseBarn = (barn: K9FormatBarn): K9SakBarn => {
     return {
         ...barn,
         fødselsdato: ISODateToDate(barn.fødselsdato),
@@ -23,9 +17,9 @@ const parseBarn = (barn: K9FormatBarn): K9Sak2Barn => {
     };
 };
 
-export const parseArbeidstidInfo = (arbeidstid: K9FormatArbeidstidInfo): K9Sak2ArbeidstidInfo => {
+const parseArbeidstidInfo = (arbeidstid: K9FormatArbeidstidInfo): K9SakArbeidstidInfo => {
     const { perioder = {} } = arbeidstid;
-    const periodeMap: K9Sak2ArbeidstidPeriodeMap = {};
+    const periodeMap: K9SakArbeidstidPeriodeMap = {};
 
     Object.keys(perioder).forEach((key) => {
         const periode = perioder[key];
@@ -48,7 +42,7 @@ const parseArbeidstid = ({
     arbeidstakerList,
     frilanserArbeidstidInfo,
     selvstendigNæringsdrivendeArbeidstidInfo,
-}: K9FormatArbeidstid): K9Sak2Arbeidstid => {
+}: K9FormatArbeidstid): K9SakArbeidstid => {
     return {
         arbeidstakerList: arbeidstakerList?.map((arbeidstaker) => ({
             organisasjonsnummer: arbeidstaker.organisasjonsnummer,
@@ -67,14 +61,14 @@ const parseArbeidstid = ({
 /**
  * Parser K9Format sak
  * @param data data mottat fra backend
- * @returns K9Sak2
+ * @returns K9Sak
  */
-export const parseK9FormatSak = (data: K9Format): K9Sak2 => {
+export const parseK9FormatSak = (data: K9Format): K9Sak => {
     const {
         søknad: { ytelse, søker, søknadId },
         barn,
     } = data;
-    const sak: K9Sak2 = {
+    const sak: K9Sak = {
         søker: søker,
         søknadId: søknadId,
         språk: data.søknad.språk,

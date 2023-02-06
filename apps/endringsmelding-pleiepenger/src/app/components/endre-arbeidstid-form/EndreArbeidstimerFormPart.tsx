@@ -3,14 +3,14 @@ import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getDatesInDateRange, getWeeksInDateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { Arbeidsuke } from '../../types/K9Sak';
+import { Arbeidsuke } from '../../types/Sak';
+import { getDagerTekst } from '../../utils/arbeidsukeUtils';
+import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import { EndreArbeidstidFormField, EndreArbeidstidFormValues } from './EndreArbeidstidForm';
 import { getUkerForEndring, UkerForEndringType } from './endreArbeidstidFormUtils';
 import { EndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
-import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
-import { getDatesInDateRange, getWeeksInDateRange } from '@navikt/sif-common-utils/lib';
-import { getDagerTekst } from '../../utils/arbeidsukeUtils';
 
 interface Props {
     arbeidsuker: Arbeidsuke[];

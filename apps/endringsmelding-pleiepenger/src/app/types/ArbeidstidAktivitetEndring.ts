@@ -1,12 +1,12 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { TimerEllerProsent } from './TimerEllerProsent';
 
-export interface ArbeidstidEndringProsent {
+interface ArbeidstidEndringProsent {
     type: TimerEllerProsent.PROSENT;
     prosent: number;
 }
 
-export interface ArbeidstidEndringTimer {
+interface ArbeidstidEndringTimer {
     type: TimerEllerProsent.TIMER;
     timer: number;
 }
