@@ -1,4 +1,4 @@
-import { BodyShort, Heading, ToggleGroup } from '@navikt/ds-react';
+import { Heading, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
