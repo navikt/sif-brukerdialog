@@ -77,7 +77,7 @@ const startExpressServer = () => {
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
     server.get('/login', (req, res) => {
         setTimeout(() => {
-            res.sendStatus(404);
+            res.sendStatus(401);
         }, 2000);
     });
     server.get('/oppslag/soker', (req, res) => {

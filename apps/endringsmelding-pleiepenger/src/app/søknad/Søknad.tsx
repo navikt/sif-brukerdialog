@@ -13,7 +13,7 @@ const Søknad = () => {
     const initialData = useSøknadInitialData();
     const { status } = initialData;
 
-    if (status === RequestStatus.loading) {
+    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
 

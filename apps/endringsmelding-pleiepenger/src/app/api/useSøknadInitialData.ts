@@ -14,7 +14,6 @@ import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
-import { relocateToLoginPage } from '../utils/navigationUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -45,6 +44,10 @@ type SøknadInitialLoading = {
     status: RequestStatus.loading;
 };
 
+type SøknadInitialNotLoggedIn = {
+    status: RequestStatus.redirectingToLogin;
+};
+
 type SøknadInitialIkkeTilgang = {
     status: RequestStatus.success;
     kanBrukeSøknad: false;
@@ -57,7 +60,8 @@ type SøknadInitialDataState =
     | SøknadInitialError
     | SøknadInitialLoading
     | SøknadInitialForbidden
-    | SøknadInitialIkkeTilgang;
+    | SøknadInitialIkkeTilgang
+    | SøknadInitialNotLoggedIn;
 
 const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
@@ -165,7 +169,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
             return Promise.resolve();
         } catch (error: any) {
             if (isUnauthorized(error)) {
-                relocateToLoginPage();
+                setInitialData({
+                    status: RequestStatus.redirectingToLogin,
+                });
             } else if (isForbidden(error)) {
                 setInitialData({
                     status: RequestStatus.forbidden,

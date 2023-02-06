@@ -29,11 +29,8 @@ export const axiosMultipartConfig: AxiosRequestConfig = {
 export const handleAxiosError = (error: AxiosError) => {
     if (isUnauthorized(error)) {
         relocateToLoginPage();
-        return Promise.reject(error);
-    }
-    if (isForbidden(error)) {
+    } else if (isForbidden(error)) {
         relocateToNoAccessPage();
-        return Promise.reject(error);
     }
     return Promise.reject(error);
 };
