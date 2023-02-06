@@ -51,7 +51,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        arbeidAktivitet: {
+                        aktivitet: {
                             ...action.payload,
                         },
                     },

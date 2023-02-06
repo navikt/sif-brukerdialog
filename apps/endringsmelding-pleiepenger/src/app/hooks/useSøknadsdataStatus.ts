@@ -2,13 +2,45 @@ import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
+import { StepFormValues } from '../søknad/config/StepFormValues';
+import { StepId } from '../søknad/config/StepId';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
-import { StepId } from '../søknad/config/StepId';
-import { getSøknadsdateFromStepFormValues } from '../utils/stepFormValuesToSøknadsdata';
+import { getAktivitetSøknadsdataFromFormValues } from '../søknad/steps/aktivitet/aktivitetStepUtils';
+import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
+};
+
+const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: StepFormValues) => {
+    const formValues = stepFormValues[step];
+    if (!formValues) {
+        return undefined;
+    }
+    switch (step) {
+        case StepId.AKTIVITET:
+            return getAktivitetSøknadsdataFromFormValues(formValues);
+        case StepId.ARBEIDSTID:
+            return getArbeidstidSøknadsdataFromFormValues(formValues);
+    }
+    return undefined;
+};
+
+const isStepFormValuesAndStepSøknadsdataValid = (
+    step: StepId,
+    stepFormValues: StepFormValues,
+    søknadsdata: Søknadsdata
+): boolean => {
+    if (stepFormValues[step]) {
+        const stepSøknadsdata = søknadsdata[step];
+        const tempSøknadsdata = getStepSøknadsdataFromStepFormValues(step, stepFormValues);
+        if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
+            return false;
+        }
+    }
+    return true;
 };
 
 export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsConfig<StepId>) => {
@@ -22,20 +54,11 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
     useEffectOnce(() => {
         const currentStep = stepConfig[stepId];
         const iSteps = <StepId[]>[];
-        getPrecedingSteps(currentStep.index, stepConfig)
-            .filter((step) => {
-                return stepFormValues[step] !== undefined;
-            })
-            .forEach((step) => {
-                const stepSøknadsdata = søknadsdata[step];
-                if (!getSøknadsdateFromStepFormValues[step]) {
-                    throw new Error(`Missing getSøknadsdateFromStepFormValues for step [${step}]`);
-                }
-                const tempSøknadsdata = getSøknadsdateFromStepFormValues[step](stepFormValues[step]);
-                if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
-                    iSteps.push(step);
-                }
-            });
+        getPrecedingSteps(currentStep.index, stepConfig).forEach((step) => {
+            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata) === false) {
+                iSteps.push(step);
+            }
+        });
         setInvalidSteps(iSteps);
     });
 

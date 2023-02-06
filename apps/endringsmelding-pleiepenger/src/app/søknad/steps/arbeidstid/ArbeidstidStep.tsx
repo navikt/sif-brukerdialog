@@ -67,7 +67,7 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const valgteAktiviteter = søknadsdata.arbeidAktivitet?.aktiviteterSomSkalEndres || [];
+    const valgteAktiviteter = søknadsdata.aktivitet?.aktiviteterSomSkalEndres || [];
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidstidAktivitetChange = (

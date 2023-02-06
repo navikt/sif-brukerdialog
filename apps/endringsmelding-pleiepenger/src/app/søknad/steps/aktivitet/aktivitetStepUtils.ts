@@ -12,11 +12,11 @@ export const getAktivitetStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    if (søknadsdata.arbeidAktivitet === undefined) {
+    if (søknadsdata.aktivitet === undefined) {
         return aktivitetInitialFormValues;
     }
     return {
-        aktiviteterSomSkalEndres: søknadsdata.arbeidAktivitet.aktiviteterSomSkalEndres,
+        aktiviteterSomSkalEndres: søknadsdata.aktivitet.aktiviteterSomSkalEndres,
     };
 };
 
