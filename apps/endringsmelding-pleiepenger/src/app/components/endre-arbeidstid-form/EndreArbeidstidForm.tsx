@@ -180,7 +180,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                             className="arbeidstidUkeInput"
                                             name={EndreArbeidstidFormField.prosentAvNormalt}
                                             label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
-                                            description={getArbeidsukerDescription(arbeidsuker)}
+                                            description={getProsentDescription(arbeidsuker)}
                                             data-testid="prosent-verdi"
                                             width="xs"
                                             maxLength={4}
@@ -208,7 +208,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
 export default EndreArbeidstidForm;
 
-const getArbeidsukerDescription = (arbeidsuker: Arbeidsuke[]) => {
+const getProsentDescription = (arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
         return undefined;
     }
@@ -224,16 +224,16 @@ const getArbeidsukerDescription = (arbeidsuker: Arbeidsuke[]) => {
 
     const årKeys = Object.keys(ukerPerÅr);
 
-    const ikkeFulleUker = arbeidsuker.find((uke) => uke.antallDagerMedArbeidstid < 5);
+    // const ikkeFulleUker = arbeidsuker.find((uke) => uke.antallDagerMedArbeidstid < 5);
 
     return (
         <>
-            {ikkeFulleUker && (
+            {/* {ikkeFulleUker && (
                 <BodyShort>
-                    Noen av ukene du har valgt er ikke hele uker (mandag - søndag). Du skal fortsatt oppgi hvor mye du
-                    jobber i snitt per dag for alle ukene, og ikke tenke på de dagene som er utenfor.
+                    Noen av ukene du har valgt er ikke hele uker (mandag - søndag). Da skal du oppgi hvor mange prosent
+                    du jobber disse dagene, og ikke tenke på de andre dagene.
                 </BodyShort>
-            )}
+            )} */}
             <Block margin="m">
                 <ExpandableInfo title={`Vis hvilke ${arbeidsuker.length} uker som er valgt`}>
                     {årKeys.map((år) => {
