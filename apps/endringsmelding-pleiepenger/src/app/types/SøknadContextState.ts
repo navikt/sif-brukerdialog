@@ -1,8 +1,8 @@
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { K9Sak } from './K9Sak';
-import { Søker } from './Søker';
 import { Sak } from './Sak';
+import { Søker } from './Søker';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from './TimerEllerProsent';
 
@@ -10,6 +10,7 @@ export interface SøknadContextState {
     versjon: string;
     søker: Søker;
     k9saker: K9Sak[];
+    saker: Sak[];
     sak: Sak;
     arbeidsgivere: Arbeidsgiver[];
     søknadsdata: Søknadsdata;

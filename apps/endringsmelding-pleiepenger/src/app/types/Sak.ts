@@ -44,3 +44,8 @@ export interface Sak {
         type: string;
     };
 }
+export interface Pleiepengesak {
+    type: 'PLEIEPENGER_SYKT_BARN';
+    barn: Barn;
+    arbeidAktiviteter: ArbeidAktiviteter;
+}

@@ -22,6 +22,8 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { getSakFromK9Sak2 } from '../utils/getSakFromK9Sak2';
+import { Sak } from '../types/Sak';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -65,10 +67,11 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 const setupSøknadInitialData = async (loadedData: {
     søker: Søker;
     k9saker: K9Sak[];
+    saker: Sak[];
     arbeidsgivere: Arbeidsgiver[];
     lagretSøknadState?: SøknadStatePersistence;
 }): Promise<SøknadInitialData> => {
-    const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
+    const { arbeidsgivere, lagretSøknadState, k9saker, saker, søker } = loadedData;
 
     const persistedSøknadStateIsValid =
         lagretSøknadState &&
@@ -103,6 +106,7 @@ const setupSøknadInitialData = async (loadedData: {
         versjon: APP_VERSJON,
         søker,
         k9saker,
+        saker,
         sak: getInitialSak(),
         arbeidsgivere,
         søknadsdata: {} as any,
@@ -121,11 +125,13 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const endringsperiode = getMaksEndringsperiode(getEndringsdato());
             const arbeidsgivere = await arbeidsgivereEndpoint.fetch(endringsperiode);
 
-            const [søker, k9saker, lagretSøknadState] = await Promise.all([
+            const [søker, { k9saker, k9saker2 }, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
                 sakerEndpoint.fetch(arbeidsgivere),
                 søknadStateEndpoint.fetch(),
             ]);
+
+            const saker = k9saker2.map((sak) => getSakFromK9Sak2(sak, arbeidsgivere, endringsperiode));
 
             const samletTidsperiode = getDateRangeForK9Saker(k9saker);
             if (samletTidsperiode === undefined) {
@@ -152,7 +158,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             setInitialData({
                 status: RequestStatus.success,
                 kanBrukeSøknad: true,
-                data: await setupSøknadInitialData({ søker, arbeidsgivere, k9saker, lagretSøknadState }),
+                data: await setupSøknadInitialData({ søker, arbeidsgivere, k9saker, saker, lagretSøknadState }),
             });
             return Promise.resolve();
         } catch (error: any) {
