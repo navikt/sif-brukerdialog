@@ -107,17 +107,10 @@ const ArbeidstidStep = () => {
         <SøknadStep stepId={stepId} sak={sak}>
             <SifGuidePanel>
                 <BodyLong as="div">
-                    {valgteAktiviteter.length === 1 ? (
-                        <p>
-                            Listen nedenfor viser arbeidsforholdet du har valgt, med de periodene du har søkt om
-                            pleiepenger for, og som du kan endre på.
-                        </p>
-                    ) : (
-                        <p>
-                            Listen nedenfor viser de arbeidsforholdene du har valgt, med de periodene du har søkt om
-                            pleiepenger for, og som du kan endre på.
-                        </p>
-                    )}
+                    <p>
+                        Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake
+                        i tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
+                    </p>
 
                     <InfoList>
                         <li>Du kan velge å endre enkeltuker, eller flere uker innenfor samme periode</li>
@@ -126,7 +119,7 @@ const ArbeidstidStep = () => {
                     </InfoList>
                     <p>
                         Du kan kun endre faktisk arbeidstid, det vil si hvor mye du jobber i perioden med pleiepenger,
-                        og ikke hvor mye du jobbet normalt, før du startet med pleiepenger.
+                        og ikke hvor mye du jobber normalt, før du startet med pleiepenger.
                     </p>
                     <ExpandableInfo title="Hva er forskjellen på normal og faktisk arbeidstid?">
                         <p>
