@@ -30,8 +30,9 @@ const DevFooter: React.FunctionComponent = () => {
                     size="small"
                     variant="secondary"
                     onClick={() => setShowModal(true)}
-                    icon={<Settings />}
-                />
+                    icon={<Settings />}>
+                    {mockUser}
+                </Button>
             </div>
             <Modal open={showModal} onClose={() => setShowModal(false)}>
                 <ModalContent>
