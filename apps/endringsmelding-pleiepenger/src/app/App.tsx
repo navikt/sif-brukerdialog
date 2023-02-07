@@ -73,7 +73,7 @@ const App = () => (
                 </SoknadApplication>
             </AmplitudeProvider>
         </ErrorBoundary>
-        <DevFooter />
+        {getEnvironmentVariable('MSW') === 'on' && <DevFooter />}
     </SifAppWrapper>
 );
 
