@@ -48,22 +48,15 @@ const VelkommenPage = () => {
         <Page title="Velkommen">
             <SifGuidePanel>
                 <Heading level="1" size="large" data-testid="velkommen-header" spacing={true}>
-                    Velkommen {søker.fornavn}
+                    Hei {søker.fornavn}
                 </Heading>
                 <Ingress as="div">
                     <p>
-                        Her kan du kan melde om endringer på hvor mye du jobber i perioden med pleiepenger. Du kan endre
-                        opptil 3 måneder tilbake i tid, og ett år frem i tid. Vil du melde fra om endringer utenfor
-                        denne tidsrammen, eller du har behov for å melde fra om andre endringer, send inn en melding via
-                        Skriv til oss.
+                        Her kan du kan melde inn hvor mye du jobber i perioden med pleiepenger for{' '}
+                        <strong>{barnetsNavn}</strong>.
+                        {1 + 1 == 4 && <>født {dateFormatter.dayDateShortMonthYear(fødselsdato)}</>}
                     </p>
-                    <p>Endringer gjelder dine pleiepenger for</p>
-                    <InfoList>
-                        <li>
-                            <strong>{barnetsNavn}</strong>, født {dateFormatter.dayDateShortMonthYear(fødselsdato)}
-                        </li>
-                    </InfoList>
-                    <p>Arbeidsforhold du kan endre arbeidstid på</p>
+                    <p>Arbeidsforhold du kan endre på</p>
                     <InfoList>
                         {aktiviteterSomKanEndres.map((aktivitet, index) => {
                             return (
@@ -73,42 +66,18 @@ const VelkommenPage = () => {
                             );
                         })}
                     </InfoList>
+                    <p>
+                        Dersom du har behov for å melde i fra om andre endringer, kan du sende disse inn via Skriv til
+                        oss, eller sende inn en ny søknad.
+                    </p>
                 </Ingress>
             </SifGuidePanel>
 
             <OmSøknaden />
 
-            <SamtykkeForm onValidSubmit={() => startSøknad(sak)} submitButtonLabel="Start melding om endring" />
+            <SamtykkeForm onValidSubmit={() => startSøknad(sak)} submitButtonLabel="Start" />
         </Page>
     );
 };
 
 export default VelkommenPage;
-
-// arbeidstaker.forEach(({ id, arbeidsgiver: { organisasjonsnummer: orgnr, navn, type } }) => {
-//     checkboxProps.push({
-//         label: getAktivitetCheckboxLabel({
-//             title: navn,
-//             info: type === ArbeidsgiverType.ORGANISASJON ? `Orgnr. ${orgnr}` : 'Privatperson',
-//         }),
-//         value: id,
-//         'data-testid': `aktivitet-${id}`,
-//     });
-// });
-
-// if (frilanser) {
-//     checkboxProps.push({
-//         label: getAktivitetCheckboxLabel({
-//             title: 'Frilanser',
-//         }),
-//         value: ArbeidAktivitetType.frilanser,
-//     });
-// }
-// if (selvstendigNæringsdrivende) {
-//     checkboxProps.push({
-//         label: getAktivitetCheckboxLabel({
-//             title: 'Selvstendig næringsdrivende',
-//         }),
-//         value: ArbeidAktivitetType.selvstendigNæringsdrivende,
-//     });
-// }

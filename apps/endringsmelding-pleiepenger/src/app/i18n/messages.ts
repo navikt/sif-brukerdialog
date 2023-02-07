@@ -16,5 +16,7 @@ export const defaultMessages: MessageFileFormat = {
 
         'steg.footer.avbryt': 'Avbryt og slett melding om endring',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
+
+        'avbrytSøknadDialog.avbrytSøknadLabel': 'Ja, avslutt og slett endring',
     },
 };

@@ -125,8 +125,8 @@ const ArbeidstidStep = () => {
                         <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
                     </InfoList>
                     <p>
-                        Du kan kun endre faktisk arbeidstid, det vil si hvor mye du får jobbet i perioden med
-                        pleiepenger, og ikke hvor mye du jobbet før du startet med pleiepenger.
+                        Du kan kun endre faktisk arbeidstid, det vil si hvor mye du jobber i perioden med pleiepenger,
+                        og ikke hvor mye du jobbet normalt, før du startet med pleiepenger.
                     </p>
                     <ExpandableInfo title="Hva er forskjellen på normal og faktisk arbeidstid?">
                         <p>
