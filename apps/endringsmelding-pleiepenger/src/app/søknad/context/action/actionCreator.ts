@@ -1,5 +1,5 @@
 import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
-import { Sak } from '../../../types/Sak';
+import { ArbeidAktivitet, Sak } from '../../../types/Sak';
 import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { StepId } from '../../config/StepId';
@@ -34,7 +34,7 @@ interface ResetSøknad {
 }
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
-    payload: { sak: Sak };
+    payload: { sak: Sak; aktiviteterSomSkalEndres?: ArbeidAktivitet[] };
 }
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
@@ -92,9 +92,9 @@ const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
 });
 
-const startSøknad = (sak: Sak): StartSøknad => ({
+const startSøknad = (sak: Sak, aktiviteterSomSkalEndres?: ArbeidAktivitet[]): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
-    payload: { sak },
+    payload: { sak, aktiviteterSomSkalEndres },
 });
 
 const avbrytSøknad = (): AvbrytSøknad => ({

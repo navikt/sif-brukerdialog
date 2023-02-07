@@ -111,7 +111,7 @@ const setupSøknadInitialData = async (
         versjon: APP_VERSJON,
         endringsperiode,
         søker,
-        k9saker: k9saker,
+        k9saker,
         sak: getInitialSak(),
         arbeidsgivere,
         søknadsdata: {} as any,
@@ -162,7 +162,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 status: RequestStatus.success,
                 kanBrukeSøknad: true,
                 data: await setupSøknadInitialData(
-                    { søker, arbeidsgivere, k9saker: k9saker, lagretSøknadState },
+                    { søker, arbeidsgivere, k9saker, lagretSøknadState },
                     endringsperiode
                 ),
             });

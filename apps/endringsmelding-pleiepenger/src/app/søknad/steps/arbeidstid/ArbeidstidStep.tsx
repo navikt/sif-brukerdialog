@@ -45,7 +45,7 @@ const ArbeidstidStep = () => {
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const stepConfig = getSøknadStepConfig();
+    const stepConfig = getSøknadStepConfig(sak);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -104,7 +104,7 @@ const ArbeidstidStep = () => {
     };
 
     return (
-        <SøknadStep stepId={stepId}>
+        <SøknadStep stepId={stepId} sak={sak}>
             <SifGuidePanel>
                 <BodyLong as="div">
                     {valgteAktiviteter.length === 1 ? (

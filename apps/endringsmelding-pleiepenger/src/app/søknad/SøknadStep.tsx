@@ -14,19 +14,21 @@ import AccordionItem from '@navikt/ds-react/esm/accordion/AccordionItem';
 import AccordionHeader from '@navikt/ds-react/esm/accordion/AccordionHeader';
 import AccordionContent from '@navikt/ds-react/esm/accordion/AccordionContent';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import { Sak } from '../types/Sak';
 
 interface Props {
     stepId: StepId;
+    sak: Sak;
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
+const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, children }) => {
     const intl = useIntl();
     const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
-    const stepConfig = getSøknadStepConfig();
+    const stepConfig = getSøknadStepConfig(sak);
 
     const { pageTitleIntlKey, index } = stepConfig[stepId];
 

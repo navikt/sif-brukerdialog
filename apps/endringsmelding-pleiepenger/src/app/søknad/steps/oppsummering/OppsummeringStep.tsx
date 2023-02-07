@@ -52,7 +52,7 @@ const OppsummeringStep = () => {
         state: { søknadsdata, sak, arbeidsgivere },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig();
+    const stepConfig = getSøknadStepConfig(sak);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
@@ -84,7 +84,7 @@ const OppsummeringStep = () => {
 
     if (!harEndringer) {
         return (
-            <SøknadStep stepId={stepId}>
+            <SøknadStep stepId={stepId} sak={sak}>
                 <Alert variant="info">
                     <Heading level="2" size="small" spacing={true}>
                         Ingen endringer er registert
@@ -102,7 +102,7 @@ const OppsummeringStep = () => {
     }
 
     return (
-        <SøknadStep stepId={stepId}>
+        <SøknadStep stepId={stepId} sak={sak}>
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>

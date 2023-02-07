@@ -6,11 +6,12 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
-import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
+import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import { ArbeidAktivitet, ArbeidAktiviteter, Sak } from '../../types/Sak';
-import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
+import { Sak } from '../../types/Sak';
+import { getAktiviteterSomKanEndres, getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
 
 const VelkommenPage = () => {
@@ -19,9 +20,12 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
+    const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
+
     const startSøknad = (sak: Sak) => {
-        dispatch(actionsCreator.startSøknad(sak));
-        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.AKTIVITET));
+        const steps = getSøknadSteps(sak);
+        dispatch(actionsCreator.startSøknad(sak, aktiviteterSomKanEndres));
+        dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(steps[0])));
     };
 
     if (!sak) {
@@ -61,7 +65,7 @@ const VelkommenPage = () => {
                     </InfoList>
                     <p>Arbeidsforhold du kan endre arbeidstid på</p>
                     <InfoList>
-                        {getAktiviteterSomKanEndres(sak.arbeidAktiviteter).map((aktivitet, index) => {
+                        {aktiviteterSomKanEndres.map((aktivitet, index) => {
                             return (
                                 <li key={index}>
                                     <strong>{getArbeidAktivitetNavn(aktivitet)}</strong>
@@ -80,21 +84,6 @@ const VelkommenPage = () => {
 };
 
 export default VelkommenPage;
-
-const getAktiviteterSomKanEndres = ({
-    arbeidstakerArktiviteter,
-    frilanser,
-    selvstendigNæringsdrivende,
-}: ArbeidAktiviteter): ArbeidAktivitet[] => {
-    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerArktiviteter];
-    if (frilanser) {
-        aktiviteter.push(frilanser);
-    }
-    if (selvstendigNæringsdrivende) {
-        aktiviteter.push(selvstendigNæringsdrivende);
-    }
-    return aktiviteter;
-};
 
 // arbeidstaker.forEach(({ id, arbeidsgiver: { organisasjonsnummer: orgnr, navn, type } }) => {
 //     checkboxProps.push({
