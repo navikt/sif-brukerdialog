@@ -1,48 +1,66 @@
-import { Button, Heading, Modal, ToggleGroup } from '@navikt/ds-react';
+import { Button, Heading, Modal, Radio, RadioGroup } from '@navikt/ds-react';
 import ModalContent from '@navikt/ds-react/esm/modal/ModalContent';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { Settings } from '@navikt/ds-icons';
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
-    const setMockUser = (user: string) => {
+    const [mockUser, setMockUser] = useState(localStorage.getItem('mockUser') || 'soker1');
+
+    const saveMockUser = (user: string) => {
         localStorage.setItem('mockUser', user);
     };
 
-    useEffect(() => {
+    useEffectOnce(() => {
         document.addEventListener('keydown', (e) => {
             if (e.shiftKey && e.ctrlKey && e.code === 'KeyB') {
                 setShowModal(!showModal);
             }
         });
-    }, []);
-    if (showModal) {
-        return (
+    });
+
+    return (
+        <>
+            <div className="settingsWrapper" style={{ position: 'fixed', bottom: '1rem', right: '1rem' }}>
+                <Button
+                    type="button"
+                    size="small"
+                    variant="secondary"
+                    onClick={() => setShowModal(true)}
+                    icon={<Settings />}
+                />
+            </div>
             <Modal open={showModal} onClose={() => setShowModal(false)}>
                 <ModalContent>
-                    <Heading level="1" size="medium">
-                        Velg brukerprofil
+                    <Heading level="1" size="medium" style={{ paddingRight: '3rem' }}>
+                        Velg søkerdata som skal brukes i endringsdialogen.
                     </Heading>
                     <FormBlock>
-                        <ToggleGroup defaultValue={localStorage.getItem('mockUser') || 'soker1'} onChange={setMockUser}>
-                            <ToggleGroup.Item value="soker1">Søker 1</ToggleGroup.Item>
-                            <ToggleGroup.Item value="soker2">Søker 2</ToggleGroup.Item>
-                            <ToggleGroup.Item value="soker3">Søker 3</ToggleGroup.Item>
-                            <ToggleGroup.Item value="soker4">Søker 4</ToggleGroup.Item>
-                            <ToggleGroup.Item value="soker5">Søker 5</ToggleGroup.Item>
-                        </ToggleGroup>
+                        <RadioGroup value={mockUser} legend="Brukerprofiler" onChange={(user) => setMockUser(user)}>
+                            <Radio value="soker1">Søker 1</Radio>
+                            <Radio value="soker2">Søker 2</Radio>
+                            <Radio value="soker3">Søker 3</Radio>
+                            <Radio value="soker4">Søker 4</Radio>
+                            <Radio value="soker5">Søker 5</Radio>
+                        </RadioGroup>
                     </FormBlock>
                     <FormBlock>
-                        <Button type="button" onClick={() => relocateToWelcomePage()}>
-                            Start på nytt
+                        <Button
+                            type="button"
+                            onClick={() => {
+                                saveMockUser(mockUser);
+                                relocateToWelcomePage();
+                            }}>
+                            Ok
                         </Button>
                     </FormBlock>
                 </ModalContent>
             </Modal>
-        );
-    }
-    return null;
+        </>
+    );
 };
 
 export default DevFooter;
