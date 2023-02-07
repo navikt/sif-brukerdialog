@@ -1,24 +1,41 @@
 import { rest } from 'msw';
 
-const søkerJson = require('../data/soker1/søker-mock.json');
-const sakJson = require('../data/soker1/sak-mock.json');
-const arbeidsgiverJson = require('../data/soker1/arbeidsgiver-mock.json');
+const getMockData = (soker = 'soker1') => {
+    return mockData[soker];
+};
 
-// const søkerJson = require('../data/soker2/søker-mock.json');
-// const sakJson = require('../data/soker2/sak-mock.json');
-// const arbeidsgiverJson = require('../data/soker2/arbeidsgiver-mock.json');
-
-// const søkerJson = require('../data/soker4/søker-mock.json');
-// const sakJson = require('../data/soker4/sak-mock.json');
-// const arbeidsgiverJson = require('../data/soker4/arbeidsgiver-mock.json');
-
-// const søkerJson = require('../data/soker5-ukedag-ikke-søkt-for/søker-mock.json');
-// const sakJson = require('../data/soker5-ukedag-ikke-søkt-for/sak-mock.json');
-// const arbeidsgiverJson = require('../data/soker5-ukedag-ikke-søkt-for/arbeidsgiver-mock.json');
-
-// const søkerJson = require('../data/soker7-ugyldig-sak/søker-mock.json');
-// const sakJson = require('../data/soker7-ugyldig-sak/sak-mock.json');
-// const arbeidsgiverJson = require('../data/soker7-ugyldig-sak/arbeidsgiver-mock.json');
+const mockData = {
+    soker1: {
+        søker: require('../data/soker1/søker-mock.json'),
+        sak: require('../data/soker1/sak-mock.json'),
+        arbeidsgiver: require('../data/soker1/arbeidsgiver-mock.json'),
+    },
+    soker2: {
+        søker: require('../data/soker2/søker-mock.json'),
+        sak: require('../data/soker2/sak-mock.json'),
+        arbeidsgiver: require('../data/soker2/arbeidsgiver-mock.json'),
+    },
+    soker3: {
+        søker: require('../data/soker3/søker-mock.json'),
+        sak: require('../data/soker3/sak-mock.json'),
+        arbeidsgiver: require('../data/soker3/arbeidsgiver-mock.json'),
+    },
+    soker4: {
+        søker: require('../data/soker4/søker-mock.json'),
+        sak: require('../data/soker4/sak-mock.json'),
+        arbeidsgiver: require('../data/soker4/arbeidsgiver-mock.json'),
+    },
+    soker5: {
+        søker: require('../data/soker5/søker-mock.json'),
+        sak: require('../data/soker5/sak-mock.json'),
+        arbeidsgiver: require('../data/soker5/arbeidsgiver-mock.json'),
+    },
+    soker6: {
+        søker: require('../data/soker6/søker-mock.json'),
+        sak: require('../data/soker6/sak-mock.json'),
+        arbeidsgiver: require('../data/soker6/arbeidsgiver-mock.json'),
+    },
+};
 
 const baseUrl = '*';
 
@@ -28,13 +45,13 @@ const handlers = [
     rest.get(`${baseUrl}/health/isAlive`, (req, res, ctx) => res(ctx.status(200))),
     rest.get(`${baseUrl}/health/isReady`, (req, res, ctx) => res(ctx.status(200))),
     rest.get(`${baseUrl}/oppslag/soker`, (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json(søkerJson));
+        return res(ctx.status(200), ctx.json(getMockData().søker));
     }),
     rest.get(`${baseUrl}/innsyn/sak`, (req, res, ctx) => {
-        return res(ctx.delay(250), ctx.status(200), ctx.json(sakJson));
+        return res(ctx.delay(250), ctx.status(200), ctx.json(getMockData().sak));
     }),
     rest.get(`${baseUrl}/oppslag/arbeidsgiver`, (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json(arbeidsgiverJson));
+        return res(ctx.status(200), ctx.json(getMockData().arbeidsgiver));
     }),
     rest.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (req, res, ctx) => {
         const data = localStorage.getItem(MellomlagringStorageKey);

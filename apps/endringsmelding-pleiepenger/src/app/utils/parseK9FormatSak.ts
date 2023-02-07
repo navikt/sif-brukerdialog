@@ -1,4 +1,9 @@
-import { ISODateRangeToDateRange, ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
+import {
+    durationUtils,
+    ISODateRangeToDateRange,
+    ISODateToDate,
+    ISODurationToDuration,
+} from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { K9Format, K9FormatArbeidstid, K9FormatArbeidstidInfo, K9FormatBarn } from '../types/k9Format';
 import { K9Sak, K9SakArbeidstid, K9SakArbeidstidInfo, K9SakArbeidstidPeriodeMap, K9SakBarn } from '../types/K9Sak';
@@ -58,6 +63,30 @@ const parseArbeidstid = ({
     };
 };
 
+const harNormalarbeidstid = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
+    if (!arbeidstidInfo) {
+        return false;
+    }
+    const { perioder } = arbeidstidInfo;
+    const keys = Object.keys(perioder);
+    if (keys.length === 1) {
+        const periode = perioder[keys[0]];
+        return durationUtils.durationIsZero(periode.jobberNormaltTimerPerDag);
+    }
+    return keys.length > 0;
+};
+
+const fjernArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
+    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
+
+    return {
+        arbeidstakerList: arbeidstakerList?.filter((a) => harNormalarbeidstid(a.arbeidstidInfo)),
+        frilanserArbeidstidInfo: harNormalarbeidstid(frilanserArbeidstidInfo) ? frilanserArbeidstidInfo : undefined,
+        selvstendigNæringsdrivendeArbeidstidInfo: harNormalarbeidstid(selvstendigNæringsdrivendeArbeidstidInfo)
+            ? selvstendigNæringsdrivendeArbeidstidInfo
+            : undefined,
+    };
+};
 /**
  * Parser K9Format sak
  * @param data data mottat fra backend
@@ -92,7 +121,7 @@ export const parseK9FormatSak = (data: K9Format): K9Sak => {
                       }
                     : undefined,
             },
-            arbeidstid: parseArbeidstid(ytelse.arbeidstid),
+            arbeidstid: fjernArbeidstidMedIngenNormalarbeidstid(parseArbeidstid(ytelse.arbeidstid)),
         },
     };
     return sak;
