@@ -18,8 +18,8 @@ export const includeDeltBostedStep = (omBarnet?: OmBarnetSøknadsdata): boolean 
             return omBarnet.sammeAdresse === false;
         case 'annetBarn':
             return (
-                omBarnet.sammeAdresse === false ||
-                omBarnet.søkersRelasjonTilBarnet === SøkersRelasjonTilBarnet.FOSTERFORELDER
+                omBarnet.sammeAdresse === false &&
+                omBarnet.søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER
             );
     }
 };
