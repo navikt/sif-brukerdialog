@@ -12,10 +12,11 @@ interface ConfigProps {
     mellomlagring?: any;
     step?: string;
     sak?: any;
+    arbeidsgivere?: any;
 }
 
 export const contextConfig = (props?: ConfigProps) => {
-    const { mellomlagring, step, sak } = props || {};
+    const { mellomlagring, step, sak, arbeidsgivere } = props || {};
 
     const apiBaseUrl = 'http://localhost:8099/';
 
@@ -30,9 +31,8 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`POST`, `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
         cy.intercept('POST', `${apiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
         cy.intercept('GET', `${apiBaseUrl}/api/innsyn/sak`, sak || sakMock);
-        cy.intercept('GET', `${apiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivereMock);
+        cy.intercept('GET', `${apiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivere || arbeidsgivereMock);
         cy.intercept('GET', `${apiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
-        // cy.intercept(`ryujtq87.api.sanity.io*`, {});
     });
 
     if (step) {

@@ -1,4 +1,5 @@
 import { contextConfig } from '../../contextConfig';
+import { flereArbeidsgivereMock } from '../../data/arbeidsgiver-mock';
 import { getTestElement, selectCheckboxByTestId, submitSkjema } from '../../utils';
 
 const startUrl = 'http://localhost:8080/';
@@ -138,7 +139,7 @@ const bekreftOpplysningerOgSendInn = () => {
     });
 };
 
-describe('Endre én uke for én arbeidsgiver', () => {
+describe('Endre arbeidstid for én arbeidsgiver', () => {
     contextConfig();
 
     before(() => {
@@ -146,7 +147,21 @@ describe('Endre én uke for én arbeidsgiver', () => {
         cy.visit(startUrl);
     });
     startSøknad();
-    velgArbeidsgiver();
+    endreEnkeltuke();
+    endreFlereUker();
+    fortsettTilOppsummering();
+    kontrollerOppsummering();
+    bekreftOpplysningerOgSendInn();
+});
+
+describe('Endre arbeidstid for flere arbeidsgiver', () => {
+    contextConfig({ arbeidsgivere: flereArbeidsgivereMock });
+
+    before(() => {
+        cy.clock(date);
+        cy.visit(startUrl);
+    });
+    startSøknad();
     endreEnkeltuke();
     endreFlereUker();
     fortsettTilOppsummering();
