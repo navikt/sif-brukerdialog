@@ -1,6 +1,4 @@
-const søkerMock = require('../../../mocks/data/soker1/søker-mock.json');
-const sakMock = require('../../../mocks/data/soker1/sak-mock.json');
-const arbeidsgivereMock = require('../../../mocks/data/soker1/arbeidsgiver-mock.json');
+import { søkerMock } from './data/søkerMock';
 
 const PUBLIC_PATH = '/soknad';
 
@@ -11,14 +9,14 @@ const getUrlForStep = (step?) => {
 interface ConfigProps {
     mellomlagring?: any;
     step?: string;
-    sak?: any;
-    arbeidsgivere?: any;
+    saker: any;
+    arbeidsgivere: any;
 }
 
 export const mockApiBaseUrl = 'http://localhost:8099/';
 
-export const contextConfig = (props?: ConfigProps) => {
-    const { mellomlagring, step, sak, arbeidsgivere } = props || {};
+export const contextConfig = (props: ConfigProps) => {
+    const { mellomlagring, step, saker, arbeidsgivere } = props;
 
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
         cy.clearLocalStorage();
@@ -35,8 +33,8 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`PUT`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
         cy.intercept(`POST`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
         cy.intercept('POST', `${mockApiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
-        cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, sak || sakMock);
-        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivere || arbeidsgivereMock);
+        cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, saker);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivere);
         cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
     });
 

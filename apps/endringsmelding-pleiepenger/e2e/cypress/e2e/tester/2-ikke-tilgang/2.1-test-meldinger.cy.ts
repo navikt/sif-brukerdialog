@@ -1,12 +1,13 @@
 import { contextConfig, mockApiBaseUrl } from '../../contextConfig';
-import { flereSakerMock } from '../../data/flere-saker-mock';
+import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
+import { flereSakerMock } from '../../data/flereSakerMock';
 import { getTestElement } from '../../utils';
 
 const startUrl = 'http://localhost:8080';
 
 describe('Bruker har ikke tilgang til løsningen', () => {
     describe('Ingen sak funnet', () => {
-        contextConfig({ sak: [] });
+        contextConfig({ saker: [], arbeidsgivere: enArbeidsgiverMock });
         before(() => {
             cy.visit(startUrl);
             cy.intercept(`${mockApiBaseUrl}/api/innsyn/sak`, []);
@@ -17,7 +18,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         });
     });
     describe('Flere saker', () => {
-        contextConfig({ sak: flereSakerMock });
+        contextConfig({ saker: flereSakerMock, arbeidsgivere: enArbeidsgiverMock });
         before(() => {
             cy.visit(startUrl);
             cy.intercept(`${mockApiBaseUrl}/api/innsyn/sak`, flereSakerMock);

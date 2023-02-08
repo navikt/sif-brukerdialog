@@ -51,6 +51,7 @@ const DevFooter: React.FunctionComponent = () => {
                             onChange={(user) => setMockUser(user)}>
                             <Radio value="scenario1">Scenario 1</Radio>
                             <Radio value="scenario2">Scenario 2</Radio>
+                            {/* <Radio value="scenario3">Scenario 3</Radio> */}
                         </RadioGroup>
                     </FormBlock>
                     <FormBlock>

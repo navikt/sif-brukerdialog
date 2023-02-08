@@ -15,6 +15,11 @@ const mockData = {
         sak: require('../data/scenario2/sak-mock.json'),
         arbeidsgiver: require('../data/scenario2/arbeidsgiver-mock.json'),
     },
+    scenario3: {
+        søker: require('../data/scenario3/søker-mock.json'),
+        sak: require('../data/scenario3/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario3/arbeidsgiver-mock.json'),
+    },
     soker1: {
         søker: require('../data/soker1/søker-mock.json'),
         sak: require('../data/soker1/sak-mock.json'),

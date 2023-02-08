@@ -24,7 +24,9 @@ const VelkommenPage = () => {
 
     const startSøknad = (sak: Sak) => {
         const steps = getSøknadSteps(sak);
-        dispatch(actionsCreator.startSøknad(sak, aktiviteterSomKanEndres));
+        dispatch(
+            actionsCreator.startSøknad(sak, aktiviteterSomKanEndres.length === 1 ? aktiviteterSomKanEndres : undefined)
+        );
         dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(steps[0])));
     };
 

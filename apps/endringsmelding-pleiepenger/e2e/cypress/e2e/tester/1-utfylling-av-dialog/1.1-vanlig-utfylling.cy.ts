@@ -1,5 +1,8 @@
 import { contextConfig } from '../../contextConfig';
-import { flereArbeidsgivereMock } from '../../data/arbeidsgiver-mock';
+import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
+import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
+import { enSakFlereArbeidsgivereMock } from '../../data/enSakFlereArbeidsgivereMock';
+import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
 import { getTestElement, selectCheckboxByTestId, submitSkjema } from '../../utils';
 
 const startUrl = 'http://localhost:8080/';
@@ -140,7 +143,10 @@ const bekreftOpplysningerOgSendInn = () => {
 };
 
 describe('Endre arbeidstid for én arbeidsgiver', () => {
-    contextConfig();
+    contextConfig({
+        arbeidsgivere: enArbeidsgiverMock,
+        saker: enSakEnArbeidsgiverMock,
+    });
 
     before(() => {
         cy.clock(date);
@@ -154,8 +160,11 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
     bekreftOpplysningerOgSendInn();
 });
 
-describe('Endre arbeidstid for flere arbeidsgiver', () => {
-    contextConfig({ arbeidsgivere: flereArbeidsgivereMock });
+describe('Endre arbeidstid for flere arbeidsgivere', () => {
+    contextConfig({
+        arbeidsgivere: flereArbeidsgivereMock,
+        saker: enSakFlereArbeidsgivereMock,
+    });
 
     before(() => {
         cy.clock(date);

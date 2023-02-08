@@ -31,7 +31,10 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
         case IngenTilgangÅrsak.arbeidsforholdUtenArbeidstid:
             return (
                 <BodyLong as="div">
-                    <p>Vi kan ikke finne en sak om pleiepenger hvor du kan endre arbeidstid.</p>
+                    <p>
+                        Vi har funnet arbeidsforhold på deg som ikke er registrert på din pleiepengesak. Du må da sende
+                        inn ny søknad.
+                    </p>
                     <p>
                         Dersom dette ikke stemmer, send inn en melding via{' '}
                         <Link to={getLenker().skrivTilOss}>Skriv til oss</Link>.
