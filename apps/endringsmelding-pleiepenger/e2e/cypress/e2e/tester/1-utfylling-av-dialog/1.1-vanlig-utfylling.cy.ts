@@ -162,6 +162,7 @@ describe('Endre arbeidstid for flere arbeidsgiver', () => {
         cy.visit(startUrl);
     });
     startSøknad();
+    velgArbeidsgiver();
     endreEnkeltuke();
     endreFlereUker();
     fortsettTilOppsummering();
