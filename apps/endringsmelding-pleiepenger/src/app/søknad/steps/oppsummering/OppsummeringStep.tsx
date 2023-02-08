@@ -106,7 +106,7 @@ const OppsummeringStep = () => {
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>
-                        Nedenfor ser du endringene som du har lagt inn. Når du has sett over og sjekket at alt er
+                        Nedenfor ser du endringene som du har lagt inn. Når du har sett over og sjekket at alt er
                         riktig, bekrefter du opplysningene og sender inn meldingen om endring.
                     </p>
                 </Ingress>
