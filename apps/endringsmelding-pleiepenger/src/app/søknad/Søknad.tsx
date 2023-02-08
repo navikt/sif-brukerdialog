@@ -8,6 +8,8 @@ import { RequestStatus } from '../types/RequestStatus';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import DevFooter from '../dev/DevFooter';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
@@ -49,6 +51,7 @@ const Søknad = () => {
         <SøknadContextProvider initialData={initialData.data}>
             <StepFormValuesContextProvider>
                 <SøknadRouter />
+                {getEnvironmentVariable('MSW') === 'on' && <DevFooter />}
             </StepFormValuesContextProvider>
         </SøknadContextProvider>
     );

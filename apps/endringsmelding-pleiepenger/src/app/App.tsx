@@ -15,7 +15,6 @@ import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
-import DevFooter from './dev/DevFooter';
 
 dayjs.extend(isoWeek);
 
@@ -73,7 +72,6 @@ const App = () => (
                 </SoknadApplication>
             </AmplitudeProvider>
         </ErrorBoundary>
-        {getEnvironmentVariable('MSW') === 'on' && <DevFooter />}
     </SifAppWrapper>
 );
 

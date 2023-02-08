@@ -16,7 +16,7 @@ import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke } from '../../types/Sak';
+import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getArbeidsukeUkenummer } from '../../utils/arbeidsukeUtils';
 import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
@@ -27,6 +27,7 @@ export type EndreArbeidstidFormData = Omit<ArbeidstidAktivitetEndring, 'arbeidAk
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
+    arbeidAktivitet: ArbeidAktivitet;
     onSubmit: (data: EndreArbeidstidFormData[]) => void;
     onCancel: () => void;
 }
@@ -51,7 +52,7 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker }) => {
+const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker, arbeidAktivitet }) => {
     const intl = useIntl();
     const {
         dispatch,
@@ -194,7 +195,11 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                         />
                                     )}
                                     {timerEllerProsent === TimerEllerProsent.TIMER && (
-                                        <EndreArbeidstimerFormPart intlValues={intlValues} arbeidsuker={arbeidsuker} />
+                                        <EndreArbeidstimerFormPart
+                                            intlValues={intlValues}
+                                            arbeidsuker={arbeidsuker}
+                                            arbeidAktivitet={arbeidAktivitet}
+                                        />
                                     )}
                                 </FormBlock>
                             )}

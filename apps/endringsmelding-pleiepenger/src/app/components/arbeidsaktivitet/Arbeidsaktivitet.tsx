@@ -67,10 +67,8 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                                     data-testid={`periode_${index}`}>
                                     <Accordion.Header data-testid={`periode_${index}_header`}>
                                         <Ingress as="span" className="periodeHeader">
-                                            <span style={{ textTransform: 'capitalize' }}>
-                                                {dateFormatter.dayCompactDate(periode.periode.from)}
-                                            </span>{' '}
-                                            - {dateFormatter.dayCompactDate(periode.periode.to)}
+                                            {dateFormatter.full(periode.periode.from)} -{' '}
+                                            {dateFormatter.full(periode.periode.to)}
                                             {harEndringer && (
                                                 <span
                                                     style={{

@@ -248,10 +248,8 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
 
 const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
     const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
-    Object.keys(perioder)
-        .sort()
-        .forEach((isoDateRange) => {
-            arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
-        });
+    Object.keys(perioder).forEach((isoDateRange) => {
+        arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
+    });
     return arbeidsuker;
 };

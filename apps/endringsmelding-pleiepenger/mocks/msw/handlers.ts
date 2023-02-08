@@ -1,10 +1,20 @@
 import { rest } from 'msw';
 
-const getMockData = (soker = 'soker1') => {
-    return mockData[soker] ? mockData[soker] : mockData['soker1'];
+const getMockData = (soker = 'scenario1') => {
+    return mockData[soker] ? mockData[soker] : mockData['scenario1'];
 };
 
 const mockData = {
+    scenario1: {
+        søker: require('../data/scenario1/søker-mock.json'),
+        sak: require('../data/scenario1/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario1/arbeidsgiver-mock.json'),
+    },
+    scenario2: {
+        søker: require('../data/scenario2/søker-mock.json'),
+        sak: require('../data/scenario2/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario2/arbeidsgiver-mock.json'),
+    },
     soker1: {
         søker: require('../data/soker1/søker-mock.json'),
         sak: require('../data/soker1/sak-mock.json'),

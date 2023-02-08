@@ -36,6 +36,8 @@ const DevPage = () => {
                     <ToggleGroup.Item value="soker3">Søker 3</ToggleGroup.Item>
                     <ToggleGroup.Item value="soker4">Søker 4</ToggleGroup.Item>
                     <ToggleGroup.Item value="soker5">Søker 5</ToggleGroup.Item>
+                    <ToggleGroup.Item value="scenario1">Scenario 1</ToggleGroup.Item>
+                    <ToggleGroup.Item value="scenario2">Scenario 2</ToggleGroup.Item>
                 </ToggleGroup>
                 <Block margin="l">
                     <Link to="../melding/velkommen">Tilbake til endringsdialog</Link>

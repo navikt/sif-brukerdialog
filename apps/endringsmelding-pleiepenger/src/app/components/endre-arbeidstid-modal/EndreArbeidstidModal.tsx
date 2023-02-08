@@ -35,7 +35,12 @@ const EndreArbeidstidModal: FunctionComponent<Props> = ({
                         {getArbeidAktivitetNavn(arbeidAktivitet)}
                     </Heading>
                     <Block margin="l">
-                        <EndreArbeidstidForm arbeidsuker={arbeidsuker} onCancel={onClose} onSubmit={onSubmit} />
+                        <EndreArbeidstidForm
+                            arbeidsuker={arbeidsuker}
+                            onCancel={onClose}
+                            onSubmit={onSubmit}
+                            arbeidAktivitet={arbeidAktivitet}
+                        />
                     </Block>
                 </div>
             </Modal.Content>

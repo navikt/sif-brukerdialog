@@ -4,6 +4,7 @@ import {
     durationToISODuration,
     getDateRangesFromDates,
     ISODateToDate,
+    sortDateRange,
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
@@ -40,7 +41,7 @@ const getEndretArbeidstid = (
     endringUkeMap: ArbeidstidAktivitetEndringMap,
     arbeidAktivitet: ArbeidAktivitet
 ): ArbeidstidPeriodeApiDataMap => {
-    const arbeidsdagerMedEndretTid: ArbeidstidPeriodeApiDataMap = {};
+    const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
         const { endring } = endringUkeMap[isoDateRange];
@@ -57,8 +58,8 @@ const getEndretArbeidstid = (
         );
 
         const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
-        perioder.forEach((periode) => {
-            arbeidsdagerMedEndretTid[dateRangeToISODateRange(periode)] = {
+        perioder.sort(sortDateRange).forEach((periode) => {
+            perioderMedEndretArbeidstid[dateRangeToISODateRange(periode)] = {
                 jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
                 faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
                 _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
@@ -68,7 +69,7 @@ const getEndretArbeidstid = (
         });
     });
 
-    return arbeidsdagerMedEndretTid;
+    return perioderMedEndretArbeidstid;
 };
 
 const getArbeidstidInfo = (
