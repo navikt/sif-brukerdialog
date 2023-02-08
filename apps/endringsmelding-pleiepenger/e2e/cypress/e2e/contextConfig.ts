@@ -15,24 +15,29 @@ interface ConfigProps {
     arbeidsgivere?: any;
 }
 
+export const mockApiBaseUrl = 'http://localhost:8099/';
+
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step, sak, arbeidsgivere } = props || {};
 
-    const apiBaseUrl = 'http://localhost:8099/';
-
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
-        cy.intercept(`GET`, `${apiBaseUrl}mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
+        cy.clearLocalStorage();
         cy.intercept(
-            `DELETE`,
-            `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
+            `GET`,
+            `${mockApiBaseUrl}mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
             mellomlagring || {}
         );
-        cy.intercept(`PUT`, `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept(`POST`, `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept('POST', `${apiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
-        cy.intercept('GET', `${apiBaseUrl}/api/innsyn/sak`, sak || sakMock);
-        cy.intercept('GET', `${apiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivere || arbeidsgivereMock);
-        cy.intercept('GET', `${apiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
+        cy.intercept(
+            `DELETE`,
+            `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
+            mellomlagring || {}
+        );
+        cy.intercept(`PUT`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept(`POST`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept('POST', `${mockApiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
+        cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, sak || sakMock);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivere || arbeidsgivereMock);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
     });
 
     if (step) {

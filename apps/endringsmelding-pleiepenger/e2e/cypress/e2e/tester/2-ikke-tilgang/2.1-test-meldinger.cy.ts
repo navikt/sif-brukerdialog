@@ -1,4 +1,4 @@
-import { contextConfig } from '../../contextConfig';
+import { contextConfig, mockApiBaseUrl } from '../../contextConfig';
 import { flereSakerMock } from '../../data/flere-saker-mock';
 import { getTestElement } from '../../utils';
 
@@ -9,7 +9,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         contextConfig({ sak: [] });
         before(() => {
             cy.visit(startUrl);
-            cy.intercept(`/api/innsyn/sak*`, []);
+            cy.intercept(`${mockApiBaseUrl}/api/innsyn/sak`, []);
         });
         it('Viser riktig melding når bruker ikke har sak', () => {
             expect(getTestElement('ingen-tilgang-heading').first().contains('Hei GODSLIG'));
@@ -20,7 +20,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         contextConfig({ sak: flereSakerMock });
         before(() => {
             cy.visit(startUrl);
-            cy.intercept(`/api/innsyn/sak*`, flereSakerMock);
+            cy.intercept(`${mockApiBaseUrl}/api/innsyn/sak`, flereSakerMock);
         });
         it('Viser riktig melding når bruker har flere saker', () => {
             expect(getTestElement('ingen-tilgang-heading').first().contains('Hei GODSLIG'));
