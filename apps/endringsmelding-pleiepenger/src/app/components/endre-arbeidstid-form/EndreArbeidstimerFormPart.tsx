@@ -11,6 +11,8 @@ import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import { EndreArbeidstidFormField, EndreArbeidstidFormValues } from './EndreArbeidstidForm';
 import { getUkerForEndring, UkerForEndringType } from './endreArbeidstidFormUtils';
 import { EndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
+// import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -29,15 +31,18 @@ const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker
 
     return (
         <>
-            {1 + 1 === 3 && arbeidsuker.length > 1 && (spørOmFørsteUke || spørOmSisteUke) && (
+            {arbeidsuker.length > 1 && (spørOmFørsteUke || spørOmSisteUke) && (
                 <Alert variant="info">
-                    Noen av ukene går ikke over de samme ukedagene, så du må oppgi arbeidstiden for disse hver for seg.
+                    Noen av ukene du har valgt er ikke hele uker. Du må derfor oppgi arbeidstid for disse hver for seg.
+                    {/* <ExpandableInfo title="Hva betyr det at en uke ikke er hel?">info</ExpandableInfo> */}
                 </Alert>
             )}
 
-            <Heading level="2" size="xsmall">
-                Hvor mange timer jobber du i ukene du har valgt?
-            </Heading>
+            <Block margin="xl">
+                <Heading level="2" size="xsmall">
+                    Hvor mange timer jobber du i ukene du har valgt?
+                </Heading>
+            </Block>
 
             {spørOmFørsteUke && renderSpørsmålFørsteUke(arbeidsuker[0])}
             {spørOmSnittUker && renderSpørsmålSnittUker(arbeidsuker, ukerForEndring)}
@@ -141,11 +146,7 @@ const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke) => {
             {renderTimerSpørsmål({
                 label: <>{uke}</>,
                 fieldName: EndreArbeidstidFormField.timerFørsteUke,
-                description: (
-                    <>
-                        {getDagerPeriode(arbeidsuke.periode)} ({getPeriodeTekst(arbeidsuke.periode)}){' '}
-                    </>
-                ),
+                description: <>{getDagerPeriode(arbeidsuke.periode)}</>,
                 dateTestid: 'timer-førsteUke-verdi',
                 periode,
                 maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
@@ -170,9 +171,9 @@ const renderSpørsmålSnittUker = (arbeidsuker: Arbeidsuke[], ukerForEndring: Uk
     );
 };
 
-export const getDagerPeriode = ({ from, to }: DateRange): React.ReactNode => {
-    const fra = dateFormatter.day(from);
-    const til = dateFormatter.day(to);
+export const getDagerPeriode = ({ from, to }: DateRange, visDato = true): React.ReactNode => {
+    const fra = visDato ? dateFormatter.dayDateMonthYear(from) : dateFormatter.day(from);
+    const til = visDato ? dateFormatter.dayDateMonthYear(to) : dateFormatter.day(to);
     if (fra === til) {
         return (
             <>
@@ -195,11 +196,7 @@ const renderSpørsmålSisteUke = (arbeidsuke: Arbeidsuke) => {
             {renderTimerSpørsmål({
                 label: uke,
                 fieldName: EndreArbeidstidFormField.timerSisteUke,
-                description: (
-                    <>
-                        {getDagerPeriode(arbeidsuke.periode)} ({getPeriodeTekst(arbeidsuke.periode)}){' '}
-                    </>
-                ),
+                description: <>{getDagerPeriode(arbeidsuke.periode)}</>,
                 dateTestid: 'timer-sisteUke-verdi',
                 periode,
                 maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
