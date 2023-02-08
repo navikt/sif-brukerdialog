@@ -118,7 +118,7 @@ const OppsummeringStep = () => {
                     if (!arbeidsgiver) {
                         return null;
                     }
-                    const arbeidsuker = getArbeidstidUkeTabellItem(arbeidstidInfo.perioder);
+                    const arbeidsuker = getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
                     return (
                         <FormBlock key={key} paddingBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
                             <Heading level="2" size="medium">
@@ -140,7 +140,7 @@ const OppsummeringStep = () => {
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItem(frilanserArbeidstidInfo.perioder)}
+                            listItems={getArbeidstidUkeTabellItems(frilanserArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -153,7 +153,7 @@ const OppsummeringStep = () => {
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItem(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
+                            listItems={getArbeidstidUkeTabellItems(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -246,10 +246,12 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     return arbeidsuke;
 };
 
-const getArbeidstidUkeTabellItem = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
+const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
     const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
-    Object.keys(perioder).forEach((isoDateRange) => {
-        arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
-    });
+    Object.keys(perioder)
+        .sort()
+        .forEach((isoDateRange) => {
+            arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
+        });
     return arbeidsuker;
 };
