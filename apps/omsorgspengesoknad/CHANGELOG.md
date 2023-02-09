@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.2.1
+
+### Patch Changes
+
+-   0affc56: Bugfix for om steget delt bosted skal vises. Viser nå ikke steget når relasjon er fosterforelder.
+
 ## 1.2.0
 
 ### Minor Changes

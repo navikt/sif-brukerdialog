@@ -38,25 +38,25 @@ describe('søknadStepConfig', () =>
                 sammeAdresse: true,
                 kroniskEllerFunksjonshemming: true,
             };
-            it('inkluderer delt bosted når bruker bor på en annen andresse', () => {
+            it('inkluderer delt bosted når bruker ikke bor på en annen andresse', () => {
                 const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: false });
                 expect(result).toBeTruthy();
             });
-            it('inkluderer delt bosted dersom brukers relasjon er fosterforelder, uavhengig av samme adresse', () => {
+            it('inkluderer IKKE delt bosted dersom brukers relasjon er fosterforelder, uavhengig av samme adresse', () => {
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
                         sammeAdresse: true,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER,
                     })
-                ).toBeTruthy();
+                ).toBeFalsy();
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
                         sammeAdresse: false,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER,
                     })
-                ).toBeTruthy();
+                ).toBeFalsy();
             });
             it('inkluderer IKKE delt bosted når bruker bor på samme andresse', () => {
                 const result = includeDeltBostedStep({ ...omBarnet });
