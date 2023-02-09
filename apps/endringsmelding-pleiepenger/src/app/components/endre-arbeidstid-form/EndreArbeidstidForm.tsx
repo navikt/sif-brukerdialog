@@ -1,4 +1,4 @@
-import { Heading, ToggleGroup } from '@navikt/ds-react';
+import { BodyShort, Heading, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -18,7 +18,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { getArbeidsukeUkenummer } from '../../utils/arbeidsukeUtils';
+import { getArbeidsukeUkenummer, getDagerTekst } from '../../utils/arbeidsukeUtils';
 import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import EndreArbeidstimerFormPart from './EndreArbeidstimerFormPart';
@@ -215,7 +215,7 @@ export default EndreArbeidstidForm;
 
 const getProsentDescription = (arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
-        return undefined;
+        return <BodyShort>Perioden {getDagerTekst(arbeidsuker[0].periode, true)}</BodyShort>;
     }
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
 

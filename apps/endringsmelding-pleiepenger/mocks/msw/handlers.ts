@@ -57,8 +57,7 @@ const baseUrl = '*';
 const MellomlagringStorageKey = 'mellomlagring-endring-psb';
 
 export const getHandlers = () => {
-    const soker = localStorage.getItem('mockUser') || 'soker1';
-    // const soker = window.location.hash ? window.location.hash.substring(1) : 'soker1';
+    const soker = localStorage.getItem('mockUser') || 'scenario1';
     const { sak, arbeidsgiver, søker } = getMockData(soker);
 
     const handlers = [
