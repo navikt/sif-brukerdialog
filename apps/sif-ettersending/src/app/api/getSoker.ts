@@ -4,7 +4,7 @@ import api from './api';
 
 const getSokerRemoteData = async (): Promise<Person> => {
     try {
-        const { data } = await api.get<Person>(ApiEndpoint.SØKER, 'ytelse=ettersending');
+        const { data } = await api.get<Person>(ApiEndpoint.SØKER);
         return Promise.resolve(data);
     } catch (error) {
         return Promise.reject(error);
