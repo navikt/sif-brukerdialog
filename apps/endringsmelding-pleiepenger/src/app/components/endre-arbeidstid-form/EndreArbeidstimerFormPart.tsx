@@ -126,7 +126,7 @@ const renderTimerSpørsmål = ({
         label={label}
         data-testid={dateTestid}
         width="xs"
-        description={description ? <BodyShort>{description}</BodyShort> : undefined}
+        description={description ? <BodyShort className="capsFirstChar">{description}</BodyShort> : undefined}
         maxLength={4}
         validate={(value) => {
             const error = getNumberValidator({
@@ -177,7 +177,7 @@ const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke, erEnkeltukeEndring: 
             {renderTimerSpørsmål({
                 label: <>{label}</>,
                 fieldName: EndreArbeidstidFormField.timerFørsteUke,
-                description: <>{getDagerPeriode(arbeidsuke.periode)}</>,
+                description: getDagerPeriode(arbeidsuke.periode),
                 dateTestid: 'timer-førsteUke-verdi',
                 periode,
                 maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
@@ -231,7 +231,7 @@ const renderSpørsmålSisteUke = (arbeidsuke: Arbeidsuke, erEnkeltukeEndring: bo
             {renderTimerSpørsmål({
                 label: label,
                 fieldName: EndreArbeidstidFormField.timerSisteUke,
-                description: <>{getDagerPeriode(arbeidsuke.periode)}</>,
+                description: getDagerPeriode(arbeidsuke.periode),
                 dateTestid: 'timer-sisteUke-verdi',
                 periode,
                 maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
@@ -240,21 +240,13 @@ const renderSpørsmålSisteUke = (arbeidsuke: Arbeidsuke, erEnkeltukeEndring: bo
     );
 };
 
-export const getDagerPeriode = ({ from, to }: DateRange, visDato = true): React.ReactNode => {
+export const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
     const fra = visDato ? dateFormatter.dayDateMonthYear(from) : dateFormatter.day(from);
     const til = visDato ? dateFormatter.dayDateMonthYear(to) : dateFormatter.day(to);
     if (fra === til) {
-        return (
-            <>
-                Antall timer <span style={{ textTransform: 'none' }}>{fra}</span>;
-            </>
-        );
+        return fra;
     }
-    return (
-        <>
-            Antall timer <span style={{ textTransform: 'none' }}>{fra}</span> til {til}
-        </>
-    );
+    return `${fra} til ${til}`;
 };
 
 const getUkerTekstListe = (uker: Arbeidsuke[]) => {

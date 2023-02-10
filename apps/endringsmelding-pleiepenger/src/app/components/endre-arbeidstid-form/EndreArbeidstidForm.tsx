@@ -215,7 +215,7 @@ export default EndreArbeidstidForm;
 
 export const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
-        return <BodyShort>Perioden {getDagerTekst(arbeidsuker[0].periode, true)}</BodyShort>;
+        return <BodyShort className="capsFirstChar">{getDagerTekst(arbeidsuker[0].periode, true)}</BodyShort>;
     }
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
     const getUker = (uker: Arbeidsuke[]) => {
