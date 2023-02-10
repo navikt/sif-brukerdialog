@@ -1,4 +1,4 @@
-import { BodyShort, Heading, ToggleGroup } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -18,8 +18,8 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { getArbeidsukeUkenummer, getDagerTekst } from '../../utils/arbeidsukeUtils';
-import { getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
+import { erHelArbeidsuke, getArbeidsukeUkenummer, getDagerTekst } from '../../utils/arbeidsukeUtils';
+import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import EndreArbeidstimerFormPart from './EndreArbeidstimerFormPart';
 
@@ -58,6 +58,8 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
         dispatch,
         state: { inputPreferanser },
     } = useSøknadContext();
+
+    const gjelderKortUke = arbeidsuker.length === 1 && erHelArbeidsuke(arbeidsuker[0].periode) === false;
 
     const onFormSubmit = (values: EndreArbeidstidFormValues) => {
         if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
@@ -143,6 +145,15 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                             </Heading>
                         </Block>
 
+                        {gjelderKortUke && (
+                            <Block margin="l" padBottom="m">
+                                <Alert variant="info" inline={true}>
+                                    Dette er en kort uke som går fra {getDagerTekst(arbeidsuker[0].periode)}. Det betyr
+                                    at du kun skal oppgi arbeidstiden for disse dagene.
+                                </Alert>
+                            </Block>
+                        )}
+
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}
                             includeValidationSummary={true}
@@ -213,9 +224,11 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
 export default EndreArbeidstidForm;
 
-export const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[]) => {
+const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
-        return <BodyShort className="capsFirstChar">{getDagerTekst(arbeidsuker[0].periode, true)}</BodyShort>;
+        return (
+            <BodyShort className="capsFirstChar">{getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}</BodyShort>
+        );
     }
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
     const getUker = (uker: Arbeidsuke[]) => {

@@ -11,7 +11,12 @@ import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { getDagerTekst } from '../../utils/arbeidsukeUtils';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import { EndreArbeidstidFormField, EndreArbeidstidFormValues } from './EndreArbeidstidForm';
-import { getArbeidsukerPerÅr, getUkerForEndring, UkerForEndringType } from './endreArbeidstidFormUtils';
+import {
+    getArbeidstidSpørsmålDescription,
+    getArbeidsukerPerÅr,
+    getUkerForEndring,
+    UkerForEndringType,
+} from './endreArbeidstidFormUtils';
 import { EndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 
 interface Props {
@@ -35,20 +40,20 @@ const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker
         <>
             {arbeidsuker.length > 1 && spørOmFørsteUke && spørOmSisteUke && (
                 <Alert variant="info">
-                    Den første og den siste uken er kortere enn en vanlig uke. Du må derfor oppgi arbeidstid for disse
-                    to ukene hver for seg.
+                    Den første og den siste uken er kortere enn en vanlig uke. Du må derfor oppgi antall timer med
+                    arbeid for disse to ukene hver for seg.
                 </Alert>
             )}
             {arbeidsuker.length > 1 && spørOmFørsteUke && !spørOmSisteUke && (
                 <Alert variant="info">
-                    Den første uken er kortere enn de andre ukene. Du må derfor oppgi arbeidstid for denne uken for seg
-                    selv.
+                    Den første uken er kortere enn de andre ukene. Du må derfor oppgi antall timer med arbeid for denne
+                    uken for seg selv.
                 </Alert>
             )}
             {arbeidsuker.length > 1 && !spørOmFørsteUke && spørOmSisteUke && (
                 <Alert variant="info">
-                    Den siste uken er kortere enn de andre ukene. Du må derfor oppgi arbeidstid for denne uken for seg
-                    selv.
+                    Den siste uken er kortere enn de andre ukene. Du må derfor oppgi antall timer med arbeid for denne
+                    uken for seg selv.
                 </Alert>
             )}
 
@@ -79,7 +84,7 @@ const getUkeTekst = (dato: Date) => `${dayjs(dato).isoWeek()}`;
 const getTimerEnUkeLabel = (arbeidsuke: Arbeidsuke): React.ReactNode => {
     const ukeOgÅr = getUkeTekst(arbeidsuke.periode.from);
     return erKortUke(arbeidsuke.periode)
-        ? `Hvor mange timer jobber du uke ${ukeOgÅr}? Obs - kort uke.`
+        ? `Hvor mange timer jobber du ${getDagerTekst(arbeidsuke.periode, false)} uke ${ukeOgÅr}?`
         : `Hvor mange timer jobber du uke ${ukeOgÅr}?`;
 };
 
@@ -177,7 +182,7 @@ const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke, erEnkeltukeEndring: 
             {renderTimerSpørsmål({
                 label: <>{label}</>,
                 fieldName: EndreArbeidstidFormField.timerFørsteUke,
-                description: getDagerPeriode(arbeidsuke.periode),
+                description: getArbeidstidSpørsmålDescription(arbeidsuke, erEnkeltukeEndring),
                 dateTestid: 'timer-førsteUke-verdi',
                 periode,
                 maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
@@ -231,7 +236,7 @@ const renderSpørsmålSisteUke = (arbeidsuke: Arbeidsuke, erEnkeltukeEndring: bo
             {renderTimerSpørsmål({
                 label: label,
                 fieldName: EndreArbeidstidFormField.timerSisteUke,
-                description: getDagerPeriode(arbeidsuke.periode),
+                description: getArbeidstidSpørsmålDescription(arbeidsuke, erEnkeltukeEndring),
                 dateTestid: 'timer-sisteUke-verdi',
                 periode,
                 maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,

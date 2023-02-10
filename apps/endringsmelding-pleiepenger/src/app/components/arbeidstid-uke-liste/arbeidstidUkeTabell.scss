@@ -28,8 +28,6 @@
 }
 
 .arbeidstidUkeTabell {
-    &__velgUke {
-    }
     &__ukenummer {
         width: 3ch;
     }
@@ -43,6 +41,16 @@
             margin-top: -0.3rem;
             margin-bottom: -0.3rem;
         }
+    }
+}
+.arbeidsukeTidsrom {
+    width: 100%;
+    display: flex;
+    &__tekst {
+        flex-grow: 2;
+    }
+    &__info {
+        font-size: 1.4rem;
     }
 }
 

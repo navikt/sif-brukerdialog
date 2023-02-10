@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { Arbeidsuke } from '../../types/Sak';
-import { sorterArbeidsuker } from '../../utils/arbeidsukeUtils';
+import { erHelArbeidsuke, getDagerTekst, sorterArbeidsuker } from '../../utils/arbeidsukeUtils';
 
 interface ArbeidsukerPerÅr {
     [isoWeekYear: string]: Arbeidsuke[];
@@ -83,4 +83,11 @@ export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType
         spørOmFørsteUke,
         spørOmSisteUke,
     };
+};
+
+export const getArbeidstidSpørsmålDescription = ({ periode }: Arbeidsuke, erEnkeltukeEndring: boolean): string => {
+    if (erHelArbeidsuke(periode)) {
+        return erEnkeltukeEndring ? getDagerTekst(periode, true) : getDagerTekst(periode, true);
+    }
+    return erEnkeltukeEndring ? getDagerTekst(periode, true) : getDagerTekst(periode, true);
 };

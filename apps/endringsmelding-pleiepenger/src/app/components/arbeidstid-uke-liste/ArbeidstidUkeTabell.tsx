@@ -1,7 +1,7 @@
 import { Alert, BodyShort, Button, Checkbox, Table, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { AddCircle, Edit } from '@navikt/ds-icons';
+import { AddCircle, Edit, InformationColored } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -11,6 +11,8 @@ import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import EditButton from './components/EditButton';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import './arbeidstidUkeTabell.scss';
+import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
+import { getDagerPeriode } from '../endre-arbeidstid-form/EndreArbeidstimerFormPart';
 
 export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
@@ -234,14 +236,12 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             </Table.DataCell>
                         )}
                         {renderCompactTable && (
-                            <Table.HeaderCell className="arbeidstidUkeTabell__periode--kompakt">
-                                Periode
-                            </Table.HeaderCell>
+                            <Table.HeaderCell className="arbeidstidUkeTabell__periode--kompakt">Uke</Table.HeaderCell>
                         )}
                         {!renderCompactTable && (
                             <>
                                 <Table.HeaderCell className="arbeidstidUkeTabell__ukenummer">Uke</Table.HeaderCell>
-                                <Table.HeaderCell className="arbeidstidUkeTabell__periode">Periode</Table.HeaderCell>
+                                <Table.HeaderCell className="arbeidstidUkeTabell__periode">Dato</Table.HeaderCell>
                                 {visNormaltid && (
                                     <Table.HeaderCell className="arbeidstidUkeTabell__normalt">
                                         <Tooltip content="Hvor mye du jobber normalt når du ikke har pleiepenger">
@@ -320,7 +320,24 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             {ukenummer}
                                         </Table.DataCell>
                                         <Table.DataCell data-testid="periode" className="arbeidstidUkeTabell__periode">
-                                            <div id={ukePeriodeTekstId}>{getPeriodeTekst(uke.periode)}</div>
+                                            <div id={ukePeriodeTekstId}>
+                                                <div className="arbeidsukeTidsrom">
+                                                    <span className="arbeidsukeTidsrom__tekst">
+                                                        {getPeriodeTekst(uke.periode)}
+                                                    </span>
+                                                    <span className="arbeidsukeTidsrom__info">
+                                                        {erHelArbeidsuke(uke.periode) ? undefined : (
+                                                            <Tooltip
+                                                                content={`Kort uke - ${getDagerPeriode(
+                                                                    uke.periode,
+                                                                    false
+                                                                )}`}>
+                                                                <InformationColored />
+                                                            </Tooltip>
+                                                        )}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </Table.DataCell>
                                         {visNormaltid && (
                                             <Table.DataCell
