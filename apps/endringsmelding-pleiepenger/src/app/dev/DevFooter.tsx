@@ -8,6 +8,7 @@ import { Settings } from '@navikt/ds-icons';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useMellomlagring } from '../hooks/useMellomlagring';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
@@ -51,6 +52,18 @@ const DevFooter: React.FunctionComponent = () => {
                             onChange={(user) => setMockUser(user)}>
                             <Radio value="scenario1">Scenario 1</Radio>
                             <Radio value="scenario2">Scenario 2</Radio>
+                            {getEnvironmentVariable('MSW') === 'on' ? (
+                                <>
+                                    <Radio value="soker1">Søker 1</Radio>
+                                    <Radio value="soker2">Søker 2</Radio>
+                                    <Radio value="soker3">Søker 3</Radio>
+                                    <Radio value="soker4">Søker 4</Radio>
+                                    <Radio value="soker5">Søker 5</Radio>
+                                    <Radio value="soker6">Søker 6</Radio>
+                                    <Radio value="kunFrilanser">Kun frilanser</Radio>
+                                    <Radio value="arbeidstakerFrilanser">Arbeidstaker og frilanser</Radio>
+                                </>
+                            ) : null}
                             {/* <Radio value="scenario3">Scenario 3</Radio> */}
                         </RadioGroup>
                     </FormBlock>

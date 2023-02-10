@@ -50,6 +50,21 @@ const mockData = {
         sak: require('../data/soker6/sak-mock.json'),
         arbeidsgiver: require('../data/soker6/arbeidsgiver-mock.json'),
     },
+    debug: {
+        søker: require('../data/debug/søker-mock.json'),
+        sak: require('../data/debug/sak-mock.json'),
+        arbeidsgiver: require('../data/debug/arbeidsgiver-mock.json'),
+    },
+    kunFrilanser: {
+        søker: require('../data/kunFrilanser/søker-mock.json'),
+        sak: require('../data/kunFrilanser/sak-mock.json'),
+        arbeidsgiver: require('../data/kunFrilanser/arbeidsgiver-mock.json'),
+    },
+    arbeidstakerFrilanser: {
+        søker: require('../data/arbeidstakerFrilanser/søker-mock.json'),
+        sak: require('../data/arbeidstakerFrilanser/sak-mock.json'),
+        arbeidsgiver: require('../data/arbeidstakerFrilanser/arbeidsgiver-mock.json'),
+    },
 };
 
 const baseUrl = '*';

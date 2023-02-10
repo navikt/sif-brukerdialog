@@ -55,10 +55,10 @@ const parseArbeidstid = ({
             arbeidstidInfo: parseArbeidstidInfo(arbeidstaker.arbeidstidInfo),
         })),
         frilanserArbeidstidInfo: frilanserArbeidstidInfo?.perioder
-            ? parseArbeidstidInfo(frilanserArbeidstidInfo.perioder)
+            ? parseArbeidstidInfo(frilanserArbeidstidInfo)
             : undefined,
         selvstendigNæringsdrivendeArbeidstidInfo: selvstendigNæringsdrivendeArbeidstidInfo?.perioder
-            ? parseArbeidstidInfo(selvstendigNæringsdrivendeArbeidstidInfo.perioder)
+            ? parseArbeidstidInfo(selvstendigNæringsdrivendeArbeidstidInfo)
             : undefined,
     };
 };
@@ -71,7 +71,7 @@ const harNormalarbeidstid = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
     const keys = Object.keys(perioder);
     if (keys.length === 1) {
         const periode = perioder[keys[0]];
-        return durationUtils.durationIsZero(periode.jobberNormaltTimerPerDag);
+        return durationUtils.durationIsGreatherThanZero(periode.jobberNormaltTimerPerDag);
     }
     return keys.length > 0;
 };
