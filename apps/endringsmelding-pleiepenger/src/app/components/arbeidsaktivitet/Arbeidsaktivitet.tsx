@@ -31,7 +31,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
             <Block margin="xl">
                 <Heading level="3" size="small" spacing={true}>
-                    Perioder med pleiepenger
+                    {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Din periode med pleiepenger'}
                 </Heading>
             </Block>
 

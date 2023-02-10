@@ -113,7 +113,9 @@ const ArbeidstidStep = () => {
                     </p>
 
                     <InfoList>
-                        <li>Du kan velge å endre enkeltuker, eller flere uker innenfor samme periode</li>
+                        <li>
+                            Du kan velge å endre enkeltuker, eller flere uker innenfor samme periode med pleiepenger
+                        </li>
                         <li>Du kan oppgi arbeidstid per uke i timer eller som prosent</li>
                         <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
                     </InfoList>
