@@ -8,6 +8,6 @@ export const getEndringsdato = (): Date => new Date();
 
 /** 3 måneder bakover og 12 måneder fremover */
 export const getMaksEndringsperiode = (endringsdato: Date): DateRange => ({
-    from: dayjs(endringsdato).startOf('isoWeek').subtract(3, 'months').startOf('day').toDate(),
-    to: dayjs(endringsdato).add(12, 'months').startOf('day').toDate(),
+    from: dayjs(endringsdato).startOf('month').subtract(3, 'months').startOf('day').toDate(),
+    to: dayjs(endringsdato).endOf('month').add(12, 'months').startOf('day').toDate(),
 });
