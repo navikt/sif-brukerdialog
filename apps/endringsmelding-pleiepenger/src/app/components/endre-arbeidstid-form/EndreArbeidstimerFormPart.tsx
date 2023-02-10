@@ -29,6 +29,8 @@ const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker
     const ukerForEndring = getUkerForEndring(arbeidsuker);
     const { spørOmFørsteUke, spørOmSisteUke, spørOmSnittUker } = ukerForEndring;
 
+    const erEnkeltukeEndring = arbeidsuker.length === 1;
+
     return (
         <>
             {arbeidsuker.length > 1 && spørOmFørsteUke && spørOmSisteUke && (
@@ -50,22 +52,35 @@ const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker
                 </Alert>
             )}
 
-            <Block margin="xl">
-                <Heading level="2" size="xsmall">
-                    {arbeidsuker.length > 1 ? 'Oppgi antall timer du jobber per uke' : 'Oppgi antall timer du jobber'}
-                </Heading>
-            </Block>
+            {arbeidsuker.length > 1 && (
+                <Block margin="xl">
+                    <Heading level="2" size="small">
+                        Oppgi antall timer du jobber per uke
+                    </Heading>
+                </Block>
+            )}
 
-            {spørOmFørsteUke && renderSpørsmålFørsteUke(arbeidsuker[0])}
-            {spørOmSnittUker && renderSpørsmålSnittUker(arbeidsuker, ukerForEndring)}
-            {spørOmSisteUke && renderSpørsmålSisteUke(arbeidsuker[arbeidsuker.length - 1])}
+            {spørOmFørsteUke && renderSpørsmålFørsteUke(arbeidsuker[0], erEnkeltukeEndring)}
+            {spørOmSnittUker && renderSpørsmålSnittUker(arbeidsuker, ukerForEndring, erEnkeltukeEndring)}
+            {spørOmSisteUke && renderSpørsmålSisteUke(arbeidsuker[arbeidsuker.length - 1], erEnkeltukeEndring)}
         </>
     );
 };
 
 export default EndreArbeidstimerFormPart;
+
 const erKortUke = (uke: DateRange) => {
     return getDatesInDateRange(uke, true).length < 5;
+};
+
+const getUkeTekst = (dato: Date) => `${dayjs(dato).isoWeek()}`;
+// const getUkeOgÅrTekst = (dato: Date) => `${dayjs(dato).isoWeek()} (${dayjs(dato).isoWeekYear()})`;
+
+const getTimerEnUkeLabel = (arbeidsuke: Arbeidsuke): React.ReactNode => {
+    const ukeOgÅr = getUkeTekst(arbeidsuke.periode.from);
+    return erKortUke(arbeidsuke.periode)
+        ? `Hvor mange timer jobber du uke ${ukeOgÅr}? Obs - kort uke.`
+        : `Hvor mange timer jobber du uke ${ukeOgÅr}?`;
 };
 
 const getUkerPeriode = (periode: DateRange): React.ReactNode => {
@@ -154,13 +169,13 @@ const getSnittPeriode = (arbeidsuker: Arbeidsuke[], ukerForEndring: UkerForEndri
     };
 };
 
-const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke) => {
+const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke, erEnkeltukeEndring: boolean) => {
     const periode = `${getPeriodeTekst(arbeidsuke.periode)} (${getDagerTekst(arbeidsuke.periode)})`;
-    const uke = getUkerPeriode(arbeidsuke.periode);
+    const label = erEnkeltukeEndring ? getTimerEnUkeLabel(arbeidsuke) : getUkerPeriode(arbeidsuke.periode);
     return (
         <FormBlock>
             {renderTimerSpørsmål({
-                label: <>{uke}</>,
+                label: <>{label}</>,
                 fieldName: EndreArbeidstidFormField.timerFørsteUke,
                 description: <>{getDagerPeriode(arbeidsuke.periode)}</>,
                 dateTestid: 'timer-førsteUke-verdi',
@@ -171,16 +186,11 @@ const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke) => {
     );
 };
 
-const getUkerTekstListe = (uker: Arbeidsuke[]) => {
-    const ukerTekst = uker
-        .map((a) => a.periode.from)
-        .map((from) => dayjs(from).isoWeek())
-        .join(', ');
-
-    return ukerTekst;
-};
-
-const renderSpørsmålSnittUker = (arbeidsuker: Arbeidsuke[], ukerForEndring: UkerForEndringType) => {
+const renderSpørsmålSnittUker = (
+    arbeidsuker: Arbeidsuke[],
+    ukerForEndring: UkerForEndringType,
+    enkeltukeEndring?: boolean
+) => {
     const periode = `${getPeriodeTekst(getSnittPeriode(arbeidsuker, ukerForEndring))}`;
 
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
@@ -202,12 +212,29 @@ const renderSpørsmålSnittUker = (arbeidsuker: Arbeidsuke[], ukerForEndring: Uk
     return (
         <FormBlock>
             {renderTimerSpørsmål({
-                label: `Hele uker - ${getUkerOgÅrTekst()}`,
+                label: enkeltukeEndring ? getTimerEnUkeLabel(arbeidsuker[0]) : `Hele uker - ${getUkerOgÅrTekst()}`,
                 fieldName: EndreArbeidstidFormField.snittTimerPerUke,
                 description: `Antall timer i snitt per uke`, //`${getUkerPeriode(getSnittPeriode(arbeidsuker, ukerForEndring))}`,
                 dateTestid: 'timer-verdi',
                 periode,
                 maksTimer: 7 * 24,
+            })}
+        </FormBlock>
+    );
+};
+
+const renderSpørsmålSisteUke = (arbeidsuke: Arbeidsuke, erEnkeltukeEndring: boolean) => {
+    const periode = `${getPeriodeTekst(arbeidsuke.periode)} (${getDagerPeriode(arbeidsuke.periode)})`;
+    const label = erEnkeltukeEndring ? getTimerEnUkeLabel(arbeidsuke) : getUkerPeriode(arbeidsuke.periode);
+    return (
+        <FormBlock>
+            {renderTimerSpørsmål({
+                label: label,
+                fieldName: EndreArbeidstidFormField.timerSisteUke,
+                description: <>{getDagerPeriode(arbeidsuke.periode)}</>,
+                dateTestid: 'timer-sisteUke-verdi',
+                periode,
+                maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
             })}
         </FormBlock>
     );
@@ -230,19 +257,11 @@ export const getDagerPeriode = ({ from, to }: DateRange, visDato = true): React.
     );
 };
 
-const renderSpørsmålSisteUke = (arbeidsuke: Arbeidsuke) => {
-    const periode = `${getPeriodeTekst(arbeidsuke.periode)} (${getDagerPeriode(arbeidsuke.periode)})`;
-    const uke = getUkerPeriode(arbeidsuke.periode);
-    return (
-        <FormBlock>
-            {renderTimerSpørsmål({
-                label: uke,
-                fieldName: EndreArbeidstidFormField.timerSisteUke,
-                description: <>{getDagerPeriode(arbeidsuke.periode)}</>,
-                dateTestid: 'timer-sisteUke-verdi',
-                periode,
-                maksTimer: getDatesInDateRange(arbeidsuke.periode).length * 24,
-            })}
-        </FormBlock>
-    );
+const getUkerTekstListe = (uker: Arbeidsuke[]) => {
+    const ukerTekst = uker
+        .map((a) => a.periode.from)
+        .map((from) => dayjs(from).isoWeek())
+        .join(', ');
+
+    return ukerTekst;
 };
