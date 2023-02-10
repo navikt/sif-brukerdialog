@@ -1,5 +1,7 @@
 import { Alert, BodyShort, Heading } from '@navikt/ds-react';
 import React from 'react';
+// import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
@@ -9,10 +11,8 @@ import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { getDagerTekst } from '../../utils/arbeidsukeUtils';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import { EndreArbeidstidFormField, EndreArbeidstidFormValues } from './EndreArbeidstidForm';
-import { getUkerForEndring, UkerForEndringType } from './endreArbeidstidFormUtils';
+import { getArbeidsukerPerÅr, getUkerForEndring, UkerForEndringType } from './endreArbeidstidFormUtils';
 import { EndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
-// import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -22,7 +22,7 @@ interface Props {
 
 const { NumberInput } = getTypedFormComponents<EndreArbeidstidFormField, EndreArbeidstidFormValues, ValidationError>();
 
-const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker, arbeidAktivitet }) => {
+const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker }) => {
     if (arbeidsuker.length === 0) {
         return <Alert variant="info">Ingen uker er valgt</Alert>;
     }
@@ -31,16 +31,28 @@ const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker
 
     return (
         <>
-            {arbeidsuker.length > 1 && (spørOmFørsteUke || spørOmSisteUke) && (
+            {arbeidsuker.length > 1 && spørOmFørsteUke && spørOmSisteUke && (
                 <Alert variant="info">
-                    Noen av ukene du har valgt er ikke hele uker. Du må derfor oppgi arbeidstid for disse hver for seg.
-                    {/* <ExpandableInfo title="Hva betyr det at en uke ikke er hel?">info</ExpandableInfo> */}
+                    Den første og den siste uken er kortere enn en vanlig uke. Du må derfor oppgi arbeidstid for disse
+                    to ukene hver for seg.
+                </Alert>
+            )}
+            {arbeidsuker.length > 1 && spørOmFørsteUke && !spørOmSisteUke && (
+                <Alert variant="info">
+                    Den første uken er kortere enn de andre ukene. Du må derfor oppgi arbeidstid for denne uken for seg
+                    selv.
+                </Alert>
+            )}
+            {arbeidsuker.length > 1 && !spørOmFørsteUke && spørOmSisteUke && (
+                <Alert variant="info">
+                    Den siste uken er kortere enn de andre ukene. Du må derfor oppgi arbeidstid for denne uken for seg
+                    selv.
                 </Alert>
             )}
 
             <Block margin="xl">
                 <Heading level="2" size="xsmall">
-                    Hvor mange timer jobber du i ukene du har valgt?
+                    {arbeidsuker.length > 1 ? 'Oppgi antall timer du jobber per uke' : 'Oppgi antall timer du jobber'}
                 </Heading>
             </Block>
 
@@ -52,6 +64,9 @@ const EndreArbeidstimerFormPart: React.FunctionComponent<Props> = ({ arbeidsuker
 };
 
 export default EndreArbeidstimerFormPart;
+const erKortUke = (uke: DateRange) => {
+    return getDatesInDateRange(uke, true).length < 5;
+};
 
 const getUkerPeriode = (periode: DateRange): React.ReactNode => {
     const uker = getWeeksInDateRange(periode);
@@ -59,8 +74,9 @@ const getUkerPeriode = (periode: DateRange): React.ReactNode => {
         return 'Ingen uke.';
     }
     if (uker.length === 1) {
-        const day = dayjs(uker[0].from);
-        return `Uke ${day.isoWeek()} (${day.isoWeekYear()})`;
+        const uke = uker[0];
+        const day = dayjs(uke.from);
+        return `${erKortUke(uke) ? 'Kort uke - uke' : 'Uke'} ${day.isoWeek()} (${day.isoWeekYear()})`;
     }
     const førsteDag = dayjs(uker[0].from);
     const sisteDag = dayjs(uker[uker.length - 1].from);
@@ -155,12 +171,38 @@ const renderSpørsmålFørsteUke = (arbeidsuke: Arbeidsuke) => {
     );
 };
 
+const getUkerTekstListe = (uker: Arbeidsuke[]) => {
+    const ukerTekst = uker
+        .map((a) => a.periode.from)
+        .map((from) => dayjs(from).isoWeek())
+        .join(', ');
+
+    return ukerTekst;
+};
+
 const renderSpørsmålSnittUker = (arbeidsuker: Arbeidsuke[], ukerForEndring: UkerForEndringType) => {
     const periode = `${getPeriodeTekst(getSnittPeriode(arbeidsuker, ukerForEndring))}`;
+
+    const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
+
+    const getUkerOgÅrTekst = () => {
+        const årKeys = Object.keys(ukerPerÅr);
+        if (årKeys.length === 1) {
+            return getUkerTekstListe(ukerPerÅr[årKeys[0]]);
+        }
+        const årTekst = årKeys
+            .map((år) => {
+                return `${år}: uke ${getUkerTekstListe(ukerPerÅr[år])}`;
+            })
+            .join('. ');
+
+        return årTekst;
+    };
+
     return (
         <FormBlock>
             {renderTimerSpørsmål({
-                label: `Uke 45 (2022) - uke 46 (2022)`,
+                label: `Hele uker - ${getUkerOgÅrTekst()}`,
                 fieldName: EndreArbeidstidFormField.snittTimerPerUke,
                 description: `Antall timer i snitt per uke`, //`${getUkerPeriode(getSnittPeriode(arbeidsuker, ukerForEndring))}`,
                 dateTestid: 'timer-verdi',

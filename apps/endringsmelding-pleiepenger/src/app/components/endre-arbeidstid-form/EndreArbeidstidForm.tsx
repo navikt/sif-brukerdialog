@@ -181,7 +181,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                             className="arbeidstidUkeInput"
                                             name={EndreArbeidstidFormField.prosentAvNormalt}
                                             label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
-                                            description={getProsentDescription(arbeidsuker)}
+                                            description={getUkerOgÅrBeskrivelse(arbeidsuker)}
                                             data-testid="prosent-verdi"
                                             width="xs"
                                             maxLength={4}
@@ -213,12 +213,11 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
 export default EndreArbeidstidForm;
 
-const getProsentDescription = (arbeidsuker: Arbeidsuke[]) => {
+export const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
         return <BodyShort>Perioden {getDagerTekst(arbeidsuker[0].periode, true)}</BodyShort>;
     }
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
-
     const getUker = (uker: Arbeidsuke[]) => {
         if (!uker) {
             // eslint-disable-next-line no-console
@@ -228,17 +227,8 @@ const getProsentDescription = (arbeidsuker: Arbeidsuke[]) => {
     };
 
     const årKeys = Object.keys(ukerPerÅr);
-
-    // const ikkeFulleUker = arbeidsuker.find((uke) => uke.antallDagerMedArbeidstid < 5);
-
     return (
         <>
-            {/* {ikkeFulleUker && (
-                <BodyShort>
-                    Noen av ukene du har valgt er ikke hele uker (mandag - søndag). Da skal du oppgi hvor mange prosent
-                    du jobber disse dagene, og ikke tenke på de andre dagene.
-                </BodyShort>
-            )} */}
             <Block margin="m">
                 <ExpandableInfo title={`Vis hvilke ${arbeidsuker.length} uker som er valgt`}>
                     {årKeys.map((år) => {
