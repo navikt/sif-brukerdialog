@@ -22,6 +22,7 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -124,6 +125,7 @@ const setupSøknadInitialData = async (
 
 function useSøknadInitialData(): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
+    const { logInfo } = useAmplitudeInstance();
 
     const fetch = async () => {
         try {
@@ -138,6 +140,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
             const samletTidsperiode = getDateRangeForK9Saker(k9saker);
             if (samletTidsperiode === undefined) {
+                await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.finnerIkkeTidsperiode });
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: false,
@@ -149,6 +152,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
             const resultat = tilgangskontroll(k9saker, arbeidsgivere);
             if (resultat.kanBrukeSøknad === false) {
+                await logInfo({ brukerIkkeTilgang: resultat.årsak });
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: false,
@@ -157,6 +161,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 });
                 return Promise.resolve();
             }
+
+            logInfo({
+                antallSaker: k9saker.length,
+            });
 
             setInitialData({
                 status: RequestStatus.success,

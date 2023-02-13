@@ -219,11 +219,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 {dateFormatter.compact(uke.periode.to)}
                                             </BodyShort>
                                             <div style={{ padding: '.5rem 0' }}>
-                                                <ArbeidstidUkeInfoListe
-                                                    uke={uke}
-                                                    visOpprinneligTid={true}
-                                                    medLabels={true}
-                                                />
+                                                <ArbeidstidUkeInfoListe uke={uke} />
                                             </div>
                                         </div>
                                         {kanEndreEnkeltuke && (

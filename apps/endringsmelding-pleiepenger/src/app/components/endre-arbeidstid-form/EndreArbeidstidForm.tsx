@@ -16,19 +16,17 @@ import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
-import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
+import { Arbeidsuke } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { erHelArbeidsuke, getArbeidsukeUkenummer, getDagerTekst } from '../../utils/arbeidsukeUtils';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
-import EndreArbeidstimerFormPart from './EndreArbeidstimerFormPart';
 import './endreArbeidstidForm.scss';
 
 export type EndreArbeidstidFormData = Omit<ArbeidstidAktivitetEndring, 'arbeidAktivitetId'>;
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
-    arbeidAktivitet: ArbeidAktivitet;
     onSubmit: (data: EndreArbeidstidFormData[]) => void;
     onCancel: () => void;
 }
@@ -53,7 +51,7 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker, arbeidAktivitet }) => {
+const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker }) => {
     const intl = useIntl();
     const {
         dispatch,
@@ -210,35 +208,27 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                     )}
                                     {timerEllerProsent === TimerEllerProsent.TIMER && (
                                         <>
-                                            {1 + 1 === 3 ? (
-                                                <EndreArbeidstimerFormPart
-                                                    intlValues={intlValues}
-                                                    arbeidsuker={arbeidsuker}
-                                                    arbeidAktivitet={arbeidAktivitet}
-                                                />
-                                            ) : (
-                                                <NumberInput
-                                                    className="arbeidstidUkeInput"
-                                                    name={EndreArbeidstidFormField.snittTimerPerUke}
-                                                    label={intlHelper(
-                                                        intl,
-                                                        arbeidsuker.length === 1
-                                                            ? `endreArbeidstid.timerAvNormalt.spm`
-                                                            : `endreArbeidstid.timerAvNormalt.flereUker.spm`,
-                                                        intlValues
-                                                    )}
-                                                    data-testid="timer-verdi"
-                                                    width="xs"
-                                                    maxLength={4}
-                                                    validate={(value) => {
-                                                        return getNumberValidator({
-                                                            required: true,
-                                                            min: 0,
-                                                            max: 24 * 7,
-                                                        })(value);
-                                                    }}
-                                                />
-                                            )}
+                                            <NumberInput
+                                                className="arbeidstidUkeInput"
+                                                name={EndreArbeidstidFormField.snittTimerPerUke}
+                                                label={intlHelper(
+                                                    intl,
+                                                    arbeidsuker.length === 1
+                                                        ? `endreArbeidstid.timerAvNormalt.spm`
+                                                        : `endreArbeidstid.timerAvNormalt.flereUker.spm`,
+                                                    intlValues
+                                                )}
+                                                data-testid="timer-verdi"
+                                                width="xs"
+                                                maxLength={4}
+                                                validate={(value) => {
+                                                    return getNumberValidator({
+                                                        required: true,
+                                                        min: 0,
+                                                        max: 24 * 7,
+                                                    })(value);
+                                                }}
+                                            />
                                         </>
                                     )}
                                 </FormBlock>
