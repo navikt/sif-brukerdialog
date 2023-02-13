@@ -14,6 +14,7 @@ import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/Søknad
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { getSakFromK9Sak } from '../../utils/getSakFromK9Sak';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 enum FormFields {
     barnAktørId = 'barnAktørId',
@@ -32,6 +33,7 @@ const VelgSakPage = () => {
         dispatch,
     } = useSøknadContext();
     const navigate = useNavigate();
+    useLogSidevisning('velgSak');
 
     const velgSak = (values: Partial<FormValues>) => {
         const k9Sak = k9saker.find((sak) => sak.barn.aktørId === values.barnAktørId);

@@ -12,6 +12,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { Sak } from '../../types/Sak';
 import { getAktiviteterSomKanEndres, getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 // import { getLenker } from '../../lenker';
 
 const VelkommenPage = () => {
@@ -21,6 +22,8 @@ const VelkommenPage = () => {
     } = useSøknadContext();
 
     const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
+
+    useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const startSøknad = (sak: Sak) => {
         const steps = getSøknadSteps(sak);

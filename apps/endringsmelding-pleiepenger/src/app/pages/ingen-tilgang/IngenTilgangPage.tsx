@@ -6,6 +6,7 @@ import { Søker } from '../../types/Søker';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { Link } from 'react-router-dom';
 import { getLenker } from '../../lenker';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 interface Props {
     søker: Søker;
@@ -76,6 +77,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 };
 
 const IngenTilgangPage = ({ årsak, søker }: Props) => {
+    useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
     return (
         <Page title="Ingen tilgang">
             <SifGuidePanel poster={true}>

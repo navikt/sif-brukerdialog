@@ -15,6 +15,7 @@ import AccordionHeader from '@navikt/ds-react/esm/accordion/AccordionHeader';
 import AccordionContent from '@navikt/ds-react/esm/accordion/AccordionContent';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { Sak } from '../types/Sak';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 interface Props {
     stepId: StepId;
@@ -29,6 +30,8 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, children }) 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
     const stepConfig = getSøknadStepConfig(sak);
+
+    useLogSidevisning(stepId);
 
     const { pageTitleIntlKey, index } = stepConfig[stepId];
 

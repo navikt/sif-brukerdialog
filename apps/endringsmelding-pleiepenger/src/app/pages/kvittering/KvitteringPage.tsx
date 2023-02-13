@@ -4,8 +4,10 @@ import Kvittering from '@navikt/sif-common-core-ds/lib/components/kvittering/Kvi
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { Button } from '@navikt/ds-react';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const KvitteringPage = () => {
+    useLogSidevisning(SIFCommonPageKey.kvittering);
     return (
         <Page title="Endringsmelding er mottatt">
             <Kvittering tittel="Melding om endring er mottatt">
