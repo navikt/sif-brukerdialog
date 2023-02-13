@@ -36,7 +36,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({
         return (
             <div className={bem.block}>
                 <div className={bem.element('faktisk')}>
-                    {medLabels && <BodyShort size="small">Arbeid i perioden:</BodyShort>}
+                    {medLabels && <BodyShort size="small">Jobber i perioden:</BodyShort>}
                     <strong className={bem.element('timer')} data-testid="timer-faktisk">
                         <DurationText duration={faktisk} />
                     </strong>
