@@ -1,4 +1,4 @@
-import { Heading, Ingress, Link } from '@navikt/ds-react';
+import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
@@ -12,7 +12,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { Sak } from '../../types/Sak';
 import { getAktiviteterSomKanEndres, getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
-import { getLenker } from '../../lenker';
+// import { getLenker } from '../../lenker';
 
 const VelkommenPage = () => {
     const {
@@ -57,7 +57,7 @@ const VelkommenPage = () => {
                         Her kan du kan melde inn hvor mye du jobber i perioden med pleiepenger for{' '}
                         <strong>{barnetsNavn}</strong>.
                     </p>
-                    <p>Arbeidsforhold du kan endre på</p>
+                    <p>Arbeidsforhold du kan melde endring på:</p>
                     <InfoList>
                         {aktiviteterSomKanEndres.map((aktivitet, index) => {
                             return (
@@ -67,11 +67,10 @@ const VelkommenPage = () => {
                             );
                         })}
                     </InfoList>
-                    <p>
-                        Dersom du har behov for å melde i fra om andre endringer, kan du gjøre dette ved å sende en
-                        melding via <Link href={getLenker().skrivTilOss}>skriv til oss</Link>, eller sende inn en ny
-                        søknad.
-                    </p>
+                    {/* <p>
+                        Dersom det mangler et arbeidsforhold, kan du ta{' '}
+                        <Link href={getLenker().kontaktOss}>kontakt med oss</Link>.
+                    </p> */}
                 </Ingress>
                 <OmSøknaden />
             </SifGuidePanel>
