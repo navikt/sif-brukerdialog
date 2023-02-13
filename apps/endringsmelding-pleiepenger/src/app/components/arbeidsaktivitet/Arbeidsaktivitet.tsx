@@ -7,8 +7,10 @@ import {
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
 import React, { useState } from 'react';
+import { SkrivTilOssLink } from '../../lenker';
 import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
+import { getEndringsdato, getMaksEndringsperiode } from '../../utils/endringsperiode';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
@@ -31,8 +33,11 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
             <Block margin="xl">
                 <Heading level="3" size="small" spacing={true}>
-                    {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Din periode med pleiepenger'}
+                    {perioder.length > 1
+                        ? 'Perioder med pleiepenger hvor du kan endre arbeidstid'
+                        : 'Uker hvor du kan endre arbeidstid'}
                 </Heading>
+                {renderInfoOmEndringUtenforEndringsperiode(arbeidAktivitet)}
             </Block>
 
             {perioder.length === 1 && (
@@ -116,6 +121,44 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             />
         </div>
     );
+};
+
+const renderInfoOmEndringUtenforEndringsperiode = ({
+    harPerioderEtterEndringsperiode,
+    harPerioderFørEndringsperiode,
+}: ArbeidAktivitet) => {
+    const endringsperiode = getMaksEndringsperiode(getEndringsdato());
+    const førDato = dateFormatter.full(endringsperiode.from);
+    const etterDato = dateFormatter.full(endringsperiode.to);
+    if (harPerioderFørEndringsperiode && !harPerioderEtterEndringsperiode) {
+        return (
+            <Block padBottom="l">
+                <p>
+                    Dersom du ønsker å endre arbeidstid for uker som er før {førDato}, må du sende oss en melding via{' '}
+                    <SkrivTilOssLink />.
+                </p>
+            </Block>
+        );
+    } else if (!harPerioderFørEndringsperiode && harPerioderEtterEndringsperiode) {
+        return (
+            <Block padBottom="l">
+                <p>
+                    Dersom du ønsker å endre arbeidstid for uker som er etter {etterDato}, må du sende oss en melding
+                    via <SkrivTilOssLink />.
+                </p>
+            </Block>
+        );
+    } else if (harPerioderFørEndringsperiode && harPerioderEtterEndringsperiode) {
+        return (
+            <Block padBottom="l">
+                <p>
+                    Dersom du ønsker å endre arbeidstid for uker som er før {førDato} eller etter {etterDato}, må du
+                    sende oss en melding via <SkrivTilOssLink />.
+                </p>
+            </Block>
+        );
+    }
+    return null;
 };
 
 export default Arbeidsaktivitet;

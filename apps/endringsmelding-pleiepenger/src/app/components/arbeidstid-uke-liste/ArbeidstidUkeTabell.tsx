@@ -16,6 +16,7 @@ import { getDagerPeriode } from '../endre-arbeidstid-form/EndreArbeidstimerFormP
 
 export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
+    kanVelges: boolean;
     isoDateRange: ISODateRange;
     periode: DateRange;
     antallDagerMedArbeidstid: number;
@@ -61,6 +62,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
     const kanVelgeFlereUker = onEndreUker !== undefined && antallUkerTotalt > 1;
     const kanEndreEnkeltuke = onEndreUker && visVelgUke !== true;
+    const korteUker = listItems
+        .filter((i, idx) => idx < (antallSynlig || 0) && erHelArbeidsuke(i.periode) === false)
+        .map((uke) => dayjs(uke.periode.from).isoWeek());
+    const harKorteUker = korteUker.length > 0;
 
     useEffect(() => {
         setValgteUker([]);
@@ -113,10 +118,28 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                 data-testid="endre-flere-uker-cb"
                 onChange={(evt) => {
                     setVisVelgUke(evt.target.checked);
+                    setVisMeldingOmUkerMåVelges(false);
                     setValgteUker([]);
                 }}>
                 Jeg ønsker å endre flere uker samtidig
             </Checkbox>
+            {visVelgUke && harKorteUker && (
+                <Block margin="m" padBottom="l">
+                    <Alert variant="info" inline={false}>
+                        {korteUker.length === 1 ? (
+                            <>
+                                Uke {korteUker[0]} er en kort uke, og kan ikke endres sammen med de andre ukene. Denne
+                                må endres for seg selv.
+                            </>
+                        ) : (
+                            <>
+                                Ukene {korteUker.join(' og ')} er korte uker, og kan ikke endres sammen med de andre
+                                ukene. Disse må endres hver for seg.
+                            </>
+                        )}
+                    </Alert>
+                </Block>
+            )}
         </>
     );
 
@@ -226,7 +249,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             ? setValgteUker([])
                                             : setValgteUker(
                                                   synligeUker
-                                                      .filter((uke) => uke.kanEndres)
+                                                      .filter((uke) => uke.kanEndres && uke.kanVelges)
                                                       .map(({ isoDateRange }) => isoDateRange)
                                               );
                                     }}
@@ -281,7 +304,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 data-testid={`uke_${ukenummer}`}>
                                 {visVelgUke && (
                                     <Table.DataCell className="arbeidstidUkeTabell__velgUke">
-                                        {uke.kanEndres && (
+                                        {uke.kanEndres && uke.kanVelges && (
                                             <Checkbox
                                                 hideLabel
                                                 checked={selected}

@@ -60,8 +60,8 @@
     align-items: flex-start;
     &__velgUke {
         min-width: 2.5rem;
-        margin-top: -12px;
         flex-grow: 0;
+        align-self: center;
     }
     &__info {
         flex-grow: 1;

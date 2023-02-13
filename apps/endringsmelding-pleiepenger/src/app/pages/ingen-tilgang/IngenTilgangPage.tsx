@@ -5,7 +5,7 @@ import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { Link } from 'react-router-dom';
-import getLenker from '../../lenker';
+import { getLenker } from '../../lenker';
 
 interface Props {
     søker: Søker;

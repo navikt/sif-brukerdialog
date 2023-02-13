@@ -14,7 +14,7 @@ import { K9Sak, K9SakArbeidstid, K9SakArbeidstidInfo, K9SakArbeidstidPeriodeMap,
  * @returns Barn
  */
 
-const parseBarn = (barn: K9FormatBarn): K9SakBarn => {
+export const parseK9FormatBarn = (barn: K9FormatBarn): K9SakBarn => {
     return {
         ...barn,
         fødselsdato: ISODateToDate(barn.fødselsdato),
@@ -22,7 +22,7 @@ const parseBarn = (barn: K9FormatBarn): K9SakBarn => {
     };
 };
 
-const parseArbeidstidInfo = (arbeidstid: K9FormatArbeidstidInfo): K9SakArbeidstidInfo => {
+export const parseK9FormatArbeidstidInfo = (arbeidstid: K9FormatArbeidstidInfo): K9SakArbeidstidInfo => {
     const { perioder = {} } = arbeidstid;
     const periodeMap: K9SakArbeidstidPeriodeMap = {};
 
@@ -43,7 +43,7 @@ const parseArbeidstidInfo = (arbeidstid: K9FormatArbeidstidInfo): K9SakArbeidsti
  * @param arbeidstid: K9FormatArbeidstid
  * @returns YtelseArbeidstid
  */
-const parseArbeidstid = ({
+export const parseK9FormatArbeidstid = ({
     arbeidstakerList,
     frilanserArbeidstidInfo,
     selvstendigNæringsdrivendeArbeidstidInfo,
@@ -52,18 +52,18 @@ const parseArbeidstid = ({
         arbeidstakerList: arbeidstakerList?.map((arbeidstaker) => ({
             organisasjonsnummer: arbeidstaker.organisasjonsnummer,
             norskIdentitetsnummer: arbeidstaker.norskIdentitetsnummer || undefined,
-            arbeidstidInfo: parseArbeidstidInfo(arbeidstaker.arbeidstidInfo),
+            arbeidstidInfo: parseK9FormatArbeidstidInfo(arbeidstaker.arbeidstidInfo),
         })),
         frilanserArbeidstidInfo: frilanserArbeidstidInfo?.perioder
-            ? parseArbeidstidInfo(frilanserArbeidstidInfo)
+            ? parseK9FormatArbeidstidInfo(frilanserArbeidstidInfo)
             : undefined,
         selvstendigNæringsdrivendeArbeidstidInfo: selvstendigNæringsdrivendeArbeidstidInfo?.perioder
-            ? parseArbeidstidInfo(selvstendigNæringsdrivendeArbeidstidInfo)
+            ? parseK9FormatArbeidstidInfo(selvstendigNæringsdrivendeArbeidstidInfo)
             : undefined,
     };
 };
 
-const harNormalarbeidstid = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
+export const harNormalarbeidstidIK9SakArbeidstidInfo = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
     if (!arbeidstidInfo) {
         return false;
     }
@@ -76,23 +76,27 @@ const harNormalarbeidstid = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
     return keys.length > 0;
 };
 
-const fjernArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
+const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
 
     return {
-        arbeidstakerList: arbeidstakerList?.filter((a) => harNormalarbeidstid(a.arbeidstidInfo)),
-        frilanserArbeidstidInfo: harNormalarbeidstid(frilanserArbeidstidInfo) ? frilanserArbeidstidInfo : undefined,
-        selvstendigNæringsdrivendeArbeidstidInfo: harNormalarbeidstid(selvstendigNæringsdrivendeArbeidstidInfo)
+        arbeidstakerList: arbeidstakerList?.filter((a) => harNormalarbeidstidIK9SakArbeidstidInfo(a.arbeidstidInfo)),
+        frilanserArbeidstidInfo: harNormalarbeidstidIK9SakArbeidstidInfo(frilanserArbeidstidInfo)
+            ? frilanserArbeidstidInfo
+            : undefined,
+        selvstendigNæringsdrivendeArbeidstidInfo: harNormalarbeidstidIK9SakArbeidstidInfo(
+            selvstendigNæringsdrivendeArbeidstidInfo
+        )
             ? selvstendigNæringsdrivendeArbeidstidInfo
             : undefined,
     };
 };
 /**
- * Parser K9Format sak
+ * Parser K9Format
  * @param data data mottat fra backend
  * @returns K9Sak
  */
-export const parseK9FormatSak = (data: K9Format): K9Sak => {
+export const parseK9Format = (data: K9Format): K9Sak => {
     const {
         søknad: { ytelse, søker, søknadId },
         barn,
@@ -102,7 +106,7 @@ export const parseK9FormatSak = (data: K9Format): K9Sak => {
         søknadId: søknadId,
         språk: data.søknad.språk,
         mottattDato: dayjs(data.søknad.mottattDato).toDate(),
-        barn: parseBarn(data.barn),
+        barn: parseK9FormatBarn(data.barn),
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
             barn: {
@@ -121,7 +125,7 @@ export const parseK9FormatSak = (data: K9Format): K9Sak => {
                       }
                     : undefined,
             },
-            arbeidstid: fjernArbeidstidMedIngenNormalarbeidstid(parseArbeidstid(ytelse.arbeidstid)),
+            arbeidstid: fjernK9SakArbeidstidMedIngenNormalarbeidstid(parseK9FormatArbeidstid(ytelse.arbeidstid)),
         },
     };
     return sak;

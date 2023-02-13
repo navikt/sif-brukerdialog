@@ -8,7 +8,8 @@ export const endreArbeidstidMessages = {
         'endreArbeidstid.intlValues.iPerioden': `i perioden {fra} til {til}`,
 
         'endreArbeidstid.timerEllerProsent.prosent': 'I prosent',
-        'endreArbeidstid.prosentAvNormalt.spm': 'Hvor mange prosent jobber du {periode}?',
+        'endreArbeidstid.prosentAvNormalt.spm': 'Hvor mange prosent av normal arbeidstid, jobber du {periode}?',
+        'endreArbeidstid.timerAvNormalt.flereUker.spm': 'Hvor mange timer jobber du i snitt per uke {periode}?',
         'endreArbeidstid.timerAvNormalt.spm': 'Hvor mange timer jobber du {periode}?',
 
         'endreArbeidstidForm.prosentAvNormalt.numberHasNoValue': 'Du må oppgi hvor mange prosent du jobber',

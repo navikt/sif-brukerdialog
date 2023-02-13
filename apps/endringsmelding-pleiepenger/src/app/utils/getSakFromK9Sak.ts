@@ -263,6 +263,32 @@ const getPerioderMedArbeidstid = (
     });
 };
 
+const harPerioderFørEndringsperiode = (
+    arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
+    tillattEndringsperiode: DateRange
+): boolean => {
+    return Object.keys(arbeidstidPeriodeMap)
+        .map(ISODateRangeToDateRange)
+        .some(
+            ({ to, from }) =>
+                dayjs(to).isBefore(tillattEndringsperiode.from, 'day') ||
+                dayjs(from).isBefore(tillattEndringsperiode.from, 'day')
+        );
+};
+
+const harPerioderEtterEndringsperiode = (
+    arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
+    tillattEndringsperiode: DateRange
+): boolean => {
+    return Object.keys(arbeidstidPeriodeMap)
+        .map(ISODateRangeToDateRange)
+        .some(
+            ({ to, from }) =>
+                dayjs(to).isAfter(tillattEndringsperiode.to, 'day') ||
+                dayjs(from).isAfter(tillattEndringsperiode.to, 'day')
+        );
+};
+
 const getArbeidstakerArktivitet = (
     arbeidstaker: K9SakArbeidstaker,
     arbeidsgivere: Arbeidsgiver[],
@@ -278,14 +304,14 @@ const getArbeidstakerArktivitet = (
     if (!arbeidsgiver) {
         throw 'getArbeidstakerArktiviteter - arbeidsgiver ikke funnet';
     }
+    const endringsperiodeForArbeidsgiver = getEndringsperiodeForArbeidsgiver(endringsperiode, arbeidsgiver);
     return {
         id: `id_${arbeidsgiver.organisasjonsnummer}`,
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
-        perioderMedArbeidstid: getPerioderMedArbeidstid(
-            perioder,
-            getEndringsperiodeForArbeidsgiver(endringsperiode, arbeidsgiver)
-        ),
+        perioderMedArbeidstid: getPerioderMedArbeidstid(perioder, endringsperiodeForArbeidsgiver),
+        harPerioderFørEndringsperiode: harPerioderFørEndringsperiode(perioder, endringsperiodeForArbeidsgiver),
+        harPerioderEtterEndringsperiode: harPerioderEtterEndringsperiode(perioder, endringsperiodeForArbeidsgiver),
     };
 };
 
@@ -310,6 +336,14 @@ const getArbeidAktiviteterFromK9Sak2 = (
                           frilanserArbeidstidInfo.perioder,
                           endringsperiode
                       ),
+                      harPerioderFørEndringsperiode: harPerioderFørEndringsperiode(
+                          frilanserArbeidstidInfo.perioder,
+                          endringsperiode
+                      ),
+                      harPerioderEtterEndringsperiode: harPerioderFørEndringsperiode(
+                          frilanserArbeidstidInfo.perioder,
+                          endringsperiode
+                      ),
                   }
                 : undefined,
         selvstendigNæringsdrivende:
@@ -318,6 +352,14 @@ const getArbeidAktiviteterFromK9Sak2 = (
                       id: ArbeidAktivitetType.selvstendigNæringsdrivende,
                       type: ArbeidAktivitetType.selvstendigNæringsdrivende,
                       perioderMedArbeidstid: getPerioderMedArbeidstid(
+                          selvstendigNæringsdrivendeArbeidstidInfo.perioder,
+                          endringsperiode
+                      ),
+                      harPerioderFørEndringsperiode: harPerioderFørEndringsperiode(
+                          selvstendigNæringsdrivendeArbeidstidInfo.perioder,
+                          endringsperiode
+                      ),
+                      harPerioderEtterEndringsperiode: harPerioderFørEndringsperiode(
                           selvstendigNæringsdrivendeArbeidstidInfo.perioder,
                           endringsperiode
                       ),

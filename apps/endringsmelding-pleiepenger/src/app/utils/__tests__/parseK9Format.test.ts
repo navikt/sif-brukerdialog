@@ -2,17 +2,67 @@
 // import { K9FormatArbeidstidInfoPerioder } from '../../types/k9Format';
 // import { ArbeidstidEnkeltdagMap } from '../../types/K9Sak';
 
-// const faktisk: Duration = {
-//     hours: '2',
-//     minutes: '0',
-// };
-// const normalt: Duration = {
-//     hours: '7',
-//     minutes: '30',
-// };
+import { Duration, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
+import { K9FormatArbeidstid, K9FormatArbeidstidTid } from '../../types/k9Format';
+import { harNormalarbeidstidIK9SakArbeidstidInfo } from '../parseK9Format';
+
+const faktiskISODuration: ISODuration = 'PT2H0M';
+const normaltISODuration: ISODuration = 'PT7H30M';
+const ingenISODuration: ISODuration = 'PT0H0M';
+
+const faktisk: Duration = ISODurationToDuration(faktiskISODuration);
+const normalt: Duration = ISODurationToDuration(normaltISODuration);
+const ingenDuration: Duration = ISODurationToDuration(ingenISODuration);
+
+const arbeidstidDag: K9FormatArbeidstidTid = {
+    faktiskArbeidTimerPerDag: faktiskISODuration,
+    jobberNormaltTimerPerDag: normaltISODuration,
+};
+
+export const k9FormatArbeidstid: K9FormatArbeidstid = {
+    arbeidstakerList: [],
+    frilanserArbeidstidInfo: {
+        perioder: { '2020-01-01/2020-01-02': arbeidstidDag },
+    },
+    selvstendigNæringsdrivendeArbeidstidInfo: {},
+};
 
 describe('parseK9Format', () => {
-    it('runs', () => {
+    describe('harNormalarbeidstidIK9SakArbeidstidInfo', () => {
+        it('returnerer false dersom arbeidstid er undefined eller antall perioder er 0', () => {
+            expect(harNormalarbeidstidIK9SakArbeidstidInfo(undefined)).toBeFalsy();
+            expect(harNormalarbeidstidIK9SakArbeidstidInfo({ perioder: {} })).toBeFalsy();
+        });
+        it('returnerer false dersom alle perioder har 0 i normalarbeidstid', () => {
+            expect(
+                harNormalarbeidstidIK9SakArbeidstidInfo({
+                    perioder: {
+                        '2022-01-01/2022-01-01': {
+                            faktiskArbeidTimerPerDag: faktisk,
+                            jobberNormaltTimerPerDag: ingenDuration,
+                        },
+                    },
+                })
+            ).toBeFalsy();
+        });
+        it('returnerer true dersom minst én periode har normalarbeidstid', () => {
+            expect(
+                harNormalarbeidstidIK9SakArbeidstidInfo({
+                    perioder: {
+                        '2022-01-01/2022-01-01': {
+                            faktiskArbeidTimerPerDag: faktisk,
+                            jobberNormaltTimerPerDag: ingenDuration,
+                        },
+                        '2022-01-02/2022-01-02': {
+                            faktiskArbeidTimerPerDag: faktisk,
+                            jobberNormaltTimerPerDag: normalt,
+                        },
+                    },
+                })
+            ).toBeTruthy();
+        });
+    });
+    it('harNormalarbeidstidIK9SakArbeidstidInfo', () => {
         expect('TODO').toEqual('TODO');
     });
     // const fredagFør: ISODate = '2022-02-18';

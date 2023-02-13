@@ -147,7 +147,7 @@
                                         "jobberNormaltTimerPerDag": "PT8H",
                                         "faktiskArbeidTimerPerDag": "PT0S"
                                     },
-                                    "2023-01-27/2023-02-15": {
+                                    "2023-01-27/2025-02-15": {
                                         "jobberNormaltTimerPerDag": "PT6H",
                                         "faktiskArbeidTimerPerDag": "PT6H"
                                     }

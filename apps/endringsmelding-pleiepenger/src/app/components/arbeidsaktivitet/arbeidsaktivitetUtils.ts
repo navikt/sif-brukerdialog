@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { ArbeidstidAktivitetEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
 import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
@@ -22,6 +23,7 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
+        kanVelges: erHelArbeidsuke(arbeidsuke.periode),
         antallDagerMedArbeidstid: arbeidsuke.antallDagerMedArbeidstid,
         opprinnelig: {
             faktisk: arbeidsuke.faktisk.uke,

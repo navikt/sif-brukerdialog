@@ -1,6 +1,7 @@
-import { BodyLong, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Panel } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
@@ -106,34 +107,100 @@ const ArbeidstidStep = () => {
     return (
         <SøknadStep stepId={stepId} sak={sak}>
             <SifGuidePanel>
-                <BodyLong as="div">
-                    <p>
-                        Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake
-                        i tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
-                    </p>
+                <>
+                    <Heading level="2" size="small">
+                        Slik endrer du hvor mye du jobber i perioden med pleiepenger
+                    </Heading>
+                    <BodyLong>
+                        <InfoList>
+                            <li>Arbeidstiden endrer du per uke, enten i timer eller prosent av normalarbeidstiden.</li>
+                            <li>Du kan endre én og én uke, eller du kan velge flere uker og endre disse samtidig.</li>
+                            <li>
+                                Du kan melde ifra om endringer i opptil 3 måneder tilbake i tid, og 12 måneder frem i
+                                tid.
+                            </li>
+                        </InfoList>
+                        <Block margin="l">
+                            <ExpandableInfo title="Hvordan endrer jeg enkeltdager i én uke?">
+                                Når du vil endre enkeltdager i en uke, skal du fortsatt oppgi hvor mye du jobber hele
+                                den uken. Du kan oppgi antall timer, eller en prosentandel av hvor mye du jobbet normalt
+                                før du begynte på pleiepenger. Du velger det som passer best for deg.
+                                <Block margin="l">
+                                    <Heading level="3" size="small" spacing={true}>
+                                        Noen eksempler
+                                    </Heading>
+                                </Block>
+                                Du jobbet normalt 40 timer i uken (8 timer hver dag) og har oppgitt at du ikke jobber
+                                mens du har pleiepenger.
+                                <p>
+                                    <strong>Eksempel 1:</strong> Nå får du allikevel jobbet 2 dager i én uke, og skal
+                                    melde ifra om det.
+                                </p>
+                                <p>
+                                    Da oppgir du 16 timer for den uken, eller 40 prosent, som er det samme som 2 dager.
+                                </p>
+                                <p>
+                                    <strong>Eksempel 2: </strong>Du har oppgitt at du jobber 50 prosent i perioden med
+                                    pleiepenger, men i én av uken får du bare jobbet 1 dag.
+                                </p>
+                                <p>Da oppgir du 8 timer for den uken, eller 20 prosent, som er det samme som 1 dag.</p>
+                            </ExpandableInfo>
+                        </Block>
+                        {/* <Block margin="m">
+                            <ExpandableInfo title="Jeg har kun enkeltdager med pleiepenger, hvordan oppgir jeg arbeidstiden som en uke?">
+                                <p>
+                                    Når du kun har enkeltdager med pleiepenger, skal du oppgi antall timer for den/de
+                                    dagene du har søkt for. Dersom du har søkt om to dager og har oppgitt at du ikke
+                                    skal jobbe, men får så jobbet én av de dagene, da oppgir du enten 8 timer eller 50
+                                    prosent arbeid for den uken.
+                                </p>
+                            </ExpandableInfo>
+                        </Block> */}
+                        <Block margin="m">
+                            <ExpandableInfo title="Hva er forskjellen på normal og faktisk arbeidstid?">
+                                <p>
+                                    Med <strong>«normal arbeidstid»</strong> mener vi hvor mye du jobbet før du startet
+                                    med pleiepenger, og som du har oppgitt som normal arbeidstid i søknaden.
+                                </p>
+                                <p>
+                                    Med <strong>«faktisk arbeidstid»</strong> mener vi hvor mye du får jobbet i perioden
+                                    når du har pleiepenger.
+                                </p>
+                            </ExpandableInfo>
+                        </Block>
+                    </BodyLong>
+                </>
+                {1 + 1 === 3 && (
+                    <BodyLong as="div">
+                        <p>
+                            Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder
+                            tilbake i tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene
+                            nedefor.
+                        </p>
 
-                    <InfoList>
-                        <li>
-                            Du kan velge å endre enkeltuker, eller flere uker innenfor samme periode med pleiepenger
-                        </li>
-                        <li>Du kan oppgi arbeidstid per uke i timer eller som prosent</li>
-                        <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
-                    </InfoList>
-                    <p>
-                        Du kan kun endre faktisk arbeidstid, det vil si hvor mye du jobber i perioden med pleiepenger,
-                        og ikke hvor mye du jobber normalt, før du startet med pleiepenger.
-                    </p>
-                    <ExpandableInfo title="Hva er forskjellen på normal og faktisk arbeidstid?">
+                        <InfoList>
+                            <li>
+                                Du kan velge å endre enkeltuker, eller flere uker innenfor samme periode med pleiepenger
+                            </li>
+                            <li>Du kan oppgi arbeidstid per uke i timer eller som prosent</li>
+                            <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
+                        </InfoList>
                         <p>
-                            Med <strong>«normal arbeidstid»</strong> mener vi hvor mye du jobbet før du startet med
-                            pleiepenger.
+                            Du kan kun endre faktisk arbeidstid, det vil si hvor mye du jobber i perioden med
+                            pleiepenger, og ikke hvor mye du jobber normalt, før du startet med pleiepenger.
                         </p>
-                        <p>
-                            Med <strong>«faktisk arbeidstid»</strong> mener vi hvor mye du får jobbet i perioden når du
-                            har pleiepenger.
-                        </p>
-                    </ExpandableInfo>
-                </BodyLong>
+                        <ExpandableInfo title="Hva er forskjellen på normal og faktisk arbeidstid?">
+                            <p>
+                                Med <strong>«normal arbeidstid»</strong> mener vi hvor mye du jobbet før du startet med
+                                pleiepenger.
+                            </p>
+                            <p>
+                                Med <strong>«faktisk arbeidstid»</strong> mener vi hvor mye du får jobbet i perioden når
+                                du har pleiepenger.
+                            </p>
+                        </ExpandableInfo>
+                    </BodyLong>
+                )}
             </SifGuidePanel>
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}

@@ -1,3 +1,6 @@
+import React from 'react';
+import { Link } from '@navikt/ds-react';
+
 interface Lenker {
     skrivTilOss: string;
     personvern: string;
@@ -9,7 +12,7 @@ const LenkerBokmål: Lenker = {
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
 };
 
-const getLenker = (locale?: string): Lenker => {
+export const getLenker = (locale?: string): Lenker => {
     switch (locale) {
         case 'nn':
             return {
@@ -20,4 +23,4 @@ const getLenker = (locale?: string): Lenker => {
     }
 };
 
-export default getLenker;
+export const SkrivTilOssLink = () => <Link href={getLenker().skrivTilOss}>skriv til oss</Link>;

@@ -1,6 +1,6 @@
 import { isK9Format, K9Format } from '../../types/k9Format';
 import { K9Sak } from '../../types/K9Sak';
-import { parseK9FormatSak } from '../../utils/parseK9FormatSak';
+import { parseK9Format } from '../../utils/parseK9Format';
 import api from '../api';
 import { ApiEndpointInnsyn } from './';
 
@@ -14,7 +14,7 @@ const sakerEndpoint = {
             data.forEach((sak) => {
                 const erGyldig = isK9Format(sak);
                 if (erGyldig) {
-                    const parsedSak = parseK9FormatSak(sak);
+                    const parsedSak = parseK9Format(sak);
                     if (parsedSak.ytelse.søknadsperioder.length > 0) {
                         k9saker.push(parsedSak);
                     }

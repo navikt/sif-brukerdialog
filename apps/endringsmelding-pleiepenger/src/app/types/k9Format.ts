@@ -7,12 +7,12 @@ interface K9FormatTilsynsordningPerioder {
     [isoDateRange: ISODateRange]: { etablertTilsynTimerPerDag: ISODuration };
 }
 
-interface K9FormatArbeidstidTid {
+export interface K9FormatArbeidstidTid {
     jobberNormaltTimerPerDag: ISODuration;
     faktiskArbeidTimerPerDag: ISODuration;
 }
 
-interface K9FormatArbeidstidInfoPerioder {
+export interface K9FormatArbeidstidInfoPerioder {
     [isoDateRange: ISODateRange]: K9FormatArbeidstidTid;
 }
 

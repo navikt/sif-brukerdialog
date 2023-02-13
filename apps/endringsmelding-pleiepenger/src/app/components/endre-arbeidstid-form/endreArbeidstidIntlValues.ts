@@ -11,10 +11,10 @@ export const getEndreArbeidstidIntlValues = (info: { arbeidsuker: Arbeidsuke[] }
     if (info.arbeidsuker.length === 1) {
         const uke = info.arbeidsuker[0];
         periode = erHelArbeidsuke(uke.periode)
-            ? `uke ${dayjs(uke.periode.from).isoWeek()}`
+            ? `i uke ${dayjs(uke.periode.from).isoWeek()}`
             : `${getDagerTekst(uke.periode)} uke ${dayjs(uke.periode.from).isoWeek()}`;
     } else {
-        periode = 'ukene du har valgt';
+        periode = 'i de ukene du har valgt';
     }
     return {
         periode,

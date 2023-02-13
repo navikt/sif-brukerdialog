@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import { Heading, Link } from '@navikt/ds-react';
-import getLenker from '../../../lenker';
+import { getLenker } from '../../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (

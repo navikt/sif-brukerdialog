@@ -9,7 +9,7 @@ export interface K9SakBarn {
     identitetsnummer: string;
 }
 
-interface K9SakArbeidstidPeriode {
+export interface K9SakArbeidstidPeriode {
     jobberNormaltTimerPerDag: Duration;
     faktiskArbeidTimerPerDag: Duration;
 }

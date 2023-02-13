@@ -39,22 +39,24 @@ export interface PeriodeMedArbeidstid {
     arbeidsuker: ArbeidsukeMap;
 }
 
-export interface ArbeidAktivitetArbeidstaker {
+interface ArbeidAktivitetBase {
     id: string;
-    type: ArbeidAktivitetType.arbeidstaker;
-    arbeidsgiver: Arbeidsgiver;
+    type: ArbeidAktivitetType;
     perioderMedArbeidstid: PeriodeMedArbeidstid[];
-}
-interface ArbeidAktivitetFrilanser {
-    id: string;
-    type: ArbeidAktivitetType.frilanser;
-    perioderMedArbeidstid: PeriodeMedArbeidstid[];
+    harPerioderFørEndringsperiode: boolean;
+    harPerioderEtterEndringsperiode: boolean;
 }
 
-interface ArbeidAktivitetSelvstendigNæringsdrivende {
-    id: string;
+export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {
+    type: ArbeidAktivitetType.arbeidstaker;
+    arbeidsgiver: Arbeidsgiver;
+}
+interface ArbeidAktivitetFrilanser extends ArbeidAktivitetBase {
+    type: ArbeidAktivitetType.frilanser;
+}
+
+interface ArbeidAktivitetSelvstendigNæringsdrivende extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.selvstendigNæringsdrivende;
-    perioderMedArbeidstid: PeriodeMedArbeidstid[];
 }
 
 export type ArbeidAktivitet =

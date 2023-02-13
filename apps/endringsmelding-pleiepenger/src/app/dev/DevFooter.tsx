@@ -64,7 +64,6 @@ const DevFooter: React.FunctionComponent = () => {
                                     <Radio value="arbeidstakerFrilanser">Arbeidstaker og frilanser</Radio>
                                 </>
                             ) : null}
-                            {/* <Radio value="scenario3">Scenario 3</Radio> */}
                         </RadioGroup>
                     </FormBlock>
                     <FormBlock>

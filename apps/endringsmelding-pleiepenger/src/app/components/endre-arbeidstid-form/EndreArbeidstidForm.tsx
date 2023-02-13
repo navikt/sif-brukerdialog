@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, ToggleGroup } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -137,22 +137,16 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
                 return (
                     <>
-                        <Block margin="l">
+                        <Block margin="l" padBottom="l">
                             <Heading size="large" level="2">
                                 {arbeidsuker.length === 1
                                     ? `Endre arbeidstid uke ${getArbeidsukeUkenummer(arbeidsuker[0], true)}`
                                     : 'Endre arbeidstid for flere uker'}
                             </Heading>
-                        </Block>
-
-                        {gjelderKortUke && (
-                            <Block margin="l" padBottom="m">
-                                <Alert variant="info" inline={false}>
-                                    Dette er en kort uke som går fra {getDagerTekst(arbeidsuker[0].periode)}. Det betyr
-                                    at du kun skal oppgi arbeidstiden for disse dagene.
-                                </Alert>
+                            <Block margin="m">
+                                <Ingress>{getUkerOgÅrBeskrivelse(arbeidsuker)}</Ingress>
                             </Block>
-                        )}
+                        </Block>
 
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}
@@ -185,6 +179,15 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                 </ToggleGroup.Item>
                             </ToggleGroup>
 
+                            {gjelderKortUke && (
+                                <Block margin="xl">
+                                    <Alert variant="info" inline={false}>
+                                        Dette er en kort uke som går fra {getDagerTekst(arbeidsuker[0].periode)}. Du
+                                        skal kun skal oppgi arbeidstiden for disse dagene.
+                                    </Alert>
+                                </Block>
+                            )}
+
                             {timerEllerProsent && (
                                 <FormBlock paddingBottom="l">
                                     {timerEllerProsent === TimerEllerProsent.PROSENT && (
@@ -192,7 +195,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                             className="arbeidstidUkeInput"
                                             name={EndreArbeidstidFormField.prosentAvNormalt}
                                             label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
-                                            description={getUkerOgÅrBeskrivelse(arbeidsuker)}
                                             data-testid="prosent-verdi"
                                             width="xs"
                                             maxLength={4}
@@ -206,11 +208,37 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                         />
                                     )}
                                     {timerEllerProsent === TimerEllerProsent.TIMER && (
-                                        <EndreArbeidstimerFormPart
-                                            intlValues={intlValues}
-                                            arbeidsuker={arbeidsuker}
-                                            arbeidAktivitet={arbeidAktivitet}
-                                        />
+                                        <>
+                                            {1 + 1 === 3 ? (
+                                                <EndreArbeidstimerFormPart
+                                                    intlValues={intlValues}
+                                                    arbeidsuker={arbeidsuker}
+                                                    arbeidAktivitet={arbeidAktivitet}
+                                                />
+                                            ) : (
+                                                <NumberInput
+                                                    className="arbeidstidUkeInput"
+                                                    name={EndreArbeidstidFormField.snittTimerPerUke}
+                                                    label={intlHelper(
+                                                        intl,
+                                                        arbeidsuker.length === 1
+                                                            ? `endreArbeidstid.timerAvNormalt.spm`
+                                                            : `endreArbeidstid.timerAvNormalt.flereUker.spm`,
+                                                        intlValues
+                                                    )}
+                                                    data-testid="timer-verdi"
+                                                    width="xs"
+                                                    maxLength={4}
+                                                    validate={(value) => {
+                                                        return getNumberValidator({
+                                                            required: true,
+                                                            min: 0,
+                                                            max: 24 * 7,
+                                                        })(value);
+                                                    }}
+                                                />
+                                            )}
+                                        </>
                                     )}
                                 </FormBlock>
                             )}

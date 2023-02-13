@@ -106,8 +106,8 @@ const OppsummeringStep = () => {
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>
-                        Nedenfor ser du endringene som du har lagt inn. Når du har sett over og sjekket at alt er
-                        riktig, bekrefter du opplysningene og sender inn meldingen om endring.
+                        Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Dersom
+                        noe ikke stemmer, kan du gå tilbake og endre igjen.
                     </p>
                 </Ingress>
             </SifGuidePanel>
@@ -222,6 +222,7 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
 
     const arbeidsuke: ArbeidstidUkeTabellItem = {
         kanEndres: false,
+        kanVelges: false,
         isoDateRange,
         periode,
         antallDagerMedArbeidstid,
