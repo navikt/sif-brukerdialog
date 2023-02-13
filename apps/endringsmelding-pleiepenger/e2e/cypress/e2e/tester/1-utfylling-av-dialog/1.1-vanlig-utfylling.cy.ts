@@ -9,7 +9,7 @@ const startUrl = 'http://localhost:8080/';
 const date = new Date(2023, 0, 1);
 
 const enkeltuke = 45;
-const flereUker = [46, 47, 48];
+const flereUker = [46, 47];
 
 const getAktivitet = () => getTestElement('aktivitet_id_947064649');
 const getPeriode = () => getTestElement('periode_0');
@@ -66,7 +66,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
     it('fyller ut timer', () => {
         getArbeidstimerModal().within(() => {
             getTestElement('toggle-timer').click();
-            getTestElement('timer-førsteUke-verdi').type('10,5');
+            getTestElement('timer-verdi').type('10,5');
             captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
@@ -105,7 +105,6 @@ const endreFlereUker = (uker: number[] = flereUker) => {
         });
         getArbeidstimerModal().within(() => {
             getTestElement('timer-verdi').type('5');
-            getTestElement('timer-sisteUke-verdi').type('5');
             captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
