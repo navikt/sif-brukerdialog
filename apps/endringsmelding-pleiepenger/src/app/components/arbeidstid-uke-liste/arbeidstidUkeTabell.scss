@@ -86,3 +86,12 @@
         width: 50%;
     }
 }
+
+.arbeidstidUkeListeWrapper  {
+    position: relative;
+    .arbeidstidUkeFooter {
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
+    }
+}
