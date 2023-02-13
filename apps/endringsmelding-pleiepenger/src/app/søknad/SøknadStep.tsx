@@ -42,7 +42,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, children }) 
             onContinueLater={fortsettSøknadSenere}>
             <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
             {children}
-            {isDevMode ? (
+            {isDevMode && 1 + 1 === 3 ? (
                 <Block margin="xxl">
                     <Accordion>
                         <AccordionItem title="Develop info">

@@ -372,7 +372,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                                         uke.periode,
                                                                         false
                                                                     )}`}>
-                                                                    <InformationColored />
+                                                                    <InformationColored aria-label="Informasjon om uken" />
                                                                 </Tooltip>
                                                             )}
                                                         </span>

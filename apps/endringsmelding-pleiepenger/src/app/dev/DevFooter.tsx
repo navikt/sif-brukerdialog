@@ -36,7 +36,7 @@ const DevFooter: React.FunctionComponent = () => {
                     size="small"
                     variant="secondary"
                     onClick={() => setShowModal(true)}
-                    icon={<Settings />}>
+                    icon={<Settings role="presentation" aria-hidden={true} />}>
                     {mockUser}
                 </Button>
             </div>
