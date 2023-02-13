@@ -13,7 +13,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
             cy.intercept(`${mockApiBaseUrl}/api/innsyn/sak`, []);
         });
         it('Viser riktig melding når bruker ikke har sak', () => {
-            expect(getTestElement('ingen-tilgang-heading').first().contains('Hei GODSLIG'));
+            expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
             expect(cy.get('#pageMainContent').contains('Vi kan ikke finne noen sak om pleiepenger på deg'));
         });
     });
@@ -24,7 +24,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
             cy.intercept(`${mockApiBaseUrl}/api/innsyn/sak`, flereSakerMock);
         });
         it('Viser riktig melding når bruker har flere saker', () => {
-            expect(getTestElement('ingen-tilgang-heading').first().contains('Hei GODSLIG'));
+            expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
             expect(cy.get('#pageMainContent').contains('vi ser at du har flere saker'));
         });
     });
