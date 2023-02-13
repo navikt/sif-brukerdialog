@@ -22,6 +22,7 @@ import { erHelArbeidsuke, getArbeidsukeUkenummer, getDagerTekst } from '../../ut
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import EndreArbeidstimerFormPart from './EndreArbeidstimerFormPart';
+import './endreArbeidstidForm.scss';
 
 export type EndreArbeidstidFormData = Omit<ArbeidstidAktivitetEndring, 'arbeidAktivitetId'>;
 
@@ -136,7 +137,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                 });
 
                 return (
-                    <>
+                    <div className="endreArbeidstidForm">
                         <Block margin="l" padBottom="l">
                             <Heading size="large" level="2">
                                 {arbeidsuker.length === 1
@@ -160,7 +161,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                             </Block>
 
                             <ToggleGroup
-                                style={{ minWidth: '50%' }}
+                                className="endreArbeidstidForm__timerProsentToggler"
                                 value={timerEllerProsent}
                                 size="small"
                                 onChange={(value) => {
@@ -243,7 +244,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                 </FormBlock>
                             )}
                         </Form>
-                    </>
+                    </div>
                 );
             }}
         />

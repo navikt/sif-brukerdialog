@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, Checkbox, Table, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit, InformationColored } from '@navikt/ds-icons';
@@ -13,6 +13,7 @@ import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import './arbeidstidUkeTabell.scss';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { getDagerPeriode } from '../endre-arbeidstid-form/EndreArbeidstimerFormPart';
+import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
 
 export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
@@ -90,7 +91,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         onEndreUker(listItems.filter((uke) => valgteUker.includes(uke.isoDateRange)));
     };
 
-    const renderEditButton = (uke: ArbeidstidUkeTabellItem, ukenummer: number) => {
+    const renderEditButton = (uke: ArbeidstidUkeTabellItem, ukenummer: number, renderLabel: boolean) => {
         if (!onEndreUker || !uke.kanEndres) {
             return undefined;
         }
@@ -100,13 +101,15 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
         return (
             <EditButton
+                className="endreArbeidstidUkeButton"
                 data-testid="endre-button"
                 onClick={() => {
                     valgteUker.length > 1 ? endreFlereUker() : onEndreUker([uke]);
                 }}
                 title={title}
-                aria-label={title}
-            />
+                aria-label={title}>
+                {renderLabel && <>Endre arbeidstid</>}
+            </EditButton>
         );
     };
 
@@ -188,39 +191,42 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
                         return (
                             <li key={uke.isoDateRange}>
-                                <div className="arbeidstidUke">
+                                <div className={`arbeidstidUke${visVelgUke ? ' arbeidstidUke--velgUker' : ''}`}>
                                     {visVelgUke && (
                                         <div className="arbeidstidUke__velgUke">
-                                            <Checkbox
-                                                hideLabel
-                                                checked={selected}
-                                                onChange={() => {
-                                                    onToggleUke(uke.isoDateRange, selected);
-                                                }}
-                                                aria-labelledby={ukePeriodeTekstId}>
-                                                {' '}
-                                            </Checkbox>
+                                            {uke.kanEndres && uke.kanVelges && (
+                                                <Checkbox
+                                                    hideLabel
+                                                    checked={selected}
+                                                    onChange={() => {
+                                                        onToggleUke(uke.isoDateRange, selected);
+                                                    }}
+                                                    aria-labelledby={ukePeriodeTekstId}>
+                                                    {' '}
+                                                </Checkbox>
+                                            )}
                                         </div>
                                     )}
                                     <div className="arbeidstidUke__info" id={ukePeriodeTekstId}>
+                                        <Heading level="3" size="xsmall">
+                                            Uke {ukenummer}:
+                                        </Heading>
                                         <BodyShort>
-                                            Uke {ukenummer}: {dateFormatter.compact(uke.periode.from)} - {` `}
+                                            {dateFormatter.compact(uke.periode.from)} - {` `}
                                             {dateFormatter.compact(uke.periode.to)}
                                         </BodyShort>
                                         <div style={{ padding: '.5rem 0' }}>
-                                            <ArbeidstidUkeInfo uke={uke} visOpprinneligTid={true} medLabels={true} />
+                                            <ArbeidstidUkeInfoListe
+                                                uke={uke}
+                                                visOpprinneligTid={true}
+                                                medLabels={true}
+                                            />
                                         </div>
-                                        {visNormaltid && (
-                                            <BodyShort size="small">
-                                                Normalarbeidstid:{` `}
-                                                <span style={{ whiteSpace: 'nowrap' }}>
-                                                    <DurationText duration={uke.opprinnelig.normalt} />
-                                                </span>
-                                            </BodyShort>
-                                        )}
                                     </div>
                                     {kanEndreEnkeltuke && (
-                                        <div className="arbeidstidUke__endre">{renderEditButton(uke, ukenummer)}</div>
+                                        <div className="arbeidstidUke__endre">
+                                            {renderEditButton(uke, ukenummer, true)}
+                                        </div>
                                     )}
                                 </div>
                             </li>
@@ -378,7 +384,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 </Table.DataCell>
                                 {kanEndreEnkeltuke && (
                                     <Table.DataCell className="arbeidstidUkeTabell__endre">
-                                        {renderEditButton(uke, ukenummer)}
+                                        {renderEditButton(uke, ukenummer, false)}
                                     </Table.DataCell>
                                 )}
                             </Table.Row>
