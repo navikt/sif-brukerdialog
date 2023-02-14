@@ -1,13 +1,13 @@
 import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { K9Sak } from '../../types/K9Sak';
-import { getDateRangeForK9Saker } from '../k9SakUtils';
+import { getSamletDateRangeForK9Saker } from '../k9SakUtils';
 
 describe('getDateRangeForSaker', () => {
     it('returnerer riktig når det er én sak', () => {
         const sak: K9Sak = {
             ytelse: { søknadsperioder: [{ from: ISODateToDate('2021-01-01'), to: ISODateToDate('2021-01-02') }] },
         } as any;
-        const range = getDateRangeForK9Saker([sak]);
+        const range = getSamletDateRangeForK9Saker([sak]);
         expect(range).toBeDefined();
         if (range) {
             expect(dateToISODate(range.from)).toEqual('2021-01-01');
@@ -15,7 +15,7 @@ describe('getDateRangeForSaker', () => {
         }
     });
     it('returnerer undefined når det ikke er noen saker', () => {
-        const range = getDateRangeForK9Saker([]);
+        const range = getSamletDateRangeForK9Saker([]);
         expect(range).toBeUndefined();
     });
     it('returnerer riktig når det er to saker som ikke overlapper', () => {
@@ -27,7 +27,7 @@ describe('getDateRangeForSaker', () => {
                 ],
             },
         } as any;
-        const range = getDateRangeForK9Saker([sak]);
+        const range = getSamletDateRangeForK9Saker([sak]);
         expect(range).toBeDefined();
         if (range) {
             expect(dateToISODate(range.from)).toEqual('2021-01-01');
@@ -43,7 +43,7 @@ describe('getDateRangeForSaker', () => {
                 ],
             },
         } as any;
-        const range = getDateRangeForK9Saker([sak]);
+        const range = getSamletDateRangeForK9Saker([sak]);
         expect(range).toBeDefined();
         if (range) {
             expect(dateToISODate(range.from)).toEqual('2021-01-01');

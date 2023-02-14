@@ -1,5 +1,6 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -12,8 +13,6 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { Sak } from '../../types/Sak';
 import { getAktiviteterSomKanEndres, getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-// import { getLenker } from '../../lenker';
 
 const VelkommenPage = () => {
     const {

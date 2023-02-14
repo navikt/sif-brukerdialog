@@ -14,7 +14,7 @@ export const getArbeidsgivereIK9Sak = (arbeidsgivere: Arbeidsgiver[], sak: K9Sak
     });
 };
 
-export const getDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefined => {
+export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefined => {
     const sakerDateRanges = saker
         .filter((sak) => sak.ytelse.søknadsperioder.length > 0)
         .map((sak) => {

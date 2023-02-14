@@ -1,10 +1,10 @@
-import React from 'react';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import Kvittering from '@navikt/sif-common-core-ds/lib/components/kvittering/Kvittering';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { Button } from '@navikt/ds-react';
+import React from 'react';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Kvittering from '@navikt/sif-common-core-ds/lib/components/kvittering/Kvittering';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 const KvitteringPage = () => {
     useLogSidevisning(SIFCommonPageKey.kvittering);

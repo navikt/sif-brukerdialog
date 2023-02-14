@@ -2,6 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -14,7 +15,6 @@ import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/Søknad
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { getSakFromK9Sak } from '../../utils/getSakFromK9Sak';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 enum FormFields {
     barnAktørId = 'barnAktørId',

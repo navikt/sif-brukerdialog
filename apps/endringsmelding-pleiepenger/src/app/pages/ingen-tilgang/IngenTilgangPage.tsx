@@ -1,12 +1,12 @@
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { getLenker } from '../../lenker';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
-import { BodyLong, Heading } from '@navikt/ds-react';
-import { Link } from 'react-router-dom';
-import { getLenker } from '../../lenker';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 interface Props {
     søker: Søker;
@@ -15,8 +15,8 @@ interface Props {
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     switch (årsak) {
-        case IngenTilgangÅrsak.finnerIkkeTidsperiode:
-        case IngenTilgangÅrsak.harIngenSaker:
+        case IngenTilgangÅrsak.harIngenPerioder:
+        case IngenTilgangÅrsak.harIngenSak:
             return (
                 <BodyLong as="div">
                     <p>
@@ -29,7 +29,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.arbeidsforholdUtenArbeidstid:
+        case IngenTilgangÅrsak.harArbeidsgiverSomIkkeErISak:
             return (
                 <BodyLong as="div">
                     <p>

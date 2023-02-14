@@ -19,7 +19,7 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
     if (saker.length === 0) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harIngenSaker,
+            årsak: IngenTilgangÅrsak.harIngenSak,
         };
     }
 
@@ -31,10 +31,10 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
         };
     }
 
-    if (saker.some((sak) => harArbeidsforholdUtenArbeidstid(sak, arbeidsgivere))) {
+    if (saker.some((sak) => harArbeidsgiverSomIkkeErISak(sak, arbeidsgivere))) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.arbeidsforholdUtenArbeidstid,
+            årsak: IngenTilgangÅrsak.harArbeidsgiverSomIkkeErISak,
         };
     }
 
@@ -50,7 +50,7 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
     };
 };
 
-const harArbeidsforholdUtenArbeidstid = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
+const harArbeidsgiverSomIkkeErISak = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
     const arbeidsgivereISak = getArbeidsgivereIK9Sak(arbeidsgivere, sak);
     return arbeidsgivere.some(
         (a) => arbeidsgivereISak.find((aISak) => aISak.organisasjonsnummer === a.organisasjonsnummer) === undefined

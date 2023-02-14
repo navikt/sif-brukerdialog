@@ -5,11 +5,12 @@ import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { søkerMock } from '../../data/søkerMock';
 import { IngenTilgangÅrsak } from '../../../app/types/IngenTilgangÅrsak';
+import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 
 export default {
     title: 'Pages/IngenTilgangPage',
     component: IngenTilgangPage,
-    decorators: [withIntl, withRouterProvider],
+    decorators: [withAmplitudeProvider, withIntl, withRouterProvider],
     argTypes: {
         årsak: {
             options: Object.keys(IngenTilgangÅrsak),

@@ -13,7 +13,7 @@ import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
-import { getDateRangeForK9Saker } from '../utils/k9SakUtils';
+import { getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -138,13 +138,14 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 søknadStateEndpoint.fetch(),
             ]);
 
-            const samletTidsperiode = getDateRangeForK9Saker(k9saker);
+            /** Muligens unødvendig sjekk - gitt at K9 alltid gir gyldig data */
+            const samletTidsperiode = getSamletDateRangeForK9Saker(k9saker);
             if (samletTidsperiode === undefined) {
-                await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.finnerIkkeTidsperiode });
+                await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.harIngenPerioder });
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: false,
-                    årsak: IngenTilgangÅrsak.finnerIkkeTidsperiode,
+                    årsak: IngenTilgangÅrsak.harIngenPerioder,
                     søker,
                 });
                 return Promise.resolve();
