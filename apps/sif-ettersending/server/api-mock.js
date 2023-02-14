@@ -1,30 +1,25 @@
-/* eslint-disable no-console */
+const express = require('express');
+const helmet = require('helmet');
+const busboyCons = require('busboy');
 const os = require('os');
 const fs = require('fs');
-const express = require('express');
+
 const server = express();
-const busboyCons = require('busboy');
 
 server.use(express.json());
-server.use((req, res, next) => {
-    const allowedOrigins = [
-        'http://host.docker.internal:8080',
-        'http://localhost:8080',
-        'http://web:8080',
-        'http://192.168.0.115:8080',
-    ];
-    const requestOrigin = req.headers.origin;
-    if (allowedOrigins.indexOf(requestOrigin) >= 0) {
-        res.set('Access-Control-Allow-Origin', requestOrigin);
-    }
+server.use(
+    helmet({
+        contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
+        crossOriginResourcePolicy: false,
+    })
+);
 
-    res.removeHeader('X-Powered-By');
-    res.set('X-Frame-Options', 'SAMEORIGIN');
-    res.set('X-XSS-Protection', '1; mode=block');
-    res.set('X-Content-Type-Options', 'nosniff');
-    res.set('Access-Control-Allow-Headers', 'content-type');
+server.use((req, res, next) => {
+    res.set('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE', 'PUT']);
-    res.set('Access-Control-Allow-Credentials', true);
+    res.set('Access-Control-Allow-Headers', 'content-type');
+
     next();
 });
 
@@ -67,9 +62,6 @@ const søkerMock = {
 const startServer = () => {
     const port = process.env.PORT || 8089;
 
-    server.get('/health/isAlive', (req, res) => res.sendStatus(200));
-    server.get('/health/isReady', (req, res) => res.sendStatus(200));
-
     server.get('/oppslag/soker', (req, res) => {
         setTimeout(() => {
             res.send(søkerMock);
@@ -80,16 +72,6 @@ const startServer = () => {
         setTimeout(() => {
             res.sendStatus(200);
         }, RESPONSE_DELAY);
-    });
-
-    server.post('/ettersending/innsending', (req, res) => {
-        setTimeout(() => {
-            res.sendStatus(500);
-        }, RESPONSE_DELAY);
-    });
-
-    server.listen(port, () => {
-        // console.log(`App listening on port: ${port}`);
     });
 
     server.post('/vedlegg', (req, res) => {
@@ -155,7 +137,6 @@ const startServer = () => {
     server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
-        // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_SYKT_BARN_JSON, JSON.stringify(jsBody, null, 2));
         setTimeout(() => {
             res.sendStatus(200);
@@ -164,14 +145,12 @@ const startServer = () => {
     server.put('/mellomlagring/ETTERSENDING_PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
-        // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
     server.put('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
-        // console.log(req.body);
         writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
@@ -187,6 +166,11 @@ const startServer = () => {
     server.delete('/mellomlagring/ETTERSENDING_OMP', (req, res) => {
         writeFileAsync(MELLOMLAGRING_OMP_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(202);
+    });
+
+    server.listen(port, () => {
+        // eslint-disable-next-line no-console
+        console.log(`App listening on port: ${port}`);
     });
 };
 
