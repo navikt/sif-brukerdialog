@@ -16,7 +16,7 @@ export interface K9FormatArbeidstidInfoPerioder {
     [isoDateRange: ISODateRange]: K9FormatArbeidstidTid;
 }
 
-interface K9FormatArbeidstaker {
+export interface K9FormatArbeidstaker {
     norskIdentitetsnummer: string | null;
     organisasjonsnummer: string;
     arbeidstidInfo: K9FormatArbeidstidInfo;

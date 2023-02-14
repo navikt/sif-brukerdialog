@@ -76,7 +76,7 @@ export const harNormalarbeidstidIK9SakArbeidstidInfo = (arbeidstidInfo?: K9SakAr
     return keys.length > 0;
 };
 
-const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
+export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
 
     return {
@@ -101,6 +101,7 @@ export const parseK9Format = (data: K9Format): K9Sak => {
         søknad: { ytelse, søker, søknadId },
         barn,
     } = data;
+
     const sak: K9Sak = {
         søker: søker,
         søknadId: søknadId,

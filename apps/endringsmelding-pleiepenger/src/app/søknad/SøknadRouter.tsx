@@ -2,11 +2,13 @@ import { Button } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
+import appSentryLogger from '../utils/appSentryLogger';
 import { StepId } from './config/StepId';
 import { SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
@@ -74,24 +76,32 @@ const SøknadRouter = () => {
             <Route
                 path="*"
                 element={
-                    <>
-                        Ukjent steg: {pathname}.
-                        <FormBlock>
-                            <Button
-                                type="button"
-                                onClick={() => {
-                                    slettMellomlagring().then(() => {
-                                        dispatch(actionsCreator.resetSøknad());
-                                        navigateTo(SøknadRoutes.VELKOMMEN);
-                                    });
-                                }}>
-                                Reset søknad
-                            </Button>
-                        </FormBlock>
-                    </>
+                    <UkjentPathMelding
+                        pathname={pathname}
+                        onReset={() => {
+                            slettMellomlagring().then(() => {
+                                dispatch(actionsCreator.resetSøknad());
+                                navigateTo(SøknadRoutes.VELKOMMEN);
+                            });
+                        }}
+                    />
                 }
             />
         </Routes>
+    );
+};
+
+const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: () => void }) => {
+    appSentryLogger.logError('ukjentPath', pathname);
+    return (
+        <SifGuidePanel mood="uncertain">
+            Oops, det oppstod en feil.
+            <FormBlock>
+                <Button type="button" onClick={onReset}>
+                    Start på nytt
+                </Button>
+            </FormBlock>
+        </SifGuidePanel>
     );
 };
 

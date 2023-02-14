@@ -24,8 +24,8 @@ import {
 } from '../../types/søknadApiData/SøknadApiData';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
-import { getDagerSøktFor } from '../getSakFromK9Sak';
 
 const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
     const arbeidsukerMap = {};
@@ -47,7 +47,7 @@ const getEndretArbeidstid = (
         const { endring } = endringUkeMap[isoDateRange];
         const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidAktivitet.perioderMedArbeidstid);
         const arbeidsuke = arbeidsuker[isoDateRange];
-        const dagerSøktFor = getDagerSøktFor(arbeidsuke.arbeidstidEnkeltdager);
+        const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
         const { antallDagerMedArbeidstid } = arbeidsuke;
 
         const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);

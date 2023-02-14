@@ -1,10 +1,9 @@
-// import { Duration, ISODate } from '@navikt/sif-common-utils/lib';
-// import { K9FormatArbeidstidInfoPerioder } from '../../types/k9Format';
-// import { ArbeidstidEnkeltdagMap } from '../../types/K9Sak';
-
 import { Duration, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils/lib';
-import { K9FormatArbeidstid, K9FormatArbeidstidTid } from '../../types/k9Format';
-import { harNormalarbeidstidIK9SakArbeidstidInfo } from '../parseK9Format';
+import { K9SakArbeidstidInfo } from '../../types/K9Sak';
+import {
+    fjernK9SakArbeidstidMedIngenNormalarbeidstid,
+    harNormalarbeidstidIK9SakArbeidstidInfo,
+} from '../parseK9Format';
 
 const faktiskISODuration: ISODuration = 'PT2H0M';
 const normaltISODuration: ISODuration = 'PT7H30M';
@@ -13,19 +12,6 @@ const ingenISODuration: ISODuration = 'PT0H0M';
 const faktisk: Duration = ISODurationToDuration(faktiskISODuration);
 const normalt: Duration = ISODurationToDuration(normaltISODuration);
 const ingenDuration: Duration = ISODurationToDuration(ingenISODuration);
-
-const arbeidstidDag: K9FormatArbeidstidTid = {
-    faktiskArbeidTimerPerDag: faktiskISODuration,
-    jobberNormaltTimerPerDag: normaltISODuration,
-};
-
-export const k9FormatArbeidstid: K9FormatArbeidstid = {
-    arbeidstakerList: [],
-    frilanserArbeidstidInfo: {
-        perioder: { '2020-01-01/2020-01-02': arbeidstidDag },
-    },
-    selvstendigNæringsdrivendeArbeidstidInfo: {},
-};
 
 describe('parseK9Format', () => {
     describe('harNormalarbeidstidIK9SakArbeidstidInfo', () => {
@@ -62,8 +48,67 @@ describe('parseK9Format', () => {
             ).toBeTruthy();
         });
     });
-    it('harNormalarbeidstidIK9SakArbeidstidInfo', () => {
-        expect('TODO').toEqual('TODO');
+    describe('fjernK9SakArbeidstidMedIngenNormalarbeidstid', () => {
+        const arbeidstidInfoIngenArbeid: K9SakArbeidstidInfo = {
+            perioder: {
+                '2022-01-01/2022-02-01': {
+                    jobberNormaltTimerPerDag: ingenDuration,
+                    faktiskArbeidTimerPerDag: ingenDuration,
+                },
+            },
+        };
+        const arbeidstidInfoMedArbeid: K9SakArbeidstidInfo = {
+            perioder: {
+                '2022-01-01/2022-02-01': {
+                    jobberNormaltTimerPerDag: normalt,
+                    faktiskArbeidTimerPerDag: faktisk,
+                },
+            },
+        };
+
+        it('Fjerner arbeidstakere med ingen normalarbeidstid, beholder den med arbeidtid', () => {
+            const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
+                arbeidstakerList: [
+                    {
+                        organisasjonsnummer: '123',
+                        arbeidstidInfo: arbeidstidInfoIngenArbeid,
+                    },
+                    {
+                        organisasjonsnummer: '456',
+                        arbeidstidInfo: arbeidstidInfoMedArbeid,
+                    },
+                ],
+            });
+            expect(result.arbeidstakerList?.length).toEqual(1);
+        });
+        it('Fjerner frilanseraktivitet med ingen normalarbeidstid', () => {
+            const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
+                arbeidstakerList: [],
+                frilanserArbeidstidInfo: arbeidstidInfoIngenArbeid,
+            });
+            expect(result.frilanserArbeidstidInfo).toBeUndefined();
+        });
+        it('Beholder frilanseraktivitet som har normalarbeidstid', () => {
+            const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
+                arbeidstakerList: [],
+                frilanserArbeidstidInfo: arbeidstidInfoMedArbeid,
+            });
+            expect(result.frilanserArbeidstidInfo).toBeDefined();
+        });
+        it('Fjerner sn med ingen normalarbeidstid', () => {
+            const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
+                arbeidstakerList: [],
+                selvstendigNæringsdrivendeArbeidstidInfo: arbeidstidInfoIngenArbeid,
+            });
+            expect(result.selvstendigNæringsdrivendeArbeidstidInfo).toBeUndefined();
+        });
+        it('Beholder sn som har normalarbeidstid', () => {
+            const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
+                arbeidstakerList: [],
+                selvstendigNæringsdrivendeArbeidstidInfo: arbeidstidInfoMedArbeid,
+            });
+            expect(result.selvstendigNæringsdrivendeArbeidstidInfo).toBeDefined();
+        });
     });
     // const fredagFør: ISODate = '2022-02-18';
     // const mandag: ISODate = '2022-02-21';

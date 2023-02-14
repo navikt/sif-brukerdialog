@@ -51,11 +51,11 @@ export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
 }
-interface ArbeidAktivitetFrilanser extends ArbeidAktivitetBase {
+export interface ArbeidAktivitetFrilanser extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.frilanser;
 }
 
-interface ArbeidAktivitetSelvstendigNæringsdrivende extends ArbeidAktivitetBase {
+export interface ArbeidAktivitetSelvstendigNæringsdrivende extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.selvstendigNæringsdrivende;
 }
 

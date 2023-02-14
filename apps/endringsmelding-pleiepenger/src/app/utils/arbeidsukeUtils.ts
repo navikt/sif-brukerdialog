@@ -1,6 +1,12 @@
-import { dateFormatter, DateRange, durationToISODuration, getDatesInDateRange } from '@navikt/sif-common-utils/lib';
+import {
+    dateFormatter,
+    DateRange,
+    durationToISODuration,
+    getDatesInDateRange,
+    ISODate,
+} from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { Arbeidsuke } from '../types/Sak';
+import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '../types/Sak';
 
 export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {
     return dayjs(a1.periode.from).isBefore(a2.periode.from) ? -1 : 1;
@@ -38,6 +44,11 @@ export const arbeidsukerHarLikNormaltidPerDag = (arbeidsuker: Arbeidsuke[]): boo
     return harUlikNormalarbeidstid === false;
 };
 
-export const arbeidsukerErHeleArbeidsuker = (arbeidsuker: Arbeidsuke[]): boolean => {
-    return arbeidsuker.some((uke) => erHelArbeidsuke(uke.periode) === false) === false;
+/**
+ * Henter ut alle datoer i @arbeidstidEnkeltdager, sorterer dem på dato og returnerer array med ISODate
+ * @param arbeidstidEnkeltdager
+ * @returns ISODate[]
+ */
+export const getDagerFraEnkeltdagMap = (arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap): ISODate[] => {
+    return Object.keys(arbeidstidEnkeltdager).sort();
 };
