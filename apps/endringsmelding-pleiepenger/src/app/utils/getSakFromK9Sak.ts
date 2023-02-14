@@ -436,4 +436,5 @@ export const _getSakFromK9Sak = {
     getArbeidAktivitetArbeidstaker,
     getArbeidAktivitetFrilanser,
     getArbeidAktivitetSelvstendigNæringsdrivende,
+    trimArbeidstidTilTillattEndringsperiode,
 };
