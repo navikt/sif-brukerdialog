@@ -8,3 +8,4 @@ export * from './durationWeekdaysUtils';
 export * from './weekdayUtils';
 export * from './jsonSort';
 export * from './guid';
+export * from './typeGuardUtilities';

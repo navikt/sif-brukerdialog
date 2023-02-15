@@ -1,5 +1,5 @@
 import { isObject, isString } from 'formik';
-import { isStringOrNull } from '../utils/typeGuardUtilities';
+import { isStringOrNull } from '@navikt/sif-common-utils';
 
 export interface Søker {
     etternavn: string;

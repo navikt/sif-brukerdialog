@@ -1,5 +1,5 @@
-import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib';
 import { isString } from 'formik';
+import { ISODate, ISODateRange, ISODuration } from './types';
 
 export type StringOrNull = string | null;
 

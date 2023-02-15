@@ -1,7 +1,7 @@
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib';
 import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
-import { isISODateOrNull, isISODateRange, isISODuration, isStringOrNull } from '../utils/typeGuardUtilities';
+import { isISODateOrNull, isISODateRange, isISODuration, isStringOrNull } from '@navikt/sif-common-utils';
 
 interface K9FormatTilsynsordningPerioder {
     [isoDateRange: ISODateRange]: { etablertTilsynTimerPerDag: ISODuration };

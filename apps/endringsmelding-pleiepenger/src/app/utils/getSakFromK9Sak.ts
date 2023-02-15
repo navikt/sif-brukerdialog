@@ -2,7 +2,6 @@ import {
     DateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
-    dateRangeUtils,
     dateToISODate,
     durationUtils,
     getDateRangesFromISODateRangeMap,
@@ -160,6 +159,7 @@ const fjernArbeidstidEnkeltdagerUtenforPeriode = (
     const enkeltdagerMap: ArbeidstidEnkeltdagMap = {};
     getDatesInDateRange(periode)
         .map(dateToISODate)
+        .sort()
         .filter((isoDate) => arbeidstidEnkeltdager[isoDate] !== undefined)
         .forEach((isoDate) => {
             enkeltdagerMap[isoDate] = arbeidstidEnkeltdager[isoDate];

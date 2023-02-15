@@ -7,13 +7,12 @@ import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-tex
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
-import EditButton from './components/EditButton';
-import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
-import './arbeidstidUkeTabell.scss';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
-import { getDagerPeriode } from '../endre-arbeidstid-form/EndreArbeidstimerFormPart';
+import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
+import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
+import EditButton from './components/EditButton';
+import './arbeidstidUkeTabell.scss';
 
 export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
@@ -420,4 +419,12 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     );
 };
 
+const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
+    const fra = visDato ? dateFormatter.dayDateMonthYear(from) : dateFormatter.day(from);
+    const til = visDato ? dateFormatter.dayDateMonthYear(to) : dateFormatter.day(to);
+    if (fra === til) {
+        return fra;
+    }
+    return `${fra} til ${til}`;
+};
 export default ArbeidstidUkeTabell;
