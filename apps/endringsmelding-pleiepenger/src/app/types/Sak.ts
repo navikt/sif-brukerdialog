@@ -8,11 +8,13 @@ export enum ArbeidAktivitetType {
     selvstendigNæringsdrivende = 'selvstendigNæringsdrivende',
 }
 
+export type FaktiskOgNormalArbeidstid = {
+    faktisk: Duration;
+    normalt: Duration;
+};
+
 export type ArbeidstidEnkeltdagMap = {
-    [key: ISODate]: {
-        faktisk: Duration;
-        normalt: Duration;
-    };
+    [key: ISODate]: FaktiskOgNormalArbeidstid;
 };
 
 export interface ArbeidsukeTimer {

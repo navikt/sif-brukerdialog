@@ -2,8 +2,11 @@ import {
     DateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
+    dateRangeUtils,
+    dateToISODate,
     durationUtils,
     getDateRangesFromISODateRangeMap,
+    getDatesInDateRange,
     getISODatesInISODateRange,
     getIsoWeekDateRangeForDate,
     isDateInDateRange,
@@ -30,7 +33,7 @@ import {
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 
-interface PeriodisertK9FormatArbeidstidPerioder {
+interface _PeriodisertK9FormatArbeidstidPerioder {
     periode: DateRange;
     arbeidstidPerioder: K9SakArbeidstidPeriodeMap;
 }
@@ -104,7 +107,7 @@ const getArbeidstidPerioderIDateRange = (
  */
 const grupperArbeidstidPerioder = (
     arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap
-): PeriodisertK9FormatArbeidstidPerioder[] => {
+): _PeriodisertK9FormatArbeidstidPerioder[] => {
     const dateRanges = getDateRangesFromISODateRangeMap(arbeidstidPeriodeMap);
     const grupperteDateRanges = joinAdjacentDateRanges(dateRanges, true);
     return grupperteDateRanges.map((periode) => {
@@ -130,7 +133,7 @@ const getArbeidsukerMapFromArbeidsuker = (arbeidsuker: Arbeidsuke[]): Arbeidsuke
 };
 
 /**
- * Mapper K9FormatArbeidstidPerioder om til enkeltdager med arbeidstid
+ * Mapper K9FormatArbeidstidPerioder om til enkeltdager med arbeidstid. Uavhengig av ukedager eller helg
  * @param arbeidstidPeriodeMap
  * @returns
  */
@@ -150,27 +153,42 @@ const getArbeidstidEnkeltdagMapFromPerioder = (
     return enkeltdager;
 };
 
+const fjernArbeidstidEnkeltdagerUtenforPeriode = (
+    periode: DateRange,
+    arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap
+): ArbeidstidEnkeltdagMap => {
+    const enkeltdagerMap: ArbeidstidEnkeltdagMap = {};
+    getDatesInDateRange(periode)
+        .map(dateToISODate)
+        .filter((isoDate) => arbeidstidEnkeltdager[isoDate] !== undefined)
+        .forEach((isoDate) => {
+            enkeltdagerMap[isoDate] = arbeidstidEnkeltdager[isoDate];
+        });
+    return enkeltdagerMap;
+};
+
 /**
  * Mapper periode og enkeltdager med arbeid om til Arbeidsuke. Summerer tid per dag om til timer per uke
  * @param periode DateRange for uken
- * @param arbeidstidEnkeltdager Enkeltdager med arbeidstid
+ * @param arbeidstidEnkeltdagerIUken Enkeltdager med arbeidstid
  * @returns Arbeidsuke
  */
 const getArbeidsukeFromEnkeltdagerIUken = (
     periode: DateRange,
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap
 ): Arbeidsuke => {
-    const dagerSøktFor = Object.keys(arbeidstidEnkeltdager);
+    const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(periode, arbeidstidEnkeltdager);
+    const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
     const antallDagerMedArbeidstid = dagerSøktFor.length;
-    const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdager[key].faktisk);
-    const normalt = dagerSøktFor.map((key) => arbeidstidEnkeltdager[key].normalt);
+    const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
+    const normalt = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].normalt);
     const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
     const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
 
     const arbeidsuke: Arbeidsuke = {
         isoDateRange: dateRangeToISODateRange(periode),
-        periode,
-        arbeidstidEnkeltdager,
+        periode: periode,
+        arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
         faktisk: {
             uke: faktiskSummertHeleUken,
             dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
@@ -208,7 +226,7 @@ const setArbeidsukeSluttdatoTilSisteDagSøktFor = (arbeidsuke: Arbeidsuke): Arbe
 };
 /**
  * Grupperer arbeidsdager inn i uker
- * Hver uke er hele uker, med unntak av første og siste uke som
+ * Hver uke er hele uker, inklusiv helg, med unntak av første og siste uke som
  * justeres i henhold til første og siste arbeidsdag.
  *
  * @param enkeltdager
@@ -432,9 +450,15 @@ export const getSakFromK9Sak = (k9sak: K9Sak, arbeidsgivere: Arbeidsgiver[], end
  * Eksporterer interne funksjoner for test
  */
 export const _getSakFromK9Sak = {
-    getEndringsperiodeForArbeidsgiver,
     getArbeidAktivitetArbeidstaker,
     getArbeidAktivitetFrilanser,
+    getArbeidstidPerioderIDateRange,
     getArbeidAktivitetSelvstendigNæringsdrivende,
+    getArbeidsukerMapFromArbeidsuker,
+    getArbeidstidEnkeltdagMapFromPerioder,
+    getEndringsperiodeForArbeidsgiver,
+    getArbeidsukerFromEnkeltdager,
+    getArbeidsukeFromEnkeltdagerIUken,
+    grupperArbeidstidPerioder,
     trimArbeidstidTilTillattEndringsperiode,
 };
