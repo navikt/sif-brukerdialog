@@ -12,7 +12,7 @@ export enum ApiEndpoint {
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {
-    withCredentials: true,
+    withCredentials: false,
     headers: { 'Content-type': 'application/json; charset=utf-8' },
 };
 

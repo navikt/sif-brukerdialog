@@ -1,5 +1,11 @@
 {
     "app": "omsorgspengesoknad",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "ingresses": ["https://omsorgspengesoknad.dev.nav.no"],
     "cluster": "dev-gcp",
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
@@ -14,13 +20,5 @@
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "USE_AMPLITUDE": "true"
-    },
-    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "ingresses": ["https://omsorgspengesoknad.dev.nav.no"],
-    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
-    "maxReplicas": "1",
-    "minReplicas": "1",
-    "namespace": "dusseldorf",
-    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
-    "team": "dusseldorf"
+    }
 }

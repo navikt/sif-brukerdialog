@@ -29,7 +29,7 @@ export const isValidRegistrertBarnResponse = (response: any): response is Regist
 
 const barnEndpoint = {
     fetch: async (): Promise<RegistrertBarn[]> => {
-        const { data } = await api.get<BarnDTO>(ApiEndpoint.barn, 'ytelse=omsorgspenger-utvidet-rett');
+        const { data } = await api.get<BarnDTO>(ApiEndpoint.barn);
         const registrerteBarn: RegistrertBarn[] = [];
 
         let hasInvalidBarnRespons = false;
