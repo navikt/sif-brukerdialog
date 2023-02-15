@@ -65,7 +65,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
     const onFormSubmit = (values: EndreArbeidstidFormValues) => {
         if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
             const value = getNumberFromNumberInputValue(values.prosentAvNormalt);
-            if (value) {
+            if (value !== undefined) {
                 onSubmit([
                     {
                         perioder: arbeidsuker.map((a) => a.periode),
@@ -80,7 +80,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
         if (values.timerEllerProsent === TimerEllerProsent.TIMER) {
             const antallTimer = getNumberFromNumberInputValue(values.antallTimer);
             const endringer: EndreArbeidstidFormData[] = [];
-            if (antallTimer) {
+            if (antallTimer !== undefined) {
                 const perioder = arbeidsuker.map((uke) => uke.periode);
                 endringer.push({
                     perioder,
@@ -119,7 +119,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                     : 'Endre arbeidstid for flere uker'}
                             </Heading>
                             <Block margin="m">
-                                <Ingress>{getUkerOgÅrBeskrivelse(arbeidsuker)}</Ingress>
+                                <Ingress as="div">{getUkerOgÅrBeskrivelse(arbeidsuker)}</Ingress>
                             </Block>
                         </Block>
 
@@ -221,7 +221,9 @@ export default EndreArbeidstidForm;
 const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
         return (
-            <BodyShort className="capsFirstChar">{getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}</BodyShort>
+            <BodyShort as="div" className="capsFirstChar">
+                {getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}
+            </BodyShort>
         );
     }
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
