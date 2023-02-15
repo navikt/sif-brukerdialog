@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.2.2
+
+### Patch Changes
+
+-   2dcaa07: La til headers ved alle førespørsel, ryddet opp i api-mock
+
 ## 1.2.1
 
 ### Patch Changes
