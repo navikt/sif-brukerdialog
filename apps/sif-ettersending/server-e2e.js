@@ -3,13 +3,10 @@ const mustacheExpress = require('mustache-express');
 const compression = require('compression');
 const envSettings = require('./envSettings');
 const cookieParser = require('cookie-parser');
-const { exchangeToken } = require('./tokenx');
-const { createProxyMiddleware } = require('http-proxy-middleware');
 const fs = require('fs');
 const Promise = require('promise');
 const helmet = require('helmet');
 const path = require('path');
-const jose = require('jose');
 
 const server = express();
 server.use(
@@ -40,22 +37,7 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
-const isExpiredOrNotAuthorized = (token) => {
-    if (token) {
-        try {
-            const exp = jose.decodeJwt(token).exp;
-            return Date.now() >= exp * 1000;
-        } catch (err) {
-            // eslint-disable-next-line no-console
-            console.error('Feilet med dekoding av token: ', err);
-            return true;
-        }
-    }
-    return true;
-};
-
-const startServer = async (html) => {
-    // await Promise.all([initTokenX()]);
+const startServer = (html) => {
     server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
     server.use(`${process.env.PUBLIC_PATH}/dist/css`, (req, res, next) => {
         const requestReferer = req.headers.referer;
