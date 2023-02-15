@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.0.6
+
+### Patch Changes
+
+-   d92c479: Lagt til id og name headers
+
 ## 3.0.5
 
 ### Patch Changes
