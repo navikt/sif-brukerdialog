@@ -262,5 +262,5 @@ const getNormalarbeidstidDescription = (intl: IntlShape, arbeidsuker: Arbeidsuke
             duration: uke.normalt.uke,
         })} per uke`;
     }
-    return 'Merk: den normale arbeidstiden er ikke lik i alle disse ukene.';
+    return 'Merk: normal arbeidstid er ikke lik for alle disse ukene.';
 };

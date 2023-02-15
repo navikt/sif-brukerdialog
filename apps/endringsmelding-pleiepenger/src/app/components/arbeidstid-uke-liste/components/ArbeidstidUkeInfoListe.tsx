@@ -18,7 +18,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
         return (
             <div className="arbeidstidInfoListe">
                 <p>
-                    <span className="arbeidstidInfoListe__label">Jobber normalt:</span>
+                    <span className="arbeidstidInfoListe__label">Normal arbeidstid:</span>
                     <span className="arbeidstidInfoListe__value">
                         <DurationText duration={uke.opprinnelig.normalt} />
                     </span>
@@ -36,7 +36,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
     return (
         <div className="arbeidstidInfoListe">
             <p>
-                <span className="arbeidstidInfoListe__label">Jobber normalt:</span>
+                <span className="arbeidstidInfoListe__label">Normal arbeidstid:</span>
                 <span className="arbeidstidInfoListe__value">
                     <DurationText duration={uke.opprinnelig.normalt} />
                 </span>
