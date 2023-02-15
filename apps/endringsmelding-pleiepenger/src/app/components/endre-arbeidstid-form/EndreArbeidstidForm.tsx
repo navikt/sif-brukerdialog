@@ -1,7 +1,8 @@
 import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { IntlShape, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import { getDurationString } from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
@@ -18,7 +19,12 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
 import { Arbeidsuke } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { erHelArbeidsuke, getArbeidsukeUkenummer, getDagerTekst } from '../../utils/arbeidsukeUtils';
+import {
+    arbeidsukerHarLikNormaltidPerDag,
+    erHelArbeidsuke,
+    getArbeidsukeUkenummer,
+    getDagerTekst,
+} from '../../utils/arbeidsukeUtils';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
@@ -34,15 +40,13 @@ interface Props {
 export enum EndreArbeidstidFormField {
     timerEllerProsent = 'timerEllerProsent',
     prosentAvNormalt = 'prosentAvNormalt',
-    snittTimerPerUke = 'snittTimerPerUke',
-    timerFørsteUke = 'timerFørsteUke',
-    timerSisteUke = 'timerSisteUke',
+    antallTimer = 'antallTimer',
 }
 
 export interface EndreArbeidstidFormValues {
     [EndreArbeidstidFormField.timerEllerProsent]?: TimerEllerProsent;
     [EndreArbeidstidFormField.prosentAvNormalt]?: string;
-    [EndreArbeidstidFormField.snittTimerPerUke]?: string;
+    [EndreArbeidstidFormField.antallTimer]?: string;
 }
 
 const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
@@ -57,8 +61,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
         dispatch,
         state: { inputPreferanser },
     } = useSøknadContext();
-
-    const gjelderKortUke = arbeidsuker.length === 1 && erHelArbeidsuke(arbeidsuker[0].periode) === false;
 
     const onFormSubmit = (values: EndreArbeidstidFormValues) => {
         if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
@@ -76,43 +78,15 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
             }
         }
         if (values.timerEllerProsent === TimerEllerProsent.TIMER) {
-            const timerFørsteUke = getNumberFromNumberInputValue(values[EndreArbeidstidFormField.timerFørsteUke]);
-            const timerSisteUke = getNumberFromNumberInputValue(values[EndreArbeidstidFormField.timerSisteUke]);
-            const timerSnitt = getNumberFromNumberInputValue(values.snittTimerPerUke);
-
+            const antallTimer = getNumberFromNumberInputValue(values.antallTimer);
             const endringer: EndreArbeidstidFormData[] = [];
-            if (timerFørsteUke) {
-                endringer.push({
-                    perioder: [arbeidsuker[0].periode],
-                    endring: {
-                        type: TimerEllerProsent.TIMER,
-                        timer: timerFørsteUke,
-                    },
-                });
-            }
-            if (timerSisteUke) {
-                endringer.push({
-                    perioder: [arbeidsuker[arbeidsuker.length - 1].periode],
-                    endring: {
-                        type: TimerEllerProsent.TIMER,
-                        timer: timerSisteUke,
-                    },
-                });
-            }
-            if (timerSnitt) {
-                const perioder = arbeidsuker
-                    .filter((_, index) => {
-                        if ((index === 0 && timerFørsteUke) || (index === arbeidsuker.length - 1 && timerSisteUke)) {
-                            return false;
-                        }
-                        return true;
-                    })
-                    .map((uke) => uke.periode);
+            if (antallTimer) {
+                const perioder = arbeidsuker.map((uke) => uke.periode);
                 endringer.push({
                     perioder,
                     endring: {
                         type: TimerEllerProsent.TIMER,
-                        timer: timerSnitt,
+                        timer: antallTimer,
                     },
                 });
             }
@@ -123,13 +97,15 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
     if (arbeidsuker.length === 0) {
         return null;
     }
+
+    const gjelderKortUke = arbeidsuker.length === 1 && erHelArbeidsuke(arbeidsuker[0].periode) === false;
+
     return (
         <FormikWrapper
             initialValues={{ timerEllerProsent: inputPreferanser.timerEllerProsent }}
             onSubmit={onFormSubmit}
             renderForm={({ values, setValues }) => {
                 const { timerEllerProsent } = values;
-
                 const intlValues = getEndreArbeidstidIntlValues({
                     arbeidsuker,
                 });
@@ -157,7 +133,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                             <Block padBottom="m">
                                 <strong>Hvordan vil du oppgi arbeidstiden?</strong>
                             </Block>
-
                             <ToggleGroup
                                 className="endreArbeidstidForm__timerProsentToggler"
                                 value={timerEllerProsent}
@@ -187,52 +162,52 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                 </Block>
                             )}
 
-                            {timerEllerProsent && (
-                                <FormBlock paddingBottom="l">
-                                    {timerEllerProsent === TimerEllerProsent.PROSENT && (
+                            <FormBlock paddingBottom="l">
+                                {timerEllerProsent === TimerEllerProsent.PROSENT && (
+                                    <NumberInput
+                                        className="arbeidstidUkeInput"
+                                        name={EndreArbeidstidFormField.prosentAvNormalt}
+                                        label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
+                                        data-testid="prosent-verdi"
+                                        width="xs"
+                                        description={getNormalarbeidstidDescription(intl, arbeidsuker)}
+                                        maxLength={4}
+                                        validate={(value) => {
+                                            return getNumberValidator({
+                                                required: true,
+                                                min: 0,
+                                                max: 100,
+                                            })(value);
+                                        }}
+                                    />
+                                )}
+                                {timerEllerProsent === TimerEllerProsent.TIMER && (
+                                    <>
                                         <NumberInput
                                             className="arbeidstidUkeInput"
-                                            name={EndreArbeidstidFormField.prosentAvNormalt}
-                                            label={intlHelper(intl, 'endreArbeidstid.prosentAvNormalt.spm', intlValues)}
-                                            data-testid="prosent-verdi"
+                                            name={EndreArbeidstidFormField.antallTimer}
+                                            label={intlHelper(
+                                                intl,
+                                                arbeidsuker.length === 1
+                                                    ? `endreArbeidstid.timerAvNormalt.spm`
+                                                    : `endreArbeidstid.timerAvNormalt.flereUker.spm`,
+                                                intlValues
+                                            )}
+                                            data-testid="timer-verdi"
                                             width="xs"
+                                            description={getNormalarbeidstidDescription(intl, arbeidsuker)}
                                             maxLength={4}
                                             validate={(value) => {
                                                 return getNumberValidator({
                                                     required: true,
                                                     min: 0,
-                                                    max: 100,
+                                                    max: 24 * 7,
                                                 })(value);
                                             }}
                                         />
-                                    )}
-                                    {timerEllerProsent === TimerEllerProsent.TIMER && (
-                                        <>
-                                            <NumberInput
-                                                className="arbeidstidUkeInput"
-                                                name={EndreArbeidstidFormField.snittTimerPerUke}
-                                                label={intlHelper(
-                                                    intl,
-                                                    arbeidsuker.length === 1
-                                                        ? `endreArbeidstid.timerAvNormalt.spm`
-                                                        : `endreArbeidstid.timerAvNormalt.flereUker.spm`,
-                                                    intlValues
-                                                )}
-                                                data-testid="timer-verdi"
-                                                width="xs"
-                                                maxLength={4}
-                                                validate={(value) => {
-                                                    return getNumberValidator({
-                                                        required: true,
-                                                        min: 0,
-                                                        max: 24 * 7,
-                                                    })(value);
-                                                }}
-                                            />
-                                        </>
-                                    )}
-                                </FormBlock>
-                            )}
+                                    </>
+                                )}
+                            </FormBlock>
                         </Form>
                     </div>
                 );
@@ -270,4 +245,22 @@ const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[]) => {
             </Block>
         </>
     );
+};
+
+const getNormalarbeidstidDescription = (intl: IntlShape, arbeidsuker: Arbeidsuke[]) => {
+    if (arbeidsuker.length === 1) {
+        const uke = arbeidsuker[0];
+        const gjelderKortUke = erHelArbeidsuke(uke.periode) === false;
+        const periodeTekst = gjelderKortUke ? ` ${getDagerTekst(uke.periode)}` : ' denne uken';
+        return `Oppgitt normal arbeidstid for ${periodeTekst} er ${getDurationString(intl, {
+            duration: uke.normalt.uke,
+        })}`;
+    }
+    if (arbeidsukerHarLikNormaltidPerDag(arbeidsuker)) {
+        const uke = arbeidsuker[0];
+        return `Oppgitt normal arbeidstid for disse ukene er ${getDurationString(intl, {
+            duration: uke.normalt.uke,
+        })} per uke`;
+    }
+    return 'Merk: den normale arbeidstiden er ikke lik i alle disse ukene.';
 };
