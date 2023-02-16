@@ -1,8 +1,8 @@
 import { SoknadFormData } from '../../types/SoknadFormData';
-import { SoknadApiData } from '../../types/SoknadApiData';
+import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 
-export type AnnenForelderToApiData = Pick<SoknadApiData, 'annenForelder'>;
+export type AnnenForelderToApiData = Pick<SøknadApiData, 'annenForelder'>;
 
 export const mapAnnenForelderToApiData = (formData: SoknadFormData): AnnenForelderToApiData => {
     if (formData.annenForelderSituasjon === undefined) {

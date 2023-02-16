@@ -1,5 +1,5 @@
 import { RegistrertBarn } from '../../types/RegistrertBarn';
-import { SoknadApiData } from '../../types/SoknadApiData';
+import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { SoknadFormData } from '../../types/SoknadFormData';
 import { mapAnnenForelderToApiData } from './mapAnnenForelderToApiData';
 import { mapBarnStepToApiData } from './mapBarnToApiData';
@@ -9,9 +9,9 @@ export const mapFormDataToApiData = (
     locale = 'nb',
     formData: SoknadFormData,
     registrerteBarn: RegistrertBarn[]
-): SoknadApiData | undefined => {
+): SøknadApiData | undefined => {
     try {
-        const apiData: SoknadApiData = {
+        const apiData: SøknadApiData = {
             id: soknadId,
             språk: locale === 'en' ? 'nn' : 'nb',
             harBekreftetOpplysninger: formData.harBekreftetOpplysninger,

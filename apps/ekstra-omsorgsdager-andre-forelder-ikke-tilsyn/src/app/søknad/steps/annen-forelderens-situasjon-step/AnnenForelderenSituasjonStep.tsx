@@ -1,62 +1,100 @@
 import React from 'react';
-import SoknadFormStep from '../../SoknadFormStep';
-import { StepID } from '../../soknadStepsConfig';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import SoknadFormComponents from '../../SoknadFormComponents';
-import { AnnenForeldrenSituasjon, SoknadFormData, SoknadFormField } from '../../../types/SoknadFormData';
-import { useFormikContext } from 'formik';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import AlertStripe from 'nav-frontend-alertstriper';
-import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
+import { Alert } from '@navikt/ds-react';
 
 import {
     getYesOrNoValidator,
     getRequiredFieldValidator,
     getStringValidator,
-} from '@navikt/sif-common-formik/lib/validation';
+} from '@navikt/sif-common-formik-ds/lib/validation';
 import { validateFradato, validateTildato } from '../../../validation/fieldValidations';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
+import { StepId } from '../../../types/StepId';
+import { getSøknadStepConfigForStep } from 'app/søknad/søknadStepConfig';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { useStepFormValuesContext } from 'app/søknad/context/StepFormValuesContext';
+import actionsCreator from '../../../søknad/context/action/actionCreator';
+import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
+import {
+    getAnnenForelderenSituasjonFromFormValues,
+    getAnnenForelderenSituasjonStepInitialValues,
+} from './annenForelderenSituasjonStepUtils';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import SøknadStep from '../../../søknad/SøknadStep';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+
+export enum AnnenForelderenSituasjonFormFields {
+    annenForelderSituasjon = 'annenForelderSituasjon',
+    annenForelderSituasjonBeskrivelse = 'annenForelderSituasjonBeskrivelse',
+    annenForelderPeriodeFom = 'annenForelderPeriodeFom',
+    annenForelderPeriodeTom = 'annenForelderPeriodeTom',
+    annenForelderPeriodeVetIkkeTom = 'annenForelderPeriodeVetIkkeTom',
+    annenForelderPeriodeMer6Maneder = 'annenForelderPeriodeMer6Maneder',
+}
+
+export interface AnnenForelderenSituasjonFormValues {
+    [AnnenForelderenSituasjonFormFields.annenForelderSituasjon]?: AnnenForeldrenSituasjon;
+    [AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse]?: string;
+    [AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom]: string;
+    [AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom]?: string;
+    [AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom]?: boolean;
+    [AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder]?: YesOrNo;
+}
+
+const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DateRangePicker, Checkbox, RadioGroup } =
+    getTypedFormComponents<AnnenForelderenSituasjonFormFields, AnnenForelderenSituasjonFormValues, ValidationError>();
 
 export const isPeriodeLess6month = (periodeFom: string, periodeTom: string): boolean => {
     return dayjs(periodeTom).add(1, 'day').diff(periodeFom, 'month', true) < 6;
 };
 
-export const cleanupAnnenForelderenSituasjonStep = (values: SoknadFormData): SoknadFormData => {
-    const cleanedValues = { ...values };
-
-    if (values.annenForelderPeriodeVetIkkeTom) {
-        cleanedValues.annenForelderPeriodeTom = '';
-    } else {
-        cleanedValues.annenForelderPeriodeMer6Maneder = YesOrNo.UNANSWERED;
-    }
-
-    if (
-        values.annenForelderSituasjon === AnnenForeldrenSituasjon.fengsel ||
-        values.annenForelderSituasjon === AnnenForeldrenSituasjon.utøverVerneplikt ||
-        values.annenForelderSituasjon === AnnenForeldrenSituasjon.innlagtIHelseinstitusjon
-    ) {
-        cleanedValues.annenForelderSituasjonBeskrivelse = '';
-    }
-
-    return cleanedValues;
-};
-
 const AnnenForelderenSituasjonStep = () => {
     const intl = useIntl();
-    const { values } = useFormikContext<SoknadFormData>();
+    const {
+        state: { søknadsdata },
+    } = useSøknadContext();
 
-    const periodeFra = datepickerUtils.getDateFromDateString(values.annenForelderPeriodeFom);
-    const periodeTil = datepickerUtils.getDateFromDateString(values.annenForelderPeriodeTom);
+    const stepId = StepId.ANNEN_FORELDER_SITUASJON;
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+
+    const { goBack } = useStepNavigation(step);
+
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const onValidSubmitHandler = (values: AnnenForelderenSituasjonFormValues) => {
+        const AnnenForelderenSituasjonSøknadsdata = getAnnenForelderenSituasjonFromFormValues(values);
+        if (AnnenForelderenSituasjonSøknadsdata) {
+            clearStepFormValues(stepId);
+            return [actionsCreator.setSøknadAnnenForelderenSituasjon(AnnenForelderenSituasjonSøknadsdata)];
+        }
+        return [];
+    };
+
+    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+        onValidSubmitHandler,
+        stepId,
+        (state: SøknadContextState) => {
+            return lagreSøknadState(state);
+        }
+    );
 
     const renderTekstArea = () => {
         return (
             <FormBlock>
-                <SoknadFormComponents.Textarea
-                    name={SoknadFormField.annenForelderSituasjonBeskrivelse}
+                <Textarea
+                    name={AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse}
                     label={intlHelper(intl, 'step.annen-foreldrens-situasjon.beskrivelseAvSituasjonen.spm')}
                     minLength={5}
                     maxLength={1000}
@@ -77,20 +115,20 @@ const AnnenForelderenSituasjonStep = () => {
         );
     };
 
-    const renderOver6MndSpm = () => {
+    const renderOver6MndSpm = (values: Partial<AnnenForelderenSituasjonFormValues>) => {
         return (
             <>
                 <FormBlock>
-                    <SoknadFormComponents.YesOrNoQuestion
-                        name={SoknadFormField.annenForelderPeriodeMer6Maneder}
+                    <YesOrNoQuestion
+                        name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder}
                         legend={intlHelper(intl, 'step.annen-foreldrens-situasjon.erVarighetMerEnn6Maneder.spm')}
                         validate={getYesOrNoValidator()}
                     />
                     {values.annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
                         <FormBlock>
-                            <AlertStripe type={'info'}>
+                            <Alert variant="info">
                                 {intlHelper(intl, 'step.annen-foreldrens-situasjon.advarsel.1')}
-                            </AlertStripe>
+                            </Alert>
                         </FormBlock>
                     )}
                 </FormBlock>
@@ -98,7 +136,11 @@ const AnnenForelderenSituasjonStep = () => {
         );
     };
 
-    const renderDateRangePicker = () => {
+    const renderDateRangePicker = (
+        values: Partial<AnnenForelderenSituasjonFormValues>,
+        periodeFra?: Date,
+        periodeTil?: Date
+    ) => {
         const dontShowVetIkkeTomCheckbox = () => {
             return (
                 values.annenForelderSituasjon === AnnenForeldrenSituasjon.fengsel ||
@@ -114,7 +156,7 @@ const AnnenForelderenSituasjonStep = () => {
         }
         return (
             <FormBlock>
-                <SoknadFormComponents.DateRangePicker
+                <DateRangePicker
                     legend={
                         values.annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom
                             ? intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.sykdom.spm')
@@ -129,30 +171,30 @@ const AnnenForelderenSituasjonStep = () => {
                     fromInputProps={{
                         label: intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.fra'),
                         validate: (value) => validateFradato(value, periodeTil, values.annenForelderSituasjon),
-                        name: SoknadFormField.annenForelderPeriodeFom,
+                        name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom,
                     }}
                     toInputProps={{
                         label: intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.til'),
                         validate: values.annenForelderPeriodeVetIkkeTom
                             ? undefined
                             : (value) => validateTildato(value, periodeFra, values.annenForelderSituasjon),
-                        name: SoknadFormField.annenForelderPeriodeTom,
+                        name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
                         disabled: values.annenForelderPeriodeVetIkkeTom,
                     }}
                 />
                 {!dontShowVetIkkeTomCheckbox() && (
-                    <SoknadFormComponents.Checkbox
+                    <Checkbox
                         label={intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.checkboxVetIkkeTom')}
-                        name={SoknadFormField.annenForelderPeriodeVetIkkeTom}
+                        name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom}
                     />
                 )}
                 {values.annenForelderPeriodeFom &&
                     values.annenForelderPeriodeTom &&
                     isPeriodeLess6month(values.annenForelderPeriodeFom, values.annenForelderPeriodeTom) && (
                         <FormBlock>
-                            <AlertStripe type={'info'}>
+                            <Alert variant="info">
                                 {intlHelper(intl, 'step.annen-foreldrens-situasjon.advarsel.1')}
-                            </AlertStripe>
+                            </Alert>
                         </FormBlock>
                     )}
             </FormBlock>
@@ -160,47 +202,78 @@ const AnnenForelderenSituasjonStep = () => {
     };
 
     return (
-        <SoknadFormStep id={StepID.ANNEN_FORELDER_SITUASJON} onStepCleanup={cleanupAnnenForelderenSituasjonStep}>
-            <CounsellorPanel>{intlHelper(intl, 'step.annen-foreldrens-situasjon.banner.1')}</CounsellorPanel>
+        <SøknadStep stepId={stepId}>
+            <FormikWrapper
+                initialValues={getAnnenForelderenSituasjonStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                onSubmit={handleSubmit}
+                renderForm={({ values }) => {
+                    const periodeFra = datepickerUtils.getDateFromDateString(values.annenForelderPeriodeFom);
+                    const periodeTil = datepickerUtils.getDateFromDateString(values.annenForelderPeriodeTom);
+                    return (
+                        <>
+                            <PersistStepFormValues stepId={stepId} />
+                            <Form
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                                includeValidationSummary={true}
+                                submitPending={isSubmitting}
+                                onBack={goBack}
+                                runDelayedFormValidation={true}>
+                                <SifGuidePanel>
+                                    {intlHelper(intl, 'step.annen-foreldrens-situasjon.banner.1')}
+                                </SifGuidePanel>
 
-            <Box margin="xxl">
-                <SoknadFormComponents.RadioPanelGroup
-                    legend={intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.spm')}
-                    name={SoknadFormField.annenForelderSituasjon}
-                    radios={[
-                        {
-                            label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.sykdom'),
-                            value: AnnenForeldrenSituasjon.sykdom,
-                        },
-                        {
-                            label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.innlagtIHelseinstitusjon'),
-                            value: AnnenForeldrenSituasjon.innlagtIHelseinstitusjon,
-                        },
-                        {
-                            label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.fengsel'),
-                            value: AnnenForeldrenSituasjon.fengsel,
-                        },
-                        {
-                            label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.verneplikt'),
-                            value: AnnenForeldrenSituasjon.utøverVerneplikt,
-                        },
-                        {
-                            label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.annet'),
-                            value: AnnenForeldrenSituasjon.annet,
-                        },
-                    ]}
-                    validate={getRequiredFieldValidator()}
-                />
-            </Box>
+                                <Block margin="xxl">
+                                    <RadioGroup
+                                        legend={intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.spm')}
+                                        name={AnnenForelderenSituasjonFormFields.annenForelderSituasjon}
+                                        radios={[
+                                            {
+                                                label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.sykdom'),
+                                                value: AnnenForeldrenSituasjon.sykdom,
+                                            },
+                                            {
+                                                label: intlHelper(
+                                                    intl,
+                                                    'step.annen-foreldrens-situasjon.grunn.innlagtIHelseinstitusjon'
+                                                ),
+                                                value: AnnenForeldrenSituasjon.innlagtIHelseinstitusjon,
+                                            },
+                                            {
+                                                label: intlHelper(
+                                                    intl,
+                                                    'step.annen-foreldrens-situasjon.grunn.fengsel'
+                                                ),
+                                                value: AnnenForeldrenSituasjon.fengsel,
+                                            },
+                                            {
+                                                label: intlHelper(
+                                                    intl,
+                                                    'step.annen-foreldrens-situasjon.grunn.verneplikt'
+                                                ),
+                                                value: AnnenForeldrenSituasjon.utøverVerneplikt,
+                                            },
+                                            {
+                                                label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.annet'),
+                                                value: AnnenForeldrenSituasjon.annet,
+                                            },
+                                        ]}
+                                        validate={getRequiredFieldValidator()}
+                                    />
+                                </Block>
 
-            {(values.annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
-                values.annenForelderSituasjon === AnnenForeldrenSituasjon.annet) &&
-                renderTekstArea()}
+                                {(values.annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
+                                    values.annenForelderSituasjon === AnnenForeldrenSituasjon.annet) &&
+                                    renderTekstArea()}
 
-            {values.annenForelderSituasjon && renderDateRangePicker()}
+                                {values.annenForelderSituasjon && renderDateRangePicker(values, periodeFra, periodeTil)}
 
-            {values.annenForelderPeriodeVetIkkeTom && renderOver6MndSpm()}
-        </SoknadFormStep>
+                                {values.annenForelderPeriodeVetIkkeTom && renderOver6MndSpm(values)}
+                            </Form>
+                        </>
+                    );
+                }}
+            />
+        </SøknadStep>
     );
 };
 

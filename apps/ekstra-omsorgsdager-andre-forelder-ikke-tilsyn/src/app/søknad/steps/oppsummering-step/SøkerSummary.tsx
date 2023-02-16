@@ -6,11 +6,11 @@ import FødselsnummerSvar from '@navikt/sif-common-soknad/lib/soknad-summary/Fø
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
 import { Person } from '../../types/Person';
-import { SoknadApiData } from '../../../types/SoknadApiData';
+import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     søker: Person;
-    apiValues: SoknadApiData;
+    apiValues: SøknadApiData;
 }
 
 const SøkerSummary = ({ søker }: Props) => {

@@ -8,7 +8,7 @@ import VeilederSVG from '@navikt/sif-common-core/lib/components/veileder-svg/Vei
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { Person } from '../../types/Person';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import { SoknadApiData } from '../../../types/SoknadApiData';
+import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { SoknadFormField } from '../../../types/SoknadFormData';
 import { useSoknadContext } from '../../SoknadContext';
 import SoknadFormComponents from '../../SoknadFormComponents';
@@ -23,7 +23,7 @@ import { getCheckedValidator } from '@navikt/sif-common-formik/lib/validation';
 type Props = {
     søker: Person;
     barn: RegistrertBarn[];
-    apiValues?: SoknadApiData;
+    apiValues?: SøknadApiData;
 };
 
 const OppsummeringStep = ({ søker, apiValues }: Props) => {

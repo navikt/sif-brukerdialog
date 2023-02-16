@@ -1,14 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { AndreBarn } from '../pre-common/forms/barn/types';
 
-export enum AnnenForeldrenSituasjon {
-    'sykdom' = 'SYKDOM',
-    'innlagtIHelseinstitusjon' = 'INNLAGT_I_HELSEINSTITUSJON',
-    'fengsel' = 'FENGSEL',
-    'utøverVerneplikt' = 'UTØVER_VERNEPLIKT',
-    'annet' = 'ANNET',
-}
-
 export enum SoknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',

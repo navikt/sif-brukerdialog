@@ -1,5 +1,5 @@
 import { RegistrertBarn } from '../../types/RegistrertBarn';
-import { ApiBarn } from '../../types/SoknadApiData';
+import { ApiBarn } from '../../types/søknadApiData/SøknadApiData';
 import { SoknadFormData } from '../../types/SoknadFormData';
 import { mapAndreBarnToApiBarn, mapBarnToApiBarn } from './mapUtils';
 

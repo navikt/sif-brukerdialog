@@ -4,7 +4,7 @@ import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import FødselsnummerSvar from '@navikt/sif-common-soknad/lib/soknad-summary/FødselsnummerSvar';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
-import { AnnenForelder } from '../../../types/SoknadApiData';
+import { AnnenForelder } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     annenForelder: AnnenForelder;

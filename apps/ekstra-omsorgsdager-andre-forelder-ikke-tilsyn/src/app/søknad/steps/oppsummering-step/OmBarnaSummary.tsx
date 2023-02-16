@@ -2,12 +2,12 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
-import { SoknadApiData } from '../../../types/SoknadApiData';
+import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import BarnSummaryList from './BarnSummaryList';
 
 interface Props {
-    apiValues: SoknadApiData;
+    apiValues: SøknadApiData;
 }
 
 const OmBarnaSummary = ({ apiValues: { barn } }: Props) => {
