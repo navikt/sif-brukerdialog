@@ -1,6 +1,7 @@
 import { AnnenForelderenSituasjonSøknadsdata } from '../../../types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
+import { DeresFellesBarnSøknadsdata } from 'app/types/søknadsdata/DeresFellesBarnSøknadsdata';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
@@ -8,7 +9,7 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
-    SET_SØKNAD_OM_BARNET = 'setSøknadOmBarnet',
+    SET_DERES_FELLES_BARN = 'setSøknadOmDeresFellesBarn',
     SET_SØKNAD_ANNEN_FORELDER_SITUASJON = 'setAnnenForelderenSituasjon',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
@@ -48,6 +49,10 @@ interface SetSøknadAnnenForelderenSituasjon {
     payload: AnnenForelderenSituasjonSøknadsdata;
 }
 
+interface SetSøknadOmDeresFellesBarn {
+    type: SøknadContextActionKeys.SET_DERES_FELLES_BARN;
+    payload: DeresFellesBarnSøknadsdata;
+}
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
     payload: OppsummeringFormValues;
@@ -86,6 +91,10 @@ const setSøknadAnnenForelderenSituasjon = (
     type: SøknadContextActionKeys.SET_SØKNAD_ANNEN_FORELDER_SITUASJON,
     payload,
 });
+const setSøknadOmDeresFellesBarn = (payload: DeresFellesBarnSøknadsdata): SetSøknadOmDeresFellesBarn => ({
+    type: SøknadContextActionKeys.SET_DERES_FELLES_BARN,
+    payload,
+});
 
 const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): SetSøknadHarBekreftetOpplysninger => ({
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER,
@@ -105,6 +114,7 @@ export type SøknadContextAction =
     | SetSøknadLagret
     | SetSøknadSendt
     | SetSøknadAnnenForelderenSituasjon
+    | SetSøknadOmDeresFellesBarn
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadRoute;
 
@@ -116,6 +126,7 @@ const actionsCreator = {
     requestLagreSøknad,
     setSøknadRoute,
     setSøknadAnnenForelderenSituasjon,
+    setSøknadOmDeresFellesBarn,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
     setSøknadSendt,

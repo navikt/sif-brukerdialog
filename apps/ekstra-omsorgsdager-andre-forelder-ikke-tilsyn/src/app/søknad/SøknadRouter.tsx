@@ -9,7 +9,7 @@ import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
 import AnnenForelderenSituasjonStep from './steps/annen-forelderens-situasjon-step/AnnenForelderenSituasjonStep';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import OmDeresFellesBarnStep from './steps/deres-felles-barn/DeresFellesBarn';
+import OmDeresFellesBarnStep from './steps/deres-felles-barn/DeresFellesBarnStep';
 import OmAnnenForelderStep from './steps/om-annen-forelder-step/OmAnnenForelderStep';
 import OppsummeringStep from './steps/oppsummering-step/OppsummeringStep';
 import KvitteringPage from 'app/pages/kvittering-page/KvitteringPage';
