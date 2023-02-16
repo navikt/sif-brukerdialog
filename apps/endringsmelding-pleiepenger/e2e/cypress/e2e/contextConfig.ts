@@ -18,8 +18,8 @@ export const mockApiBaseUrl = 'http://localhost:8099/';
 export const contextConfig = (props: ConfigProps) => {
     const { mellomlagring, step, saker, arbeidsgivere } = props;
 
-    beforeEach('intercept mellomlagring og levere tomt objekt', () => {
-        cy.clearLocalStorage();
+    beforeEach('intercept api-kall', () => {
+        cy.wait(5);
         cy.intercept(
             `GET`,
             `${mockApiBaseUrl}mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,

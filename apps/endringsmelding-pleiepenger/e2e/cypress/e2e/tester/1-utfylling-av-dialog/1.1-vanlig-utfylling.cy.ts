@@ -149,6 +149,7 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
 
     before(() => {
         cy.clock(date);
+        cy.clearLocalStorage();
         cy.visit(startUrl);
     });
     startSøknad();
@@ -167,6 +168,7 @@ describe('Endre arbeidstid for flere arbeidsgivere', () => {
 
     before(() => {
         cy.clock(date);
+        cy.clearLocalStorage();
         cy.visit(startUrl);
     });
     startSøknad();
