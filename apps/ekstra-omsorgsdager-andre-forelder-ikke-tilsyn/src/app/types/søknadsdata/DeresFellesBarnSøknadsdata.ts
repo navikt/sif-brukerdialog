@@ -1,4 +1,4 @@
-import { AndreBarn } from 'app/pre-common/forms/barn';
+import { AndreBarn } from '../../pre-common/forms/barn';
 
 interface DeresFellesBarn {
     type: 'andreBarn';

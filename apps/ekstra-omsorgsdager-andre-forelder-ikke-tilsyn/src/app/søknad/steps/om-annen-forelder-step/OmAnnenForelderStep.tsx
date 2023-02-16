@@ -1,66 +1,136 @@
 import React from 'react';
-import SoknadFormStep from '../../SoknadFormStep';
-import { StepID } from '../../soknadStepsConfig';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import { SoknadFormField } from '../../../types/SoknadFormData';
-import SoknadFormComponents from '../../SoknadFormComponents';
-import { Person } from '../../types/Person';
-import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik/lib/validation';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
+import { StepId } from '../../../types/StepId';
+import { getSøknadStepConfigForStep } from 'app/søknad/søknadStepConfig';
+import { useStepNavigation } from 'app/hooks/useStepNavigation';
+import { useStepFormValuesContext } from 'app/søknad/context/StepFormValuesContext';
+import actionsCreator from 'app/søknad/context/action/actionCreator';
+import { useOnValidSubmit } from 'app/hooks/useOnValidSubmit';
+import { SøknadContextState } from 'app/types/SøknadContextState';
+import { lagreSøknadState } from 'app/utils/lagreSøknadState';
+import SøknadStep from '../../../søknad/SøknadStep';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { getOmAnnenForelderFromFormValues, getOmAnnenForelderStepInitialValues } from './omAnnenForelderStepUtils';
 
-type Props = {
-    søker: Person;
-};
+export enum OmAnnenForelderFormFields {
+    annenForelderNavn = 'annenForelderNavn',
+    annenForelderFnr = 'annenForelderFnr',
+}
 
-const OmAnnenForelderStep = ({ søker }: Props) => {
+export interface OmAnnenForelderFormValues {
+    [OmAnnenForelderFormFields.annenForelderNavn]: string;
+    [OmAnnenForelderFormFields.annenForelderFnr]: string;
+}
+
+const { FormikWrapper, Form, TextField } = getTypedFormComponents<
+    OmAnnenForelderFormFields,
+    OmAnnenForelderFormValues,
+    ValidationError
+>();
+
+const OmAnnenForelderStep = () => {
     const intl = useIntl();
+    const {
+        state: { søknadsdata, søker },
+    } = useSøknadContext();
+
+    const stepId = StepId.OM_ANNEN_FORELDER;
+    const step = getSøknadStepConfigForStep(søknadsdata, stepId);
+
+    const { goBack } = useStepNavigation(step);
+
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const onValidSubmitHandler = (values: OmAnnenForelderFormValues) => {
+        const OmAnnenForelderSøknadsdata = getOmAnnenForelderFromFormValues(values);
+        if (OmAnnenForelderSøknadsdata) {
+            clearStepFormValues(stepId);
+            return [actionsCreator.setSøknadOmAnnenForelder(OmAnnenForelderSøknadsdata)];
+        }
+        return [];
+    };
+
+    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+        onValidSubmitHandler,
+        stepId,
+        (state: SøknadContextState) => {
+            return lagreSøknadState(state);
+        }
+    );
 
     return (
-        <SoknadFormStep id={StepID.OM_ANNEN_FORELDER}>
-            <CounsellorPanel>
-                {intlHelper(intl, 'step.om-annen-forelder.banner')}
-                <ul>
-                    <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.1')}</li>
-                    <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.2')}</li>
-                </ul>
-            </CounsellorPanel>
+        <SøknadStep stepId={stepId}>
+            <FormikWrapper
+                initialValues={getOmAnnenForelderStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                onSubmit={handleSubmit}
+                renderForm={() => {
+                    return (
+                        <>
+                            <PersistStepFormValues stepId={stepId} />
+                            <Form
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                                includeValidationSummary={true}
+                                submitPending={isSubmitting}
+                                onBack={goBack}
+                                runDelayedFormValidation={true}>
+                                <SifGuidePanel>
+                                    {intlHelper(intl, 'step.om-annen-forelder.banner')}
+                                    <ul>
+                                        <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.1')}</li>
+                                        <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.2')}</li>
+                                    </ul>
+                                </SifGuidePanel>
 
-            <FormBlock>
-                <SoknadFormComponents.Input
-                    name={SoknadFormField.annenForelderFnr}
-                    label={intlHelper(intl, 'step.om-annen-forlder.fnr.spm')}
-                    validate={getFødselsnummerValidator({
-                        required: true,
-                        disallowedValues: [søker.fødselsnummer],
-                    })}
-                    inputMode="numeric"
-                    maxLength={11}
-                    minLength={11}
-                    style={{ maxWidth: '20rem' }}
-                />
-            </FormBlock>
-            <FormBlock>
-                <SoknadFormComponents.Input
-                    name={SoknadFormField.annenForelderNavn}
-                    label={intlHelper(intl, 'step.om-annen-forlder.navn.spm')}
-                    validate={(value) => {
-                        const error = getStringValidator({ required: true, minLength: 2, maxLength: 50 })(value);
-                        return error
-                            ? {
-                                  key: error,
-                                  values: {
-                                      min: 2,
-                                      maks: 50,
-                                  },
-                              }
-                            : undefined;
-                    }}
-                    style={{ maxWidth: '20rem' }}
-                />
-            </FormBlock>
-        </SoknadFormStep>
+                                <FormBlock>
+                                    <TextField
+                                        name={OmAnnenForelderFormFields.annenForelderFnr}
+                                        label={intlHelper(intl, 'step.om-annen-forlder.fnr.spm')}
+                                        validate={getFødselsnummerValidator({
+                                            required: true,
+                                            disallowedValues: [søker.fødselsnummer],
+                                        })}
+                                        inputMode="numeric"
+                                        maxLength={11}
+                                        minLength={11}
+                                        style={{ maxWidth: '20rem' }}
+                                    />
+                                </FormBlock>
+                                <FormBlock>
+                                    <TextField
+                                        name={OmAnnenForelderFormFields.annenForelderNavn}
+                                        label={intlHelper(intl, 'step.om-annen-forlder.navn.spm')}
+                                        validate={(value) => {
+                                            const error = getStringValidator({
+                                                required: true,
+                                                minLength: 2,
+                                                maxLength: 50,
+                                            })(value);
+                                            return error
+                                                ? {
+                                                      key: error,
+                                                      values: {
+                                                          min: 2,
+                                                          maks: 50,
+                                                      },
+                                                  }
+                                                : undefined;
+                                        }}
+                                        style={{ maxWidth: '20rem' }}
+                                    />
+                                </FormBlock>
+                            </Form>
+                        </>
+                    );
+                }}
+            />
+        </SøknadStep>
     );
 };
 
