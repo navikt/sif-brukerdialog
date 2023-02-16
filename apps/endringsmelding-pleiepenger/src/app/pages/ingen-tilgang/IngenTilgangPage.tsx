@@ -1,10 +1,9 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { getLenker } from '../../lenker';
+import { SkrivTilOssLink } from '../../lenker';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
 
@@ -20,12 +19,13 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div">
                     <p>
-                        Vi kan ikke finne noen sak om pleiepenger på deg. Dersom du akkurat har sendt inn en søknad, kan
-                        det være du må vente litt før saken kommer opp her.
+                        Vi finner ingen sak om pleiepenger registrert på deg, derfor kan du heller ikke bruke denne
+                        tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer
+                        opp her.
                     </p>
                     <p>
-                        Dersom dette ikke stemmer, send inn en melding via{' '}
-                        <Link to={getLenker().skrivTilOss}>Skriv til oss</Link>.
+                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
+                        <SkrivTilOssLink />.
                     </p>
                 </BodyLong>
             );
@@ -33,12 +33,13 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div">
                     <p>
-                        Vi har funnet arbeidsforhold på deg som ikke er registrert på din pleiepengesak. Du må da sende
-                        inn ny søknad.
+                        Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som
+                        ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og
+                        utbetalingene dine blir riktige.
                     </p>
                     <p>
-                        Dersom dette ikke stemmer, send inn en melding via{' '}
-                        <Link to={getLenker().skrivTilOss}>Skriv til oss</Link>.
+                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
+                        <SkrivTilOssLink />.
                     </p>
                 </BodyLong>
             );
@@ -46,12 +47,12 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div">
                     <p>
-                        Saken din har registrert arbeidstid på deg som selvstendig næringsdrivende. Enn så lenge støtter
-                        ikke denne løsningen endring av arbeidstid for selvstendig næringsdrivende.
+                        Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
+                        endringer fra selvstendig næringsdrivende. Vi jobber for å få det til, og selvstendig
+                        næringsdrivende blir også tilbudt denne tjenesten på et senere tidspunkt.
                     </p>
                     <p>
-                        For å melde inn endringer kan du sende inn ny søknad, eller send inn en melding via Skriv til
-                        oss.
+                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
                     </p>
                 </BodyLong>
             );
@@ -59,17 +60,12 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div">
                     <p>
-                        Du kan desverre ikke bruke denne løsningen for å sende inn melding om endring enda. Løsningen
-                        støtter kun dem som har én sak, og vi ser at du har flere saker.
+                        Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
+                        endringer når du har flere pleiepengesaker. Vi jobber for å få det til, og du som har flere
+                        saker blir også tilbudt denne tjenesten på et senere tidspunkt.
                     </p>
                     <p>
-                        Vi har valgt å lage løsningen for dem som har kun én sak til å begynne med, fordi de fleste har
-                        kun én sak, og vi ønsker å tilby løsningen så fort som mulig, og heller utvide etter hvert. Det
-                        å støtte dem med flere saker, står høyt på listen over hva vi ønsker å utvide med.
-                    </p>
-                    <p>
-                        For å melde inn endring kan du sende inn en ny søknad med endringen, eller send inn en melding
-                        via <Link to={getLenker().skrivTilOss}>Skriv til oss</Link>.
+                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
                     </p>
                 </BodyLong>
             );

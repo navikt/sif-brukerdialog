@@ -25,4 +25,4 @@ export const getLenker = (locale?: string): Lenker => {
     }
 };
 
-export const SkrivTilOssLink = () => <Link href={getLenker().skrivTilOss}>skriv til oss</Link>;
+export const SkrivTilOssLink = () => <Link href={getLenker().skrivTilOss}>Skriv til oss</Link>;
