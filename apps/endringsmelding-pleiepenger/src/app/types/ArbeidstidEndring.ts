@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { ISODateRange } from '@navikt/sif-common-utils/lib';
 import { TimerEllerProsent } from './TimerEllerProsent';
 
 interface ArbeidstidEndringProsent {
@@ -13,12 +13,6 @@ interface ArbeidstidEndringTimer {
 
 export type ArbeidstidEndring = ArbeidstidEndringProsent | ArbeidstidEndringTimer;
 
-export interface ArbeidstidAktivitetEndring {
-    arbeidAktivitetId: string;
-    perioder: DateRange[];
-    endring: ArbeidstidEndring;
-}
-
-export type ArbeidstidAktivitetEndringMap = {
-    [isoDateRange: string]: ArbeidstidAktivitetEndring;
+export type ArbeidstidEndringMap = {
+    [uke: ISODateRange]: ArbeidstidEndring;
 };

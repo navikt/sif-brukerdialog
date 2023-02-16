@@ -8,7 +8,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import React, { useState } from 'react';
 import { SkrivTilOssLink } from '../../lenker';
-import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { getEndringsdato, getMaksEndringsperiode } from '../../utils/endringsperiode';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
@@ -18,8 +18,8 @@ import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
-    endringer: ArbeidstidAktivitetEndringMap | undefined;
-    onArbeidstidAktivitetChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetEndring[]) => void;
+    endringer: ArbeidstidEndringMap | undefined;
+    onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
 const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetChange }: Props) => {
@@ -111,11 +111,16 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                 isVisible={arbeidsukerForEndring !== undefined}
                 arbeidsuker={arbeidsukerForEndring || []}
                 onClose={() => setArbeidsukerForEndring(undefined)}
-                onSubmit={(data) => {
+                onEndreArbeidstid={({ perioder, endring }) => {
                     setArbeidsukerForEndring(undefined);
-                    onArbeidstidAktivitetChange(
-                        data.map((endring) => ({ arbeidAktivitetId: arbeidAktivitet.id, ...endring }))
-                    );
+                    const nyeEndringer: ArbeidstidEndringMap = {};
+                    perioder.forEach((periode) => {
+                        nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+                    });
+                    onArbeidstidAktivitetChange({
+                        ...endringer,
+                        ...nyeEndringer,
+                    });
                     setResetUkerTabellCounter(resetUkerTabellCounter + 1);
                 }}
             />

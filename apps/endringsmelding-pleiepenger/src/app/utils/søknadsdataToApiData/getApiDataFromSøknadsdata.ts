@@ -7,7 +7,7 @@ import {
     sortDateRange,
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {
     ArbeidAktivitet,
     ArbeidAktiviteter,
@@ -38,13 +38,13 @@ const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): Arbeidsu
 };
 
 const getEndretArbeidstid = (
-    endringUkeMap: ArbeidstidAktivitetEndringMap,
+    endringUkeMap: ArbeidstidEndringMap,
     arbeidAktivitet: ArbeidAktivitet
 ): ArbeidstidPeriodeApiDataMap => {
     const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
     Object.keys(endringUkeMap).forEach((isoDateRange) => {
-        const { endring } = endringUkeMap[isoDateRange];
+        const endring = endringUkeMap[isoDateRange];
         const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidAktivitet.perioderMedArbeidstid);
         const arbeidsuke = arbeidsuker[isoDateRange];
         const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
@@ -73,7 +73,7 @@ const getEndretArbeidstid = (
 };
 
 const getArbeidstidInfo = (
-    aktivitetEndring?: ArbeidstidAktivitetEndringMap,
+    aktivitetEndring?: ArbeidstidEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
     if (aktivitetEndring && aktivitet) {

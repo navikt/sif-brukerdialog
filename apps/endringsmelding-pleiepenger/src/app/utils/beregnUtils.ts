@@ -1,5 +1,5 @@
 import { decimalDurationToDuration, Duration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
-import { ArbeidstidEndring } from '../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidEndring } from '../types/ArbeidstidEndring';
 import { ArbeidsukeTimer } from '../types/Sak';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
 

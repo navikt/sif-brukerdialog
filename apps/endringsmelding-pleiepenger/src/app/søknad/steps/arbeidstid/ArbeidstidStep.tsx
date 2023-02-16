@@ -9,12 +9,11 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import Arbeidsaktivitet from '../../../components/arbeidsaktivitet/Arbeidsaktivitet';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -27,7 +26,7 @@ import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringMap };
+    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
 }
 
 enum ArbeidstidFormFields {
@@ -72,28 +71,18 @@ const ArbeidstidStep = () => {
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidstidAktivitetChange = (
-        endring: ArbeidstidAktivitetEndring[],
+        arbeidAktivitetId: string,
+        arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
-        const alleEndringer = values[ArbeidstidFormFields.arbeidAktivitetEndring] || {};
-        const { arbeidAktivitetId } = endring[0];
-        const tidligereEndringer: ArbeidstidAktivitetEndringMap = alleEndringer[arbeidAktivitetId];
-        const nyeEndringer: ArbeidstidAktivitetEndringMap = {};
-        endring.forEach((endring) => {
-            endring.perioder.forEach((periode) => {
-                nyeEndringer[dateRangeToISODateRange(periode)] = endring;
-            });
-        });
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitetEndring: {
-                ...values[ArbeidstidFormFields.arbeidAktivitetEndring],
-                [arbeidAktivitetId]: {
-                    ...tidligereEndringer,
-                    ...nyeEndringer,
-                },
+                ...values.arbeidAktivitetEndring,
+                [arbeidAktivitetId]: arbeidstidEndringMap,
             },
         };
+
         setValues(newValues);
 
         /** Oppdater state før mellomlagring */
@@ -183,8 +172,13 @@ const ArbeidstidStep = () => {
                                                 <Arbeidsaktivitet
                                                     arbeidAktivitet={arbeidAktivitet}
                                                     endringer={endringer[arbeidAktivitet.id]}
-                                                    onArbeidstidAktivitetChange={(endringer) => {
-                                                        onArbeidstidAktivitetChange(endringer, values, setValues);
+                                                    onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
+                                                        onArbeidstidAktivitetChange(
+                                                            arbeidAktivitet.id,
+                                                            arbeidstidEndringer,
+                                                            values,
+                                                            setValues
+                                                        );
                                                     }}
                                                 />
                                             </Panel>

@@ -1,6 +1,6 @@
 import { durationUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { ArbeidstidAktivitetEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidEndring';
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
@@ -40,26 +40,26 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
 
 const getArbeidstidUkeTabellItemFromArbeidsukerMap = (
     arbeidsukeMap: ArbeidsukeMap,
-    endringer: ArbeidstidAktivitetEndringMap = {}
+    endringer: ArbeidstidEndringMap = {}
 ): ArbeidstidUkeTabellItem[] => {
     const items: ArbeidstidUkeTabellItem[] = [];
     Object.keys(arbeidsukeMap).map((key) => {
         const arbeidsuke = arbeidsukeMap[key];
         const endring = endringer[key];
-        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring?.endring));
+        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring));
     });
     return items;
 };
 
 const getArbeidstidUkeTabellItemFromArbeidsuker = (
     arbeidsuker: ArbeidsukeMap,
-    endringer: ArbeidstidAktivitetEndringMap = {}
+    endringer: ArbeidstidEndringMap = {}
 ): ArbeidstidUkeTabellItem[] => {
     const items: ArbeidstidUkeTabellItem[] = [];
     Object.keys(arbeidsuker).map((key) => {
         const arbeidsuke = arbeidsuker[key];
         const endring = endringer[arbeidsuke.isoDateRange];
-        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring?.endring));
+        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring));
     });
     return items;
 };

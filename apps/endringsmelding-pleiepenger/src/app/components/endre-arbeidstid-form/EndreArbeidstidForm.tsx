@@ -16,7 +16,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import { ArbeidstidAktivitetEndring } from '../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidEndring } from '../../types/ArbeidstidEndring';
 import { Arbeidsuke } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import {
@@ -28,12 +28,16 @@ import {
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 
-export type EndreArbeidstidFormData = Omit<ArbeidstidAktivitetEndring, 'arbeidAktivitetId'>;
+export type EndreArbeidstidData = {
+    perioder: DateRange[];
+    endring: ArbeidstidEndring;
+};
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
-    onSubmit: (data: EndreArbeidstidFormData[]) => void;
+    onSubmit: (data: EndreArbeidstidData) => void;
     onCancel: () => void;
 }
 
@@ -66,23 +70,20 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
         if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
             const value = getNumberFromNumberInputValue(values.prosentAvNormalt);
             if (value !== undefined) {
-                onSubmit([
-                    {
-                        perioder: arbeidsuker.map((a) => a.periode),
-                        endring: {
-                            type: TimerEllerProsent.PROSENT,
-                            prosent: value,
-                        },
+                onSubmit({
+                    perioder: arbeidsuker.map((a) => a.periode),
+                    endring: {
+                        type: TimerEllerProsent.PROSENT,
+                        prosent: value,
                     },
-                ]);
+                });
             }
         }
         if (values.timerEllerProsent === TimerEllerProsent.TIMER) {
             const antallTimer = getNumberFromNumberInputValue(values.antallTimer);
-            const endringer: EndreArbeidstidFormData[] = [];
             if (antallTimer !== undefined) {
                 const perioder = arbeidsuker.map((uke) => uke.periode);
-                endringer.push({
+                onSubmit({
                     perioder,
                     endring: {
                         type: TimerEllerProsent.TIMER,
@@ -90,7 +91,6 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                     },
                 });
             }
-            onSubmit(endringer);
         }
     };
 

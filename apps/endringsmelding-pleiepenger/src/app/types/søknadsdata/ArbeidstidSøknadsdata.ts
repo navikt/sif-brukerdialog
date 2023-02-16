@@ -1,7 +1,7 @@
-import { ArbeidstidAktivitetEndringMap } from '../ArbeidstidAktivitetEndring';
+import { ArbeidstidEndringMap } from '../ArbeidstidEndring';
 
 export interface ArbeidstidSøknadsdata {
     arbeidAktivitetEndring: {
-        [key: string]: ArbeidstidAktivitetEndringMap;
+        [key: string]: ArbeidstidEndringMap;
     };
 }

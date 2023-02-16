@@ -1,4 +1,3 @@
-import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
 import { ArbeidAktivitet, Sak } from '../../../types/Sak';
 import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
@@ -15,7 +14,6 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_AKTIVITET = 'setSøknadAktivitet',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
-    SET_ARBEIDSTID_AKTIVITET_ENDRING = 'setArbeidstidAktivitetEndring',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -71,11 +69,6 @@ interface SetSøknadHarBekreftetOpplysninger {
 interface ClearStepSøknadsdata {
     type: SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA;
     payload: { stepId: StepId };
-}
-
-interface SetArbeidstidAktivitetEndring {
-    type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING;
-    payload: { endring: ArbeidstidAktivitetEndring };
 }
 
 interface SetInputPreferanser {
@@ -141,13 +134,6 @@ const clearStepSøknadsdata = (stepId: StepId): ClearStepSøknadsdata => ({
     },
 });
 
-const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetEndring): SetArbeidstidAktivitetEndring => ({
-    type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING,
-    payload: {
-        endring,
-    },
-});
-
 const setInputPreferanser = (inputPreferanser: SøknadContextInputPreferanse): SetInputPreferanser => ({
     type: SøknadContextActionKeys.SET_INPUT_PREFERANSER,
     payload: {
@@ -169,7 +155,6 @@ export type SøknadContextAction =
     | SetSøknadRoute
     | SetEndringsmeldingSendt
     | StartSøknad
-    | SetArbeidstidAktivitetEndring
     | SetInputPreferanser;
 
 const actionsCreator = {
@@ -186,7 +171,6 @@ const actionsCreator = {
     setSøknadRoute,
     setEndringsmeldingSendt,
     startSøknad,
-    setArbeidstidAktivitetEndring,
     setInputPreferanser,
 };
 
