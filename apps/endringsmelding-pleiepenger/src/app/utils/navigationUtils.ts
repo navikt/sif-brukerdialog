@@ -15,3 +15,4 @@ const getSøknadRouteURL = (route: SøknadRoutes) => {
 export const relocateToWelcomePage = () => relocateTo(getSøknadRouteURL(SøknadRoutes.VELKOMMEN));
 export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('LOGIN_URL'));
 export const relocateToNoAccessPage = (): void => relocateTo(getSøknadRouteURL(SøknadRoutes.IKKE_TILGANG));
+export const relocateToDinePleiepenger = (): void => relocateTo(getEnvironmentVariable('INNSYN_URL'));

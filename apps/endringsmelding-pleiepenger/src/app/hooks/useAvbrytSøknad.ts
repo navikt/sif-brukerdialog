@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useMellomlagring } from './useMellomlagring';
+import { relocateToDinePleiepenger } from '../utils/navigationUtils';
 
 const useAvbrytEllerFortsettSenere = () => {
     const navigate = useNavigate();
@@ -17,8 +18,10 @@ const useAvbrytEllerFortsettSenere = () => {
 
     const fortsettSøknadSenere = useCallback(() => {
         dispatch(actionsCreator.fortsettSøknadSenere());
-        navigate('/');
-    }, [navigate, dispatch]);
+        setTimeout(() => {
+            relocateToDinePleiepenger();
+        });
+    }, [dispatch]);
 
     return { avbrytSøknad, fortsettSøknadSenere };
 };
