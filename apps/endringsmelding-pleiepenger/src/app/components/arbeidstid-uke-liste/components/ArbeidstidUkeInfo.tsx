@@ -33,7 +33,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
                 <strong className={bem.element('timer')} data-testid="timer-faktisk">
                     <DurationText duration={faktisk} />
                 </strong>
-                {endretProsent && (
+                {endretProsent !== undefined && (
                     <span className={bem.element('prosent')}> ({intl.formatNumber(endretProsent)} %)</span>
                 )}
             </div>

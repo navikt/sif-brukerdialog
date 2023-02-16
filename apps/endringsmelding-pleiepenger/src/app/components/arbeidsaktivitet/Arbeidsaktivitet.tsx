@@ -8,6 +8,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import React, { useState } from 'react';
 import { SkrivTilOssLink } from '../../lenker';
+import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { getEndringsdato, getMaksEndringsperiode } from '../../utils/endringsperiode';
@@ -117,10 +118,15 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                     perioder.forEach((periode) => {
                         nyeEndringer[dateRangeToISODateRange(periode)] = endring;
                     });
-                    onArbeidstidAktivitetChange({
-                        ...endringer,
-                        ...nyeEndringer,
-                    });
+                    onArbeidstidAktivitetChange(
+                        cleanupArbeidAktivitetEndringer(
+                            {
+                                ...endringer,
+                                ...nyeEndringer,
+                            },
+                            arbeidAktivitet
+                        )
+                    );
                     setResetUkerTabellCounter(resetUkerTabellCounter + 1);
                 }}
             />

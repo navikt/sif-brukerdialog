@@ -1,4 +1,9 @@
+import { durationsAreEqual } from '@navikt/sif-common-utils/lib';
+import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
+import { ArbeidAktivitet } from '../../../types/Sak';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { getArbeidsukerIArbeidAktivitet } from '../../../utils/arbeidAktivitetUtils';
+import { beregnEndretArbeidstid } from '../../../utils/beregnUtils';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
@@ -24,25 +29,19 @@ export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormVa
     return { arbeidAktivitetEndring: values.arbeidAktivitetEndring };
 };
 
-// export const cleanupArbeidAktivitetEndringer = (
-//     arbeidstidAktivitetEndringer: ArbeidstidAktivitetEndringMap,
-//     arbeidsuker: Arbeidsuke[]
-// ): ArbeidstidAktivitetEndringMap => {
-//     const cleanedEndringer: ArbeidstidAktivitetEndringMap = {};
-
-//     const arbeidsukerMap: ArbeidsukeMap = {};
-//     arbeidsuker.forEach((uke) => (arbeidsukerMap[uke.isoDateRange] = uke));
-
-//     Object.keys(arbeidstidAktivitetEndringer).forEach((key) => {
-//         const opprinnelig = arbeidsukerMap[key];
-//         if (!opprinnelig) {
-//             return;
-//         }
-//         const arbeidAktivitetEndring = arbeidstidAktivitetEndringer[key];
-//         const endretTimer = beregnEndretArbeidstid(arbeidAktivitetEndring.endring, opprinnelig.normalt.uke);
-//         if (endretTimer && !durationUtils.durationsAreEqual(endretTimer, opprinnelig.faktisk.uke)) {
-//             cleanedEndringer[key] = arbeidAktivitetEndring;
-//         }
-//     });
-//     return cleanedEndringer;
-// };
+export const cleanupArbeidAktivitetEndringer = (
+    endringer: ArbeidstidEndringMap,
+    arbeidAktivitet: ArbeidAktivitet
+): ArbeidstidEndringMap => {
+    const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);
+    const cleanedEndringer: ArbeidstidEndringMap = {};
+    Object.keys(endringer).forEach((key) => {
+        const endring = endringer[key];
+        const opprinnelig = arbeidsuker[key];
+        const endretArbeidstid = beregnEndretArbeidstid(endring, opprinnelig.normalt.uke);
+        if (!durationsAreEqual(endretArbeidstid, opprinnelig.faktisk.uke)) {
+            cleanedEndringer[key] = endring;
+        }
+    });
+    return cleanedEndringer;
+};
