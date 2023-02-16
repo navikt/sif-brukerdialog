@@ -37,5 +37,5 @@ Samling av kode for søknadsdialoger under Sykdom i familien
     - Velg riktig bump for pakken
     - Skriv en kort oppsummering på hva som er gjort
     - commit og push
-2. Når PR merges inn på main, kan en kjøre action `Changeset release - build PR` som lager en `Changeset version`-PR med oppdaterte versjonsnumre. NB! Se over at PR'en ikke inneholder noen bumps som er feil. Den tar av og til med pakker som ikke skal være med. Korriger dersom det er feil. Denne kan også kjøres lokalt via `yarn changeset version`. 
+2. Når PR merges inn på main, kan en kjøre action `Changeset release - build PR` som lager en pull request med oppdaterte versjonsnumre. NB! Se over at PR'en ikke inneholder noen bumps som er feil. Den tar av og til med pakker som ikke skal være med. Korriger dersom det er feil. Denne kan også kjøres lokalt via `yarn changeset version`. 
 3. Når `Changeset version` er merget til main, kan en hente ned `main`-branchen bygg alle pakker `yarn bp` og kjøre `yarn changeset publish`. Da vil alle versjoner som er oppdatert pushes til npmjs.
