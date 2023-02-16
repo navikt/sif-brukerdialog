@@ -115,8 +115,8 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                         <Block margin="l" padBottom="l">
                             <Heading size="large" level="2">
                                 {arbeidsuker.length === 1
-                                    ? `Endre arbeidstid uke ${getArbeidsukeUkenummer(arbeidsuker[0], true)}`
-                                    : 'Endre arbeidstid for flere uker'}
+                                    ? `Endre faktisk arbeidstid for uke ${getArbeidsukeUkenummer(arbeidsuker[0], true)}`
+                                    : 'Endre faktisk arbeidstid for flere uker'}
                             </Heading>
                             <Block margin="m">
                                 <Ingress as="div">{getUkerOgÅrBeskrivelse(arbeidsuker)}</Ingress>
@@ -131,7 +131,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                             onCancel={onCancel}
                             showButtonArrows={false}>
                             <Block padBottom="m">
-                                <strong>Hvordan vil du oppgi arbeidstiden?</strong>
+                                <strong>Hvordan vil du oppgi den faktiske arbeidstiden?</strong>
                             </Block>
                             <ToggleGroup
                                 className="endreArbeidstidForm__timerProsentToggler"

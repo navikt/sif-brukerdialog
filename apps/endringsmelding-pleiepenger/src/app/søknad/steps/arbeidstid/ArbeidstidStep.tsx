@@ -97,54 +97,76 @@ const ArbeidstidStep = () => {
         <SøknadStep stepId={stepId} sak={sak}>
             <SifGuidePanel>
                 <>
-                    <Heading level="2" size="small">
-                        Slik endrer du hvor mye du jobber i perioden med pleiepenger
-                    </Heading>
                     <BodyLong as="div">
+                        <p>
+                            Før du går videre, trenger du å vite forskjellen på «normal arbeidstid» og «faktisk
+                            arbeidstid»:
+                        </p>
+                        <p>
+                            <strong>Normal arbeidstid</strong> er hvor mye du jobbet før du startet med pleiepenger, og
+                            altså den tiden du har oppgitt som normal arbeidstid i søknaden. Dette trenger du ikke å
+                            opplyse noe om her, det ligger allerede inne.
+                        </p>
+
+                        <p>
+                            <strong>Faktisk arbeidstid</strong> er hvor mye du jobber i samme periode som du tar vare på
+                            et sykt barn og har pleiepenger. Det er denne tiden du skal oppgi her.
+                        </p>
+                        <Block margin="xl">
+                            <Heading level="2" size="xsmall" spacing={true}>
+                                Slik gjør du det
+                            </Heading>
+                        </Block>
                         <InfoList>
-                            <li>Arbeidstiden endrer du per uke, enten i timer eller prosent av normalarbeidstiden.</li>
-                            <li>Du kan endre én og én uke, eller du kan velge flere uker og endre disse samtidig.</li>
                             <li>
-                                Du kan melde ifra om endringer i opptil 3 måneder tilbake i tid, og 12 måneder frem i
+                                Hvor mye du jobber endrer du per uke. Enten i timer eller prosent av det som er din
+                                normale arbeidstid per uke. Se eksempler litt lenger ned på siden.
+                            </li>
+
+                            <li>
+                                Du kan endre flere uker samtidig, eller bare én uke, om det er dette som passer din
+                                situasjon.
+                            </li>
+                            <li>
+                                Du kan gjøre endringer i opptil 3 måneder tilbake i tid, og i opptil 12 måneder frem i
                                 tid.
                             </li>
                         </InfoList>
                         <Block margin="l">
-                            <ExpandableInfo title="Hvordan endrer jeg enkeltdager i én uke?">
-                                Når du vil endre enkeltdager i en uke, skal du fortsatt oppgi hvor mye du jobber hele
-                                den uken. Du kan oppgi antall timer, eller en prosentandel av hvor mye du jobbet normalt
-                                før du begynte på pleiepenger. Du velger det som passer best for deg.
-                                <Block margin="l">
+                            <ExpandableInfo title="Eksempler på hvordan endre i forskjellige situasjoner">
+                                <Heading level="3" size="small" spacing={true}>
+                                    Eksempel 1
+                                </Heading>
+                                <p>Du jobber normalt 37,5 timer per uke, dette er din normale arbeidstid per uke.</p>
+                                <p>
+                                    I pleiepengeperioden kan du jobbe 1 dag per uke, som er 7,5 timer eller 20 prosent.
+                                    Da blir din faktiske arbeidstid 7,5 timer per uke, eller 20 prosent om du velger å
+                                    bruke prosent.
+                                </p>
+                                <Block margin="xl">
                                     <Heading level="3" size="small" spacing={true}>
-                                        Noen eksempler
+                                        Eksempel 2
                                     </Heading>
                                 </Block>
-                                Du jobbet normalt 40 timer i uken (8 timer hver dag) og har oppgitt at du ikke jobber
-                                mens du har pleiepenger.
                                 <p>
-                                    <strong>Eksempel 1:</strong> Nå får du allikevel jobbet 2 dager i én uke, og skal
-                                    melde ifra om det.
+                                    Din normale arbeidstid per uke er 40 timer. I søknaden har du oppgitt at du ikke
+                                    jobber noe mens du har pleiepenger.
                                 </p>
                                 <p>
-                                    Da oppgir du 16 timer for den uken, eller 40 prosent, som er det samme som 2 dager.
+                                    Nå får du likevel jobbet 2 dager i uke 28, og skal melde fra om det. Da oppgir du 16
+                                    timer som din faktiske arbeidstid for den uken. Eller 40 prosent, om du vil bruke
+                                    prosent.
                                 </p>
+                                <Block margin="xl">
+                                    <Heading level="3" size="small" spacing={true}>
+                                        Eksempel 3
+                                    </Heading>
+                                </Block>
+                                <p>Din normale arbeidstid er 37,5 prosent.</p>
                                 <p>
-                                    <strong>Eksempel 2: </strong>Du har oppgitt at du jobber 50 prosent i perioden med
-                                    pleiepenger, men i én av uken får du bare jobbet 1 dag.
-                                </p>
-                                <p>Da oppgir du 8 timer for den uken, eller 20 prosent, som er det samme som 1 dag.</p>
-                            </ExpandableInfo>
-                        </Block>
-
-                        <Block margin="m">
-                            <ExpandableInfo title="Hva er forskjellen på normal og faktisk arbeidstid?">
-                                <p>
-                                    Med <strong>«normal arbeidstid»</strong> mener vi hvor mye du jobbet før du startet
-                                    med pleiepenger, og som du har oppgitt som normal arbeidstid i søknaden.
-                                </p>
-                                <p>
-                                    Med <strong>«faktisk arbeidstid»</strong> mener vi hvor mye du får jobbet i perioden
-                                    når du har pleiepenger.
+                                    I søknaden har du oppgitt at du jobber 50 prosent mens du har pleiepenger, men i én
+                                    av ukene får du bare jobbet 20 prosent. Da oppgir du 7,5 timer som din faktiske
+                                    arbeidstid for den uken. Eller 20 prosent, om du vil bruke prosent.
                                 </p>
                             </ExpandableInfo>
                         </Block>

@@ -56,10 +56,10 @@ const VelkommenPage = () => {
                 </Heading>
                 <Ingress as="div">
                     <p>
-                        Her kan du kan melde inn hvor mye du jobber i perioden med pleiepenger for{' '}
-                        <strong>{barnetsNavn}</strong>.
+                        Du har pleiepenger for <strong>{barnetsNavn}</strong>. Her melder du fra om hvor mye du jobber i
+                        perioden du har pleiepenger.
                     </p>
-                    <p>Arbeidsforhold du kan melde endring på:</p>
+                    <p>Arbeidsforhold:</p>
                     <InfoList>
                         {aktiviteterSomKanEndres.map((aktivitet, index) => {
                             return (

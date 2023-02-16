@@ -8,8 +8,8 @@ export const defaultMessages: MessageFileFormat = {
         'step.aktivitet.pageTitle': 'Hvilke arbeidsforhold ønsker du å endre?',
         'step.aktivitet.stepTitle': 'Hvilke arbeidsforhold ønsker du å endre?',
 
-        'step.arbeidstid.pageTitle': 'Endre arbeidstid',
-        'step.arbeidstid.stepTitle': 'Endre arbeidstid',
+        'step.arbeidstid.pageTitle': 'Endre faktisk arbeidstid i pleiepengeperioden',
+        'step.arbeidstid.stepTitle': 'Endre faktisk arbeidstid i pleiepengeperioden',
 
         'step.oppsummering.pageTitle': 'Oppsummering',
         'step.oppsummering.stepTitle': 'Oppsummering',

@@ -130,13 +130,13 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                     <Alert variant="info" inline={false}>
                         {korteUker.length === 1 ? (
                             <>
-                                Uke {korteUker[0]} er en kort uke, og kan ikke endres sammen med de andre ukene. Denne
-                                må endres for seg selv.
+                                Ettersom uke {korteUker[0]} er en kort uke, altså ikke en hel uke, må den endres for
+                                seg.
                             </>
                         ) : (
                             <>
-                                Ukene {korteUker.join(' og ')} er korte uker, og kan ikke endres sammen med de andre
-                                ukene. Disse må endres hver for seg.
+                                Ettersom uke {korteUker.join(' og ')} er korte uker, altså ikke hele uker, må de endres
+                                hver for seg.
                             </>
                         )}
                     </Alert>
