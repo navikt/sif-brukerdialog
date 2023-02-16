@@ -1,6 +1,7 @@
 import { contextConfig, mockApiBaseUrl } from '../../contextConfig';
 import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
 import { flereSakerMock } from '../../data/flereSakerMock';
+import { enSakSN } from '../../data/enSakSN';
 import { getTestElement } from '../../utils';
 
 const startUrl = 'http://localhost:8080';
@@ -14,7 +15,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         });
         it('Viser riktig melding når bruker ikke har sak', () => {
             expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
-            expect(cy.get('#pageMainContent').contains('Vi kan ikke finne noen sak om pleiepenger på deg'));
+            expect(getTestElement('ingenSak')).to.exist;
         });
     });
     describe('Flere saker', () => {
@@ -25,7 +26,18 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         });
         it('Viser riktig melding når bruker har flere saker', () => {
             expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
-            expect(cy.get('#pageMainContent').contains('vi ser at du har flere saker'));
+            expect(getTestElement('flereSaker')).to.exist;
+        });
+    });
+    describe('Er SN', () => {
+        contextConfig({ saker: enSakSN, arbeidsgivere: enArbeidsgiverMock });
+        before(() => {
+            cy.visit(startUrl);
+            cy.intercept(`${mockApiBaseUrl}/api/innsyn/sak`, flereSakerMock);
+        });
+        it('Viser riktig melding når bruker har flere saker', () => {
+            expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
+            expect(getTestElement('erSN')).to.exist;
         });
     });
 });

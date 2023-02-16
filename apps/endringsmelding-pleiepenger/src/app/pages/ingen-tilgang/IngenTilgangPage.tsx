@@ -17,7 +17,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
         case IngenTilgangÅrsak.harIngenPerioder:
         case IngenTilgangÅrsak.harIngenSak:
             return (
-                <BodyLong as="div">
+                <BodyLong as="div" data-testid="ingenSak">
                     <p>
                         Vi finner ingen sak om pleiepenger registrert på deg, derfor kan du heller ikke bruke denne
                         tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer
@@ -31,7 +31,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             );
         case IngenTilgangÅrsak.harArbeidsgiverSomIkkeErISak:
             return (
-                <BodyLong as="div">
+                <BodyLong as="div" data-testid="nyttArbeidsforhold">
                     <p>
                         Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som
                         ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og
@@ -45,7 +45,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             );
         case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
             return (
-                <BodyLong as="div">
+                <BodyLong as="div" data-testid="erSN">
                     <p>
                         Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
                         endringer fra selvstendig næringsdrivende. Vi jobber for å få det til, og selvstendig
@@ -58,7 +58,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             );
         case IngenTilgangÅrsak.harMerEnnEnSak:
             return (
-                <BodyLong as="div">
+                <BodyLong as="div" data-testid="flereSaker">
                     <p>
                         Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
                         endringer når du har flere pleiepengesaker. Vi jobber for å få det til, og du som har flere

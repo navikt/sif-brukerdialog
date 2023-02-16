@@ -19,7 +19,6 @@ export const contextConfig = (props: ConfigProps) => {
     const { mellomlagring, step, saker, arbeidsgivere } = props;
 
     beforeEach('intercept api-kall', () => {
-        cy.wait(5);
         cy.intercept(
             `GET`,
             `${mockApiBaseUrl}mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
