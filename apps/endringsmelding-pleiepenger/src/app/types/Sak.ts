@@ -37,7 +37,6 @@ export interface ArbeidsukeMap {
 
 export interface PeriodeMedArbeidstid {
     periode: DateRange;
-    enkeltdager: ArbeidstidEnkeltdagMap;
     arbeidsuker: ArbeidsukeMap;
 }
 

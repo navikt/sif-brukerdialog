@@ -283,11 +283,10 @@ const getPerioderMedArbeidstid = (
     const perioder = trimArbeidstidTilTillattEndringsperiode(arbeidstidPeriodeMap, tillattEndringsperiode);
 
     return grupperArbeidstidPerioder(perioder).map((gruppertPeriode) => {
-        const enkeltdager = getArbeidstidEnkeltdagMapFromPerioder(gruppertPeriode.arbeidstidPerioder);
-        const arbeidsuker = getArbeidsukerMapFromArbeidsuker(getArbeidsukerFromEnkeltdager(enkeltdager));
+        const enkeltdagerIPeriode = getArbeidstidEnkeltdagMapFromPerioder(gruppertPeriode.arbeidstidPerioder);
+        const arbeidsuker = getArbeidsukerMapFromArbeidsuker(getArbeidsukerFromEnkeltdager(enkeltdagerIPeriode));
         const periode: PeriodeMedArbeidstid = {
             periode: gruppertPeriode.periode,
-            enkeltdager,
             arbeidsuker,
         };
         return periode;
