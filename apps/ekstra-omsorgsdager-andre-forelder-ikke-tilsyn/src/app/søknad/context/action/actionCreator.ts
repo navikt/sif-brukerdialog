@@ -1,7 +1,7 @@
 import { AnnenForelderenSituasjonSøknadsdata } from '../../../types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
-import { DeresFellesBarnSøknadsdata } from '../../../types/søknadsdata/DeresFellesBarnSøknadsdata';
+import { OmBarnaSøknadsdata } from '../../../types/søknadsdata/OmBarnaSøknadsdata';
 import { OmAnnenForelderSøknadsdata } from '../../../types/søknadsdata/OmAnnenForelderSøknadsdata';
 
 export enum SøknadContextActionKeys {
@@ -12,7 +12,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_OM_ANNEN_FORELDER = 'setSøknadOmAnnenForelder',
     SET_SØKNAD_ANNEN_FORELDEREN_SITUASJON = 'setAnnenForelderenSituasjon',
-    SET_SØKNAD_DERES_FELLES_BARN = 'setSøknadOmDeresFellesBarn',
+    SET_SØKNAD_OM_BARNA = 'setSøknadOmBarna',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -56,9 +56,9 @@ interface SetSøknadAnnenForelderenSituasjon {
     payload: AnnenForelderenSituasjonSøknadsdata;
 }
 
-interface SetSøknadOmDeresFellesBarn {
-    type: SøknadContextActionKeys.SET_SØKNAD_DERES_FELLES_BARN;
-    payload: DeresFellesBarnSøknadsdata;
+interface SetSøknadOmBarna {
+    type: SøknadContextActionKeys.SET_SØKNAD_OM_BARNA;
+    payload: OmBarnaSøknadsdata;
 }
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
@@ -103,8 +103,8 @@ const setSøknadAnnenForelderenSituasjon = (
     type: SøknadContextActionKeys.SET_SØKNAD_ANNEN_FORELDEREN_SITUASJON,
     payload,
 });
-const setSøknadOmDeresFellesBarn = (payload: DeresFellesBarnSøknadsdata): SetSøknadOmDeresFellesBarn => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_DERES_FELLES_BARN,
+const setSøknadOmBarna = (payload: OmBarnaSøknadsdata): SetSøknadOmBarna => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_OM_BARNA,
     payload,
 });
 
@@ -127,7 +127,7 @@ export type SøknadContextAction =
     | SetSøknadSendt
     | SetSøknadOmAnnenForelder
     | SetSøknadAnnenForelderenSituasjon
-    | SetSøknadOmDeresFellesBarn
+    | SetSøknadOmBarna
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadRoute;
 
@@ -140,7 +140,7 @@ const actionsCreator = {
     setSøknadRoute,
     setSøknadOmAnnenForelder,
     setSøknadAnnenForelderenSituasjon,
-    setSøknadOmDeresFellesBarn,
+    setSøknadOmBarna,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
     setSøknadSendt,

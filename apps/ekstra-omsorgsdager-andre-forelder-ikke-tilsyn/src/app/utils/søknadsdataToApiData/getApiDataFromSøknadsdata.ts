@@ -3,8 +3,8 @@ import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getOmBarnetApiDataFromSøknadsdata } from './getOmBarnetApiDataFromSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
-    const { omAnnenForelderData, annenForelderenSituasjonData, deresFellesBarnData } = søknadsdata;
-    if (!omAnnenForelderData || !annenForelderenSituasjonData || !deresFellesBarnData) {
+    const { omAnnenForelderData, annenForelderenSituasjonData, omBarnaData } = søknadsdata;
+    if (!omAnnenForelderData || !annenForelderenSituasjonData || !omBarnaData) {
         return undefined;
     }
 

@@ -1,8 +1,8 @@
 import { AndreBarn } from '../../pre-common/forms/barn';
 
-interface DeresFellesBarn {
+interface OmBarna {
     type: 'andreBarn';
     andreBarn: AndreBarn[];
 }
 
-export type DeresFellesBarnSøknadsdata = DeresFellesBarn;
+export type OmBarnaSøknadsdata = OmBarna;

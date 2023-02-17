@@ -4,7 +4,7 @@ export const SøknadStepRoutePath = {
     [StepId.VELKOMMEN]: 'velkommen',
     [StepId.OM_ANNEN_FORELDER]: 'om-annen-forelder',
     [StepId.ANNEN_FORELDER_SITUASJON]: 'annen-forelder-situasjon',
-    [StepId.DERES_FELLES_BARN]: 'deres-felles-barn',
+    [StepId.OM_BARNA]: 'om-barna',
     [StepId.OPPSUMMERING]: 'oppsummering',
     [StepId.KVITTERING]: 'soknad_sendt',
 };
@@ -14,7 +14,7 @@ export enum SøknadRoutes {
     VELKOMMEN = '/soknad/velkommen',
     OM_ANNEN_FORELDER = '/soknad/om-annen-forelder',
     ANNEN_FORELDER_SITUASJON = '/soknad/annen-forelder-situasjon',
-    DERES_FELLES_BARN = '/soknad/deres-felles-barn',
+    OM_BARNA = '/soknad/om-barna',
     OPPSUMMERING = '/soknad/oppsummering',
     SØKNAD_SENDT = '/soknad/soknad_sendt',
     UKJENT_STEG = '/soknad/ukjent-steg',

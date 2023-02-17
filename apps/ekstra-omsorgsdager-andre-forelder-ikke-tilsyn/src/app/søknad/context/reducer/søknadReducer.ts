@@ -64,12 +64,12 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_DERES_FELLES_BARN:
+            case SøknadContextActionKeys.SET_SØKNAD_OM_BARNA:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        deresFellesBarnData: {
+                        omBarnaData: {
                             ...action.payload,
                         },
                     },

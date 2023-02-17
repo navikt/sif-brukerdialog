@@ -95,7 +95,7 @@ export const getAvailableSteps = (values: SoknadFormData, søker: Person, barn: 
         omAnnenForelderIsComplete(values, søker) &&
         annenForelderSituasjonIsComplete(values)
     ) {
-        steps.push(StepID.DERES_FELLES_BARN);
+        steps.push(StepID.OM_BARNA);
     }
     if (
         velkommenIsValid(values) &&

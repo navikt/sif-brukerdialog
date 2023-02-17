@@ -1,15 +1,15 @@
 import { AnnenForelderenSituasjonSøknadsdata } from './AnnenForelderenSituasjonSøknadsdata';
-import { DeresFellesBarnSøknadsdata } from './DeresFellesBarnSøknadsdata';
+import { OmBarnaSøknadsdata } from './OmBarnaSøknadsdata';
 import { OmAnnenForelderSøknadsdata } from './OmAnnenForelderSøknadsdata';
 
 export * from './OmAnnenForelderSøknadsdata';
 export * from './AnnenForelderenSituasjonSøknadsdata';
-export * from './DeresFellesBarnSøknadsdata';
+export * from './OmBarnaSøknadsdata';
 export interface Søknadsdata {
     id?: string;
     harForståttRettigheterOgPlikter?: boolean;
     omAnnenForelderData?: OmAnnenForelderSøknadsdata;
     annenForelderenSituasjonData?: AnnenForelderenSituasjonSøknadsdata;
-    deresFellesBarnData?: DeresFellesBarnSøknadsdata;
+    omBarnaData?: OmBarnaSøknadsdata;
     harBekreftetOpplysninger?: boolean;
 }

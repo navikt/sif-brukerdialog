@@ -9,10 +9,10 @@ import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
 import AnnenForelderenSituasjonStep from './steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import OmDeresFellesBarnStep from './steps/deres-felles-barn/DeresFellesBarnStep';
+import OmBarnaStep from './steps/om-barna/OmBarnaStep';
 import OmAnnenForelderStep from './steps/om-annen-forelder/OmAnnenForelderStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import KvitteringPage from 'app/pages/kvittering-page/KvitteringPage';
+import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -67,7 +67,7 @@ const SøknadRouter = () => {
                 path={SøknadStepRoutePath[StepId.ANNEN_FORELDER_SITUASJON]}
                 element={<AnnenForelderenSituasjonStep />}
             />
-            <Route path={SøknadStepRoutePath[StepId.DERES_FELLES_BARN]} element={<OmDeresFellesBarnStep />} />
+            <Route path={SøknadStepRoutePath[StepId.OM_BARNA]} element={<OmBarnaStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
             <Route

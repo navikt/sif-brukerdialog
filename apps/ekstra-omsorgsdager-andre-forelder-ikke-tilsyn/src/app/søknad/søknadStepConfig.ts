@@ -9,7 +9,7 @@ import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
 const getSøknadSteps = (): StepId[] => {
-    return [StepId.OM_ANNEN_FORELDER, StepId.ANNEN_FORELDER_SITUASJON, StepId.DERES_FELLES_BARN, StepId.OPPSUMMERING];
+    return [StepId.OM_ANNEN_FORELDER, StepId.ANNEN_FORELDER_SITUASJON, StepId.OM_BARNA, StepId.OPPSUMMERING];
 };
 
 export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>

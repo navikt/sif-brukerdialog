@@ -23,21 +23,17 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import { prettifyDate } from '@navikt/sif-common-utils/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { getDeresFellesBarnStepInitialValues, getOmDeresFellesBarnFromFormValues } from './deresFellesBarnStepUtils';
+import { getOmBarnaStepInitialValues, getOmBarnaFromFormValues } from './OmBarnaStepUtils';
 
-export enum DeresFellesBarnFormFields {
+export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',
 }
 
-export interface DeresFellesBarnFormValues {
-    [DeresFellesBarnFormFields.andreBarn]: AndreBarn[];
+export interface OmBarnaFormValues {
+    [OmBarnaFormFields.andreBarn]: AndreBarn[];
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<
-    DeresFellesBarnFormFields,
-    DeresFellesBarnFormValues,
-    ValidationError
->();
+const { FormikWrapper, Form } = getTypedFormComponents<OmBarnaFormFields, OmBarnaFormValues, ValidationError>();
 
 const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape): React.ReactNode => {
     return (
@@ -52,24 +48,24 @@ const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape): React.R
     );
 };
 
-const DeresFellesBarnStep = () => {
+const OmBarnaStep = () => {
     const intl = useIntl();
     const {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
 
-    const stepId = StepId.DERES_FELLES_BARN;
+    const stepId = StepId.OM_BARNA;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const onValidSubmitHandler = (values: DeresFellesBarnFormValues) => {
-        const OmDeresFellesBarnSøknadsdata = getOmDeresFellesBarnFromFormValues(values);
-        if (OmDeresFellesBarnSøknadsdata) {
+    const onValidSubmitHandler = (values: OmBarnaFormValues) => {
+        const OmBarnaSøknadsdata = getOmBarnaFromFormValues(values);
+        if (OmBarnaSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadOmDeresFellesBarn(OmDeresFellesBarnSøknadsdata)];
+            return [actionsCreator.setSøknadOmBarna(OmBarnaSøknadsdata)];
         }
         return [];
     };
@@ -86,7 +82,7 @@ const DeresFellesBarnStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getDeresFellesBarnStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={getOmBarnaStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
                 renderForm={({ values: { andreBarn } }) => {
                     const andreBarnFnr = andreBarn ? andreBarn.map((barn) => barn.fnr) : [];
@@ -129,8 +125,8 @@ const DeresFellesBarnStep = () => {
                                     </ContentWithHeader>
                                 </Block>
                                 <Block margin="l">
-                                    <BarnListAndDialog<DeresFellesBarnFormFields>
-                                        name={DeresFellesBarnFormFields.andreBarn}
+                                    <BarnListAndDialog<OmBarnaFormFields>
+                                        name={OmBarnaFormFields.andreBarn}
                                         labels={{
                                             addLabel: intlHelper(intl, 'step.deres-felles-barn.listDialog.knapplabel'),
                                             listTitle: intlHelper(intl, 'step.deres-felles-barn.listDialog.listTitle'),
@@ -140,7 +136,7 @@ const DeresFellesBarnStep = () => {
                                             ),
                                         }}
                                         disallowedFødselsnumre={[
-                                            ...[søker.fødselsnummer, søknadsdata.annanForelder.annenForelderFnr],
+                                            ...[søker.fødselsnummer, søknadsdata.omAnnenForelderData?.annenForelderFnr],
                                             ...andreBarnFnr,
                                         ]}
                                     />
@@ -161,4 +157,4 @@ const DeresFellesBarnStep = () => {
     );
 };
 
-export default DeresFellesBarnStep;
+export default OmBarnaStep;
