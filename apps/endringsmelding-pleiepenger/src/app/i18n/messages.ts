@@ -2,14 +2,14 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const defaultMessages: MessageFileFormat = {
     nb: {
-        'application.title': 'Endringsmelding arbeidstid - Pleiepenger sykt barn',
-        'application.bannerTitle': 'Endringsmelding arbeidstid - Pleiepenger sykt barn',
+        'application.title': 'Endringsmelding - jobb i pleiepengeperioden',
+        'application.bannerTitle': 'Endringsmelding - jobb i pleiepengeperioden',
 
-        'step.aktivitet.pageTitle': 'Hvilke arbeidsforhold ønsker du å endre?',
-        'step.aktivitet.stepTitle': 'Hvilke arbeidsforhold ønsker du å endre?',
+        'step.aktivitet.pageTitle': 'Velg arbeidsforhold',
+        'step.aktivitet.stepTitle': 'Velg arbeidsforhold',
 
-        'step.arbeidstid.pageTitle': 'Endre faktisk arbeidstid i pleiepengeperioden',
-        'step.arbeidstid.stepTitle': 'Endre faktisk arbeidstid i pleiepengeperioden',
+        'step.arbeidstid.pageTitle': 'Jobb i pleiepengeperioden',
+        'step.arbeidstid.stepTitle': 'Jobb i pleiepengeperioden',
 
         'step.oppsummering.pageTitle': 'Oppsummering',
         'step.oppsummering.stepTitle': 'Oppsummering',

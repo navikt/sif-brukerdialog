@@ -20,6 +20,7 @@ import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
+import { SkrivTilOssLink } from '../../../lenker';
 
 export enum AktivitetFormFields {
     aktiviteterSomSkalEndres = 'aktiviteterSomSkalEndres',
@@ -75,18 +76,18 @@ const AktivitetStep = () => {
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             <CheckboxGroup
-                                legend={'Velg hvilke arbeidsforhold du ønsker å endre arbeidstiden for:'}
+                                legend={'Velg hvilke arbeidsforhold du ønsker å endre?'}
                                 description={
                                     <ExpandableInfo title="Mangler du noen arbeidsforhold?">
                                         <p>
                                             Nedenfor ser du arbeidsforhold hvor du har oppgitt arbeidstid på saken din.
-                                            Dersom det er et arbeidsforhold du mener burde vært i listen, ta kontakt med
-                                            oss.
+                                            Dersom det er et arbeidsforhold du mener burde vært i listen, send en
+                                            melding via <SkrivTilOssLink />.
                                         </p>
                                         <p>
                                             Endring av arbeidstid for selvstendig næringsdrivene er ikke støttet enda.
                                             Dersom du er selvstendig næringsdrivende og ønsker å melde om endring, kan
-                                            du sende inn en ny søknad eller ta kontakt med oss.
+                                            du sende inn en ny søknad eller send en melding via <SkrivTilOssLink />.
                                         </p>
                                     </ExpandableInfo>
                                 }

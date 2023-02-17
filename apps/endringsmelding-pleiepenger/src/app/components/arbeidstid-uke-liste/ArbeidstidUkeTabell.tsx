@@ -135,8 +135,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             </>
                         ) : (
                             <>
-                                Ettersom uke {korteUker.join(' og ')} er korte uker, altså ikke hele uker, må de endres
-                                hver for seg.
+                                Ettersom uke {korteUker.join(' og ')} er korte uker, altså ikke hele uker, må du endre
+                                disse hver for seg.
                             </>
                         )}
                     </Alert>
@@ -278,7 +278,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     {visNormaltid && (
                                         <Table.HeaderCell className="arbeidstidUkeTabell__normalt">
                                             <Tooltip content="Hvor mye du jobber normalt når du ikke har pleiepenger">
-                                                <span>Normal arbeidstid</span>
+                                                <span>Normalt</span>
                                             </Tooltip>
                                         </Table.HeaderCell>
                                     )}
@@ -288,8 +288,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             <Table.HeaderCell className="arbeidstidUkeTabell__faktisk">
                                 {arbeidstidKolonneTittel || (
                                     <>
-                                        <Tooltip content="Hvor mye du faktisk jobber når du har pleiepenger">
-                                            <span>Faktisk arbeidstid</span>
+                                        <Tooltip content="Hvor mye du jobber i pleiepengeperioden">
+                                            <span>I perioden</span>
                                         </Tooltip>
                                     </>
                                 )}

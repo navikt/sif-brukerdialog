@@ -143,8 +143,7 @@ const renderInfoOmEndringUtenforEndringsperiode = ({
         return (
             <Block padBottom="l">
                 <p>
-                    Dersom du ønsker å endre arbeidstid for uker som er før {førDato}, må du sende oss en melding via{' '}
-                    <SkrivTilOssLink />.
+                    Hvis du ønsker å gjøre endringer før {førDato}, må du sende oss en melding via <SkrivTilOssLink />.
                 </p>
             </Block>
         );
@@ -152,8 +151,8 @@ const renderInfoOmEndringUtenforEndringsperiode = ({
         return (
             <Block padBottom="l">
                 <p>
-                    Dersom du ønsker å endre arbeidstid for uker som er etter {etterDato}, må du sende oss en melding
-                    via <SkrivTilOssLink />.
+                    Hvis du ønsker å gjøre endringer etter {etterDato}, må du sende oss en melding via{' '}
+                    <SkrivTilOssLink />.
                 </p>
             </Block>
         );
@@ -161,8 +160,8 @@ const renderInfoOmEndringUtenforEndringsperiode = ({
         return (
             <Block padBottom="l">
                 <p>
-                    Dersom du ønsker å endre arbeidstid for uker som er før {førDato} eller etter {etterDato}, må du
-                    sende oss en melding via <SkrivTilOssLink />.
+                    Hvis du ønsker å gjøre endringer før {førDato} eller etter {etterDato}, må du sende oss en melding
+                    via <SkrivTilOssLink />.
                 </p>
             </Block>
         );

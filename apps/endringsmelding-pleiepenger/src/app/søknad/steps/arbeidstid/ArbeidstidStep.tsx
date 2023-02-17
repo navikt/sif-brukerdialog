@@ -1,8 +1,6 @@
 import { BodyLong, Heading, Panel } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -24,6 +22,8 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
@@ -98,77 +98,56 @@ const ArbeidstidStep = () => {
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
-                        <p>
-                            Før du går videre, trenger du å vite forskjellen på «normal arbeidstid» og «faktisk
-                            arbeidstid»:
-                        </p>
-                        <p>
-                            <strong>Normal arbeidstid</strong> er hvor mye du jobbet før du startet med pleiepenger, og
-                            altså den tiden du har oppgitt som normal arbeidstid i søknaden. Dette trenger du ikke å
-                            opplyse noe om her, det ligger allerede inne.
-                        </p>
+                        <Heading level="2" size="xsmall" spacing={true}>
+                            Slik gjør du det
+                        </Heading>
 
-                        <p>
-                            <strong>Faktisk arbeidstid</strong> er hvor mye du jobber i samme periode som du tar vare på
-                            et sykt barn og har pleiepenger. Det er denne tiden du skal oppgi her.
-                        </p>
-                        <Block margin="xl">
-                            <Heading level="2" size="xsmall" spacing={true}>
-                                Slik gjør du det
-                            </Heading>
-                        </Block>
                         <InfoList>
-                            <li>
-                                Hvor mye du jobber endrer du per uke. Enten i timer eller prosent av det som er din
-                                normale arbeidstid per uke. Se eksempler litt lenger ned på siden.
-                            </li>
-
-                            <li>
-                                Du kan endre flere uker samtidig, eller bare én uke, om det er dette som passer din
-                                situasjon.
-                            </li>
-                            <li>
-                                Du kan gjøre endringer i opptil 3 måneder tilbake i tid, og i opptil 12 måneder frem i
-                                tid.
-                            </li>
+                            <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
+                            <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
+                            <li>Hvis du har endring som gjelder kun enkeltdager, oppgir du fortsatt for hele uken.</li>
                         </InfoList>
                         <Block margin="l">
-                            <ExpandableInfo title="Eksempler på hvordan endre i forskjellige situasjoner">
-                                <Heading level="3" size="small" spacing={true}>
-                                    Eksempel 1
-                                </Heading>
-                                <p>Du jobber normalt 37,5 timer per uke, dette er din normale arbeidstid per uke.</p>
-                                <p>
-                                    I pleiepengeperioden kan du jobbe 1 dag per uke, som er 7,5 timer eller 20 prosent.
-                                    Da blir din faktiske arbeidstid 7,5 timer per uke, eller 20 prosent om du velger å
-                                    bruke prosent.
-                                </p>
-                                <Block margin="xl">
-                                    <Heading level="3" size="small" spacing={true}>
-                                        Eksempel 2
-                                    </Heading>
-                                </Block>
-                                <p>
-                                    Din normale arbeidstid per uke er 40 timer. I søknaden har du oppgitt at du ikke
-                                    jobber noe mens du har pleiepenger.
-                                </p>
-                                <p>
-                                    Nå får du likevel jobbet 2 dager i uke 28, og skal melde fra om det. Da oppgir du 16
-                                    timer som din faktiske arbeidstid for den uken. Eller 40 prosent, om du vil bruke
-                                    prosent.
-                                </p>
-                                <Block margin="xl">
-                                    <Heading level="3" size="small" spacing={true}>
-                                        Eksempel 3
-                                    </Heading>
-                                </Block>
-                                <p>Din normale arbeidstid er 37,5 prosent.</p>
-                                <p>
-                                    I søknaden har du oppgitt at du jobber 50 prosent mens du har pleiepenger, men i én
-                                    av ukene får du bare jobbet 20 prosent. Da oppgir du 7,5 timer som din faktiske
-                                    arbeidstid for den uken. Eller 20 prosent, om du vil bruke prosent.
-                                </p>
+                            <ExpandableInfo title="Hvordan oppgir jeg enkeltdager med jobb?">
+                                Når du skal
                             </ExpandableInfo>
+                            {/* <ExpandableInfo title="Eksempler på hvordan endre i forskjellige situasjoner"> */}
+                            {/* <Block margin="xl">
+                                    <Heading level="3" size="small" spacing={true}>
+                                        Jeg skal starte å jobbe 1 dag i uken
+                                    </Heading>
+                                    <p>
+                                        Du har oppgitt i søknaden at du ikke skulle jobbe i perioden med pleiepenger,
+                                        men skal fremover jobbe 1 dag i uken. Før du startet med pleiepenger jobbet du 5
+                                        dager i uken, 40 timer.
+                                    </p>
+                                    <p>
+                                        Huk av for at du ønsker å endre flere uker samtidig, og velg de ukene du ønsker
+                                        å endre. Gå til "Endre valgte uker", og legg inn 8 timer. Velg Ok, og du kommer
+                                        tilbake til listen som nå viser 8 timer på de ukene du valgte.
+                                    </p>
+                                </Block>
+                                <Block margin="xl">
+                                    <Heading level="3" size="small" spacing={true}>
+                                        Jeg skal gå fra å jobbe 1 dag i uken til 3 dager i uken
+                                    </Heading>
+                                    <BodyShort>
+                                        Du har oppgitt at du jobber 1 dag i uken, men skal nå endre til at du jobber 3
+                                        dager i uken.
+                                    </BodyShort>
+                                    
+                                </Block>
+                                <Block margin="xl">
+                                    <Heading level="3" size="small" spacing={true}>
+                                        Jeg fikk ikke jobbet alle dagene jeg sa jeg skulle
+                                    </Heading>
+                                    <p>
+                                        Du har oppgitt at du ikke skulle jobbe i perioden med pleiepenger, men skal nå
+                                        jobbe 1 dag i uken i noen uker i to måneder fremover
+                                    </p>
+                                    
+                                </Block> */}
+                            {/* </ExpandableInfo> */}
                         </Block>
                     </BodyLong>
                 </>
