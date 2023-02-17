@@ -10,7 +10,6 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { useSøknadContext } from 'app/søknad/context/hooks/useSøknadContext';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from 'app/søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
@@ -22,6 +21,7 @@ import { ErrorSummary } from '@navikt/ds-react';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds/lib';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+import { getApiDataFromSøknadsdata } from 'app/utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -60,7 +60,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, registrerteBarn);
 
     if (!apiData) {
         return (

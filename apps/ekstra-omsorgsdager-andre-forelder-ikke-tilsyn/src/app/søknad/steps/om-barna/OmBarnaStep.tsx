@@ -23,7 +23,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import { prettifyDate } from '@navikt/sif-common-utils/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { getOmBarnaStepInitialValues, getOmBarnaFromFormValues } from './OmBarnaStepUtils';
+import { getOmBarnaStepInitialValues, getOmBarnaSøknadsdataFromFormValues } from './OmBarnaStepUtils';
 
 export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',
@@ -62,7 +62,7 @@ const OmBarnaStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: OmBarnaFormValues) => {
-        const OmBarnaSøknadsdata = getOmBarnaFromFormValues(values);
+        const OmBarnaSøknadsdata = getOmBarnaSøknadsdataFromFormValues(values);
         if (OmBarnaSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadOmBarna(OmBarnaSøknadsdata)];

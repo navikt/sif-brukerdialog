@@ -26,7 +26,7 @@ export const getOmBarnaStepInitialValues = (
     return defaultValues;
 };
 
-export const getOmBarnaFromFormValues = (values: OmBarnaFormValues): OmBarnaSøknadsdata | undefined => {
+export const getOmBarnaSøknadsdataFromFormValues = (values: OmBarnaFormValues): OmBarnaSøknadsdata | undefined => {
     const { andreBarn } = values;
     return {
         type: 'andreBarn',

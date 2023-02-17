@@ -68,7 +68,7 @@ export const getAnnenForelderenSituasjonStepInitialValues = (
     return defaultValues;
 };
 
-export const getAnnenForelderenSituasjonFromFormValues = (
+export const getAnnenForelderenSituasjonSøknadsdataFromFormValues = (
     values: AnnenForelderenSituasjonFormValues
 ): AnnenForelderenSituasjonSøknadsdata | undefined => {
     const {

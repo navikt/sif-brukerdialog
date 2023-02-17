@@ -28,7 +28,7 @@ export const getOmAnnenForelderStepInitialValues = (
     return defaultValues;
 };
 
-export const getOmAnnenForelderFromFormValues = (
+export const getOmAnnenForelderSøknadsdataFromFormValues = (
     values: OmAnnenForelderFormValues
 ): OmAnnenForelderSøknadsdata | undefined => {
     const { annenForelderNavn, annenForelderFnr } = values;

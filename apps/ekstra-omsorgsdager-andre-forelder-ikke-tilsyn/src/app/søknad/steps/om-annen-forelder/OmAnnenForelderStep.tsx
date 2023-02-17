@@ -17,7 +17,10 @@ import SøknadStep from '../../SøknadStep';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { getOmAnnenForelderFromFormValues, getOmAnnenForelderStepInitialValues } from './omAnnenForelderStepUtils';
+import {
+    getOmAnnenForelderSøknadsdataFromFormValues,
+    getOmAnnenForelderStepInitialValues,
+} from './omAnnenForelderStepUtils';
 
 export enum OmAnnenForelderFormFields {
     annenForelderNavn = 'annenForelderNavn',
@@ -49,7 +52,7 @@ const OmAnnenForelderStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: OmAnnenForelderFormValues) => {
-        const OmAnnenForelderSøknadsdata = getOmAnnenForelderFromFormValues(values);
+        const OmAnnenForelderSøknadsdata = getOmAnnenForelderSøknadsdataFromFormValues(values);
         if (OmAnnenForelderSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadOmAnnenForelder(OmAnnenForelderSøknadsdata)];

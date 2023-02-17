@@ -1,10 +1,10 @@
 import React from 'react';
-import ActionLink from '@navikt/sif-common-core/lib/components/action-link/ActionLink';
-import ItemList from '@navikt/sif-common-core/lib/components/item-list/ItemList';
+import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
+import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
 import { AndreBarn } from './types';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
     barna: AndreBarn[];

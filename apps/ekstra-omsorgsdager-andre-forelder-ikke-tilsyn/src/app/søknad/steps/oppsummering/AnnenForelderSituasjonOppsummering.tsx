@@ -6,13 +6,13 @@ import JaNeiSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/JaNeiSvar
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
 import TextareaSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/TextareaSvar';
-import { AnnenForelder } from '../../../types/søknadApiData/SøknadApiData';
+import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib/dateUtils';
 import { prettifyDateExtended } from '@navikt/sif-common-utils/lib/dateFormatter';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 interface Props {
-    annenForelder: AnnenForelder;
+    annenForelder: AnnenForelderApiData;
 }
 
 const AnnenForelderSituasjonOppsummering = ({ annenForelder }: Props) => {

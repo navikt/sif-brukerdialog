@@ -24,7 +24,7 @@ import { useStepFormValuesContext } from 'app/søknad/context/StepFormValuesCont
 import actionsCreator from '../../context/action/actionCreator';
 import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
 import {
-    getAnnenForelderenSituasjonFromFormValues,
+    getAnnenForelderenSituasjonSøknadsdataFromFormValues,
     getAnnenForelderenSituasjonStepInitialValues,
 } from './annenForelderenSituasjonStepUtils';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -74,7 +74,7 @@ const AnnenForelderenSituasjonStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: AnnenForelderenSituasjonFormValues) => {
-        const AnnenForelderenSituasjonSøknadsdata = getAnnenForelderenSituasjonFromFormValues(values);
+        const AnnenForelderenSituasjonSøknadsdata = getAnnenForelderenSituasjonSøknadsdataFromFormValues(values);
         if (AnnenForelderenSituasjonSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadAnnenForelderenSituasjon(AnnenForelderenSituasjonSøknadsdata)];

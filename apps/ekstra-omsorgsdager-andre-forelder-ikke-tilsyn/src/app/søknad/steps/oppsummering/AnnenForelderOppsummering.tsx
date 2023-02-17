@@ -4,10 +4,10 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import FødselsnummerSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/FødselsnummerSvar';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
-import { AnnenForelder } from '../../../types/søknadApiData/SøknadApiData';
+import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
-    annenForelder: AnnenForelder;
+    annenForelder: AnnenForelderApiData;
 }
 
 const AnnenForelderOppsummering = ({ annenForelder }: Props) => {
