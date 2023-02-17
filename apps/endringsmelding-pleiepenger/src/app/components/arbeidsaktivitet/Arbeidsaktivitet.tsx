@@ -34,7 +34,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
             <Block margin="xl">
                 <Heading level="3" size="small" spacing={true}>
-                    {perioder.length > 1 ? 'Perioder med pleiepenger' : 'Endre faktisk arbeidstid per uke'}
+                    {perioder.length > 1 ? 'Perioder med pleiepenger' : 'Uker med pleiepenger'}
                 </Heading>
                 {renderInfoOmEndringUtenforEndringsperiode(arbeidAktivitet)}
             </Block>

@@ -49,9 +49,21 @@ describe('parseK9Format', () => {
         });
     });
     describe('fjernK9SakArbeidstidMedIngenNormalarbeidstid', () => {
-        const arbeidstidInfoIngenArbeid: K9SakArbeidstidInfo = {
+        const arbeidstidInfoIngenArbeidEnPeriode: K9SakArbeidstidInfo = {
             perioder: {
                 '2022-01-01/2022-02-01': {
+                    jobberNormaltTimerPerDag: ingenDuration,
+                    faktiskArbeidTimerPerDag: ingenDuration,
+                },
+            },
+        };
+        const arbeidstidInfoIngenArbeidFlerePerioder: K9SakArbeidstidInfo = {
+            perioder: {
+                '2022-01-01/2022-02-01': {
+                    jobberNormaltTimerPerDag: ingenDuration,
+                    faktiskArbeidTimerPerDag: ingenDuration,
+                },
+                '2022-01-02/2022-02-02': {
                     jobberNormaltTimerPerDag: ingenDuration,
                     faktiskArbeidTimerPerDag: ingenDuration,
                 },
@@ -71,7 +83,7 @@ describe('parseK9Format', () => {
                 arbeidstakerList: [
                     {
                         organisasjonsnummer: '123',
-                        arbeidstidInfo: arbeidstidInfoIngenArbeid,
+                        arbeidstidInfo: arbeidstidInfoIngenArbeidEnPeriode,
                     },
                     {
                         organisasjonsnummer: '456',
@@ -81,10 +93,17 @@ describe('parseK9Format', () => {
             });
             expect(result.arbeidstakerList?.length).toEqual(1);
         });
-        it('Fjerner frilanseraktivitet med ingen normalarbeidstid', () => {
+        it('Fjerner frilanseraktivitet med ingen normalarbeidstid - én periode', () => {
             const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
                 arbeidstakerList: [],
-                frilanserArbeidstidInfo: arbeidstidInfoIngenArbeid,
+                frilanserArbeidstidInfo: arbeidstidInfoIngenArbeidEnPeriode,
+            });
+            expect(result.frilanserArbeidstidInfo).toBeUndefined();
+        });
+        it('Fjerner frilanseraktivitet med ingen normalarbeidstid - flere perioder', () => {
+            const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
+                arbeidstakerList: [],
+                frilanserArbeidstidInfo: arbeidstidInfoIngenArbeidFlerePerioder,
             });
             expect(result.frilanserArbeidstidInfo).toBeUndefined();
         });
@@ -98,7 +117,7 @@ describe('parseK9Format', () => {
         it('Fjerner sn med ingen normalarbeidstid', () => {
             const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
                 arbeidstakerList: [],
-                selvstendigNæringsdrivendeArbeidstidInfo: arbeidstidInfoIngenArbeid,
+                selvstendigNæringsdrivendeArbeidstidInfo: arbeidstidInfoIngenArbeidEnPeriode,
             });
             expect(result.selvstendigNæringsdrivendeArbeidstidInfo).toBeUndefined();
         });

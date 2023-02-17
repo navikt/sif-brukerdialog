@@ -69,11 +69,7 @@ export const harNormalarbeidstidIK9SakArbeidstidInfo = (arbeidstidInfo?: K9SakAr
     }
     const { perioder } = arbeidstidInfo;
     const keys = Object.keys(perioder);
-    if (keys.length === 1) {
-        const periode = perioder[keys[0]];
-        return durationUtils.durationIsGreatherThanZero(periode.jobberNormaltTimerPerDag);
-    }
-    return keys.length > 0;
+    return keys.map((key) => perioder[key].jobberNormaltTimerPerDag).some(durationUtils.durationIsGreatherThanZero);
 };
 
 export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
