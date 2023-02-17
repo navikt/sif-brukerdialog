@@ -1,24 +1,23 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import Lenke from 'nav-frontend-lenker';
-import { Element, Ingress } from 'nav-frontend-typografi';
+import { Heading, Link } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import getLenker from '../../../lenker';
-import InfoList from './info-list/InfoList';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
-        <>
-            <Ingress tag="h3">
+        <Block margin="l" style={{ paddingTop: '.5rem' }}>
+            <Heading level="3" size="small">
                 <FormattedMessage id="personopplysninger.1" />
-            </Ingress>
+            </Heading>
             <p>
                 <FormattedMessage id="personopplysninger.2" />
             </p>
-            <Box margin="l">
-                <Element tag="h4">
+            <Block margin="l">
+                <Heading size="small" level="4">
                     <FormattedMessage id="personopplysninger.3" />
-                </Element>
+                </Heading>
                 <p>
                     <FormattedMessage id="personopplysninger.4" />
                 </p>
@@ -42,15 +41,15 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                         <FormattedMessage id="personopplysninger.4.6" />
                     </li>
                 </InfoList>
-            </Box>
-            <Box>
+            </Block>
+            <Block>
                 <FormattedMessage id="personopplysninger.5.1" />
-                <Lenke href={getLenker().personvern} target="_blank">
+                <Link href={getLenker().personvern} target="_blank">
                     <FormattedMessage id="personopplysninger.5.2" />
-                </Lenke>
+                </Link>
                 <FormattedMessage id="personopplysninger.5.3" />
-            </Box>{' '}
-        </>
+            </Block>
+        </Block>
     );
 };
 

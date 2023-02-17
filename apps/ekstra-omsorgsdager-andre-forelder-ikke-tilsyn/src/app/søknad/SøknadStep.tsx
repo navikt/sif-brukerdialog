@@ -5,7 +5,6 @@ import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknad
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
-import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from './søknadStepConfig';
 import StateInfo from '../components/state-info/StateInfo';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
@@ -19,13 +18,10 @@ interface Props {
 
 const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     const intl = useIntl();
-    const {
-        state: { søknadsdata },
-    } = useSøknadContext();
 
     useLogSidevisning(stepId);
 
-    const stepConfig = getSøknadStepConfig(søknadsdata);
+    const stepConfig = getSøknadStepConfig();
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 

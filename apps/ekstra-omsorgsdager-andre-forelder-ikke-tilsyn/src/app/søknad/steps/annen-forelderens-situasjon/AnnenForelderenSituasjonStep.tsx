@@ -18,9 +18,9 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/typ
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from 'app/søknad/søknadStepConfig';
+import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from 'app/søknad/context/StepFormValuesContext';
+import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
 import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
 import {

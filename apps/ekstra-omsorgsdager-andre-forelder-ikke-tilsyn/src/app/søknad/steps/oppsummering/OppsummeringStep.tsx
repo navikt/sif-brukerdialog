@@ -7,8 +7,8 @@ import OmBarnaOppsummering from './OmBarnaOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { useSøknadContext } from 'app/søknad/context/hooks/useSøknadContext';
-import { getSøknadStepConfig, getSøknadStepConfigForStep } from 'app/søknad/søknadStepConfig';
+import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
+import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -21,7 +21,7 @@ import { ErrorSummary } from '@navikt/ds-react';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds/lib';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import { getApiDataFromSøknadsdata } from 'app/utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -101,9 +101,9 @@ const OppsummeringStep = () => {
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
-                                <AnnenForelderOppsummering annenForelder={apiValues.annenForelder} />
-                                <OmBarnaOppsummering apiData={apiData} registrerteBarn={registrerteBarn} />
-                                <AnnenForelderSituasjonOppsummering annenForelder={apiValues.annenForelder} />
+                                <AnnenForelderOppsummering annenForelder={apiData.annenForelder} />
+                                <OmBarnaOppsummering barn={apiData.barn} />
+                                <AnnenForelderSituasjonOppsummering annenForelder={apiData.annenForelder} />
 
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}

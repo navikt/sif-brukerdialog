@@ -1,29 +1,39 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { useSoknadContext } from '../../søknad/SoknadContext';
-import OmSøknaden from './components/OmSøknaden';
-import VelkommenGuide from './components/VelkommenGuide';
-import VelkommenPageForm from './VelkommenPageForm';
-import { Person } from '../../types/Person';
+import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import OmSøknaden from './OmSøknaden';
+import VelkommenGuide from './VelkommenGuide';
+import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import actionsCreator from 'app/søknad/context/action/actionCreator';
+import { SøknadRoutes } from 'app/types/SøknadRoutes';
+import { SKJEMANAVN } from 'app/App';
+import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
 
-const VelkommenPage = ({ søker }: { søker: Person }) => {
+const VelkommenPage = () => {
     const intl = useIntl();
-    const { startSoknad } = useSoknadContext();
+    const {
+        state: { søker },
+        dispatch,
+    } = useSøknadContext();
+
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
+    const { logSoknadStartet } = useAmplitudeInstance();
+
+    const startSøknad = async () => {
+        await logSoknadStartet(SKJEMANAVN);
+        dispatch(actionsCreator.startSøknad());
+        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_ANNEN_FORELDER));
+    };
     return (
         <Page title={intlHelper(intl, 'application.title')}>
             <VelkommenGuide navn={søker.fornavn} />
 
             <OmSøknaden />
 
-            <Box margin="xxxl">
-                <VelkommenPageForm onStart={startSoknad} />
-            </Box>
+            <SamtykkeForm onValidSubmit={startSøknad} />
         </Page>
     );
 };

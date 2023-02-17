@@ -1,5 +1,5 @@
-import { OmBarnaSøknadsdata } from 'app/types/søknadsdata/OmBarnaSøknadsdata';
-import { Søknadsdata } from 'app/types/søknadsdata/Søknadsdata';
+import { OmBarnaSøknadsdata } from '../../../types/søknadsdata/OmBarnaSøknadsdata';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmBarnaFormValues } from './OmBarnaStep';
 
 export const getOmBarnaStepInitialValues = (
