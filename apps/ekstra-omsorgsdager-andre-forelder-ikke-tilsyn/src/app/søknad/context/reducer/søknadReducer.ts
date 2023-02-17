@@ -2,7 +2,6 @@ import { guid } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { includeDeltBostedStep } from '../../søknadStepConfig';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
@@ -14,7 +13,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
                 },
-                søknadRoute: SøknadRoutes.OM_BARNET,
+                søknadRoute: SøknadRoutes.OM_ANNEN_FORELDER,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -42,38 +41,35 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_OM_BARNET:
+            case SøknadContextActionKeys.SET_SØKNAD_OM_ANNEN_FORELDER:
                 const søknadsdata: Søknadsdata = {
                     ...state.søknadsdata,
-                    omBarnet: {
+                    omAnnenForelderData: {
                         ...action.payload,
                     },
                 };
-
-                if (includeDeltBostedStep(søknadsdata.omBarnet) === false) {
-                    søknadsdata.deltBosted = undefined;
-                }
 
                 return {
                     ...state,
                     søknadsdata,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_DELT_BOSTED:
+
+            case SøknadContextActionKeys.SET_SØKNAD_ANNEN_FORELDEREN_SITUASJON:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        deltBosted: {
+                        annenForelderenSituasjonData: {
                             ...action.payload,
                         },
                     },
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING:
+            case SøknadContextActionKeys.SET_SØKNAD_DERES_FELLES_BARN:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        legeerklæring: {
+                        deresFellesBarnData: {
                             ...action.payload,
                         },
                     },

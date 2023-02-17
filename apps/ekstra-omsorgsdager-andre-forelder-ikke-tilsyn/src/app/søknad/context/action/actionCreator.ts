@@ -12,7 +12,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_OM_ANNEN_FORELDER = 'setSøknadOmAnnenForelder',
     SET_SØKNAD_ANNEN_FORELDEREN_SITUASJON = 'setAnnenForelderenSituasjon',
-    SET_DERES_FELLES_BARN = 'setSøknadOmDeresFellesBarn',
+    SET_SØKNAD_DERES_FELLES_BARN = 'setSøknadOmDeresFellesBarn',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -57,7 +57,7 @@ interface SetSøknadAnnenForelderenSituasjon {
 }
 
 interface SetSøknadOmDeresFellesBarn {
-    type: SøknadContextActionKeys.SET_DERES_FELLES_BARN;
+    type: SøknadContextActionKeys.SET_SØKNAD_DERES_FELLES_BARN;
     payload: DeresFellesBarnSøknadsdata;
 }
 interface SetSøknadHarBekreftetOpplysninger {
@@ -104,7 +104,7 @@ const setSøknadAnnenForelderenSituasjon = (
     payload,
 });
 const setSøknadOmDeresFellesBarn = (payload: DeresFellesBarnSøknadsdata): SetSøknadOmDeresFellesBarn => ({
-    type: SøknadContextActionKeys.SET_DERES_FELLES_BARN,
+    type: SøknadContextActionKeys.SET_SØKNAD_DERES_FELLES_BARN,
     payload,
 });
 

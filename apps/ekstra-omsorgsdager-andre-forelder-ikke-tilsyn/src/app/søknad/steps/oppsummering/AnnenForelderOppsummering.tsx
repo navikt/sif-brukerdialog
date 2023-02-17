@@ -1,16 +1,16 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import FødselsnummerSvar from '@navikt/sif-common-soknad/lib/soknad-summary/FødselsnummerSvar';
-import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import FødselsnummerSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/FødselsnummerSvar';
+import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-block/SummaryBlock';
+import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
 import { AnnenForelder } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     annenForelder: AnnenForelder;
 }
 
-const AnnenForelderSummary = ({ annenForelder }: Props) => {
+const AnnenForelderOppsummering = ({ annenForelder }: Props) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.annenForelder.header')}>
@@ -21,4 +21,4 @@ const AnnenForelderSummary = ({ annenForelder }: Props) => {
     );
 };
 
-export default AnnenForelderSummary;
+export default AnnenForelderOppsummering;

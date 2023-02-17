@@ -16,12 +16,12 @@ import {
 import { validateFradato, validateTildato } from '../../../validation/fieldValidations';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
 import { getSøknadStepConfigForStep } from 'app/søknad/søknadStepConfig';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useStepFormValuesContext } from 'app/søknad/context/StepFormValuesContext';
-import actionsCreator from '../../../søknad/context/action/actionCreator';
+import actionsCreator from '../../context/action/actionCreator';
 import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
 import {
     getAnnenForelderenSituasjonFromFormValues,
@@ -30,7 +30,7 @@ import {
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../../søknad/SøknadStep';
+import SøknadStep from '../../SøknadStep';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';

@@ -15,7 +15,7 @@ interface Props {
     annenForelder: AnnenForelder;
 }
 
-const AnnenForelderSituasjonSummary = ({ annenForelder }: Props) => {
+const AnnenForelderSituasjonOppsummering = ({ annenForelder }: Props) => {
     const intl = useIntl();
 
     const renderPeriodeAnnenForelderenKanIkkeHaTilsyn = (fraOgMed: string, tilOgMed?: string): React.ReactNode => (
@@ -58,4 +58,4 @@ const AnnenForelderSituasjonSummary = ({ annenForelder }: Props) => {
     );
 };
 
-export default AnnenForelderSituasjonSummary;
+export default AnnenForelderSituasjonOppsummering;

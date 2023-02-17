@@ -6,12 +6,12 @@ import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
-import AnnenForelderenSituasjonStep from './steps/annen-forelderens-situasjon-step/AnnenForelderenSituasjonStep';
+import AnnenForelderenSituasjonStep from './steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import OmDeresFellesBarnStep from './steps/deres-felles-barn/DeresFellesBarnStep';
-import OmAnnenForelderStep from './steps/om-annen-forelder-step/OmAnnenForelderStep';
-import OppsummeringStep from './steps/oppsummering-step/OppsummeringStep';
+import OmAnnenForelderStep from './steps/om-annen-forelder/OmAnnenForelderStep';
+import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from 'app/pages/kvittering-page/KvitteringPage';
 
 const SøknadRouter = () => {
