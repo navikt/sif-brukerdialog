@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import AnnenForelderSituasjonOppsummering from './AnnenForelderSituasjonOppsummering';
-import AnnenForelderOppsummering from './AnnenForelderOppsummering';
+import OmAnnenForelderOppsummering from './AnnenForelderOppsummering';
 import OmBarnaOppsummering from './OmBarnaOppsummering';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
@@ -101,7 +101,7 @@ const OppsummeringStep = () => {
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
-                                <AnnenForelderOppsummering annenForelder={apiData.annenForelder} />
+                                <OmAnnenForelderOppsummering annenForelder={apiData.annenForelder} />
                                 <OmBarnaOppsummering barn={apiData.barn} />
                                 <AnnenForelderSituasjonOppsummering annenForelder={apiData.annenForelder} />
 

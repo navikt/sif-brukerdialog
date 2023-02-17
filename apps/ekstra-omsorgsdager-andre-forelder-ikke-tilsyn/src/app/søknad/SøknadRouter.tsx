@@ -1,4 +1,4 @@
-import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
+import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useMellomlagring } from '../hooks/useMellomlagring';
@@ -12,7 +12,7 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import OmBarnaStep from './steps/om-barna/OmBarnaStep';
 import OmAnnenForelderStep from './steps/om-annen-forelder/OmAnnenForelderStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
+import KvitteringPage from '../pages/kvittering/KvitteringPage';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();

@@ -39,7 +39,7 @@ const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape): React.R
     return (
         <div style={{ display: 'flex' }}>
             <span style={{ order: 1 }}>
-                {intlHelper(intl, 'step.deres-felles-barn.født')} {prettifyDate(barnet.fødselsdato)}
+                {intlHelper(intl, 'step.omBarna.født')} {prettifyDate(barnet.fødselsdato)}
             </span>
             <span style={{ order: 2, paddingLeft: '1rem', justifySelf: 'flex-end' }}>
                 {formatName(barnet.fornavn, barnet.etternavn, barnet.mellomnavn)}
@@ -98,10 +98,7 @@ const OmBarnaStep = () => {
                                 {registrerteBarn.length > 0 && (
                                     <Block margin="xl">
                                         <ContentWithHeader
-                                            header={intlHelper(
-                                                intl,
-                                                'step.deres-felles-barn.listHeader.registrerteBarn'
-                                            )}>
+                                            header={intlHelper(intl, 'step.omBarna.listHeader.registrerteBarn')}>
                                             <ItemList<RegistrertBarn>
                                                 getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
                                                 getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
@@ -118,22 +115,19 @@ const OmBarnaStep = () => {
                                     <ContentWithHeader
                                         header={
                                             andreBarn && andreBarn.length === 0
-                                                ? intlHelper(intl, 'step.deres-felles-barn.spm.andreBarn')
-                                                : intlHelper(intl, 'step.deres-felles-barn.spm.flereBarn')
+                                                ? intlHelper(intl, 'step.omBarna.spm.andreBarn')
+                                                : intlHelper(intl, 'step.omBarna.spm.flereBarn')
                                         }>
-                                        {intlHelper(intl, 'step.deres-felles-barn.info.spm.text')}
+                                        {intlHelper(intl, 'step.omBarna.info.spm.text')}
                                     </ContentWithHeader>
                                 </Block>
                                 <Block margin="l">
                                     <BarnListAndDialog<OmBarnaFormFields>
                                         name={OmBarnaFormFields.andreBarn}
                                         labels={{
-                                            addLabel: intlHelper(intl, 'step.deres-felles-barn.listDialog.knapplabel'),
-                                            listTitle: intlHelper(intl, 'step.deres-felles-barn.listDialog.listTitle'),
-                                            modalTitle: intlHelper(
-                                                intl,
-                                                'step.deres-felles-barn.listDialog.modalTitle'
-                                            ),
+                                            addLabel: intlHelper(intl, 'step.omBarna.listDialog.knapplabel'),
+                                            listTitle: intlHelper(intl, 'step.omBarna.listDialog.listTitle'),
+                                            modalTitle: intlHelper(intl, 'step.omBarna.listDialog.modalTitle'),
                                         }}
                                         disallowedFødselsnumre={[
                                             ...[søker.fødselsnummer, søknadsdata.omAnnenForelderData?.annenForelderFnr],
@@ -144,7 +138,7 @@ const OmBarnaStep = () => {
                                 {andreBarn && andreBarn.length === 0 && registrerteBarn.length === 0 && (
                                     <Block margin="l">
                                         <Alert variant="warning">
-                                            {intlHelper(intl, 'step.deres-felles-barn.info.ingenbarn.2')}
+                                            {intlHelper(intl, 'step.omBarna.info.ingenbarn.2')}
                                         </Alert>
                                     </Block>
                                 )}

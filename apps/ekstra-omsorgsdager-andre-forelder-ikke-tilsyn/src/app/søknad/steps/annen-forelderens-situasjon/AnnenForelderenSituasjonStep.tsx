@@ -95,7 +95,7 @@ const AnnenForelderenSituasjonStep = () => {
             <FormBlock>
                 <Textarea
                     name={AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse}
-                    label={intlHelper(intl, 'step.annen-foreldrens-situasjon.beskrivelseAvSituasjonen.spm')}
+                    label={intlHelper(intl, 'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm')}
                     minLength={5}
                     maxLength={1000}
                     validate={(value) => {
@@ -121,14 +121,12 @@ const AnnenForelderenSituasjonStep = () => {
                 <FormBlock>
                     <YesOrNoQuestion
                         name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder}
-                        legend={intlHelper(intl, 'step.annen-foreldrens-situasjon.erVarighetMerEnn6Maneder.spm')}
+                        legend={intlHelper(intl, 'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm')}
                         validate={getYesOrNoValidator()}
                     />
                     {values.annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
                         <FormBlock>
-                            <Alert variant="info">
-                                {intlHelper(intl, 'step.annen-foreldrens-situasjon.advarsel.1')}
-                            </Alert>
+                            <Alert variant="info">{intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}</Alert>
                         </FormBlock>
                     )}
                 </FormBlock>
@@ -157,24 +155,17 @@ const AnnenForelderenSituasjonStep = () => {
         return (
             <FormBlock>
                 <DateRangePicker
-                    legend={
-                        values.annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom
-                            ? intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.sykdom.spm')
-                            : values.annenForelderSituasjon === AnnenForeldrenSituasjon.innlagtIHelseinstitusjon
-                            ? intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.innlagtIHelseinstitusjon.spm')
-                            : values.annenForelderSituasjon === AnnenForeldrenSituasjon.fengsel
-                            ? intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.fengsel.spm')
-                            : values.annenForelderSituasjon === AnnenForeldrenSituasjon.utøverVerneplikt
-                            ? intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.verneplikt.spm')
-                            : intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.annet.spm')
-                    }
+                    legend={intlHelper(
+                        intl,
+                        `step.annenForeldrensSituasjon.periode.${values.annenForelderSituasjon}.spm`
+                    )}
                     fromInputProps={{
-                        label: intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.fra'),
+                        label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.fra'),
                         validate: (value) => validateFradato(value, periodeTil, values.annenForelderSituasjon),
                         name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom,
                     }}
                     toInputProps={{
-                        label: intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.til'),
+                        label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.til'),
                         validate: values.annenForelderPeriodeVetIkkeTom
                             ? undefined
                             : (value) => validateTildato(value, periodeFra, values.annenForelderSituasjon),
@@ -184,7 +175,7 @@ const AnnenForelderenSituasjonStep = () => {
                 />
                 {!dontShowVetIkkeTomCheckbox() && (
                     <Checkbox
-                        label={intlHelper(intl, 'step.annen-foreldrens-situasjon.periode.checkboxVetIkkeTom')}
+                        label={intlHelper(intl, 'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom')}
                         name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom}
                     />
                 )}
@@ -192,9 +183,7 @@ const AnnenForelderenSituasjonStep = () => {
                     values.annenForelderPeriodeTom &&
                     isPeriodeLess6month(values.annenForelderPeriodeFom, values.annenForelderPeriodeTom) && (
                         <FormBlock>
-                            <Alert variant="info">
-                                {intlHelper(intl, 'step.annen-foreldrens-situasjon.advarsel.1')}
-                            </Alert>
+                            <Alert variant="info">{intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}</Alert>
                         </FormBlock>
                     )}
             </FormBlock>
@@ -219,41 +208,39 @@ const AnnenForelderenSituasjonStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    {intlHelper(intl, 'step.annen-foreldrens-situasjon.banner.1')}
+                                    {intlHelper(intl, 'step.annenForeldrensSituasjon.banner.1')}
                                 </SifGuidePanel>
 
                                 <Block margin="xxl">
                                     <RadioGroup
-                                        legend={intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.spm')}
+                                        legend={intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.spm')}
                                         name={AnnenForelderenSituasjonFormFields.annenForelderSituasjon}
+                                        //TODO MAP
                                         radios={[
                                             {
-                                                label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.sykdom'),
+                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.sykdom'),
                                                 value: AnnenForeldrenSituasjon.sykdom,
                                             },
                                             {
                                                 label: intlHelper(
                                                     intl,
-                                                    'step.annen-foreldrens-situasjon.grunn.innlagtIHelseinstitusjon'
+                                                    'step.annenForeldrensSituasjon.grunn.innlagtIHelseinstitusjon'
                                                 ),
                                                 value: AnnenForeldrenSituasjon.innlagtIHelseinstitusjon,
                                             },
                                             {
-                                                label: intlHelper(
-                                                    intl,
-                                                    'step.annen-foreldrens-situasjon.grunn.fengsel'
-                                                ),
+                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.fengsel'),
                                                 value: AnnenForeldrenSituasjon.fengsel,
                                             },
                                             {
                                                 label: intlHelper(
                                                     intl,
-                                                    'step.annen-foreldrens-situasjon.grunn.verneplikt'
+                                                    'step.annenForeldrensSituasjon.grunn.verneplikt'
                                                 ),
                                                 value: AnnenForeldrenSituasjon.utøverVerneplikt,
                                             },
                                             {
-                                                label: intlHelper(intl, 'step.annen-foreldrens-situasjon.grunn.annet'),
+                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.annet'),
                                                 value: AnnenForeldrenSituasjon.annet,
                                             },
                                         ]}

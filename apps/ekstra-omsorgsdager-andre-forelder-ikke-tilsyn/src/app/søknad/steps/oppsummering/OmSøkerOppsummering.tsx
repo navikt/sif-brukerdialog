@@ -4,6 +4,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
 import { Søker } from '../../../types/Søker';
+import { SummaryBlock } from '@navikt/sif-common-soknad-ds/lib';
 
 interface Props {
     søker: Søker;
@@ -12,12 +13,9 @@ const OmSøkerOppsummering: React.FunctionComponent<Props> = ({ søker }) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
-            <p>
-                <strong>{formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}</strong>
-            </p>
-            <div>
-                <FormattedMessage id="steg.oppsummering.søker.fnr" values={{ fødselsnummer: søker.fødselsnummer }} />
-            </div>
+            <SummaryBlock header={formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}>
+                <FormattedMessage id="step.oppsummering.søker.fnr" values={{ fødselsnummer: søker.fødselsnummer }} />
+            </SummaryBlock>
         </SummarySection>
     );
 };

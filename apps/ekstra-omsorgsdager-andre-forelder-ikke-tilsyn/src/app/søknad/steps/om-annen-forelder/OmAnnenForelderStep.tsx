@@ -84,17 +84,17 @@ const OmAnnenForelderStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    {intlHelper(intl, 'step.om-annen-forelder.banner')}
+                                    {intlHelper(intl, 'step.omAnnenForelder.sifGuidePanel')}
                                     <ul>
-                                        <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.1')}</li>
-                                        <li>{intlHelper(intl, 'step.om-annen-forelder.banner.list.2')}</li>
+                                        <li>{intlHelper(intl, 'step.omAnnenForelder.sifGuidePanel.list.1')}</li>
+                                        <li>{intlHelper(intl, 'step.omAnnenForelder.sifGuidePanel.list.2')}</li>
                                     </ul>
                                 </SifGuidePanel>
 
                                 <FormBlock>
                                     <TextField
                                         name={OmAnnenForelderFormFields.annenForelderFnr}
-                                        label={intlHelper(intl, 'step.om-annen-forlder.fnr.spm')}
+                                        label={intlHelper(intl, 'step.omAnnenForelder.fnr.spm')}
                                         validate={getFødselsnummerValidator({
                                             required: true,
                                             disallowedValues: [søker.fødselsnummer],
@@ -108,7 +108,7 @@ const OmAnnenForelderStep = () => {
                                 <FormBlock>
                                     <TextField
                                         name={OmAnnenForelderFormFields.annenForelderNavn}
-                                        label={intlHelper(intl, 'step.om-annen-forlder.navn.spm')}
+                                        label={intlHelper(intl, 'step.omAnnenForelder.navn.spm')}
                                         validate={(value) => {
                                             const error = getStringValidator({
                                                 required: true,

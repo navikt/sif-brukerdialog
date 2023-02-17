@@ -14,7 +14,7 @@ const OmBarnaOppsummering = ({ barn }: Props) => {
     const intl = useIntl();
 
     return (
-        <SummarySection header={intlHelper(intl, 'step.oppsummering.deres-felles-barn.header')}>
+        <SummarySection header={intlHelper(intl, 'step.oppsummering.omBarna.header')}>
             <Block margin="l">
                 <BarnSummaryList barn={barn} />
             </Block>

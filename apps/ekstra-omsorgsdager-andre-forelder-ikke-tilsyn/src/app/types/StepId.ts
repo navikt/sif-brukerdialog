@@ -1,8 +1,8 @@
 export enum StepId {
     'VELKOMMEN' = 'velkommen',
-    'OM_ANNEN_FORELDER' = 'om-annen-forelder',
-    'ANNEN_FORELDER_SITUASJON' = 'annen-forelder-situasjon',
-    'OM_BARNA' = 'om-barna',
+    'OM_ANNEN_FORELDER' = 'omAnnenForelder',
+    'ANNEN_FORELDER_SITUASJON' = 'annenForelderSituasjon',
+    'OM_BARNA' = 'omBarna',
     'OPPSUMMERING' = 'oppsummering',
     'KVITTERING' = 'soknad_sendt',
 }
