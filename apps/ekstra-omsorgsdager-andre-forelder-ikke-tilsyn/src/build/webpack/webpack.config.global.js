@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 const webpackConfig = {
     entry: {
@@ -37,6 +36,10 @@ const webpackConfig = {
                 ],
             },
             {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+            },
+            {
                 test: /\.less$/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -51,6 +54,10 @@ const webpackConfig = {
                     },
                 ],
             },
+            {
+                test: /\.s[ac]ss$/i,
+                use: ['style-loader', 'css-loader', 'less-loader', 'sass-loader'],
+            },
         ],
     },
     plugins: [
@@ -58,10 +65,6 @@ const webpackConfig = {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css?[fullhash]-[chunkhash]-[name]',
             linkType: 'text/css',
-        }),
-        new ESLintPlugin({
-            extensions: ['ts', 'tsx'],
-            failOnWarning: false,
         }),
     ],
 };
