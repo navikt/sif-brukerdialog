@@ -22,8 +22,6 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
@@ -101,54 +99,11 @@ const ArbeidstidStep = () => {
                         <Heading level="2" size="xsmall" spacing={true}>
                             Slik gjør du det
                         </Heading>
-
                         <InfoList>
                             <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
                             <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
                             <li>Hvis du har endring som gjelder kun enkeltdager, oppgir du fortsatt for hele uken.</li>
                         </InfoList>
-                        <Block margin="l">
-                            <ExpandableInfo title="Hvordan oppgir jeg enkeltdager med jobb?">
-                                Når du skal
-                            </ExpandableInfo>
-                            {/* <ExpandableInfo title="Eksempler på hvordan endre i forskjellige situasjoner"> */}
-                            {/* <Block margin="xl">
-                                    <Heading level="3" size="small" spacing={true}>
-                                        Jeg skal starte å jobbe 1 dag i uken
-                                    </Heading>
-                                    <p>
-                                        Du har oppgitt i søknaden at du ikke skulle jobbe i perioden med pleiepenger,
-                                        men skal fremover jobbe 1 dag i uken. Før du startet med pleiepenger jobbet du 5
-                                        dager i uken, 40 timer.
-                                    </p>
-                                    <p>
-                                        Huk av for at du ønsker å endre flere uker samtidig, og velg de ukene du ønsker
-                                        å endre. Gå til "Endre valgte uker", og legg inn 8 timer. Velg Ok, og du kommer
-                                        tilbake til listen som nå viser 8 timer på de ukene du valgte.
-                                    </p>
-                                </Block>
-                                <Block margin="xl">
-                                    <Heading level="3" size="small" spacing={true}>
-                                        Jeg skal gå fra å jobbe 1 dag i uken til 3 dager i uken
-                                    </Heading>
-                                    <BodyShort>
-                                        Du har oppgitt at du jobber 1 dag i uken, men skal nå endre til at du jobber 3
-                                        dager i uken.
-                                    </BodyShort>
-                                    
-                                </Block>
-                                <Block margin="xl">
-                                    <Heading level="3" size="small" spacing={true}>
-                                        Jeg fikk ikke jobbet alle dagene jeg sa jeg skulle
-                                    </Heading>
-                                    <p>
-                                        Du har oppgitt at du ikke skulle jobbe i perioden med pleiepenger, men skal nå
-                                        jobbe 1 dag i uken i noen uker i to måneder fremover
-                                    </p>
-                                    
-                                </Block> */}
-                            {/* </ExpandableInfo> */}
-                        </Block>
                     </BodyLong>
                 </>
             </SifGuidePanel>

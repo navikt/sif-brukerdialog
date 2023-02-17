@@ -43,7 +43,9 @@ const getEndretArbeidstid = (
 ): ArbeidstidPeriodeApiDataMap => {
     const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
-    Object.keys(endringUkeMap).forEach((isoDateRange) => {
+    const endringKeys = Object.keys(endringUkeMap).sort();
+
+    endringKeys.forEach((isoDateRange) => {
         const endring = endringUkeMap[isoDateRange];
         const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidAktivitet.perioderMedArbeidstid);
         const arbeidsuke = arbeidsuker[isoDateRange];
