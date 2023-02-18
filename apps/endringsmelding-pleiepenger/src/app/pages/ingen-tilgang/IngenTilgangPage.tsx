@@ -6,6 +6,9 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { SkrivTilOssLink } from '../../lenker';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
+import DevFooter from '../../dev/DevFooter';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 
 interface Props {
     søker: Søker;
@@ -75,14 +78,17 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 const IngenTilgangPage = ({ årsak, søker }: Props) => {
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
     return (
-        <Page title="Ingen tilgang">
-            <SifGuidePanel poster={true}>
-                <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
-                    Hei {søker.fornavn}
-                </Heading>
-                {getÅrsakMelding(årsak)}
-            </SifGuidePanel>
-        </Page>
+        <SøknadContextProvider initialData={{} as any}>
+            <Page title="Ingen tilgang">
+                <SifGuidePanel poster={true}>
+                    <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
+                        Hei {søker.fornavn}
+                    </Heading>
+                    {getÅrsakMelding(årsak)}
+                </SifGuidePanel>
+                {getEnvironmentVariable('MSW') === 'on' && <DevFooter />}
+            </Page>
+        </SøknadContextProvider>
     );
 };
 

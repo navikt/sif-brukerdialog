@@ -1,69 +1,40 @@
 import { rest } from 'msw';
+import { defaultScenario } from '../../src/app/dev/scenarioer';
 
-const getMockData = (soker = 'scenario1') => {
-    return mockData[soker] ? mockData[soker] : mockData['scenario1'];
+const getMockData = (soker = 'en-arbeidsgiver-en-periode') => {
+    return mockData[soker] ? mockData[soker] : mockData['en-arbeidsgiver-en-periode'];
 };
 
 const mockData = {
-    scenario1: {
-        søker: require('../data/scenario1/søker-mock.json'),
-        sak: require('../data/scenario1/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario1/arbeidsgiver-mock.json'),
+    ['en-arbeidsgiver-en-periode']: {
+        søker: require('../data/scenario/en-arbeidsgiver-en-periode/søker-mock.json'),
+        sak: require('../data/scenario/en-arbeidsgiver-en-periode/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/en-arbeidsgiver-en-periode/arbeidsgiver-mock.json'),
     },
-    scenario2: {
-        søker: require('../data/scenario2/søker-mock.json'),
-        sak: require('../data/scenario2/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario2/arbeidsgiver-mock.json'),
+    ['en-arbeidsgiver-to-perioder']: {
+        søker: require('../data/scenario/en-arbeidsgiver-to-perioder/søker-mock.json'),
+        sak: require('../data/scenario/en-arbeidsgiver-to-perioder/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/en-arbeidsgiver-to-perioder/arbeidsgiver-mock.json'),
     },
-    scenario3: {
-        søker: require('../data/scenario3/søker-mock.json'),
-        sak: require('../data/scenario3/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario3/arbeidsgiver-mock.json'),
+    ['arbeidsgiver-og-frilanser']: {
+        søker: require('../data/scenario/arbeidsgiver-og-frilanser/søker-mock.json'),
+        sak: require('../data/scenario/arbeidsgiver-og-frilanser/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/arbeidsgiver-og-frilanser/arbeidsgiver-mock.json'),
     },
-    soker1: {
-        søker: require('../data/soker1/søker-mock.json'),
-        sak: require('../data/soker1/sak-mock.json'),
-        arbeidsgiver: require('../data/soker1/arbeidsgiver-mock.json'),
+    ['selvstendig-næringsdrivende']: {
+        søker: require('../data/scenario/selvstendig-næringsdrivende/søker-mock.json'),
+        sak: require('../data/scenario/selvstendig-næringsdrivende/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/selvstendig-næringsdrivende/arbeidsgiver-mock.json'),
     },
-    soker2: {
-        søker: require('../data/soker2/søker-mock.json'),
-        sak: require('../data/soker2/sak-mock.json'),
-        arbeidsgiver: require('../data/soker2/arbeidsgiver-mock.json'),
+    ['flere-saker']: {
+        søker: require('../data/scenario/flere-saker/søker-mock.json'),
+        sak: require('../data/scenario/flere-saker/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/flere-saker/arbeidsgiver-mock.json'),
     },
-    soker3: {
-        søker: require('../data/soker3/søker-mock.json'),
-        sak: require('../data/soker3/sak-mock.json'),
-        arbeidsgiver: require('../data/soker3/arbeidsgiver-mock.json'),
-    },
-    soker4: {
-        søker: require('../data/soker4/søker-mock.json'),
-        sak: require('../data/soker4/sak-mock.json'),
-        arbeidsgiver: require('../data/soker4/arbeidsgiver-mock.json'),
-    },
-    soker5: {
-        søker: require('../data/soker5/søker-mock.json'),
-        sak: require('../data/soker5/sak-mock.json'),
-        arbeidsgiver: require('../data/soker5/arbeidsgiver-mock.json'),
-    },
-    soker6: {
-        søker: require('../data/soker6/søker-mock.json'),
-        sak: require('../data/soker6/sak-mock.json'),
-        arbeidsgiver: require('../data/soker6/arbeidsgiver-mock.json'),
-    },
-    debug: {
-        søker: require('../data/debug/søker-mock.json'),
-        sak: require('../data/debug/sak-mock.json'),
-        arbeidsgiver: require('../data/debug/arbeidsgiver-mock.json'),
-    },
-    kunFrilanser: {
-        søker: require('../data/kunFrilanser/søker-mock.json'),
-        sak: require('../data/kunFrilanser/sak-mock.json'),
-        arbeidsgiver: require('../data/kunFrilanser/arbeidsgiver-mock.json'),
-    },
-    arbeidstakerFrilanser: {
-        søker: require('../data/arbeidstakerFrilanser/søker-mock.json'),
-        sak: require('../data/arbeidstakerFrilanser/sak-mock.json'),
-        arbeidsgiver: require('../data/arbeidstakerFrilanser/arbeidsgiver-mock.json'),
+    ['ingen-sak']: {
+        søker: require('../data/scenario/ingen-sak/søker-mock.json'),
+        sak: require('../data/scenario/ingen-sak/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/ingen-sak/arbeidsgiver-mock.json'),
     },
 };
 
@@ -72,7 +43,7 @@ const baseUrl = '*';
 const MellomlagringStorageKey = 'mellomlagring-endring-psb';
 
 export const getHandlers = () => {
-    const soker = localStorage.getItem('mockUser') || 'scenario1';
+    const soker = localStorage.getItem('mockUser') || defaultScenario.value;
     const { sak, arbeidsgiver, søker } = getMockData(soker);
 
     const handlers = [

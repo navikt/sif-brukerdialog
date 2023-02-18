@@ -79,10 +79,6 @@
                                     "2023-01-30/2023-01-31": {
                                         "jobberNormaltTimerPerDag": "PT8H",
                                         "faktiskArbeidTimerPerDag": "PT0H"
-                                    },
-                                    "2023-03-01/2023-03-31": {
-                                        "jobberNormaltTimerPerDag": "PT8H",
-                                        "faktiskArbeidTimerPerDag": "PT0H"
                                     }
                                 }
                             }
@@ -91,11 +87,7 @@
                     "frilanserArbeidstidInfo": {
                         "perioder": {
                             "2022-12-01/2023-01-31": {
-                                "jobberNormaltTimerPerDag": "PT8H",
-                                "faktiskArbeidTimerPerDag": "PT0H"
-                            },
-                            "2023-02-14/2023-03-16": {
-                                "jobberNormaltTimerPerDag": "PT8H",
+                                "jobberNormaltTimerPerDag": "PT0H12M",
                                 "faktiskArbeidTimerPerDag": "PT0H"
                             }
                         }
