@@ -39,3 +39,13 @@ export const scenarioer: Scenario[] = [
 ];
 
 export const defaultScenario = scenarioer[0];
+
+export const getScenarioFromLocalStorage = (): Scenario => {
+    const scenario = localStorage.getItem('scenario');
+    const storedScenario = scenarioer.find((s) => s.value === scenario);
+    return storedScenario || defaultScenario;
+};
+
+export const saveScenarioToLocalStorage = (scenario: Scenario) => {
+    localStorage.setItem('scenario', scenario.value);
+};

@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { defaultScenario } from '../../src/app/dev/scenarioer';
+import { getScenarioFromLocalStorage } from '../../src/app/dev/scenarioer';
 
 const getMockData = (soker = 'en-arbeidsgiver-en-periode') => {
     return mockData[soker] ? mockData[soker] : mockData['en-arbeidsgiver-en-periode'];
@@ -43,8 +43,8 @@ const baseUrl = '*';
 const MellomlagringStorageKey = 'mellomlagring-endring-psb';
 
 export const getHandlers = () => {
-    const soker = localStorage.getItem('mockUser') || defaultScenario.value;
-    const { sak, arbeidsgiver, søker } = getMockData(soker);
+    const scenario = getScenarioFromLocalStorage();
+    const { sak, arbeidsgiver, søker } = getMockData(scenario.value);
 
     const handlers = [
         rest.get(`${baseUrl}/health/isAlive`, (req, res, ctx) => res(ctx.status(200))),

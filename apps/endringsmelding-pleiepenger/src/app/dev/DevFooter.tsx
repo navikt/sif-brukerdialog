@@ -8,23 +8,13 @@ import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { defaultScenario, Scenario, scenarioer } from './scenarioer';
-
-const getValidScenarioFromLocalstorage = (): Scenario => {
-    const scenario = localStorage.getItem('scenario');
-    const storedScenario = scenarioer.find((s) => s.value === scenario);
-    return storedScenario || defaultScenario;
-};
+import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
-    const [scenario, setScenario] = useState<Scenario>(getValidScenarioFromLocalstorage());
+    const [scenario, setScenario] = useState<Scenario>(getScenarioFromLocalStorage());
     const { slettMellomlagring } = useMellomlagring();
     const { dispatch } = useSøknadContext();
-
-    const saveScenario = (scenario: Scenario) => {
-        localStorage.setItem('scenario', scenario.value);
-    };
 
     const setScenarioFromValue = (value: string) => {
         const scenario = scenarioer.find((s) => s.value === value);
@@ -93,7 +83,7 @@ const DevFooter: React.FunctionComponent = () => {
                             onClick={() => {
                                 slettMellomlagring().then(() => {
                                     dispatch(actionsCreator.resetSøknad());
-                                    saveScenario(scenario);
+                                    saveScenarioToLocalStorage(scenario);
                                     relocateToWelcomePage();
                                 });
                             }}>
