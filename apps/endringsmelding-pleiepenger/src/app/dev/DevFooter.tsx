@@ -8,16 +8,29 @@ import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { defaultScenario, scenarioer } from './scenarioer';
+import { defaultScenario, Scenario, scenarioer } from './scenarioer';
+
+const getValidScenarioFromLocalstorage = (): Scenario => {
+    const scenario = localStorage.getItem('scenario');
+    const storedScenario = scenarioer.find((s) => s.value === scenario);
+    return storedScenario || defaultScenario;
+};
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
-    const [mockUser, setMockUser] = useState(localStorage.getItem('mockUser') || defaultScenario.value);
+    const [scenario, setScenario] = useState<Scenario>(getValidScenarioFromLocalstorage());
     const { slettMellomlagring } = useMellomlagring();
     const { dispatch } = useSøknadContext();
 
-    const saveMockUser = (user: string) => {
-        localStorage.setItem('mockUser', user);
+    const saveScenario = (scenario: Scenario) => {
+        localStorage.setItem('scenario', scenario.value);
+    };
+
+    const setScenarioFromValue = (value: string) => {
+        const scenario = scenarioer.find((s) => s.value === value);
+        if (scenario) {
+            setScenario(scenario);
+        }
     };
 
     useEffectOnce(() => {
@@ -37,7 +50,7 @@ const DevFooter: React.FunctionComponent = () => {
                     variant="secondary"
                     onClick={() => setShowModal(true)}
                     icon={<Settings role="presentation" aria-hidden={true} />}>
-                    {mockUser}
+                    {scenario.name}
                 </Button>
             </div>
             <Modal open={showModal} onClose={() => setShowModal(false)}>
@@ -47,9 +60,9 @@ const DevFooter: React.FunctionComponent = () => {
                     </Heading>
                     <FormBlock>
                         <RadioGroup
-                            value={mockUser}
+                            value={scenario.value}
                             legend="Scenario hvor bruker har tilgang"
-                            onChange={(user) => setMockUser(user)}>
+                            onChange={(value) => setScenarioFromValue(value)}>
                             {scenarioer
                                 .filter(({ harTilgang }) => harTilgang === true)
                                 .map(({ name, value }) => (
@@ -61,9 +74,9 @@ const DevFooter: React.FunctionComponent = () => {
                     </FormBlock>
                     <FormBlock>
                         <RadioGroup
-                            value={mockUser}
+                            value={scenario.value}
                             legend="Scenario hvor bruker stoppes"
-                            onChange={(user) => setMockUser(user)}>
+                            onChange={(value) => setScenarioFromValue(value)}>
                             {scenarioer
                                 .filter(({ harTilgang }) => harTilgang === false)
                                 .map(({ name, value }) => (
@@ -80,7 +93,7 @@ const DevFooter: React.FunctionComponent = () => {
                             onClick={() => {
                                 slettMellomlagring().then(() => {
                                     dispatch(actionsCreator.resetSøknad());
-                                    saveMockUser(mockUser);
+                                    saveScenario(scenario);
                                     relocateToWelcomePage();
                                 });
                             }}>
