@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 5.5.1
+
+### Patch Changes
+
+-   19748e7: Vise title dersom prop er satt i SifGuidePanel
+
 ## 5.5.0
 
 ### Minor Changes
