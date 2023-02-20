@@ -9,6 +9,7 @@ import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidSt
 import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
 import { defaultMessages } from './messages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
+import { sifCommonSoknadOverrideMessages } from './sifCommonSoknadOverrideMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -20,6 +21,7 @@ const bokmålstekster = {
     ...samtykkeFormOverrideMessages.nb,
     ...aktivitetStepMessages.nb,
     ...oppsummeringStepMessages.nb,
+    ...sifCommonSoknadOverrideMessages.nb,
     ...defaultMessages.nb,
 };
 
