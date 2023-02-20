@@ -1,13 +1,19 @@
-import { dateFormatter, DateRange, durationToISODuration, getDatesInDateRange } from '@navikt/sif-common-utils/lib';
+import {
+    dateFormatter,
+    DateRange,
+    durationToISODuration,
+    getDatesInDateRange,
+    ISODate,
+} from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { Arbeidsuke } from '../types/K9Sak';
+import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '../types/Sak';
 
 export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {
     return dayjs(a1.periode.from).isBefore(a2.periode.from) ? -1 : 1;
 };
 
-export const erHelArbeidsuke = (uke: Arbeidsuke): boolean => {
-    return getDatesInDateRange(uke.periode, true).length >= 5;
+export const erHelArbeidsuke = (periode: DateRange): boolean => {
+    return getDatesInDateRange(periode, true).length >= 5;
 };
 
 export const getArbeidsukeUkenummer = (uke: Arbeidsuke, medÅrstall?: boolean): string => {
@@ -16,9 +22,9 @@ export const getArbeidsukeUkenummer = (uke: Arbeidsuke, medÅrstall?: boolean): 
     return medÅrstall ? `${ukenummer}, ${day.isoWeekYear()}` : ukenummer;
 };
 
-export const getDagerTekst = ({ from, to }: DateRange): string => {
-    const fra = dateFormatter.day(from);
-    const til = dateFormatter.day(to);
+export const getDagerTekst = ({ from, to }: DateRange, medDato?: boolean): string => {
+    const fra = medDato ? dateFormatter.dayDateMonthYear(from) : dateFormatter.day(from);
+    const til = medDato ? dateFormatter.dayDateMonthYear(to) : dateFormatter.day(to);
     if (fra === til) {
         return `${fra}`;
     }
@@ -38,6 +44,11 @@ export const arbeidsukerHarLikNormaltidPerDag = (arbeidsuker: Arbeidsuke[]): boo
     return harUlikNormalarbeidstid === false;
 };
 
-export const arbeidsukerErHeleArbeidsuker = (arbeidsuker: Arbeidsuke[]): boolean => {
-    return arbeidsuker.some((uke) => erHelArbeidsuke(uke) === false) === false;
+/**
+ * Henter ut alle datoer i @arbeidstidEnkeltdager, sorterer dem på dato og returnerer array med ISODate
+ * @param arbeidstidEnkeltdager
+ * @returns ISODate[]
+ */
+export const getDagerFraEnkeltdagMap = (arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap): ISODate[] => {
+    return Object.keys(arbeidstidEnkeltdager).sort();
 };

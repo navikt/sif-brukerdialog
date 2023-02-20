@@ -1,0 +1,16 @@
+.endreArbeidstidForm__timerProsentToggler {
+    .navds-toggle-group {
+        min-width: 40%;
+    }
+
+    @media (max-width: 600px) {
+        .navds-toggle-group {
+            min-width: 80%;
+        }
+    }
+    @media (max-width: 400px) {
+        .navds-toggle-group {
+            min-width: 100%;
+        }
+    }
+}

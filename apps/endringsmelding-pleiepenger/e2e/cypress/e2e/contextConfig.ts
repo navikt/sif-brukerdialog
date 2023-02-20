@@ -1,6 +1,4 @@
-const søkerMock = require('../../../mocks/data/soker1/søker-mock.json');
-const sakMock = require('../../../mocks/data/soker1/sak-mock.json');
-const arbeidsgivereMock = require('../../../mocks/data/soker1/arbeidsgiver-mock.json');
+import { søkerMock } from './data/søkerMock';
 
 const PUBLIC_PATH = '/soknad';
 
@@ -11,28 +9,32 @@ const getUrlForStep = (step?) => {
 interface ConfigProps {
     mellomlagring?: any;
     step?: string;
-    sak?: any;
+    saker: any;
+    arbeidsgivere: any;
 }
 
-export const contextConfig = (props?: ConfigProps) => {
-    const { mellomlagring, step, sak } = props || {};
+export const mockApiBaseUrl = 'http://localhost:8099/';
 
-    const apiBaseUrl = 'http://localhost:8099/';
+export const contextConfig = (props: ConfigProps) => {
+    const { mellomlagring, step, saker, arbeidsgivere } = props;
 
-    beforeEach('intercept mellomlagring og levere tomt objekt', () => {
-        cy.intercept(`GET`, `${apiBaseUrl}mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
+    beforeEach('intercept api-kall', () => {
         cy.intercept(
-            `DELETE`,
-            `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
+            `GET`,
+            `${mockApiBaseUrl}mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
             mellomlagring || {}
         );
-        cy.intercept(`PUT`, `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept(`POST`, `${apiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept('POST', `${apiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
-        cy.intercept('GET', `${apiBaseUrl}/api/innsyn/sak`, sak || sakMock);
-        cy.intercept('GET', `${apiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivereMock);
-        cy.intercept('GET', `${apiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
-        // cy.intercept(`ryujtq87.api.sanity.io*`, {});
+        cy.intercept(
+            `DELETE`,
+            `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`,
+            mellomlagring || {}
+        );
+        cy.intercept(`PUT`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept(`POST`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
+        cy.intercept('POST', `${mockApiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
+        cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, saker);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivere);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
     });
 
     if (step) {

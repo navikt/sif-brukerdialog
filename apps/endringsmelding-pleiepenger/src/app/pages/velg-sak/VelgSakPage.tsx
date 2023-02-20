@@ -1,19 +1,20 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
+import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { getSakFromK9Sak } from '../../utils/getSakFromK9Sak';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { useNavigate } from 'react-router-dom';
-import { StepId } from '../../søknad/config/StepId';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
 
 enum FormFields {
     barnAktørId = 'barnAktørId',
@@ -28,16 +29,17 @@ const { FormikWrapper, Form, RadioGroup } = getTypedFormComponents<FormFields, F
 const VelgSakPage = () => {
     const intl = useIntl();
     const {
-        state: { søker, k9saker, arbeidsgivere },
+        state: { søker, k9saker, arbeidsgivere, endringsperiode },
         dispatch,
     } = useSøknadContext();
     const navigate = useNavigate();
+    useLogSidevisning('velgSak');
 
     const velgSak = (values: Partial<FormValues>) => {
         const k9Sak = k9saker.find((sak) => sak.barn.aktørId === values.barnAktørId);
 
         if (k9Sak) {
-            const sak = getSakFromK9Sak(k9Sak, arbeidsgivere);
+            const sak = getSakFromK9Sak(k9Sak, arbeidsgivere, endringsperiode);
             if (sak) {
                 dispatch(actionsCreator.setSak(sak));
                 dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.VELKOMMEN));

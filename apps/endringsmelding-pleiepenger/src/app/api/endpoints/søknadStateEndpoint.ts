@@ -15,6 +15,9 @@ export type SøknadStatePersistence = {
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
+    metadata: {
+        updatedTimestamp: string;
+    };
 };
 
 interface SøknadStateHashInfo {
@@ -59,6 +62,9 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             barnAktørId,
             søknadsdata,
             søknadRoute,
+            metadata: {
+                updatedTimestamp: new Date().toISOString(),
+            },
         });
     },
     fetch: async () => {

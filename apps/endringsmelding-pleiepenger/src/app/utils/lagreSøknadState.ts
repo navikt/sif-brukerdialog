@@ -9,6 +9,9 @@ export const lagreSøknadState = (state: SøknadContextState) => {
             søknadsdata,
             versjon,
             søknadRoute,
+            metadata: {
+                updatedTimestamp: new Date().toISOString(),
+            },
         },
         søker
     );

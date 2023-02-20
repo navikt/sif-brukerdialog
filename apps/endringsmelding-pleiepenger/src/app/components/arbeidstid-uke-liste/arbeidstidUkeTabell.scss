@@ -28,8 +28,6 @@
 }
 
 .arbeidstidUkeTabell {
-    &__velgUke {
-    }
     &__ukenummer {
         width: 3ch;
     }
@@ -46,19 +44,54 @@
     }
 }
 
-.arbeidstidUke {
+.arbeidsukeTidsrom {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    &__tekst {
+        flex-grow: 2;
+    }
+    &__info {
+        font-size: 1.4rem;
+    }
+}
+
+.arbeidstidUke {
+    &--velgUker {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
     &__velgUke {
         min-width: 2.5rem;
-        margin-top: -12px;
         flex-grow: 0;
+        margin-top: -0.75rem;
+        align-self: flex-start;
     }
     &__info {
         flex-grow: 1;
     }
     &__endre {
         flex-grow: 0;
+    }
+}
+
+.arbeidstidInfoListe {
+    margin-bottom: 0.5rem;
+    p {
+        display: flex;
+        width: 100%;
+        margin: 0 0 0.125rem 0;
+    }
+    &__label {
+        width: 50%;
+    }
+}
+
+.arbeidstidUkeListeWrapper  {
+    position: relative;
+    .arbeidstidUkeFooter {
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
     }
 }

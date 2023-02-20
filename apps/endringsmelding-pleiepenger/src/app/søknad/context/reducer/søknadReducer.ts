@@ -11,13 +11,17 @@ const initialSøknadsdata: Søknadsdata = {
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
+            const { aktiviteterSomSkalEndres, sak } = action.payload;
             return {
                 ...state,
                 søknadsdata: {
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
+                    aktivitet: aktiviteterSomSkalEndres
+                        ? { aktiviteterSomSkalEndres: aktiviteterSomSkalEndres.map((a) => a.id) }
+                        : undefined,
                 },
-                sak: action.payload.sak,
+                sak,
                 søknadRoute: SøknadRoutes.ARBEIDSTID,
                 børMellomlagres: true,
             };
@@ -51,7 +55,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        arbeidAktivitet: {
+                        aktivitet: {
                             ...action.payload,
                         },
                     },

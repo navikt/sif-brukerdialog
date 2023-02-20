@@ -1,10 +1,9 @@
 import { Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { Arbeidsuke } from '../../types/K9Sak';
-import { ArbeidAktivitet } from '../../types/Sak';
+import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
-import EndreArbeidstidForm, { EndreArbeidstidFormData } from '../endre-arbeidstid-form/EndreArbeidstidForm';
+import EndreArbeidstidForm, { EndreArbeidstidData } from '../endre-arbeidstid-form/EndreArbeidstidForm';
 import './endreArbeidstidModal.css';
 
 interface Props {
@@ -12,13 +11,13 @@ interface Props {
     arbeidsuker: Arbeidsuke[];
     isVisible?: boolean;
     onClose: () => void;
-    onSubmit: (endring: EndreArbeidstidFormData[]) => void;
+    onEndreArbeidstid: (endring: EndreArbeidstidData) => void;
 }
 
 const EndreArbeidstidModal: FunctionComponent<Props> = ({
     isVisible = false,
     onClose,
-    onSubmit,
+    onEndreArbeidstid,
     arbeidsuker,
     arbeidAktivitet,
 }) => {
@@ -36,7 +35,11 @@ const EndreArbeidstidModal: FunctionComponent<Props> = ({
                         {getArbeidAktivitetNavn(arbeidAktivitet)}
                     </Heading>
                     <Block margin="l">
-                        <EndreArbeidstidForm arbeidsuker={arbeidsuker} onCancel={onClose} onSubmit={onSubmit} />
+                        <EndreArbeidstidForm
+                            arbeidsuker={arbeidsuker}
+                            onCancel={onClose}
+                            onSubmit={onEndreArbeidstid}
+                        />
                     </Block>
                 </div>
             </Modal.Content>

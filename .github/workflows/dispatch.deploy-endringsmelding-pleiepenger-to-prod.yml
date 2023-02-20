@@ -1,0 +1,34 @@
+name: Deploy endringsmelding-pleiepenger to prod
+
+on:
+    workflow_dispatch:
+        secrets:
+            NAIS_DEPLOY_APIKEY:
+                description: Nais deploy APIKEY
+                required: false
+
+jobs:
+    run-cypress-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Run cypress tests
+              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
+              env:
+                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger
+              with:
+                  project: ./apps/endringsmelding-pleiepenger/e2e
+                  build: yarn build-endringsmelding-pleiepenger
+                  start: yarn e2e-endringsmelding-pleiepenger
+
+    deploy-to-prod:
+        name: Deploy endringsmelding-pleiepenger to prod
+        needs: [run-cypress-test]
+        uses: navikt/sif-brukerdialog/.github/workflows/deploy-app-to-prod.yml@main
+        secrets:
+            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+        with:
+            app-name: 'endringsmelding-pleiepenger'
+            working-directory: 'apps/endringsmelding-pleiepenger'

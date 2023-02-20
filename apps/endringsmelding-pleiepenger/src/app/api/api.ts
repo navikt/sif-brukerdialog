@@ -16,7 +16,7 @@ export const axiosConfigPsb: AxiosRequestConfig = {
     baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8080'),
 };
 
-export const axiosConfigInnsyn: AxiosRequestConfig = {
+const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
     transformResponse: storageParser,
     baseURL: getEnvVariableOrDefault('FRONTEND_INNSYN_API_PATH', 'http://localhost:8082'),

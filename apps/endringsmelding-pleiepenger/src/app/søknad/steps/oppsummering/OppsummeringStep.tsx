@@ -1,4 +1,4 @@
-import { Alert, ErrorSummary, Heading, Link } from '@navikt/ds-react';
+import { Alert, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -30,6 +30,7 @@ import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -51,7 +52,7 @@ const OppsummeringStep = () => {
         state: { søknadsdata, sak, arbeidsgivere },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig();
+    const stepConfig = getSøknadStepConfig(sak);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
@@ -83,7 +84,7 @@ const OppsummeringStep = () => {
 
     if (!harEndringer) {
         return (
-            <SøknadStep stepId={stepId}>
+            <SøknadStep stepId={stepId} sak={sak}>
                 <Alert variant="info">
                     <Heading level="2" size="small" spacing={true}>
                         Ingen endringer er registert
@@ -101,15 +102,23 @@ const OppsummeringStep = () => {
     }
 
     return (
-        <SøknadStep stepId={stepId}>
+        <SøknadStep stepId={stepId} sak={sak}>
+            <SifGuidePanel>
+                <Ingress as="div">
+                    <p>
+                        Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Dersom
+                        noe ikke stemmer, kan du gå tilbake og endre igjen.
+                    </p>
+                </Ingress>
+            </SifGuidePanel>
             {arbeidstakerList &&
                 Object.keys(arbeidstakerList).map((key) => {
                     const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
-                    const arbeidsgiver = arbeidsgivere.find((a) => a.id === organisasjonsnummer);
+                    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
                     if (!arbeidsgiver) {
                         return null;
                     }
-                    const arbeidsuker = getArbeidstidUkeTabellItem(arbeidstidInfo.perioder);
+                    const arbeidsuker = getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
                     return (
                         <FormBlock key={key} paddingBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
                             <Heading level="2" size="medium">
@@ -131,7 +140,7 @@ const OppsummeringStep = () => {
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItem(frilanserArbeidstidInfo.perioder)}
+                            listItems={getArbeidstidUkeTabellItems(frilanserArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -144,7 +153,7 @@ const OppsummeringStep = () => {
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItem(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
+                            listItems={getArbeidstidUkeTabellItems(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -169,13 +178,13 @@ const OppsummeringStep = () => {
                                     formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
                                     submitDisabled={isSubmitting || hasInvalidSteps}
                                     includeValidationSummary={true}
-                                    submitButtonLabel="Send søknad"
+                                    submitButtonLabel="Send melding om endring"
                                     submitPending={isSubmitting}
                                     backButtonDisabled={isSubmitting}
                                     onBack={goBack}>
                                     <ConfirmationCheckbox
                                         disabled={isSubmitting}
-                                        label="Bekrefter opplysninger"
+                                        label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
                                         validate={getCheckedValidator()}
                                         data-testid="bekreft-opplysninger"
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
@@ -213,6 +222,7 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
 
     const arbeidsuke: ArbeidstidUkeTabellItem = {
         kanEndres: false,
+        kanVelges: false,
         isoDateRange,
         periode,
         antallDagerMedArbeidstid,
@@ -237,10 +247,12 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     return arbeidsuke;
 };
 
-const getArbeidstidUkeTabellItem = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
+const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
     const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
-    Object.keys(perioder).forEach((isoDateRange) => {
-        arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
-    });
+    Object.keys(perioder)
+        .sort()
+        .forEach((isoDateRange) => {
+            arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
+        });
     return arbeidsuker;
 };

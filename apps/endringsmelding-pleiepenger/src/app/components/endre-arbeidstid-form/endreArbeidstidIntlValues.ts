@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Arbeidsuke } from '../../types/K9Sak';
+import { Arbeidsuke } from '../../types/Sak';
 import { erHelArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
 
 export type EndreArbeidstidIntlValues = {
@@ -10,13 +10,11 @@ export const getEndreArbeidstidIntlValues = (info: { arbeidsuker: Arbeidsuke[] }
     let periode = '';
     if (info.arbeidsuker.length === 1) {
         const uke = info.arbeidsuker[0];
-        if (erHelArbeidsuke(uke)) {
-            periode = `uke ${dayjs(uke.periode.from).isoWeek()}`;
-        } else {
-            periode = `uke ${dayjs(uke.periode.from).isoWeek()} (${getDagerTekst(uke.periode)})`;
-        }
+        periode = erHelArbeidsuke(uke.periode)
+            ? `i uke ${dayjs(uke.periode.from).isoWeek()}`
+            : `${getDagerTekst(uke.periode)} uke ${dayjs(uke.periode.from).isoWeek()}`;
     } else {
-        periode = 'per uke, i de ukene du har valgt';
+        periode = 'i de ukene du har valgt';
     }
     return {
         periode,

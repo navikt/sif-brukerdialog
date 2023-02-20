@@ -17,7 +17,7 @@ export const useSendSøknad = () => {
     const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent } = useAmplitudeInstance();
+    const { logSoknadSent, logSoknadFailed } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);
@@ -25,6 +25,7 @@ export const useSendSøknad = () => {
             .send(apiData)
             .then(onSøknadSendSuccess)
             .catch((error) => {
+                logSoknadFailed(SKJEMANAVN);
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });

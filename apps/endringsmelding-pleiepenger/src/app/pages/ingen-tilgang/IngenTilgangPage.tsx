@@ -1,9 +1,14 @@
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { SkrivTilOssLink } from '../../lenker';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import DevFooter from '../../dev/DevFooter';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 
 interface Props {
     søker: Søker;
@@ -12,48 +17,78 @@ interface Props {
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     switch (årsak) {
-        case IngenTilgangÅrsak.finnerIkkeTidsperiode:
-        case IngenTilgangÅrsak.harIngenSaker:
+        case IngenTilgangÅrsak.harIngenPerioder:
+        case IngenTilgangÅrsak.harIngenSak:
             return (
-                <BodyLong as="div">
-                    <p>Vi kan ikke finne noen sak om pleiepenger på deg.</p>
-                    <p>Dersom dette ikke stemmer, ta kontakt med [TODO].</p>
+                <BodyLong as="div" data-testid="ingenSak">
+                    <p>
+                        Vi finner ingen sak om pleiepenger registrert på deg, derfor kan du heller ikke bruke denne
+                        tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer
+                        opp her.
+                    </p>
+                    <p>
+                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
+                        <SkrivTilOssLink />.
+                    </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.arbeidsforholdUtenArbeidstid:
+        case IngenTilgangÅrsak.harArbeidsgiverSomIkkeErISak:
             return (
-                <BodyLong as="div">
-                    <p>TODO: Bruker har arbeidsforhold hvor en ikke har registrert arbeidstid - henvise til søknad?</p>
+                <BodyLong as="div" data-testid="nyttArbeidsforhold">
+                    <p>
+                        Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som
+                        ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og
+                        utbetalingene dine blir riktige.
+                    </p>
+                    <p>
+                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
+                        <SkrivTilOssLink />.
+                    </p>
+                </BodyLong>
+            );
+        case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
+            return (
+                <BodyLong as="div" data-testid="erSN">
+                    <p>
+                        Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
+                        endringer fra selvstendig næringsdrivende. Vi jobber for å få det til, og selvstendig
+                        næringsdrivende blir også tilbudt denne tjenesten på et senere tidspunkt.
+                    </p>
+                    <p>
+                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
+                    </p>
                 </BodyLong>
             );
         case IngenTilgangÅrsak.harMerEnnEnSak:
             return (
-                <BodyLong as="div">
+                <BodyLong as="div" data-testid="flereSaker">
                     <p>
-                        Du kan desverre ikke bruke denne løsningen for å sende inn melding om endring enda. Løsningen
-                        støtter kun dem som har én sak, og vi ser at du har flere saker.
+                        Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
+                        endringer når du har flere pleiepengesaker. Vi jobber for å få det til, og du som har flere
+                        saker blir også tilbudt denne tjenesten på et senere tidspunkt.
                     </p>
                     <p>
-                        Vi har valgt å lage løsningen for dem som har kun én sak til å begynne med, fordi de fleste har
-                        kun én sak, og vi ønsker å tilby løsningen så fort som mulig, og heller utvide etter hvert. Det
-                        å støtte dem med flere saker, står høyt på listen over hva vi ønsker å utvide med.
+                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
                     </p>
-                    <p>TODO: Hvor melde endringer</p>
                 </BodyLong>
             );
     }
 };
 
 const IngenTilgangPage = ({ årsak, søker }: Props) => {
+    useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
     return (
-        <Page title="Ingen tilgang">
-            <SifGuidePanel poster={true}>
-                <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
-                    Hei {søker.fornavn}
-                </Heading>
-                {getÅrsakMelding(årsak)}
-            </SifGuidePanel>
-        </Page>
+        <SøknadContextProvider initialData={{} as any}>
+            <Page title="Ingen tilgang">
+                <SifGuidePanel poster={true}>
+                    <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
+                        Hei {søker.fornavn}
+                    </Heading>
+                    {getÅrsakMelding(årsak)}
+                </SifGuidePanel>
+                {getEnvironmentVariable('MSW') === 'on' && <DevFooter />}
+            </Page>
+        </SøknadContextProvider>
     );
 };
 

@@ -1,7 +1,7 @@
 import { setupWorker, rest } from 'msw';
-import { handlers } from './handlers';
+import { getHandlers } from './handlers';
 
-export const worker = setupWorker(...handlers);
+export const worker = setupWorker(...getHandlers());
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

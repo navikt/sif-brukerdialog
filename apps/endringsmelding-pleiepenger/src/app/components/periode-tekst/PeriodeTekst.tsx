@@ -7,12 +7,15 @@ interface Props {
     periode: DateRange;
 }
 
-export const getPeriodeTekst = ({ from, to }: DateRange): string => {
+export const getPeriodeTekst = ({ from, to }: DateRange, compact = true): string => {
     const sammeDato = dayjs(from).isSame(to, 'date');
+    const fromString = compact ? dateFormatter.compact(from) : dateFormatter.full(from);
+    const toString = compact ? dateFormatter.compact(to) : dateFormatter.full(to);
+
     if (sammeDato) {
-        return dateFormatter.compact(from);
+        return fromString;
     }
-    return `${dateFormatter.compact(from)} - ${dateFormatter.compact(to)}`;
+    return `${fromString} - ${toString}`;
 };
 
 const PeriodeTekst: React.FunctionComponent<Props> = ({ periode }) => <>{getPeriodeTekst(periode)}</>;

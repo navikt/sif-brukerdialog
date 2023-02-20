@@ -10,7 +10,7 @@ interface StepFormValuesContextInterface {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const StepFormValuesContext = createContext<StepFormValuesContextInterface>(null!);
+const StepFormValuesContext = createContext<StepFormValuesContextInterface>(null!);
 
 export const useStepFormValuesContext = () => useContext(StepFormValuesContext);
 

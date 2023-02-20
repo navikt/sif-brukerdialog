@@ -13,6 +13,10 @@ const initialState: SøknadContextState = {
         id: '123',
     },
     k9saker: [],
+    endringsperiode: {
+        from: new Date(),
+        to: new Date(),
+    },
     sak: {} as any,
     søknadRoute: undefined,
     arbeidsgivere: arbeidsgivereMock,

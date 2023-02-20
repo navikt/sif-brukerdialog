@@ -4,6 +4,7 @@ import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import { useIntl } from 'react-intl';
 interface Props {
     uke: ArbeidstidUkeTabellItem;
     visOpprinneligTid?: boolean;
@@ -13,6 +14,7 @@ interface Props {
 const bem = BemUtils('endretArbeidstid');
 
 const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinneligTid = true, medLabels = false }) => {
+    const intl = useIntl();
     if (uke.endret === undefined) {
         return (
             <>
@@ -27,11 +29,13 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
     return (
         <div className={bem.block}>
             <div className={bem.element('faktisk')}>
-                {medLabels && <BodyShort size="small">Arbeid i perioden:</BodyShort>}
+                {medLabels && <BodyShort size="small">Jobber i perioden:</BodyShort>}
                 <strong className={bem.element('timer')} data-testid="timer-faktisk">
                     <DurationText duration={faktisk} />
                 </strong>
-                {endretProsent && <span className={bem.element('prosent')}>({endretProsent} %)</span>}
+                {endretProsent !== undefined && (
+                    <span className={bem.element('prosent')}> ({intl.formatNumber(endretProsent)} %)</span>
+                )}
             </div>
             {visOpprinneligTid && (
                 <div>

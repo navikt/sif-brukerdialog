@@ -1,14 +1,18 @@
-import { Heading } from '@navikt/ds-react';
+import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
-import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
+import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { Sak } from '../../types/Sak';
-import SakInfo from './SakInfo';
+import { getAktiviteterSomKanEndres, getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
+import OmSøknaden from './OmSøknaden';
 
 const VelkommenPage = () => {
     const {
@@ -16,9 +20,16 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
+    const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
+
+    useLogSidevisning(SIFCommonPageKey.velkommen);
+
     const startSøknad = (sak: Sak) => {
-        dispatch(actionsCreator.startSøknad(sak));
-        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.AKTIVITET));
+        const steps = getSøknadSteps(sak);
+        dispatch(
+            actionsCreator.startSøknad(sak, aktiviteterSomKanEndres.length === 1 ? aktiviteterSomKanEndres : undefined)
+        );
+        dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(steps[0])));
     };
 
     if (!sak) {
@@ -34,22 +45,39 @@ const VelkommenPage = () => {
         );
     }
 
+    const { fornavn, mellomnavn, etternavn } = sak.barn;
+    const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
+
     return (
         <Page title="Velkommen">
-            <SifGuidePanel>
-                <Heading level="1" size="large" data-testid="velkommen-header">
-                    Velkommen {søker.fornavn}
+            <SifGuidePanel poster={true}>
+                <Heading level="1" size="large" data-testid="velkommen-header" spacing={true}>
+                    Hei {søker.fornavn}
                 </Heading>
-                <p>
-                    Du kan melde om endringer i arbeid opptil 3 måneder tilbake i tid, og ett år frem i tid. Vil du
-                    melde fra om endringer utenfor denne tidsrammen, eller du har behov for å melde fra om andre
-                    endringer, send inn en melding via Skriv til oss.
-                </p>
-                <FormBlock>
-                    <SakInfo sak={sak} />
-                </FormBlock>
+                <Ingress as="div">
+                    <p>
+                        Du har pleiepenger for <strong>{barnetsNavn}</strong>. Her melder du fra om hvor mye du jobber i
+                        perioden du har pleiepenger.
+                    </p>
+                    <p>Arbeidsforhold:</p>
+                    <InfoList>
+                        {aktiviteterSomKanEndres.map((aktivitet, index) => {
+                            return (
+                                <li key={index}>
+                                    <strong>{getArbeidAktivitetNavn(aktivitet)}</strong>
+                                </li>
+                            );
+                        })}
+                    </InfoList>
+                    {/* <p>
+                        Dersom det mangler et arbeidsforhold, kan du ta{' '}
+                        <Link href={getLenker().kontaktOss}>kontakt med oss</Link>.
+                    </p> */}
+                </Ingress>
+                <OmSøknaden />
             </SifGuidePanel>
-            <SamtykkeForm onValidSubmit={() => startSøknad(sak)} />
+
+            <SamtykkeForm onValidSubmit={() => startSøknad(sak)} submitButtonLabel="Start" />
         </Page>
     );
 };

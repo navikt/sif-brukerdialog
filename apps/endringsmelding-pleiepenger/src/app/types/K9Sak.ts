@@ -1,63 +1,6 @@
-import { DateDurationMap, DateRange, Duration, ISODate, ISODateRange } from '@navikt/sif-common-utils';
-import { DagerIkkeSøktForMap, DagerSøktForMap } from './';
-import { PeriodeMedArbeidstid } from './PeriodeMedArbeidstid';
+import { DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils';
 
-export type TidEnkeltdag = DateDurationMap;
-
-export interface ArbeidsukeTimer {
-    dag: Duration;
-    uke: Duration;
-}
-
-export interface ArbeidsukeMetaData {
-    antallDagerMedArbeidstid: number;
-}
-export interface Arbeidsuke {
-    isoDateRange: string;
-    periode: DateRange;
-    arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap;
-    faktisk: ArbeidsukeTimer;
-    normalt: ArbeidsukeTimer;
-    antallDagerMedArbeidstid: number;
-}
-
-export interface ArbeidsukeMap {
-    [key: ISODateRange]: Arbeidsuke;
-}
-
-export interface AktivitetArbeidstid {
-    enkeltdagerMedArbeid: ArbeidstidEnkeltdagMap;
-    arbeidsuker: ArbeidsukeMap;
-}
-
-export type ArbeidstidEnkeltdagMap = {
-    [key: ISODate]: {
-        faktisk: Duration;
-        normalt: Duration;
-    };
-};
-
-interface ArbeidstidInfo {
-    // aktivitetArbeidstid: AktivitetArbeidstid;
-    perioderMedArbeidstid: PeriodeMedArbeidstid[];
-}
-
-export type ArbeidstakerMap = {
-    [id: string]: ArbeidstidInfo;
-};
-
-export interface YtelseArbeidstid {
-    arbeidstakerMap?: ArbeidstakerMap;
-    frilanserArbeidstidInfo?: ArbeidstidInfo;
-    selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
-}
-
-export interface SakMedMeta {
-    sak: K9Sak;
-    meta: SakMetadata;
-}
-
-export interface Barn {
+export interface K9SakBarn {
     fødselsdato: Date;
     fornavn: string;
     mellomnavn?: string;
@@ -65,70 +8,63 @@ export interface Barn {
     aktørId: string;
     identitetsnummer: string;
 }
-export interface K9OpptjeningAktivitetFrilanser {
+
+export interface K9SakArbeidstidPeriode {
+    jobberNormaltTimerPerDag: Duration;
+    faktiskArbeidTimerPerDag: Duration;
+}
+
+export interface K9SakArbeidstidPeriodeMap {
+    [key: ISODateRange]: K9SakArbeidstidPeriode;
+}
+
+export interface K9SakArbeidstidInfo {
+    perioder: K9SakArbeidstidPeriodeMap;
+}
+
+export type K9SakArbeidstaker = {
+    norskIdentitetsnummer?: string;
+    organisasjonsnummer: string;
+    arbeidstidInfo: K9SakArbeidstidInfo;
+};
+
+export interface K9SakArbeidstid {
+    arbeidstakerList?: K9SakArbeidstaker[];
+    frilanserArbeidstidInfo?: K9SakArbeidstidInfo;
+    selvstendigNæringsdrivendeArbeidstidInfo?: K9SakArbeidstidInfo;
+}
+
+export interface K9SakBarn {
+    fødselsdato: Date;
+    fornavn: string;
+    mellomnavn?: string;
+    etternavn: string;
+    aktørId: string;
+    identitetsnummer: string;
+}
+interface K9SakOpptjeningAktivitetFrilanser {
     startdato: Date;
     sluttdato?: Date;
     jobberFortsattSomFrilanser: boolean;
 }
 
-interface Ytelse {
+interface K9SakYtelse {
     type: 'PLEIEPENGER_SYKT_BARN';
     barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
     søknadsperioder: DateRange[];
     opptjeningAktivitet: {
-        frilanser?: K9OpptjeningAktivitetFrilanser;
+        frilanser?: K9SakOpptjeningAktivitetFrilanser;
     };
-    arbeidstidInfo: YtelseArbeidstid;
+    arbeidstid: K9SakArbeidstid;
 }
 
 export interface K9Sak {
     søknadId: string;
     språk: string;
     mottattDato: Date;
-    barn: Barn;
+    barn: K9SakBarn;
     søker: {
         norskIdentitetsnummer: string;
     };
-    ytelse: Ytelse;
+    ytelse: K9SakYtelse;
 }
-
-export interface SakMetadata {
-    /** Dato endring gjennomføres på (dagens dato) */
-    endringsdato: Date;
-
-    /** Hele perioden som bruker kan gjøre endringer innenfor, avgrenset til 3 måned bakover og 12 måneder
-     * fremover i tid. Avkortet dersom søknadsperioder er kortere.
-     */
-    endringsperiode: DateRange;
-
-    /** Dager det er søkt for */
-    dagerSøktForMap: DagerSøktForMap;
-
-    /** Dager det ikke er søkt for */
-    dagerIkkeSøktForMap: DagerIkkeSøktForMap;
-
-    /** Søknadsperioder */
-    søknadsperioder: DateRange[];
-
-    /** Måneder som har dager det er søkt om */
-    alleMånederISøknadsperiode: DateRange[];
-
-    /** Måneder som har dager det er søkt om */
-    månederMedSøknadsperiodeMap: MånedMedSøknadsperioderMap;
-
-    /** Antall måneder som ikke har dager det er søkt for */
-    antallMånederUtenSøknadsperiode: number;
-
-    /** Flagg dersom månedene går over flere år */
-    søknadsperioderGårOverFlereÅr: boolean;
-
-    /** Utilgjengelige datoer */
-    datoerIkkeSøktFor: Date[];
-
-    /** Utilgjengelige datoer per måned */
-    datoerIkkeSøktForIMåned: { [månedIsoString: string]: Date[] };
-}
-
-export type MånedMedSøknadsperioderMap = {
-    [yearMonthKey: string]: DateRange[];
-};

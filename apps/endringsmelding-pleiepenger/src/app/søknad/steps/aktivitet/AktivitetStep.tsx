@@ -20,6 +20,7 @@ import SøknadStep from '../../SøknadStep';
 import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues } from './aktivitetStepUtils';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
+import { SkrivTilOssLink } from '../../../lenker';
 
 export enum AktivitetFormFields {
     aktiviteterSomSkalEndres = 'aktiviteterSomSkalEndres',
@@ -38,7 +39,7 @@ const AktivitetStep = () => {
         state: { søknadsdata, sak },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const stepConfig = getSøknadStepConfig();
+    const stepConfig = getSøknadStepConfig(sak);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -61,7 +62,7 @@ const AktivitetStep = () => {
     );
 
     return (
-        <SøknadStep stepId={stepId}>
+        <SøknadStep stepId={stepId} sak={sak}>
             <FormikWrapper
                 initialValues={getAktivitetStepInitialValues(søknadsdata, stepFormValues?.aktivitet)}
                 onSubmit={handleSubmit}
@@ -75,9 +76,20 @@ const AktivitetStep = () => {
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             <CheckboxGroup
-                                legend={'Velg hvilke arbeidsforhold du ønsker å endre arbeidstiden for:'}
+                                legend={'Velg hvilke arbeidsforhold du ønsker å endre?'}
                                 description={
-                                    <ExpandableInfo title="Mangler du noen arbeidsforhold?">Mer info</ExpandableInfo>
+                                    <ExpandableInfo title="Mangler du noen arbeidsforhold?">
+                                        <p>
+                                            Nedenfor ser du arbeidsforhold hvor du har oppgitt arbeidstid på saken din.
+                                            Dersom det er et arbeidsforhold du mener burde vært i listen, send en
+                                            melding via <SkrivTilOssLink />.
+                                        </p>
+                                        <p>
+                                            Endring av arbeidstid for selvstendig næringsdrivene er ikke støttet enda.
+                                            Dersom du er selvstendig næringsdrivende og ønsker å melde om endring, kan
+                                            du sende inn en ny søknad eller send en melding via <SkrivTilOssLink />.
+                                        </p>
+                                    </ExpandableInfo>
                                 }
                                 name={AktivitetFormFields.aktiviteterSomSkalEndres}
                                 validate={getListValidator({ required: true })}
@@ -102,14 +114,12 @@ const getAktivitetCheckboxLabel = ({ title, info }: { title: string; info?: Reac
     );
 };
 
-export const getOpptjeningAktivitetCheckboxes = (
-    arbeidAktiviteter: ArbeidAktiviteter
-): FormikCheckboxGroupCheckboxProp[] => {
+const getOpptjeningAktivitetCheckboxes = (arbeidAktiviteter: ArbeidAktiviteter): FormikCheckboxGroupCheckboxProp[] => {
     const checkboxProps: FormikCheckboxGroupCheckboxProp[] = [];
 
     const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
-    arbeidstaker.forEach(({ id, arbeidsgiver: { id: orgnr, navn, type } }) => {
+    arbeidstaker.forEach(({ id, arbeidsgiver: { organisasjonsnummer: orgnr, navn, type } }) => {
         checkboxProps.push({
             label: getAktivitetCheckboxLabel({
                 title: navn,

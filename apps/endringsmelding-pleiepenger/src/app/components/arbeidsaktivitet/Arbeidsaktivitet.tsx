@@ -7,9 +7,11 @@ import {
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
 import React, { useState } from 'react';
-import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
-import { Arbeidsuke } from '../../types/K9Sak';
-import { ArbeidAktivitet } from '../../types/Sak';
+import { SkrivTilOssLink } from '../../lenker';
+import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
+import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
+import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
+import { getEndringsdato, getMaksEndringsperiode } from '../../utils/endringsperiode';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
@@ -17,8 +19,8 @@ import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
-    endringer: ArbeidstidAktivitetEndringMap | undefined;
-    onArbeidstidAktivitetChange: (arbeidstidPeriodeEndring: ArbeidstidAktivitetEndring[]) => void;
+    endringer: ArbeidstidEndringMap | undefined;
+    onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
 const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetChange }: Props) => {
@@ -32,8 +34,9 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
             <Block margin="xl">
                 <Heading level="3" size="small" spacing={true}>
-                    Perioder med pleiepenger:
+                    {perioder.length > 1 ? 'Perioder med pleiepenger' : 'Uker med pleiepenger'}
                 </Heading>
+                {renderInfoOmEndringUtenforEndringsperiode(arbeidAktivitet)}
             </Block>
 
             {perioder.length === 1 && (
@@ -68,10 +71,8 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                                     data-testid={`periode_${index}`}>
                                     <Accordion.Header data-testid={`periode_${index}_header`}>
                                         <Ingress as="span" className="periodeHeader">
-                                            <span style={{ textTransform: 'capitalize' }}>
-                                                {dateFormatter.dayCompactDate(periode.periode.from)}
-                                            </span>{' '}
-                                            - {dateFormatter.dayCompactDate(periode.periode.to)}
+                                            {dateFormatter.full(periode.periode.from)} -{' '}
+                                            {dateFormatter.full(periode.periode.to)}
                                             {harEndringer && (
                                                 <span
                                                     style={{
@@ -109,16 +110,63 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                 isVisible={arbeidsukerForEndring !== undefined}
                 arbeidsuker={arbeidsukerForEndring || []}
                 onClose={() => setArbeidsukerForEndring(undefined)}
-                onSubmit={(data) => {
+                onEndreArbeidstid={({ perioder, endring }) => {
                     setArbeidsukerForEndring(undefined);
+                    const nyeEndringer: ArbeidstidEndringMap = {};
+                    perioder.forEach((periode) => {
+                        nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+                    });
                     onArbeidstidAktivitetChange(
-                        data.map((endring) => ({ arbeidAktivitetId: arbeidAktivitet.id, ...endring }))
+                        cleanupArbeidAktivitetEndringer(
+                            {
+                                ...endringer,
+                                ...nyeEndringer,
+                            },
+                            arbeidAktivitet
+                        )
                     );
                     setResetUkerTabellCounter(resetUkerTabellCounter + 1);
                 }}
             />
         </div>
     );
+};
+
+const renderInfoOmEndringUtenforEndringsperiode = ({
+    harPerioderEtterEndringsperiode,
+    harPerioderFørEndringsperiode,
+}: ArbeidAktivitet) => {
+    const endringsperiode = getMaksEndringsperiode(getEndringsdato());
+    const førDato = dateFormatter.full(endringsperiode.from);
+    const etterDato = dateFormatter.full(endringsperiode.to);
+    if (harPerioderFørEndringsperiode && !harPerioderEtterEndringsperiode) {
+        return (
+            <Block padBottom="l">
+                <p>
+                    Hvis du ønsker å gjøre endringer før {førDato}, må du sende oss en melding via <SkrivTilOssLink />.
+                </p>
+            </Block>
+        );
+    } else if (!harPerioderFørEndringsperiode && harPerioderEtterEndringsperiode) {
+        return (
+            <Block padBottom="l">
+                <p>
+                    Hvis du ønsker å gjøre endringer etter {etterDato}, må du sende oss en melding via{' '}
+                    <SkrivTilOssLink />.
+                </p>
+            </Block>
+        );
+    } else if (harPerioderFørEndringsperiode && harPerioderEtterEndringsperiode) {
+        return (
+            <Block padBottom="l">
+                <p>
+                    Hvis du ønsker å gjøre endringer før {førDato} eller etter {etterDato}, må du sende oss en melding
+                    via <SkrivTilOssLink />.
+                </p>
+            </Block>
+        );
+    }
+    return null;
 };
 
 export default Arbeidsaktivitet;

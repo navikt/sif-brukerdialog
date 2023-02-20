@@ -1,4 +1,4 @@
-import { BodyLong, Panel } from '@navikt/ds-react';
+import { BodyLong, Heading, Panel } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -7,12 +7,11 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import Arbeidsaktivitet from '../../../components/arbeidsaktivitet/Arbeidsaktivitet';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { ArbeidstidAktivitetEndring, ArbeidstidAktivitetEndringMap } from '../../../types/ArbeidstidAktivitetEndring';
+import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -24,11 +23,12 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 
-export enum ArbeidstidFormFields {
-    arbeidAktivitetEndring = 'arbeidAktivitetEndring',
-}
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidAktivitetEndringMap };
+    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
+}
+
+enum ArbeidstidFormFields {
+    arbeidAktivitetEndring = 'arbeidAktivitetEndring',
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
@@ -43,7 +43,7 @@ const ArbeidstidStep = () => {
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const stepConfig = getSøknadStepConfig();
+    const stepConfig = getSøknadStepConfig(sak);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -65,32 +65,22 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const valgteAktiviteter = søknadsdata.arbeidAktivitet?.aktiviteterSomSkalEndres || [];
+    const valgteAktiviteter = søknadsdata.aktivitet?.aktiviteterSomSkalEndres || [];
     const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
 
     const onArbeidstidAktivitetChange = (
-        endring: ArbeidstidAktivitetEndring[],
+        arbeidAktivitetId: string,
+        arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
-        const alleEndringer = values[ArbeidstidFormFields.arbeidAktivitetEndring] || {};
-        const { arbeidAktivitetId } = endring[0];
-        const tidligereEndringer: ArbeidstidAktivitetEndringMap = alleEndringer[arbeidAktivitetId];
-        const nyeEndringer: ArbeidstidAktivitetEndringMap = {};
-        endring.forEach((endring) => {
-            endring.perioder.forEach((periode) => {
-                nyeEndringer[dateRangeToISODateRange(periode)] = endring;
-            });
-        });
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitetEndring: {
-                ...values[ArbeidstidFormFields.arbeidAktivitetEndring],
-                [arbeidAktivitetId]: {
-                    ...tidligereEndringer,
-                    ...nyeEndringer,
-                },
+                ...values.arbeidAktivitetEndring,
+                [arbeidAktivitetId]: arbeidstidEndringMap,
             },
         };
+
         setValues(newValues);
 
         /** Oppdater state før mellomlagring */
@@ -102,17 +92,20 @@ const ArbeidstidStep = () => {
     };
 
     return (
-        <SøknadStep stepId={stepId}>
+        <SøknadStep stepId={stepId} sak={sak}>
             <SifGuidePanel>
-                <BodyLong as="div">
-                    Du kan melde om endringer i den perioden arbeidsforholdet er aktivt, og opptil 3 måneder tilbake i
-                    tid, og 12 måneder frem i tid. Uker du ikke har søkt, vil ikke være med i listene nedefor.
-                    <InfoList>
-                        <li>Du må oppgi timer per uke eller periode</li>
-                        <li>Du kan velge flere uker samtidig for å endre</li>
-                        <li>Du kan kun oppgi arbeidstid innenfor perioder du har søkt</li>
-                    </InfoList>
-                </BodyLong>
+                <>
+                    <BodyLong as="div">
+                        <Heading level="2" size="xsmall" spacing={true}>
+                            Slik gjør du det
+                        </Heading>
+                        <InfoList>
+                            <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
+                            <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
+                            <li>Hvis du har endring som gjelder kun enkeltdager, oppgir du fortsatt for hele uken.</li>
+                        </InfoList>
+                    </BodyLong>
+                </>
             </SifGuidePanel>
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
@@ -135,8 +128,13 @@ const ArbeidstidStep = () => {
                                                 <Arbeidsaktivitet
                                                     arbeidAktivitet={arbeidAktivitet}
                                                     endringer={endringer[arbeidAktivitet.id]}
-                                                    onArbeidstidAktivitetChange={(endringer) => {
-                                                        onArbeidstidAktivitetChange(endringer, values, setValues);
+                                                    onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
+                                                        onArbeidstidAktivitetChange(
+                                                            arbeidAktivitet.id,
+                                                            arbeidstidEndringer,
+                                                            values,
+                                                            setValues
+                                                        );
                                                     }}
                                                 />
                                             </Panel>

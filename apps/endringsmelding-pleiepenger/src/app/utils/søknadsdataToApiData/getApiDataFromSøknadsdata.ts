@@ -4,12 +4,18 @@ import {
     durationToISODuration,
     getDateRangesFromDates,
     ISODateToDate,
+    sortDateRange,
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import { ArbeidstidAktivitetEndringMap } from '../../types/ArbeidstidAktivitetEndring';
-import { ArbeidsukeMap } from '../../types/K9Sak';
-import { PeriodeMedArbeidstid } from '../../types/PeriodeMedArbeidstid';
-import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType, Sak } from '../../types/Sak';
+import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
+import {
+    ArbeidAktivitet,
+    ArbeidAktiviteter,
+    ArbeidAktivitetType,
+    ArbeidsukeMap,
+    PeriodeMedArbeidstid,
+    Sak,
+} from '../../types/Sak';
 import {
     ArbeidstakerApiData,
     ArbeidstidApiData,
@@ -18,10 +24,10 @@ import {
 } from '../../types/søknadApiData/SøknadApiData';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
-import { getDagerSøktFor } from '../parseK9Format';
 
-export const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
+const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
     const arbeidsukerMap = {};
     perioder.forEach(({ arbeidsuker }) => {
         Object.keys(arbeidsuker).forEach((key) => {
@@ -31,17 +37,19 @@ export const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): A
     return arbeidsukerMap;
 };
 
-export const getEndretArbeidstid = (
-    endringUkeMap: ArbeidstidAktivitetEndringMap,
+const getEndretArbeidstid = (
+    endringUkeMap: ArbeidstidEndringMap,
     arbeidAktivitet: ArbeidAktivitet
 ): ArbeidstidPeriodeApiDataMap => {
-    const arbeidsdagerMedEndretTid: ArbeidstidPeriodeApiDataMap = {};
+    const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
-    Object.keys(endringUkeMap).forEach((isoDateRange) => {
-        const { endring } = endringUkeMap[isoDateRange];
+    const endringKeys = Object.keys(endringUkeMap).sort();
+
+    endringKeys.forEach((isoDateRange) => {
+        const endring = endringUkeMap[isoDateRange];
         const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidAktivitet.perioderMedArbeidstid);
         const arbeidsuke = arbeidsuker[isoDateRange];
-        const dagerSøktFor = getDagerSøktFor(arbeidsuke.arbeidstidEnkeltdager);
+        const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
         const { antallDagerMedArbeidstid } = arbeidsuke;
 
         const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);
@@ -52,8 +60,8 @@ export const getEndretArbeidstid = (
         );
 
         const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
-        perioder.forEach((periode) => {
-            arbeidsdagerMedEndretTid[dateRangeToISODateRange(periode)] = {
+        perioder.sort(sortDateRange).forEach((periode) => {
+            perioderMedEndretArbeidstid[dateRangeToISODateRange(periode)] = {
                 jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
                 faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
                 _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
@@ -63,11 +71,11 @@ export const getEndretArbeidstid = (
         });
     });
 
-    return arbeidsdagerMedEndretTid;
+    return perioderMedEndretArbeidstid;
 };
 
-export const getArbeidstidInfo = (
-    aktivitetEndring?: ArbeidstidAktivitetEndringMap,
+const getArbeidstidInfo = (
+    aktivitetEndring?: ArbeidstidEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
     if (aktivitetEndring && aktivitet) {
@@ -78,7 +86,7 @@ export const getArbeidstidInfo = (
     return undefined;
 };
 
-export const getArbeidstidApiDataFromSøknadsdata = (
+const getArbeidstidApiDataFromSøknadsdata = (
     { arbeidAktivitetEndring }: ArbeidstidSøknadsdata,
     arbeidAktiviteter: ArbeidAktiviteter,
     arbeidAktivitet: AktivitetSøknadsdata
@@ -94,7 +102,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
         if (endring && skalEndres) {
             const {
-                arbeidsgiver: { type, id },
+                arbeidsgiver: { type, organisasjonsnummer: id },
             } = aktivitet;
             const arbeidstidInfo = getArbeidstidInfo(endring, aktivitet);
             if (arbeidstidInfo) {
@@ -129,8 +137,8 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak): SøknadApiData | undefined => {
-    const { id, arbeidstid, arbeidAktivitet } = søknadsdata;
-    if (!arbeidstid || !arbeidAktivitet) {
+    const { id, arbeidstid, aktivitet } = søknadsdata;
+    if (!arbeidstid || !aktivitet) {
         return undefined;
     }
     return {
@@ -144,7 +152,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
                 fødselsdato: sak.barn.fødselsdato ? dateToISODate(sak.barn.fødselsdato) : undefined,
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
-            arbeidstid: getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, arbeidAktivitet),
+            arbeidstid: getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, aktivitet),
         },
     };
 };

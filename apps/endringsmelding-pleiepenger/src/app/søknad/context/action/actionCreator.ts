@@ -1,5 +1,4 @@
-import { ArbeidstidAktivitetEndring } from '../../../types/ArbeidstidAktivitetEndring';
-import { Sak } from '../../../types/Sak';
+import { ArbeidAktivitet, Sak } from '../../../types/Sak';
 import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
 import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { StepId } from '../../config/StepId';
@@ -15,7 +14,6 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_AKTIVITET = 'setSøknadAktivitet',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
-    SET_ARBEIDSTID_AKTIVITET_ENDRING = 'setArbeidstidAktivitetEndring',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -34,7 +32,7 @@ interface ResetSøknad {
 }
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
-    payload: { sak: Sak };
+    payload: { sak: Sak; aktiviteterSomSkalEndres?: ArbeidAktivitet[] };
 }
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
@@ -73,11 +71,6 @@ interface ClearStepSøknadsdata {
     payload: { stepId: StepId };
 }
 
-interface SetArbeidstidAktivitetEndring {
-    type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING;
-    payload: { endring: ArbeidstidAktivitetEndring };
-}
-
 interface SetInputPreferanser {
     type: SøknadContextActionKeys.SET_INPUT_PREFERANSER;
     payload: { inputPreferanser: Partial<SøknadContextInputPreferanse> };
@@ -92,9 +85,9 @@ const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
 });
 
-const startSøknad = (sak: Sak): StartSøknad => ({
+const startSøknad = (sak: Sak, aktiviteterSomSkalEndres?: ArbeidAktivitet[]): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
-    payload: { sak },
+    payload: { sak, aktiviteterSomSkalEndres },
 });
 
 const avbrytSøknad = (): AvbrytSøknad => ({
@@ -141,13 +134,6 @@ const clearStepSøknadsdata = (stepId: StepId): ClearStepSøknadsdata => ({
     },
 });
 
-const setArbeidstidAktivitetEndring = (endring: ArbeidstidAktivitetEndring): SetArbeidstidAktivitetEndring => ({
-    type: SøknadContextActionKeys.SET_ARBEIDSTID_AKTIVITET_ENDRING,
-    payload: {
-        endring,
-    },
-});
-
 const setInputPreferanser = (inputPreferanser: SøknadContextInputPreferanse): SetInputPreferanser => ({
     type: SøknadContextActionKeys.SET_INPUT_PREFERANSER,
     payload: {
@@ -169,7 +155,6 @@ export type SøknadContextAction =
     | SetSøknadRoute
     | SetEndringsmeldingSendt
     | StartSøknad
-    | SetArbeidstidAktivitetEndring
     | SetInputPreferanser;
 
 const actionsCreator = {
@@ -186,7 +171,6 @@ const actionsCreator = {
     setSøknadRoute,
     setEndringsmeldingSendt,
     startSøknad,
-    setArbeidstidAktivitetEndring,
     setInputPreferanser,
 };
 
