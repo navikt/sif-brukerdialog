@@ -1,5 +1,27 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.0.0
+
+### Major Changes
+
+-   d0a2c73: Første versjon som legges ut i produksjon.
+
+### Minor Changes
+
+-   ef1a7bf: Oppdatert endringsdialog
+
+### Patch Changes
+
+-   Updated dependencies [ef1a7bf]
+-   Updated dependencies [d0a2c73]
+    -   @navikt/sif-common-utils@3.22.0
+    -   @navikt/sif-common-amplitude@2.8.0
+    -   @navikt/sif-common-formik-ds@0.10.0
+    -   @navikt/sif-common-soknad-ds@6.0.0
+    -   @navikt/sif-common-forms-ds@4.0.0
+    -   @navikt/sif-common-core-ds@6.0.0
+    -   @navikt/sif-common-sentry@0.7.0
+
 ## 0.5.2
 
 ### Patch Changes

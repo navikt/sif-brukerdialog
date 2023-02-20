@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.6.0
+
+### Minor Changes
+
+-   d0a2c73: Diverse pakkeoppdateringer, minor og patch
+
 ## 1.5.8
 
 ### Patch Changes
