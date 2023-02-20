@@ -102,7 +102,10 @@ const ArbeidstidStep = () => {
                         <InfoList>
                             <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
                             <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
-                            <li>Hvis du har endring som gjelder kun enkeltdager, oppgir du fortsatt for hele uken.</li>
+                            <li>
+                                Hvis du har endring som gjelder kun enkeltdager, skal du fremdeles oppgi hvor mye du
+                                jobber samlet for hele uken.
+                            </li>
                         </InfoList>
                     </BodyLong>
                 </>
