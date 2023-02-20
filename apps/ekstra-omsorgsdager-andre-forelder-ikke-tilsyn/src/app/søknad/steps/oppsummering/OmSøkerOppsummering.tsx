@@ -12,7 +12,7 @@ interface Props {
 const OmSøkerOppsummering: React.FunctionComponent<Props> = ({ søker }) => {
     const intl = useIntl();
     return (
-        <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
+        <SummarySection header={intlHelper(intl, 'step.oppsummering.søker.header')}>
             <SummaryBlock header={formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}>
                 <FormattedMessage id="step.oppsummering.søker.fnr" values={{ fødselsnummer: søker.fødselsnummer }} />
             </SummaryBlock>

@@ -28,11 +28,14 @@ ensureBaseNameForReactRouter(publicPath);
 const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>
-            <AmplitudeProvider applicationKey={APPLICATION_KEY}>
+            <AmplitudeProvider
+                applicationKey={APPLICATION_KEY}
+                isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
                     appName="Søknad om å bli regnet som midertidig alene for omsorgen"
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
+                    sentryIgnoreErrors={[/401/]}
                     appStatus={{
                         applicationKey: APPLICATION_KEY,
                         sanityConfig: {

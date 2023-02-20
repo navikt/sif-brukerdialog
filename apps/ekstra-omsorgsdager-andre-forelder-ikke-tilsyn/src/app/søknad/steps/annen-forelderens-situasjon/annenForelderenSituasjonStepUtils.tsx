@@ -17,7 +17,7 @@ export const getAnnenForelderenSituasjonStepInitialValues = (
         annenForelderSituasjonBeskrivelse: undefined,
         annenForelderPeriodeFom: '',
         annenForelderPeriodeTom: '',
-        annenForelderPeriodeVetIkkeTom: undefined,
+        annenForelderPeriodeVetIkkeTom: false,
         annenForelderPeriodeMer6Maneder: YesOrNo.UNANSWERED,
     };
 
@@ -79,7 +79,8 @@ export const getAnnenForelderenSituasjonSøknadsdataFromFormValues = (
         annenForelderPeriodeVetIkkeTom,
         annenForelderPeriodeMer6Maneder,
     } = values;
-
+    // eslint-disable-next-line no-console
+    console.log('values: ', values);
     if (annenForelderSituasjon === undefined && annenForelderPeriodeFom === undefined) {
         return undefined;
     }
@@ -108,7 +109,6 @@ export const getAnnenForelderenSituasjonSøknadsdataFromFormValues = (
                 annenForelderPeriodeVetIkkeTom: false,
             };
         }
-        return undefined;
     }
 
     if (
@@ -143,7 +143,6 @@ export const getAnnenForelderenSituasjonSøknadsdataFromFormValues = (
                 annenForelderPeriodeMer6Maneder,
             };
         }
-        return undefined;
     }
 
     return undefined;

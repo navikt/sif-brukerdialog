@@ -109,7 +109,7 @@ const OppsummeringStep = () => {
                                     disabled={isSubmitting}
                                     label={
                                         <span data-testid="bekreft-label">
-                                            <FormattedMessage id="steg.oppsummering.bekrefterOpplysninger" />
+                                            <FormattedMessage id="step.oppsummering.bekrefterOpplysninger" />
                                         </span>
                                     }
                                     validate={getCheckedValidator()}

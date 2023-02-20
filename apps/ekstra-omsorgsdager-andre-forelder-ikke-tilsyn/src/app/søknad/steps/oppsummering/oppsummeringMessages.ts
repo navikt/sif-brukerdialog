@@ -14,7 +14,7 @@ export const oppsummeringMessages: MessageFileFormat = {
         'step.oppsummering.omBarna.listItem': ' (fnr. {identitetsnummer})',
 
         'step.oppsummering.annenForelder.header': 'Om den andre forelderen',
-        'steg.oppsummering.annenForelder.fnr': 'Fødselsnummer',
+        'step.oppsummering.annenForelder.fnr': 'Fødselsnummer: {fødselsnummer}',
 
         'step.oppsummering.annenForelderensSituasjon.header': 'Den andre forelderens situasjon',
         'step.oppsummering.annenForelderensSituasjon.erVarighetMerEnn6Maneder':

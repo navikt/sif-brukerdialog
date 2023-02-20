@@ -6,9 +6,9 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuide from './VelkommenGuide';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import actionsCreator from 'app/søknad/context/action/actionCreator';
-import { SøknadRoutes } from 'app/types/SøknadRoutes';
-import { SKJEMANAVN } from 'app/App';
+import actionsCreator from '../../søknad/context/action/actionCreator';
+import { SøknadRoutes } from '../../types/SøknadRoutes';
+import { SKJEMANAVN } from '../../App';
 import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
 
 const VelkommenPage = () => {

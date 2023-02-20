@@ -10,8 +10,8 @@ export const appMessages: MessageFileFormat = {
         'step.omAnnenForelder.pageTitle': 'Om den andre forelderen',
         'step.omAnnenForelder.stepTitle': 'Om den andre forelderen',
 
-        'step.annen-forelder-situasjon.pageTitle': 'Den andre forelderens situasjon',
-        'step.annen-forelder-situasjon.stepTitle': 'Den andre forelderens situasjon',
+        'step.annenForelderSituasjon.pageTitle': 'Den andre forelderens situasjon',
+        'step.annenForelderSituasjon.stepTitle': 'Den andre forelderens situasjon',
 
         'step.omBarna.pageTitle': 'Om barn',
         'step.omBarna.stepTitle': 'Om barn',

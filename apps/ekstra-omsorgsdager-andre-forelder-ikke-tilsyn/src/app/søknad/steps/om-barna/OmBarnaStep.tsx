@@ -35,7 +35,7 @@ export interface OmBarnaFormValues {
 
 const { FormikWrapper, Form } = getTypedFormComponents<OmBarnaFormFields, OmBarnaFormValues, ValidationError>();
 
-const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape): React.ReactNode => {
+const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape) => {
     return (
         <div style={{ display: 'flex' }}>
             <span style={{ order: 1 }}>
@@ -53,7 +53,8 @@ const OmBarnaStep = () => {
     const {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
-
+    // eslint-disable-next-line no-console
+    console.log(søker);
     const stepId = StepId.OM_BARNA;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
@@ -86,6 +87,8 @@ const OmBarnaStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values: { andreBarn } }) => {
                     const andreBarnFnr = andreBarn ? andreBarn.map((barn) => barn.fnr) : [];
+                    // eslint-disable-next-line no-console
+                    console.log(andreBarnFnr);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -102,9 +105,7 @@ const OmBarnaStep = () => {
                                             <ItemList<RegistrertBarn>
                                                 getItemId={(registrerteBarn): string => registrerteBarn.aktørId}
                                                 getItemTitle={(registrerteBarn): string => registrerteBarn.etternavn}
-                                                labelRenderer={(barnet): React.ReactNode =>
-                                                    barnItemLabelRenderer(barnet, intl)
-                                                }
+                                                labelRenderer={(barnet) => barnItemLabelRenderer(barnet, intl)}
                                                 items={registrerteBarn}
                                             />
                                         </ContentWithHeader>
@@ -129,10 +130,10 @@ const OmBarnaStep = () => {
                                             listTitle: intlHelper(intl, 'step.omBarna.listDialog.listTitle'),
                                             modalTitle: intlHelper(intl, 'step.omBarna.listDialog.modalTitle'),
                                         }}
-                                        disallowedFødselsnumre={[
+                                        /*disallowedFødselsnumre={[
                                             ...[søker.fødselsnummer, søknadsdata.omAnnenForelderData?.annenForelderFnr],
                                             ...andreBarnFnr,
-                                        ]}
+                                        ]}*/
                                     />
                                 </Block>
                                 {andreBarn && andreBarn.length === 0 && registrerteBarn.length === 0 && (

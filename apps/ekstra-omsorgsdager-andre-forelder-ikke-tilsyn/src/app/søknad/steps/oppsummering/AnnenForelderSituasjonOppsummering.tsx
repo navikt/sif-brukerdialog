@@ -18,7 +18,7 @@ interface Props {
 const AnnenForelderSituasjonOppsummering = ({ annenForelder }: Props) => {
     const intl = useIntl();
 
-    const renderPeriodeAnnenForelderenKanIkkeHaTilsyn = (fraOgMed: string, tilOgMed?: string): React.ReactNode => (
+    const renderPeriodeAnnenForelderenKanIkkeHaTilsyn = (fraOgMed: string, tilOgMed?: string) => (
         <div className={bem.block}>
             <span className={bem.element('dates')}>
                 {prettifyDateExtended(ISODateToDate(fraOgMed))} -{' '}

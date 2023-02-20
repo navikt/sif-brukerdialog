@@ -89,7 +89,8 @@ const AnnenForelderenSituasjonStep = () => {
             return lagreSøknadState(state);
         }
     );
-
+    // eslint-disable-next-line no-console
+    console.log(stepFormValues);
     const renderTekstArea = () => {
         return (
             <FormBlock>

@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { Systemtittel } from 'nav-frontend-typografi';
 import { AndreBarn } from './types';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import barnUtils from './barnUtils';
@@ -72,9 +71,8 @@ const BarnForm = ({
                 onSubmit={onFormikSubmit}
                 renderForm={() => (
                     <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'annetBarnForm')}>
-                        <Systemtittel tag="h1">{formLabels.title}</Systemtittel>
                         <FormBlock>
-                            <Form.Input
+                            <Form.TextField
                                 name={BarnFormFields.navn}
                                 label={formLabels.navn}
                                 validate={(value) => {
@@ -96,7 +94,7 @@ const BarnForm = ({
                         </FormBlock>
 
                         <FormBlock>
-                            <Form.Input
+                            <Form.TextField
                                 name={BarnFormFields.fnr}
                                 label={formLabels.fnr}
                                 validate={getFødselsnummerValidator({

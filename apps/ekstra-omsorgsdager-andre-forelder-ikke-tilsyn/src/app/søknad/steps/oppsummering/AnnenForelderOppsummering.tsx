@@ -11,6 +11,7 @@ interface Props {
 
 const OmAnnenForelderOppsummering = ({ annenForelder }: Props) => {
     const intl = useIntl();
+
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.annenForelder.header')}>
             <SummaryBlock header={annenForelder.navn}>

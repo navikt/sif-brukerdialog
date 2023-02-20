@@ -1,10 +1,11 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
-import { AndreBarn } from './types';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { useIntl } from 'react-intl';
+import { AndreBarn } from './types';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import './barnList.scss';
 
 interface Props {
     barna: AndreBarn[];
@@ -16,7 +17,7 @@ const bem = bemUtils('barnList');
 
 const BarnList = ({ barna = [], onDelete, onEdit }: Props) => {
     const intl = useIntl();
-    const renderBarnLabel = (barn: AndreBarn): React.ReactNode => {
+    const renderBarnLabel = (barn: AndreBarn) => {
         const fnr = barn.fnr;
 
         return (
