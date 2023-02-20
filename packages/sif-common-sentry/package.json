@@ -11,12 +11,12 @@
         "url": "https://github.com/navikt/sif-common-sentry/issues"
     },
     "dependencies": {
-        "@sentry/browser": "7.35.0",
-        "@sentry/react": "7.35.0",
-        "@sentry/types": "7.35.0"
+        "@sentry/browser": "7.38.0",
+        "@sentry/react": "7.38.0",
+        "@sentry/types": "7.38.0"
     },
     "devDependencies": {
-        "@types/node": "18.11.18",
+        "@types/node": "18.14.0",
         "axios": "0.27.2",
         "copyfiles": "2.4.1",
         "gh-pages": "4.0.0",
