@@ -85,7 +85,7 @@ const AktivitetStep = () => {
                                             melding via <SkrivTilOssLink />.
                                         </p>
                                         <p>
-                                            Endring av arbeidstid for selvstendig næringsdrivene er ikke støttet enda.
+                                            Endring av arbeidstid for selvstendig næringsdrivende er ikke støttet enda.
                                             Dersom du er selvstendig næringsdrivende og ønsker å melde om endring, kan
                                             du sende inn en ny søknad eller send en melding via <SkrivTilOssLink />.
                                         </p>
