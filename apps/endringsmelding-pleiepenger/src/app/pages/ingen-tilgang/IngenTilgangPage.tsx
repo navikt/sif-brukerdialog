@@ -64,8 +64,8 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                 <BodyLong as="div" data-testid="flereSaker">
                     <p>
                         Du kan ikke bruke denne tjenesten per i dag. Dette er fordi tjenesten foreløpig ikke kan ta imot
-                        endringer når du har flere pleiepengesaker. Vi jobber for å få det til, og du som har flere
-                        saker blir også tilbudt denne tjenesten på et senere tidspunkt.
+                        endringer når du har pleiepenger for flere barn. Vi jobber for å få det til, og du blir også
+                        tilbudt denne tjenesten på et senere tidspunkt
                     </p>
                     <p>
                         I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
