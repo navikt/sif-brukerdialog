@@ -1,5 +1,19 @@
 # @navikt/sif-common-core-ds
 
+## 5.5.0
+
+### Minor Changes
+
+-   d0a2c73: Diverse pakkeoppdateringer, minor og patch
+
+### Patch Changes
+
+-   Updated dependencies [ef1a7bf]
+-   Updated dependencies [d0a2c73]
+    -   @navikt/sif-common-utils@3.22.0
+    -   @navikt/sif-common-formik-ds@0.10.0
+    -   @navikt/appstatus-react-ds@1.6.0
+
 ## 5.4.0
 
 ### Minor Changes
