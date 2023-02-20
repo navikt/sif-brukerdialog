@@ -1,5 +1,12 @@
 # @navikt/sif-common-utils
 
+## 3.22.0
+
+### Minor Changes
+
+-   ef1a7bf: Utvide med typeguardUtilities
+-   d0a2c73: Diverse pakkeoppdateringer, minor og patch
+
 ## 3.21.0
 
 ### Minor Changes
