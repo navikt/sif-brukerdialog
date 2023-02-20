@@ -137,7 +137,7 @@ const bekreftOpplysningerOgSendInn = () => {
         submitSkjema();
     });
     it('viser kvittering', () => {
-        getTestElement('kvittering-heading').contains('Melding om endring er lagt til i din sak');
+        getTestElement('kvittering-heading').contains('Melding om endring er lagt til saken din');
     });
 };
 

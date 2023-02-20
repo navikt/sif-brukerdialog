@@ -149,7 +149,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         if (kanVelgeFlereUker && visVelgUke) {
             return (
                 <div className="arbeidstidUkeFooter">
-                    <FormBlock margin="l" paddingBottom="m">
+                    <FormBlock margin="m" paddingBottom="m">
                         <div aria-relevant="additions removals" aria-live="polite">
                             {visMeldingOmUkerMåVelges && valgteUker.length === 0 && (
                                 <Block padBottom="l">
@@ -161,7 +161,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             icon={<Edit role="presentation" aria-hidden={true} />}
                             variant="primary"
                             type="button"
-                            size="small"
                             data-testid="endre-flere-uker-button"
                             onClick={() => {
                                 if (valgteUker.length === 0) {

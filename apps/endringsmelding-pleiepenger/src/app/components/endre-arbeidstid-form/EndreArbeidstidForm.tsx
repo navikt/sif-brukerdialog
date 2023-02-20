@@ -156,8 +156,8 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                             {gjelderKortUke && (
                                 <Block margin="xl">
                                     <Alert variant="info" inline={false}>
-                                        Dette er en kort uke som går fra {getDagerTekst(arbeidsuker[0].periode)}. Du
-                                        skal kun skal oppgi arbeidstiden for disse dagene.
+                                        Dette er en kort uke, som går fra {getDagerTekst(arbeidsuker[0].periode)}. Du
+                                        skal oppgi hvor mye du jobber kun for disse dagene.
                                     </Alert>
                                 </Block>
                             )}
