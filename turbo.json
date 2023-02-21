@@ -61,6 +61,10 @@
         "e2e-endringsmelding-pleiepenger": {
             "outputs": [],
             "dependsOn": ["^build-endringsmelding-pleiepenger"]
+        },
+        "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
         }
     }
 }
