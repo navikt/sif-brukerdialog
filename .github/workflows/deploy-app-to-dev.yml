@@ -56,5 +56,6 @@ jobs:
               env:
                   CLUSTER: dev-gcp
                   RESOURCE: nais-config/nais.yml
-                  VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json,GITHUB_SHA=${{github.sha}}
+                  VAR: GITHUB_SHA=${{ github.sha }}
+                  VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
