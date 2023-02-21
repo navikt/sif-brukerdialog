@@ -16,7 +16,7 @@ export const annenForelderenSituasjonMessages: MessageFileFormat = {
         'step.annenForeldrensSituasjon.grunn.sykdom': 'Sykdom, skade eller funksjonhemming',
         'step.annenForeldrensSituasjon.grunn.innlagtIHelseinstitusjon': 'Innlagt i helseinstitusjon',
         'step.annenForeldrensSituasjon.grunn.fengsel': 'Fengsel',
-        'step.annenForeldrensSituasjon.grunn.verneplikt': 'Verneplikt',
+        'step.annenForeldrensSituasjon.grunn.utøverVerneplikt': 'Verneplikt',
         'step.annenForeldrensSituasjon.grunn.annet': 'Annet',
 
         'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm':

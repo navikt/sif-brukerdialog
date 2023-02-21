@@ -1,7 +1,11 @@
-import { getDateRangeValidator, getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import {
+    getDateRangeValidator,
+    getDateValidator,
+    getStringValidator,
+} from '@navikt/sif-common-formik-ds/lib/validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
 
-export const validateFradato = (
+export const validateFraDato = (
     fraDatoString?: string,
     tilDato?: Date,
     annenForelderSituasjon?: string
@@ -27,4 +31,17 @@ export const validateTildato = (
         fromDate: fraDato,
     }).validateToDate(tilDatoString);
     return error ? `${error}.${annenForelderSituasjon}` : undefined;
+};
+
+export const validateTextArea = (value: string): ValidationResult<ValidationError> => {
+    const error = getStringValidator({ required: true, minLength: 5, maxLength: 1000 })(value);
+    return error
+        ? {
+              key: error,
+              values: {
+                  min: 5,
+                  maks: 1000,
+              },
+          }
+        : undefined;
 };

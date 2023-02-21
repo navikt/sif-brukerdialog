@@ -1,11 +1,10 @@
 import React from 'react';
 import { Alert } from '@navikt/ds-react';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
-import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { AndreBarn } from '../../../pre-common/forms/barn';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
@@ -21,9 +20,12 @@ import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import { prettifyDate } from '@navikt/sif-common-utils/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { getOmBarnaStepInitialValues, getOmBarnaSøknadsdataFromFormValues } from './OmBarnaStepUtils';
+import {
+    barnItemLabelRenderer,
+    getOmBarnaStepInitialValues,
+    getOmBarnaSøknadsdataFromFormValues,
+} from './OmBarnaStepUtils';
 
 export enum OmBarnaFormFields {
     andreBarn = 'andreBarn',
@@ -35,26 +37,12 @@ export interface OmBarnaFormValues {
 
 const { FormikWrapper, Form } = getTypedFormComponents<OmBarnaFormFields, OmBarnaFormValues, ValidationError>();
 
-const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape) => {
-    return (
-        <div style={{ display: 'flex' }}>
-            <span style={{ order: 1 }}>
-                {intlHelper(intl, 'step.omBarna.født')} {prettifyDate(barnet.fødselsdato)}
-            </span>
-            <span style={{ order: 2, paddingLeft: '1rem', justifySelf: 'flex-end' }}>
-                {formatName(barnet.fornavn, barnet.etternavn, barnet.mellomnavn)}
-            </span>
-        </div>
-    );
-};
-
 const OmBarnaStep = () => {
     const intl = useIntl();
     const {
         state: { søknadsdata, registrerteBarn, søker },
     } = useSøknadContext();
-    // eslint-disable-next-line no-console
-    console.log(søker);
+
     const stepId = StepId.OM_BARNA;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
 
@@ -79,7 +67,6 @@ const OmBarnaStep = () => {
         }
     );
 
-    // const kanFortsette = (registrerteBarn !== undefined && registrerteBarn.length > 0) || andreBarn.length > 0;
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -87,8 +74,12 @@ const OmBarnaStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values: { andreBarn } }) => {
                     const andreBarnFnr = andreBarn ? andreBarn.map((barn) => barn.fnr) : [];
-                    // eslint-disable-next-line no-console
-                    console.log(andreBarnFnr);
+                    const annenForelderFnr = søknadsdata.omAnnenForelderData
+                        ? [søknadsdata.omAnnenForelderData.annenForelderFnr]
+                        : [];
+                    const kanFortsette =
+                        (registrerteBarn !== undefined && registrerteBarn.length > 0) ||
+                        (andreBarn && andreBarn.length > 0);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -96,6 +87,7 @@ const OmBarnaStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
+                                submitDisabled={!kanFortsette || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 {registrerteBarn.length > 0 && (
@@ -130,10 +122,11 @@ const OmBarnaStep = () => {
                                             listTitle: intlHelper(intl, 'step.omBarna.listDialog.listTitle'),
                                             modalTitle: intlHelper(intl, 'step.omBarna.listDialog.modalTitle'),
                                         }}
-                                        /*disallowedFødselsnumre={[
-                                            ...[søker.fødselsnummer, søknadsdata.omAnnenForelderData?.annenForelderFnr],
+                                        disallowedFødselsnumre={[
+                                            ...[søker.fødselsnummer],
+                                            ...annenForelderFnr,
                                             ...andreBarnFnr,
-                                        ]}*/
+                                        ]}
                                     />
                                 </Block>
                                 {andreBarn && andreBarn.length === 0 && registrerteBarn.length === 0 && (

@@ -3,6 +3,7 @@ import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
 import { AnnenForelderenSituasjonSøknadsdata } from '../../../types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';
 import { AnnenForelderenSituasjonFormValues } from './AnnenForelderenSituasjonStep';
+import dayjs from 'dayjs';
 
 export const getAnnenForelderenSituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -79,8 +80,7 @@ export const getAnnenForelderenSituasjonSøknadsdataFromFormValues = (
         annenForelderPeriodeVetIkkeTom,
         annenForelderPeriodeMer6Maneder,
     } = values;
-    // eslint-disable-next-line no-console
-    console.log('values: ', values);
+
     if (annenForelderSituasjon === undefined && annenForelderPeriodeFom === undefined) {
         return undefined;
     }
@@ -146,4 +146,8 @@ export const getAnnenForelderenSituasjonSøknadsdataFromFormValues = (
     }
 
     return undefined;
+};
+
+export const isPeriodeLess6month = (periodeFom: string, periodeTom: string): boolean => {
+    return dayjs(periodeTom).add(1, 'day').diff(periodeFom, 'month', true) < 6;
 };

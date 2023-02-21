@@ -5,15 +5,9 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
-import dayjs from 'dayjs';
 import { Alert } from '@navikt/ds-react';
-
-import {
-    getYesOrNoValidator,
-    getRequiredFieldValidator,
-    getStringValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import { validateFradato, validateTildato } from '../../../validation/fieldValidations';
+import { getYesOrNoValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { validateFraDato, validateTextArea, validateTildato } from '../../../validation/fieldValidations';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -26,6 +20,7 @@ import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon'
 import {
     getAnnenForelderenSituasjonSøknadsdataFromFormValues,
     getAnnenForelderenSituasjonStepInitialValues,
+    isPeriodeLess6month,
 } from './annenForelderenSituasjonStepUtils';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -56,10 +51,6 @@ export interface AnnenForelderenSituasjonFormValues {
 const { FormikWrapper, Form, YesOrNoQuestion, Textarea, DateRangePicker, Checkbox, RadioGroup } =
     getTypedFormComponents<AnnenForelderenSituasjonFormFields, AnnenForelderenSituasjonFormValues, ValidationError>();
 
-export const isPeriodeLess6month = (periodeFom: string, periodeTom: string): boolean => {
-    return dayjs(periodeTom).add(1, 'day').diff(periodeFom, 'month', true) < 6;
-};
-
 const AnnenForelderenSituasjonStep = () => {
     const intl = useIntl();
     const {
@@ -89,116 +80,25 @@ const AnnenForelderenSituasjonStep = () => {
             return lagreSøknadState(state);
         }
     );
-    // eslint-disable-next-line no-console
-    console.log(stepFormValues);
-    const renderTekstArea = () => {
-        return (
-            <FormBlock>
-                <Textarea
-                    name={AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse}
-                    label={intlHelper(intl, 'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm')}
-                    minLength={5}
-                    maxLength={1000}
-                    validate={(value) => {
-                        const error = getStringValidator({ required: true, minLength: 5, maxLength: 1000 })(value);
-                        return error
-                            ? {
-                                  key: error,
-                                  values: {
-                                      min: 5,
-                                      maks: 1000,
-                                  },
-                              }
-                            : undefined;
-                    }}
-                />
-            </FormBlock>
-        );
-    };
-
-    const renderOver6MndSpm = (values: Partial<AnnenForelderenSituasjonFormValues>) => {
-        return (
-            <>
-                <FormBlock>
-                    <YesOrNoQuestion
-                        name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder}
-                        legend={intlHelper(intl, 'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm')}
-                        validate={getYesOrNoValidator()}
-                    />
-                    {values.annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
-                        <FormBlock>
-                            <Alert variant="info">{intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}</Alert>
-                        </FormBlock>
-                    )}
-                </FormBlock>
-            </>
-        );
-    };
-
-    const renderDateRangePicker = (
-        values: Partial<AnnenForelderenSituasjonFormValues>,
-        periodeFra?: Date,
-        periodeTil?: Date
-    ) => {
-        const dontShowVetIkkeTomCheckbox = () => {
-            return (
-                values.annenForelderSituasjon === AnnenForeldrenSituasjon.fengsel ||
-                values.annenForelderSituasjon === AnnenForeldrenSituasjon.utøverVerneplikt
-            );
-        };
-        if (dontShowVetIkkeTomCheckbox()) {
-            values.annenForelderPeriodeVetIkkeTom = undefined;
-        }
-
-        if (values.annenForelderPeriodeVetIkkeTom) {
-            values.annenForelderPeriodeTom = '';
-        }
-        return (
-            <FormBlock>
-                <DateRangePicker
-                    legend={intlHelper(
-                        intl,
-                        `step.annenForeldrensSituasjon.periode.${values.annenForelderSituasjon}.spm`
-                    )}
-                    fromInputProps={{
-                        label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.fra'),
-                        validate: (value) => validateFradato(value, periodeTil, values.annenForelderSituasjon),
-                        name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom,
-                    }}
-                    toInputProps={{
-                        label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.til'),
-                        validate: values.annenForelderPeriodeVetIkkeTom
-                            ? undefined
-                            : (value) => validateTildato(value, periodeFra, values.annenForelderSituasjon),
-                        name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
-                        disabled: values.annenForelderPeriodeVetIkkeTom,
-                    }}
-                />
-                {!dontShowVetIkkeTomCheckbox() && (
-                    <Checkbox
-                        label={intlHelper(intl, 'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom')}
-                        name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom}
-                    />
-                )}
-                {values.annenForelderPeriodeFom &&
-                    values.annenForelderPeriodeTom &&
-                    isPeriodeLess6month(values.annenForelderPeriodeFom, values.annenForelderPeriodeTom) && (
-                        <FormBlock>
-                            <Alert variant="info">{intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}</Alert>
-                        </FormBlock>
-                    )}
-            </FormBlock>
-        );
-    };
 
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
                 initialValues={getAnnenForelderenSituasjonStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => {
-                    const periodeFra = datepickerUtils.getDateFromDateString(values.annenForelderPeriodeFom);
-                    const periodeTil = datepickerUtils.getDateFromDateString(values.annenForelderPeriodeTom);
+                renderForm={({
+                    values: {
+                        annenForelderSituasjon,
+                        annenForelderPeriodeFom,
+                        annenForelderPeriodeTom,
+                        annenForelderPeriodeVetIkkeTom,
+                        annenForelderPeriodeMer6Maneder,
+                    },
+                    setFieldValue,
+                }) => {
+                    const periodeFra = datepickerUtils.getDateFromDateString(annenForelderPeriodeFom);
+                    const periodeTil = datepickerUtils.getDateFromDateString(annenForelderPeriodeTom);
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -216,46 +116,113 @@ const AnnenForelderenSituasjonStep = () => {
                                     <RadioGroup
                                         legend={intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.spm')}
                                         name={AnnenForelderenSituasjonFormFields.annenForelderSituasjon}
-                                        //TODO MAP
-                                        radios={[
-                                            {
-                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.sykdom'),
-                                                value: AnnenForeldrenSituasjon.sykdom,
-                                            },
-                                            {
-                                                label: intlHelper(
-                                                    intl,
-                                                    'step.annenForeldrensSituasjon.grunn.innlagtIHelseinstitusjon'
-                                                ),
-                                                value: AnnenForeldrenSituasjon.innlagtIHelseinstitusjon,
-                                            },
-                                            {
-                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.fengsel'),
-                                                value: AnnenForeldrenSituasjon.fengsel,
-                                            },
-                                            {
-                                                label: intlHelper(
-                                                    intl,
-                                                    'step.annenForeldrensSituasjon.grunn.verneplikt'
-                                                ),
-                                                value: AnnenForeldrenSituasjon.utøverVerneplikt,
-                                            },
-                                            {
-                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.annet'),
-                                                value: AnnenForeldrenSituasjon.annet,
-                                            },
-                                        ]}
+                                        radios={Object.keys(AnnenForeldrenSituasjon).map((grunn) => {
+                                            return {
+                                                label: intlHelper(intl, `step.annenForeldrensSituasjon.grunn.${grunn}`),
+                                                value: AnnenForeldrenSituasjon[grunn],
+                                            };
+                                        })}
                                         validate={getRequiredFieldValidator()}
                                     />
                                 </Block>
 
-                                {(values.annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
-                                    values.annenForelderSituasjon === AnnenForeldrenSituasjon.annet) &&
-                                    renderTekstArea()}
+                                {(annenForelderSituasjon === AnnenForeldrenSituasjon.sykdom ||
+                                    annenForelderSituasjon === AnnenForeldrenSituasjon.annet) && (
+                                    <FormBlock>
+                                        <Textarea
+                                            name={AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse}
+                                            label={intlHelper(
+                                                intl,
+                                                'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm'
+                                            )}
+                                            minLength={5}
+                                            maxLength={1000}
+                                            validate={validateTextArea}
+                                        />
+                                    </FormBlock>
+                                )}
 
-                                {values.annenForelderSituasjon && renderDateRangePicker(values, periodeFra, periodeTil)}
+                                {annenForelderSituasjon && (
+                                    <FormBlock>
+                                        <DateRangePicker
+                                            legend={intlHelper(
+                                                intl,
+                                                `step.annenForeldrensSituasjon.periode.${annenForelderSituasjon}.spm`
+                                            )}
+                                            fromInputProps={{
+                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.fra'),
+                                                name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeFom,
+                                                validate: (value) =>
+                                                    validateFraDato(value, periodeTil, annenForelderSituasjon),
+                                            }}
+                                            toInputProps={{
+                                                label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.til'),
+                                                name: AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
+                                                validate: annenForelderPeriodeVetIkkeTom
+                                                    ? undefined
+                                                    : (value) =>
+                                                          validateTildato(value, periodeFra, annenForelderSituasjon),
+                                                disabled: annenForelderPeriodeVetIkkeTom,
+                                            }}
+                                        />
 
-                                {values.annenForelderPeriodeVetIkkeTom && renderOver6MndSpm(values)}
+                                        {annenForelderSituasjon !== AnnenForeldrenSituasjon.fengsel &&
+                                            annenForelderSituasjon !== AnnenForeldrenSituasjon.utøverVerneplikt && (
+                                                <Checkbox
+                                                    label={intlHelper(
+                                                        intl,
+                                                        'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom'
+                                                    )}
+                                                    name={
+                                                        AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom
+                                                    }
+                                                    afterOnChange={(newValue) => {
+                                                        if (newValue) {
+                                                            setFieldValue(
+                                                                AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
+                                                                ''
+                                                            );
+                                                        } else {
+                                                            setFieldValue(
+                                                                AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder,
+                                                                YesOrNo.UNANSWERED
+                                                            );
+                                                        }
+                                                    }}
+                                                />
+                                            )}
+
+                                        {annenForelderPeriodeFom &&
+                                            annenForelderPeriodeTom &&
+                                            isPeriodeLess6month(annenForelderPeriodeFom, annenForelderPeriodeTom) && (
+                                                <FormBlock>
+                                                    <Alert variant="info">
+                                                        {intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}
+                                                    </Alert>
+                                                </FormBlock>
+                                            )}
+                                    </FormBlock>
+                                )}
+
+                                {annenForelderPeriodeVetIkkeTom && (
+                                    <FormBlock>
+                                        <YesOrNoQuestion
+                                            name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder}
+                                            legend={intlHelper(
+                                                intl,
+                                                'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm'
+                                            )}
+                                            validate={getYesOrNoValidator()}
+                                        />
+                                        {annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
+                                            <FormBlock>
+                                                <Alert variant="info">
+                                                    {intlHelper(intl, 'step.annenForeldrensSituasjon.advarsel.1')}
+                                                </Alert>
+                                            </FormBlock>
+                                        )}
+                                    </FormBlock>
+                                )}
                             </Form>
                         </>
                     );

@@ -69,6 +69,13 @@ const startExpressServer = () => {
         }, 200);
     });
 
+    // Tomt barn
+    /* server.get('/oppslag/barn', (req, res) => {
+        setTimeout(() => {
+            res.send({});
+        }, 200);
+    });*/
+
     /** --- Send søknad ---------- */
 
     server.post('/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/innsending', (req, res) => {
