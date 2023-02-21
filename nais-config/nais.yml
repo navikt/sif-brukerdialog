@@ -51,6 +51,8 @@ spec:
      - name: {{@key}}
        value: "{{this}}"
     {{/each}}
+     - name: GITHUB_SHA
+       value: {{github_sha}}
     tokenx:
          enabled: true
     idporten:
