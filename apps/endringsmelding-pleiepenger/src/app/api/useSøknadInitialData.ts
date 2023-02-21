@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
@@ -13,7 +15,7 @@ import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
-import { getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
+import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -22,7 +24,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -129,8 +130,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const endringsperiode = getMaksEndringsperiode(getEndringsdato());
-            const arbeidsgivere = await arbeidsgivereEndpoint.fetch(endringsperiode);
+            const maksEndringsperiode = getMaksEndringsperiode(getEndringsdato());
 
             const [søker, k9saker, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
@@ -138,8 +138,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 søknadStateEndpoint.fetch(),
             ]);
 
-            /** Muligens unødvendig sjekk - gitt at K9 alltid gir gyldig data */
             const samletTidsperiode = getSamletDateRangeForK9Saker(k9saker);
+
+            /** Muligens unødvendig sjekk - gitt at K9 alltid gir gyldig data */
             if (samletTidsperiode === undefined) {
                 await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.harIngenPerioder });
                 setInitialData({
@@ -150,6 +151,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 });
                 return Promise.resolve();
             }
+
+            const arbeidsgivere = await arbeidsgivereEndpoint.fetch(
+                getPeriodeForArbeidsgiverOppslag(samletTidsperiode, maksEndringsperiode)
+            );
 
             const resultat = tilgangskontroll(k9saker, arbeidsgivere);
             if (resultat.kanBrukeSøknad === false) {
@@ -172,7 +177,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 kanBrukeSøknad: true,
                 data: await setupSøknadInitialData(
                     { søker, arbeidsgivere, k9saker, lagretSøknadState },
-                    endringsperiode
+                    maksEndringsperiode
                 ),
             });
             return Promise.resolve();
@@ -195,9 +200,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
         }
     };
 
-    useEffect(() => {
+    useEffectOnce(() => {
         fetch();
-    }, []);
+    });
 
     return initialData;
 }
