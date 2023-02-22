@@ -59,3 +59,4 @@ jobs:
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+                  VAR: commit=${{github.sha}}
