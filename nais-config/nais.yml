@@ -52,7 +52,13 @@ spec:
        value: "{{this}}"
     {{/each}}
      - name: IMAGE
-       value: {{ IMAGE }}
+       value: {{ image }}
+     - name: IMG
+       value: {{ image }}
+     - name: NS
+       value: {{namespace}}
+     - name: APP
+       value: {{app}}
      - name: TEST
        value: "testverdi"
     tokenx:

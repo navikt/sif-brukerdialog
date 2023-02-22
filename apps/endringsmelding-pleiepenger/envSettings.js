@@ -21,6 +21,9 @@ const envSettings = (MSW) => {
         VELG_SAK: '${process.env.VELG_SAK}',
         COMMIT_SHA: '${process.env.COMMIT_SHA}',
         IMAGE: '${process.env.IMAGE}',
+        image: '${process.env.image}',
+        IMG: '${process.env.IMG}',
+        NS: '${process.env.ns}',
         TEST: '${process.env.TEST}'
     };`
         .trim()
