@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.0.1
+
+### Patch Changes
+
+-   9501b4c: Oppdatere tekst, korrigere log at søknad startes, korrigere ikkeTilgang log. tokenx update
+
 ## 1.0.0
 
 ### Major Changes
