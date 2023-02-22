@@ -51,12 +51,6 @@ spec:
      - name: {{@key}}
        value: "{{this}}"
     {{/each}}
-     - name: GITHUB_SHA
-       value: {{commit}}
-     - name: NOE
-       value: {{noe}}
-     - name: ANNET
-       value: "annet"
     tokenx:
          enabled: true
     idporten:
