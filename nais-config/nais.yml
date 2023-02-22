@@ -51,8 +51,18 @@ spec:
      - name: {{@key}}
        value: "{{this}}"
     {{/each}}
-     - name: GITHUB_SHA
+     - name: GITHUB_SHA1
+       value: {{GITHUB_SHA}}
+     - name: GITHUB_SHA2
+       value: ${{GITHUB_SHA}}
+     - name: GITHUB_SHA3
        value: ${GITHUB_SHA}
+     - name: GITHUB_SHA4
+       value: $GITHUB_SHA
+     - name: GITHUB_SHA5
+       value: "${{GITHUB_SHA}}"
+     - name: GITHUB_SHA6
+       value: "{{GITHUB_SHA}}"
     tokenx:
          enabled: true
     idporten:
