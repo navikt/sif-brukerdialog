@@ -10,6 +10,7 @@ const Promise = require('promise');
 const helmet = require('helmet');
 const path = require('path');
 const jose = require('jose');
+const { v4: uuidv4 } = require('uuid');
 
 const server = express();
 server.use(
@@ -65,6 +66,12 @@ const isExpiredOrNotAuthorized = (token) => {
 
 const getRouterConfig = async (req, audienceInnsyn) => {
     {
+        req.headers['X-Correlation-ID'] = uuidv4();
+
+        if (process.env.NAIS_CLIENT_ID !== undefined) {
+            req.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
+        }
+
         if (req.headers['authorization'] !== undefined) {
             const token = req.headers['authorization'].replace('Bearer ', '');
             if (isExpiredOrNotAuthorized(token)) {

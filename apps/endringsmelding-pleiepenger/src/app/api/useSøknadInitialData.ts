@@ -141,7 +141,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const samletTidsperiode = getSamletDateRangeForK9Saker(k9saker);
 
             /** Muligens unødvendig sjekk - gitt at K9 alltid gir gyldig data */
-            if (samletTidsperiode === undefined) {
+            if (samletTidsperiode === undefined && k9saker.length > 0) {
                 await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.harIngenPerioder });
                 setInitialData({
                     status: RequestStatus.success,
@@ -152,9 +152,11 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 return Promise.resolve();
             }
 
-            const arbeidsgivere = await arbeidsgivereEndpoint.fetch(
-                getPeriodeForArbeidsgiverOppslag(samletTidsperiode, maksEndringsperiode)
-            );
+            const arbeidsgivere = samletTidsperiode
+                ? await arbeidsgivereEndpoint.fetch(
+                      getPeriodeForArbeidsgiverOppslag(samletTidsperiode, maksEndringsperiode)
+                  )
+                : [];
 
             const resultat = tilgangskontroll(k9saker, arbeidsgivere);
             if (resultat.kanBrukeSøknad === false) {
@@ -167,10 +169,6 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 });
                 return Promise.resolve();
             }
-
-            logInfo({
-                antallSaker: k9saker.length,
-            });
 
             setInitialData({
                 status: RequestStatus.success,

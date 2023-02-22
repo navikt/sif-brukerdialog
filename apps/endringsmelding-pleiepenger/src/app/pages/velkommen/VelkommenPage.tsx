@@ -1,11 +1,12 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
+import { SKJEMANAVN } from '../../App';
 import { getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
 import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import actionsCreator from '../../søknad/context/action/actionCreator';
@@ -22,10 +23,13 @@ const VelkommenPage = () => {
 
     const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
 
+    const { logSoknadStartet } = useAmplitudeInstance();
+
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const startSøknad = (sak: Sak) => {
         const steps = getSøknadSteps(sak);
+        logSoknadStartet(SKJEMANAVN);
         dispatch(
             actionsCreator.startSøknad(sak, aktiviteterSomKanEndres.length === 1 ? aktiviteterSomKanEndres : undefined)
         );
