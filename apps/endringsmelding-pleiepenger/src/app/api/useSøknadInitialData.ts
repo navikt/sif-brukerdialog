@@ -170,10 +170,6 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 return Promise.resolve();
             }
 
-            logInfo({
-                antallSaker: k9saker.length,
-            });
-
             setInitialData({
                 status: RequestStatus.success,
                 kanBrukeSøknad: true,
