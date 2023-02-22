@@ -53,14 +53,12 @@ spec:
     {{/each}}
      - name: IMAGE
        value: {{ image }}
-     - name: IMG
-       value: {{ image }}
-     - name: NS
-       value: {{namespace}}
-     - name: APP
-       value: {{app}}
-     - name: TEST
-       value: "testverdi"
+     - name: COMMIT_SHA1
+       value: {{ commit_sha }}
+     - name: COMMIT_SHA2
+       value: {{ COMMIT_SHA }}
+     - name: COMMIT_SHA3
+       value: {{ commitSha }}
     tokenx:
          enabled: true
     idporten:

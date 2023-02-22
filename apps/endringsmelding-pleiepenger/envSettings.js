@@ -19,12 +19,11 @@ const envSettings = (MSW) => {
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         VELG_SAK: '${process.env.VELG_SAK}',
-        COMMIT_SHA: '${process.env.COMMIT_SHA}',
         IMAGE: '${process.env.IMAGE}',
-        image: '${process.env.image}',
-        IMG: '${process.env.IMG}',
-        NS: '${process.env.ns}',
-        TEST: '${process.env.TEST}'
+        COMMIT_SHA1: '${process.env.COMMIT_SHA1}',
+        COMMIT_SHA2: '${process.env.COMMIT_SHA2}',
+        COMMIT_SHA3: '${process.env.COMMIT_SHA3}',
+        REST: '${Object.keys(process.env).join(', ')}'
     };`
         .trim()
         .replace(/ /g, '');
