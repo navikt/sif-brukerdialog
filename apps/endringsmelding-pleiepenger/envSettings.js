@@ -20,6 +20,8 @@ const envSettings = (MSW) => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         VELG_SAK: '${process.env.VELG_SAK}',
         GITHUB_SHA: '${process.env.GITHUB_SHA}'
+        NOE: '${process.env.NOE}'
+        ANNET: '${process.env.ANNET}'
     };`
         .trim()
         .replace(/ /g, '');
