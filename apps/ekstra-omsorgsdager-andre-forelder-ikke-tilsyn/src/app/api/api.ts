@@ -6,8 +6,8 @@ import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigation
 export enum ApiEndpoint {
     'soker' = 'oppslag/soker',
     'barn' = 'oppslag/barn',
-    'send_søknad' = 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/innsending',
-    'mellomlagring' = 'mellomlagring/EKSTRA_OMSORGSDAGER_ANDRE_FORELDER_IKKE_TILSYN',
+    'send_søknad' = 'omsorgspenger-midlertidig-alene/innsending',
+    'mellomlagring' = 'mellomlagring/OMSORGSPENGER_MIDLERTIDIG_ALENE',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {
