@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
@@ -126,7 +125,6 @@ const setupSøknadInitialData = async (
 
 function useSøknadInitialData(): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
-    const { logInfo } = useAmplitudeInstance();
 
     const fetch = async () => {
         try {
@@ -142,7 +140,6 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
             /** Muligens unødvendig sjekk - gitt at K9 alltid gir gyldig data */
             if (samletTidsperiode === undefined && k9saker.length > 0) {
-                await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.harIngenPerioder });
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: false,
@@ -160,7 +157,6 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
             const resultat = tilgangskontroll(k9saker, arbeidsgivere);
             if (resultat.kanBrukeSøknad === false) {
-                await logInfo({ brukerIkkeTilgang: resultat.årsak });
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: false,
