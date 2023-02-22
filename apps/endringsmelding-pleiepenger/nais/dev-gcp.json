@@ -19,7 +19,7 @@
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "USE_AMPLITUDE": "true",
         "VELG_SAK": "off",
-        "GITHUB_SHA": "${GITHUB_SHA}"
+        "GITHUB_SHA": "#{GITHUB_SHA}"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "ingresses": ["https://endringsmelding-pleiepenger.dev.nav.no"],
