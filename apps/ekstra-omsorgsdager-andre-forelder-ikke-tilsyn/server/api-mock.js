@@ -78,7 +78,7 @@ const startExpressServer = () => {
 
     /** --- Send søknad ---------- */
 
-    server.post('/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/innsending', (req, res) => {
+    server.post('/omsorgspenger-midlertidig-alene/innsending', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {
@@ -88,7 +88,7 @@ const startExpressServer = () => {
 
     /** --- Mellomlagring ---------- */
 
-    server.get('/mellomlagring/EKSTRA_OMSORGSDAGER_ANDRE_FORELDER_IKKE_TILSYN', (req, res) => {
+    server.get('/mellomlagring/OMSORGSPENGER_MIDLERTIDIG_ALENE', (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
             const body = readFileSync(MELLOMLAGRING_JSON);
             res.send(JSON.parse(body));
@@ -97,21 +97,21 @@ const startExpressServer = () => {
         }
     });
 
-    server.put('/mellomlagring/EKSTRA_OMSORGSDAGER_ANDRE_FORELDER_IKKE_TILSYN', (req, res) => {
+    server.put('/mellomlagring/OMSORGSPENGER_MIDLERTIDIG_ALENE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.post('/mellomlagring/EKSTRA_OMSORGSDAGER_ANDRE_FORELDER_IKKE_TILSYN', (req, res) => {
+    server.post('/mellomlagring/OMSORGSPENGER_MIDLERTIDIG_ALENE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.delete('/mellomlagring/EKSTRA_OMSORGSDAGER_ANDRE_FORELDER_IKKE_TILSYN', (req, res) => {
+    server.delete('/mellomlagring/OMSORGSPENGER_MIDLERTIDIG_ALENE', (req, res) => {
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(200);
     });
