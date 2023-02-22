@@ -6,7 +6,8 @@
     "version": "1.0.0",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "scripts": {
-        "build": "node src/build/scripts/production-build.js",
+        "build-app": "node src/build/scripts/production-build.js",
+        "build": "npm-run-all build-app",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "dev": "npm-run-all -p rm:dist dev-api start-no-decorator",
         "prepare": "npm run snyk-protect",
