@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.0.2
+
+### Patch Changes
+
+-   af0debb: Fjerne dobbel logging av ikkeTilgangÅrsak
+
 ## 1.0.1
 
 ### Patch Changes
