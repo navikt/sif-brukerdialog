@@ -142,7 +142,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
             /** Muligens unødvendig sjekk - gitt at K9 alltid gir gyldig data */
             if (samletTidsperiode === undefined) {
-                await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.harIngenPerioder });
+                if (k9saker.length > 0) {
+                    await logInfo({ brukerIkkeTilgang: IngenTilgangÅrsak.harIngenPerioder });
+                }
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: false,
