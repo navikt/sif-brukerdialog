@@ -19,12 +19,7 @@ const envSettings = (MSW) => {
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         VELG_SAK: '${process.env.VELG_SAK}',
-        GITHUB_SHA1: '${process.env.GITHUB_SHA1}',
-        GITHUB_SHA2: '${process.env.GITHUB_SHA2}',
-        GITHUB_SHA3: '${process.env.GITHUB_SHA3}',
-        GITHUB_SHA4: '${process.env.GITHUB_SHA4}',
-        GITHUB_SHA5: '${process.env.GITHUB_SHA5}',
-        GITHUB_SHA6: '${process.env.GITHUB_SHA6}'
+        GITHUB_SHA: '${process.env.GITHUB_SHA}'
     };`
         .trim()
         .replace(/ /g, '');
