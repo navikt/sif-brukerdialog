@@ -34,9 +34,12 @@ class ErrorBoundary extends React.Component<any, State> {
                     <Block margin="xxxl">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">
-                                Det oppstod en feil
+                                Oops - der oppstod det en feil
                             </Heading>
-                            <p>Her kommer det mer info</p>
+                            <p>
+                                Du kan gå tilbake å prøve på nytt. Dersom feilen vedvarer, kan du prøve igjen litt
+                                senere.
+                            </p>
                         </SifGuidePanel>
                     </Block>
                 </Page>

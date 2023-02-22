@@ -52,7 +52,7 @@ spec:
        value: "{{this}}"
     {{/each}}
      - name: GITHUB_SHA
-       value: {{env.GITHUB_SHA}}
+       value: ${GITHUB_SHA}
     tokenx:
          enabled: true
     idporten:
