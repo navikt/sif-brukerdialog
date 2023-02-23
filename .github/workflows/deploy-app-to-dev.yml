@@ -57,5 +57,5 @@ jobs:
                   CLUSTER: dev-gcp
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
-                  VAR: commit=abc1234
+                  VAR: "commit=abc1234"
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
