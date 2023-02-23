@@ -54,7 +54,7 @@ spec:
      - name: IMAGE
        value: {{ image }}
      - name: COMMIT
-       value: {{commit}}
+       value: {{ commit }}
     tokenx:
          enabled: true
     idporten:

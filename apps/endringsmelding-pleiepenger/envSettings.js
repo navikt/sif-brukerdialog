@@ -20,8 +20,8 @@ const envSettings = (MSW) => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         VELG_SAK: '${process.env.VELG_SAK}',
         IMAGE: '${process.env.IMAGE}',
-        COMMIT: '${process.env.commit}',
         COMMIT: '${process.env.COMMIT}',
+
     };`
         .trim()
         .replace(/ /g, '');
