@@ -1,5 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
@@ -8,12 +9,16 @@ import useSøknadInitialData from '../api/useSøknadInitialData';
 import DevFooter from '../dev/DevFooter';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
 import { RequestStatus } from '../types/RequestStatus';
+import appSentryLogger from '../utils/appSentryLogger';
+import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import appSentryLogger from '../utils/appSentryLogger';
 
 const Søknad = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const initialData = useSøknadInitialData();
     const { status } = initialData;
 
@@ -48,7 +53,13 @@ const Søknad = () => {
     const { kanBrukeSøknad } = initialData;
 
     if (kanBrukeSøknad === false) {
-        return <IngenTilgangPage årsak={initialData.årsak} søker={initialData.søker} />;
+        if (location.pathname === SøknadRoutes.IKKE_TILGANG) {
+            return <IngenTilgangPage årsak={initialData.årsak} søker={initialData.søker} />;
+        }
+        setTimeout(() => {
+            navigate(SøknadRoutes.IKKE_TILGANG);
+        });
+        return null;
     }
 
     return (
@@ -60,5 +71,4 @@ const Søknad = () => {
         </SøknadContextProvider>
     );
 };
-
 export default Søknad;
