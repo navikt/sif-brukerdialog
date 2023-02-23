@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.0.3
+
+### Patch Changes
+
+-   a0d61e2: Redirect til ikke-tilgang-page
+
 ## 1.0.2
 
 ### Patch Changes
