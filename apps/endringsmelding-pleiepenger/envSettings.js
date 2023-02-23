@@ -20,10 +20,8 @@ const envSettings = (MSW) => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         VELG_SAK: '${process.env.VELG_SAK}',
         IMAGE: '${process.env.IMAGE}',
-        COMMIT_SHA1: '${process.env.COMMIT_SHA1}',
-        COMMIT_SHA2: '${process.env.COMMIT_SHA2}',
-        COMMIT_SHA3: '${process.env.COMMIT_SHA3}',
-        REST: '${Object.keys(process.env).join(', ')}'
+        COMMIT: '${process.env.commit}',
+        COMMIT: '${process.env.COMMIT}',
     };`
         .trim()
         .replace(/ /g, '');

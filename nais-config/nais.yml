@@ -53,12 +53,8 @@ spec:
     {{/each}}
      - name: IMAGE
        value: {{ image }}
-     - name: COMMIT_SHA1
-       value: {{ commit_sha }}
-     - name: COMMIT_SHA2
-       value: {{ COMMIT_SHA }}
-     - name: COMMIT_SHA3
-       value: {{ commitSha }}
+     - name: COMMIT
+       value: {{commit}}
     tokenx:
          enabled: true
     idporten:
