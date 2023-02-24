@@ -1,5 +1,18 @@
 # @navikt/omsorgspengesoknad
 
+## 1.3.0
+
+### Minor Changes
+
+-   bfc208e: Legge til GitSha ved innsending av søknader i alle apper
+
+### Patch Changes
+
+-   Updated dependencies [ac7641b]
+-   Updated dependencies [bfc208e]
+    -   @navikt/sif-common-core-ds@5.6.0
+    -   @navikt/sif-common-forms-ds@4.0.0
+
 ## 1.2.2
 
 ### Patch Changes
