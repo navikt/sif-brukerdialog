@@ -1,5 +1,15 @@
 # @navikt/sif-common-core-ds
 
+## 5.6.0
+
+### Minor Changes
+
+-   ac7641bf: getGitShaRequestHeader - header som sendes inn sammen med søknad - x-brukerdialog-git-sha
+
+### Patch Changes
+
+-   bfc208e7: Legge til GitSha ved innsending av søknader i alle apper
+
 ## 5.5.1
 
 ### Patch Changes

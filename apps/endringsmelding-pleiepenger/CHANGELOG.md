@@ -1,5 +1,19 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.1.0
+
+### Minor Changes
+
+-   bfc208e7: Legge til GitSha ved innsending av søknader i alle apper
+
+### Patch Changes
+
+-   ac7641bf: Legge på commit_sha i søknadApiData
+-   Updated dependencies [ac7641bf]
+-   Updated dependencies [bfc208e7]
+    -   @navikt/sif-common-core-ds@5.6.0
+    -   @navikt/sif-common-forms-ds@4.0.0
+
 ## 1.0.3
 
 ### Patch Changes
