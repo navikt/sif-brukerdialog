@@ -4,6 +4,10 @@ import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
+export const initialSøknadsdata: Søknadsdata = {
+    id: undefined,
+} as any;
+
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
@@ -19,7 +23,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
             return {
                 ...state,
-                søknadsdata: {},
+                søknadsdata: initialSøknadsdata,
                 søknadRoute: SøknadRoutes.VELKOMMEN,
             };
     }
@@ -86,14 +90,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 return {
                     ...state,
                     børMellomlagres: false,
-                    søknadsdata: {},
+                    søknadsdata: initialSøknadsdata,
                     søknadSendt: true,
                 };
             case SøknadContextActionKeys.RESET_SØKNAD:
                 return {
                     ...state,
                     børMellomlagres: false,
-                    søknadsdata: {},
+                    søknadsdata: initialSøknadsdata,
                     søknadSendt: false,
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
