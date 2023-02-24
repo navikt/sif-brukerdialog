@@ -1,5 +1,21 @@
 # @navikt/sif-ettersending
 
+## 3.2.0
+
+### Minor Changes
+
+-   e6c5ea70: Oppdatere packages, inkludert major på axios
+
+### Patch Changes
+
+-   Updated dependencies [e6c5ea70]
+    -   @navikt/sif-common-amplitude@2.9.0
+    -   @navikt/sif-common-formik-ds@0.11.0
+    -   @navikt/sif-common-soknad-ds@6.0.0
+    -   @navikt/sif-common-core-ds@6.0.0
+    -   @navikt/sif-common-sentry@0.8.0
+    -   @navikt/sif-common-utils@3.23.0
+
 ## 3.1.0
 
 ### Minor Changes
