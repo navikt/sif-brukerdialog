@@ -12,6 +12,7 @@ const envSettings = () => {
          APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
          USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
          APP_VERSION: '${process.env.APP_VERSION}',
+         IMAGE: '${process.env.IMAGE}',
      };`
         .trim()
         .replace(/ /g, '');

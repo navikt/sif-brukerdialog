@@ -1,6 +1,6 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpoint {
@@ -44,8 +44,15 @@ const api = {
         const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
         return axios.get<ResponseType>(url, config || axiosConfig);
     },
-    post: <DataType = any, ResponseType = any>(endpoint: ApiEndpoint, data: DataType) => {
-        return axios.post<ResponseType>(endpoint, data, axiosConfig);
+    post: <DataType = any, ResponseType = any>(
+        endpoint: ApiEndpoint,
+        data: DataType,
+        headers?: AxiosRequestHeaders
+    ) => {
+        return axios.post<ResponseType>(endpoint, data, {
+            ...axiosConfig,
+            headers: { ...axiosConfig.headers, ...headers },
+        });
     },
     uploadFile: (endpoint: ApiEndpoint, file: File) => {
         const formData = new FormData();

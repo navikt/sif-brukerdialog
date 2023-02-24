@@ -47,5 +47,4 @@ export interface SøknadApiData {
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
     ytelse: YtelseApiData;
-    commit_sha: string;
 }
