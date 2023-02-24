@@ -21,7 +21,7 @@
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@testing-library/react": "13.4.0",
+        "@testing-library/react": "14.0.0",
         "axios": "0.27.2",
         "busboy": "1.6.0",
         "compression": "1.7.4",
