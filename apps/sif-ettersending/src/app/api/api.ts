@@ -1,5 +1,5 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 
 const axiosConfig: AxiosRequestConfig = {
@@ -24,8 +24,15 @@ const api = {
         const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
         return axios.get<ResponseType>(url, config || axiosJsonConfig);
     },
-    post: <DataType = any, ResponseType = any>(endpoint: ApiEndpoint, data: DataType) => {
-        return axios.post<ResponseType>(endpoint, data, axiosJsonConfig);
+    post: <DataType = any, ResponseType = any>(
+        endpoint: ApiEndpoint,
+        data: DataType,
+        headers?: AxiosRequestHeaders
+    ) => {
+        return axios.post<ResponseType>(endpoint, data, {
+            ...axiosJsonConfig,
+            headers: { ...axiosJsonConfig.headers, ...headers },
+        });
     },
     uploadFile: (endpoint: ApiEndpoint, file: File) => {
         const formData = new FormData();
