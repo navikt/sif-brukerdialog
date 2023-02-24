@@ -1,5 +1,18 @@
 # @navikt/sif-common-core-ds
 
+## 5.7.0
+
+### Minor Changes
+
+-   e6c5ea70: Oppdatere packages, inkludert major på axios
+
+### Patch Changes
+
+-   Updated dependencies [e6c5ea70]
+    -   @navikt/sif-common-formik-ds@0.11.0
+    -   @navikt/appstatus-react-ds@1.7.0
+    -   @navikt/sif-common-utils@3.23.0
+
 ## 5.6.0
 
 ### Minor Changes

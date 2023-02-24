@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 1.7.0
+
+### Minor Changes
+
+-   e6c5ea70: Oppdatere packages, inkludert major på axios
+
 ## 1.6.0
 
 ### Minor Changes
