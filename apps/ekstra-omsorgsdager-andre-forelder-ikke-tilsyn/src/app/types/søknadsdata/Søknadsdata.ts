@@ -6,7 +6,7 @@ export * from './OmAnnenForelderSøknadsdata';
 export * from './AnnenForelderenSituasjonSøknadsdata';
 export * from './OmBarnaSøknadsdata';
 export interface Søknadsdata {
-    id?: string;
+    id: string;
     harForståttRettigheterOgPlikter?: boolean;
     omAnnenForelderData?: OmAnnenForelderSøknadsdata;
     annenForelderenSituasjonData?: AnnenForelderenSituasjonSøknadsdata;
