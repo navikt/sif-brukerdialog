@@ -1,11 +1,9 @@
+import { RawAxiosRequestHeaders } from 'axios';
 import { getCommitShaFromEnv } from './envUtils';
 
 const GitShaHeaderKey = 'X-Brukerdialog-Git-Sha';
 
-type GitCommitShaHeader = {
-    [GitShaHeaderKey]: string;
-};
-export const getGitShaRequestHeader = (): GitCommitShaHeader | undefined => {
+export const getGitShaRequestHeader = (): RawAxiosRequestHeaders | undefined => {
     const sha = getCommitShaFromEnv();
     return sha ? { [GitShaHeaderKey]: sha } : undefined;
 };

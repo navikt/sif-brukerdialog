@@ -1,5 +1,5 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
+import axios, { AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 
 const axiosConfig: AxiosRequestConfig = {
@@ -27,7 +27,7 @@ const api = {
     post: <DataType = any, ResponseType = any>(
         endpoint: ApiEndpoint,
         data: DataType,
-        headers?: AxiosRequestHeaders
+        headers?: RawAxiosRequestHeaders
     ) => {
         return axios.post<ResponseType>(endpoint, data, {
             ...axiosJsonConfig,
