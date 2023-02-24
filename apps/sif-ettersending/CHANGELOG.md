@@ -1,5 +1,17 @@
 # @navikt/sif-ettersending
 
+## 3.1.0
+
+### Minor Changes
+
+-   bfc208e7: Legge til GitSha ved innsending av søknader i alle apper
+
+### Patch Changes
+
+-   Updated dependencies [ac7641bf]
+-   Updated dependencies [bfc208e7]
+    -   @navikt/sif-common-core-ds@5.6.0
+
 ## 3.0.6
 
 ### Patch Changes

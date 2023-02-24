@@ -1,6 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { SkrivTilOssLink } from '../../lenker';
@@ -9,6 +9,7 @@ import { Søker } from '../../types/Søker';
 import DevFooter from '../../dev/DevFooter';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 
 interface Props {
     søker: Søker;
@@ -76,7 +77,14 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 };
 
 const IngenTilgangPage = ({ årsak, søker }: Props) => {
+    const { logInfo } = useAmplitudeInstance();
+
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
+
+    useEffectOnce(() => {
+        logInfo({ brukerIkkeTilgang: årsak });
+    });
+
     return (
         <SøknadContextProvider initialData={{} as any}>
             <Page title="Ingen tilgang">

@@ -51,6 +51,8 @@ spec:
      - name: {{@key}}
        value: "{{this}}"
     {{/each}}
+     - name: IMAGE
+       value: {{image}}
     tokenx:
          enabled: true
     idporten:

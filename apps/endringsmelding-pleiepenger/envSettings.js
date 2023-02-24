@@ -19,6 +19,7 @@ const envSettings = (MSW) => {
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         VELG_SAK: '${process.env.VELG_SAK}',
+        IMAGE: '${process.env.IMAGE}',
     };`
         .trim()
         .replace(/ /g, '');
