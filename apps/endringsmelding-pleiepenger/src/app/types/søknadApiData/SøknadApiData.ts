@@ -1,3 +1,4 @@
+import { SifCommonSøknadMetadata } from '@navikt/sif-common-soknad-ds/lib';
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export type ArbeidstidPeriodeApiData = {
@@ -47,5 +48,5 @@ export interface SøknadApiData {
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
     ytelse: YtelseApiData;
-    commit_sha: string;
+    metadata: SifCommonSøknadMetadata;
 }

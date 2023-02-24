@@ -155,6 +155,8 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
             },
             arbeidstid: getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, aktivitet),
         },
-        commit_sha: getCommitShaFromEnv(),
+        metadata: {
+            commitSha: getCommitShaFromEnv(),
+        },
     };
 };
