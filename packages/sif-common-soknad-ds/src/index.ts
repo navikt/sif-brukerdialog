@@ -24,4 +24,3 @@ export { default as TallSvar } from './soknad-summary/TallSvar';
 export { default as TextareaSvar } from './soknad-summary/TextareaSvar';
 export { ensureBaseNameForReactRouter } from './utils/ensureBaseNameForReactRouter';
 export type { SoknadContextInterface, SendSoknadStatusInterface } from './soknad-context/SoknadContext';
-export type { SifCommonSøknadMetadata } from './types/SifCommonSøknadMetadata';
