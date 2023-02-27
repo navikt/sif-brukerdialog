@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
@@ -9,6 +9,7 @@ import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { useMellomlagring } from './useMellomlagring';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { SKJEMANAVN } from '../App';
+import appSentryLogger from '../utils/appSentryLogger';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -25,6 +26,9 @@ export const useSendSøknad = () => {
             .send(apiData)
             .then(onSøknadSendSuccess)
             .catch((error) => {
+                if (isAxiosError(error)) {
+                    appSentryLogger.logError('Innsending feilet', error.message);
+                }
                 logSoknadFailed(SKJEMANAVN);
                 setSendSøknadError(error);
                 setIsSubmitting(false);
