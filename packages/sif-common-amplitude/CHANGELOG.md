@@ -1,5 +1,17 @@
 # @navikt/sif-common-amplitude
 
+## 2.9.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
+## 2.9.0
+
+### Minor Changes
+
+-   e6c5ea70: Oppdatere packages, inkludert major på axios
+
 ## 2.8.0
 
 ### Minor Changes

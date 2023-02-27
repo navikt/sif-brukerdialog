@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 0.11.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
+## 0.11.0
+
+### Minor Changes
+
+-   e6c5ea70: Oppdatere packages, inkludert major på axios
+
 ## 0.10.0
 
 ### Minor Changes

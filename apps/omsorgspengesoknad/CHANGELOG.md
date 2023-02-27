@@ -1,5 +1,36 @@
 # @navikt/omsorgspengesoknad
 
+## 1.4.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+-   Updated dependencies [dde26c4]
+    -   @navikt/sif-common-amplitude@2.9.1
+    -   @navikt/sif-common-formik-ds@0.11.1
+    -   @navikt/sif-common-soknad-ds@6.0.0
+    -   @navikt/sif-common-forms-ds@4.0.0
+    -   @navikt/sif-common-core-ds@6.0.0
+    -   @navikt/sif-common-sentry@0.8.1
+    -   @navikt/sif-common-utils@3.23.1
+
+## 1.4.0
+
+### Minor Changes
+
+-   e6c5ea70: Oppdatere packages, inkludert major på axios
+
+### Patch Changes
+
+-   Updated dependencies [e6c5ea70]
+    -   @navikt/sif-common-amplitude@2.9.0
+    -   @navikt/sif-common-formik-ds@0.11.0
+    -   @navikt/sif-common-soknad-ds@6.0.0
+    -   @navikt/sif-common-forms-ds@4.0.0
+    -   @navikt/sif-common-core-ds@6.0.0
+    -   @navikt/sif-common-sentry@0.8.0
+    -   @navikt/sif-common-utils@3.23.0
+
 ## 1.3.0
 
 ### Minor Changes

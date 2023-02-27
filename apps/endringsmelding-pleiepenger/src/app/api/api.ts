@@ -1,7 +1,7 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
-import axios, { AxiosError, AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
 
@@ -54,7 +54,7 @@ const api = {
         post: <DataType = any, ResponseType = any>(
             endpoint: ApiEndpointPsb,
             data: DataType,
-            headers?: AxiosRequestHeaders
+            headers?: RawAxiosRequestHeaders
         ) => {
             return axios.post<ResponseType>(endpoint, data, {
                 ...axiosConfigPsb,

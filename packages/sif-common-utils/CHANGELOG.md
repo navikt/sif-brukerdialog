@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.23.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
+## 3.23.0
+
+### Minor Changes
+
+-   e6c5ea70: Oppdatere packages, inkludert major på axios
+
 ## 3.22.0
 
 ### Minor Changes

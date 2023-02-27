@@ -8,5 +8,5 @@ export const getEnvVariableOrDefault = (key: string, defaultValue: string): stri
 export const getCommitShaFromEnv = () => {
     const image = getEnvironmentVariable('IMAGE') || '';
     const parts = image.split('mono:');
-    return parts.length === 2 ? parts[1] : 'undefined';
+    return parts.length === 2 ? parts[1] : undefined;
 };
