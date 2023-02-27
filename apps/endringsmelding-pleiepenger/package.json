@@ -117,7 +117,7 @@
         "react-scripts": "5.0.1",
         "regenerator-runtime": "0.13.11",
         "rimraf": "4.1.2",
-        "start-server-and-test": "1.15.4",
+        "start-server-and-test": "1.15.5",
         "source-map-loader": "4.0.1",
         "style-loader": "3.3.1",
         "ts-loader": "9.4.2",
