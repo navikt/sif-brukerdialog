@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.8.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
 ## 0.8.0
 
 ### Minor Changes

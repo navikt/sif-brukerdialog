@@ -1,5 +1,15 @@
 # @navikt/appstatus-react-ds
 
+## 2.0.0
+
+### Major Changes
+
+-   dde26c4: Oppdatert major versjon av @sanity/client
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
 ## 1.7.0
 
 ### Minor Changes
