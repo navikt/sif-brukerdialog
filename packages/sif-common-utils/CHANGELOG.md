@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.23.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
 ## 3.23.0
 
 ### Minor Changes

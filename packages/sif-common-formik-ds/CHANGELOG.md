@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.11.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
 ## 0.11.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.9.1
+
+### Patch Changes
+
+-   dde26c4: Oppdatere packageversjoner
+
 ## 2.9.0
 
 ### Minor Changes
