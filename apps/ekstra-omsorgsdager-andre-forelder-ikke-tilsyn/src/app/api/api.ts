@@ -1,6 +1,6 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import axios, { AxiosError, AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 
 export enum ApiEndpoint {
@@ -46,7 +46,7 @@ const api = {
     post: <DataType = any, ResponseType = any>(
         endpoint: ApiEndpoint,
         data: DataType,
-        headers?: AxiosRequestHeaders
+        headers?: RawAxiosRequestHeaders
     ) => {
         return axios.post<ResponseType>(endpoint, data, {
             ...axiosConfig,
