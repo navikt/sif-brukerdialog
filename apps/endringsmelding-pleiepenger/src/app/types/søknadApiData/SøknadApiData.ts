@@ -39,6 +39,9 @@ interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
     arbeidstid: ArbeidstidApiData;
     barn: BarnApiData;
+    dataBruktTilUtledning: {
+        soknadDialogCommitSha: string;
+    };
 }
 
 export interface SøknadApiData {
