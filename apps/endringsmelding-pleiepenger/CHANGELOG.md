@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.3.0
+
+### Minor Changes
+
+-   66e4350: Legge til ytelse.dataBruktTilUtledning.soknadDialogCommitSha
+
+### Patch Changes
+
+-   d2d634b: Utvide med å logge antall arbeidsaktiviteter som kan endres når bruker starter en endring
+-   d2d634b: Logge axiosError til sentry dersom innsending av melding feiler
+
 ## 1.2.1
 
 ### Patch Changes
