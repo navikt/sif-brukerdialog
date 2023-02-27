@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.3.0
+
+### Minor Changes
+
+-   66e4350: Legge til ytelse.dataBruktTilUtledning.soknadDialogCommitSha
+
 ## 1.2.1
 
 ### Patch Changes
