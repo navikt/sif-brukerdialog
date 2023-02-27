@@ -9,14 +9,12 @@ const getUrlForStep = (step?) => {
 interface ConfigProps {
     mellomlagring?: any;
     step?: string;
-    saker: any;
-    arbeidsgivere: any;
 }
 
 export const mockApiBaseUrl = 'http://localhost:8099/';
 
-export const contextConfig = (props: ConfigProps) => {
-    const { mellomlagring, step, saker, arbeidsgivere } = props;
+export const contextConfig = (props: ConfigProps = {}) => {
+    const { mellomlagring, step } = props;
 
     beforeEach('intercept api-kall', () => {
         cy.intercept(
@@ -31,10 +29,6 @@ export const contextConfig = (props: ConfigProps) => {
         );
         cy.intercept(`PUT`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
         cy.intercept(`POST`, `${mockApiBaseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, {});
-        cy.intercept('POST', `${mockApiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
-        cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, saker);
-        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, arbeidsgivere);
-        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
     });
 
     if (step) {

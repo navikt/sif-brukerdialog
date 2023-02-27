@@ -1,8 +1,9 @@
-import { contextConfig } from '../../contextConfig';
+import { contextConfig, mockApiBaseUrl } from '../../contextConfig';
 import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
 import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
 import { enSakFlereArbeidsgivereMock } from '../../data/enSakFlereArbeidsgivereMock';
 import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
+import { søkerMock } from '../../data/søkerMock';
 import { getTestElement, selectCheckboxByTestId, submitSkjema } from '../../utils';
 
 const startUrl = 'http://localhost:8080/';
@@ -134,6 +135,7 @@ const bekreftOpplysningerOgSendInn = () => {
         captureScreenshot();
     });
     it('sender inn endringsmelding', () => {
+        cy.intercept('POST', `${mockApiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {});
         submitSkjema();
     });
     it('viser kvittering', () => {
@@ -142,15 +144,15 @@ const bekreftOpplysningerOgSendInn = () => {
 };
 
 describe('Endre arbeidstid for én arbeidsgiver', () => {
-    contextConfig({
-        arbeidsgivere: enArbeidsgiverMock,
-        saker: enSakEnArbeidsgiverMock,
-    });
+    contextConfig();
 
     before(() => {
         cy.clock(date);
         cy.clearLocalStorage();
         cy.visit(startUrl);
+        cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, enSakEnArbeidsgiverMock);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, enArbeidsgiverMock);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
     });
     startSøknad();
     endreEnkeltuke();
@@ -161,15 +163,15 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
 });
 
 describe('Endre arbeidstid for flere arbeidsgivere', () => {
-    contextConfig({
-        arbeidsgivere: flereArbeidsgivereMock,
-        saker: enSakFlereArbeidsgivereMock,
-    });
+    contextConfig();
 
     before(() => {
         cy.clock(date);
         cy.clearLocalStorage();
         cy.visit(startUrl);
+        cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, enSakFlereArbeidsgivereMock);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, flereArbeidsgivereMock);
+        cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock);
     });
     startSøknad();
     velgArbeidsgiver();
