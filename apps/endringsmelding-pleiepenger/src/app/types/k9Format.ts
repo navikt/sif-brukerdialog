@@ -200,20 +200,30 @@ const isSøknadsperioder = (perioder: any): perioder is ISODateRange[] => {
     throw 'isK9Format.isSøknadsperioder';
 };
 
-// const isK9FormatTilsynsordningPerioder = (perioder: any): perioder is K9FormatTilsynsordningPerioder => {
-//     if (isObject(perioder)) {
-//         const keys = Object.keys(perioder);
-//         if (itemsAreValidISODateRanges(keys) === false) {
-//             return false;
-//         }
-//         const harUgyldigTilsynsordning = keys.some((key) => {
-//             const periode = perioder[key];
-//             return isObject(periode) === false || isISODuration(periode.etablertTilsynTimerPerDag) === false;
-//         });
-//         return harUgyldigTilsynsordning === false;
-//     }
-//     return false;
-// };
+const isK9FormatTilsynsordning = (tilsynsordning: any, required = false): boolean => {
+    if (required) {
+        if (isObject(tilsynsordning) && isK9FormatTilsynsordningPerioder(tilsynsordning.perioder)) {
+            return true;
+        }
+        return false;
+    }
+    return true;
+};
+
+const isK9FormatTilsynsordningPerioder = (perioder: any): perioder is K9FormatTilsynsordningPerioder => {
+    if (isObject(perioder)) {
+        const keys = Object.keys(perioder);
+        if (itemsAreValidISODateRanges(keys) === false) {
+            return false;
+        }
+        const harUgyldigTilsynsordning = keys.some((key) => {
+            const periode = perioder[key];
+            return isObject(periode) === false || isISODuration(periode.etablertTilsynTimerPerDag) === false;
+        });
+        return harUgyldigTilsynsordning === false;
+    }
+    return false;
+};
 
 const isK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
     const maybeYtelse = ytelse as K9FormatYtelse;
@@ -225,6 +235,7 @@ const isK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
         isObject(maybeYtelse.barn) &&
         isISODateOrNull(maybeYtelse.barn.fødselsdato) &&
         isString(maybeYtelse.barn.norskIdentitetsnummer) &&
+        isK9FormatTilsynsordning(maybeYtelse.tilsynsordning) &&
         isK9FormatArbeidstid(maybeYtelse.arbeidstid) &&
         true
     ) {
