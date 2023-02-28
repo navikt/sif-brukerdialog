@@ -22,8 +22,11 @@ const captureScreenshot = () => {
 
 const startSøknad = () => {
     it('Starter søknad', () => {
-        getTestElement('bekreft-label').click();
-        submitSkjema();
+        cy.visit(startUrl);
+        cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
+            getTestElement('bekreft-label').click();
+            submitSkjema();
+        });
     });
 };
 
@@ -133,11 +136,11 @@ const bekreftOpplysningerOgSendInn = () => {
         getTestElement('bekreft-opplysninger').parent().click();
         captureScreenshot();
     });
-    it('sender inn endringsmelding', () => {
+    it('sender inn endringsmelding og viser kvittering', () => {
         submitSkjema();
-    });
-    it('viser kvittering', () => {
-        getTestElement('kvittering-heading').contains('Melding om endring er lagt til saken din');
+        cy.wait('@innsending').then(() => {
+            getTestElement('kvittering-heading').contains('Melding om endring er lagt til saken din');
+        });
     });
 };
 
@@ -150,8 +153,8 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
     before(() => {
         cy.clock(date);
         cy.clearLocalStorage();
-        cy.visit(startUrl);
     });
+
     startSøknad();
     endreEnkeltuke();
     endreFlereUker();
