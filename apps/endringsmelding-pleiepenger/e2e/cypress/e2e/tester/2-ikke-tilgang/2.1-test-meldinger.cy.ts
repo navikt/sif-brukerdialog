@@ -13,7 +13,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
             cy.visit(startUrl);
         });
         it('Viser riktig melding når bruker ikke har sak', () => {
-            cy.wait(['@getIngenSak', '@getArbeidsgiver', '@getSoker']).then(() => {
+            cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
                 expect(getTestElement('ingenSak')).to.exist;
             });
