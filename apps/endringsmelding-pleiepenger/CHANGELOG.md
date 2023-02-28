@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.4.0
+
+### Minor Changes
+
+-   42583ea: Utvide logging ved ugyldig k9format
+
 ## 1.3.0
 
 ### Minor Changes
