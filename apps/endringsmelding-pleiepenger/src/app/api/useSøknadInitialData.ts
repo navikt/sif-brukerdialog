@@ -11,7 +11,6 @@ import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
-import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
@@ -185,7 +184,6 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     status: RequestStatus.forbidden,
                 });
             } else {
-                appSentryLogger.logError('fetchInitialData', error);
                 setInitialData({
                     status: RequestStatus.error,
                     error,

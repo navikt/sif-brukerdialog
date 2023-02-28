@@ -16,6 +16,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
+import { ArbeidsgiverIkkeFunnetError } from '../types/arbeidsgiverIkkeFunnetError';
 import { K9Sak, K9SakArbeidstaker, K9SakArbeidstidInfo, K9SakArbeidstidPeriodeMap } from '../types/K9Sak';
 import {
     ArbeidAktivitet,
@@ -31,6 +32,7 @@ import {
 } from '../types/Sak';
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
+import { maskString } from './maskString';
 
 interface _PeriodisertK9FormatArbeidstidPerioder {
     periode: DateRange;
@@ -365,7 +367,18 @@ const getArbeidAktivitetArbeidstaker = (
     const id = norskIdentitetsnummer || organisasjonsnummer;
     const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === id);
     if (!arbeidsgiver) {
-        throw 'getArbeidAktivitetArbeidstaker - arbeidsgiver ikke funnet';
+        const error: ArbeidsgiverIkkeFunnetError = {
+            type: 'ArbeidsgiverIkkeFunnet',
+            message: 'getArbeidAktivitetArbeidstaker - arbeidsgiver ikke funnet',
+            arbeidstaker: {
+                harOrganisasjonsnummer: organisasjonsnummer !== undefined,
+                maskedOrganisasjonsnummer: maskString(organisasjonsnummer),
+                harNorskIdentitetsnummer: norskIdentitetsnummer !== undefined,
+                maskedIdentitetsnummer: maskString(norskIdentitetsnummer),
+            },
+            maskedArbeidsgivere: arbeidsgivere.map((a) => maskString(a.organisasjonsnummer)),
+        };
+        throw error;
     }
     const endringsperiodeForArbeidsgiver = getEndringsperiodeForArbeidsgiver(endringsperiode, arbeidsgiver);
     return {
