@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.3.0
+
+### Minor Changes
+
+-   0015092: Endre hvordan bruker sendes til kvitteringssiden. Forhindre render-loop når bruker går tilbake fra kvittering til oppsummering
+
 ## 3.2.1
 
 ### Patch Changes
