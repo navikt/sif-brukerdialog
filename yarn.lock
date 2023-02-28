@@ -2908,6 +2908,11 @@
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.38.0.tgz#6e2611544446271ed237440b12de782805aefe25"
   integrity sha512-NKOALR6pNUMzUrsk2m+dkPrO8uGNvNh1LD0BCPswKNjC2qHo1h1mDGCgBmF9+EWyii8ZoACTIsxvsda+MBf97Q==
 
+"@sentry/types@7.39.0":
+  version "7.39.0"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.39.0.tgz#06c51d94ebb3446615f109352648d4b8c0b35ad0"
+  integrity sha512-5Y83Y8O3dT5zT2jTKEIPMcpn5lUm05KRMaCXuw0sRsv4r9TbBUKeqiSU1LjowT8rB/XNy8m7DHav8+NmogPaJw==
+
 "@sentry/utils@7.38.0":
   version "7.38.0"
   resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.38.0.tgz#d10716e730108301f58766970493e9c5da0ba502"
