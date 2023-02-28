@@ -22,12 +22,6 @@ const captureScreenshot = () => {
 
 const startSøknad = () => {
     it('Starter søknad', () => {
-        // cy.intercept('POST', `${mockApiBaseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, {}).as('innsending');
-        // cy.intercept('GET', `${mockApiBaseUrl}/api/innsyn/sak`, enSakEnArbeidsgiverMock).as('getSak');
-        // cy.intercept('GET', `${mockApiBaseUrl}/oppslag/arbeidsgiver*`, enArbeidsgiverMock).as('getArbeidsgiver');
-        // cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock).as(
-        //     'getSoker'
-        // );
         cy.visit(startUrl);
         cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
             getTestElement('bekreft-label').click();
