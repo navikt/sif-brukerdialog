@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { isObjectLike } from 'lodash';
 import getSokerRemoteData from '../api/getSoker';
 import getSoknadTempStorage from '../api/getSoknadTempStorage';
 import { ApplicationType } from '../types/ApplicationType';
@@ -7,7 +9,6 @@ import { Person } from '../types/Person';
 import { RequestStatus } from '../types/RequestStatus';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { navigateToLoginPage } from '../utils/navigationUtils';
 
 export type SoknadEssentials = { søker: Person; mellomlagring?: SoknadTempStorageData };
@@ -36,6 +37,20 @@ export type SøknadInitialDataState =
     | SøknadInitialLoading
     | SøknadInitialIkkeTilgang;
 
+const isUnknownAxiosError = (error: any) => {
+    try {
+        return (
+            error !== undefined &&
+            isObjectLike(error) &&
+            error.code === 'ERR_NETWORK' &&
+            error.status === 'None' &&
+            error.number[0] === undefined
+        );
+    } catch (e) {
+        return false;
+    }
+};
+
 function useSoknadEssentials(søknadstype: ApplicationType): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
 
@@ -56,7 +71,9 @@ function useSoknadEssentials(søknadstype: ApplicationType): SøknadInitialDataS
                     status: RequestStatus.ikkeTilgang,
                 });
             } else {
-                appSentryLogger.logError('fetchInitialData', error);
+                if (!isUnknownAxiosError(error)) {
+                    appSentryLogger.logError('fetchInitialData', error);
+                }
                 setInitialData({
                     status: RequestStatus.error,
                     error,
