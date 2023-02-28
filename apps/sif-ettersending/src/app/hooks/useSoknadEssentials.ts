@@ -17,6 +17,10 @@ type SøknadInitialSuccess = {
     data: SoknadEssentials;
 };
 
+type SøknadInitialIkkeTilgang = {
+    status: RequestStatus.ikkeTilgang;
+};
+
 type SøknadInitialFailed = {
     status: RequestStatus.error;
     error: any;
@@ -26,7 +30,11 @@ type SøknadInitialLoading = {
     status: RequestStatus.loading;
 };
 
-export type SøknadInitialDataState = SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading;
+export type SøknadInitialDataState =
+    | SøknadInitialSuccess
+    | SøknadInitialFailed
+    | SøknadInitialLoading
+    | SøknadInitialIkkeTilgang;
 
 function useSoknadEssentials(søknadstype: ApplicationType): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
@@ -40,9 +48,13 @@ function useSoknadEssentials(søknadstype: ApplicationType): SøknadInitialDataS
             });
             return Promise.resolve();
         } catch (error) {
-            if (isForbidden(error) || isUnauthorized(error)) {
+            if (isUnauthorized(error)) {
                 navigateToLoginPage(søknadstype);
                 return Promise.reject(error);
+            } else if (isForbidden(error)) {
+                setInitialData({
+                    status: RequestStatus.ikkeTilgang,
+                });
             } else {
                 appSentryLogger.logError('fetchInitialData', error);
                 setInitialData({

@@ -8,6 +8,8 @@ import SoknadErrorMessages from '@navikt/sif-common-soknad-ds/lib/soknad-error-m
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
 import { ApplicationType } from '../types/ApplicationType';
 import Soknad from './Soknad';
+import { RequestStatus } from '../types/RequestStatus';
+import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
 
 const getSøknadstypeFromYtelse = (param?: string): ApplicationType | undefined => {
     switch (param) {
@@ -59,6 +61,10 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
                 )}
             />
         );
+    }
+
+    if (status === RequestStatus.ikkeTilgang) {
+        return <IkkeTilgangPage søknadstype={søknadstype} />;
     }
 
     return (
