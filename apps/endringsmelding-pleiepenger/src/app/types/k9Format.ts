@@ -100,7 +100,7 @@ export interface K9Format {
 
 const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) => !isISODateRange(key)) === false;
 
-const isK9FormatBarn = (barn: any): barn is K9FormatBarn => {
+const verifyK9FormatBarn = (barn: any): barn is K9FormatBarn => {
     const maybeBarn = barn as K9FormatBarn;
     if (
         isObject(maybeBarn) &&
@@ -112,87 +112,108 @@ const isK9FormatBarn = (barn: any): barn is K9FormatBarn => {
     ) {
         return true;
     }
-    return false;
+    throw 'verifyK9FormatBarn';
 };
 
-const isK9FormatArbeidstidTid = (tid: any): tid is K9FormatArbeidstidTid => {
+const verifyK9FormatArbeidstidTid = (tid: any): tid is K9FormatArbeidstidTid => {
     const t = tid as K9FormatArbeidstidTid;
     if (isObject(t) && isISODuration(t.faktiskArbeidTimerPerDag) && isISODuration(t.jobberNormaltTimerPerDag)) {
         return true;
     }
-    return false;
+    throw 'verifyK9FormatArbeidstidTid';
 };
 
-const isK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidInfoPerioder => {
+const verifyK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidInfoPerioder => {
     if (isObject(perioder)) {
         const keys = Object.keys(perioder);
         const harUgyldigISODateRangeKey = itemsAreValidISODateRanges(keys) === false;
         if (harUgyldigISODateRangeKey) {
-            return false;
+            throw 'verifyK9FormatArbeidstidPerioder.ugyldigISODateRange';
         }
         const harUgyldigArbeidstid = keys
             .map((key) => perioder[key])
             .some((tid: K9FormatArbeidstidTid) => {
-                return isK9FormatArbeidstidTid(tid) === false;
+                return verifyK9FormatArbeidstidTid(tid) === false;
             });
 
-        return harUgyldigArbeidstid === false;
+        if (harUgyldigArbeidstid === false) {
+            return true;
+        }
     }
-    return false;
+
+    throw 'verifyK9FormatArbeidstidPerioder';
 };
 
-const isK9FormatArbeidstidInfo = (arbeidstidInfo: any): arbeidstidInfo is K9FormatArbeidstidInfo => {
+const verifyK9FormatArbeidstidInfo = (
+    arbeidstidInfo: any,
+    allowUndefinedPerioder = true
+): arbeidstidInfo is K9FormatArbeidstidInfo => {
     const info = arbeidstidInfo as K9FormatArbeidstidInfo;
-    if (isObject(info) && (info.perioder === undefined || isK9FormatArbeidstidPerioder(info.perioder))) {
+    if (
+        isObject(info) &&
+        ((allowUndefinedPerioder && info.perioder === undefined) || verifyK9FormatArbeidstidPerioder(info.perioder))
+    ) {
         return true;
     }
-    return false;
+    throw 'verifyK9FormatArbeidstidInfo';
 };
 
-const isK9FormatArbeidstaker = (arbeidstaker: any): arbeidstaker is K9FormatArbeidstaker => {
+const verifyK9FormatArbeidstaker = (arbeidstaker: any): arbeidstaker is K9FormatArbeidstaker => {
     const a = arbeidstaker as K9FormatArbeidstaker;
     if (isObject(a)) {
         if (
             (isString(a.organisasjonsnummer) || isString(a.norskIdentitetsnummer)) &&
-            isK9FormatArbeidstidInfo(a.arbeidstidInfo)
+            verifyK9FormatArbeidstidInfo(a.arbeidstidInfo, false)
         ) {
             return true;
         }
-        return false;
     }
-    return false;
+    throw 'verifyK9FormatArbeidstaker';
 };
 
-const isK9FormatArbeidstid = (arbeidstid: any): arbeidstid is K9FormatArbeidstid => {
+const verifyK9FormatArbeidstid = (arbeidstid: any): arbeidstid is K9FormatArbeidstid => {
     const arb = arbeidstid as K9FormatArbeidstid;
     if (isObject(arb) && isArray(arb.arbeidstakerList)) {
         if (arb.arbeidstakerList.length > 0) {
-            if (arb.arbeidstakerList.some((a) => !isK9FormatArbeidstaker(a))) {
+            if (arb.arbeidstakerList.some((a) => !verifyK9FormatArbeidstaker(a))) {
                 return false;
             }
         }
-        if (isObject(arb.frilanserArbeidstidInfo) && isK9FormatArbeidstidInfo(arb.frilanserArbeidstidInfo) === false) {
+        if (
+            isObject(arb.frilanserArbeidstidInfo) &&
+            verifyK9FormatArbeidstidInfo(arb.frilanserArbeidstidInfo) === false
+        ) {
             return false;
         }
         if (
             isObject(arb.selvstendigNæringsdrivendeArbeidstidInfo) &&
-            isK9FormatArbeidstidInfo(arb.selvstendigNæringsdrivendeArbeidstidInfo) === false
+            verifyK9FormatArbeidstidInfo(arb.selvstendigNæringsdrivendeArbeidstidInfo) === false
         ) {
             return false;
         }
         return true;
     }
-    return false;
+    throw 'verifyK9FormatArbeidstid';
 };
 
 const isSøknadsperioder = (perioder: any): perioder is ISODateRange[] => {
     if (isArray(perioder) && itemsAreValidISODateRanges(perioder)) {
         return true;
     }
-    return false;
+    throw 'verifySøknadsperioder';
 };
 
-const isK9FormatTilsynsordningPerioder = (perioder: any): perioder is K9FormatTilsynsordningPerioder => {
+const verifyK9FormatTilsynsordning = (tilsynsordning: any, required = false): boolean => {
+    if (required) {
+        if (isObject(tilsynsordning) && verifyK9FormatTilsynsordningPerioder(tilsynsordning.perioder)) {
+            return true;
+        }
+        throw 'verifyK9FormatTilsynsordning';
+    }
+    return true;
+};
+
+const verifyK9FormatTilsynsordningPerioder = (perioder: any): perioder is K9FormatTilsynsordningPerioder => {
     if (isObject(perioder)) {
         const keys = Object.keys(perioder);
         if (itemsAreValidISODateRanges(keys) === false) {
@@ -204,19 +225,11 @@ const isK9FormatTilsynsordningPerioder = (perioder: any): perioder is K9FormatTi
         });
         return harUgyldigTilsynsordning === false;
     }
-    return false;
+    throw 'verifyK9FormatTilsynsordningPerioder';
 };
 
-const isK9FormatTilsynsordning = (tilsynsordning: any): boolean => {
-    if (isObject(tilsynsordning) && isK9FormatTilsynsordningPerioder(tilsynsordning.perioder)) {
-        return true;
-    }
-    return false;
-};
-
-const isK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
+const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
     const maybeYtelse = ytelse as K9FormatYtelse;
-
     if (
         isObject(maybeYtelse) &&
         maybeYtelse.type === 'PLEIEPENGER_SYKT_BARN' &&
@@ -224,25 +237,28 @@ const isK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
         isObject(maybeYtelse.barn) &&
         isISODateOrNull(maybeYtelse.barn.fødselsdato) &&
         isString(maybeYtelse.barn.norskIdentitetsnummer) &&
-        isK9FormatTilsynsordning(maybeYtelse.tilsynsordning) &&
-        isK9FormatArbeidstid(maybeYtelse.arbeidstid) &&
+        verifyK9FormatTilsynsordning(maybeYtelse.tilsynsordning) &&
+        verifyK9FormatArbeidstid(maybeYtelse.arbeidstid) &&
         true
     ) {
         return true;
     }
-    return false;
+    throw 'verifyK9FormatYtelse';
 };
 
-export const isK9Format = (sak: any): sak is K9Format => {
+export const verifyK9Format = (sak: any): sak is K9Format => {
     const maybeK9Sak = sak as K9Format;
-    if (
-        isObject(maybeK9Sak) &&
-        isK9FormatBarn(maybeK9Sak.barn) &&
-        isObject(maybeK9Sak.søknad) &&
-        isK9FormatYtelse(maybeK9Sak.søknad.ytelse)
-    ) {
-        return true;
-    } else {
-        return false;
+    try {
+        if (
+            isObject(maybeK9Sak) &&
+            verifyK9FormatBarn(maybeK9Sak.barn) &&
+            isObject(maybeK9Sak.søknad) &&
+            verifyK9FormatYtelse(maybeK9Sak.søknad.ytelse)
+        ) {
+            return true;
+        }
+    } catch (error) {
+        throw `verifyK9Format.failed.${error}`;
     }
+    return false;
 };
