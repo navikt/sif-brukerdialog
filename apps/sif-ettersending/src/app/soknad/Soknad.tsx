@@ -9,26 +9,26 @@ import { FormikState } from 'formik';
 import { ulid } from 'ulid';
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
+import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
+import { getSkjemanavn } from '../types/skjemanavn';
 import { SoknadApiData } from '../types/SoknadApiData';
-import { SoknadFormData, initialSoknadFormData } from '../types/SoknadFormData';
+import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import {
-    navigateToErrorPage,
-    navigateToLoginPage,
-    relocateToNavFrontpage,
-    relocateToApplication,
-    navigateToKvitteringPage,
     navigateTo,
+    navigateToErrorPage,
+    navigateToKvitteringPage,
+    navigateToLoginPage,
+    navigateToWelcomePage,
+    relocateToNavFrontpage,
 } from '../utils/navigationUtils';
+import { getApplicationPageRoute } from '../utils/routeUtils';
 import { initialSendSoknadState, SendSoknadStatus, SoknadContextProvider } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
-import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
-import { ApplicationType } from '../types/ApplicationType';
-import { getSkjemanavn } from '../types/skjemanavn';
-import { getApplicationPageRoute } from '../utils/routeUtils';
-import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import SoknadRouter from './SoknadRouter';
+import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
+import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
 
 interface Props {
     søker: Person;
@@ -77,7 +77,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
     /** Forhindre at bruker kommer til søknad med verdier etter at søknad er sendt inn  */
     if (soknadSent && getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE !== location.pathname) {
         setInitializing(true);
-        relocateToApplication(søknadstype);
+        navigateToWelcomePage(søknadstype);
     }
 
     const resetSoknad = async (checkIfRedirectToFrontpage = true): Promise<void> => {
@@ -86,7 +86,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         setSoknadId(undefined);
         if (checkIfRedirectToFrontpage) {
             if (isOnWelcomingPage(location.pathname, søknadstype) === false) {
-                relocateToApplication(søknadstype);
+                navigateToWelcomePage(søknadstype);
                 setInitializing(false);
             } else {
                 setInitializing(false);
@@ -100,7 +100,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         try {
             await soknadTempStorage.purge(søknadstype);
             await logHendelse(ApplikasjonHendelse.avbryt);
-            relocateToApplication(søknadstype);
+            navigateToWelcomePage(søknadstype);
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved abort av søknad');
