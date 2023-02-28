@@ -1,5 +1,15 @@
 # @navikt/sif-ettersending
 
+## 3.4.0
+
+### Minor Changes
+
+-   cdfb21f: Endre hvordan bruker sendes til kvitteringssiden. Forhindre render-loop når bruker går tilbake fra kvittering til oppsummering
+
+### Patch Changes
+
+-   cdfb21f: Ignorere axios feil som oppstår når bruker redirectes til login
+
 ## 3.3.0
 
 ### Minor Changes
