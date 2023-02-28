@@ -23,7 +23,7 @@ const captureScreenshot = () => {
 const startSøknad = () => {
     it('Starter søknad', () => {
         cy.visit(startUrl);
-        cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
+        cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker', '@getMellomlagring']).then(() => {
             getTestElement('bekreft-label').click();
             submitSkjema();
         });
