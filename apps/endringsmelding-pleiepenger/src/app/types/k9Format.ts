@@ -120,7 +120,7 @@ const verifyK9FormatArbeidstidTid = (tid: any): tid is K9FormatArbeidstidTid => 
     if (isObject(t) && isISODuration(t.faktiskArbeidTimerPerDag) && isISODuration(t.jobberNormaltTimerPerDag)) {
         return true;
     }
-    throw `verifyK9FormatArbeidstidTid (${t} - f:${t?.faktiskArbeidTimerPerDag} - n:${t?.jobberNormaltTimerPerDag})`;
+    throw `verifyK9FormatArbeidstidTid (${JSON.stringify(t)})`;
 };
 
 const verifyK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidInfoPerioder => {
@@ -246,6 +246,14 @@ const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
     throw 'verifyK9FormatYtelse';
 };
 
+interface K9FormatError {
+    type: 'k9formatError';
+    error: any;
+}
+export const isK9FormatError = (error: any): error is K9FormatError => {
+    return error && isObject(error) && error.type === 'k9formatError';
+};
+
 export const verifyK9Format = (sak: any): sak is K9Format => {
     const maybeK9Sak = sak as K9Format;
     try {
@@ -258,11 +266,11 @@ export const verifyK9Format = (sak: any): sak is K9Format => {
             return true;
         }
     } catch (error) {
-        if (isObject(error)) {
-            throw error;
-        } else {
-            throw `verifyK9Format.failed.${error}`;
-        }
+        const k9FormatError: K9FormatError = {
+            type: 'k9formatError',
+            error: error,
+        };
+        throw k9FormatError;
     }
     return false;
 };
