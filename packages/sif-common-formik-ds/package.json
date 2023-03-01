@@ -5,7 +5,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-formik-ds",
     "types": "lib/index.d.js",
-    "version": "0.11.1",
+    "version": "0.11.2",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },

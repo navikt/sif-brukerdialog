@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.0.1
+
+### Patch Changes
+
+-   7c6db10: Pakkeoppdateringer
+
 ## 2.0.0
 
 ### Major Changes
