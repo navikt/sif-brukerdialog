@@ -22,8 +22,8 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="ugyldigK9FormatSak">
                     <p>
-                        Vi finner en sak om pleiepenger registrert på deg, men foreløpig kan du ikke bruke denne
-                        tjeneste. Vi jobber stadig med forbedringer, slik at du også snart kan bruke denne tjenesten.
+                        Vi ser at du har en sak om pleiepenger hos oss, men foreløpig kan du ikke bruke denne tjenesten.
+                        Vi jobber for å få det til, slik at du også snart kan melde fra om endring her.
                     </p>
                     <p>
                         I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
