@@ -6,7 +6,7 @@ import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
-import { K9Sak } from '../types/K9Sak';
+import { isK9Sak, isUgyldigK9SakFormat, K9Sak, UgyldigK9SakFormat } from '../types/K9Sak';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
@@ -129,11 +129,25 @@ function useSøknadInitialData(): SøknadInitialDataState {
         try {
             const maksEndringsperiode = getMaksEndringsperiode(getEndringsdato());
 
-            const [søker, k9saker, lagretSøknadState] = await Promise.all([
+            const [søker, k9sakerResult, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
                 sakerEndpoint.fetch(),
                 søknadStateEndpoint.fetch(),
             ]);
+
+            const ugyldigk9FormatSaker: UgyldigK9SakFormat[] = k9sakerResult.filter(isUgyldigK9SakFormat);
+            const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
+
+            /** Dersom vi ikke klarer å parse saken */
+            if (k9sakerResult.length === 1 && ugyldigk9FormatSaker.length === 1) {
+                setInitialData({
+                    status: RequestStatus.success,
+                    kanBrukeSøknad: false,
+                    årsak: IngenTilgangÅrsak.harUgyldigK9FormatSak,
+                    søker,
+                });
+                return Promise.resolve();
+            }
 
             const samletTidsperiode = getSamletDateRangeForK9Saker(k9saker);
 

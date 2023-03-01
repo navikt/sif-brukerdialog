@@ -68,3 +68,15 @@ export interface K9Sak {
     };
     ytelse: K9SakYtelse;
 }
+
+export const isK9Sak = (sak: any): sak is K9Sak => {
+    return sak && sak.ytelse !== undefined;
+};
+
+export interface UgyldigK9SakFormat {
+    erUgyldigK9SakFormat: true;
+}
+
+export const isUgyldigK9SakFormat = (sak: any): sak is UgyldigK9SakFormat => {
+    return sak && sak.erUgyldigK9SakFormat === true;
+};

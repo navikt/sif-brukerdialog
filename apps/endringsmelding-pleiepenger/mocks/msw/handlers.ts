@@ -36,6 +36,11 @@ const mockData = {
         sak: require('../data/scenario/ingen-sak/sak-mock.json'),
         arbeidsgiver: require('../data/scenario/ingen-sak/arbeidsgiver-mock.json'),
     },
+    ['ugyldig-k9-format']: {
+        søker: require('../data/scenario/ugyldig-k9-format/søker-mock.json'),
+        sak: require('../data/scenario/ugyldig-k9-format/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/ugyldig-k9-format/arbeidsgiver-mock.json'),
+    },
 };
 
 const baseUrl = '*';

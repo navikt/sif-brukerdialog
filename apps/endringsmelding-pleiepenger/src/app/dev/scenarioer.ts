@@ -36,6 +36,11 @@ export const scenarioer: Scenario[] = [
         value: 'ingen-sak',
         harTilgang: false,
     },
+    {
+        name: 'Ugyldig k9format',
+        value: 'ugyldig-k9-format',
+        harTilgang: false,
+    },
 ];
 
 export const defaultScenario = scenarioer[0];
