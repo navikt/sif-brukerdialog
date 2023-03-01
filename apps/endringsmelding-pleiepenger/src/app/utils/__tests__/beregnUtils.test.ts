@@ -2,7 +2,7 @@ import { decimalDurationToDuration, Duration } from '@navikt/sif-common-utils/li
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import {
     avrundDesimaltid,
-    beregnEndretArbeidstid,
+    beregnEndretArbeidstidForUke,
     beregnEndretFaktiskArbeidstidPerDag,
     beregnSnittTimerPerDag,
     summerTimerPerDag,
@@ -27,7 +27,11 @@ describe('beregnUtils', () => {
                 minutes: '30',
             };
             expect(
-                beregnEndretArbeidstid({ type: TimerEllerProsent.PROSENT, prosent: 20 }, { hours: '7', minutes: '30' })
+                beregnEndretArbeidstidForUke(
+                    { type: TimerEllerProsent.PROSENT, prosent: 20 },
+                    { hours: '7', minutes: '30' },
+                    5
+                )
             ).toEqual(expectedResult);
         });
         it('regner ut riktig når endringen er 50 % av 10 timer', () => {
@@ -36,7 +40,11 @@ describe('beregnUtils', () => {
                 minutes: '0',
             };
             expect(
-                beregnEndretArbeidstid({ type: TimerEllerProsent.PROSENT, prosent: 50 }, { hours: '10', minutes: '0' })
+                beregnEndretArbeidstidForUke(
+                    { type: TimerEllerProsent.PROSENT, prosent: 50 },
+                    { hours: '10', minutes: '0' },
+                    5
+                )
             ).toEqual(expectedResult);
         });
         it('setter timer riktig når endring er oppgitt i timer', () => {
@@ -45,7 +53,11 @@ describe('beregnUtils', () => {
                 minutes: '30',
             };
             expect(
-                beregnEndretArbeidstid({ type: TimerEllerProsent.TIMER, timer: 5.5 }, { hours: '10', minutes: '30' })
+                beregnEndretArbeidstidForUke(
+                    { type: TimerEllerProsent.TIMER, timer: 5.5 },
+                    { hours: '10', minutes: '30' },
+                    5
+                )
             ).toEqual(expectedResult);
         });
     });

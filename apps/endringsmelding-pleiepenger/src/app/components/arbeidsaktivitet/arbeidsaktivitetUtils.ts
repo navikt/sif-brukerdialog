@@ -4,7 +4,7 @@ import { ArbeidstidEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidE
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
-import { beregnEndretArbeidstid } from '../../utils/beregnUtils';
+import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../utils/beregnUtils';
 import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
@@ -31,7 +31,14 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
         },
         endret: endring
             ? {
-                  faktisk: beregnEndretArbeidstid(endring, arbeidsuke.normalt.uke),
+                  faktisk: getTimerPerUkeFraTimerPerDag(
+                      beregnEndretFaktiskArbeidstidPerDag(
+                          arbeidsuke.normalt.uke,
+                          endring,
+                          arbeidsuke.antallDagerMedArbeidstid
+                      ),
+                      arbeidsuke.antallDagerMedArbeidstid
+                  ),
                   endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
               }
             : undefined,

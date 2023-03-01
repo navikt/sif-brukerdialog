@@ -3,7 +3,7 @@ import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet } from '../../../types/Sak';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { getArbeidsukerIArbeidAktivitet } from '../../../utils/arbeidAktivitetUtils';
-import { beregnEndretArbeidstid } from '../../../utils/beregnUtils';
+import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
@@ -38,7 +38,11 @@ export const cleanupArbeidAktivitetEndringer = (
     Object.keys(endringer).forEach((key) => {
         const endring = endringer[key];
         const opprinnelig = arbeidsuker[key];
-        const endretArbeidstid = beregnEndretArbeidstid(endring, opprinnelig.normalt.uke);
+        const endretArbeidstid = beregnEndretArbeidstidForUke(
+            endring,
+            opprinnelig.normalt.uke,
+            opprinnelig.antallDagerMedArbeidstid
+        );
         if (!durationsAreEqual(endretArbeidstid, opprinnelig.faktisk.uke)) {
             cleanedEndringer[key] = endring;
         }
