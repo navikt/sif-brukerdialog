@@ -1,5 +1,21 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.5.0
+
+### Minor Changes
+
+-   5dd8ad5: Vise informasjon til bruker når vi ikke klarer å parse saken
+
+### Patch Changes
+
+-   633547b: Utvide feillogging verifyK9FormatArbeidstidTid
+-   7c6db10: Pakkeoppdateringer
+-   Updated dependencies [7c6db10]
+    -   @navikt/sif-common-formik-ds@0.11.2
+    -   @navikt/sif-common-soknad-ds@6.0.1
+    -   @navikt/sif-common-forms-ds@4.0.1
+    -   @navikt/sif-common-core-ds@6.0.1
+
 ## 1.4.0
 
 ### Minor Changes
