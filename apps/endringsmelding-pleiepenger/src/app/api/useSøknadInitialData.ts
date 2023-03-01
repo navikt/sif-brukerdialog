@@ -107,7 +107,7 @@ const setupSøknadInitialData = async (
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, endringsperiode);
             appSentryLogger.logInfo(
                 'debug.maskedSakInfo',
-                getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, endringsperiode)
+                JSON.stringify(getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, endringsperiode))
             );
             return sak;
         }
