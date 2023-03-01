@@ -3,10 +3,15 @@ import { ArbeidstidEndring } from '../types/ArbeidstidEndring';
 import { ArbeidsukeTimer } from '../types/Sak';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
 
-export const beregnEndretArbeidstid = (endring: ArbeidstidEndring, normaltid: Duration): Duration => {
-    const tid = durationToDecimalDuration(normaltid);
-    const nyTid = endring.type === TimerEllerProsent.PROSENT ? (tid / 100) * endring.prosent : endring.timer;
-    return decimalDurationToDuration(nyTid);
+export const beregnEndretArbeidstidForUke = (
+    endring: ArbeidstidEndring,
+    normaltidPerUke: Duration,
+    antallDagerMedArbeidstid: number
+): Duration => {
+    return getTimerPerUkeFraTimerPerDag(
+        beregnEndretFaktiskArbeidstidPerDag(normaltidPerUke, endring, antallDagerMedArbeidstid),
+        antallDagerMedArbeidstid
+    );
 };
 
 export const beregnEndretFaktiskArbeidstidPerDag = (
