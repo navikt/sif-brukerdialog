@@ -17,7 +17,7 @@ const startUrl =
 describe('Fylle ut søknad', () => {
     contextConfig({ barn: [] });
 
-    describe('Med ingen registrerte barn', () => {
+    describe('Med Sykdom', () => {
         before(() => {
             cy.visit(startUrl);
         });
