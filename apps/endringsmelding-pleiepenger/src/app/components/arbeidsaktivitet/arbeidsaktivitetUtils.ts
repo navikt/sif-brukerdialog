@@ -4,11 +4,7 @@ import { ArbeidstidEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidE
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
-import {
-    // beregnEndretArbeidstidForUke,
-    beregnEndretFaktiskArbeidstidPerDag,
-    getTimerPerUkeFraTimerPerDag,
-} from '../../utils/beregnUtils';
+import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../utils/beregnUtils';
 import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
