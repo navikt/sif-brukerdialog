@@ -10,7 +10,7 @@ const startUrl = 'http://localhost:8080';
 describe('Bruker har ikke tilgang til løsningen', () => {
     describe('Ugyldig k9format på sak', () => {
         contextConfig({ saker: [ugyldigK9FormatSakMock], arbeidsgivere: enArbeidsgiverMock });
-        it('Viser riktig melding når bruker ikke har sak', () => {
+        it('Viser riktig melding når bruker sak med ukjent format', () => {
             cy.visit(startUrl);
             cy.wait(['@getSak', '@getSoker', '@getMellomlagring']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));

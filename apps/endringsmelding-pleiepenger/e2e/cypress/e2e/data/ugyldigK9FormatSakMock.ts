@@ -52,7 +52,6 @@ export const ugyldigK9FormatSakMock = [
                             arbeidstidInfo: {
                                 perioder: {
                                     '2022-08-09/2022-08-10': {
-                                        // jobberNormaltTimerPerDag: 'PT4H',
                                         faktiskArbeidTimerPerDag: 'PT0S',
                                     },
                                     '2022-08-15/2022-08-16': {
