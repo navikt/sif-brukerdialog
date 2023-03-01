@@ -28,6 +28,8 @@ const sakerEndpoint = {
                         };
                         k9saker.push(ugyldigSak);
                         appSentryLogger.logError('ugyldigK9Format', JSON.stringify(error));
+                    } else {
+                        throw error;
                     }
                 }
             });
