@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.5.1
+
+### Patch Changes
+
+-   cb524e65: Korrigere avvik i beregning ved prosent - feil visning i arbeidstid-step. Var korrekt på oppsummering.
+-   ab096d35: Logge debug-informasjon når sak hentes. Informasjonen som logges er et subsett hvor sensitive data ikke er med.
+-   Updated dependencies [ab096d35]
+-   Updated dependencies [cb524e65]
+    -   @navikt/sif-common-sentry@0.8.2
+    -   @navikt/sif-common-utils@3.24.0
+
 ## 1.5.0
 
 ### Minor Changes

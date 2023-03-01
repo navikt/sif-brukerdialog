@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.8.2
+
+### Patch Changes
+
+-   ab096d35: Utvide til å støtte logging av objekter
+
 ## 0.8.1
 
 ### Patch Changes
