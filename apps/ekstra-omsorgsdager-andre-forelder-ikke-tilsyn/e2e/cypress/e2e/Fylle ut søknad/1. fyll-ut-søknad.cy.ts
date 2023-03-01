@@ -14,7 +14,7 @@ const {
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad/velkommen';
 
-describe('Fylle ut søknad uten registrert barn', () => {
+describe('Fylle ut søknad', () => {
     contextConfig({ barn: [] });
 
     describe('Med ingen registrerte barn', () => {
