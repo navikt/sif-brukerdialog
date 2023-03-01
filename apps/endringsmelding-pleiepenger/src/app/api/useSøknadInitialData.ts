@@ -11,8 +11,10 @@ import { RequestStatus } from '../types/RequestStatus';
 import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
+import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
+import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
@@ -102,7 +104,12 @@ const setupSøknadInitialData = async (
             return getSakFromK9Sak(persistedSak, arbeidsgivere, endringsperiode);
         }
         if (k9saker.length === 1) {
-            return getSakFromK9Sak(k9saker[0], arbeidsgivere, endringsperiode);
+            const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, endringsperiode);
+            appSentryLogger.logInfo(
+                'debug.maskedSakInfo',
+                getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, endringsperiode)
+            );
+            return sak;
         }
         return undefined;
     };

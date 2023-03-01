@@ -84,7 +84,7 @@ const getSentryLoggerForApp = (application: string, allowUrls: allowUrlsType, ig
     init: () => initSentryForSIF({ allowUrls, ignoreErrors }),
     log: (message: string, severity: SeverityLevel, payload?: string) =>
         logToSentryOrConsole(message, severity, application, payload ? { info: payload } : undefined),
-    logInfo: (message: string, payload?: string) =>
+    logInfo: (message: string, payload?: string | Extras) =>
         logToSentryOrConsole(message, 'info', application, payload ? { info: payload } : undefined),
     logError: (message: string, payload?: string) =>
         logToSentryOrConsole(message, 'error', application, payload ? { info: payload } : undefined),
