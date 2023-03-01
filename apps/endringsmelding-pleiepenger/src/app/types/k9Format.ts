@@ -120,7 +120,7 @@ const verifyK9FormatArbeidstidTid = (tid: any): tid is K9FormatArbeidstidTid => 
     if (isObject(t) && isISODuration(t.faktiskArbeidTimerPerDag) && isISODuration(t.jobberNormaltTimerPerDag)) {
         return true;
     }
-    throw 'verifyK9FormatArbeidstidTid';
+    throw `verifyK9FormatArbeidstidTid (${t} - f:${t?.faktiskArbeidTimerPerDag} - n:${t?.jobberNormaltTimerPerDag})`;
 };
 
 const verifyK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatArbeidstidInfoPerioder => {
