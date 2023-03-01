@@ -29,3 +29,25 @@ jobs:
 
             - name: Run code tests
               run: yarn test --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+
+    run-cypress-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Run cypress tests
+              uses: cypress-io/github-action@v4 # use the explicit version number
+              env:
+                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                  FRONTEND_API_PATH: http://localhost:8089/
+                  # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+                  # in GitHub repo → Settings → Secrets → Actions
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  project: ./apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/e2e
+                  build: yarn build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                  start: yarn e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
