@@ -258,7 +258,11 @@ export const verifyK9Format = (sak: any): sak is K9Format => {
             return true;
         }
     } catch (error) {
-        throw `verifyK9Format.failed.${error}`;
+        if (isObject(error)) {
+            throw error;
+        } else {
+            throw `verifyK9Format.failed.${error}`;
+        }
     }
     return false;
 };
