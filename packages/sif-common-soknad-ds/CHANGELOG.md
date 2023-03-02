@@ -1,5 +1,12 @@
 # @navikt/sif-common-soknad-ds
 
+## 7.0.0
+
+### Patch Changes
+
+-   Updated dependencies [7fb116b]
+    -   @navikt/sif-common-sentry@0.9.0
+
 ## 6.0.1
 
 ### Patch Changes
