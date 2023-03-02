@@ -36,9 +36,9 @@ const sakerEndpoint = {
                         if (parsedSak.ytelse.søknadsperioder.length > 0) {
                             k9saker.push(parsedSak);
                         }
-                        appSentryLogger.logInfo('debug.k9format.gyldig', maskK9FormatSak(sak));
+                        appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
                     } else {
-                        appSentryLogger.logInfo('debug.k9format.ikkeGyldig', maskK9FormatSak(sak));
+                        appSentryLogger.logInfo('debug.k9format.ikkeGyldig', JSON.stringify(maskK9FormatSak(sak)));
                     }
                 } catch (error) {
                     if (isK9FormatError(error)) {
