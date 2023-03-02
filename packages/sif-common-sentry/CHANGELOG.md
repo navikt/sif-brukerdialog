@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.9.0
+
+### Minor Changes
+
+-   7fb116b5: Legge til ignoreTypeErrors og sette allowUrls til nav.no domener
+
 ## 0.8.2
 
 ### Patch Changes

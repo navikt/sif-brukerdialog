@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+-   Updated dependencies [7fb116b5]
+    -   @navikt/sif-common-sentry@0.9.0
+
+## 6.0.1
+
+### Patch Changes
+
 -   7c6db10: Pakkeoppdateringer
 -   Updated dependencies [7c6db10]
     -   @navikt/sif-common-formik-ds@0.11.2

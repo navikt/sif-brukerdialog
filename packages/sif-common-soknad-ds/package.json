@@ -16,7 +16,7 @@
         "@navikt/ds-react": "2.4.2",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
-        "@navikt/sif-common-sentry": "0.8.2",
+        "@navikt/sif-common-sentry": "*",
         "@storybook/addon-a11y": "6.5.16",
         "@storybook/addon-actions": "6.5.16",
         "@storybook/addon-essentials": "6.5.16",

@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 6.0.2
+
+### Patch Changes
+
+-   80b338af: Legge til util for å sjekke badRequest error
+
 ## 6.0.1
 
 ### Patch Changes
