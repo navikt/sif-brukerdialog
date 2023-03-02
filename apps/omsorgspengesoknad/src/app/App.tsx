@@ -35,7 +35,6 @@ const App = () => (
                     appName={SKJEMANAVN}
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
-                    sentryIgnoreErrors={[/401/]}
                     appStatus={{
                         applicationKey: APPLICATION_KEY,
                         sanityConfig: {

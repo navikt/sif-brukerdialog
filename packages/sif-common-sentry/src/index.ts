@@ -64,12 +64,12 @@ export const setSentryEnvironment = (maybeHost: string | undefined): SentryEnvir
 
 const setSentryEnvironmentFromHost = (): SentryEnvironment => setSentryEnvironment(window?.location?.host);
 
-type allowUrlsType = Array<string | RegExp>;
-type ignoreErrorsType = Array<string | RegExp>;
+type AllowUrlsType = Array<string | RegExp>;
+type IgnoreErrorsType = Array<string | RegExp>;
 
 interface SentryInitProps {
-    allowUrls?: allowUrlsType;
-    ignoreErrors?: ignoreErrorsType;
+    allowUrls?: AllowUrlsType;
+    ignoreErrors?: IgnoreErrorsType;
 }
 
 const ignoreTypeErrors = [
@@ -85,16 +85,23 @@ const ignoreTypeErrors = [
 ];
 
 const initSentryForSIF = (initProps: SentryInitProps = {}) => {
+    const allowUrls: AllowUrlsType = initProps.allowUrls || [];
+    allowUrls.push(/https?:\/\/((dev|www)\.)?nav\.no/);
+
+    const ignoreErrors: IgnoreErrorsType = initProps.ignoreErrors || [];
+    ignoreErrors.push(...ignoreTypeErrors);
+    ignoreErrors.push(/401/);
+
     Sentry.init({
         dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
         environment: setSentryEnvironmentFromHost(),
-        ignoreErrors: [...ignoreTypeErrors],
-        allowUrls: [/https?:\/\/((dev|www)\.)?nav\.no/],
         ...initProps,
+        ignoreErrors,
+        allowUrls,
     });
 };
 
-const getSentryLoggerForApp = (application: string, allowUrls: allowUrlsType, ignoreErrors?: ignoreErrorsType) => ({
+const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ignoreErrors?: IgnoreErrorsType) => ({
     init: () => initSentryForSIF({ allowUrls, ignoreErrors }),
     log: (message: string, severity: SeverityLevel, payload?: string) =>
         logToSentryOrConsole(message, severity, application, payload ? { info: payload } : undefined),
