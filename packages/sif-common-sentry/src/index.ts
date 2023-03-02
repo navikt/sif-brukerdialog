@@ -72,10 +72,24 @@ interface SentryInitProps {
     ignoreErrors?: ignoreErrorsType;
 }
 
+const ignoreTypeErrors = [
+    'TypeError: Failed to fetch',
+    'TypeError: Load failed',
+    'TypeError: NetworkError when attempting to fetch resource.',
+    'TypeError: cancelled',
+    'TypeError: avbrutt',
+    'TypeError: cancelado',
+    'TypeError: anulowane',
+    'TypeError: avbruten',
+    'TypeError: anulat',
+];
+
 const initSentryForSIF = (initProps: SentryInitProps = {}) => {
     Sentry.init({
         dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
         environment: setSentryEnvironmentFromHost(),
+        ignoreErrors: [...ignoreTypeErrors],
+        allowUrls: [/https?:\/\/((dev|www)\.)?nav\.no/],
         ...initProps,
     });
 };
