@@ -72,6 +72,8 @@ interface SentryInitProps {
     ignoreErrors?: IgnoreErrorsType;
 }
 
+const httpErrorCodesToIgnore = [/\[401\]/, /\[0\]/];
+
 const ignoreTypeErrors = [
     'TypeError: Failed to fetch',
     'TypeError: Load failed',
@@ -89,8 +91,7 @@ const initSentryForSIF = (initProps: SentryInitProps = {}) => {
     allowUrls.push(/https?:\/\/((dev|www)\.)?nav\.no/);
 
     const ignoreErrors: IgnoreErrorsType = initProps.ignoreErrors || [];
-    ignoreErrors.push(...ignoreTypeErrors);
-    ignoreErrors.push(/401/);
+    ignoreErrors.push(...ignoreTypeErrors, ...httpErrorCodesToIgnore);
 
     Sentry.init({
         dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
