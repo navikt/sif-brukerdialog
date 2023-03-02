@@ -12,7 +12,7 @@ const maskK9Arbeidstaker = (k9Arbeidstaker: K9SakArbeidstaker) => {
     };
 };
 
-const maskK9Sak = (sak: K9Sak) => {
+export const maskK9Sak = (sak: K9Sak) => {
     const { ytelse } = sak;
     const { søknadsperioder, arbeidstid } = ytelse;
     const { arbeidstakerList } = arbeidstid;
@@ -22,6 +22,12 @@ const maskK9Sak = (sak: K9Sak) => {
             søknadsperioder,
             arbeidstid: {
                 arbeidstakerList: arbeidstakerList?.map(maskK9Arbeidstaker),
+                selvstendigNæringsdrivendeArbeidstidInfo: sak.ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo
+                    ? sak.ytelse.arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo.perioder
+                    : undefined,
+                frilanserArbeidstidInfo: sak.ytelse.arbeidstid.frilanserArbeidstidInfo
+                    ? sak.ytelse.arbeidstid.frilanserArbeidstidInfo.perioder
+                    : undefined,
             },
         },
     };
@@ -31,7 +37,9 @@ const maskSak = (sak: Sak) => {
     return {
         arbeidsaktiviteter: getAktiviteterSomKanEndres(sak.arbeidAktiviteter).map((aktivitet) => ({
             id: maskString(aktivitet.id),
-            perioderMedArbeidstid: aktivitet.perioderMedArbeidstid,
+            perioderMedArbeidstid: aktivitet.perioderMedArbeidstid.map((periode) => ({
+                periode: periode.periode,
+            })),
         })),
     };
 };

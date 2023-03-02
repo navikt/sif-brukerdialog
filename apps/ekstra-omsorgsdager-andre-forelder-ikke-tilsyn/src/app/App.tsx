@@ -35,7 +35,6 @@ const App = () => (
                     appName="Søknad om å bli regnet som midertidig alene for omsorgen"
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
-                    sentryIgnoreErrors={[/401/]}
                     appStatus={{
                         applicationKey: APPLICATION_KEY,
                         sanityConfig: {
