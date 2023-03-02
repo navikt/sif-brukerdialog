@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.9.1
+
+### Patch Changes
+
+-   8c5651a9: Utvide til å ignorere 401 og 0 nettverksfeil
+
 ## 0.9.0
 
 ### Minor Changes
