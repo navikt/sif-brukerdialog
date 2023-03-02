@@ -192,6 +192,14 @@ function useSøknadInitialData(): SøknadInitialDataState {
                         })
                     );
                 }
+                if (k9saker.length > 1) {
+                    appSentryLogger.logInfo(
+                        'IkkeTilgangSakInfo',
+                        JSON.stringify({
+                            årsak: resultat.årsak,
+                        })
+                    );
+                }
                 return Promise.resolve();
             }
 
