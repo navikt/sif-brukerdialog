@@ -8,6 +8,9 @@ export const isForbidden = ({ response }: AxiosError) =>
 export const isUnauthorized = (error: AxiosError): boolean =>
     error !== undefined && error.response !== undefined && error.response.status === HttpStatus.UNAUTHORIZED;
 
+export const isBadRequest = (error: AxiosError): boolean =>
+    error !== undefined && error.response !== undefined && error.response.status === HttpStatus.BAD_REQUEST;
+
 export const isUserLoggedOut = (error: AxiosError): boolean => isUnauthorized(error);
 
 export const getStartedSøknadRequestParam = (date?: Date): string | undefined => {
