@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.5.2
+
+### Patch Changes
+
+-   Utvide logging - logger masked k9format
+
 ## 1.5.1
 
 ### Patch Changes
