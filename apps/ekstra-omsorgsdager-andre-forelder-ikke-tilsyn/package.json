@@ -5,6 +5,7 @@
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
     "version": "1.2.2",
     "repository": "https://github.com/navikt/sif-brukerdialog",
+    "private": true,
     "scripts": {
         "build": "node src/build/scripts/production-build.js",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
