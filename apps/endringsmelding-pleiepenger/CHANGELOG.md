@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.5.3
+
+### Patch Changes
+
+-   Oppdatere debug-info
+
 ## 1.5.2
 
 ### Patch Changes
