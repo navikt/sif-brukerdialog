@@ -14,7 +14,7 @@ import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
-import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';
+import { getSakOgArbeidsgivereDebugInfo, maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
@@ -183,6 +183,15 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     årsak: resultat.årsak,
                     søker,
                 });
+                if (k9saker.length === 1) {
+                    appSentryLogger.logInfo(
+                        'IkkeTilgangSakInfo',
+                        JSON.stringify({
+                            årsak: resultat.årsak,
+                            sak: maskK9Sak(k9saker[0]),
+                        })
+                    );
+                }
                 return Promise.resolve();
             }
 
