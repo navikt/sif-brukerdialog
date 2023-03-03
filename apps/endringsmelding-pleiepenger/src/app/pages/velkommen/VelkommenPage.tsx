@@ -23,13 +23,18 @@ const VelkommenPage = () => {
 
     const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
 
-    const { logSoknadStartet } = useAmplitudeInstance();
+    const { logSoknadStartet, logInfo } = useAmplitudeInstance();
 
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const startSøknad = (sak: Sak) => {
         const steps = getSøknadSteps(sak);
         logSoknadStartet(SKJEMANAVN);
+        logInfo({
+            antallAktiviteterSomKanEndres: aktiviteterSomKanEndres.length,
+            erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerArktiviteter.length > 0,
+            erFrilanser: sak.arbeidAktiviteter.frilanser !== undefined,
+        });
         dispatch(
             actionsCreator.startSøknad(sak, aktiviteterSomKanEndres.length === 1 ? aktiviteterSomKanEndres : undefined)
         );

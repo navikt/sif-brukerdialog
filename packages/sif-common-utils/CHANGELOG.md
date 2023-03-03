@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.24.0
+
+### Minor Changes
+
+-   cb524e65: Godta ISODuration med sekunder som gyldig ISODuration, men ignorere dem i bruk
+
 ## 3.23.1
 
 ### Patch Changes

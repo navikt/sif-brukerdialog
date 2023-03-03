@@ -1,5 +1,6 @@
 import { isString } from 'formik';
 import { ISODate, ISODateRange, ISODuration } from './types';
+import { parse } from 'iso8601-duration';
 
 export type StringOrNull = string | null;
 
@@ -41,17 +42,12 @@ export const isISODateRange = (value: any): value is ISODateRange => {
 };
 
 export const isISODuration = (value: any): value is ISODuration => {
-    /** Only hours and minutes PT7H30M or PT0S 0 sekunder*/
     if (value && typeof value === 'string') {
-        if (value === 'PT') {
+        try {
+            return parse(value) !== undefined;
+        } catch (error) {
             return false;
         }
-        if (value === 'PT0S') {
-            return true;
-        }
-        const reg = /^PT(\d{1,2}H)?(\d{1,2}M)?$/;
-        const match: RegExpMatchArray | null = value.match(reg);
-        return match !== null;
     } else {
         return false;
     }

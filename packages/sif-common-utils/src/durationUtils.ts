@@ -121,11 +121,13 @@ export const ISODurationToMaybeDuration = (duration: string): Duration | undefin
     }
 };
 
+/** Ignores seconds */
 export const ISODurationToDuration = (validDuration: string): Duration => {
     const parts = parse(validDuration);
+    const { hours, minutes } = parts;
     return {
-        hours: `${parts.hours}`,
-        minutes: `${parts.minutes}`,
+        hours: `${hours}`,
+        minutes: `${minutes}`,
     };
 };
 

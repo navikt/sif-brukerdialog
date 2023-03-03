@@ -1,5 +1,37 @@
 # @navikt/sif-ettersending
 
+## 3.4.2
+
+### Patch Changes
+
+-   Utvide med 401 ignore i sentry
+
+## 3.4.1
+
+### Patch Changes
+
+-   7c6db10: Pakkeoppdateringer
+-   Updated dependencies [7c6db10]
+    -   @navikt/sif-common-formik-ds@0.11.2
+    -   @navikt/sif-common-soknad-ds@6.0.1
+    -   @navikt/sif-common-core-ds@6.0.1
+
+## 3.4.0
+
+### Minor Changes
+
+-   cdfb21f: Endre hvordan bruker sendes til kvitteringssiden. Forhindre render-loop når bruker går tilbake fra kvittering til oppsummering
+
+### Patch Changes
+
+-   cdfb21f: Ignorere axios feil som oppstår når bruker redirectes til login
+
+## 3.3.0
+
+### Minor Changes
+
+-   0015092: Endre hvordan bruker sendes til kvitteringssiden. Forhindre render-loop når bruker går tilbake fra kvittering til oppsummering
+
 ## 3.2.1
 
 ### Patch Changes

@@ -28,6 +28,7 @@ import {
     getPercentageOfISODuration,
     getValidDurations,
     ISODurationToDecimalDuration,
+    ISODurationToDuration,
     removeDatesFromDateDurationMap,
     summarizeDateDurationMap,
     summarizeDurations,
@@ -625,6 +626,13 @@ describe('durationUtils', () => {
             });
             expect(dateToISODate(result.from)).toEqual('2022-01-03');
             expect(dateToISODate(result.to)).toEqual('2022-01-05');
+        });
+    });
+    describe('ISODurationToDuration', () => {
+        it('Fjerner sekunder fra duration', () => {
+            const result = ISODurationToDuration('PT5H20M10S');
+            expect(result.hours).toEqual('20');
+            expect(result.minutes).toEqual('10');
         });
     });
 });

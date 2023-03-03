@@ -1,3 +1,4 @@
+import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import {
     dateRangeToISODateRange,
     dateToISODate,
@@ -153,6 +154,9 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
             arbeidstid: getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, aktivitet),
+            dataBruktTilUtledning: {
+                soknadDialogCommitSha: getCommitShaFromEnv() || '',
+            },
         },
     };
 };

@@ -1,5 +1,29 @@
 # @navikt/sif-common-sentry
 
+## 0.9.2
+
+### Patch Changes
+
+-   d752bf61: Utvide ignoreErrors med Axios 401
+
+## 0.9.1
+
+### Patch Changes
+
+-   8c5651a9: Utvide til å ignorere 401 og 0 nettverksfeil
+
+## 0.9.0
+
+### Minor Changes
+
+-   7fb116b5: Legge til ignoreTypeErrors og sette allowUrls til nav.no domener
+
+## 0.8.2
+
+### Patch Changes
+
+-   ab096d35: Utvide til å støtte logging av objekter
+
 ## 0.8.1
 
 ### Patch Changes

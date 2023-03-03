@@ -6,25 +6,25 @@
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "bugs": {
         "url": "https://github.com/navikt/appstatus-react-ds/issues"
     },
     "dependencies": {
-        "@portabletext/react": "2.0.1",
+        "@portabletext/react": "2.0.2",
         "@sanity/client": "5.2.2"
     },
     "devDependencies": {
-        "@navikt/ds-css": "2.4.0",
-        "@navikt/ds-react": "2.4.0",
-        "@types/node": "18.14.2",
+        "@navikt/ds-css": "2.6.0",
+        "@navikt/ds-react": "2.6.0",
+        "@types/node": "18.14.4",
         "@types/react": "18.0.28",
         "@types/react-dom": "18.0.11",
         "copyfiles": "2.4.1",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "rimraf": "4.1.2",
+        "rimraf": "4.1.3",
         "sass": "1.58.3"
     },
     "directories": {

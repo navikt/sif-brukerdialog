@@ -27,7 +27,7 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.forbidden) {
-        appSentryLogger.logError('requestStatus', RequestStatus.forbidden);
+        appSentryLogger.logError('Søknad.requestStatus', RequestStatus.forbidden);
         return (
             <ErrorPage
                 pageTitle="Ingen tilgang"
@@ -37,7 +37,7 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.error) {
-        appSentryLogger.logError('requestStatus', initialData.error);
+        appSentryLogger.logError('Søknad.requestStatus', initialData.error);
         return (
             <ErrorPage
                 pageTitle="Det oppstod en feil"

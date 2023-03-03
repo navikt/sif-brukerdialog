@@ -1,5 +1,67 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.5.4
+
+### Patch Changes
+
+-   Utvide med 401 ignore i sentry
+
+## 1.5.3
+
+### Patch Changes
+
+-   Oppdatere debug-info
+
+## 1.5.2
+
+### Patch Changes
+
+-   Utvide logging - logger masked k9format
+
+## 1.5.1
+
+### Patch Changes
+
+-   cb524e65: Korrigere avvik i beregning ved prosent - feil visning i arbeidstid-step. Var korrekt på oppsummering.
+-   ab096d35: Logge debug-informasjon når sak hentes. Informasjonen som logges er et subsett hvor sensitive data ikke er med.
+-   Updated dependencies [ab096d35]
+-   Updated dependencies [cb524e65]
+    -   @navikt/sif-common-sentry@0.8.2
+    -   @navikt/sif-common-utils@3.24.0
+
+## 1.5.0
+
+### Minor Changes
+
+-   5dd8ad5: Vise informasjon til bruker når vi ikke klarer å parse saken
+
+### Patch Changes
+
+-   633547b: Utvide feillogging verifyK9FormatArbeidstidTid
+-   7c6db10: Pakkeoppdateringer
+-   Updated dependencies [7c6db10]
+    -   @navikt/sif-common-formik-ds@0.11.2
+    -   @navikt/sif-common-soknad-ds@6.0.1
+    -   @navikt/sif-common-forms-ds@4.0.1
+    -   @navikt/sif-common-core-ds@6.0.1
+
+## 1.4.0
+
+### Minor Changes
+
+-   42583ea: Utvide logging ved ugyldig k9format
+
+## 1.3.0
+
+### Minor Changes
+
+-   66e4350: Legge til ytelse.dataBruktTilUtledning.soknadDialogCommitSha
+
+### Patch Changes
+
+-   d2d634b: Utvide med å logge antall arbeidsaktiviteter som kan endres når bruker starter en endring
+-   d2d634b: Logge axiosError til sentry dersom innsending av melding feiler
+
 ## 1.2.1
 
 ### Patch Changes

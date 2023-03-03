@@ -35,7 +35,6 @@ root.render(
                 appName={appName}
                 intlMessages={applicationIntlMessages}
                 sentryKey={APPLICATION_KEY}
-                sentryIgnoreErrors={[/401/]}
                 appStatus={{
                     applicationKey: APPLICATION_KEY,
                     sanityConfig: {

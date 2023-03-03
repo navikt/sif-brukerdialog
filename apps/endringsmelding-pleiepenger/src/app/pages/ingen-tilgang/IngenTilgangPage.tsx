@@ -18,6 +18,19 @@ interface Props {
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     switch (årsak) {
+        case IngenTilgangÅrsak.harUgyldigK9FormatSak:
+            return (
+                <BodyLong as="div" data-testid="ugyldigK9FormatSak">
+                    <p>
+                        Vi ser at du har en sak om pleiepenger hos oss, men foreløpig kan du ikke bruke denne tjenesten.
+                        Vi jobber for å få det til, slik at du også snart kan melde fra om endring her.
+                    </p>
+                    <p>
+                        I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
+                    </p>
+                </BodyLong>
+            );
+
         case IngenTilgangÅrsak.harIngenPerioder:
         case IngenTilgangÅrsak.harIngenSak:
             return (
