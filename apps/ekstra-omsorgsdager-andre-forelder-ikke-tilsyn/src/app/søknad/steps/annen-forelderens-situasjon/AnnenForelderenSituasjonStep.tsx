@@ -124,6 +124,18 @@ const AnnenForelderenSituasjonStep = () => {
                                             };
                                         })}
                                         validate={getRequiredFieldValidator()}
+                                        afterOnChange={(newValue) => {
+                                            if (
+                                                newValue &&
+                                                (newValue === AnnenForeldrenSituasjon.fengsel ||
+                                                    AnnenForeldrenSituasjon.utøverVerneplikt)
+                                            ) {
+                                                setFieldValue(
+                                                    AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom,
+                                                    undefined
+                                                );
+                                            }
+                                        }}
                                     />
                                 </Block>
 
@@ -183,7 +195,7 @@ const AnnenForelderenSituasjonStep = () => {
                                                         if (newValue) {
                                                             setFieldValue(
                                                                 AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
-                                                                ''
+                                                                undefined
                                                             );
                                                         } else {
                                                             setFieldValue(
