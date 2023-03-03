@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.4.3
+
+### Patch Changes
+
+-   Utvide med 401 ignore i sentry
+
 ## 1.4.2
 
 ### Patch Changes

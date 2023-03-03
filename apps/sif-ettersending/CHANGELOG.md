@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.4.2
+
+### Patch Changes
+
+-   Utvide med 401 ignore i sentry
+
 ## 3.4.1
 
 ### Patch Changes

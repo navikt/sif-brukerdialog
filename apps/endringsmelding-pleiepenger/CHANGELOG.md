@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.5.4
+
+### Patch Changes
+
+-   Utvide med 401 ignore i sentry
+
 ## 1.5.3
 
 ### Patch Changes
