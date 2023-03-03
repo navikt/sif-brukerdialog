@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.9.2
+
+### Patch Changes
+
+-   d752bf61: Utvide ignoreErrors med Axios 401
+
 ## 0.9.1
 
 ### Patch Changes
