@@ -132,7 +132,7 @@ const AnnenForelderenSituasjonStep = () => {
                                             ) {
                                                 setFieldValue(
                                                     AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom,
-                                                    undefined
+                                                    false
                                                 );
                                             }
                                         }}
