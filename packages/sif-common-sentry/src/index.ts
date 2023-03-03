@@ -84,6 +84,7 @@ const ignoreTypeErrors = [
     'TypeError: anulowane',
     'TypeError: avbruten',
     'TypeError: anulat',
+    'Request failed with status code 401',
 ];
 
 const initSentryForSIF = (initProps: SentryInitProps = {}) => {
