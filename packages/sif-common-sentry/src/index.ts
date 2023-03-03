@@ -89,10 +89,12 @@ const ignoreTypeErrors = [
 
 const initSentryForSIF = (initProps: SentryInitProps = {}) => {
     const allowUrls: AllowUrlsType = initProps.allowUrls || [];
-    allowUrls.push(/https?:\/\/((dev|www)\.)?nav\.no/);
 
     const ignoreErrors: IgnoreErrorsType = initProps.ignoreErrors || [];
-    ignoreErrors.push(...ignoreTypeErrors, ...httpErrorCodesToIgnore);
+    try {
+        allowUrls.push(/https?:\/\/((dev|www)\.)?nav\.no/);
+        ignoreErrors.push(...ignoreTypeErrors, ...httpErrorCodesToIgnore);
+    } catch (e) {}
 
     Sentry.init({
         dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
