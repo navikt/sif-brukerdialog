@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.9.3
+
+### Patch Changes
+
+-   TryCatch i init
+
 ## 0.9.2
 
 ### Patch Changes
