@@ -6609,10 +6609,10 @@ browser-assert@^1.2.1:
   resolved "https://registry.yarnpkg.com/browser-assert/-/browser-assert-1.2.1.tgz#9aaa5a2a8c74685c2ae05bfe46efd606f068c200"
   integrity sha512-nfulgvOR6S4gt9UKCeGJOuSGBPGiFT6oQ/2UBnvTY/5aQ1PnksW72fhZkM30DzoRRv2WpwZf1vHHEr3mtuXIWQ==
 
-browser-image-compression@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/browser-image-compression/-/browser-image-compression-2.0.0.tgz#f421381a76d474d4da7dcd82810daf595b09bef6"
-  integrity sha512-kBlkZo13yOOfcmrPW0M0K/UdZPogIQj2gRvXIM3FktAnfW6VRq9aY2RI+F6O0x6DMj1Xm+WLGgWcFK8Fu/ddnw==
+browser-image-compression@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/browser-image-compression/-/browser-image-compression-2.0.1.tgz#fccc4c406ee133f7344b93bea74a2235945b9085"
+  integrity sha512-dRKO/0Pk2+yoGahgwIL1cf211CbcL4EZ9UM7GmYFSeQ5vSpMkW6FzuzDzgV2pwjewAb3hWWzovSiUG21Orsapg==
   dependencies:
     uzip "0.20201231.0"
 

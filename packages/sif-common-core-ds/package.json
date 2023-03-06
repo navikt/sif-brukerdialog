@@ -16,7 +16,7 @@
         "nav-frontend-stegindikator": "2.0.3",
         "nav-frontend-stegindikator-style": "2.0.2",
         "nav-frontend-typografi-style": "2.0.2",
-        "browser-image-compression": "2.0.0",
+        "browser-image-compression": "2.0.1",
         "react-collapse": "5.1.1",
         "@navikt/sif-common-utils": "*",
         "tailwindcss": "3.2.7",
