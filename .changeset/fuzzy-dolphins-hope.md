@@ -2,4 +2,4 @@
 '@navikt/sif-common-sentry': patch
 ---
 
-TryCatch på ignore
+Håndtere ugyldige parametre i initSentryForSIF
