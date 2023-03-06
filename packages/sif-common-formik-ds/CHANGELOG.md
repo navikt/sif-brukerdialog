@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.11.3
+
+### Patch Changes
+
+-   9f463cd: La til afterOnChange til FormikRadioGroup
+
 ## 0.11.2
 
 ### Patch Changes
