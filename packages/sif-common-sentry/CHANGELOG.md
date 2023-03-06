@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.9.4
+
+### Patch Changes
+
+-   e1c2c990: Håndtere ugyldige parametre i initSentryForSIF
+
 ## 0.9.3
 
 ### Patch Changes
