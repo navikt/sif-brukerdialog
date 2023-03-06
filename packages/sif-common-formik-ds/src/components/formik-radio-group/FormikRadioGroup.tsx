@@ -12,6 +12,7 @@ export type FormikRadioProp = Omit<RadioProps, 'children' | 'name'> & {
 interface OwnProps<FieldName> extends Omit<RadioGroupProps, 'name' | 'onChange' | 'children' | 'radios'> {
     name: FieldName;
     radios: FormikRadioProp[];
+    afterOnChange?: (newValue: string) => void;
 }
 
 export type FormikRadioGroupProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -25,6 +26,7 @@ function FormikRadioGroup<FieldName, ErrorType>({
     radios,
     error,
     useFastField,
+    afterOnChange,
     ...restProps
 }: FormikRadioGroupProps<FieldName, ErrorType>) {
     const context = useContext(TypedFormikFormContext);
@@ -48,6 +50,10 @@ function FormikRadioGroup<FieldName, ErrorType>({
                                     name={field.name as any}
                                     onChange={(evt) => {
                                         form.setFieldValue(field.name, evt.target.value);
+                                        const newValue = evt.target.value;
+                                        if (afterOnChange) {
+                                            afterOnChange(newValue);
+                                        }
                                         if (context) {
                                             context.onAfterFieldValueSet();
                                         }
