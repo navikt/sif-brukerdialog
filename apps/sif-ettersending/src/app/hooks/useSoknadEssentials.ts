@@ -65,14 +65,14 @@ function useSoknadEssentials(søknadstype: ApplicationType): SøknadInitialDataS
         } catch (error) {
             if (isUnauthorized(error)) {
                 navigateToLoginPage(søknadstype);
-                return Promise.reject(error);
+                return;
             } else if (isForbidden(error)) {
                 setInitialData({
                     status: RequestStatus.ikkeTilgang,
                 });
             } else {
                 if (!isUnknownAxiosError(error)) {
-                    appSentryLogger.logError('fetchInitialData', error);
+                    appSentryLogger.logError('fetchInitialData', JSON.stringify({ error }));
                 }
                 setInitialData({
                     status: RequestStatus.error,
