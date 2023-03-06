@@ -40,6 +40,7 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: 16
+                  cache: 'yarn'
 
             - name: Run cypress tests
               uses: cypress-io/github-action@v4 # use the explicit version number
