@@ -4,7 +4,7 @@ import { OmBarnaSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { AndreBarn } from '../../pre-common/forms/barn/types';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 
-type OmBarnaToApiData = Pick<SøknadApiData, 'barn'>;
+export type OmBarnaToApiData = Pick<SøknadApiData, 'barn'>;
 
 const mapAndreBarnToApiBarn = (annetBarn: AndreBarn): ApiBarn => {
     return {

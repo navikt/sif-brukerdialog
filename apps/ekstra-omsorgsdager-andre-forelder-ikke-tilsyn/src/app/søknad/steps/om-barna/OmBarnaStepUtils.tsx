@@ -40,15 +40,13 @@ export const getOmBarnaSøknadsdataFromFormValues = (values: OmBarnaFormValues):
     };
 };
 
-export const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape) => {
-    return (
-        <div style={{ display: 'flex' }}>
-            <span style={{ order: 1 }}>
-                {intlHelper(intl, 'step.omBarna.født')} {prettifyDate(barnet.fødselsdato)}
-            </span>
-            <span style={{ order: 2, paddingLeft: '1rem', justifySelf: 'flex-end' }}>
-                {formatName(barnet.fornavn, barnet.etternavn, barnet.mellomnavn)}
-            </span>
-        </div>
-    );
-};
+export const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape) => (
+    <div style={{ display: 'flex' }}>
+        <span style={{ order: 1 }}>
+            {intlHelper(intl, 'step.omBarna.født')} {prettifyDate(barnet.fødselsdato)}
+        </span>
+        <span style={{ order: 2, paddingLeft: '1rem', justifySelf: 'flex-end' }}>
+            {formatName(barnet.fornavn, barnet.etternavn, barnet.mellomnavn)}
+        </span>
+    </div>
+);

@@ -7,7 +7,8 @@
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "private": true,
     "scripts": {
-        "build": "node src/build/scripts/production-build.js",
+        "build-app": "node src/build/scripts/production-build.js",
+        "build": "npm-run-all build-app",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "start-dev": "npm-run-all -p rm:dist dev-api start-no-decorator",
         "prepare": "npm run snyk-protect",
@@ -20,7 +21,12 @@
         "start-server-local": "npm-run-all -s rm:dist build -p dev-api server-test:local",
         "start": "node ./src/build/scripts/start-dev.js",
         "test": "react-scripts test --watchAll=false --env=jsdom",
-        "test-watch": "react-scripts test --watchAll=true --env=jsdom"
+        "test-watch": "react-scripts test --watchAll=true --env=jsdom",
+        "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/alive 'yarn cypress-run'",
+        "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/alive",
+        "cypress-open": "cypress open --project $PWD/e2e",
+        "cypress-run": "cypress run --project $PWD/e2e",
+        "start-e2e-server": "node ./server-e2e.js"
     },
     "dependencies": {
         "@navikt/ds-css": "2.6.0",
@@ -72,6 +78,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.7.3",
+        "cypress": "12.7.0",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.0",
         "jsdom": "21.1.0",

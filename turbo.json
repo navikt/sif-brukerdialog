@@ -65,6 +65,10 @@
         "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
             "outputs": [],
             "dependsOn": ["^build-package"]
+        },
+        "e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
+            "outputs": [],
+            "dependsOn": ["^build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"]
         }
     }
 }

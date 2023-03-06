@@ -120,9 +120,22 @@ const AnnenForelderenSituasjonStep = () => {
                                             return {
                                                 label: intlHelper(intl, `step.annenForeldrensSituasjon.grunn.${grunn}`),
                                                 value: AnnenForeldrenSituasjon[grunn],
+                                                'data-testid': `grunn-${AnnenForeldrenSituasjon[grunn]}`,
                                             };
                                         })}
                                         validate={getRequiredFieldValidator()}
+                                        afterOnChange={(newValue) => {
+                                            if (
+                                                newValue &&
+                                                (newValue === AnnenForeldrenSituasjon.fengsel ||
+                                                    AnnenForeldrenSituasjon.utøverVerneplikt)
+                                            ) {
+                                                setFieldValue(
+                                                    AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom,
+                                                    false
+                                                );
+                                            }
+                                        }}
                                     />
                                 </Block>
 
@@ -137,6 +150,7 @@ const AnnenForelderenSituasjonStep = () => {
                                             )}
                                             minLength={5}
                                             maxLength={1000}
+                                            data-testid="annenForeldrensSituasjon-beskrivelse"
                                             validate={validateTextArea}
                                         />
                                     </FormBlock>
@@ -164,6 +178,7 @@ const AnnenForelderenSituasjonStep = () => {
                                                           validateTildato(value, periodeFra, annenForelderSituasjon),
                                                 disabled: annenForelderPeriodeVetIkkeTom,
                                             }}
+                                            data-testid="annenForeldrensSituasjon-periode"
                                         />
 
                                         {annenForelderSituasjon !== AnnenForeldrenSituasjon.fengsel &&
@@ -180,7 +195,7 @@ const AnnenForelderenSituasjonStep = () => {
                                                         if (newValue) {
                                                             setFieldValue(
                                                                 AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
-                                                                ''
+                                                                undefined
                                                             );
                                                         } else {
                                                             setFieldValue(
@@ -189,6 +204,7 @@ const AnnenForelderenSituasjonStep = () => {
                                                             );
                                                         }
                                                     }}
+                                                    data-testid="annenForeldrensSituasjon-checkboxVetIkkeTom"
                                                 />
                                             )}
 
@@ -213,6 +229,7 @@ const AnnenForelderenSituasjonStep = () => {
                                                 'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm'
                                             )}
                                             validate={getYesOrNoValidator()}
+                                            data-testid="annenForeldrensSituasjon-PeriodeMer6Maneder"
                                         />
                                         {annenForelderPeriodeMer6Maneder === YesOrNo.NO && (
                                             <FormBlock>

@@ -3,6 +3,8 @@
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isReady",
     "externalHosts": [],
     "cluster": "prod-gcp",
     "env": {
@@ -15,6 +17,7 @@
         "APPSTATUS_DATASET": "production",
         "USE_AMPLITUDE": "true",
         "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
-        "NPM_CONFIG_CACHE": "/tmp"
+        "NPM_CONFIG_CACHE": "/tmp",
+        "APP_VERSION": "prod"
     }
 }

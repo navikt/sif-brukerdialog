@@ -59,6 +59,7 @@
         "build-endringsmelding-pleiepenger": "turbo run build-app --filter=@navikt/endringsmelding-pleiepenger",
         "e2e-endringsmelding-pleiepenger": "turbo run ci --filter=@navikt/endringsmelding-pleiepenger",
         "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": "turbo run build-app --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
+        "e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": "turbo run ci --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",

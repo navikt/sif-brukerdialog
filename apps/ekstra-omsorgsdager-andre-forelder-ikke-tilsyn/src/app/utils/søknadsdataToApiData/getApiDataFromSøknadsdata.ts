@@ -8,12 +8,13 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     registrertBarn: RegistrertBarn[]
 ): SøknadApiData | undefined => {
-    const { omAnnenForelderData, annenForelderenSituasjonData, omBarnaData } = søknadsdata;
+    const { id, omAnnenForelderData, annenForelderenSituasjonData, omBarnaData } = søknadsdata;
     if (!omAnnenForelderData || !annenForelderenSituasjonData || !omBarnaData) {
         return undefined;
     }
 
     return {
+        id,
         språk: 'nb',
         harForståttRettigheterOgPlikter: søknadsdata.harForståttRettigheterOgPlikter === true,
         ...getApiDataAnnenForelderFromSøknadsdata(omAnnenForelderData, annenForelderenSituasjonData),

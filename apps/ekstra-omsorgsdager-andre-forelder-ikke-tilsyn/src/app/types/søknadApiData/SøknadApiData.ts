@@ -19,6 +19,7 @@ export interface ApiBarn {
 }
 
 export interface SøknadApiData {
+    id: string;
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     annenForelder: AnnenForelderApiData;
