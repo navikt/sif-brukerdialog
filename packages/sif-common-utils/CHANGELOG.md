@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.24.1
+
+### Patch Changes
+
+-   7637a0b: Oppdatere packages
+
 ## 3.24.0
 
 ### Minor Changes

@@ -4,7 +4,7 @@
     "homepage": "https://navikt.github.io/sif-brukerdialog",
     "license": "MIT",
     "name": "@navikt/sif-common-soknad-ds",
-    "version": "6.0.1",
+    "version": "6.0.2",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
@@ -55,7 +55,7 @@
     "peerDependencies": {
         "@devexperts/remote-data-ts": "2.0.x",
         "@formatjs/intl-pluralrules": "4.1.x",
-        "@navikt/appstatus-react-ds": "2.0.1",
+        "@navikt/appstatus-react-ds": "2.0.2",
         "@navikt/ds-css": "2.6.0",
         "@navikt/ds-react": "2.6.0",
         "@navikt/sif-common-formik-ds": "*",
