@@ -72,9 +72,7 @@ interface SentryInitProps {
     ignoreErrors?: IgnoreErrorsType;
 }
 
-const httpErrorCodesToIgnore = [/\[401\]/, /\[0\]/];
-
-const ignoreTypeErrors = [
+const errorsToIgnore = [
     'TypeError: Failed to fetch',
     'TypeError: Load failed',
     'TypeError: NetworkError when attempting to fetch resource.',
@@ -85,23 +83,31 @@ const ignoreTypeErrors = [
     'TypeError: avbruten',
     'TypeError: anulat',
     'Request failed with status code 401',
+    /\[401\]/,
+    /\[0\]/,
 ];
 
-const initSentryForSIF = (initProps: SentryInitProps = {}) => {
+export const setupIgnoreErrorsAndAllowUrls = (
+    initProps: SentryInitProps
+): {
+    allowUrls: AllowUrlsType;
+    ignoreErrors: IgnoreErrorsType;
+} => {
     const allowUrls: AllowUrlsType = initProps.allowUrls || [];
-
     const ignoreErrors: IgnoreErrorsType = initProps.ignoreErrors || [];
     try {
         allowUrls.push(/https?:\/\/((dev|www)\.)?nav\.no/);
-        ignoreErrors.push(...ignoreTypeErrors, ...httpErrorCodesToIgnore);
+        ignoreErrors.push(...errorsToIgnore);
     } catch (e) {}
+    return { allowUrls, ignoreErrors };
+};
 
+const initSentryForSIF = (initProps: SentryInitProps = {}) => {
     Sentry.init({
         dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
         environment: setSentryEnvironmentFromHost(),
         ...initProps,
-        ignoreErrors,
-        allowUrls,
+        ...setupIgnoreErrorsAndAllowUrls(initProps),
     });
 };
 
