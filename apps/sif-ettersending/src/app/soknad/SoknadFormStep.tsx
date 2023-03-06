@@ -59,8 +59,10 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     const { previousStepRoute } = stepConfig;
 
     const gotoNextStep = () => {
-        setPending(true);
-        gotoNextStepFromStep(id);
+        setTimeout(() => {
+            setPending(true);
+            gotoNextStepFromStep(id);
+        });
     };
 
     return (

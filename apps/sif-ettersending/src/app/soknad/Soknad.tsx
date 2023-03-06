@@ -77,6 +77,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
     /** Forhindre at bruker kommer til søknad med verdier etter at søknad er sendt inn  */
     if (soknadSent && getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE !== location.pathname) {
         setInitializing(true);
+        setSoknadSent(false);
         navigateToWelcomePage(søknadstype);
     }
 
@@ -216,7 +217,6 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                     }
                                 }
                                 const step = soknadStepsConfig[stepID];
-
                                 setTimeout(() => {
                                     if (step.nextStep) {
                                         navigateTo(step.nextStep, navigate);
