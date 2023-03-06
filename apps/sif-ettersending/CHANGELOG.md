@@ -1,5 +1,13 @@
 # @navikt/sif-ettersending
 
+## 3.4.4
+
+### Patch Changes
+
+-   5e14a79: - Bugfix - fikse rerender-loop når bruker går back i nettleser etter å ha sendt inn melding
+    -   Fikse js-feil ved dobbel update ved submit i beskrivelse-steget
+-   5e14a79: Ikke returnere exception når det er 401 feil
+
 ## 3.4.3
 
 ### Patch Changes
