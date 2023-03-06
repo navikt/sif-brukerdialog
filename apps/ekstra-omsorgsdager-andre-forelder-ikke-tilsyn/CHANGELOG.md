@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.2.4
+
+### Patch Changes
+
+-   b1dbbe6: Tester, innstillinger for deploy til prod, oppryding
+
 ## 1.2.3
 
 ### Patch Changes
