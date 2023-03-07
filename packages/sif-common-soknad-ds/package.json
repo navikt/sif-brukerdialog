@@ -53,14 +53,14 @@
         "/lib"
     ],
     "peerDependencies": {
-        "@devexperts/remote-data-ts": "2.0.x",
-        "@formatjs/intl-pluralrules": "4.1.x",
-        "@navikt/appstatus-react-ds": "2.0.2",
-        "@navikt/ds-css": "2.6.0",
-        "@navikt/ds-react": "2.6.0",
+        "@devexperts/remote-data-ts": "2.x",
+        "@formatjs/intl-pluralrules": "5.x",
+        "@navikt/appstatus-react-ds": "*",
+        "@navikt/ds-css": "2.x",
+        "@navikt/ds-react": "2.x",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
-        "dayjs": "1.10.x"
+        "dayjs": "1.x"
     },
     "repository": {
         "type": "git",
