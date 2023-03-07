@@ -64,7 +64,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="ukjentArbeidsforhold">
                     <p>
-                        Du kan ikke bruke denne tjenesten. Dette er fordi vi har finner ikke informasjon om et
+                        Du kan ikke bruke denne tjenesten. Dette er fordi vi ikke finner informasjon om et
                         arbeidsforhold som er i saken din. Du må derfor sende en ny søknad, slik at saken og
                         utbetalingene dine blir riktige.
                     </p>
