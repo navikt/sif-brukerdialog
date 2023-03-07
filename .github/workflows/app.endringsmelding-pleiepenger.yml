@@ -18,17 +18,22 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Setup Node.js environment
+            - name: Installing pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 7.28.0
+
+            - name: Set up NODE med pnpm
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
-                  cache: 'yarn'
+                node-version: 16
+                cache: 'pnpm'
 
-            - name: Install dependencies (yarn)
-              run: yarn
+            - name: Install dependencies (pnpm)
+              run: pnpm i
 
             - name: Run code tests
-              run: yarn test --filter=endringsmelding-pleiepenger
+              run: pnpm test --filter=endringsmelding-pleiepenger
 
     run-cypress-test:
         runs-on: ubuntu-latest
@@ -36,11 +41,16 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Setup Node.js environment
+            - name: Installing pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 7.28.0
+
+            - name: Set up NODE med pnpm
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
-                  cache: 'yarn'
+                node-version: 16
+                cache: 'pnpm'
 
             - name: Run cypress tests
               uses: cypress-io/github-action@v4 # use the explicit version number
@@ -62,6 +72,6 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   project: ./apps/endringsmelding-pleiepenger/e2e
-                  build: yarn build-endringsmelding-pleiepenger
-                  start: yarn e2e-endringsmelding-pleiepenger
+                  build: pnpm build-endringsmelding-pleiepenger
+                  start: pnpm e2e-endringsmelding-pleiepenger
 

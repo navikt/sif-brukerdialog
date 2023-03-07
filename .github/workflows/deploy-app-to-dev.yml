@@ -29,21 +29,26 @@ jobs:
               with:
                   fetch-depth: 2
 
-            - name: Setup Node.js environment
+            - name: Installing pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 7.28.0
+
+            - name: Set up NODE med pnpm
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
-                  cache: 'yarn'
+                node-version: 16
+                cache: 'pnpm'
 
-            - name: Install dependencies (yarn)
-              run: yarn
+            - name: Install dependencies (pnpm)
+              run: pnpm i
 
             - name: Run tests
-              run: yarn test --filter=${{inputs.app-name}}
+              run: pnpm test --filter=${{inputs.app-name}}
 
             - name: Build application
               run: |
-                  yarn build-${{ inputs.app-name }}
+                  pnpm build-${{ inputs.app-name }}
 
             - name: Build and publish Docker image
               run: |
