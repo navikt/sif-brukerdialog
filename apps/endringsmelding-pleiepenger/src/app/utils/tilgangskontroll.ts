@@ -38,7 +38,7 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
         };
     }
 
-    if (saker.some((sak) => harArbeidsgiverISakSomIkkeErIAAreg(sak, arbeidsgivere))) {
+    if (saker.some((sak) => harUkjentArbeidsforhold(sak, arbeidsgivere))) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.harUkjentArbeidsforhold,
@@ -64,7 +64,7 @@ const harArbeidsgiverSomIkkeErISak = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[])
     );
 };
 
-const harArbeidsgiverISakSomIkkeErIAAreg = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
+const harUkjentArbeidsforhold = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
     const arbeidsgiverID = (sak.ytelse.arbeidstid.arbeidstakerList || []).map(
         (a) => a.norskIdentitetsnummer || a.organisasjonsnummer
     );
