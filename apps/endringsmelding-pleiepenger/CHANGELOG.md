@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.6.0
+
+### Minor Changes
+
+-   ed5db1e: Håndtere at bruker kan ha arbeidsgiver i sak som ikke finnes i aareg for perioden.
+
 ## 1.5.5
 
 ### Patch Changes
