@@ -12179,7 +12179,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001462
-      electron-to-chromium: 1.4.322
+      electron-to-chromium: 1.4.323
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
     dev: true
@@ -14014,8 +14014,8 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium/1.4.322:
-    resolution: {integrity: sha512-KovjizNC9XB7dno/2GjxX8VS0SlfPpCjtyoKft+bCO+UfD8bFy16hY4Sh9s0h9BDxbRH2U0zX5VBjpM1LTcNlg==}
+  /electron-to-chromium/1.4.323:
+    resolution: {integrity: sha512-+a0hMEQxE8u1F1vOHcE0M18kQ2+4AwOXdRrU4avZ1LeR/sa9WAallYE3uES/PNcEGt/wCFcOgWcArSLx5C+WNQ==}
     dev: true
 
   /element-resize-detector/1.2.4:
@@ -19246,6 +19246,16 @@ packages:
       schema-utils: 4.0.0
       webpack: 5.75.0_esbuild@0.17.11
 
+  /mini-css-extract-plugin/2.7.3_webpack@5.75.0:
+    resolution: {integrity: sha512-CD9cXeKeXLcnMw8FZdtfrRrLaM7gwCl4nKuKn2YkY2Bw5wdlB8zU2cCzw+w2zS9RFvbrufTBkMCJACNPwqQA0w==}
+    engines: {node: '>= 12.13.0'}
+    peerDependencies:
+      webpack: ^5.0.0
+    dependencies:
+      schema-utils: 4.0.0
+      webpack: 5.75.0_esbuild@0.17.11
+    dev: true
+
   /minimalistic-assert/1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
     dev: true
@@ -22161,7 +22171,7 @@ packages:
       jest: 27.5.1
       jest-resolve: 27.5.1
       jest-watch-typeahead: 1.1.0_jest@27.5.1
-      mini-css-extract-plugin: 2.7.2_webpack@5.75.0
+      mini-css-extract-plugin: 2.7.3_webpack@5.75.0
       postcss: 8.4.21
       postcss-flexbugs-fixes: 5.0.2_postcss@8.4.21
       postcss-loader: 6.2.1_postcss@8.4.21+webpack@5.75.0
@@ -22255,7 +22265,7 @@ packages:
       jest: 27.5.1
       jest-resolve: 27.5.1
       jest-watch-typeahead: 1.1.0_jest@27.5.1
-      mini-css-extract-plugin: 2.7.2_webpack@5.75.0
+      mini-css-extract-plugin: 2.7.3_webpack@5.75.0
       postcss: 8.4.21
       postcss-flexbugs-fixes: 5.0.2_postcss@8.4.21
       postcss-loader: 6.2.1_postcss@8.4.21+webpack@5.75.0
@@ -22348,7 +22358,7 @@ packages:
       jest: 27.5.1
       jest-resolve: 27.5.1
       jest-watch-typeahead: 1.1.0_jest@27.5.1
-      mini-css-extract-plugin: 2.7.2_webpack@5.75.0
+      mini-css-extract-plugin: 2.7.3_webpack@5.75.0
       postcss: 8.4.21
       postcss-flexbugs-fixes: 5.0.2_postcss@8.4.21
       postcss-loader: 6.2.1_postcss@8.4.21+webpack@5.75.0

@@ -61,7 +61,7 @@
         "e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": "turbo run ci --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
         "bp": "turbo run build-package --no-cache",
         "ba": "turbo run build-app",
-        "baClean": "turbo run build-app-clean",
+        "bac": "turbo run build-app-clean",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules && rm -rf .turbo",
         "dev": "turbo run dev --no-cache --parallel --continue",
