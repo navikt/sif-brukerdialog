@@ -1,10 +1,9 @@
 import { Link } from '@navikt/ds-react';
 import React from 'react';
+import { Attachment as DSAttachment } from '@navikt/ds-icons';
 import { Attachment } from '../../types/Attachment';
 import bemHelper from '../../utils/bemUtils';
-// import AttachmentIcon from './AttachmentIcon';
 import './attachmentLabel.scss';
-import { Attachment as DSAttachment } from '@navikt/ds-icons';
 
 interface Props {
     attachment: Attachment;

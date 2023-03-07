@@ -1,14 +1,14 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { AndreBarn } from './types';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import barnUtils from './barnUtils';
-import { guid } from 'nav-frontend-js-utils';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { guid } from 'nav-frontend-js-utils';
+import barnUtils from './barnUtils';
+import { AndreBarn } from './types';
 
 interface BarnFormLabels {
     title: string;

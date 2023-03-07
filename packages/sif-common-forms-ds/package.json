@@ -87,7 +87,7 @@
         "build": "npm-run-all build-package",
         "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
         "build-storybook": "build-storybook",
-        "clean": "rm -rf node_modules lib",
+        "clean": "rm -rf node_modules lib .turbo",
         "clean-lib": "rm -rf lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",

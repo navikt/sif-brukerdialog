@@ -1,6 +1,6 @@
-import { isString } from 'formik';
 import { ISODate, ISODateRange, ISODuration } from './types';
 import { parse } from 'iso8601-duration';
+import { isString } from 'lodash';
 
 export type StringOrNull = string | null;
 

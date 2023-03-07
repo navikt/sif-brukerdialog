@@ -36,9 +36,7 @@
     ],
     "peerDependencies": {
         "@navikt/ds-css": "2",
-        "@navikt/ds-react": "2",
-        "sass": "1.52.x",
-        "sass-loader": "13.x"
+        "@navikt/ds-react": "2"
     },
     "repository": {
         "type": "git",
@@ -47,7 +45,7 @@
     "scripts": {
         "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script copy-files",
-        "clean": "rm -rf node_modules lib",
+        "clean": "rm -rf node_modules lib .turbo",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",

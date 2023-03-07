@@ -12,12 +12,13 @@
     },
     "dependencies": {
         "iso8601-duration": "2.1.1",
-        "lodash.uniq": "4.5.0"
+        "lodash": "4.17.21",
+        "uuid": "9.0.0"
     },
     "devDependencies": {
         "@babel/preset-env": "7.20.2",
         "@babel/preset-react": "7.18.6",
-        "@types/lodash.uniq": "4.5.7",
+        "@types/lodash": "4.14.191",
         "@types/node": "18.14.6",
         "@types/react": "18.0.28",
         "@types/react-dom": "18.0.11",
@@ -44,7 +45,7 @@
     "scripts": {
         "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script",
-        "clean": "rm -rf node_modules lib",
+        "clean": "rm -rf node_modules lib .turbo",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
