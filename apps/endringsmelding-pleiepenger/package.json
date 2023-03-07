@@ -129,11 +129,6 @@
         "webpack": "5.75.0",
         "webpack-dev-server": "4.11.1"
     },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
-    },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"
     },

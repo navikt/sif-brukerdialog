@@ -99,7 +99,7 @@
         "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "build-storybook -s public",
-        "clean": "rm -rf node_modules lib .turbo",
+        "clean": "rm -rf node_modules lib",
         "dev": "yarn watch-styles & yarn compile-lib-script-watch",
         "watch-styles": "npm-watch copy-files ",
         "clean-lib": "rimraf ./lib",
@@ -118,7 +118,7 @@
     },
     "jest": {
         "transformIgnorePatterns": [
-            "node_modules/node_modules/(?!axios)"
+            "<rootDir>/node_modules/.pnpm/(?!(@navikt)).*\\.js$"
         ]
     },
     "files": [

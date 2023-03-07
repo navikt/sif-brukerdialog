@@ -53,6 +53,11 @@
         "rimraf": "4.3.1",
         "webpack": "5.75.0"
     },
+    "jest": {
+        "transformIgnorePatterns": [
+            "<rootDir>/node_modules/.pnpm/(?!(@navikt)).*\\.js$"
+        ]
+    },
     "directories": {
         "lib": "lib"
     },
@@ -60,11 +65,6 @@
         "package.json",
         "/lib"
     ],
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
-    },
     "peerDependencies": {
         "@navikt/ds-css": "2",
         "@navikt/ds-react": "2",

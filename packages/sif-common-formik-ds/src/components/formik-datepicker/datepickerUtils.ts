@@ -1,6 +1,6 @@
+import { DatepickerDateRange, DatepickerLimitations } from '@navikt/ds-datepicker/lib/types';
 import dayjs from 'dayjs';
-import { DatepickerLimitations, DatepickerDateRange, isISODateString } from '@navikt/ds-datepicker';
-import { DatepickerLimitiations } from './FormikDatepicker';
+import { FormikDatepickerLimitations } from './formikDatepickerTypes';
 
 const isoStringFormat = 'YYYY-MM-DD';
 
@@ -13,7 +13,7 @@ const parseDateLimitations = ({
     disabledDateRanges = [],
     disableWeekend,
     disabledDaysOfWeek,
-}: DatepickerLimitiations): DatepickerLimitations => {
+}: FormikDatepickerLimitations): DatepickerLimitations => {
     const invalidDateRanges: DatepickerDateRange[] = disabledDateRanges.map((d) => ({
         from: dateToISOString(d.from),
         to: dateToISOString(d.to),
@@ -30,9 +30,6 @@ const parseDateLimitations = ({
 const getDateStringFromValue = (value?: Date | string): string | undefined => {
     let date;
     if (value && typeof value === 'string') {
-        if (isISODateString(value) === false) {
-            return value;
-        }
         if (dayjs(value, isoStringFormat, true).isValid()) {
             date = new Date(value);
         }
@@ -43,13 +40,27 @@ const getDateStringFromValue = (value?: Date | string): string | undefined => {
 };
 
 const getDateFromDateString = (dateString: string | undefined): Date | undefined => {
+    const ISOFormat = 'YYYY-MM-DD';
     if (dateString === undefined) {
         return undefined;
     }
-    if (isISODateString(dateString) && dayjs(dateString, 'YYYY-MM-DD', true).isValid()) {
-        return new Date(dateString);
+    // console.log({ dateString, res: dayjs(dateString, ISOFormat, true) });
+    const isValid = dayjs(dateString, ISOFormat, true).isValid();
+
+    if (isValid) {
+        if (isValidFormattedISODateString(dateString)) {
+            const [year, month, day] = dateString.split('-').map((i) => parseInt(i, 10));
+            const date = dayjs(dateString);
+            if (date.get('year') === year && date.get('month') + 1 === month && date.get('date') === day) {
+                return date.toDate();
+            }
+        }
     }
     return undefined;
+};
+
+const isValidFormattedISODateString = (dateString = ''): boolean => {
+    return /\d{4}-\d{2}-(\d{2})$/.test(dateString);
 };
 
 /** Check if dateString has format DD.MM.YYYY, or D.M.YY */

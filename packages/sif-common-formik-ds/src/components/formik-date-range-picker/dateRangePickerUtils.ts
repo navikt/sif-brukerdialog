@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import minMax from 'dayjs/plugin/minMax';
 import { DateRange } from '../../types';
-import { DatepickerLimitiations } from '../formik-datepicker/FormikDatepicker';
+import { FormikDatepickerLimitations } from '../formik-datepicker/formikDatepickerTypes';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(minMax);
@@ -172,8 +172,8 @@ export const getMinDateForRangeEnd = ({
 };
 
 interface DateRangePickerLimitations {
-    fromDateLimitations: DatepickerLimitiations;
-    toDateLimitations: DatepickerLimitiations;
+    fromDateLimitations: FormikDatepickerLimitations;
+    toDateLimitations: FormikDatepickerLimitations;
 }
 
 export const getDateRangePickerLimitations = (props: {

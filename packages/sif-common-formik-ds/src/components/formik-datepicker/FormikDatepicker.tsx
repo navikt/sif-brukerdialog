@@ -3,23 +3,16 @@ import { DayPickerProps } from 'react-day-picker';
 import { useIntl } from 'react-intl';
 import { useMediaQuery } from 'react-responsive';
 import { CalendarPlacement, Datepicker, DatepickerChange } from '@navikt/ds-datepicker';
+import { DatepickerLocales } from '@navikt/ds-datepicker/lib/types';
 import { FastField, Field, FieldProps } from 'formik';
 import { v4 as uuid } from 'uuid';
-import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
+import { FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import datepickerUtils from './datepickerUtils';
+import { FormikDatepickerLimitations } from './formikDatepickerTypes';
 import '@navikt/ds-datepicker/lib/index.css';
 import './datepicker.css';
-import { DatepickerLocales } from '@navikt/ds-datepicker/lib/types';
-
-export interface DatepickerLimitiations {
-    minDate?: Date;
-    maxDate?: Date;
-    disabledDateRanges?: DateRange[];
-    disableWeekend?: boolean;
-    disabledDaysOfWeek?: number[];
-}
 
 export interface DatePickerBaseProps<FieldName, ErrorType>
     extends TestProps,
@@ -47,7 +40,7 @@ interface OwnProps<FieldName, ErrorType> extends DatePickerBaseProps<FieldName, 
 
 export type FormikDatepickerProps<FieldName, ErrorType> = OwnProps<FieldName, ErrorType> &
     DatePickerPresentationProps &
-    DatepickerLimitiations &
+    FormikDatepickerLimitations &
     UseFastFieldProps;
 
 const getLocaleToUse = (locale: string): DatepickerLocales | undefined => {

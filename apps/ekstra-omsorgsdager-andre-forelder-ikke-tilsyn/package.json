@@ -102,7 +102,7 @@
     },
     "jest": {
         "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
+            "<rootDir>/node_modules/.pnpm/(?!(@navikt)).*\\.js$"
         ]
     },
     "snyk": true,

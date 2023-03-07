@@ -54,11 +54,6 @@
     "directories": {
         "lib": "lib"
     },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
-    },
     "overrides": {
         "react-refresh": "0.11.0"
     },

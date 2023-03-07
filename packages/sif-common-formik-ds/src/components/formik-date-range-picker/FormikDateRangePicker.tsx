@@ -4,9 +4,9 @@ import { UseFastFieldProps } from '../../types';
 import { ISOStringToDate } from '../formik-datepicker/datepickerUtils';
 import FormikDatepicker, {
     DatePickerBaseProps,
-    DatepickerLimitiations,
     DatePickerPresentationProps,
 } from '../formik-datepicker/FormikDatepicker';
+import { FormikDatepickerLimitations } from '../formik-datepicker/formikDatepickerTypes';
 import FormikInputGroup from '../formik-input-group/FormikInputGroup';
 import { getDateRangePickerLimitations } from './dateRangePickerUtils';
 import './dateRangePicker.scss';
@@ -25,7 +25,7 @@ interface OwnProps<FieldName, ErrorType> {
 
 export type FormikDateRangePickerProps<FieldName, ErrorType> = OwnProps<FieldName, ErrorType> &
     DatePickerPresentationProps &
-    DatepickerLimitiations &
+    FormikDatepickerLimitations &
     UseFastFieldProps;
 
 function FormikDateRangePicker<FieldName, ErrorType>({
