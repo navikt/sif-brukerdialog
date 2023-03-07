@@ -21,6 +21,11 @@ const mockData = {
         sak: require('../data/scenario/arbeidsgiver-og-frilanser/sak-mock.json'),
         arbeidsgiver: require('../data/scenario/arbeidsgiver-og-frilanser/arbeidsgiver-mock.json'),
     },
+    ['arbeidsgivere-og-frilanser']: {
+        søker: require('../data/scenario/arbeidsgivere-og-frilanser/søker-mock.json'),
+        sak: require('../data/scenario/arbeidsgivere-og-frilanser/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/arbeidsgivere-og-frilanser/arbeidsgiver-mock.json'),
+    },
     ['selvstendig-næringsdrivende']: {
         søker: require('../data/scenario/selvstendig-næringsdrivende/søker-mock.json'),
         sak: require('../data/scenario/selvstendig-næringsdrivende/sak-mock.json'),

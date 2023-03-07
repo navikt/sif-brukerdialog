@@ -1,6 +1,7 @@
 import { verifyK9Format, K9Format, isK9FormatError, K9FormatArbeidstid } from '../../types/k9Format';
 import { K9Sak, UgyldigK9SakFormat } from '../../types/K9Sak';
 import appSentryLogger from '../../utils/appSentryLogger';
+import { maskString } from '../../utils/maskString';
 import { parseK9Format } from '../../utils/parseK9Format';
 import api from '../api';
 import { ApiEndpointInnsyn } from './';
@@ -9,7 +10,10 @@ export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 
 const maskK9FormatArbeidstid = (arbeidstid: K9FormatArbeidstid) => {
     return {
-        arbeidstakerList: (arbeidstid.arbeidstakerList || []).map((arbtaker) => arbtaker.arbeidstidInfo),
+        arbeidstakerList: (arbeidstid.arbeidstakerList || []).map((arbtaker) => {
+            const key = maskString(arbtaker.organisasjonsnummer) || 'ingenOrg';
+            return { [key]: arbtaker.arbeidstidInfo };
+        }),
         frilanserArbeidstidInfo: arbeidstid.frilanserArbeidstidInfo,
         selvstendigNæringsdrivendeArbeidstidInfo: arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo,
     };

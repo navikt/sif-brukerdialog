@@ -38,6 +38,13 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
         };
     }
 
+    if (saker.some((sak) => harUkjentArbeidsforhold(sak, arbeidsgivere))) {
+        return {
+            kanBrukeSøknad: false,
+            årsak: IngenTilgangÅrsak.harUkjentArbeidsforhold,
+        };
+    }
+
     if (saker.some((sak) => harArbeidstidSomSelvstendigNæringsdrivende(sak))) {
         return {
             kanBrukeSøknad: false,
@@ -52,9 +59,16 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
 
 const harArbeidsgiverSomIkkeErISak = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
     const arbeidsgivereISak = getArbeidsgivereIK9Sak(arbeidsgivere, sak);
-    return arbeidsgivere.some(
+    return arbeidsgivereISak.some(
         (a) => arbeidsgivereISak.find((aISak) => aISak.organisasjonsnummer === a.organisasjonsnummer) === undefined
     );
+};
+
+const harUkjentArbeidsforhold = (sak: K9Sak, arbeidsgivere: Arbeidsgiver[]) => {
+    const arbeidsgiverID = (sak.ytelse.arbeidstid.arbeidstakerList || []).map(
+        (a) => a.norskIdentitetsnummer || a.organisasjonsnummer
+    );
+    return arbeidsgiverID.some((id) => arbeidsgivere.find((a) => a.organisasjonsnummer === id) === undefined);
 };
 
 const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
