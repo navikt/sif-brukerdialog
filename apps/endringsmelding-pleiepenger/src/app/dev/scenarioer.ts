@@ -7,18 +7,23 @@ export interface Scenario {
 
 export const scenarioer: Scenario[] = [
     {
-        name: 'En arbeidsgiver - en periode',
+        name: 'Én arbeidsgiver - en periode',
         value: 'en-arbeidsgiver-en-periode',
         harTilgang: true,
     },
     {
-        name: 'En arbeidsgiver - to perioder',
+        name: 'Én arbeidsgiver - to perioder',
         value: 'en-arbeidsgiver-to-perioder',
         harTilgang: true,
     },
     {
-        name: 'En arbeidsgiver + frilans',
+        name: 'Én arbeidsgiver + frilans',
         value: 'arbeidsgiver-og-frilanser',
+        harTilgang: true,
+    },
+    {
+        name: 'To arbeidsgivere + frilans',
+        value: 'arbeidsgivere-og-frilanser',
         harTilgang: true,
     },
     {
