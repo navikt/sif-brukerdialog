@@ -4,5 +4,6 @@ export enum IngenTilgangÅrsak {
     'harMerEnnEnSak' = 'harMerEnnEnSak',
     'harIngenPerioder' = 'harIngenPerioder',
     'harArbeidsgiverSomIkkeErISak' = 'harArbeidsgiverSomIkkeErISak',
+    'harUkjentArbeidsforhold' = 'harUkjentArbeidsforhold',
     'harArbeidstidSomSelvstendigNæringsdrivende' = 'harArbeidstidSomSelvstendigNæringsdrivende',
 }

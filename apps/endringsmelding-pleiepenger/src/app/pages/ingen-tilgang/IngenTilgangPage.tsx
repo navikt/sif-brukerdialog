@@ -60,6 +60,20 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
+        case IngenTilgangÅrsak.harUkjentArbeidsforhold:
+            return (
+                <BodyLong as="div" data-testid="ukjentArbeidsforhold">
+                    <p>
+                        Du kan ikke bruke denne tjenesten. Dette er fordi vi har finner ikke informasjon om et
+                        arbeidsforhold som er i saken din. Du må derfor sende en ny søknad, slik at saken og
+                        utbetalingene dine blir riktige.
+                    </p>
+                    <p>
+                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
+                        <SkrivTilOssLink />.
+                    </p>
+                </BodyLong>
+            );
         case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
             return (
                 <BodyLong as="div" data-testid="erSN">
