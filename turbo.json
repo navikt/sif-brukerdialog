@@ -12,6 +12,11 @@
             "outputs": ["dist/**"],
             "dependsOn": ["^build-package"]
         },
+        "build-app-clean": {
+            "cache": false,
+            "outputs": ["dist/**"],
+            "dependsOn": ["^build-package"]
+        },
         "test": {
             "outputs": [],
             "dependsOn": ["^build-package"]
