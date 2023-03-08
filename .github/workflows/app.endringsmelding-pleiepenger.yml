@@ -12,7 +12,7 @@ env:
     APP_NAME: 'endringsmelding-pleiepenger'
 
 jobs:
-    run-script-tests:
+    checkout-and-build:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -36,32 +36,17 @@ jobs:
             - name: Build packages (pnpm)
               run: pnpm build-package
 
+    run-script-tests:
+        runs-on: ubuntu-latest
+        needs: checkout-and-build
+        steps:
             - name: Run code tests
               run: pnpm test --filter=@navikt/endringsmelding-pleiepenger
 
     run-cypress-test:
         runs-on: ubuntu-latest
+        needs: checkout-and-build
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Installing pnpm
-              uses: pnpm/action-setup@v2
-              with:
-                  version: 7.28.0
-
-            - name: Set up NODE med pnpm
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-                  cache: 'pnpm'
-
-            - name: Install dependencies (pnpm)
-              run: pnpm i
-
-            - name: Build packages (pnpm)
-              run: pnpm build-package
-
             - name: Run cypress tests
               uses: cypress-io/github-action@v4 # use the explicit version number
               env:
