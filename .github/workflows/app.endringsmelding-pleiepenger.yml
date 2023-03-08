@@ -64,7 +64,7 @@ jobs:
               run: pnpm build-package
 
             - name: Run cypress tests
-              uses: cypress-io/github-action@v5.2 # use the explicit version number
+              uses: cypress-io/github-action@v5 # use the explicit version number
               env:
                   API_URL_INNSYN: http://localhost:8099
                   API_URL: http://localhost:8099
