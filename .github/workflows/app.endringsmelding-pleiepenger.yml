@@ -79,3 +79,4 @@ jobs:
                   project: ./apps/endringsmelding-pleiepenger/e2e
                   build: pnpm build-endringsmelding-pleiepenger
                   start: pnpm e2e-endringsmelding-pleiepenger
+                  record: true
