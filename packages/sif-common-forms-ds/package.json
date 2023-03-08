@@ -10,14 +10,13 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
-    "dependencies": {},
     "devDependencies": {
         "@formatjs/intl-pluralrules": "5.1.10",
+        "@navikt/ds-css": "2.6.0",
+        "@navikt/ds-react": "2.6.0",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/ds-css": "2.6.0",
-        "@navikt/ds-react": "2.6.0",
         "@storybook/addon-a11y": "6.5.16",
         "@storybook/addon-actions": "6.5.16",
         "@storybook/addon-essentials": "6.5.16",
@@ -28,6 +27,7 @@
         "@storybook/testing-library": "0.0.13",
         "@testing-library/react": "14.0.0",
         "@testing-library/user-event": "14.4.3",
+        "@types/jest": "^29.4.0",
         "@types/node": "18.14.6",
         "@types/react": "18.0.28",
         "@types/react-dom": "18.0.11",
