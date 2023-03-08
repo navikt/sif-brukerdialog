@@ -32,6 +32,10 @@ jobs:
 
             - name: Install dependencies (pnpm)
               run: pnpm i
+            
+            - name: Build packages (pnpm)
+              run: pnpm build-packages
+              
 
             - name: Run code tests
               run: pnpm test --filter=@navikt/endringsmelding-pleiepenger
@@ -52,6 +56,9 @@ jobs:
               with:
                 node-version: 16
                 cache: 'pnpm'
+
+            - name: Build packages (pnpm)
+              run: pnpm build-packages
 
             - name: Run cypress tests
               uses: cypress-io/github-action@v4 # use the explicit version number
