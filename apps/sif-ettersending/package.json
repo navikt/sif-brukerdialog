@@ -34,6 +34,7 @@
         "fs-extra": "11.1.0",
         "helmet": "6.0.1",
         "http-proxy-middleware": "2.0.6",
+        "intl": "1.2.5",
         "jose": "4.13.1",
         "jsdom": "21.1.0",
         "lodash": "^4.17.21",
