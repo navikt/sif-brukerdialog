@@ -16,8 +16,8 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/ds-css": "2.6.0",
-        "@navikt/ds-react": "2.6.0",
+        "@navikt/ds-css": "2.7.1",
+        "@navikt/ds-react": "2.7.1",
         "@storybook/addon-a11y": "6.5.16",
         "@storybook/addon-actions": "6.5.16",
         "@storybook/addon-essentials": "6.5.16",
@@ -51,7 +51,7 @@
         "react-router-dom": "6.8.2",
         "react-scripts": "5.0.1",
         "rimraf": "4.3.1",
-        "webpack": "5.75.0"
+        "webpack": "5.76.0"
     },
     "directories": {
         "lib": "lib"

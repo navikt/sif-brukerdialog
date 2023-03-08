@@ -15,8 +15,8 @@
         "@sanity/client": "5.2.2"
     },
     "devDependencies": {
-        "@navikt/ds-css": "2.6.0",
-        "@navikt/ds-react": "2.6.0",
+        "@navikt/ds-css": "2.7.1",
+        "@navikt/ds-react": "2.7.1",
         "@types/node": "18.14.6",
         "@types/react": "18.0.28",
         "@types/react-dom": "18.0.11",
