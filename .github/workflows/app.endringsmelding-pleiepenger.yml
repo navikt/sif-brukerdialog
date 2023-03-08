@@ -60,11 +60,11 @@ jobs:
             - name: Install dependencies (pnpm)
               run: pnpm install --frozen-lockfile
 
-            - name: Build packages (pnpm)
-              run: pnpm build-package
-
             - name: Run cypress tests
               uses: cypress-io/github-action@v5 # use the explicit version number
+              with:
+                  build: pnpm build-package
+                  project: ./apps/endringsmelding-pleiepenger
               env:
                   API_URL_INNSYN: http://localhost:8099
                   API_URL: http://localhost:8099
