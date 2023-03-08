@@ -26,16 +26,15 @@ jobs:
             - name: Set up NODE med pnpm
               uses: actions/setup-node@v3
               with:
-                node-version: 16
-                scope: '@navikt'
-                cache: 'pnpm'
+                  node-version: 16
+                  scope: '@navikt'
+                  cache: 'pnpm'
 
             - name: Install dependencies (pnpm)
               run: pnpm i
-            
+
             - name: Build packages (pnpm)
-              run: pnpm build-packages
-              
+              run: pnpm build-package
 
             - name: Run code tests
               run: pnpm test --filter=@navikt/endringsmelding-pleiepenger
@@ -54,11 +53,11 @@ jobs:
             - name: Set up NODE med pnpm
               uses: actions/setup-node@v3
               with:
-                node-version: 16
-                cache: 'pnpm'
+                  node-version: 16
+                  cache: 'pnpm'
 
             - name: Build packages (pnpm)
-              run: pnpm build-packages
+              run: pnpm build-package
 
             - name: Run cypress tests
               uses: cypress-io/github-action@v4 # use the explicit version number
@@ -82,4 +81,3 @@ jobs:
                   project: ./apps/endringsmelding-pleiepenger/e2e
                   build: pnpm build-endringsmelding-pleiepenger
                   start: pnpm e2e-endringsmelding-pleiepenger
-
