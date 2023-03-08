@@ -10,6 +10,7 @@ interface State {
     eventId: string | null;
     hasError: boolean;
     error: Error | null;
+    errorInfo?: any;
 }
 
 class ErrorBoundary extends React.Component<any, State> {
@@ -20,13 +21,15 @@ class ErrorBoundary extends React.Component<any, State> {
 
     componentDidCatch(error: Error | null, errorInfo: any): void {
         if (error && error.message !== 'window.hasFocus is not a function') {
-            this.setState({ ...this.state, hasError: true, error });
+            this.setState({ ...this.state, hasError: true, error, errorInfo });
             appSentryLogger.logError(error.message, errorInfo);
         }
     }
 
     render() {
         if (this.state.hasError) {
+            const { error, errorInfo } = this.state;
+            const debug = JSON.stringify({ error, errorInfo });
             return (
                 <Page
                     title={'Det oppstod en feil'}
@@ -40,6 +43,7 @@ class ErrorBoundary extends React.Component<any, State> {
                                 Du kan gå tilbake å prøve på nytt. Dersom feilen vedvarer, kan du prøve igjen litt
                                 senere.
                             </p>
+                            <p>[{debug}]</p>
                         </SifGuidePanel>
                     </Block>
                 </Page>
