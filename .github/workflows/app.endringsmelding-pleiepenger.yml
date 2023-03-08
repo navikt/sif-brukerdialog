@@ -39,6 +39,7 @@ jobs:
             - name: Run code tests
               run: pnpm test --filter=@navikt/endringsmelding-pleiepenger
 
+
     run-cypress-test:
         runs-on: ubuntu-latest
         container: cypress/included:12.7.0
@@ -61,15 +62,8 @@ jobs:
             - name: Install dependencies (pnpm)
               run: pnpm install --frozen-lockfile
 
-            - name: Upload screenshots
-              uses: actions/upload-artifact@v3
-              if: failure()
-              with:
-                  name: cypress-snapshots
-                  path: cypress/snapshots
-
             - name: Run cypress tests
-              uses: cypress-io/github-action@v5 # use the explicit version number
+              uses: cypress-io/github-action@v4 # use the explicit version number
               env:
                   API_URL_INNSYN: http://localhost:8099
                   API_URL: http://localhost:8099
@@ -87,4 +81,4 @@ jobs:
                   project: ./apps/endringsmelding-pleiepenger/e2e
                   build: pnpm build-endringsmelding-pleiepenger
                   start: pnpm e2e-endringsmelding-pleiepenger
-                  record: true
+

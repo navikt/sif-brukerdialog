@@ -1,7 +1,7 @@
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-    projectId: 'fnodxc',
+    // projectId: 'fnodxc',
     e2e: {
         testIsolation: false,
         // eslint-disable-next-line no-unused-vars
