@@ -11,6 +11,7 @@
         "url": "https://github.com/navikt/sif-common-utils/issues"
     },
     "dependencies": {
+        "@types/uuid": "9.0.1",
         "iso8601-duration": "2.1.1",
         "lodash": "4.17.21",
         "uuid": "9.0.0"

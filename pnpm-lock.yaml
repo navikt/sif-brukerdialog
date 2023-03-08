@@ -1226,6 +1226,7 @@ importers:
       '@types/node': 18.14.6
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
+      '@types/uuid': 9.0.1
       dayjs: 1.11.7
       eslint-config-custom: '*'
       iso8601-duration: 2.1.1
@@ -1235,6 +1236,7 @@ importers:
       react-scripts: 5.0.1
       uuid: 9.0.0
     dependencies:
+      '@types/uuid': 9.0.1
       iso8601-duration: 2.1.1
       lodash: 4.17.21
       uuid: 9.0.0
@@ -10854,7 +10856,6 @@ packages:
 
   /@types/uuid/9.0.1:
     resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
-    dev: true
 
   /@types/webpack-env/1.18.0:
     resolution: {integrity: sha512-56/MAlX5WMsPVbOg7tAxnYvNYMMWr/QJiIp6BxVSW3JJXUVzzOn64qW8TzQyMSqSUFM2+PVI4aUHcHOzIz/1tg==}
