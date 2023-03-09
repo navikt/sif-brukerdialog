@@ -39,7 +39,6 @@
         "formik": "2.2.9",
         "gh-pages": "5.0.0",
         "history": "5.3.0",
-        "intl": "1.2.5",
         "jsdom": "21.1.0",
         "react": "18.2.0",
         "react-collapse": "5.1.1",
@@ -53,6 +52,12 @@
         "rimraf": "4.4.0",
         "webpack": "5.76.0"
     },
+    "peerDependencies": {
+        "@navikt/ds-css": "2",
+        "@navikt/ds-react": "2",
+        "@navikt/sif-common-core-ds": "*",
+        "react-intl": "6.x"
+    },
     "jest": {
         "transformIgnorePatterns": [
             "<rootDir>/node_modules/.pnpm/(?!(@navikt)).*\\.js$"
@@ -65,11 +70,6 @@
         "package.json",
         "/lib"
     ],
-    "peerDependencies": {
-        "@navikt/ds-css": "2",
-        "@navikt/ds-react": "2",
-        "@navikt/sif-common-core-ds": "*"
-    },
     "repository": {
         "type": "git",
         "url": "https://github.com/navikt/sif-brukerdialog.git"
