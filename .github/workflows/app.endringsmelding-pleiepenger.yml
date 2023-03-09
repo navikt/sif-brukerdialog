@@ -1,4 +1,5 @@
 name: app.endringsmelding-pleiepenger
+run-name: Test endringsmeldinger-pleiepenger
 
 on:
     push:

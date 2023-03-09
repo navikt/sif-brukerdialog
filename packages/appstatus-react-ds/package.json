@@ -16,8 +16,8 @@
     },
     "devDependencies": {
         "@types/jest": "^29.4.0",
-        "@navikt/ds-css": "2.7.1",
-        "@navikt/ds-react": "2.7.1",
+        "@navikt/ds-css": "2.7.2",
+        "@navikt/ds-react": "2.7.2",
         "@types/node": "18.14.6",
         "@types/react": "18.0.28",
         "@types/react-dom": "18.0.11",
