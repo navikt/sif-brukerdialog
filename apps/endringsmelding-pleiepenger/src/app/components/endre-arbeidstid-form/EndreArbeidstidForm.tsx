@@ -171,7 +171,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                         data-testid="prosent-verdi"
                                         width="xs"
                                         description={getNormalarbeidstidDescription(intl, arbeidsuker)}
-                                        maxLength={4}
+                                        maxLength={5}
                                         validate={(value) => {
                                             return getNumberValidator({
                                                 required: true,
@@ -196,7 +196,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                             data-testid="timer-verdi"
                                             width="xs"
                                             description={getNormalarbeidstidDescription(intl, arbeidsuker)}
-                                            maxLength={4}
+                                            maxLength={5}
                                             validate={(value) => {
                                                 return getNumberValidator({
                                                     required: true,
