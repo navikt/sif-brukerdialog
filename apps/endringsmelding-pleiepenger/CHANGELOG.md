@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.7.0
+
+### Minor Changes
+
+-   6f6bf8d: Tillate 5 tegn i input for arbeidstimer og prosent, slik at en godtar f.eks. 20,75 timer. Endret fra 4 tegn.
+
 ## 1.6.1
 
 ### Patch Changes
