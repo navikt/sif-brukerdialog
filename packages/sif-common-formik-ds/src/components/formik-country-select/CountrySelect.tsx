@@ -72,7 +72,7 @@ const createCountryOptions = (
     const countries = getCountries();
 
     const getAlpha3Code = (alpha2Code: string) => {
-        const countryAlpha3Code = countries.alpha2ToAlpha3(alpha2Code);
+        const countryAlpha3Code = countries.alpha2ToAlpha3(alpha2Code).toUpperCase();
         return countryAlpha3Code === 'XKX' ? 'XXK' : countryAlpha3Code;
     };
 
