@@ -5,7 +5,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-core-ds",
     "types": "lib/index.d.js",
-    "version": "6.0.3",
+    "version": "6.0.4",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-core-ds/issues"
     },
@@ -26,11 +26,11 @@
     "devDependencies": {
         "@formatjs/intl-pluralrules": "5.1.10",
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "2.6.0",
+        "@navikt/ds-css": "2.7.2",
         "@navikt/ds-datepicker": "4.1.2",
-        "@navikt/ds-icons": "2.6.0",
-        "@navikt/ds-react": "2.6.0",
-        "@navikt/ds-tailwind": "2.6.0",
+        "@navikt/ds-icons": "2.7.2",
+        "@navikt/ds-react": "2.7.2",
+        "@navikt/ds-tailwind": "2.7.2",
         "@navikt/fnrvalidator": "1.3.0",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
         "@navikt/sif-common-formik-ds": "*",
@@ -53,7 +53,7 @@
         "copyfiles": "2.4.1",
         "dayjs": "1.11.7",
         "formik": "2.2.9",
-        "mini-css-extract-plugin": "2.7.2",
+        "mini-css-extract-plugin": "2.7.3",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
@@ -61,7 +61,7 @@
         "react-responsive": "9.0.2",
         "react-router-dom": "6.8.2",
         "react-scripts": "5.0.1",
-        "rimraf": "4.3.1",
+        "rimraf": "4.4.0",
         "sass": "1.58.3",
         "storybook-addon-sass-postcss": "0.1.3"
     },

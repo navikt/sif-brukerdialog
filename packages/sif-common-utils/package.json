@@ -38,7 +38,7 @@
         "/lib"
     ],
     "peerDependencies": {
-        "dayjs": "1.11.x"
+        "dayjs": "1.x"
     },
     "repository": {
         "type": "git",

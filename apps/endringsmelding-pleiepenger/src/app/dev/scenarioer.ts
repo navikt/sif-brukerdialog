@@ -27,6 +27,11 @@ export const scenarioer: Scenario[] = [
         harTilgang: true,
     },
     {
+        name: 'Debug',
+        value: 'debug',
+        harTilgang: true,
+    },
+    {
         name: 'Selvstendig næringsdrivende',
         value: 'selvstendig-næringsdrivende',
         harTilgang: false,

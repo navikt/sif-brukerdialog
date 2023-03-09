@@ -1,5 +1,27 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.7.0
+
+### Minor Changes
+
+-   6f6bf8d: Tillate 5 tegn i input for arbeidstimer og prosent, slik at en godtar f.eks. 20,75 timer. Endret fra 4 tegn.
+
+## 1.6.1
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Env toggle for å styre logging av debuginfo til sentry
+-   f033a9b: Patch-oppdatering av ds pakker
+-   Updated dependencies [ecd4b4f]
+-   Updated dependencies [f033a9b]
+    -   @navikt/sif-common-amplitude@2.9.3
+    -   @navikt/sif-common-formik-ds@0.11.5
+    -   @navikt/sif-common-soknad-ds@6.0.3
+    -   @navikt/sif-common-forms-ds@4.0.3
+    -   @navikt/sif-common-core-ds@6.0.4
+    -   @navikt/sif-common-sentry@0.9.6
+
 ## 1.6.0
 
 ### Minor Changes
