@@ -1,5 +1,15 @@
 # @navikt/sif-common-forms-ds
 
+## 4.0.3
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Patch-oppdatering av ds pakker
+-   Updated dependencies [ecd4b4f]
+-   Updated dependencies [f033a9b]
+    -   @navikt/sif-common-core-ds@6.0.4
+
 ## 4.0.2
 
 ### Patch Changes

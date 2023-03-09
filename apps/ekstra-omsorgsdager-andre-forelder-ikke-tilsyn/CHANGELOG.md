@@ -1,5 +1,19 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.2.5
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Patch-oppdatering av ds pakker
+-   Updated dependencies [ecd4b4f]
+-   Updated dependencies [f033a9b]
+    -   @navikt/sif-common-amplitude@2.9.3
+    -   @navikt/sif-common-formik-ds@0.11.5
+    -   @navikt/sif-common-soknad-ds@6.0.3
+    -   @navikt/sif-common-core-ds@6.0.4
+    -   @navikt/sif-common-sentry@0.9.6
+
 ## 1.2.4
 
 ### Patch Changes

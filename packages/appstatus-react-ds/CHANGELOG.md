@@ -1,5 +1,12 @@
 # @navikt/appstatus-react-ds
 
+## 2.0.3
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Patch-oppdatering av ds pakker
+
 ## 2.0.2
 
 ### Patch Changes
