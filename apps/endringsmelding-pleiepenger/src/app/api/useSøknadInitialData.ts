@@ -24,6 +24,7 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -105,10 +106,12 @@ const setupSøknadInitialData = async (
         }
         if (k9saker.length === 1) {
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, endringsperiode);
-            appSentryLogger.logInfo(
-                'debug.maskedSakInfo',
-                JSON.stringify(getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, endringsperiode))
-            );
+            if (getEnvironmentVariable('DEBUG') === 'true') {
+                appSentryLogger.logInfo(
+                    'debug.maskedSakInfo',
+                    JSON.stringify(getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, endringsperiode))
+                );
+            }
             return sak;
         }
         return undefined;
@@ -183,22 +186,24 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     årsak: resultat.årsak,
                     søker,
                 });
-                if (k9saker.length === 1) {
-                    appSentryLogger.logInfo(
-                        'IkkeTilgangSakInfo',
-                        JSON.stringify({
-                            årsak: resultat.årsak,
-                            sak: maskK9Sak(k9saker[0]),
-                        })
-                    );
-                }
-                if (k9saker.length > 1) {
-                    appSentryLogger.logInfo(
-                        'IkkeTilgangSakInfo',
-                        JSON.stringify({
-                            årsak: resultat.årsak,
-                        })
-                    );
+                if (getEnvironmentVariable('DEBUG') === 'true') {
+                    if (k9saker.length === 1) {
+                        appSentryLogger.logInfo(
+                            'IkkeTilgangSakInfo',
+                            JSON.stringify({
+                                årsak: resultat.årsak,
+                                sak: maskK9Sak(k9saker[0]),
+                            })
+                        );
+                    }
+                    if (k9saker.length > 1) {
+                        appSentryLogger.logInfo(
+                            'IkkeTilgangSakInfo',
+                            JSON.stringify({
+                                årsak: resultat.årsak,
+                            })
+                        );
+                    }
                 }
                 return Promise.resolve();
             }
