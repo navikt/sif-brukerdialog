@@ -1,5 +1,4 @@
 name: (helper) Deploy application to dev
-run-name: Deploy ${{inputs.app-name}} to dev
 
 on:
     workflow_call:
