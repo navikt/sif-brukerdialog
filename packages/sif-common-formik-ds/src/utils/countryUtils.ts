@@ -14,6 +14,9 @@ export const getLocaleKey = (locale: string): string => {
 };
 
 export const getCountryName = (alphaCode: string, locale: string): string => {
+    if (alphaCode === 'XXK') {
+        alphaCode = 'XKX';
+    }
     return countries.getName(alphaCode, getLocaleKey(locale));
 };
 

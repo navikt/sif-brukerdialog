@@ -71,6 +71,11 @@ const createCountryOptions = (
     const lang = locale === 'en' ? 'nn' : 'nb';
     const countries = getCountries();
 
+    const getAlpha3Code = (alpha2Code: string) => {
+        const countryAlpha3Code = countries.alpha2ToAlpha3(alpha2Code);
+        return countryAlpha3Code === 'XKX' ? 'XXK' : countryAlpha3Code;
+    };
+
     const names: [string, any][] = Object.entries(countries.getNames(lang));
     return names
         .sort((a: string[], b: string[]) => a[1].localeCompare(b[1], lang))
@@ -80,7 +85,7 @@ const createCountryOptions = (
         .map((countryOptionValue: string[]) => (
             <option
                 key={countryOptionValue[0]}
-                value={useAlpha3Code ? countries.alpha2ToAlpha3(countryOptionValue[0]) : countryOptionValue[0]}>
+                value={useAlpha3Code ? getAlpha3Code(countryOptionValue[0]) : countryOptionValue[0]}>
                 {countryOptionValue[1]}
             </option>
         ));
@@ -113,7 +118,7 @@ class CountrySelect extends React.Component<Props> {
     }
 
     render() {
-        // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
         const { onChange, name, showOnlyEuAndEftaCountries, locale, useAlpha3Code, ...restProps } = this.props;
         return (
             <Select name={name} {...restProps} onChange={(e) => onChange(e.target.value)} autoComplete="off">
