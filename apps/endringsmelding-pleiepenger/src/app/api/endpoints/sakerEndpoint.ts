@@ -1,3 +1,4 @@
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { verifyK9Format, K9Format, isK9FormatError, K9FormatArbeidstid } from '../../types/k9Format';
 import { K9Sak, UgyldigK9SakFormat } from '../../types/K9Sak';
 import appSentryLogger from '../../utils/appSentryLogger';
@@ -40,8 +41,11 @@ const sakerEndpoint = {
                         if (parsedSak.ytelse.søknadsperioder.length > 0) {
                             k9saker.push(parsedSak);
                         }
-                        appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
+                        if (getEnvironmentVariable('DEBUG') === 'true') {
+                            appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
+                        }
                     } else {
+                        /** Beholder denne enn så lenge, selv om DEBUG !== true */
                         appSentryLogger.logInfo('debug.k9format.ikkeGyldig', JSON.stringify(maskK9FormatSak(sak)));
                     }
                 } catch (error) {
