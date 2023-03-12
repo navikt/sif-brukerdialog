@@ -1,12 +1,27 @@
 import {
+    DateRange,
     durationUtils,
     ISODateRangeToDateRange,
     ISODateToDate,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { K9Format, K9FormatArbeidstid, K9FormatArbeidstidInfo, K9FormatBarn } from '../types/k9Format';
-import { K9Sak, K9SakArbeidstid, K9SakArbeidstidInfo, K9SakArbeidstidPeriodeMap, K9SakBarn } from '../types/K9Sak';
+import {
+    K9Format,
+    K9FormatArbeidstid,
+    K9FormatArbeidstidInfo,
+    K9FormatBarn,
+    K9FormatLovbestemtFerierPerioder,
+    K9FormatUtenlandsoppholdPerioder,
+} from '../types/k9Format';
+import {
+    K9Sak,
+    K9SakArbeidstid,
+    K9SakArbeidstidInfo,
+    K9SakArbeidstidPeriodeMap,
+    K9SakBarn,
+    K9SakUtenlandsopphold,
+} from '../types/K9Sak';
 
 /**
  * Henter ut informasjon om barn fra k9sak
@@ -87,6 +102,33 @@ export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakAr
             : undefined,
     };
 };
+
+/**
+ *
+ * @param arbeidstid Parse utenlandsopphold
+ * @returns
+ */
+export const parseK9FormatUtenlandsopphold = (
+    utenlandsoppholdMap: K9FormatUtenlandsoppholdPerioder
+): K9SakUtenlandsopphold[] => {
+    return Object.keys(utenlandsoppholdMap).map((key) => {
+        const utenlandsopphold = utenlandsoppholdMap[key];
+        return {
+            id: key,
+            periode: ISODateRangeToDateRange(key),
+            land: utenlandsopphold.land,
+            årsak: utenlandsopphold.årsak,
+        };
+    });
+};
+/**
+ *
+ * @param arbeidstid Parse lovbestemtFerie
+ * @returns DateRange[]
+ */
+export const parseK9FormatLovbestemtFerie = (perioder: K9FormatLovbestemtFerierPerioder): DateRange[] => {
+    return Object.keys(perioder).map(ISODateRangeToDateRange);
+};
 /**
  * Parser K9Format
  * @param data data mottat fra backend
@@ -110,7 +152,13 @@ export const parseK9Format = (data: K9Format): K9Sak => {
                 norskIdentitetsnummer: barn.identitetsnummer,
                 fødselsdato: barn.fødselsdato ? ISODateToDate(barn.fødselsdato) : undefined,
             },
-            søknadsperioder: ytelse.søknadsperiode.map((periode) => ISODateRangeToDateRange(periode)),
+            søknadsperioder: ytelse.søknadsperiode.map(ISODateRangeToDateRange),
+            lovbestemtFerie: {
+                perioder: parseK9FormatLovbestemtFerie(ytelse.lovbestemtFerie.perioder),
+            },
+            utenlandsopphold: {
+                perioder: parseK9FormatUtenlandsopphold(data.søknad.ytelse.utenlandsopphold.perioder),
+            },
             opptjeningAktivitet: {
                 frilanser: ytelse.opptjeningAktivitet.frilanser
                     ? {

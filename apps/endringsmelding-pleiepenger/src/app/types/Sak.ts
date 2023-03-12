@@ -1,5 +1,6 @@
-import { DateRange, Duration, ISODate, ISODateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, Duration, ISODate } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver } from './Arbeidsgiver';
+import { DateRangeMap } from './DateRangeMap';
 import { K9SakBarn } from './K9Sak';
 
 export enum ArbeidAktivitetType {
@@ -31,9 +32,7 @@ export interface Arbeidsuke {
     antallDagerMedArbeidstid: number;
 }
 
-export interface ArbeidsukeMap {
-    [key: ISODateRange]: Arbeidsuke;
-}
+export type ArbeidsukeMap = DateRangeMap<Arbeidsuke>;
 
 export interface PeriodeMedArbeidstid {
     periode: DateRange;

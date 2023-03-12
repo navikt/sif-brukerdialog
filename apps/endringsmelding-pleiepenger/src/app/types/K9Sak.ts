@@ -1,22 +1,13 @@
+import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
 import { DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils';
-
-export interface K9SakBarn {
-    fødselsdato: Date;
-    fornavn: string;
-    mellomnavn?: string;
-    etternavn: string;
-    aktørId: string;
-    identitetsnummer: string;
-}
+import { DateRangeMap } from './DateRangeMap';
 
 export interface K9SakArbeidstidPeriode {
     jobberNormaltTimerPerDag: Duration;
     faktiskArbeidTimerPerDag: Duration;
 }
 
-export interface K9SakArbeidstidPeriodeMap {
-    [key: ISODateRange]: K9SakArbeidstidPeriode;
-}
+export type K9SakArbeidstidPeriodeMap = DateRangeMap<K9SakArbeidstidPeriode>;
 
 export interface K9SakArbeidstidInfo {
     perioder: K9SakArbeidstidPeriodeMap;
@@ -48,10 +39,25 @@ interface K9SakOpptjeningAktivitetFrilanser {
     jobberFortsattSomFrilanser: boolean;
 }
 
+interface K9SakLovbestemtFerie {
+    perioder: DateRange[];
+}
+
+export interface K9SakUtenlandsopphold {
+    id: ISODateRange;
+    periode: DateRange;
+    land: string;
+    årsak: UtenlandsoppholdÅrsak;
+}
+
 interface K9SakYtelse {
     type: 'PLEIEPENGER_SYKT_BARN';
     barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
     søknadsperioder: DateRange[];
+    lovbestemtFerie: K9SakLovbestemtFerie;
+    utenlandsopphold: {
+        perioder: K9SakUtenlandsopphold[];
+    };
     opptjeningAktivitet: {
         frilanser?: K9SakOpptjeningAktivitetFrilanser;
     };

@@ -1,4 +1,5 @@
-import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib';
+import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
+import { DateRangeMap } from '../DateRangeMap';
 
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;
@@ -8,9 +9,7 @@ export type ArbeidstidPeriodeApiData = {
     _opprinneligFaktiskPerDag: ISODuration;
 };
 
-export type ArbeidstidPeriodeApiDataMap = {
-    [key: ISODateRange]: ArbeidstidPeriodeApiData;
-};
+export type ArbeidstidPeriodeApiDataMap = DateRangeMap<ArbeidstidPeriodeApiData>;
 
 export interface ArbeidstakerApiData {
     norskIdentitetsnummer?: string;

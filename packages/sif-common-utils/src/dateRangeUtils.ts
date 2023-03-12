@@ -565,6 +565,7 @@ export const getIsoWeekDateRangeForDate = (date: Date): DateRange => {
 interface ISODateRangeMap {
     [key: ISODateRange]: any;
 }
+
 export const getDateRangesFromISODateRangeMap = (map: ISODateRangeMap): DateRange[] => {
     return Object.keys(map).map((isoDateRange) => dateRangeUtils.ISODateRangeToDateRange(isoDateRange));
 };
