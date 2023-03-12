@@ -6,6 +6,7 @@ import { Søknadsdata } from './søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from './TimerEllerProsent';
 import { K9Sak } from './K9Sak';
 import { DateRange } from '@navikt/sif-common-utils/lib';
+import { EndringType } from './EndringType';
 
 export interface SøknadContextState {
     versjon: string;
@@ -18,6 +19,7 @@ export interface SøknadContextState {
     søknadRoute?: SøknadRoutes;
     endringsmeldingSendt?: boolean;
     børMellomlagres?: boolean;
+    hvaSkalEndres: EndringType[];
     inputPreferanser: SøknadContextInputPreferanse;
 }
 

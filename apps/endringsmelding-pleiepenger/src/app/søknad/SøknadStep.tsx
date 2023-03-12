@@ -16,20 +16,22 @@ import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { Sak } from '../types/Sak';
 import { StepId } from './config/StepId';
 import { getSøknadStepConfig } from './config/søknadStepConfig';
+import { EndringType } from '../types/EndringType';
 
 interface Props {
     stepId: StepId;
     sak: Sak;
+    hvaSkalEndres: EndringType[];
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, children }) => {
+const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, hvaSkalEndres, children }) => {
     const intl = useIntl();
     const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
-    const stepConfig = getSøknadStepConfig(sak);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
 
     useLogSidevisning(stepId);
 

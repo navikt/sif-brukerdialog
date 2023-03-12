@@ -4,6 +4,7 @@ import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
 import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { EndringType } from '../../types/EndringType';
 import { K9Sak } from '../../types/K9Sak';
 import { Søker } from '../../types/Søker';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -15,6 +16,7 @@ export type SøknadStatePersistence = {
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
+    hvaSkalEndres: EndringType[];
     metadata: {
         updatedTimestamp: string;
     };
@@ -55,13 +57,14 @@ export const isPersistedSøknadStateValid = (
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søknadsdata, søknadRoute, barnAktørId }, søker) => {
+    update: ({ søknadsdata, søknadRoute, barnAktørId, hvaSkalEndres }, søker) => {
         return persistSetup.update({
             versjon: APP_VERSJON,
             søknadHashString: createHashString({ søker, barnAktørId }),
             barnAktørId,
             søknadsdata,
             søknadRoute,
+            hvaSkalEndres,
             metadata: {
                 updatedTimestamp: new Date().toISOString(),
             },

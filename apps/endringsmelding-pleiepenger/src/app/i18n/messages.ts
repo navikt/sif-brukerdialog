@@ -2,16 +2,19 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const defaultMessages: MessageFileFormat = {
     nb: {
-        'application.title': 'Endringsmelding - jobb i pleiepengeperioden',
+        'application.title': 'Endringsmelding - jobb i pleiepengeperioden - Endringsmelding pleiepenger sykt barn',
         'application.bannerTitle': 'Endringsmelding - jobb i pleiepengeperioden',
 
-        'step.aktivitet.pageTitle': 'Velg arbeidsforhold',
+        'step.aktivitet.pageTitle': 'Velg arbeidsforhold - Endringsmelding pleiepenger sykt barn',
         'step.aktivitet.stepTitle': 'Velg arbeidsforhold',
 
-        'step.arbeidstid.pageTitle': 'Jobb i pleiepengeperioden',
+        'step.arbeidstid.pageTitle': 'Jobb i pleiepengeperioden - Endringsmelding pleiepenger sykt barn',
         'step.arbeidstid.stepTitle': 'Jobb i pleiepengeperioden',
 
-        'step.oppsummering.pageTitle': 'Oppsummering',
+        'step.lovbestemt-ferie.pageTitle': 'Lovbestemt ferie - Endringsmelding pleiepenger sykt barn',
+        'step.lovbestemt-ferie.stepTitle': 'Lovbestemt ferie',
+
+        'step.oppsummering.pageTitle': 'Oppsummering - Endringsmelding pleiepenger sykt barn',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
         'steg.footer.avbryt': 'Avbryt og slett melding om endring',

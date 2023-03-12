@@ -18,8 +18,11 @@ const envSettings = (MSW) => {
         MSW: '${MSW || process.env.MSW}',
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
-        VELG_SAK: '${process.env.VELG_SAK}',
         IMAGE: '${process.env.IMAGE}',
+        FEATURE_VELG_SAK: '${process.env.FEATURE_VELG_SAK}',
+        FEATURE_ENDRE_ARBEIDSTID: '${process.env.FEATURE_ENDRE_ARBEIDSTID}',
+        FEATURE_ENDRE_LOVBESTEMT_FERIE: '${process.env.FEATURE_ENDRE_LOVBESTEMT_FERIE}',
+        FEATURE_ENDRE_UTENLANDSOPPHOLD: '${process.env.FEATURE_ENDRE_UTENLANDSOPPHOLD}',
     };`
         .trim()
         .replace(/ /g, '');

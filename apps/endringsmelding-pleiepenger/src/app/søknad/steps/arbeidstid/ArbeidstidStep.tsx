@@ -39,11 +39,11 @@ const ArbeidstidStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak },
+        state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const stepConfig = getSøknadStepConfig(sak);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -92,7 +92,7 @@ const ArbeidstidStep = () => {
     };
 
     return (
-        <SøknadStep stepId={stepId} sak={sak}>
+        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">

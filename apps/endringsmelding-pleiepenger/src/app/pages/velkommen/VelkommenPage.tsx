@@ -1,6 +1,7 @@
-import { Heading, Ingress } from '@navikt/ds-react';
-import React from 'react';
+import { Checkbox, CheckboxGroup, Heading, Ingress } from '@navikt/ds-react';
+import React, { useState } from 'react';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -14,6 +15,8 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { Sak } from '../../types/Sak';
 import { getAktiviteterSomKanEndres, getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
+import { EndringType } from '../../types/EndringType';
+import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 
 const VelkommenPage = () => {
     const {
@@ -22,22 +25,21 @@ const VelkommenPage = () => {
     } = useSøknadContext();
 
     const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
+    const [hvaSkalEndres, setHvaSkalEndres] = useState<EndringType[]>([]);
 
     const { logSoknadStartet, logInfo } = useAmplitudeInstance();
 
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
-    const startSøknad = (sak: Sak) => {
-        const steps = getSøknadSteps(sak);
+    const startSøknad = (sak: Sak, hvaSkalEndres: EndringType[] = [EndringType.arbeidstid]) => {
+        const steps = getSøknadSteps(sak, hvaSkalEndres);
         logSoknadStartet(SKJEMANAVN);
         logInfo({
             antallAktiviteterSomKanEndres: aktiviteterSomKanEndres.length,
             erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerArktiviteter.length > 0,
             erFrilanser: sak.arbeidAktiviteter.frilanser !== undefined,
         });
-        dispatch(
-            actionsCreator.startSøknad(sak, aktiviteterSomKanEndres.length === 1 ? aktiviteterSomKanEndres : undefined)
-        );
+        dispatch(actionsCreator.startSøknad(sak, aktiviteterSomKanEndres, hvaSkalEndres));
         dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(steps[0])));
     };
 
@@ -65,19 +67,23 @@ const VelkommenPage = () => {
                 </Heading>
                 <Ingress as="div">
                     <p>
-                        Du har pleiepenger for <strong>{barnetsNavn}</strong>. Her melder du fra om hvor mye du jobber i
-                        perioden du har pleiepenger.
+                        Du har pleiepenger for <strong>{barnetsNavn}</strong>. Her kan du melde fra om endringer som
+                        gjelder perioden hvor du har pleiepenger.
                     </p>
-                    <p>Arbeidsforhold:</p>
-                    <InfoList>
-                        {aktiviteterSomKanEndres.map((aktivitet, index) => {
-                            return (
-                                <li key={index}>
-                                    <strong>{getArbeidAktivitetNavn(aktivitet)}</strong>
-                                </li>
-                            );
-                        })}
-                    </InfoList>
+                    {1 + 1 === 3 && (
+                        <>
+                            <p>Arbeidsforhold:</p>
+                            <InfoList>
+                                {aktiviteterSomKanEndres.map((aktivitet, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <strong>{getArbeidAktivitetNavn(aktivitet)}</strong>
+                                        </li>
+                                    );
+                                })}
+                            </InfoList>
+                        </>
+                    )}
                     {/* <p>
                         Dersom det mangler et arbeidsforhold, kan du ta{' '}
                         <Link href={getLenker().kontaktOss}>kontakt med oss</Link>.
@@ -86,7 +92,45 @@ const VelkommenPage = () => {
                 <OmSøknaden />
             </SifGuidePanel>
 
-            <SamtykkeForm onValidSubmit={() => startSøknad(sak)} submitButtonLabel="Start" />
+            <Block margin="xl">
+                <Heading level={'2'} size="medium">
+                    Hva ønsker du å endre?
+                </Heading>
+                <Block>
+                    <CheckboxGroup
+                        legend="Velg hva du ønsker å endre"
+                        value={hvaSkalEndres}
+                        name="hvaSkalEndres"
+                        onChange={(values) => {
+                            setHvaSkalEndres(values);
+                        }}>
+                        {isFeatureEnabled(Feature.FEATURE_ENDRE_ARBEIDSTID) && (
+                            <Checkbox
+                                value={EndringType.arbeidstid}
+                                description={'Endre hvor mye du jobber i perioden med pleiepenger'}>
+                                Arbeidstid
+                            </Checkbox>
+                        )}
+                        {isFeatureEnabled(Feature.FEATURE_ENDRE_LOVBESTEMT_FERIE) && (
+                            <Checkbox
+                                value={EndringType.ferie}
+                                description="Endre lovebestemt ferie i perioden med pleiepenger">
+                                Lovbestemt ferie
+                            </Checkbox>
+                        )}
+
+                        {isFeatureEnabled(Feature.FEATURE_ENDRE_UTENLANDSOPPHOLD) && (
+                            <Checkbox
+                                value={EndringType.utenlandsopphold}
+                                description="Endre utenlandsopphold i perioden med pleiepenger">
+                                Utenlandsopphold i perioden
+                            </Checkbox>
+                        )}
+                    </CheckboxGroup>
+                </Block>
+            </Block>
+
+            <SamtykkeForm onValidSubmit={() => startSøknad(sak, hvaSkalEndres)} submitButtonLabel="Start" />
         </Page>
     );
 };

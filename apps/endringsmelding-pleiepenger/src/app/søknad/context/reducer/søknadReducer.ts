@@ -11,7 +11,7 @@ const initialSøknadsdata: Søknadsdata = {
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
-            const { aktiviteterSomSkalEndres, sak } = action.payload;
+            const { aktiviteterSomSkalEndres, sak, hvaSkalEndres } = action.payload;
             return {
                 ...state,
                 søknadsdata: {
@@ -22,6 +22,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         : undefined,
                 },
                 sak,
+                hvaSkalEndres,
                 søknadRoute: SøknadRoutes.ARBEIDSTID,
                 børMellomlagres: true,
             };

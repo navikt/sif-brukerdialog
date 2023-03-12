@@ -117,13 +117,16 @@ const setupSøknadInitialData = async (
         return undefined;
     };
 
+    const sak = getInitialSak();
+
     return Promise.resolve({
         versjon: APP_VERSJON,
         endringsperiode,
         søker,
         k9saker,
-        sak: getInitialSak(),
+        sak,
         arbeidsgivere,
+        hvaSkalEndres: sak && persistedSøknadStateIsValid ? lagretSøknadState.hvaSkalEndres : [],
         søknadsdata: {} as any,
         inputPreferanser: {
             timerEllerProsent: TimerEllerProsent.PROSENT,

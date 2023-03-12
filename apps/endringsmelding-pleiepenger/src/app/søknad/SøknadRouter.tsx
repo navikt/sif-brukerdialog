@@ -16,6 +16,7 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import AktivitetStep from './steps/aktivitet/AktivitetStep';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import LovbestemtFerieStep from './steps/lovbestent-ferie/LovbestemtFerieStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -71,6 +72,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoute[StepId.VELKOMMEN]} element={<VelkommenPage />} />
             <Route path={SøknadStepRoute[StepId.AKTIVITET]} element={<AktivitetStep />} />
             <Route path={SøknadStepRoute[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
+            <Route path={SøknadStepRoute[StepId.LOVBESTEMT_FERIE]} element={<LovbestemtFerieStep />} />
             <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route path={SøknadStepRoute[StepId.MELDING_SENDT]} element={<KvitteringPage />} />
             <Route

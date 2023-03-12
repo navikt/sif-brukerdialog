@@ -36,10 +36,10 @@ const AktivitetStep = () => {
     const intl = useIntl();
 
     const {
-        state: { søknadsdata, sak },
+        state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const stepConfig = getSøknadStepConfig(sak);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -62,7 +62,7 @@ const AktivitetStep = () => {
     );
 
     return (
-        <SøknadStep stepId={stepId} sak={sak}>
+        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
             <FormikWrapper
                 initialValues={getAktivitetStepInitialValues(søknadsdata, stepFormValues?.aktivitet)}
                 onSubmit={handleSubmit}
