@@ -1,5 +1,13 @@
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
+import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
+import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
+import PeriodeTekst, { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -15,15 +23,12 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
-import { DateRange } from '@navikt/sif-common-utils/lib';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
 }
 export interface LovbestemtFerieFormValues {
-    [LovbestemtFerieFormFields.perioder]: DateRange[];
+    [LovbestemtFerieFormFields.perioder]: Ferieuttak[];
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<LovbestemtFerieFormFields, LovbestemtFerieFormValues>();
@@ -33,7 +38,7 @@ const LovbestemtFerieStep = () => {
     const intl = useIntl();
 
     const {
-        state: { søknadsdata, sak, hvaSkalEndres },
+        state: { søknadsdata, sak, hvaSkalEndres, endringsperiode },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
@@ -58,10 +63,20 @@ const LovbestemtFerieStep = () => {
         }
     );
 
+    const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
+
     return (
         <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
+            <SifGuidePanel>
+                <>
+                    <BodyLong as="div">
+                        <p>Nedenfor ser du ferier som er registrert. Du kan legge til nye, endre eller fjerne.</p>
+                    </BodyLong>
+                </>
+            </SifGuidePanel>
+
             <FormikWrapper
-                initialValues={getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie)}
+                initialValues={initialValues}
                 onSubmit={handleSubmit}
                 renderForm={() => (
                     <>
@@ -72,7 +87,26 @@ const LovbestemtFerieStep = () => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            Ferier
+                            <Block margin="xxl">
+                                <Heading level="2" size="small" spacing={true}>
+                                    Registrert ferie i perioden{' '}
+                                    <PeriodeTekst periode={endringsperiode} compact={false} />
+                                </Heading>
+                            </Block>
+                            <Block padBottom="xl">
+                                <FerieuttakListAndDialog<LovbestemtFerieFormFields>
+                                    name={LovbestemtFerieFormFields.perioder}
+                                    labels={{
+                                        addLabel: 'Legg til ferie',
+                                        modalTitle: 'Lovbestemt ferie',
+                                        emptyListText: `Ingen ferie er registrert i perioden ${getPeriodeTekst(
+                                            endringsperiode
+                                        )}`,
+                                    }}
+                                    minDate={endringsperiode.from}
+                                    maxDate={endringsperiode.to}
+                                />
+                            </Block>
                         </Form>
                     </>
                 )}

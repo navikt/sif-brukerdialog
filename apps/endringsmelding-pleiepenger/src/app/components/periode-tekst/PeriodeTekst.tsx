@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 
 interface Props {
     periode: DateRange;
+    compact?: boolean;
 }
 
 export const getPeriodeTekst = ({ from, to }: DateRange, compact = true): string => {
@@ -18,6 +19,6 @@ export const getPeriodeTekst = ({ from, to }: DateRange, compact = true): string
     return `${fromString} - ${toString}`;
 };
 
-const PeriodeTekst: React.FunctionComponent<Props> = ({ periode }) => <>{getPeriodeTekst(periode)}</>;
+const PeriodeTekst: React.FunctionComponent<Props> = ({ periode, compact }) => <>{getPeriodeTekst(periode, compact)}</>;
 
 export default PeriodeTekst;

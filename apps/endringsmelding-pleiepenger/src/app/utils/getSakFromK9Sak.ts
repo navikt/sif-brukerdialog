@@ -455,6 +455,9 @@ export const getSakFromK9Sak = (k9sak: K9Sak, arbeidsgivere: Arbeidsgiver[], end
                 endringsperiode
             ),
         },
+        lovbestemtFerie: {
+            perioder: [...k9sak.ytelse.lovbestemtFerie.perioder],
+        },
     };
 };
 

@@ -70,9 +70,14 @@ export interface ArbeidAktiviteter {
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
 
+export interface LovbestemtFerie {
+    perioder: DateRange[];
+}
+
 export interface Sak {
     barn: K9SakBarn;
     arbeidAktiviteter: ArbeidAktiviteter;
+    lovbestemtFerie: LovbestemtFerie;
     ytelse: {
         type: string;
     };

@@ -38,7 +38,7 @@ interface K9FormatUtenlandsopphold {
     årsak: UtenlandsoppholdÅrsak;
 }
 
-export type K9FormatLovbestemtFerierPerioder = DateRangeMap<undefined>;
+export type K9FormatLovbestemtFerierPerioder = DateRangeMap<never>;
 
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;
@@ -239,13 +239,11 @@ const verifyK9FormatTilsynsordningPerioder = (perioder: any): perioder is K9Form
 };
 
 const verifyK9FormatLovbestemtFerie = (ferie: any): boolean => {
-    if (isObject(ferie) && ferie.perioder) {
-        if (isArray(ferie.perioder)) {
-            if (itemsAreValidISODateRanges(ferie.perioder) === false) {
-                throw 'verifyK9FormatLovbestemtFerie - invalid dateRange';
-            }
-            return true;
+    if (isObject(ferie) && isObject(ferie.perioder)) {
+        if (itemsAreValidISODateRanges(Object.keys(ferie.perioder)) === false) {
+            throw 'verifyK9FormatLovbestemtFerie - invalid dateRange';
         }
+        return true;
     }
     throw 'verifyK9FormatLovbestemtFerie - invalid format';
 };

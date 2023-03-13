@@ -40,7 +40,7 @@
                     }
                 },
                 "lovbestemtFerie": {
-                    "perioder": ["2019-02-21/2019-05-21"]
+                    "perioder": { "2023-01-01/2023-01-10": {} }
                 },
                 "arbeidstid": {
                     "arbeidstakerList": [

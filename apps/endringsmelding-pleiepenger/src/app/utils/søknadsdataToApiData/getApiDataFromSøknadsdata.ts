@@ -138,8 +138,8 @@ const getArbeidstidApiDataFromSøknadsdata = (
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak): SøknadApiData | undefined => {
-    const { id, arbeidstid, aktivitet } = søknadsdata;
-    if (!arbeidstid || !aktivitet) {
+    const { id, arbeidstid, aktivitet, lovbestemtFerie } = søknadsdata;
+    if ((!arbeidstid || !aktivitet) && !lovbestemtFerie) {
         return undefined;
     }
     return {
@@ -153,7 +153,10 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
                 fødselsdato: sak.barn.fødselsdato ? dateToISODate(sak.barn.fødselsdato) : undefined,
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
-            arbeidstid: getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, aktivitet),
+            arbeidstid:
+                arbeidstid && aktivitet
+                    ? getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, aktivitet)
+                    : undefined,
             dataBruktTilUtledning: {
                 soknadDialogCommitSha: getCommitShaFromEnv() || '',
             },

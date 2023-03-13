@@ -20,6 +20,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     aktivitet: aktiviteterSomSkalEndres
                         ? { aktiviteterSomSkalEndres: aktiviteterSomSkalEndres.map((a) => a.id) }
                         : undefined,
+                    lovbestemtFerie: { ...sak.lovbestemtFerie },
                 },
                 sak,
                 hvaSkalEndres,
@@ -67,6 +68,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     søknadsdata: {
                         ...state.søknadsdata,
                         arbeidstid: {
+                            ...action.payload,
+                        },
+                    },
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        lovbestemtFerie: {
                             ...action.payload,
                         },
                     },

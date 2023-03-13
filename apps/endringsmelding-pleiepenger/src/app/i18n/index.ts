@@ -1,6 +1,7 @@
 import { allCommonMessages } from '@navikt/sif-common-core-ds/lib/i18n/allCommonMessages';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 import soknadIntlMessages from '@navikt/sif-common-soknad-ds/lib/soknad-intl-messages/soknadIntlMessages';
+import ferieuttakMessages from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/ferieuttakMessages';
 import { endreArbeidstidMessages } from '../components/endre-arbeidstid-form/endreArbeidstidMessages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
@@ -22,6 +23,7 @@ const bokmålstekster = {
     ...aktivitetStepMessages.nb,
     ...oppsummeringStepMessages.nb,
     ...sifCommonSoknadOverrideMessages.nb,
+    ...ferieuttakMessages.nb,
     ...defaultMessages.nb,
 };
 

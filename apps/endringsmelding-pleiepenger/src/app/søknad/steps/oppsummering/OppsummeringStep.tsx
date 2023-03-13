@@ -75,12 +75,14 @@ const OppsummeringStep = () => {
     }
 
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
-        apiData.ytelse.arbeidstid;
+        apiData.ytelse.arbeidstid || {};
 
     const arbeidstidKolonneTittel = 'Endret arbeidstid';
 
     const harEndringer =
-        arbeidstakerList.length > 0 || frilanserArbeidstidInfo || selvstendigNæringsdrivendeArbeidstidInfo;
+        (arbeidstakerList && arbeidstakerList.length > 0) ||
+        frilanserArbeidstidInfo ||
+        selvstendigNæringsdrivendeArbeidstidInfo;
 
     if (!harEndringer) {
         return (
