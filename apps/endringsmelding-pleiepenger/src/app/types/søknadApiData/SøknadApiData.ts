@@ -28,7 +28,13 @@ export interface ArbeidstidApiData {
     };
 }
 
+export enum LovbestemtFerieEndringType {
+    'ny' = 'ny',
+    'slettet' = 'slettet',
+}
+
 export type LovbestemtFerieApiData = {
+    perioder: ISODateRangeMap<LovbestemtFerieEndringType>;
     dagerLagtTil: ISODate[];
     dagerFjernet: ISODate[];
     perioderLagtTil: ISODateRangeMap<object>;

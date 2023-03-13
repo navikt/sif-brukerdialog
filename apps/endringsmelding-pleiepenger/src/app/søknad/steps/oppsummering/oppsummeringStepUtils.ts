@@ -24,5 +24,5 @@ export const harEndringerILovbestemtFerie = (lovbestemtFerie?: LovbestemtFerieAp
     if (!lovbestemtFerie) {
         return false;
     }
-    return lovbestemtFerie.dagerFjernet.length > 0 || lovbestemtFerie.dagerLagtTil.length > 0;
+    return Object.keys(lovbestemtFerie.perioder).length > 0;
 };

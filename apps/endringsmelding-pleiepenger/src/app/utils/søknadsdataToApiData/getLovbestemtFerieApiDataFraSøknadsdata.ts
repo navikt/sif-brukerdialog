@@ -8,7 +8,7 @@ import {
     ISODateToDate,
     sortDates,
 } from '@navikt/sif-common-utils/lib';
-import { LovbestemtFerieApiData } from '../../types/søknadApiData/SøknadApiData';
+import { LovbestemtFerieApiData, LovbestemtFerieEndringType } from '../../types/søknadApiData/SøknadApiData';
 
 const isoDateIsNotInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
     isoDateArray.some((dMelding) => isoDate === dMelding) === false;
@@ -36,5 +36,15 @@ export const getLovbestemtFerieApiDataFromSøknadsdata = (
         {}
     );
 
-    return { dagerFjernet, dagerLagtTil, perioderFjernet, perioderLagtTil };
+    const perioder: ISODateRangeMap<LovbestemtFerieEndringType> = {};
+    Object.keys(perioderLagtTil).forEach((key) => (perioder[key] = LovbestemtFerieEndringType.ny));
+    Object.keys(perioderFjernet).forEach((key) => (perioder[key] = LovbestemtFerieEndringType.slettet));
+
+    return {
+        dagerFjernet,
+        dagerLagtTil,
+        perioderFjernet,
+        perioderLagtTil,
+        perioder,
+    };
 };
