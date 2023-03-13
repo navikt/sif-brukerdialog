@@ -3,23 +3,29 @@ import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknad
 import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
 import { getAktiviteterSomKanEndres } from '../../utils/arbeidAktivitetUtils';
-import { skalEndres } from '../../utils/endringTypeUtils';
+import { getValgteEndringer } from '../../utils/endringTypeUtils';
 import { StepId } from './StepId';
 
 export const getSøknadSteps = (sak: Sak, hvaSkalEndres: EndringType[]): StepId[] => {
     const aktiviteter = getAktiviteterSomKanEndres(sak.arbeidAktiviteter);
     const steps: StepId[] = [];
 
-    if (skalEndres(hvaSkalEndres, EndringType.arbeidstid)) {
+    const {
+        arbeidstidSkalEndres,
+        lovbestemtFerieSkalEndres: ferieSkalEndres,
+        utenlandsoppholdSkalEndres,
+    } = getValgteEndringer(hvaSkalEndres);
+
+    if (arbeidstidSkalEndres) {
         if (aktiviteter.length > 1) {
             steps.push(StepId.AKTIVITET);
         }
         steps.push(StepId.ARBEIDSTID);
     }
-    if (skalEndres(hvaSkalEndres, EndringType.ferie)) {
+    if (ferieSkalEndres) {
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
-    if (skalEndres(hvaSkalEndres, EndringType.utenlandsopphold)) {
+    if (utenlandsoppholdSkalEndres) {
         steps.push(StepId.UTENLANDSOPPHOLD);
     }
     steps.push(StepId.OPPSUMMERING);

@@ -1,36 +1,31 @@
-import { Alert, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
+import { Alert, BodyLong, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import {
-    getDatesInDateRange,
-    ISODateRange,
-    ISODateRangeToDateRange,
-    ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
-import ArbeidstidUkeTabell, {
-    ArbeidstidUkeTabellItem,
-} from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeTabell';
+import { SummarySection } from '@navikt/sif-common-soknad-ds/lib';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import {
-    ArbeidstakerApiData,
-    ArbeidstidPeriodeApiData,
-    ArbeidstidPeriodeApiDataMap,
-} from '../../../types/søknadApiData/SøknadApiData';
-import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
+import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import ArbeidstidOppsummering from './ArbeidstidOppsummering';
+import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
+import {
+    getOppsummeringStepInitialValues,
+    harEndringerIArbeidstid,
+    harEndringerILovbestemtFerie,
+} from './oppsummeringStepUtils';
+import './oppsummering.css';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -74,27 +69,33 @@ const OppsummeringStep = () => {
         return <Alert variant="error">ApiData er undefined</Alert>;
     }
 
-    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
-        apiData.ytelse.arbeidstid || {};
+    const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getValgteEndringer(hvaSkalEndres);
 
-    const arbeidstidKolonneTittel = 'Endret arbeidstid';
+    const arbeidstidErEndret = harEndringerIArbeidstid(arbeidstid);
+    const lovbestemtFerieErEndret = harEndringerILovbestemtFerie(lovbestemtFerie);
+    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
-    const harEndringer =
-        (arbeidstakerList && arbeidstakerList.length > 0) ||
-        frilanserArbeidstidInfo ||
-        selvstendigNæringsdrivendeArbeidstidInfo;
-
-    if (!harEndringer) {
+    if (harIngenEndringer) {
         return (
             <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
                 <Alert variant="info">
                     <Heading level="2" size="small" spacing={true}>
                         Ingen endringer er registert
                     </Heading>
-                    <p>
-                        Du har ikke gjort noen endringer i arbeidstiden din. Gå tilbake til forrige steg og gjør
-                        endringene.
-                    </p>
+                    <BodyLong as="div">
+                        <ul>
+                            {arbeidstidSkalEndres && !harEndringerIArbeidstid && (
+                                <li>
+                                    Du har ikke gjort noen endringer i arbeidstiden din. Gå tilbake til forrige steg og
+                                    gjør endringene.
+                                </li>
+                            )}
+                            {lovbestemtFerieSkalEndres && !lovbestemtFerie && (
+                                <li>Du har ikke gjort noen endringer i ferien</li>
+                            )}
+                        </ul>
+                    </BodyLong>
                     <Link href="#" onClick={goBack}>
                         Gå tilbake
                     </Link>
@@ -113,53 +114,32 @@ const OppsummeringStep = () => {
                     </p>
                 </Ingress>
             </SifGuidePanel>
-            {arbeidstakerList &&
-                Object.keys(arbeidstakerList).map((key) => {
-                    const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
-                    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
-                    if (!arbeidsgiver) {
-                        return null;
-                    }
-                    const arbeidsuker = getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
-                    return (
-                        <FormBlock key={key} paddingBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
-                            <Heading level="2" size="medium">
-                                {arbeidsgiver.navn}
-                            </Heading>
-                            <>
-                                <ArbeidstidUkeTabell
-                                    listItems={arbeidsuker}
-                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                                />
-                            </>
-                        </FormBlock>
-                    );
-                })}
-            {frilanserArbeidstidInfo && (
-                <FormBlock paddingBottom="l">
-                    <Heading level="2" size="medium">
-                        Frilanser
-                    </Heading>
-                    <>
-                        <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItems(frilanserArbeidstidInfo.perioder)}
-                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        />
-                    </>
-                </FormBlock>
+
+            {arbeidstidSkalEndres && (
+                <Block margin="xxl">
+                    <SummarySection header="Endringer i arbeidstid">
+                        {arbeidstid && arbeidstidErEndret ? (
+                            <ArbeidstidOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                        ) : (
+                            <Block padBottom="l">
+                                <Alert variant="info">Det er ikke registrert noen endringer i arbeidstid</Alert>
+                            </Block>
+                        )}
+                    </SummarySection>
+                </Block>
             )}
-            {selvstendigNæringsdrivendeArbeidstidInfo && (
-                <FormBlock paddingBottom="l">
-                    <Heading level="2" size="medium">
-                        Selvstendig næringsdrivende
-                    </Heading>
-                    <>
-                        <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItems(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
-                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        />
-                    </>
-                </FormBlock>
+            {lovbestemtFerieSkalEndres && (
+                <Block margin="xxl" padBottom="m">
+                    <SummarySection header="Endringer i lovbestemt ferie">
+                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
+                            <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
+                        ) : (
+                            <Block padBottom="l">
+                                <Alert variant="info">Det er ikke registrert noen endringer i lovbestemt ferie</Alert>
+                            </Block>
+                        )}
+                    </SummarySection>
+                </Block>
             )}
             <FormBlock margin="l">
                 <FormikWrapper
@@ -178,14 +158,14 @@ const OppsummeringStep = () => {
                             <>
                                 <Form
                                     formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
-                                    submitDisabled={isSubmitting || hasInvalidSteps}
+                                    submitDisabled={isSubmitting || hasInvalidSteps || harIngenEndringer}
                                     includeValidationSummary={true}
                                     submitButtonLabel="Send melding om endring"
                                     submitPending={isSubmitting}
                                     backButtonDisabled={isSubmitting}
                                     onBack={goBack}>
                                     <ConfirmationCheckbox
-                                        disabled={isSubmitting}
+                                        disabled={isSubmitting || harIngenEndringer}
                                         label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
                                         validate={getCheckedValidator()}
                                         data-testid="bekreft-opplysninger"
@@ -209,52 +189,3 @@ const OppsummeringStep = () => {
 };
 
 export default OppsummeringStep;
-
-const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
-    {
-        faktiskArbeidTimerPerDag,
-        _opprinneligFaktiskPerDag,
-        _opprinneligNormaltPerDag,
-        _endretProsent,
-    }: ArbeidstidPeriodeApiData,
-    isoDateRange: ISODateRange
-): ArbeidstidUkeTabellItem => {
-    const periode = ISODateRangeToDateRange(isoDateRange);
-    const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
-
-    const arbeidsuke: ArbeidstidUkeTabellItem = {
-        kanEndres: false,
-        kanVelges: false,
-        isoDateRange,
-        periode,
-        antallDagerMedArbeidstid,
-        opprinnelig: {
-            normalt: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligNormaltPerDag),
-                antallDagerMedArbeidstid
-            ),
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligFaktiskPerDag),
-                antallDagerMedArbeidstid
-            ),
-        },
-        endret: {
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(faktiskArbeidTimerPerDag),
-                antallDagerMedArbeidstid
-            ),
-            endretProsent: _endretProsent,
-        },
-    };
-    return arbeidsuke;
-};
-
-const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
-    const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
-    Object.keys(perioder)
-        .sort()
-        .forEach((isoDateRange) => {
-            arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
-        });
-    return arbeidsuker;
-};

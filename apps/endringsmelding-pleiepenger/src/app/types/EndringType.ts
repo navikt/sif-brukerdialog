@@ -1,5 +1,10 @@
 export enum EndringType {
     'arbeidstid' = 'arbeidstid',
-    'ferie' = 'ferie',
+    'lovbestemtFerie' = 'lovbestemtFerie',
     'utenlandsopphold' = 'utenlandsopphold',
+}
+export interface SkalEndresMap {
+    arbeidstidSkalEndres: boolean;
+    lovbestemtFerieSkalEndres: boolean;
+    utenlandsoppholdSkalEndres: boolean;
 }

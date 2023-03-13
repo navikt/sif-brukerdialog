@@ -1,4 +1,4 @@
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
+import { dateRangeToISODateRange, sortDateRange } from '@navikt/sif-common-utils/lib';
 import { Søknadsdata, LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { LovbestemtFerieFormFields, LovbestemtFerieFormValues } from './LovbestemtFerieStep';
 
@@ -29,6 +29,8 @@ export const getLovbestemtFerieSøknadsdataFromFormValues = (
     values: LovbestemtFerieFormValues
 ): LovbestemtFerieSøknadsdata => {
     return {
-        perioder: values[LovbestemtFerieFormFields.perioder].map((periode) => ({ from: periode.fom, to: periode.tom })),
+        perioder: values[LovbestemtFerieFormFields.perioder]
+            .map((periode) => ({ from: periode.fom, to: periode.tom }))
+            .sort(sortDateRange),
     };
 };

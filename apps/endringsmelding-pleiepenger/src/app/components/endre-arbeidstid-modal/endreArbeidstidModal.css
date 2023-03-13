@@ -12,7 +12,3 @@
         min-width: initial;
     }
 }
-
-.capsFirstChar::first-letter {
-    text-transform: capitalize;
-}

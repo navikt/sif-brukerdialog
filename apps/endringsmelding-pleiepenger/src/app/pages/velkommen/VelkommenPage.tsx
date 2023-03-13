@@ -113,7 +113,7 @@ const VelkommenPage = () => {
                         )}
                         {isFeatureEnabled(Feature.FEATURE_ENDRE_LOVBESTEMT_FERIE) && (
                             <Checkbox
-                                value={EndringType.ferie}
+                                value={EndringType.lovbestemtFerie}
                                 description="Endre lovebestemt ferie i perioden med pleiepenger">
                                 Lovbestemt ferie
                             </Checkbox>

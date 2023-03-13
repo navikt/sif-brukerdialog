@@ -1,18 +1,23 @@
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
-import { isISODateOrNull, isISODateRange, isISODuration, isStringOrNull } from '@navikt/sif-common-utils';
+import {
+    isISODateOrNull,
+    isISODateRange,
+    isISODuration,
+    ISODateRangeMap,
+    isStringOrNull,
+} from '@navikt/sif-common-utils';
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib';
 import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
-import { DateRangeMap } from './DateRangeMap';
 
-type K9FormatTilsynsordningPerioder = DateRangeMap<{ etablertTilsynTimerPerDag: ISODuration }>;
+type K9FormatTilsynsordningPerioder = ISODateRangeMap<{ etablertTilsynTimerPerDag: ISODuration }>;
 
 export interface K9FormatArbeidstidTid {
     jobberNormaltTimerPerDag: ISODuration;
     faktiskArbeidTimerPerDag: ISODuration;
 }
 
-export type K9FormatArbeidstidInfoPerioder = DateRangeMap<K9FormatArbeidstidTid>;
+export type K9FormatArbeidstidInfoPerioder = ISODateRangeMap<K9FormatArbeidstidTid>;
 
 export interface K9FormatArbeidstaker {
     norskIdentitetsnummer: string | null;
@@ -32,13 +37,14 @@ interface K9FormatOpptjeningAktivitetSelvstendig {
     organisasjonsnummer: string;
 }
 
-export type K9FormatUtenlandsoppholdPerioder = DateRangeMap<K9FormatUtenlandsopphold>;
+export type K9FormatUtenlandsoppholdPerioder = ISODateRangeMap<K9FormatUtenlandsopphold>;
+
 interface K9FormatUtenlandsopphold {
     land: string;
     årsak: UtenlandsoppholdÅrsak;
 }
 
-export type K9FormatLovbestemtFerierPerioder = DateRangeMap<never>;
+export type K9FormatLovbestemtFerierPerioder = ISODateRangeMap<object>;
 
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;

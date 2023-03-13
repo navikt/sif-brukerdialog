@@ -92,6 +92,7 @@ const LovbestemtFerieStep = () => {
                                     Registrert ferie i perioden{' '}
                                     <PeriodeTekst periode={endringsperiode} compact={false} />
                                 </Heading>
+                                <p>Periodene med ferie gjelder på tvers av alle dine arbeidsforhold.</p>
                             </Block>
                             <Block padBottom="xl">
                                 <FerieuttakListAndDialog<LovbestemtFerieFormFields>

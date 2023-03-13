@@ -1,13 +1,12 @@
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
-import { DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils';
-import { DateRangeMap } from './DateRangeMap';
+import { DateRange, Duration, ISODateRange, ISODateRangeMap } from '@navikt/sif-common-utils';
 
 export interface K9SakArbeidstidPeriode {
     jobberNormaltTimerPerDag: Duration;
     faktiskArbeidTimerPerDag: Duration;
 }
 
-export type K9SakArbeidstidPeriodeMap = DateRangeMap<K9SakArbeidstidPeriode>;
+export type K9SakArbeidstidPeriodeMap = ISODateRangeMap<K9SakArbeidstidPeriode>;
 
 export interface K9SakArbeidstidInfo {
     perioder: K9SakArbeidstidPeriodeMap;

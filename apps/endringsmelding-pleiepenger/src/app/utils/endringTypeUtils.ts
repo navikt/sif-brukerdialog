@@ -1,5 +1,9 @@
-import { EndringType } from '../types/EndringType';
+import { EndringType, SkalEndresMap } from '../types/EndringType';
 
-export const skalEndres = (hvaSkalEndres: EndringType[], type: EndringType): boolean => {
-    return hvaSkalEndres.some((e) => e === type);
+export const getValgteEndringer = (hvaSkalEndres: EndringType[]): SkalEndresMap => {
+    return {
+        arbeidstidSkalEndres: hvaSkalEndres.some((e) => e === EndringType.arbeidstid),
+        lovbestemtFerieSkalEndres: hvaSkalEndres.some((e) => e === EndringType.lovbestemtFerie),
+        utenlandsoppholdSkalEndres: hvaSkalEndres.some((e) => e === EndringType.utenlandsopphold),
+    };
 };

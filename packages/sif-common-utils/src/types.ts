@@ -7,6 +7,8 @@ export type ISODuration = string;
 /** YYYY-MM-DD */
 export type ISODate = string;
 
+export type ISODateRangeMap<T> = Record<ISODateRange, T>;
+
 export interface DateRange {
     from: Date;
     to: Date;

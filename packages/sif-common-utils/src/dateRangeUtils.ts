@@ -400,6 +400,18 @@ export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange =
         to: dayjs.max(dateRanges.map((range) => dayjs(range.to))).toDate(),
     };
 };
+/**
+ * Gets a isoDateRangeMap from array of DateRange
+ * @param dateRanges
+ * @returns dateRange
+ */
+export const getIsoDateRangeMapFromDateRanges = (dateRanges: DateRange[], value: any): ISODateRangeMap => {
+    const dateRangeMap: ISODateRangeMap = {};
+    dateRanges.map(dateRangeToISODateRange).forEach((key) => {
+        dateRangeMap[key] = value;
+    });
+    return dateRangeMap;
+};
 
 /**
  * Gets DateRanges from array of dates, where following dates are grouped in one DateRange
@@ -439,6 +451,18 @@ export const getDateRangesFromDates = (dates: Date[], removeDuplicateDates = tru
         }
     });
     return dateRanges;
+};
+
+/**
+ *
+ */
+
+export const getDatesInDateRanges = (dateRanges: DateRange[], removeDuplicateDates = true): Date[] => {
+    const dates: Date[] = [];
+    dateRanges.forEach((dateRange) => {
+        dates.push(...getDatesInDateRange(dateRange));
+    });
+    return removeDuplicateDates ? uniqBy(dates, (d) => dateToISODate(d)) : dates;
 };
 
 /**
@@ -588,21 +612,38 @@ export const setMaxToDateForDateRange = (dateRange: DateRange, maxToDate: Date):
     return dateRange;
 };
 
+// const dateRangeDifference = (range1: DateRange[], range2: DateRange[]): DateRange[] {
+//   const difference: DateRange[] = [];
+//   range1.forEach((r1) => {
+//     let isOverlap = false;
+//     range2.forEach((r2) => {
+//       if ((r1.from <= r2.from && r1.to >= r2.from) || (r1.from <= r2.to && r1.to >= r2.to)) {
+//         isOverlap = true;
+//       }
+//     });
+//     if (!isOverlap) {
+//       difference.push(r1);
+//     }
+//   });
+//   return difference;
+// }
+
 export const dateRangeUtils = {
-    includeWeekendIfDateRangeEndsOnFridayOrLater,
-    dateRangesCollide,
     dateRangeIsAdjacentToDateRange,
+    dateRangesCollide,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
     getDateRangesFromISODateRangeMap,
+    getDatesInDateRanges,
     getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
     getWeekDateRange,
+    includeWeekendIfDateRangeEndsOnFridayOrLater,
     isDateInDateRange,
     isDateInDateRanges,
     isDateInMaybeDateRange,

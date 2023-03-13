@@ -1,5 +1,4 @@
-import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
-import { DateRangeMap } from '../DateRangeMap';
+import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;
@@ -9,7 +8,7 @@ export type ArbeidstidPeriodeApiData = {
     _opprinneligFaktiskPerDag: ISODuration;
 };
 
-export type ArbeidstidPeriodeApiDataMap = DateRangeMap<ArbeidstidPeriodeApiData>;
+export type ArbeidstidPeriodeApiDataMap = ISODateRangeMap<ArbeidstidPeriodeApiData>;
 
 export interface ArbeidstakerApiData {
     norskIdentitetsnummer?: string;
@@ -29,6 +28,12 @@ export interface ArbeidstidApiData {
     };
 }
 
+export type LovbestemtFerieApiData = {
+    dagerLagtTil: ISODate[];
+    dagerFjernet: ISODate[];
+    perioderLagtTil: ISODateRangeMap<object>;
+    perioderFjernet: ISODateRangeMap<object>;
+};
 interface BarnApiData {
     fødselsdato?: ISODate;
     norskIdentitetsnummer: string;
@@ -37,6 +42,7 @@ interface BarnApiData {
 interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
     arbeidstid?: ArbeidstidApiData;
+    lovbestemtFerie?: LovbestemtFerieApiData;
     barn: BarnApiData;
     dataBruktTilUtledning: {
         soknadDialogCommitSha: string;
