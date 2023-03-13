@@ -13,7 +13,7 @@
         "@formatjs/intl-pluralrules": "5.1.10",
         "@navikt/appstatus-react-ds": "*",
         "@navikt/ds-css": "2.7.1",
-        "@navikt/ds-react": "2.7.1",
+        "@navikt/ds-react": "2.7.6",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
