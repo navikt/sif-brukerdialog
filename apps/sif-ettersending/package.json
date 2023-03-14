@@ -11,7 +11,7 @@
         "@formatjs/intl-pluralrules": "5.1.10",
         "@navikt/ds-css": "2.7.1",
         "@navikt/ds-datepicker": "4.1.2",
-        "@navikt/ds-icons": "2.7.1",
+        "@navikt/ds-icons": "2.7.7",
         "@navikt/ds-react": "2.7.1",
         "@navikt/ds-tailwind": "2.7.1",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
