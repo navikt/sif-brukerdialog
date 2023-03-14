@@ -142,6 +142,7 @@ const ArbeidstidStep = () => {
                                                 <Arbeidsaktivitet
                                                     arbeidAktivitet={arbeidAktivitet}
                                                     endringer={endringer[arbeidAktivitet.id]}
+                                                    lovbestemtFerie={søknadsdata.lovbestemtFerie}
                                                     onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
                                                         onArbeidstidAktivitetChange(
                                                             arbeidAktivitet.id,

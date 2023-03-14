@@ -11,7 +11,9 @@ import { SkrivTilOssLink } from '../../lenker';
 import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
+import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getEndringsdato, getMaksEndringsperiode } from '../../utils/endringsperiode';
+import { getLovbestemtFerieIPeriode } from '../../utils/lovbestemtFerieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
@@ -20,10 +22,11 @@ import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
     endringer: ArbeidstidEndringMap | undefined;
+    lovbestemtFerie?: LovbestemtFerieSøknadsdata;
     onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
-const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetChange }: Props) => {
+const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbeidstidAktivitetChange }: Props) => {
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
@@ -40,16 +43,23 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
             </Block>
 
             {perioder.length === 1 && (
-                <ArbeidstidUkeTabell
-                    listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
-                        perioder[0].arbeidsuker,
-                        endringer
-                    )}
-                    triggerResetValg={resetUkerTabellCounter}
-                    onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
-                        setArbeidsukerForEndring(uker.map((uke) => perioder[0].arbeidsuker[uke.isoDateRange]));
-                    }}
-                />
+                <>
+                    <ArbeidstidUkeTabell
+                        listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                            perioder[0].arbeidsuker,
+                            endringer
+                        )}
+                        ferieperioder={
+                            lovbestemtFerie
+                                ? getLovbestemtFerieIPeriode(lovbestemtFerie.perioder, perioder[0].periode)
+                                : undefined
+                        }
+                        triggerResetValg={resetUkerTabellCounter}
+                        onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
+                            setArbeidsukerForEndring(uker.map((uke) => perioder[0].arbeidsuker[uke.isoDateRange]));
+                        }}
+                    />
+                </>
             )}
 
             {perioder.length !== 1 && (
@@ -65,6 +75,11 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                                 Object.keys(endringer)
                                     .map(ISODateRangeToDateRange)
                                     .some((dr) => isDateInDateRange(dr.from, periode.periode));
+
+                            const ferieIPerioden = lovbestemtFerie
+                                ? getLovbestemtFerieIPeriode(lovbestemtFerie.perioder, periode.periode)
+                                : undefined;
+
                             return (
                                 <Accordion.Item
                                     key={dateRangeToISODateRange(periode.periode)}
@@ -91,6 +106,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, onArbeidstidAktivitetCha
                                         <ArbeidstidUkeTabell
                                             listItems={listItems}
                                             triggerResetValg={resetUkerTabellCounter}
+                                            ferieperioder={ferieIPerioden}
                                             onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                                                 setArbeidsukerForEndring(
                                                     uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])

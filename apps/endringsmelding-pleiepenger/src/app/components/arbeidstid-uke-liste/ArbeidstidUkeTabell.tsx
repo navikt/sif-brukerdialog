@@ -1,11 +1,19 @@
-import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tag, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit, InformationColored } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
+import {
+    dateFormatter,
+    DateRange,
+    Duration,
+    getDatesInDateRange,
+    getDatesInDateRanges,
+    isDateWeekDay,
+    ISODateRange,
+} from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
@@ -32,6 +40,7 @@ export interface ArbeidstidUkeTabellItem {
 
 interface Props {
     listItems: ArbeidstidUkeTabellItem[];
+    ferieperioder?: DateRange[];
     visNormaltid?: boolean;
     paginering?: {
         antall: number;
@@ -49,6 +58,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     },
     arbeidstidKolonneTittel,
     triggerResetValg,
+    ferieperioder,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
@@ -302,7 +312,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         {synligeUker.map((uke) => {
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
                             const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
-
+                            const dagerMedFerie = ferieperioder ? getDagerMedFerie(ferieperioder, uke.periode) : [];
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
 
                             return (
@@ -358,6 +368,15 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                     <div className="arbeidsukeTidsrom">
                                                         <span className="arbeidsukeTidsrom__tekst">
                                                             {getPeriodeTekst(uke.periode)}
+                                                            {dagerMedFerie?.length > 0 && (
+                                                                <Block margin="s">
+                                                                    <Tag variant="info" size="small">
+                                                                        {dagerMedFerie.length}{' '}
+                                                                        {dagerMedFerie.length === 1 ? 'dag' : 'dager'}{' '}
+                                                                        med ferie
+                                                                    </Tag>
+                                                                </Block>
+                                                            )}
                                                         </span>
                                                         <span className="arbeidsukeTidsrom__info">
                                                             {erHelArbeidsuke(uke.periode) ? undefined : (
@@ -426,4 +445,13 @@ const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
     }
     return `${fra} til ${til}`;
 };
+
+export const getDagerMedFerie = (ferieperioder: DateRange[], uke: DateRange): Date[] => {
+    const feriedager = getDatesInDateRanges(ferieperioder);
+    const ukedager = getDatesInDateRange(uke);
+    return ukedager
+        .filter((dagIUke) => feriedager.some((dagIFerie) => dayjs(dagIUke).isSame(dagIFerie), 'day'))
+        .filter(isDateWeekDay);
+};
+
 export default ArbeidstidUkeTabell;

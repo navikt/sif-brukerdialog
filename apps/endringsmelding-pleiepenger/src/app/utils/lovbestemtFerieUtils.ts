@@ -1,5 +1,6 @@
 import {
     DateRange,
+    dateRangesCollide,
     dateRangeUtils,
     dateToISODate,
     getDatesInDateRanges,
@@ -54,4 +55,8 @@ export const harFjernetLovbestemtFerie = (
         return false;
     }
     return getLovbestemtFerieEndringer(ferieSøknad.perioder, ferieSak.perioder).dagerFjernet.length > 0;
+};
+
+export const getLovbestemtFerieIPeriode = (lovbestemtFeriePerioder: DateRange[], periode: DateRange): DateRange[] => {
+    return lovbestemtFeriePerioder.filter((feriePeriode) => dateRangesCollide([feriePeriode, periode]));
 };
