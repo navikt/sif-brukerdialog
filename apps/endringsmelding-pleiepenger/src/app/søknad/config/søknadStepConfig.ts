@@ -16,14 +16,14 @@ export const getSøknadSteps = (sak: Sak, hvaSkalEndres: EndringType[]): StepId[
         utenlandsoppholdSkalEndres,
     } = getValgteEndringer(hvaSkalEndres);
 
+    if (ferieSkalEndres) {
+        steps.push(StepId.LOVBESTEMT_FERIE);
+    }
     if (arbeidstidSkalEndres) {
         if (aktiviteter.length > 1) {
             steps.push(StepId.AKTIVITET);
         }
         steps.push(StepId.ARBEIDSTID);
-    }
-    if (ferieSkalEndres) {
-        steps.push(StepId.LOVBESTEMT_FERIE);
     }
     if (utenlandsoppholdSkalEndres) {
         steps.push(StepId.UTENLANDSOPPHOLD);

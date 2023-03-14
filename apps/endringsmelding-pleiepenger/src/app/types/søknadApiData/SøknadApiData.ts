@@ -1,4 +1,5 @@
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils/lib';
+import { LovbestemtFerieType } from '../../types/LovbestemtFerieType';
 
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;
@@ -28,21 +29,10 @@ export interface ArbeidstidApiData {
     };
 }
 
-// export enum LovbestemtFerieEndringType {
-//     'ny' = 'ny',
-//     'slettet' = 'slettet',
-// }
-
-export const FERIE_LAGTTIL_DURATION: ISODuration = 'PT7H30M';
-export const FERIE_FJERNET_DURATION: ISODuration = 'PT0S';
-
 export type LovbestemtFerieApiData = {
-    perioder: ISODateRangeMap<ISODuration>;
-    dagerLagtTil: ISODate[];
-    dagerFjernet: ISODate[];
-    perioderLagtTil: ISODateRangeMap<ISODuration>;
-    perioderFjernet: ISODateRangeMap<ISODuration>;
+    perioder: ISODateRangeMap<LovbestemtFerieType>;
 };
+
 interface BarnApiData {
     fødselsdato?: ISODate;
     norskIdentitetsnummer: string;

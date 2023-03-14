@@ -2,35 +2,30 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
-import { DateRange, ISODateRangeToDateRange, ISODuration } from '@navikt/sif-common-utils/lib';
+import { DateRange, dateRangeToISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
-import {
-    FERIE_FJERNET_DURATION,
-    FERIE_LAGTTIL_DURATION,
-    LovbestemtFerieApiData,
-} from '../../../types/søknadApiData/SøknadApiData';
+import { LovbestemtFerieApiData } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
 }
 
 interface LovbestemtFeriePeriode {
-    isoDuration: ISODuration;
     dateRange: DateRange;
+    skalHaFerie: boolean;
 }
 
 const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestemtFerie }) => {
-    const perioder: LovbestemtFeriePeriode[] = Object.keys(lovbestemtFerie.perioder).map((periode) => ({
-        isoDuration: lovbestemtFerie.perioder[periode],
-        dateRange: ISODateRangeToDateRange(periode),
-    }));
+    const perioder: LovbestemtFeriePeriode[] = Object.keys(lovbestemtFerie.perioder).map((isoDateRange) => {
+        const x: LovbestemtFeriePeriode = {
+            dateRange: ISODateRangeToDateRange(isoDateRange),
+            skalHaFerie: lovbestemtFerie.perioder[isoDateRange].skalHaFerie,
+        };
+        return x;
+    });
 
-    const perioderLagtTil = perioder.filter((p) => p.isoDuration === FERIE_LAGTTIL_DURATION);
-    const perioderFjernet = perioder.filter((p) => p.isoDuration === FERIE_FJERNET_DURATION);
-
-    // const perioderLagtTil = Object.keys(lovbestemtFerie.perioder).map(key => )
-    // const perioderLagtTil = Object.keys(lovbestemtFerie.perioderLagtTil).map(ISODateRangeToDateRange);
-    // const perioderFjernet = Object.keys(lovbestemtFerie.perioderFjernet).map(ISODateRangeToDateRange);
+    const perioderLagtTil = perioder.filter((p) => p.skalHaFerie === true);
+    const perioderFjernet = perioder.filter((p) => p.skalHaFerie === false);
 
     return (
         <>
@@ -41,7 +36,7 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     </Heading>
                     <InfoList>
                         {perioderLagtTil.map((periode) => (
-                            <li key={periode.isoDuration}>
+                            <li key={dateRangeToISODateRange(periode.dateRange)}>
                                 <div className="capsFirstChar">{getPeriodeTekst(periode.dateRange, true, true)}</div>
                             </li>
                         ))}
@@ -55,10 +50,11 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     </Heading>
                     <BodyLong>
                         Dager hvor ferie er fjernet erstattes med arbeidstiden du tidligere har oppgitt på disse dagene.
+                        Det er viktig du kontrollerer at arbeidstiden som er oppgitt for disse dagene er oppdatert.
                     </BodyLong>
                     <InfoList>
                         {perioderFjernet.map((periode) => (
-                            <li key={periode.isoDuration}>
+                            <li key={dateRangeToISODateRange(periode.dateRange)}>
                                 <div className="capsFirstChar">{getPeriodeTekst(periode.dateRange, true, true)}</div>
                             </li>
                         ))}

@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Panel } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Panel } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -15,6 +15,7 @@ import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -22,6 +23,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
@@ -110,6 +112,15 @@ const ArbeidstidStep = () => {
                     </BodyLong>
                 </>
             </SifGuidePanel>
+
+            {harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie, sak.lovbestemtFerie) && (
+                <Block margin="xl">
+                    <Alert variant="info">
+                        TODO: Bruker har fjernet feriedager, info om at en må kontrollere arbeidstid for disse dagene
+                    </Alert>
+                </Block>
+            )}
+
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
                 onSubmit={handleSubmit}

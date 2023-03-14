@@ -20,7 +20,7 @@ export const harEndringerIArbeidstid = (arbeidstid?: ArbeidstidApiData): boolean
     );
 };
 
-export const harEndringerILovbestemtFerie = (lovbestemtFerie?: LovbestemtFerieApiData): boolean => {
+export const harEndringerILovbestemtFerieApiData = (lovbestemtFerie?: LovbestemtFerieApiData): boolean => {
     if (!lovbestemtFerie) {
         return false;
     }

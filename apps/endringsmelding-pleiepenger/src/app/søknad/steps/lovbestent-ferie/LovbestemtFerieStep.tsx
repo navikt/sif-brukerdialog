@@ -71,6 +71,10 @@ const LovbestemtFerieStep = () => {
                 <>
                     <BodyLong as="div">
                         <p>Nedenfor ser du ferier som er registrert. Du kan legge til nye, endre eller fjerne.</p>
+                        <p>
+                            Hvis du fjerner dager mer ferie, må du kontrollere at arbeidstiden for disse dagene er
+                            riktig. Dette gjør du på Jobb i perioden-steget som kommer senere.
+                        </p>
                     </BodyLong>
                 </>
             </SifGuidePanel>
