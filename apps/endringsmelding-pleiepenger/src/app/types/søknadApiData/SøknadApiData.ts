@@ -28,17 +28,20 @@ export interface ArbeidstidApiData {
     };
 }
 
-export enum LovbestemtFerieEndringType {
-    'ny' = 'ny',
-    'slettet' = 'slettet',
-}
+// export enum LovbestemtFerieEndringType {
+//     'ny' = 'ny',
+//     'slettet' = 'slettet',
+// }
+
+export const FERIE_LAGTTIL_DURATION: ISODuration = 'PT7H30M';
+export const FERIE_FJERNET_DURATION: ISODuration = 'PT0S';
 
 export type LovbestemtFerieApiData = {
-    perioder: ISODateRangeMap<LovbestemtFerieEndringType>;
+    perioder: ISODateRangeMap<ISODuration>;
     dagerLagtTil: ISODate[];
     dagerFjernet: ISODate[];
-    perioderLagtTil: ISODateRangeMap<object>;
-    perioderFjernet: ISODateRangeMap<object>;
+    perioderLagtTil: ISODateRangeMap<ISODuration>;
+    perioderFjernet: ISODateRangeMap<ISODuration>;
 };
 interface BarnApiData {
     fødselsdato?: ISODate;

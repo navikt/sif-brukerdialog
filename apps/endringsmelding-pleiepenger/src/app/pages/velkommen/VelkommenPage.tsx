@@ -70,6 +70,42 @@ const VelkommenPage = () => {
                         Du har pleiepenger for <strong>{barnetsNavn}</strong>. Her kan du melde fra om endringer som
                         gjelder perioden hvor du har pleiepenger.
                     </p>
+                    <Block margin="xl">
+                        <CheckboxGroup
+                            legend={
+                                <Heading level={'2'} size="small">
+                                    Hva ønsker du å endre?
+                                </Heading>
+                            }
+                            value={hvaSkalEndres}
+                            name="hvaSkalEndres"
+                            onChange={(values) => {
+                                setHvaSkalEndres(values);
+                            }}>
+                            {isFeatureEnabled(Feature.FEATURE_ENDRE_ARBEIDSTID) && (
+                                <Checkbox
+                                    value={EndringType.arbeidstid}
+                                    description={'Endre hvor mye du jobber i perioden med pleiepenger'}>
+                                    Jobb i pleiepengeperioden
+                                </Checkbox>
+                            )}
+                            {isFeatureEnabled(Feature.FEATURE_ENDRE_LOVBESTEMT_FERIE) && (
+                                <Checkbox
+                                    value={EndringType.lovbestemtFerie}
+                                    description="Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger">
+                                    Lovbestemt ferie
+                                </Checkbox>
+                            )}
+
+                            {isFeatureEnabled(Feature.FEATURE_ENDRE_UTENLANDSOPPHOLD) && (
+                                <Checkbox
+                                    value={EndringType.utenlandsopphold}
+                                    description="Legg til, fjern eller endre utenlandsopphold i perioden med pleiepenger">
+                                    Utenlandsopphold i perioden
+                                </Checkbox>
+                            )}
+                        </CheckboxGroup>
+                    </Block>
                     {1 + 1 === 3 && (
                         <>
                             <p>Arbeidsforhold:</p>
@@ -91,44 +127,6 @@ const VelkommenPage = () => {
                 </Ingress>
                 <OmSøknaden />
             </SifGuidePanel>
-
-            <Block margin="xl">
-                <Heading level={'2'} size="medium">
-                    Hva ønsker du å endre?
-                </Heading>
-                <Block>
-                    <CheckboxGroup
-                        legend="Velg hva du ønsker å endre"
-                        value={hvaSkalEndres}
-                        name="hvaSkalEndres"
-                        onChange={(values) => {
-                            setHvaSkalEndres(values);
-                        }}>
-                        {isFeatureEnabled(Feature.FEATURE_ENDRE_ARBEIDSTID) && (
-                            <Checkbox
-                                value={EndringType.arbeidstid}
-                                description={'Endre hvor mye du jobber i perioden med pleiepenger'}>
-                                Arbeidstid
-                            </Checkbox>
-                        )}
-                        {isFeatureEnabled(Feature.FEATURE_ENDRE_LOVBESTEMT_FERIE) && (
-                            <Checkbox
-                                value={EndringType.lovbestemtFerie}
-                                description="Endre lovebestemt ferie i perioden med pleiepenger">
-                                Lovbestemt ferie
-                            </Checkbox>
-                        )}
-
-                        {isFeatureEnabled(Feature.FEATURE_ENDRE_UTENLANDSOPPHOLD) && (
-                            <Checkbox
-                                value={EndringType.utenlandsopphold}
-                                description="Endre utenlandsopphold i perioden med pleiepenger">
-                                Utenlandsopphold i perioden
-                            </Checkbox>
-                        )}
-                    </CheckboxGroup>
-                </Block>
-            </Block>
 
             <SamtykkeForm onValidSubmit={() => startSøknad(sak, hvaSkalEndres)} submitButtonLabel="Start" />
         </Page>
