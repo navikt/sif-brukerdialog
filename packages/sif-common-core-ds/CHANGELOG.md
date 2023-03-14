@@ -1,5 +1,18 @@
 # @navikt/sif-common-core-ds
 
+## 6.1.0
+
+### Minor Changes
+
+-   908bb770: Pakkeoppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [908bb770]
+    -   @navikt/sif-common-formik-ds@0.12.0
+    -   @navikt/appstatus-react-ds@2.1.0
+    -   @navikt/sif-common-utils@3.25.0
+
 ## 6.0.4
 
 ### Patch Changes
