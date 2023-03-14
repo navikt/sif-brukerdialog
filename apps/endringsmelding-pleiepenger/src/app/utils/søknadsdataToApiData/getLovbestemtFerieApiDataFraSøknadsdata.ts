@@ -2,6 +2,7 @@ import {
     DateRange,
     dateRangeUtils,
     dateToISODate,
+    getDatesInDateRanges,
     getIsoDateRangeMapFromDateRanges,
     ISODate,
     ISODateRangeMap,
@@ -17,11 +18,8 @@ export const getLovbestemtFerieApiDataFromSøknadsdata = (
     perioderIMelding: DateRange[],
     perioderISak: DateRange[]
 ): LovbestemtFerieApiData => {
-    const dagerIMelding: ISODate[] = dateRangeUtils
-        .getDatesInDateRanges(perioderIMelding)
-        .sort(sortDates)
-        .map(dateToISODate);
-    const dagerISak: ISODate[] = dateRangeUtils.getDatesInDateRanges(perioderISak).map(dateToISODate);
+    const dagerIMelding: ISODate[] = getDatesInDateRanges(perioderIMelding).sort(sortDates).map(dateToISODate);
+    const dagerISak: ISODate[] = getDatesInDateRanges(perioderISak).sort(sortDates).map(dateToISODate);
 
     const dagerFjernet = dagerISak.filter((d) => isoDateIsNotInArray(d, dagerIMelding));
     const dagerLagtTil = dagerIMelding.filter((d) => isoDateIsNotInArray(d, dagerISak));
