@@ -1,6 +1,12 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { DateRange, prettifyDate } from '@navikt/sif-common-utils';
+import {
+    DateRange,
+    dateToday,
+    isDateInDateRange,
+    isDateInMaybeDateRange,
+    prettifyDate,
+} from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import {
@@ -13,6 +19,7 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/typ
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
 import ferieuttakUtils from './ferieuttakUtils';
 import { Ferieuttak, FerieuttakFormValues } from './types';
+import dayjs from 'dayjs';
 
 export interface FerieuttakFormLabels {
     title: string;
@@ -94,6 +101,15 @@ const FerieuttakForm = ({
             ? alleFerieuttak.map(mapFomTomToDateRange)
             : alleFerieuttak.filter((f) => f.id !== ferieuttak.id).map(mapFomTomToDateRange);
 
+    let defaultMonth: Date = dateToday;
+    if ((minDate || maxDate) && !isDateInMaybeDateRange(dateToday, { from: minDate, to: maxDate })) {
+        if (maxDate && dayjs(dateToday).isAfter(maxDate, 'day')) {
+            defaultMonth = maxDate;
+        } else if (minDate && dayjs(dateToday).isBefore(minDate, 'day')) {
+            defaultMonth = minDate;
+        }
+    }
+
     return (
         <>
             <Form.FormikWrapper
@@ -120,6 +136,9 @@ const FerieuttakForm = ({
                                     }).validateFromDate(value);
                                     return handleDateRangeValidationError(error, minDate, maxDate);
                                 },
+                                dayPickerProps: {
+                                    defaultMonth,
+                                },
                                 onChange: () => {
                                     setTimeout(() => {
                                         formik.validateField(FerieuttakFormFields.tom);
@@ -129,6 +148,9 @@ const FerieuttakForm = ({
                             toInputProps={{
                                 label: formLabels.toDate,
                                 name: FerieuttakFormFields.tom,
+                                dayPickerProps: {
+                                    defaultMonth,
+                                },
                                 validate: (value) => {
                                     const dateError = getDateRangeValidator({
                                         required: true,
