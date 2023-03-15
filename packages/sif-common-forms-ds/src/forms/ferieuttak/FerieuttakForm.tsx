@@ -116,7 +116,12 @@ const FerieuttakForm = ({
                 initialValues={ferieuttakUtils.mapFerieuttakToFormValues(ferieuttak || {})}
                 onSubmit={onFormikSubmit}
                 renderForm={(formik) => (
-                    <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'ferieuttakForm')}>
+                    <Form.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getFormErrorHandler(intl, 'ferieuttakForm')}
+                        showButtonArrows={false}
+                        submitButtonLabel={formLabels.okButton}
+                        cancelButtonLabel={formLabels.cancelButton}>
                         <Form.DateRangePicker
                             legend={formLabels.intervalTitle}
                             fullscreenOverlay={true}
