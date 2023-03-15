@@ -1,3 +1,4 @@
+import exp from 'constants';
 import dayjs from 'dayjs';
 import {
     DateRange,
@@ -10,6 +11,7 @@ import {
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
+    getDateRangesWithinDateRange,
     getDatesInDateRange,
     getDatesInMonthOutsideDateRange,
     getISODatesInISODateRange,
@@ -27,11 +29,13 @@ import {
     isDateInsideDateRange,
     isDateRange,
     isDateRangeSameOrBeforeDate,
+    ISODateRange,
     ISODateRangeToDateRange,
     ISODateRangeToISODates,
     ISODateToDate,
     ISODateToISODateRange,
     joinAdjacentDateRanges,
+    limitDateRangeToDateRange,
     setMaxToDateForDateRange,
     sortDateRange,
     sortDateRangeByToDate,
@@ -809,6 +813,86 @@ describe('dateRangeUtils', () => {
         });
         it('returns false if dateRange ends after a date', () => {
             expect(isDateRangeSameOrBeforeDate({ from: onsdag, to: torsdag }, onsdag)).toBeFalsy();
+        });
+    });
+
+    describe('limitDateRangeToDateRange', () => {
+        const limitDateRange: ISODateRange = '2022-01-15/2022-02-15';
+        it('returns correct dates if dateRange is within limits', () => {
+            const dateRange: ISODateRange = '2022-02-01/2022-02-10';
+            const result = dateRangeToISODateRange(
+                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange))
+            );
+            expect(result).toEqual(dateRange);
+        });
+        it('returns correct dates if dateRange is equal limits', () => {
+            const result = dateRangeToISODateRange(
+                limitDateRangeToDateRange(
+                    ISODateRangeToDateRange(limitDateRange),
+                    ISODateRangeToDateRange(limitDateRange)
+                )
+            );
+            expect(result).toEqual(limitDateRange);
+        });
+        it('returns correct dates if dateRange exceeds start of limit', () => {
+            const dateRange: ISODateRange = '2022-01-01/2022-02-10';
+            const result = dateRangeToISODateRange(
+                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange))
+            );
+            expect(result).toEqual('2022-01-15/2022-02-10');
+        });
+        it('returns correct dates if dateRange exceeds end of limit', () => {
+            const dateRange: ISODateRange = '2022-02-01/2022-03-10';
+            const result = dateRangeToISODateRange(
+                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange))
+            );
+            expect(result).toEqual('2022-02-01/2022-02-15');
+        });
+    });
+
+    describe('getDateRangesWithinDateRange', () => {
+        const limitDateRange: DateRange = ISODateRangeToDateRange('2022-02-10/2022-02-20');
+        const drFør: ISODateRange = '2022-02-01/2022-02-02';
+        const dr1: ISODateRange = '2022-02-10/2022-02-15';
+        const dr2: ISODateRange = '2022-02-16/2022-02-18';
+        const drEtter: ISODateRange = '2022-02-25/2022-02-28';
+
+        it('it keeps only dataranges within limit', () => {
+            const result = getDateRangesWithinDateRange(
+                [
+                    ISODateRangeToDateRange(drFør),
+                    ISODateRangeToDateRange(dr1),
+                    ISODateRangeToDateRange(dr2),
+                    ISODateRangeToDateRange(drEtter),
+                ],
+                limitDateRange
+            );
+            expect(result.length).toEqual(2);
+            expect(result[0]).toEqual(ISODateRangeToDateRange(dr1));
+            expect(result[1]).toEqual(ISODateRangeToDateRange(dr2));
+        });
+        it('it adjust dataranges crossing the limits by default', () => {
+            const drStart: ISODateRange = '2022-02-05/2022-02-15';
+            const drEnd: ISODateRange = '2022-02-16/2022-02-25';
+            const result = getDateRangesWithinDateRange(
+                [ISODateRangeToDateRange(drStart), ISODateRangeToDateRange(drEnd)],
+                limitDateRange
+            );
+            expect(result.length).toEqual(2);
+            expect(result[0]).toEqual(ISODateRangeToDateRange('2022-02-10/2022-02-15'));
+            expect(result[1]).toEqual(ISODateRangeToDateRange('2022-02-16/2022-02-20'));
+        });
+        it('it does NOT adjust dataranges crossing the limits if adjustToLimit===false', () => {
+            const drStart: ISODateRange = '2022-02-05/2022-02-15';
+            const drEnd: ISODateRange = '2022-02-16/2022-02-25';
+            const result = getDateRangesWithinDateRange(
+                [ISODateRangeToDateRange(drStart), ISODateRangeToDateRange(drEnd)],
+                limitDateRange,
+                false
+            );
+            expect(result.length).toEqual(2);
+            expect(result[0]).toEqual(ISODateRangeToDateRange(drStart));
+            expect(result[1]).toEqual(ISODateRangeToDateRange(drEnd));
         });
     });
 });
