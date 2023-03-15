@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Ingress, Tag, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -13,11 +13,12 @@ import {
 } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidEndring } from '../../types/ArbeidstidEndring';
-import { Arbeidsuke } from '../../types/Sak';
+import { Arbeidsuke, LovbestemtFerie } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import {
     arbeidsukerHarLikNormaltidPerDag,
@@ -25,10 +26,10 @@ import {
     getArbeidsukeUkenummer,
     getDagerTekst,
 } from '../../utils/arbeidsukeUtils';
+import { getDagerMedFerieTekst, getFeriedagerIUke } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
-import { DateRange } from '@navikt/sif-common-utils/lib';
 
 export type EndreArbeidstidData = {
     perioder: DateRange[];
@@ -37,6 +38,7 @@ export type EndreArbeidstidData = {
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
+    lovbestemtFerie?: LovbestemtFerie;
     onSubmit: (data: EndreArbeidstidData) => void;
     onCancel: () => void;
 }
@@ -59,7 +61,7 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker }) => {
+const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker, lovbestemtFerie }) => {
     const intl = useIntl();
     const {
         dispatch,
@@ -119,7 +121,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                     : 'Endre jobb for flere uker'}
                             </Heading>
                             <Block margin="m">
-                                <Ingress as="div">{getUkerOgÅrBeskrivelse(arbeidsuker)}</Ingress>
+                                <Ingress as="div">{getUkerOgÅrBeskrivelse(arbeidsuker, lovbestemtFerie)}</Ingress>
                             </Block>
                         </Block>
 
@@ -218,11 +220,21 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
 export default EndreArbeidstidForm;
 
-const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[]) => {
+const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFerie) => {
     if (arbeidsuker.length === 1) {
+        const dagerMedFerie = lovbestemtFerie
+            ? getFeriedagerIUke(lovbestemtFerie.perioder, arbeidsuker[0].periode)
+            : [];
         return (
             <BodyShort as="div" className="capsFirstChar">
                 {getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}
+                {dagerMedFerie.length > 0 && (
+                    <Block margin="m">
+                        <Tag variant="info" size="small">
+                            {getDagerMedFerieTekst(dagerMedFerie)}
+                        </Tag>
+                    </Block>
+                )}
             </BodyShort>
         );
     }

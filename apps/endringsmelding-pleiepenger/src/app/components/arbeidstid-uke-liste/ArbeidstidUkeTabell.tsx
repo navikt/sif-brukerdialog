@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tag, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Checkbox, Heading, ReadMore, Table, Tag, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit, InformationColored } from '@navikt/ds-icons';
@@ -199,6 +199,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
                             const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
+                            const dagerMedFerie = ferieperioder ? getFeriedagerIUke(ferieperioder, uke.periode) : [];
 
                             return (
                                 <li key={uke.isoDateRange}>
@@ -227,7 +228,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 {dateFormatter.compact(uke.periode.to)}
                                             </BodyShort>
                                             <div style={{ padding: '.5rem 0' }}>
-                                                <ArbeidstidUkeInfoListe uke={uke} />
+                                                <ArbeidstidUkeInfoListe uke={uke} dagerMedFerie={dagerMedFerie} />
                                             </div>
                                         </div>
                                         {kanEndreEnkeltuke && (
@@ -312,7 +313,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         {synligeUker.map((uke) => {
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
                             const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
-                            const dagerMedFerie = ferieperioder ? getDagerMedFerie(ferieperioder, uke.periode) : [];
+                            const dagerMedFerie = ferieperioder ? getFeriedagerIUke(ferieperioder, uke.periode) : [];
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
 
                             return (
@@ -352,6 +353,19 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                     </span>
                                                 </div>
                                             )}
+                                            {dagerMedFerie?.length > 0 && (
+                                                <Block margin="s">
+                                                    <Tag variant="info" size="small">
+                                                        {getDagerMedFerieTekst(dagerMedFerie)}
+                                                    </Tag>
+                                                </Block>
+                                            )}
+                                            {dagerMedFerie?.length > 0 && 1 + 1 == 3 && (
+                                                <div>
+                                                    Feriedager:{` `}
+                                                    <span style={{ whiteSpace: 'nowrap' }}>{dagerMedFerie.length}</span>
+                                                </div>
+                                            )}
                                         </Table.DataCell>
                                     )}
                                     {!renderCompactTable && (
@@ -370,11 +384,11 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                             {getPeriodeTekst(uke.periode)}
                                                             {dagerMedFerie?.length > 0 && (
                                                                 <Block margin="s">
-                                                                    <Tag variant="info" size="small">
-                                                                        {dagerMedFerie.length}{' '}
-                                                                        {dagerMedFerie.length === 1 ? 'dag' : 'dager'}{' '}
-                                                                        med ferie
-                                                                    </Tag>
+                                                                    <ReadMore
+                                                                        header={getDagerMedFerieTekst(dagerMedFerie)}>
+                                                                        Det er registrert dager med ferie i denne uken.
+                                                                        Du må da sjekke ...
+                                                                    </ReadMore>
                                                                 </Block>
                                                             )}
                                                         </span>
@@ -446,12 +460,16 @@ const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
     return `${fra} til ${til}`;
 };
 
-export const getDagerMedFerie = (ferieperioder: DateRange[], uke: DateRange): Date[] => {
+export const getFeriedagerIUke = (ferieperioder: DateRange[], uke: DateRange): Date[] => {
     const feriedager = getDatesInDateRanges(ferieperioder);
     const ukedager = getDatesInDateRange(uke);
     return ukedager
         .filter((dagIUke) => feriedager.some((dagIFerie) => dayjs(dagIUke).isSame(dagIFerie), 'day'))
         .filter(isDateWeekDay);
+};
+
+export const getDagerMedFerieTekst = (dagerMedFerie: Date[]): string => {
+    return `${dagerMedFerie.length} ${dagerMedFerie.length === 1 ? 'dag' : 'dager'} med ferie`;
 };
 
 export default ArbeidstidUkeTabell;

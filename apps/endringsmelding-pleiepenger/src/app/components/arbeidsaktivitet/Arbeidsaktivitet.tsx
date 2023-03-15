@@ -125,6 +125,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                 arbeidAktivitet={arbeidAktivitet}
                 isVisible={arbeidsukerForEndring !== undefined}
                 arbeidsuker={arbeidsukerForEndring || []}
+                lovbestemtFerie={lovbestemtFerie}
                 onClose={() => setArbeidsukerForEndring(undefined)}
                 onEndreArbeidstid={({ perioder, endring }) => {
                     setArbeidsukerForEndring(undefined);

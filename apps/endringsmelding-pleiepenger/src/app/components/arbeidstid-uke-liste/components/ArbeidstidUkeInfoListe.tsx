@@ -7,11 +7,12 @@ import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
+    dagerMedFerie?: Date[];
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
+const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, dagerMedFerie }) => {
     const intl = useIntl();
 
     if (uke.endret === undefined) {
@@ -29,6 +30,12 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
                         <DurationText duration={uke.opprinnelig.faktisk} />
                     </span>
                 </p>
+                {dagerMedFerie && dagerMedFerie.length > 0 && (
+                    <p>
+                        <span className="arbeidstidInfoListe__label">Feriedager:</span>
+                        <span className="arbeidstidInfoListe__value">{dagerMedFerie.length}</span>
+                    </p>
+                )}
             </div>
         );
     }
