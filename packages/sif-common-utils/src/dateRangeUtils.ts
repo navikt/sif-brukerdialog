@@ -4,7 +4,7 @@ import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import minMax from 'dayjs/plugin/minMax';
 import { uniq, uniqBy } from 'lodash';
-import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, MaybeDateRange } from './';
+import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from './';
 import {
     dateToISODate,
     getFirstWeekDayInMonth,
@@ -400,6 +400,18 @@ export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange =
         to: dayjs.max(dateRanges.map((range) => dayjs(range.to))).toDate(),
     };
 };
+/**
+ * Gets a isoDateRangeMap from array of DateRange
+ * @param dateRanges
+ * @returns dateRange
+ */
+export const getIsoDateRangeMapFromDateRanges = (dateRanges: DateRange[], value: any): ISODateRangeMap<any> => {
+    const dateRangeMap: ISODateRangeMap<any> = {};
+    dateRanges.map(dateRangeToISODateRange).forEach((key) => {
+        dateRangeMap[key] = value;
+    });
+    return dateRangeMap;
+};
 
 /**
  * Gets DateRanges from array of dates, where following dates are grouped in one DateRange
@@ -439,6 +451,18 @@ export const getDateRangesFromDates = (dates: Date[], removeDuplicateDates = tru
         }
     });
     return dateRanges;
+};
+
+/**
+ *
+ */
+
+export const getDatesInDateRanges = (dateRanges: DateRange[], removeDuplicateDates = true): Date[] => {
+    const dates: Date[] = [];
+    dateRanges.forEach((dateRange) => {
+        dates.push(...getDatesInDateRange(dateRange));
+    });
+    return removeDuplicateDates ? uniqBy(dates, (d) => dateToISODate(d)) : dates;
 };
 
 /**
@@ -562,10 +586,7 @@ export const getIsoWeekDateRangeForDate = (date: Date): DateRange => {
     };
 };
 
-interface ISODateRangeMap {
-    [key: ISODateRange]: any;
-}
-export const getDateRangesFromISODateRangeMap = (map: ISODateRangeMap): DateRange[] => {
+export const getDateRangesFromISODateRangeMap = (map: ISODateRangeMap<any>): DateRange[] => {
     return Object.keys(map).map((isoDateRange) => dateRangeUtils.ISODateRangeToDateRange(isoDateRange));
 };
 
@@ -587,21 +608,69 @@ export const setMaxToDateForDateRange = (dateRange: DateRange, maxToDate: Date):
     return dateRange;
 };
 
+/**
+ * Modifies start and/or end date to be within limitDateRange
+ * @param dateRange
+ * @param limitDateRange
+ * @returns
+ */
+export const limitDateRangeToDateRange = (dateRange: DateRange, limitDateRange: DateRange): DateRange => {
+    return {
+        from: dayjs(dateRange.from).isBefore(limitDateRange.from, 'day') ? limitDateRange.from : dateRange.from,
+        to: dayjs(dateRange.to).isAfter(limitDateRange.to, 'day') ? limitDateRange.to : dateRange.to,
+    };
+};
+
+/**
+ * Returns all dateRanges within the limitDateRange.
+ * @param dateRanges
+ * @param limitDateRange
+ * @param adjustToLimit Modifies dateRanges crossing limitDateRange if set to true (default)
+ * @returns
+ */
+export const getDateRangesWithinDateRange = (
+    dateRanges: DateRange[],
+    limitDateRange: DateRange,
+    adjustToLimit = true
+): DateRange[] => {
+    return dateRanges
+        .filter((dr) => dateRangesCollide([dr, limitDateRange]))
+        .map((dr) => (adjustToLimit ? limitDateRangeToDateRange(dr, limitDateRange) : dr));
+};
+
+// const dateRangeDifference = (range1: DateRange[], range2: DateRange[]): DateRange[] {
+//   const difference: DateRange[] = [];
+//   range1.forEach((r1) => {
+//     let isOverlap = false;
+//     range2.forEach((r2) => {
+//       if ((r1.from <= r2.from && r1.to >= r2.from) || (r1.from <= r2.to && r1.to >= r2.to)) {
+//         isOverlap = true;
+//       }
+//     });
+//     if (!isOverlap) {
+//       difference.push(r1);
+//     }
+//   });
+//   return difference;
+// }
+
 export const dateRangeUtils = {
-    includeWeekendIfDateRangeEndsOnFridayOrLater,
-    dateRangesCollide,
     dateRangeIsAdjacentToDateRange,
+    dateRangesCollide,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
     getDateRangesFromISODateRangeMap,
+    getDateRangesWithinDateRange,
+    getDatesInDateRanges,
     getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
     getWeekDateRange,
+    includeWeekendIfDateRangeEndsOnFridayOrLater,
     isDateInDateRange,
     isDateInDateRanges,
     isDateInMaybeDateRange,
@@ -611,6 +680,7 @@ export const dateRangeUtils = {
     ISODateRangeToISODates,
     ISODateToISODateRange,
     joinAdjacentDateRanges,
+    limitDateRangeToDateRange,
     sortDateRange,
     sortDateRangeByToDate,
 };
