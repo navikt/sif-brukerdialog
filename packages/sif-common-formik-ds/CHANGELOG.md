@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.12.1
+
+### Patch Changes
+
+-   c833cf6: Kosovo landkode fiks
+
 ## 0.12.0
 
 ### Minor Changes
