@@ -44,7 +44,10 @@ interface K9FormatUtenlandsopphold {
     årsak: UtenlandsoppholdÅrsak;
 }
 
-export type K9FormatLovbestemtFerierPerioder = ISODateRangeMap<boolean | null>;
+export type K9LovbestemtFeriePeriode = {
+    skalHaFerie: boolean | null;
+};
+export type K9FormatLovbestemtFerierPerioder = ISODateRangeMap<K9LovbestemtFeriePeriode>;
 
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;

@@ -127,7 +127,9 @@ export const parseK9FormatUtenlandsopphold = (
  * @returns DateRange[]
  */
 export const parseK9FormatLovbestemtFerie = (perioder: K9FormatLovbestemtFerierPerioder): DateRange[] => {
-    return Object.keys(perioder).map(ISODateRangeToDateRange);
+    return Object.keys(perioder)
+        .filter((key) => perioder[key].skalHaFerie === true)
+        .map(ISODateRangeToDateRange);
 };
 /**
  * Parser K9Format
