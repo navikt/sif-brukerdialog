@@ -42,8 +42,8 @@ interface ArbeidAktivitetBase {
     id: string;
     type: ArbeidAktivitetType;
     perioderMedArbeidstid: PeriodeMedArbeidstid[];
-    harPerioderFørEndringsperiode: boolean;
-    harPerioderEtterEndringsperiode: boolean;
+    harPerioderFørTillattEndringsperiode: boolean;
+    harPerioderEtterTillattEndringsperiode: boolean;
 }
 
 export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {

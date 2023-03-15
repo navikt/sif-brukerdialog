@@ -38,7 +38,7 @@ const LovbestemtFerieStep = () => {
     const intl = useIntl();
 
     const {
-        state: { søknadsdata, sak, hvaSkalEndres, endringsperiode },
+        state: { søknadsdata, sak, hvaSkalEndres, tillattEndringsperiode },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
@@ -94,7 +94,7 @@ const LovbestemtFerieStep = () => {
                             <Block margin="xxl">
                                 <Heading level="2" size="small" spacing={true}>
                                     Registrert ferie i perioden{' '}
-                                    <PeriodeTekst periode={endringsperiode} compact={false} />
+                                    <PeriodeTekst periode={tillattEndringsperiode} compact={false} />
                                 </Heading>
                                 <p>Periodene med ferie gjelder på tvers av alle dine arbeidsforhold.</p>
                             </Block>
@@ -105,11 +105,11 @@ const LovbestemtFerieStep = () => {
                                         addLabel: 'Legg til ferie',
                                         modalTitle: 'Lovbestemt ferie',
                                         emptyListText: `Ingen ferie er registrert i perioden ${getPeriodeTekst(
-                                            endringsperiode
+                                            tillattEndringsperiode
                                         )}`,
                                     }}
-                                    minDate={endringsperiode.from}
-                                    maxDate={endringsperiode.to}
+                                    minDate={tillattEndringsperiode.from}
+                                    maxDate={tillattEndringsperiode.to}
                                 />
                             </Block>
                         </Form>

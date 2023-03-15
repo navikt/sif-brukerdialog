@@ -29,7 +29,7 @@ const { FormikWrapper, Form, RadioGroup } = getTypedFormComponents<FormFields, F
 const VelgSakPage = () => {
     const intl = useIntl();
     const {
-        state: { søker, k9saker, arbeidsgivere, endringsperiode },
+        state: { søker, k9saker, arbeidsgivere, tillattEndringsperiode },
         dispatch,
     } = useSøknadContext();
     const navigate = useNavigate();
@@ -39,7 +39,7 @@ const VelgSakPage = () => {
         const k9Sak = k9saker.find((sak) => sak.barn.aktørId === values.barnAktørId);
 
         if (k9Sak) {
-            const sak = getSakFromK9Sak(k9Sak, arbeidsgivere, endringsperiode);
+            const sak = getSakFromK9Sak(k9Sak, arbeidsgivere, tillattEndringsperiode);
             if (sak) {
                 dispatch(actionsCreator.setSak(sak));
                 dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.VELKOMMEN));

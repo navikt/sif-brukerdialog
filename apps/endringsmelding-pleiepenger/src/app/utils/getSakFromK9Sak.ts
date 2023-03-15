@@ -338,12 +338,12 @@ const getArbeidAktivitetPerioderPart = (
     endringsperiode: DateRange
 ): Pick<
     ArbeidAktivitet,
-    'perioderMedArbeidstid' | 'harPerioderEtterEndringsperiode' | 'harPerioderFørEndringsperiode'
+    'perioderMedArbeidstid' | 'harPerioderEtterTillattEndringsperiode' | 'harPerioderFørTillattEndringsperiode'
 > => {
     return {
         perioderMedArbeidstid: getPerioderMedArbeidstid(arbeidstidPerioder, endringsperiode),
-        harPerioderFørEndringsperiode: harPerioderFørEndringsperiode(arbeidstidPerioder, endringsperiode),
-        harPerioderEtterEndringsperiode: harPerioderEtterEndringsperiode(arbeidstidPerioder, endringsperiode),
+        harPerioderFørTillattEndringsperiode: harPerioderFørEndringsperiode(arbeidstidPerioder, endringsperiode),
+        harPerioderEtterTillattEndringsperiode: harPerioderEtterEndringsperiode(arbeidstidPerioder, endringsperiode),
     };
 };
 

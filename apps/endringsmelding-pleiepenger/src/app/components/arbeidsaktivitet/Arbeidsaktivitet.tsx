@@ -12,7 +12,7 @@ import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
-import { getEndringsdato, getMaksEndringsperiode } from '../../utils/endringsperiode';
+import { getEndringsdato, getTillattEndringsperiode } from '../../utils/endringsperiode';
 import { getLovbestemtFerieIPeriode } from '../../utils/lovbestemtFerieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
@@ -39,7 +39,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                 <Heading level="3" size="small" spacing={true}>
                     {perioder.length > 1 ? 'Perioder med pleiepenger' : 'Uker med pleiepenger'}
                 </Heading>
-                {renderInfoOmEndringUtenforEndringsperiode(arbeidAktivitet)}
+                {renderInfoOmEndringUtenforMaksEndringsperiode(arbeidAktivitet)}
             </Block>
 
             {perioder.length === 1 && (
@@ -149,13 +149,13 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
     );
 };
 
-const renderInfoOmEndringUtenforEndringsperiode = ({
-    harPerioderEtterEndringsperiode,
-    harPerioderFørEndringsperiode,
+const renderInfoOmEndringUtenforMaksEndringsperiode = ({
+    harPerioderEtterTillattEndringsperiode: harPerioderEtterEndringsperiode,
+    harPerioderFørTillattEndringsperiode: harPerioderFørEndringsperiode,
 }: ArbeidAktivitet) => {
-    const endringsperiode = getMaksEndringsperiode(getEndringsdato());
-    const førDato = dateFormatter.full(endringsperiode.from);
-    const etterDato = dateFormatter.full(endringsperiode.to);
+    const tillattEndringsperiode = getTillattEndringsperiode(getEndringsdato());
+    const førDato = dateFormatter.full(tillattEndringsperiode.from);
+    const etterDato = dateFormatter.full(tillattEndringsperiode.to);
     if (harPerioderFørEndringsperiode && !harPerioderEtterEndringsperiode) {
         return (
             <Block padBottom="l">

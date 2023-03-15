@@ -13,7 +13,7 @@ export interface SøknadContextState {
     søker: Søker;
     k9saker: K9Sak[];
     sak: Sak;
-    endringsperiode: DateRange;
+    tillattEndringsperiode: DateRange;
     arbeidsgivere: Arbeidsgiver[];
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
