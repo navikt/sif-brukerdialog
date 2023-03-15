@@ -23,6 +23,7 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
+import { getDateRangesBetweenDateRanges } from '@navikt/sif-common-utils/lib';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -38,7 +39,7 @@ const LovbestemtFerieStep = () => {
     const intl = useIntl();
 
     const {
-        state: { søknadsdata, sak, hvaSkalEndres, tillattEndringsperiode },
+        state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
@@ -94,7 +95,7 @@ const LovbestemtFerieStep = () => {
                             <Block margin="xxl">
                                 <Heading level="2" size="small" spacing={true}>
                                     Registrert ferie i perioden{' '}
-                                    <PeriodeTekst periode={tillattEndringsperiode} compact={false} />
+                                    <PeriodeTekst periode={sak.samletSøknadsperiode} compact={false} />
                                 </Heading>
                                 <p>Periodene med ferie gjelder på tvers av alle dine arbeidsforhold.</p>
                             </Block>
@@ -105,11 +106,12 @@ const LovbestemtFerieStep = () => {
                                         addLabel: 'Legg til ferie',
                                         modalTitle: 'Lovbestemt ferie',
                                         emptyListText: `Ingen ferie er registrert i perioden ${getPeriodeTekst(
-                                            tillattEndringsperiode
+                                            sak.samletSøknadsperiode
                                         )}`,
                                     }}
-                                    minDate={tillattEndringsperiode.from}
-                                    maxDate={tillattEndringsperiode.to}
+                                    disabledDateRanges={getDateRangesBetweenDateRanges(sak.søknadsperioder)}
+                                    minDate={sak.samletSøknadsperiode.from}
+                                    maxDate={sak.samletSøknadsperiode.to}
                                 />
                             </Block>
                         </Form>

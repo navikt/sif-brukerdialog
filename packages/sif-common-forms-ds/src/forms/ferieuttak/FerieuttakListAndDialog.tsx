@@ -5,7 +5,7 @@ import {
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { sortMaybeDateRange } from '@navikt/sif-common-utils';
+import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
 import FerieuttakForm from './FerieuttakForm';
 import FerieuttakList from './FerieuttakList';
 import { Ferieuttak } from './types';
@@ -14,10 +14,18 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     name: FieldNames;
     minDate: Date;
     maxDate: Date;
+    disabledDateRanges?: DateRange[];
     labels: ModalFormAndListLabels;
 }
 
-function FerieuttakListAndDialog<FieldNames>({ name, minDate, maxDate, validate, labels }: Props<FieldNames>) {
+function FerieuttakListAndDialog<FieldNames>({
+    name,
+    minDate,
+    maxDate,
+    labels,
+    disabledDateRanges,
+    validate,
+}: Props<FieldNames>) {
     return (
         <>
             <FormikModalFormAndList<FieldNames, Ferieuttak, ValidationError>
@@ -33,6 +41,7 @@ function FerieuttakListAndDialog<FieldNames>({ name, minDate, maxDate, validate,
                         maxDate={maxDate}
                         onSubmit={onSubmit}
                         onCancel={onCancel}
+                        utilgjengeligePerioder={disabledDateRanges}
                         alleFerieuttak={allItems}
                     />
                 )}

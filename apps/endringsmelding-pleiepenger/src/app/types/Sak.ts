@@ -77,6 +77,8 @@ export interface Sak {
     barn: K9SakBarn;
     arbeidAktiviteter: ArbeidAktiviteter;
     lovbestemtFerie: LovbestemtFerie;
+    søknadsperioder: DateRange[];
+    samletSøknadsperiode: DateRange;
     ytelse: {
         type: string;
     };

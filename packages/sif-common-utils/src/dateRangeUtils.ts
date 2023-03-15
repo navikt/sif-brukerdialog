@@ -663,6 +663,7 @@ export const dateRangeUtils = {
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
     getDateRangesFromISODateRangeMap,
+    getDateRangesWithinDateRange,
     getDatesInDateRanges,
     getIsoWeekDateRangeForDate,
     getMonthDateRange,
@@ -679,6 +680,7 @@ export const dateRangeUtils = {
     ISODateRangeToISODates,
     ISODateToISODateRange,
     joinAdjacentDateRanges,
+    limitDateRangeToDateRange,
     sortDateRange,
     sortDateRangeByToDate,
 };

@@ -2,6 +2,7 @@ import {
     DateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
+    dateRangeUtils,
     dateToISODate,
     durationUtils,
     getDateRangesFromISODateRangeMap,
@@ -432,27 +433,38 @@ const getArbeidAktivitetSelvstendigNæringsdrivende = (
  * Henter ut info fra K9Sak og klargjør sak for videre behandling i dialogen
  * @param k9sak Sak hentet fra K9
  * @param arbeidsgivere Liste med arbeidsgivere
- * @param endringsperiode Periode hvor en kan endre
+ * @param tillattEndringsperiode Periode hvor en kan endre
  * @returns Sak
  */
-export const getSakFromK9Sak = (k9sak: K9Sak, arbeidsgivere: Arbeidsgiver[], endringsperiode: DateRange): Sak => {
+export const getSakFromK9Sak = (
+    k9sak: K9Sak,
+    arbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange
+): Sak => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
         k9sak.ytelse.arbeidstid;
+
+    const søknadsperioderInneforTillattEndringsperiode = dateRangeUtils.getDateRangesWithinDateRange(
+        k9sak.ytelse.søknadsperioder,
+        tillattEndringsperiode
+    );
     return {
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
         },
+        søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
+        samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,
         arbeidAktiviteter: {
             arbeidstakerArktiviteter: arbeidstakerList
                 ? arbeidstakerList.map((arbeidstaker) =>
-                      getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivere, endringsperiode)
+                      getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivere, tillattEndringsperiode)
                   )
                 : [],
-            frilanser: getArbeidAktivitetFrilanser(frilanserArbeidstidInfo, endringsperiode),
+            frilanser: getArbeidAktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode),
             selvstendigNæringsdrivende: getArbeidAktivitetSelvstendigNæringsdrivende(
                 selvstendigNæringsdrivendeArbeidstidInfo,
-                endringsperiode
+                tillattEndringsperiode
             ),
         },
         lovbestemtFerie: {

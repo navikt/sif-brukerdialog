@@ -28,6 +28,7 @@ interface Props {
     maxDate: Date;
     ferieuttak?: Partial<Ferieuttak>;
     alleFerieuttak?: Ferieuttak[];
+    utilgjengeligePerioder?: DateRange[];
     labels?: Partial<FerieuttakFormLabels>;
     onSubmit: (values: Ferieuttak) => void;
     onCancel: () => void;
@@ -57,7 +58,16 @@ export const FerieuttakFormErrors = {
 
 const Form = getTypedFormComponents<FerieuttakFormFields, FerieuttakFormValues, ValidationError>();
 
-const FerieuttakForm = ({ maxDate, minDate, labels, ferieuttak, alleFerieuttak = [], onSubmit, onCancel }: Props) => {
+const FerieuttakForm = ({
+    maxDate,
+    minDate,
+    labels,
+    ferieuttak,
+    alleFerieuttak = [],
+    utilgjengeligePerioder = [],
+    onSubmit,
+    onCancel,
+}: Props) => {
     const intl = useIntl();
     const onFormikSubmit = (formValues: FerieuttakFormValues) => {
         const ferieuttakToSubmit = ferieuttakUtils.mapFormValuesToFerieuttak(formValues, ferieuttak?.id);
@@ -97,7 +107,7 @@ const FerieuttakForm = ({ maxDate, minDate, labels, ferieuttak, alleFerieuttak =
                             minDate={minDate}
                             maxDate={maxDate}
                             allowRangesToStartAndStopOnSameDate={true}
-                            disabledDateRanges={andreFerieuttak}
+                            disabledDateRanges={[...andreFerieuttak, ...utilgjengeligePerioder]}
                             fromInputProps={{
                                 label: formLabels.fromDate,
                                 name: FerieuttakFormFields.fom,
