@@ -57,7 +57,7 @@
         "autoprefixer": "10.4.14",
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
-        "cypress": "12.7.0",
+        "cypress": "12.8.0",
         "cypress-file-upload": "5.0.8",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.0",
