@@ -1,5 +1,17 @@
 # @navikt/sif-common-sentry
 
+## 0.11.0
+
+### Minor Changes
+
+-   908bb770: Pakkeoppdateringer
+
+## 0.10.0
+
+### Minor Changes
+
+-   ada550f9: Fjerne default filter på allowUrls dersom allowUrls er sendt inn
+
 ## 0.9.6
 
 ### Patch Changes
