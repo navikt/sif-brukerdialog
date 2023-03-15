@@ -33,6 +33,7 @@ export interface FerieuttakFormLabels {
 interface Props {
     minDate: Date;
     maxDate: Date;
+    disableWeekend?: boolean;
     ferieuttak?: Partial<Ferieuttak>;
     alleFerieuttak?: Ferieuttak[];
     utilgjengeligePerioder?: DateRange[];
@@ -70,6 +71,7 @@ const FerieuttakForm = ({
     minDate,
     labels,
     ferieuttak,
+    disableWeekend,
     alleFerieuttak = [],
     utilgjengeligePerioder = [],
     onSubmit,
@@ -129,6 +131,7 @@ const FerieuttakForm = ({
                             maxDate={maxDate}
                             allowRangesToStartAndStopOnSameDate={true}
                             disabledDateRanges={[...andreFerieuttak, ...utilgjengeligePerioder]}
+                            disableWeekend={disableWeekend}
                             fromInputProps={{
                                 label: formLabels.fromDate,
                                 name: FerieuttakFormFields.fom,
@@ -137,6 +140,7 @@ const FerieuttakForm = ({
                                         required: true,
                                         min: minDate,
                                         max: maxDate,
+                                        onlyWeekdays: disableWeekend === true,
                                         toDate: ISOStringToDate(formik.values.tom),
                                     }).validateFromDate(value);
                                     return handleDateRangeValidationError(error, minDate, maxDate);
@@ -161,6 +165,7 @@ const FerieuttakForm = ({
                                         required: true,
                                         min: minDate,
                                         max: maxDate,
+                                        onlyWeekdays: disableWeekend === true,
                                         fromDate: ISOStringToDate(formik.values.fom),
                                     }).validateToDate(value);
                                     switch (dateError) {

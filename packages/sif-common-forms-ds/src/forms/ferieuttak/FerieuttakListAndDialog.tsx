@@ -15,6 +15,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     minDate: Date;
     maxDate: Date;
     disabledDateRanges?: DateRange[];
+    disableWeekend?: boolean;
     labels: ModalFormAndListLabels;
 }
 
@@ -23,33 +24,33 @@ function FerieuttakListAndDialog<FieldNames>({
     minDate,
     maxDate,
     labels,
+    disableWeekend,
     disabledDateRanges,
     validate,
 }: Props<FieldNames>) {
     return (
-        <>
-            <FormikModalFormAndList<FieldNames, Ferieuttak, ValidationError>
-                name={name}
-                labels={labels}
-                dialogWidth="narrow"
-                validate={validate}
-                sortFunc={(d1, d2) => sortMaybeDateRange({ from: d1.fom }, { from: d2.fom })}
-                formRenderer={({ onSubmit, onCancel, item, allItems }) => (
-                    <FerieuttakForm
-                        ferieuttak={item}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        onSubmit={onSubmit}
-                        onCancel={onCancel}
-                        utilgjengeligePerioder={disabledDateRanges}
-                        alleFerieuttak={allItems}
-                    />
-                )}
-                listRenderer={({ items, onEdit, onDelete }) => (
-                    <FerieuttakList ferieuttak={items} onEdit={onEdit} onDelete={onDelete} />
-                )}
-            />
-        </>
+        <FormikModalFormAndList<FieldNames, Ferieuttak, ValidationError>
+            name={name}
+            labels={labels}
+            dialogWidth="narrow"
+            validate={validate}
+            sortFunc={(d1, d2) => sortMaybeDateRange({ from: d1.fom }, { from: d2.fom })}
+            formRenderer={({ onSubmit, onCancel, item, allItems }) => (
+                <FerieuttakForm
+                    ferieuttak={item}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    onSubmit={onSubmit}
+                    onCancel={onCancel}
+                    disableWeekend={disableWeekend}
+                    utilgjengeligePerioder={disabledDateRanges}
+                    alleFerieuttak={allItems}
+                />
+            )}
+            listRenderer={({ items, onEdit, onDelete }) => (
+                <FerieuttakList ferieuttak={items} onEdit={onEdit} onDelete={onDelete} />
+            )}
+        />
     );
 }
 

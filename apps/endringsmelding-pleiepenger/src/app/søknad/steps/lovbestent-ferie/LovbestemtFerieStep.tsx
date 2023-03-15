@@ -103,12 +103,14 @@ const LovbestemtFerieStep = () => {
                                 <FerieuttakListAndDialog<LovbestemtFerieFormFields>
                                     name={LovbestemtFerieFormFields.perioder}
                                     labels={{
+                                        listTitle: 'Dager med lovbestemt ferie',
                                         addLabel: 'Legg til ferie',
                                         modalTitle: 'Lovbestemt ferie',
                                         emptyListText: `Ingen ferie er registrert i perioden ${getPeriodeTekst(
                                             sak.samletSøknadsperiode
                                         )}`,
                                     }}
+                                    disableWeekend={true}
                                     disabledDateRanges={getDateRangesBetweenDateRanges(sak.søknadsperioder)}
                                     minDate={sak.samletSøknadsperiode.from}
                                     maxDate={sak.samletSøknadsperiode.to}

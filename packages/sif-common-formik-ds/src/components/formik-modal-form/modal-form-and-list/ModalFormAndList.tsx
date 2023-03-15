@@ -103,7 +103,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </div>
                 )}
                 {items.length === 0 && labels.emptyListText && (
-                    <div style={{ paddingBottom: '2rem' }}>
+                    <div style={{ marginTop: labels.listTitle ? '1rem' : 'none', paddingBottom: '.5rem' }}>
                         <Alert variant="info">{labels.emptyListText}</Alert>
                     </div>
                 )}

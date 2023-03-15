@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Button, Checkbox, Heading, ReadMore, Table, Tag, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tag, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit, InformationColored } from '@navikt/ds-icons';
@@ -355,7 +355,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             )}
                                             {dagerMedFerie?.length > 0 && (
                                                 <Block margin="s">
-                                                    <Tag variant="info" size="small">
+                                                    <Tag variant="alt2" size="small">
                                                         {getDagerMedFerieTekst(dagerMedFerie)}
                                                     </Tag>
                                                 </Block>
@@ -384,11 +384,9 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                             {getPeriodeTekst(uke.periode)}
                                                             {dagerMedFerie?.length > 0 && (
                                                                 <Block margin="s">
-                                                                    <ReadMore
-                                                                        header={getDagerMedFerieTekst(dagerMedFerie)}>
-                                                                        Det er registrert dager med ferie i denne uken.
-                                                                        Du må da sjekke ...
-                                                                    </ReadMore>
+                                                                    <Tag variant="alt2" size="small">
+                                                                        {getDagerMedFerieTekst(dagerMedFerie)}
+                                                                    </Tag>
                                                                 </Block>
                                                             )}
                                                         </span>
