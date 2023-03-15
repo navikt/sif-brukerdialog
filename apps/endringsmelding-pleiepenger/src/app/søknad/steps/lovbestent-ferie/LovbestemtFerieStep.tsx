@@ -1,4 +1,4 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -7,7 +7,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
-import PeriodeTekst, { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
+import { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -65,16 +65,20 @@ const LovbestemtFerieStep = () => {
     );
 
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
+    const harFlereSøknadsperioder = sak.søknadsperioder.length > 1;
 
     return (
         <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
-                        <p>Nedenfor ser du ferier som er registrert. Du kan legge til nye, endre eller fjerne.</p>
                         <p>
-                            Hvis du fjerner dager mer ferie, må du kontrollere at arbeidstiden for disse dagene er
-                            riktig. Dette gjør du på Jobb i perioden-steget som kommer senere.
+                            Her kan du endre, legge til eller fjerne lovbestemt ferie i{' '}
+                            {harFlereSøknadsperioder ? 'periodene dine' : 'perioden din'} med pleiepenger.
+                        </p>
+                        <p>
+                            Vi trenger kun å vite om ferie som tas ut på ukedager
+                            {harFlereSøknadsperioder ? ', og i tidsrom hvor du har pleiepenger' : ''}.
                         </p>
                     </BodyLong>
                 </>
@@ -92,23 +96,24 @@ const LovbestemtFerieStep = () => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            <Block margin="xxl">
+                            {/* <Block margin="xxl">
                                 <Heading level="2" size="small" spacing={true}>
                                     Registrert ferie i perioden{' '}
                                     <PeriodeTekst periode={sak.samletSøknadsperiode} compact={false} />
                                 </Heading>
                                 <p>Periodene med ferie gjelder på tvers av alle dine arbeidsforhold.</p>
-                            </Block>
-                            <Block padBottom="xl">
+                            </Block> */}
+                            <Block margin="xl" padBottom="xl">
                                 <FerieuttakListAndDialog<LovbestemtFerieFormFields>
                                     name={LovbestemtFerieFormFields.perioder}
                                     labels={{
-                                        listTitle: 'Dager med lovbestemt ferie',
+                                        listTitle: `Ferie registrert i perioden ${getPeriodeTekst(
+                                            sak.samletSøknadsperiode,
+                                            false
+                                        )}`,
                                         addLabel: 'Legg til ferie',
                                         modalTitle: 'Lovbestemt ferie',
-                                        emptyListText: `Ingen ferie er registrert i perioden ${getPeriodeTekst(
-                                            sak.samletSøknadsperiode
-                                        )}`,
+                                        emptyListText: `Ingen ferie er registrert`,
                                     }}
                                     disableWeekend={true}
                                     disabledDateRanges={getDateRangesBetweenDateRanges(sak.søknadsperioder)}

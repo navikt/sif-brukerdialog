@@ -73,6 +73,14 @@ const VelkommenPage = () => {
                         Du har pleiepenger for <strong>{barnetsNavn}</strong>. Her kan du melde fra om endringer som
                         gjelder perioden hvor du har pleiepenger.
                     </p>
+                    <Heading level="2" size="small">
+                        Endringer du kan melde fra om:
+                    </Heading>
+                    <InfoList>
+                        <li>hvor mye du jobber i perioden med pleiepenger</li>
+                        <li>når du tar ut lovbestemt ferie</li>
+                    </InfoList>
+                    <p>Vi kommer til å utvide med mer funksjonalitet etter hvert.</p>
                     {1 + 1 === 3 && (
                         <>
                             <Block margin="xl">
