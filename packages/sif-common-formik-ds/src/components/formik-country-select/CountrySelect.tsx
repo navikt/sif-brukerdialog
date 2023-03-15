@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCountries } from '../../utils/countryUtils';
+import { getAlpha3Code, getCountries } from '../../utils/countryUtils';
 import { TestProps } from '../../types';
 import { Select, SelectProps } from '@navikt/ds-react';
 
@@ -70,11 +70,6 @@ const createCountryOptions = (
 ): React.ReactNode[] => {
     const lang = locale === 'en' ? 'nn' : 'nb';
     const countries = getCountries();
-
-    const getAlpha3Code = (alpha2Code: string) => {
-        const countryAlpha3Code = countries.alpha2ToAlpha3(alpha2Code).toUpperCase();
-        return countryAlpha3Code === 'XKX' ? 'XXK' : countryAlpha3Code;
-    };
 
     const names: [string, any][] = Object.entries(countries.getNames(lang));
     return names
