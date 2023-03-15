@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCountries } from '../../utils/countryUtils';
+import { getAlpha3Code, getCountries } from '../../utils/countryUtils';
 import { TestProps } from '../../types';
 import { Select, SelectProps } from '@navikt/ds-react';
 
@@ -80,7 +80,7 @@ const createCountryOptions = (
         .map((countryOptionValue: string[]) => (
             <option
                 key={countryOptionValue[0]}
-                value={useAlpha3Code ? countries.alpha2ToAlpha3(countryOptionValue[0]) : countryOptionValue[0]}>
+                value={useAlpha3Code ? getAlpha3Code(countryOptionValue[0]) : countryOptionValue[0]}>
                 {countryOptionValue[1]}
             </option>
         ));
@@ -113,7 +113,7 @@ class CountrySelect extends React.Component<Props> {
     }
 
     render() {
-        // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
         const { onChange, name, showOnlyEuAndEftaCountries, locale, useAlpha3Code, ...restProps } = this.props;
         return (
             <Select name={name} {...restProps} onChange={(e) => onChange(e.target.value)} autoComplete="off">
