@@ -1,4 +1,4 @@
-name: (helper) Deploy application to prod
+name: .Deploy application to prod
 
 on:
     workflow_call:
