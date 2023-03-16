@@ -7,7 +7,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
-import { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
+import { getDateRangesBetweenDateRanges } from '@navikt/sif-common-utils/lib';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -23,7 +23,6 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
-import { getDateRangesBetweenDateRanges } from '@navikt/sif-common-utils/lib';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -74,10 +73,8 @@ const LovbestemtFerieStep = () => {
                     <BodyLong as="div">
                         <p>
                             Her kan du endre, legge til eller fjerne lovbestemt ferie i{' '}
-                            {harFlereSøknadsperioder ? 'periodene dine' : 'perioden din'} med pleiepenger.
-                        </p>
-                        <p>
-                            Vi trenger kun å vite om ferie som tas ut på ukedager
+                            {harFlereSøknadsperioder ? 'periodene dine' : 'perioden din'} med pleiepenger. Vi trenger
+                            kun å vite om ferie som tas ut på ukedager
                             {harFlereSøknadsperioder ? ', og i tidsrom hvor du har pleiepenger' : ''}.
                         </p>
                     </BodyLong>
@@ -107,10 +104,7 @@ const LovbestemtFerieStep = () => {
                                 <FerieuttakListAndDialog<LovbestemtFerieFormFields>
                                     name={LovbestemtFerieFormFields.perioder}
                                     labels={{
-                                        listTitle: `Ferie registrert i perioden ${getPeriodeTekst(
-                                            sak.samletSøknadsperiode,
-                                            false
-                                        )}`,
+                                        listTitle: `Registrert ferie`,
                                         addLabel: 'Legg til ferie',
                                         modalTitle: 'Lovbestemt ferie',
                                         emptyListText: `Ingen ferie er registrert`,

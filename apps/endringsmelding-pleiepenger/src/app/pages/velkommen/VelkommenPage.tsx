@@ -17,6 +17,7 @@ import { getAktiviteterSomKanEndres, getArbeidAktivitetNavn } from '../../utils/
 import OmSøknaden from './OmSøknaden';
 import { EndringType } from '../../types/EndringType';
 import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
+import { getPeriodeTekst } from '../../components/periode-tekst/PeriodeTekst';
 
 const VelkommenPage = () => {
     const {
@@ -70,19 +71,23 @@ const VelkommenPage = () => {
                 </Heading>
                 <Ingress as="div">
                     <p>
-                        Du har pleiepenger for <strong>{barnetsNavn}</strong>. Her kan du melde fra om endringer som
-                        gjelder perioden hvor du har pleiepenger.
+                        Du har pleiepenger for <strong>{barnetsNavn}</strong>.
                     </p>
-                    <Heading level="2" size="small">
-                        Endringer du kan melde fra om:
-                    </Heading>
+                    <p>
+                        Her kan du melde fra om endringer som gjelder perioden hvor du har pleiepenger. Du kan melde fra
+                        om
+                    </p>
                     <InfoList>
                         <li>hvor mye du jobber i perioden med pleiepenger</li>
                         <li>når du tar ut lovbestemt ferie</li>
                     </InfoList>
-                    <p>Vi kommer til å utvide med mer funksjonalitet etter hvert.</p>
+
                     {1 + 1 === 3 && (
                         <>
+                            <p>
+                                Du kan melde om endringer i perioden{' '}
+                                {getPeriodeTekst(sak.samletSøknadsperiode, false, true)}.
+                            </p>
                             <Block margin="xl">
                                 <CheckboxGroup
                                     legend={
