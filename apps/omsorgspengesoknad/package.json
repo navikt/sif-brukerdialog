@@ -85,7 +85,7 @@
         "start-server-and-test": "2.0.0",
         "style-loader": "3.3.2",
         "ts-loader": "9.4.2",
-        "webpack": "5.76.1",
+        "webpack": "5.76.2",
         "webpack-dev-server": "4.11.1"
     },
     "jest": {
