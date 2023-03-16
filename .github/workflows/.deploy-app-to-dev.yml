@@ -1,4 +1,4 @@
-name: (helper) Deploy application to prod
+name: .Deploy application to dev
 
 on:
     workflow_call:
@@ -20,8 +20,8 @@ env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-    deploy-to-prod:
-        name: Deploy ${{ inputs.app-name }} to prod
+    deploy-to-dev:
+        name: Deploy ${{ inputs.app-name }} to dev
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -51,10 +51,10 @@ jobs:
                   docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
                   docker push ${IMAGE}
 
-            - name: Deploy to prod
+            - name: Deploy to dev
               uses: nais/deploy/actions/deploy@v1
               env:
-                  CLUSTER: prod-gcp
+                  CLUSTER: dev-gcp
                   RESOURCE: nais-config/nais.yml
-                  VARS: apps/${{ inputs.app-name }}/nais/prod-gcp.json
+                  VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
