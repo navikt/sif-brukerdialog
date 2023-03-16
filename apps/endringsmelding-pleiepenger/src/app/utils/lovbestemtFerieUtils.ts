@@ -9,7 +9,8 @@ import {
     sortDates,
 } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFerieEndringer } from '../types/LovbestemFerieEndringer';
-import { LovbestemtFeriePeriode, LovbestemtFeriePerioder } from '../types/Sak';
+// import { LovbestemtFerieEndringer } from '../types/LovbestemFerieEndringer';
+import { LovbestemtFeriePeriode } from '../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';
 
 const isoDateIsNotInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
@@ -37,16 +38,6 @@ export const getLovbestemtFerieEndringer = (
     };
 };
 
-export const harEndringerILovbestemtFerie = (
-    ferieSøknad: LovbestemtFerieSøknadsdata | undefined,
-    ferieSak: LovbestemtFeriePerioder
-): boolean => {
-    if (!ferieSøknad) {
-        return false;
-    }
-    return getLovbestemtFerieEndringer(ferieSøknad.perioderMedFerie, ferieSak.perioder).erEndret;
-};
-
 export const harFjernetLovbestemtFerie = (ferieSøknad: LovbestemtFerieSøknadsdata | undefined): boolean => {
     if (!ferieSøknad) {
         return false;
@@ -54,9 +45,27 @@ export const harFjernetLovbestemtFerie = (ferieSøknad: LovbestemtFerieSøknadsd
     return ferieSøknad.perioderFjernet.length > 0;
 };
 
-export const getLovbestemtFerieIPeriode = (
-    lovbestemtFeriePerioder: LovbestemtFeriePeriode[],
+export const getLovbestemtFerieForPeriode = (
+    ferieSøknad: LovbestemtFerieSøknadsdata,
     periode: DateRange
-): LovbestemtFeriePeriode[] => {
-    return lovbestemtFeriePerioder.filter((feriePeriode) => dateRangesCollide([feriePeriode, periode]));
+): LovbestemtFerieSøknadsdata => {
+    return {
+        perioderMedFerie: ferieSøknad.perioderMedFerie.filter((feriePeriode) =>
+            dateRangesCollide([feriePeriode, periode])
+        ),
+        perioderLagtTil: ferieSøknad.perioderLagtTil.filter((feriePeriode) =>
+            dateRangesCollide([feriePeriode, periode])
+        ),
+        perioderFjernet: ferieSøknad.perioderFjernet.filter((feriePeriode) =>
+            dateRangesCollide([feriePeriode, periode])
+        ),
+    };
+};
+
+export const getDagerMedFerieTekst = (dagerMedFerie: Date[]): string => {
+    return `${dagerMedFerie.length} ferie${dagerMedFerie.length === 1 ? 'dag' : 'dager'}`;
+};
+
+export const getDagerMedFerieFjernetTekst = (dagerMedFerie: Date[]): string => {
+    return `${dagerMedFerie.length} ferie${dagerMedFerie.length === 1 ? 'dag' : 'dager'} fjernet`;
 };

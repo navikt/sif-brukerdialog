@@ -1,11 +1,11 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import { dateRangeToISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
-import { LovbestemtFerieApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
+import { LovbestemtFerieApiData } from '../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
@@ -44,10 +44,6 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     <Heading level="3" size="small">
                         Ferie som er fjernet
                     </Heading>
-                    <BodyLong>
-                        Dager hvor ferie er fjernet erstattes med arbeidstiden du tidligere har oppgitt på disse dagene.
-                        Det er viktig du kontrollerer at arbeidstiden som er oppgitt for disse dagene er oppdatert.
-                    </BodyLong>
                     <InfoList>
                         {perioderFjernet.map((periode) => (
                             <li key={dateRangeToISODateRange(periode)}>

@@ -4,15 +4,21 @@ import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
+import DagerMedFerieTags from './FeriedagerTags';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
     dagerMedFerie?: Date[];
+    dagerMedFjernetFerie?: Date[];
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, dagerMedFerie }) => {
+const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({
+    uke,
+    dagerMedFerie = [],
+    dagerMedFjernetFerie = [],
+}) => {
     const intl = useIntl();
 
     if (uke.endret === undefined) {
@@ -30,12 +36,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, dagerMedF
                         <DurationText duration={uke.opprinnelig.faktisk} />
                     </span>
                 </p>
-                {dagerMedFerie && dagerMedFerie.length > 0 && (
-                    <p>
-                        <span className="arbeidstidInfoListe__label">Feriedager:</span>
-                        <span className="arbeidstidInfoListe__value">{dagerMedFerie.length}</span>
-                    </p>
-                )}
+                <DagerMedFerieTags dagerMedFerie={dagerMedFerie} dagerMedFjernetFerie={dagerMedFjernetFerie} />
             </div>
         );
     }
