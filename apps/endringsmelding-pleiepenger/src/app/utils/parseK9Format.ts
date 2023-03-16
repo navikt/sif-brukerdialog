@@ -1,5 +1,4 @@
 import {
-    DateRange,
     durationUtils,
     ISODateRangeToDateRange,
     ISODateToDate,
@@ -11,7 +10,7 @@ import {
     K9FormatArbeidstid,
     K9FormatArbeidstidInfo,
     K9FormatBarn,
-    K9FormatLovbestemtFerierPerioder,
+    K9FormatLovbestemtFeriePerioder,
     K9FormatUtenlandsoppholdPerioder,
 } from '../types/k9Format';
 import {
@@ -22,6 +21,7 @@ import {
     K9SakBarn,
     K9SakUtenlandsopphold,
 } from '../types/K9Sak';
+import { LovbestemtFeriePeriode } from '../types/Sak';
 
 /**
  * Henter ut informasjon om barn fra k9sak
@@ -124,12 +124,12 @@ export const parseK9FormatUtenlandsopphold = (
 /**
  *
  * @param arbeidstid Parse lovbestemtFerie
- * @returns DateRange[]
+ * @returns K9FormatLovbestemtFeriePerioder[]
  */
-export const parseK9FormatLovbestemtFerie = (perioder: K9FormatLovbestemtFerierPerioder): DateRange[] => {
+export const parseK9FormatLovbestemtFerie = (perioder: K9FormatLovbestemtFeriePerioder): LovbestemtFeriePeriode[] => {
     return Object.keys(perioder)
-        .filter((key) => perioder[key].skalHaFerie === true)
-        .map(ISODateRangeToDateRange);
+        .filter((key) => perioder[key].skalHaFerie !== null)
+        .map((key) => ({ ...ISODateRangeToDateRange(key), skalHaFerie: perioder[key].skalHaFerie === true }));
 };
 /**
  * Parser K9Format

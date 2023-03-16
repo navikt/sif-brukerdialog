@@ -2,23 +2,19 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
-import { DateRange, dateRangeToISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { dateRangeToISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
 import { LovbestemtFerieApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { LovbestemtFeriePeriode } from '../../../types/Sak';
 
 interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
 }
 
-interface LovbestemtFeriePeriode {
-    dateRange: DateRange;
-    skalHaFerie: boolean;
-}
-
 const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestemtFerie }) => {
     const perioder: LovbestemtFeriePeriode[] = Object.keys(lovbestemtFerie.perioder).map((isoDateRange) => {
         const x: LovbestemtFeriePeriode = {
-            dateRange: ISODateRangeToDateRange(isoDateRange),
+            ...ISODateRangeToDateRange(isoDateRange),
             skalHaFerie: lovbestemtFerie.perioder[isoDateRange].skalHaFerie,
         };
         return x;
@@ -36,8 +32,8 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     </Heading>
                     <InfoList>
                         {perioderLagtTil.map((periode) => (
-                            <li key={dateRangeToISODateRange(periode.dateRange)}>
-                                <div className="capsFirstChar">{getPeriodeTekst(periode.dateRange, true, true)}</div>
+                            <li key={dateRangeToISODateRange(periode)}>
+                                <div className="capsFirstChar">{getPeriodeTekst(periode, true, true)}</div>
                             </li>
                         ))}
                     </InfoList>
@@ -54,8 +50,8 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     </BodyLong>
                     <InfoList>
                         {perioderFjernet.map((periode) => (
-                            <li key={dateRangeToISODateRange(periode.dateRange)}>
-                                <div className="capsFirstChar">{getPeriodeTekst(periode.dateRange, true, true)}</div>
+                            <li key={dateRangeToISODateRange(periode)}>
+                                <div className="capsFirstChar">{getPeriodeTekst(periode, true, true)}</div>
                             </li>
                         ))}
                     </InfoList>

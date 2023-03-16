@@ -118,7 +118,6 @@ const LovbestemtFerieStep = () => {
                                         modalTitle: 'Lovbestemt ferie',
                                         emptyListText: `Ingen ferie er registrert`,
                                     }}
-                                    disableWeekend={true}
                                     disabledDateRanges={getDateRangesBetweenDateRanges(sak.søknadsperioder)}
                                     minDate={sak.samletSøknadsperiode.from}
                                     maxDate={sak.samletSøknadsperiode.to}

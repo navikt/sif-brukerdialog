@@ -468,7 +468,7 @@ export const getSakFromK9Sak = (
             ),
         },
         lovbestemtFerie: {
-            perioder: [...k9sak.ytelse.lovbestemtFerie.perioder],
+            perioder: [...k9sak.ytelse.lovbestemtFerie.perioder.filter((periode) => periode.skalHaFerie === true)],
         },
     };
 };

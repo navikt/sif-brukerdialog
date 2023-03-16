@@ -69,14 +69,18 @@ export interface ArbeidAktiviteter {
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
 
-export interface LovbestemtFerie {
-    perioder: DateRange[];
+export interface LovbestemtFeriePeriode extends DateRange {
+    skalHaFerie: boolean;
+}
+
+export interface LovbestemtFeriePerioder {
+    perioder: LovbestemtFeriePeriode[];
 }
 
 export interface Sak {
     barn: K9SakBarn;
     arbeidAktiviteter: ArbeidAktiviteter;
-    lovbestemtFerie: LovbestemtFerie;
+    lovbestemtFerie: LovbestemtFeriePerioder;
     søknadsperioder: DateRange[];
     samletSøknadsperiode: DateRange;
     ytelse: {

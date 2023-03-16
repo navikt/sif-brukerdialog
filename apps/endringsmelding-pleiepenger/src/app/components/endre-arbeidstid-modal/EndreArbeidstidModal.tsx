@@ -1,14 +1,14 @@
 import { Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { ArbeidAktivitet, Arbeidsuke, LovbestemtFerie } from '../../types/Sak';
+import { ArbeidAktivitet, Arbeidsuke, LovbestemtFeriePerioder } from '../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import EndreArbeidstidForm, { EndreArbeidstidData } from '../endre-arbeidstid-form/EndreArbeidstidForm';
 import './endreArbeidstidModal.css';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
-    lovbestemtFerie?: LovbestemtFerie;
+    lovbestemtFerie?: LovbestemtFeriePerioder;
     arbeidsuker: Arbeidsuke[];
     isVisible?: boolean;
     onClose: () => void;

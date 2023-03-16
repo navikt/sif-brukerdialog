@@ -21,6 +21,7 @@ import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
 import EditButton from './components/EditButton';
 import './arbeidstidUkeTabell.scss';
+import { LovbestemtFeriePeriode } from '../../types/Sak';
 
 export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
@@ -40,7 +41,7 @@ export interface ArbeidstidUkeTabellItem {
 
 interface Props {
     listItems: ArbeidstidUkeTabellItem[];
-    ferieperioder?: DateRange[];
+    ferieperioder?: LovbestemtFeriePeriode[];
     visNormaltid?: boolean;
     paginering?: {
         antall: number;
@@ -355,7 +356,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             )}
                                             {dagerMedFerie?.length > 0 && (
                                                 <Block margin="s">
-                                                    <Tag variant="alt2" size="small">
+                                                    <Tag variant="success" size="small">
                                                         {getDagerMedFerieTekst(dagerMedFerie)}
                                                     </Tag>
                                                 </Block>
@@ -384,7 +385,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                             {getPeriodeTekst(uke.periode)}
                                                             {dagerMedFerie?.length > 0 && (
                                                                 <Block margin="s">
-                                                                    <Tag variant="alt2" size="small">
+                                                                    <Tag variant="success" size="small">
                                                                         {getDagerMedFerieTekst(dagerMedFerie)}
                                                                     </Tag>
                                                                 </Block>
@@ -458,7 +459,7 @@ const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
     return `${fra} til ${til}`;
 };
 
-export const getFeriedagerIUke = (ferieperioder: DateRange[], uke: DateRange): Date[] => {
+export const getFeriedagerIUke = (ferieperioder: LovbestemtFeriePeriode[], uke: DateRange): Date[] => {
     const feriedager = getDatesInDateRanges(ferieperioder);
     const ukedager = getDatesInDateRange(uke);
     return ukedager
@@ -467,7 +468,7 @@ export const getFeriedagerIUke = (ferieperioder: DateRange[], uke: DateRange): D
 };
 
 export const getDagerMedFerieTekst = (dagerMedFerie: Date[]): string => {
-    return `${dagerMedFerie.length} ${dagerMedFerie.length === 1 ? 'dag' : 'dager'} med ferie`;
+    return `${dagerMedFerie.length} ${dagerMedFerie.length === 1 ? 'dag' : 'dager'} ferie`;
 };
 
 export default ArbeidstidUkeTabell;

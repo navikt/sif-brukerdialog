@@ -38,8 +38,8 @@ interface K9SakOpptjeningAktivitetFrilanser {
     jobberFortsattSomFrilanser: boolean;
 }
 
-interface K9SakLovbestemtFerie {
-    perioder: DateRange[];
+interface K9SakLovbestemtFerie extends DateRange {
+    skalHaFerie: boolean;
 }
 
 export interface K9SakUtenlandsopphold {
@@ -53,7 +53,9 @@ interface K9SakYtelse {
     type: 'PLEIEPENGER_SYKT_BARN';
     barn: { fødselsdato?: Date; norskIdentitetsnummer: string };
     søknadsperioder: DateRange[];
-    lovbestemtFerie: K9SakLovbestemtFerie;
+    lovbestemtFerie: {
+        perioder: K9SakLovbestemtFerie[];
+    };
     utenlandsopphold: {
         perioder: K9SakUtenlandsopphold[];
     };

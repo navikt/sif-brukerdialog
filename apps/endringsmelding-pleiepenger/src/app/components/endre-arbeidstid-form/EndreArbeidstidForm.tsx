@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidEndring } from '../../types/ArbeidstidEndring';
-import { Arbeidsuke, LovbestemtFerie } from '../../types/Sak';
+import { Arbeidsuke, LovbestemtFeriePerioder } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import {
     arbeidsukerHarLikNormaltidPerDag,
@@ -38,7 +38,7 @@ export type EndreArbeidstidData = {
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
-    lovbestemtFerie?: LovbestemtFerie;
+    lovbestemtFerie?: LovbestemtFeriePerioder;
     onSubmit: (data: EndreArbeidstidData) => void;
     onCancel: () => void;
 }
@@ -220,7 +220,7 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
 export default EndreArbeidstidForm;
 
-const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFerie) => {
+const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFeriePerioder) => {
     if (arbeidsuker.length === 1) {
         const dagerMedFerie = lovbestemtFerie
             ? getFeriedagerIUke(lovbestemtFerie.perioder, arbeidsuker[0].periode)

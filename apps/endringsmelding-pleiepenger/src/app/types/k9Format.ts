@@ -39,15 +39,12 @@ interface K9FormatOpptjeningAktivitetSelvstendig {
 
 export type K9FormatUtenlandsoppholdPerioder = ISODateRangeMap<K9FormatUtenlandsopphold>;
 
+export type K9FormatLovbestemtFeriePerioder = ISODateRangeMap<{ skalHaFerie: boolean | null }>;
+
 interface K9FormatUtenlandsopphold {
     land: string;
     årsak: UtenlandsoppholdÅrsak;
 }
-
-export type K9LovbestemtFeriePeriode = {
-    skalHaFerie: boolean | null;
-};
-export type K9FormatLovbestemtFerierPerioder = ISODateRangeMap<K9LovbestemtFeriePeriode>;
 
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;
@@ -68,7 +65,7 @@ interface K9FormatYtelse {
     };
     søknadsperiode: ISODateRange[];
     lovbestemtFerie: {
-        perioder: K9FormatLovbestemtFerierPerioder;
+        perioder: K9FormatLovbestemtFeriePerioder;
     };
     utenlandsopphold: {
         perioder: K9FormatUtenlandsoppholdPerioder;

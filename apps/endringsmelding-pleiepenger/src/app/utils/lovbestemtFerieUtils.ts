@@ -9,15 +9,15 @@ import {
     sortDates,
 } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFerieEndringer } from '../types/LovbestemFerieEndringer';
-import { LovbestemtFerie } from '../types/Sak';
+import { LovbestemtFeriePeriode, LovbestemtFeriePerioder } from '../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';
 
 const isoDateIsNotInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
     isoDateArray.some((dMelding) => isoDate === dMelding) === false;
 
 export const getLovbestemtFerieEndringer = (
-    perioderIMelding: DateRange[],
-    perioderISak: DateRange[]
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
 ): LovbestemtFerieEndringer => {
     const dagerIMelding: ISODate[] = getDatesInDateRanges(perioderIMelding).sort(sortDates).map(dateToISODate);
     const dagerISak: ISODate[] = getDatesInDateRanges(perioderISak).sort(sortDates).map(dateToISODate);
@@ -39,7 +39,7 @@ export const getLovbestemtFerieEndringer = (
 
 export const harEndringerILovbestemtFerie = (
     ferieSøknad: LovbestemtFerieSøknadsdata | undefined,
-    ferieSak: LovbestemtFerie
+    ferieSak: LovbestemtFeriePerioder
 ): boolean => {
     if (!ferieSøknad) {
         return false;
@@ -49,7 +49,7 @@ export const harEndringerILovbestemtFerie = (
 
 export const harFjernetLovbestemtFerie = (
     ferieSøknad: LovbestemtFerieSøknadsdata | undefined,
-    ferieSak: LovbestemtFerie
+    ferieSak: LovbestemtFeriePerioder
 ): boolean => {
     if (!ferieSøknad) {
         return false;
@@ -57,6 +57,9 @@ export const harFjernetLovbestemtFerie = (
     return getLovbestemtFerieEndringer(ferieSøknad.perioder, ferieSak.perioder).dagerFjernet.length > 0;
 };
 
-export const getLovbestemtFerieIPeriode = (lovbestemtFeriePerioder: DateRange[], periode: DateRange): DateRange[] => {
+export const getLovbestemtFerieIPeriode = (
+    lovbestemtFeriePerioder: LovbestemtFeriePeriode[],
+    periode: DateRange
+): LovbestemtFeriePeriode[] => {
     return lovbestemtFeriePerioder.filter((feriePeriode) => dateRangesCollide([feriePeriode, periode]));
 };
