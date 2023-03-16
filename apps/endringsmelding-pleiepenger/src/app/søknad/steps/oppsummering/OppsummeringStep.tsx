@@ -1,4 +1,4 @@
-import { Alert, BodyLong, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
+import { Alert, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -12,7 +12,6 @@ import { SummarySection } from '@navikt/sif-common-soknad-ds/lib';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
@@ -70,7 +69,6 @@ const OppsummeringStep = () => {
     }
 
     const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getValgteEndringer(hvaSkalEndres);
 
     const arbeidstidErEndret = harEndringerIArbeidstid(arbeidstid);
     const lovbestemtFerieErEndret = harEndringerILovbestemtFerieApiData(lovbestemtFerie);
@@ -83,19 +81,6 @@ const OppsummeringStep = () => {
                     <Heading level="2" size="small" spacing={true}>
                         Ingen endringer er registert
                     </Heading>
-                    <BodyLong as="div">
-                        <ul>
-                            {arbeidstidSkalEndres && !harEndringerIArbeidstid && (
-                                <li>
-                                    Du har ikke gjort noen endringer i arbeidstiden din. Gå tilbake til forrige steg og
-                                    gjør endringene.
-                                </li>
-                            )}
-                            {lovbestemtFerieSkalEndres && !lovbestemtFerie && (
-                                <li>Du har ikke gjort noen endringer i ferien</li>
-                            )}
-                        </ul>
-                    </BodyLong>
                     <Link href="#" onClick={goBack}>
                         Gå tilbake
                     </Link>
@@ -121,7 +106,7 @@ const OppsummeringStep = () => {
                 </Block>
             )}
 
-            {arbeidstidSkalEndres && (
+            {arbeidstidErEndret && (
                 <Block margin="xxl">
                     <SummarySection header="Endringer i arbeidstid">
                         {arbeidstid && arbeidstidErEndret && (
@@ -130,7 +115,7 @@ const OppsummeringStep = () => {
                     </SummarySection>
                 </Block>
             )}
-            {lovbestemtFerieSkalEndres && (
+            {lovbestemtFerieErEndret && (
                 <Block margin="xxl" padBottom="m">
                     <SummarySection header="Endringer i lovbestemt ferie">
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret && (

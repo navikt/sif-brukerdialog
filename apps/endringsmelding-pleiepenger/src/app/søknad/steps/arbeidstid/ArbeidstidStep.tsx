@@ -99,7 +99,7 @@ const ArbeidstidStep = () => {
                 <>
                     <BodyLong as="div">
                         <Heading level="2" size="xsmall" spacing={true}>
-                            Slik gjør du det
+                            Slik endrer du jobb i pleiepengeperioden
                         </Heading>
                         <InfoList>
                             <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>

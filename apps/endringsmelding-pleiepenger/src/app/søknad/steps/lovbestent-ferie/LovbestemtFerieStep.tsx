@@ -1,13 +1,15 @@
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
 import { getDateRangesBetweenDateRanges } from '@navikt/sif-common-utils/lib';
+import PeriodeTekst, { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -71,12 +73,23 @@ const LovbestemtFerieStep = () => {
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
-                        <p>
-                            Her kan du endre, legge til eller fjerne lovbestemt ferie i{' '}
-                            {harFlereSøknadsperioder ? 'periodene dine' : 'perioden din'} med pleiepenger. Vi trenger
-                            kun å vite om ferie som tas ut på ukedager
-                            {harFlereSøknadsperioder ? ', og i tidsrom hvor du har pleiepenger' : ''}.
-                        </p>
+                        <Heading level="2" size="xsmall" spacing={true}>
+                            Slik endrer du ferie
+                        </Heading>
+                        <InfoList>
+                            <li>
+                                Du kan legge til, endre eller fjerne ferie i tidsrommet{' '}
+                                <PeriodeTekst periode={sak.samletSøknadsperiode} compact={false} />.
+                            </li>
+                            <li>
+                                Vi trenger kun å vite om ferie som tas ut på ukedager
+                                {harFlereSøknadsperioder ? ', og i tidsrom hvor du har pleiepenger' : ''}.
+                            </li>
+                            <li>
+                                Endringer i ferie kan medføre at du må også endre på hvor mye du jobber i perioden.
+                                Dette kan du gjøre på neste steg.
+                            </li>
+                        </InfoList>
                     </BodyLong>
                 </>
             </SifGuidePanel>
@@ -93,18 +106,14 @@ const LovbestemtFerieStep = () => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            {/* <Block margin="xxl">
-                                <Heading level="2" size="small" spacing={true}>
-                                    Registrert ferie i perioden{' '}
-                                    <PeriodeTekst periode={sak.samletSøknadsperiode} compact={false} />
-                                </Heading>
-                                <p>Periodene med ferie gjelder på tvers av alle dine arbeidsforhold.</p>
-                            </Block> */}
                             <Block margin="xl" padBottom="xl">
                                 <FerieuttakListAndDialog<LovbestemtFerieFormFields>
                                     name={LovbestemtFerieFormFields.perioder}
                                     labels={{
-                                        listTitle: `Registrert ferie`,
+                                        listTitle: `Registrert lovbestemt ferie i perioden ${getPeriodeTekst(
+                                            sak.samletSøknadsperiode,
+                                            false
+                                        )}`,
                                         addLabel: 'Legg til ferie',
                                         modalTitle: 'Lovbestemt ferie',
                                         emptyListText: `Ingen ferie er registrert`,
