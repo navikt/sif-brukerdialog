@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { ArbeidstidEndring } from '../../types/ArbeidstidEndring';
-import { Arbeidsuke, LovbestemtFeriePerioder } from '../../types/Sak';
+import { Arbeidsuke, LovbestemtFeriePeriode } from '../../types/Sak';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import {
     arbeidsukerHarLikNormaltidPerDag,
@@ -30,6 +30,7 @@ import { getDagerMedFerieTekst, getFeriedagerIUke } from '../arbeidstid-uke-list
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
+import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 
 export type EndreArbeidstidData = {
     perioder: DateRange[];
@@ -38,7 +39,7 @@ export type EndreArbeidstidData = {
 
 interface Props {
     arbeidsuker: Arbeidsuke[];
-    lovbestemtFerie?: LovbestemtFeriePerioder;
+    lovbestemtFerie?: LovbestemtFerieSøknadsdata;
     onSubmit: (data: EndreArbeidstidData) => void;
     onCancel: () => void;
 }
@@ -121,7 +122,9 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
                                     : 'Endre jobb for flere uker'}
                             </Heading>
                             <Block margin="m">
-                                <Ingress as="div">{getUkerOgÅrBeskrivelse(arbeidsuker, lovbestemtFerie)}</Ingress>
+                                <Ingress as="div">
+                                    {getUkerOgÅrBeskrivelse(arbeidsuker, lovbestemtFerie?.perioderMedFerie)}
+                                </Ingress>
                             </Block>
                         </Block>
 
@@ -220,11 +223,9 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
 export default EndreArbeidstidForm;
 
-const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFeriePerioder) => {
+const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFeriePeriode[]) => {
     if (arbeidsuker.length === 1) {
-        const dagerMedFerie = lovbestemtFerie
-            ? getFeriedagerIUke(lovbestemtFerie.perioder, arbeidsuker[0].periode)
-            : [];
+        const dagerMedFerie = lovbestemtFerie ? getFeriedagerIUke(lovbestemtFerie, arbeidsuker[0].periode) : [];
         return (
             <BodyShort as="div" className="capsFirstChar">
                 {getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}

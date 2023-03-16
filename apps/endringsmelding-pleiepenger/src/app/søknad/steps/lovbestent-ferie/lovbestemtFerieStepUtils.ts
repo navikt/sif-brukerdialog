@@ -1,11 +1,8 @@
 import { dateRangeToISODateRange, sortDateRange } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { Søknadsdata, LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { getLovbestemtFerieEndringer } from '../../../utils/lovbestemtFerieUtils';
 import { LovbestemtFerieFormFields, LovbestemtFerieFormValues } from './LovbestemtFerieStep';
-
-const lovbestemtFerieInitialFormValues: LovbestemtFerieFormValues = {
-    perioder: [],
-};
 
 export const getLovbestemtFerieStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -15,10 +12,12 @@ export const getLovbestemtFerieStepInitialValues = (
         return formValues;
     }
     if (søknadsdata.lovbestemtFerie === undefined) {
-        return lovbestemtFerieInitialFormValues;
+        return {
+            perioder: [],
+        };
     }
     return {
-        perioder: søknadsdata.lovbestemtFerie.perioder.map((periode) => ({
+        perioder: søknadsdata.lovbestemtFerie.perioderMedFerie.map((periode) => ({
             id: dateRangeToISODateRange(periode),
             fom: periode.from,
             tom: periode.to,
@@ -27,11 +26,26 @@ export const getLovbestemtFerieStepInitialValues = (
 };
 
 export const getLovbestemtFerieSøknadsdataFromFormValues = (
-    values: LovbestemtFerieFormValues
+    values: LovbestemtFerieFormValues,
+    lovbestemtFerieISak: LovbestemtFeriePeriode[]
 ): LovbestemtFerieSøknadsdata => {
+    const perioderMedFerie = values[LovbestemtFerieFormFields.perioder]
+        .map((periode): LovbestemtFeriePeriode => ({ from: periode.fom, to: periode.tom, skalHaFerie: true }))
+        .sort(sortDateRange);
+
+    const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieEndringer(
+        values[LovbestemtFerieFormFields.perioder].map((periode) => {
+            return {
+                from: periode.fom,
+                to: periode.tom,
+                skalHaFerie: true,
+            };
+        }),
+        lovbestemtFerieISak
+    );
     return {
-        perioder: values[LovbestemtFerieFormFields.perioder]
-            .map((periode): LovbestemtFeriePeriode => ({ from: periode.fom, to: periode.tom, skalHaFerie: true }))
-            .sort(sortDateRange),
+        perioderMedFerie,
+        perioderFjernet,
+        perioderLagtTil,
     };
 };

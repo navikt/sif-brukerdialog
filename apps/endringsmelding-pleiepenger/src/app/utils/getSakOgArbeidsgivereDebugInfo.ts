@@ -1,4 +1,4 @@
-import { DateRange } from 'react-day-picker';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { K9Sak, K9SakArbeidstaker } from '../types/K9Sak';
 import { Sak } from '../types/Sak';

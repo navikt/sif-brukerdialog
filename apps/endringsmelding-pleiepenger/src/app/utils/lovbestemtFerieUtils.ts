@@ -44,17 +44,14 @@ export const harEndringerILovbestemtFerie = (
     if (!ferieSøknad) {
         return false;
     }
-    return getLovbestemtFerieEndringer(ferieSøknad.perioder, ferieSak.perioder).erEndret;
+    return getLovbestemtFerieEndringer(ferieSøknad.perioderMedFerie, ferieSak.perioder).erEndret;
 };
 
-export const harFjernetLovbestemtFerie = (
-    ferieSøknad: LovbestemtFerieSøknadsdata | undefined,
-    ferieSak: LovbestemtFeriePerioder
-): boolean => {
+export const harFjernetLovbestemtFerie = (ferieSøknad: LovbestemtFerieSøknadsdata | undefined): boolean => {
     if (!ferieSøknad) {
         return false;
     }
-    return getLovbestemtFerieEndringer(ferieSøknad.perioder, ferieSak.perioder).dagerFjernet.length > 0;
+    return ferieSøknad.perioderFjernet.length > 0;
 };
 
 export const getLovbestemtFerieIPeriode = (

@@ -15,13 +15,14 @@ import {
     ISODateRange,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import { LovbestemtFeriePeriode } from '../../types/Sak';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
+// import { getLovbestemtFerieEndringer } from '../../utils/lovbestemtFerieUtils';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
 import EditButton from './components/EditButton';
 import './arbeidstidUkeTabell.scss';
-import { LovbestemtFeriePeriode } from '../../types/Sak';
 
 export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
@@ -200,6 +201,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
                             const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
+
                             const dagerMedFerie = ferieperioder ? getFeriedagerIUke(ferieperioder, uke.periode) : [];
 
                             return (

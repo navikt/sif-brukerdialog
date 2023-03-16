@@ -113,7 +113,7 @@ const ArbeidstidStep = () => {
                 </>
             </SifGuidePanel>
 
-            {harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie, sak.lovbestemtFerie) && (
+            {harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie) && (
                 <Block margin="xl">
                     <Alert variant="info">
                         TODO: Bruker har fjernet feriedager, info om at en må kontrollere arbeidstid for disse dagene

@@ -49,7 +49,7 @@ const LovbestemtFerieStep = () => {
     const { goBack } = useStepNavigation(step);
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
-        const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
+        const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values, sak.lovbestemtFerie.perioder);
         if (perioder) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadLovbestemtFerie(perioder)];

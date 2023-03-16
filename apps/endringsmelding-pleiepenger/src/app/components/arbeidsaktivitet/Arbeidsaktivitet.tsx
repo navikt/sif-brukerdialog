@@ -1,4 +1,5 @@
 import { Accordion, Heading, Ingress, Tag } from '@navikt/ds-react';
+import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import {
     dateFormatter,
@@ -6,7 +7,6 @@ import {
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
-import React, { useState } from 'react';
 import { SkrivTilOssLink } from '../../lenker';
 import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
@@ -51,7 +51,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                         )}
                         ferieperioder={
                             lovbestemtFerie
-                                ? getLovbestemtFerieIPeriode(lovbestemtFerie.perioder, perioder[0].periode)
+                                ? getLovbestemtFerieIPeriode(lovbestemtFerie.perioderMedFerie, perioder[0].periode)
                                 : undefined
                         }
                         triggerResetValg={resetUkerTabellCounter}
@@ -77,7 +77,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                                     .some((dr) => isDateInDateRange(dr.from, periode.periode));
 
                             const ferieIPerioden = lovbestemtFerie
-                                ? getLovbestemtFerieIPeriode(lovbestemtFerie.perioder, periode.periode)
+                                ? getLovbestemtFerieIPeriode(lovbestemtFerie.perioderMedFerie, periode.periode)
                                 : undefined;
 
                             return (

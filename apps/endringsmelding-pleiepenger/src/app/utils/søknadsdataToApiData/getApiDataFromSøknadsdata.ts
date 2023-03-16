@@ -22,9 +22,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
                 fødselsdato: sak.barn.fødselsdato ? dateToISODate(sak.barn.fødselsdato) : undefined,
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
-            lovbestemtFerie: lovbestemtFerie
-                ? getLovbestemtFerieApiDataFromSøknadsdata(lovbestemtFerie.perioder, sak.lovbestemtFerie.perioder)
-                : undefined,
+            lovbestemtFerie: lovbestemtFerie ? getLovbestemtFerieApiDataFromSøknadsdata(lovbestemtFerie) : undefined,
             arbeidstid:
                 arbeidstid && aktivitet
                     ? getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, aktivitet)
