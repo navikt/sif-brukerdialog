@@ -38,9 +38,10 @@ export type EndreArbeidstidData = {
     endring: ArbeidstidEndring;
 };
 
-interface Props {
+export interface EndreArbeidstidFormProps {
     arbeidsuker: Arbeidsuke[];
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
+    endring?: ArbeidstidEndring;
     onSubmit: (data: EndreArbeidstidData) => void;
     onCancel: () => void;
 }
@@ -63,7 +64,13 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker, lovbestemtFerie }) => {
+const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = ({
+    arbeidsuker,
+    lovbestemtFerie,
+    endring,
+    onCancel,
+    onSubmit,
+}) => {
     const intl = useIntl();
     const {
         dispatch,
@@ -104,9 +111,24 @@ const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmi
 
     const gjelderKortUke = arbeidsuker.length === 1 && erHelArbeidsuke(arbeidsuker[0].periode) === false;
 
+    const getInitialValues = (): EndreArbeidstidFormValues => {
+        if (endring?.type === TimerEllerProsent.PROSENT) {
+            return {
+                timerEllerProsent: TimerEllerProsent.PROSENT,
+                prosentAvNormalt: `${endring.prosent}`,
+            };
+        }
+        if (endring?.type === TimerEllerProsent.TIMER) {
+            return {
+                timerEllerProsent: TimerEllerProsent.TIMER,
+                antallTimer: `${endring.timer}`,
+            };
+        }
+        return { timerEllerProsent: inputPreferanser.timerEllerProsent };
+    };
     return (
         <FormikWrapper
-            initialValues={{ timerEllerProsent: inputPreferanser.timerEllerProsent }}
+            initialValues={getInitialValues()}
             onSubmit={onFormSubmit}
             renderForm={({ values, setValues }) => {
                 const { timerEllerProsent } = values;
@@ -242,7 +264,6 @@ const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: Lo
     const ukerPerÅr = getArbeidsukerPerÅr(arbeidsuker);
     const getUker = (uker: Arbeidsuke[]) => {
         if (!uker) {
-            // eslint-disable-next-line no-console
             return 'Ingen uker valgt';
         }
         return uker ? uker.map((uke) => dayjs(uke.periode.from).isoWeek()).join(', ') : [];
