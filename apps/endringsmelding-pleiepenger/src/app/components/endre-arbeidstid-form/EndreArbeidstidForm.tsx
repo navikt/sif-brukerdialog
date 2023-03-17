@@ -38,7 +38,7 @@ export type EndreArbeidstidData = {
     endring: ArbeidstidEndring;
 };
 
-interface Props {
+export interface EndreArbeidstidFormProps {
     arbeidsuker: Arbeidsuke[];
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
     onSubmit: (data: EndreArbeidstidData) => void;
@@ -63,7 +63,12 @@ const { FormikWrapper, Form, NumberInput } = getTypedFormComponents<
     ValidationError
 >();
 
-const EndreArbeidstidForm: React.FunctionComponent<Props> = ({ onCancel, onSubmit, arbeidsuker, lovbestemtFerie }) => {
+const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = ({
+    onCancel,
+    onSubmit,
+    arbeidsuker,
+    lovbestemtFerie,
+}) => {
     const intl = useIntl();
     const {
         dispatch,

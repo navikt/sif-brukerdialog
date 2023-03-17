@@ -1,29 +1,16 @@
 import { Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
-import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
-import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
-import EndreArbeidstidForm, { EndreArbeidstidData } from '../endre-arbeidstid-form/EndreArbeidstidForm';
 import './endreArbeidstidModal.css';
 
 interface Props {
-    arbeidAktivitet: ArbeidAktivitet;
-    lovbestemtFerie?: LovbestemtFerieSøknadsdata;
-    arbeidsuker: Arbeidsuke[];
+    title: string;
     isVisible?: boolean;
+    children: React.ReactNode;
     onClose: () => void;
-    onEndreArbeidstid: (endring: EndreArbeidstidData) => void;
 }
 
-const EndreArbeidstidModal: FunctionComponent<Props> = ({
-    isVisible = false,
-    onClose,
-    onEndreArbeidstid,
-    lovbestemtFerie,
-    arbeidsuker,
-    arbeidAktivitet,
-}) => {
+const EndreArbeidstidModal: FunctionComponent<Props> = ({ children, title, isVisible = false, onClose }) => {
     return (
         <Modal open={isVisible} onClose={onClose} className="endreArbeidstidModal">
             <Modal.Content>
@@ -35,16 +22,9 @@ const EndreArbeidstidModal: FunctionComponent<Props> = ({
                         id="endreArbeidstidModalHeader"
                         tabIndex={0}
                         className="endreArbeidstidModal__noFocusOutline">
-                        {getArbeidAktivitetNavn(arbeidAktivitet)}
+                        {title}
                     </Heading>
-                    <Block margin="l">
-                        <EndreArbeidstidForm
-                            arbeidsuker={arbeidsuker}
-                            lovbestemtFerie={lovbestemtFerie}
-                            onCancel={onClose}
-                            onSubmit={onEndreArbeidstid}
-                        />
-                    </Block>
+                    <Block margin="l">{children}</Block>
                 </div>
             </Modal.Content>
         </Modal>

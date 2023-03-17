@@ -12,12 +12,14 @@ import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
+import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import { getEndringsdato, getTillattEndringsperiode } from '../../utils/endringsperiode';
 import { getLovbestemtFerieForPeriode } from '../../utils/lovbestemtFerieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
 import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
+import EndreArbeidstidForm from '../endre-arbeidstid-form/EndreArbeidstidForm';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -118,29 +120,32 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
             )}
 
             <EndreArbeidstidModal
-                arbeidAktivitet={arbeidAktivitet}
+                title={getArbeidAktivitetNavn(arbeidAktivitet)}
                 isVisible={arbeidsukerForEndring !== undefined}
-                arbeidsuker={arbeidsukerForEndring || []}
-                lovbestemtFerie={lovbestemtFerie}
-                onClose={() => setArbeidsukerForEndring(undefined)}
-                onEndreArbeidstid={({ perioder, endring }) => {
-                    setArbeidsukerForEndring(undefined);
-                    const nyeEndringer: ArbeidstidEndringMap = {};
-                    perioder.forEach((periode) => {
-                        nyeEndringer[dateRangeToISODateRange(periode)] = endring;
-                    });
-                    onArbeidstidAktivitetChange(
-                        cleanupArbeidAktivitetEndringer(
-                            {
-                                ...endringer,
-                                ...nyeEndringer,
-                            },
-                            arbeidAktivitet
-                        )
-                    );
-                    setResetUkerTabellCounter(resetUkerTabellCounter + 1);
-                }}
-            />
+                onClose={() => setArbeidsukerForEndring(undefined)}>
+                <EndreArbeidstidForm
+                    arbeidsuker={arbeidsukerForEndring || []}
+                    lovbestemtFerie={lovbestemtFerie}
+                    onCancel={() => setArbeidsukerForEndring(undefined)}
+                    onSubmit={({ perioder, endring }) => {
+                        setArbeidsukerForEndring(undefined);
+                        const nyeEndringer: ArbeidstidEndringMap = {};
+                        perioder.forEach((periode) => {
+                            nyeEndringer[dateRangeToISODateRange(periode)] = endring;
+                        });
+                        onArbeidstidAktivitetChange(
+                            cleanupArbeidAktivitetEndringer(
+                                {
+                                    ...endringer,
+                                    ...nyeEndringer,
+                                },
+                                arbeidAktivitet
+                            )
+                        );
+                        setResetUkerTabellCounter(resetUkerTabellCounter + 1);
+                    }}
+                />
+            </EndreArbeidstidModal>
         </div>
     );
 };
