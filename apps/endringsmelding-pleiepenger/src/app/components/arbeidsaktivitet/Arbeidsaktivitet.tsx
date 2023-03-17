@@ -47,13 +47,11 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                     <ArbeidstidUkeTabell
                         listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                             perioder[0].arbeidsuker,
-                            endringer
-                        )}
-                        lovbestemtFerie={
+                            endringer,
                             lovbestemtFerie
                                 ? getLovbestemtFerieForPeriode(lovbestemtFerie, perioder[0].periode)
                                 : undefined
-                        }
+                        )}
                         triggerResetValg={resetUkerTabellCounter}
                         onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                             setArbeidsukerForEndring(uker.map((uke) => perioder[0].arbeidsuker[uke.isoDateRange]));
@@ -68,17 +66,16 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                         {perioder.map((periode, index) => {
                             const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                 periode.arbeidsuker,
-                                endringer
+                                endringer,
+                                lovbestemtFerie
+                                    ? getLovbestemtFerieForPeriode(lovbestemtFerie, periode.periode)
+                                    : undefined
                             );
                             const harEndringer =
                                 endringer !== undefined &&
                                 Object.keys(endringer)
                                     .map(ISODateRangeToDateRange)
                                     .some((dr) => isDateInDateRange(dr.from, periode.periode));
-
-                            const ferieIPerioden = lovbestemtFerie
-                                ? getLovbestemtFerieForPeriode(lovbestemtFerie, periode.periode)
-                                : undefined;
 
                             return (
                                 <Accordion.Item
@@ -106,7 +103,6 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                                         <ArbeidstidUkeTabell
                                             listItems={listItems}
                                             triggerResetValg={resetUkerTabellCounter}
-                                            lovbestemtFerie={ferieIPerioden}
                                             onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                                                 setArbeidsukerForEndring(
                                                     uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])

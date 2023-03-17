@@ -2,10 +2,12 @@ import { durationUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { ArbeidstidEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidEndring';
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
+import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../utils/beregnUtils';
-import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
+import { getLovbestemtFerieForPeriode } from '../../utils/lovbestemtFerieUtils';
+import { ArbeidstidUkeTabellItem, getFeriedagerIUke } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;
@@ -17,14 +19,26 @@ const sorterListeItems = (items: ArbeidstidUkeTabellItem[]): ArbeidstidUkeTabell
 
 const arbeidsukeToArbeidstidUkeTabellItem = (
     arbeidsuke: Arbeidsuke,
-    endring?: ArbeidstidEndring
+    endring: ArbeidstidEndring | undefined,
+    lovbestemtFerie: LovbestemtFerieSøknadsdata | undefined
 ): ArbeidstidUkeTabellItem => {
+    const dagerMedFerie = lovbestemtFerie
+        ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuke.periode)
+        : [];
+    const dagerMedFjernetFerie = lovbestemtFerie
+        ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuke.periode)
+        : [];
+
     return {
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
-        kanVelges: erHelArbeidsuke(arbeidsuke.periode),
+        kanVelges: erHelArbeidsuke(arbeidsuke.periode) && dagerMedFerie.length === 0,
         antallDagerMedArbeidstid: arbeidsuke.antallDagerMedArbeidstid,
+        ferie: {
+            dagerMedFerie,
+            dagerMedFjernetFerie,
+        },
         opprinnelig: {
             faktisk: arbeidsuke.faktisk.uke,
             normalt: arbeidsuke.normalt.uke,
@@ -45,34 +59,25 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
     };
 };
 
-const getArbeidstidUkeTabellItemFromArbeidsukerMap = (
-    arbeidsukeMap: ArbeidsukeMap,
-    endringer: ArbeidstidEndringMap = {}
-): ArbeidstidUkeTabellItem[] => {
-    const items: ArbeidstidUkeTabellItem[] = [];
-    Object.keys(arbeidsukeMap).map((key) => {
-        const arbeidsuke = arbeidsukeMap[key];
-        const endring = endringer[key];
-        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring));
-    });
-    return items;
-};
-
 const getArbeidstidUkeTabellItemFromArbeidsuker = (
     arbeidsuker: ArbeidsukeMap,
-    endringer: ArbeidstidEndringMap = {}
+    endringer: ArbeidstidEndringMap = {},
+    lovbestemtFerie?: LovbestemtFerieSøknadsdata
 ): ArbeidstidUkeTabellItem[] => {
     const items: ArbeidstidUkeTabellItem[] = [];
     Object.keys(arbeidsuker).map((key) => {
         const arbeidsuke = arbeidsuker[key];
         const endring = endringer[arbeidsuke.isoDateRange];
-        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring));
+        const ferieIPerioden = lovbestemtFerie
+            ? getLovbestemtFerieForPeriode(lovbestemtFerie, arbeidsuke.periode)
+            : undefined;
+
+        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring, ferieIPerioden));
     });
     return items;
 };
 
 export const arbeidsaktivitetUtils = {
-    getArbeidstidUkeTabellItemFromArbeidsukerMap,
     getArbeidstidUkeTabellItemFromArbeidsuker,
     sorterListeItems,
 };

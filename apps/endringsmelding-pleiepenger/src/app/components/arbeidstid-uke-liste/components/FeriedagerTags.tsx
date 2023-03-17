@@ -4,11 +4,11 @@ import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { getDagerMedFerieFjernetTekst, getDagerMedFerieTekst } from '../../../utils/lovbestemtFerieUtils';
 
 interface Props {
-    dagerMedFerie: Date[];
-    dagerMedFjernetFerie: Date[];
+    dagerMedFerie: Date[] | undefined;
+    dagerMedFjernetFerie: Date[] | undefined;
 }
 
-const DagerMedFerieTags = ({ dagerMedFerie, dagerMedFjernetFerie }: Props) => {
+const DagerMedFerieTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [] }: Props) => {
     if (dagerMedFjernetFerie.length + dagerMedFerie.length > 0) {
         return (
             <Block margin="s">

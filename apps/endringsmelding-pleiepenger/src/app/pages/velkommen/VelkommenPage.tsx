@@ -90,16 +90,14 @@ const VelkommenPage = () => {
                             {isFeatureEnabled(Feature.FEATURE_ENDRE_ARBEIDSTID) && (
                                 <Checkbox
                                     value={EndringType.arbeidstid}
-                                    // description={'Endre hvor mye du jobber i perioden med pleiepenger'}
-                                >
+                                    description={'Endre hvor mye du jobber i perioden med pleiepenger'}>
                                     Jobb i pleiepengeperioden
                                 </Checkbox>
                             )}
                             {isFeatureEnabled(Feature.FEATURE_ENDRE_LOVBESTEMT_FERIE) && (
                                 <Checkbox
                                     value={EndringType.lovbestemtFerie}
-                                    // description="Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger"
-                                >
+                                    description="Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger">
                                     Lovbestemt ferie
                                 </Checkbox>
                             )}

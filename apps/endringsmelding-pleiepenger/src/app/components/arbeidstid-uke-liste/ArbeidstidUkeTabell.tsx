@@ -29,6 +29,10 @@ export interface ArbeidstidUkeTabellItem {
     isoDateRange: ISODateRange;
     periode: DateRange;
     antallDagerMedArbeidstid: number;
+    ferie?: {
+        dagerMedFerie: Date[];
+        dagerMedFjernetFerie: Date[];
+    };
     opprinnelig: {
         faktisk: Duration;
         normalt: Duration;
@@ -41,11 +45,11 @@ export interface ArbeidstidUkeTabellItem {
 
 interface Props {
     listItems: ArbeidstidUkeTabellItem[];
-    lovbestemtFerie?: {
-        perioderMedFerie: DateRange[];
-        perioderFjernet: DateRange[];
-        perioderLagtTil: DateRange[];
-    };
+    // lovbestemtFerie?: {
+    //     perioderMedFerie: DateRange[];
+    //     perioderFjernet: DateRange[];
+    //     perioderLagtTil: DateRange[];
+    // };
     visNormaltid?: boolean;
     paginering?: {
         antall: number;
@@ -63,7 +67,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     },
     arbeidstidKolonneTittel,
     triggerResetValg,
-    lovbestemtFerie,
+    // lovbestemtFerie,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
@@ -77,10 +81,13 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
     const kanVelgeFlereUker = onEndreUker !== undefined && antallUkerTotalt > 1;
     const kanEndreEnkeltuke = onEndreUker && visVelgUke !== true;
-    const korteUker = listItems
-        .filter((i, idx) => idx < (antallSynlig || 0) && erHelArbeidsuke(i.periode) === false)
-        .map((uke) => dayjs(uke.periode.from).isoWeek());
-    const harKorteUker = korteUker.length > 0;
+
+    const synligeItems = listItems.filter((i, idx) => idx < (antallSynlig || 0));
+
+    const korteUker = synligeItems.filter((i) => erHelArbeidsuke(i.periode) === false).map((uke) => uke.periode);
+    const ukerMedFerie = synligeItems
+        .filter((i) => i.ferie && i.ferie?.dagerMedFerie.length > 0)
+        .map((uke) => uke.periode);
 
     useEffect(() => {
         setValgteUker([]);
@@ -140,20 +147,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                 }}>
                 Jeg ønsker å endre flere uker samtidig
             </Checkbox>
-            {visVelgUke && harKorteUker && (
+            {visVelgUke && (ukerMedFerie.length > 0 || korteUker.length > 0) && (
                 <Block margin="m" padBottom="l">
-                    <Alert variant="info" inline={false}>
-                        {korteUker.length === 1 ? (
-                            <>
-                                Ettersom uke {korteUker[0]} er en kort uke, altså ikke en hel uke, må den endres for
-                                seg.
-                            </>
-                        ) : (
-                            <>
-                                Ettersom uke {korteUker.join(' og ')} er korte uker, altså ikke hele uker, må du endre
-                                disse hver for seg.
-                            </>
-                        )}
+                    <Alert variant="info">
+                        Korte uker, altså ikke hele uker, eller uker med lovbestemt ferie må endres for seg.
                     </Alert>
                 </Block>
             )}
@@ -205,14 +202,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
 
-                            const dagerMedFerie = lovbestemtFerie
-                                ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, uke.periode)
-                                : [];
-
-                            const dagerMedFjernetFerie = lovbestemtFerie
-                                ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, uke.periode)
-                                : [];
-
                             return (
                                 <li key={uke.isoDateRange}>
                                     <div className={`arbeidstidUke${visVelgUke ? ' arbeidstidUke--velgUker' : ''}`}>
@@ -242,8 +231,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             <div style={{ padding: '.5rem 0' }}>
                                                 <ArbeidstidUkeInfoListe
                                                     uke={uke}
-                                                    dagerMedFerie={dagerMedFerie}
-                                                    dagerMedFjernetFerie={dagerMedFjernetFerie}
+                                                    dagerMedFerie={uke.ferie?.dagerMedFerie}
+                                                    dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                 />
                                             </div>
                                         </div>
@@ -332,14 +321,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
 
-                            const dagerMedFerie = lovbestemtFerie
-                                ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, uke.periode)
-                                : [];
-
-                            const dagerMedFjernetFerie = lovbestemtFerie
-                                ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, uke.periode)
-                                : [];
-
                             return (
                                 <Table.Row
                                     key={uke.isoDateRange}
@@ -378,16 +359,9 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 </div>
                                             )}
                                             <DagerMedFerieTags
-                                                dagerMedFerie={dagerMedFerie}
-                                                dagerMedFjernetFerie={dagerMedFjernetFerie}
+                                                dagerMedFerie={uke.ferie?.dagerMedFerie}
+                                                dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                             />
-
-                                            {dagerMedFerie?.length > 0 && 1 + 1 == 3 && (
-                                                <div>
-                                                    Feriedager:{` `}
-                                                    <span style={{ whiteSpace: 'nowrap' }}>{dagerMedFerie.length}</span>
-                                                </div>
-                                            )}
                                         </Table.DataCell>
                                     )}
                                     {!renderCompactTable && (
@@ -405,8 +379,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                         <span className="arbeidsukeTidsrom__tekst">
                                                             {getPeriodeTekst(uke.periode)}
                                                             <DagerMedFerieTags
-                                                                dagerMedFerie={dagerMedFerie}
-                                                                dagerMedFjernetFerie={dagerMedFjernetFerie}
+                                                                dagerMedFerie={uke.ferie?.dagerMedFerie}
+                                                                dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                             />
                                                         </span>
                                                         <span className="arbeidsukeTidsrom__info">
