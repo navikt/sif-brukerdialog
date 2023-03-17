@@ -25,6 +25,7 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
+import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/LovbestemtFerieListe';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -121,6 +122,18 @@ const LovbestemtFerieStep = () => {
                                     disabledDateRanges={getDateRangesBetweenDateRanges(sak.søknadsperioder)}
                                     minDate={sak.samletSøknadsperiode.from}
                                     maxDate={sak.samletSøknadsperiode.to}
+                                    listRenderer={LovbestemtFerieListe}
+                                    confirmDelete={{
+                                        title: 'Bekreft fjern ferie',
+                                        cancelLabel: 'Avbryt',
+                                        okLabel: 'Ja, fjern ferie',
+                                        contentRenderer: (ferie) => (
+                                            <>
+                                                Bekreft at du ønsker å fjerne lovbestemt ferien for perioden{' '}
+                                                {getPeriodeTekst({ from: ferie.fom, to: ferie.tom }, false, true)}.
+                                            </>
+                                        ),
+                                    }}
                                 />
                             </Block>
                         </Form>

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Alert, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
-import React from 'react';
+import React, { useState } from 'react';
+import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
@@ -20,12 +21,20 @@ type ListRenderer<ItemType> = (props: {
     onDelete: (item: ItemType) => void;
 }) => React.ReactNode;
 
+export type ModalFormAndListConfirmDeleteProps<ItemType> = {
+    title: string;
+    okLabel: string;
+    cancelLabel: string;
+    contentRenderer: (item: ItemType) => React.ReactNode;
+};
+
 export interface ModalFormAndListProps<ItemType extends ModalFormAndListListItemBase>
     extends Pick<ModalProps, 'shouldCloseOnOverlayClick'> {
     labels: ModalFormAndListLabels;
     maxItems?: number;
     listRenderer: ListRenderer<ItemType>;
     formRenderer: ModalFormRenderer<ItemType>;
+    confirmDelete?: ModalFormAndListConfirmDeleteProps<ItemType>;
     dialogWidth?: FormikModalFormWidths;
 }
 interface PrivateProps<ItemType> {
@@ -46,12 +55,14 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     error,
     dialogWidth = 'narrow',
     maxItems,
+    confirmDelete,
     shouldCloseOnOverlayClick = false,
     onChange,
 }: Props<ItemType>) {
     const [modalState, setModalState] = React.useState<{ isVisible: boolean; selectedItem?: ItemType }>({
         isVisible: false,
     });
+    const [itemToDelete, setItemToDelete] = useState<ItemType | undefined>();
 
     const handleOnSubmit = (values: ItemType) => {
         if (values.id) {
@@ -66,8 +77,19 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         setModalState({ isVisible: true, selectedItem: item });
     };
 
-    const handleDelete = (item: ItemType) => {
+    const doDeleteItem = (item: ItemType) => {
         onChange([...items.filter((i) => i.id !== item.id)]);
+        if (itemToDelete) {
+            setItemToDelete(undefined);
+        }
+    };
+
+    const handleDelete = (item: ItemType) => {
+        if (confirmDelete) {
+            setItemToDelete(item);
+        } else {
+            doDeleteItem(item);
+        }
     };
 
     const resetModal = () => {
@@ -119,6 +141,18 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
                     </div>
                 )}
             </SkjemagruppeQuestion>
+
+            {confirmDelete && itemToDelete && (
+                <ConfirmationDialog
+                    title={confirmDelete.title}
+                    open={itemToDelete !== undefined}
+                    okLabel={confirmDelete.okLabel}
+                    cancelLabel={confirmDelete.cancelLabel}
+                    onConfirm={() => (itemToDelete ? doDeleteItem(itemToDelete) : null)}
+                    onCancel={() => setItemToDelete(undefined)}>
+                    {confirmDelete.contentRenderer(itemToDelete)}
+                </ConfirmationDialog>
+            )}
         </>
     );
 }

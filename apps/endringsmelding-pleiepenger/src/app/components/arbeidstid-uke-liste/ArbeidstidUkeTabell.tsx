@@ -19,7 +19,7 @@ import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
-import EditButton from './components/EditButton';
+import EditButton from '../edit-button/EditButton';
 import DagerMedFerieTags from './components/FeriedagerTags';
 import './arbeidstidUkeTabell.scss';
 
