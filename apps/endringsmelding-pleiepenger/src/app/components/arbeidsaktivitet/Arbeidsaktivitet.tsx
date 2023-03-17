@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import { SkrivTilOssLink } from '../../lenker';
 import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
-import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
+import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
@@ -18,9 +18,8 @@ import { getLovbestemtFerieForPeriode } from '../../utils/lovbestemtFerieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
-import { arbeidsaktivitetUtils } from './arbeidsaktivitetUtils';
+import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from './arbeidsaktivitetUtils';
 import EndreArbeidstidForm from '../endre-arbeidstid-form/EndreArbeidstidForm';
-import { uniqBy } from 'lodash';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -191,17 +190,6 @@ const renderInfoOmEndringUtenforMaksEndringsperiode = ({
         );
     }
     return null;
-};
-
-const getEndringerForArbeidsukeForm = (
-    arbeidsukerForEndring: Arbeidsuke[],
-    endringerMap: ArbeidstidEndringMap
-): ArbeidstidEndring | undefined => {
-    const endringer = uniqBy(
-        arbeidsukerForEndring.map((uke) => endringerMap[uke.isoDateRange]),
-        (e) => JSON.stringify(e)
-    );
-    return endringer.length === 1 ? endringer[0] : undefined;
 };
 
 export default Arbeidsaktivitet;

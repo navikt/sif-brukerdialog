@@ -1,6 +1,7 @@
 import { durationUtils } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { ArbeidstidEndringMap, ArbeidstidEndring } from '../../types/ArbeidstidEndring';
+import { uniqBy } from 'lodash';
+import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
@@ -77,6 +78,16 @@ const getArbeidstidUkeTabellItemFromArbeidsuker = (
     return items;
 };
 
+export const getEndringerForArbeidsukeForm = (
+    arbeidsukerForEndring: Arbeidsuke[],
+    endringerMap: ArbeidstidEndringMap
+): ArbeidstidEndring | undefined => {
+    const endringer = uniqBy(
+        arbeidsukerForEndring.map((uke) => endringerMap[uke.isoDateRange]),
+        (e) => JSON.stringify(e)
+    );
+    return endringer.length === 1 ? endringer[0] : undefined;
+};
 export const arbeidsaktivitetUtils = {
     getArbeidstidUkeTabellItemFromArbeidsuker,
     sorterListeItems,
