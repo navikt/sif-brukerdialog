@@ -29,7 +29,7 @@ describe('arbeidsaktivitetUtils', () => {
             },
         };
 
-        it('returnerer endring dersom alle endringer er like', () => {
+        it('returnerer én endring dersom alle endringer er like', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1, arbUke2], endringer);
             expect(result).toBeDefined();
         });
@@ -37,7 +37,7 @@ describe('arbeidsaktivitetUtils', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1, arbUke2, arbUke3], endringer);
             expect(result).toBeUndefined();
         });
-        it('returnerer endring dersom det bare er én arbeidsuke, og endring finnes', () => {
+        it('returnerer én endring dersom det bare er én arbeidsuke, og endring finnes', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1], endringer);
             expect(result).toBeDefined();
         });
