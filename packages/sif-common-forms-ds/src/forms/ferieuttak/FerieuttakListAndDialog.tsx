@@ -7,7 +7,7 @@ import {
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
 import FerieuttakForm from './FerieuttakForm';
-import FerieuttakList from './FerieuttakList';
+import FerieuttakList, { FerieuttakListProps } from './FerieuttakList';
 import { Ferieuttak } from './types';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
@@ -17,6 +17,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     disabledDateRanges?: DateRange[];
     disableWeekend?: boolean;
     labels: ModalFormAndListLabels;
+    listRenderer?: (props: FerieuttakListProps) => React.ReactNode;
 }
 
 function FerieuttakListAndDialog<FieldNames>({
@@ -26,6 +27,7 @@ function FerieuttakListAndDialog<FieldNames>({
     labels,
     disableWeekend,
     disabledDateRanges,
+    listRenderer,
     validate,
 }: Props<FieldNames>) {
     return (
@@ -47,9 +49,13 @@ function FerieuttakListAndDialog<FieldNames>({
                     alleFerieuttak={allItems}
                 />
             )}
-            listRenderer={({ items, onEdit, onDelete }) => (
-                <FerieuttakList ferieuttak={items} onEdit={onEdit} onDelete={onDelete} />
-            )}
+            listRenderer={({ items, onDelete, onEdit }) => {
+                return listRenderer ? (
+                    listRenderer({ ferieuttak: items, onDelete, onEdit })
+                ) : (
+                    <FerieuttakList ferieuttak={items} onEdit={onEdit} onDelete={onDelete} />
+                );
+            }}
         />
     );
 }
