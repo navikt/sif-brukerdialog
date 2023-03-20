@@ -4,6 +4,8 @@ export interface LovbestemtFerieEndringer {
     erEndret: boolean;
     dagerLagtTil: Date[];
     dagerFjernet: Date[];
+    dagerUendret: Date[];
     perioderLagtTil: DateRange[];
     perioderFjernet: DateRange[];
+    perioderUendret: DateRange[];
 }

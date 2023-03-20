@@ -9,32 +9,37 @@ import {
     sortDates,
 } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFerieEndringer } from '../types/LovbestemFerieEndringer';
-// import { LovbestemtFerieEndringer } from '../types/LovbestemFerieEndringer';
-import { LovbestemtFeriePeriode } from '../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';
 
 const isoDateIsNotInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
     isoDateArray.some((dMelding) => isoDate === dMelding) === false;
 
+const isoDateIsInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
+    isoDateArray.some((dMelding) => isoDate === dMelding) === true;
+
 export const getLovbestemtFerieEndringer = (
-    perioderIMelding: LovbestemtFeriePeriode[],
-    perioderISak: LovbestemtFeriePeriode[]
+    perioderIMelding: DateRange[],
+    perioderISak: DateRange[]
 ): LovbestemtFerieEndringer => {
     const dagerIMelding: ISODate[] = getDatesInDateRanges(perioderIMelding).sort(sortDates).map(dateToISODate);
     const dagerISak: ISODate[] = getDatesInDateRanges(perioderISak).sort(sortDates).map(dateToISODate);
 
     const dagerFjernet = dagerISak.filter((d) => isoDateIsNotInArray(d, dagerIMelding)).map(ISODateToDate);
     const dagerLagtTil = dagerIMelding.filter((d) => isoDateIsNotInArray(d, dagerISak)).map(ISODateToDate);
+    const dagerUendret = dagerISak.filter((d) => isoDateIsInArray(d, dagerIMelding)).map(ISODateToDate);
 
     const perioderLagtTil: DateRange[] = dateRangeUtils.getDateRangesFromDates(dagerLagtTil);
     const perioderFjernet: DateRange[] = dateRangeUtils.getDateRangesFromDates(dagerFjernet);
+    const perioderUendret: DateRange[] = dateRangeUtils.getDateRangesFromDates(dagerUendret);
 
     return {
         erEndret: dagerFjernet.length > 0 || dagerLagtTil.length > 0,
         dagerFjernet,
         dagerLagtTil,
+        dagerUendret,
         perioderFjernet,
         perioderLagtTil,
+        perioderUendret,
     };
 };
 

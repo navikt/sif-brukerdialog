@@ -4,8 +4,8 @@ import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemLi
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { Ferieuttak } from './types';
 
-export interface FerieuttakListProps<T = Ferieuttak> {
-    ferieuttak: T[];
+export interface FerieuttakListProps {
+    ferieuttak: Ferieuttak[];
     onEdit?: (opphold: Ferieuttak) => void;
     onDelete?: (opphold: Ferieuttak) => void;
 }

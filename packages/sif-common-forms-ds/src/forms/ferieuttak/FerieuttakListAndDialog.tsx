@@ -20,7 +20,6 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     labels: ModalFormAndListLabels;
     confirmDelete?: ModalFormAndListConfirmDeleteProps<Ferieuttak>;
     listRenderer?: (props: FerieuttakListProps) => React.ReactNode;
-    ListComponent?: typeof FerieuttakList;
 }
 
 function FerieuttakListAndDialog<FieldNames>({
@@ -32,7 +31,7 @@ function FerieuttakListAndDialog<FieldNames>({
     disabledDateRanges,
     confirmDelete,
     listRenderer,
-    ListComponent,
+
     validate,
 }: Props<FieldNames>) {
     return (
@@ -57,9 +56,6 @@ function FerieuttakListAndDialog<FieldNames>({
                 )}
                 confirmDelete={confirmDelete}
                 listRenderer={({ items, onDelete, onEdit }) => {
-                    if (ListComponent) {
-                        return <ListComponent ferieuttak={items} onDelete={onDelete} onEdit={onEdit} />;
-                    }
                     return listRenderer ? (
                         listRenderer({ ferieuttak: items, onDelete, onEdit })
                     ) : (
