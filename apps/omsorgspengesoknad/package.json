@@ -86,7 +86,7 @@
         "style-loader": "3.3.2",
         "ts-loader": "9.4.2",
         "webpack": "5.76.1",
-        "webpack-dev-server": "4.11.1"
+        "webpack-dev-server": "4.13.1"
     },
     "jest": {
         "transformIgnorePatterns": [
