@@ -13,7 +13,7 @@
     -   @navikt/sif-common-formik-ds@0.12.0
     -   @navikt/sif-common-soknad-ds@7.0.0
     -   @navikt/sif-common-forms-ds@5.0.0
-    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-core-ds@6.1.0
     -   @navikt/sif-common-sentry@0.11.0
     -   @navikt/sif-common-utils@3.25.0
 
