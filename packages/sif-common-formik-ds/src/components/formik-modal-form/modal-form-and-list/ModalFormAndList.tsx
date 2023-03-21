@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Alert, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
+
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
+import ConfirmationDialog from '../../helpers/confirmation-dialog/ConfirmationDialog';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndListLabels, ModalFormAndListListItemBase } from '../types';
 import './modalFormAndList.scss';
