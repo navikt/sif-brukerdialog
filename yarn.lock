@@ -823,7 +823,7 @@
     "@babel/helper-module-transforms" "^7.20.11"
     "@babel/helper-plugin-utils" "^7.20.2"
 
-"@babel/plugin-transform-modules-commonjs@7.21.2", "@babel/plugin-transform-modules-commonjs@^7.12.13", "@babel/plugin-transform-modules-commonjs@^7.19.6":
+"@babel/plugin-transform-modules-commonjs@7.21.2", "@babel/plugin-transform-modules-commonjs@^7.12.13", "@babel/plugin-transform-modules-commonjs@^7.19.6", "@babel/plugin-transform-modules-commonjs@^7.20.11":
   version "7.21.2"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.21.2.tgz#6ff5070e71e3192ef2b7e39820a06fb78e3058e7"
   integrity sha512-Cln+Yy04Gxua7iPdj6nOV96smLGjpElir5YwzF0LBPKoPlLDNJePNlrGGaybAJkd0zKRnOVXOgizSqPYMNYkzA==
@@ -2386,6 +2386,11 @@
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-2.3.1.tgz#32b98dda7ee929efae13ff5f3f1c77f9716e4bb1"
   integrity sha512-YFfgVi+zvPqd51ZNJgKWXMoYt7rhElPwkhgRPCuY44wFk9bwq8GczeENcp+KEDiJ2EqpxwuqVmzaV4C3PYcv9Q==
 
+"@navikt/ds-css@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-2.6.0.tgz#6398a31d3a289deef89608262ba0ee5d18b719cf"
+  integrity sha512-6TOGywogGNJgpmlY4GoQZ/UngUxdKq927uWYeIwrFBRZufU0xFhZlxWbEJRQB9UcWp1ARs4Sr9swkFxRxp717w==
+
 "@navikt/ds-css@2.7.7":
   version "2.7.7"
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-2.7.7.tgz#bc4d88b4285b9219e9ee66602c69e7acde684f0f"
@@ -2405,6 +2410,11 @@
   resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-2.7.7.tgz#ae165fdbafb7dc9480b54bf07fe84040d2503caa"
   integrity sha512-wyhHD8xLRJK66yt0nitHW5nIVw36fl60yk5swLZR3dcJi158lBxroRkMUXLLnBGXnzc11dzyJ8MFOnQ+IGnWow==
 
+"@navikt/ds-icons@^2.6.0":
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-2.8.2.tgz#12ac24deb7160040d2d167bebb3d27caff55a924"
+  integrity sha512-G02JrBlnj2NmFpeaTWBBVlOPfk7F3hhbm7xDQkCosMDkurATz4hsb5mCEaAcbj3TInJlY157ixgBTIQraK8/2g==
+
 "@navikt/ds-react@2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-2.3.1.tgz#ab5b38385b0b225940efce89f0d2bb9107ea617c"
@@ -2412,6 +2422,20 @@
   dependencies:
     "@floating-ui/react" "0.17.0"
     "@navikt/ds-icons" "^2.3.1"
+    "@radix-ui/react-tabs" "1.0.0"
+    "@radix-ui/react-toggle-group" "1.0.0"
+    clsx "^1.2.1"
+    date-fns "2.29.3"
+    react-day-picker "8.3.4"
+    react-modal "3.15.1"
+
+"@navikt/ds-react@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-2.6.0.tgz#e086a6763da9890fc99c69f14b9b80e1c964bf42"
+  integrity sha512-wRf8SzP2b84FM8nZmsQJWWpclG0EVH4m6YaptUoU+KurAuVkLnIPMf0PYL+NqUVxG+9Q08WInzy2tn46f7NJ/A==
+  dependencies:
+    "@floating-ui/react" "0.17.0"
+    "@navikt/ds-icons" "^2.6.0"
     "@radix-ui/react-tabs" "1.0.0"
     "@radix-ui/react-toggle-group" "1.0.0"
     clsx "^1.2.1"
@@ -2432,6 +2456,11 @@
     date-fns "2.29.3"
     react-day-picker "8.3.4"
     react-modal "3.15.1"
+
+"@navikt/ds-tailwind@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-tailwind/-/ds-tailwind-2.6.0.tgz#df8db2ca975554538778bd62ce903891037bf5c8"
+  integrity sha512-BYAbqnvzNqK+FGCufPDmJz91uA0a0bNyXXaYZ3BOzXrYo9yJLxpYq96/kJXhxfx98prTvdTiYPH/PfiW1ju7ew==
 
 "@navikt/ds-tailwind@2.7.7":
   version "2.7.7"
@@ -2700,6 +2729,11 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@remix-run/router@1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.3.3.tgz#d6d531d69c0fa3a44fda7dc00b20d49b44549164"
+  integrity sha512-YRHie1yQEj0kqqCTCJEfHqYSSNlZQ696QJG+MMiW4mxSl9I0ojz/eRhJS4fs88Z5i6D1SmoF9d3K99/QOhI8/w==
+
 "@remix-run/router@1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.4.0.tgz#74935d538e4df8893e47831a7aea362f295bcd39"
@@ -2876,6 +2910,11 @@
   integrity sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
+
+"@snyk/protect@1.1112.0":
+  version "1.1112.0"
+  resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1112.0.tgz#daef63c527b946bcf88f2e4a955187430bbbf7ad"
+  integrity sha512-pNmX8dfPStZ1IgVFIqMki4beOvGoQIfCYqZTfh5Gt+bVPWlcwlbkWX5BXCtUsdgRR92bdjelpth24rFTtJPaEg==
 
 "@snyk/protect@1.1118.0":
   version "1.1118.0"
@@ -12180,6 +12219,38 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==
 
+jsdom@21.1.0:
+  version "21.1.0"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-21.1.0.tgz#d56ba4a84ed478260d83bd53dc181775f2d8e6ef"
+  integrity sha512-m0lzlP7qOtthD918nenK3hdItSd2I+V3W9IrBcB36sqDwG+KnUs66IF5GY7laGWUnlM9vTsD0W1QwSEBYWWcJg==
+  dependencies:
+    abab "^2.0.6"
+    acorn "^8.8.1"
+    acorn-globals "^7.0.0"
+    cssom "^0.5.0"
+    cssstyle "^2.3.0"
+    data-urls "^3.0.2"
+    decimal.js "^10.4.2"
+    domexception "^4.0.0"
+    escodegen "^2.0.0"
+    form-data "^4.0.0"
+    html-encoding-sniffer "^3.0.0"
+    http-proxy-agent "^5.0.0"
+    https-proxy-agent "^5.0.1"
+    is-potential-custom-element-name "^1.0.1"
+    nwsapi "^2.2.2"
+    parse5 "^7.1.1"
+    saxes "^6.0.0"
+    symbol-tree "^3.2.4"
+    tough-cookie "^4.1.2"
+    w3c-xmlserializer "^4.0.0"
+    webidl-conversions "^7.0.0"
+    whatwg-encoding "^2.0.0"
+    whatwg-mimetype "^3.0.0"
+    whatwg-url "^11.0.0"
+    ws "^8.11.0"
+    xml-name-validator "^4.0.0"
+
 jsdom@21.1.1:
   version "21.1.1"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-21.1.1.tgz#ab796361e3f6c01bcfaeda1fea3c06197ac9d8ae"
@@ -13125,6 +13196,13 @@ mini-css-extract-plugin@2.7.3, mini-css-extract-plugin@^2.4.5:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.7.3.tgz#794aa4d598bf178a66b2a35fe287c3df3eac394e"
   integrity sha512-CD9cXeKeXLcnMw8FZdtfrRrLaM7gwCl4nKuKn2YkY2Bw5wdlB8zU2cCzw+w2zS9RFvbrufTBkMCJACNPwqQA0w==
+  dependencies:
+    schema-utils "^4.0.0"
+
+mini-css-extract-plugin@^2.7.2:
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.7.5.tgz#afbb344977659ec0f1f6e050c7aea456b121cfc5"
+  integrity sha512-9HaR++0mlgom81s95vvNjxkg52n2b5s//3ZTI1EtzFb98awsLSivs2LMsVqnQ3ay0PVhqWcGNyDaTE961FOcjQ==
   dependencies:
     schema-utils "^4.0.0"
 
@@ -15710,6 +15788,14 @@ react-responsive@9.0.2:
     prop-types "^15.6.1"
     shallow-equal "^1.2.1"
 
+react-router-dom@6.8.2:
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.8.2.tgz#a6654a3400be9aafd504d7125573568921b78b57"
+  integrity sha512-N/oAF1Shd7g4tWy+75IIufCGsHBqT74tnzHQhbiUTYILYF0Blk65cg+HPZqwC+6SqEyx033nKqU7by38v3lBZg==
+  dependencies:
+    "@remix-run/router" "1.3.3"
+    react-router "6.8.2"
+
 react-router-dom@6.9.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.9.0.tgz#dd8b4e461453bd4cad2e6404493d1a5b4bfea758"
@@ -15717,6 +15803,13 @@ react-router-dom@6.9.0:
   dependencies:
     "@remix-run/router" "1.4.0"
     react-router "6.9.0"
+
+react-router@6.8.2:
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.8.2.tgz#98f83582a73f316a3287118b440f0cee30ed6f33"
+  integrity sha512-lF7S0UmXI5Pd8bmHvMdPKI4u4S5McxmHnzJhrYi9ZQ6wE+DA8JN5BzVC5EEBuduWWDaiJ8u6YhVOCmThBli+rw==
+  dependencies:
+    "@remix-run/router" "1.3.3"
 
 react-router@6.9.0:
   version "6.9.0"
@@ -16265,6 +16358,13 @@ rfdc@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/rfdc/-/rfdc-1.3.0.tgz#d0b7c441ab2720d05dc4cf26e01c89631d9da08b"
   integrity sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==
+
+rimraf@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-4.3.0.tgz#cd4d9a918c1735197e0ae8217e5eeb4657d42154"
+  integrity sha512-5qVDXPbByA1qSJEWMv1qAwKsoS22vVpsL2QyxCKBw4gf6XiFo1K3uRLY6uSOOBFDwnqAZtnbILqWKKlzh8bkGg==
+  dependencies:
+    glob "^9.2.0"
 
 rimraf@4.4.0:
   version "4.4.0"
@@ -17415,6 +17515,11 @@ strip-outer@^1.0.1:
   integrity sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==
   dependencies:
     escape-string-regexp "^1.0.2"
+
+style-loader@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-3.3.1.tgz#057dfa6b3d4d7c7064462830f9113ed417d38575"
+  integrity sha512-GPcQ+LDJbrcxHORTRes6Jy2sfvK2kS6hpSfI/fXhPt+spVzxF6LJ1dHLN9zIGmVaaP044YKaIatFaufENRiDoQ==
 
 style-loader@3.3.2, style-loader@^3.3.1:
   version "3.3.2"
@@ -18890,6 +18995,36 @@ webpack@5.76.1, "webpack@>=4.43.0 <6.0.0", webpack@^5.64.4, webpack@^5.9.0:
   version "5.76.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.76.1.tgz#7773de017e988bccb0f13c7d75ec245f377d295c"
   integrity sha512-4+YIK4Abzv8172/SGqObnUjaIHjLEuUasz9EwQj/9xmPPkYJy2Mh03Q/lJfSD3YLzbxy5FeTq5Uw0323Oh6SJQ==
+  dependencies:
+    "@types/eslint-scope" "^3.7.3"
+    "@types/estree" "^0.0.51"
+    "@webassemblyjs/ast" "1.11.1"
+    "@webassemblyjs/wasm-edit" "1.11.1"
+    "@webassemblyjs/wasm-parser" "1.11.1"
+    acorn "^8.7.1"
+    acorn-import-assertions "^1.7.6"
+    browserslist "^4.14.5"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^5.10.0"
+    es-module-lexer "^0.9.0"
+    eslint-scope "5.1.1"
+    events "^3.2.0"
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.2.9"
+    json-parse-even-better-errors "^2.3.1"
+    loader-runner "^4.2.0"
+    mime-types "^2.1.27"
+    neo-async "^2.6.2"
+    schema-utils "^3.1.0"
+    tapable "^2.1.1"
+    terser-webpack-plugin "^5.1.3"
+    watchpack "^2.4.0"
+    webpack-sources "^3.2.3"
+
+webpack@^5.75.0:
+  version "5.76.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.76.2.tgz#6f80d1c1d1e3bf704db571b2504a0461fac80230"
+  integrity sha512-Th05ggRm23rVzEOlX8y67NkYCHa9nTNcwHPBhdg+lKG+mtiW7XgggjAeeLnADAe7mLjJ6LUNfgHAuRRh+Z6J7w==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^0.0.51"
