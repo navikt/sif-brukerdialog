@@ -1,6 +1,8 @@
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { verifyK9Format, K9Format, isK9FormatError, K9FormatArbeidstid } from '../../types/k9Format';
 import { K9Sak, UgyldigK9SakFormat } from '../../types/K9Sak';
 import appSentryLogger from '../../utils/appSentryLogger';
+import { maskString } from '../../utils/maskString';
 import { parseK9Format } from '../../utils/parseK9Format';
 import api from '../api';
 import { ApiEndpointInnsyn } from './';
@@ -9,7 +11,10 @@ export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 
 const maskK9FormatArbeidstid = (arbeidstid: K9FormatArbeidstid) => {
     return {
-        arbeidstakerList: (arbeidstid.arbeidstakerList || []).map((arbtaker) => arbtaker.arbeidstidInfo),
+        arbeidstakerList: (arbeidstid.arbeidstakerList || []).map((arbtaker) => {
+            const key = maskString(arbtaker.organisasjonsnummer) || 'ingenOrg';
+            return { [key]: arbtaker.arbeidstidInfo };
+        }),
         frilanserArbeidstidInfo: arbeidstid.frilanserArbeidstidInfo,
         selvstendigNæringsdrivendeArbeidstidInfo: arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo,
     };
@@ -36,8 +41,11 @@ const sakerEndpoint = {
                         if (parsedSak.ytelse.søknadsperioder.length > 0) {
                             k9saker.push(parsedSak);
                         }
-                        appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
+                        if (getEnvironmentVariable('DEBUG') === 'true') {
+                            appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
+                        }
                     } else {
+                        /** Beholder denne enn så lenge, selv om DEBUG !== true */
                         appSentryLogger.logInfo('debug.k9format.ikkeGyldig', JSON.stringify(maskK9FormatSak(sak)));
                     }
                 } catch (error) {

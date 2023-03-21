@@ -1,5 +1,40 @@
 # @navikt/sif-common-forms-ds
 
+## 4.1.2
+
+### Patch Changes
+
+-   41aaa80: Ta i bruk countryIsMemberOfEøsOrEfta fra sif-common-formik
+-   Updated dependencies [41aaa80]
+    -   @navikt/sif-common-core-ds@6.1.2
+
+## 4.1.1
+
+### Patch Changes
+
+-   @navikt/sif-common-core-ds@6.1.1
+
+## 4.1.0
+
+### Minor Changes
+
+-   908bb770: Pakkeoppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [908bb770]
+    -   @navikt/sif-common-core-ds@6.1.0
+
+## 4.0.3
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Patch-oppdatering av ds pakker
+-   Updated dependencies [ecd4b4f]
+-   Updated dependencies [f033a9b]
+    -   @navikt/sif-common-core-ds@6.0.4
+
 ## 4.0.2
 
 ### Patch Changes

@@ -1,5 +1,44 @@
 # @navikt/sif-common-soknad-ds
 
+## 6.1.1
+
+### Patch Changes
+
+-   Updated dependencies [94686aa]
+    -   @navikt/sif-common-formik-ds@0.13.0
+
+## 6.1.0
+
+### Minor Changes
+
+-   908bb770: Pakkeoppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [908bb770]
+    -   @navikt/sif-common-formik-ds@0.12.0
+    -   @navikt/appstatus-react-ds@2.1.0
+    -   @navikt/sif-common-sentry@0.11.0
+
+## 6.0.4
+
+### Patch Changes
+
+-   Updated dependencies [ada550f9]
+    -   @navikt/sif-common-sentry@0.10.0
+
+## 6.0.3
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Patch-oppdatering av ds pakker
+-   Updated dependencies [ecd4b4f]
+-   Updated dependencies [f033a9b]
+    -   @navikt/sif-common-formik-ds@0.11.5
+    -   @navikt/appstatus-react-ds@2.0.3
+    -   @navikt/sif-common-sentry@0.9.6
+
 ## 6.0.2
 
 ### Patch Changes

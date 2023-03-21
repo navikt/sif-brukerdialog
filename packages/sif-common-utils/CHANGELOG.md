@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.26.0
+
+### Minor Changes
+
+-   5b76871: Utvide dateUtils og dateRangeUtils med nye funksjoner
+
+## 3.25.0
+
+### Minor Changes
+
+-   908bb770: Pakkeoppdateringer
+
 ## 3.24.1
 
 ### Patch Changes

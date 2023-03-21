@@ -1,5 +1,42 @@
 # @navikt/sif-common-core-ds
 
+## 6.1.2
+
+### Patch Changes
+
+-   41aaa80: Slettet countryUtils
+
+## 6.1.1
+
+### Patch Changes
+
+-   Updated dependencies [94686aa]
+    -   @navikt/sif-common-formik-ds@0.13.0
+
+## 6.1.0
+
+### Minor Changes
+
+-   908bb770: Pakkeoppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [908bb770]
+    -   @navikt/sif-common-formik-ds@0.12.0
+    -   @navikt/appstatus-react-ds@2.1.0
+    -   @navikt/sif-common-utils@3.25.0
+
+## 6.0.4
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Patch-oppdatering av ds pakker
+-   Updated dependencies [ecd4b4f]
+-   Updated dependencies [f033a9b]
+    -   @navikt/sif-common-formik-ds@0.11.5
+    -   @navikt/appstatus-react-ds@2.0.3
+
 ## 6.0.3
 
 ### Patch Changes

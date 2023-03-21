@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCountries } from '../../utils/countryUtils';
+import { filteredListEØSCountries, getAlpha3Code, getCountries } from '../../utils/countryUtils';
 import { TestProps } from '../../types';
 import { Select, SelectProps } from '@navikt/ds-react';
 
@@ -19,50 +19,6 @@ interface CountryOptionsCache {
     options: React.ReactNode[];
 }
 
-const filteredListEØSCountries = (countryOptionValue: string, shouldFilter?: boolean) => {
-    if (shouldFilter) {
-        switch (countryOptionValue) {
-            case 'BE':
-            case 'BG':
-            case 'DK':
-            case 'EE':
-            case 'FI':
-            case 'FR':
-            case 'GR':
-            case 'IE':
-            case 'IS':
-            case 'IT':
-            case 'HR':
-            case 'CY':
-            case 'LV':
-            case 'LI':
-            case 'LT':
-            case 'LU':
-            case 'MT':
-            case 'NL':
-            case 'PL':
-            case 'PT':
-            case 'RO':
-            case 'SK':
-            case 'SI':
-            case 'ES':
-            case 'GB':
-            case 'SE':
-            case 'CZ':
-            case 'DE':
-            case 'HU':
-            case 'AT':
-            case 'CH':
-                return true;
-            default:
-                return false;
-        }
-    } else {
-        // Filter ut Antarktis
-        return countryOptionValue !== 'AQ';
-    }
-};
-
 const createCountryOptions = (
     onluEuAndEftaCountries: boolean,
     locale: string,
@@ -80,7 +36,7 @@ const createCountryOptions = (
         .map((countryOptionValue: string[]) => (
             <option
                 key={countryOptionValue[0]}
-                value={useAlpha3Code ? countries.alpha2ToAlpha3(countryOptionValue[0]) : countryOptionValue[0]}>
+                value={useAlpha3Code ? getAlpha3Code(countryOptionValue[0]) : countryOptionValue[0]}>
                 {countryOptionValue[1]}
             </option>
         ));
@@ -113,7 +69,7 @@ class CountrySelect extends React.Component<Props> {
     }
 
     render() {
-        // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
         const { onChange, name, showOnlyEuAndEftaCountries, locale, useAlpha3Code, ...restProps } = this.props;
         return (
             <Select name={name} {...restProps} onChange={(e) => onChange(e.target.value)} autoComplete="off">

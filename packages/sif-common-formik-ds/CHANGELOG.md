@@ -1,5 +1,30 @@
 # @navikt/sif-common-formik-ds
 
+## 0.13.0
+
+### Minor Changes
+
+-   94686aa: La til countryIsMemberOfEøsOrEfta funksjon, fikset land liste i filteredListEØSCountries
+
+## 0.12.1
+
+### Patch Changes
+
+-   c833cf6: Kosovo landkode fiks
+
+## 0.12.0
+
+### Minor Changes
+
+-   908bb770: Pakkeoppdateringer
+
+## 0.11.5
+
+### Patch Changes
+
+-   ecd4b4f: Pakkeoppdateringer
+-   f033a9b: Patch-oppdatering av ds pakker
+
 ## 0.11.4
 
 ### Patch Changes

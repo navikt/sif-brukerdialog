@@ -6,20 +6,20 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-amplitude",
     "types": "lib/index.d.js",
-    "version": "2.9.2",
+    "version": "2.10.0",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "devDependencies": {
         "@types/amplitude-js": "8.16.2",
-        "@types/node": "18.14.6",
+        "@types/node": "18.15.3",
         "@types/react": "18.0.28",
-        "amplitude-js": "8.21.5",
+        "amplitude-js": "8.21.6",
         "constate": "3.3.2",
         "gh-pages": "5.0.0",
         "react": "18.2.0",
         "react-scripts": "5.0.1",
-        "rimraf": "4.3.0"
+        "rimraf": "4.4.0"
     },
     "directories": {
         "lib": "lib"
@@ -31,7 +31,7 @@
     "peerDependencies": {
         "amplitude-js": "8.x",
         "constate": "3.3.x",
-        "react": "17.x || ^18.x"
+        "react": "18.x"
     },
     "repository": {
         "type": "git",
