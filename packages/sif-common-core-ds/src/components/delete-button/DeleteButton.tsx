@@ -24,7 +24,7 @@ const DeleteButton = ({ ariaLabel, useTrashcan = true, onClick, children }: Prop
             </Button>
         </>
     ) : (
-        <Button size="small" variant="tertiary" onClick={onClick} aria-label={ariaLabel}>
+        <Button size="small" variant="tertiary" onClick={onClick} aria-label={ariaLabel} type="button">
             {children || ' Fjern'}
         </Button>
     );

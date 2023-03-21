@@ -19,8 +19,8 @@ export const getLovbestemtFerieStepInitialValues = (
     return {
         perioder: søknadsdata.lovbestemtFerie.perioderMedFerie.map((periode) => ({
             id: dateRangeToISODateRange(periode),
-            fom: periode.from,
-            tom: periode.to,
+            from: periode.from,
+            to: periode.to,
         })),
     };
 };
@@ -30,21 +30,21 @@ export const getLovbestemtFerieSøknadsdataFromFormValues = (
     lovbestemtFerieISak: LovbestemtFeriePeriode[]
 ): LovbestemtFerieSøknadsdata => {
     const perioderMedFerie = values[LovbestemtFerieFormFields.perioder]
-        .map((periode): LovbestemtFeriePeriode => ({ from: periode.fom, to: periode.tom, skalHaFerie: true }))
+        .map((periode): LovbestemtFeriePeriode => ({ from: periode.from, to: periode.to, skalHaFerie: true }))
         .sort(sortDateRange);
 
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieEndringer(
         values[LovbestemtFerieFormFields.perioder].map((periode) => {
             return {
-                from: periode.fom,
-                to: periode.tom,
+                from: periode.from,
+                to: periode.to,
                 skalHaFerie: true,
             };
         }),
         lovbestemtFerieISak
     );
     return {
-        perioderMedFerie,
+        perioderMedFerie: perioderMedFerie,
         perioderFjernet,
         perioderLagtTil,
     };

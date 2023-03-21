@@ -38,7 +38,7 @@ function Step({
 }: Props) {
     const currentStepIndex = steps.findIndex((s) => s.id === activeStepId);
     const navigate = useNavigate();
-    const sectionRef = useRef<HTMLElement>(null);
+    const sectionRef = useRef<HTMLDivElement>(null);
 
     const handleOnStepSelect = (step: ProgressStep) => {
         if (step.href) {
@@ -55,7 +55,7 @@ function Step({
                     {validationSummary}
                 </>
             )}>
-            <section aria-label="Skjemasteg" ref={sectionRef}>
+            <section aria-label="Skjema" ref={sectionRef}>
                 <ProgressStepper steps={steps} currentStepIndex={currentStepIndex} onStepSelect={handleOnStepSelect} />
                 <Block margin="xxl">{children}</Block>
             </section>

@@ -13,12 +13,12 @@ const LovbestemtFerieListe: React.FunctionComponent<FerieuttakListProps> = ({ fe
         <>
             <ul className={bem.block}>
                 {ferieuttak.map((ferie) => {
-                    const { fom, tom } = ferie;
-                    const fra = dateFormatter.dayCompactDate(fom);
-                    const til = dateFormatter.dayCompactDate(tom);
+                    const { from, to } = ferie;
+                    const fra = dateFormatter.dayCompactDate(from);
+                    const til = dateFormatter.dayCompactDate(to);
                     const periodeTekst = `${fra} - ${til}`;
                     return (
-                        <li key={dateRangeToISODateRange({ from: fom, to: tom })}>
+                        <li key={dateRangeToISODateRange({ from: from, to: to })}>
                             <div className={bem.element('ferie')}>
                                 <div className={bem.element('ferie__periode')}>{periodeTekst}</div>
                                 {onEdit && (

@@ -30,7 +30,6 @@ const DevFooter: React.FunctionComponent = () => {
             }
         });
     });
-
     return (
         <>
             <div className="settingsWrapper" style={{ position: 'fixed', bottom: '1rem', right: '1rem', zIndex: 50 }}>

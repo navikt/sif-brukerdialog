@@ -16,7 +16,7 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import AktivitetStep from './steps/aktivitet/AktivitetStep';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import LovbestemtFerieStep from './steps/lovbestent-ferie/LovbestemtFerieStep';
+import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();

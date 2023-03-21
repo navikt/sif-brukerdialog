@@ -14,6 +14,7 @@ interface Props<T> {
     iconRender?: (item: T) => React.ReactNode;
     onDelete?: (item: T) => void;
     onEdit?: (item: T) => void;
+    deleteRenderer?: (item: T) => React.ReactNode;
 }
 
 const bem = bemUtils('itemList');
@@ -28,6 +29,7 @@ function ItemList<T>({
     iconRender,
     getItemId,
     getItemTitle,
+    deleteRenderer,
     useTrashcan = false,
 }: Props<T>) {
     return (
@@ -59,6 +61,7 @@ function ItemList<T>({
                                 />
                             </span>
                         )}
+                        {!onDelete && deleteRenderer && deleteRenderer(item)}
                     </li>
                 );
             })}

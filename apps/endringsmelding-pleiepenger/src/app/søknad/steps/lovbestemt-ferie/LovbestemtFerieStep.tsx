@@ -130,7 +130,7 @@ const LovbestemtFerieStep = () => {
                                         contentRenderer: (ferie) => (
                                             <>
                                                 Bekreft at du ønsker å fjerne lovbestemt ferien for perioden{' '}
-                                                {getPeriodeTekst({ from: ferie.fom, to: ferie.tom }, false, true)}.
+                                                {getPeriodeTekst(ferie, false, true)}.
                                             </>
                                         ),
                                     }}

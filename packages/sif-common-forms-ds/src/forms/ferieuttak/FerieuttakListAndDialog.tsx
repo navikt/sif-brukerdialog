@@ -4,12 +4,12 @@ import {
     ModalFormAndListLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
+import { ModalFormAndListConfirmDeleteProps } from '@navikt/sif-common-formik-ds/lib/components/formik-modal-form/modal-form-and-list/ModalFormAndList';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { DateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
 import FerieuttakForm from './FerieuttakForm';
 import FerieuttakList, { FerieuttakListProps } from './FerieuttakList';
 import { Ferieuttak } from './types';
-import { ModalFormAndListConfirmDeleteProps } from '@navikt/sif-common-formik-ds/lib/components/formik-modal-form/modal-form-and-list/ModalFormAndList';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;
@@ -31,7 +31,6 @@ function FerieuttakListAndDialog<FieldNames>({
     disabledDateRanges,
     confirmDelete,
     listRenderer,
-
     validate,
 }: Props<FieldNames>) {
     return (
@@ -41,7 +40,7 @@ function FerieuttakListAndDialog<FieldNames>({
                 labels={labels}
                 dialogWidth="narrow"
                 validate={validate}
-                sortFunc={(d1, d2) => sortMaybeDateRange({ from: d1.fom }, { from: d2.fom })}
+                sortFunc={(d1, d2) => sortMaybeDateRange({ from: d1.from }, { from: d2.from })}
                 formRenderer={({ onSubmit, onCancel, item, allItems }) => (
                     <FerieuttakForm
                         ferieuttak={item}

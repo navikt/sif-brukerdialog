@@ -12,7 +12,7 @@ export interface FerieuttakListProps {
 
 const FerieuttakList = ({ ferieuttak = [], onDelete, onEdit }: FerieuttakListProps) => {
     const getDateTitleString = (uttak: Ferieuttak) =>
-        `${prettifyDateExtended(uttak.fom)} - ${prettifyDateExtended(uttak.tom)}`;
+        `${prettifyDateExtended(uttak.from)} - ${prettifyDateExtended(uttak.to)}`;
 
     const renderFerieuttakLabel = (uttak: Ferieuttak): React.ReactNode => {
         const title = getDateTitleString(uttak);

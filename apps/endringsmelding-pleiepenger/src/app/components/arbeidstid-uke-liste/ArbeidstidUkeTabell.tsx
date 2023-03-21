@@ -45,11 +45,6 @@ export interface ArbeidstidUkeTabellItem {
 
 interface Props {
     listItems: ArbeidstidUkeTabellItem[];
-    // lovbestemtFerie?: {
-    //     perioderMedFerie: DateRange[];
-    //     perioderFjernet: DateRange[];
-    //     perioderLagtTil: DateRange[];
-    // };
     visNormaltid?: boolean;
     paginering?: {
         antall: number;
