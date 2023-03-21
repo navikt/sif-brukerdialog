@@ -19,6 +19,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     disableWeekend?: boolean;
     labels: ModalFormAndListLabels;
     confirmDelete?: ModalFormAndListConfirmDeleteProps<Ferieuttak>;
+    onAfterChange?: (values: Ferieuttak[]) => void;
     listRenderer?: (props: FerieuttakListProps) => React.ReactNode;
 }
 
@@ -30,6 +31,7 @@ function FerieuttakListAndDialog<FieldNames>({
     disableWeekend,
     disabledDateRanges,
     confirmDelete,
+    onAfterChange,
     listRenderer,
     validate,
 }: Props<FieldNames>) {
@@ -41,6 +43,7 @@ function FerieuttakListAndDialog<FieldNames>({
                 dialogWidth="narrow"
                 validate={validate}
                 sortFunc={(d1, d2) => sortMaybeDateRange({ from: d1.from }, { from: d2.from })}
+                onAfterChange={onAfterChange}
                 formRenderer={({ onSubmit, onCancel, item, allItems }) => (
                     <FerieuttakForm
                         ferieuttak={item}
