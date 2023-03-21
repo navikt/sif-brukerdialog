@@ -2,19 +2,17 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
-import {
-    dateRangeToISODateRange,
-    getDateRangesBetweenDateRanges,
-    joinAdjacentDateRanges,
-    sortDateRange,
-} from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/LovbestemtFerieListe';
 import PeriodeTekst, { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
+import PerioderAccordion from '../../../components/perioder-accordion/PerioderAccordion';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -30,9 +28,6 @@ import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
-import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/LovbestemtFerieListe';
-import { getLovbestemtFerieEndringer } from '../../../utils/lovbestemtFerieUtils';
-import FjernetLovbestemtFerieListe from './FjernetLovbestemtFerieListe';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -112,23 +107,23 @@ const LovbestemtFerieStep = () => {
             <FormikWrapper
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                renderForm={({ values, setFieldValue }) => {
-                    const endringer = getLovbestemtFerieEndringer(
-                        values[LovbestemtFerieFormFields.perioder] || [],
-                        sak.lovbestemtFerie.perioder
-                    );
+                renderForm={({ values }) => {
+                    // const endringer = getLovbestemtFerieEndringer(
+                    //     values[LovbestemtFerieFormFields.perioder] || [],
+                    //     sak.lovbestemtFerie.perioder
+                    // );
 
-                    const handleAngreFjernFerie = (ferie: Ferieuttak) => {
-                        const perioder: Ferieuttak[] = [
-                            ...(values[LovbestemtFerieFormFields.perioder] || []),
-                            { id: dateRangeToISODateRange(ferie), ...ferie },
-                        ].sort(sortDateRange);
-                        const oppdatertPeriodeliste = joinAdjacentDateRanges(perioder).map((p) => ({
-                            ...p,
-                            id: dateRangeToISODateRange(p),
-                        }));
-                        setFieldValue(LovbestemtFerieFormFields.perioder, oppdatertPeriodeliste);
-                    };
+                    // const handleAngreFjernFerie = (ferie: Ferieuttak) => {
+                    //     const perioder: Ferieuttak[] = [
+                    //         ...(values[LovbestemtFerieFormFields.perioder] || []),
+                    //         { id: dateRangeToISODateRange(ferie), ...ferie },
+                    //     ].sort(sortDateRange);
+                    //     const oppdatertPeriodeliste = joinAdjacentDateRanges(perioder).map((p) => ({
+                    //         ...p,
+                    //         id: dateRangeToISODateRange(p),
+                    //     }));
+                    //     setFieldValue(LovbestemtFerieFormFields.perioder, oppdatertPeriodeliste);
+                    // };
 
                     return (
                         <>
@@ -144,46 +139,54 @@ const LovbestemtFerieStep = () => {
                                 submitPending={isSubmitting}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
-                                <Block margin="xl" padBottom="xl">
-                                    <FerieuttakListAndDialog<LovbestemtFerieFormFields>
-                                        name={LovbestemtFerieFormFields.perioder}
-                                        labels={{
-                                            listTitle: `Registrert lovbestemt ferie i perioden ${getPeriodeTekst(
-                                                sak.samletSøknadsperiode,
-                                                false
-                                            )}`,
-                                            addLabel: 'Legg til ferie',
-                                            modalTitle: 'Lovbestemt ferie',
-                                            emptyListText: `Ingen ferie er registrert`,
+                                <FormBlock>
+                                    <Block margin="xl">
+                                        <Heading level="3" size="small" spacing={true}>
+                                            {sak.søknadsperioder.length > 1
+                                                ? 'Perioder med pleiepenger'
+                                                : 'Periode med pleiepenger'}
+                                        </Heading>
+                                    </Block>
+                                    <PerioderAccordion
+                                        perioder={sak.søknadsperioder}
+                                        renderContent={(periode) => {
+                                            return (
+                                                <Block margin="none" padBottom="l">
+                                                    <FerieuttakListAndDialog<LovbestemtFerieFormFields>
+                                                        name={LovbestemtFerieFormFields.perioder}
+                                                        labels={{
+                                                            addLabel: 'Legg til ferie',
+                                                            modalTitle: 'Lovbestemt ferie',
+                                                            emptyListText: `Ingen ferie er registrert i perioden`,
+                                                        }}
+                                                        minDate={periode.from}
+                                                        maxDate={periode.to}
+                                                        listRenderer={LovbestemtFerieListe}
+                                                        confirmDelete={{
+                                                            title: 'Bekreft fjern ferie',
+                                                            cancelLabel: 'Avbryt',
+                                                            okLabel: 'Ja, fjern ferie',
+                                                            contentRenderer: (ferie) => (
+                                                                <>
+                                                                    Bekreft at du ønsker å fjerne lovbestemt ferien for
+                                                                    perioden {getPeriodeTekst(ferie, false, true)}.
+                                                                </>
+                                                            ),
+                                                        }}
+                                                    />
+                                                </Block>
+                                            );
                                         }}
-                                        disabledDateRanges={getDateRangesBetweenDateRanges(sak.søknadsperioder)}
-                                        minDate={sak.samletSøknadsperiode.from}
-                                        maxDate={sak.samletSøknadsperiode.to}
-                                        listRenderer={LovbestemtFerieListe}
-                                        confirmDelete={{
-                                            title: 'Bekreft fjern ferie',
-                                            cancelLabel: 'Avbryt',
-                                            okLabel: 'Ja, fjern ferie',
-                                            contentRenderer: (ferie) => (
+                                        renderHeader={(periode) => {
+                                            return (
                                                 <>
-                                                    Bekreft at du ønsker å fjerne lovbestemt ferien for perioden{' '}
-                                                    {getPeriodeTekst(ferie, false, true)}.
+                                                    {dateFormatter.full(periode.from)} -{' '}
+                                                    {dateFormatter.full(periode.to)}
                                                 </>
-                                            ),
+                                            );
                                         }}
                                     />
-                                </Block>
-                                {endringer.dagerFjernet.length > 0 && (
-                                    <Block>
-                                        <Heading size="xsmall" level="3" spacing={true}>
-                                            Registrert ferie som er fjernet
-                                        </Heading>
-                                        <FjernetLovbestemtFerieListe
-                                            perioder={endringer.perioderFjernet}
-                                            onAngreFjern={handleAngreFjernFerie}
-                                        />
-                                    </Block>
-                                )}
+                                </FormBlock>
                             </Form>
                         </>
                     );

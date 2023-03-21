@@ -1,4 +1,4 @@
-import { Accordion, Heading, Ingress, Tag } from '@navikt/ds-react';
+import { Heading, Tag } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import {
@@ -20,6 +20,7 @@ import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal
 import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from './arbeidsaktivitetUtils';
 import EndreArbeidstidForm from '../endre-arbeidstid-form/EndreArbeidstidForm';
+import PerioderAccordion from '../perioder-accordion/PerioderAccordion';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -50,9 +51,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                         listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                             perioder[0].arbeidsuker,
                             endringer,
-                            lovbestemtFerie
-                                ? getLovbestemtFerieForPeriode(lovbestemtFerie, perioder[0].periode)
-                                : undefined
+                            lovbestemtFerie ? getLovbestemtFerieForPeriode(lovbestemtFerie, perioder[0]) : undefined
                         )}
                         triggerResetValg={resetUkerTabellCounter}
                         onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
@@ -63,60 +62,49 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
             )}
 
             {perioder.length !== 1 && (
-                <div style={{ borderTop: '2px solid var(--ac-accordion-header-border, var(--a-border-strong)' }}>
-                    <Accordion style={{ width: '100%' }}>
-                        {perioder.map((periode, index) => {
-                            const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
-                                periode.arbeidsuker,
-                                endringer,
-                                lovbestemtFerie
-                                    ? getLovbestemtFerieForPeriode(lovbestemtFerie, periode.periode)
-                                    : undefined
-                            );
-                            const harEndringer =
-                                endringer !== undefined &&
-                                Object.keys(endringer)
-                                    .map(ISODateRangeToDateRange)
-                                    .some((dr) => isDateInDateRange(dr.from, periode.periode));
-
-                            return (
-                                <Accordion.Item
-                                    key={dateRangeToISODateRange(periode.periode)}
-                                    data-testid={`periode_${index}`}>
-                                    <Accordion.Header data-testid={`periode_${index}_header`}>
-                                        <Ingress as="span" className="periodeHeader">
-                                            {dateFormatter.full(periode.periode.from)} -{' '}
-                                            {dateFormatter.full(periode.periode.to)}
-                                            {harEndringer && (
-                                                <span
-                                                    style={{
-                                                        paddingLeft: '1rem',
-                                                        position: 'relative',
-                                                        top: '-.1rem',
-                                                    }}>
-                                                    <Tag variant="info" size="small">
-                                                        Endret
-                                                    </Tag>
-                                                </span>
-                                            )}
-                                        </Ingress>
-                                    </Accordion.Header>
-                                    <Accordion.Content>
-                                        <ArbeidstidUkeTabell
-                                            listItems={listItems}
-                                            triggerResetValg={resetUkerTabellCounter}
-                                            onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
-                                                setArbeidsukerForEndring(
-                                                    uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])
-                                                );
-                                            }}
-                                        />
-                                    </Accordion.Content>
-                                </Accordion.Item>
-                            );
-                        })}
-                    </Accordion>
-                </div>
+                <PerioderAccordion
+                    perioder={perioder}
+                    renderContent={(periode) => {
+                        const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                            periode.arbeidsuker,
+                            endringer,
+                            lovbestemtFerie ? getLovbestemtFerieForPeriode(lovbestemtFerie, periode) : undefined
+                        );
+                        return (
+                            <ArbeidstidUkeTabell
+                                listItems={listItems}
+                                triggerResetValg={resetUkerTabellCounter}
+                                onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
+                                    setArbeidsukerForEndring(uker.map((uke) => periode.arbeidsuker[uke.isoDateRange]));
+                                }}
+                            />
+                        );
+                    }}
+                    renderHeader={(periode) => {
+                        const harEndringer =
+                            endringer !== undefined &&
+                            Object.keys(endringer)
+                                .map(ISODateRangeToDateRange)
+                                .some((dr) => isDateInDateRange(dr.from, periode));
+                        return (
+                            <>
+                                {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
+                                {harEndringer && (
+                                    <span
+                                        style={{
+                                            paddingLeft: '1rem',
+                                            position: 'relative',
+                                            top: '-.1rem',
+                                        }}>
+                                        <Tag variant="info" size="small">
+                                            Endret
+                                        </Tag>
+                                    </span>
+                                )}
+                            </>
+                        );
+                    }}
+                />
             )}
 
             <EndreArbeidstidModal

@@ -33,8 +33,7 @@ export interface Arbeidsuke {
 
 export type ArbeidsukeMap = ISODateRangeMap<Arbeidsuke>;
 
-export interface PeriodeMedArbeidstid {
-    periode: DateRange;
+export interface PeriodeMedArbeidstid extends DateRange {
     arbeidsuker: ArbeidsukeMap;
 }
 

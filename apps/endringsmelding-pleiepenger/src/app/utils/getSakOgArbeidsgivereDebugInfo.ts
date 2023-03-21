@@ -37,9 +37,7 @@ const maskSak = (sak: Sak) => {
     return {
         arbeidsaktiviteter: getAktiviteterSomKanEndres(sak.arbeidAktiviteter).map((aktivitet) => ({
             id: maskString(aktivitet.id),
-            perioderMedArbeidstid: aktivitet.perioderMedArbeidstid.map((periode) => ({
-                periode: periode.periode,
-            })),
+            perioderMedArbeidstid: aktivitet.perioderMedArbeidstid,
         })),
     };
 };

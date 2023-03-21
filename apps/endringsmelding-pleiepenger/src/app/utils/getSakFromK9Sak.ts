@@ -289,7 +289,7 @@ const getPerioderMedArbeidstid = (
         const enkeltdagerIPeriode = getArbeidstidEnkeltdagMapFromPerioder(gruppertPeriode.arbeidstidPerioder);
         const arbeidsuker = getArbeidsukerMapFromArbeidsuker(getArbeidsukerFromEnkeltdager(enkeltdagerIPeriode));
         const periode: PeriodeMedArbeidstid = {
-            periode: gruppertPeriode.periode,
+            ...gruppertPeriode.periode,
             arbeidsuker,
         };
         return periode;
