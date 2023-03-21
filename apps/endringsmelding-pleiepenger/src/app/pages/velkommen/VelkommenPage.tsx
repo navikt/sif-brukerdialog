@@ -1,22 +1,43 @@
-import { Checkbox, CheckboxGroup, Heading, Ingress } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { Heading, Ingress } from '@navikt/ds-react';
+import React from 'react';
+import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
-import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
 import { SKJEMANAVN } from '../../App';
+import { getPeriodeTekst } from '../../components/periode-tekst/PeriodeTekst';
 import { getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
 import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
+import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
 import { getAktiviteterSomKanEndres } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
-import { EndringType } from '../../types/EndringType';
-import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
-import { getPeriodeTekst } from '../../components/periode-tekst/PeriodeTekst';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+
+export enum VelkommenFormFields {
+    harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
+    hvaSkalEndres = 'hvaSkalEndres',
+}
+
+export interface VelkommenFormValues {
+    [VelkommenFormFields.harForståttRettigheterOgPlikter]: boolean;
+    [VelkommenFormFields.hvaSkalEndres]: EndringType[];
+}
+
+const { FormikWrapper, Form, CheckboxGroup } = getTypedFormComponents<
+    VelkommenFormFields,
+    VelkommenFormValues,
+    ValidationError
+>();
 
 const VelkommenPage = () => {
     const {
@@ -24,11 +45,8 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
+    const intl = useIntl();
     const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
-    const [hvaSkalEndres, setHvaSkalEndres] = useState<EndringType[]>([
-        EndringType.lovbestemtFerie,
-        EndringType.arbeidstid,
-    ]);
 
     const { logSoknadStartet, logInfo } = useAmplitudeInstance();
 
@@ -64,58 +82,59 @@ const VelkommenPage = () => {
 
     return (
         <Page title="Velkommen">
-            <SifGuidePanel poster={true}>
-                <Heading level="1" size="large" data-testid="velkommen-header" spacing={true}>
-                    Hei {søker.fornavn}
-                </Heading>
-                <Ingress as="div">
-                    <p>
-                        Du har pleiepenger for <strong>{barnetsNavn}</strong>.
-                    </p>
-                    <p>
-                        Du kan melde om endringer i perioden {getPeriodeTekst(sak.samletSøknadsperiode, false, true)}.
-                    </p>
-                    <Block margin="xl">
-                        <CheckboxGroup
-                            legend={
-                                <Heading level={'2'} size="small">
-                                    Hva ønsker du å endre?
-                                </Heading>
-                            }
-                            value={hvaSkalEndres}
-                            name="hvaSkalEndres"
-                            onChange={(values) => {
-                                setHvaSkalEndres(values);
-                            }}>
-                            {isFeatureEnabled(Feature.FEATURE_ENDRE_ARBEIDSTID) && (
-                                <Checkbox
-                                    value={EndringType.arbeidstid}
-                                    description={'Endre hvor mye du jobber i perioden med pleiepenger'}>
-                                    Jobb i pleiepengeperioden
-                                </Checkbox>
-                            )}
-                            {isFeatureEnabled(Feature.FEATURE_ENDRE_LOVBESTEMT_FERIE) && (
-                                <Checkbox
-                                    value={EndringType.lovbestemtFerie}
-                                    description="Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger">
-                                    Lovbestemt ferie
-                                </Checkbox>
-                            )}
-
-                            {isFeatureEnabled(Feature.FEATURE_ENDRE_UTENLANDSOPPHOLD) && (
-                                <Checkbox
-                                    value={EndringType.utenlandsopphold}
-                                    description="Legg til, fjern eller endre utenlandsopphold i perioden med pleiepenger">
-                                    Utenlandsopphold i perioden
-                                </Checkbox>
-                            )}
-                        </CheckboxGroup>
-                    </Block>
-                </Ingress>
-                <OmSøknaden />
-            </SifGuidePanel>
-
-            <SamtykkeForm onValidSubmit={() => startSøknad(sak, hvaSkalEndres)} submitButtonLabel="Start" />
+            <FormikWrapper
+                initialValues={{ harForståttRettigheterOgPlikter: false }}
+                onSubmit={(values) => startSøknad(sak, values.hvaSkalEndres)}
+                renderForm={() => (
+                    <Form
+                        includeButtons={true}
+                        submitButtonLabel={intlHelper(intl, 'velkommenForm.submitButtonLabel')}
+                        formErrorHandler={getIntlFormErrorHandler(intl, 'velkommenForm')}>
+                        <SifGuidePanel poster={true}>
+                            <Heading level="1" size="large" data-testid="velkommen-header" spacing={true}>
+                                Hei {søker.fornavn}
+                            </Heading>
+                            <Ingress as="div">
+                                <p>
+                                    Du har pleiepenger for <strong>{barnetsNavn}</strong>.
+                                </p>
+                                <p>
+                                    Du kan melde om endringer i perioden{' '}
+                                    {getPeriodeTekst(sak.samletSøknadsperiode, false, true)}.
+                                </p>
+                                <Block margin="xl">
+                                    <CheckboxGroup
+                                        name={VelkommenFormFields.hvaSkalEndres}
+                                        legend={
+                                            <Heading level={'2'} size="small">
+                                                Hva ønsker du å endre?
+                                            </Heading>
+                                        }
+                                        validate={getRequiredFieldValidator()}
+                                        checkboxes={[
+                                            {
+                                                label: 'Jobb i pleiepengeperioden',
+                                                description: 'Endre hvor mye du jobber i perioden med pleiepenger',
+                                                value: EndringType.arbeidstid,
+                                            },
+                                            {
+                                                label: 'Lovbestemt ferie',
+                                                description:
+                                                    'Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger',
+                                                value: EndringType.lovbestemtFerie,
+                                            },
+                                        ]}
+                                    />
+                                </Block>
+                            </Ingress>
+                            <OmSøknaden />
+                        </SifGuidePanel>
+                        <FormBlock>
+                            <SamtykkeFormPart />
+                        </FormBlock>
+                    </Form>
+                )}
+            />
         </Page>
     );
 };
