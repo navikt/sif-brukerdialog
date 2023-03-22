@@ -7,16 +7,18 @@ import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useNavigate } from 'react-router-dom';
+import { Sak } from '../../types/Sak';
 
 interface Props {
     stepId: StepId;
     stepConfig: SoknadStepsConfig<StepId>;
+    sak: Sak;
 }
 
-const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
+const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig, sak }) => {
     const intl = useIntl();
     const navigate = useNavigate();
-    const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+    const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig, sak);
 
     if (invalidSteps.length > 0) {
         const step = invalidSteps[0];

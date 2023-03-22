@@ -45,7 +45,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, hvaSkalEndre
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
-            <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
+            <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} sak={sak} />
             {children}
             {isDevMode && 1 + 1 === 2 ? (
                 <Block margin="xxl">

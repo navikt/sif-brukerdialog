@@ -49,7 +49,7 @@ const OppsummeringStep = () => {
 
     const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
     const step = stepConfig[stepId];
-    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, sak);
 
     const { goBack } = useStepNavigation(step);
 

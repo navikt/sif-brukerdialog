@@ -58,6 +58,7 @@ const LovbestemtFerieISøknadsperiode: React.FunctionComponent<Props> = ({
 
             <Block>
                 <Button
+                    data-testid="leggTilFerieKnapp"
                     onClick={() => {
                         setVisFerieModal({
                             periode: undefined,

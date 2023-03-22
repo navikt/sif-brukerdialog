@@ -16,10 +16,10 @@ export const getAktivitetStepInitialValues = (
         return aktivitetInitialFormValues;
     }
     return {
-        aktiviteterSomSkalEndres: søknadsdata.aktivitet.aktiviteterSomSkalEndres,
+        aktiviteterSomSkalEndres: søknadsdata.aktivitet.aktivitetSomSkalEndres,
     };
 };
 
 export const getAktivitetSøknadsdataFromFormValues = (values: AktivitetFormValues): AktivitetSøknadsdata => {
-    return { aktiviteterSomSkalEndres: values[AktivitetFormFields.aktiviteterSomSkalEndres] };
+    return { aktivitetSomSkalEndres: values[AktivitetFormFields.aktiviteterSomSkalEndres] };
 };

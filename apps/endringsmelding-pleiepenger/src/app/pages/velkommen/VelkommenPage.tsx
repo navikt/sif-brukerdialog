@@ -60,7 +60,13 @@ const VelkommenPage = () => {
             erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerArktiviteter.length > 0,
             erFrilanser: sak.arbeidAktiviteter.frilanser !== undefined,
         });
-        dispatch(actionsCreator.startSøknad(sak, aktiviteterSomKanEndres, hvaSkalEndres));
+        dispatch(
+            actionsCreator.startSøknad(
+                sak,
+                aktiviteterSomKanEndres?.length === 1 ? aktiviteterSomKanEndres[0] : undefined,
+                hvaSkalEndres
+            )
+        );
         dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(steps[0])));
     };
 
@@ -113,11 +119,13 @@ const VelkommenPage = () => {
                                         validate={getRequiredFieldValidator()}
                                         checkboxes={[
                                             {
+                                                'data-testid': 'endreArbeidstid',
                                                 label: 'Jobb i pleiepengeperioden',
                                                 description: 'Endre hvor mye du jobber i perioden med pleiepenger',
                                                 value: EndringType.arbeidstid,
                                             },
                                             {
+                                                'data-testid': 'endreLovbestemtFerie',
                                                 label: 'Lovbestemt ferie',
                                                 description:
                                                     'Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger',
