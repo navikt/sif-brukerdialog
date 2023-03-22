@@ -79,7 +79,7 @@ const getArbeidstidInfo = (
     aktivitetEndring?: ArbeidstidEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
-    if (aktivitetEndring && aktivitet) {
+    if (aktivitetEndring && aktivitet && Object.keys(aktivitetEndring).length > 0) {
         return {
             perioder: getEndretArbeidstid(aktivitetEndring, aktivitet),
         };
