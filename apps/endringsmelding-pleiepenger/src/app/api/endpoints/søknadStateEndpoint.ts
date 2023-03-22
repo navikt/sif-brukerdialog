@@ -50,6 +50,8 @@ export const isPersistedSøknadStateValid = (
     return (
         søknadState.versjon === APP_VERSJON &&
         søknadState.søknadHashString === createHashString(info) &&
+        søknadState.hvaSkalEndres !== undefined &&
+        søknadState.hvaSkalEndres.length > 0 &&
         k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId)
     );
 };
