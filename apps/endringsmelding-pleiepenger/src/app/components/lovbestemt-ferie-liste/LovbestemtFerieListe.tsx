@@ -1,12 +1,12 @@
+import { Alert, Tag } from '@navikt/ds-react';
 import React from 'react';
+import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFeriePeriode } from '../../types/Sak';
 import DeleteButton from '../delete-button/DeleteButton';
 import EditButton from '../edit-button/EditButton';
 import './lovbestemtFerieListe.scss';
-import { Tag } from '@navikt/ds-react';
-import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 
 const bem = bemUtils('lovbestemtFerieListe');
 
@@ -21,6 +21,14 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
     return (
         <>
             <ul className={bem.block}>
+                {perioder.length === 0 && (
+                    <li>
+                        <Alert inline={true} variant="info">
+                            Ingen ferie registrert
+                        </Alert>
+                    </li>
+                )}
+
                 {perioder.map((periode) => {
                     const { from, to } = periode;
                     const fra = dateFormatter.dayCompactDate(from);

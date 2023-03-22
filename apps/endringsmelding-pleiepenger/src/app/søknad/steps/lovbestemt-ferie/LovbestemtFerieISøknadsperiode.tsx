@@ -55,6 +55,7 @@ const LovbestemtFerieISøknadsperiode: React.FunctionComponent<Props> = ({
                     onChange(deletePeriode(periode, perioderIMelding, perioderISak));
                 }}
             />
+
             <Block>
                 <Button
                     onClick={() => {
