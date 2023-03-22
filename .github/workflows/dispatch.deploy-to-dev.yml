@@ -1,4 +1,6 @@
 name: Deploy app to dev
+run-name: Deploy ${{ inputs.app-name }} to dev
+
 
 on:
     workflow_dispatch:
