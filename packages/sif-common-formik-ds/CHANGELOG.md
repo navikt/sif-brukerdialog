@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.13.0
+
+### Minor Changes
+
+-   94686aa: La til countryIsMemberOfEøsOrEfta funksjon, fikset land liste i filteredListEØSCountries
+
 ## 0.12.1
 
 ### Patch Changes

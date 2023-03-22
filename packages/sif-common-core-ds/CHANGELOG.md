@@ -1,5 +1,18 @@
 # @navikt/sif-common-core-ds
 
+## 6.1.2
+
+### Patch Changes
+
+-   41aaa80: Slettet countryUtils
+
+## 6.1.1
+
+### Patch Changes
+
+-   Updated dependencies [94686aa]
+    -   @navikt/sif-common-formik-ds@0.13.0
+
 ## 6.1.0
 
 ### Minor Changes

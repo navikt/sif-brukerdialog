@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAlpha3Code, getCountries } from '../../utils/countryUtils';
+import { filteredListEØSCountries, getAlpha3Code, getCountries } from '../../utils/countryUtils';
 import { TestProps } from '../../types';
 import { Select, SelectProps } from '@navikt/ds-react';
 
@@ -18,50 +18,6 @@ interface CountryOptionsCache {
     locale: string;
     options: React.ReactNode[];
 }
-
-const filteredListEØSCountries = (countryOptionValue: string, shouldFilter?: boolean) => {
-    if (shouldFilter) {
-        switch (countryOptionValue) {
-            case 'BE':
-            case 'BG':
-            case 'DK':
-            case 'EE':
-            case 'FI':
-            case 'FR':
-            case 'GR':
-            case 'IE':
-            case 'IS':
-            case 'IT':
-            case 'HR':
-            case 'CY':
-            case 'LV':
-            case 'LI':
-            case 'LT':
-            case 'LU':
-            case 'MT':
-            case 'NL':
-            case 'PL':
-            case 'PT':
-            case 'RO':
-            case 'SK':
-            case 'SI':
-            case 'ES':
-            case 'GB':
-            case 'SE':
-            case 'CZ':
-            case 'DE':
-            case 'HU':
-            case 'AT':
-            case 'CH':
-                return true;
-            default:
-                return false;
-        }
-    } else {
-        // Filter ut Antarktis
-        return countryOptionValue !== 'AQ';
-    }
-};
 
 const createCountryOptions = (
     onluEuAndEftaCountries: boolean,
