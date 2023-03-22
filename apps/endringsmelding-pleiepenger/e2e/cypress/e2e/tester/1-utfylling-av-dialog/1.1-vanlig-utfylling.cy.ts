@@ -3,7 +3,7 @@ import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
 import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
 import { enSakFlereArbeidsgivereMock } from '../../data/enSakFlereArbeidsgivereMock';
 import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
-import { getTestElement, selectCheckboxByTestId, submitSkjema, setInputByNameValue } from '../../utils';
+import { getTestElement, selectCheckboxByTestId, submitSkjema } from '../../utils';
 
 const startUrl = 'http://localhost:8080/';
 const date = new Date(2023, 0, 1);
