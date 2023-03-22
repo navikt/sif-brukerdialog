@@ -1,6 +1,6 @@
 .lovbestemtFerieModal {
-    min-width: 40rem;
-    max-width: 45rem;
+    min-width: 30rem;
+    max-width: 35rem;
 }
 .lovbestemtFerieModal__noFocusOutline:focus {
     outline: none;

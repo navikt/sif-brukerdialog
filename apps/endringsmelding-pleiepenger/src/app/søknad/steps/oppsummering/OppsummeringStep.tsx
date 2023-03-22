@@ -25,6 +25,7 @@ import {
     harEndringerILovbestemtFerieApiData,
 } from './oppsummeringStepUtils';
 import './oppsummering.css';
+import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -89,6 +90,8 @@ const OppsummeringStep = () => {
         );
     }
 
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getValgteEndringer(hvaSkalEndres);
+
     return (
         <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
             <SifGuidePanel>
@@ -100,26 +103,28 @@ const OppsummeringStep = () => {
                 </Ingress>
             </SifGuidePanel>
 
-            {arbeidstidErEndret === false && lovbestemtFerieErEndret === false && (
-                <Block padBottom="l">
-                    <Alert variant="info">Det er ikke registrert noen endringer i arbeidstid eller ferie</Alert>
-                </Block>
-            )}
-
-            {arbeidstidErEndret && (
+            {arbeidstidSkalEndres && (
                 <Block margin="xxl">
                     <SummarySection header="Endringer i arbeidstid">
-                        {arbeidstid && arbeidstidErEndret && (
+                        {arbeidstid && arbeidstidErEndret ? (
                             <ArbeidstidOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                        ) : (
+                            <Block padBottom="l">
+                                <Alert variant="info">Det er ikke registrert noen endringer i arbeidstid</Alert>
+                            </Block>
                         )}
                     </SummarySection>
                 </Block>
             )}
-            {lovbestemtFerieErEndret && (
+            {lovbestemtFerieSkalEndres && (
                 <Block margin="xxl" padBottom="m">
                     <SummarySection header="Endringer i lovbestemt ferie">
-                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret && (
+                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
                             <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
+                        ) : (
+                            <Block padBottom="l">
+                                <Alert variant="info">Det er ikke registrert noen endringer i ferie</Alert>
+                            </Block>
                         )}
                     </SummarySection>
                 </Block>

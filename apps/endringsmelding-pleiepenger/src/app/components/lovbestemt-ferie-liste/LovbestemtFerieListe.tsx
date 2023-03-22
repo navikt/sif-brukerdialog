@@ -25,16 +25,22 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                     const { from, to } = periode;
                     const fra = dateFormatter.dayCompactDate(from);
                     const til = dateFormatter.dayCompactDate(to);
-                    const periodeTekst = `${fra} - ${til}`;
+                    const periodeTekst = fra === til ? fra : `${fra} - ${til}`;
                     return (
                         <li key={dateRangeToISODateRange({ from: from, to: to })}>
                             <div className={bem.element('ferie')}>
-                                <div className={bem.element('ferie__periode')}>
-                                    {periodeTekst}
-                                    {periode.skalHaFerie === false && (
-                                        <Tag variant="error" size="small">
-                                            Fjernet
-                                        </Tag>
+                                <div
+                                    className={bem.element(
+                                        'ferie__periode',
+                                        periode.skalHaFerie === false ? 'fjernet' : undefined
+                                    )}>
+                                    <span className={'dato'}>{periodeTekst}</span>
+                                    {periode.skalHaFerie === false && 1 + 1 === 3 && (
+                                        <span style={{ position: 'relative', marginLeft: '.5rem', top: '-.125rem' }}>
+                                            <Tag variant="error" size="small">
+                                                Fjernet
+                                            </Tag>
+                                        </span>
                                     )}
                                 </div>
                                 {periode.skalHaFerie === false && onUndoDelete && (

@@ -1,4 +1,9 @@
-import { sortDateRange } from '@navikt/sif-common-utils/lib';
+import {
+    DateRange,
+    dateRangeToISODateRange,
+    getDateRangesWithinDateRange,
+    sortDateRange,
+} from '@navikt/sif-common-utils/lib';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { LovbestemtFerieSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { getLovbestemtFerieEndringer } from '../../../utils/lovbestemtFerieUtils';
@@ -25,23 +30,72 @@ export const getLovbestemtFerieSøknadsdataFromFormValues = (
     values: LovbestemtFerieFormValues,
     lovbestemtFerieISak: LovbestemtFeriePeriode[]
 ): LovbestemtFerieSøknadsdata => {
-    const perioderMedFerie = values[LovbestemtFerieFormFields.perioder]
-        .map((periode): LovbestemtFeriePeriode => ({ from: periode.from, to: periode.to, skalHaFerie: true }))
-        .sort(sortDateRange);
-
-    const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieEndringer(
-        values[LovbestemtFerieFormFields.perioder].map((periode) => {
-            return {
-                from: periode.from,
-                to: periode.to,
-                skalHaFerie: true,
-            };
-        }),
-        lovbestemtFerieISak
-    );
+    const perioder = values[LovbestemtFerieFormFields.perioder].sort(sortDateRange);
+    const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieEndringer(perioder, lovbestemtFerieISak);
     return {
-        perioderMedFerie: perioderMedFerie,
+        perioderMedFerie: perioder.filter((p) => p.skalHaFerie === true),
         perioderFjernet,
         perioderLagtTil,
     };
+};
+
+const getLovbestemtFerieEndringerForPeriode = (
+    periode: DateRange,
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
+) => {
+    const endringer = getLovbestemtFerieEndringer(
+        getDateRangesWithinDateRange(perioderIMelding, periode),
+        getDateRangesWithinDateRange(perioderISak, periode)
+    );
+    return endringer;
+};
+
+const leggTilPeriode = (
+    periode: DateRange,
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
+): LovbestemtFeriePeriode[] => {
+    return getLovbestemtFerieEndringer([...perioderIMelding, { ...periode, skalHaFerie: true }], perioderISak).perioder;
+};
+
+const oppdaterPeriode = (
+    opprinneligPeriode: DateRange,
+    endretPeriode: DateRange,
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
+): LovbestemtFeriePeriode[] => {
+    const perioder = perioderIMelding.filter(
+        (p) => dateRangeToISODateRange(p) !== dateRangeToISODateRange(opprinneligPeriode)
+    );
+    perioder.push({ ...endretPeriode, skalHaFerie: true });
+    return getLovbestemtFerieEndringer(perioder, perioderISak).perioder;
+};
+
+const deletePeriode = (
+    periode: DateRange,
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
+): LovbestemtFeriePeriode[] => {
+    const perioder: LovbestemtFeriePeriode[] = perioderIMelding.filter(
+        (p) => dateRangeToISODateRange(p) !== dateRangeToISODateRange(periode)
+    );
+    return getLovbestemtFerieEndringer(perioder, perioderISak).perioder;
+};
+
+const undoDeletePeriode = (
+    periode: LovbestemtFeriePeriode,
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
+) => {
+    const perioder: LovbestemtFeriePeriode[] = [...perioderIMelding, { ...periode, skalHaFerie: true }];
+    return getLovbestemtFerieEndringer(perioder, perioderISak).perioder;
+};
+
+export const lovbestemtFerieStepUtils = {
+    deletePeriode,
+    oppdaterPeriode,
+    leggTilPeriode,
+    undoDeletePeriode,
+    getLovbestemtFerieEndringerForPeriode,
 };

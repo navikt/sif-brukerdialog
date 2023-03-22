@@ -17,6 +17,11 @@
                 text-transform: capitalize;
             }
             flex-grow: 2;
+            &--fjernet {
+                .dato {
+                    text-decoration: line-through;
+                }
+            }
         }
         &__endreKnapp {
             margin-top: -0.25rem;
