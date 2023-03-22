@@ -62,7 +62,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     },
     arbeidstidKolonneTittel,
     triggerResetValg,
-    // lovbestemtFerie,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;

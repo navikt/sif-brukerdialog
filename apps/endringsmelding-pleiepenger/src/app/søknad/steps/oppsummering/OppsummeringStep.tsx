@@ -1,6 +1,7 @@
-import { Alert, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, Ingress } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
+import { Back } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -12,6 +13,7 @@ import { SummarySection } from '@navikt/sif-common-soknad-ds/lib';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
@@ -25,7 +27,6 @@ import {
     harEndringerILovbestemtFerieApiData,
 } from './oppsummeringStepUtils';
 import './oppsummering.css';
-import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -75,21 +76,6 @@ const OppsummeringStep = () => {
     const lovbestemtFerieErEndret = harEndringerILovbestemtFerieApiData(lovbestemtFerie);
     const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
-    if (harIngenEndringer) {
-        return (
-            <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
-                <Alert variant="info">
-                    <Heading level="2" size="small" spacing={true}>
-                        Ingen endringer er registert
-                    </Heading>
-                    <Link href="#" onClick={goBack}>
-                        Gå tilbake
-                    </Link>
-                </Alert>
-            </SøknadStep>
-        );
-    }
-
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getValgteEndringer(hvaSkalEndres);
 
     return (
@@ -129,49 +115,57 @@ const OppsummeringStep = () => {
                     </SummarySection>
                 </Block>
             )}
-            <FormBlock margin="l">
-                <FormikWrapper
-                    initialValues={getOppsummeringStepInitialValues(søknadsdata)}
-                    onSubmit={(values) => {
-                        apiData
-                            ? sendSøknad({
-                                  ...apiData,
-                                  harBekreftetOpplysninger:
-                                      values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                              })
-                            : undefined;
-                    }}
-                    renderForm={() => {
-                        return (
-                            <>
-                                <Form
-                                    formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
-                                    submitDisabled={isSubmitting || hasInvalidSteps || harIngenEndringer}
-                                    includeValidationSummary={true}
-                                    submitButtonLabel="Send melding om endring"
-                                    submitPending={isSubmitting}
-                                    backButtonDisabled={isSubmitting}
-                                    onBack={goBack}>
-                                    <ConfirmationCheckbox
-                                        disabled={isSubmitting || harIngenEndringer}
-                                        label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
-                                        validate={getCheckedValidator()}
-                                        data-testid="bekreft-opplysninger"
-                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                    />
-                                </Form>
-                                {sendSøknadError && (
-                                    <FormBlock>
-                                        <ErrorSummary ref={sendSøknadErrorSummary}>
-                                            {sendSøknadError.message}
-                                        </ErrorSummary>
-                                    </FormBlock>
-                                )}
-                            </>
-                        );
-                    }}
-                />
-            </FormBlock>
+            {harIngenEndringer ? (
+                <FormBlock margin="l">
+                    <Button type="button" variant="secondary" onClick={goBack} icon={<Back aria-label="Pil venstre" />}>
+                        Forrige
+                    </Button>
+                </FormBlock>
+            ) : (
+                <FormBlock margin="l">
+                    <FormikWrapper
+                        initialValues={getOppsummeringStepInitialValues(søknadsdata)}
+                        onSubmit={(values) => {
+                            apiData
+                                ? sendSøknad({
+                                      ...apiData,
+                                      harBekreftetOpplysninger:
+                                          values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                                  })
+                                : undefined;
+                        }}
+                        renderForm={() => {
+                            return (
+                                <>
+                                    <Form
+                                        formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
+                                        submitDisabled={isSubmitting || hasInvalidSteps || harIngenEndringer}
+                                        includeValidationSummary={true}
+                                        submitButtonLabel="Send melding om endring"
+                                        submitPending={isSubmitting}
+                                        backButtonDisabled={isSubmitting}
+                                        onBack={goBack}>
+                                        <ConfirmationCheckbox
+                                            disabled={isSubmitting || harIngenEndringer}
+                                            label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
+                                            validate={getCheckedValidator()}
+                                            data-testid="bekreft-opplysninger"
+                                            name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                        />
+                                    </Form>
+                                    {sendSøknadError && (
+                                        <FormBlock>
+                                            <ErrorSummary ref={sendSøknadErrorSummary}>
+                                                {sendSøknadError.message}
+                                            </ErrorSummary>
+                                        </FormBlock>
+                                    )}
+                                </>
+                            );
+                        }}
+                    />
+                </FormBlock>
+            )}
         </SøknadStep>
     );
 };
