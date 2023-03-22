@@ -1,7 +1,7 @@
-import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tag, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { AddCircle, Edit, InformationColored } from '@navikt/ds-icons';
+import { AddCircle, Edit } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -218,16 +218,29 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             <Heading level="3" size="xsmall">
                                                 Uke {ukenummer}:
                                             </Heading>
-                                            <BodyShort>
+                                            <BodyShort as="div">
                                                 {dateFormatter.compact(uke.periode.from)} - {` `}
                                                 {dateFormatter.compact(uke.periode.to)}
-                                            </BodyShort>
-                                            <div style={{ padding: '.5rem 0' }}>
-                                                <ArbeidstidUkeInfoListe
-                                                    uke={uke}
+                                                {erHelArbeidsuke(uke.periode) ? undefined : (
+                                                    <Block margin="s">
+                                                        <Tooltip
+                                                            content={`Kort uke - ${getDagerPeriode(
+                                                                uke.periode,
+                                                                false
+                                                            )}`}>
+                                                            <Tag variant="info" size="small">
+                                                                Kort uke
+                                                            </Tag>
+                                                        </Tooltip>
+                                                    </Block>
+                                                )}
+                                                <DagerMedFerieTags
                                                     dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                     dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                 />
+                                            </BodyShort>
+                                            <div style={{ padding: '.5rem 0' }}>
+                                                <ArbeidstidUkeInfoListe uke={uke} />
                                             </div>
                                         </div>
                                         {kanEndreEnkeltuke && (
@@ -352,6 +365,17 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                     </span>
                                                 </div>
                                             )}
+
+                                            {erHelArbeidsuke(uke.periode) ? undefined : (
+                                                <Block margin="s">
+                                                    <Tooltip
+                                                        content={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}>
+                                                        <Tag variant="info" size="small">
+                                                            Kort uke
+                                                        </Tag>
+                                                    </Tooltip>
+                                                </Block>
+                                            )}
                                             <DagerMedFerieTags
                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
@@ -372,21 +396,24 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                     <div className="arbeidsukeTidsrom">
                                                         <span className="arbeidsukeTidsrom__tekst">
                                                             {getPeriodeTekst(uke.periode)}
+
+                                                            {erHelArbeidsuke(uke.periode) ? undefined : (
+                                                                <Block margin="s">
+                                                                    <Tooltip
+                                                                        content={`Kort uke - ${getDagerPeriode(
+                                                                            uke.periode,
+                                                                            false
+                                                                        )}`}>
+                                                                        <Tag variant="info" size="small">
+                                                                            Kort uke
+                                                                        </Tag>
+                                                                    </Tooltip>
+                                                                </Block>
+                                                            )}
                                                             <DagerMedFerieTags
                                                                 dagerMedFerie={uke.ferie?.dagerMedFerie}
                                                                 dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                                                             />
-                                                        </span>
-                                                        <span className="arbeidsukeTidsrom__info">
-                                                            {erHelArbeidsuke(uke.periode) ? undefined : (
-                                                                <Tooltip
-                                                                    content={`Kort uke - ${getDagerPeriode(
-                                                                        uke.periode,
-                                                                        false
-                                                                    )}`}>
-                                                                    <InformationColored aria-label="Informasjon om uken" />
-                                                                </Tooltip>
-                                                            )}
                                                         </span>
                                                     </div>
                                                 </div>
