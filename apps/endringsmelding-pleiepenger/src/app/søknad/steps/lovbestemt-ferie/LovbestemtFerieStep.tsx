@@ -91,7 +91,8 @@ const LovbestemtFerieStep = () => {
                             <li>Du kan legge til, endre eller fjerne ferie i periodene hvor du har pleiepenger.</li>
                             <li>
                                 Vi trenger kun å vite om ferie som tas ut på ukedager
-                                {harFlereSøknadsperioder ? ', og i tidsrom hvor du har pleiepenger' : ''}.
+                                {harFlereSøknadsperioder ? ', og i tidsrom hvor du har pleiepenger' : ''}. Feriedager
+                                som er registrert på en lørdag eller en søndag teller vi ikke med.
                             </li>
                             <li>
                                 Endringer i ferie kan medføre at du må også endre på hvor mye du jobber i perioden.

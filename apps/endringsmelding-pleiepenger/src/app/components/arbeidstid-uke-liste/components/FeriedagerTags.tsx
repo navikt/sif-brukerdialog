@@ -13,7 +13,7 @@ const DagerMedFerieTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [] }: Pr
         return (
             <Block margin="s">
                 {dagerMedFerie?.length > 0 && (
-                    <Tag variant="success" size="small" style={{ marginRight: '.5rem' }}>
+                    <Tag variant="success" size="small" style={{ marginRight: '.5rem', marginBottom: '.25rem' }}>
                         {getDagerMedFerieTekst(dagerMedFerie)}
                     </Tag>
                 )}
