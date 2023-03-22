@@ -5,7 +5,7 @@ export const velkommenPageMessages: MessageFileFormat = {
         'velkommenForm.submitButtonLabel': 'Start',
         'velkommenForm.harForståttRettigheterOgPlikter.notChecked':
             'Du må velge at du har forstått ditt ansvar når du sender inn en endring',
-        'velkommenForm.hvaSkalEndres.noValue': 'Du må velge hva du ønsker å endre',
+        'velkommenForm.hvaSkalEndres.listHasTooFewItems': 'Du må velge hva du ønsker å endre',
 
         'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
         'page.velkommen.guide.tittel': 'Hei {navn}',

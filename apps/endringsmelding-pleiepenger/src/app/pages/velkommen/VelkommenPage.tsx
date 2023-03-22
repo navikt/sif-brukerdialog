@@ -21,7 +21,7 @@ import { Sak } from '../../types/Sak';
 import { getAktiviteterSomKanEndres } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -89,7 +89,7 @@ const VelkommenPage = () => {
     return (
         <Page title="Velkommen">
             <FormikWrapper
-                initialValues={{ harForståttRettigheterOgPlikter: false }}
+                initialValues={{ harForståttRettigheterOgPlikter: false, hvaSkalEndres: [] }}
                 onSubmit={(values) => startSøknad(sak, values.hvaSkalEndres)}
                 renderForm={() => (
                     <Form
@@ -105,7 +105,7 @@ const VelkommenPage = () => {
                                     Du har pleiepenger for <strong>{barnetsNavn}</strong>.
                                 </p>
                                 <p>
-                                    Du kan melde om endringer i perioden{' '}
+                                    Du kan melde om endring i perioder med pleiepenger innefor tidsrommet{' '}
                                     {getPeriodeTekst(sak.samletSøknadsperiode, false, true)}.
                                 </p>
                                 <Block margin="xl">
@@ -116,7 +116,7 @@ const VelkommenPage = () => {
                                                 Hva ønsker du å endre?
                                             </Heading>
                                         }
-                                        validate={getRequiredFieldValidator()}
+                                        validate={getListValidator({ minItems: 1 })}
                                         checkboxes={[
                                             {
                                                 'data-testid': 'endreArbeidstid',
