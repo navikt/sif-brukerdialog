@@ -3,7 +3,7 @@
     "cluster": "dev-gcp",
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
-        "API_URL_INNSYN": "https://sif-innsyn-api.dev.nav.no",
+        "API_URL_INNSYN": "https://sif-innsyn-api.intern.dev.nav.no",
         "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
         "APP_VERSION": "test",
         "APPSTATUS_DATASET": "staging",

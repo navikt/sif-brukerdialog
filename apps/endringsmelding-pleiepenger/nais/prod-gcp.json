@@ -3,7 +3,7 @@
     "cluster": "prod-gcp",
     "env": {
         "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
-        "API_URL_INNSYN": "https://sif-innsyn-api.nav.no",
+        "API_URL_INNSYN": "https://sif-innsyn-api.intern.nav.no",
         "API_URL": "https://k9-brukerdialog-api.nav.no",
         "APP_VERSION": "prod",
         "APPSTATUS_DATASET": "production",
