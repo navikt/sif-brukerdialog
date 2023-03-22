@@ -1,0 +1,14 @@
+.lovbestemtFerieModal {
+    min-width: 40rem;
+    max-width: 45rem;
+}
+.lovbestemtFerieModal__noFocusOutline:focus {
+    outline: none;
+    box-shadow: var(--a-shadow-focus);
+}
+
+@media (max-width: 600px) {
+    .lovbestemtFerieModal {
+        min-width: initial;
+    }
+}

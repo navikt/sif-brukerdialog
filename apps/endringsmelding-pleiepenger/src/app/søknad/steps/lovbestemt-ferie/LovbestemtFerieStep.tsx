@@ -1,5 +1,5 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
-import React from 'react';
+import { BodyLong, Button, Heading } from '@navikt/ds-react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -7,17 +7,25 @@ import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoLi
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
+import FerieuttakForm from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakForm';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import {
+    dateFormatter,
+    DateRange,
+    dateRangeToISODateRange,
+    getDateRangesWithinDateRange,
+} from '@navikt/sif-common-utils/lib';
 import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/LovbestemtFerieListe';
-import PeriodeTekst, { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
+import LovbestemtFerieModal from '../../../components/lovbestemt-ferie-modal/LovbestemtFerieModal';
+import PeriodeTekst from '../../../components/periode-tekst/PeriodeTekst';
 import PerioderAccordion from '../../../components/perioder-accordion/PerioderAccordion';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getLovbestemtFerieEndringer } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -33,7 +41,7 @@ export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
 }
 export interface LovbestemtFerieFormValues {
-    [LovbestemtFerieFormFields.perioder]: Ferieuttak[];
+    [LovbestemtFerieFormFields.perioder]: LovbestemtFeriePeriode[];
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<LovbestemtFerieFormFields, LovbestemtFerieFormValues>();
@@ -43,12 +51,15 @@ const LovbestemtFerieStep = () => {
     const intl = useIntl();
 
     const {
-        dispatch,
+        // dispatch,
         state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
     const step = stepConfig[stepId];
+    const [visFerieModal, setVisFerieModal] = useState<
+        { periode: DateRange | undefined; søknadsperiode: DateRange; andrePerioder: DateRange[] } | undefined
+    >();
 
     const { goBack } = useStepNavigation(step);
 
@@ -69,15 +80,79 @@ const LovbestemtFerieStep = () => {
         }
     );
 
-    const oppdaterSøknadState = (values: LovbestemtFerieFormValues) => {
-        const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values, sak.lovbestemtFerie.perioder);
-        dispatch(actionsCreator.setSøknadLovbestemtFerie(perioder));
-        dispatch(actionsCreator.requestLagreSøknad());
-    };
+    // const oppdaterSøknadState = (values: LovbestemtFerieFormValues) => {
+    //     const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values, sak.lovbestemtFerie.perioder);
+    //     dispatch(actionsCreator.setSøknadLovbestemtFerie(perioder));
+    //     dispatch(actionsCreator.requestLagreSøknad());
+    // };
 
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
     const harFlereSøknadsperioder = sak.søknadsperioder.length > 1;
 
+    const leggTilPeriode = (
+        periode: DateRange,
+        perioderIMelding: LovbestemtFeriePeriode[]
+    ): LovbestemtFeriePeriode[] => {
+        return getLovbestemtFerieEndringer(
+            [...perioderIMelding, { ...periode, skalHaFerie: true }],
+            sak.lovbestemtFerie.perioder
+        ).perioder;
+    };
+
+    const oppdaterPeriode = (
+        opprinneligPeriode: DateRange,
+        endretPeriode: DateRange,
+        perioderIMelding: LovbestemtFeriePeriode[]
+    ): LovbestemtFeriePeriode[] => {
+        return perioderIMelding.map((periode) => {
+            if (dateRangeToISODateRange(periode) === dateRangeToISODateRange(opprinneligPeriode)) {
+                return {
+                    ...endretPeriode,
+                    skalHaFerie: true,
+                };
+            }
+            return periode;
+        });
+    };
+
+    // const handleOnEditPeriode = (
+    //     periode: DateRange,
+    //     søknadsperiode: DateRange,
+    //     perioderIMelding: LovbestemtFeriePeriode[]
+    // ) => {
+    //     const andrePerioder = getFerieIPeriode(søknadsperiode, sak.lovbestemtFerie.perioder, perioderIMelding);
+    //     setVisFerieModal({ periode, søknadsperiode, andrePerioder });
+    // };
+
+    const deletePeriode = (
+        periode: DateRange,
+        perioderIMelding: LovbestemtFeriePeriode[]
+    ): LovbestemtFeriePeriode[] => {
+        const endringIndex = perioderIMelding.findIndex(
+            (e) => dateRangeToISODateRange(e) === dateRangeToISODateRange(periode)
+        );
+        if (endringIndex >= 0) {
+            const perioder = [...perioderIMelding];
+            perioder.splice(endringIndex, 1);
+            return perioder;
+        }
+        return getLovbestemtFerieEndringer(
+            [...perioderIMelding, { ...periode, skalHaFerie: false }],
+            sak.lovbestemtFerie.perioder
+        ).perioder;
+    };
+
+    const undoDeletePeriode = (periode: LovbestemtFeriePeriode, perioderIMelding: LovbestemtFeriePeriode[]) => {
+        const endringIndex = perioderIMelding.findIndex(
+            (e) => dateRangeToISODateRange(e) === dateRangeToISODateRange(periode)
+        );
+        if (endringIndex >= 0) {
+            const perioder = [...perioderIMelding];
+            perioder.splice(endringIndex, 1);
+            return perioder;
+        }
+        return [...perioderIMelding, { ...periode, skalHaFerie: true }];
+    };
     return (
         <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
             <SifGuidePanel>
@@ -107,7 +182,7 @@ const LovbestemtFerieStep = () => {
             <FormikWrapper
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => {
+                renderForm={({ values, setFieldValue }) => {
                     // const endringer = getLovbestemtFerieEndringer(
                     //     values[LovbestemtFerieFormFields.perioder] || [],
                     //     sak.lovbestemtFerie.perioder
@@ -124,13 +199,14 @@ const LovbestemtFerieStep = () => {
                     //     }));
                     //     setFieldValue(LovbestemtFerieFormFields.perioder, oppdatertPeriodeliste);
                     // };
+                    const perioderIMelding = values[LovbestemtFerieFormFields.perioder] || [];
 
                     return (
                         <>
                             <PersistStepFormValues
                                 stepId={stepId}
                                 onChange={() => {
-                                    oppdaterSøknadState({ perioder: values[LovbestemtFerieFormFields.perioder] || [] });
+                                    // oppdaterSøknadState({ perioder: values[LovbestemtFerieFormFields.perioder] || [] });
                                 }}
                             />
                             <Form
@@ -143,37 +219,66 @@ const LovbestemtFerieStep = () => {
                                     <Block margin="xl">
                                         <Heading level="3" size="small" spacing={true}>
                                             {sak.søknadsperioder.length > 1
-                                                ? 'Perioder med pleiepenger'
-                                                : 'Periode med pleiepenger'}
+                                                ? 'Dine perioder med pleiepenger'
+                                                : 'Din periode med pleiepenger'}
                                         </Heading>
                                     </Block>
                                     <PerioderAccordion
                                         perioder={sak.søknadsperioder}
-                                        renderContent={(periode) => {
+                                        renderContent={(søknadsperiode) => {
+                                            const ferieIPerioden = getFerieIPeriode(
+                                                søknadsperiode,
+                                                perioderIMelding,
+                                                sak.lovbestemtFerie.perioder
+                                            );
                                             return (
-                                                <Block margin="none" padBottom="l">
-                                                    <FerieuttakListAndDialog<LovbestemtFerieFormFields>
-                                                        name={LovbestemtFerieFormFields.perioder}
-                                                        labels={{
-                                                            addLabel: 'Legg til ferie',
-                                                            modalTitle: 'Lovbestemt ferie',
-                                                            emptyListText: `Ingen ferie er registrert i perioden`,
+                                                <Block margin="m" padBottom="l">
+                                                    <Heading level="3" size="xsmall" spacing={true}>
+                                                        Registrert ferie
+                                                    </Heading>
+                                                    <LovbestemtFerieListe
+                                                        perioder={ferieIPerioden}
+                                                        onUndoDelete={(periode) => {
+                                                            const perioder = undoDeletePeriode(
+                                                                periode,
+                                                                perioderIMelding
+                                                            );
+                                                            setFieldValue(LovbestemtFerieFormFields.perioder, perioder);
                                                         }}
-                                                        minDate={periode.from}
-                                                        maxDate={periode.to}
-                                                        listRenderer={LovbestemtFerieListe}
-                                                        confirmDelete={{
-                                                            title: 'Bekreft fjern ferie',
-                                                            cancelLabel: 'Avbryt',
-                                                            okLabel: 'Ja, fjern ferie',
-                                                            contentRenderer: (ferie) => (
-                                                                <>
-                                                                    Bekreft at du ønsker å fjerne lovbestemt ferien for
-                                                                    perioden {getPeriodeTekst(ferie, false, true)}.
-                                                                </>
-                                                            ),
+                                                        onEdit={(periode) => {
+                                                            setVisFerieModal({
+                                                                periode,
+                                                                søknadsperiode,
+                                                                andrePerioder: perioderIMelding.filter(
+                                                                    (p) =>
+                                                                        dateRangeToISODateRange(p) !==
+                                                                        dateRangeToISODateRange(periode)
+                                                                ),
+                                                            });
+                                                        }}
+                                                        onDelete={(periode) => {
+                                                            const perioder = deletePeriode(
+                                                                periode,
+                                                                values[LovbestemtFerieFormFields.perioder] || []
+                                                            );
+                                                            setFieldValue(LovbestemtFerieFormFields.perioder, perioder);
                                                         }}
                                                     />
+                                                    <Block>
+                                                        <Button
+                                                            onClick={() => {
+                                                                setVisFerieModal({
+                                                                    periode: undefined,
+                                                                    søknadsperiode,
+                                                                    andrePerioder: perioderIMelding,
+                                                                });
+                                                            }}
+                                                            type="button"
+                                                            variant="secondary"
+                                                            size="small">
+                                                            Legg til ferie
+                                                        </Button>
+                                                    </Block>
                                                 </Block>
                                             );
                                         }}
@@ -188,12 +293,45 @@ const LovbestemtFerieStep = () => {
                                     />
                                 </FormBlock>
                             </Form>
+                            {visFerieModal && (
+                                <LovbestemtFerieModal
+                                    onClose={() => setVisFerieModal(undefined)}
+                                    title={'Lovbestemt ferie'}
+                                    open={visFerieModal !== undefined}>
+                                    <FerieuttakForm
+                                        ferieuttak={visFerieModal.periode}
+                                        alleFerieuttak={visFerieModal.andrePerioder}
+                                        minDate={visFerieModal.søknadsperiode.from}
+                                        maxDate={visFerieModal.søknadsperiode.to}
+                                        onSubmit={(ferieuttak: Ferieuttak) => {
+                                            const perioder = visFerieModal.periode
+                                                ? oppdaterPeriode(visFerieModal.periode, ferieuttak, perioderIMelding)
+                                                : leggTilPeriode(ferieuttak, perioderIMelding);
+                                            setFieldValue(LovbestemtFerieFormFields.perioder, perioder);
+                                            setVisFerieModal(undefined);
+                                        }}
+                                        onCancel={() => setVisFerieModal(undefined)}
+                                    />
+                                </LovbestemtFerieModal>
+                            )}
                         </>
                     );
                 }}
             />
         </SøknadStep>
     );
+};
+
+export const getFerieIPeriode = (
+    periode: DateRange,
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
+): LovbestemtFeriePeriode[] => {
+    const endringer = getLovbestemtFerieEndringer(
+        getDateRangesWithinDateRange(perioderIMelding, periode),
+        getDateRangesWithinDateRange(perioderISak, periode)
+    );
+    return endringer.perioder;
 };
 
 export default LovbestemtFerieStep;

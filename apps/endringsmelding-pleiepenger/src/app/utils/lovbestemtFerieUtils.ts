@@ -6,9 +6,12 @@ import {
     getDatesInDateRanges,
     ISODate,
     ISODateToDate,
+    sortDateRange,
     sortDates,
 } from '@navikt/sif-common-utils/lib';
+import { uniqBy } from 'lodash';
 import { LovbestemtFerieEndringer } from '../types/LovbestemFerieEndringer';
+import { LovbestemtFeriePeriode } from '../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';
 
 const isoDateIsNotInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
@@ -18,22 +21,33 @@ const isoDateIsInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
     isoDateArray.some((dMelding) => isoDate === dMelding) === true;
 
 export const getLovbestemtFerieEndringer = (
-    perioderIMelding: DateRange[],
-    perioderISak: DateRange[]
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
 ): LovbestemtFerieEndringer => {
-    const dagerIMelding: ISODate[] = getDatesInDateRanges(perioderIMelding).sort(sortDates).map(dateToISODate);
+    const dagerIMelding: ISODate[] = getDatesInDateRanges(perioderIMelding.filter((d) => d.skalHaFerie === true))
+        .sort(sortDates)
+        .map(dateToISODate);
     const dagerISak: ISODate[] = getDatesInDateRanges(perioderISak).sort(sortDates).map(dateToISODate);
 
     const dagerFjernet = dagerISak.filter((d) => isoDateIsNotInArray(d, dagerIMelding)).map(ISODateToDate);
     const dagerLagtTil = dagerIMelding.filter((d) => isoDateIsNotInArray(d, dagerISak)).map(ISODateToDate);
     const dagerUendret = dagerISak.filter((d) => isoDateIsInArray(d, dagerIMelding)).map(ISODateToDate);
 
-    const perioderLagtTil: DateRange[] = dateRangeUtils.getDateRangesFromDates(dagerLagtTil);
+    const dagerMedFerie = uniqBy([...dagerLagtTil, ...dagerUendret], dateToISODate).sort(sortDates);
+
     const perioderFjernet: DateRange[] = dateRangeUtils.getDateRangesFromDates(dagerFjernet);
+    const perioderLagtTil: DateRange[] = dateRangeUtils.getDateRangesFromDates(dagerLagtTil);
     const perioderUendret: DateRange[] = dateRangeUtils.getDateRangesFromDates(dagerUendret);
+
+    const perioderMedFerie = dateRangeUtils.getDateRangesFromDates(dagerMedFerie);
+    const perioder: LovbestemtFeriePeriode[] = [
+        ...perioderFjernet.map((p) => ({ ...p, skalHaFerie: false })),
+        ...perioderMedFerie.map((p) => ({ ...p, skalHaFerie: true })),
+    ].sort(sortDateRange);
 
     return {
         erEndret: dagerFjernet.length > 0 || dagerLagtTil.length > 0,
+        perioder,
         dagerFjernet,
         dagerLagtTil,
         dagerUendret,

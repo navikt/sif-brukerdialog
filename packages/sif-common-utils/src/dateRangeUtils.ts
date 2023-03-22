@@ -614,8 +614,9 @@ export const setMaxToDateForDateRange = (dateRange: DateRange, maxToDate: Date):
  * @param limitDateRange
  * @returns
  */
-export const limitDateRangeToDateRange = (dateRange: DateRange, limitDateRange: DateRange): DateRange => {
+export const limitDateRangeToDateRange = <Type extends DateRange>(dateRange: Type, limitDateRange: DateRange): Type => {
     return {
+        ...dateRange,
         from: dayjs(dateRange.from).isBefore(limitDateRange.from, 'day') ? limitDateRange.from : dateRange.from,
         to: dayjs(dateRange.to).isAfter(limitDateRange.to, 'day') ? limitDateRange.to : dateRange.to,
     };
@@ -628,11 +629,11 @@ export const limitDateRangeToDateRange = (dateRange: DateRange, limitDateRange: 
  * @param adjustToLimit Modifies dateRanges crossing limitDateRange if set to true (default)
  * @returns
  */
-export const getDateRangesWithinDateRange = (
-    dateRanges: DateRange[],
+export const getDateRangesWithinDateRange = <Type extends DateRange>(
+    dateRanges: Type[],
     limitDateRange: DateRange,
     adjustToLimit = true
-): DateRange[] => {
+): Type[] => {
     return dateRanges
         .filter((dr) => dateRangesCollide([dr, limitDateRange]))
         .map((dr) => (adjustToLimit ? limitDateRangeToDateRange(dr, limitDateRange) : dr));

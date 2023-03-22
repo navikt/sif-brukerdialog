@@ -1,4 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
+import { LovbestemtFeriePeriode } from './Sak';
 
 export interface LovbestemtFerieEndringer {
     erEndret: boolean;
@@ -8,4 +9,5 @@ export interface LovbestemtFerieEndringer {
     perioderLagtTil: DateRange[];
     perioderFjernet: DateRange[];
     perioderUendret: DateRange[];
+    perioder: LovbestemtFeriePeriode[];
 }
