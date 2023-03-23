@@ -247,10 +247,10 @@ export default EndreArbeidstidForm;
 const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFerieSøknadsdata) => {
     if (arbeidsuker.length === 1) {
         const dagerMedFerie = lovbestemtFerie
-            ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuker[0].periode)
+            ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuker[0].periode, false)
             : [];
         const dagerMedFjernetFerie = lovbestemtFerie
-            ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuker[0].periode)
+            ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuker[0].periode, false)
             : [];
         return (
             <BodyShort as="div" className="capsFirstChar">

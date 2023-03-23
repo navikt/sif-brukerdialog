@@ -24,10 +24,10 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
     lovbestemtFerie: LovbestemtFerieSøknadsdata | undefined
 ): ArbeidstidUkeTabellItem => {
     const dagerMedFerie = lovbestemtFerie
-        ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuke.periode)
+        ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuke.periode, true)
         : [];
     const dagerMedFjernetFerie = lovbestemtFerie
-        ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuke.periode)
+        ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuke.periode, true)
         : [];
 
     return {

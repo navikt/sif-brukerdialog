@@ -1,7 +1,6 @@
 import { Tag } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { getDagerMedFerieFjernetTekst, getDagerMedFerieTekst } from '../../../utils/lovbestemtFerieUtils';
 
 interface Props {
     dagerMedFerie: Date[] | undefined;
@@ -14,12 +13,12 @@ const DagerMedFerieTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [] }: Pr
             <Block margin="s">
                 {dagerMedFerie?.length > 0 && (
                     <Tag variant="success" size="small" style={{ marginRight: '.5rem', marginBottom: '.25rem' }}>
-                        {getDagerMedFerieTekst(dagerMedFerie)}
+                        Ferie registrert
                     </Tag>
                 )}
                 {dagerMedFjernetFerie?.length > 0 && (
                     <Tag variant="error" size="small">
-                        {getDagerMedFerieFjernetTekst(dagerMedFjernetFerie)}
+                        Ferie fjernet
                     </Tag>
                 )}
             </Block>

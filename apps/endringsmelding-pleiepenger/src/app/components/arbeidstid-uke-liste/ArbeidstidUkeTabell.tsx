@@ -144,7 +144,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
             {visVelgUke && (ukerMedFerie.length > 0 || korteUker.length > 0) && (
                 <Block margin="m" padBottom="l">
                     <Alert variant="info">
-                        Korte uker, altså ikke hele uker, eller uker med lovbestemt ferie må endres for seg.
+                        Korte uker, altså ikke hele uker, eller uker med lovbestemt ferie må endres hver for seg.
                     </Alert>
                 </Block>
             )}
@@ -472,12 +472,15 @@ const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
     return `${fra} til ${til}`;
 };
 
-export const getFeriedagerIUke = (ferieperioder: DateRange[], uke: DateRange): Date[] => {
+export const getFeriedagerIUke = (ferieperioder: DateRange[], uke: DateRange, inkluderHelg: boolean): Date[] => {
     const feriedager = getDatesInDateRanges(ferieperioder);
-    const ukedager = getDatesInDateRange(uke);
-    return ukedager
-        .filter((dagIUke) => feriedager.some((dagIFerie) => dayjs(dagIUke).isSame(dagIFerie), 'day'))
-        .filter(isDateWeekDay);
+    const ukedager = getDatesInDateRange(uke).filter((dagIUke) =>
+        feriedager.some((dagIFerie) => dayjs(dagIUke).isSame(dagIFerie), 'day')
+    );
+    if (inkluderHelg === false) {
+        return ukedager.filter(isDateWeekDay);
+    }
+    return ukedager;
 };
 
 export default ArbeidstidUkeTabell;

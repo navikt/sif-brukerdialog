@@ -93,11 +93,3 @@ export const getLovbestemtFerieForPeriode = (
         ),
     };
 };
-
-export const getDagerMedFerieTekst = (dagerMedFerie: Date[]): string => {
-    return `${dagerMedFerie.length} ferie${dagerMedFerie.length === 1 ? 'dag' : 'dager'} registrert`;
-};
-
-export const getDagerMedFerieFjernetTekst = (dagerMedFerie: Date[]): string => {
-    return `${dagerMedFerie.length} ferie${dagerMedFerie.length === 1 ? 'dag' : 'dager'} fjernet`;
-};
