@@ -1,13 +1,25 @@
 import { Accordion, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import { DateRange, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, dateRangeToISODateRange, dateToday, isDateInDateRange } from '@navikt/sif-common-utils/lib';
 
+type ÅpenType = 'all' | 'none' | 'current';
 interface Props<Type extends DateRange> {
     perioder: Type[];
-    defaultOpen?: boolean;
+    defaultOpen?: ÅpenType;
     renderContent: (periode: Type) => React.ReactNode;
     renderHeader: (periode: Type) => React.ReactNode;
 }
+
+const erÅpen = (periode: DateRange, defaultOpen: ÅpenType = 'none') => {
+    switch (defaultOpen) {
+        case 'all':
+            return true;
+        case 'none':
+            return false;
+        case 'current':
+            return isDateInDateRange(dateToday, periode);
+    }
+};
 
 function PerioderAccordion<Type extends DateRange>({
     perioder,
@@ -26,7 +38,7 @@ function PerioderAccordion<Type extends DateRange>({
                             <Accordion.Item
                                 key={dateRangeToISODateRange(periode)}
                                 data-testid={`periode_${index}`}
-                                defaultOpen={defaultOpen}>
+                                defaultOpen={erÅpen(periode, defaultOpen)}>
                                 <Accordion.Header data-testid={`periode_${index}_header`}>
                                     <Ingress as="span" className="periodeHeader">
                                         {renderHeader(periode)}

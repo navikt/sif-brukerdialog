@@ -132,6 +132,7 @@ const LovbestemtFerieStep = () => {
                                     )}
                                     <PerioderAccordion
                                         perioder={sak.søknadsperioder}
+                                        defaultOpen={'all'}
                                         renderContent={(søknadsperiode) => {
                                             return (
                                                 <Block
