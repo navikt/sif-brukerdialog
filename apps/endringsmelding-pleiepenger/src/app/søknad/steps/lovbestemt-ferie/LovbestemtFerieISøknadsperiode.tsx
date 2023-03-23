@@ -8,6 +8,7 @@ import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/Lov
 import LovbestemtFerieModal from '../../../components/lovbestemt-ferie-modal/LovbestemtFerieModal';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { lovbestemtFerieStepUtils } from './lovbestemtFerieStepUtils';
+import { getLovbestemtFerieEndringerForPeriode } from '../../../utils/lovbestemtFerieUtils';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -24,8 +25,7 @@ const LovbestemtFerieISøknadsperiode: React.FunctionComponent<Props> = ({
 }) => {
     const [visFerieModal, setVisFerieModal] = useState<{ periode: DateRange | undefined } | undefined>();
 
-    const { deletePeriode, getLovbestemtFerieEndringerForPeriode, leggTilPeriode, oppdaterPeriode, undoDeletePeriode } =
-        lovbestemtFerieStepUtils;
+    const { deletePeriode, leggTilPeriode, oppdaterPeriode, undoDeletePeriode } = lovbestemtFerieStepUtils;
 
     const ferieIPerioden = getLovbestemtFerieEndringerForPeriode(
         søknadsperiode,

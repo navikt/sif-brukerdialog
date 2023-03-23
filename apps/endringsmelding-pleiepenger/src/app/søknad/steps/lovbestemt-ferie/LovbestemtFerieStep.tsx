@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Tag } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Tag } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -15,6 +15,7 @@ import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getLovbestemtFerieEndringerForPeriode, harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -25,7 +26,6 @@ import LovbestemtFerieISøknadsperiode from './LovbestemtFerieISøknadsperiode';
 import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
-    lovbestemtFerieStepUtils,
 } from './lovbestemtFerieStepUtils';
 
 export enum LovbestemtFerieFormFields {
@@ -46,12 +46,11 @@ const LovbestemtFerieStep = () => {
         state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
+    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
-
-    const { getLovbestemtFerieEndringerForPeriode } = lovbestemtFerieStepUtils;
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values, sak.lovbestemtFerie.perioder);
@@ -70,6 +69,7 @@ const LovbestemtFerieStep = () => {
         }
     );
 
+    /** Kalles hver gang values i formik endres */
     const oppdaterSøknadState = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values, sak.lovbestemtFerie.perioder);
         dispatch(actionsCreator.setSøknadLovbestemtFerie(perioder));
@@ -77,10 +77,9 @@ const LovbestemtFerieStep = () => {
     };
 
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
-    const harFlereSøknadsperioder = sak.søknadsperioder.length > 1;
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
+        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres} harFjernetFerie={harFjernetFerie}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
@@ -90,9 +89,8 @@ const LovbestemtFerieStep = () => {
                         <InfoList>
                             <li>Du kan legge til, endre eller fjerne ferie i periodene hvor du har pleiepenger.</li>
                             <li>
-                                Vi trenger kun å vite om ferie som tas ut på ukedager
-                                {harFlereSøknadsperioder ? ', og i tidsrom hvor du har pleiepenger' : ''}. Feriedager
-                                som er registrert på en lørdag eller en søndag teller vi ikke med.
+                                Vi trenger kun å vite om ferie som tas ut på ukedager. Feriedager som er registrert på
+                                en lørdag eller en søndag teller vi ikke med.
                             </li>
                             <li>
                                 Endringer i ferie kan medføre at du må også endre på hvor mye du jobber i perioden.
@@ -189,6 +187,14 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
                                 </FormBlock>
+                                {harFjernetFerie && (
+                                    <FormBlock>
+                                        <Alert variant="info">
+                                            Du har fjernet dager med lovbestemt ferie. Du må da også se over
+                                            arbeidstiden for disse dagene. Dette gjør du på neste side.
+                                        </Alert>
+                                    </FormBlock>
+                                )}
                             </Form>
                         </>
                     );

@@ -45,7 +45,8 @@ const ArbeidstidStep = () => {
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
+    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -94,7 +95,7 @@ const ArbeidstidStep = () => {
     };
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
+        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres} harFjernetFerie={harFjernetFerie}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">

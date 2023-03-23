@@ -27,6 +27,7 @@ import {
     harEndringerILovbestemtFerieApiData,
 } from './oppsummeringStepUtils';
 import './oppsummering.css';
+import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -48,7 +49,8 @@ const OppsummeringStep = () => {
         state: { søknadsdata, sak, arbeidsgivere, hvaSkalEndres },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
+    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, sak);
 
@@ -76,10 +78,13 @@ const OppsummeringStep = () => {
     const lovbestemtFerieErEndret = harEndringerILovbestemtFerieApiData(lovbestemtFerie);
     const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getValgteEndringer(hvaSkalEndres);
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getValgteEndringer(
+        hvaSkalEndres,
+        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie)
+    );
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
+        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres} harFjernetFerie={harFjernetFerie}>
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>

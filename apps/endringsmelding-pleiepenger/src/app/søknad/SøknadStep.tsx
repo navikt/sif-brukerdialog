@@ -22,16 +22,17 @@ interface Props {
     stepId: StepId;
     sak: Sak;
     hvaSkalEndres: EndringType[];
+    harFjernetFerie: boolean;
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, hvaSkalEndres, children }) => {
+const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, hvaSkalEndres, harFjernetFerie, children }) => {
     const intl = useIntl();
     const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
 
     useLogSidevisning(stepId);
 

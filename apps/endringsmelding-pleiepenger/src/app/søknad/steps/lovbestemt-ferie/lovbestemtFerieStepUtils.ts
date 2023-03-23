@@ -1,9 +1,4 @@
-import {
-    DateRange,
-    dateRangeToISODateRange,
-    getDateRangesWithinDateRange,
-    sortDateRange,
-} from '@navikt/sif-common-utils/lib';
+import { DateRange, dateRangeToISODateRange, sortDateRange } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { LovbestemtFerieSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { getLovbestemtFerieEndringer } from '../../../utils/lovbestemtFerieUtils';
@@ -37,18 +32,6 @@ export const getLovbestemtFerieSøknadsdataFromFormValues = (
         perioderFjernet,
         perioderLagtTil,
     };
-};
-
-const getLovbestemtFerieEndringerForPeriode = (
-    periode: DateRange,
-    perioderIMelding: LovbestemtFeriePeriode[],
-    perioderISak: LovbestemtFeriePeriode[]
-) => {
-    const endringer = getLovbestemtFerieEndringer(
-        getDateRangesWithinDateRange(perioderIMelding, periode),
-        getDateRangesWithinDateRange(perioderISak, periode)
-    );
-    return endringer;
 };
 
 const leggTilPeriode = (
@@ -97,5 +80,4 @@ export const lovbestemtFerieStepUtils = {
     oppdaterPeriode,
     leggTilPeriode,
     undoDeletePeriode,
-    getLovbestemtFerieEndringerForPeriode,
 };

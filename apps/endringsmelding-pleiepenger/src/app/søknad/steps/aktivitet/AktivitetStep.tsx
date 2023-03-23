@@ -21,6 +21,7 @@ import { getAktivitetStepInitialValues, getAktivitetSøknadsdataFromFormValues }
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
 import { SkrivTilOssLink } from '../../../lenker';
+import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 
 export enum AktivitetFormFields {
     aktiviteterSomSkalEndres = 'aktiviteterSomSkalEndres',
@@ -39,7 +40,8 @@ const AktivitetStep = () => {
         state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres);
+    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
+    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -62,7 +64,7 @@ const AktivitetStep = () => {
     );
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres}>
+        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres} harFjernetFerie={harFjernetFerie}>
             <FormikWrapper
                 initialValues={getAktivitetStepInitialValues(søknadsdata, stepFormValues?.aktivitet)}
                 onSubmit={handleSubmit}

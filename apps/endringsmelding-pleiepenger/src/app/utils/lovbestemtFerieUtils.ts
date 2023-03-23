@@ -3,6 +3,7 @@ import {
     dateRangesCollide,
     dateRangeUtils,
     dateToISODate,
+    getDateRangesWithinDateRange,
     getDatesInDateRanges,
     ISODate,
     ISODateToDate,
@@ -55,6 +56,18 @@ export const getLovbestemtFerieEndringer = (
         perioderLagtTil,
         perioderUendret,
     };
+};
+
+export const getLovbestemtFerieEndringerForPeriode = (
+    periode: DateRange,
+    perioderIMelding: LovbestemtFeriePeriode[],
+    perioderISak: LovbestemtFeriePeriode[]
+) => {
+    const endringer = getLovbestemtFerieEndringer(
+        getDateRangesWithinDateRange(perioderIMelding, periode),
+        getDateRangesWithinDateRange(perioderISak, periode)
+    );
+    return endringer;
 };
 
 export const harFjernetLovbestemtFerie = (ferieSøknad: LovbestemtFerieSøknadsdata | undefined): boolean => {

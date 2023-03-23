@@ -53,7 +53,7 @@ const VelkommenPage = () => {
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const startSøknad = (sak: Sak, hvaSkalEndres: EndringType[] = [EndringType.arbeidstid]) => {
-        const steps = getSøknadSteps(sak, hvaSkalEndres);
+        const steps = getSøknadSteps(sak, hvaSkalEndres, false);
         logSoknadStartet(SKJEMANAVN);
         logInfo({
             antallAktiviteterSomKanEndres: aktiviteterSomKanEndres.length,
@@ -93,6 +93,7 @@ const VelkommenPage = () => {
                 onSubmit={(values) => startSøknad(sak, values.hvaSkalEndres)}
                 renderForm={() => (
                     <Form
+                        includeValidationSummary={true}
                         includeButtons={true}
                         submitButtonLabel={intlHelper(intl, 'velkommenForm.submitButtonLabel')}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'velkommenForm')}>
@@ -105,8 +106,11 @@ const VelkommenPage = () => {
                                     Du har pleiepenger for <strong>{barnetsNavn}</strong>.
                                 </p>
                                 <p>
-                                    Du kan melde om endring i perioder med pleiepenger innefor tidsrommet{' '}
-                                    {getPeriodeTekst(sak.samletSøknadsperiode, false, true)}.
+                                    Du kan melde om endring i{' '}
+                                    {sak.søknadsperioder.length === 1
+                                        ? 'din pleiepengeperiode'
+                                        : 'dine pleiepengeperioder'}{' '}
+                                    i tidsrommet {getPeriodeTekst(sak.samletSøknadsperiode, false, true)}.
                                 </p>
                                 <Block margin="xl">
                                     <CheckboxGroup
