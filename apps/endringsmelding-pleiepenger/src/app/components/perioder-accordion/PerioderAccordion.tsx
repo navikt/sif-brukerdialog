@@ -20,7 +20,7 @@ function PerioderAccordion<Type extends DateRange>({
             {perioder.length === 1 ? (
                 renderContent(perioder[0])
             ) : (
-                <Accordion style={{ width: '100%' }}>
+                <Accordion className="w-full">
                     {perioder.map((periode, index) => {
                         return (
                             <Accordion.Item

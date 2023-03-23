@@ -7,7 +7,7 @@ import {
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
-import { SkrivTilOssLink } from '../../lenker';
+
 import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
@@ -17,10 +17,11 @@ import { getEndringsdato, getTillattEndringsperiode } from '../../utils/endrings
 import { getLovbestemtFerieForPeriode } from '../../utils/lovbestemtFerieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
-import ArbeidAktivitetHeader from './ArbeidAktivitetHeader';
+import ArbeidAktivitetHeader from './components/ArbeidAktivitetHeader';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from './arbeidsaktivitetUtils';
 import EndreArbeidstidForm from '../endre-arbeidstid-form/EndreArbeidstidForm';
 import PerioderAccordion from '../perioder-accordion/PerioderAccordion';
+import ArbeidAktivitetUtenforPeriodeInfo from './components/ArbeidAktivitetUtenforPeriodeInfo';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -42,7 +43,10 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                 <Heading level="3" size="small" spacing={true}>
                     {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Uker med pleiepenger'}
                 </Heading>
-                {renderInfoOmEndringUtenforMaksEndringsperiode(arbeidAktivitet)}
+                <ArbeidAktivitetUtenforPeriodeInfo
+                    arbeidAktivitet={arbeidAktivitet}
+                    tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                />
             </Block>
 
             {perioder.length === 1 && (
@@ -145,43 +149,6 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
             </EndreArbeidstidModal>
         </div>
     );
-};
-
-const renderInfoOmEndringUtenforMaksEndringsperiode = ({
-    harPerioderEtterTillattEndringsperiode: harPerioderEtterEndringsperiode,
-    harPerioderFørTillattEndringsperiode: harPerioderFørEndringsperiode,
-}: ArbeidAktivitet) => {
-    const tillattEndringsperiode = getTillattEndringsperiode(getEndringsdato());
-    const førDato = dateFormatter.full(tillattEndringsperiode.from);
-    const etterDato = dateFormatter.full(tillattEndringsperiode.to);
-    if (harPerioderFørEndringsperiode && !harPerioderEtterEndringsperiode) {
-        return (
-            <Block padBottom="l">
-                <p>
-                    Hvis du ønsker å gjøre endringer før {førDato}, må du sende oss en melding via <SkrivTilOssLink />.
-                </p>
-            </Block>
-        );
-    } else if (!harPerioderFørEndringsperiode && harPerioderEtterEndringsperiode) {
-        return (
-            <Block padBottom="l">
-                <p>
-                    Hvis du ønsker å gjøre endringer etter {etterDato}, må du sende oss en melding via{' '}
-                    <SkrivTilOssLink />.
-                </p>
-            </Block>
-        );
-    } else if (harPerioderFørEndringsperiode && harPerioderEtterEndringsperiode) {
-        return (
-            <Block padBottom="l">
-                <p>
-                    Hvis du ønsker å gjøre endringer før {førDato} eller etter {etterDato}, må du sende oss en melding
-                    via <SkrivTilOssLink />.
-                </p>
-            </Block>
-        );
-    }
-    return null;
 };
 
 export default Arbeidsaktivitet;

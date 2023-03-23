@@ -88,6 +88,7 @@ export const getEndringerForArbeidsukeForm = (
     );
     return endringer.length === 1 ? endringer[0] : undefined;
 };
+
 export const arbeidsaktivitetUtils = {
     getArbeidstidUkeTabellItemFromArbeidsuker,
     sorterListeItems,

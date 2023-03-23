@@ -1,4 +1,4 @@
-import { Alert, Tag } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
@@ -43,13 +43,6 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                         periode.skalHaFerie === false ? 'fjernet' : undefined
                                     )}>
                                     <span className={'dato'}>{periodeTekst}</span>
-                                    {periode.skalHaFerie === false && 1 + 1 === 3 && (
-                                        <span style={{ position: 'relative', marginLeft: '.5rem', top: '-.125rem' }}>
-                                            <Tag variant="error" size="small">
-                                                Fjernet
-                                            </Tag>
-                                        </span>
-                                    )}
                                 </div>
                                 {periode.skalHaFerie === false && onUndoDelete && (
                                     <div className={bem.element('ferie__angreKnapp')}>
