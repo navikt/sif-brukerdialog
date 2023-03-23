@@ -1,4 +1,5 @@
 import { guid } from '@navikt/sif-common-utils/lib';
+import { EndringType } from '../../../types/EndringType';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
@@ -36,6 +37,11 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 ...state,
                 søknadsdata: initialSøknadsdata,
                 søknadRoute: undefined,
+                /**
+                 * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
+                 * Verdien settes på nytt når søker starter ny meldning
+                 */
+                hvaSkalEndres: [EndringType.arbeidstid, EndringType.lovbestemtFerie],
             };
     }
 

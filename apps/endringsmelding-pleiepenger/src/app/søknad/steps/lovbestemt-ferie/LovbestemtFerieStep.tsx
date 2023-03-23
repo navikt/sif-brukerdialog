@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Heading, Tag } from '@navikt/ds-react';
+import { BodyLong, Heading, Tag } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -79,7 +79,7 @@ const LovbestemtFerieStep = () => {
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres} harFjernetFerie={harFjernetFerie}>
+        <SøknadStep stepId={stepId} sak={sak} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
@@ -91,10 +91,6 @@ const LovbestemtFerieStep = () => {
                             <li>
                                 Vi trenger kun å vite om ferie som tas ut på ukedager. Feriedager som er registrert på
                                 en lørdag eller en søndag teller vi ikke med.
-                            </li>
-                            <li>
-                                Endringer i ferie kan medføre at du må også endre på hvor mye du jobber i perioden.
-                                Dette kan du gjøre på neste steg.
                             </li>
                         </InfoList>
                     </BodyLong>
@@ -187,14 +183,6 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
                                 </FormBlock>
-                                {harFjernetFerie && (
-                                    <FormBlock>
-                                        <Alert variant="info">
-                                            Du har fjernet dager med lovbestemt ferie. Du må da også se over
-                                            arbeidstiden for disse dagene. Dette gjør du på neste side.
-                                        </Alert>
-                                    </FormBlock>
-                                )}
                             </Form>
                         </>
                     );

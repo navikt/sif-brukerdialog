@@ -84,7 +84,7 @@ const OppsummeringStep = () => {
     );
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres} harFjernetFerie={harFjernetFerie}>
+        <SøknadStep stepId={stepId} sak={sak} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>

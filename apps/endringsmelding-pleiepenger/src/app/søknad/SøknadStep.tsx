@@ -8,6 +8,7 @@ import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
@@ -15,24 +16,19 @@ import StateInfo from '../dev/state-info/StateInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { Sak } from '../types/Sak';
 import { StepId } from './config/StepId';
-import { getSøknadStepConfig } from './config/søknadStepConfig';
-import { EndringType } from '../types/EndringType';
 
 interface Props {
     stepId: StepId;
     sak: Sak;
-    hvaSkalEndres: EndringType[];
-    harFjernetFerie: boolean;
+    stepConfig: SoknadStepsConfig<StepId>;
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, hvaSkalEndres, harFjernetFerie, children }) => {
+const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, stepConfig, children }) => {
     const intl = useIntl();
     const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
-
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
 
     useLogSidevisning(stepId);
 

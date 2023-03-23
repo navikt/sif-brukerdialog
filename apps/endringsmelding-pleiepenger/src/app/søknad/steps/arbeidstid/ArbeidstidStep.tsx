@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Heading, Panel } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Panel, ReadMore } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
@@ -95,7 +95,7 @@ const ArbeidstidStep = () => {
     };
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} hvaSkalEndres={hvaSkalEndres} harFjernetFerie={harFjernetFerie}>
+        <SøknadStep stepId={stepId} sak={sak} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
@@ -116,8 +116,20 @@ const ArbeidstidStep = () => {
 
             {harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie) && (
                 <Block margin="xl">
-                    <Alert variant="info">
-                        TODO: Bruker har fjernet feriedager, info om at en må kontrollere arbeidstid for disse dagene
+                    <Alert variant="warning">
+                        Du har fjernet dager med ferie. Dersom du skal jobbe disse dagene, må du se over at arbeidstiden
+                        fortsatt er riktig.
+                        <ReadMore header="Hvordan påvirker ferie arbeidstiden?">
+                            <p>
+                                Feriedager overstyrer alltid timer med arbeid i en uke. Det vil si at dersom du oppgir 5
+                                dager med ferie i en uke, trenger du ikke justere ned antall timer du skal jobbe. Dette
+                                fikser vi.
+                            </p>
+                            <p>
+                                Dersom du tidligere har justert ned timer med jobb i en uke på grunn av ferie, og nå
+                                fjerner feriedager denne uken, må du ser over at antall timer med jobb fortsatt stemmer.
+                            </p>
+                        </ReadMore>
                     </Alert>
                 </Block>
             )}
