@@ -1,6 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { DateRange, dateToday, isDateInMaybeDateRange, prettifyDate } from '@navikt/sif-common-utils';
+import {
+    DateRange,
+    dateRangeToISODateRange,
+    dateToday,
+    isDateInMaybeDateRange,
+    isDateRange,
+    prettifyDate,
+} from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import {
@@ -93,8 +100,16 @@ const FerieuttakForm = ({
     const formLabels: FerieuttakFormLabels = { ...defaultLabels, ...labels };
 
     const andreFerieuttak: DateRange[] | undefined =
-        ferieuttak === undefined ? alleFerieuttak : alleFerieuttak.filter((f) => f.id !== ferieuttak.id);
-
+        ferieuttak === undefined
+            ? alleFerieuttak
+            : alleFerieuttak.filter((f) => {
+                  if (f.id) {
+                      return f.id !== ferieuttak.id;
+                  }
+                  if (isDateRange(ferieuttak)) {
+                      return dateRangeToISODateRange(f) !== dateRangeToISODateRange(ferieuttak);
+                  }
+              });
     let defaultMonth: Date = dateToday;
     if ((minDate || maxDate) && !isDateInMaybeDateRange(dateToday, { from: minDate, to: maxDate })) {
         if (maxDate && dayjs(dateToday).isAfter(maxDate, 'day')) {
@@ -150,7 +165,7 @@ const FerieuttakForm = ({
                                 label: formLabels.toDate,
                                 name: FerieuttakFormFields.to,
                                 dayPickerProps: {
-                                    defaultMonth,
+                                    defaultMonth: defaultMonth || ISOStringToDate(formik.values.from),
                                 },
                                 validate: (value) => {
                                     const dateError = getDateRangeValidator({
