@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
@@ -16,6 +17,7 @@ import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsper
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo, maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
+import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -24,7 +26,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -94,6 +95,9 @@ const setupSøknadInitialData = async (
 
     if (!persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
+        if (lagretSøknadState?.søknadRoute) {
+            relocateToWelcomePage();
+        }
     }
 
     const persistedSak = persistedSøknadStateIsValid
