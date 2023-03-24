@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.9.0
+
+### Minor Changes
+
+-   9187c41: Bugfix - knappen Vis flere uker var ikke synlig på mobil vising. Dette gjort at bruker ikke kunne endre alle ukene en ønsket å endre.
+
 ## 1.8.1
 
 ### Patch Changes
