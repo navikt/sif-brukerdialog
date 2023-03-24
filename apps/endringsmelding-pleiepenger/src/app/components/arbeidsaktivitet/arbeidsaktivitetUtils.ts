@@ -7,8 +7,9 @@ import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/Lovbestemt
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../utils/beregnUtils';
+import { getFeriedagerIUke } from '../../utils/ferieUtils';
 import { getLovbestemtFerieForPeriode } from '../../utils/lovbestemtFerieUtils';
-import { ArbeidstidUkeTabellItem, getFeriedagerIUke } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;

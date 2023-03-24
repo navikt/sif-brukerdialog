@@ -24,6 +24,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import PeriodeTekst from '../../../components/periode-tekst/PeriodeTekst';
+import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
@@ -117,8 +119,15 @@ const ArbeidstidStep = () => {
             {harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie) && (
                 <Block margin="xl">
                     <Alert variant="warning">
-                        Du har fjernet dager med ferie. Dersom du skal jobbe disse dagene, må du se over at arbeidstiden
-                        fortsatt er riktig.
+                        Du har fjernet dager med ferie:
+                        <InfoList>
+                            {søknadsdata.lovbestemtFerie?.perioderFjernet.map((periode) => (
+                                <li key={dateRangeToISODateRange(periode)} className="capsFirstChar">
+                                    <PeriodeTekst periode={periode} inkluderDagNavn={true} />
+                                </li>
+                            ))}
+                        </InfoList>
+                        <p>Skal du jobbe disse dagene, se over at jobb i perioden er riktig.</p>
                         <ReadMore header="Hvordan påvirker ferie arbeidstiden?">
                             <p>
                                 Feriedager overstyrer alltid timer med arbeid i en uke. Det vil si at dersom du oppgir 5

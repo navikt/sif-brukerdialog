@@ -1,4 +1,4 @@
-import { BodyLong, Heading, Tag } from '@navikt/ds-react';
+import { BodyLong, Heading, ReadMore, Tag } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -87,12 +87,43 @@ const LovbestemtFerieStep = () => {
                             Slik endrer du ferie
                         </Heading>
                         <InfoList>
-                            <li>Du kan legge til, endre eller fjerne ferie i periodene hvor du har pleiepenger.</li>
-                            <li>
-                                Vi trenger kun å vite om ferie som tas ut på ukedager. Feriedager som er registrert på
-                                en lørdag eller en søndag teller vi ikke med.
-                            </li>
+                            <li>Du kan legge til, endre eller fjerne ferie i perioder du har søkt om pleiepenger.</li>
+                            <li>Ferie overstyrer eventuell arbeidstid for dagene du legger til.</li>
+                            <li>Du trenger kun registrere ferie for ukedager</li>
                         </InfoList>
+                        <ReadMore header="Hvordan registrere ferie hvis du jobber helg?">
+                            <p>
+                                Har du arbeid som innebærer jobb lørdag/søndag, og derfor ønsker å legge inn ferie for
+                                helg, må du ta hensyn til det totale antall timer jobb du har registrert i uken det
+                                gjelder.
+                            </p>
+                            <p>
+                                Du får kun utbetalt pleiepenger for hverdager. I søknaden må man legge inn arbeidstid
+                                som snitt per uke. Disse timene blir smurt mandag til fredag, uavhengig av du jobber i
+                                helg. Ferie derimot reduserer utbetaling per dag.
+                            </p>
+                            <p>
+                                Skal du legge inn ferie for helg, må du derfor også legge inn ferie for ukedager timene
+                                er blitt smurt på. Skal du ha ferie i kun deler av en uke som inkluderer helg, må du
+                                justere ned timer med jobb for de resterende dagene den uken.
+                            </p>
+                            <Heading level="4" size="xsmall" spacing={true}>
+                                Eksempel:{' '}
+                            </Heading>
+                            <p>
+                                Du jobber 15 timer hver tredje helg i pleiepengeperioden. I sommerferien skal du legge
+                                inn ferie for en av disse helgene.
+                            </p>
+                            <p>
+                                I søknaden la du inn 15 timer jobb i snitt hver tredje uke, som smøres til 3 timer per
+                                dag mandag til fredag.
+                            </p>
+                            <p>
+                                For at ferien skal bli riktig registrert må du legge inn ferie mandag til fredag denne
+                                uken så all arbeidstid blir overstyrt. Det er ikke nødvendig å legge inn ferie for
+                                lørdag til søndag.
+                            </p>
+                        </ReadMore>
                     </BodyLong>
                 </>
             </SifGuidePanel>

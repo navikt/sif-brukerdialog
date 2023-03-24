@@ -27,8 +27,8 @@ import {
     getArbeidsukeUkenummer,
     getDagerTekst,
 } from '../../utils/arbeidsukeUtils';
-import { getFeriedagerIUke } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
-import DagerMedFerieTags from '../arbeidstid-uke-liste/components/FeriedagerTags';
+import { getFeriedagerIUke, getFeriedagerIUkeTekst } from '../../utils/ferieUtils';
+import FeriedagerTags from '../arbeidstid-uke-liste/components/FeriedagerTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
@@ -109,6 +109,10 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
         return null;
     }
 
+    const dagerMedFjernetFerie = lovbestemtFerie
+        ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuker[0].periode, true)
+        : [];
+
     const gjelderKortUke = arbeidsuker.length === 1 && erHelArbeidsuke(arbeidsuker[0].periode) === false;
 
     const getInitialValues = (): EndreArbeidstidFormValues => {
@@ -149,6 +153,14 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                             </Block>
                         </Block>
 
+                        {dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0 && (
+                            <Block margin="s" padBottom="l">
+                                <Alert variant="warning">
+                                    Du har fjernet ferie ({getFeriedagerIUkeTekst(dagerMedFjernetFerie)}) denne uken.
+                                    Hvis du skal jobbe i stedet for ferie, oppgi hvor mye du jobber denne uken.
+                                </Alert>
+                            </Block>
+                        )}
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}
                             includeValidationSummary={true}
@@ -247,16 +259,15 @@ export default EndreArbeidstidForm;
 const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFerieSøknadsdata) => {
     if (arbeidsuker.length === 1) {
         const dagerMedFerie = lovbestemtFerie
-            ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuker[0].periode, false)
-            : [];
-        const dagerMedFjernetFerie = lovbestemtFerie
-            ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuker[0].periode, false)
+            ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuker[0].periode, true)
             : [];
         return (
             <BodyShort as="div" className="capsFirstChar">
                 {getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}
                 {dagerMedFerie.length > 0 && (
-                    <DagerMedFerieTags dagerMedFerie={dagerMedFerie} dagerMedFjernetFerie={dagerMedFjernetFerie} />
+                    <Block margin="m">
+                        <FeriedagerTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
+                    </Block>
                 )}
             </BodyShort>
         );
