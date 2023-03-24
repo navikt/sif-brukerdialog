@@ -143,6 +143,23 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         </>
     );
 
+    const renderLastInnFlereUker = () => {
+        if (paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt) {
+            return (
+                <FormBlock margin="m">
+                    <Button
+                        variant="tertiary"
+                        icon={<AddCircle role="presentation" aria-hidden={true} />}
+                        type="button"
+                        onClick={() => setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))}>
+                        Last inn flere uker
+                    </Button>
+                </FormBlock>
+            );
+        }
+        return null;
+    };
+
     const renderEndreUkerFooter = () => {
         if (kanVelgeFlereUker && visVelgUke) {
             return (
@@ -176,6 +193,15 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         return null;
     };
 
+    const renderUkerFooter = () => {
+        return (
+            <>
+                {renderLastInnFlereUker()}
+                {kanVelgeFlereUker && renderEndreUkerFooter()}
+            </>
+        );
+    };
+
     if (renderAsList) {
         return (
             <>
@@ -189,7 +215,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
 
                             return (
-                                <li key={uke.isoDateRange}>
+                                <li key={uke.isoDateRange} className={`${selected ? 'arbeidstidUke--valgt' : ''}`}>
                                     <div className={`arbeidstidUke${visVelgUke ? ' arbeidstidUke--velgUker' : ''}`}>
                                         {visVelgUke && (
                                             <div className="arbeidstidUke__velgUke">
@@ -246,7 +272,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             );
                         })}
                     </ol>
-                    {renderEndreUkerFooter()}
+                    {renderUkerFooter()}
                 </div>
             </>
         );
@@ -436,22 +462,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         })}
                     </Table.Body>
                 </Table>
-                {paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt && (
-                    <FormBlock margin="m">
-                        <div style={{ textAlign: 'center' }}>
-                            <Button
-                                variant="tertiary"
-                                icon={<AddCircle role="presentation" aria-hidden={true} />}
-                                type="button"
-                                onClick={() =>
-                                    setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))
-                                }>
-                                Last inn flere uker
-                            </Button>
-                        </div>
-                    </FormBlock>
-                )}
-                {kanVelgeFlereUker && renderEndreUkerFooter()}
+                {renderUkerFooter()}
             </div>
         </div>
     );
