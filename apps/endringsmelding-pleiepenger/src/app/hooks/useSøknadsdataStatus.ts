@@ -8,22 +8,21 @@ import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { getAktivitetSøknadsdataFromFormValues } from '../søknad/steps/aktivitet/aktivitetStepUtils';
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getLovbestemtFerieSøknadsdataFromFormValues } from '../søknad/steps/lovbestemt-ferie/lovbestemtFerieStepUtils';
-import { Sak } from '../types/Sak';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
 };
 
-const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: StepFormValues, sak: Sak) => {
+const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: StepFormValues) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
         return undefined;
     }
     switch (step) {
         case StepId.LOVBESTEMT_FERIE:
-            return getLovbestemtFerieSøknadsdataFromFormValues(formValues, sak.lovbestemtFerie.perioder);
+            return getLovbestemtFerieSøknadsdataFromFormValues(formValues);
         case StepId.AKTIVITET:
             return getAktivitetSøknadsdataFromFormValues(formValues);
         case StepId.ARBEIDSTID:
@@ -35,12 +34,11 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
 const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
-    søknadsdata: Søknadsdata,
-    sak: Sak
+    søknadsdata: Søknadsdata
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];
-        const tempSøknadsdata = getStepSøknadsdataFromStepFormValues(step, stepFormValues, sak);
+        const tempSøknadsdata = getStepSøknadsdataFromStepFormValues(step, stepFormValues);
         if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
             return false;
         }
@@ -48,7 +46,7 @@ const isStepFormValuesAndStepSøknadsdataValid = (
     return true;
 };
 
-export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsConfig<StepId>, sak: Sak) => {
+export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsConfig<StepId>) => {
     const [invalidSteps, setInvalidSteps] = useState<StepId[]>([]);
 
     const {
@@ -60,7 +58,7 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
         const currentStep = stepConfig[stepId];
         const iSteps = <StepId[]>[];
         getPrecedingSteps(currentStep.index, stepConfig).forEach((step) => {
-            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, sak) === false) {
+            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata) === false) {
                 iSteps.push(step);
             }
         });

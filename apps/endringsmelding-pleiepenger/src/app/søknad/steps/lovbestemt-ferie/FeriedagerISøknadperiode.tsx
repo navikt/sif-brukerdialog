@@ -14,9 +14,9 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/LovbestemtFerieListe';
 import LovbestemtFerieModal from '../../../components/lovbestemt-ferie-modal/LovbestemtFerieModal';
-import { FeriedagMap } from './LovbestemtFerieStep';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { getFeriedagerIPeriode } from '../../../utils/ferieUtils';
+import { FeriedagMap } from './LovbestemtFerieStep';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -67,7 +67,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ feriedager
                 </Button>
             </Block>
 
-            {visFerieModal && visFerieModal.periode && (
+            {visFerieModal && (
                 <LovbestemtFerieModal
                     onClose={() => setVisFerieModal(undefined)}
                     title={'Lovbestemt ferie'}
@@ -78,8 +78,11 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ feriedager
                         minDate={søknadsperiode.from}
                         maxDate={søknadsperiode.to}
                         onSubmit={(ferieuttak: Ferieuttak) => {
-                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                            onChange(oppdaterFerie(feriedager, visFerieModal.periode!, ferieuttak));
+                            if (visFerieModal.periode) {
+                                onChange(oppdaterFerie(feriedager, visFerieModal.periode, ferieuttak));
+                            } else {
+                                onChange(leggTilFerie(feriedager, ferieuttak));
+                            }
                             setVisFerieModal(undefined);
                         }}
                         onCancel={() => setVisFerieModal(undefined)}
@@ -100,13 +103,16 @@ const leggTilFerie = (feriedager: FeriedagMap, periode: DateRange): FeriedagMap 
     getDatesInDateRange(periode)
         .map(dateToISODate)
         .forEach((key) => {
+            const dato = ISODateToDate(key);
             if (dager[key]) {
                 dager[key] = {
                     ...dager[key],
+                    dato,
                     skalHaFerie: true,
                 };
             } else {
                 dager[key] = {
+                    dato,
                     skalHaFerie: true,
                     liggerISak: false,
                 };

@@ -2,6 +2,7 @@ import { guid } from '@navikt/sif-common-utils/lib';
 import { EndringType } from '../../../types/EndringType';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
@@ -26,6 +27,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         perioderFjernet: [],
                         perioderLagtTil: [],
                         feriedager: sak.lovbestemtFerie.feriedager,
+                        feriedagerMeta: getFeriedagerMeta(sak.lovbestemtFerie.feriedager),
                     },
                 },
                 sak,

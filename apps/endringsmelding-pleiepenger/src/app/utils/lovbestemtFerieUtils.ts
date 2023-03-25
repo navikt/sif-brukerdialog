@@ -3,6 +3,7 @@ import {
     dateRangesCollide,
     dateRangeUtils,
     dateToISODate,
+    getDateRangesFromDates,
     getDateRangesWithinDateRange,
     getDatesInDateRanges,
     ISODate,
@@ -11,9 +12,10 @@ import {
     sortDates,
 } from '@navikt/sif-common-utils/lib';
 import { uniqBy } from 'lodash';
+import { Feriedag, FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { LovbestemtFerieEndringer } from '../types/LovbestemFerieEndringer';
 import { LovbestemtFeriePeriode } from '../types/Sak';
-import { LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';
+import { FeriedagerMeta, LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getFeriedagerIPeriode } from './ferieUtils';
 
 const isoDateIsNotInArray = (isoDate: ISODate, isoDateArray: ISODate[]) =>
@@ -135,13 +137,14 @@ export const harFjernetLovbestemtFerie = (ferieSøknad: LovbestemtFerieSøknadsd
     if (!ferieSøknad) {
         return false;
     }
-    return ferieSøknad.perioderFjernet.length > 0;
+    return ferieSøknad.feriedagerMeta.feriedagerFjernet.length > 0;
 };
 
 export const getLovbestemtFerieForPeriode = (
     ferieSøknad: LovbestemtFerieSøknadsdata,
     periode: DateRange
 ): LovbestemtFerieSøknadsdata => {
+    const feriedager: FeriedagMap = getFeriedagerIPeriode(ferieSøknad.feriedager, periode);
     return {
         perioderMedFerie: ferieSøknad.perioderMedFerie.filter((feriePeriode) =>
             dateRangesCollide([feriePeriode, periode])
@@ -152,6 +155,31 @@ export const getLovbestemtFerieForPeriode = (
         perioderFjernet: ferieSøknad.perioderFjernet.filter((feriePeriode) =>
             dateRangesCollide([feriePeriode, periode])
         ),
-        feriedager: getFeriedagerIPeriode(ferieSøknad.feriedager, periode),
+        feriedager,
+        feriedagerMeta: getFeriedagerMeta(feriedager),
+    };
+};
+
+const erFeriedagFjernet = (feriedag: Feriedag): boolean => {
+    return feriedag.liggerISak && feriedag.skalHaFerie === false;
+};
+
+const erFeriedagLagtTil = (feriedag: Feriedag): boolean => {
+    return feriedag.liggerISak === false && feriedag.skalHaFerie === true;
+};
+
+export const getFeriedagerMeta = (feriedager: FeriedagMap): FeriedagerMeta => {
+    const alleFeriedager: Feriedag[] = Object.keys(feriedager).map((key) => feriedager[key]);
+    const feriedagerFjernet = alleFeriedager.filter(erFeriedagFjernet);
+    const feriedagerLagtTil = alleFeriedager.filter(erFeriedagLagtTil);
+    const erEndret = feriedagerFjernet.length + feriedagerLagtTil.length > 0;
+
+    return {
+        alleFeriedager,
+        feriedagerFjernet,
+        feriedagerLagtTil,
+        perioderFjernet: getDateRangesFromDates(feriedagerFjernet.map((d) => d.dato)),
+        perioderLagtTil: getDateRangesFromDates(feriedagerLagtTil.map((d) => d.dato)),
+        erEndret,
     };
 };

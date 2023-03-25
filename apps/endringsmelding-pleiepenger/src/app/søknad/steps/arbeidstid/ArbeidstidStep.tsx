@@ -97,7 +97,7 @@ const ArbeidstidStep = () => {
     };
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">

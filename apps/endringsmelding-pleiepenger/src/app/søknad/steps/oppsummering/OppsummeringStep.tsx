@@ -52,7 +52,7 @@ const OppsummeringStep = () => {
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
     const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
-    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, sak);
+    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
     const { goBack } = useStepNavigation(step);
 
@@ -84,7 +84,7 @@ const OppsummeringStep = () => {
     );
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>

@@ -1,4 +1,4 @@
-import { BodyLong, Heading, ReadMore, Tag } from '@navikt/ds-react';
+import { BodyLong, Heading, ReadMore } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -10,24 +10,24 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils/lib';
 import PerioderAccordion from '../../../components/perioder-accordion/PerioderAccordion';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import EndretTag from '../../../components/tags/EndretTag';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { getFeriedagerIPeriode } from '../../../utils/ferieUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { getLovbestemtFerieEndringerForPeriode, harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
+import { getFeriedagerMeta, harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-// import LovbestemtFerieISøknadsperiode from './LovbestemtFerieISøknadsperiode';
+import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
-import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
@@ -35,6 +35,7 @@ export enum LovbestemtFerieFormFields {
 }
 
 export interface Feriedag {
+    dato: Date;
     liggerISak: boolean;
     skalHaFerie: boolean;
 }
@@ -43,7 +44,7 @@ export interface FeriedagMap {
 }
 
 export interface LovbestemtFerieFormValues {
-    [LovbestemtFerieFormFields.perioder]: LovbestemtFeriePeriode[];
+    // [LovbestemtFerieFormFields.perioder]: LovbestemtFeriePeriode[];
     [LovbestemtFerieFormFields.feriedager]: FeriedagMap;
 }
 
@@ -65,7 +66,7 @@ const LovbestemtFerieStep = () => {
     const { goBack } = useStepNavigation(step);
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
-        const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values, sak.lovbestemtFerie.perioder);
+        const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
         if (perioder) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadLovbestemtFerie(perioder)];
@@ -83,15 +84,15 @@ const LovbestemtFerieStep = () => {
 
     /** Kalles hver gang values i formik endres */
     const oppdaterSøknadState = (values: LovbestemtFerieFormValues) => {
-        const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values, sak.lovbestemtFerie.perioder);
-        dispatch(actionsCreator.setSøknadLovbestemtFerie(perioder));
+        const ferie = getLovbestemtFerieSøknadsdataFromFormValues(values);
+        dispatch(actionsCreator.setSøknadLovbestemtFerie(ferie));
         dispatch(actionsCreator.requestLagreSøknad());
     };
 
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
 
     return (
-        <SøknadStep stepId={stepId} sak={sak} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
@@ -144,14 +145,13 @@ const LovbestemtFerieStep = () => {
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 renderForm={({ values, setFieldValue }) => {
-                    const perioderIMelding = values[LovbestemtFerieFormFields.perioder] || [];
                     const feriedager: FeriedagMap = values[LovbestemtFerieFormFields.feriedager] || {};
                     return (
                         <>
                             <PersistStepFormValues
                                 stepId={stepId}
                                 onChange={() => {
-                                    oppdaterSøknadState({ perioder: perioderIMelding, feriedager });
+                                    oppdaterSøknadState({ feriedager });
                                 }}
                             />
                             <Form
@@ -204,30 +204,18 @@ const LovbestemtFerieStep = () => {
                                                             );
                                                         }}
                                                     />
-                                                    {/* <hr />
-                                                    <LovbestemtFerieISøknadsperiode
-                                                        søknadsperiode={søknadsperiode}
-                                                        perioderIMelding={perioderIMelding}
-                                                        perioderISak={sak.lovbestemtFerie.perioder}
-                                                        onChange={(perioder) => {
-                                                            setFieldValue(LovbestemtFerieFormFields.perioder, perioder);
-                                                        }}
-                                                    /> */}
                                                 </Block>
                                             );
                                         }}
                                         renderHeader={(periode) => {
+                                            const feriedagerIPeriode = getFeriedagerIPeriode(feriedager, periode);
                                             return (
                                                 <>
                                                     <span style={{ display: 'inlineBlock' }}>
                                                         {dateFormatter.full(periode.from)} -{' '}
                                                         {dateFormatter.full(periode.to)}
                                                     </span>
-                                                    {getLovbestemtFerieEndringerForPeriode(
-                                                        periode,
-                                                        perioderIMelding,
-                                                        sak.lovbestemtFerie.perioder
-                                                    ).erEndret && (
+                                                    {getFeriedagerMeta(feriedagerIPeriode).erEndret && (
                                                         <span
                                                             style={{
                                                                 position: 'relative',
@@ -235,9 +223,7 @@ const LovbestemtFerieStep = () => {
                                                                 top: '-.125rem',
                                                             }}>
                                                             {` `}
-                                                            <Tag variant="alt3" size="small">
-                                                                Endret
-                                                            </Tag>
+                                                            <EndretTag />
                                                         </span>
                                                     )}
                                                 </>

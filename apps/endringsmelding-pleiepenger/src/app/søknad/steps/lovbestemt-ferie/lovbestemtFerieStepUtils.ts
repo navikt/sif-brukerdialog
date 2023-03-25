@@ -1,8 +1,8 @@
-import { DateRange, dateRangeToISODateRange, sortDateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
 import { LovbestemtFerieSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { getLovbestemtFerieEndringer } from '../../../utils/lovbestemtFerieUtils';
-import { LovbestemtFerieFormFields, LovbestemtFerieFormValues } from './LovbestemtFerieStep';
+import { getFeriedagerMeta, getLovbestemtFerieEndringer } from '../../../utils/lovbestemtFerieUtils';
+import { LovbestemtFerieFormValues } from './LovbestemtFerieStep';
 
 export const getLovbestemtFerieStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -13,27 +13,23 @@ export const getLovbestemtFerieStepInitialValues = (
     }
     if (søknadsdata.lovbestemtFerie === undefined) {
         return {
-            perioder: [],
             feriedager: {},
         };
     }
     return {
-        perioder: [...søknadsdata.lovbestemtFerie.perioderMedFerie],
         feriedager: søknadsdata.lovbestemtFerie.feriedager,
     };
 };
 
 export const getLovbestemtFerieSøknadsdataFromFormValues = (
-    values: LovbestemtFerieFormValues,
-    lovbestemtFerieISak: LovbestemtFeriePeriode[]
+    values: LovbestemtFerieFormValues
 ): LovbestemtFerieSøknadsdata => {
-    const perioder = values[LovbestemtFerieFormFields.perioder].sort(sortDateRange);
-    const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieEndringer(perioder, lovbestemtFerieISak);
     return {
-        perioderMedFerie: perioder.filter((p) => p.skalHaFerie === true),
-        perioderFjernet,
-        perioderLagtTil,
+        perioderMedFerie: [],
+        perioderFjernet: [],
+        perioderLagtTil: [],
         feriedager: values.feriedager,
+        feriedagerMeta: getFeriedagerMeta(values.feriedager),
     };
 };
 

@@ -14,17 +14,15 @@ import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import StateInfo from '../dev/state-info/StateInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
-import { Sak } from '../types/Sak';
 import { StepId } from './config/StepId';
 
 interface Props {
     stepId: StepId;
-    sak: Sak;
     stepConfig: SoknadStepsConfig<StepId>;
     children: React.ReactNode;
 }
 
-const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, stepConfig, children }) => {
+const SøknadStep: React.FunctionComponent<Props> = ({ stepId, stepConfig, children }) => {
     const intl = useIntl();
     const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
 
@@ -42,7 +40,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, sak, stepConfig, 
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
-            <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} sak={sak} />
+            <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
             {children}
             {isDevMode && 1 + 1 === 2 ? (
                 <Block margin="xxl">
