@@ -4,7 +4,6 @@ import {
     dateToISODate,
     getDateRangesFromDates,
     getDatesInDateRange,
-    getDatesInDateRanges,
     isDateInDateRange,
     isDateWeekDay,
     ISODateToDate,
@@ -12,8 +11,7 @@ import {
 import dayjs from 'dayjs';
 import { Feriedag, FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 
-export const getFeriedagerIUke = (ferieperioder: DateRange[], uke: DateRange, inkluderHelg: boolean): Date[] => {
-    const feriedager = getDatesInDateRanges(ferieperioder);
+export const getFeriedagerIUke = (feriedager: Date[], uke: DateRange, inkluderHelg: boolean): Date[] => {
     const ukedager = getDatesInDateRange(uke).filter((dagIUke) =>
         feriedager.some((dagIFerie) => dayjs(dagIUke).isSame(dagIFerie), 'day')
     );

@@ -71,8 +71,8 @@ const getArbeidstidUkeTabellItemFromArbeidsuker = (
             arbeidsukeToArbeidstidUkeTabellItem(
                 arbeidsuke,
                 endring,
-                ferieIPerioden?.feriedagerMeta.dagerMedFerie.map((f) => f.dato),
-                ferieIPerioden?.feriedagerMeta.dagerFjernet.map((f) => f.dato)
+                ferieIPerioden?.feriedagerMeta.datoerMedFerie,
+                ferieIPerioden?.feriedagerMeta.datoerFjernet
             )
         );
     });

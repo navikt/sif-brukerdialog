@@ -4,8 +4,7 @@ import { LovbestemtFerieApiData } from '../../types/søknadApiData/SøknadApiDat
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 
 export const getLovbestemtFerieApiDataFromSøknadsdata = ({
-    perioderFjernet,
-    perioderLagtTil,
+    feriedagerMeta: { perioderFjernet, perioderLagtTil },
 }: LovbestemtFerieSøknadsdata): LovbestemtFerieApiData => {
     const perioder: ISODateRangeMap<LovbestemtFerieType> = {};
     perioderLagtTil.forEach((periode) => (perioder[dateRangeToISODateRange(periode)] = { skalHaFerie: true }));

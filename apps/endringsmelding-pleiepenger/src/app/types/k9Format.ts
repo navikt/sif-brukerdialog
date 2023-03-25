@@ -39,7 +39,11 @@ interface K9FormatOpptjeningAktivitetSelvstendig {
 
 export type K9FormatUtenlandsoppholdPerioder = ISODateRangeMap<K9FormatUtenlandsopphold>;
 
-export type K9FormatLovbestemtFeriePerioder = ISODateRangeMap<{ skalHaFerie: boolean | null }>;
+export type K9SakLovbestemtFeriePeriode = {
+    skalHaFerie: boolean;
+};
+
+export type K9FormatLovbestemtFeriePerioder = ISODateRangeMap<K9SakLovbestemtFeriePeriode>;
 
 interface K9FormatUtenlandsopphold {
     land: string;

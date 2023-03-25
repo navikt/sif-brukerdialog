@@ -75,7 +75,6 @@ export interface LovbestemtFeriePeriode extends DateRange {
 }
 
 export interface SakLovbestemtFerie {
-    // perioder: LovbestemtFeriePeriode[];
     feriedager: FeriedagMap;
 }
 

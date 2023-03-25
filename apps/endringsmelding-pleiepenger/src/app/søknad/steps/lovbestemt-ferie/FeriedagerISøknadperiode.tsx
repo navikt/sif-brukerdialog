@@ -136,37 +136,37 @@ const fjernFerie = (feriedager: FeriedagMap, periode: DateRange): FeriedagMap =>
 };
 
 const getLovbestemFerieFraFeriedager = (feriedager: FeriedagMap): LovbestemtFeriePeriode[] => {
-    const dagerFjernet: Date[] = [];
-    const dagerLagtTil: Date[] = [];
-    const dagerUendret: Date[] = [];
+    const datoerFjernet: Date[] = [];
+    const datoerLagtTil: Date[] = [];
+    const datoerUendret: Date[] = [];
 
     Object.keys(feriedager).forEach((key) => {
         const dag = feriedager[key];
         const dato = ISODateToDate(key);
         if (dag.liggerISak && dag.skalHaFerie === false) {
-            dagerFjernet.push(dato);
+            datoerFjernet.push(dato);
         } else if (!dag.liggerISak && dag.skalHaFerie) {
-            dagerLagtTil.push(dato);
+            datoerLagtTil.push(dato);
         } else {
-            dagerUendret.push(dato);
+            datoerUendret.push(dato);
         }
     });
 
-    const perioderLagtTil = getDateRangesFromDates(dagerLagtTil).map(
+    const perioderLagtTil = getDateRangesFromDates(datoerLagtTil).map(
         (periode): LovbestemtFeriePeriode => ({
             ...periode,
             skalHaFerie: true,
             liggerISak: false,
         })
     );
-    const perioderFjernet = getDateRangesFromDates(dagerFjernet).map(
+    const perioderFjernet = getDateRangesFromDates(datoerFjernet).map(
         (periode): LovbestemtFeriePeriode => ({
             ...periode,
             skalHaFerie: false,
             liggerISak: true,
         })
     );
-    const perioderUendret = getDateRangesFromDates(dagerUendret).map(
+    const perioderUendret = getDateRangesFromDates(datoerUendret).map(
         (periode): LovbestemtFeriePeriode => ({
             ...periode,
             skalHaFerie: true,

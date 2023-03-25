@@ -110,7 +110,7 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
     }
 
     const dagerMedFjernetFerie = lovbestemtFerie
-        ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuker[0].periode, true)
+        ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerFjernet, arbeidsuker[0].periode, true)
         : [];
 
     const gjelderKortUke = arbeidsuker.length === 1 && erHelArbeidsuke(arbeidsuker[0].periode) === false;
@@ -259,7 +259,7 @@ export default EndreArbeidstidForm;
 const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: LovbestemtFerieSøknadsdata) => {
     if (arbeidsuker.length === 1) {
         const dagerMedFerie = lovbestemtFerie
-            ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuker[0].periode, true)
+            ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerFjernet, arbeidsuker[0].periode, true)
             : [];
         return (
             <BodyShort as="div" className="capsFirstChar">

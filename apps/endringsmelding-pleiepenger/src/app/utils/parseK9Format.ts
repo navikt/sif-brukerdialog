@@ -19,9 +19,9 @@ import {
     K9SakArbeidstidInfo,
     K9SakArbeidstidPeriodeMap,
     K9SakBarn,
+    K9SakLovbestemtFerie,
     K9SakUtenlandsopphold,
 } from '../types/K9Sak';
-import { LovbestemtFeriePeriode } from '../types/Sak';
 
 /**
  * Henter ut informasjon om barn fra k9sak
@@ -126,7 +126,7 @@ export const parseK9FormatUtenlandsopphold = (
  * @param arbeidstid Parse lovbestemtFerie
  * @returns K9FormatLovbestemtFeriePerioder[]
  */
-export const parseK9FormatLovbestemtFerie = (perioder: K9FormatLovbestemtFeriePerioder): LovbestemtFeriePeriode[] => {
+export const parseK9FormatLovbestemtFerie = (perioder: K9FormatLovbestemtFeriePerioder): K9SakLovbestemtFerie[] => {
     return Object.keys(perioder)
         .filter((key) => perioder[key].skalHaFerie !== null)
         .map((key) => ({
