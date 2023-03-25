@@ -16,9 +16,16 @@ import {
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { ArbeidsgiverIkkeFunnetError } from '../types/arbeidsgiverIkkeFunnetError';
-import { K9Sak, K9SakArbeidstaker, K9SakArbeidstidInfo, K9SakArbeidstidPeriodeMap } from '../types/K9Sak';
+import {
+    K9Sak,
+    K9SakArbeidstaker,
+    K9SakArbeidstidInfo,
+    K9SakArbeidstidPeriodeMap,
+    K9SakLovbestemtFerie,
+} from '../types/K9Sak';
 import {
     ArbeidAktivitet,
     ArbeidAktivitetArbeidstaker,
@@ -33,6 +40,7 @@ import {
 } from '../types/Sak';
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
+import { getFeriedagerMapFromPerioder } from './ferieUtils';
 import { maskString } from './maskString';
 
 interface _PeriodisertK9FormatArbeidstidPerioder {
@@ -469,8 +477,13 @@ export const getSakFromK9Sak = (
         },
         lovbestemtFerie: {
             perioder: [...k9sak.ytelse.lovbestemtFerie.perioder.filter((periode) => periode.skalHaFerie === true)],
+            feriedager: getFeriedagerFromLovbestemtFerie(k9sak.ytelse.lovbestemtFerie.perioder),
         },
     };
+};
+
+const getFeriedagerFromLovbestemtFerie = (lovbestemtFerie: K9SakLovbestemtFerie[]): FeriedagMap => {
+    return getFeriedagerMapFromPerioder(lovbestemtFerie, true, true);
 };
 
 /**

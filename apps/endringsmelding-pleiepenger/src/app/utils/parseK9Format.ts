@@ -129,7 +129,11 @@ export const parseK9FormatUtenlandsopphold = (
 export const parseK9FormatLovbestemtFerie = (perioder: K9FormatLovbestemtFeriePerioder): LovbestemtFeriePeriode[] => {
     return Object.keys(perioder)
         .filter((key) => perioder[key].skalHaFerie !== null)
-        .map((key) => ({ ...ISODateRangeToDateRange(key), skalHaFerie: perioder[key].skalHaFerie === true }));
+        .map((key) => ({
+            ...ISODateRangeToDateRange(key),
+            liggerISak: true,
+            skalHaFerie: perioder[key].skalHaFerie === true,
+        }));
 };
 /**
  * Parser K9Format

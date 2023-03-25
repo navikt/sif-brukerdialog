@@ -7,7 +7,7 @@ import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoLi
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, ISODate } from '@navikt/sif-common-utils/lib';
 import PerioderAccordion from '../../../components/perioder-accordion/PerioderAccordion';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -22,17 +22,29 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import LovbestemtFerieISøknadsperiode from './LovbestemtFerieISøknadsperiode';
+// import LovbestemtFerieISøknadsperiode from './LovbestemtFerieISøknadsperiode';
 import {
     getLovbestemtFerieStepInitialValues,
     getLovbestemtFerieSøknadsdataFromFormValues,
 } from './lovbestemtFerieStepUtils';
+import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 
 export enum LovbestemtFerieFormFields {
     perioder = 'perioder',
+    feriedager = 'feriedager',
 }
+
+export interface Feriedag {
+    liggerISak: boolean;
+    skalHaFerie: boolean;
+}
+export interface FeriedagMap {
+    [isoDate: ISODate]: Feriedag;
+}
+
 export interface LovbestemtFerieFormValues {
     [LovbestemtFerieFormFields.perioder]: LovbestemtFeriePeriode[];
+    [LovbestemtFerieFormFields.feriedager]: FeriedagMap;
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<LovbestemtFerieFormFields, LovbestemtFerieFormValues>();
@@ -133,12 +145,13 @@ const LovbestemtFerieStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values, setFieldValue }) => {
                     const perioderIMelding = values[LovbestemtFerieFormFields.perioder] || [];
+                    const feriedager: FeriedagMap = values[LovbestemtFerieFormFields.feriedager] || {};
                     return (
                         <>
                             <PersistStepFormValues
                                 stepId={stepId}
                                 onChange={() => {
-                                    oppdaterSøknadState({ perioder: perioderIMelding });
+                                    oppdaterSøknadState({ perioder: perioderIMelding, feriedager });
                                 }}
                             />
                             <Form
@@ -172,9 +185,26 @@ const LovbestemtFerieStep = () => {
                                                     <Heading
                                                         level={sak.søknadsperioder.length === 1 ? '3' : '4'}
                                                         size={sak.søknadsperioder.length === 1 ? 'small' : 'xsmall'}
-                                                        spacing={true}>
+                                                        spacing={true}
+                                                        onChange={(feriedager) => {
+                                                            setFieldValue(
+                                                                LovbestemtFerieFormFields.feriedager,
+                                                                feriedager
+                                                            );
+                                                        }}>
                                                         Registrert ferie
                                                     </Heading>
+                                                    <FeriedagerISøknadsperiode
+                                                        feriedager={values.feriedager || {}}
+                                                        søknadsperiode={søknadsperiode}
+                                                        onChange={(feriedager) => {
+                                                            setFieldValue(
+                                                                LovbestemtFerieFormFields.feriedager,
+                                                                feriedager
+                                                            );
+                                                        }}
+                                                    />
+                                                    {/* <hr />
                                                     <LovbestemtFerieISøknadsperiode
                                                         søknadsperiode={søknadsperiode}
                                                         perioderIMelding={perioderIMelding}
@@ -182,7 +212,7 @@ const LovbestemtFerieStep = () => {
                                                         onChange={(perioder) => {
                                                             setFieldValue(LovbestemtFerieFormFields.perioder, perioder);
                                                         }}
-                                                    />
+                                                    /> */}
                                                 </Block>
                                             );
                                         }}

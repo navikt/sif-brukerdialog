@@ -1,11 +1,11 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, Button } from '@navikt/ds-react';
 import React from 'react';
-import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFeriePeriode } from '../../types/Sak';
 import DeleteButton from '../delete-button/DeleteButton';
 import EditButton from '../edit-button/EditButton';
+import FerieTag from '../tags/FerieTag';
 import './lovbestemtFerieListe.scss';
 
 const bem = bemUtils('lovbestemtFerieListe');
@@ -43,36 +43,42 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                         periode.skalHaFerie === false ? 'fjernet' : undefined
                                     )}>
                                     <span className={'dato'}>{periodeTekst}</span>
+                                    {periode.liggerISak && periode.skalHaFerie === false && (
+                                        <FerieTag type="fjernet">Fjernet</FerieTag>
+                                    )}
+                                    {periode.liggerISak === false && <FerieTag type="registrert">Lagt til</FerieTag>}
                                 </div>
-                                {periode.skalHaFerie === false && onUndoDelete && (
-                                    <div className={bem.element('ferie__angreKnapp')}>
-                                        <ActionLink onClick={() => onUndoDelete(periode)}>Angre fjern</ActionLink>
-                                    </div>
-                                )}
-                                {periode.skalHaFerie === true && (
-                                    <>
-                                        {onEdit && (
-                                            <div className={bem.element('ferie__endreKnapp')}>
-                                                <EditButton
-                                                    onClick={() => onEdit(periode)}
-                                                    title="Endre ferie"
-                                                    aria-label={`Endre ferie ${periodeTekst}`}
-                                                />
-                                            </div>
-                                        )}
-                                        {onDelete && (
-                                            <div className={bem.element('ferie__fjernKnapp')}>
-                                                <DeleteButton
-                                                    onClick={() => {
-                                                        onDelete(periode);
-                                                    }}
-                                                    title="Fjern ferie"
-                                                    aria-label={`Fjern ferie ${periodeTekst}`}
-                                                />
-                                            </div>
-                                        )}
-                                    </>
-                                )}
+                                <div className={bem.element('ferie__actions')}>
+                                    {periode.skalHaFerie === false && onUndoDelete && (
+                                        <Button variant="secondary" size="small" onClick={() => onUndoDelete(periode)}>
+                                            Angre fjern
+                                        </Button>
+                                    )}
+                                    {periode.skalHaFerie === true && (
+                                        <>
+                                            {onEdit && (
+                                                <div className={bem.element('ferie__endreKnapp')}>
+                                                    <EditButton
+                                                        onClick={() => onEdit(periode)}
+                                                        title="Endre ferie"
+                                                        aria-label={`Endre ferie ${periodeTekst}`}
+                                                    />
+                                                </div>
+                                            )}
+                                            {onDelete && (
+                                                <div className={bem.element('ferie__fjernKnapp')}>
+                                                    <DeleteButton
+                                                        onClick={() => {
+                                                            onDelete(periode);
+                                                        }}
+                                                        title="Fjern ferie"
+                                                        aria-label={`Fjern ferie ${periodeTekst}`}
+                                                    />
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </li>
                     );

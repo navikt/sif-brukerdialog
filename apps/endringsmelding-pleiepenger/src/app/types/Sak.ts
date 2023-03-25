@@ -1,4 +1,5 @@
 import { DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils/lib';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { K9SakBarn } from './K9Sak';
 
@@ -69,17 +70,19 @@ export interface ArbeidAktiviteter {
 }
 
 export interface LovbestemtFeriePeriode extends DateRange {
+    liggerISak?: boolean;
     skalHaFerie: boolean;
 }
 
-export interface LovbestemtFeriePerioder {
+export interface SakLovbestemtFerie {
     perioder: LovbestemtFeriePeriode[];
+    feriedager: FeriedagMap;
 }
 
 export interface Sak {
     barn: K9SakBarn;
     arbeidAktiviteter: ArbeidAktiviteter;
-    lovbestemtFerie: LovbestemtFeriePerioder;
+    lovbestemtFerie: SakLovbestemtFerie;
     søknadsperioder: DateRange[];
     samletSøknadsperiode: DateRange;
     ytelse: {

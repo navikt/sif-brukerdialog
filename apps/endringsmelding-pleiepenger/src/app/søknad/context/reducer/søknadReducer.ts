@@ -25,6 +25,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         perioderMedFerie: sak.lovbestemtFerie.perioder,
                         perioderFjernet: [],
                         perioderLagtTil: [],
+                        feriedager: sak.lovbestemtFerie.feriedager,
                     },
                 },
                 sak,

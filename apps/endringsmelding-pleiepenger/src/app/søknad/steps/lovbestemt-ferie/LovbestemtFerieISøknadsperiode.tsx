@@ -7,8 +7,8 @@ import { DateRange, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib
 import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/LovbestemtFerieListe';
 import LovbestemtFerieModal from '../../../components/lovbestemt-ferie-modal/LovbestemtFerieModal';
 import { LovbestemtFeriePeriode } from '../../../types/Sak';
-import { lovbestemtFerieStepUtils } from './lovbestemtFerieStepUtils';
 import { getLovbestemtFerieEndringerForPeriode } from '../../../utils/lovbestemtFerieUtils';
+import { lovbestemtFerieStepUtils } from './lovbestemtFerieStepUtils';
 
 interface Props {
     søknadsperiode: DateRange;

@@ -1,12 +1,16 @@
 import {
     dateFormatter,
     DateRange,
+    dateToISODate,
     getDateRangesFromDates,
     getDatesInDateRange,
     getDatesInDateRanges,
+    isDateInDateRange,
     isDateWeekDay,
+    ISODateToDate,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 
 export const getFeriedagerIUke = (ferieperioder: DateRange[], uke: DateRange, inkluderHelg: boolean): Date[] => {
     const feriedager = getDatesInDateRanges(ferieperioder);
@@ -39,4 +43,31 @@ export const getFeriedagerIUkeTekst = (dager: Date[]) => {
             return getSammenhengendeDagerTekst(getDatesInDateRange(periode));
         })
         .join(', ');
+};
+
+export const getFeriedagerMapFromPerioder = (
+    perioder: DateRange[],
+    skalHaFerie: boolean,
+    liggerISak: boolean
+): FeriedagMap => {
+    const feriedager: FeriedagMap = {};
+    perioder.forEach((periode) => {
+        getDatesInDateRange(periode).forEach((dato) => {
+            feriedager[dateToISODate(dato)] = {
+                skalHaFerie,
+                liggerISak,
+            };
+        });
+    });
+    return feriedager;
+};
+
+export const getFeriedagerIPeriode = (feriedager: FeriedagMap, periode: DateRange): FeriedagMap => {
+    const feriedagerIPeriode: FeriedagMap = {};
+    Object.keys(feriedager)
+        .filter((key) => isDateInDateRange(ISODateToDate(key), periode))
+        .forEach((key) => {
+            feriedagerIPeriode[key] = feriedager[key];
+        });
+    return feriedagerIPeriode;
 };

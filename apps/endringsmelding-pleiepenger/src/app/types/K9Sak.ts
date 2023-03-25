@@ -38,7 +38,7 @@ interface K9SakOpptjeningAktivitetFrilanser {
     jobberFortsattSomFrilanser: boolean;
 }
 
-interface K9SakLovbestemtFerie extends DateRange {
+export interface K9SakLovbestemtFerie extends DateRange {
     skalHaFerie: boolean;
 }
 

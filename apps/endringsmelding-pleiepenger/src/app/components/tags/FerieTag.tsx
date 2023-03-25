@@ -4,12 +4,10 @@ import { Vacation } from '@navikt/ds-icons';
 
 interface Props extends Omit<TagProps, 'variant'> {
     type?: 'fjernet' | 'registrert';
-    dager: Date[];
 }
 
 const FerieTag: React.FunctionComponent<Props> = (props) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { type = 'registrert', dager, children, ...rest } = props;
+    const { type = 'registrert', children, ...rest } = props;
     return (
         <Tag {...rest} size="small" variant={type === 'registrert' ? 'success' : 'error'}>
             <Vacation />

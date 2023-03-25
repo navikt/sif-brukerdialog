@@ -68,6 +68,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
             {perioder.length !== 1 && (
                 <div style={{ borderTop: '2px solid var(--ac-accordion-header-border, var(--a-border-strong)' }}>
                     <PerioderAccordion
+                        defaultOpen="current"
                         perioder={perioder}
                         renderContent={(periode) => {
                             const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(

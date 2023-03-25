@@ -14,10 +14,12 @@ export const getLovbestemtFerieStepInitialValues = (
     if (søknadsdata.lovbestemtFerie === undefined) {
         return {
             perioder: [],
+            feriedager: {},
         };
     }
     return {
         perioder: [...søknadsdata.lovbestemtFerie.perioderMedFerie],
+        feriedager: søknadsdata.lovbestemtFerie.feriedager,
     };
 };
 
@@ -31,6 +33,7 @@ export const getLovbestemtFerieSøknadsdataFromFormValues = (
         perioderMedFerie: perioder.filter((p) => p.skalHaFerie === true),
         perioderFjernet,
         perioderLagtTil,
+        feriedager: values.feriedager,
     };
 };
 
