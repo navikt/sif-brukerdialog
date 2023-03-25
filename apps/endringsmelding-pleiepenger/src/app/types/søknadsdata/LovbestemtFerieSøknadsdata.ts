@@ -3,11 +3,14 @@ import { Feriedag, FeriedagMap } from '../../søknad/steps/lovbestemt-ferie/Lovb
 import { LovbestemtFeriePeriode } from '../Sak';
 
 export interface FeriedagerMeta {
-    feriedagerFjernet: Feriedag[];
-    feriedagerLagtTil: Feriedag[];
-    alleFeriedager: Feriedag[];
+    /** Alle feriedager, de som er uendret, fjernet og lagt til */
+    alleDager: Feriedag[];
+    dagerFjernet: Feriedag[];
+    dagerLagtTil: Feriedag[];
+    dagerMedFerie: Feriedag[];
     perioderFjernet: DateRange[];
     perioderLagtTil: DateRange[];
+    perioderMedFerie: DateRange[];
     erEndret: boolean;
 }
 

@@ -7,7 +7,6 @@ import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/Lovbestemt
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../utils/beregnUtils';
-import { getFeriedagerIUke } from '../../utils/ferieUtils';
 import { getLovbestemtFerieForPeriode } from '../../utils/lovbestemtFerieUtils';
 import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
 
@@ -22,15 +21,9 @@ const sorterListeItems = (items: ArbeidstidUkeTabellItem[]): ArbeidstidUkeTabell
 const arbeidsukeToArbeidstidUkeTabellItem = (
     arbeidsuke: Arbeidsuke,
     endring: ArbeidstidEndring | undefined,
-    lovbestemtFerie: LovbestemtFerieSøknadsdata | undefined
+    dagerMedFerie: Date[] | undefined = [],
+    dagerMedFjernetFerie: Date[] | undefined = []
 ): ArbeidstidUkeTabellItem => {
-    const dagerMedFerie = lovbestemtFerie
-        ? getFeriedagerIUke(lovbestemtFerie.perioderMedFerie, arbeidsuke.periode, true)
-        : [];
-    const dagerMedFjernetFerie = lovbestemtFerie
-        ? getFeriedagerIUke(lovbestemtFerie.perioderFjernet, arbeidsuke.periode, true)
-        : [];
-
     return {
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
@@ -74,7 +67,14 @@ const getArbeidstidUkeTabellItemFromArbeidsuker = (
             ? getLovbestemtFerieForPeriode(lovbestemtFerie, arbeidsuke.periode)
             : undefined;
 
-        items.push(arbeidsukeToArbeidstidUkeTabellItem(arbeidsuke, endring, ferieIPerioden));
+        items.push(
+            arbeidsukeToArbeidstidUkeTabellItem(
+                arbeidsuke,
+                endring,
+                ferieIPerioden?.feriedagerMeta.dagerMedFerie.map((f) => f.dato),
+                ferieIPerioden?.feriedagerMeta.dagerFjernet.map((f) => f.dato)
+            )
+        );
     });
     return items;
 };

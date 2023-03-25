@@ -7,20 +7,18 @@ import {
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
-
 import { cleanupArbeidAktivitetEndringer } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import { getEndringsdato, getTillattEndringsperiode } from '../../utils/endringsperiode';
-import { getLovbestemtFerieForPeriode } from '../../utils/lovbestemtFerieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
-import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
-import ArbeidAktivitetHeader from './components/ArbeidAktivitetHeader';
-import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from './arbeidsaktivitetUtils';
 import EndreArbeidstidForm from '../endre-arbeidstid-form/EndreArbeidstidForm';
+import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import PerioderAccordion from '../perioder-accordion/PerioderAccordion';
+import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from './arbeidsaktivitetUtils';
+import ArbeidAktivitetHeader from './components/ArbeidAktivitetHeader';
 import ArbeidAktivitetUtenforPeriodeInfo from './components/ArbeidAktivitetUtenforPeriodeInfo';
 
 interface Props {
@@ -55,7 +53,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                         listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                             perioder[0].arbeidsuker,
                             endringer,
-                            lovbestemtFerie ? getLovbestemtFerieForPeriode(lovbestemtFerie, perioder[0]) : undefined
+                            lovbestemtFerie
                         )}
                         triggerResetValg={resetUkerTabellCounter}
                         onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
@@ -74,7 +72,7 @@ const Arbeidsaktivitet = ({ arbeidAktivitet, endringer, lovbestemtFerie, onArbei
                             const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                 periode.arbeidsuker,
                                 endringer,
-                                lovbestemtFerie ? getLovbestemtFerieForPeriode(lovbestemtFerie, periode) : undefined
+                                lovbestemtFerie
                             );
                             return (
                                 <ArbeidstidUkeTabell

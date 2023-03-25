@@ -137,7 +137,7 @@ export const harFjernetLovbestemtFerie = (ferieSøknad: LovbestemtFerieSøknadsd
     if (!ferieSøknad) {
         return false;
     }
-    return ferieSøknad.feriedagerMeta.feriedagerFjernet.length > 0;
+    return ferieSøknad.feriedagerMeta.dagerFjernet.length > 0;
 };
 
 export const getLovbestemtFerieForPeriode = (
@@ -160,6 +160,10 @@ export const getLovbestemtFerieForPeriode = (
     };
 };
 
+const erFeriedag = (feriedag: Feriedag): boolean => {
+    return feriedag.skalHaFerie === false;
+};
+
 const erFeriedagFjernet = (feriedag: Feriedag): boolean => {
     return feriedag.liggerISak && feriedag.skalHaFerie === false;
 };
@@ -169,17 +173,20 @@ const erFeriedagLagtTil = (feriedag: Feriedag): boolean => {
 };
 
 export const getFeriedagerMeta = (feriedager: FeriedagMap): FeriedagerMeta => {
-    const alleFeriedager: Feriedag[] = Object.keys(feriedager).map((key) => feriedager[key]);
-    const feriedagerFjernet = alleFeriedager.filter(erFeriedagFjernet);
-    const feriedagerLagtTil = alleFeriedager.filter(erFeriedagLagtTil);
-    const erEndret = feriedagerFjernet.length + feriedagerLagtTil.length > 0;
+    const alleDager: Feriedag[] = Object.keys(feriedager).map((key) => feriedager[key]);
+    const dagerFjernet = alleDager.filter(erFeriedagFjernet);
+    const dagerLagtTil = alleDager.filter(erFeriedagLagtTil);
+    const dagerMedFerie = alleDager.filter(erFeriedag);
+    const erEndret = dagerFjernet.length + dagerLagtTil.length > 0;
 
     return {
-        alleFeriedager,
-        feriedagerFjernet,
-        feriedagerLagtTil,
-        perioderFjernet: getDateRangesFromDates(feriedagerFjernet.map((d) => d.dato)),
-        perioderLagtTil: getDateRangesFromDates(feriedagerLagtTil.map((d) => d.dato)),
+        alleDager,
+        dagerFjernet,
+        dagerLagtTil,
+        dagerMedFerie,
+        perioderFjernet: getDateRangesFromDates(dagerFjernet.map((d) => d.dato)),
+        perioderLagtTil: getDateRangesFromDates(dagerLagtTil.map((d) => d.dato)),
+        perioderMedFerie: getDateRangesFromDates(dagerMedFerie.map((d) => d.dato)),
         erEndret,
     };
 };

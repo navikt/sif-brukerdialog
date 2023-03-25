@@ -23,7 +23,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         ? { aktivitetSomSkalEndres: [aktivitetSomSkalEndres.id] }
                         : undefined,
                     lovbestemtFerie: {
-                        perioderMedFerie: sak.lovbestemtFerie.perioder,
+                        perioderMedFerie: [],
                         perioderFjernet: [],
                         perioderLagtTil: [],
                         feriedager: sak.lovbestemtFerie.feriedager,

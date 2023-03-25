@@ -1,18 +1,21 @@
 import { Alert, BodyLong, Heading, Panel, ReadMore } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import Arbeidsaktivitet from '../../../components/arbeidsaktivitet/Arbeidsaktivitet';
+import PeriodeTekst from '../../../components/periode-tekst/PeriodeTekst';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
+import { ArbeidAktivitet } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
@@ -22,10 +25,11 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import PeriodeTekst from '../../../components/periode-tekst/PeriodeTekst';
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
+import {
+    getAktiviteterSomSkalEndres,
+    getArbeidstidStepInitialValues,
+    getArbeidstidSøknadsdataFromFormValues,
+} from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
@@ -121,7 +125,7 @@ const ArbeidstidStep = () => {
                     <Alert variant="warning">
                         Du har fjernet dager med ferie:
                         <InfoList>
-                            {søknadsdata.lovbestemtFerie?.perioderFjernet.map((periode) => (
+                            {søknadsdata.lovbestemtFerie?.feriedagerMeta.perioderFjernet.map((periode) => (
                                 <li key={dateRangeToISODateRange(periode)} className="capsFirstChar">
                                     <PeriodeTekst periode={periode} inkluderDagNavn={true} />
                                 </li>
@@ -188,23 +192,3 @@ const ArbeidstidStep = () => {
 };
 
 export default ArbeidstidStep;
-
-const getAktiviteterSomSkalEndres = (
-    arbeidAktiviteter: ArbeidAktiviteter,
-    valgteAktiviteter: string[] = []
-): ArbeidAktivitet[] => {
-    const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
-
-    const aktiviteter: ArbeidAktivitet[] = arbeidstaker.filter((a) => (valgteAktiviteter || []).includes(a.id));
-    if (frilanser !== undefined && valgteAktiviteter.includes(ArbeidAktivitetType.frilanser)) {
-        aktiviteter.push({ ...frilanser });
-    }
-
-    if (
-        selvstendigNæringsdrivende !== undefined &&
-        valgteAktiviteter.includes(ArbeidAktivitetType.selvstendigNæringsdrivende)
-    ) {
-        aktiviteter.push({ ...selvstendigNæringsdrivende });
-    }
-    return aktiviteter;
-};
