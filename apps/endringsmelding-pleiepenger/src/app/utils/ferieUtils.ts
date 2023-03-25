@@ -10,6 +10,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { Feriedag, FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
+import { getFeriedagerMeta } from './lovbestemtFerieUtils';
 
 export const getFeriedagerIUke = (feriedager: Date[], uke: DateRange, inkluderHelg: boolean): Date[] => {
     const ukedager = getDatesInDateRange(uke).filter((dagIUke) =>
@@ -73,4 +74,8 @@ export const getFeriedagerIPeriode = (feriedager: FeriedagMap, periode: DateRang
 
 export const getFeriedagerFraFeriedagMap = (feriedager: FeriedagMap): Feriedag[] => {
     return Object.keys(feriedager).map((key) => feriedager[key]);
+};
+
+export const erFeriedagerEndretIPeriode = (feriedager: FeriedagMap, periode: DateRange): boolean => {
+    return getFeriedagerMeta(getFeriedagerIPeriode(feriedager, periode)).erEndret;
 };

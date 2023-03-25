@@ -2,7 +2,7 @@ import { Alert, Button } from '@navikt/ds-react';
 import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
-import { LovbestemtFeriePeriode } from '../../types/Sak';
+import { LovbestemtFeriePeriode } from '../../types/LovbestemtFeriePeriode';
 import DeleteButton from '../delete-button/DeleteButton';
 import EditButton from '../edit-button/EditButton';
 import FerieTag from '../tags/FerieTag';

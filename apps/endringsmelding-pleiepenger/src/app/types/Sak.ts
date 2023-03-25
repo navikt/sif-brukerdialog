@@ -69,11 +69,6 @@ export interface ArbeidAktiviteter {
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
 
-export interface LovbestemtFeriePeriode extends DateRange {
-    liggerISak?: boolean;
-    skalHaFerie: boolean;
-}
-
 export interface SakLovbestemtFerie {
     feriedager: FeriedagMap;
 }

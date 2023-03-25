@@ -14,9 +14,9 @@ import EndretTag from '../../../components/tags/EndretTag';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { getFeriedagerIPeriode } from '../../../utils/ferieUtils';
+import { erFeriedagerEndretIPeriode } from '../../../utils/ferieUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { getFeriedagerMeta, harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
+import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -44,7 +44,6 @@ export interface FeriedagMap {
 }
 
 export interface LovbestemtFerieFormValues {
-    // [LovbestemtFerieFormFields.perioder]: LovbestemtFeriePeriode[];
     [LovbestemtFerieFormFields.feriedager]: FeriedagMap;
 }
 
@@ -195,7 +194,7 @@ const LovbestemtFerieStep = () => {
                                                         Registrert ferie
                                                     </Heading>
                                                     <FeriedagerISøknadsperiode
-                                                        feriedager={values.feriedager || {}}
+                                                        alleFeriedager={values.feriedager || {}}
                                                         søknadsperiode={søknadsperiode}
                                                         onChange={(feriedager) => {
                                                             setFieldValue(
@@ -208,14 +207,13 @@ const LovbestemtFerieStep = () => {
                                             );
                                         }}
                                         renderHeader={(periode) => {
-                                            const feriedagerIPeriode = getFeriedagerIPeriode(feriedager, periode);
                                             return (
                                                 <>
                                                     <span style={{ display: 'inlineBlock' }}>
                                                         {dateFormatter.full(periode.from)} -{' '}
                                                         {dateFormatter.full(periode.to)}
                                                     </span>
-                                                    {getFeriedagerMeta(feriedagerIPeriode).erEndret && (
+                                                    {erFeriedagerEndretIPeriode(feriedager, periode) && (
                                                         <span
                                                             style={{
                                                                 position: 'relative',
