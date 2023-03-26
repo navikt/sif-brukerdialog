@@ -1,5 +1,22 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.10.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
+### Patch Changes
+
+-   Updated dependencies [ca33226c]
+    -   @navikt/sif-common-amplitude@2.11.0
+    -   @navikt/sif-common-formik-ds@0.14.0
+    -   @navikt/sif-common-soknad-ds@7.0.0
+    -   @navikt/sif-common-forms-ds@5.0.0
+    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-sentry@0.12.0
+    -   @navikt/sif-common-utils@3.27.0
+
 ## 1.9.0
 
 ### Minor Changes

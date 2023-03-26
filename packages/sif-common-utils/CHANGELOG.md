@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.27.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
 ## 3.26.0
 
 ### Minor Changes
