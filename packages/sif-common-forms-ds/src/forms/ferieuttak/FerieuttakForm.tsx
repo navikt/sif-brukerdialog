@@ -165,7 +165,7 @@ const FerieuttakForm = ({
                                 label: formLabels.toDate,
                                 name: FerieuttakFormFields.to,
                                 dayPickerProps: {
-                                    defaultMonth: defaultMonth || ISOStringToDate(formik.values.from),
+                                    defaultMonth: ISOStringToDate(formik.values.from) || defaultMonth,
                                 },
                                 validate: (value) => {
                                     const dateError = getDateRangeValidator({
