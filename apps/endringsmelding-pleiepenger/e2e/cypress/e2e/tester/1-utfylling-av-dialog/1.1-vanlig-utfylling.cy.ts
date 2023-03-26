@@ -60,8 +60,6 @@ const fyllUtFerieDialog = (from, to) => {
 
 const leggTilOgFjernFerie = () => {
     it('kan legge til, endre og fjerne én ferie', () => {
-        getTestElement('periode_0_header').click();
-
         /** Legg til */
         getTestElement('periode_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 1);
@@ -72,7 +70,7 @@ const leggTilOgFjernFerie = () => {
 
         getTestElement('periode_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
-            cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode').should(
+            cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
                 'søndag 20.11.2022 - fredag 25.11.2022'
             );
@@ -85,7 +83,7 @@ const leggTilOgFjernFerie = () => {
         fyllUtFerieDialog('28.11.2022', '29.11.2022');
         getTestElement('periode_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
-            cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode').should(
+            cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
                 'mandag 28.11.2022 - tirsdag 29.11.2022'
             );
@@ -95,18 +93,20 @@ const leggTilOgFjernFerie = () => {
         getTestElement('periode_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__fjernKnapp').click();
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
-            const angreKnapp = cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__angreKnapp');
+            const angreKnapp = cy.get(
+                '.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]'
+            );
             angreKnapp.should('exist');
         });
 
-        /** Angre fjern opprinnelig periode */
+        // /** Angre fjern opprinnelig periode */
         getTestElement('periode_0').within(() => {
-            cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__angreKnapp').click();
+            cy.get('.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]').click();
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__endreKnapp').should('exist');
         });
 
-        /** Endre opprinnelig periode */
+        // /** Endre opprinnelig periode */
         getTestElement('periode_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__endreKnapp').click();
         });
@@ -115,7 +115,7 @@ const leggTilOgFjernFerie = () => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 4);
         });
 
-        /** Gå videre */
+        // /** Gå videre */
         submitSkjema();
     });
 };

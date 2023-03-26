@@ -50,7 +50,12 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                 </div>
                                 <div className={bem.element('ferie__actions')}>
                                     {periode.skalHaFerie === false && onUndoDelete && (
-                                        <Button variant="secondary" size="small" onClick={() => onUndoDelete(periode)}>
+                                        <Button
+                                            type="button"
+                                            variant="secondary"
+                                            size="small"
+                                            onClick={() => onUndoDelete(periode)}
+                                            data-testid="angre_fjern_ferie_knapp">
                                             Angre fjern
                                         </Button>
                                     )}
