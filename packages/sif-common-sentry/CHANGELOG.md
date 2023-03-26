@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.12.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
 ## 0.11.0
 
 ### Minor Changes

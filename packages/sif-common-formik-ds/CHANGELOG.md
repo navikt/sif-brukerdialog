@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.14.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
 ## 0.13.0
 
 ### Minor Changes
