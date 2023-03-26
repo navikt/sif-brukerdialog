@@ -15,7 +15,11 @@ const FeriedagerTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagN
             <>
                 {dagerMedFerie?.length > 0 && (
                     <FerieTag style={{ marginRight: '.5rem', marginBottom: '.25rem' }}>
-                        {visDagNavn ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}` : 'Ferie registrert'}
+                        {visDagNavn
+                            ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}`
+                            : dagerMedFerie?.length === 1
+                            ? 'Feriedag'
+                            : 'Feriedager'}
                     </FerieTag>
                 )}
                 {dagerMedFjernetFerie?.length > 0 && (

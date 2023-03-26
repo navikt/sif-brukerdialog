@@ -73,7 +73,6 @@ export const getFeriedagerMeta = (feriedager: FeriedagMap): FeriedagerMeta => {
     );
 
     return {
-        alleDager,
         datoerFjernet,
         datoerLagtTil,
         datoerMedFerie,

@@ -1,0 +1,28 @@
+import { Tooltip } from '@navikt/ds-react';
+import React from 'react';
+import { InformationColored } from '@navikt/ds-icons';
+import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
+import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
+
+interface Props {
+    uke: ArbeidstidUkeTabellItem;
+}
+
+const UkeInfoIkon: React.FunctionComponent<Props> = ({ uke }) => {
+    return (
+        <Tooltip content={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}>
+            <InformationColored aria-label="Informasjon om uken" />
+        </Tooltip>
+    );
+};
+
+const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
+    const fra = visDato ? dateFormatter.dayDateMonthYear(from) : dateFormatter.day(from);
+    const til = visDato ? dateFormatter.dayDateMonthYear(to) : dateFormatter.day(to);
+    if (fra === til) {
+        return fra;
+    }
+    return `${fra} til ${til}`;
+};
+
+export default UkeInfoIkon;

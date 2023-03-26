@@ -13,7 +13,7 @@ import { ArbeidAktivitet, Arbeidsuke } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import { getEndringsdato, getTillattEndringsperiode } from '../../utils/endringsperiode';
-import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
+import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import EndreArbeidstidForm from '../endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../endre-arbeidstid-modal/EndreArbeidstidModal';
 import PerioderAccordion from '../perioder-accordion/PerioderAccordion';

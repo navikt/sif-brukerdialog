@@ -23,12 +23,12 @@ import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/Lovbestemt
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import {
     arbeidsukerHarLikNormaltidPerDag,
-    erHelArbeidsuke,
+    erKortArbeidsuke,
     getArbeidsukeUkenummer,
     getDagerTekst,
 } from '../../utils/arbeidsukeUtils';
 import { getFeriedagerIUke, getFeriedagerIUkeTekst } from '../../utils/ferieUtils';
-import FeriedagerTags from '../arbeidstid-uke-liste/components/FeriedagerTags';
+import FeriedagerTags from '../arbeidstid-uke-tabell/components/FeriedagerTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
@@ -113,7 +113,7 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
         ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerFjernet, arbeidsuker[0].periode, true)
         : [];
 
-    const gjelderKortUke = arbeidsuker.length === 1 && erHelArbeidsuke(arbeidsuker[0].periode) === false;
+    const gjelderKortUke = arbeidsuker.length === 1 && erKortArbeidsuke(arbeidsuker[0].periode);
 
     const getInitialValues = (): EndreArbeidstidFormValues => {
         if (endring?.type === TimerEllerProsent.PROSENT) {
@@ -297,7 +297,7 @@ const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: Lo
 const getNormalarbeidstidDescription = (intl: IntlShape, arbeidsuker: Arbeidsuke[]) => {
     if (arbeidsuker.length === 1) {
         const uke = arbeidsuker[0];
-        const gjelderKortUke = erHelArbeidsuke(uke.periode) === false;
+        const gjelderKortUke = erKortArbeidsuke(uke.periode);
         const periodeTekst = gjelderKortUke ? ` ${getDagerTekst(uke.periode)}` : ' denne uken';
         return `Oppgitt normal arbeidstid for ${periodeTekst} er ${getDurationString(intl, {
             duration: uke.normalt.uke,

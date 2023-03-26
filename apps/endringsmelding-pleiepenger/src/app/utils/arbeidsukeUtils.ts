@@ -12,8 +12,8 @@ export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {
     return dayjs(a1.periode.from).isBefore(a2.periode.from) ? -1 : 1;
 };
 
-export const erHelArbeidsuke = (periode: DateRange): boolean => {
-    return getDatesInDateRange(periode, true).length >= 5;
+export const erKortArbeidsuke = (periode: DateRange): boolean => {
+    return getDatesInDateRange(periode, true).length < 5;
 };
 
 export const getArbeidsukeUkenummer = (uke: Arbeidsuke, medÅrstall?: boolean): string => {

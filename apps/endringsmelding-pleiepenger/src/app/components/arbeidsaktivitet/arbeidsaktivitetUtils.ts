@@ -5,10 +5,10 @@ import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidE
 import { Arbeidsuke, ArbeidsukeMap } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
-import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
+import { erKortArbeidsuke } from '../../utils/arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../utils/beregnUtils';
 import { getLovbestemtFerieSøknadsdataForPeriode } from '../../utils/lovbestemtFerieUtils';
-import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-liste/ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;
@@ -24,12 +24,15 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
     dagerMedFerie: Date[] | undefined = [],
     dagerMedFjernetFerie: Date[] | undefined = []
 ): ArbeidstidUkeTabellItem => {
+    const erKortUke = erKortArbeidsuke(arbeidsuke.periode);
     return {
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
-        kanVelges: erHelArbeidsuke(arbeidsuke.periode) && dagerMedFerie.length === 0,
+        kanVelges: !erKortUke && dagerMedFerie.length === 0,
         antallDagerMedArbeidstid: arbeidsuke.antallDagerMedArbeidstid,
+        erKortUke,
+        harFeriedager: dagerMedFerie && dagerMedFerie.length > 0,
         ferie: {
             dagerMedFerie,
             dagerMedFjernetFerie,

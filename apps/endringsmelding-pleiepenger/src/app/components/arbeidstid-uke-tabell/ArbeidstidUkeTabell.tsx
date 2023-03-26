@@ -1,18 +1,18 @@
-import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tag, Tooltip } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { AddCircle, Edit, InformationColored } from '@navikt/ds-icons';
+import { AddCircle, Edit } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { erHelArbeidsuke } from '../../utils/arbeidsukeUtils';
+import EditButton from '../edit-button/EditButton';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
-import EditButton from '../edit-button/EditButton';
 import FeriedagerTags from './components/FeriedagerTags';
+import UkeInfoIkon from './components/UkeInfo';
 import './arbeidstidUkeTabell.scss';
 
 export interface ArbeidstidUkeTabellItem {
@@ -21,6 +21,8 @@ export interface ArbeidstidUkeTabellItem {
     isoDateRange: ISODateRange;
     periode: DateRange;
     antallDagerMedArbeidstid: number;
+    erKortUke: boolean;
+    harFeriedager?: boolean;
     ferie?: {
         dagerMedFerie: Date[];
         dagerMedFjernetFerie: Date[];
@@ -70,7 +72,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
     const synligeItems = listItems.filter((i, idx) => idx < (antallSynlig || 0));
 
-    const korteUker = synligeItems.filter((i) => erHelArbeidsuke(i.periode) === false).map((uke) => uke.periode);
+    const korteUker = synligeItems.filter((i) => i.erKortUke).map((uke) => uke.periode);
     const ukerMedFerie = synligeItems
         .filter((i) => i.ferie && i.ferie?.dagerMedFerie.length > 0)
         .map((uke) => uke.periode);
@@ -239,20 +241,12 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             <BodyShort as="div">
                                                 {dateFormatter.compact(uke.periode.from)} - {` `}
                                                 {dateFormatter.compact(uke.periode.to)}
-                                                {erHelArbeidsuke(uke.periode) ? undefined : (
+                                                {uke.erKortUke && (
                                                     <Block margin="s">
-                                                        <Tooltip
-                                                            content={`Kort uke - ${getDagerPeriode(
-                                                                uke.periode,
-                                                                false
-                                                            )}`}>
-                                                            <Tag variant="info" size="small">
-                                                                Kort uke
-                                                            </Tag>
-                                                        </Tooltip>
+                                                        <UkeInfoIkon uke={uke} />
                                                     </Block>
                                                 )}
-                                                {uke.ferie && uke.ferie.dagerMedFerie.length > 0 && (
+                                                {uke.harFeriedager && (
                                                     <Block margin="s">
                                                         <FeriedagerTags dagerMedFerie={uke.ferie?.dagerMedFerie} />
                                                     </Block>
@@ -385,17 +379,12 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 </div>
                                             )}
 
-                                            {erHelArbeidsuke(uke.periode) ? undefined : (
+                                            {uke.erKortUke && (
                                                 <Block margin="s">
-                                                    <Tooltip
-                                                        content={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}>
-                                                        <Tag variant="info" size="small">
-                                                            Kort uke
-                                                        </Tag>
-                                                    </Tooltip>
+                                                    <UkeInfoIkon uke={uke} />
                                                 </Block>
                                             )}
-                                            {uke.ferie && uke.ferie.dagerMedFerie.length > 0 && (
+                                            {uke.harFeriedager && (
                                                 <Block margin="s">
                                                     <FeriedagerTags dagerMedFerie={uke.ferie?.dagerMedFerie} />
                                                 </Block>
@@ -416,7 +405,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                     <div className="arbeidsukeTidsrom">
                                                         <span className="arbeidsukeTidsrom__tekst">
                                                             {getPeriodeTekst(uke.periode)}
-                                                            {uke.ferie && uke.ferie.dagerMedFerie.length > 0 && (
+                                                            {uke.harFeriedager && (
                                                                 <Block margin="s">
                                                                     <FeriedagerTags
                                                                         dagerMedFerie={uke.ferie?.dagerMedFerie}
@@ -425,15 +414,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                             )}
                                                         </span>
                                                         <span className="arbeidsukeTidsrom__info">
-                                                            {erHelArbeidsuke(uke.periode) ? undefined : (
-                                                                <Tooltip
-                                                                    content={`Kort uke - ${getDagerPeriode(
-                                                                        uke.periode,
-                                                                        false
-                                                                    )}`}>
-                                                                    <InformationColored aria-label="Informasjon om uken" />
-                                                                </Tooltip>
-                                                            )}
+                                                            {uke.erKortUke && <UkeInfoIkon uke={uke} />}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -466,15 +447,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
             </div>
         </div>
     );
-};
-
-const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
-    const fra = visDato ? dateFormatter.dayDateMonthYear(from) : dateFormatter.day(from);
-    const til = visDato ? dateFormatter.dayDateMonthYear(to) : dateFormatter.day(to);
-    if (fra === til) {
-        return fra;
-    }
-    return `${fra} til ${til}`;
 };
 
 export default ArbeidstidUkeTabell;

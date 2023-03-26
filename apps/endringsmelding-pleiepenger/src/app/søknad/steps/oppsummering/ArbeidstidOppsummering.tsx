@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import ArbeidstidUkeTabell, {
     ArbeidstidUkeTabellItem,
-} from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeTabell';
+} from '../../../components/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import {
     ArbeidstakerApiData,
@@ -18,6 +18,7 @@ import {
     ArbeidstidPeriodeApiDataMap,
 } from '../../../types/søknadApiData/SøknadApiData';
 import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
+import { erKortArbeidsuke } from '../../../utils/arbeidsukeUtils';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
@@ -102,6 +103,7 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
         isoDateRange,
         periode,
         antallDagerMedArbeidstid,
+        erKortUke: erKortArbeidsuke(periode),
         opprinnelig: {
             normalt: getTimerPerUkeFraTimerPerDag(
                 ISODurationToDuration(_opprinneligNormaltPerDag),
