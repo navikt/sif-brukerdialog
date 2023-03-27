@@ -73,9 +73,9 @@ const harArbeidsaktivitetUtenArbeidsgiver = (
     arbeidsaktiviteter: K9SakArbeidstaker[] = [],
     arbeidsgivere: Arbeidsgiver[]
 ) => {
-    return arbeidsaktiviteter.some(
-        (a) => arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === a.organisasjonsnummer) === false
-    );
+    return arbeidsaktiviteter
+        .map(getArbeidsaktivitetId)
+        .some((id) => arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === id) === false);
 };
 
 const getArbeidsaktivitetId = (arbeidsaktivitet: K9SakArbeidstaker): string => {
