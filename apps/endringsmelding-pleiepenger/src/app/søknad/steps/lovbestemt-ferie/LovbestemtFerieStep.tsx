@@ -221,7 +221,7 @@ const LovbestemtFerieStep = () => {
                                                                 top: '-.125rem',
                                                             }}>
                                                             {` `}
-                                                            <EndretTag />
+                                                            <EndretTag>Ferie endret</EndretTag>
                                                         </span>
                                                     )}
                                                 </>

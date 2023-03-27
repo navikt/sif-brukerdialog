@@ -44,7 +44,7 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                     )}>
                                     <span className={'dato'}>{periodeTekst}</span>
                                     {periode.liggerISak && periode.skalHaFerie === false && (
-                                        <FerieTag type="fjernet">Fjernet</FerieTag>
+                                        <FerieTag type="fjernet">Ferie fjernet</FerieTag>
                                     )}
                                     {periode.liggerISak === false && <FerieTag type="registrert">Lagt til</FerieTag>}
                                 </div>

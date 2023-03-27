@@ -32,7 +32,7 @@
         width: 3ch;
     }
     &__periode {
-        width: 35%;
+        width: 44%;
     }
     &__endre {
         width: 5ch;
@@ -52,6 +52,10 @@
     }
     &__info {
         font-size: 1.4rem;
+        white-space: nowrap;
+        svg {
+            margin: 0 0.25rem;
+        }
     }
 }
 

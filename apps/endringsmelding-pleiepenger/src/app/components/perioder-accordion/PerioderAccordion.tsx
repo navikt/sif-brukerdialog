@@ -40,7 +40,7 @@ function PerioderAccordion<Type extends DateRange>({
                                 data-testid={`periode_${index}`}
                                 defaultOpen={erÅpen(periode, defaultOpen)}>
                                 <Accordion.Header data-testid={`periode_${index}_header`}>
-                                    <Ingress as="span" className="periodeHeader">
+                                    <Ingress as="div" className="periodeHeader">
                                         {renderHeader(periode)}
                                     </Ingress>
                                 </Accordion.Header>

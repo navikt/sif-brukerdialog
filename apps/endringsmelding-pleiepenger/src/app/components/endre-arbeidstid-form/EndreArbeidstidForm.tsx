@@ -28,7 +28,7 @@ import {
     getDagerTekst,
 } from '../../utils/arbeidsukeUtils';
 import { getFeriedagerIUke, getFeriedagerIUkeTekst } from '../../utils/ferieUtils';
-import FeriedagerTags from '../arbeidstid-uke-tabell/components/FeriedagerTags';
+import UkeTags from '../arbeidstid-uke-tabell/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
@@ -266,7 +266,7 @@ const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: Lo
                 {getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}
                 {dagerMedFerie.length > 0 && (
                     <Block margin="m">
-                        <FeriedagerTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
+                        <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />
                     </Block>
                 )}
             </BodyShort>

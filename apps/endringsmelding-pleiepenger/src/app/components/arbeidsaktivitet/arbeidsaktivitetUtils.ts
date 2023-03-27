@@ -33,6 +33,7 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
         antallDagerMedArbeidstid: arbeidsuke.antallDagerMedArbeidstid,
         erKortUke,
         harFeriedager: dagerMedFerie && dagerMedFerie.length > 0,
+        harFjernetFeriedager: dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0,
         ferie: {
             dagerMedFerie,
             dagerMedFjernetFerie,
