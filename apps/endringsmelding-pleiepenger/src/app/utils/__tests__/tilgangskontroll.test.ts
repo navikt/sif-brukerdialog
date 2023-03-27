@@ -9,7 +9,6 @@ const arbeidsgiver3: Arbeidsgiver = { organisasjonsnummer: '3' } as Arbeidsgiver
 
 const arbeidstaker1: K9SakArbeidstaker = { organisasjonsnummer: '1' } as K9SakArbeidstaker;
 const arbeidstaker2: K9SakArbeidstaker = { organisasjonsnummer: '2' } as K9SakArbeidstaker;
-// const arbeidstaker3: K9SakArbeidstaker = { organisasjonsnummer: '3' } as K9SakArbeidstaker;
 
 jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
     getEnvironmentVariable: () => {
@@ -26,7 +25,7 @@ describe('tilgangskontroll', () => {
         const result = tilgangskontroll([true, false] as any, []);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
-    it('stopper hvis bruker har arbeidgiver som ikke er i sak', () => {
+    it('stopper hvis bruker har arbeidsgiver som ikke er i sak', () => {
         const sak: K9Sak = {
             ytelse: {
                 arbeidstid: {
@@ -44,7 +43,7 @@ describe('tilgangskontroll', () => {
             expect(result.årsak).toEqual(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
         }
     });
-    it('stopper hvis det er arbeidsaktiviteter i sak som ikke har arbeidsforhold ', () => {
+    it('stopper hvis det er arbeidsaktivitet i sak som ikke har arbeidsgiver', () => {
         const sak: K9Sak = {
             ytelse: {
                 arbeidstid: {
@@ -69,14 +68,14 @@ describe('tilgangskontroll', () => {
 
 describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
     it('returnerer true dersom arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidstakerK9Sak(
+        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver3],
             [arbeidstaker1, arbeidstaker2]
         );
         expect(result).toBeTruthy();
     });
     it('returnerer false dersom alle arbeidsgivere har arbeidsaktivitet i sak', () => {
-        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidstakerK9Sak(
+        const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver1, arbeidsgiver2],
             [arbeidstaker1, arbeidstaker2]
         );
@@ -85,14 +84,14 @@ describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
 });
 describe('harArbeidstakerISakUtenArbeidsforhold', () => {
     it('returnerer true dersom har har arbeidsaktivitet i sak med ikke tilhørende arbeidsgiver', () => {
-        const result = tilgangskontrollUtils.harArbeidstakerISakUtenArbeidsforhold(
+        const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
             [arbeidsgiver3]
         );
         expect(result).toBeTruthy();
     });
     it('returnerer false dersom alle arbeidsaktiviteter i sak har tilhørende arbeidsgiver', () => {
-        const result = tilgangskontrollUtils.harArbeidstakerISakUtenArbeidsforhold(
+        const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
             [arbeidsgiver1, arbeidsgiver2]
         );
