@@ -6,12 +6,15 @@ import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
 import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
 import './arbeidAktivitetHeader.scss';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import EndretTag from '../../tags/EndretTag';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
+    erEndret?: boolean;
 }
 
-const ArbeidAktivitetHeader: React.FunctionComponent<Props> = ({ arbeidAktivitet }) => {
+const ArbeidAktivitetHeader: React.FunctionComponent<Props> = ({ arbeidAktivitet, erEndret }) => {
     return (
         <div className="arbeidAktivitetHeader">
             <div className="arbeidAktivitetHeader__icon">
@@ -35,6 +38,11 @@ const ArbeidAktivitetHeader: React.FunctionComponent<Props> = ({ arbeidAktivitet
                         )}
                     </BodyLong>
                 ) : undefined}
+                {erEndret && (
+                    <Block margin="m">
+                        <EndretTag>Arbeidstid endret</EndretTag>
+                    </Block>
+                )}
             </div>
         </div>
     );

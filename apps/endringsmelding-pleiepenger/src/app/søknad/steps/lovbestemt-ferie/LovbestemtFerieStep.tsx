@@ -14,6 +14,7 @@ import EndretTag from '../../../components/tags/EndretTag';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 import { erFeriedagerEndretIPeriode } from '../../../utils/ferieUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
@@ -63,6 +64,7 @@ const LovbestemtFerieStep = () => {
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
+    const harValgtAtArbeidstidSkalEndres = getValgteEndringer(hvaSkalEndres, false).arbeidstidSkalEndres;
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
@@ -198,7 +200,7 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
                                 </FormBlock>
-                                {harFjernetFerie && (
+                                {harFjernetFerie && harValgtAtArbeidstidSkalEndres === false && (
                                     <Block margin="l">
                                         <Alert variant="warning">
                                             Du har fjernet dager med ferie. Dersom du skal du jobbe disse dagene må du

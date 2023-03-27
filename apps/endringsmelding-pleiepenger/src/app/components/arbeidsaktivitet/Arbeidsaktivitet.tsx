@@ -8,6 +8,7 @@ import ArbeidAktivitetHeader from './components/ArbeidAktivitetHeader';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
 import './arbeidsaktivitet.scss';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -25,13 +26,20 @@ const Arbeidsaktivitet = ({
     onArbeidstidAktivitetChange,
 }: Props) => {
     const perioder = arbeidAktivitet.perioderMedArbeidstid;
+    const harEndringer =
+        endringer !== undefined &&
+        perioder.some((periode) => {
+            return Object.keys(endringer)
+                .map(ISODateRangeToDateRange)
+                .some((dr) => isDateInDateRange(dr.from, periode));
+        });
 
     return (
         <div data-testid={`aktivitet_${arbeidAktivitet.id}`}>
             {renderAsExpansionCard ? (
                 <ExpansionCard aria-label={getArbeidAktivitetNavn(arbeidAktivitet)} defaultOpen={true}>
                     <ExpansionCard.Header>
-                        <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
+                        <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} erEndret={harEndringer} />
                     </ExpansionCard.Header>
                     <ExpansionCard.Content>
                         <ArbeidsaktivitetContent
@@ -45,7 +53,7 @@ const Arbeidsaktivitet = ({
                 </ExpansionCard>
             ) : (
                 <Panel border={true}>
-                    <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} />
+                    <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} erEndret={harEndringer} />
                     <Block margin="xl">
                         <ArbeidsaktivitetContent
                             perioder={perioder}
