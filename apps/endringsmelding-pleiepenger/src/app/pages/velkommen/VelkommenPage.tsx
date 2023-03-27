@@ -123,17 +123,17 @@ const VelkommenPage = () => {
                                         validate={getListValidator({ minItems: 1 })}
                                         checkboxes={[
                                             {
-                                                'data-testid': 'endreArbeidstid',
-                                                label: 'Jobb i pleiepengeperioden',
-                                                description: 'Endre hvor mye du jobber i perioden med pleiepenger',
-                                                value: EndringType.arbeidstid,
-                                            },
-                                            {
                                                 'data-testid': 'endreLovbestemtFerie',
                                                 label: 'Lovbestemt ferie',
                                                 description:
                                                     'Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger',
                                                 value: EndringType.lovbestemtFerie,
+                                            },
+                                            {
+                                                'data-testid': 'endreArbeidstid',
+                                                label: 'Jobb i pleiepengeperioden',
+                                                description: 'Endre hvor mye du jobber i perioden med pleiepenger',
+                                                value: EndringType.arbeidstid,
                                             },
                                         ]}
                                     />

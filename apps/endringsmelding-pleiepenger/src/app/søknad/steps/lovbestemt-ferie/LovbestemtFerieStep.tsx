@@ -1,4 +1,4 @@
-import { BodyLong, Heading, ReadMore } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -99,43 +99,9 @@ const LovbestemtFerieStep = () => {
                             Slik endrer du ferie
                         </Heading>
                         <InfoList>
-                            <li>Du kan legge til, endre eller fjerne ferie i perioder du har søkt om pleiepenger.</li>
-                            <li>Ferie overstyrer eventuell arbeidstid for dagene du legger til.</li>
-                            <li>Du trenger kun registrere ferie for ukedager</li>
+                            <li>Du kan endre, legge til, eller fjerne perioder med ferie i pleiepengeperioden din.</li>
+                            <li>Du skal kun registrere ferie for ukedager (mandag til fredag).</li>
                         </InfoList>
-                        <ReadMore header="Hvordan registrere ferie hvis du jobber helg?">
-                            <p>
-                                Har du arbeid som innebærer jobb lørdag/søndag, og derfor ønsker å legge inn ferie for
-                                helg, må du ta hensyn til det totale antall timer jobb du har registrert i uken det
-                                gjelder.
-                            </p>
-                            <p>
-                                Du får kun utbetalt pleiepenger for hverdager. I søknaden må man legge inn arbeidstid
-                                som snitt per uke. Disse timene blir smurt mandag til fredag, uavhengig av du jobber i
-                                helg. Ferie derimot reduserer utbetaling per dag.
-                            </p>
-                            <p>
-                                Skal du legge inn ferie for helg, må du derfor også legge inn ferie for ukedager timene
-                                er blitt smurt på. Skal du ha ferie i kun deler av en uke som inkluderer helg, må du
-                                justere ned timer med jobb for de resterende dagene den uken.
-                            </p>
-                            <Heading level="4" size="xsmall" spacing={true}>
-                                Eksempel:{' '}
-                            </Heading>
-                            <p>
-                                Du jobber 15 timer hver tredje helg i pleiepengeperioden. I sommerferien skal du legge
-                                inn ferie for en av disse helgene.
-                            </p>
-                            <p>
-                                I søknaden la du inn 15 timer jobb i snitt hver tredje uke, som smøres til 3 timer per
-                                dag mandag til fredag.
-                            </p>
-                            <p>
-                                For at ferien skal bli riktig registrert må du legge inn ferie mandag til fredag denne
-                                uken så all arbeidstid blir overstyrt. Det er ikke nødvendig å legge inn ferie for
-                                lørdag til søndag.
-                            </p>
-                        </ReadMore>
                     </BodyLong>
                 </>
             </SifGuidePanel>
@@ -145,6 +111,9 @@ const LovbestemtFerieStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values, setFieldValue }) => {
                     const feriedager: FeriedagMap = values[LovbestemtFerieFormFields.feriedager] || {};
+                    const harFjernetFerie = Object.keys(feriedager)
+                        .map((key) => feriedager[key])
+                        .some((feriedag) => feriedag.skalHaFerie === false);
                     return (
                         <>
                             <PersistStepFormValues
@@ -229,6 +198,14 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
                                 </FormBlock>
+                                {harFjernetFerie && (
+                                    <Block margin="l">
+                                        <Alert variant="warning">
+                                            Du har fjernet dager med ferie. Dersom du skal du jobbe disse dagene må du
+                                            ser over at jobb i perioden er riktig. Dette gjør du på neste steg.
+                                        </Alert>
+                                    </Block>
+                                )}
                             </Form>
                         </>
                     );

@@ -8,9 +8,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import Arbeidsaktivitet from '../../../components/arbeidsaktivitet/Arbeidsaktivitet';
-import PeriodeTekst from '../../../components/periode-tekst/PeriodeTekst';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -123,15 +121,8 @@ const ArbeidstidStep = () => {
             {harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie) && (
                 <Block margin="xl">
                     <Alert variant="warning">
-                        Du har fjernet dager med ferie:
-                        <InfoList>
-                            {søknadsdata.lovbestemtFerie?.feriedagerMeta.perioderFjernet.map((periode) => (
-                                <li key={dateRangeToISODateRange(periode)} className="capsFirstChar">
-                                    <PeriodeTekst periode={periode} inkluderDagNavn={true} />
-                                </li>
-                            ))}
-                        </InfoList>
-                        <p>Skal du jobbe disse dagene, se over at jobb i perioden er riktig.</p>
+                        Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er
+                        riktig.
                         <ReadMore header="Hvordan påvirker ferie arbeidstiden?">
                             <p>
                                 Feriedager overstyrer alltid timer med arbeid i en uke. Det vil si at dersom du oppgir 5
