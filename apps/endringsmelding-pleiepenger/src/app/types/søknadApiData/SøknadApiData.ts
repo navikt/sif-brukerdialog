@@ -1,5 +1,6 @@
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFerieType } from '../../types/LovbestemtFerieType';
+import { EndringType } from '../EndringType';
 
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;
@@ -45,6 +46,7 @@ interface YtelseApiData {
     barn: BarnApiData;
     dataBruktTilUtledning: {
         soknadDialogCommitSha: string;
+        valgteEndringer: EndringType[];
     };
 }
 

@@ -1,12 +1,17 @@
 import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak): SøknadApiData | undefined => {
+export const getApiDataFromSøknadsdata = (
+    søknadsdata: Søknadsdata,
+    sak: Sak,
+    hvaSkalEndres: EndringType[]
+): SøknadApiData | undefined => {
     const { id, arbeidstid, lovbestemtFerie } = søknadsdata;
     if (!arbeidstid && !lovbestemtFerie) {
         return undefined;
@@ -26,6 +31,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
             arbeidstid: arbeidstid ? getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter) : undefined,
             dataBruktTilUtledning: {
                 soknadDialogCommitSha: getCommitShaFromEnv() || '',
+                valgteEndringer: hvaSkalEndres,
             },
         },
     };

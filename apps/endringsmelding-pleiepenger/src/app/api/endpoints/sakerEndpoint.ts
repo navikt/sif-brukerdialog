@@ -55,6 +55,7 @@ const sakerEndpoint = {
                         };
                         k9saker.push(ugyldigSak);
                         appSentryLogger.logError('ugyldigK9Format', JSON.stringify(error));
+                        appSentryLogger.logInfo('debug.k9format.ikkeGyldig', JSON.stringify(maskK9FormatSak(sak)));
                     } else {
                         throw error;
                     }

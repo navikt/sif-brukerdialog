@@ -2,28 +2,17 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
-import { dateRangeToISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
-import { LovbestemtFeriePeriode } from '../../../types/LovbestemtFeriePeriode';
 import { LovbestemtFerieApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { getLovbestemtFerieOppsummeringInfo } from '../../../utils/oppsummeringUtils';
 
 interface Props {
     lovbestemtFerie: LovbestemtFerieApiData;
 }
 
 const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestemtFerie }) => {
-    const perioder: LovbestemtFeriePeriode[] = Object.keys(lovbestemtFerie.perioder).map(
-        (isoDateRange): LovbestemtFeriePeriode => {
-            return {
-                ...ISODateRangeToDateRange(isoDateRange),
-                skalHaFerie: lovbestemtFerie.perioder[isoDateRange].skalHaFerie,
-            };
-        }
-    );
-
-    const perioderLagtTil = perioder.filter((p) => p.skalHaFerie === true);
-    const perioderFjernet = perioder.filter((p) => p.skalHaFerie === false);
-
+    const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return (
         <>
             {perioderLagtTil.length > 0 && (

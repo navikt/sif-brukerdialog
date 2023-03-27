@@ -13,7 +13,8 @@ import { SummarySection } from '@navikt/sif-common-soknad-ds/lib';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { getValgteEndringer } from '../../../utils/endringTypeUtils';
+import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
+import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
@@ -27,7 +28,6 @@ import {
     harEndringerILovbestemtFerieApiData,
 } from './oppsummeringStepUtils';
 import './oppsummering.css';
-import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -66,7 +66,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, hvaSkalEndres);
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;
@@ -78,7 +78,7 @@ const OppsummeringStep = () => {
     const lovbestemtFerieErEndret = harEndringerILovbestemtFerieApiData(lovbestemtFerie);
     const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getValgteEndringer(
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie)
     );

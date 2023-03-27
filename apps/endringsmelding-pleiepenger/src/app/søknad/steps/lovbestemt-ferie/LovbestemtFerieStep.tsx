@@ -64,7 +64,7 @@ const LovbestemtFerieStep = () => {
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
-    const harValgtAtArbeidstidSkalEndres = getValgteEndringer(hvaSkalEndres, false).arbeidstidSkalEndres;
+    const harValgtAtArbeidstidSkalEndres = getValgteEndringer(hvaSkalEndres).arbeidstidSkalEndres;
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
