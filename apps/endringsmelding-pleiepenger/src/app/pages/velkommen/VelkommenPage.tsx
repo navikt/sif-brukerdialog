@@ -60,13 +60,7 @@ const VelkommenPage = () => {
             erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerArktiviteter.length > 0,
             erFrilanser: sak.arbeidAktiviteter.frilanser !== undefined,
         });
-        dispatch(
-            actionsCreator.startSøknad(
-                sak,
-                aktiviteterSomKanEndres?.length === 1 ? aktiviteterSomKanEndres[0] : undefined,
-                hvaSkalEndres
-            )
-        );
+        dispatch(actionsCreator.startSøknad(sak, aktiviteterSomKanEndres, hvaSkalEndres));
         dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(steps[0])));
     };
 

@@ -5,7 +5,6 @@ import ferieuttakMessages from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak
 import { endreArbeidstidMessages } from '../components/endre-arbeidstid-form/endreArbeidstidMessages';
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
-import { aktivitetStepMessages } from '../søknad/steps/aktivitet/aktivitetStepMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
 import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
 import { defaultMessages } from './messages';
@@ -20,7 +19,6 @@ const bokmålstekster = {
     ...velkommenPageMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...samtykkeFormOverrideMessages.nb,
-    ...aktivitetStepMessages.nb,
     ...oppsummeringStepMessages.nb,
     ...sifCommonSoknadOverrideMessages.nb,
     ...ferieuttakMessages.nb,

@@ -1,3 +1,3 @@
 export interface AktivitetSøknadsdata {
-    aktivitetSomSkalEndres: string[];
+    aktiviteterSomSkalEndres: string[];
 }

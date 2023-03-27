@@ -38,7 +38,7 @@ interface ResetSøknad {
 }
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
-    payload: { sak: Sak; aktivitetSomSkalEndres: ArbeidAktivitet | undefined; hvaSkalEndres: EndringType[] };
+    payload: { sak: Sak; aktiviteterSomSkalEndres: ArbeidAktivitet[]; hvaSkalEndres: EndringType[] };
 }
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
@@ -98,11 +98,11 @@ const resetSøknad = (): ResetSøknad => ({
 
 const startSøknad = (
     sak: Sak,
-    aktivitetSomSkalEndres: ArbeidAktivitet | undefined,
+    aktiviteterSomSkalEndres: ArbeidAktivitet[],
     hvaSkalEndres: EndringType[]
 ): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
-    payload: { sak, aktivitetSomSkalEndres, hvaSkalEndres },
+    payload: { sak, aktiviteterSomSkalEndres, hvaSkalEndres },
 });
 
 const avbrytSøknad = (): AvbrytSøknad => ({

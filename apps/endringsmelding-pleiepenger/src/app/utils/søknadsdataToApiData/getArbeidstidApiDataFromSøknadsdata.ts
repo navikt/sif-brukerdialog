@@ -96,7 +96,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
     arbeidAktiviteter.arbeidstakerArktiviteter.forEach((aktivitet) => {
         const endring = arbeidAktivitetEndring[aktivitet.id];
-        const skalEndres = arbeidAktivitet.aktivitetSomSkalEndres.some((id) => id === aktivitet.id);
+        const skalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some((id) => id === aktivitet.id);
 
         if (endring && skalEndres) {
             const {
@@ -113,10 +113,10 @@ export const getArbeidstidApiDataFromSøknadsdata = (
         }
     });
 
-    const frilanserSkalEndres = arbeidAktivitet.aktivitetSomSkalEndres.some(
+    const frilanserSkalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some(
         (id) => id === ArbeidAktivitetType.frilanser
     );
-    const snSkalEndres = arbeidAktivitet.aktivitetSomSkalEndres.some(
+    const snSkalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some(
         (id) => id === ArbeidAktivitetType.selvstendigNæringsdrivende
     );
 

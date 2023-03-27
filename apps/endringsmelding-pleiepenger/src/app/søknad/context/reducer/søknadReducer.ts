@@ -13,15 +13,13 @@ const initialSøknadsdata: Søknadsdata = {
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
-            const { aktivitetSomSkalEndres, sak, hvaSkalEndres } = action.payload;
+            const { aktiviteterSomSkalEndres, sak, hvaSkalEndres } = action.payload;
             return {
                 ...state,
                 søknadsdata: {
                     id: guid(),
                     harForståttRettigheterOgPlikter: true,
-                    aktivitet: aktivitetSomSkalEndres
-                        ? { aktivitetSomSkalEndres: [aktivitetSomSkalEndres.id] }
-                        : undefined,
+                    aktivitet: { aktiviteterSomSkalEndres: aktiviteterSomSkalEndres.map((a) => a.id) },
                     lovbestemtFerie: {
                         feriedager: sak.lovbestemtFerie.feriedager,
                         feriedagerMeta: getFeriedagerMeta(sak.lovbestemtFerie.feriedager),
