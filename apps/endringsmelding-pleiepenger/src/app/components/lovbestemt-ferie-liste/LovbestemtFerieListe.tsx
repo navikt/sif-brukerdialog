@@ -46,7 +46,9 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                     {periode.liggerISak && periode.skalHaFerie === false && (
                                         <FerieTag type="fjernet">Ferie fjernet</FerieTag>
                                     )}
-                                    {periode.liggerISak === false && <FerieTag type="registrert">Lagt til</FerieTag>}
+                                    {periode.liggerISak === false && (
+                                        <FerieTag type="registrert">Ferie lagt til</FerieTag>
+                                    )}
                                 </div>
                                 <div className={bem.element('ferie__actions')}>
                                     {periode.skalHaFerie === false && onUndoDelete && (
