@@ -7,9 +7,11 @@ import {
     isDateInDateRange,
     isDateWeekDay,
     ISODateToDate,
+    sortDateRange,
+    sortDates,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { Feriedag, FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { getFeriedagerMeta } from './lovbestemtFerieUtils';
 
 export const getFeriedagerIUke = (feriedager: Date[], uke: DateRange, inkluderHelg: boolean): Date[] => {
@@ -50,14 +52,16 @@ export const getFeriedagerMapFromPerioder = (
     liggerISak: boolean
 ): FeriedagMap => {
     const feriedager: FeriedagMap = {};
-    perioder.forEach((periode) => {
-        getDatesInDateRange(periode).forEach((dato) => {
-            feriedager[dateToISODate(dato)] = {
-                dato,
-                skalHaFerie,
-                liggerISak,
-            };
-        });
+    perioder.sort(sortDateRange).forEach((periode) => {
+        getDatesInDateRange(periode)
+            .sort(sortDates)
+            .forEach((dato) => {
+                feriedager[dateToISODate(dato)] = {
+                    dato,
+                    skalHaFerie,
+                    liggerISak,
+                };
+            });
     });
     return feriedager;
 };
@@ -65,15 +69,12 @@ export const getFeriedagerMapFromPerioder = (
 export const getFeriedagerIPeriode = (feriedager: FeriedagMap, periode: DateRange): FeriedagMap => {
     const feriedagerIPeriode: FeriedagMap = {};
     Object.keys(feriedager)
+        .sort()
         .filter((key) => isDateInDateRange(ISODateToDate(key), periode))
         .forEach((key) => {
             feriedagerIPeriode[key] = feriedager[key];
         });
     return feriedagerIPeriode;
-};
-
-export const getFeriedagerFraFeriedagMap = (feriedager: FeriedagMap): Feriedag[] => {
-    return Object.keys(feriedager).map((key) => feriedager[key]);
 };
 
 export const erFeriedagerEndretIPeriode = (feriedager: FeriedagMap, periode: DateRange): boolean => {

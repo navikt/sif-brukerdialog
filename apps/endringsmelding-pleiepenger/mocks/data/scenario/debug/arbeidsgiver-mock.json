@@ -1,5 +1,12 @@
 {
     "organisasjoner": [
-        { "navn": "Dykkert svømmeutstyr", "organisasjonsnummer": "947064649", "ansattFom": "2008-10-01" }
-    ]
+        {
+            "organisasjonsnummer": "839942907",
+            "navn": "HÅRREISENDE FRISØR",
+            "ansattFom": "2002-05-09",
+            "ansattTom": null
+        }
+    ],
+    "privateArbeidsgivere": null,
+    "frilansoppdrag": null
 }
