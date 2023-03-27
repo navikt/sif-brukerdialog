@@ -1,6 +1,6 @@
 import { durationsAreEqual } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
+import { ArbeidAktivitet, ArbeidAktiviteter } from '../../../types/Sak';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { getArbeidsukerIArbeidAktivitet } from '../../../utils/arbeidAktivitetUtils';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
@@ -50,21 +50,15 @@ export const cleanupArbeidAktivitetEndringer = (
     return cleanedEndringer;
 };
 
-export const getAktiviteterSomSkalEndres = (
-    arbeidAktiviteter: ArbeidAktiviteter,
-    valgteAktiviteter: string[] = []
-): ArbeidAktivitet[] => {
+export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter): ArbeidAktivitet[] => {
     const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
-    const aktiviteter: ArbeidAktivitet[] = arbeidstaker.filter((a) => (valgteAktiviteter || []).includes(a.id));
-    if (frilanser !== undefined && valgteAktiviteter.includes(ArbeidAktivitetType.frilanser)) {
+    const aktiviteter: ArbeidAktivitet[] = [...arbeidstaker];
+    if (frilanser !== undefined) {
         aktiviteter.push({ ...frilanser });
     }
 
-    if (
-        selvstendigNæringsdrivende !== undefined &&
-        valgteAktiviteter.includes(ArbeidAktivitetType.selvstendigNæringsdrivende)
-    ) {
+    if (selvstendigNæringsdrivende !== undefined) {
         aktiviteter.push({ ...selvstendigNæringsdrivende });
     }
     return aktiviteter;

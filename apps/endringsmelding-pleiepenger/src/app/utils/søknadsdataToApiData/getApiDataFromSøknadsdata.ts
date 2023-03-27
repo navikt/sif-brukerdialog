@@ -7,8 +7,8 @@ import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFrom
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak): SøknadApiData | undefined => {
-    const { id, arbeidstid, aktivitet, lovbestemtFerie } = søknadsdata;
-    if ((!arbeidstid || !aktivitet) && !lovbestemtFerie) {
+    const { id, arbeidstid, lovbestemtFerie } = søknadsdata;
+    if (!arbeidstid && !lovbestemtFerie) {
         return undefined;
     }
     return {
@@ -23,10 +23,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, sak: Sak)
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
             lovbestemtFerie: lovbestemtFerie ? getLovbestemtFerieApiDataFromSøknadsdata(lovbestemtFerie) : undefined,
-            arbeidstid:
-                arbeidstid && aktivitet
-                    ? getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter, aktivitet)
-                    : undefined,
+            arbeidstid: arbeidstid ? getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter) : undefined,
             dataBruktTilUtledning: {
                 soknadDialogCommitSha: getCommitShaFromEnv() || '',
             },

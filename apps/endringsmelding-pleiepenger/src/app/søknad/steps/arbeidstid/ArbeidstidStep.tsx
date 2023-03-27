@@ -1,8 +1,7 @@
-import { Alert, BodyLong, Heading, Panel, ReadMore } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, ReadMore } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
@@ -72,8 +71,7 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const valgteAktiviteter = søknadsdata.aktivitet?.aktiviteterSomSkalEndres || [];
-    const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
+    const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter);
 
     const onArbeidstidAktivitetChange = (
         arbeidAktivitetId: string,
@@ -154,23 +152,22 @@ const ArbeidstidStep = () => {
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
                                     return (
-                                        <FormBlock key={arbeidAktivitet.id}>
-                                            <Panel border={true}>
-                                                <Arbeidsaktivitet
-                                                    arbeidAktivitet={arbeidAktivitet}
-                                                    endringer={endringer[arbeidAktivitet.id]}
-                                                    lovbestemtFerie={søknadsdata.lovbestemtFerie}
-                                                    onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
-                                                        onArbeidstidAktivitetChange(
-                                                            arbeidAktivitet.id,
-                                                            arbeidstidEndringer,
-                                                            values,
-                                                            setValues
-                                                        );
-                                                    }}
-                                                />
-                                            </Panel>
-                                        </FormBlock>
+                                        <Block key={arbeidAktivitet.id} margin="l">
+                                            <Arbeidsaktivitet
+                                                renderAsExpansionCard={arbeidAktiviteter.length > 1}
+                                                arbeidAktivitet={arbeidAktivitet}
+                                                endringer={endringer[arbeidAktivitet.id]}
+                                                lovbestemtFerie={søknadsdata.lovbestemtFerie}
+                                                onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
+                                                    onArbeidstidAktivitetChange(
+                                                        arbeidAktivitet.id,
+                                                        arbeidstidEndringer,
+                                                        values,
+                                                        setValues
+                                                    );
+                                                }}
+                                            />
+                                        </Block>
                                     );
                                 })}
                             </Form>

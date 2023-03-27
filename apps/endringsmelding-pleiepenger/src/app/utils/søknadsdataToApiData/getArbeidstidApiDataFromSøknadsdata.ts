@@ -19,7 +19,6 @@ import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiDataMap,
 } from '../../types/søknadApiData/SøknadApiData';
-import { AktivitetSøknadsdata } from '../../types/søknadsdata/AktivitetSøknadsdata';
 import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
@@ -86,8 +85,7 @@ const getArbeidstidInfo = (
 
 export const getArbeidstidApiDataFromSøknadsdata = (
     { arbeidAktivitetEndring }: ArbeidstidSøknadsdata,
-    arbeidAktiviteter: ArbeidAktiviteter,
-    arbeidAktivitet: AktivitetSøknadsdata
+    arbeidAktiviteter: ArbeidAktiviteter
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidAktivitetEndring[ArbeidAktivitetType.frilanser];
     const selvstendigNæringsdrivendeAktivitetEndring =
@@ -96,9 +94,8 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
     arbeidAktiviteter.arbeidstakerArktiviteter.forEach((aktivitet) => {
         const endring = arbeidAktivitetEndring[aktivitet.id];
-        const skalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some((id) => id === aktivitet.id);
 
-        if (endring && skalEndres) {
+        if (endring) {
             const {
                 arbeidsgiver: { type, organisasjonsnummer: id },
             } = aktivitet;
@@ -113,19 +110,12 @@ export const getArbeidstidApiDataFromSøknadsdata = (
         }
     });
 
-    const frilanserSkalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some(
-        (id) => id === ArbeidAktivitetType.frilanser
-    );
-    const snSkalEndres = arbeidAktivitet.aktiviteterSomSkalEndres.some(
-        (id) => id === ArbeidAktivitetType.selvstendigNæringsdrivende
-    );
-
     return {
         arbeidstakerList,
-        frilanserArbeidstidInfo: frilanserSkalEndres
+        frilanserArbeidstidInfo: arbeidAktiviteter.frilanser
             ? getArbeidstidInfo(frilansAktivitetEndring, arbeidAktiviteter.frilanser)
             : undefined,
-        selvstendigNæringsdrivendeArbeidstidInfo: snSkalEndres
+        selvstendigNæringsdrivendeArbeidstidInfo: arbeidAktiviteter.selvstendigNæringsdrivende
             ? getArbeidstidInfo(
                   selvstendigNæringsdrivendeAktivitetEndring,
                   arbeidAktiviteter.selvstendigNæringsdrivende
