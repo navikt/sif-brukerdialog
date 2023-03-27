@@ -127,10 +127,16 @@ const fjernFerie = (feriedager: FeriedagMap, periode: DateRange): FeriedagMap =>
     getDatesInDateRange(periode)
         .map(dateToISODate)
         .forEach((key) => {
-            if (dager[key].liggerISak) {
-                dager[key].skalHaFerie = false;
-            } else {
-                delete dager[key];
+            const opprinneligDag = feriedager[key];
+            if (opprinneligDag) {
+                if (opprinneligDag.liggerISak) {
+                    dager[key] = {
+                        ...opprinneligDag,
+                        skalHaFerie: false,
+                    };
+                } else {
+                    delete dager[key];
+                }
             }
         });
     return dager;
