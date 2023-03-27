@@ -46,7 +46,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.harArbeidsgiverSomIkkeErISak:
+        case IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet:
             return (
                 <BodyLong as="div" data-testid="nyttArbeidsforhold">
                     <p>
@@ -60,7 +60,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.harUkjentArbeidsforhold:
+        case IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver:
             return (
                 <BodyLong as="div" data-testid="ukjentArbeidsforhold">
                     <p>
