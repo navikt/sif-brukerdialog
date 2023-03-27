@@ -29,19 +29,19 @@ describe('arbeidsaktivitetUtils', () => {
             },
         };
 
-        it('returnerer én endring dersom alle endringer er like', () => {
+        it('returnerer én endring hvis alle endringer er like', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1, arbUke2], endringer);
             expect(result).toBeDefined();
         });
-        it.only('returnerer undefined dersom noen endringer er ulike', () => {
+        it.only('returnerer undefined hvis noen endringer er ulike', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1, arbUke2, arbUke3], endringer);
             expect(result).toBeUndefined();
         });
-        it('returnerer én endring dersom det bare er én arbeidsuke, og endring finnes', () => {
+        it('returnerer én endring hvis det bare er én arbeidsuke, og endring finnes', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1], endringer);
             expect(result).toBeDefined();
         });
-        it('returnerer undefined dersom det bare er én arbeidsuke, og ingen endring finnes', () => {
+        it('returnerer undefined hvis det bare er én arbeidsuke, og ingen endring finnes', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1], {});
             expect(result).toBeUndefined();
         });

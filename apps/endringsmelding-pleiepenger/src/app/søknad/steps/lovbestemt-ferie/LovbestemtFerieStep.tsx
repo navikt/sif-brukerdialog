@@ -203,8 +203,8 @@ const LovbestemtFerieStep = () => {
                                 {harFjernetFerie && harValgtAtArbeidstidSkalEndres === false && (
                                     <Block margin="l">
                                         <Alert variant="warning">
-                                            Du har fjernet dager med ferie. Dersom du skal du jobbe disse dagene må du
-                                            ser over at jobb i perioden er riktig. Dette gjør du på neste steg.
+                                            Du har fjernet dager med ferie. Hvis du skal du jobbe disse dagene må du ser
+                                            over at jobb i perioden er riktig. Dette gjør du på neste steg.
                                         </Alert>
                                     </Block>
                                 )}

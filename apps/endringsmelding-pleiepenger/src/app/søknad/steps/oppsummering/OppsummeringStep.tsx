@@ -88,7 +88,7 @@ const OppsummeringStep = () => {
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>
-                        Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Dersom
+                        Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Hvis
                         noe ikke stemmer, kan du gå tilbake og endre igjen.
                     </p>
                 </Ingress>

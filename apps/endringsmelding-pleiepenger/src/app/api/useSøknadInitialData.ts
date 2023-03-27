@@ -157,7 +157,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const ugyldigk9FormatSaker: UgyldigK9SakFormat[] = k9sakerResult.filter(isUgyldigK9SakFormat);
             const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
 
-            /** Dersom vi ikke klarer å parse saken */
+            /** Hvis vi ikke klarer å parse saken */
             if (k9sakerResult.length === 1 && ugyldigk9FormatSaker.length === 1) {
                 setInitialData({
                     status: RequestStatus.success,

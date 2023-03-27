@@ -37,14 +37,14 @@ describe('getSakFromK9Sak', () => {
         const isoSluttdato = '2022-01-17';
 
         const endringsperiode: DateRange = { from: ISODateToDate(isoFrom), to: ISODateToDate(isoTo) };
-        it('beholder uendret endringsperiode dersom bruker er fortsatt ansatt', () => {
+        it('beholder uendret endringsperiode hvis bruker er fortsatt ansatt', () => {
             const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
                 ansattTom: undefined,
             } as Arbeidsgiver);
             expect(dateToISODate(result.from)).toEqual(isoFrom);
             expect(dateToISODate(result.to)).toEqual(isoTo);
         });
-        it('justerer endringsperiode dersom sluttdato er før endringsperiode sluttdato', () => {
+        it('justerer endringsperiode hvis sluttdato er før endringsperiode sluttdato', () => {
             const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
                 ansattTom: ISODateToDate(isoSluttdato),
             } as Arbeidsgiver);
@@ -74,21 +74,21 @@ describe('getSakFromK9Sak', () => {
             expect(keys[0]).toEqual(isoPeriode1);
             expect(keys[1]).toEqual(isoPeriode2);
         });
-        it('endrer startdato i en periode dersom endringsperioden ikke dekker hele perioden', () => {
+        it('endrer startdato i en periode hvis endringsperioden ikke dekker hele perioden', () => {
             const tillattPeriode = ISODateRangeToDateRange('2022-01-05/2022-02-02');
             const result = trimArbeidstidTilTillattEndringsperiode(perioder, tillattPeriode);
             const keys = Object.keys(result);
             expect(keys[0]).toEqual('2022-01-05/2022-01-14');
             expect(keys[1]).toEqual(isoPeriode2);
         });
-        it('endrer start og sluttdato dersom endringsperioden ikke dekker alle perioder', () => {
+        it('endrer start og sluttdato hvis endringsperioden ikke dekker alle perioder', () => {
             const tillattPeriode = ISODateRangeToDateRange('2022-01-05/2022-01-18');
             const result = trimArbeidstidTilTillattEndringsperiode(perioder, tillattPeriode);
             const keys = Object.keys(result);
             expect(keys[0]).toEqual('2022-01-05/2022-01-14');
             expect(keys[1]).toEqual('2022-01-17/2022-01-18');
         });
-        it('returnerer tomt objekt dersom alle perioder er utenfor endringsperiode', () => {
+        it('returnerer tomt objekt hvis alle perioder er utenfor endringsperiode', () => {
             const tillattPeriode = ISODateRangeToDateRange('2022-02-02/2022-02-03');
             const result = trimArbeidstidTilTillattEndringsperiode(perioder, tillattPeriode);
             expect(Object.keys(result)).toHaveLength(0);
@@ -116,12 +116,12 @@ describe('getSakFromK9Sak', () => {
             expect(keys.length).toEqual(1);
             expect(keys[0]).toEqual('2022-01-03/2022-01-14');
         });
-        it('returnerer {} dersom ingen perioder er innenfor tidsrom', () => {
+        it('returnerer {} hvis ingen perioder er innenfor tidsrom', () => {
             const result = getArbeidstidPerioderIDateRange(ISODateRangeToDateRange('2022-02-02/2022-02-07'), perioder);
             const keys = Object.keys(result);
             expect(keys.length).toEqual(0);
         });
-        it('returnerer alle perioder dersom alle perioder er innenfor tidsrom', () => {
+        it('returnerer alle perioder hvis alle perioder er innenfor tidsrom', () => {
             const result = getArbeidstidPerioderIDateRange(ISODateRangeToDateRange('2022-01-03/2022-02-01'), perioder);
             const keys = Object.keys(result);
             expect(keys.length).toEqual(2);

@@ -5,7 +5,7 @@ describe('maskString', () => {
         expect(maskString(undefined)).toBeUndefined();
         expect(maskString('')).toBeUndefined();
     });
-    it('returnerer undefined dersom lengden på string er mindre enn minLength', () => {
+    it('returnerer undefined hvis lengden på string er mindre enn minLength', () => {
         expect(maskString('123', 5)).toBeUndefined();
     });
     it('returnerer riktig masket streng for string på minLength', () => {

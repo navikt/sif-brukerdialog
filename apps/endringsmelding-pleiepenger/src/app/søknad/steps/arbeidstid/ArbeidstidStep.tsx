@@ -123,12 +123,12 @@ const ArbeidstidStep = () => {
                         riktig.
                         <ReadMore header="Hvordan påvirker ferie arbeidstiden?">
                             <p>
-                                Feriedager overstyrer alltid timer med arbeid i en uke. Det vil si at dersom du oppgir 5
+                                Feriedager overstyrer alltid timer med arbeid i en uke. Det vil si at hvis du oppgir 5
                                 dager med ferie i en uke, trenger du ikke justere ned antall timer du skal jobbe. Dette
                                 fikser vi.
                             </p>
                             <p>
-                                Dersom du tidligere har justert ned timer med jobb i en uke på grunn av ferie, og nå
+                                Hvis du tidligere har justert ned timer med jobb i en uke på grunn av ferie, og nå
                                 fjerner feriedager denne uken, må du ser over at antall timer med jobb fortsatt stemmer.
                             </p>
                         </ReadMore>

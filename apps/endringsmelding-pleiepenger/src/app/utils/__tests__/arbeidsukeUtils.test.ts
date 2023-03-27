@@ -24,7 +24,7 @@ describe('arbeidsukerHarLikNormaltidPerDag', () => {
         const uke = arbeidsukerHele[0];
         expect(arbeidsukerHarLikNormaltidPerDag([uke])).toBeTruthy();
     });
-    it('returnerer false dersom noen uker har ulik normalarbeidstid - for hele uker', () => {
+    it('returnerer false hvis noen uker har ulik normalarbeidstid - for hele uker', () => {
         const uker = [...arbeidsukerHele];
         uker[0].normalt = getTimerPerDagOgUkeFraUke(
             {

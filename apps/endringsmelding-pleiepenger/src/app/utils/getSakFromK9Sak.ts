@@ -49,7 +49,7 @@ interface _PeriodisertK9FormatArbeidstidPerioder {
 }
 
 /**
- * Korter ned periode til sluttdato for arbeidsforholdet, dersom denne er satt
+ * Korter ned periode til sluttdato for arbeidsforholdet, hvis denne er satt
  * @param tillattEndringsperiode
  * @param arbeidsgiver
  * @returns DateRange
