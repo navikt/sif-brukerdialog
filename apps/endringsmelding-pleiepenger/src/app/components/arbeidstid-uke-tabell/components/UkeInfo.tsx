@@ -12,7 +12,7 @@ const UkeInfoIkon: React.FunctionComponent<Props> = ({ uke }) => {
     return (
         <Tooltip content={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}>
             <span style={{ fontSize: '1.4rem' }}>
-                <InformationColored aria-label="Informasjon om uken" />
+                <InformationColored aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`} />
             </span>
         </Tooltip>
     );

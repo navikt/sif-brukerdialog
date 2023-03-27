@@ -16,35 +16,37 @@ interface Props {
 
 const ArbeidAktivitetHeader: React.FunctionComponent<Props> = ({ arbeidAktivitet, erEndret }) => {
     return (
-        <div className="arbeidAktivitetHeader">
-            <div className="arbeidAktivitetHeader__icon">
-                <Office1 role="presentation" aria-hidden={true} />
+        <Block margin={arbeidAktivitet.type !== ArbeidAktivitetType.arbeidstaker ? 'm' : 'none'}>
+            <div className="arbeidAktivitetHeader">
+                <div className="arbeidAktivitetHeader__icon">
+                    <Office1 role="presentation" aria-hidden={true} />
+                </div>
+                <div className="arbeidAktivitetHeader__content">
+                    <Heading level="2" size="medium">
+                        {getArbeidAktivitetNavn(arbeidAktivitet)}
+                    </Heading>
+                    {arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? (
+                        <BodyLong>
+                            {arbeidAktivitet.arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON
+                                ? `Organisasjonsnummer: ${arbeidAktivitet.arbeidsgiver.organisasjonsnummer}`
+                                : 'Privatperson'}
+                            <br />
+                            {arbeidAktivitet.arbeidsgiver.ansattFom && (
+                                <>Ansatt: {dateFormatter.full(arbeidAktivitet.arbeidsgiver.ansattFom)}.</>
+                            )}
+                            {arbeidAktivitet.arbeidsgiver.ansattTom && (
+                                <> Sluttdato: {dateFormatter.full(arbeidAktivitet.arbeidsgiver.ansattTom)}</>
+                            )}
+                        </BodyLong>
+                    ) : undefined}
+                    {erEndret && (
+                        <Block margin="m">
+                            <EndretTag>Arbeidstid endret</EndretTag>
+                        </Block>
+                    )}
+                </div>
             </div>
-            <div className="arbeidAktivitetHeader__content">
-                <Heading level="2" size="medium">
-                    {getArbeidAktivitetNavn(arbeidAktivitet)}
-                </Heading>
-                {arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? (
-                    <BodyLong>
-                        {arbeidAktivitet.arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON
-                            ? `Organisasjonsnummer: ${arbeidAktivitet.arbeidsgiver.organisasjonsnummer}`
-                            : 'Privatperson'}
-                        <br />
-                        {arbeidAktivitet.arbeidsgiver.ansattFom && (
-                            <>Ansatt: {dateFormatter.full(arbeidAktivitet.arbeidsgiver.ansattFom)}.</>
-                        )}
-                        {arbeidAktivitet.arbeidsgiver.ansattTom && (
-                            <> Sluttdato: {dateFormatter.full(arbeidAktivitet.arbeidsgiver.ansattTom)}</>
-                        )}
-                    </BodyLong>
-                ) : undefined}
-                {erEndret && (
-                    <Block margin="m">
-                        <EndretTag>Arbeidstid endret</EndretTag>
-                    </Block>
-                )}
-            </div>
-        </div>
+        </Block>
     );
 };
 
