@@ -53,7 +53,7 @@ const VelkommenPage = () => {
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const startSøknad = (sak: Sak, hvaSkalEndres: EndringType[] = [EndringType.arbeidstid]) => {
-        const steps = getSøknadSteps(sak, hvaSkalEndres, false);
+        const steps = getSøknadSteps(hvaSkalEndres, false);
         logSoknadStartet(SKJEMANAVN);
         logInfo({
             antallAktiviteterSomKanEndres: aktiviteterSomKanEndres.length,

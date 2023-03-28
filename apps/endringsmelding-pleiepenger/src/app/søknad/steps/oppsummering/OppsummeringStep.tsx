@@ -22,11 +22,7 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
-import {
-    getOppsummeringStepInitialValues,
-    harEndringerIArbeidstid,
-    harEndringerILovbestemtFerieApiData,
-} from './oppsummeringStepUtils';
+import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
 
 enum OppsummeringFormFields {
@@ -50,7 +46,7 @@ const OppsummeringStep = () => {
     } = useSøknadContext();
 
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
@@ -74,8 +70,8 @@ const OppsummeringStep = () => {
 
     const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
 
-    const arbeidstidErEndret = harEndringerIArbeidstid(arbeidstid);
-    const lovbestemtFerieErEndret = harEndringerILovbestemtFerieApiData(lovbestemtFerie);
+    const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
+    const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
     const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(

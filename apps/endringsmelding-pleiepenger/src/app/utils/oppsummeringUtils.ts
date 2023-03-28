@@ -1,8 +1,5 @@
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-import {
-    harEndringerIArbeidstid,
-    harEndringerILovbestemtFerieApiData,
-} from '../søknad/steps/oppsummering/oppsummeringStepUtils';
+import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 import { LovbestemtFeriePeriode } from '../types/LovbestemtFeriePeriode';
 import { ArbeidstidApiData, LovbestemtFerieApiData, SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { getValgteEndringer } from './endringTypeUtils';
@@ -26,7 +23,7 @@ export type SøknadApiDataMetadata = LovbestemtFerieMetadata &
 const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
     return arbeidstid
         ? {
-              endretArbeidstid: harEndringerIArbeidstid(arbeidstid),
+              endretArbeidstid: oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid),
           }
         : undefined;
 };
@@ -36,7 +33,7 @@ const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtF
     }
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return {
-        endretFerie: harEndringerILovbestemtFerieApiData(lovbestemtFerie),
+        endretFerie: oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie),
         lagtTilFerie: perioderLagtTil.length > 0,
         fjernetFerie: perioderFjernet.length > 0,
     };

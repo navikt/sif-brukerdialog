@@ -21,7 +21,6 @@ export const useOnValidSubmit = <T>(
     const [submitError, setSubmitError] = useState(undefined);
 
     const { nextStep } = getSøknadStepConfig(
-        state.sak,
         state.hvaSkalEndres,
         harFjernetLovbestemtFerie(state.søknadsdata.lovbestemtFerie)
     )[stepId];

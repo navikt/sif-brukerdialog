@@ -1,6 +1,7 @@
-import { Tag, TagProps } from '@navikt/ds-react';
+import { TagProps } from '@navikt/ds-react';
 import React from 'react';
 import { Vacation, Warning } from '@navikt/ds-icons';
+import IconTag from './IconTag';
 
 interface Props extends Omit<TagProps, 'variant'> {
     type?: 'fjernet' | 'registrert';
@@ -9,10 +10,12 @@ interface Props extends Omit<TagProps, 'variant'> {
 const FerieTag: React.FunctionComponent<Props> = (props) => {
     const { type = 'registrert', children, ...rest } = props;
     return (
-        <Tag {...rest} size="small" variant={type === 'registrert' ? 'success' : 'warning'}>
-            {type === 'registrert' ? <Vacation /> : <Warning />}
-            <span style={{ display: 'inline-block', marginLeft: '.25rem' }}>{children}</span>
-        </Tag>
+        <IconTag
+            {...rest}
+            variant={type === 'registrert' ? 'success' : 'warning'}
+            icon={type === 'registrert' ? <Vacation /> : <Warning />}>
+            {children}
+        </IconTag>
     );
 };
 

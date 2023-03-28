@@ -1,11 +1,10 @@
 import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import { EndringType } from '../../types/EndringType';
-import { Sak } from '../../types/Sak';
 import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
 import { StepId } from './StepId';
 
-export const getSøknadSteps = (sak: Sak, hvaSkalEndres: EndringType[], harFjernetFerie: boolean): StepId[] => {
+export const getSøknadSteps = (hvaSkalEndres: EndringType[], harFjernetFerie: boolean): StepId[] => {
     const steps: StepId[] = [];
 
     const {
@@ -28,8 +27,7 @@ export const getSøknadSteps = (sak: Sak, hvaSkalEndres: EndringType[], harFjern
 };
 
 export const getSøknadStepConfig = (
-    sak: Sak,
     hvaSkalEndres: EndringType[],
     harFjernetFerie: boolean
 ): SoknadStepsConfig<StepId> =>
-    soknadStepUtils.getStepsConfig(getSøknadSteps(sak, hvaSkalEndres, harFjernetFerie), SoknadApplicationType.MELDING);
+    soknadStepUtils.getStepsConfig(getSøknadSteps(hvaSkalEndres, harFjernetFerie), SoknadApplicationType.MELDING);

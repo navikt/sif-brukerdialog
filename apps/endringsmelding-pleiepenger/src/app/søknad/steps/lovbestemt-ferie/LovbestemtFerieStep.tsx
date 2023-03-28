@@ -60,7 +60,7 @@ const LovbestemtFerieStep = () => {
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -113,9 +113,10 @@ const LovbestemtFerieStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values, setFieldValue }) => {
                     const feriedager: FeriedagMap = values[LovbestemtFerieFormFields.feriedager] || {};
-                    const harFjernetFerie = Object.keys(feriedager)
-                        .map((key) => feriedager[key])
-                        .some((feriedag) => feriedag.skalHaFerie === false);
+                    // Raskere sjekk som sjekker values i stedet for søknadsdata
+                    // const harFjernetFerie = Object.keys(feriedager)
+                    //     .map((key) => feriedager[key])
+                    //     .some((feriedag) => feriedag.skalHaFerie === false);
                     return (
                         <>
                             <PersistStepFormValues

@@ -1,6 +1,5 @@
-import { Heading, Tag } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
-import { Edit } from '@navikt/ds-icons';
 import {
     dateFormatter,
     DateRange,
@@ -22,6 +21,8 @@ import EndreArbeidstidModal from '../../endre-arbeidstid-modal/EndreArbeidstidMo
 import EndreArbeidstidForm from '../../endre-arbeidstid-form/EndreArbeidstidForm';
 import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
 import { cleanupArbeidAktivitetEndringer } from '../../../søknad/steps/arbeidstid/arbeidstidStepUtils';
+import EndretTag from '../../tags/EndretTag';
+import TagsContainer from '../../tags/TagsContainer';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -102,6 +103,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                 Object.keys(endringer)
                                     .map(ISODateRangeToDateRange)
                                     .some((dr) => isDateInDateRange(dr.from, periode));
+
                             const harFjernetFerie = harFjernetFerieIPeriode(periode);
 
                             return (
@@ -109,27 +111,17 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     <div className="arbeidsaktivitetHeader__title">
                                         {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
                                     </div>
-                                    <div className="arbeidsaktivitetHeader__tags">
-                                        {harEndringer && (
-                                            <span style={{ marginRight: '.25rem' }}>
-                                                <Tag variant="info" size="small">
-                                                    <Edit />
-                                                    <span style={{ marginLeft: '.25rem' }}>Arbeid endret</span>
-                                                </Tag>
-                                            </span>
-                                        )}
-                                        {harFjernetFerie && (
-                                            <span style={{ marginRight: '.25rem' }}>
-                                                <FerieTag type="fjernet">Ferie fjernet</FerieTag>
-                                            </span>
-                                        )}
-                                    </div>
+                                    <TagsContainer>
+                                        {harEndringer && <EndretTag>Arbeid endret</EndretTag>}
+                                        {harFjernetFerie && <FerieTag type="fjernet">Ferie fjernet</FerieTag>}
+                                    </TagsContainer>
                                 </div>
                             );
                         }}
                     />
                 </div>
             )}
+
             <EndreArbeidstidModal
                 title={getArbeidAktivitetNavn(arbeidAktivitet)}
                 isVisible={arbeidsukerForEndring !== undefined}

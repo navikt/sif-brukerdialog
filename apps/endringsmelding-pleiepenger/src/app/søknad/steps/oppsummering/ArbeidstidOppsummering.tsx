@@ -1,24 +1,10 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import {
-    getDatesInDateRange,
-    ISODateRange,
-    ISODateRangeToDateRange,
-    ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
-import ArbeidstidUkeTabell, {
-    ArbeidstidUkeTabellItem,
-} from '../../../components/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import ArbeidstidUkeTabell from '../../../components/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import {
-    ArbeidstakerApiData,
-    ArbeidstidApiData,
-    ArbeidstidPeriodeApiData,
-    ArbeidstidPeriodeApiDataMap,
-} from '../../../types/søknadApiData/SøknadApiData';
-import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
-import { erKortArbeidsuke } from '../../../utils/arbeidsukeUtils';
+import { ArbeidstakerApiData, ArbeidstidApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
@@ -38,7 +24,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     if (!arbeidsgiver) {
                         return null;
                     }
-                    const arbeidsuker = getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
+                    const arbeidsuker = oppsummeringStepUtils.getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
                     return (
                         <Block margin="xl" key={key} padBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
                             <Heading level="3" size="small">
@@ -60,7 +46,9 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItems(frilanserArbeidstidInfo.perioder)}
+                            listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
+                                frilanserArbeidstidInfo.perioder
+                            )}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -73,7 +61,9 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItems(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
+                            listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
+                                selvstendigNæringsdrivendeArbeidstidInfo.perioder
+                            )}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -84,53 +74,3 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
 };
 
 export default ArbeidstidOppsummering;
-
-const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
-    {
-        faktiskArbeidTimerPerDag,
-        _opprinneligFaktiskPerDag,
-        _opprinneligNormaltPerDag,
-        _endretProsent,
-    }: ArbeidstidPeriodeApiData,
-    isoDateRange: ISODateRange
-): ArbeidstidUkeTabellItem => {
-    const periode = ISODateRangeToDateRange(isoDateRange);
-    const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
-
-    const arbeidsuke: ArbeidstidUkeTabellItem = {
-        kanEndres: false,
-        kanVelges: false,
-        isoDateRange,
-        periode,
-        antallDagerMedArbeidstid,
-        erKortUke: erKortArbeidsuke(periode),
-        opprinnelig: {
-            normalt: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligNormaltPerDag),
-                antallDagerMedArbeidstid
-            ),
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligFaktiskPerDag),
-                antallDagerMedArbeidstid
-            ),
-        },
-        endret: {
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(faktiskArbeidTimerPerDag),
-                antallDagerMedArbeidstid
-            ),
-            endretProsent: _endretProsent,
-        },
-    };
-    return arbeidsuke;
-};
-
-const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
-    const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
-    Object.keys(perioder)
-        .sort()
-        .forEach((isoDateRange) => {
-            arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
-        });
-    return arbeidsuker;
-};

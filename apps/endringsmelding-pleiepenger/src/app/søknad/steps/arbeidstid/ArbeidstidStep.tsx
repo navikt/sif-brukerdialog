@@ -49,7 +49,7 @@ const ArbeidstidStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(sak, hvaSkalEndres, harFjernetFerie);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -116,7 +116,7 @@ const ArbeidstidStep = () => {
                 </>
             </SifGuidePanel>
 
-            {harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie) && (
+            {harFjernetFerie && (
                 <Block margin="xl">
                     <Alert variant="warning">
                         Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er

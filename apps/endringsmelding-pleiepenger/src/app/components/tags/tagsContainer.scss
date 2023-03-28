@@ -1,0 +1,12 @@
+.tagsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    .navds-tag {
+        margin-right: 0.25rem;
+        margin-bottom: 0.25rem;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
