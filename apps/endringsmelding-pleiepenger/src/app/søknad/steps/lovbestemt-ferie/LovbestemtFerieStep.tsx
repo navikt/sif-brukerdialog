@@ -114,9 +114,9 @@ const LovbestemtFerieStep = () => {
                 renderForm={({ values, setFieldValue }) => {
                     const feriedager: FeriedagMap = values[LovbestemtFerieFormFields.feriedager] || {};
                     // Raskere sjekk som sjekker values i stedet for søknadsdata
-                    // const harFjernetFerie = Object.keys(feriedager)
-                    //     .map((key) => feriedager[key])
-                    //     .some((feriedag) => feriedag.skalHaFerie === false);
+                    const harFjernetFerieIValues = Object.keys(feriedager)
+                        .map((key) => feriedager[key])
+                        .some((feriedag) => feriedag.skalHaFerie === false);
                     return (
                         <>
                             <PersistStepFormValues
@@ -201,7 +201,7 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
                                 </FormBlock>
-                                {harFjernetFerie && harValgtAtArbeidstidSkalEndres === false && (
+                                {harFjernetFerieIValues && harValgtAtArbeidstidSkalEndres === false && (
                                     <Block margin="l">
                                         <Alert variant="warning">
                                             Du har fjernet dager med ferie. Hvis du skal du jobbe disse dagene må du ser
