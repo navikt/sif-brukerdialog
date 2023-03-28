@@ -46,6 +46,16 @@ const mockData = {
         sak: require('../data/scenario/ingen-sak/sak-mock.json'),
         arbeidsgiver: require('../data/scenario/ingen-sak/arbeidsgiver-mock.json'),
     },
+    ['arbeidsgiver-ikke-i-sak']: {
+        søker: require('../data/scenario/arbeidsgiver-ikke-i-sak/søker-mock.json'),
+        sak: require('../data/scenario/arbeidsgiver-ikke-i-sak/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/arbeidsgiver-ikke-i-sak/arbeidsgiver-mock.json'),
+    },
+    ['arbeidsaktivitet-uten-arbeidsgiver']: {
+        søker: require('../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/søker-mock.json'),
+        sak: require('../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/sak-mock.json'),
+        arbeidsgiver: require('../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/arbeidsgiver-mock.json'),
+    },
     ['ugyldig-k9-format']: {
         søker: require('../data/scenario/ugyldig-k9-format/søker-mock.json'),
         sak: require('../data/scenario/ugyldig-k9-format/sak-mock.json'),
