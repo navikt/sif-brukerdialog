@@ -403,7 +403,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                     <div className="arbeidsukeTidsrom">
                                                         <span className="arbeidsukeTidsrom__tekst">
                                                             {getPeriodeTekst(uke.periode)}
-                                                            {uke.harFeriedager && (
+                                                            {(uke.harFeriedager || uke.harFjernetFeriedager) && (
                                                                 <Block margin="s">
                                                                     <UkeTags
                                                                         dagerMedFerie={uke.ferie?.dagerMedFerie}
