@@ -1,7 +1,9 @@
 import * as countries from 'i18n-iso-countries';
+import * as langNB from 'i18n-iso-countries/langs/nb.json';
+import * as langNN from 'i18n-iso-countries/langs/nn.json';
 
-countries.registerLocale(require('i18n-iso-countries/langs/nb.json'));
-countries.registerLocale(require('i18n-iso-countries/langs/nn.json'));
+countries.registerLocale(langNB);
+countries.registerLocale(langNN);
 
 /** Kilde:
  * https://www.nav.no/no/person/flere-tema/arbeid-og-opphold-i-utlandet/relatert-informasjon/eos-landene
