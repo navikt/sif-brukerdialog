@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 1.10.1
+
+### Patch Changes
+
+-   8badb53: Bugfix på at all mistmatch mellom arbeidsgivere i sak og registrerte arbeidsforhold ble tolket som harUkjentArbeidsforhold
+
 ## 1.10.0
 
 ### Minor Changes
