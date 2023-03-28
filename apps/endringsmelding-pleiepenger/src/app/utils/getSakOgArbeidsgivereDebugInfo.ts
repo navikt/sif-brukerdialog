@@ -2,7 +2,6 @@ import { DateRange } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { K9Sak, K9SakArbeidstaker } from '../types/K9Sak';
 import { Sak } from '../types/Sak';
-import { getAktiviteterSomKanEndres } from './arbeidAktivitetUtils';
 import { maskString } from './maskString';
 
 const maskK9Arbeidstaker = (k9Arbeidstaker: K9SakArbeidstaker) => {
@@ -35,7 +34,7 @@ export const maskK9Sak = (sak: K9Sak) => {
 
 const maskSak = (sak: Sak) => {
     return {
-        arbeidsaktiviteter: getAktiviteterSomKanEndres(sak.arbeidAktiviteter).map((aktivitet) => ({
+        arbeidsaktiviteter: sak.utledet.aktiviteterSomKanEndres.map((aktivitet) => ({
             id: maskString(aktivitet.id),
             perioderMedArbeidstid: aktivitet.perioderMedArbeidstid,
         })),

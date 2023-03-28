@@ -41,6 +41,7 @@ export interface PeriodeMedArbeidstid extends DateRange {
 interface ArbeidAktivitetBase {
     id: string;
     type: ArbeidAktivitetType;
+    navn: string;
     perioderMedArbeidstid: PeriodeMedArbeidstid[];
     harPerioderFørTillattEndringsperiode: boolean;
     harPerioderEtterTillattEndringsperiode: boolean;
@@ -64,7 +65,7 @@ export type ArbeidAktivitet =
     | ArbeidAktivitetSelvstendigNæringsdrivende;
 
 export interface ArbeidAktiviteter {
-    arbeidstakerArktiviteter: ArbeidAktivitetArbeidstaker[];
+    arbeidstakerAktiviteter: ArbeidAktivitetArbeidstaker[];
     frilanser?: ArbeidAktivitetFrilanser;
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
 }
@@ -81,5 +82,8 @@ export interface Sak {
     samletSøknadsperiode: DateRange;
     ytelse: {
         type: string;
+    };
+    utledet: {
+        aktiviteterSomKanEndres: ArbeidAktivitet[];
     };
 }

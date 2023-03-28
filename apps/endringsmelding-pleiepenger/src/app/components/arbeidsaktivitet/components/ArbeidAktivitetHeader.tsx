@@ -1,13 +1,12 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
-import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
-import './arbeidAktivitetHeader.scss';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import EndretTag from '../../tags/EndretTag';
+import './arbeidAktivitetHeader.scss';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -23,7 +22,7 @@ const ArbeidAktivitetHeader: React.FunctionComponent<Props> = ({ arbeidAktivitet
                 </div>
                 <div className="arbeidAktivitetHeader__content">
                     <Heading level="2" size="medium">
-                        {getArbeidAktivitetNavn(arbeidAktivitet)}
+                        {arbeidAktivitet.navn}
                     </Heading>
                     {arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? (
                         <BodyLong>

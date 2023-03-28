@@ -1,14 +1,13 @@
 import { ExpansionCard, Panel } from '@navikt/ds-react';
 import React from 'react';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
-import { getArbeidAktivitetNavn } from '../../utils/arbeidAktivitetUtils';
 import ArbeidAktivitetHeader from './components/ArbeidAktivitetHeader';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
 import './arbeidsaktivitet.scss';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -37,7 +36,7 @@ const Arbeidsaktivitet = ({
     return (
         <div data-testid={`aktivitet_${arbeidAktivitet.id}`}>
             {renderAsExpansionCard ? (
-                <ExpansionCard aria-label={getArbeidAktivitetNavn(arbeidAktivitet)} defaultOpen={true}>
+                <ExpansionCard aria-label={arbeidAktivitet.navn} defaultOpen={true}>
                     <ExpansionCard.Header>
                         <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} erEndret={harEndringer} />
                     </ExpansionCard.Header>

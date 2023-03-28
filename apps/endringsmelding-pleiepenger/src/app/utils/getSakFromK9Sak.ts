@@ -29,6 +29,7 @@ import {
 import {
     ArbeidAktivitet,
     ArbeidAktivitetArbeidstaker,
+    ArbeidAktiviteter,
     ArbeidAktivitetFrilanser,
     ArbeidAktivitetSelvstendigNæringsdrivende,
     ArbeidAktivitetType,
@@ -394,6 +395,7 @@ const getArbeidAktivitetArbeidstaker = (
         id: `id_${arbeidsgiver.organisasjonsnummer}`,
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
+        navn: arbeidsgiver.navn,
         ...getArbeidAktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver),
     };
 };
@@ -412,6 +414,7 @@ const getArbeidAktivitetFrilanser = (
         ? {
               id: ArbeidAktivitetType.frilanser,
               type: ArbeidAktivitetType.frilanser,
+              navn: 'Frilanser',
               ...getArbeidAktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode),
           }
         : undefined;
@@ -431,6 +434,7 @@ const getArbeidAktivitetSelvstendigNæringsdrivende = (
         ? {
               id: ArbeidAktivitetType.selvstendigNæringsdrivende,
               type: ArbeidAktivitetType.selvstendigNæringsdrivende,
+              navn: 'Selvstendig næringsdrivende',
               ...getArbeidAktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode),
           }
         : undefined;
@@ -456,6 +460,23 @@ export const getSakFromK9Sak = (
         k9sak.ytelse.søknadsperioder,
         tillattEndringsperiode
     );
+
+    const arbeidstakerAktiviteter = arbeidstakerList
+        ? arbeidstakerList.map((arbeidstaker) =>
+              getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivere, tillattEndringsperiode)
+          )
+        : [];
+    const frilanser = getArbeidAktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
+    const selvstendigNæringsdrivende = getArbeidAktivitetSelvstendigNæringsdrivende(
+        selvstendigNæringsdrivendeArbeidstidInfo,
+        tillattEndringsperiode
+    );
+    const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
+        arbeidstakerAktiviteter,
+        frilanser,
+        selvstendigNæringsdrivende,
+    });
+
     return {
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
@@ -464,25 +485,36 @@ export const getSakFromK9Sak = (
         samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,
         arbeidAktiviteter: {
-            arbeidstakerArktiviteter: arbeidstakerList
-                ? arbeidstakerList.map((arbeidstaker) =>
-                      getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivere, tillattEndringsperiode)
-                  )
-                : [],
-            frilanser: getArbeidAktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode),
-            selvstendigNæringsdrivende: getArbeidAktivitetSelvstendigNæringsdrivende(
-                selvstendigNæringsdrivendeArbeidstidInfo,
-                tillattEndringsperiode
-            ),
+            arbeidstakerAktiviteter,
+            frilanser,
+            selvstendigNæringsdrivende,
         },
         lovbestemtFerie: {
             feriedager: getFeriedagerFromLovbestemtFerie(k9sak.ytelse.lovbestemtFerie.perioder),
+        },
+        utledet: {
+            aktiviteterSomKanEndres,
         },
     };
 };
 
 const getFeriedagerFromLovbestemtFerie = (lovbestemtFerie: K9SakLovbestemtFerie[]): FeriedagMap => {
     return getFeriedagerMapFromPerioder(lovbestemtFerie, true, true);
+};
+
+const getAktiviteterSomKanEndres = ({
+    arbeidstakerAktiviteter: arbeidstakerArktiviteter,
+    frilanser,
+    selvstendigNæringsdrivende,
+}: ArbeidAktiviteter): ArbeidAktivitet[] => {
+    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerArktiviteter];
+    if (frilanser) {
+        aktiviteter.push(frilanser);
+    }
+    if (selvstendigNæringsdrivende) {
+        aktiviteter.push(selvstendigNæringsdrivende);
+    }
+    return aktiviteter;
 };
 
 /**

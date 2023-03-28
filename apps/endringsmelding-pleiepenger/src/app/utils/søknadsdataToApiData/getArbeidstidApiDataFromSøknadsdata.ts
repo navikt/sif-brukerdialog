@@ -92,7 +92,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
         arbeidAktivitetEndring[ArbeidAktivitetType.selvstendigNæringsdrivende];
     const arbeidstakerList: ArbeidstakerApiData[] = [];
 
-    arbeidAktiviteter.arbeidstakerArktiviteter.forEach((aktivitet) => {
+    arbeidAktiviteter.arbeidstakerAktiviteter.forEach((aktivitet) => {
         const endring = arbeidAktivitetEndring[aktivitet.id];
 
         if (endring) {

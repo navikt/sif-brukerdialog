@@ -3,11 +3,13 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
 import { SKJEMANAVN } from '../../App';
@@ -18,10 +20,7 @@ import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
-import { getAktiviteterSomKanEndres } from '../../utils/arbeidAktivitetUtils';
 import OmSøknaden from './OmSøknaden';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -46,7 +45,6 @@ const VelkommenPage = () => {
     } = useSøknadContext();
 
     const intl = useIntl();
-    const aktiviteterSomKanEndres = sak ? getAktiviteterSomKanEndres(sak.arbeidAktiviteter) : [];
 
     const { logSoknadStartet, logInfo } = useAmplitudeInstance();
 
@@ -56,8 +54,8 @@ const VelkommenPage = () => {
         const steps = getSøknadSteps(hvaSkalEndres, false);
         logSoknadStartet(SKJEMANAVN);
         logInfo({
-            antallAktiviteterSomKanEndres: aktiviteterSomKanEndres.length,
-            erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerArktiviteter.length > 0,
+            antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
+            erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerAktiviteter.length > 0,
             erFrilanser: sak.arbeidAktiviteter.frilanser !== undefined,
         });
         dispatch(actionsCreator.startSøknad(sak, hvaSkalEndres));

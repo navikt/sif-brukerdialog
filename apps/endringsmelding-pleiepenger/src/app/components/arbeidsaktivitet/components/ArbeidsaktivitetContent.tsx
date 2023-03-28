@@ -8,21 +8,20 @@ import {
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils/lib';
+import { cleanupArbeidAktivitetEndringer } from '../../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke, PeriodeMedArbeidstid } from '../../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getEndringsdato, getTillattEndringsperiode } from '../../../utils/endringsperiode';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../../arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import EndreArbeidstidForm from '../../endre-arbeidstid-form/EndreArbeidstidForm';
+import EndreArbeidstidModal from '../../endre-arbeidstid-modal/EndreArbeidstidModal';
 import PerioderAccordion from '../../perioder-accordion/PerioderAccordion';
+import EndretTag from '../../tags/EndretTag';
 import FerieTag from '../../tags/FerieTag';
+import TagsContainer from '../../tags/TagsContainer';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 import ArbeidAktivitetUtenforPeriodeInfo from './ArbeidAktivitetUtenforPeriodeInfo';
-import EndreArbeidstidModal from '../../endre-arbeidstid-modal/EndreArbeidstidModal';
-import EndreArbeidstidForm from '../../endre-arbeidstid-form/EndreArbeidstidForm';
-import { getArbeidAktivitetNavn } from '../../../utils/arbeidAktivitetUtils';
-import { cleanupArbeidAktivitetEndringer } from '../../../søknad/steps/arbeidstid/arbeidstidStepUtils';
-import EndretTag from '../../tags/EndretTag';
-import TagsContainer from '../../tags/TagsContainer';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -123,7 +122,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
             )}
 
             <EndreArbeidstidModal
-                title={getArbeidAktivitetNavn(arbeidAktivitet)}
+                title={arbeidAktivitet.navn}
                 isVisible={arbeidsukerForEndring !== undefined}
                 onClose={() => setArbeidsukerForEndring(undefined)}>
                 <EndreArbeidstidForm

@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Heading, ReadMore } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
@@ -121,17 +121,6 @@ const ArbeidstidStep = () => {
                     <Alert variant="warning">
                         Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er
                         riktig.
-                        <ReadMore header="Hvordan påvirker ferie arbeidstiden?">
-                            <p>
-                                Feriedager overstyrer alltid timer med arbeid i en uke. Det vil si at hvis du oppgir 5
-                                dager med ferie i en uke, trenger du ikke justere ned antall timer du skal jobbe. Dette
-                                fikser vi.
-                            </p>
-                            <p>
-                                Hvis du tidligere har justert ned timer med jobb i en uke på grunn av ferie, og nå
-                                fjerner feriedager denne uken, må du ser over at antall timer med jobb fortsatt stemmer.
-                            </p>
-                        </ReadMore>
                     </Alert>
                 </Block>
             )}
