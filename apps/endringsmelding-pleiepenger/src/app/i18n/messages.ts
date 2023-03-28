@@ -11,8 +11,8 @@ export const defaultMessages: MessageFileFormat = {
         'step.arbeidstid.pageTitle': 'Jobb i pleiepengeperioden - Endringsmelding pleiepenger sykt barn',
         'step.arbeidstid.stepTitle': 'Jobb i pleiepengeperioden',
 
-        'step.lovbestemtFerie.pageTitle': 'Lovbestemt ferie - Endringsmelding pleiepenger sykt barn',
-        'step.lovbestemtFerie.stepTitle': 'Lovbestemt ferie i pleiepengeperioden',
+        'step.lovbestemt-ferie.pageTitle': 'Lovbestemt ferie - Endringsmelding pleiepenger sykt barn',
+        'step.lovbestemt-ferie.stepTitle': 'Lovbestemt ferie i pleiepengeperioden',
 
         'step.oppsummering.pageTitle': 'Oppsummering - Endringsmelding pleiepenger sykt barn',
         'step.oppsummering.stepTitle': 'Oppsummering',
