@@ -11,10 +11,9 @@ import EditButton from '../edit-button/EditButton';
 import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
-import UkeTags from './components/UkeTags';
 import UkeInfoIkon from './components/UkeInfo';
+import UkeTags from './components/UkeTags';
 import './arbeidstidUkeTabell.scss';
-import FjernetFerieIkon from './components/FjernetFerieIkon';
 
 export interface ArbeidstidUkeTabellItem {
     kanEndres: boolean;
@@ -366,12 +365,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                         <Table.DataCell className="arbeidstidUkeTabell__periode--kompakt">
                                             <div id={ukePeriodeTekstId}>
                                                 Uke {ukenummer}
-                                                {/* {(uke.erKortUke || uke.harFjernetFeriedager) && (
-                                                    <span style={{ marginLeft: '.5rem' }}>
-                                                        {uke.erKortUke && <UkeInfoIkon uke={uke} />}
-                                                        {uke.harFjernetFeriedager && <FjernetFerieIkon uke={uke} />}
-                                                    </span>
-                                                )} */}
                                                 <br />
                                                 {dateFormatter.compact(uke.periode.from)} - {` `}
                                                 {dateFormatter.compact(uke.periode.to)}
@@ -412,13 +405,18 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                             {getPeriodeTekst(uke.periode)}
                                                             {uke.harFeriedager && (
                                                                 <Block margin="s">
-                                                                    <UkeTags dagerMedFerie={uke.ferie?.dagerMedFerie} />
+                                                                    <UkeTags
+                                                                        dagerMedFerie={uke.ferie?.dagerMedFerie}
+                                                                        dagerMedFjernetFerie={
+                                                                            uke.ferie?.dagerMedFjernetFerie
+                                                                        }
+                                                                    />
                                                                 </Block>
                                                             )}
                                                         </span>
                                                         <span className="arbeidsukeTidsrom__info">
                                                             {uke.erKortUke && <UkeInfoIkon uke={uke} />}
-                                                            {uke.harFjernetFeriedager && <FjernetFerieIkon uke={uke} />}
+                                                            {/* {uke.harFjernetFeriedager && <FjernetFerieIkon uke={uke} />} */}
                                                         </span>
                                                     </div>
                                                 </div>
