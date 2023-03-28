@@ -1,4 +1,5 @@
 import { LovbestemtFerieSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { sortFeriedagerMap as sortFeriedagMap } from '../../../utils/ferieUtils';
 import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
 import { LovbestemtFerieFormValues } from './LovbestemtFerieStep';
 
@@ -22,8 +23,9 @@ export const getLovbestemtFerieStepInitialValues = (
 export const getLovbestemtFerieSøknadsdataFromFormValues = (
     values: LovbestemtFerieFormValues
 ): LovbestemtFerieSøknadsdata => {
+    const feriedager = sortFeriedagMap(values.feriedager);
     return {
-        feriedager: values.feriedager,
-        feriedagerMeta: getFeriedagerMeta(values.feriedager),
+        feriedager,
+        feriedagerMeta: getFeriedagerMeta(feriedager),
     };
 };

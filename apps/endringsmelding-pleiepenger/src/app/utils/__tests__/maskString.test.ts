@@ -1,4 +1,4 @@
-import { maskString } from './maskString';
+import { maskString } from '../maskString';
 
 describe('maskString', () => {
     it('returnerer undefined for tom eller undefined string', () => {

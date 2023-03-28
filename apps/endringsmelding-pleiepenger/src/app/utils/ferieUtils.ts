@@ -80,3 +80,11 @@ export const getFeriedagerIPeriode = (feriedager: FeriedagMap, periode: DateRang
 export const erFeriedagerEndretIPeriode = (feriedager: FeriedagMap, periode: DateRange): boolean => {
     return getFeriedagerMeta(getFeriedagerIPeriode(feriedager, periode)).erEndret;
 };
+
+export const sortFeriedagerMap = (feriedager: FeriedagMap): FeriedagMap => {
+    const sorterteFeriedager: FeriedagMap = {};
+    Object.keys(feriedager)
+        .sort()
+        .forEach((key) => (sorterteFeriedager[key] = feriedager[key]));
+    return sorterteFeriedager;
+};
