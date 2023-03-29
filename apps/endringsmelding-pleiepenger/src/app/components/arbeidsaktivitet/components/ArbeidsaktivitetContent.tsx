@@ -111,7 +111,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                         {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
                                     </div>
                                     <TagsContainer>
-                                        {harEndringer && <EndretTag>Arbeid endret</EndretTag>}
+                                        {harEndringer && <EndretTag>Arbeidstid endret</EndretTag>}
                                         {harFjernetFerie && <FerieTag type="fjernet">Ferie fjernet</FerieTag>}
                                     </TagsContainer>
                                 </div>
