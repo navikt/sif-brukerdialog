@@ -1,7 +1,8 @@
-import { Heading, Modal } from '@navikt/ds-react';
+import { Button, Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent, useEffect } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import './lovbestemtFerieModal.css';
+import { Close } from '@navikt/ds-icons';
 
 interface Props {
     title: string;
@@ -15,7 +16,16 @@ const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open 
         Modal.setAppElement('#app');
     });
     return (
-        <Modal open={open} onClose={onClose} className="lovbestemtFerieModal">
+        <Modal open={open} onClose={onClose} className="lovbestemtFerieModal" closeButton={false}>
+            <Button
+                className="navds-modal__button"
+                size="small"
+                variant="tertiary"
+                onClick={onClose}
+                tabIndex={0}
+                icon={<Close title="Lukk modalvindu" aria-label="Lukk modalvindu" />}
+            />
+
             <Modal.Content>
                 <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
                     <Heading
@@ -23,7 +33,6 @@ const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open 
                         size="small"
                         level="1"
                         id="lovbestemtFerieModalHeader"
-                        tabIndex={0}
                         className="lovbestemtFerieModal__noFocusOutline">
                         {title}
                     </Heading>
