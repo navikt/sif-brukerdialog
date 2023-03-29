@@ -13,7 +13,7 @@ const FerieTag: React.FunctionComponent<Props> = (props) => {
         <IconTag
             {...rest}
             variant={type === 'registrert' ? 'success' : 'warning'}
-            icon={type === 'registrert' ? <Vacation /> : <Warning />}>
+            icon={type === 'registrert' ? <Vacation role="presentation" /> : <Warning role="presentation" />}>
             {children}
         </IconTag>
     );

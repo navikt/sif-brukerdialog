@@ -44,6 +44,7 @@ interface Props {
     paginering?: {
         antall: number;
     };
+    periode?: DateRange;
     arbeidstidKolonneTittel?: string;
     triggerResetValg?: number;
     onEndreUker?: (uke: ArbeidstidUkeTabellItem[]) => void;
@@ -55,6 +56,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     paginering = {
         antall: 10,
     },
+    periode,
     arbeidstidKolonneTittel,
     triggerResetValg,
     onEndreUker,
@@ -126,14 +128,16 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     const renderEndreUkerHeader = () => (
         <>
             <Checkbox
-                name="abc"
                 checked={visVelgUke}
                 data-testid="endre-flere-uker-cb"
                 onChange={(evt) => {
                     setVisVelgUke(evt.target.checked);
                     setVisMeldingOmUkerMåVelges(false);
                     setValgteUker([]);
-                }}>
+                }}
+                aria-label={`Jeg ønsker å endre flere uker samtidig ${
+                    periode ? `i perioden ${getPeriodeTekst(periode)}` : ''
+                }`}>
                 Jeg ønsker å endre flere uker samtidig
             </Checkbox>
             {visVelgUke && (ukerMedFerie.length > 0 || korteUker.length > 0) && (

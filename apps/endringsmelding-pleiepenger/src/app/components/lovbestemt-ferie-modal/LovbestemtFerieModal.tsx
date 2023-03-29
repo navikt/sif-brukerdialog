@@ -1,5 +1,5 @@
 import { Heading, Modal } from '@navikt/ds-react';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import './lovbestemtFerieModal.css';
 
@@ -11,6 +11,9 @@ interface Props {
 }
 
 const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open = false, onClose }) => {
+    useEffect(() => {
+        Modal.setAppElement('#app');
+    });
     return (
         <Modal open={open} onClose={onClose} className="lovbestemtFerieModal">
             <Modal.Content>
