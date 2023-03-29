@@ -139,7 +139,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
             {visVelgUke && (ukerMedFerie.length > 0 || korteUker.length > 0) && (
                 <Block margin="m" padBottom="l">
                     <Alert variant="info">
-                        Korte uker, altså ikke hele uker, eller uker med lovbestemt ferie må endres hver for seg.
+                        Korte uker, altså ikke hele uker, eller uker med ferie må endres hver for seg.
                     </Alert>
                 </Block>
             )}

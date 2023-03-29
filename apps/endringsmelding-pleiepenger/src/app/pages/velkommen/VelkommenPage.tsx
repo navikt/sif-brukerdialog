@@ -116,7 +116,7 @@ const VelkommenPage = () => {
                                         checkboxes={[
                                             {
                                                 'data-testid': 'endreLovbestemtFerie',
-                                                label: 'Lovbestemt ferie',
+                                                label: 'Ferie',
                                                 description:
                                                     'Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger',
                                                 value: EndringType.lovbestemtFerie,

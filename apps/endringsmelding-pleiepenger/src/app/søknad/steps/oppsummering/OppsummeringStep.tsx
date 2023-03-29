@@ -105,7 +105,7 @@ const OppsummeringStep = () => {
             )}
             {lovbestemtFerieSkalEndres && (
                 <Block margin="xxl" padBottom="m">
-                    <SummarySection header="Endringer i lovbestemt ferie">
+                    <SummarySection header="Endringer i ferie">
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
                             <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
                         ) : (

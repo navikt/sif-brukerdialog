@@ -71,7 +71,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
             {visFerieModal && (
                 <LovbestemtFerieModal
                     onClose={() => setVisFerieModal(undefined)}
-                    title={'Lovbestemt ferie'}
+                    title={'Ferie'}
                     open={visFerieModal !== undefined}>
                     <FerieuttakForm
                         ferieuttak={visFerieModal.periode}
