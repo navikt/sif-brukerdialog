@@ -14,17 +14,11 @@ type TilgangNektet = {
     årsak: IngenTilgangÅrsak;
 };
 
-type TilgangNektetSøknadsperiodeUtenforEndringsperiode = {
-    kanBrukeSøknad: false;
-    årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode;
-    sisteDatoIPeriode: Date;
-};
-
 type TilgangTillatt = {
     kanBrukeSøknad: true;
 };
 
-type TilgangKontrollResultet = TilgangNektet | TilgangTillatt | TilgangNektetSøknadsperiodeUtenforEndringsperiode;
+type TilgangKontrollResultet = TilgangNektet | TilgangTillatt;
 
 export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]): TilgangKontrollResultet => {
     /** Har ingen saker */
