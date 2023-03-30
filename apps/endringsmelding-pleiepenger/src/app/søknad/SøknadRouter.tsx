@@ -13,9 +13,9 @@ import { StepId } from './config/StepId';
 import { SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import AktivitetStep from './steps/aktivitet/AktivitetStep';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -36,7 +36,7 @@ const SøknadRouter = () => {
             navigateTo(søknadRoute);
         }
         if (pathname === SøknadRoutes.VELKOMMEN && søknadRoute) {
-            navigateTo(søknadRoute); // Send til side dersom bruker kommer til velkommen via annen navigasjon
+            navigateTo(søknadRoute); // Send til side hvis bruker kommer til velkommen via annen navigasjon
         }
     }, [navigateTo, pathname, søknadRoute, isFirstTimeLoadingApp]);
 
@@ -69,8 +69,8 @@ const SøknadRouter = () => {
         <Routes>
             <Route index element={<VelkommenPage />} />
             <Route path={SøknadStepRoute[StepId.VELKOMMEN]} element={<VelkommenPage />} />
-            <Route path={SøknadStepRoute[StepId.AKTIVITET]} element={<AktivitetStep />} />
             <Route path={SøknadStepRoute[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
+            <Route path={SøknadStepRoute[StepId.LOVBESTEMT_FERIE]} element={<LovbestemtFerieStep />} />
             <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route path={SøknadStepRoute[StepId.MELDING_SENDT]} element={<KvitteringPage />} />
             <Route

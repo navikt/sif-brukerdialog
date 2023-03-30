@@ -3,6 +3,6 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 export const arbeidstidStepMessages: MessageFileFormat = {
     nb: {
         'arbeidAktivitetForm.arbeidAktivitet.noValue':
-            'Det er ikke registrert noen endring for {arbeidAktivitetNavn}. Dersom du ikke ønsker å registrere noen endringer, kan du gå tilbake til forrige steg og velge bort {arbeidAktivitetNavn}.',
+            'Det er ikke registrert noen endring for {arbeidAktivitetNavn}. Hvis du ikke ønsker å registrere noen endringer, kan du gå tilbake til forrige steg og velge bort {arbeidAktivitetNavn}.',
     },
 };

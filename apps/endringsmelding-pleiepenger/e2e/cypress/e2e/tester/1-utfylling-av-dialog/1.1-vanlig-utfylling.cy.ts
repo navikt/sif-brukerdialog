@@ -3,7 +3,7 @@ import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
 import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
 import { enSakFlereArbeidsgivereMock } from '../../data/enSakFlereArbeidsgivereMock';
 import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
-import { getTestElement, selectCheckboxByTestId, submitSkjema } from '../../utils';
+import { getTestElement, submitSkjema } from '../../utils';
 
 const startUrl = 'http://localhost:8080/';
 const date = new Date(2023, 0, 1);
@@ -20,26 +20,101 @@ const captureScreenshot = () => {
     cy.screenshot({ capture: 'fullPage' });
 };
 
-const startSøknad = () => {
+const startSøknad = ({
+    endreArbeidstid,
+    endreLovbestemtFerie,
+}: {
+    endreArbeidstid?: boolean;
+    endreLovbestemtFerie?: boolean;
+}) => {
     it('Starter søknad', () => {
         cy.visit(startUrl);
         cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker', '@getMellomlagring']).then(() => {
+            if (endreArbeidstid) {
+                getTestElement('endreArbeidstid').parent().click();
+            }
+            if (endreLovbestemtFerie) {
+                getTestElement('endreLovbestemtFerie').parent().click();
+            }
             getTestElement('bekreft-label').click();
             submitSkjema();
         });
     });
 };
 
-const velgArbeidsgiver = (orgNr?: string) => {
-    it('Velger arbeidsgiver', () => {
-        selectCheckboxByTestId(`aktivitet-id_${orgNr || '947064649'}`);
-        captureScreenshot();
+const fyllUtFerieDialog = (from, to) => {
+    cy.get('.lovbestemtFerieModal').within(() => {
+        cy.get('input[name="from"]').clear().type(from);
+        cy.get('input[name="to"]').clear().type(to).blur();
+        getTestElement('typedFormikForm-submitButton').click();
+    });
+};
+
+const leggTilOgFjernFerie = () => {
+    it('kan legge til, endre og fjerne én ferie', () => {
+        /** Legg til */
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li').should('have.length', 1);
+            getTestElement('leggTilFerieKnapp').click();
+        });
+
+        fyllUtFerieDialog('20.11.2022', '25.11.2022');
+
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li').should('have.length', 2);
+            cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
+                'have.text',
+                'søndag 20.11.2022 - fredag 25.11.2022'
+            );
+        });
+
+        /** Endre */
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();
+        });
+        fyllUtFerieDialog('28.11.2022', '29.11.2022');
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li').should('have.length', 2);
+            cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
+                'have.text',
+                'mandag 28.11.2022 - tirsdag 29.11.2022'
+            );
+        });
+
+        /** Fjern opprinnelig periode */
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__fjernKnapp').click();
+            cy.get('.lovbestemtFerieListe li').should('have.length', 2);
+            const angreKnapp = cy.get(
+                '.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]'
+            );
+            angreKnapp.should('exist');
+        });
+
+        // /** Angre fjern opprinnelig periode */
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]').click();
+            cy.get('.lovbestemtFerieListe li').should('have.length', 2);
+            cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__endreKnapp').should('exist');
+        });
+
+        // /** Endre opprinnelig periode */
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__endreKnapp').click();
+        });
+        fyllUtFerieDialog('07.11.2022', '09.11.2022');
+        getTestElement('periode_0').within(() => {
+            cy.get('.lovbestemtFerieListe li').should('have.length', 4);
+        });
+
+        // /** Gå videre */
         submitSkjema();
     });
 };
 
 const endreEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
+        cy.wait(1000);
         getAktivitet().within(() => {
             cy.get('[data-testid=periode_0_header]').click();
             getUkeRow(ukenummer).within(() => {
@@ -50,6 +125,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
         });
     });
     it('kontrollerer verdi før endring', () => {
+        cy.wait(1000);
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
@@ -59,6 +135,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
         });
     });
     it('åpner dialog for uke', () => {
+        cy.wait(1000);
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
                 cy.get('[data-testid=endre-button]').click();
@@ -155,7 +232,8 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
         cy.clearLocalStorage();
     });
 
-    startSøknad();
+    startSøknad({ endreArbeidstid: true, endreLovbestemtFerie: true });
+    leggTilOgFjernFerie();
     endreEnkeltuke();
     endreFlereUker();
     fortsettTilOppsummering();
@@ -167,15 +245,14 @@ describe('Endre arbeidstid for flere arbeidsgivere', () => {
     contextConfig({
         arbeidsgivere: flereArbeidsgivereMock,
         saker: enSakFlereArbeidsgivereMock,
+        mellomlagring: {},
     });
-
     before(() => {
         cy.clock(date);
         cy.clearLocalStorage();
         cy.visit(startUrl);
     });
-    startSøknad();
-    velgArbeidsgiver();
+    startSøknad({ endreArbeidstid: true });
     endreEnkeltuke();
     endreFlereUker();
     fortsettTilOppsummering();

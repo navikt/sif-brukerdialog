@@ -1,20 +1,23 @@
+import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import {
+    isISODateOrNull,
+    isISODateRange,
+    isISODuration,
+    ISODateRangeMap,
+    isStringOrNull,
+} from '@navikt/sif-common-utils';
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils/lib';
 import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
-import { isISODateOrNull, isISODateRange, isISODuration, isStringOrNull } from '@navikt/sif-common-utils';
 
-interface K9FormatTilsynsordningPerioder {
-    [isoDateRange: ISODateRange]: { etablertTilsynTimerPerDag: ISODuration };
-}
+type K9FormatTilsynsordningPerioder = ISODateRangeMap<{ etablertTilsynTimerPerDag: ISODuration }>;
 
 export interface K9FormatArbeidstidTid {
     jobberNormaltTimerPerDag: ISODuration;
     faktiskArbeidTimerPerDag: ISODuration;
 }
 
-export interface K9FormatArbeidstidInfoPerioder {
-    [isoDateRange: ISODateRange]: K9FormatArbeidstidTid;
-}
+export type K9FormatArbeidstidInfoPerioder = ISODateRangeMap<K9FormatArbeidstidTid>;
 
 export interface K9FormatArbeidstaker {
     norskIdentitetsnummer: string | null;
@@ -34,16 +37,27 @@ interface K9FormatOpptjeningAktivitetSelvstendig {
     organisasjonsnummer: string;
 }
 
+export type K9FormatUtenlandsoppholdPerioder = ISODateRangeMap<K9FormatUtenlandsopphold>;
+
+export type K9SakLovbestemtFeriePeriode = {
+    skalHaFerie: boolean;
+};
+
+export type K9FormatLovbestemtFeriePerioder = ISODateRangeMap<K9SakLovbestemtFeriePeriode>;
+
+interface K9FormatUtenlandsopphold {
+    land: string;
+    årsak: UtenlandsoppholdÅrsak;
+}
+
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;
     trekkKravPerioder: any;
     dataBruktTilUtledning: any; // Bekreftet opplysninger etc fra dialogen
     infoFraPunsj: any;
     bosteder: any;
-    utenlandsopphold: any;
     beredskap: any;
     nattevåk: any;
-    lovbestemtFerie: any;
     uttak: any;
     omsorg: any;
 }
@@ -54,6 +68,12 @@ interface K9FormatYtelse {
         fødselsdato: ISODate | null;
     };
     søknadsperiode: ISODateRange[];
+    lovbestemtFerie: {
+        perioder: K9FormatLovbestemtFeriePerioder;
+    };
+    utenlandsopphold: {
+        perioder: K9FormatUtenlandsoppholdPerioder;
+    };
     opptjeningAktivitet: {
         frilanser?: K9FormatOpptjeningAktivitetFrilanser;
         selvstendigNæringsdrivende?: K9FormatOpptjeningAktivitetSelvstendig;
@@ -228,6 +248,34 @@ const verifyK9FormatTilsynsordningPerioder = (perioder: any): perioder is K9Form
     throw 'verifyK9FormatTilsynsordningPerioder';
 };
 
+const verifyK9FormatLovbestemtFerie = (ferie: any): boolean => {
+    if (isObject(ferie) && isObject(ferie.perioder)) {
+        if (itemsAreValidISODateRanges(Object.keys(ferie.perioder)) === false) {
+            throw 'verifyK9FormatLovbestemtFerie - invalid dateRange';
+        }
+        return true;
+    }
+    throw 'verifyK9FormatLovbestemtFerie - invalid format';
+};
+
+const verifyK9FormatUtenlandsopphold = (opphold: any): boolean => {
+    if (isObject(opphold) && opphold.perioder) {
+        const keys = Object.keys(opphold.perioder);
+        if (itemsAreValidISODateRanges(keys) === false) {
+            throw 'verifyK9FormatUtenlandsopphold - invalid dateRange';
+        }
+        const harUgyldigUtenlandsopphold = keys.some((key) => {
+            const periode = opphold.perioder[key] as K9FormatUtenlandsopphold;
+            if (isObject(periode) === false) {
+                return true;
+            }
+            return false;
+        });
+        return harUgyldigUtenlandsopphold === false;
+    }
+    throw 'verifyK9FormatLovbestemtFerie - invalid format';
+};
+
 const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
     const maybeYtelse = ytelse as K9FormatYtelse;
     if (
@@ -239,6 +287,8 @@ const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
         isString(maybeYtelse.barn.norskIdentitetsnummer) &&
         verifyK9FormatTilsynsordning(maybeYtelse.tilsynsordning) &&
         verifyK9FormatArbeidstid(maybeYtelse.arbeidstid) &&
+        verifyK9FormatLovbestemtFerie(maybeYtelse.lovbestemtFerie) &&
+        verifyK9FormatUtenlandsopphold(maybeYtelse.utenlandsopphold) &&
         true
     ) {
         return true;

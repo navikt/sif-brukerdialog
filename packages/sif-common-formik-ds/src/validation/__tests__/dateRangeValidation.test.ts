@@ -2,9 +2,6 @@ import getDateRangeValidator, { ValidateDateRangeError } from '../getDateRangeVa
 import { ValidateDateError } from '../getDateValidator';
 
 describe('dateRangeValidation', () => {
-    it('runs', () => {
-        expect(1).toBeDefined();
-    });
     describe('validateFromDate', () => {
         it('returns undefined if date is undefined', () => {
             expect(getDateRangeValidator({}).validateFromDate(undefined)).toBeUndefined();

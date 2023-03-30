@@ -16,7 +16,7 @@
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
                 "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
-                "søknadsperiode": ["2022-12-01/2023-01-31", "2023-02-14/2023-03-16"],
+                "søknadsperiode": ["2022-12-01/2023-01-31", "2023-02-14/2023-05-16"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],
                 "opptjeningAktivitet": {},
@@ -29,10 +29,16 @@
                 "tilsynsordning": {
                     "perioder": {
                         "2022-12-01/2023-01-31": { "etablertTilsynTimerPerDag": "PT8H" },
-                        "2023-02-14/2023-03-16": { "etablertTilsynTimerPerDag": "PT8H" }
+                        "2023-02-14/2023-05-16": { "etablertTilsynTimerPerDag": "PT8H" }
                     }
                 },
-                "lovbestemtFerie": { "perioder": {} },
+                "lovbestemtFerie": {
+                    "perioder": {
+                        "2022-12-23/2023-01-05": { "skalHaFerie": true },
+                        "2023-01-28/2023-01-31": { "skalHaFerie": true },
+                        "2023-03-05/2023-03-10": { "skalHaFerie": true }
+                    }
+                },
                 "arbeidstid": {
                     "arbeidstakerList": [
                         {
@@ -80,7 +86,7 @@
                                         "jobberNormaltTimerPerDag": "PT8H",
                                         "faktiskArbeidTimerPerDag": "PT8H"
                                     },
-                                    "2023-03-01/2023-03-31": {
+                                    "2023-02-14/2023-05-16": {
                                         "jobberNormaltTimerPerDag": "PT8H",
                                         "faktiskArbeidTimerPerDag": "PT4H"
                                     }

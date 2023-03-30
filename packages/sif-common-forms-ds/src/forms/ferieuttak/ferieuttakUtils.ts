@@ -3,21 +3,21 @@ import { guid } from '@navikt/sif-common-utils';
 import { Ferieuttak, FerieuttakFormValues } from './types';
 
 export const isValidFerieuttak = (ferieuttak: Partial<Ferieuttak>): ferieuttak is Ferieuttak => {
-    return ferieuttak.fom !== undefined && ferieuttak.tom !== undefined;
+    return ferieuttak.from !== undefined && ferieuttak.to !== undefined;
 };
 
 const mapFormValuesToFerieuttak = (formValues: FerieuttakFormValues, id: string | undefined): Partial<Ferieuttak> => {
     return {
         id: id || guid(),
-        fom: ISOStringToDate(formValues.fom),
-        tom: ISOStringToDate(formValues.tom),
+        from: ISOStringToDate(formValues.from),
+        to: ISOStringToDate(formValues.to),
     };
 };
 
-const mapFerieuttakToFormValues = ({ fom, tom }: Partial<Ferieuttak>): FerieuttakFormValues => {
+const mapFerieuttakToFormValues = ({ from, to }: Partial<Ferieuttak>): FerieuttakFormValues => {
     return {
-        fom: dateToISOString(fom),
-        tom: dateToISOString(tom),
+        from: dateToISOString(from),
+        to: dateToISOString(to),
     };
 };
 

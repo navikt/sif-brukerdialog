@@ -4,15 +4,15 @@ import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemLi
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
 import { Ferieuttak } from './types';
 
-interface Props {
+export interface FerieuttakListProps {
     ferieuttak: Ferieuttak[];
     onEdit?: (opphold: Ferieuttak) => void;
     onDelete?: (opphold: Ferieuttak) => void;
 }
 
-const FerieuttakList = ({ ferieuttak = [], onDelete, onEdit }: Props) => {
+const FerieuttakList = ({ ferieuttak = [], onDelete, onEdit }: FerieuttakListProps) => {
     const getDateTitleString = (uttak: Ferieuttak) =>
-        `${prettifyDateExtended(uttak.fom)} - ${prettifyDateExtended(uttak.tom)}`;
+        `${prettifyDateExtended(uttak.from)} - ${prettifyDateExtended(uttak.to)}`;
 
     const renderFerieuttakLabel = (uttak: Ferieuttak): React.ReactNode => {
         const title = getDateTitleString(uttak);

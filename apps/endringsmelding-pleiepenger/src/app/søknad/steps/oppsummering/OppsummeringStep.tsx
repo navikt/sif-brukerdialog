@@ -1,36 +1,29 @@
-import { Alert, ErrorSummary, Heading, Ingress, Link } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, Ingress } from '@navikt/ds-react';
 import React, { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
+import { Back } from '@navikt/ds-icons';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import {
-    getDatesInDateRange,
-    ISODateRange,
-    ISODateRangeToDateRange,
-    ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
-import ArbeidstidUkeTabell, {
-    ArbeidstidUkeTabellItem,
-} from '../../../components/arbeidstid-uke-liste/ArbeidstidUkeTabell';
+import { SummarySection } from '@navikt/sif-common-soknad-ds/lib';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import {
-    ArbeidstakerApiData,
-    ArbeidstidPeriodeApiData,
-    ArbeidstidPeriodeApiDataMap,
-} from '../../../types/søknadApiData/SøknadApiData';
-import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
+import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
+import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import ArbeidstidOppsummering from './ArbeidstidOppsummering';
+import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
+import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import './oppsummering.css';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -49,10 +42,11 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const intl = useIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere },
+        state: { søknadsdata, sak, arbeidsgivere, hvaSkalEndres },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig(sak);
+    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
 
@@ -68,191 +62,113 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, hvaSkalEndres);
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;
     }
 
-    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
-        apiData.ytelse.arbeidstid;
+    const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
 
-    const arbeidstidKolonneTittel = 'Endret arbeidstid';
+    const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
+    const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
+    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
-    const harEndringer =
-        arbeidstakerList.length > 0 || frilanserArbeidstidInfo || selvstendigNæringsdrivendeArbeidstidInfo;
-
-    if (!harEndringer) {
-        return (
-            <SøknadStep stepId={stepId} sak={sak}>
-                <Alert variant="info">
-                    <Heading level="2" size="small" spacing={true}>
-                        Ingen endringer er registert
-                    </Heading>
-                    <p>
-                        Du har ikke gjort noen endringer i arbeidstiden din. Gå tilbake til forrige steg og gjør
-                        endringene.
-                    </p>
-                    <Link href="#" onClick={goBack}>
-                        Gå tilbake
-                    </Link>
-                </Alert>
-            </SøknadStep>
-        );
-    }
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
+        hvaSkalEndres,
+        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie)
+    );
 
     return (
-        <SøknadStep stepId={stepId} sak={sak}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <Ingress as="div">
                     <p>
-                        Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Dersom
+                        Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Hvis
                         noe ikke stemmer, kan du gå tilbake og endre igjen.
                     </p>
                 </Ingress>
             </SifGuidePanel>
-            {arbeidstakerList &&
-                Object.keys(arbeidstakerList).map((key) => {
-                    const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
-                    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
-                    if (!arbeidsgiver) {
-                        return null;
-                    }
-                    const arbeidsuker = getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
-                    return (
-                        <FormBlock key={key} paddingBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
-                            <Heading level="2" size="medium">
-                                {arbeidsgiver.navn}
-                            </Heading>
-                            <>
-                                <ArbeidstidUkeTabell
-                                    listItems={arbeidsuker}
-                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                                />
-                            </>
-                        </FormBlock>
-                    );
-                })}
-            {frilanserArbeidstidInfo && (
-                <FormBlock paddingBottom="l">
-                    <Heading level="2" size="medium">
-                        Frilanser
-                    </Heading>
-                    <>
-                        <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItems(frilanserArbeidstidInfo.perioder)}
-                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        />
-                    </>
+
+            {arbeidstidSkalEndres && (
+                <Block margin="xxl">
+                    <SummarySection header="Endringer i arbeidstid">
+                        {arbeidstid && arbeidstidErEndret ? (
+                            <ArbeidstidOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                        ) : (
+                            <Block padBottom="l">
+                                <Alert variant="info">Det er ikke registrert noen endringer i arbeidstid</Alert>
+                            </Block>
+                        )}
+                    </SummarySection>
+                </Block>
+            )}
+            {lovbestemtFerieSkalEndres && (
+                <Block margin="xxl" padBottom="m">
+                    <SummarySection header="Endringer i ferie">
+                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
+                            <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
+                        ) : (
+                            <Block padBottom="l">
+                                <Alert variant="info">Det er ikke registrert noen endringer i ferie</Alert>
+                            </Block>
+                        )}
+                    </SummarySection>
+                </Block>
+            )}
+            {harIngenEndringer ? (
+                <FormBlock margin="l">
+                    <Button type="button" variant="secondary" onClick={goBack} icon={<Back aria-label="Pil venstre" />}>
+                        Forrige
+                    </Button>
+                </FormBlock>
+            ) : (
+                <FormBlock margin="l">
+                    <FormikWrapper
+                        initialValues={getOppsummeringStepInitialValues(søknadsdata)}
+                        onSubmit={(values) => {
+                            apiData
+                                ? sendSøknad({
+                                      ...apiData,
+                                      harBekreftetOpplysninger:
+                                          values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                                  })
+                                : undefined;
+                        }}
+                        renderForm={() => {
+                            return (
+                                <>
+                                    <Form
+                                        formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
+                                        submitDisabled={isSubmitting || hasInvalidSteps || harIngenEndringer}
+                                        includeValidationSummary={true}
+                                        submitButtonLabel="Send melding om endring"
+                                        submitPending={isSubmitting}
+                                        backButtonDisabled={isSubmitting}
+                                        onBack={goBack}>
+                                        <ConfirmationCheckbox
+                                            disabled={isSubmitting || harIngenEndringer}
+                                            label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
+                                            validate={getCheckedValidator()}
+                                            data-testid="bekreft-opplysninger"
+                                            name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                        />
+                                    </Form>
+                                    {sendSøknadError && (
+                                        <FormBlock>
+                                            <ErrorSummary ref={sendSøknadErrorSummary}>
+                                                {sendSøknadError.message}
+                                            </ErrorSummary>
+                                        </FormBlock>
+                                    )}
+                                </>
+                            );
+                        }}
+                    />
                 </FormBlock>
             )}
-            {selvstendigNæringsdrivendeArbeidstidInfo && (
-                <FormBlock paddingBottom="l">
-                    <Heading level="2" size="medium">
-                        Selvstendig næringsdrivende
-                    </Heading>
-                    <>
-                        <ArbeidstidUkeTabell
-                            listItems={getArbeidstidUkeTabellItems(selvstendigNæringsdrivendeArbeidstidInfo.perioder)}
-                            arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        />
-                    </>
-                </FormBlock>
-            )}
-            <FormBlock margin="l">
-                <FormikWrapper
-                    initialValues={getOppsummeringStepInitialValues(søknadsdata)}
-                    onSubmit={(values) => {
-                        apiData
-                            ? sendSøknad({
-                                  ...apiData,
-                                  harBekreftetOpplysninger:
-                                      values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                              })
-                            : undefined;
-                    }}
-                    renderForm={() => {
-                        return (
-                            <>
-                                <Form
-                                    formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
-                                    submitDisabled={isSubmitting || hasInvalidSteps}
-                                    includeValidationSummary={true}
-                                    submitButtonLabel="Send melding om endring"
-                                    submitPending={isSubmitting}
-                                    backButtonDisabled={isSubmitting}
-                                    onBack={goBack}>
-                                    <ConfirmationCheckbox
-                                        disabled={isSubmitting}
-                                        label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
-                                        validate={getCheckedValidator()}
-                                        data-testid="bekreft-opplysninger"
-                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                    />
-                                </Form>
-                                {sendSøknadError && (
-                                    <FormBlock>
-                                        <ErrorSummary ref={sendSøknadErrorSummary}>
-                                            {sendSøknadError.message}
-                                        </ErrorSummary>
-                                    </FormBlock>
-                                )}
-                            </>
-                        );
-                    }}
-                />
-            </FormBlock>
         </SøknadStep>
     );
 };
 
 export default OppsummeringStep;
-
-const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
-    {
-        faktiskArbeidTimerPerDag,
-        _opprinneligFaktiskPerDag,
-        _opprinneligNormaltPerDag,
-        _endretProsent,
-    }: ArbeidstidPeriodeApiData,
-    isoDateRange: ISODateRange
-): ArbeidstidUkeTabellItem => {
-    const periode = ISODateRangeToDateRange(isoDateRange);
-    const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
-
-    const arbeidsuke: ArbeidstidUkeTabellItem = {
-        kanEndres: false,
-        kanVelges: false,
-        isoDateRange,
-        periode,
-        antallDagerMedArbeidstid,
-        opprinnelig: {
-            normalt: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligNormaltPerDag),
-                antallDagerMedArbeidstid
-            ),
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligFaktiskPerDag),
-                antallDagerMedArbeidstid
-            ),
-        },
-        endret: {
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(faktiskArbeidTimerPerDag),
-                antallDagerMedArbeidstid
-            ),
-            endretProsent: _endretProsent,
-        },
-    };
-    return arbeidsuke;
-};
-
-const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
-    const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
-    Object.keys(perioder)
-        .sort()
-        .forEach((isoDateRange) => {
-            arbeidsuker.push(getArbeidsukeListItemFromArbeidstidPeriodeApiData(perioder[isoDateRange], isoDateRange));
-        });
-    return arbeidsuker;
-};

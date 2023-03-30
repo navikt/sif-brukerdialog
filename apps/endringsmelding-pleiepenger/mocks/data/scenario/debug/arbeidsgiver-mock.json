@@ -1,5 +1,13 @@
 {
     "organisasjoner": [
-        { "navn": "Dykkert svømmeutstyr", "organisasjonsnummer": "947064649", "ansattFom": "2008-10-01" }
-    ]
+        { "organisasjonsnummer": "967170232", "navn": "SNILL TORPEDO", "ansattFom": "2002-03-24", "ansattTom": null },
+        {
+            "organisasjonsnummer": "972674818",
+            "navn": "PENGELØS SPAREBANK",
+            "ansattFom": "2002-03-24",
+            "ansattTom": null
+        }
+    ],
+    "privateArbeidsgivere": null,
+    "frilansoppdrag": null
 }

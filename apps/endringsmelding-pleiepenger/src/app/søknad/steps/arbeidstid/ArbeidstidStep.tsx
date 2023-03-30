@@ -1,7 +1,7 @@
-import { BodyLong, Heading, Panel } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
@@ -12,16 +12,21 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidAktivitetType } from '../../../types/Sak';
+import { ArbeidAktivitet } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import {
+    getAktiviteterSomSkalEndres,
+    getArbeidstidStepInitialValues,
+    getArbeidstidSøknadsdataFromFormValues,
+} from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
@@ -39,11 +44,12 @@ const ArbeidstidStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak },
+        state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const stepConfig = getSøknadStepConfig(sak);
+    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -65,8 +71,7 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const valgteAktiviteter = søknadsdata.aktivitet?.aktiviteterSomSkalEndres || [];
-    const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter, valgteAktiviteter);
+    const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter);
 
     const onArbeidstidAktivitetChange = (
         arbeidAktivitetId: string,
@@ -92,12 +97,12 @@ const ArbeidstidStep = () => {
     };
 
     return (
-        <SøknadStep stepId={stepId} sak={sak}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
                 <>
                     <BodyLong as="div">
                         <Heading level="2" size="xsmall" spacing={true}>
-                            Slik gjør du det
+                            Slik endrer du jobb i pleiepengeperioden
                         </Heading>
                         <InfoList>
                             <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
@@ -110,6 +115,16 @@ const ArbeidstidStep = () => {
                     </BodyLong>
                 </>
             </SifGuidePanel>
+
+            {harFjernetFerie && (
+                <Block margin="xl">
+                    <Alert variant="warning">
+                        Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er
+                        riktig.
+                    </Alert>
+                </Block>
+            )}
+
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
                 onSubmit={handleSubmit}
@@ -126,22 +141,22 @@ const ArbeidstidStep = () => {
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
                                     return (
-                                        <FormBlock key={arbeidAktivitet.id}>
-                                            <Panel border={true}>
-                                                <Arbeidsaktivitet
-                                                    arbeidAktivitet={arbeidAktivitet}
-                                                    endringer={endringer[arbeidAktivitet.id]}
-                                                    onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
-                                                        onArbeidstidAktivitetChange(
-                                                            arbeidAktivitet.id,
-                                                            arbeidstidEndringer,
-                                                            values,
-                                                            setValues
-                                                        );
-                                                    }}
-                                                />
-                                            </Panel>
-                                        </FormBlock>
+                                        <Block key={arbeidAktivitet.id} margin="l">
+                                            <Arbeidsaktivitet
+                                                renderAsExpansionCard={arbeidAktiviteter.length > 1}
+                                                arbeidAktivitet={arbeidAktivitet}
+                                                endringer={endringer[arbeidAktivitet.id]}
+                                                lovbestemtFerie={søknadsdata.lovbestemtFerie}
+                                                onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
+                                                    onArbeidstidAktivitetChange(
+                                                        arbeidAktivitet.id,
+                                                        arbeidstidEndringer,
+                                                        values,
+                                                        setValues
+                                                    );
+                                                }}
+                                            />
+                                        </Block>
                                     );
                                 })}
                             </Form>
@@ -154,23 +169,3 @@ const ArbeidstidStep = () => {
 };
 
 export default ArbeidstidStep;
-
-const getAktiviteterSomSkalEndres = (
-    arbeidAktiviteter: ArbeidAktiviteter,
-    valgteAktiviteter: string[] = []
-): ArbeidAktivitet[] => {
-    const { arbeidstakerArktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
-
-    const aktiviteter: ArbeidAktivitet[] = arbeidstaker.filter((a) => (valgteAktiviteter || []).includes(a.id));
-    if (frilanser !== undefined && valgteAktiviteter.includes(ArbeidAktivitetType.frilanser)) {
-        aktiviteter.push({ ...frilanser });
-    }
-
-    if (
-        selvstendigNæringsdrivende !== undefined &&
-        valgteAktiviteter.includes(ArbeidAktivitetType.selvstendigNæringsdrivende)
-    ) {
-        aktiviteter.push({ ...selvstendigNæringsdrivende });
-    }
-    return aktiviteter;
-};

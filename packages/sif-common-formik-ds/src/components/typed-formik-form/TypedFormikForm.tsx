@@ -6,7 +6,6 @@ import { CancelButtonTypes, CustomFormErrorHandler, ErrorTypeChecker, FieldError
 import { getErrorForField, isValidationErrorsVisible } from '../../utils/typedFormErrorUtils';
 import FormikValidationErrorSummary from '../formik-validation-error-summary/FormikValidationErrorSummary';
 import ButtonRow from '../helpers/button-row/ButtonRow';
-import './typed-formik-form.scss';
 export interface TypedFormikFormProps<FormValues, ErrorType> {
     children: React.ReactNode;
     className?: string;
@@ -176,13 +175,13 @@ function TypedFormikForm<FormValues, ErrorType>({
                                     type="button"
                                     onClick={() => onBack(formik.values)}
                                     disabled={backDisabled}
-                                    data-testid="typedFormikForm-goBackButton">
-                                    <span className="typedFormikForm__buttonLabel">
-                                        {showButtonArrows && (
+                                    data-testid="typedFormikForm-goBackButton"
+                                    icon={
+                                        showButtonArrows ? (
                                             <Back aria-hidden className="typedFormikForm__buttonLabel__icon" />
-                                        )}
-                                        {backButtonLabel || 'Forrige'}
-                                    </span>
+                                        ) : undefined
+                                    }>
+                                    {backButtonLabel || 'Forrige'}
                                 </Button>
                             )}
 
@@ -191,13 +190,14 @@ function TypedFormikForm<FormValues, ErrorType>({
                                 type="submit"
                                 loading={submitPending}
                                 disabled={submitDisabled}
-                                data-testid="typedFormikForm-submitButton">
-                                <span className="typedFormikForm__buttonLabel">
-                                    {submitButtonLabel || 'Neste'}
-                                    {showButtonArrows && (
+                                data-testid="typedFormikForm-submitButton"
+                                iconPosition="right"
+                                icon={
+                                    showButtonArrows ? (
                                         <Next aria-hidden className="typedFormikForm__buttonLabel__icon" />
-                                    )}
-                                </span>
+                                    ) : undefined
+                                }>
+                                {submitButtonLabel || 'Neste'}
                             </Button>
 
                             {onCancel && (

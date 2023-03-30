@@ -37,8 +37,7 @@ class ErrorBoundary extends React.Component<any, State> {
                                 Oops - der oppstod det en feil
                             </Heading>
                             <p>
-                                Du kan gå tilbake å prøve på nytt. Dersom feilen vedvarer, kan du prøve igjen litt
-                                senere.
+                                Du kan gå tilbake å prøve på nytt. Hvis feilen vedvarer, kan du prøve igjen litt senere.
                             </p>
                         </SifGuidePanel>
                     </Block>

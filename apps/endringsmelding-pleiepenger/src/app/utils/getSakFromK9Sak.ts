@@ -2,6 +2,7 @@ import {
     DateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
+    dateRangeUtils,
     dateToISODate,
     durationUtils,
     getDateRangesFromISODateRangeMap,
@@ -15,12 +16,20 @@ import {
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { ArbeidsgiverIkkeFunnetError } from '../types/arbeidsgiverIkkeFunnetError';
-import { K9Sak, K9SakArbeidstaker, K9SakArbeidstidInfo, K9SakArbeidstidPeriodeMap } from '../types/K9Sak';
+import {
+    K9Sak,
+    K9SakArbeidstaker,
+    K9SakArbeidstidInfo,
+    K9SakArbeidstidPeriodeMap,
+    K9SakLovbestemtFerie,
+} from '../types/K9Sak';
 import {
     ArbeidAktivitet,
     ArbeidAktivitetArbeidstaker,
+    ArbeidAktiviteter,
     ArbeidAktivitetFrilanser,
     ArbeidAktivitetSelvstendigNæringsdrivende,
     ArbeidAktivitetType,
@@ -32,6 +41,7 @@ import {
 } from '../types/Sak';
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
+import { getFeriedagerMapFromPerioder } from './ferieUtils';
 import { maskString } from './maskString';
 
 interface _PeriodisertK9FormatArbeidstidPerioder {
@@ -40,7 +50,7 @@ interface _PeriodisertK9FormatArbeidstidPerioder {
 }
 
 /**
- * Korter ned periode til sluttdato for arbeidsforholdet, dersom denne er satt
+ * Korter ned periode til sluttdato for arbeidsforholdet, hvis denne er satt
  * @param tillattEndringsperiode
  * @param arbeidsgiver
  * @returns DateRange
@@ -288,7 +298,7 @@ const getPerioderMedArbeidstid = (
         const enkeltdagerIPeriode = getArbeidstidEnkeltdagMapFromPerioder(gruppertPeriode.arbeidstidPerioder);
         const arbeidsuker = getArbeidsukerMapFromArbeidsuker(getArbeidsukerFromEnkeltdager(enkeltdagerIPeriode));
         const periode: PeriodeMedArbeidstid = {
-            periode: gruppertPeriode.periode,
+            ...gruppertPeriode.periode,
             arbeidsuker,
         };
         return periode;
@@ -338,12 +348,12 @@ const getArbeidAktivitetPerioderPart = (
     endringsperiode: DateRange
 ): Pick<
     ArbeidAktivitet,
-    'perioderMedArbeidstid' | 'harPerioderEtterEndringsperiode' | 'harPerioderFørEndringsperiode'
+    'perioderMedArbeidstid' | 'harPerioderEtterTillattEndringsperiode' | 'harPerioderFørTillattEndringsperiode'
 > => {
     return {
         perioderMedArbeidstid: getPerioderMedArbeidstid(arbeidstidPerioder, endringsperiode),
-        harPerioderFørEndringsperiode: harPerioderFørEndringsperiode(arbeidstidPerioder, endringsperiode),
-        harPerioderEtterEndringsperiode: harPerioderEtterEndringsperiode(arbeidstidPerioder, endringsperiode),
+        harPerioderFørTillattEndringsperiode: harPerioderFørEndringsperiode(arbeidstidPerioder, endringsperiode),
+        harPerioderEtterTillattEndringsperiode: harPerioderEtterEndringsperiode(arbeidstidPerioder, endringsperiode),
     };
 };
 
@@ -385,6 +395,7 @@ const getArbeidAktivitetArbeidstaker = (
         id: `id_${arbeidsgiver.organisasjonsnummer}`,
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
+        navn: arbeidsgiver.navn,
         ...getArbeidAktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver),
     };
 };
@@ -403,6 +414,7 @@ const getArbeidAktivitetFrilanser = (
         ? {
               id: ArbeidAktivitetType.frilanser,
               type: ArbeidAktivitetType.frilanser,
+              navn: 'Frilanser',
               ...getArbeidAktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode),
           }
         : undefined;
@@ -422,6 +434,7 @@ const getArbeidAktivitetSelvstendigNæringsdrivende = (
         ? {
               id: ArbeidAktivitetType.selvstendigNæringsdrivende,
               type: ArbeidAktivitetType.selvstendigNæringsdrivende,
+              navn: 'Selvstendig næringsdrivende',
               ...getArbeidAktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode),
           }
         : undefined;
@@ -432,30 +445,76 @@ const getArbeidAktivitetSelvstendigNæringsdrivende = (
  * Henter ut info fra K9Sak og klargjør sak for videre behandling i dialogen
  * @param k9sak Sak hentet fra K9
  * @param arbeidsgivere Liste med arbeidsgivere
- * @param endringsperiode Periode hvor en kan endre
+ * @param tillattEndringsperiode Periode hvor en kan endre
  * @returns Sak
  */
-export const getSakFromK9Sak = (k9sak: K9Sak, arbeidsgivere: Arbeidsgiver[], endringsperiode: DateRange): Sak => {
+export const getSakFromK9Sak = (
+    k9sak: K9Sak,
+    arbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange
+): Sak => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
         k9sak.ytelse.arbeidstid;
+
+    const søknadsperioderInneforTillattEndringsperiode = dateRangeUtils.getDateRangesWithinDateRange(
+        k9sak.ytelse.søknadsperioder,
+        tillattEndringsperiode
+    );
+
+    const arbeidstakerAktiviteter = arbeidstakerList
+        ? arbeidstakerList.map((arbeidstaker) =>
+              getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivere, tillattEndringsperiode)
+          )
+        : [];
+    const frilanser = getArbeidAktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
+    const selvstendigNæringsdrivende = getArbeidAktivitetSelvstendigNæringsdrivende(
+        selvstendigNæringsdrivendeArbeidstidInfo,
+        tillattEndringsperiode
+    );
+    const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
+        arbeidstakerAktiviteter,
+        frilanser,
+        selvstendigNæringsdrivende,
+    });
+
     return {
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
         },
+        søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
+        samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,
         arbeidAktiviteter: {
-            arbeidstakerArktiviteter: arbeidstakerList
-                ? arbeidstakerList.map((arbeidstaker) =>
-                      getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivere, endringsperiode)
-                  )
-                : [],
-            frilanser: getArbeidAktivitetFrilanser(frilanserArbeidstidInfo, endringsperiode),
-            selvstendigNæringsdrivende: getArbeidAktivitetSelvstendigNæringsdrivende(
-                selvstendigNæringsdrivendeArbeidstidInfo,
-                endringsperiode
-            ),
+            arbeidstakerAktiviteter,
+            frilanser,
+            selvstendigNæringsdrivende,
+        },
+        lovbestemtFerie: {
+            feriedager: getFeriedagerFromLovbestemtFerie(k9sak.ytelse.lovbestemtFerie.perioder),
+        },
+        utledet: {
+            aktiviteterSomKanEndres,
         },
     };
+};
+
+const getFeriedagerFromLovbestemtFerie = (lovbestemtFerie: K9SakLovbestemtFerie[]): FeriedagMap => {
+    return getFeriedagerMapFromPerioder(lovbestemtFerie, true, true);
+};
+
+const getAktiviteterSomKanEndres = ({
+    arbeidstakerAktiviteter: arbeidstakerArktiviteter,
+    frilanser,
+    selvstendigNæringsdrivende,
+}: ArbeidAktiviteter): ArbeidAktivitet[] => {
+    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerArktiviteter];
+    if (frilanser) {
+        aktiviteter.push(frilanser);
+    }
+    if (selvstendigNæringsdrivende) {
+        aktiviteter.push(selvstendigNæringsdrivende);
+    }
+    return aktiviteter;
 };
 
 /**

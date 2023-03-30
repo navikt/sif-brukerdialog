@@ -35,49 +35,49 @@ describe('getUkerForEndring', () => {
     const arbeidsuke4 = arbeidsukerEttÅr[3]; // full
     const arbeidsuke5 = arbeidsukerEttÅr[4]; // slutter onsdag
 
-    it('returnerer kun false dersom det ikke er uker', () => {
+    it('returnerer kun false hvis det ikke er uker', () => {
         const result = getUkerForEndring([]);
         expect(result.spørOmFørsteUke).toBeFalsy();
         expect(result.spørOmSnittUker).toBeFalsy();
         expect(result.spørOmSisteUke).toBeFalsy();
     });
-    it('returnerer kun første uke dersom det varer én uke', () => {
+    it('returnerer kun første uke hvis det varer én uke', () => {
         const result = getUkerForEndring([arbeidsuke1]);
         expect(result.spørOmFørsteUke).toBeTruthy();
         expect(result.spørOmSnittUker).toBeFalsy();
         expect(result.spørOmSisteUke).toBeFalsy();
     });
-    it('returnerer kun snitt uke dersom det er to uker og begge har 5 arbeidsdager', () => {
+    it('returnerer kun snitt uke hvis det er to uker og begge har 5 arbeidsdager', () => {
         const result = getUkerForEndring([arbeidsuke2, arbeidsuke3]);
         expect(result.spørOmFørsteUke).toBeFalsy();
         expect(result.spørOmSnittUker).toBeTruthy();
         expect(result.spørOmSisteUke).toBeFalsy();
     });
-    it('returnerer første og siste uke dersom det varer to uker og det er ulik arbeidstid', () => {
+    it('returnerer første og siste uke hvis det varer to uker og det er ulik arbeidstid', () => {
         const result = getUkerForEndring([arbeidsuke1, arbeidsuke2]);
         expect(result.spørOmFørsteUke).toBeTruthy();
         expect(result.spørOmSnittUker).toBeFalsy();
         expect(result.spørOmSisteUke).toBeTruthy();
     });
-    it('returnerer andre uke dersom alle arbeidsuker har 5 arbeidsdager', () => {
+    it('returnerer andre uke hvis alle arbeidsuker har 5 arbeidsdager', () => {
         const result = getUkerForEndring([arbeidsuke2, arbeidsuke3, arbeidsuke4]);
         expect(result.spørOmFørsteUke).toBeFalsy();
         expect(result.spørOmSnittUker).toBeTruthy();
         expect(result.spørOmSisteUke).toBeFalsy();
     });
-    it('returnerer true på alt dersom mer enn to uker og første og siste uke ikke er full', () => {
+    it('returnerer true på alt hvis mer enn to uker og første og siste uke ikke er full', () => {
         const result = getUkerForEndring([arbeidsuke1, arbeidsuke2, arbeidsuke3, arbeidsuke4, arbeidsuke5]);
         expect(result.spørOmFørsteUke).toBeTruthy();
         expect(result.spørOmSnittUker).toBeTruthy();
         expect(result.spørOmSisteUke).toBeTruthy();
     });
-    it('returnerer true på førsteUke og snittUker dersom det er mer enn to uker og alle uker er fulle untatt første', () => {
+    it('returnerer true på førsteUke og snittUker hvis det er mer enn to uker og alle uker er fulle untatt første', () => {
         const result = getUkerForEndring([arbeidsuke1, arbeidsuke2, arbeidsuke3, arbeidsuke4]);
         expect(result.spørOmFørsteUke).toBeTruthy();
         expect(result.spørOmSnittUker).toBeTruthy();
         expect(result.spørOmSisteUke).toBeFalsy();
     });
-    it('returnerer true på sisteUke og snittUker dersom det er mer enn to uker og alle uker er fulle untatt sisteUke', () => {
+    it('returnerer true på sisteUke og snittUker hvis det er mer enn to uker og alle uker er fulle untatt sisteUke', () => {
         const result = getUkerForEndring([arbeidsuke2, arbeidsuke3, arbeidsuke4, arbeidsuke5]);
         expect(result.spørOmFørsteUke).toBeFalsy();
         expect(result.spørOmSnittUker).toBeTruthy();

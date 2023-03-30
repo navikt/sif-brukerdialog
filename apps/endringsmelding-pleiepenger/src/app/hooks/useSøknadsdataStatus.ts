@@ -6,8 +6,8 @@ import { StepFormValues } from '../søknad/config/StepFormValues';
 import { StepId } from '../søknad/config/StepId';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
-import { getAktivitetSøknadsdataFromFormValues } from '../søknad/steps/aktivitet/aktivitetStepUtils';
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
+import { getLovbestemtFerieSøknadsdataFromFormValues } from '../søknad/steps/lovbestemt-ferie/lovbestemtFerieStepUtils';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
@@ -20,8 +20,8 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
         return undefined;
     }
     switch (step) {
-        case StepId.AKTIVITET:
-            return getAktivitetSøknadsdataFromFormValues(formValues);
+        case StepId.LOVBESTEMT_FERIE:
+            return getLovbestemtFerieSøknadsdataFromFormValues(formValues);
         case StepId.ARBEIDSTID:
             return getArbeidstidSøknadsdataFromFormValues(formValues);
     }

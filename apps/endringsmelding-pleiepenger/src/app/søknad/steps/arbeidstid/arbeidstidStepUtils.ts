@@ -1,8 +1,7 @@
 import { durationsAreEqual } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet } from '../../../types/Sak';
+import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { getArbeidsukerIArbeidAktivitet } from '../../../utils/arbeidAktivitetUtils';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
 
@@ -48,4 +47,28 @@ export const cleanupArbeidAktivitetEndringer = (
         }
     });
     return cleanedEndringer;
+};
+
+export const getArbeidsukerIArbeidAktivitet = (arbeidAktvitet: ArbeidAktivitet): ArbeidsukeMap => {
+    const arbeidsukerMap: ArbeidsukeMap = {};
+    arbeidAktvitet.perioderMedArbeidstid.forEach(({ arbeidsuker }) => {
+        Object.keys(arbeidsuker).forEach((key) => {
+            arbeidsukerMap[key] = arbeidsuker[key];
+        });
+    });
+    return arbeidsukerMap;
+};
+
+export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter): ArbeidAktivitet[] => {
+    const { arbeidstakerAktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+
+    const aktiviteter: ArbeidAktivitet[] = [...arbeidstaker];
+    if (frilanser !== undefined) {
+        aktiviteter.push({ ...frilanser });
+    }
+
+    if (selvstendigNæringsdrivende !== undefined) {
+        aktiviteter.push({ ...selvstendigNæringsdrivende });
+    }
+    return aktiviteter;
 };

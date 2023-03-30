@@ -2,6 +2,11 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const velkommenPageMessages: MessageFileFormat = {
     nb: {
+        'velkommenForm.submitButtonLabel': 'Start',
+        'velkommenForm.harForståttRettigheterOgPlikter.notChecked':
+            'Du må velge at du har forstått ditt ansvar når du sender inn en endring',
+        'velkommenForm.hvaSkalEndres.listHasTooFewItems': 'Du må velge hva du ønsker å endre',
+
         'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
         'page.velkommen.guide.tittel': 'Hei {navn}',
         'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager.',

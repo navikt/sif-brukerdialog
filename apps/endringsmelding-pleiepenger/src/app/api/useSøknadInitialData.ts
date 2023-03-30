@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
@@ -12,10 +13,11 @@ import { Søker } from '../types/Søker';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
-import { getEndringsdato, getMaksEndringsperiode } from '../utils/endringsperiode';
+import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo, maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
+import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -24,7 +26,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'>;
 
@@ -77,7 +78,7 @@ const setupSøknadInitialData = async (
         arbeidsgivere: Arbeidsgiver[];
         lagretSøknadState?: SøknadStatePersistence;
     },
-    endringsperiode: DateRange
+    tillattEndringsperiode: DateRange
 ): Promise<SøknadInitialData> => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
 
@@ -94,6 +95,9 @@ const setupSøknadInitialData = async (
 
     if (!persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
+        if (lagretSøknadState?.søknadRoute) {
+            relocateToWelcomePage();
+        }
     }
 
     const persistedSak = persistedSøknadStateIsValid
@@ -102,14 +106,16 @@ const setupSøknadInitialData = async (
 
     const getInitialSak = () => {
         if (persistedSak) {
-            return getSakFromK9Sak(persistedSak, arbeidsgivere, endringsperiode);
+            return getSakFromK9Sak(persistedSak, arbeidsgivere, tillattEndringsperiode);
         }
         if (k9saker.length === 1) {
-            const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, endringsperiode);
+            const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
             if (getEnvironmentVariable('DEBUG') === 'true') {
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
-                    JSON.stringify(getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, endringsperiode))
+                    JSON.stringify(
+                        getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode)
+                    )
                 );
             }
             return sak;
@@ -117,13 +123,16 @@ const setupSøknadInitialData = async (
         return undefined;
     };
 
+    const sak = getInitialSak();
+
     return Promise.resolve({
         versjon: APP_VERSJON,
-        endringsperiode,
+        tillattEndringsperiode,
         søker,
         k9saker,
-        sak: getInitialSak(),
+        sak,
         arbeidsgivere,
+        hvaSkalEndres: sak && persistedSøknadStateIsValid ? lagretSøknadState.hvaSkalEndres : [],
         søknadsdata: {} as any,
         inputPreferanser: {
             timerEllerProsent: TimerEllerProsent.PROSENT,
@@ -137,7 +146,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
     const fetch = async () => {
         try {
-            const maksEndringsperiode = getMaksEndringsperiode(getEndringsdato());
+            const tillattEndringsperiode = getTillattEndringsperiode(getEndringsdato());
 
             const [søker, k9sakerResult, lagretSøknadState] = await Promise.all([
                 søkerEndpoint.fetch(),
@@ -148,7 +157,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             const ugyldigk9FormatSaker: UgyldigK9SakFormat[] = k9sakerResult.filter(isUgyldigK9SakFormat);
             const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
 
-            /** Dersom vi ikke klarer å parse saken */
+            /** Hvis vi ikke klarer å parse saken */
             if (k9sakerResult.length === 1 && ugyldigk9FormatSaker.length === 1) {
                 setInitialData({
                     status: RequestStatus.success,
@@ -174,7 +183,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
 
             const arbeidsgivere = samletTidsperiode
                 ? await arbeidsgivereEndpoint.fetch(
-                      getPeriodeForArbeidsgiverOppslag(samletTidsperiode, maksEndringsperiode)
+                      getPeriodeForArbeidsgiverOppslag(samletTidsperiode, tillattEndringsperiode)
                   )
                 : [];
 
@@ -213,7 +222,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 kanBrukeSøknad: true,
                 data: await setupSøknadInitialData(
                     { søker, arbeidsgivere, k9saker, lagretSøknadState },
-                    maksEndringsperiode
+                    tillattEndringsperiode
                 ),
             });
             return Promise.resolve();

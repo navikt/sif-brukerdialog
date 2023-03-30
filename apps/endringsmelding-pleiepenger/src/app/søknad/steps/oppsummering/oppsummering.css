@@ -1,0 +1,3 @@
+.capsFirstChar::first-letter {
+    text-transform: capitalize;
+}

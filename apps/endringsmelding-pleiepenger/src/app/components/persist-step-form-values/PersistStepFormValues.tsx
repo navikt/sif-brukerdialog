@@ -5,14 +5,18 @@ import { StepId } from '../../søknad/config/StepId';
 
 interface Props {
     stepId: StepId;
+    onChange?: () => void;
 }
 
-const PersistStepFormValues: React.FunctionComponent<Props> = ({ stepId }) => {
+const PersistStepFormValues: React.FunctionComponent<Props> = ({ stepId, onChange }) => {
     const { setStepFormValues } = useStepFormValuesContext();
     return (
         <FormikValuesObserver
             onChange={(formValues) => {
                 setStepFormValues(stepId, { [stepId]: formValues });
+                if (onChange) {
+                    onChange();
+                }
             }}
         />
     );

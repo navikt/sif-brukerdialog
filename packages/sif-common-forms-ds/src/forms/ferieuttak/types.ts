@@ -1,10 +1,10 @@
-export interface Ferieuttak {
+import { DateRange } from '@navikt/sif-common-utils/lib';
+
+export interface Ferieuttak extends DateRange {
     id?: string;
-    fom: Date;
-    tom: Date;
 }
 
 export type FerieuttakFormValues = {
-    fom?: string;
-    tom?: string;
+    from?: string;
+    to?: string;
 };

@@ -1,6 +1,7 @@
-import { ArbeidAktivitet, Sak } from '../../../types/Sak';
+import { EndringType } from '../../../types/EndringType';
+import { Sak } from '../../../types/Sak';
 import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
-import { AktivitetSøknadsdata, ArbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { ArbeidstidSøknadsdata, LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { StepId } from '../../config/StepId';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
@@ -12,8 +13,8 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
-    SET_SØKNAD_AKTIVITET = 'setSøknadAktivitet',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
+    SET_SØKNAD_LOVBESTEMT_FERIE = 'setSøknadLovbestemtFerie',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
@@ -32,7 +33,7 @@ interface ResetSøknad {
 }
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
-    payload: { sak: Sak; aktiviteterSomSkalEndres?: ArbeidAktivitet[] };
+    payload: { sak: Sak; hvaSkalEndres: EndringType[] };
 }
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
@@ -53,13 +54,14 @@ interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
     payload: SøknadRoutes;
 }
-interface SetSøknadAktivitet {
-    type: SøknadContextActionKeys.SET_SØKNAD_AKTIVITET;
-    payload: AktivitetSøknadsdata;
-}
 interface SetSøknadArbeidstid {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID;
     payload: ArbeidstidSøknadsdata;
+}
+
+interface SetSøknadLovbestemtFerie {
+    type: SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE;
+    payload: LovbestemtFerieSøknadsdata;
 }
 
 interface SetSøknadHarBekreftetOpplysninger {
@@ -85,9 +87,9 @@ const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
 });
 
-const startSøknad = (sak: Sak, aktiviteterSomSkalEndres?: ArbeidAktivitet[]): StartSøknad => ({
+const startSøknad = (sak: Sak, hvaSkalEndres: EndringType[]): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
-    payload: { sak, aktiviteterSomSkalEndres },
+    payload: { sak, hvaSkalEndres },
 });
 
 const avbrytSøknad = (): AvbrytSøknad => ({
@@ -109,12 +111,13 @@ const setEndringsmeldingSendt = (): SetEndringsmeldingSendt => ({
     type: SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT,
 });
 
-const setSøknadAktivitet = (payload: AktivitetSøknadsdata): SetSøknadAktivitet => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_AKTIVITET,
-    payload,
-});
 const setSøknadArbeidstid = (payload: ArbeidstidSøknadsdata): SetSøknadArbeidstid => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID,
+    payload,
+});
+
+const setSøknadLovbestemtFerie = (payload: LovbestemtFerieSøknadsdata): SetSøknadLovbestemtFerie => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE,
     payload,
 });
 
@@ -150,8 +153,8 @@ export type SøknadContextAction =
     | ResetSøknad
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadLagret
-    | SetSøknadAktivitet
     | SetSøknadArbeidstid
+    | SetSøknadLovbestemtFerie
     | SetSøknadRoute
     | SetEndringsmeldingSendt
     | StartSøknad
@@ -166,8 +169,8 @@ const actionsCreator = {
     resetSøknad,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
-    setSøknadAktivitet,
     setSøknadArbeidstid,
+    setSøknadLovbestemtFerie,
     setSøknadRoute,
     setEndringsmeldingSendt,
     startSøknad,
