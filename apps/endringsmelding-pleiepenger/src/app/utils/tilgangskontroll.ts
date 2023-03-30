@@ -1,13 +1,12 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-dayjs.extend(isSameOrAfter);
-
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
 import { K9Sak, K9SakArbeidstaker } from '../types/K9Sak';
-import { getEndringsdato, getTillattEndringsperiode } from './endringsperiode';
 import { getSamletDateRangeForK9Saker } from './k9SakUtils';
+
+dayjs.extend(isSameOrAfter);
 
 type TilgangNektet = {
     kanBrukeSøknad: false;
@@ -20,7 +19,11 @@ type TilgangTillatt = {
 
 type TilgangKontrollResultet = TilgangNektet | TilgangTillatt;
 
-export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]): TilgangKontrollResultet => {
+export const tilgangskontroll = (
+    saker: K9Sak[],
+    arbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange
+): TilgangKontrollResultet => {
     /** Har ingen saker */
     if (saker.length === 0) {
         return {
@@ -38,17 +41,15 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
     }
 
     /** Har én sak, men søknadsperiode er før tillatt endringsperiode */
-    if (
-        harSøknadsperiodeInnenforTillattEndringsperiode(
-            getSamletDateRangeForK9Saker(saker),
-            getTillattEndringsperiode(getEndringsdato())
-        )
-    ) {
+    if (!harSøknadsperiodeInnenforTillattEndringsperiode(getSamletDateRangeForK9Saker(saker), tillattEndringsperiode)) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
         };
     }
+    /**
+     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak
+     */
     if (
         saker.some((sak) => harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList))
     ) {

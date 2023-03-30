@@ -190,7 +190,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                   )
                 : [];
 
-            const resultat = tilgangskontroll(k9saker, arbeidsgivere);
+            const resultat = tilgangskontroll(k9saker, arbeidsgivere, tillattEndringsperiode);
             if (resultat.kanBrukeSøknad === false) {
                 setInitialData({
                     status: RequestStatus.success,

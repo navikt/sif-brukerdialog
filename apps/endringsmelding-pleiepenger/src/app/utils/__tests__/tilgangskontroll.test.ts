@@ -18,12 +18,14 @@ jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
 }));
 
 describe('tilgangskontroll', () => {
+    const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-01/2023-03-01');
+
     it('stopper ved ingen sak', () => {
-        const result = tilgangskontroll([], []);
+        const result = tilgangskontroll([], [], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
     it('stopper hvis bruker har flere enn én sak', () => {
-        const result = tilgangskontroll([true, false] as any, []);
+        const result = tilgangskontroll([true, false] as any, [], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
     it('stopper hvis bruker har arbeidsgiver som ikke er i sak', () => {
@@ -36,10 +38,10 @@ describe('tilgangskontroll', () => {
                         },
                     ],
                 },
-                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2022-10-01')],
+                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2023-10-01')],
             },
         } as K9Sak;
-        const result = tilgangskontroll([sak], [arbeidsgiver1]);
+        const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
         if (result.kanBrukeSøknad === false) {
             expect(result.årsak).toEqual(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
@@ -58,10 +60,10 @@ describe('tilgangskontroll', () => {
                         },
                     ],
                 },
-                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2022-10-01')],
+                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2023-10-01')],
             },
         } as K9Sak;
-        const result = tilgangskontroll([sak], [arbeidsgiver1]);
+        const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
         if (result.kanBrukeSøknad === false) {
             expect(result.årsak).toEqual(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
