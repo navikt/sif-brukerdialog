@@ -1,5 +1,15 @@
 # @navikt/sif-common-core-ds
 
+## 6.2.1
+
+### Patch Changes
+
+-   96e09117: Mindre UU-justeringer og fiks av manglende type="button"
+-   Updated dependencies [96e09117]
+-   Updated dependencies [96e09117]
+    -   @navikt/sif-common-formik-ds@0.15.0
+    -   @navikt/sif-common-utils@3.28.0
+
 ## 6.2.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @navikt/sif-common-soknad-ds
 
+## 6.2.1
+
+### Patch Changes
+
+-   96e09117: Legge til SamtykkeFormPart.
+-   Updated dependencies [96e09117]
+    -   @navikt/sif-common-formik-ds@0.15.0
+
 ## 6.2.0
 
 ### Minor Changes

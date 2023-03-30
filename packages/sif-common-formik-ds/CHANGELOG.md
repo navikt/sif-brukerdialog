@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.15.0
+
+### Minor Changes
+
+-   96e09117: Legge til mulighet for confirmDelete i ModalFormAndList. Justere bredde på dataRangePicker. Justere spacing på piler i TypedFormikForm knapper
+
 ## 0.14.1
 
 ### Patch Changes
