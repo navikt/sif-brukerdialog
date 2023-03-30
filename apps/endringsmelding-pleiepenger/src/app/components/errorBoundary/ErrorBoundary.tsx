@@ -1,10 +1,12 @@
+import { Button, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
+import søknadStateEndpoint from '../../api/endpoints/søknadStateEndpoint';
 import appSentryLogger from '../../utils/appSentryLogger';
-import { Heading } from '@navikt/ds-react';
+import { relocateToWelcomePage } from '../../utils/navigationUtils';
 
 interface State {
     eventId: string | null;
@@ -25,6 +27,11 @@ class ErrorBoundary extends React.Component<any, State> {
         }
     }
 
+    async restart() {
+        await søknadStateEndpoint.purge();
+        relocateToWelcomePage();
+    }
+
     render() {
         if (this.state.hasError) {
             return (
@@ -37,8 +44,15 @@ class ErrorBoundary extends React.Component<any, State> {
                                 Oops - der oppstod det en feil
                             </Heading>
                             <p>
-                                Du kan gå tilbake å prøve på nytt. Hvis feilen vedvarer, kan du prøve igjen litt senere.
+                                Du kan gå tilbake å prøve på nytt. Hvis feilen vedvarer, kan du prøve igjen litt senere
                             </p>
+                            <p>
+                                Eller du kan velge å starte helt på nytt, men da vil eventuelle endringer du har lagt
+                                inn være fjernet.
+                            </p>
+                            <Button type="button" onClick={() => this.restart()} size="small" variant="secondary">
+                                Start på nytt
+                            </Button>
                         </SifGuidePanel>
                     </Block>
                 </Page>
