@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.0.1
+
+### Patch Changes
+
+-   8f046e3f: Mulighet for restart i errorBoundary
+
 ## 2.0.0
 
 ### Major Changes
