@@ -1,3 +1,4 @@
+import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { K9Sak, K9SakArbeidstaker } from '../../types/K9Sak';
@@ -35,6 +36,7 @@ describe('tilgangskontroll', () => {
                         },
                     ],
                 },
+                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2022-10-01')],
             },
         } as K9Sak;
         const result = tilgangskontroll([sak], [arbeidsgiver1]);
@@ -56,6 +58,7 @@ describe('tilgangskontroll', () => {
                         },
                     ],
                 },
+                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2022-10-01')],
             },
         } as K9Sak;
         const result = tilgangskontroll([sak], [arbeidsgiver1]);
@@ -94,6 +97,28 @@ describe('harArbeidstakerISakUtenArbeidsforhold', () => {
         const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
             [arbeidsgiver1, arbeidsgiver2]
+        );
+        expect(result).toBeFalsy();
+    });
+});
+
+describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
+    const tillatEndringsperiode = ISODateRangeToDateRange('2022-01-02/2022-02-01');
+    const søknadsperiodeUtenfor: DateRange = ISODateRangeToDateRange('2022-01-01/2022-01-01');
+    const søknadsperiodeInnenfor: DateRange = ISODateRangeToDateRange('2022-01-02/2022-02-01');
+
+    it('returnerer true dersom søknadsperioder er innenfor tillatt endringsperiode', () => {
+        const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
+            søknadsperiodeInnenfor,
+            tillatEndringsperiode
+        );
+        expect(result).toBeTruthy();
+    });
+
+    it('returnerer false dersom søknadsperioder er før tillatt endringsperiode', () => {
+        const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
+            søknadsperiodeUtenfor,
+            tillatEndringsperiode
         );
         expect(result).toBeFalsy();
     });

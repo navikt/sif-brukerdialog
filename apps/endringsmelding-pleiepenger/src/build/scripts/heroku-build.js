@@ -24,8 +24,7 @@ function createEnvSettingsFileForHeroku() {
                 LOGIN_URL: 'https://endringsdialog-pleiepenger.herokuapp.com/login?redirect_location=https://endringsdialog-pleiepenger.herokuapp.com',
                 MELLOMLAGRING: 'on',
                 MSW: 'on',
-                PUBLIC_PATH: '',
-                VELG_SAK: 'off'
+                PUBLIC_PATH: ''
             };`
         );
     });
