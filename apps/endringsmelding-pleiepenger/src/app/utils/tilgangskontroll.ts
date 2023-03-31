@@ -1,7 +1,12 @@
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { DateRange } from '@navikt/sif-common-utils/lib';
+import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
 import { K9Sak, K9SakArbeidstaker } from '../types/K9Sak';
+import { getSamletDateRangeForK9Saker } from './k9SakUtils';
+
+dayjs.extend(isSameOrAfter);
 
 type TilgangNektet = {
     kanBrukeSøknad: false;
@@ -14,7 +19,12 @@ type TilgangTillatt = {
 
 type TilgangKontrollResultet = TilgangNektet | TilgangTillatt;
 
-export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]): TilgangKontrollResultet => {
+export const tilgangskontroll = (
+    saker: K9Sak[],
+    arbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange
+): TilgangKontrollResultet => {
+    /** Har ingen saker */
     if (saker.length === 0) {
         return {
             kanBrukeSøknad: false,
@@ -22,14 +32,24 @@ export const tilgangskontroll = (saker: K9Sak[], arbeidsgivere: Arbeidsgiver[]):
         };
     }
 
-    const kanVelgeSak = getEnvironmentVariable('VELG_SAK') === 'on';
-    if (saker.length > 1 && kanVelgeSak === false) {
+    /** Har flere saker */
+    if (saker.length > 1) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.harMerEnnEnSak,
         };
     }
 
+    /** Har én sak, men søknadsperiode er før tillatt endringsperiode */
+    if (!harSøknadsperiodeInnenforTillattEndringsperiode(getSamletDateRangeForK9Saker(saker), tillattEndringsperiode)) {
+        return {
+            kanBrukeSøknad: false,
+            årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
+        };
+    }
+    /**
+     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak
+     */
     if (
         saker.some((sak) => harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList))
     ) {
@@ -91,7 +111,17 @@ const getArbeidsaktivitetId = (arbeidsaktivitet: K9SakArbeidstaker): string => {
     return arbeidsaktivitet.norskIdentitetsnummer || arbeidsaktivitet.organisasjonsnummer;
 };
 
+const harSøknadsperiodeInnenforTillattEndringsperiode = (
+    samletSøknadsperiode: DateRange | undefined,
+    tillattEndringsperiode: DateRange
+): boolean => {
+    return samletSøknadsperiode
+        ? dayjs(samletSøknadsperiode.to).isSameOrAfter(tillattEndringsperiode.from, 'day')
+        : false;
+};
+
 export const tilgangskontrollUtils = {
     harArbeidsgiverUtenArbeidsaktivitet,
     harArbeidsaktivitetUtenArbeidsgiver,
+    harSøknadsperiodeInnenforTillattEndringsperiode,
 };

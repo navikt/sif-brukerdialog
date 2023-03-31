@@ -16,7 +16,10 @@ import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo, maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
-import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
+import {
+    getPeriodeForArbeidsgiverOppslag,
+    getSamletDateRangeForK9Saker as getDateRangeForK9Saker,
+} from '../utils/k9SakUtils';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
@@ -168,10 +171,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 return Promise.resolve();
             }
 
-            const samletTidsperiode = getSamletDateRangeForK9Saker(k9saker);
+            const dateRangeAlleSaker = getDateRangeForK9Saker(k9saker);
 
             /** Muligens unødvendig sjekk - gitt at K9 alltid gir gyldig data */
-            if (samletTidsperiode === undefined && k9saker.length > 0) {
+            if (dateRangeAlleSaker === undefined && k9saker.length > 0) {
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: false,
@@ -181,13 +184,13 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 return Promise.resolve();
             }
 
-            const arbeidsgivere = samletTidsperiode
+            const arbeidsgivere = dateRangeAlleSaker
                 ? await arbeidsgivereEndpoint.fetch(
-                      getPeriodeForArbeidsgiverOppslag(samletTidsperiode, tillattEndringsperiode)
+                      getPeriodeForArbeidsgiverOppslag(dateRangeAlleSaker, tillattEndringsperiode)
                   )
                 : [];
 
-            const resultat = tilgangskontroll(k9saker, arbeidsgivere);
+            const resultat = tilgangskontroll(k9saker, arbeidsgivere, tillattEndringsperiode);
             if (resultat.kanBrukeSøknad === false) {
                 setInitialData({
                     status: RequestStatus.success,

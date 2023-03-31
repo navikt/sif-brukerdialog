@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import EditButton from '../../../app/components/arbeidstid-uke-liste/components/EditButton';
+import EditButton from '../../../app/components/edit-button/EditButton';
 
 export default {
     title: 'Components/EditButton',

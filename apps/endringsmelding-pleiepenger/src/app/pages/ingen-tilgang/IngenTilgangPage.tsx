@@ -3,13 +3,13 @@ import React from 'react';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import DevFooter from '../../dev/DevFooter';
 import { SkrivTilOssLink } from '../../lenker';
+import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
-import DevFooter from '../../dev/DevFooter';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 
 interface Props {
     søker: Søker;
@@ -97,6 +97,20 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                     <p>
                         I mellomtiden bruker du tjenesten <SkrivTilOssLink />, for å melde fra om endringer.
+                    </p>
+                </BodyLong>
+            );
+        case IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode:
+            return (
+                <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">
+                    <p>
+                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn 3 måneder
+                        siden. Du kan melde fra om endring i tjenesten <SkrivTilOssLink />, eller sende oss en ny
+                        søknad.
+                    </p>
+                    <p>
+                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
+                        <SkrivTilOssLink />.
                     </p>
                 </BodyLong>
             );
