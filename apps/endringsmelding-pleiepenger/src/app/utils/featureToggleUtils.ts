@@ -1,8 +1,4 @@
-export enum Feature {
-    'FEATURE_ENDRE_ARBEIDSTID' = 'FEATURE_ENDRE_ARBEIDSTID',
-    'FEATURE_ENDRE_LOVBESTEMT_FERIE' = 'FEATURE_ENDRE_LOVBESTEMT_FERIE',
-    'FEATURE_ENDRE_UTENLANDSOPPHOLD' = 'FEATURE_ENDRE_UTENLANDSOPPHOLD',
-}
+export enum Feature {}
 
 export const isFeatureEnabled = (feature: Feature) => {
     const appSettings = (window as any).appSettings;

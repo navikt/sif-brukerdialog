@@ -4,12 +4,15 @@ import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
+import { AnnenForelderenSituasjonFormValues } from '../søknad/steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';
+import { getAnnenForelderenSituasjonSøknadsdataFromFormValues } from '../søknad/steps/annen-forelderens-situasjon/annenForelderenSituasjonStepUtils';
+import { OmAnnenForelderFormValues } from '../søknad/steps/om-annen-forelder/OmAnnenForelderStep';
+import { getOmAnnenForelderSøknadsdataFromFormValues } from '../søknad/steps/om-annen-forelder/omAnnenForelderStepUtils';
+import { OmBarnaFormValues } from '../søknad/steps/om-barna/OmBarnaStep';
+import { getOmBarnaSøknadsdataFromFormValues } from '../søknad/steps/om-barna/OmBarnaStepUtils';
 import { StepFormValues } from '../types/StepFormValues';
 import { StepId } from '../types/StepId';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
-import { getOmAnnenForelderSøknadsdataFromFormValues } from '../søknad/steps/om-annen-forelder/omAnnenForelderStepUtils';
-import { getAnnenForelderenSituasjonSøknadsdataFromFormValues } from '../søknad/steps/annen-forelderens-situasjon/annenForelderenSituasjonStepUtils';
-import { getOmBarnaSøknadsdataFromFormValues } from '../søknad/steps/om-barna/OmBarnaStepUtils';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
@@ -22,11 +25,13 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
     }
     switch (step) {
         case StepId.OM_ANNEN_FORELDER:
-            return getOmAnnenForelderSøknadsdataFromFormValues(formValues);
+            return getOmAnnenForelderSøknadsdataFromFormValues(formValues as OmAnnenForelderFormValues);
         case StepId.ANNEN_FORELDER_SITUASJON:
-            return getAnnenForelderenSituasjonSøknadsdataFromFormValues(formValues);
+            return getAnnenForelderenSituasjonSøknadsdataFromFormValues(
+                formValues as AnnenForelderenSituasjonFormValues
+            );
         case StepId.OM_BARNA:
-            return getOmBarnaSøknadsdataFromFormValues(formValues);
+            return getOmBarnaSøknadsdataFromFormValues(formValues as OmBarnaFormValues);
     }
     return undefined;
 };

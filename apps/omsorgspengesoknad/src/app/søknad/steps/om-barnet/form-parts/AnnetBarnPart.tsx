@@ -10,7 +10,7 @@ import {
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
-import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
+import { SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnetKeys } from '../../../../types/SøkersRelasjonTilBarnet';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 
 const { TextField, Select } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
@@ -53,7 +53,7 @@ const AnnetBarnpart = () => {
                     name={OmBarnetFormFields.søkersRelasjonTilBarnet}
                     validate={getRequiredFieldValidator()}>
                     <option />
-                    {Object.keys(SøkersRelasjonTilBarnet).map((key) => (
+                    {Object.keys(SøkersRelasjonTilBarnet).map((key: SøkersRelasjonTilBarnetKeys) => (
                         <option key={key} value={SøkersRelasjonTilBarnet[key]}>
                             {intlHelper(intl, `relasjonTilBarnet.${SøkersRelasjonTilBarnet[key]}`)}
                         </option>

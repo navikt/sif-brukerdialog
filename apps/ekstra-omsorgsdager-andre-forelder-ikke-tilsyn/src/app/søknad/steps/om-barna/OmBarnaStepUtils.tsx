@@ -20,12 +20,12 @@ export const getOmBarnaStepInitialValues = (
         andreBarn: [],
     };
 
-    const { omBarnaData } = søknadsdata;
-    if (omBarnaData) {
-        switch (omBarnaData.type) {
+    const { omBarna } = søknadsdata;
+    if (omBarna) {
+        switch (omBarna.type) {
             case 'andreBarn':
                 return {
-                    andreBarn: omBarnaData.andreBarn,
+                    andreBarn: omBarna.andreBarn,
                 };
         }
     }

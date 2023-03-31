@@ -11,6 +11,9 @@ import { StepFormValues } from '../types/StepFormValues';
 import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { OmBarnetFormValues } from '../søknad/steps/om-barnet/OmBarnetStep';
+import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
+import { DeltBostedFormValues } from '../søknad/steps/delt-bosted/DeltBostedForm';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
@@ -36,11 +39,11 @@ const getStepSøknadsdataFromStepFormValues = (
     }
     switch (step) {
         case StepId.OM_BARNET:
-            return getOmBarnetSøknadsdataFromFormValues(formValues, state);
+            return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, state);
         case StepId.LEGEERKLÆRING:
-            return getLegeerklæringSøknadsdataFromFormValues(formValues);
+            return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.DELT_BOSTED:
-            return getDeltBostedSøknadsdataFromFormValues(formValues);
+            return getDeltBostedSøknadsdataFromFormValues(formValues as DeltBostedFormValues);
     }
     return undefined;
 };

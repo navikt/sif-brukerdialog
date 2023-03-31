@@ -18,7 +18,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 ...state,
                 søknadsdata: {
                     id: guid(),
-                    harForståttRettigheterOgPlikter: true,
+                    velkommen: {
+                        harForståttRettigheterOgPlikter: true,
+                    },
                     lovbestemtFerie: {
                         feriedager: sak.lovbestemtFerie.feriedager,
                         feriedagerMeta: getFeriedagerMeta(sak.lovbestemtFerie.feriedager),
@@ -85,7 +87,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        oppsummering: {
+                            harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        },
                     },
                 };
             case SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT:

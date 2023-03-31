@@ -37,7 +37,7 @@ export const isPersistedSøknadStateValid = (
 ): boolean => {
     return (
         søknadState.versjon === SØKNAD_VERSJON &&
-        søknadState.søknadsdata?.harForståttRettigheterOgPlikter === true &&
+        søknadState.søknadsdata?.velkommen?.harForståttRettigheterOgPlikter === true &&
         søknadState.søknadHashString === createHashString(info) &&
         isValidSøknadRoute(søknadState.søknadRoute)
     );

@@ -1,11 +1,20 @@
 import { rest } from 'msw';
 import { getScenarioFromLocalStorage } from '../../src/app/dev/scenarioer';
 
-const getMockData = (soker = 'en-arbeidsgiver-en-periode') => {
-    return mockData[soker] ? mockData[soker] : mockData['en-arbeidsgiver-en-periode'];
+const getMockData = (scenario = 'en-arbeidsgiver-en-periode') => {
+    return mockData[scenario] ? mockData[scenario] : mockData['en-arbeidsgiver-en-periode'];
 };
 
-const mockData = {
+type ScenarioMap = {
+    [key: string]: ScenarioData;
+};
+
+interface ScenarioData {
+    søker: any;
+    sak: any;
+    arbeidsgiver: any;
+}
+const mockData: ScenarioMap = {
     ['en-arbeidsgiver-en-periode']: {
         søker: require('../data/scenario/en-arbeidsgiver-en-periode/søker-mock.json'),
         sak: require('../data/scenario/en-arbeidsgiver-en-periode/sak-mock.json'),

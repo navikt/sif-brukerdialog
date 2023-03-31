@@ -1,3 +1,4 @@
+import { StepId } from '../StepId';
 import { DeltBostedSøknadsdata } from './DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
@@ -8,9 +9,14 @@ export * from './LegeerklæringSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;
-    harForståttRettigheterOgPlikter?: boolean;
-    harBekreftetOpplysninger?: boolean;
-    deltBosted?: DeltBostedSøknadsdata;
-    omBarnet?: OmBarnetSøknadsdata;
-    legeerklæring?: LegeerklæringSøknadsdata;
+    [StepId.VELKOMMEN]?: {
+        harForståttRettigheterOgPlikter?: boolean;
+    };
+    [StepId.DELT_BOSTED]?: DeltBostedSøknadsdata;
+    [StepId.OM_BARNET]?: OmBarnetSøknadsdata;
+    [StepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;
+    [StepId.OPPSUMMERING]?: {
+        harBekreftetOpplysninger?: boolean;
+    };
+    [StepId.KVITTERING]?: undefined;
 }

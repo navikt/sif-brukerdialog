@@ -22,47 +22,47 @@ export const getAnnenForelderenSituasjonStepInitialValues = (
         annenForelderPeriodeMer6Maneder: YesOrNo.UNANSWERED,
     };
 
-    const { annenForelderenSituasjonData } = søknadsdata;
-    if (annenForelderenSituasjonData) {
-        switch (annenForelderenSituasjonData.type) {
+    const { annenForelderSituasjon } = søknadsdata;
+    if (annenForelderSituasjon) {
+        switch (annenForelderSituasjon.type) {
             case 'sykdomAnnetFom':
                 return {
                     ...defaultValues,
-                    annenForelderSituasjon: annenForelderenSituasjonData.annenForelderSituasjon,
-                    annenForelderSituasjonBeskrivelse: annenForelderenSituasjonData.annenForelderSituasjonBeskrivelse,
-                    annenForelderPeriodeFom: annenForelderenSituasjonData.annenForelderPeriodeFom,
-                    annenForelderPeriodeVetIkkeTom: annenForelderenSituasjonData.annenForelderPeriodeVetIkkeTom,
-                    annenForelderPeriodeMer6Maneder: annenForelderenSituasjonData.annenForelderPeriodeMer6Maneder,
+                    annenForelderSituasjon: annenForelderSituasjon.annenForelderSituasjon,
+                    annenForelderSituasjonBeskrivelse: annenForelderSituasjon.annenForelderSituasjonBeskrivelse,
+                    annenForelderPeriodeFom: annenForelderSituasjon.annenForelderPeriodeFom,
+                    annenForelderPeriodeVetIkkeTom: annenForelderSituasjon.annenForelderPeriodeVetIkkeTom,
+                    annenForelderPeriodeMer6Maneder: annenForelderSituasjon.annenForelderPeriodeMer6Maneder,
                 };
             case 'sykdomAnnetFomTom':
                 return {
                     ...defaultValues,
-                    annenForelderSituasjon: annenForelderenSituasjonData.annenForelderSituasjon,
-                    annenForelderSituasjonBeskrivelse: annenForelderenSituasjonData.annenForelderSituasjonBeskrivelse,
-                    annenForelderPeriodeFom: annenForelderenSituasjonData.annenForelderPeriodeFom,
-                    annenForelderPeriodeTom: annenForelderenSituasjonData.annenForelderPeriodeTom,
+                    annenForelderSituasjon: annenForelderSituasjon.annenForelderSituasjon,
+                    annenForelderSituasjonBeskrivelse: annenForelderSituasjon.annenForelderSituasjonBeskrivelse,
+                    annenForelderPeriodeFom: annenForelderSituasjon.annenForelderPeriodeFom,
+                    annenForelderPeriodeTom: annenForelderSituasjon.annenForelderPeriodeTom,
                 };
             case 'fengselVerneplikt':
                 return {
                     ...defaultValues,
-                    annenForelderSituasjon: annenForelderenSituasjonData.annenForelderSituasjon,
-                    annenForelderPeriodeFom: annenForelderenSituasjonData.annenForelderPeriodeFom,
-                    annenForelderPeriodeTom: annenForelderenSituasjonData.annenForelderPeriodeTom,
+                    annenForelderSituasjon: annenForelderSituasjon.annenForelderSituasjon,
+                    annenForelderPeriodeFom: annenForelderSituasjon.annenForelderPeriodeFom,
+                    annenForelderPeriodeTom: annenForelderSituasjon.annenForelderPeriodeTom,
                 };
             case 'helseinstitusjonFomTom':
                 return {
                     ...defaultValues,
-                    annenForelderSituasjon: annenForelderenSituasjonData.annenForelderSituasjon,
-                    annenForelderPeriodeFom: annenForelderenSituasjonData.annenForelderPeriodeFom,
-                    annenForelderPeriodeTom: annenForelderenSituasjonData.annenForelderPeriodeTom,
+                    annenForelderSituasjon: annenForelderSituasjon.annenForelderSituasjon,
+                    annenForelderPeriodeFom: annenForelderSituasjon.annenForelderPeriodeFom,
+                    annenForelderPeriodeTom: annenForelderSituasjon.annenForelderPeriodeTom,
                 };
             case 'helseinstitusjonFom':
                 return {
                     ...defaultValues,
-                    annenForelderSituasjon: annenForelderenSituasjonData.annenForelderSituasjon,
-                    annenForelderPeriodeFom: annenForelderenSituasjonData.annenForelderPeriodeFom,
-                    annenForelderPeriodeVetIkkeTom: annenForelderenSituasjonData.annenForelderPeriodeVetIkkeTom,
-                    annenForelderPeriodeMer6Maneder: annenForelderenSituasjonData.annenForelderPeriodeMer6Maneder,
+                    annenForelderSituasjon: annenForelderSituasjon.annenForelderSituasjon,
+                    annenForelderPeriodeFom: annenForelderSituasjon.annenForelderPeriodeFom,
+                    annenForelderPeriodeVetIkkeTom: annenForelderSituasjon.annenForelderPeriodeVetIkkeTom,
+                    annenForelderPeriodeMer6Maneder: annenForelderSituasjon.annenForelderPeriodeMer6Maneder,
                 };
         }
     }

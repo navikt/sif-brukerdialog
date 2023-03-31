@@ -8,8 +8,6 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
             return SøknadRoutes.ARBEIDSTID;
         case StepId.LOVBESTEMT_FERIE:
             return SøknadRoutes.LOVBESTEMT_FERIE;
-        case StepId.UTENLANDSOPPHOLD:
-            return SøknadRoutes.UTENLANDSOPPHOLD;
         case StepId.OPPSUMMERING:
             return SøknadRoutes.OPPSUMMERING;
         case StepId.MELDING_SENDT:
@@ -31,7 +29,6 @@ export enum SøknadRoutes {
     VELKOMMEN = '/melding/velkommen',
     ARBEIDSTID = '/melding/arbeidstid',
     LOVBESTEMT_FERIE = '/melding/lovbestemt-ferie',
-    UTENLANDSOPPHOLD = '/melding/utenlandsopphold',
     OPPSUMMERING = '/melding/oppsummering',
     SØKNAD_SENDT = '/melding/melding_sendt',
     UKJENT_STEG = '/melding/ukjent-steg',

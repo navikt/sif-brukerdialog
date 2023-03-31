@@ -21,9 +21,9 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
     }
     switch (step) {
         case StepId.LOVBESTEMT_FERIE:
-            return getLovbestemtFerieSøknadsdataFromFormValues(formValues);
+            return getLovbestemtFerieSøknadsdataFromFormValues(formValues as any);
         case StepId.ARBEIDSTID:
-            return getArbeidstidSøknadsdataFromFormValues(formValues);
+            return getArbeidstidSøknadsdataFromFormValues(formValues as any);
     }
     return undefined;
 };

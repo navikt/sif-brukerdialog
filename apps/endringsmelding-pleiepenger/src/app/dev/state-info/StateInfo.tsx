@@ -9,9 +9,10 @@ const StateInfo = () => {
     const {
         state: {
             // eslint-disable-next-line no-unused-vars
-            søknadsdata: { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, ...rest },
+            søknadsdata: { velkommen, oppsummering, ...rest },
         },
     } = useSøknadContext();
+
     const { stepFormValues } = useStepFormValuesContext();
     return (
         <FormBlock>
