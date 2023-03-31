@@ -25,11 +25,17 @@ const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetada
         ? {
               endretArbeidstid: oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid),
           }
-        : undefined;
+        : {
+              endretArbeidstid: false,
+          };
 };
 const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtFerieMetadata | undefined => {
     if (!lovbestemtFerie) {
-        return undefined;
+        return {
+            endretFerie: false,
+            lagtTilFerie: false,
+            fjernetFerie: false,
+        };
     }
     const { perioderFjernet, perioderLagtTil } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
     return {
