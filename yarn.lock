@@ -2367,10 +2367,10 @@
     "@types/set-cookie-parser" "^2.4.0"
     set-cookie-parser "^2.4.6"
 
-"@mswjs/data@0.11.2":
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/@mswjs/data/-/data-0.11.2.tgz#92d6f8284165ef0d50be010b5e2dfadc7b7ad81b"
-  integrity sha512-x7cx5GZ9D9DmjO9zkWaybOQVGm/vt7eEYSw7Gk955yf/XdN4qqaSEXaqZuHB84cncNJaV2EMRuNU+k92ssmroQ==
+"@mswjs/data@0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@mswjs/data/-/data-0.12.0.tgz#c6a61656b84aaffbf54aa55fe09b3e062b464f3a"
+  integrity sha512-uk3azu3tUHliT0f1jfxfdr+QJEHwnxCpc292jG/sgoyK+5g7qoVlFm1ofri6kHgAqYocWVK++Fx6S86H5A84Ug==
   dependencies:
     "@types/lodash" "^4.14.172"
     "@types/md5" "^2.3.0"
