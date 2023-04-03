@@ -95,8 +95,14 @@ const OppsummeringStep = () => {
         <SøknadStep stepId={StepId.OPPSUMMERING}>
             <FormikWrapper
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
-                onSubmit={() => {
-                    sendSøknad(apiData);
+                onSubmit={(values) => {
+                    apiData
+                        ? sendSøknad({
+                              ...apiData,
+                              harBekreftetOpplysninger:
+                                  values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                          })
+                        : undefined;
                 }}
                 renderForm={() => {
                     return (
