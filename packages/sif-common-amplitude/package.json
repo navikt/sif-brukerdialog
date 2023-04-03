@@ -13,7 +13,7 @@
     "devDependencies": {
         "@types/amplitude-js": "8.16.2",
         "@types/node": "18.15.11",
-        "@types/react": "18.0.31",
+        "@types/react": "18.0.32",
         "amplitude-js": "8.21.7",
         "constate": "3.3.2",
         "gh-pages": "5.0.0",
