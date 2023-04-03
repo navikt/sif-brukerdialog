@@ -19,8 +19,8 @@ export const getApiDataFromSøknadsdata = (
     return {
         id,
         språk: '',
-        harForståttRettigheterOgPlikter: søknadsdata.harForståttRettigheterOgPlikter === true ? true : false,
-        harBekreftetOpplysninger: søknadsdata.harBekreftetOpplysninger === true ? true : false,
+        harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true ? true : false,
+        harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true ? true : false,
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
             barn: {

@@ -113,7 +113,7 @@ const OppsummeringStep = () => {
                                 <OmBarnetOppsummering apiData={apiData} registrerteBarn={registrerteBarn} />
                                 <VedleggOppsummering
                                     apiData={apiData}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                    legeerklæringSøknadsdata={søknadsdata.legeerklaering}
                                     samværsavtaleSøknadsdata={søknadsdata.deltBosted}
                                 />
                                 <ConfirmationCheckbox

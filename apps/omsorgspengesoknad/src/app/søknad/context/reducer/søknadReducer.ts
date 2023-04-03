@@ -12,7 +12,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 ...state,
                 søknadsdata: {
                     id: guid(),
-                    harForståttRettigheterOgPlikter: true,
+                    velkommen: {
+                        harForståttRettigheterOgPlikter: true,
+                    },
                 },
                 søknadRoute: SøknadRoutes.OM_BARNET,
                 børMellomlagres: true,
@@ -73,7 +75,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        legeerklæring: {
+                        legeerklaering: {
                             ...action.payload,
                         },
                     },
@@ -83,7 +85,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        oppsummering: {
+                            harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        },
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_SENDT:

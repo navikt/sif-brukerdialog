@@ -19,7 +19,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
         <>
             {arbeidstakerList &&
                 Object.keys(arbeidstakerList).map((key) => {
-                    const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = arbeidstakerList[key];
+                    const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = (arbeidstakerList as any)[key];
                     const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
                     if (!arbeidsgiver) {
                         return null;

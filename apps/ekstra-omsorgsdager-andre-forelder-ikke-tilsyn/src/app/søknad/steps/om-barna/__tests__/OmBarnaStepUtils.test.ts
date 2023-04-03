@@ -5,7 +5,7 @@ describe('getOmBarnaStepInitialValues function', () => {
     it('should return default values from  søknadsdata if no formValues are provided', () => {
         const søknadsdata: Søknadsdata = {
             id: '12345',
-            omBarnaData: {
+            omBarna: {
                 type: 'andreBarn',
                 andreBarn: [
                     {
@@ -37,7 +37,7 @@ describe('getOmBarnaStepInitialValues function', () => {
     it('should return formValues if they are provided', () => {
         const søknadsdata: Søknadsdata = {
             id: '12345',
-            omBarnaData: {
+            omBarna: {
                 type: 'andreBarn',
                 andreBarn: [
                     {
@@ -66,7 +66,7 @@ describe('getOmBarnaStepInitialValues function', () => {
         });
     });
 
-    it('should return default values if omBarnaData in søknadsdata is not provided', () => {
+    it('should return default values if omBarna in søknadsdata is not provided', () => {
         const søknadsdata = { id: '12345' };
 
         expect(getOmBarnaStepInitialValues(søknadsdata)).toEqual({

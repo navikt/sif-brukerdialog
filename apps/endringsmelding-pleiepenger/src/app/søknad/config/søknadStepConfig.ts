@@ -8,20 +8,16 @@ import { getSøknadStepRoute } from './SøknadRoutes';
 export const getSøknadSteps = (hvaSkalEndres: EndringType[], harFjernetFerie: boolean): StepId[] => {
     const steps: StepId[] = [];
 
-    const {
-        arbeidstidSkalEndres,
-        lovbestemtFerieSkalEndres: ferieSkalEndres,
-        utenlandsoppholdSkalEndres,
-    } = getEndringerSomSkalGjøres(hvaSkalEndres, harFjernetFerie);
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres: ferieSkalEndres } = getEndringerSomSkalGjøres(
+        hvaSkalEndres,
+        harFjernetFerie
+    );
 
     if (ferieSkalEndres) {
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
     if (arbeidstidSkalEndres) {
         steps.push(StepId.ARBEIDSTID);
-    }
-    if (utenlandsoppholdSkalEndres) {
-        steps.push(StepId.UTENLANDSOPPHOLD);
     }
     steps.push(StepId.OPPSUMMERING);
     return steps;

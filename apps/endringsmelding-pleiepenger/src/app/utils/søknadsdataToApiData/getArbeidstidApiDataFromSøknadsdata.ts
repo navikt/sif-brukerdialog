@@ -25,7 +25,7 @@ import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 
 const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
-    const arbeidsukerMap = {};
+    const arbeidsukerMap: ArbeidsukeMap = {};
     perioder.forEach(({ arbeidsuker }) => {
         Object.keys(arbeidsuker).forEach((key) => {
             arbeidsukerMap[key] = arbeidsuker[key];

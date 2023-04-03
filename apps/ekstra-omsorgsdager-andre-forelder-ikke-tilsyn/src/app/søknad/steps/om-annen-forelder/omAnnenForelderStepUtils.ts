@@ -15,13 +15,13 @@ export const getOmAnnenForelderStepInitialValues = (
         annenForelderFnr: '',
     };
 
-    const { omAnnenForelderData } = søknadsdata;
-    if (omAnnenForelderData) {
-        switch (omAnnenForelderData.type) {
+    const { omAnnenForelder } = søknadsdata;
+    if (omAnnenForelder) {
+        switch (omAnnenForelder.type) {
             case 'omAnnenForelder':
                 return {
-                    annenForelderNavn: omAnnenForelderData.annenForelderNavn,
-                    annenForelderFnr: omAnnenForelderData.annenForelderFnr,
+                    annenForelderNavn: omAnnenForelder.annenForelderNavn,
+                    annenForelderFnr: omAnnenForelder.annenForelderFnr,
                 };
         }
     }

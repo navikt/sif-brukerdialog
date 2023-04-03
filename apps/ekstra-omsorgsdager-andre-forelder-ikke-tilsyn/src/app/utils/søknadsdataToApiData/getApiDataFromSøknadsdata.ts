@@ -8,17 +8,17 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     registrertBarn: RegistrertBarn[]
 ): SøknadApiData | undefined => {
-    const { id, omAnnenForelderData, annenForelderenSituasjonData, omBarnaData } = søknadsdata;
-    if (!omAnnenForelderData || !annenForelderenSituasjonData || !omBarnaData) {
+    const { id, omAnnenForelder, annenForelderSituasjon, omBarna } = søknadsdata;
+    if (!omAnnenForelder || !annenForelderSituasjon || !omBarna) {
         return undefined;
     }
 
     return {
         id,
         språk: 'nb',
-        harForståttRettigheterOgPlikter: søknadsdata.harForståttRettigheterOgPlikter === true,
-        ...getApiDataAnnenForelderFromSøknadsdata(omAnnenForelderData, annenForelderenSituasjonData),
-        ...getOmBarnaApiDataFromSøknadsdata(omBarnaData, registrertBarn),
-        harBekreftetOpplysninger: søknadsdata.harForståttRettigheterOgPlikter === true,
+        harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
+        ...getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, annenForelderSituasjon),
+        ...getOmBarnaApiDataFromSøknadsdata(omBarna, registrertBarn),
+        harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
     };
 };

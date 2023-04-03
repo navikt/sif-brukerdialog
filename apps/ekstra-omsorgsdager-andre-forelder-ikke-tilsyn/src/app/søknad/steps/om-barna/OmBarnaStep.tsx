@@ -74,8 +74,8 @@ const OmBarnaStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({ values: { andreBarn } }) => {
                     const andreBarnFnr = andreBarn ? andreBarn.map((barn) => barn.fnr) : [];
-                    const annenForelderFnr = søknadsdata.omAnnenForelderData
-                        ? [søknadsdata.omAnnenForelderData.annenForelderFnr]
+                    const annenForelderFnr = søknadsdata.omAnnenForelder
+                        ? [søknadsdata.omAnnenForelder.annenForelderFnr]
                         : [];
                     const kanFortsette =
                         (registrerteBarn !== undefined && registrerteBarn.length > 0) ||
