@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.7.1
+
+### Patch Changes
+
+-   74ac4dd: Bugfix - harBekreftetOpplysninger manglet
+
 ## 1.7.0
 
 ### Minor Changes
