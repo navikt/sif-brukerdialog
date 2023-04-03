@@ -71,7 +71,7 @@
         "tailwindcss": "3.3.1",
         "ts-loader": "9.4.2",
         "webpack": "5.77.0",
-        "webpack-dev-server": "4.13.1"
+        "webpack-dev-server": "4.13.2"
     },
     "jest": {
         "transformIgnorePatterns": [

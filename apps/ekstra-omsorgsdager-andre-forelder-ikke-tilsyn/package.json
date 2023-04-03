@@ -92,7 +92,7 @@
         "style-loader": "3.3.2",
         "ts-loader": "9.4.2",
         "webpack": "5.77.0",
-        "webpack-dev-server": "4.13.1"
+        "webpack-dev-server": "4.13.2"
     },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"
