@@ -1,5 +1,21 @@
 # @navikt/omsorgspengesoknad
 
+## 1.7.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+### Patch Changes
+
+-   Updated dependencies [93b8104e]
+    -   @navikt/sif-common-amplitude@2.12.0
+    -   @navikt/sif-common-formik-ds@0.16.0
+    -   @navikt/sif-common-soknad-ds@7.0.0
+    -   @navikt/sif-common-forms-ds@6.0.0
+    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-utils@3.29.0
+
 ## 1.6.0
 
 ### Minor Changes
