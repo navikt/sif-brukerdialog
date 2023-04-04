@@ -64,4 +64,7 @@ module.exports = {
         // Return the altered config
         return config;
     },
+    typescript: {
+        reactDocgen: 'react-docgen-typescript-plugin',
+    },
 };
