@@ -10,7 +10,7 @@
         "@navikt/ds-css": "2.8.10",
         "@navikt/ds-icons": "2.8.10",
         "@navikt/ds-react": "2.8.10",
-        "@navikt/ds-tailwind": "2.8.10",
+        "@navikt/ds-tailwind": "2.8.11",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
