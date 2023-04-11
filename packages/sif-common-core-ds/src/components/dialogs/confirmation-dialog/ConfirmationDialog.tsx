@@ -38,11 +38,9 @@ const ConfirmationDialog = (props: Props) => {
                         <Button variant="primary" onClick={() => onOk()} className="ConfirmationDialog__bekreftKnapp">
                             {okLabel || intlHelper(intl, 'komponent.ConfirmationDialog.bekreftLabel')}
                         </Button>
-                        {onCancel && (
-                            <Button variant="tertiary" onClick={onCancel} className="ConfirmationDialog__avbrytKnapp">
-                                {cancelLabel || intlHelper(intl, 'komponent.ConfirmationDialog.avbrytLabel')}
-                            </Button>
-                        )}
+                        <Button variant="tertiary" onClick={onCancel} className="ConfirmationDialog__avbrytKnapp">
+                            {cancelLabel || intlHelper(intl, 'komponent.ConfirmationDialog.avbrytLabel')}
+                        </Button>
                     </ButtonRow>
                 </Modal.Content>
             )}

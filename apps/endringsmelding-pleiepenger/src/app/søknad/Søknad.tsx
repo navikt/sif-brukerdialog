@@ -61,7 +61,6 @@ const Søknad = () => {
         });
         return null;
     }
-
     return (
         <SøknadContextProvider initialData={initialData.data}>
             <StepFormValuesContextProvider>
