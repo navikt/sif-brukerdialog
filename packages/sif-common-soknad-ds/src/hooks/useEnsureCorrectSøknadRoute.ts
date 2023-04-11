@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 
-export const useEnsureCorrectSøknadRoute = (søknadRoute?: string) => {
+export const useEnsureCorrectSøknadRoute = (søknadRoute: string | undefined, welcomeRoute: string) => {
     const { pathname } = useLocation();
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [showWarning, setShowWarning] = useState(false);
@@ -27,7 +26,7 @@ export const useEnsureCorrectSøknadRoute = (søknadRoute?: string) => {
                 redirectToSøknadRoute();
                 return;
             }
-            if (pathname === SøknadRoutes.VELKOMMEN && søknadRoute !== SøknadRoutes.VELKOMMEN) {
+            if (pathname === welcomeRoute && søknadRoute !== welcomeRoute) {
                 if (pathname === previousPathname && showWarning === false) {
                     redirectToSøknadRoute();
                 } else {

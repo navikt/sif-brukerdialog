@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
-import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import React from 'react';
+import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
 
 interface Props {
     open: boolean;

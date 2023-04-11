@@ -3,14 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import StartPåNyttDialog from '../components/start-på-nytt-dialog/StartPåNyttDialog';
-import { useEnsureCorrectSøknadRoute } from '../hooks/useEnsureCorrectSøknadRoute';
+import { useEnsureCorrectSøknadRoute } from '@navikt/sif-common-soknad-ds/lib/hooks/useEnsureCorrectSøknadRoute';
+import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/lib/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import appSentryLogger from '../utils/appSentryLogger';
+import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { StepId } from './config/StepId';
 import { SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
 import actionsCreator from './context/action/actionCreator';
@@ -18,7 +19,6 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import { relocateToWelcomePage } from '../utils/navigationUtils';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -31,7 +31,7 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
 
     usePersistSøknadState();
-    const { showWarning, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(søknadRoute);
+    const { showWarning, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(søknadRoute, SøknadRoutes.VELKOMMEN);
 
     useEffect(() => {
         if (shouldResetSøknad) {
