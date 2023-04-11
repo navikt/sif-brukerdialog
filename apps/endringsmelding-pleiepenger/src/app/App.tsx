@@ -34,6 +34,7 @@ function prepare() {
             return import('../../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',
+                    quiet: true,
                 });
             });
         }
