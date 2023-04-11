@@ -1,6 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { useEnsureCorrectSøknadRoute } from '@navikt/sif-common-soknad-ds/lib/hooks/useEnsureCorrectSøknadRoute';
@@ -30,6 +31,8 @@ const SøknadRouter = () => {
     const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
     const { slettMellomlagring } = useMellomlagring();
 
+    const { logInfo } = useAmplitudeInstance();
+
     usePersistSøknadState();
     const { showWarning, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(søknadRoute, SøknadRoutes.VELKOMMEN);
 
@@ -43,8 +46,14 @@ const SøknadRouter = () => {
 
     const onRestart = async () => {
         dispatch(actionsCreator.resetSøknad());
+        await logInfo({ kilde: 'StartPåNyttDialog', starterPåNytt: true });
         await slettMellomlagring();
         relocateToWelcomePage();
+    };
+
+    const onResume = async () => {
+        await logInfo({ kilde: 'StartPåNyttDialog', starterPåNytt: false });
+        redirectToSøknadRoute();
     };
 
     if (endringsmeldingSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
@@ -88,7 +97,7 @@ const SøknadRouter = () => {
                     }
                 />
             </Routes>
-            <StartPåNyttDialog open={showWarning} onCancel={redirectToSøknadRoute} onConfirm={onRestart} />
+            <StartPåNyttDialog open={showWarning} onCancel={onResume} onConfirm={onRestart} />
         </>
     );
 };
