@@ -17,7 +17,7 @@ const StartPåNyttDialog: React.FunctionComponent<Props> = ({ open, onCancel, on
         okLabel="Start på nytt"
         cancelLabel="Fortsett der jeg var">
         <BodyShort spacing={true}>
-            Du er nå kommet tilbake til startsiden for å sende inn en endring i saken din.
+            Du har trykket deg tilbake til startsiden for å sende inn en endring i saken din.
         </BodyShort>
         <BodyShort spacing={true}>
             Vi ser at du har begynt å fylle ut en endring, så vil du fortsette der du var? Eller vil du starte helt på
