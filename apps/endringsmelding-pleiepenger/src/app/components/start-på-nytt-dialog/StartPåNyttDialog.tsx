@@ -20,8 +20,8 @@ const StartPåNyttDialog: React.FunctionComponent<Props> = ({ open, onCancel, on
             Du har trykket deg tilbake til startsiden for å sende inn en endring i saken din.
         </BodyShort>
         <BodyShort spacing={true}>
-            Vi ser at du har begynt å fylle ut en endring, så vil du fortsette der du var? Eller vil du starte helt på
-            nytt?
+            Det ser ut til at du har begynt å fylle ut en endring, så vil du fortsette der du var? Eller vil du starte
+            helt på nytt?
         </BodyShort>
         <BodyShort spacing={true}>
             Hvis du starter på nytt, blir informasjonen du har fylt ut fjernet. Om du vil fortsette der du var, kommer
