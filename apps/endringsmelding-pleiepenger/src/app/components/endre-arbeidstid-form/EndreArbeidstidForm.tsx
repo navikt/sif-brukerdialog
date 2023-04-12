@@ -115,6 +115,11 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
 
     const gjelderKortUke = arbeidsuker.length === 1 && erKortArbeidsuke(arbeidsuker[0].periode);
 
+    const getMaksTimer = () => {
+        const antallDager = arbeidsuker.length === 1 ? arbeidsuker[0].antallDagerMedArbeidstid : 7;
+        return 24 * antallDager;
+    };
+
     const getInitialValues = (): EndreArbeidstidFormValues => {
         if (endring?.type === TimerEllerProsent.PROSENT) {
             return {
@@ -236,11 +241,13 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                             description={getNormalarbeidstidDescription(intl, arbeidsuker)}
                                             maxLength={5}
                                             validate={(value) => {
-                                                return getNumberValidator({
+                                                const max = getMaksTimer();
+                                                const error = getNumberValidator({
                                                     required: true,
                                                     min: 0,
-                                                    max: 24 * 7,
+                                                    max,
                                                 })(value);
+                                                return error ? { key: error, values: { maksTimer: max } } : undefined;
                                             }}
                                         />
                                     </>

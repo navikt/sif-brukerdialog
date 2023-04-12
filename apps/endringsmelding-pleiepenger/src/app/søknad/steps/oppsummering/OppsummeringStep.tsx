@@ -71,6 +71,7 @@ const OppsummeringStep = () => {
     const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
 
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
+    const harUgyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
     const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
@@ -94,7 +95,17 @@ const OppsummeringStep = () => {
                 <Block margin="xxl">
                     <SummarySection header="Endringer i arbeidstid">
                         {arbeidstid && arbeidstidErEndret ? (
-                            <ArbeidstidOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                            <>
+                                <ArbeidstidOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                                {harUgyldigArbeidstid && (
+                                    <Block margin="none" padBottom="l">
+                                        <Alert variant="error">
+                                            Det er registrert flere timer enn det er tilgjengelig for en periode.
+                                            Vennligst gå tilbake til steget for arbeidstid og korriger dette.
+                                        </Alert>
+                                    </Block>
+                                )}
+                            </>
                         ) : (
                             <Block padBottom="l">
                                 <Alert variant="info">Det er ikke registrert noen endringer i arbeidstid</Alert>
@@ -140,14 +151,19 @@ const OppsummeringStep = () => {
                                 <>
                                     <Form
                                         formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
-                                        submitDisabled={isSubmitting || hasInvalidSteps || harIngenEndringer}
+                                        submitDisabled={
+                                            isSubmitting ||
+                                            hasInvalidSteps ||
+                                            harIngenEndringer ||
+                                            harUgyldigArbeidstid === true
+                                        }
                                         includeValidationSummary={true}
                                         submitButtonLabel="Send melding om endring"
                                         submitPending={isSubmitting}
                                         backButtonDisabled={isSubmitting}
                                         onBack={goBack}>
                                         <ConfirmationCheckbox
-                                            disabled={isSubmitting || harIngenEndringer}
+                                            disabled={isSubmitting || harIngenEndringer || harUgyldigArbeidstid}
                                             label="Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger."
                                             validate={getCheckedValidator()}
                                             data-testid="bekreft-opplysninger"

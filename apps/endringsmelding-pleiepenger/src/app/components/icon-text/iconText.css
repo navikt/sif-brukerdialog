@@ -1,0 +1,7 @@
+.iconText {
+    display: flex;
+}
+.iconText__icon {
+    font-size: 1.4rem;
+    padding-right: 0.25rem;
+}

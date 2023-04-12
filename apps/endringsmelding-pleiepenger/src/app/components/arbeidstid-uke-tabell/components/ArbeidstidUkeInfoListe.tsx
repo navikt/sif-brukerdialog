@@ -1,8 +1,11 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import { erAntallTimerGyldig } from '../../../utils/beregnUtils';
+import IconText from '../../icon-text/IconText';
 import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 
 interface Props {
@@ -35,6 +38,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
         );
     }
 
+    const erEndringGyldig = erAntallTimerGyldig(uke.endret.faktisk, uke.antallDagerMedArbeidstid);
     return (
         <div className="arbeidstidInfoListe">
             <p>
@@ -66,6 +70,11 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
                     </span>
                 </span>
             </p>
+            {erEndringGyldig === false && (
+                <div style={{ marginTop: '0.25rem' }}>
+                    <IconText icon={<ErrorColored role="presentation" aria-hidden="true" />}>For mange timer</IconText>
+                </div>
+            )}
         </div>
     );
 };
