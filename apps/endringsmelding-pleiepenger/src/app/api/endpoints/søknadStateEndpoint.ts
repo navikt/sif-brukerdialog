@@ -30,7 +30,7 @@ interface SøknadStateHashInfo {
 interface SøknadStatePersistenceEndpoint
     extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {
     update: (state: Omit<SøknadStatePersistence, 'søknadHashString'>, søker: Søker) => Promise<AxiosResponse>;
-    fetch: () => Promise<SøknadStatePersistence>;
+    fetch: () => Promise<SøknadStatePersistence | undefined>;
 }
 
 const persistSetup = persistence<SøknadStatePersistence>({
@@ -54,6 +54,10 @@ export const isPersistedSøknadStateValid = (
     );
 };
 
+export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersistence) => {
+    return Object.keys(søknadState || {}).length === 0;
+};
+
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
@@ -72,6 +76,9 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     },
     fetch: async () => {
         const { data } = await persistSetup.rehydrate();
+        if (isPersistedSøknadStateEmpty(data)) {
+            return Promise.resolve(undefined);
+        }
         return Promise.resolve(data);
     },
 };

@@ -96,7 +96,7 @@ const setupSøknadInitialData = async (
             k9saker
         );
 
-    if (!persistedSøknadStateIsValid) {
+    if (lagretSøknadState && !persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
         if (lagretSøknadState?.søknadRoute) {
             relocateToWelcomePage();
