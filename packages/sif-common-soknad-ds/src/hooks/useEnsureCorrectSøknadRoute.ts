@@ -2,42 +2,74 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 
-export const useEnsureCorrectSøknadRoute = (søknadRoute: string | undefined, welcomeRoute: string) => {
+const isRouteAvailable = (route: string, availableRoutes: string[], welcomeRoute: string): boolean => {
+    return route === welcomeRoute || availableRoutes.some((r) => r === route);
+};
+
+export enum EnsureCorrectSøknadRouteErrorType {
+    'welcomePage' = 'welcomePage',
+    'unavailableRoute' = 'unavailableRoute',
+}
+
+export const useEnsureCorrectSøknadRoute = (
+    søknadRoute: string | undefined,
+    welcomeRoute: string,
+    availableRoutes: string[]
+) => {
     const { pathname } = useLocation();
     const [isFirstRender, setIsFirstRender] = useState(true);
-    const [showWarning, setShowWarning] = useState(false);
+    const [routeError, setRouteError] = useState<EnsureCorrectSøknadRouteErrorType | undefined>();
 
     const navigateTo = useNavigate();
     const previousPathname = usePrevious(pathname);
 
     const redirectToSøknadRoute = useCallback(() => {
-        if (showWarning) {
-            setShowWarning(false);
+        if (routeError) {
+            setRouteError(undefined);
         }
         if (søknadRoute) {
             navigateTo(søknadRoute);
         }
-    }, [søknadRoute, showWarning, navigateTo]);
+    }, [søknadRoute, routeError, navigateTo]);
 
     useEffect(() => {
         if (søknadRoute) {
-            if (isFirstRender) {
-                setIsFirstRender(false);
-                redirectToSøknadRoute();
-                return;
-            }
-            if (pathname === welcomeRoute && søknadRoute !== welcomeRoute) {
-                if (pathname === previousPathname && showWarning === false) {
+            const isAvailable = isRouteAvailable(søknadRoute, availableRoutes, welcomeRoute);
+            if (isAvailable) {
+                if (isFirstRender) {
+                    setIsFirstRender(false);
                     redirectToSøknadRoute();
-                } else {
-                    setShowWarning(true);
+                    return;
                 }
+                if (pathname === welcomeRoute && søknadRoute !== welcomeRoute) {
+                    if (pathname === previousPathname && routeError === undefined) {
+                        redirectToSøknadRoute();
+                    } else {
+                        setRouteError(EnsureCorrectSøknadRouteErrorType.welcomePage);
+                    }
+                }
+            } else {
+                setRouteError(EnsureCorrectSøknadRouteErrorType.unavailableRoute);
             }
         }
-    }, [pathname, søknadRoute, isFirstRender, previousPathname, showWarning, redirectToSøknadRoute]);
+    }, [
+        pathname,
+        søknadRoute,
+        isFirstRender,
+        previousPathname,
+        routeError,
+        redirectToSøknadRoute,
+        welcomeRoute,
+        availableRoutes,
+    ]);
+
+    const clearRouteError = () => {
+        setRouteError(undefined);
+    };
 
     return {
-        showWarning,
+        routeError,
         redirectToSøknadRoute,
+        clearRouteError,
     };
 };

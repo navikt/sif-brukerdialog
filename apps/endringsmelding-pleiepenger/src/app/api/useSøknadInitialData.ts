@@ -20,7 +20,6 @@ import {
     getPeriodeForArbeidsgiverOppslag,
     getSamletDateRangeForK9Saker as getDateRangeForK9Saker,
 } from '../utils/k9SakUtils';
-import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
 import { arbeidsgivereEndpoint } from './endpoints/arbeidsgivereEndpoint';
 import sakerEndpoint from './endpoints/sakerEndpoint';
@@ -98,9 +97,6 @@ const setupSøknadInitialData = async (
 
     if (lagretSøknadState && !persistedSøknadStateIsValid) {
         await søknadStateEndpoint.purge();
-        if (lagretSøknadState?.søknadRoute) {
-            relocateToWelcomePage();
-        }
     }
 
     const persistedSak = persistedSøknadStateIsValid

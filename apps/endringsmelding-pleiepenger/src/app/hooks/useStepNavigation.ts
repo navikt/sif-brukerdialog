@@ -5,9 +5,20 @@ import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { StepId } from '../søknad/config/StepId';
 import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
 
-export const useStepNavigation = (step: StepConfig<StepId>) => {
+type emptyFunction = () => void;
+
+type StepNavigation = {
+    goBack: emptyFunction | undefined;
+    goNext: emptyFunction | undefined;
+};
+
+export const useStepNavigation = (step: StepConfig<StepId>): StepNavigation => {
     const { dispatch } = useSøknadContext();
     const navigate = useNavigate();
+
+    if (!step) {
+        return { goBack: undefined, goNext: undefined };
+    }
 
     const hasPreviousStep = step.previousStep !== undefined;
     const hasNextStep = step.nextStep !== undefined;

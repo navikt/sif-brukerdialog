@@ -1,5 +1,4 @@
 import { guid } from '@navikt/sif-common-utils/lib';
-import { EndringType } from '../../../types/EndringType';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
@@ -40,7 +39,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                  * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
                  * Verdien settes på nytt når søker starter ny meldning
                  */
-                hvaSkalEndres: [EndringType.arbeidstid, EndringType.lovbestemtFerie],
+                hvaSkalEndres: [],
             };
     }
 
@@ -105,6 +104,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
                     endringsmeldingSendt: false,
+                    hvaSkalEndres: [],
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
             case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:
