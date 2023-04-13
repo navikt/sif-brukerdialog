@@ -9,7 +9,7 @@ describe('countryUtils', () => {
         const name = getCountryName('NOR', 'no-NB');
         expect(name).toEqual('Norge');
     });
-    it.only('returns name for nn', () => {
+    it('returns name for nn', () => {
         const name = getCountryName('NOR', 'nn');
         expect(name).toEqual('Noreg');
     });
