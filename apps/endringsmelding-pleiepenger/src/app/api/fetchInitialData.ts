@@ -19,24 +19,28 @@ import søknadStateEndpoint, {
 } from './endpoints/søknadStateEndpoint';
 import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from './useSøknadInitialData';
 
-export const getRejection = (årsak: IngenTilgangÅrsak): Pick<SøknadInitialIkkeTilgang, 'årsak'> => {
+export const getKanIkkeBrukeSøknadRejection = (
+    årsak: IngenTilgangÅrsak
+): Pick<SøknadInitialIkkeTilgang, 'årsak' | 'kanBrukeSøknad' | 'status'> => {
     return {
+        status: RequestStatus.success,
+        kanBrukeSøknad: false,
         årsak,
     };
 };
 
-const parseK9FormatSaker = (
+const kontrollerSaker = (
     k9sakerResult: K9SakResult[]
 ): Promise<{ k9saker: K9Sak[]; dateRangeAlleSaker: DateRange }> => {
     const ugyldigk9FormatSaker: UgyldigK9SakFormat[] = k9sakerResult.filter(isUgyldigK9SakFormat);
     const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
 
     if (ugyldigk9FormatSaker.length > 0) {
-        return Promise.reject(getRejection(IngenTilgangÅrsak.harUgyldigK9FormatSak));
+        return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harUgyldigK9FormatSak));
     }
     const dateRangeAlleSaker = getSamletDateRangeForK9Saker(k9saker);
     if (dateRangeAlleSaker === undefined) {
-        return Promise.reject(getRejection(IngenTilgangÅrsak.harIngenPerioder));
+        return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harIngenPerioder));
     }
     return Promise.resolve({ k9saker, dateRangeAlleSaker });
 };
@@ -69,10 +73,13 @@ const kontrollerTilgang = async (
             );
         }
     }
-    return Promise.reject(getRejection(resultat.årsak));
+    return Promise.reject(getKanIkkeBrukeSøknadRejection(resultat.årsak));
 };
 
-const hentLagretSøknadState = async (søker: Søker, k9saker: K9Sak[]): Promise<SøknadStatePersistence | undefined> => {
+const hentOgKontrollerLagretSøknadState = async (
+    søker: Søker,
+    k9saker: K9Sak[]
+): Promise<SøknadStatePersistence | undefined> => {
     const lagretSøknadState = await søknadStateEndpoint.fetch();
 
     if (lagretSøknadState === undefined) {
@@ -117,7 +124,7 @@ export const fetchInitialData = async (
         let k9saker: K9Sak[];
         let arbeidsgivere: Arbeidsgiver[];
 
-        return parseK9FormatSaker(k9sakerResult)
+        return kontrollerSaker(k9sakerResult)
             .then((result) => {
                 k9saker = result.k9saker;
                 return arbeidsgivereEndpoint.fetch(
@@ -128,7 +135,7 @@ export const fetchInitialData = async (
                 arbeidsgivere = result;
                 return kontrollerTilgang(k9saker, arbeidsgivere, tillattEndringsperiode);
             })
-            .then(() => hentLagretSøknadState(søker, k9saker))
+            .then(() => hentOgKontrollerLagretSøknadState(søker, k9saker))
             .then((lagretSøknadState) => {
                 return Promise.resolve({
                     søker,
