@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.4.0
+
+### Minor Changes
+
+-   d730839: Refactor av initialData henting og SøknadRouter
+
 ## 2.3.0
 
 ### Minor Changes
