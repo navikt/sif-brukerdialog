@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 7.0.1
+
+### Patch Changes
+
+-   5aea4f1: Vise dialog når bruker kommer tilbake til velkommen-siden vha back i nettleser.
+
 ## 7.0.0
 
 ### Minor Changes

@@ -1,5 +1,17 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.3.0
+
+### Minor Changes
+
+-   5aea4f1: Vise dialog når bruker kommer tilbake til velkommen-siden vha back i nettleser.
+
+### Patch Changes
+
+-   0bc3551: Bugfix - validere at antall timer oppgitt er mulig innenfor periodens varighet
+-   Updated dependencies [5aea4f1]
+    -   @navikt/sif-common-core-ds@7.0.1
+
 ## 2.2.0
 
 ### Minor Changes
