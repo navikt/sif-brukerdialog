@@ -1,6 +1,6 @@
 import { Button } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -25,6 +25,7 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -33,7 +34,6 @@ const SøknadRouter = () => {
         state: { endringsmeldingSendt, søknadsdata, hvaSkalEndres, søknadRoute, k9saker, sak },
     } = useSøknadContext();
 
-    const navigateTo = useNavigate();
     const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
     const { slettMellomlagring } = useMellomlagring();
     const { logInfo } = useAmplitudeInstance();
@@ -51,10 +51,11 @@ const SøknadRouter = () => {
     useEffect(() => {
         if (shouldResetSøknad) {
             dispatch(actionsCreator.resetSøknad());
-            setShouldResetSøknad(false);
-            navigateTo(SøknadRoutes.VELKOMMEN);
+            setTimeout(() => {
+                relocateToWelcomePage();
+            });
         }
-    }, [shouldResetSøknad, navigateTo, dispatch]);
+    }, [shouldResetSøknad, dispatch]);
 
     const startPåNytt = async () => {
         await logInfo({ kilde: 'StartPåNyttDialog', starterPåNytt: true });
@@ -73,6 +74,10 @@ const SøknadRouter = () => {
 
     if (endringsmeldingSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
         setShouldResetSøknad(true);
+    }
+
+    if (shouldResetSøknad) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
     }
 
     if (!sak && k9saker.length > 1) {
