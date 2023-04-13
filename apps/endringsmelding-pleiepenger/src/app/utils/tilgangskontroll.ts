@@ -17,13 +17,13 @@ type TilgangTillatt = {
     kanBrukeSøknad: true;
 };
 
-type TilgangKontrollResultet = TilgangNektet | TilgangTillatt;
+export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 
 export const tilgangskontroll = (
     saker: K9Sak[],
     arbeidsgivere: Arbeidsgiver[],
     tillattEndringsperiode: DateRange
-): TilgangKontrollResultet => {
+): TilgangKontrollResultat => {
     /** Har ingen saker */
     if (saker.length === 0) {
         return {

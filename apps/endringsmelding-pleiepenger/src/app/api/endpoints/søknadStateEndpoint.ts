@@ -3,11 +3,13 @@ import { jsonSort } from '@navikt/sif-common-utils/lib';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
-import { SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import { EndringType } from '../../types/EndringType';
 import { K9Sak } from '../../types/K9Sak';
 import { Søker } from '../../types/Søker';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { harFjernetLovbestemtFerie } from '../../utils/lovbestemtFerieUtils';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export type SøknadStatePersistence = {
@@ -30,7 +32,7 @@ interface SøknadStateHashInfo {
 interface SøknadStatePersistenceEndpoint
     extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {
     update: (state: Omit<SøknadStatePersistence, 'søknadHashString'>, søker: Søker) => Promise<AxiosResponse>;
-    fetch: () => Promise<SøknadStatePersistence>;
+    fetch: () => Promise<SøknadStatePersistence | undefined>;
 }
 
 const persistSetup = persistence<SøknadStatePersistence>({
@@ -42,6 +44,15 @@ const createHashString = (info: SøknadStateHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
+const persistedSøknadRouteIsAvailable = (søknadState: SøknadStatePersistence): boolean => {
+    const søknadRoute = søknadState.søknadRoute;
+    const availableSteps = getSøknadSteps(
+        søknadState.hvaSkalEndres,
+        harFjernetLovbestemtFerie(søknadState.søknadsdata.lovbestemtFerie)
+    );
+    return availableSteps.some((step) => getSøknadStepRoute(step) === søknadRoute);
+};
+
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo,
@@ -50,8 +61,14 @@ export const isPersistedSøknadStateValid = (
     return (
         søknadState.versjon === APP_VERSJON &&
         søknadState.søknadHashString === createHashString(info) &&
-        k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId)
+        k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId) &&
+        søknadState.hvaSkalEndres.length > 0 &&
+        persistedSøknadRouteIsAvailable(søknadState)
     );
+};
+
+export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersistence) => {
+    return Object.keys(søknadState || {}).length === 0;
 };
 
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
@@ -72,6 +89,9 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     },
     fetch: async () => {
         const { data } = await persistSetup.rehydrate();
+        if (isPersistedSøknadStateEmpty(data)) {
+            return Promise.resolve(undefined);
+        }
         return Promise.resolve(data);
     },
 };

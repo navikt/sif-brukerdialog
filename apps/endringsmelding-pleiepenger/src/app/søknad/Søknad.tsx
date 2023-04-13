@@ -5,7 +5,7 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-sp
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
-import useSøknadInitialData from '../api/useSøknadInitialData';
+import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import DevFooter from '../dev/DevFooter';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
 import { RequestStatus } from '../types/RequestStatus';
