@@ -33,7 +33,7 @@ describe('arbeidsaktivitetUtils', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1, arbUke2], endringer);
             expect(result).toBeDefined();
         });
-        it.only('returnerer undefined hvis noen endringer er ulike', () => {
+        it('returnerer undefined hvis noen endringer er ulike', () => {
             const result = getEndringerForArbeidsukeForm([arbUke1, arbUke2, arbUke3], endringer);
             expect(result).toBeUndefined();
         });

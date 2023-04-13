@@ -118,7 +118,7 @@ describe('durationUtils', () => {
             it('converts 1 hour and 30 minutes correctly', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 30 })).toEqual(1.5);
             });
-            it.only('converts 1 hour and 59 minutes correctly', () => {
+            it('converts 1 hour and 59 minutes correctly', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 59 })).toEqual(1.9833);
             });
             it('handles overflow of minutes correctly', () => {
@@ -631,8 +631,8 @@ describe('durationUtils', () => {
     describe('ISODurationToDuration', () => {
         it('Fjerner sekunder fra duration', () => {
             const result = ISODurationToDuration('PT5H20M10S');
-            expect(result.hours).toEqual('20');
-            expect(result.minutes).toEqual('10');
+            expect(result.hours).toEqual('5');
+            expect(result.minutes).toEqual('20');
         });
     });
 });

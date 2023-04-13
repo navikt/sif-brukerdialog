@@ -2,6 +2,7 @@ import {
     getDatesInDateRange,
     ISODateRange,
     ISODateRangeToDateRange,
+    ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidUkeTabellItem } from '../../../components/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
@@ -91,9 +92,42 @@ const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): Arb
     return arbeidsuker;
 };
 
+const erArbeidstidInfoGyldig = (perioderMap: ArbeidstidPeriodeApiDataMap): boolean => {
+    return Object.keys(perioderMap)
+        .map((key) => perioderMap[key])
+        .some((value) => {
+            const duration = ISODurationToDecimalDuration(value.faktiskArbeidTimerPerDag);
+            return duration !== undefined && duration <= 24;
+        });
+};
+
+const erArbeidstidEndringerGyldig = (arbeidstid?: ArbeidstidApiData): boolean => {
+    if (arbeidstid === undefined) {
+        return true;
+    }
+    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
+    const ugyldigArbeidstid: any[] = [];
+    arbeidstakerList.forEach((a) => {
+        if (!erArbeidstidInfoGyldig(a.arbeidstidInfo.perioder)) {
+            ugyldigArbeidstid.push(a);
+        }
+    });
+    if (frilanserArbeidstidInfo && !erArbeidstidInfoGyldig(frilanserArbeidstidInfo.perioder)) {
+        ugyldigArbeidstid.push(frilanserArbeidstidInfo);
+    }
+    if (
+        selvstendigNæringsdrivendeArbeidstidInfo &&
+        !erArbeidstidInfoGyldig(selvstendigNæringsdrivendeArbeidstidInfo.perioder)
+    ) {
+        ugyldigArbeidstid.push(selvstendigNæringsdrivendeArbeidstidInfo);
+    }
+    return ugyldigArbeidstid.length === 0;
+};
+
 export const oppsummeringStepUtils = {
     getArbeidstidUkeTabellItems,
     harEndringerILovbestemtFerieApiData,
     harEndringerIArbeidstid,
+    erArbeidstidEndringerGyldig,
     getOppsummeringStepInitialValues,
 };

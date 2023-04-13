@@ -5,6 +5,7 @@ import {
     beregnEndretArbeidstidForUke,
     beregnEndretFaktiskArbeidstidPerDag,
     beregnSnittTimerPerDag,
+    erTimerGyldigInnenforAntallDager,
     summerTimerPerDag,
 } from '../beregnUtils';
 
@@ -82,7 +83,7 @@ describe('beregnUtils', () => {
             const expectedResult: Duration = decimalDurationToDuration(7.5 / 5);
             expect(result).toEqual(expectedResult);
         });
-        it.only('beregner riktig timer per dag for 0% av 37,5 timer', () => {
+        it('beregner riktig timer per dag for 0% av 37,5 timer', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.PROSENT, prosent: 0 },
@@ -159,6 +160,20 @@ describe('beregnUtils', () => {
         it('summerer riktig 2 timer og 10 minutter i 3 dager', () => {
             const expectedResult: Duration = { hours: '6', minutes: '30' };
             expect(summerTimerPerDag({ hours: '2', minutes: '10' }, 3)).toEqual(expectedResult);
+        });
+    });
+    describe('erTimerGyldigInnenforAntallDager', () => {
+        it('feiler ved flere timer enn tilgjengelig', () => {
+            expect(erTimerGyldigInnenforAntallDager({ hours: '24', minutes: '1' }, 1)).toBeFalsy();
+            expect(erTimerGyldigInnenforAntallDager({ hours: '48', minutes: '1' }, 2)).toBeFalsy();
+        });
+        it('godtar like mange timer som tilgjengelig', () => {
+            expect(erTimerGyldigInnenforAntallDager({ hours: '24', minutes: '0' }, 1)).toBeTruthy();
+            expect(erTimerGyldigInnenforAntallDager({ hours: '48', minutes: '0' }, 2)).toBeTruthy();
+        });
+        it('godtar færre timer enn tilgjengelig', () => {
+            expect(erTimerGyldigInnenforAntallDager({ hours: '23', minutes: '59' }, 1)).toBeTruthy();
+            expect(erTimerGyldigInnenforAntallDager({ hours: '47', minutes: '59' }, 2)).toBeTruthy();
         });
     });
 });
