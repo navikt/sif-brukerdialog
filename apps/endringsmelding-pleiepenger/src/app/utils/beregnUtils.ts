@@ -50,6 +50,6 @@ export const getTimerPerDagOgUkeFraUke = (timerPerUke: Duration, antallDager: nu
     };
 };
 
-export const erAntallTimerGyldig = (duration: Duration, antallDager: number): boolean => {
+export const erTimerGyldigInnenforAntallDager = (duration: Duration, antallDager: number): boolean => {
     return durationToDecimalDuration(duration) <= antallDager * 24;
 };

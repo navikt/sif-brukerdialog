@@ -1,13 +1,13 @@
 import { BodyShort } from '@navikt/ds-react';
-import { ErrorColored } from '@navikt/ds-icons';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { erAntallTimerGyldig } from '../../../utils/beregnUtils';
-import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
+import { erTimerGyldigInnenforAntallDager } from '../../../utils/beregnUtils';
 import IconText from '../../icon-text/IconText';
+import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
@@ -30,7 +30,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
         );
     }
     const { faktisk, endretProsent } = uke.endret;
-    const erEndringGyldig = erAntallTimerGyldig(faktisk, uke.antallDagerMedArbeidstid);
+    const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
     return (
         <div className={bem.block}>
             <div className={bem.element('faktisk')}>
