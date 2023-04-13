@@ -92,7 +92,7 @@ const SøknadRouter = () => {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
-                <Route path="*" element={<Navigate to={StepId.VELKOMMEN} replace={true} />} />
+                <Route path="*" element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />} />
             </Routes>
         );
     }
