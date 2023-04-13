@@ -17,7 +17,7 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from './useSøknadInitialData';
+import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from '../hooks/useSøknadInitialData';
 
 export const getKanIkkeBrukeSøknadRejection = (
     årsak: IngenTilgangÅrsak

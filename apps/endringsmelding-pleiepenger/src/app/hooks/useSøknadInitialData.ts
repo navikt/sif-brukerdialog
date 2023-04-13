@@ -16,8 +16,8 @@ import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';
-import { SøknadStatePersistence } from './endpoints/søknadStateEndpoint';
-import { fetchInitialData } from './fetchInitialData';
+import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
+import { fetchInitialData } from '../api/fetchInitialData';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
 
@@ -51,7 +51,7 @@ export type SøknadInitialIkkeTilgang = {
     søker: Søker;
 };
 
-export type SøknadInitialDataState =
+type SøknadInitialDataState =
     | SøknadInitialSuccess
     | SøknadInitialError
     | SøknadInitialLoading
