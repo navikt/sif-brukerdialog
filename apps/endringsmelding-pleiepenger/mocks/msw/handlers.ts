@@ -86,6 +86,9 @@ export const getHandlers = () => {
         rest.get(`${baseUrl}/oppslag/soker`, (req, res, ctx) => {
             return res(ctx.status(200), ctx.json(søker));
         }),
+        rest.get(`${baseUrl}/oppslag/soker-ikkeLoggetInn`, (req, res, ctx) => {
+            return res(ctx.status(401));
+        }),
         rest.get(`${baseUrl}/innsyn/sak`, (req, res, ctx) => {
             return res(ctx.delay(250), ctx.status(200), ctx.json(sak));
         }),
