@@ -12,7 +12,7 @@ const envSettings = (MSW) => {
         APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
         APPSTATUS_PROJECT_ID: '${process.env.APPSTATUS_PROJECT_ID}',
         INNSYN_URL: '${process.env.INNSYN_URL}',
-        INGRESS: '${process.env.INGRESS}',
+        DOMAIN_URL: '${process.env.DOMAIN_URL}',
         LOGIN_URL: '${process.env.LOGIN_URL}',
         MELLOMLAGRING: '${process.env.MELLOMLAGRING}',
         MSW: '${MSW || process.env.MSW}',

@@ -19,7 +19,7 @@ function createEnvSettingsFileForHeroku() {
                 FRONTEND_API_PATH: 'https://endringsdialog-pleiepenger.herokuapp.com',
                 FRONTEND_VEDLEGG_URL: 'https://endringsdialog-pleiepenger.herokuapp.com/api',
                 FRONTEND_INNSYN_API_PATH: 'https://endringsdialog-pleiepenger.herokuapp.com/api',
-                INGRESS: 'https://endringsdialog-pleiepenger.herokuapp.com',
+                DOMAIN_URL: 'https://endringsdialog-pleiepenger.herokuapp.com',
                 INNSYN_URL: 'https://endringsdialog-pleiepenger.herokuapp.com',
                 LOGIN_URL: 'https://endringsdialog-pleiepenger.herokuapp.com/login?redirect_location=https://endringsdialog-pleiepenger.herokuapp.com',
                 MELLOMLAGRING: 'on',
