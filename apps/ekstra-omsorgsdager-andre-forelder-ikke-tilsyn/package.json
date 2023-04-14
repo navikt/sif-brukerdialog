@@ -31,7 +31,7 @@
     "dependencies": {
         "@navikt/ds-css": "2.8.11",
         "@navikt/ds-react": "2.8.11",
-        "@navikt/ds-tailwind": "2.8.11",
+        "@navikt/ds-tailwind": "2.8.12",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
