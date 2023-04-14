@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.5.0
+
+### Minor Changes
+
+-   c5e7f21: Bugfix - manglende ingress medførte feil ved redirect av bruker. Logikken er nå endret litt for å fikse dette
+
 ## 2.4.0
 
 ### Minor Changes
