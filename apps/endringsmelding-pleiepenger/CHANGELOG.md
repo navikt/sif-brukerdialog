@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.5.1
+
+### Patch Changes
+
+-   2312c0c: Logge at bruker ikke har noen sak når dette er tilfelle, i stedet for "ingenPerioder"
+
 ## 2.5.0
 
 ### Minor Changes
