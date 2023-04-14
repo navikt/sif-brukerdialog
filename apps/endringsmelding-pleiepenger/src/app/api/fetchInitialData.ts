@@ -35,6 +35,10 @@ const kontrollerSaker = (
     const ugyldigk9FormatSaker: UgyldigK9SakFormat[] = k9sakerResult.filter(isUgyldigK9SakFormat);
     const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
 
+    if (k9saker.length === 0) {
+        return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harIngenSak));
+    }
+
     if (ugyldigk9FormatSaker.length > 0) {
         return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harUgyldigK9FormatSak));
     }
