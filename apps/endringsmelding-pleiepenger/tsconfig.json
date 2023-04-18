@@ -24,11 +24,5 @@
         "strictNullChecks": true
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": [
-        "./src/app/**/*",
-        "./src/types",
-        "./src/sif-common-core-ds/**/*",
-        "mocks/data/app/**/*",
-        "mocks/msw/**/*"
-    ]
+    "include": ["./src/app/**/*", "./src/types", "./src/sif-common-core-ds/**/*", "./mocks/**/*"]
 }

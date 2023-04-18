@@ -1,7 +1,7 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { arbeidsukerMockData } from '../../../../mocks/data/app/arbeidsukerMockData';
-import EndreArbeidstidForm from '../../../app/components/endre-arbeidstid-form/EndreArbeidstidForm';
+import EndreArbeidstidForm from '../../../app/modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';
@@ -12,9 +12,9 @@ export default {
     title: 'Components/EndreArbeidstidForm',
     component: EndreArbeidstidForm,
     decorators: [withIntl, withRouterProvider, withSøknadContextProvider],
-} as ComponentMeta<typeof EndreArbeidstidForm>;
+} as Meta<typeof EndreArbeidstidForm>;
 
-const Template: ComponentStory<typeof EndreArbeidstidForm> = (props) => {
+const Template: StoryFn<typeof EndreArbeidstidForm> = (props) => {
     return <EndreArbeidstidForm {...props} onCancel={() => null} onSubmit={() => null} />;
 };
 

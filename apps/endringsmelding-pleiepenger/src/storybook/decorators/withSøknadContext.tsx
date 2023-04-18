@@ -13,7 +13,8 @@ const initialState: SøknadContextState = {
         id: '123',
     },
     k9saker: [],
-    endringsperiode: {
+    hvaSkalEndres: [],
+    tillattEndringsperiode: {
         from: new Date(),
         to: new Date(),
     },
