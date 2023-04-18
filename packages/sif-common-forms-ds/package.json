@@ -12,12 +12,12 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "@formatjs/intl-pluralrules": "5.1.10",
+        "@formatjs/intl-pluralrules": "5.2.0",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/ds-css": "2.8.11",
-        "@navikt/ds-react": "2.8.11",
+        "@navikt/ds-css": "2.8.12",
+        "@navikt/ds-react": "2.8.12",
         "@storybook/addon-a11y": "6.5.16",
         "@storybook/addon-actions": "6.5.16",
         "@storybook/addon-essentials": "6.5.16",
@@ -29,7 +29,7 @@
         "@testing-library/react": "14.0.0",
         "@testing-library/user-event": "14.4.3",
         "@types/node": "18.15.11",
-        "@types/react": "18.0.34",
+        "@types/react": "18.0.37",
         "@types/react-dom": "18.0.11",
         "@types/react-responsive": "8.0.5",
         "axios": "1.3.5",
@@ -45,13 +45,13 @@
         "react-collapse": "5.1.1",
         "react-day-picker": "8.6.0",
         "react-dom": "18.2.0",
-        "react-intl": "6.3.2",
+        "react-intl": "6.4.0",
         "react-modal": "3.16.1",
         "react-responsive": "9.0.2",
         "react-router-dom": "6.10.0",
         "react-scripts": "5.0.1",
         "rimraf": "5.0.0",
-        "webpack": "5.78.0"
+        "webpack": "5.79.0"
     },
     "directories": {
         "lib": "lib"
