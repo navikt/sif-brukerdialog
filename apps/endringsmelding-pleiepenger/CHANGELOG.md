@@ -1,5 +1,16 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.6.0
+
+### Minor Changes
+
+-   2ea6493: Refactor folderstruktur
+
+### Patch Changes
+
+-   Updated dependencies [2ea6493]
+    -   @navikt/sif-common-utils@3.30.0
+
 ## 2.5.1
 
 ### Patch Changes
