@@ -6,7 +6,7 @@ import AriaText from '@navikt/sif-common-core-ds/lib/components/aria/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { erTimerGyldigInnenforAntallDager } from '../../../utils/beregnUtils';
-import IconText from '../../icon-text/IconText';
+import IconText from '../../../components/icon-text/IconText';
 import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 
 interface Props {

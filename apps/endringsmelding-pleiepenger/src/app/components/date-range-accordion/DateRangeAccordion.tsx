@@ -2,16 +2,17 @@ import { Accordion, Ingress } from '@navikt/ds-react';
 import React from 'react';
 import { DateRange, dateRangeToISODateRange, dateToday, isDateInDateRange } from '@navikt/sif-common-utils/lib';
 
-type ÅpenType = 'all' | 'none' | 'current';
+type State = 'all' | 'none' | 'current';
+
 interface Props<Type extends DateRange> {
-    perioder: Type[];
-    defaultOpen?: ÅpenType;
+    dateRanges: Type[];
+    defaultOpenState?: State;
     renderContent: (periode: Type) => React.ReactNode;
     renderHeader: (periode: Type) => React.ReactNode;
 }
 
-const erÅpen = (periode: DateRange, defaultOpen: ÅpenType = 'none') => {
-    switch (defaultOpen) {
+const erÅpen = (periode: DateRange, defaultOpenState: State = 'none') => {
+    switch (defaultOpenState) {
         case 'all':
             return true;
         case 'none':
@@ -21,30 +22,30 @@ const erÅpen = (periode: DateRange, defaultOpen: ÅpenType = 'none') => {
     }
 };
 
-function PerioderAccordion<Type extends DateRange>({
-    perioder,
-    defaultOpen,
+function DateRangeAccordion<Type extends DateRange>({
+    dateRanges,
+    defaultOpenState,
     renderContent,
     renderHeader,
 }: Props<Type>) {
     return (
         <>
-            {perioder.length === 1 ? (
-                renderContent(perioder[0])
+            {dateRanges.length === 1 ? (
+                renderContent(dateRanges[0])
             ) : (
                 <Accordion className="w-full">
-                    {perioder.map((periode, index) => {
+                    {dateRanges.map((dateRange, index) => {
                         return (
                             <Accordion.Item
-                                key={dateRangeToISODateRange(periode)}
-                                data-testid={`periode_${index}`}
-                                defaultOpen={erÅpen(periode, defaultOpen)}>
-                                <Accordion.Header data-testid={`periode_${index}_header`}>
+                                key={dateRangeToISODateRange(dateRange)}
+                                data-testid={`dateRangeAccordion_${index}`}
+                                defaultOpen={erÅpen(dateRange, defaultOpenState)}>
+                                <Accordion.Header data-testid={`dateRangeAccordion_${index}_header`}>
                                     <Ingress as="div" className="periodeHeader">
-                                        {renderHeader(periode)}
+                                        {renderHeader(dateRange)}
                                     </Ingress>
                                 </Accordion.Header>
-                                <Accordion.Content>{renderContent(periode)}</Accordion.Content>
+                                <Accordion.Content>{renderContent(dateRange)}</Accordion.Content>
                             </Accordion.Item>
                         );
                     })}
@@ -53,4 +54,4 @@ function PerioderAccordion<Type extends DateRange>({
         </>
     );
 }
-export default PerioderAccordion;
+export default DateRangeAccordion;

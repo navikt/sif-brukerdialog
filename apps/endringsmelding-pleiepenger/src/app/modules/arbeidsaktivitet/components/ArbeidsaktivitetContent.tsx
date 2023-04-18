@@ -15,11 +15,11 @@ import { LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/Lovbest
 import { getEndringsdato, getTillattEndringsperiode } from '../../../utils/endringsperiode';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../../arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import EndreArbeidstidForm from '../../endre-arbeidstid-form/EndreArbeidstidForm';
-import EndreArbeidstidModal from '../../endre-arbeidstid-modal/EndreArbeidstidModal';
-import PerioderAccordion from '../../perioder-accordion/PerioderAccordion';
-import EndretTag from '../../tags/EndretTag';
-import FerieTag from '../../tags/FerieTag';
-import TagsContainer from '../../tags/TagsContainer';
+import EndreArbeidstidModal from '../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
+import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
+import EndretTag from '../../../components/tags/EndretTag';
+import FerieTag from '../../../components/tags/FerieTag';
+import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 import ArbeidAktivitetUtenforPeriodeInfo from './ArbeidAktivitetUtenforPeriodeInfo';
 
@@ -77,8 +77,8 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
 
             {perioder.length !== 1 && (
                 <div style={{ borderTop: '2px solid var(--ac-accordion-header-border, var(--a-border-strong)' }}>
-                    <PerioderAccordion
-                        perioder={perioder}
+                    <DateRangeAccordion
+                        dateRanges={perioder}
                         renderContent={(periode) => {
                             const listItems = arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                 periode.arbeidsuker,

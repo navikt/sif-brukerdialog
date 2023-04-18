@@ -11,9 +11,9 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
 import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
-import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import StateInfo from '../dev/state-info/StateInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
+import InvalidStepSøknadsdataInfo from '../modules/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import { StepId } from './config/StepId';
 
 interface Props {

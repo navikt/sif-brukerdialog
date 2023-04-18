@@ -7,8 +7,8 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import Arbeidsaktivitet from '../../../components/arbeidsaktivitet/Arbeidsaktivitet';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import Arbeidsaktivitet from '../../../modules/arbeidsaktivitet/Arbeidsaktivitet';
+import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';

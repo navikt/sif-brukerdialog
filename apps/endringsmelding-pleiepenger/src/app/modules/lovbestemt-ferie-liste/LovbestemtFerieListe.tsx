@@ -3,9 +3,9 @@ import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFeriePeriode } from '../../types/LovbestemtFeriePeriode';
-import DeleteButton from '../delete-button/DeleteButton';
-import EditButton from '../edit-button/EditButton';
-import FerieTag from '../tags/FerieTag';
+import DeleteButton from '../../components/buttons/DeleteButton';
+import EditButton from '../../components/buttons/EditButton';
+import FerieTag from '../../components/tags/FerieTag';
 import './lovbestemtFerieListe.scss';
 
 const bem = bemUtils('lovbestemtFerieListe');

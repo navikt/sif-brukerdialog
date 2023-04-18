@@ -5,10 +5,9 @@ import { AddCircle, Edit } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import { dateFormatter, DateRange, Duration, ISODateRange } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, DateRange, Duration, getDateRangeText, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import EditButton from '../edit-button/EditButton';
-import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
+import EditButton from '../../components/buttons/EditButton';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
 import UkeInfoIkon from './components/UkeInfo';
@@ -109,7 +108,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         }
 
         const title =
-            valgteUker.length > 1 ? 'Endre valgte uker' : `Endre uke ${ukenummer} (${getPeriodeTekst(uke.periode)})`;
+            valgteUker.length > 1 ? 'Endre valgte uker' : `Endre uke ${ukenummer} (${getDateRangeText(uke.periode)})`;
 
         return (
             <EditButton
@@ -136,7 +135,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                     setValgteUker([]);
                 }}
                 aria-label={`Jeg ønsker å endre flere uker samtidig ${
-                    periode ? `i perioden ${getPeriodeTekst(periode)}` : ''
+                    periode ? `i perioden ${getDateRangeText(periode)}` : ''
                 }`}>
                 Jeg ønsker å endre flere uker samtidig
             </Checkbox>
@@ -406,7 +405,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 <div id={ukePeriodeTekstId}>
                                                     <div className="arbeidsukeTidsrom">
                                                         <span className="arbeidsukeTidsrom__tekst">
-                                                            {getPeriodeTekst(uke.periode)}
+                                                            {getDateRangeText(uke.periode)}
                                                             {(uke.harFeriedager || uke.harFjernetFeriedager) && (
                                                                 <Block margin="s">
                                                                     <UkeTags

@@ -13,7 +13,6 @@ import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
 import { SKJEMANAVN } from '../../App';
-import { getPeriodeTekst } from '../../components/periode-tekst/PeriodeTekst';
 import { getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
 import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import actionsCreator from '../../søknad/context/action/actionCreator';
@@ -21,6 +20,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
 import OmSøknaden from './OmSøknaden';
+import { getDateRangeText } from '@navikt/sif-common-utils/lib';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -102,7 +102,12 @@ const VelkommenPage = () => {
                                     {sak.søknadsperioder.length === 1
                                         ? 'din pleiepengeperiode'
                                         : 'dine pleiepengeperioder'}{' '}
-                                    i tidsrommet {getPeriodeTekst(sak.samletSøknadsperiode, false, true)}.
+                                    i tidsrommet{' '}
+                                    {getDateRangeText(sak.samletSøknadsperiode, {
+                                        compact: false,
+                                        includeDayName: true,
+                                    })}
+                                    .
                                 </p>
                                 <Block margin="xl">
                                     <CheckboxGroup
