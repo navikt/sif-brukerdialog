@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.30.0
+
+### Minor Changes
+
+-   2ea6493: dateRangeFormatter - enkel tekst for dateranges
+
 ## 3.29.0
 
 ### Minor Changes
