@@ -12,7 +12,7 @@ const enkeltuke = 45;
 const flereUker = [46, 47];
 
 const getAktivitet = () => getTestElement('aktivitet_id_947064649');
-const getPeriode = () => getTestElement('periode_0');
+const getPeriode = () => getTestElement('dateRangeAccordion_0');
 const getUkeRow = (ukenummer) => cy.get('.arbeidstidUkeTabell table').get(`[data-testid=uke_${ukenummer}]`);
 const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal');
 
@@ -53,14 +53,14 @@ const fyllUtFerieDialog = (from, to) => {
 const leggTilOgFjernFerie = () => {
     it('kan legge til, endre og fjerne én ferie', () => {
         /** Legg til */
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 1);
             getTestElement('leggTilFerieKnapp').click();
         });
 
         fyllUtFerieDialog('20.11.2022', '25.11.2022');
 
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
@@ -69,11 +69,11 @@ const leggTilOgFjernFerie = () => {
         });
 
         /** Endre */
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();
         });
         fyllUtFerieDialog('28.11.2022', '29.11.2022');
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
@@ -82,7 +82,7 @@ const leggTilOgFjernFerie = () => {
         });
 
         /** Fjern opprinnelig periode */
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__fjernKnapp').click();
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             const angreKnapp = cy.get(
@@ -92,18 +92,18 @@ const leggTilOgFjernFerie = () => {
         });
 
         // /** Angre fjern opprinnelig periode */
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]').click();
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__endreKnapp').should('exist');
         });
 
         // /** Endre opprinnelig periode */
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__endreKnapp').click();
         });
         fyllUtFerieDialog('07.11.2022', '09.11.2022');
-        getTestElement('periode_0').within(() => {
+        getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 4);
         });
 
@@ -116,7 +116,7 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
         cy.wait(1000);
         getAktivitet().within(() => {
-            cy.get('[data-testid=periode_0_header]').click();
+            cy.get('[data-testid=dateRangeAccordion_0]').click();
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));

@@ -5,7 +5,7 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils/lib';
-import { ArbeidstidUkeTabellItem } from '../../../components/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiData,

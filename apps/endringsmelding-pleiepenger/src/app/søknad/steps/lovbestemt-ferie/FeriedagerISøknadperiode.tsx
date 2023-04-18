@@ -10,8 +10,8 @@ import {
     getDatesInDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils/lib';
-import LovbestemtFerieListe from '../../../components/lovbestemt-ferie-liste/LovbestemtFerieListe';
-import LovbestemtFerieModal from '../../../components/lovbestemt-ferie-modal/LovbestemtFerieModal';
+import LovbestemtFerieListe from '../../../modules/lovbestemt-ferie-liste/LovbestemtFerieListe';
+import LovbestemtFerieModal from '../../../modules/lovbestemt-ferie-modal/LovbestemtFerieModal';
 import { getFeriedagerIPeriode } from '../../../utils/ferieUtils';
 import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
 import { FeriedagMap } from './LovbestemtFerieStep';

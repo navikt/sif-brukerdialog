@@ -8,8 +8,8 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils/lib';
-import PerioderAccordion from '../../../components/perioder-accordion/PerioderAccordion';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
+import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -145,9 +145,9 @@ const LovbestemtFerieStep = () => {
                                             </Block>
                                         </div>
                                     )}
-                                    <PerioderAccordion
-                                        perioder={sak.søknadsperioder}
-                                        defaultOpen={'all'}
+                                    <DateRangeAccordion
+                                        dateRanges={sak.søknadsperioder}
+                                        defaultOpenState={'all'}
                                         renderContent={(søknadsperiode) => {
                                             return (
                                                 <Block

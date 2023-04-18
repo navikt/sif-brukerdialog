@@ -270,7 +270,7 @@ const getUkerOgÅrBeskrivelse = (arbeidsuker: Arbeidsuke[], lovbestemtFerie?: Lo
             : [];
         return (
             <BodyShort as="div" className="capsFirstChar">
-                {getArbeidstidSpørsmålDescription(arbeidsuker[0], true)}
+                {getArbeidstidSpørsmålDescription(arbeidsuker[0])}
                 {dagerMedFerie.length > 0 && (
                     <Block margin="m">
                         <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />

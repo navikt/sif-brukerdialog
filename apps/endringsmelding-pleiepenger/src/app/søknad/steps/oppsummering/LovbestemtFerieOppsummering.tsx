@@ -2,8 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
-import { dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
-import { getPeriodeTekst } from '../../../components/periode-tekst/PeriodeTekst';
+import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils/lib';
 import { LovbestemtFerieApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { getLovbestemtFerieOppsummeringInfo } from '../../../utils/oppsummeringUtils';
 
@@ -23,7 +22,9 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     <InfoList>
                         {perioderLagtTil.map((periode) => (
                             <li key={dateRangeToISODateRange(periode)}>
-                                <div className="capsFirstChar">{getPeriodeTekst(periode, true, true)}</div>
+                                <div className="capsFirstChar">
+                                    {getDateRangeText(periode, { compact: true, includeDayName: true })}
+                                </div>
                             </li>
                         ))}
                     </InfoList>
@@ -37,7 +38,9 @@ const LovbestemtFerieOppsummering: React.FunctionComponent<Props> = ({ lovbestem
                     <InfoList>
                         {perioderFjernet.map((periode) => (
                             <li key={dateRangeToISODateRange(periode)}>
-                                <div className="capsFirstChar">{getPeriodeTekst(periode, true, true)}</div>
+                                <div className="capsFirstChar">
+                                    {getDateRangeText(periode, { compact: true, includeDayName: true })}
+                                </div>
                             </li>
                         ))}
                     </InfoList>

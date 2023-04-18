@@ -5,7 +5,7 @@ import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
-import EndretTag from '../../tags/EndretTag';
+import EndretTag from '../../../components/tags/EndretTag';
 import './arbeidAktivitetHeader.scss';
 
 interface Props {

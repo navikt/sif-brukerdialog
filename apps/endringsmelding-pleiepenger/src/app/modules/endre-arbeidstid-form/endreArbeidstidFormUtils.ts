@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { Arbeidsuke } from '../../types/Sak';
 import { erKortArbeidsuke, getDagerTekst, sorterArbeidsuker } from '../../utils/arbeidsukeUtils';
-import { getPeriodeTekst } from '../periode-tekst/PeriodeTekst';
+import { getDateRangeText } from '@navikt/sif-common-utils/lib';
 
 interface ArbeidsukerPerÅr {
     [isoWeekYear: string]: Arbeidsuke[];
@@ -86,9 +86,6 @@ export const getUkerForEndring = (arbeidsuker: Arbeidsuke[]): UkerForEndringType
     };
 };
 
-export const getArbeidstidSpørsmålDescription = ({ periode }: Arbeidsuke, erEnkeltukeEndring: boolean): string => {
-    if (erKortArbeidsuke(periode)) {
-        return erEnkeltukeEndring ? getPeriodeTekst(periode, false) : getPeriodeTekst(periode, false);
-    }
-    return erEnkeltukeEndring ? getDagerTekst(periode, true) : getDagerTekst(periode, true);
+export const getArbeidstidSpørsmålDescription = ({ periode }: Arbeidsuke): string => {
+    return erKortArbeidsuke(periode) ? getDateRangeText(periode, { compact: false }) : getDagerTekst(periode, true);
 };
