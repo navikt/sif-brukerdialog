@@ -32,7 +32,7 @@
         "postcss-loader": "7.2.4",
         "postcss-nested": "6.0.1",
         "prettier": "2.8.7",
-        "react-day-picker": "8.6.0",
+        "react-day-picker": "8.7.1",
         "react-scripts": "5.0.1",
         "react-syntax-highlighter": "15.5.0",
         "turbo": "1.9.3",
