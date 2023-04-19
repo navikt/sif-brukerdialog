@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block from '../block/Block';
-import SifGuidePanel from '../sif-guide-panel/SifGuidePanel';
+import Block from '../../block/Block';
+import SifGuidePanel from '../../sif-guide-panel/SifGuidePanel';
 
 interface Props {
     title: string;

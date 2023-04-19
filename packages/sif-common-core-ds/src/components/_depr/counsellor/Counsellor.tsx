@@ -1,5 +1,5 @@
 import React from 'react';
-import bemHelper from '../../utils/bemUtils';
+import bemHelper from '../../../utils/bemUtils';
 import './counsellor.scss';
 
 interface Props {

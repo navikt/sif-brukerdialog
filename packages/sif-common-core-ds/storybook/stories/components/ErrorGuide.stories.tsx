@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import ErrorGuide from '../../../src/components/error-guide/ErrorGuide';
+import ErrorGuide from '../../../src/components/_depr/error-guide/ErrorGuide';
 import StoryWrapper from '../../decorators/StoryWrapper';
 
 export default {

@@ -1,5 +1,5 @@
 import React from 'react';
-import bemHelper from '../../utils/bemUtils';
+import bemHelper from '../../../utils/bemUtils';
 import './banner.scss';
 
 export type BannerSize = 'small' | 'large' | 'xlarge';

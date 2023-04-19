@@ -1,9 +1,9 @@
 import React from 'react';
-import bemHelper from '../../utils/bemUtils';
+import bemHelper from '../../../utils/bemUtils';
 import Banner, { BannerSize } from '../banner/Banner';
 import CounsellorWithSpeechBubble, {
     CounsellorWithSpeechBubbleProps,
-} from '../counsellor-with-speech-bubble/CounsellorWithSpeechBubble';
+} from '../../_depr/counsellor-with-speech-bubble/CounsellorWithSpeechBubble';
 import './frontPageBanner.scss';
 
 const bem = bemHelper('frontPageBanner');

@@ -3,7 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { Back } from '@navikt/ds-icons';
-import bemUtils from '../../utils/bemUtils';
+import bemUtils from '../../../utils/bemUtils';
 import './backLink.scss';
 
 interface BackLinkProps {

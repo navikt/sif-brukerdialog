@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import StoryWrapper from '../../decorators/StoryWrapper';
-import CounsellorWithSpeechBubble from '../../../src/components/counsellor-with-speech-bubble/CounsellorWithSpeechBubble';
-import ResponsivePanel from '../../../src/components/responsive-panel/ResponsivePanel';
+import CounsellorWithSpeechBubble from '../../../src/components/_depr/counsellor-with-speech-bubble/CounsellorWithSpeechBubble';
+import ResponsivePanel from '../../../src/components/_depr/responsive-panel/ResponsivePanel';
 
 export default {
     title: 'Component/CounsellorWithSpeechBubble',

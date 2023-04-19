@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import StoryWrapper from '../../decorators/StoryWrapper';
-import BackLink from '../../../src/components/back-link/BackLink';
+import BackLink from '../../../src/components/_depr/back-link/BackLink';
 
 export default {
     title: 'Component/BackLink',
