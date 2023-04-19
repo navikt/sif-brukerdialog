@@ -6,7 +6,6 @@ import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/lib/components/app-status-wrapper/AppStatusWrapper';
-import useDecoratorLanguageSelector from '@navikt/sif-common-core-ds/lib/hooks/useDecoratorLanguageSelector';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 import {
@@ -19,6 +18,7 @@ import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
+import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector';
 import ErrorPage from '../soknad-common-pages/ErrorPage';
 import SoknadErrorMessages from '../soknad-error-messages/SoknadErrorMessages';
 
