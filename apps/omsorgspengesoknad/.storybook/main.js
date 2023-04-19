@@ -3,8 +3,16 @@ const path = require('path');
 
 module.exports = {
     stories: ['../src/storybook/**/*.stories.tsx'],
-    addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
-    framework: '@storybook/react',
+    addons: [
+        '@storybook/addon-essentials',
+        '@storybook/addon-a11y',
+        'storybook-formik/register',
+        '@storybook/preset-create-react-app',
+    ],
+    framework: {
+        name: '@storybook/react-webpack5',
+        options: {},
+    },
     core: {
         builder: '@storybook/builder-webpack5',
     },
@@ -35,6 +43,7 @@ module.exports = {
                     // Compiles Sass to CSS
                     'sass-loader',
                 ],
+                include: path.resolve(__dirname, '../app'),
             },
             {
                 test: /\.less$/,

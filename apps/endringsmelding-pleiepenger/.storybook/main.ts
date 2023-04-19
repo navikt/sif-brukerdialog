@@ -46,21 +46,6 @@ module.exports = {
                 ],
                 include: path.resolve(__dirname, '../app'),
             }
-            // {
-            //     test: /\.less$/,
-            //     use: [
-            //         MiniCssExtractPlugin.loader,
-            //         'css-loader',
-            //         {
-            //             loader: 'less-loader',
-            //             options: {
-            //                 lessOptions: {
-            //                     math: 'always',
-            //                 },
-            //             },
-            //         },
-            //     ],
-            // }
         );
 
         config.plugins.push(

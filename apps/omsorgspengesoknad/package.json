@@ -110,7 +110,7 @@
         "start-express": "node ./server.js",
         "start-e2e-server": "node ./server-e2e.js",
         "start": "npm run start-express",
-        "storybook": "start-storybook -p 6006",
+        "storybook": "storybook dev -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test --watchAll=true --env=jsdom"
     },
