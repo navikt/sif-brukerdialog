@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import ProgressStepper, { ProgressStep } from '../../../src/components/progress-stepper/ProgressStepper';
 import StoryWrapper from '../../decorators/StoryWrapper';
@@ -13,7 +13,7 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof ProgressStepper>;
+} as Meta<typeof ProgressStepper>;
 
 const steps: ProgressStep[] = [
     {
@@ -60,7 +60,7 @@ const steps: ProgressStep[] = [
     },
 ];
 
-const Template: ComponentStory<typeof ProgressStepper> = () => {
+const Template: StoryFn<typeof ProgressStepper> = () => {
     return <ProgressStepper steps={steps} currentStepIndex={2} onStepSelect={() => null} />;
 };
 

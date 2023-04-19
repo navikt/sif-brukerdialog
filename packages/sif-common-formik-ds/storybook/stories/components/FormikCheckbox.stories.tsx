@@ -1,15 +1,15 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
 import FormikCheckbox from '../../../src/components/formik-checkbox/FormikCheckbox';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
 export default {
     title: 'Component/FormikCheckbox',
     component: FormikCheckbox,
-    decorators: [withFormik],
-} as ComponentMeta<typeof FormikCheckbox>;
+    decorators: [withFormikWrapper],
+} as Meta<typeof FormikCheckbox>;
 
-const Template: ComponentStory<typeof FormikCheckbox> = (args) => <FormikCheckbox {...args} />;
+const Template: StoryFn<typeof FormikCheckbox> = (args) => <FormikCheckbox {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -1,15 +1,15 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikTextField from '../../../src/components/formik-text-field/FormikTextField';
 
 export default {
     title: 'Component/FormikTextField',
     component: FormikTextField,
-    decorators: [withFormik],
-} as ComponentMeta<typeof FormikTextField>;
+    decorators: [withFormikWrapper],
+} as Meta<typeof FormikTextField>;
 
-const Template: ComponentStory<typeof FormikTextField> = (args) => <FormikTextField {...args} />;
+const Template: StoryFn<typeof FormikTextField> = (args) => <FormikTextField {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

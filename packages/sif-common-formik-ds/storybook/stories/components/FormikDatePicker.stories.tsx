@@ -1,16 +1,16 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
 import FormikDatepicker, { FormikDatepickerProps } from '../../../src/components/formik-datepicker/FormikDatepicker';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 
 export default {
     title: 'Component/FormikDatepicker',
     component: FormikDatepicker,
-    decorators: [withIntl, withFormik],
-} as ComponentMeta<typeof FormikDatepicker>;
+    decorators: [withIntl, withFormikWrapper],
+} as Meta<typeof FormikDatepicker>;
 
-const Template: ComponentStory<typeof FormikDatepicker> = (args) => <FormikDatepicker {...args} />;
+const Template: StoryFn<typeof FormikDatepicker> = (args) => <FormikDatepicker {...args} />;
 
 export const Default = Template.bind({});
 const defaultProps: FormikDatepickerProps<any, any> = {

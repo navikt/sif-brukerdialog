@@ -1,15 +1,15 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikFileInput from '../../../src/components/formik-file-input/FormikFileInput';
 
 export default {
     title: 'Component/FormikFileInput',
     component: FormikFileInput,
-    decorators: [withFormik],
-} as ComponentMeta<typeof FormikFileInput>;
+    decorators: [withFormikWrapper],
+} as Meta<typeof FormikFileInput>;
 
-const Template: ComponentStory<typeof FormikFileInput> = (args) => (
+const Template: StoryFn<typeof FormikFileInput> = (args) => (
     <>
         <FormikFileInput {...args} buttonLabel="Last opp fil" />
     </>

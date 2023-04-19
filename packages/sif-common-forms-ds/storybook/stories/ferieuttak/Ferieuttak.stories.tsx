@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import FerieuttakExample from './FerieuttakExample';
 import AppIntlProvider from '../../decorators/AppIntlProvider';
@@ -13,8 +13,8 @@ export default {
             </AppIntlProvider>
         ),
     ],
-} as ComponentMeta<typeof FerieuttakExample>;
+} as Meta<typeof FerieuttakExample>;
 
-const Template: ComponentStory<typeof FerieuttakExample> = () => <FerieuttakExample />;
+const Template: StoryFn<typeof FerieuttakExample> = () => <FerieuttakExample />;
 
 export const Default = Template.bind({});

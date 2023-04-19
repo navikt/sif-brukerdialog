@@ -1,15 +1,15 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
+import { withIntl } from '../../decorators/withIntl';
 import ErrorPage from '../../../src/soknad-common-pages/ErrorPage';
 
 export default {
     title: 'Component/ErrorPage',
     component: ErrorPage,
-    decorators: [withFormik],
-} as ComponentMeta<typeof ErrorPage>;
+    decorators: [withIntl],
+} as Meta<typeof ErrorPage>;
 
-const Template: ComponentStory<typeof ErrorPage> = (args) => <ErrorPage {...args} />;
+const Template: StoryFn<typeof ErrorPage> = (args) => <ErrorPage {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

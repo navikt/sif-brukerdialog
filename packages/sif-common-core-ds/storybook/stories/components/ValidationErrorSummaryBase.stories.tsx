@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import ValidationErrorSummaryBase from '../../../src/components/validation-error-summary-base/ValidationErrorSummaryBase';
 import StoryWrapper from '../../decorators/StoryWrapper';
@@ -13,9 +13,9 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof ValidationErrorSummaryBase>;
+} as Meta<typeof ValidationErrorSummaryBase>;
 
-const Template: ComponentStory<typeof ValidationErrorSummaryBase> = () => {
+const Template: StoryFn<typeof ValidationErrorSummaryBase> = () => {
     return (
         <ValidationErrorSummaryBase
             title="Validarion error title"

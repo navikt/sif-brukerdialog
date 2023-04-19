@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikModalFormAndInfo from '../../../src/components/formik-modal-form/FormikModalFormAndInfo';
 
 export default {
     title: 'Modals/FormikModalFormAndInfo',
     component: FormikModalFormAndInfo,
-    decorators: [withFormik],
-} as ComponentMeta<typeof FormikModalFormAndInfo>;
+    decorators: [withFormikWrapper],
+} as Meta<typeof FormikModalFormAndInfo>;
 
 enum FormFieldNames {
     person = 'person',
@@ -17,7 +17,7 @@ interface ItemType {
     name: string;
 }
 
-const Template: ComponentStory<typeof FormikModalFormAndInfo> = () => (
+const Template: StoryFn<typeof FormikModalFormAndInfo> = () => (
     <FormikModalFormAndInfo<FormFieldNames, ItemType, any>
         name={FormFieldNames.person}
         renderDeleteButton={true}
