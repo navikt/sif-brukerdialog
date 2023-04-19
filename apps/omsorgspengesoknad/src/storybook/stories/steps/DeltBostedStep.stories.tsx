@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { SøknadContextProvider } from '../../../app/søknad/context/SøknadContext';
 import DeltBostedStep from '../../../app/søknad/steps/delt-bosted/DeltBostedStep';
@@ -10,18 +10,19 @@ import { withRouterProvider } from '../../decorators/withRouter';
 import { withStepFormValuesContext } from '../../decorators/withStepFormValuesContext';
 import { mockInitialSøknadContextState } from '../../decorators/withSøknadContext';
 import { søknadsdataMocks } from '../../mock-data/søknadsdataMocks';
+import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 
 export default {
     title: 'Steps/DeltBostedStep',
     component: DeltBostedStep,
-    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings],
-} as ComponentMeta<typeof DeltBostedStep>;
+    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
+} as Meta<typeof DeltBostedStep>;
 
 interface Props {
     context: SøknadContextState;
 }
 
-const Template: Story<Props> = ({ context }: Props) => (
+const Template: StoryFn<Props> = ({ context }: Props) => (
     <SøknadContextProvider initialData={context}>
         <DeltBostedStep />;
     </SøknadContextProvider>

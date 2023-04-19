@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import Kvittering from '../../../src/components/kvittering/Kvittering';
 import StoryWrapper from '../../decorators/StoryWrapper';
@@ -13,9 +13,9 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof Kvittering>;
+} as Meta<typeof Kvittering>;
 
-const Template: ComponentStory<typeof Kvittering> = () => {
+const Template: StoryFn<typeof Kvittering> = () => {
     return (
         <Kvittering tittel="Søknad mottatt" liste={{ tittel: 'ABC', punkter: ['Punkt 1', 'Punkt 2'] }}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. In, molestias! Assumenda error porro cum culpa

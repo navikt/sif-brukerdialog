@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import StoryWrapper from '../../decorators/StoryWrapper';
 import CounsellorWithSpeechBubble from '../../../src/components/counsellor-with-speech-bubble/CounsellorWithSpeechBubble';
@@ -14,9 +14,9 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof CounsellorWithSpeechBubble>;
+} as Meta<typeof CounsellorWithSpeechBubble>;
 
-const Template: ComponentStory<typeof CounsellorWithSpeechBubble> = () => {
+const Template: StoryFn<typeof CounsellorWithSpeechBubble> = () => {
     return (
         <ResponsivePanel style={{ backgroundColor: '#dfdfdf' }}>
             <CounsellorWithSpeechBubble strongText="Title" normalText="Bodytext" />

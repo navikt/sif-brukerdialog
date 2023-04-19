@@ -1,16 +1,17 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import KvitteringPage from '../../../app/pages/kvittering/KvitteringPage';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
+import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 
 export default {
     title: 'Pages/KvitteringPage',
     component: KvitteringPage,
-    decorators: [withIntl, withRouterProvider],
-} as ComponentMeta<typeof KvitteringPage>;
+    decorators: [withIntl, withRouterProvider, withAmplitudeProvider],
+} as Meta<typeof KvitteringPage>;
 
-const Template: ComponentStory<typeof KvitteringPage> = () => <KvitteringPage />;
+const Template: StoryFn<typeof KvitteringPage> = () => <KvitteringPage />;
 
 export const Default = Template.bind({});
 

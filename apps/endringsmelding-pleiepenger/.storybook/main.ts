@@ -3,11 +3,20 @@ const path = require('path');
 
 module.exports = {
     stories: ['../src/storybook/**/*.stories.tsx'],
-    addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
-    framework: '@storybook/react',
+    addons: [
+        '@storybook/addon-essentials',
+        '@storybook/addon-a11y',
+        'storybook-formik/register',
+        '@storybook/preset-create-react-app',
+    ],
+    framework: {
+        name: '@storybook/react-webpack5',
+        options: {},
+    },
     core: {
         builder: '@storybook/builder-webpack5',
     },
+
     webpackFinal: async (config, { configType }) => {
         //Fjern default svg-loader
         config.module.rules = config.module.rules.map((data) => {
@@ -35,21 +44,7 @@ module.exports = {
                     // Compiles Sass to CSS
                     'sass-loader',
                 ],
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            lessOptions: {
-                                math: 'always',
-                            },
-                        },
-                    },
-                ],
+                include: path.resolve(__dirname, '../app'),
             }
         );
 

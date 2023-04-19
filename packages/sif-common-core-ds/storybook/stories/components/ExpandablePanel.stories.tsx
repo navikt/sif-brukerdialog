@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import ExpandableInfo from '../../../src/components/expandable-info/ExpandableInfo';
 import StoryWrapper from '../../decorators/StoryWrapper';
@@ -13,9 +13,9 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof ExpandableInfo>;
+} as Meta<typeof ExpandableInfo>;
 
-const Template: ComponentStory<typeof ExpandableInfo> = () => {
+const Template: StoryFn<typeof ExpandableInfo> = () => {
     return <ExpandableInfo title="A title">Content</ExpandableInfo>;
 };
 

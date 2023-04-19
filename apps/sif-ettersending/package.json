@@ -8,12 +8,12 @@
     "private": true,
     "dependencies": {
         "@devexperts/remote-data-ts": "2.1.1",
-        "@formatjs/intl-pluralrules": "5.2.0",
-        "@navikt/ds-css": "2.8.12",
+        "@formatjs/intl-pluralrules": "5.2.1",
+        "@navikt/ds-css": "2.8.13",
         "@navikt/ds-datepicker": "4.1.2",
-        "@navikt/ds-icons": "2.8.12",
-        "@navikt/ds-react": "2.8.12",
-        "@navikt/ds-tailwind": "2.8.12",
+        "@navikt/ds-icons": "2.8.13",
+        "@navikt/ds-react": "2.8.13",
+        "@navikt/ds-tailwind": "2.8.13",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
@@ -43,7 +43,7 @@
         "promise": "8.3.0",
         "react": "18.2.0",
         "react-collapse": "5.1.1",
-        "react-intl": "6.4.0",
+        "react-intl": "6.4.1",
         "uuid": "9.0.0"
     },
     "devDependencies": {

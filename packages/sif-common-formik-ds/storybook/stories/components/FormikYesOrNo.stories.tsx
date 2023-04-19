@@ -1,16 +1,16 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikYesOrNoQuestion from '../../../src/components/formik-yes-or-no-question/FormikYesOrNoQuestion';
 import { YesOrNo } from '../../../src/types';
 
 export default {
     title: 'Component/FormikYesOrNoQuestion',
     component: FormikYesOrNoQuestion,
-    decorators: [withFormik],
-} as ComponentMeta<typeof FormikYesOrNoQuestion>;
+    decorators: [withFormikWrapper],
+} as Meta<typeof FormikYesOrNoQuestion>;
 
-const Template: ComponentStory<typeof FormikYesOrNoQuestion> = (args) => <FormikYesOrNoQuestion {...args} />;
+const Template: StoryFn<typeof FormikYesOrNoQuestion> = (args) => <FormikYesOrNoQuestion {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

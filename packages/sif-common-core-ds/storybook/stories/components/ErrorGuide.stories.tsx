@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import ErrorGuide from '../../../src/components/error-guide/ErrorGuide';
 import StoryWrapper from '../../decorators/StoryWrapper';
@@ -13,9 +13,9 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof ErrorGuide>;
+} as Meta<typeof ErrorGuide>;
 
-const Template: ComponentStory<typeof ErrorGuide> = () => {
+const Template: StoryFn<typeof ErrorGuide> = () => {
     return <ErrorGuide title="This is the title">Some content</ErrorGuide>;
 };
 

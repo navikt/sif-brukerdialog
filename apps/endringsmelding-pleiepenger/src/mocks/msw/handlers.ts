@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { getScenarioFromLocalStorage } from '../../src/app/dev/scenarioer';
+import { getScenarioFromLocalStorage } from '../../app/dev/scenarioer';
 
 const getMockData = (scenario = 'en-arbeidsgiver-en-periode') => {
     return mockData[scenario] ? mockData[scenario] : mockData['en-arbeidsgiver-en-periode'];
@@ -121,5 +121,3 @@ export const getHandlers = () => {
 
     return handlers;
 };
-
-// export { handlers };

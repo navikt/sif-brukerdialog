@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { ISODurationToDuration } from '@navikt/sif-common-utils/lib';
 import DurationText, { getDurationString } from '../../../src/components/duration-text/DurationText';
@@ -16,11 +16,11 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof DurationText>;
+} as Meta<typeof DurationText>;
 
 const duration = ISODurationToDuration('PT8H0M');
 
-const Template: ComponentStory<typeof DurationText> = (args) => {
+const Template: StoryFn<typeof DurationText> = (args) => {
     const intl = useIntl();
 
     return (

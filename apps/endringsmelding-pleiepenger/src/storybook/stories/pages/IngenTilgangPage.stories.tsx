@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import IngenTilgangPage from '../../../app/pages/ingen-tilgang/IngenTilgangPage';
+import { IngenTilgangÅrsak } from '../../../app/types/IngenTilgangÅrsak';
+import { søkerMock } from '../../data/søkerMock';
+import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
-import { søkerMock } from '../../data/søkerMock';
-import { IngenTilgangÅrsak } from '../../../app/types/IngenTilgangÅrsak';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
 
 export default {
     title: 'Pages/IngenTilgangPage',
@@ -16,9 +16,9 @@ export default {
             options: Object.keys(IngenTilgangÅrsak),
         },
     },
-} as ComponentMeta<typeof IngenTilgangPage>;
+} as Meta<typeof IngenTilgangPage>;
 
-const Template: ComponentStory<typeof IngenTilgangPage> = (props) => <IngenTilgangPage {...props} søker={søkerMock} />;
+const Template: StoryFn<typeof IngenTilgangPage> = (props) => <IngenTilgangPage {...props} søker={søkerMock} />;
 
 export const Default = Template.bind({});
 

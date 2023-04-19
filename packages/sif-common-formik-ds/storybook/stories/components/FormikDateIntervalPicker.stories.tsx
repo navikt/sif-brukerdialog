@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { FormikDateIntervalPicker } from '../../../src';
 import { DateIntervalPickerProps } from '../../../src/components/formik-date-interval-picker/FormikDateIntervalPicker';
@@ -9,9 +9,9 @@ export default {
     title: 'Component/FormikDateIntervalPicker',
     component: FormikDateIntervalPicker,
     decorators: [withIntl, withFormikWrapper],
-} as ComponentMeta<typeof FormikDateIntervalPicker>;
+} as Meta<typeof FormikDateIntervalPicker>;
 
-const Template: ComponentStory<typeof FormikDateIntervalPicker> = (args) => <FormikDateIntervalPicker {...args} />;
+const Template: StoryFn<typeof FormikDateIntervalPicker> = (args) => <FormikDateIntervalPicker {...args} />;
 
 export const Default = Template.bind({});
 
