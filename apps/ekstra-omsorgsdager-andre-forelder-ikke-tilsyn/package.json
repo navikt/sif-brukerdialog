@@ -45,7 +45,7 @@
         "cookie-parser": "1.4.6",
         "dayjs": "1.11.7",
         "dotenv": "16.0.3",
-        "eslint": "8.37.0",
+        "eslint": "8.38.0",
         "express": "4.18.2",
         "formik": "2.2.9",
         "helmet": "6.1.5",
