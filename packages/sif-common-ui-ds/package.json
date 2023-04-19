@@ -1,0 +1,109 @@
+{
+    "author": "navikt",
+    "homepage": "https://navikt.github.io/sif-common-ui-ds",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "name": "@navikt/sif-common-ui-ds",
+    "types": "lib/index.d.js",
+    "version": "0.16.1",
+    "bugs": {
+        "url": "https://github.com/navikt/sif-common-ui-ds/issues"
+    },
+    "dependencies": {
+        "i18n-iso-countries": "7.6.0",
+        "react-fast-compare": "3.2.1",
+        "lodash.debounce": "4.0.8",
+        "uuid": "9.0.0"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "7.21.4",
+        "@babel/preset-typescript": "7.21.4",
+        "@babel/preset-react": "7.18.6",
+        "@formatjs/intl-pluralrules": "5.2.1",
+        "@types/lodash.debounce": "4.0.7",
+        "@navikt/ds-css": "2.8.13",
+        "@navikt/ds-datepicker": "4.1.2",
+        "@navikt/ds-react": "2.8.13",
+        "@navikt/fnrvalidator": "1.3.0",
+        "@storybook/addon-a11y": "7.0.6",
+        "@storybook/addon-actions": "7.0.6",
+        "@storybook/addon-essentials": "7.0.6",
+        "@storybook/addon-interactions": "7.0.6",
+        "@storybook/addon-links": "7.0.6",
+        "@storybook/node-logger": "7.0.6",
+        "@storybook/preset-create-react-app": "7.0.6",
+        "@storybook/react": "7.0.6",
+        "@storybook/testing-library": "0.1.0",
+        "@types/node": "18.15.11",
+        "@types/react": "18.0.37",
+        "@types/react-dom": "18.0.11",
+        "@types/uuid": "9.0.1",
+        "copyfiles": "2.4.1",
+        "date-fns": "2.29.3",
+        "dayjs": "1.11.7",
+        "mini-css-extract-plugin": "2.7.5",
+        "prop-types": "15.8.1",
+        "react": "18.2.0",
+        "react-day-picker": "8.7.1",
+        "react-dom": "18.2.0",
+        "react-intl": "6.4.1",
+        "react-responsive": "9.0.2",
+        "react-scripts": "5.0.1",
+        "rimraf": "5.0.0",
+        "sass": "1.62.0"
+    },
+    "directories": {
+        "lib": "lib"
+    },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!(@navikt)).*\\.js$"
+        ]
+    },
+    "overrides": {
+        "react-refresh": "0.11.0"
+    },
+    "peerDependencies": {
+        "@navikt/ds-css": "2",
+        "@navikt/ds-datepicker": ">=4.1.2",
+        "@navikt/ds-react": "2",
+        "react-intl": "6.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-common-ui-ds.git"
+    },
+    "scripts": {
+        "build": "npm-run-all build-package",
+        "build-package": "npm-run-all compile-lib-script copy-files",
+        "build-storybook": "build-storybook -s public",
+        "clean": "rm -rf node_modules lib",
+        "clean-lib": "rimraf ./lib",
+        "compile-lib-script": "tsc -p tsconfig.json",
+        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "copy-css-files-to-lib": "copyfiles -u 1 \"src/**/*.css\" lib",
+        "copy-files": "npm-run-all copy-css-files-to-lib copy-sass-files-to-lib",
+        "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
+        "dev": "yarn watch-styles & yarn compile-lib-script-watch",
+        "storybook": "storybook dev -p 6006 -s public",
+        "test": "react-scripts test --watchAll=false --env=jsdom --passWithNoTests=true",
+        "test-coverage": "react-scripts test a --coverage --watchAll=false",
+        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
+        "test-watch": "react-scripts test",
+        "watch-styles": "npm-watch copy-files"
+    },
+    "watch": {
+        "copy-files": {
+            "extensions": "css,scss",
+            "patterns": [
+                "src"
+            ],
+            "runOnChangeOnly": true
+        }
+    },
+    "files": [
+        "package.json",
+        "/lib"
+    ],
+    "private": false
+}
