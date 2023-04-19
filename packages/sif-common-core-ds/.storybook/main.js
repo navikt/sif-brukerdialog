@@ -1,10 +1,12 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-
 module.exports = {
     stories: ['../storybook/**/*.stories.@(js|jsx|ts|tsx)'],
     addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
-    framework: '@storybook/react',
+    framework: {
+        name: '@storybook/react-webpack5',
+        options: {},
+    },
     core: {
         builder: '@storybook/builder-webpack5',
     },
@@ -16,14 +18,16 @@ module.exports = {
             }
             return data;
         });
-
         config.devtool = 'source-map';
 
         // Make whatever fine-grained changes you need
         config.module.rules = config.module.rules.concat(
             {
                 test: /\.svg$/,
-                use: { loader: 'svg-sprite-loader', options: {} },
+                use: {
+                    loader: 'svg-sprite-loader',
+                    options: {},
+                },
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -37,13 +41,11 @@ module.exports = {
                 ],
             }
         );
-
         config.plugins.push(
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
             })
         );
-
         config.resolve.extensions.push('.ts', '.tsx');
 
         // Return the altered config
@@ -51,5 +53,8 @@ module.exports = {
     },
     typescript: {
         reactDocgen: 'react-docgen-typescript-plugin',
+    },
+    docs: {
+        autodocs: true,
     },
 };
