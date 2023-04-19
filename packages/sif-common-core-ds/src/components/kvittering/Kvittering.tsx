@@ -1,7 +1,7 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import Block from '../block/Block';
-import CheckmarkIcon from '../checkmark-icon/CheckmarkIcon';
+import Block from '../../atoms/block/Block';
+import CheckmarkIcon from '../../atoms/checkmark-icon/CheckmarkIcon';
 import './kvittering.scss';
 
 interface Props {

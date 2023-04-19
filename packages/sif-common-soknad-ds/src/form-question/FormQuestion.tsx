@@ -1,7 +1,7 @@
 import { Alert } from '@navikt/ds-react';
 /* eslint-disable react/display-name */
 import React from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import FormikYesOrNoQuestion, {
     FormikYesOrNoQuestionProps,
 } from '@navikt/sif-common-formik-ds/lib/components/formik-yes-or-no-question/FormikYesOrNoQuestion';

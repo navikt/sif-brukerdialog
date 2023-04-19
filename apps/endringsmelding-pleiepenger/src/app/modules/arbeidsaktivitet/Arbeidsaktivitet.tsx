@@ -1,6 +1,6 @@
 import { ExpansionCard, Panel } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet } from '../../types/Sak';

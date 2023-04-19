@@ -2,7 +2,7 @@ import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';

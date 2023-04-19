@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 
 const LoadingPage = () => (

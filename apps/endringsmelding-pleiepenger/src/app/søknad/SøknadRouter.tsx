@@ -2,7 +2,7 @@ import { Button } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import {
     EnsureCorrectSøknadRouteErrorType,
@@ -25,7 +25,7 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();

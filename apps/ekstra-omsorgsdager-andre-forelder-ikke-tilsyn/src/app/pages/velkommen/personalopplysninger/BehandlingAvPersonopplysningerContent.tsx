@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Heading, Link } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import getLenker from '../../../lenker';
 

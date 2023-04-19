@@ -2,9 +2,9 @@ import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@na
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle, Edit } from '@navikt/ds-icons';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { dateFormatter, DateRange, Duration, getDateRangeText, ISODateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import EditButton from '../../components/buttons/EditButton';

@@ -4,7 +4,7 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable
 import { BodyLong, Heading } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import BehandlingAvPersonopplysningerContent from './personalopplysninger/BehandlingAvPersonopplysningerContent';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 const OmSøknaden = () => {
     const intl = useIntl();

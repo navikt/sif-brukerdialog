@@ -1,7 +1,7 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';

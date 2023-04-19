@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import TextareaSummary from '@navikt/sif-common-core-ds/lib/components/textarea-summary/TextareaSummary';
+import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
@@ -12,7 +12,7 @@ import TallSvar from '../../components/summary/TallSvar';
 import { VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet, harFiskerNæringstype } from './virksomhetUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface Props {
     virksomhet: VirksomhetApiData;

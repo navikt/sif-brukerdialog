@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import bemHelper from '../../../../utils/bemUtils';
-import Block from '../../../block/Block';
+import Block from '../../../../atoms/block/Block';
 import './speechBubble.scss';
 
 const bem = bemHelper('speechBubble');

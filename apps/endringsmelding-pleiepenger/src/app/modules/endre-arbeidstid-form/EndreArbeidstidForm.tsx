@@ -1,10 +1,10 @@
 import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { getDurationString } from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
     getNumberFromNumberInputValue,

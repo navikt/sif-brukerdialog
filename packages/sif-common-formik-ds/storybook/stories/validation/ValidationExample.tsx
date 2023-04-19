@@ -33,7 +33,7 @@ import { ValidationError } from '../../../src/validation/types';
 import ValidationErrorList from '../../components/validation-error-list/ValidationErrorList';
 import ValidationPanel from '../../components/validation-panel/ValidationPanel';
 import { FormFields, FormValues } from './types';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { Panel } from '@navikt/ds-react';
 
 const initialValues: FormValues = {

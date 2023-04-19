@@ -1,4 +1,4 @@
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
 import React from 'react';
 import { SkrivTilOssLink } from '../../../lenker';

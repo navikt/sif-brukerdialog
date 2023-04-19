@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
-import TextareaSummary from '@navikt/sif-common-core-ds/lib/components/textarea-summary/TextareaSummary';
+import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';

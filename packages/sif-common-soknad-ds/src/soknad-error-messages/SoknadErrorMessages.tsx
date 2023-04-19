@@ -4,7 +4,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 
 interface ErrorWithFrontpageUrlProps {
     soknadFrontpageUrl?: string;

@@ -1,7 +1,7 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';

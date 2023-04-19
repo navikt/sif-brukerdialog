@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import ItemList from '../../../src/components/item-list/ItemList';
 import StoryWrapper from '../../decorators/StoryWrapper';
-import FormBlock from '../../../src/components/form-block/FormBlock';
+import FormBlock from '../../../src/atoms/form-block/FormBlock';
 import { Button } from '@navikt/ds-react';
 import { guid } from '@navikt/sif-common-utils';
 

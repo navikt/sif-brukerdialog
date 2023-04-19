@@ -20,7 +20,7 @@ import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import {
     barnItemLabelRenderer,
     getOmBarnaStepInitialValues,

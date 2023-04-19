@@ -3,7 +3,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';

@@ -5,7 +5,7 @@ import AccordionItem from '@navikt/ds-react/esm/accordion/AccordionItem';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib';
