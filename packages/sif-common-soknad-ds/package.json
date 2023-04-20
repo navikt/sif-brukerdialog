@@ -34,7 +34,7 @@
         "@types/node": "18.15.11",
         "@types/react": "18.0.37",
         "@types/react-dom": "18.0.11",
-        "@types/react-modal": "3.13.1",
+        "@types/react-modal": "3.16.0",
         "axios": "1.3.5",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.7",
