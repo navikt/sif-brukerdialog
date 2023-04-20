@@ -22,8 +22,9 @@ jobs:
               uses: cypress-io/github-action@v4.2.2 # use the explicit version number
               env:
                   API_URL: http://localhost:8089/
+                  VEDLEGG_API_URL: http://localhost:8089/
                   FRONTEND_API_PATH: http://localhost:8089/
-                  FRONTEND_VEDLEGG_URL: https://k9-ettersending-soknad.dev.nav.no/api
+                  FRONTEND_VEDLEGG_URL: https://k9-ettersending-soknad.intern.dev.nav.no/api
                   LIVETS_SLUTTFASE: on
                   NPM_CONFIG_CACHE: /tmp
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending
