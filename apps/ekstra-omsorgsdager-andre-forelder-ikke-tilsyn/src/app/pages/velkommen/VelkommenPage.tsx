@@ -9,7 +9,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import { SKJEMANAVN } from '../../App';
-import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
+import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
 
 const VelkommenPage = () => {
     const intl = useIntl();

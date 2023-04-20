@@ -1,8 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
 import { getSøknadStepConfig } from './søknadStepConfig';
@@ -10,6 +8,7 @@ import StateInfo from '../components/state-info/StateInfo';
 import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { Step, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     stepId: StepId;

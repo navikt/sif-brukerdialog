@@ -23,6 +23,9 @@
         "strict": true,
         "strictNullChecks": true
     },
+    "paths": {
+        "@navikt/sif-common-soknad-ds/*": "../packages/sif-common-soknad-ds/*/src"
+    },
     "include": ["./src/**/*"],
     "exclude": ["node_modules"]
 }

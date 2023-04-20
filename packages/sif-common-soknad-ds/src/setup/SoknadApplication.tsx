@@ -19,8 +19,8 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector';
-import ErrorPage from '../soknad-common-pages/ErrorPage';
-import SoknadErrorMessages from '../soknad-error-messages/SoknadErrorMessages';
+import ErrorPage from '../pages/ErrorPage';
+import SoknadErrorMessages from '../modules/soknad-error-messages/SoknadErrorMessages';
 
 interface AppStatus {
     applicationKey: string;

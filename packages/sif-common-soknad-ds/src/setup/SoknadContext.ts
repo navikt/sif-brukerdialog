@@ -1,5 +1,5 @@
 import { RemoteData } from '@devexperts/remote-data-ts';
-import { SoknadStepsConfig } from '../soknad-step/soknadStepTypes';
+import { SoknadStepsConfig } from '../modules/soknad-step/soknadStepTypes';
 
 export interface SendSoknadStatusInterface<SoknadApiData> {
     failures: number;

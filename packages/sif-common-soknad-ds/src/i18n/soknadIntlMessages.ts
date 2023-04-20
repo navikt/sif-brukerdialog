@@ -1,6 +1,6 @@
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
-import { samtykkeFormMessages } from '../samtykke-form/samtykkeFormMessages';
-import soknadErrorIntlMessages from '../soknad-error-messages/soknadErrorIntlMessages';
+import { samtykkeFormMessages } from '../modules/samtykke-form/samtykkeFormMessages';
+import soknadErrorIntlMessages from './error-messages/soknadErrorIntlMessages';
 
 const soknadIntlMessages: MessageFileFormat = {
     nb: {

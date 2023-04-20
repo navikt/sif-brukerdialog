@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
-import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
+import { SummarySection } from '@navikt/sif-common-soknad-ds';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';

@@ -1,9 +1,9 @@
+import { soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import {
     SoknadApplicationType,
     SoknadStepsConfig,
     StepConfig,
-} from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+} from '@navikt/sif-common-soknad-ds/lib/modules/soknad-step/soknadStepTypes';
 import { StepId } from '../types/StepId';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';

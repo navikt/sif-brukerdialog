@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
-import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
+import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { AnnenForelderenSituasjonFormValues } from '../søknad/steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';

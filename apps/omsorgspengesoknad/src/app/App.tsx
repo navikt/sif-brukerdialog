@@ -4,9 +4,11 @@ import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { ensureBaseNameForReactRouter } from '@navikt/sif-common-soknad-ds/lib';
-import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
-import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
+import {
+    ensureBaseNameForReactRouter,
+    SoknadApplication,
+    SoknadApplicationCommonRoutes,
+} from '@navikt/sif-common-soknad-ds';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';

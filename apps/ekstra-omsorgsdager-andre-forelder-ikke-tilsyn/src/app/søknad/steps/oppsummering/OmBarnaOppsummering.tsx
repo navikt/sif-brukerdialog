@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
+import { SummarySection } from '@navikt/sif-common-soknad-ds';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import BarnSummaryList from './BarnSummaryList';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';

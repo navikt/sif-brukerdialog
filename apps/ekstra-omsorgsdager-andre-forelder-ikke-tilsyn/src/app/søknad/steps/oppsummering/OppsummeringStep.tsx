@@ -19,7 +19,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { ErrorSummary } from '@navikt/ds-react';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds/lib';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 

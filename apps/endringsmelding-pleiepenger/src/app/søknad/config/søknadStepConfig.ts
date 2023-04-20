@@ -1,5 +1,4 @@
-import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { EndringType } from '../../types/EndringType';
 import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
 import { StepId } from './StepId';
