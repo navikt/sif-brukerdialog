@@ -16,7 +16,7 @@ import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
-    return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
+    return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
 };
 
 export const isSøknadsdataStepValid = (step: StepId, søknadsdata: Søknadsdata): boolean => {

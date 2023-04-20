@@ -17,7 +17,7 @@ export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>
         return getSøknadStepRoute(step);
     });
 
-export const getSøknadStepConfigForStep = (søknadsdata: Søknadsdata, stepId: StepId): StepConfig<StepId> => {
+export const getSøknadStepConfigForStep = (_søknadsdata: Søknadsdata, stepId: StepId): StepConfig<StepId> => {
     const config = getSøknadStepConfig()[stepId];
     if (!config) {
         throw `Missing step config ${stepId}`;
