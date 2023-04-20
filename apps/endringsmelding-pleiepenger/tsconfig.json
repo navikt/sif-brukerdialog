@@ -1,27 +1,25 @@
 {
+    "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
-        "baseUrl": "./src",
-        "jsx": "react",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "outDir": "build/dist",
-        "target": "es5",
-        "lib": ["es6", "dom", "es2017"],
-        "paths": {
-            "@sif-common-core-ds/*": ["./src/sif-common-core-ds/*"]
-        },
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/@types"],
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
+        "baseUrl": "./src",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "lib": ["es6", "dom", "es2017"],
+        "module": "esnext",
+        "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noUnusedLocals": true,
+        "outDir": "build/dist",
         "skipLibCheck": true,
         "sourceMap": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "target": "es5",
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/@types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": ["./src/app/**/*", "./src/mocks/**/*", "./src/types", "./src/sif-common-core-ds/**/*"]

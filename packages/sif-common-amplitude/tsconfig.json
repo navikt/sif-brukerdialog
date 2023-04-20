@@ -1,12 +1,18 @@
 {
-    "extends": "../config/tsconfig-base.json",
+    "extends": "../config/tsconfig-packages.json",
     "compilerOptions": {
-        "baseUrl": "./src",
-        "module": "esnext",
-        "outDir": "./lib",
-        "target": "es5",
-        "lib": ["dom", "ES2015"]
+        "outDir": "./lib"
     },
-    "exclude": ["node_modules", ".turbo", "lib", "__tests__"],
+    "exclude": [
+        "node_modules",
+        "__tests__",
+        ".turbo",
+        ".storybook",
+        "lib",
+        "src/**/*.spec.*",
+        "src/**/*.test.*",
+        "src/**/*.stories.*",
+        "lib"
+    ],
     "include": ["src"]
 }

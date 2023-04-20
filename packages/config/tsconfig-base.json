@@ -13,18 +13,24 @@
         "isolatedModules": false,
         "moduleResolution": "node",
         "noEmit": false,
+        "noFallthroughCasesInSwitch": true,
         "noUnusedLocals": false,
         "noUnusedParameters": false,
-        "noFallthroughCasesInSwitch": true,
         "preserveWatchOutput": true,
         "removeComments": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "strict": true,
-        "strictNullChecks": true
-    },
-    "paths": {
-        "@navikt/sif-common-soknad-ds/*": "../packages/sif-common-soknad-ds/*/src"
+        "strictNullChecks": true,
+        "paths": {
+            "@sif-common-amplitude/*": ["../packages/sif-common-amplitude/src/*"],
+            "@sif-common-core-ds/*": ["./src/sif-common-core-ds/*"],
+            "@sif-common-formik-ds/*": ["../packages/sif-common-formik-ds/src/*"],
+            "@sif-common-forms-ds/*": ["../packages/sif-common-forms-ds/src/*"],
+            "@sif-common-sentry/*": ["../packages/sif-common-sentry/src/*"],
+            "@sif-common-soknad-ds/*": ["../packages/sif-common-soknad-ds/src/*"],
+            "@sif-common-utils/*": ["./src/sif-common-utils/*"]
+        }
     },
     "include": ["./src/**/*"],
     "exclude": ["node_modules"]
