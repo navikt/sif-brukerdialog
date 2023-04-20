@@ -14,11 +14,13 @@ const komplett_annetBarnFarDeltBosted: Søknadsdata = {
         kroniskEllerFunksjonshemming: false,
         sammeAdresse: false,
     },
-    legeerklæring: { vedlegg: [] },
     deltBosted: {
         vedlegg: [{ file: { name: 'file.jpg' } as any, url: '/vedlegg', uploaded: true, pending: false }],
     },
-    harForståttRettigheterOgPlikter: true,
+    legeerklaering: { vedlegg: [] },
+    velkommen: {
+        harForståttRettigheterOgPlikter: true,
+    },
 };
 
 const komplett_registrertBarnIngenLegeerklæring: Søknadsdata = {
@@ -28,8 +30,10 @@ const komplett_registrertBarnIngenLegeerklæring: Søknadsdata = {
         sammeAdresse: false,
         type: 'registrertBarn',
     },
-    legeerklæring: { vedlegg: [] },
-    harForståttRettigheterOgPlikter: true,
+    legeerklaering: { vedlegg: [] },
+    velkommen: {
+        harForståttRettigheterOgPlikter: true,
+    },
 };
 
 const komplett_annetBarnAnnenAdresse: Søknadsdata = {
@@ -42,8 +46,10 @@ const komplett_annetBarnAnnenAdresse: Søknadsdata = {
         kroniskEllerFunksjonshemming: false,
         sammeAdresse: false,
     },
-    legeerklæring: { vedlegg: [] },
-    harForståttRettigheterOgPlikter: true,
+    legeerklaering: { vedlegg: [] },
+    velkommen: {
+        harForståttRettigheterOgPlikter: true,
+    },
 };
 
 export const søknadsdataMocks = {

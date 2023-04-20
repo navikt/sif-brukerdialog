@@ -23,16 +23,7 @@
         "sourceMap": true,
         "strict": false,
         "strictNullChecks": true,
-        "target": "es5",
-        "paths": {
-            "@navikt/sif-common-amplitude": ["../sif-common-amplitude/src"],
-            "@navikt/sif-common-core-ds": ["../sif-common-core-ds/src"],
-            "@navikt/sif-common-formik-ds": ["../sif-common-formik-ds/src"],
-            "@navikt/sif-common-forms-ds": ["../sif-common-forms-ds/src"],
-            "@navikt/sif-common-sentry": ["../sif-common-sentry/src"],
-            "@navikt/sif-common-soknad-ds": ["../sif-common-soknad-ds/src"],
-            "@navikt/sif-common-utils": ["../sif-common-utils/src"]
-        }
+        "target": "es5"
     },
     "exclude": ["node_modules"]
 }
