@@ -1,5 +1,5 @@
 import React from 'react';
-import AriaAlternative from '../aria/AriaAlternative';
+import AriaAlternative from '../aria-alternative/AriaAlternative';
 
 export const stringToSpacedCharString = (str: string) => {
     return (str || '').split('').join(' ');

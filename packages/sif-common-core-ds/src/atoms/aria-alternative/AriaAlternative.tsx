@@ -1,6 +1,5 @@
 import React from 'react';
-
-import AriaText from './AriaText';
+import AriaText from '../aria-text/AriaText';
 
 export interface AriaAlternativeTextProps {
     ariaText?: React.ReactNode;
