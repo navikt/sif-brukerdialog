@@ -1,12 +1,7 @@
 {
     "extends": "../config/tsconfig-base.json",
     "compilerOptions": {
-        "jsx": "react",
-        "lib": ["es6", "dom", "es2017"],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "strict": false,
-        "target": "es5"
+        "baseUrl": "./src",
+        "lib": ["es6", "dom", "es2017"]
     }
 }
