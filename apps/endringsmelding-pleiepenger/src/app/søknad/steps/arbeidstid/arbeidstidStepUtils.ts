@@ -1,4 +1,4 @@
-import { durationsAreEqual } from '@navikt/sif-common-utils/lib';
+import { durationsAreEqual } from '@navikt/sif-common-utils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';

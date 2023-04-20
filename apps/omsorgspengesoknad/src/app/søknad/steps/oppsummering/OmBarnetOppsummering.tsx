@@ -5,7 +5,7 @@ import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { SummarySection } from '@navikt/sif-common-soknad-ds';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
 

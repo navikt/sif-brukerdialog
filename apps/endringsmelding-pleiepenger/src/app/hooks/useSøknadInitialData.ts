@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';

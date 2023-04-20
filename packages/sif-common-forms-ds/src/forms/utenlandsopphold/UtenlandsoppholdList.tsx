@@ -4,7 +4,7 @@ import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionL
 import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { getCountryName } from '@navikt/sif-common-formik-ds';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { Utenlandsopphold } from './types';
 import './utenlandsoppholdList.scss';
 

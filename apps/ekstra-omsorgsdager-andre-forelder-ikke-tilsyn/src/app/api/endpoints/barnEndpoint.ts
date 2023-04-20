@@ -1,4 +1,4 @@
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
 import { RegistrertBarn } from '../../types/RegistrertBarn';

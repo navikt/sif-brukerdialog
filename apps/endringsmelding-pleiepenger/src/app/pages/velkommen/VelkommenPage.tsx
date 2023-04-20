@@ -20,7 +20,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
 import OmSøknaden from './OmSøknaden';
-import { getDateRangeText } from '@navikt/sif-common-utils/lib';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',

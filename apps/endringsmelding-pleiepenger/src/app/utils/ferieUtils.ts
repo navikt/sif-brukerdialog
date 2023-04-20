@@ -9,7 +9,7 @@ import {
     ISODateToDate,
     sortDateRange,
     sortDates,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { getFeriedagerMeta } from './lovbestemtFerieUtils';

@@ -10,7 +10,7 @@ import SummaryBlock from '../../components/summary/SummaryBlock';
 import TallSvar from '../../components/summary/TallSvar';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 
 interface Props {
     virksomhet: VirksomhetApiData;

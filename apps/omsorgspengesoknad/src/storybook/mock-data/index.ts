@@ -1,4 +1,4 @@
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import { RegistrertBarn } from '../../app/types/RegistrertBarn';
 import { Søker } from '../../app/types/Søker';
 

@@ -1,4 +1,4 @@
-import { DateRange, getDateRangesFromDates, sortDateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, getDateRangesFromDates, sortDateRange } from '@navikt/sif-common-utils';
 import { Feriedag, FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { LovbestemtFeriePeriode } from '../types/LovbestemtFeriePeriode';
 import { FeriedagerMeta, LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';

@@ -3,8 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { JaNeiSvar, SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-soknad-ds';
-import { prettifyDateExtended } from '@navikt/sif-common-utils/lib/dateFormatter';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib/dateUtils';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');

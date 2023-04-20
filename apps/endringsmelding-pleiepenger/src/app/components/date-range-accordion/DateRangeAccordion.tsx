@@ -1,6 +1,6 @@
 import { Accordion, Ingress } from '@navikt/ds-react';
 import React from 'react';
-import { DateRange, dateRangeToISODateRange, dateToday, isDateInDateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, dateRangeToISODateRange, dateToday, isDateInDateRange } from '@navikt/sif-common-utils';
 
 type State = 'all' | 'none' | 'current';
 

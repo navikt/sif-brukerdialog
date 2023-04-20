@@ -7,7 +7,7 @@ import InfoList from '@navikt/sif-common-core-ds/lib/components/info-list/InfoLi
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { dateFormatter, ISODate } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import EndretTag from '../../../components/tags/EndretTag';

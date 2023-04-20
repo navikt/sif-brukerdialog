@@ -2,6 +2,7 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "display": "Default",
     "compilerOptions": {
+        "baseUrl": ".",
         "allowJs": false,
         "allowSyntheticDefaultImports": true,
         "composite": false,
@@ -21,15 +22,14 @@
         "strict": false,
         "strictNullChecks": true,
         "paths": {
-            "@navikt/sif-common-amplitude/*": ["../packages/sif-common-amplitude/src/*"],
-            "@navikt/sif-common-core-ds/*": ["./src/sif-common-core-ds/*"],
-            "@navikt/sif-common-formik-ds/*": ["../packages/sif-common-formik-ds/src/*"],
-            "@navikt/sif-common-forms-ds/*": ["../packages/sif-common-forms-ds/src/*"],
-            "@navikt/sif-common-sentry/*": ["../packages/sif-common-sentry/src/*"],
-            "@navikt/sif-common-soknad-ds/*": ["../packages/sif-common-soknad-ds/src/*"],
-            "@navikt/sif-common-utils/*": ["./src/sif-common-utils/*"]
+            "@navikt/sif-common-amplitude": ["../sif-common-amplitude/src"],
+            "@navikt/sif-common-core-ds": ["../sif-common-core-ds/src"],
+            "@navikt/sif-common-formik-ds": ["../sif-common-formik-ds/src"],
+            "@navikt/sif-common-forms-ds": ["../sif-common-forms-ds/src"],
+            "@navikt/sif-common-sentry": ["../sif-common-sentry/src"],
+            "@navikt/sif-common-soknad-ds": ["../sif-common-soknad-ds/src"],
+            "@navikt/sif-common-utils": ["../sif-common-utils/src"]
         }
     },
-    "include": ["./src/**/*"],
     "exclude": ["node_modules"]
 }

@@ -2,7 +2,7 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../../types/Sak';
 import EndretTag from '../../../components/tags/EndretTag';

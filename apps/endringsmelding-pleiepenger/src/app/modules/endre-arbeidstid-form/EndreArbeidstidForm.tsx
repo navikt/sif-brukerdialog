@@ -13,7 +13,7 @@ import {
 } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';

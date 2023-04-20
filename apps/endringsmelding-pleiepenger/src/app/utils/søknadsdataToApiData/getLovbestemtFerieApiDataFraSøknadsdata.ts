@@ -3,7 +3,7 @@ import {
     ISODateRangeMap,
     joinAdjacentDateRanges,
     sortDateRange,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { LovbestemtFerieType } from '../../types/LovbestemtFerieType';
 import { LovbestemtFerieApiData } from '../../types/søknadApiData/SøknadApiData';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
