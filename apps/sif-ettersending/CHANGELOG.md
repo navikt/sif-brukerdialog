@@ -1,5 +1,11 @@
 # @navikt/sif-ettersending
 
+## 3.7.2
+
+### Patch Changes
+
+-   599c2eb: API URL endret til service discovery, endret ingress i Q
+
 ## 3.7.1
 
 ### Patch Changes
