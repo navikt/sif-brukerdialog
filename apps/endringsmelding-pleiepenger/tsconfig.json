@@ -1,26 +1,9 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
-        "allowJs": true,
-        "allowSyntheticDefaultImports": true,
-        "baseUrl": "./src",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "jsx": "react",
-        "lib": ["es6", "dom", "es2017"],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
         "outDir": "build/dist",
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "strictNullChecks": true,
-        "target": "es5",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "./src/@types"]
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
-    "include": ["./src/app/**/*", "./src/mocks/**/*", "./src/types", "./src/sif-common-core-ds/**/*"]
+    "include": ["./src/app/**/*", "./src/mocks/**/*"]
 }

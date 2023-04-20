@@ -7,9 +7,9 @@ export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRo
 export { default as ErrorPage } from './pages/ErrorPage';
 export { default as LoadingPage } from './pages/LoadingPage';
 export { default as soknadErrorIntlMessages } from './i18n/error-messages/soknadErrorIntlMessages';
-export { default as SoknadErrorMessages } from './modules/soknad-error-messages/SoknadErrorMessages';
+export { default as SoknadErrorMessages } from './components/soknad-error-messages/SoknadErrorMessages';
 export { default as soknadIntlMessages } from './i18n/soknadIntlMessages';
-export type { LastAvailableStepInfo } from './modules/soknad-error-messages/SoknadErrorMessages';
+export type { LastAvailableStepInfo } from './components/soknad-error-messages/SoknadErrorMessages';
 export * from './modules/soknad-step/soknadStepTypes';
 export { default as soknadStepUtils } from './modules/soknad-step/soknadStepUtils';
 export { default as Step } from './modules/soknad-step/step/Step';

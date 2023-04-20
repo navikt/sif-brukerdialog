@@ -20,7 +20,7 @@ import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector';
 import ErrorPage from '../pages/ErrorPage';
-import SoknadErrorMessages from '../modules/soknad-error-messages/SoknadErrorMessages';
+import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
 
 interface AppStatus {
     applicationKey: string;

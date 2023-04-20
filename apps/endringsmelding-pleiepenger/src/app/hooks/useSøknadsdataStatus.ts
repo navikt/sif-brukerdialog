@@ -11,7 +11,7 @@ import { getLovbestemtFerieSøknadsdataFromFormValues } from '../søknad/steps/l
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
-    return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
+    return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
 };
 
 const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: StepFormValues) => {

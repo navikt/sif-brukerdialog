@@ -72,7 +72,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     const kanVelgeFlereUker = onEndreUker !== undefined && antallUkerTotalt > 1;
     const kanEndreEnkeltuke = onEndreUker && visVelgUke !== true;
 
-    const synligeItems = listItems.filter((i, idx) => idx < (antallSynlig || 0));
+    const synligeItems = listItems.filter((_i, idx) => idx < (antallSynlig || 0));
 
     const korteUker = synligeItems.filter((i) => i.erKortUke).map((uke) => uke.periode);
     const ukerMedFerie = synligeItems

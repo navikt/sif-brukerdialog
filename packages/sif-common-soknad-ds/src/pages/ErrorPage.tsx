@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import SoknadErrorMessages from '../modules/soknad-error-messages/SoknadErrorMessages';
+import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
 
 interface Props {
     pageTitle?: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ErrorPage from '../pages/ErrorPage';
-import SoknadErrorMessages from '../modules/soknad-error-messages/SoknadErrorMessages';
+import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
 
 export enum GlobalSoknadApplicationRoutes {
     error = '/feil',
