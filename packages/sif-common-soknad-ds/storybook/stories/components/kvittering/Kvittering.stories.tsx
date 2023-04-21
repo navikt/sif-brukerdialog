@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import Kvittering from '../../../src/components/kvittering/Kvittering';
-import StoryWrapper from '../../decorators/StoryWrapper';
+import Kvittering from '../../../../src/components/kvittering/Kvittering';
+import StoryWrapper from '@navikt/sif-common-core-ds/storybook/decorators/StoryWrapper';
 
 export default {
     title: 'Component/Kvittering',
