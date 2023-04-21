@@ -5,7 +5,7 @@ import intlHelper from '../../utils/intlUtils';
 import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
 import DeleteButton from '../../atoms/delete-button/DeleteButton';
 import LoadingSpinner from '../../atoms/loading-spinner/LoadingSpinner';
-import UnstyledList from '../../atoms/unstyled-list/UnstyledList';
+import UnstyledList from '../lists/unstyled-list/UnstyledList';
 
 interface Props {
     attachments: Attachment[];

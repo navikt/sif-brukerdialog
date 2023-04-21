@@ -1,8 +1,8 @@
 import React from 'react';
 import { guid } from '@navikt/sif-common-utils';
-import ActionLink from '../../atoms/action-link/ActionLink';
-import bemUtils from '../../utils/bemUtils';
-import DeleteButton from '../../atoms/delete-button/DeleteButton';
+import ActionLink from '../../../atoms/action-link/ActionLink';
+import bemUtils from '../../../utils/bemUtils';
+import DeleteButton from '../../../atoms/delete-button/DeleteButton';
 import './itemList.scss';
 
 interface Props<T> {

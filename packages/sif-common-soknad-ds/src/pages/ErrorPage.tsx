@@ -2,9 +2,9 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
+import SoknadHeader from '../components/soknad-header/SoknadHeader';
 
 interface Props {
     pageTitle?: string;

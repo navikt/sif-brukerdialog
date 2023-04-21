@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '../../../utils/intlUtils';
-import ConfirmationDialog from '../confirmation-dialog/ConfirmationDialog';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
 
 export interface Props {
     synlig: boolean;

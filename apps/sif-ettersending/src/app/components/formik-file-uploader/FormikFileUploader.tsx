@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Attachment, PersistedFile } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import {

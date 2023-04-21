@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import * as React from 'react';
+import React from 'react';
 import FormikCheckboxGroup from '../../../src/components/formik-checkbox-group/FormikCheckboxGroup';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { mockAnimalOptions, MockAnimals } from '../../mock-data';

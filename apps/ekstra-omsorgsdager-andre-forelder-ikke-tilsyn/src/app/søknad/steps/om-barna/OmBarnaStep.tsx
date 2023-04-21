@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
-import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
+import ItemList from '@navikt/sif-common-core-ds/lib/components/lists/item-list/ItemList';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import BarnListAndDialog from '../../../pre-common/forms/barn/BarnListAndDialog';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';

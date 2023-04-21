@@ -1,5 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
-import * as React from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';

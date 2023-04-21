@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useFormikContext } from 'formik';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';

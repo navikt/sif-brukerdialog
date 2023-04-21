@@ -5,9 +5,9 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import ProgressStepper, {
     ProgressStep,
 } from '@navikt/sif-common-core-ds/lib/components/progress-stepper/ProgressStepper';
-import SoknadHeader from '@navikt/sif-common-core-ds/lib/components/soknad-header/SoknadHeader';
-import StepFooter from '@navikt/sif-common-core-ds/lib/components/step-footer/StepFooter';
 import bemHelper from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import SoknadHeader from '../../../components/soknad-header/SoknadHeader';
+import StepFooter from '../step-footer/StepFooter';
 import './step.scss';
 
 const bem = bemHelper('step');
