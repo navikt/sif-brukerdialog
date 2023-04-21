@@ -27,9 +27,13 @@ export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefi
 export const getPeriodeForArbeidsgiverOppslag = (
     dateRangeAlleSaker: DateRange,
     tillattEndringsperiode: DateRange
-): DateRange => {
-    return {
+): DateRange | undefined => {
+    const dateRange = {
         from: dayjs.max(dayjs(dateRangeAlleSaker.from), dayjs(tillattEndringsperiode.from)).toDate(),
         to: dayjs.min(dayjs(dateRangeAlleSaker.to), dayjs(tillattEndringsperiode.to)).toDate(),
     };
+    if (dayjs(dateRange.to).isBefore(dateRange.from)) {
+        return undefined;
+    }
+    return dateRange;
 };
