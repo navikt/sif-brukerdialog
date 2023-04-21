@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Heading, Panel } from '@navikt/ds-react';
-import React from 'react';
+import * as React from 'react';
 import '@navikt/ds-datepicker/lib/index.css';
 import { ISODateString } from '@navikt/ds-datepicker/lib/types';
 import { getTypedFormComponents } from '../../../src/components/getTypedFormComponents';

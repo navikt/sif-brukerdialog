@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { SøknadContextProvider } from '../../../app/søknad/context/SøknadContext';
 import OppsummeringStep from '../../../app/søknad/steps/oppsummering/OppsummeringStep';
 import { SøknadContextState } from '../../../app/types/SøknadContextState';

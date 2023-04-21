@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import MessagesPreview from '../../components/messages-preview/MessagesPreview';

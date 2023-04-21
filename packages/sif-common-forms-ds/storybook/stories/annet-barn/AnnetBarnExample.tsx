@@ -1,6 +1,7 @@
 import { Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import MessagesPreview from '../../components/messages-preview/MessagesPreview';
 import { date4YearsAgo, dateToday } from '@navikt/sif-common-utils';

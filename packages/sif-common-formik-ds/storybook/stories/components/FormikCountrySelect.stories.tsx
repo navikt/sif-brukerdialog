@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import FormikCountrySelect from '../../../src/components/formik-country-select/FormikCountrySelect';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 

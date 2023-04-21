@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { Meta, StoryFn } from '@storybook/react';
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import ItemList from '../../../src/components/lists/item-list/ItemList';
 import StoryWrapper from '../../decorators/StoryWrapper';
 import FormBlock from '../../../src/atoms/form-block/FormBlock';

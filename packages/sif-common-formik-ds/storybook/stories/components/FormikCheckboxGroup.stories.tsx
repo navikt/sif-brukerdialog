@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import FormikCheckboxGroup from '../../../src/components/formik-checkbox-group/FormikCheckboxGroup';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { mockAnimalOptions, MockAnimals } from '../../mock-data';
@@ -8,7 +8,7 @@ export default {
     title: 'Component/FormikCheckboxGroup',
     component: FormikCheckboxGroup,
     decorators: [withFormikWrapper],
-} as Meta<typeof FormikCheckboxGroup>;
+} as Meta<typeof FormikCheckboxGroup> as any;
 
 const Template: StoryFn<typeof FormikCheckboxGroup> = (args) => <FormikCheckboxGroup {...args} />;
 

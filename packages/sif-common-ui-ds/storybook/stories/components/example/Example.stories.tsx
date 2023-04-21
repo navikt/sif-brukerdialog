@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import Example from '../../../../src/components/example/Example';
 
 export default {
@@ -13,7 +13,7 @@ export default {
     },
 } as Meta<typeof Example>;
 
-const Primary: StoryFn<typeof Example> = (props) => <Example />;
+const Primary: StoryFn<typeof Example> = () => <Example />;
 
 export const Default = Primary.bind({});
 Default.args = {

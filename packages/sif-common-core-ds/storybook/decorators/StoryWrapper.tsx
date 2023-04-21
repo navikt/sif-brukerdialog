@@ -1,5 +1,5 @@
 import { Modal } from '@navikt/ds-react';
-import React from 'react';
+import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { allCommonMessages } from '../../src/i18n/allCommonMessages';
 import { BrowserRouter as Router } from 'react-router-dom';

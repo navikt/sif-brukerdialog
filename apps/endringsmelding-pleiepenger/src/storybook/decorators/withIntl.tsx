@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import StoryIntlProvider from '../components/StoryIntlProvider';
 
 export const withIntl = (Story) => (

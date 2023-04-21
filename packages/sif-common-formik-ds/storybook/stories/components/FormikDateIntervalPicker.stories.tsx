@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { FormikDateIntervalPicker } from '../../../src';
 import { DateIntervalPickerProps } from '../../../src/components/formik-date-interval-picker/FormikDateIntervalPicker';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';

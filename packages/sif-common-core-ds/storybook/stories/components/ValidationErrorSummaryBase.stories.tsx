@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import ValidationErrorSummaryBase from '../../../src/components/validation-error-summary-base/ValidationErrorSummaryBase';
 import StoryWrapper from '../../decorators/StoryWrapper';
 

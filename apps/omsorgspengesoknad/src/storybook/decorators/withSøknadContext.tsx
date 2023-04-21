@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { RegistrerteBarnMock, SøkerMock } from '../mock-data';

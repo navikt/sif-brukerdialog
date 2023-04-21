@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Panel } from '@navikt/ds-react';
-import React from 'react';
+import * as React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { prettifyDate } from '@navikt/sif-common-utils';

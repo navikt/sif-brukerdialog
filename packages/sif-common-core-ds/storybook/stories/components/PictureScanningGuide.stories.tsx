@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import StoryWrapper from '../../decorators/StoryWrapper';
 import PictureScanningGuide from '../../../src/components/picture-scanning-guide/PictureScanningGuide';
 

@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import AttachmentListWithDeletion from '../../../src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import { Attachment, PersistedFile } from '../../../src/types/Attachment';
 import StoryWrapper from '../../decorators/StoryWrapper';

@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikConfirmationCheckbox from '../../../src/components/formik-confirmation-checkbox/FormikConfirmationCheckbox';
 
