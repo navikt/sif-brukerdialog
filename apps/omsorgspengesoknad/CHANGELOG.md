@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.7.3
+
+### Patch Changes
+
+-   9a2a0a9: API URL endret til service discovery, endret ingress i Q
+
 ## 1.7.2
 
 ### Patch Changes
