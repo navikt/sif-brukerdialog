@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.6.3
+
+### Patch Changes
+
+-   5384b1c: API URL endret til service discovery, endret ingress i Q
+
 ## 2.6.2
 
 ### Patch Changes
