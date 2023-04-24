@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.6.2
+
+### Patch Changes
+
+-   0a874c2: Bugfix. Forhindre oppslag på arbeidsgiver dersom søknadsperioder er utenfor tillatt endringsperiode eller fra-dato for oppslaget er etter til-dato.
+
 ## 2.6.1
 
 ### Patch Changes
