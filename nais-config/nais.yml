@@ -31,6 +31,7 @@ spec:
         outbound:
             rules: 
              - application: k9-brukerdialog-api
+             - application: sif-innsyn-api
              - application: nav-dekoratoren
                namespace: personbruker
             external:

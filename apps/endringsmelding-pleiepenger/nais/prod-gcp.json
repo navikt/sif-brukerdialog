@@ -3,8 +3,8 @@
     "cluster": "prod-gcp",
     "env": {
         "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
-        "API_URL_INNSYN": "https://sif-innsyn-api.intern.nav.no",
-        "API_URL": "https://k9-brukerdialog-api.nav.no",
+        "API_URL_INNSYN": "http://sif-innsyn-api",
+        "API_URL": "http://k9-brukerdialog-api",
         "APP_VERSION": "prod",
         "APPSTATUS_DATASET": "production",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
@@ -20,11 +20,9 @@
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "USE_AMPLITUDE": "true"
     },
-    "externalHosts": ["www.nav.no", "dekoratoren.nav.no", "dekoratoren.ekstern.nav.no", "sif-innsyn-api.intern.nav.no"],
+    "externalHosts": ["www.nav.no"],
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isAlive",
-    "maxReplicas": "1",
-    "minReplicas": "1",
     "namespace": "dusseldorf",
     "readinessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isReady",
     "team": "dusseldorf"
