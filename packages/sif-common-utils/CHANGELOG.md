@@ -1,5 +1,35 @@
 # @navikt/sif-common-utils
 
+## 3.30.1
+
+### Patch Changes
+
+-   0adf41c1: Pakkeoppdateringer
+
+## 3.30.0
+
+### Minor Changes
+
+-   2ea6493: dateRangeFormatter - enkel tekst for dateranges
+
+## 3.29.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+## 3.28.0
+
+### Minor Changes
+
+-   96e09117: Utvide dateRangeUtils
+
+## 3.27.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
 ## 3.26.0
 
 ### Minor Changes

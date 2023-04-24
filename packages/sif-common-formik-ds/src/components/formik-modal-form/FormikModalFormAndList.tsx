@@ -28,6 +28,7 @@ function FormikModalFormAndList<FieldName, ItemType extends {}, ErrorType>({
     error,
     maxItems,
     useFastField,
+    confirmDelete,
     validate,
 }: FormikModalFormAndListProps<FieldName, ItemType, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
@@ -43,6 +44,7 @@ function FormikModalFormAndList<FieldName, ItemType extends {}, ErrorType>({
                         maxItems={maxItems}
                         dialogWidth={dialogWidth}
                         shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+                        confirmDelete={confirmDelete}
                         onChange={(values) => {
                             const updatedValues = sortFunc ? values.sort(sortFunc) : values;
                             form.setFieldValue(field.name, updatedValues);

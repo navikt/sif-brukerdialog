@@ -49,3 +49,7 @@ export const getTimerPerDagOgUkeFraUke = (timerPerUke: Duration, antallDager: nu
         uke: timerPerUke,
     };
 };
+
+export const erTimerGyldigInnenforAntallDager = (duration: Duration, antallDager: number): boolean => {
+    return durationToDecimalDuration(duration) <= antallDager * 24;
+};

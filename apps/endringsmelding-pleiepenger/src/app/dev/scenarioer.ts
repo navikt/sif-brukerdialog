@@ -47,6 +47,16 @@ export const scenarioer: Scenario[] = [
         harTilgang: false,
     },
     {
+        name: 'Arbeidsgiver som ikke er i sak',
+        value: 'arbeidsgiver-ikke-i-sak',
+        harTilgang: false,
+    },
+    {
+        name: 'Arbeidsaktivitet uten arbeidsgiver',
+        value: 'arbeidsaktivitet-uten-arbeidsgiver',
+        harTilgang: false,
+    },
+    {
         name: 'Ugyldig k9format',
         value: 'ugyldig-k9-format',
         harTilgang: false,

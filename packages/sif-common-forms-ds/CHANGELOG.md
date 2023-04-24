@@ -1,5 +1,46 @@
 # @navikt/sif-common-forms-ds
 
+## 6.0.1
+
+### Patch Changes
+
+-   0adf41c1: Pakkeoppdateringer
+-   Updated dependencies [0adf41c1]
+    -   @navikt/sif-common-core-ds@7.0.2
+
+## 6.0.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+### Patch Changes
+
+-   Updated dependencies [93b8104e]
+    -   @navikt/sif-common-core-ds@7.0.0
+
+## 5.0.0
+
+### Major Changes
+
+-   96e09117: Endre FerieForm til å bruke from og to i stedet for fom og tom.
+
+### Patch Changes
+
+-   Updated dependencies [96e09117]
+    -   @navikt/sif-common-core-ds@7.0.0
+
+## 4.2.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
+### Patch Changes
+
+-   Updated dependencies [ca33226c]
+    -   @navikt/sif-common-core-ds@6.2.0
+
 ## 4.1.2
 
 ### Patch Changes

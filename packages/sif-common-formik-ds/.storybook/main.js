@@ -2,9 +2,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
-    stories: ['../storybook/**/*.stories.mdx', '../storybook/**/*.stories.@(js|jsx|ts|tsx)'],
+    stories: ['../storybook/**/*.stories.@(js|jsx|ts|tsx)'],
     addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
-    framework: '@storybook/react',
+    framework: {
+        name: '@storybook/react-webpack5',
+        options: {},
+    },
     core: {
         builder: '@storybook/builder-webpack5',
     },
@@ -48,5 +51,8 @@ module.exports = {
 
         // Return the altered config
         return config;
+    },
+    typescript: {
+        reactDocgen: 'react-docgen-typescript-plugin',
     },
 };

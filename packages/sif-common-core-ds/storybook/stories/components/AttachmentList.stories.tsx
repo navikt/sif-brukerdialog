@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import AttachmentListWithDeletion from '../../../src/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import { Attachment, PersistedFile } from '../../../src/types/Attachment';
@@ -14,7 +14,7 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof AttachmentListWithDeletion>;
+} as Meta<typeof AttachmentListWithDeletion>;
 
 const file1: PersistedFile = {
     isPersistedFile: true,
@@ -31,7 +31,7 @@ const file2: PersistedFile = {
     lastModified: 123,
 };
 
-const Template: ComponentStory<typeof AttachmentListWithDeletion> = () => {
+const Template: StoryFn<typeof AttachmentListWithDeletion> = () => {
     const [attachments, setAttachments] = useState<Attachment[]>([
         { file: file1, pending: false, uploaded: true, url: 'url1' },
         { file: file2, pending: false, uploaded: true, url: 'url2' },

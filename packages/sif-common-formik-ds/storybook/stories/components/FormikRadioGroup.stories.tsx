@@ -1,16 +1,16 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikRadioGroup, { FormikRadioGroupProps } from '../../../src/components/formik-radio-group/FormikRadioGroup';
 import { mockAnimalOptions } from '../../mock-data';
 
 export default {
     title: 'Component/FormikRadioGroup',
     component: FormikRadioGroup,
-    decorators: [withFormik],
-} as ComponentMeta<typeof FormikRadioGroup>;
+    decorators: [withFormikWrapper],
+} as Meta<typeof FormikRadioGroup>;
 
-const Template: ComponentStory<typeof FormikRadioGroup> = (args) => <FormikRadioGroup {...args} />;
+const Template: StoryFn<typeof FormikRadioGroup> = (args) => <FormikRadioGroup {...args} />;
 
 export const Default = Template.bind({});
 const defaultArgs: FormikRadioGroupProps<any, any> = {

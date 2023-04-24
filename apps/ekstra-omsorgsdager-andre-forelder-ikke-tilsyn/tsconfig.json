@@ -21,8 +21,7 @@
         "noUnusedLocals": true,
         "skipLibCheck": true,
         "sourceMap": true,
-        "strictNullChecks": true,
-        "suppressImplicitAnyIndexErrors": true
+        "strictNullChecks": true
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": [

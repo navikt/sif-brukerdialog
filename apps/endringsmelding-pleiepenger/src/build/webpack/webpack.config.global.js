@@ -27,7 +27,7 @@ const webpackConfig = {
             },
             {
                 test: /\.(ts|tsx)$/,
-                include: [path.resolve(__dirname, './../../app')],
+                include: [path.resolve(__dirname, './../../app'), path.resolve(__dirname, './../../mocks/msw')],
                 use: [
                     {
                         loader: 'ts-loader',

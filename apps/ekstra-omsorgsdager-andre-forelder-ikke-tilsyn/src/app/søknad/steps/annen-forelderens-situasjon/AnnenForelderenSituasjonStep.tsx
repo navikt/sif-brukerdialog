@@ -16,7 +16,7 @@ import { getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig'
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useStepFormValuesContext } from '../../../søknad/context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
-import { AnnenForeldrenSituasjon } from '../../../types/AnnenForeldrenSituasjon';
+import { AnnenForeldrenSituasjon, AnnenForeldrenSituasjonType } from '../../../types/AnnenForeldrenSituasjon';
 import {
     getAnnenForelderenSituasjonSøknadsdataFromFormValues,
     getAnnenForelderenSituasjonStepInitialValues,
@@ -116,13 +116,18 @@ const AnnenForelderenSituasjonStep = () => {
                                     <RadioGroup
                                         legend={intlHelper(intl, 'step.annenForeldrensSituasjon.grunn.spm')}
                                         name={AnnenForelderenSituasjonFormFields.annenForelderSituasjon}
-                                        radios={Object.keys(AnnenForeldrenSituasjon).map((grunn) => {
-                                            return {
-                                                label: intlHelper(intl, `step.annenForeldrensSituasjon.grunn.${grunn}`),
-                                                value: AnnenForeldrenSituasjon[grunn],
-                                                'data-testid': `grunn-${AnnenForeldrenSituasjon[grunn]}`,
-                                            };
-                                        })}
+                                        radios={Object.keys(AnnenForeldrenSituasjon).map(
+                                            (grunn: AnnenForeldrenSituasjonType) => {
+                                                return {
+                                                    label: intlHelper(
+                                                        intl,
+                                                        `step.annenForeldrensSituasjon.grunn.${grunn}`
+                                                    ),
+                                                    value: AnnenForeldrenSituasjon[grunn],
+                                                    'data-testid': `grunn-${AnnenForeldrenSituasjon[grunn]}`,
+                                                };
+                                            }
+                                        )}
                                         validate={getRequiredFieldValidator()}
                                         afterOnChange={(newValue) => {
                                             if (

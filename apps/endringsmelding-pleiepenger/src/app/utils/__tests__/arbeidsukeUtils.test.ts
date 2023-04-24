@@ -1,5 +1,5 @@
 import { ISODateRange } from '@navikt/sif-common-utils/lib';
-import { arbeidsukerMockData } from '../../../../mocks/data/app/arbeidsukerMockData';
+import { arbeidsukerMockData } from '../../../mocks/data/app/arbeidsukerMockData';
 import { Arbeidsuke } from '../../types/Sak';
 import { arbeidsukerHarLikNormaltidPerDag, sorterArbeidsuker } from '../arbeidsukeUtils';
 import { getTimerPerDagOgUkeFraUke } from '../beregnUtils';
@@ -24,7 +24,7 @@ describe('arbeidsukerHarLikNormaltidPerDag', () => {
         const uke = arbeidsukerHele[0];
         expect(arbeidsukerHarLikNormaltidPerDag([uke])).toBeTruthy();
     });
-    it('returnerer false dersom noen uker har ulik normalarbeidstid - for hele uker', () => {
+    it('returnerer false hvis noen uker har ulik normalarbeidstid - for hele uker', () => {
         const uker = [...arbeidsukerHele];
         uker[0].normalt = getTimerPerDagOgUkeFraUke(
             {

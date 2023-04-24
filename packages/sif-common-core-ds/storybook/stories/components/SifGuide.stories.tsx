@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import StoryWrapper from '../../decorators/StoryWrapper';
 import SifGuidePanel from '../../../src/components/sif-guide-panel/SifGuidePanel';
@@ -18,9 +18,9 @@ export default {
             options: ['happy', 'uncertain'],
         },
     },
-} as ComponentMeta<typeof SifGuidePanel>;
+} as Meta<typeof SifGuidePanel>;
 
-const Template: ComponentStory<typeof SifGuidePanel> = (args) => {
+const Template: StoryFn<typeof SifGuidePanel> = (args) => {
     return (
         <SifGuidePanel mood={args.mood} poster={args.poster} compact={args.compact}>
             Content

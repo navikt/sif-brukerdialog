@@ -1,10 +1,10 @@
 import React from 'react';
-import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
 import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
+import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
-import { søkerMock } from '../data/søkerMock';
-import { arbeidsgivereMock } from '../data/arbeidsgivereMock';
 import { TimerEllerProsent } from '../../app/types/TimerEllerProsent';
+import { arbeidsgivereMock } from '../data/arbeidsgivereMock';
+import { søkerMock } from '../data/søkerMock';
 
 const initialState: SøknadContextState = {
     versjon: '1.0.0',
@@ -13,7 +13,8 @@ const initialState: SøknadContextState = {
         id: '123',
     },
     k9saker: [],
-    endringsperiode: {
+    hvaSkalEndres: [],
+    tillattEndringsperiode: {
         from: new Date(),
         to: new Date(),
     },

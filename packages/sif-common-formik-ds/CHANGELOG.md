@@ -1,5 +1,35 @@
 # @navikt/sif-common-formik-ds
 
+## 0.16.1
+
+### Patch Changes
+
+-   0adf41c1: Pakkeoppdateringer
+
+## 0.16.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+## 0.15.0
+
+### Minor Changes
+
+-   96e09117: Legge til mulighet for confirmDelete i ModalFormAndList. Justere bredde på dataRangePicker. Justere spacing på piler i TypedFormikForm knapper
+
+## 0.14.1
+
+### Patch Changes
+
+-   f9dceaa: Bytte ut require statement med import
+
+## 0.14.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
 ## 0.13.0
 
 ### Minor Changes

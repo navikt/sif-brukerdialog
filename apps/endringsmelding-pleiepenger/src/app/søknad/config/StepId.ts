@@ -1,7 +1,7 @@
 export enum StepId {
     'VELKOMMEN' = 'velkommen',
-    'AKTIVITET' = 'aktivitet',
     'ARBEIDSTID' = 'arbeidstid',
+    'LOVBESTEMT_FERIE' = 'lovbestemtFerie',
     'OPPSUMMERING' = 'oppsummering',
     'MELDING_SENDT' = 'melding_sendt',
 }

@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { AxiosError, isAxiosError } from 'axios';
 import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
+import { SKJEMANAVN } from '../App';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
-import { useMellomlagring } from './useMellomlagring';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import { SKJEMANAVN } from '../App';
 import appSentryLogger from '../utils/appSentryLogger';
+import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
+import { useMellomlagring } from './useMellomlagring';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -18,13 +19,14 @@ export const useSendSøknad = () => {
     const { slettMellomlagring } = useMellomlagring();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent, logSoknadFailed } = useAmplitudeInstance();
+    const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
+        const metadata = getSøknadApiDataMetadata(apiData);
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)
-            .then(onSøknadSendSuccess)
+            .then(async () => onSøknadSendSuccess(metadata))
             .catch((error) => {
                 if (isAxiosError(error)) {
                     appSentryLogger.logError('Innsending feilet', error.message);
@@ -35,8 +37,9 @@ export const useSendSøknad = () => {
             });
     };
 
-    const onSøknadSendSuccess = async () => {
+    const onSøknadSendSuccess = async (metadata: SøknadApiDataMetadata) => {
         await logSoknadSent(SKJEMANAVN);
+        await logInfo(metadata);
         slettMellomlagring();
         setIsSubmitting(false);
         dispatch(actionsCreator.setEndringsmeldingSendt());

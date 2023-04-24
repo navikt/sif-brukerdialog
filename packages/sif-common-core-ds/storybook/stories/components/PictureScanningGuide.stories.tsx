@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import StoryWrapper from '../../decorators/StoryWrapper';
 import PictureScanningGuide from '../../../src/components/picture-scanning-guide/PictureScanningGuide';
@@ -13,9 +13,9 @@ export default {
             </StoryWrapper>
         ),
     ],
-} as ComponentMeta<typeof PictureScanningGuide>;
+} as Meta<typeof PictureScanningGuide>;
 
-const Template: ComponentStory<typeof PictureScanningGuide> = () => {
+const Template: StoryFn<typeof PictureScanningGuide> = () => {
     return <PictureScanningGuide />;
 };
 

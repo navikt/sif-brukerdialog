@@ -5,3 +5,5 @@ export enum AnnenForeldrenSituasjon {
     'utøverVerneplikt' = 'UTØVER_VERNEPLIKT',
     'annet' = 'ANNET',
 }
+
+export type AnnenForeldrenSituasjonType = keyof typeof AnnenForeldrenSituasjon;

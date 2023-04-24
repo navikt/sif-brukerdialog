@@ -23,10 +23,10 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
 
     return {
         språk: 'nb',
-        harForståttRettigheterOgPlikter: søknadsdata.harForståttRettigheterOgPlikter === true,
-        harBekreftetOpplysninger: søknadsdata.harForståttRettigheterOgPlikter === true,
+        harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
+        harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),
-        legeerklæring: getVedleggApiData(søknadsdata.legeerklæring?.vedlegg),
+        legeerklæring: getVedleggApiData(søknadsdata.legeerklaering?.vedlegg),
         samværsavtale: inkluderDeltBosted ? getVedleggApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
     };
 };

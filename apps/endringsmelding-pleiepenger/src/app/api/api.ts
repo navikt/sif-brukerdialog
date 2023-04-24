@@ -4,6 +4,7 @@ import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
+import { RequestStatus } from '../types/RequestStatus';
 
 export * from './endpoints';
 
@@ -33,7 +34,9 @@ axios.interceptors.response.use(
     (error: AxiosError) => {
         if (isUnauthorized(error)) {
             relocateToLoginPage();
-            return Promise.reject(error);
+            return Promise.reject({
+                status: RequestStatus.redirectingToLogin,
+            });
         }
         return Promise.reject(error);
     }

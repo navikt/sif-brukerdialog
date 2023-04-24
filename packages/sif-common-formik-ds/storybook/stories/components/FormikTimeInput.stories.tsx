@@ -1,15 +1,15 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import withFormik from 'storybook-formik';
+import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikTimeInput from '../../../src/components/formik-time-input/FormikTimeInput';
 
 export default {
     title: 'Component/FormikTimeInput',
     component: FormikTimeInput,
-    decorators: [withFormik],
-} as ComponentMeta<typeof FormikTimeInput>;
+    decorators: [withFormikWrapper],
+} as Meta<typeof FormikTimeInput>;
 
-const Template: ComponentStory<typeof FormikTimeInput> = (args) => <FormikTimeInput {...args} />;
+const Template: StoryFn<typeof FormikTimeInput> = (args) => <FormikTimeInput {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

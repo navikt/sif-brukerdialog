@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import AnnetBarnExample from './AnnetBarnExample';
 import AppIntlProvider from '../../decorators/AppIntlProvider';
@@ -13,8 +13,8 @@ export default {
             </AppIntlProvider>
         ),
     ],
-} as ComponentMeta<typeof AnnetBarnExample>;
+} as Meta<typeof AnnetBarnExample>;
 
-const Template: ComponentStory<typeof AnnetBarnExample> = () => <AnnetBarnExample />;
+const Template: StoryFn<typeof AnnetBarnExample> = () => <AnnetBarnExample />;
 
 export const Default = Template.bind({});

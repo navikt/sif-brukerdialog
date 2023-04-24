@@ -7,9 +7,9 @@ const relocateTo = (url: string): void => {
 };
 
 const getSøknadRouteURL = (route: SøknadRoutes) => {
-    const INGRESS = getEnvironmentVariable('INGRESS') || '';
+    const DOMAIN_URL = getEnvironmentVariable('DOMAIN_URL') || '';
     const publicPath = getEnvironmentVariable('PUBLIC_PATH');
-    return `${INGRESS}${publicPath}${route}`;
+    return `${DOMAIN_URL}${publicPath}${route}`;
 };
 
 export const relocateToWelcomePage = () => relocateTo(getSøknadRouteURL(SøknadRoutes.VELKOMMEN));

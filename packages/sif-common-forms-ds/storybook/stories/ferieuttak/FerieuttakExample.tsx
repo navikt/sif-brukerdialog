@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import MessagesPreview from '../../components/messages-preview/MessagesPreview';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils';
+import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
@@ -16,6 +16,7 @@ import { Ferieuttak } from '../../../src/forms/ferieuttak/types';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
 import { Heading, Panel } from '@navikt/ds-react';
+import dayjs from 'dayjs';
 
 enum FormField {
     'ferie' = 'ferie',
@@ -82,7 +83,7 @@ const FormikExample = () => {
             <Panel border={true}>
                 <FerieuttakForm
                     minDate={date1YearAgo}
-                    maxDate={date1YearFromNow}
+                    maxDate={dayjs().subtract(1, 'month').toDate()}
                     ferieuttak={{}}
                     onSubmit={setSingleFormValues}
                     onCancel={() => console.log('cancel me')}

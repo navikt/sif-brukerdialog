@@ -12,7 +12,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         contextConfig({ saker: [ugyldigK9FormatSakMock], arbeidsgivere: enArbeidsgiverMock });
         it('Viser riktig melding når bruker sak med ukjent format', () => {
             cy.visit(startUrl);
-            cy.wait(['@getSak', '@getSoker', '@getMellomlagring']).then(() => {
+            cy.wait(['@getSak', '@getSoker']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
                 expect(getTestElement('ugyldigK9FormatSak')).to.exist;
             });
@@ -22,7 +22,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         contextConfig({ saker: [], arbeidsgivere: enArbeidsgiverMock });
         it('Viser riktig melding når bruker ikke har sak', () => {
             cy.visit(startUrl);
-            cy.wait(['@getSak', '@getSoker', '@getMellomlagring']).then(() => {
+            cy.wait(['@getSak', '@getSoker']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
                 expect(getTestElement('ingenSak')).to.exist;
             });
@@ -32,7 +32,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         contextConfig({ saker: flereSakerMock, arbeidsgivere: enArbeidsgiverMock });
         it('Viser riktig melding når bruker har flere saker', () => {
             cy.visit(startUrl);
-            cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker', '@getMellomlagring']).then(() => {
+            cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
                 expect(getTestElement('flereSaker')).to.exist;
             });
@@ -42,7 +42,7 @@ describe('Bruker har ikke tilgang til løsningen', () => {
         contextConfig({ saker: enSakSN, arbeidsgivere: enArbeidsgiverMock });
         it('Viser riktig melding når bruker har flere saker', () => {
             cy.visit(startUrl);
-            cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker', '@getMellomlagring']).then(() => {
+            cy.wait(['@getSak', '@getArbeidsgiver', '@getSoker']).then(() => {
                 expect(getTestElement('ingen-tilgang-heading').first().contains('Hei STERK'));
                 expect(getTestElement('erSN')).to.exist;
             });

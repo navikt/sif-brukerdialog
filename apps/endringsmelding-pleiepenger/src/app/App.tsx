@@ -8,7 +8,7 @@ import { ensureBaseNameForReactRouter } from '@navikt/sif-common-soknad-ds/lib';
 import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import ErrorBoundary from './modules/errorBoundary/ErrorBoundary';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
@@ -31,9 +31,10 @@ ensureBaseNameForReactRouter(publicPath);
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
         if (getEnvironmentVariable('MSW') === 'on') {
-            return import('../../mocks/msw/browser').then(({ worker }) => {
+            return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',
+                    quiet: true,
                 });
             });
         }

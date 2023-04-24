@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import ItemList from '../../../src/components/item-list/ItemList';
 import StoryWrapper from '../../decorators/StoryWrapper';
@@ -22,7 +22,7 @@ export default {
             options: [false, true],
         },
     },
-} as ComponentMeta<typeof ItemList>;
+} as Meta<typeof ItemList>;
 
 type Item = {
     id: string;
@@ -33,7 +33,7 @@ const renderItemLabel = (item: Item) => {
     return item.name;
 };
 
-const Template: ComponentStory<typeof ItemList> = (args) => {
+const Template: StoryFn<typeof ItemList> = (args) => {
     const [items, setItems] = useState<Item[]>([{ id: guid(), name: 'Item 1' }]);
     const [count, setCount] = useState<number>(1);
 

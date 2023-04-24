@@ -1,5 +1,48 @@
 # @navikt/sif-common-soknad-ds
 
+## 7.0.1
+
+### Patch Changes
+
+-   0adf41c1: Pakkeoppdateringer
+-   Updated dependencies [0adf41c1]
+    -   @navikt/sif-common-formik-ds@0.16.1
+    -   @navikt/appstatus-react-ds@2.3.1
+    -   @navikt/sif-common-sentry@0.12.1
+
+## 7.0.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+### Patch Changes
+
+-   Updated dependencies [93b8104e]
+    -   @navikt/sif-common-formik-ds@0.16.0
+    -   @navikt/appstatus-react-ds@2.3.0
+
+## 6.2.1
+
+### Patch Changes
+
+-   96e09117: Legge til SamtykkeFormPart.
+-   Updated dependencies [96e09117]
+    -   @navikt/sif-common-formik-ds@0.15.0
+
+## 6.2.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
+### Patch Changes
+
+-   Updated dependencies [ca33226c]
+    -   @navikt/sif-common-formik-ds@0.14.0
+    -   @navikt/appstatus-react-ds@2.2.0
+    -   @navikt/sif-common-sentry@0.12.0
+
 ## 6.1.1
 
 ### Patch Changes

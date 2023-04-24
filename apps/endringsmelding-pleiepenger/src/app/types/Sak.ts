@@ -1,4 +1,5 @@
-import { DateRange, Duration, ISODate, ISODateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils/lib';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { K9SakBarn } from './K9Sak';
 
@@ -31,21 +32,19 @@ export interface Arbeidsuke {
     antallDagerMedArbeidstid: number;
 }
 
-export interface ArbeidsukeMap {
-    [key: ISODateRange]: Arbeidsuke;
-}
+export type ArbeidsukeMap = ISODateRangeMap<Arbeidsuke>;
 
-export interface PeriodeMedArbeidstid {
-    periode: DateRange;
+export interface PeriodeMedArbeidstid extends DateRange {
     arbeidsuker: ArbeidsukeMap;
 }
 
 interface ArbeidAktivitetBase {
     id: string;
     type: ArbeidAktivitetType;
+    navn: string;
     perioderMedArbeidstid: PeriodeMedArbeidstid[];
-    harPerioderFørEndringsperiode: boolean;
-    harPerioderEtterEndringsperiode: boolean;
+    harPerioderFørTillattEndringsperiode: boolean;
+    harPerioderEtterTillattEndringsperiode: boolean;
 }
 
 export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {
@@ -66,15 +65,25 @@ export type ArbeidAktivitet =
     | ArbeidAktivitetSelvstendigNæringsdrivende;
 
 export interface ArbeidAktiviteter {
-    arbeidstakerArktiviteter: ArbeidAktivitetArbeidstaker[];
+    arbeidstakerAktiviteter: ArbeidAktivitetArbeidstaker[];
     frilanser?: ArbeidAktivitetFrilanser;
     selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
+}
+
+export interface SakLovbestemtFerie {
+    feriedager: FeriedagMap;
 }
 
 export interface Sak {
     barn: K9SakBarn;
     arbeidAktiviteter: ArbeidAktiviteter;
+    lovbestemtFerie: SakLovbestemtFerie;
+    søknadsperioder: DateRange[];
+    samletSøknadsperiode: DateRange;
     ytelse: {
         type: string;
+    };
+    utledet: {
+        aktiviteterSomKanEndres: ArbeidAktivitet[];
     };
 }

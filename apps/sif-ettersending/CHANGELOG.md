@@ -1,5 +1,55 @@
 # @navikt/sif-ettersending
 
+## 3.7.2
+
+### Patch Changes
+
+-   599c2eb: API URL endret til service discovery, endret ingress i Q
+
+## 3.7.1
+
+### Patch Changes
+
+-   0adf41c1: Pakkeoppdateringer
+-   Updated dependencies [0adf41c1]
+    -   @navikt/sif-common-amplitude@2.12.1
+    -   @navikt/sif-common-formik-ds@0.16.1
+    -   @navikt/sif-common-soknad-ds@7.0.1
+    -   @navikt/sif-common-core-ds@7.0.2
+    -   @navikt/sif-common-sentry@0.12.1
+    -   @navikt/sif-common-utils@3.30.1
+
+## 3.7.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+### Patch Changes
+
+-   Updated dependencies [93b8104e]
+    -   @navikt/sif-common-amplitude@2.12.0
+    -   @navikt/sif-common-formik-ds@0.16.0
+    -   @navikt/sif-common-soknad-ds@7.0.0
+    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-utils@3.29.0
+
+## 3.6.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
+### Patch Changes
+
+-   Updated dependencies [ca33226c]
+    -   @navikt/sif-common-amplitude@2.11.0
+    -   @navikt/sif-common-formik-ds@0.14.0
+    -   @navikt/sif-common-soknad-ds@7.0.0
+    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-sentry@0.12.0
+    -   @navikt/sif-common-utils@3.27.0
+
 ## 3.5.0
 
 ### Minor Changes

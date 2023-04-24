@@ -1,16 +1,34 @@
 import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import { Sak } from '../../types/Sak';
-import { getAktiviteterSomKanEndres } from '../../utils/arbeidAktivitetUtils';
+import { EndringType } from '../../types/EndringType';
+import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
 import { StepId } from './StepId';
+import { getSøknadStepRoute } from './SøknadRoutes';
 
-export const getSøknadSteps = (sak: Sak): StepId[] => {
-    const aktiviteter = getAktiviteterSomKanEndres(sak.arbeidAktiviteter);
-    if (aktiviteter.length === 1) {
-        return [StepId.ARBEIDSTID, StepId.OPPSUMMERING];
+export const getSøknadSteps = (hvaSkalEndres: EndringType[], harFjernetFerie: boolean): StepId[] => {
+    const steps: StepId[] = [];
+
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres: ferieSkalEndres } = getEndringerSomSkalGjøres(
+        hvaSkalEndres,
+        harFjernetFerie
+    );
+
+    if (ferieSkalEndres) {
+        steps.push(StepId.LOVBESTEMT_FERIE);
     }
-    return [StepId.AKTIVITET, StepId.ARBEIDSTID, StepId.OPPSUMMERING];
+    if (arbeidstidSkalEndres) {
+        steps.push(StepId.ARBEIDSTID);
+    }
+    steps.push(StepId.OPPSUMMERING);
+    return steps;
 };
 
-export const getSøknadStepConfig = (sak: Sak): SoknadStepsConfig<StepId> =>
-    soknadStepUtils.getStepsConfig(getSøknadSteps(sak), SoknadApplicationType.MELDING);
+export const getSøknadStepConfig = (
+    hvaSkalEndres: EndringType[],
+    harFjernetFerie: boolean
+): SoknadStepsConfig<StepId> =>
+    soknadStepUtils.getStepsConfig(
+        getSøknadSteps(hvaSkalEndres, harFjernetFerie),
+        SoknadApplicationType.MELDING,
+        (stepId: StepId) => getSøknadStepRoute(stepId)
+    );

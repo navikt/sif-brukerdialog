@@ -1,5 +1,23 @@
 # @navikt/appstatus-react-ds
 
+## 2.3.1
+
+### Patch Changes
+
+-   0adf41c1: Pakkeoppdateringer
+
+## 2.3.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+## 2.2.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
 ## 2.1.0
 
 ### Minor Changes

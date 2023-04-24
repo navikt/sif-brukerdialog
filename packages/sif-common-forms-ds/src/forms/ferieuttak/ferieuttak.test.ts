@@ -4,19 +4,19 @@ import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/l
 import utils from './ferieuttakUtils';
 import { Ferieuttak, FerieuttakFormValues } from './types';
 
-const fom = ISOStringToDate('2000-10-10')!;
-const tom = ISOStringToDate('2000-10-11')!;
+const from = ISOStringToDate('2000-10-10')!;
+const to = ISOStringToDate('2000-10-11')!;
 const id = 'abc';
 
 const ferieuttak: Ferieuttak = {
-    fom,
-    tom,
+    from,
+    to,
     id,
 };
 
 const formValues: FerieuttakFormValues = {
-    fom: dateToISOString(fom),
-    tom: dateToISOString(tom),
+    from: dateToISOString(from),
+    to: dateToISOString(to),
 };
 
 const { mapFerieuttakToFormValues, mapFormValuesToFerieuttak, isValidFerieuttak } = utils;
@@ -34,8 +34,8 @@ describe('ferieuttak', () => {
     });
     it('isValidferieuttak verifies type ferieuttak correctly', () => {
         expect(isValidFerieuttak({})).toBeFalsy();
-        expect(isValidFerieuttak({ ...ferieuttak, fom: undefined, id })).toBeFalsy();
-        expect(isValidFerieuttak({ ...ferieuttak, tom: undefined, id })).toBeFalsy();
-        expect(isValidFerieuttak({ fom, tom, id })).toBeTruthy();
+        expect(isValidFerieuttak({ ...ferieuttak, from: undefined, id })).toBeFalsy();
+        expect(isValidFerieuttak({ ...ferieuttak, from: undefined, id })).toBeFalsy();
+        expect(isValidFerieuttak({ from, to, id })).toBeTruthy();
     });
 });

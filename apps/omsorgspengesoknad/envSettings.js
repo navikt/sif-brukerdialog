@@ -5,6 +5,7 @@ const envSettings = () => {
     const appSettings = `
      window.appSettings = {
          API_URL: '${process.env.API_URL}',
+         VEDLEGG_API_URL: '${process.env.VEDLEGG_API_URL}',
          FRONTEND_API_PATH: '${process.env.FRONTEND_API_PATH}',
          FRONTEND_VEDLEGG_URL:'${process.env.FRONTEND_VEDLEGG_URL}',
          PUBLIC_PATH: '${process.env.PUBLIC_PATH}',

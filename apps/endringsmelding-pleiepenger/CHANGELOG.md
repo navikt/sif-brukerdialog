@@ -1,5 +1,155 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.6.3
+
+### Patch Changes
+
+-   5384b1c: API URL endret til service discovery, endret ingress i Q
+
+## 2.6.2
+
+### Patch Changes
+
+-   0a874c2: Bugfix. Forhindre oppslag på arbeidsgiver dersom søknadsperioder er utenfor tillatt endringsperiode eller fra-dato for oppslaget er etter til-dato.
+
+## 2.6.1
+
+### Patch Changes
+
+-   0adf41c1: Pakkeoppdateringer
+-   Updated dependencies [0adf41c1]
+    -   @navikt/sif-common-amplitude@2.12.1
+    -   @navikt/sif-common-formik-ds@0.16.1
+    -   @navikt/sif-common-soknad-ds@7.0.1
+    -   @navikt/sif-common-forms-ds@6.0.1
+    -   @navikt/sif-common-core-ds@7.0.2
+    -   @navikt/sif-common-sentry@0.12.1
+    -   @navikt/sif-common-utils@3.30.1
+
+## 2.6.0
+
+### Minor Changes
+
+-   2ea6493: Refactor folderstruktur
+
+### Patch Changes
+
+-   Updated dependencies [2ea6493]
+    -   @navikt/sif-common-utils@3.30.0
+
+## 2.5.1
+
+### Patch Changes
+
+-   2312c0c: Logge at bruker ikke har noen sak når dette er tilfelle, i stedet for "ingenPerioder"
+
+## 2.5.0
+
+### Minor Changes
+
+-   c5e7f21: Bugfix - manglende ingress medførte feil ved redirect av bruker. Logikken er nå endret litt for å fikse dette
+
+## 2.4.0
+
+### Minor Changes
+
+-   d730839: Refactor av initialData henting og SøknadRouter
+
+## 2.3.0
+
+### Minor Changes
+
+-   5aea4f1: Vise dialog når bruker kommer tilbake til velkommen-siden vha back i nettleser.
+
+### Patch Changes
+
+-   0bc3551: Bugfix - validere at antall timer oppgitt er mulig innenfor periodens varighet
+-   Updated dependencies [5aea4f1]
+    -   @navikt/sif-common-core-ds@7.0.1
+
+## 2.2.0
+
+### Minor Changes
+
+-   93b8104e: Oppdatere packages
+
+### Patch Changes
+
+-   Updated dependencies [93b8104e]
+    -   @navikt/sif-common-amplitude@2.12.0
+    -   @navikt/sif-common-formik-ds@0.16.0
+    -   @navikt/sif-common-soknad-ds@7.0.0
+    -   @navikt/sif-common-forms-ds@6.0.0
+    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-utils@3.29.0
+
+## 2.1.0
+
+### Minor Changes
+
+-   9a1fa3a7: Sjekke om søknadsperioder er innenfor tillatt endringsperiode
+
+## 2.0.1
+
+### Patch Changes
+
+-   8f046e3f: Mulighet for restart i errorBoundary
+
+## 2.0.0
+
+### Major Changes
+
+-   96e09117: Legge til endring av ferie.
+
+### Patch Changes
+
+-   Updated dependencies [96e09117]
+-   Updated dependencies [96e09117]
+-   Updated dependencies [96e09117]
+-   Updated dependencies [96e09117]
+-   Updated dependencies [96e09117]
+    -   @navikt/sif-common-formik-ds@0.15.0
+    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-forms-ds@5.0.0
+    -   @navikt/sif-common-utils@3.28.0
+    -   @navikt/sif-common-soknad-ds@7.0.0
+
+## 1.10.1
+
+### Patch Changes
+
+-   8badb53: Bugfix på at all mistmatch mellom arbeidsgivere i sak og registrerte arbeidsforhold ble tolket som harUkjentArbeidsforhold
+
+## 1.10.0
+
+### Minor Changes
+
+-   ca33226c: Oppdatere pakker
+
+### Patch Changes
+
+-   Updated dependencies [ca33226c]
+    -   @navikt/sif-common-amplitude@2.11.0
+    -   @navikt/sif-common-formik-ds@0.14.0
+    -   @navikt/sif-common-soknad-ds@7.0.0
+    -   @navikt/sif-common-forms-ds@5.0.0
+    -   @navikt/sif-common-core-ds@7.0.0
+    -   @navikt/sif-common-sentry@0.12.0
+    -   @navikt/sif-common-utils@3.27.0
+
+## 1.9.0
+
+### Minor Changes
+
+-   9187c41: Bugfix - knappen Vis flere uker var ikke synlig på mobil vising. Dette gjort at bruker ikke kunne endre alle ukene en ønsket å endre.
+
+## 1.8.1
+
+### Patch Changes
+
+-   a8f8a431: Oppdatere ingress til innsyn
+-   47c76689: Bugfix - legge til sjekk på at det faktisk er gjort endringer. Dette ble ikke fanget opp dersom bruker satte verdiene tilbake til slik det opprinnelig var på saken.
+
 ## 1.8.0
 
 ### Minor Changes

@@ -1,6 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { DateRange, prettifyDate } from '@navikt/sif-common-utils';
+import {
+    DateRange,
+    dateRangeToISODateRange,
+    dateToday,
+    isDateInMaybeDateRange,
+    isDateRange,
+    prettifyDate,
+} from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import {
@@ -10,9 +17,10 @@ import {
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';
+import { handleDateRangeValidationError } from '../../utils';
 import ferieuttakUtils from './ferieuttakUtils';
 import { Ferieuttak, FerieuttakFormValues } from './types';
+import dayjs from 'dayjs';
 
 export interface FerieuttakFormLabels {
     title: string;
@@ -26,38 +34,50 @@ export interface FerieuttakFormLabels {
 interface Props {
     minDate: Date;
     maxDate: Date;
+    disableWeekend?: boolean;
     ferieuttak?: Partial<Ferieuttak>;
     alleFerieuttak?: Ferieuttak[];
+    utilgjengeligePerioder?: DateRange[];
     labels?: Partial<FerieuttakFormLabels>;
     onSubmit: (values: Ferieuttak) => void;
     onCancel: () => void;
 }
 
 enum FerieuttakFormFields {
-    tom = 'tom',
-    fom = 'fom',
+    to = 'to',
+    from = 'from',
 }
 
 export const FerieuttakFormErrors = {
-    [FerieuttakFormFields.fom]: {
-        [ValidateDateError.dateHasNoValue]: 'ferieuttakForm.fom.dateHasNoValue',
-        [ValidateDateRangeError.fromDateIsAfterToDate]: 'ferieuttakForm.fom.fromDateIsAfterToDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'ferieuttakForm.fom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'ferieuttakForm.fom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'ferieuttakForm.fom.dateIsAfterMax',
+    [FerieuttakFormFields.from]: {
+        [ValidateDateError.dateHasNoValue]: 'ferieuttakForm.from.dateHasNoValue',
+        [ValidateDateRangeError.fromDateIsAfterToDate]: 'ferieuttakForm.from.fromDateIsAfterToDate',
+        [ValidateDateError.dateHasInvalidFormat]: 'ferieuttakForm.from.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: 'ferieuttakForm.from.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: 'ferieuttakForm.from.dateIsAfterMax',
     },
-    [FerieuttakFormFields.tom]: {
-        [ValidateDateError.dateHasNoValue]: 'ferieuttakForm.tom.dateHasNoValue',
-        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'ferieuttakForm.tom.toDateIsBeforeFromDate',
-        [ValidateDateError.dateHasInvalidFormat]: 'ferieuttakForm.tom.dateHasInvalidFormat',
-        [ValidateDateError.dateIsBeforeMin]: 'ferieuttakForm.tom.dateIsBeforeMin',
-        [ValidateDateError.dateIsAfterMax]: 'ferieuttakForm.tom.dateIsAfterMax',
+    [FerieuttakFormFields.to]: {
+        [ValidateDateError.dateHasNoValue]: 'ferieuttakForm.to.dateHasNoValue',
+        [ValidateDateRangeError.toDateIsBeforeFromDate]: 'ferieuttakForm.to.toDateIsBeforeFromDate',
+        [ValidateDateError.dateHasInvalidFormat]: 'ferieuttakForm.to.dateHasInvalidFormat',
+        [ValidateDateError.dateIsBeforeMin]: 'ferieuttakForm.to.dateIsBeforeMin',
+        [ValidateDateError.dateIsAfterMax]: 'ferieuttakForm.to.dateIsAfterMax',
     },
 };
 
 const Form = getTypedFormComponents<FerieuttakFormFields, FerieuttakFormValues, ValidationError>();
 
-const FerieuttakForm = ({ maxDate, minDate, labels, ferieuttak, alleFerieuttak = [], onSubmit, onCancel }: Props) => {
+const FerieuttakForm = ({
+    maxDate,
+    minDate,
+    labels,
+    ferieuttak,
+    disableWeekend,
+    alleFerieuttak = [],
+    utilgjengeligePerioder = [],
+    onSubmit,
+    onCancel,
+}: Props) => {
     const intl = useIntl();
     const onFormikSubmit = (formValues: FerieuttakFormValues) => {
         const ferieuttakToSubmit = ferieuttakUtils.mapFormValuesToFerieuttak(formValues, ferieuttak?.id);
@@ -81,8 +101,23 @@ const FerieuttakForm = ({ maxDate, minDate, labels, ferieuttak, alleFerieuttak =
 
     const andreFerieuttak: DateRange[] | undefined =
         ferieuttak === undefined
-            ? alleFerieuttak.map(mapFomTomToDateRange)
-            : alleFerieuttak.filter((f) => f.id !== ferieuttak.id).map(mapFomTomToDateRange);
+            ? alleFerieuttak
+            : alleFerieuttak.filter((f) => {
+                  if (f.id) {
+                      return f.id !== ferieuttak.id;
+                  }
+                  if (isDateRange(ferieuttak)) {
+                      return dateRangeToISODateRange(f) !== dateRangeToISODateRange(ferieuttak);
+                  }
+              });
+    let defaultMonth: Date = dateToday;
+    if ((minDate || maxDate) && !isDateInMaybeDateRange(dateToday, { from: minDate, to: maxDate })) {
+        if (maxDate && dayjs(dateToday).isAfter(maxDate, 'day')) {
+            defaultMonth = maxDate;
+        } else if (minDate && dayjs(dateToday).isBefore(minDate, 'day')) {
+            defaultMonth = minDate;
+        }
+    }
 
     return (
         <>
@@ -90,41 +125,55 @@ const FerieuttakForm = ({ maxDate, minDate, labels, ferieuttak, alleFerieuttak =
                 initialValues={ferieuttakUtils.mapFerieuttakToFormValues(ferieuttak || {})}
                 onSubmit={onFormikSubmit}
                 renderForm={(formik) => (
-                    <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'ferieuttakForm')}>
+                    <Form.Form
+                        onCancel={onCancel}
+                        formErrorHandler={getFormErrorHandler(intl, 'ferieuttakForm')}
+                        showButtonArrows={false}
+                        submitButtonLabel={formLabels.okButton}
+                        cancelButtonLabel={formLabels.cancelButton}>
                         <Form.DateRangePicker
                             legend={formLabels.intervalTitle}
                             fullscreenOverlay={true}
                             minDate={minDate}
                             maxDate={maxDate}
                             allowRangesToStartAndStopOnSameDate={true}
-                            disabledDateRanges={andreFerieuttak}
+                            disabledDateRanges={[...andreFerieuttak, ...utilgjengeligePerioder]}
+                            disableWeekend={disableWeekend}
                             fromInputProps={{
                                 label: formLabels.fromDate,
-                                name: FerieuttakFormFields.fom,
+                                name: FerieuttakFormFields.from,
                                 validate: (value) => {
                                     const error = getDateRangeValidator({
                                         required: true,
                                         min: minDate,
                                         max: maxDate,
-                                        toDate: ISOStringToDate(formik.values.tom),
+                                        onlyWeekdays: disableWeekend === true,
+                                        toDate: ISOStringToDate(formik.values.to),
                                     }).validateFromDate(value);
                                     return handleDateRangeValidationError(error, minDate, maxDate);
                                 },
+                                dayPickerProps: {
+                                    defaultMonth,
+                                },
                                 onChange: () => {
                                     setTimeout(() => {
-                                        formik.validateField(FerieuttakFormFields.tom);
+                                        formik.validateField(FerieuttakFormFields.to);
                                     });
                                 },
                             }}
                             toInputProps={{
                                 label: formLabels.toDate,
-                                name: FerieuttakFormFields.tom,
+                                name: FerieuttakFormFields.to,
+                                dayPickerProps: {
+                                    defaultMonth: ISOStringToDate(formik.values.from) || defaultMonth,
+                                },
                                 validate: (value) => {
                                     const dateError = getDateRangeValidator({
                                         required: true,
                                         min: minDate,
                                         max: maxDate,
-                                        fromDate: ISOStringToDate(formik.values.fom),
+                                        onlyWeekdays: disableWeekend === true,
+                                        fromDate: ISOStringToDate(formik.values.from),
                                     }).validateToDate(value);
                                     switch (dateError) {
                                         case ValidateDateError.dateIsBeforeMin:
@@ -143,7 +192,7 @@ const FerieuttakForm = ({ maxDate, minDate, labels, ferieuttak, alleFerieuttak =
                                 },
                                 onChange: () => {
                                     setTimeout(() => {
-                                        formik.validateField(FerieuttakFormFields.fom);
+                                        formik.validateField(FerieuttakFormFields.from);
                                     });
                                 },
                             }}

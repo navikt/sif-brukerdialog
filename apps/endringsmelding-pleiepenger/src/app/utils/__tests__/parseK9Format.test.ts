@@ -15,11 +15,11 @@ const ingenDuration: Duration = ISODurationToDuration(ingenISODuration);
 
 describe('parseK9Format', () => {
     describe('harNormalarbeidstidIK9SakArbeidstidInfo', () => {
-        it('returnerer false dersom arbeidstid er undefined eller antall perioder er 0', () => {
+        it('returnerer false hvis arbeidstid er undefined eller antall perioder er 0', () => {
             expect(harNormalarbeidstidIK9SakArbeidstidInfo(undefined)).toBeFalsy();
             expect(harNormalarbeidstidIK9SakArbeidstidInfo({ perioder: {} })).toBeFalsy();
         });
-        it('returnerer false dersom alle perioder har 0 i normalarbeidstid', () => {
+        it('returnerer false hvis alle perioder har 0 i normalarbeidstid', () => {
             expect(
                 harNormalarbeidstidIK9SakArbeidstidInfo({
                     perioder: {
@@ -31,7 +31,7 @@ describe('parseK9Format', () => {
                 })
             ).toBeFalsy();
         });
-        it('returnerer true dersom minst én periode har normalarbeidstid', () => {
+        it('returnerer true hvis minst én periode har normalarbeidstid', () => {
             expect(
                 harNormalarbeidstidIK9SakArbeidstidInfo({
                     perioder: {

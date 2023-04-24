@@ -29,6 +29,31 @@ interface Props {
     onValidSubmit: () => void;
 }
 
+export const SamtykkeFormPart = () => {
+    const intl = useIntl();
+    return (
+        <ConfirmationCheckbox
+            label={<span data-testid="bekreft-label">{intlHelper(intl, 'samtykkeForm.bekreftLabel')}</span>}
+            name={SamtykkeFormFields.harForståttRettigheterOgPlikter}
+            validate={getCheckedValidator()}>
+            <Heading level="2" size="small">
+                <FormattedMessage id="samtykkeForm.ansvar.tittel" />
+            </Heading>
+            <InfoList>
+                <li>
+                    <FormattedMessage id="samtykkeForm.ansvar.list.1" />
+                </li>
+                <li>
+                    <FormattedMessage id="samtykkeForm.ansvar.list.2.1" />{' '}
+                    <Link href={RettOgPliktURL} target="_blank">
+                        <FormattedMessage id="samtykkeForm.ansvar.list.2.2" />
+                    </Link>
+                </li>
+            </InfoList>
+        </ConfirmationCheckbox>
+    );
+};
+
 const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, submitButtonLabel }) => {
     const intl = useIntl();
     return (
@@ -41,27 +66,7 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({ onValidSubmit, submitBut
                     submitButtonLabel={submitButtonLabel || intlHelper(intl, 'samtykkeform.submitButtonLabel')}
                     formErrorHandler={getIntlFormErrorHandler(intl, 'samtykkeForm')}>
                     <FormBlock>
-                        <ConfirmationCheckbox
-                            label={
-                                <span data-testid="bekreft-label">{intlHelper(intl, 'samtykkeForm.bekreftLabel')}</span>
-                            }
-                            name={SamtykkeFormFields.harForståttRettigheterOgPlikter}
-                            validate={getCheckedValidator()}>
-                            <Heading level="2" size="small">
-                                <FormattedMessage id="samtykkeForm.ansvar.tittel" />
-                            </Heading>
-                            <InfoList>
-                                <li>
-                                    <FormattedMessage id="samtykkeForm.ansvar.list.1" />
-                                </li>
-                                <li>
-                                    <FormattedMessage id="samtykkeForm.ansvar.list.2.1" />{' '}
-                                    <Link href={RettOgPliktURL} target="_blank">
-                                        <FormattedMessage id="samtykkeForm.ansvar.list.2.2" />
-                                    </Link>
-                                </li>
-                            </InfoList>
-                        </ConfirmationCheckbox>
+                        <SamtykkeFormPart />
                     </FormBlock>
                 </Form>
             )}

@@ -1,6 +1,7 @@
 import { guid } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
@@ -11,17 +12,21 @@ const initialSøknadsdata: Søknadsdata = {
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
-            const { aktiviteterSomSkalEndres, sak } = action.payload;
+            const { sak, hvaSkalEndres } = action.payload;
             return {
                 ...state,
                 søknadsdata: {
                     id: guid(),
-                    harForståttRettigheterOgPlikter: true,
-                    aktivitet: aktiviteterSomSkalEndres
-                        ? { aktiviteterSomSkalEndres: aktiviteterSomSkalEndres.map((a) => a.id) }
-                        : undefined,
+                    velkommen: {
+                        harForståttRettigheterOgPlikter: true,
+                    },
+                    lovbestemtFerie: {
+                        feriedager: sak.lovbestemtFerie.feriedager,
+                        feriedagerMeta: getFeriedagerMeta(sak.lovbestemtFerie.feriedager),
+                    },
                 },
                 sak,
+                hvaSkalEndres,
                 søknadRoute: SøknadRoutes.ARBEIDSTID,
                 børMellomlagres: true,
             };
@@ -30,6 +35,11 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 ...state,
                 søknadsdata: initialSøknadsdata,
                 søknadRoute: undefined,
+                /**
+                 * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
+                 * Verdien settes på nytt når søker starter ny meldning
+                 */
+                hvaSkalEndres: [],
             };
     }
 
@@ -50,16 +60,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_AKTIVITET:
-                return {
-                    ...state,
-                    søknadsdata: {
-                        ...state.søknadsdata,
-                        aktivitet: {
-                            ...action.payload,
-                        },
-                    },
-                };
             case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID:
                 return {
                     ...state,
@@ -70,13 +70,25 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+            case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        lovbestemtFerie: {
+                            ...action.payload,
+                        },
+                    },
+                };
 
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        oppsummering: {
+                            harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        },
                     },
                 };
             case SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT:
@@ -92,6 +104,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
                     endringsmeldingSendt: false,
+                    hvaSkalEndres: [],
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
             case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:

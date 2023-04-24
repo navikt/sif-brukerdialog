@@ -43,7 +43,16 @@ export const enSakEnArbeidsgiverMock = [
                         '2023-01-27/2023-02-15': { etablertTilsynTimerPerDag: 'PT0S' },
                     },
                 },
-                lovbestemtFerie: { perioder: {} },
+                lovbestemtFerie: {
+                    perioder: {
+                        '2022-11-05/2022-11-10': {
+                            skalHaFerie: true,
+                        },
+                        '2023-02-01/2023-02-05': {
+                            skalHaFerie: true,
+                        },
+                    },
+                },
                 arbeidstid: {
                     arbeidstakerList: [
                         {
