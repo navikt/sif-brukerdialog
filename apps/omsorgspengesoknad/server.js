@@ -72,6 +72,7 @@ const startServer = async (html) => {
     await Promise.all([initTokenX()]);
 
     server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
+    server.use(`${process.env.PUBLIC_PATH}/distjs`, express.static(path.resolve(__dirname, 'dist/js')));
     server.use(`${process.env.PUBLIC_PATH}/dist/css`, (req, res, next) => {
         const requestReferer = req.headers.referer;
         if (requestReferer !== undefined && requestReferer === 'https://nav.psplugin.com/') {

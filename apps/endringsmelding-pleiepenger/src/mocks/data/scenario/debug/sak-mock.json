@@ -1,62 +1,52 @@
 [
     {
         "barn": {
-            "fødselsdato": "2019-08-20",
-            "fornavn": "UFORNUFTIG",
+            "fødselsdato": "2016-09-09",
+            "fornavn": "LYKKELIG",
             "mellomnavn": null,
-            "etternavn": "ØRN",
-            "aktørId": "2875978080187",
-            "identitetsnummer": "20881999936"
+            "etternavn": "TELEFONKIOSK",
+            "aktørId": "2920939158578",
+            "identitetsnummer": "09891698140"
         },
         "søknad": {
-            "søknadId": "1de5da96-57ae-45ac-a641-06e9920be46a",
+            "søknadId": "generert",
             "versjon": "1.0.0",
-            "mottattDato": "2023-03-27T16:03:43.772Z",
-            "søker": { "norskIdentitetsnummer": "27879399233" },
+            "mottattDato": "2023-04-21T11:45:27.254Z",
+            "søker": { "norskIdentitetsnummer": "00000000000" },
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
-                "barn": { "norskIdentitetsnummer": "20881999936", "fødselsdato": null },
-                "søknadsperiode": ["2023-03-01/2023-04-28"],
+                "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
+                "søknadsperiode": ["2022-11-07/2022-11-11", "2022-11-14/2022-11-18"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],
                 "opptjeningAktivitet": {},
-                "dataBruktTilUtledning": {
-                    "harForståttRettigheterOgPlikter": true,
-                    "harBekreftetOpplysninger": true,
-                    "samtidigHjemme": null,
-                    "harMedsøker": null,
-                    "soknadDialogCommitSha": null,
-                    "bekrefterPeriodeOver8Uker": null
-                },
+                "dataBruktTilUtledning": null,
                 "infoFraPunsj": null,
                 "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
                 "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
                 "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
                 "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
-                "tilsynsordning": { "perioder": { "2023-03-01/2023-04-28": { "etablertTilsynTimerPerDag": "PT0S" } } },
-                "lovbestemtFerie": { "perioder": { "2023-03-13/2023-03-31": { "skalHaFerie": true } } },
+                "tilsynsordning": {
+                    "perioder": {
+                        "2022-11-07/2022-11-11": { "etablertTilsynTimerPerDag": "PT0S" },
+                        "2022-11-14/2022-11-18": { "etablertTilsynTimerPerDag": "PT0S" }
+                    }
+                },
+                "lovbestemtFerie": { "perioder": {} },
                 "arbeidstid": {
                     "arbeidstakerList": [
                         {
                             "norskIdentitetsnummer": null,
-                            "organisasjonsnummer": "967170232",
+                            "organisasjonsnummer": "947064649",
                             "arbeidstidInfo": {
                                 "perioder": {
-                                    "2023-03-01/2023-04-28": {
-                                        "jobberNormaltTimerPerDag": "PT4H",
-                                        "faktiskArbeidTimerPerDag": "PT48M"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "norskIdentitetsnummer": null,
-                            "organisasjonsnummer": "972674818",
-                            "arbeidstidInfo": {
-                                "perioder": {
-                                    "2023-03-01/2023-04-28": {
-                                        "jobberNormaltTimerPerDag": "PT4H",
-                                        "faktiskArbeidTimerPerDag": "PT48M"
+                                    "2022-11-07/2022-11-11": {
+                                        "jobberNormaltTimerPerDag": "PT7H30M",
+                                        "faktiskArbeidTimerPerDag": "PT0S"
+                                    },
+                                    "2022-11-14/2022-11-18": {
+                                        "jobberNormaltTimerPerDag": "PT7H30M",
+                                        "faktiskArbeidTimerPerDag": "PT3H43M12S"
                                     }
                                 }
                             }
@@ -64,21 +54,25 @@
                     ],
                     "frilanserArbeidstidInfo": {
                         "perioder": {
-                            "2023-03-01/2023-04-28": {
+                            "2022-11-07/2022-11-11": {
                                 "jobberNormaltTimerPerDag": "PT0S",
+                                "faktiskArbeidTimerPerDag": "PT0S"
+                            },
+                            "2022-11-14/2022-11-18": {
+                                "jobberNormaltTimerPerDag": "PT2H",
                                 "faktiskArbeidTimerPerDag": "PT0S"
                             }
                         }
                     },
                     "selvstendigNæringsdrivendeArbeidstidInfo": null
                 },
-                "uttak": { "perioder": { "2023-03-01/2023-04-28": { "timerPleieAvBarnetPerDag": "PT7H30M" } } },
+                "uttak": { "perioder": {} },
                 "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null }
             },
             "språk": "nb",
             "journalposter": [],
             "begrunnelseForInnsending": { "tekst": null },
-            "kildesystem": "søknadsdialog"
+            "kildesystem": null
         }
     }
 ]

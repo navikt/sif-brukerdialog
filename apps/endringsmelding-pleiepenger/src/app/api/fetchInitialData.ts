@@ -1,6 +1,7 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { DateRange } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from '../hooks/useSøknadInitialData';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
 import { isK9Sak, isUgyldigK9SakFormat, K9Sak, UgyldigK9SakFormat } from '../types/K9Sak';
@@ -17,7 +18,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from '../hooks/useSøknadInitialData';
 
 export const getKanIkkeBrukeSøknadRejection = (
     årsak: IngenTilgangÅrsak
@@ -30,7 +30,8 @@ export const getKanIkkeBrukeSøknadRejection = (
 };
 
 const kontrollerSaker = (
-    k9sakerResult: K9SakResult[]
+    k9sakerResult: K9SakResult[],
+    tillattEndringsperiode: DateRange
 ): Promise<{ k9saker: K9Sak[]; dateRangeAlleSaker: DateRange }> => {
     if (k9sakerResult.length === 0) {
         return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harIngenSak));
@@ -46,6 +47,12 @@ const kontrollerSaker = (
     if (dateRangeAlleSaker === undefined) {
         return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harIngenPerioder));
     }
+    if (dateRangeUtils.dateRangesCollide([dateRangeAlleSaker, tillattEndringsperiode]) === false) {
+        return Promise.reject(
+            getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode)
+        );
+    }
+
     return Promise.resolve({ k9saker, dateRangeAlleSaker });
 };
 
@@ -128,12 +135,19 @@ export const fetchInitialData = async (
         let k9saker: K9Sak[];
         let arbeidsgivere: Arbeidsgiver[];
 
-        return kontrollerSaker(k9sakerResult)
+        return kontrollerSaker(k9sakerResult, tillattEndringsperiode)
             .then((result) => {
                 k9saker = result.k9saker;
-                return arbeidsgivereEndpoint.fetch(
-                    getPeriodeForArbeidsgiverOppslag(result.dateRangeAlleSaker, tillattEndringsperiode)
+                const periodeForArbeidsgiveroppslag = getPeriodeForArbeidsgiverOppslag(
+                    result.dateRangeAlleSaker,
+                    tillattEndringsperiode
                 );
+                if (!periodeForArbeidsgiveroppslag) {
+                    return Promise.reject(
+                        getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode)
+                    );
+                }
+                return arbeidsgivereEndpoint.fetch(periodeForArbeidsgiveroppslag);
             })
             .then((result) => {
                 arbeidsgivere = result;
