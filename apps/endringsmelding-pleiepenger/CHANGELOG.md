@@ -1,5 +1,15 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.7.0
+
+### Minor Changes
+
+-   e044ef1: Utvide tillatt endringsperiode til å være fra 6 måned bakover i tid (fra 3 måneder)
+
+### Patch Changes
+
+-   28e0e75: Diverse tekstoppdateringer
+
 ## 2.6.3
 
 ### Patch Changes
