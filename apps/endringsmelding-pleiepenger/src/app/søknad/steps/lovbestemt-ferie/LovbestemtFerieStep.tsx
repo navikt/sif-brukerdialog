@@ -101,7 +101,7 @@ const LovbestemtFerieStep = () => {
                             Slik endrer du ferie
                         </Heading>
                         <InfoList>
-                            <li>Du kan endre, legge til, eller fjerne perioder med ferie i pleiepengeperioden din.</li>
+                            <li>Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.</li>
                             <li>Du skal kun registrere ferie for ukedager (mandag til fredag).</li>
                         </InfoList>
                     </BodyLong>

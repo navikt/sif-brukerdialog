@@ -11,7 +11,7 @@ const OmSøknaden = () => {
     return (
         <Block margin="xl">
             <Heading level="2" size="small" spacing={true}>
-                Mer om skjemaet
+                Mer informasjon
             </Heading>
             <ExpandableInfo title={intlHelper(intl, 'page.velkommen.omSøknaden.tittel')}>
                 <BodyLong as="div">

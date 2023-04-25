@@ -17,7 +17,6 @@ export const enSakEnArbeidsgiverMock = [
                 type: 'PLEIEPENGER_SYKT_BARN',
                 barn: { norskIdentitetsnummer: '00000000000', fødselsdato: null },
                 søknadsperiode: [
-                    '2022-08-09/2022-09-10',
                     '2022-11-03/2022-11-30',
                     '2022-12-05/2022-12-19',
                     '2023-01-17/2023-01-19',
@@ -60,42 +59,6 @@ export const enSakEnArbeidsgiverMock = [
                             organisasjonsnummer: '947064649',
                             arbeidstidInfo: {
                                 perioder: {
-                                    '2022-08-09/2022-08-10': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT0S',
-                                    },
-                                    '2022-08-15/2022-08-16': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT0S',
-                                    },
-                                    '2022-08-17/2022-08-17': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT3H',
-                                    },
-                                    '2022-08-22/2022-08-23': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT0S',
-                                    },
-                                    '2022-08-24/2022-08-24': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT3H',
-                                    },
-                                    '2022-08-29/2022-08-30': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT0S',
-                                    },
-                                    '2022-08-31/2022-08-31': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT3H',
-                                    },
-                                    '2022-09-05/2022-09-06': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT0S',
-                                    },
-                                    '2022-09-07/2022-09-07': {
-                                        jobberNormaltTimerPerDag: 'PT4H',
-                                        faktiskArbeidTimerPerDag: 'PT3H',
-                                    },
                                     '2022-11-03/2022-11-04': {
                                         jobberNormaltTimerPerDag: 'PT4H',
                                         faktiskArbeidTimerPerDag: 'PT2H',
