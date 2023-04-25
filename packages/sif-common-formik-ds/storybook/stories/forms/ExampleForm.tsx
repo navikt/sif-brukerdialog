@@ -12,7 +12,7 @@ import FormikValidationErrorSummary from '../../../src/components/formik-validat
 import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
 import ExampleListAndDialog from './ExampleListAndDialog';
-import FormBlock from '../components/atoms/form-block/FormBlock';
+import FormBlock from '../../components/form-block/FormBlock';
 
 enum Fields {
     checked = 'checked',

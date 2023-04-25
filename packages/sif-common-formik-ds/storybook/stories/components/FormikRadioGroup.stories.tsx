@@ -4,11 +4,13 @@ import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikRadioGroup, { FormikRadioGroupProps } from '../../../src/components/formik-radio-group/FormikRadioGroup';
 import { mockAnimalOptions } from '../../mock-data';
 
-export default {
+const meta: Meta<typeof FormikRadioGroup> = {
     title: 'Component/FormikRadioGroup',
     component: FormikRadioGroup,
     decorators: [withFormikWrapper],
-} as Meta<typeof FormikRadioGroup>;
+};
+
+export default meta;
 
 const Template: StoryFn<typeof FormikRadioGroup> = (args) => <FormikRadioGroup {...args} />;
 

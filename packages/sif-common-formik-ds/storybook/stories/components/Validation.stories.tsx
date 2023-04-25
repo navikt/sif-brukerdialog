@@ -3,11 +3,13 @@ import * as React from 'react';
 import ValidationExample from '../validation/ValidationExample';
 import { withIntl } from '../../decorators/withIntl';
 
-export default {
+const meta: Meta<typeof ValidationExample> = {
     title: 'Validation/Examples',
     component: ValidationExample,
     decorators: [withIntl],
-} as Meta<typeof ValidationExample>;
+};
+
+export default meta;
 
 const Template: StoryFn<typeof ValidationExample> = () => <ValidationExample />;
 

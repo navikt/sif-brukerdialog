@@ -3,11 +3,13 @@ import * as React from 'react';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikModalFormAndInfo from '../../../src/components/formik-modal-form/FormikModalFormAndInfo';
 
-export default {
+const meta: Meta<typeof FormikModalFormAndInfo> = {
     title: 'Modals/FormikModalFormAndInfo',
     component: FormikModalFormAndInfo,
     decorators: [withFormikWrapper],
-} as Meta<typeof FormikModalFormAndInfo>;
+};
+
+export default meta;
 
 enum FormFieldNames {
     person = 'person',

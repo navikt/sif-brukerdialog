@@ -4,11 +4,13 @@ import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikYesOrNoQuestion from '../../../src/components/formik-yes-or-no-question/FormikYesOrNoQuestion';
 import { YesOrNo } from '../../../src/types';
 
-export default {
+const meta: Meta<typeof FormikYesOrNoQuestion> = {
     title: 'Component/FormikYesOrNoQuestion',
     component: FormikYesOrNoQuestion,
     decorators: [withFormikWrapper],
-} as Meta<typeof FormikYesOrNoQuestion>;
+};
+
+export default meta;
 
 const Template: StoryFn<typeof FormikYesOrNoQuestion> = (args) => <FormikYesOrNoQuestion {...args} />;
 
