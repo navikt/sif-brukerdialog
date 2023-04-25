@@ -11,15 +11,15 @@
         "url": "https://github.com/navikt/appstatus-react-ds/issues"
     },
     "dependencies": {
-        "@portabletext/react": "2.0.2",
+        "@portabletext/react": "2.0.3",
         "@sanity/client": "5.4.2"
     },
     "devDependencies": {
-        "@navikt/ds-css": "2.8.13",
-        "@navikt/ds-react": "2.8.13",
-        "@types/node": "18.15.11",
-        "@types/react": "18.0.37",
-        "@types/react-dom": "18.0.11",
+        "@navikt/ds-css": "2.8.16",
+        "@navikt/ds-react": "2.8.16",
+        "@types/node": "18.16.0",
+        "@types/react": "18.2.0",
+        "@types/react-dom": "18.2.0",
         "copyfiles": "2.4.1",
         "prop-types": "15.8.1",
         "react": "18.2.0",
