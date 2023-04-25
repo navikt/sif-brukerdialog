@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';

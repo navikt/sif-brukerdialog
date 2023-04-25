@@ -1,5 +1,4 @@
 import { BodyLong, Heading, Link } from '@navikt/ds-react';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import getLenker from '../../lenker';

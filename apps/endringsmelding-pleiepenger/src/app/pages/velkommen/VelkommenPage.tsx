@@ -1,5 +1,4 @@
 import { Heading, Ingress } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';

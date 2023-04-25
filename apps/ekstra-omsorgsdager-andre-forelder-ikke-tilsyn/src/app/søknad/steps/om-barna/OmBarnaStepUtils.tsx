@@ -1,4 +1,3 @@
-import React from 'react';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';

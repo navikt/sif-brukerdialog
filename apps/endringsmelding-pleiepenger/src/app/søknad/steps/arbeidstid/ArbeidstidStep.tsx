@@ -1,5 +1,4 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';

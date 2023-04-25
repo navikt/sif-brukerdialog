@@ -1,4 +1,3 @@
-import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';

@@ -1,4 +1,3 @@
-import React from 'react';
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
 import { ApiBarn } from '../../../types/søknadApiData/SøknadApiData';
 import { useIntl } from 'react-intl';

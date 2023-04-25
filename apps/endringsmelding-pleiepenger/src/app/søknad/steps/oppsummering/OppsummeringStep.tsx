@@ -1,5 +1,5 @@
 import { Alert, Button, ErrorSummary, Ingress } from '@navikt/ds-react';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import { Back } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';

@@ -1,5 +1,4 @@
 import { Alert, BodyLong, Panel } from '@navikt/ds-react';
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';

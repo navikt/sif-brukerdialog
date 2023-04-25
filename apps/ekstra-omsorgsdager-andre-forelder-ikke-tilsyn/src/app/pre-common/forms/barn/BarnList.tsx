@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionLink';
 import ItemList from '@navikt/sif-common-core-ds/lib/components/lists/item-list/ItemList';

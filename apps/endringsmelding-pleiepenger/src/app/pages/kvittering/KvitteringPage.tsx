@@ -1,5 +1,4 @@
 import { Link } from '@navikt/ds-react';
-import React from 'react';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Kvittering from '@navikt/sif-common-soknad-ds/lib/components/kvittering/Kvittering';

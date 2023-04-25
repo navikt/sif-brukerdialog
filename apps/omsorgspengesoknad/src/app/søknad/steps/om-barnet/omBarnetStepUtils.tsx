@@ -1,4 +1,3 @@
-import React from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/formik-radio-group/FormikRadioGroup';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
