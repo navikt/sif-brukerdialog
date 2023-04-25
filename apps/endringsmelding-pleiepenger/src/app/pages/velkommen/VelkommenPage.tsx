@@ -95,14 +95,8 @@ const VelkommenPage = () => {
                             </Heading>
                             <Ingress as="div">
                                 <p>
-                                    Du har pleiepenger for <strong>{barnetsNavn}</strong>.
-                                </p>
-                                <p>
-                                    Du kan melde om endring i{' '}
-                                    {sak.søknadsperioder.length === 1
-                                        ? 'din pleiepengeperiode'
-                                        : 'dine pleiepengeperioder'}{' '}
-                                    i tidsrommet{' '}
+                                    Du kan melde fra om endringer i pleiepenger for <strong>{barnetsNavn}</strong> i
+                                    tidsrommet{' '}
                                     {getDateRangeText(sak.samletSøknadsperiode, {
                                         compact: false,
                                         includeDayName: true,
@@ -122,14 +116,11 @@ const VelkommenPage = () => {
                                             {
                                                 'data-testid': 'endreLovbestemtFerie',
                                                 label: 'Ferie',
-                                                description:
-                                                    'Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger',
                                                 value: EndringType.lovbestemtFerie,
                                             },
                                             {
                                                 'data-testid': 'endreArbeidstid',
-                                                label: 'Jobb i pleiepengeperioden',
-                                                description: 'Endre hvor mye du jobber i perioden med pleiepenger',
+                                                label: 'Jobb',
                                                 value: EndringType.arbeidstid,
                                             },
                                         ]}
