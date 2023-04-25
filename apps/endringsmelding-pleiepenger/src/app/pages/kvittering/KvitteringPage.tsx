@@ -12,8 +12,8 @@ const KvitteringPage = () => {
         <Page title="Endringsmelding er mottatt">
             <Kvittering tittel="Melding om endring er lagt til saken din">
                 <p>
-                    Når vi har behandlet meldingen fra deg, får du et svarbrev i DigiPost. Hvis du har registrert deg
-                    mot å motta digital post, får du svaret tilsendt i posten.
+                    Når vi har behandlet meldingen fra deg, får du svar på din side på nav.no og i Digipost. Hvis du har
+                    registrert deg mot å motta digital post, får du svaret tilsendt i posten.
                 </p>
                 <Block margin="xl">
                     Du kan se hva du har sendt inn på{' '}

@@ -14,19 +14,10 @@ const StartPåNyttDialog: React.FunctionComponent<Props> = ({ open, onCancel, on
         title="Oops"
         onConfirm={onConfirm}
         onCancel={onCancel}
-        okLabel="Start på nytt"
-        cancelLabel="Fortsett der jeg var">
-        <BodyShort spacing={true}>
-            Du har trykket deg tilbake til startsiden for å sende inn en endring i saken din.
-        </BodyShort>
-        <BodyShort spacing={true}>
-            Det ser ut til at du har begynt å fylle ut en endring, så vil du fortsette der du var? Eller vil du starte
-            helt på nytt?
-        </BodyShort>
-        <BodyShort spacing={true}>
-            Hvis du starter på nytt, blir informasjonen du har fylt ut fjernet. Om du vil fortsette der du var, kommer
-            du tilbake til siden du var på.
-        </BodyShort>
+        okLabel="Starte på nytt"
+        cancelLabel="Fortsette der jeg var">
+        <BodyShort spacing={true}>Du har trykket deg tilbake til startsiden.</BodyShort>
+        <BodyShort spacing={true}>Vil du starte utfyllingen på nytt eller fortsette der du var?</BodyShort>
     </ConfirmationDialog>
 );
 
