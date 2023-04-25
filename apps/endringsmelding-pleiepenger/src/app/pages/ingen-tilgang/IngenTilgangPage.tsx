@@ -104,7 +104,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">
                     <p>
-                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn 3 måneder
+                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn 6 måneder
                         siden. Du kan melde fra om endring i tjenesten <SkrivTilOssLink />, eller sende oss en ny
                         søknad.
                     </p>
