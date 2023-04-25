@@ -1,4 +1,3 @@
-import React from 'react';
 import SpacedCharString from '@navikt/sif-common-core-ds/lib/atoms/spaced-char-string/SpacedCharString';
 
 interface Props {

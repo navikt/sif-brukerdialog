@@ -1,5 +1,4 @@
 import { Heading, Loader, LoaderProps } from '@navikt/ds-react';
-import React from 'react';
 
 interface OwnProps {
     style?: 'inline' | 'block';

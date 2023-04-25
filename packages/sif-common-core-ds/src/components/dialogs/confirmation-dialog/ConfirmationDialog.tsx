@@ -1,5 +1,4 @@
 import { BodyLong, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '../../../utils/intlUtils';
 import ButtonRow from '../../../atoms/button-row/ButtonRow';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Attachment } from '../../types/Attachment';
 import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
 import UnstyledList from '../lists/unstyled-list/UnstyledList';

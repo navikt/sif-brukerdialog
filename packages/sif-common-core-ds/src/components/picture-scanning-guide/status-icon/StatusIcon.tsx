@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type StatusIconStatusKey = 'suksess' | 'advarsel' | 'feil';
 
 export interface Props {

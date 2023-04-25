@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CheckmarkIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="68" height="72" viewBox="0 0 24 24" focusable={false}>
         <path

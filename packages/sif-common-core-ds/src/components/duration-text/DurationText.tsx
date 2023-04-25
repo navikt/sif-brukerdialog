@@ -1,4 +1,3 @@
-import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
 import intlHelper from '../../utils/intlUtils';

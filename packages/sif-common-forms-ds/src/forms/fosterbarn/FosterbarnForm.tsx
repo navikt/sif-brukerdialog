@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import Tiles from '@navikt/sif-common-core-ds/lib/atoms/tiles/Tiles';

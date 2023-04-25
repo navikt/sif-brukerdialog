@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';

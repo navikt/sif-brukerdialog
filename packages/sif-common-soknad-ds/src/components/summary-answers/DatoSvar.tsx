@@ -1,4 +1,3 @@
-import React from 'react';
 import { ISODate, ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 
 interface Props {

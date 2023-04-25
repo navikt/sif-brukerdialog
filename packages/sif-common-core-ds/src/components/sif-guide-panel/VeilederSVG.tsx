@@ -1,5 +1,3 @@
-import React from 'react';
-
 type VeilederMood = 'happy' | 'uncertain';
 
 interface Props {

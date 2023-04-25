@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Attachment } from '../../types/Attachment';
 import intlHelper from '../../utils/intlUtils';

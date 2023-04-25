@@ -1,5 +1,5 @@
 import { Heading } from '@navikt/ds-react';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import bemUtils from '../../utils/bemUtils';
 import ActionLink from '../../atoms/action-link/ActionLink';
 import './validationErrorSummaryBase.scss';

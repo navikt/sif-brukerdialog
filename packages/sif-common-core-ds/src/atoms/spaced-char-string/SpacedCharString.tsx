@@ -1,4 +1,3 @@
-import React from 'react';
 import AriaAlternative from '../aria-alternative/AriaAlternative';
 
 export const stringToSpacedCharString = (str: string) => {
