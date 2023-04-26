@@ -50,6 +50,5 @@
         "dev": "yarn compile-lib-script-watch",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test"
-    },
-    "private": false
+    }
 }

@@ -10,17 +10,16 @@
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
-    "dependencies": {},
     "devDependencies": {
         "@babel/preset-env": "7.21.4",
-        "@babel/preset-typescript": "7.21.4",
         "@babel/preset-react": "7.18.6",
+        "@babel/preset-typescript": "7.21.4",
         "@formatjs/intl-pluralrules": "5.2.1",
+        "@navikt/ds-css": "2.8.16",
+        "@navikt/ds-react": "2.8.16",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@navikt/ds-css": "2.8.16",
-        "@navikt/ds-react": "2.8.16",
         "@storybook/addon-a11y": "7.0.7",
         "@storybook/addon-actions": "7.0.7",
         "@storybook/addon-essentials": "7.0.7",
@@ -101,6 +100,5 @@
         "storybook": "storybook dev -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test"
-    },
-    "private": false
+    }
 }

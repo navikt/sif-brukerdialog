@@ -53,6 +53,5 @@
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
         "dev": "yarn compile-lib-script-watch"
-    },
-    "private": false
+    }
 }

@@ -14,7 +14,6 @@
         "eslint-plugin-react": "7.32.2",
         "eslint-plugin-storybook": "0.6.11"
     },
-    "devDependencies": {},
     "publishConfig": {
         "access": "public"
     },

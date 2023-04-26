@@ -11,16 +11,15 @@
     },
     "dependencies": {
         "i18n-iso-countries": "7.6.0",
-        "react-fast-compare": "3.2.1",
         "lodash.debounce": "4.0.8",
+        "react-fast-compare": "3.2.1",
         "uuid": "9.0.0"
     },
     "devDependencies": {
         "@babel/preset-env": "7.21.4",
-        "@babel/preset-typescript": "7.21.4",
         "@babel/preset-react": "7.18.6",
+        "@babel/preset-typescript": "7.21.4",
         "@formatjs/intl-pluralrules": "5.2.1",
-        "@types/lodash.debounce": "4.0.7",
         "@navikt/ds-css": "2.8.16",
         "@navikt/ds-datepicker": "4.1.5",
         "@navikt/ds-react": "2.8.16",
@@ -34,6 +33,7 @@
         "@storybook/preset-create-react-app": "7.0.7",
         "@storybook/react": "7.0.7",
         "@storybook/testing-library": "0.1.0",
+        "@types/lodash.debounce": "4.0.7",
         "@types/node": "18.16.0",
         "@types/react": "18.2.0",
         "@types/react-dom": "18.2.0",
@@ -107,6 +107,5 @@
     "files": [
         "package.json",
         "/lib"
-    ],
-    "private": false
+    ]
 }
