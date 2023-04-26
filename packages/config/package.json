@@ -12,7 +12,9 @@
         "eslint-plugin-jsx-a11y": "6.7.1",
         "eslint-plugin-prettier": "4.2.1",
         "eslint-plugin-react": "7.32.2",
-        "eslint-plugin-storybook": "0.6.11"
+        "eslint-plugin-storybook": "0.6.11",
+        "postcss": "8.4.23",
+        "tailwind": "4.0.0"
     },
     "publishConfig": {
         "access": "public"
