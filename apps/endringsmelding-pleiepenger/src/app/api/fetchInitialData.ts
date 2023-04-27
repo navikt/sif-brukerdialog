@@ -2,9 +2,9 @@ import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/util
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
+    IngenTilgangMeta,
     isSøknadInitialDataErrorState,
     SøknadInitialIkkeTilgang,
-    IngenTilgangMeta,
 } from '../hooks/useSøknadInitialData';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
