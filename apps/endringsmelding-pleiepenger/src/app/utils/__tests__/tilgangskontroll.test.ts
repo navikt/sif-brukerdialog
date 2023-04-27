@@ -1,4 +1,4 @@
-import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { K9Sak, K9SakArbeidstaker } from '../../types/K9Sak';

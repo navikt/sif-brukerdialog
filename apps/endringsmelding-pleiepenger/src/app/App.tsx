@@ -1,16 +1,14 @@
-import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { ensureBaseNameForReactRouter } from '@navikt/sif-common-soknad-ds/lib';
-import SoknadApplication from '@navikt/sif-common-soknad-ds/lib/soknad-application-setup/SoknadApplication';
+import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-import ErrorBoundary from './modules/errorBoundary/ErrorBoundary';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
+import ErrorBoundary from './modules/errorBoundary/ErrorBoundary';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import '@navikt/ds-css';

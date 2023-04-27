@@ -8,7 +8,7 @@ import {
     ISODateToDate,
     ISODuration,
     ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { K9SakArbeidstidPeriodeMap } from '../../types/K9Sak';
 import { ArbeidstidEnkeltdagMap, FaktiskOgNormalArbeidstid } from '../../types/Sak';

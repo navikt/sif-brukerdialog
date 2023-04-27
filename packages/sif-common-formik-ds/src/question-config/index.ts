@@ -96,7 +96,7 @@ const getIncludedQuestions = <QuestionKeys, Payload, ErrorFormat>(
 };
 
 const validateQuestion = <Value, QuestionKeys, Payload, ErrorFormat = any>(
-    value: Value,
+    _value: Value,
     questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
     question: QuestionKeys,
     payload: Payload

@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidstakerApiData, ArbeidstidApiData } from '../../../types/søknadApiData/SøknadApiData';

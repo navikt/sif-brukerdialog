@@ -4,7 +4,7 @@ import {
     getDateRangesFromDates,
     ISODateToDate,
     sortDateRange,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {

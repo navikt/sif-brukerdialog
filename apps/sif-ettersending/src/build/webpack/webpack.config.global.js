@@ -32,22 +32,7 @@ const webpackConfig = {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
             },
-            {
-                test: /\.less$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            lessOptions: {
-                                math: 'always',
-                            },
-                        },
-                    },
-                ],
-            },
+
             {
                 test: /\.s[ac]ss$/i,
                 use: ['style-loader', 'css-loader', 'sass-loader'],

@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { arbeidsukerMockData } from '../../../../src/mocks/data/app/arbeidsukerMockData';
 import EndreArbeidstidForm from '../../../app/modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import { withIntl } from '../../decorators/withIntl';

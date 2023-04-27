@@ -1,5 +1,5 @@
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';

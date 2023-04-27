@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
-import Block, { BlockMargin } from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block, { BlockMargin } from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface Props {
     children: React.ReactNode;

@@ -1,7 +1,7 @@
 import { BodyLong, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
 import ModalContent from '@navikt/ds-react/esm/modal/ModalContent';
 import React from 'react';
-import ButtonRow from '../../button-row/ButtonRow';
+import ButtonRow from '../../../atoms/button-row/ButtonRow';
 import '../dialogs.scss';
 import './infoDialog.scss';
 

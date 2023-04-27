@@ -1,9 +1,8 @@
-import { Label } from '@navikt/ds-react';
 import React from 'react';
 import { FormError } from '../../../types';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
-import './fileInput.scss';
 import UploadSvg from './UploadSvg';
+import './fileInput.scss';
 
 interface FileInputProps {
     id: string;

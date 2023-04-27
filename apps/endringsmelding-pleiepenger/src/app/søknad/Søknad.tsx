@@ -1,12 +1,11 @@
 import { Alert } from '@navikt/ds-react';
-import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
-import useSøknadInitialData from '../hooks/useSøknadInitialData';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import DevFooter from '../dev/DevFooter';
+import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
 import { RequestStatus } from '../types/RequestStatus';
 import appSentryLogger from '../utils/appSentryLogger';

@@ -1,15 +1,15 @@
+import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
+import { SummarySection } from '@navikt/sif-common-soknad-ds';
 import { SøknadApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../types/søknadsdata/DeltBostedSøknadsdata';
 import { LegeerklæringSøknadsdata } from '../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '../../../utils/attachmentUtilsAuthToken';
-import { Alert } from '@navikt/ds-react';
 
 interface Props {
     apiData: SøknadApiData;

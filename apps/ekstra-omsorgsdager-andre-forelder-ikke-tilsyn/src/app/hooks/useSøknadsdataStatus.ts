@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
-import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
+import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { AnnenForelderenSituasjonFormValues } from '../søknad/steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';
@@ -15,7 +15,7 @@ import { StepId } from '../types/StepId';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
-    return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
+    return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
 };
 
 const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: StepFormValues) => {

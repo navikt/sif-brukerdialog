@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
-import React from 'react';
+import { Panel } from '@navikt/ds-react';
+import * as React from 'react';
 import { useIntl } from 'react-intl';
-import { prettifyDate } from '@navikt/sif-common-utils/lib/dateFormatter';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { prettifyDate } from '@navikt/sif-common-utils';
 import { getTypedFormComponents } from '../../../lib';
 import datepickerUtils from '../../../src/components/formik-datepicker/datepickerUtils';
 import TypedFormikWrapper from '../../../src/components/typed-formik-wrapper/TypedFormikWrapper';
@@ -10,7 +12,6 @@ import {
     getDateRangeValidator,
     getDateValidator,
     getFødselsnummerValidator,
-    // getListValidator,
     getNumberValidator,
     getOrgNumberValidator,
     getRequiredFieldValidator,
@@ -20,7 +21,6 @@ import {
     ValidateDateError,
     ValidateDateRangeError,
     ValidateFødselsnummerError,
-    // ValidateListError,
     ValidateNumberError,
     ValidateOrgNumberError,
     ValidateRequiredFieldError,
@@ -33,8 +33,6 @@ import { ValidationError } from '../../../src/validation/types';
 import ValidationErrorList from '../../components/validation-error-list/ValidationErrorList';
 import ValidationPanel from '../../components/validation-panel/ValidationPanel';
 import { FormFields, FormValues } from './types';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { Panel } from '@navikt/ds-react';
 
 const initialValues: FormValues = {
     liste: [],

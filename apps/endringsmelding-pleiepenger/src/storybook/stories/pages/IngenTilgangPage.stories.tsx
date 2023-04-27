@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import IngenTilgangPage from '../../../app/pages/ingen-tilgang/IngenTilgangPage';
 import { IngenTilgangÅrsak } from '../../../app/types/IngenTilgangÅrsak';
 import { søkerMock } from '../../data/søkerMock';

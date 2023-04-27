@@ -1,5 +1,4 @@
 import { BodyLong, Heading, Link } from '@navikt/ds-react';
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { ExternalLink } from '@navikt/ds-icons';
 import ExpandableInfo from '../../components/expandable-info/ExpandableInfo';

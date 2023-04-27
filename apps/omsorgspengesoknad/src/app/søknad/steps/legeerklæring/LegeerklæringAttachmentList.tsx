@@ -1,9 +1,9 @@
 import { BodyShort } from '@navikt/ds-react';
-import * as React from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import AttachmentListWithDeletion from '@navikt/sif-common-core-ds/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
     containsAnyUploadedAttachments,

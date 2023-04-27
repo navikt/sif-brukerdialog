@@ -7,7 +7,7 @@ import {
     dateRangeUtils,
     isDateInDateRange,
     ISODateRangeToDateRange,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { cleanupArbeidAktivitetEndringer } from '../../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke, PeriodeMedArbeidstid } from '../../../types/Sak';

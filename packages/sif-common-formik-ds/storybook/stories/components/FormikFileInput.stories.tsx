@@ -1,13 +1,14 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import FormikFileInput from '../../../src/components/formik-file-input/FormikFileInput';
 
-export default {
+const meta: Meta<typeof FormikFileInput> = {
     title: 'Component/FormikFileInput',
     component: FormikFileInput,
     decorators: [withFormikWrapper],
-} as Meta<typeof FormikFileInput>;
+};
+
+export default meta;
 
 const Template: StoryFn<typeof FormikFileInput> = (args) => (
     <>

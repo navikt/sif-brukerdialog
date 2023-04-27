@@ -1,5 +1,5 @@
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import React from 'react';
 import { SkrivTilOssLink } from '../../../lenker';
 import { ArbeidAktivitet } from '../../../types/Sak';

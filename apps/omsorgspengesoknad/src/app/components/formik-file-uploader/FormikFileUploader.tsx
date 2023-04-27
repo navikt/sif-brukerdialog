@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { VALID_EXTENSIONS } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { FormikFileInput, TypedFormInputValidationProps, ValidationError } from '@navikt/sif-common-formik-ds/lib';

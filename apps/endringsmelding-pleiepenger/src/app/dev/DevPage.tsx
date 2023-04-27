@@ -1,8 +1,7 @@
 import { Button, Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import React from 'react';
 import { Link } from 'react-router-dom';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 
 const DevPage = () => {
     return (

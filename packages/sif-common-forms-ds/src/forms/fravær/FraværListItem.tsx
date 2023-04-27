@@ -1,4 +1,4 @@
-import ActionLink from '@navikt/sif-common-core-ds/lib/components/action-link/ActionLink';
+import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionLink';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getFraværÅrsakTekstKort } from './fraværMessages';

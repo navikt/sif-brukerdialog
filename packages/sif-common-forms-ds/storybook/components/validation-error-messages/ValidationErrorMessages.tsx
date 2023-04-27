@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import MessagesPreview from '../../components/messages-preview/MessagesPreview';
 import { MessageFileFormat } from '../devIntlUtils';

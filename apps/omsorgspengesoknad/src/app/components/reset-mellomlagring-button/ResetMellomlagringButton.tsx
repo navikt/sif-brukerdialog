@@ -1,5 +1,5 @@
 import { Button } from '@navikt/ds-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMellomlagring } from '../../hooks/useMellomlagring';
 import { relocateToWelcomePage } from '../../utils/navigationUtils';
 

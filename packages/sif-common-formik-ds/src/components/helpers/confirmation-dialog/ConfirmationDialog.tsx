@@ -1,5 +1,4 @@
 import { BodyLong, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
-import React from 'react';
 import ButtonRow from '../button-row/ButtonRow';
 import './confirmationDialog.scss';
 

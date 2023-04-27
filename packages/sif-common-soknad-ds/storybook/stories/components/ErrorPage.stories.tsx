@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { withIntl } from '../../decorators/withIntl';
-import ErrorPage from '../../../src/soknad-common-pages/ErrorPage';
+import ErrorPage from '../../../src/pages/ErrorPage';
 
 export default {
     title: 'Component/ErrorPage',

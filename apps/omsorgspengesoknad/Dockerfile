@@ -17,7 +17,6 @@ RUN yarn turbo run build-app --filter=${SCOPE}
 FROM pruner AS server
 WORKDIR /apps/omsorgspengesoknad
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/omsorgspengesoknad/node_modules ./node_modules/
 COPY --from=pruner /app/apps/omsorgspengesoknad/envSettings.js .
 COPY --from=pruner /app/apps/omsorgspengesoknad/server.js .
 COPY --from=pruner /app/apps/omsorgspengesoknad/tokenx.js .

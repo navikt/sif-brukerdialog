@@ -1,9 +1,8 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
+import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
 import { SKJEMANAVN } from '../../App';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';

@@ -1,4 +1,4 @@
-import { durationUtils } from '@navikt/sif-common-utils/lib';
+import { durationUtils } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { uniqBy } from 'lodash';
 import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';

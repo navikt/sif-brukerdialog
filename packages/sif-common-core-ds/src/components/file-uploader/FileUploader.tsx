@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormikFileInput, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { AxiosError, AxiosResponse } from 'axios';

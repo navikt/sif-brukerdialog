@@ -1,5 +1,4 @@
 import { Link } from '@navikt/ds-react';
-import React from 'react';
 import { Attachment } from '../../types/Attachment';
 import bemHelper from '../../utils/bemUtils';
 // import AttachmentIcon from './AttachmentIcon';

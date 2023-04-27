@@ -11,21 +11,23 @@
         "url": "https://github.com/navikt/appstatus-react-ds/issues"
     },
     "dependencies": {
-        "@portabletext/react": "2.0.2",
+        "@portabletext/react": "2.0.3",
         "@sanity/client": "5.4.2"
     },
     "devDependencies": {
-        "@navikt/ds-css": "2.8.13",
-        "@navikt/ds-react": "2.8.13",
-        "@types/node": "18.15.11",
-        "@types/react": "18.0.37",
-        "@types/react-dom": "18.0.11",
+        "@navikt/ds-css": "2.9.0",
+        "@navikt/ds-react": "2.9.0",
+        "@types/node": "18.16.1",
+        "@types/react": "18.2.0",
+        "@types/react-dom": "18.2.1",
+        "config": "*",
         "copyfiles": "2.4.1",
+        "postcss": "8.4.23",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.0",
-        "sass": "1.62.0"
+        "sass": "1.62.1"
     },
     "directories": {
         "lib": "lib"
@@ -53,6 +55,5 @@
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
         "dev": "yarn compile-lib-script-watch"
-    },
-    "private": false
+    }
 }

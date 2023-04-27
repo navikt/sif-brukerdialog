@@ -1,4 +1,4 @@
-import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 import { LovbestemtFeriePeriode } from '../types/LovbestemtFeriePeriode';
 import { ArbeidstidApiData, LovbestemtFerieApiData, SøknadApiData } from '../types/søknadApiData/SøknadApiData';

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Heading, Panel } from '@navikt/ds-react';
-import React from 'react';
+import * as React from 'react';
 import '@navikt/ds-datepicker/lib/index.css';
 import { ISODateString } from '@navikt/ds-datepicker/lib/types';
 import { getTypedFormComponents } from '../../../src/components/getTypedFormComponents';
@@ -12,7 +12,7 @@ import FormikValidationErrorSummary from '../../../src/components/formik-validat
 import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
 import { useIntl } from 'react-intl';
 import ExampleListAndDialog from './ExampleListAndDialog';
-import FormBlock from '../components/components/form-block/FormBlock';
+import FormBlock from '../../components/form-block/FormBlock';
 
 enum Fields {
     checked = 'checked',

@@ -1,4 +1,4 @@
-import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils/lib';
+import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
 import { LovbestemtFerieType } from '../../types/LovbestemtFerieType';
 import { EndringType } from '../EndringType';
 

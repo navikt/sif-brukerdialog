@@ -14,7 +14,7 @@ import {
     ISODateToDate,
     joinAdjacentDateRanges,
     numberDurationAsDuration,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';

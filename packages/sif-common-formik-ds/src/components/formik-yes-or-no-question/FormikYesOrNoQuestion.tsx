@@ -1,4 +1,3 @@
-import React from 'react';
 import { TestProps, TypedFormInputValidationProps, YesOrNo } from '../../types';
 import FormikRadioGroup, { FormikRadioGroupProps } from '../formik-radio-group/FormikRadioGroup';
 

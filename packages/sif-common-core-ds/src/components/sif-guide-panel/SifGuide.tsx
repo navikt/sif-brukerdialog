@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export type GuideMood = 'happy' | 'uncertain';
 
 function SifGuide({ mood }: { mood: GuideMood }) {

@@ -1,6 +1,7 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils/lib';
+import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from '../hooks/useSøknadInitialData';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
 import { isK9Sak, isUgyldigK9SakFormat, K9Sak, UgyldigK9SakFormat } from '../types/K9Sak';
@@ -17,7 +18,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from '../hooks/useSøknadInitialData';
 
 export const getKanIkkeBrukeSøknadRejection = (
     årsak: IngenTilgangÅrsak

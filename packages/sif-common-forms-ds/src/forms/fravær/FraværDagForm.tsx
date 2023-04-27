@@ -1,9 +1,8 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/components/formatted-html-message/FormattedHtmlMessage';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/atoms/formatted-html-message/FormattedHtmlMessage';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';

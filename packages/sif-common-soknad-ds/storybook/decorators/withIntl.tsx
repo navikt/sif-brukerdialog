@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import AppIntlProvider from '../stories/components/app-intl-provider/AppIntlProvider';
 
 export const withIntl = (Story) => (

@@ -1,5 +1,4 @@
 /* eslint-disable react/display-name */
-import React from 'react';
 import FormikCheckboxGroup, { FormikCheckboxGroupProps } from './formik-checkbox-group/FormikCheckboxGroup';
 import FormikCheckbox, { FormikCheckboxProps } from './formik-checkbox/FormikCheckbox';
 import FormikConfirmationCheckbox, {

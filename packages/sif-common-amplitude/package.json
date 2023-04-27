@@ -12,9 +12,10 @@
     },
     "devDependencies": {
         "@types/amplitude-js": "8.16.2",
-        "@types/node": "18.15.11",
-        "@types/react": "18.0.37",
+        "@types/node": "18.16.1",
+        "@types/react": "18.2.0",
         "amplitude-js": "8.21.8",
+        "config": "*",
         "constate": "3.3.2",
         "gh-pages": "5.0.0",
         "react": "18.2.0",
@@ -45,6 +46,5 @@
         "compile-lib-script": "tsc -p tsconfig.json",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
         "dev": "yarn compile-lib-script-watch"
-    },
-    "private": false
+    }
 }
