@@ -38,7 +38,7 @@
         "helmet": "6.1.5",
         "http-proxy-middleware": "2.0.6",
         "io-ts": "2.2.20",
-        "jose": "4.14.1",
+        "jose": "4.14.2",
         "jsdom": "21.1.1",
         "lodash": "4.17.21",
         "mini-css-extract-plugin": "2.7.5",
@@ -63,7 +63,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.7.3",
-        "cypress": "12.10.0",
+        "cypress": "12.11.0",
         "cypress-file-upload": "5.0.8",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.1",
@@ -82,7 +82,8 @@
         "tailwindcss": "3.3.2",
         "ts-loader": "9.4.2",
         "typescript": "5.0.4",
-        "webpack": "5.80.0",
+        "uuid": "9.0.0",
+        "webpack": "5.81.0",
         "webpack-dev-server": "4.13.3"
     },
     "jest": {

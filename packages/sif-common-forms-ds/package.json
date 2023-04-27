@@ -60,7 +60,7 @@
         "react-router-dom": "6.10.0",
         "react-scripts": "5.0.1",
         "rimraf": "5.0.0",
-        "webpack": "5.80.0"
+        "webpack": "5.81.0"
     },
     "directories": {
         "lib": "lib"

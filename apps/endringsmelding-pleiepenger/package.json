@@ -51,7 +51,7 @@
         "io-ts-reporters": "2.0.1",
         "io-ts-types": "0.5.19",
         "iso8601-duration": "2.1.1",
-        "jose": "4.14.1",
+        "jose": "4.14.2",
         "js-cookie": "3.0.5",
         "lodash.debounce": "4.0.8",
         "lodash.flatten": "4.4.0",
@@ -108,7 +108,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.7.3",
-        "cypress": "12.10.0",
+        "cypress": "12.11.0",
         "cypress-file-upload": "5.0.8",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.1",
@@ -132,7 +132,7 @@
         "ts-loader": "9.4.2",
         "ts-prune": "0.10.3",
         "typescript": "5.0.4",
-        "webpack": "5.80.0",
+        "webpack": "5.81.0",
         "webpack-dev-server": "4.13.3"
     },
     "jest": {
