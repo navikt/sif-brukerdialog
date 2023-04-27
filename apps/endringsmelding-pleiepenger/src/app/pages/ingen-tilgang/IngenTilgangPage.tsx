@@ -9,10 +9,12 @@ import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
+import { IngenTilgangMeta } from '../../hooks/useSøknadInitialData';
 
 interface Props {
     søker: Søker;
     årsak: IngenTilgangÅrsak;
+    ingenTilgangMeta?: IngenTilgangMeta;
 }
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
@@ -116,13 +118,13 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     }
 };
 
-const IngenTilgangPage = ({ årsak, søker }: Props) => {
+const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: Props) => {
     const { logInfo } = useAmplitudeInstance();
 
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
 
     useEffectOnce(() => {
-        logInfo({ brukerIkkeTilgang: årsak });
+        logInfo({ brukerIkkeTilgang: årsak, ...ingenTilgangMeta });
     });
 
     return (
