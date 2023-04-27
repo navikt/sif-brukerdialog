@@ -118,7 +118,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     }
 };
 
-const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
+const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
     const { logInfo } = useAmplitudeInstance();
 
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
