@@ -99,10 +99,6 @@
         "webpack": "5.81.0",
         "webpack-dev-server": "4.13.3"
     },
-    "resolutions": {
-        "babel-core": "7.0.0-bridge.0",
-        "postcss": "8"
-    },
     "jest": {
         "transformIgnorePatterns": [
             "node_modules/(?!(@navikt)).*\\.js$"

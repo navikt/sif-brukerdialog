@@ -140,9 +140,6 @@
             "node_modules/(?!(@navikt)).*\\.js$"
         ]
     },
-    "resolutions": {
-        "babel-core": "7.0.0-bridge.0"
-    },
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
         "build-storybook": "storybook build",

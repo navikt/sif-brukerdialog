@@ -89,6 +89,7 @@
     "private": true,
     "snyk": true,
     "dependencies": {
+        "check-peer-dependencies": "^4.2.0",
         "classnames": "2.3.2",
         "prop-types": "15.8.1"
     },
