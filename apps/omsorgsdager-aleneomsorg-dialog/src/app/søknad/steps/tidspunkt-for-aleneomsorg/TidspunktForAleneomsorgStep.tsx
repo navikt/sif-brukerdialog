@@ -31,14 +31,14 @@ export enum TidspunktForAleneomsorg {
     TIDLIGERE = 'TIDLIGERE',
 }
 
-export interface AleneomsorgTidspunkt {
-    fnrId: string;
-    tidspunktForAleneomsorg: TidspunktForAleneomsorg;
-    dato?: string;
-}
+export type AleneomsorgTidspunkt = {
+    [fnr: string]: {
+        tidspunktForAleneomsorg?: TidspunktForAleneomsorg;
+        dato?: string;
+    };
+};
 
 export enum AleneomsorgTidspunktField {
-    fnrId = 'fnrId',
     tidspunktForAleneomsorg = 'tidspunktForAleneomsorg',
     dato = 'dato',
 }
@@ -48,8 +48,19 @@ export enum TidspunktForAleneomsorgFormFields {
 }
 
 export interface TidspunktForAleneomsorgFormValues {
-    [TidspunktForAleneomsorgFormFields.aleneomsorgTidspunkt]?: AleneomsorgTidspunkt[];
+    aleneomsorgTidspunkt: AleneomsorgTidspunkt;
 }
+
+/*export interface TidspunktForAleneomsorgFormValues = BarnFormValuesMap;
+
+formValues: {
+    barn: {[fnr]: {
+        dato
+    }}
+}
+
+values: { barn: { "fnr": {tidspunkt, dato}}}
+*/
 
 const { FormikWrapper, Form } = getTypedFormComponents<
     TidspunktForAleneomsorgFormFields,
@@ -87,29 +98,35 @@ const TidspunktForAleneomsorgStep = () => {
         }
     );
 
+    const annetBarn = søknadsdata.omOmsorgenForBarn?.annetBarn || [];
+    const harAleneomsorgFor = søknadsdata.omOmsorgenForBarn?.harAleneomsorgFor || [];
+
+    const registrertBarnMedAleneOmsorg = registrertBarn.filter((barnet) =>
+        (harAleneomsorgFor || []).includes(barnet.aktørId)
+    );
+
+    const annetBarnMedAleneOmsorg = annetBarn
+        ? annetBarn.filter((barnet) => (harAleneomsorgFor || []).includes(barnet.fnr))
+        : [];
+
+    const barnMedAleneomsorg: BarnMedAleneomsorg[] = [
+        ...registrertBarnMedAleneOmsorg.map((barn) => mapRegistrertBarnToBarnMedAleneomsorg(barn)),
+        ...annetBarnMedAleneOmsorg.map((barn) => mapAnnetBarnToBarnMedAleneomsorg(barn)),
+    ];
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getTidspunktForAleneomsorgStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={getTidspunktForAleneomsorgStepInitialValues(
+                    søknadsdata,
+                    barnMedAleneomsorg,
+                    stepFormValues[stepId]
+                )}
                 onSubmit={handleSubmit}
-                renderForm={({ values: { aleneomsorgTidspunkt = [] } }) => {
-                    const annetBarn = søknadsdata.omOmsorgenForBarnData?.annetBarn || [];
-                    const harAleneomsorgFor = søknadsdata.omOmsorgenForBarnData?.harAleneomsorgFor || [];
-
-                    const registrertBarnMedAleneOmsorg = registrertBarn.filter((barnet) =>
-                        (harAleneomsorgFor || []).includes(barnet.aktørId)
-                    );
-
-                    const annetBarnMedAleneOmsorg = annetBarn
-                        ? annetBarn.filter((barnet) => (harAleneomsorgFor || []).includes(barnet.fnr))
-                        : [];
-
-                    const barnMedAleneomsorg: BarnMedAleneomsorg[] = [
-                        ...registrertBarnMedAleneOmsorg.map((barn) => mapRegistrertBarnToBarnMedAleneomsorg(barn)),
-                        ...annetBarnMedAleneOmsorg.map((barn) => mapAnnetBarnToBarnMedAleneomsorg(barn)),
-                    ];
-                    // eslint-disable-next-line no-console
-                    console.log(aleneomsorgTidspunkt);
+                renderForm={({ values: { aleneomsorgTidspunkt } }) => {
+                    if (aleneomsorgTidspunkt === undefined) {
+                        return 'FEIL';
+                    }
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -129,7 +146,9 @@ const TidspunktForAleneomsorgStep = () => {
                                             <FormBlock key={barnMedAleneomsorg.idFnr}>
                                                 <TidspunktForBarn
                                                     barnMedAleneomsorg={barnMedAleneomsorg}
-                                                    aleneomsorgTidspunkt={aleneomsorgTidspunkt}
+                                                    aleneomsorgTidspunkt={
+                                                        aleneomsorgTidspunkt[barnMedAleneomsorg.idFnr]
+                                                    }
                                                 />
                                             </FormBlock>
                                         );

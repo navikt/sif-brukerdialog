@@ -48,7 +48,7 @@ const SøknadRouter = () => {
         setShouldResetSøknad(true);
     }
 
-    if (søknadsdata.harForståttRettigheterOgPlikter === false) {
+    if (søknadsdata.velkommen?.harForståttRettigheterOgPlikter === false) {
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />

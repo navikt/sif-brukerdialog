@@ -9,57 +9,55 @@ import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
 
-const getTidspunktForAleneomsorg = (
-    barnId: string,
-    aleneomsorgTidspunkter: AleneomsorgTidspunkt[]
-): TidspunktForAleneomsorg => {
-    const tidspunkt = aleneomsorgTidspunkter.find((aleneomsorgTidspunkt) => aleneomsorgTidspunkt.fnrId === barnId);
-
-    if (tidspunkt?.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE)
-        return TidspunktForAleneomsorg.SISTE_2_ÅRENE;
-    else return TidspunktForAleneomsorg.TIDLIGERE;
-};
-
 export const mapRegistrertBarnToApiBarn = (
     registrertBarn: RegistrertBarn,
-    aleneomsorgTidspunkter: AleneomsorgTidspunkt[]
+    aleneomsorgTidspunkter: AleneomsorgTidspunkt
 ): ApiBarn => {
     const { fornavn, etternavn, mellomnavn, aktørId } = registrertBarn;
 
     return {
         navn: formatName(fornavn, etternavn, mellomnavn),
         aktørId,
-        tidspunktForAleneomsorg: getTidspunktForAleneomsorg(aktørId, aleneomsorgTidspunkter),
-        dato: aleneomsorgTidspunkter.find((aleneomsorgTidspunkt) => aleneomsorgTidspunkt.fnrId === aktørId)?.dato,
+        tidspunktForAleneomsorg:
+            aleneomsorgTidspunkter[aktørId].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                ? TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                : TidspunktForAleneomsorg.TIDLIGERE,
+        dato:
+            aleneomsorgTidspunkter[aktørId].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                ? aleneomsorgTidspunkter[aktørId].dato
+                : undefined,
         type: RegisterteBarnTypeApi.fraOppslag,
     };
 };
 
-export const mapAnnetBarnToApiBarn = (
-    annetBarn: AnnetBarn,
-    aleneomsorgTidspunkter: AleneomsorgTidspunkt[]
-): ApiBarn => {
+export const mapAnnetBarnToApiBarn = (annetBarn: AnnetBarn, aleneomsorgTidspunkter: AleneomsorgTidspunkt): ApiBarn => {
     const { navn, fnr, fødselsdato, type } = annetBarn;
-    const tidspunktForAleneomsorg = getTidspunktForAleneomsorg(fnr, aleneomsorgTidspunkter);
+
     return {
         navn: navn,
         identitetsnummer: fnr,
         fødselsdato: dateToISODate(fødselsdato),
-        tidspunktForAleneomsorg: tidspunktForAleneomsorg,
-        dato: aleneomsorgTidspunkter.find((aleneomsorgTidspunkt) => aleneomsorgTidspunkt.fnrId === fnr)?.dato,
+        tidspunktForAleneomsorg:
+            aleneomsorgTidspunkter[fnr].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                ? TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                : TidspunktForAleneomsorg.TIDLIGERE,
+        dato:
+            aleneomsorgTidspunkter[fnr].tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
+                ? aleneomsorgTidspunkter[fnr].dato
+                : undefined,
         type: type ? type : BarnType.annet,
     };
 };
 
 export const getBarnApiDataFromSøknadsdata = (
-    { omOmsorgenForBarnData, tidspunktForAleneomsorgData }: Søknadsdata,
+    { omOmsorgenForBarn, tidspunktForAleneomsorg }: Søknadsdata,
     registrertBarn: RegistrertBarn[]
 ): ApiBarn[] | undefined => {
-    if (!omOmsorgenForBarnData || !tidspunktForAleneomsorgData) {
+    if (!omOmsorgenForBarn || !tidspunktForAleneomsorg) {
         return undefined;
     }
-    const { annetBarn, harAleneomsorgFor } = omOmsorgenForBarnData;
-    const { aleneomsorgTidspunkt } = tidspunktForAleneomsorgData;
+    const { annetBarn, harAleneomsorgFor } = omOmsorgenForBarn;
+    const { aleneomsorgTidspunkt } = tidspunktForAleneomsorg;
 
     const registrertBarnMedAleneomsorg = registrertBarn.filter((barnet) => harAleneomsorgFor.includes(barnet.aktørId));
     const annetBarnMedAleneomsorg = annetBarn.filter((barnet) => harAleneomsorgFor.includes(barnet.fnr));

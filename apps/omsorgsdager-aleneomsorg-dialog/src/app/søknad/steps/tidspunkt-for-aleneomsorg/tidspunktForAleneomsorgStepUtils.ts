@@ -4,7 +4,11 @@ import dayOfYear from 'dayjs/plugin/dayOfYear';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { Søknadsdata, TidspunktForAleneomsorgSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { TidspunktForAleneomsorgFormValues } from './TidspunktForAleneomsorgStep';
+import {
+    AleneomsorgTidspunkt,
+    TidspunktForAleneomsorg,
+    TidspunktForAleneomsorgFormValues,
+} from './TidspunktForAleneomsorgStep';
 
 export interface BarnMedAleneomsorg {
     idFnr: string;
@@ -13,31 +17,41 @@ export interface BarnMedAleneomsorg {
 
 export const getTidspunktForAleneomsorgStepInitialValues = (
     søknadsdata: Søknadsdata,
+    barnMedAleneomsorg: BarnMedAleneomsorg[],
     formValues?: TidspunktForAleneomsorgFormValues
 ): TidspunktForAleneomsorgFormValues => {
     if (formValues) {
+        Object.keys(formValues.aleneomsorgTidspunkt).map((key) => {
+            if (barnMedAleneomsorg.find((barn) => barn.idFnr === key) === undefined) {
+                delete formValues.aleneomsorgTidspunkt[key];
+            }
+        });
+
         return formValues;
     }
-    const defaultValues: TidspunktForAleneomsorgFormValues = {
-        aleneomsorgTidspunkt: [],
-    };
-    const { tidspunktForAleneomsorgData } = søknadsdata;
 
-    return tidspunktForAleneomsorgData?.aleneomsorgTidspunkt
-        ? { aleneomsorgTidspunkt: tidspunktForAleneomsorgData?.aleneomsorgTidspunkt }
-        : defaultValues;
+    const defaultValues = {} as AleneomsorgTidspunkt;
+    // barnMedAleneomsorg.map((barn) => (defaultValues[barn.idFnr] = {}));
+
+    const { tidspunktForAleneomsorg } = søknadsdata;
+
+    return tidspunktForAleneomsorg?.aleneomsorgTidspunkt
+        ? tidspunktForAleneomsorg
+        : { aleneomsorgTidspunkt: defaultValues };
 };
 
 export const getTidspunktForAleneomsorgSøknadsdataFromFormValues = (
-    values: TidspunktForAleneomsorgFormValues
+    values?: TidspunktForAleneomsorgFormValues
 ): TidspunktForAleneomsorgSøknadsdata | undefined => {
-    const { aleneomsorgTidspunkt = [] } = values;
-
-    if (aleneomsorgTidspunkt.length === 0) {
+    if (!values || !values.aleneomsorgTidspunkt) {
         return undefined;
     }
-
-    return { aleneomsorgTidspunkt };
+    Object.keys(values.aleneomsorgTidspunkt).map((key) => {
+        if (values.aleneomsorgTidspunkt[key].tidspunktForAleneomsorg === TidspunktForAleneomsorg.TIDLIGERE) {
+            delete values.aleneomsorgTidspunkt[key].dato;
+        }
+    });
+    return { aleneomsorgTidspunkt: values.aleneomsorgTidspunkt };
 };
 
 export const mapRegistrertBarnToBarnMedAleneomsorg = (registrertBarn: RegistrertBarn): BarnMedAleneomsorg => {

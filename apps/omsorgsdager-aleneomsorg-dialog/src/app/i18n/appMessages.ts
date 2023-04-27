@@ -3,6 +3,7 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 export const appMessages: MessageFileFormat = {
     nb: {
         'application.title': 'Søknad om ekstra omsorgsdager ved aleneomsorg for barn',
+        'application.bannerTitle': 'Søknad om ekstra omsorgsdager ved aleneomsorg for barn',
 
         'application.loadError.title': 'Noe gikk galt ...',
         'application.loadError.message':
@@ -55,7 +56,9 @@ export const appMessages: MessageFileFormat = {
             'Vi trenger å vite alderen på barn for å kunne beregne hvor mange omsorgsdager du kan ha rett på og hvor lenge du har rett til å bruke omsorgsdager.',
 
         'step.om-omsorgen-for-barn.pageTitle': 'Om aleneomsorg for barn',
+        'step.omOmsorgenForBarn.pageTitle': 'Om aleneomsorg for barn',
         'step.om-omsorgen-for-barn.stepTitle': 'Om aleneomsorg for barn',
+        'step.omOmsorgenForBarn.stepTitle': 'Om aleneomsorg for barn',
         'step.om-omsorgen-for-barn.stepIntro.1':
             'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor med den andre forelderen. Det kan for eksempel være på grunn av samlivsbrudd, at du er blitt enke/enkemann, eller at du er alene med et donorbarn.',
         'step.om-omsorgen-for-barn.stepIntro.2': 'At barnet bor fast hos deg vil si at',
@@ -93,8 +96,9 @@ export const appMessages: MessageFileFormat = {
         'step.om-omsorgen-for-barn.ingenbarn': 'Du må ha minst ett barn for å kunne gå videre.',
         'step.om-omsorgen-for-barn.nextButtonLabel': 'Fortsett',
 
-        'step.tidspunkt-for-aleneomsorg.pageTitle': 'Tidspunkt for aleneomsorg',
-        'step.tidspunkt-for-aleneomsorg.stepTitle': 'Tidspunkt for aleneomsorg',
+        'step.tidspunktForAleneomsorg.pageTitle': 'Tidspunkt for aleneomsorg',
+        'step.tidspunktForAleneomsorg.stepTitle': 'Tidspunkt for aleneomsorg',
+
         'step.tidspunkt-for-aleneomsorg.stepIntro':
             'Nå trenger vi å vite når du ble alene om omsorgen for barn. Hvis du ble alene om omsorgen tidligere enn i fjor trenger vi ikke å vite konkret dato.',
         'step.tidspunkt-for-aleneomsorg.info': 'Oppgi tidspunkt for når du ble alene om omsorgen',
@@ -111,7 +115,7 @@ export const appMessages: MessageFileFormat = {
             'Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
 
         'step.oppsummering.søker.header': 'Om deg',
-
+        'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
         'step.oppsummering.deres-felles-barn.header': 'Barn',
         'step.oppsummering.deres-felles-barn.barn': 'Barn',
         'step.oppsummering.dineBarn.listItem.FOSTERBARN': '(Barnet er mitt fosterbarn).',

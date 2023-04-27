@@ -7,8 +7,8 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     registrertBarn: RegistrertBarn[]
 ): SøknadApiData | undefined => {
-    const { id, omOmsorgenForBarnData, tidspunktForAleneomsorgData } = søknadsdata;
-    if (!omOmsorgenForBarnData || !tidspunktForAleneomsorgData) {
+    const { id, omOmsorgenForBarn, tidspunktForAleneomsorg } = søknadsdata;
+    if (!omOmsorgenForBarn || !tidspunktForAleneomsorg) {
         return undefined;
     }
     const barn = getBarnApiDataFromSøknadsdata(søknadsdata, registrertBarn);
@@ -19,8 +19,8 @@ export const getApiDataFromSøknadsdata = (
     return {
         id,
         språk: 'nb',
-        harForståttRettigheterOgPlikter: søknadsdata.harForståttRettigheterOgPlikter === true,
+        harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
         barn,
-        harBekreftetOpplysninger: søknadsdata.harForståttRettigheterOgPlikter === true,
+        harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
     };
 };

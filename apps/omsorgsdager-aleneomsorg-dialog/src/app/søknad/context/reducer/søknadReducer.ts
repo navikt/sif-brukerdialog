@@ -15,7 +15,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 ...state,
                 søknadsdata: {
                     id: guid(),
-                    harForståttRettigheterOgPlikter: true,
+                    velkommen: {
+                        harForståttRettigheterOgPlikter: true,
+                    },
                 },
                 søknadRoute: SøknadRoutes.OM_OMSORGEN_FOR_BARN,
                 børMellomlagres: true,
@@ -48,7 +50,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
             case SøknadContextActionKeys.SET_SØKNAD_OM_OMSORGEN_FOR_BARN:
                 const søknadsdata: Søknadsdata = {
                     ...state.søknadsdata,
-                    omOmsorgenForBarnData: {
+                    omOmsorgenForBarn: {
                         ...action.payload,
                     },
                 };
@@ -63,7 +65,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        tidspunktForAleneomsorgData: {
+                        tidspunktForAleneomsorg: {
                             ...action.payload,
                         },
                     },
@@ -74,7 +76,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        oppsummering: {
+                            harBekreftetOpplysninger: action.payload.harBekreftetOpplysninger,
+                        },
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_SENDT:

@@ -10,6 +10,8 @@ import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getOmOmsorgenForBarnSøknadsdataFromFormValues } from '../søknad/steps/om-omsorgen-for-barn/omOmsorgenForBarnStepUtils';
 import { getTidspunktForAleneomsorgSøknadsdataFromFormValues } from '../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgStepUtils';
 import { RegistrertBarn } from 'app/types/RegistrertBarn';
+import { OmOmsorgenForBarnFormValues } from 'app/søknad/steps/om-omsorgen-for-barn/OmOmsorgenForBarnStep';
+import { TidspunktForAleneomsorgFormValues } from 'app/søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((key, idx) => idx < currentStepIndex) as StepId[];
@@ -26,9 +28,12 @@ const getStepSøknadsdataFromStepFormValues = (
     }
     switch (step) {
         case StepId.OM_OMSORGEN_FOR_BARN:
-            return getOmOmsorgenForBarnSøknadsdataFromFormValues(formValues, registrertBarn);
+            return getOmOmsorgenForBarnSøknadsdataFromFormValues(
+                formValues as OmOmsorgenForBarnFormValues,
+                registrertBarn
+            );
         case StepId.TIDSPUNKT_FOR_ALENEOMSORG:
-            return getTidspunktForAleneomsorgSøknadsdataFromFormValues(formValues);
+            return getTidspunktForAleneomsorgSøknadsdataFromFormValues(formValues as TidspunktForAleneomsorgFormValues);
     }
     return undefined;
 };

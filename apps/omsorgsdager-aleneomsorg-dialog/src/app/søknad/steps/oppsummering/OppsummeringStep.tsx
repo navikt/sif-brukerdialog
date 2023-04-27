@@ -102,7 +102,10 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
 
-                                <OmBarnaSummary barn={apiData.barn} />
+                                <OmBarnaSummary
+                                    registrertBarn={registrertBarn}
+                                    annetBarn={søknadsdata.omOmsorgenForBarn?.annetBarn}
+                                />
 
                                 <SummarySection
                                     header={intlHelper(intl, 'step.oppsummering.om-omsorgen-for-barn.barnList.tittle')}>

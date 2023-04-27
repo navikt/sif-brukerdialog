@@ -18,8 +18,8 @@ export const getOmOmsorgenForBarnStepInitialValues = (
         harAvtaleOmDeltBostedFor: undefined,
     };
 
-    const { omOmsorgenForBarnData } = søknadsdata || {};
-    const { type, ...data } = omOmsorgenForBarnData || {};
+    const { omOmsorgenForBarn } = søknadsdata || {};
+    const { type, ...data } = omOmsorgenForBarn || {};
 
     switch (type) {
         case 'omOmsorgenForBarnUtenDeltBosted':

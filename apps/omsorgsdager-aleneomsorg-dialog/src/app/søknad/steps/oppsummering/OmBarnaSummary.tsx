@@ -3,30 +3,54 @@ import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
 import SummaryList from '@navikt/sif-common-core-ds/lib/components/summary-list/SummaryList';
-import { ApiBarn, RegisterteBarnTypeApi } from '../../../types/søknadApiData/SøknadApiData';
-import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
+import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
 import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import { RegistrertBarn } from 'app/types/RegistrertBarn';
+import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 
+export interface AlleBarnSummary {
+    navn: string;
+    fnr?: string;
+    type?: BarnType;
+}
 interface Props {
-    barn: ApiBarn[];
+    registrertBarn: RegistrertBarn[];
+    annetBarn?: AnnetBarn[];
 }
 
-const OmBarnaSummary = ({ barn }: Props) => {
+const mapRegistrertBarnToAlleBarnSummary = (registrertBarn: RegistrertBarn): AlleBarnSummary => {
+    return {
+        navn: formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn),
+    };
+};
+const mapAnnetBarnToAlleBarnSummary = (annetBarn: AnnetBarn): AlleBarnSummary => {
+    return {
+        navn: annetBarn.navn,
+        fnr: annetBarn.fnr,
+        type: annetBarn.type,
+    };
+};
+
+const OmBarnaSummary = ({ registrertBarn, annetBarn = [] }: Props) => {
     const intl = useIntl();
 
+    const alleBarn: AlleBarnSummary[] = [
+        ...registrertBarn.map((barn) => mapRegistrertBarnToAlleBarnSummary(barn)),
+        ...annetBarn.map((barn) => mapAnnetBarnToAlleBarnSummary(barn)),
+    ];
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.deres-felles-barn.header')}>
             <Block margin="l">
                 <SummaryList
-                    items={barn}
-                    itemRenderer={(barn: ApiBarn): string | React.ReactNode => {
-                        const { identitetsnummer, type, navn } = barn;
-                        const fnr = identitetsnummer ? identitetsnummer : '';
+                    items={alleBarn}
+                    itemRenderer={(barn: AlleBarnSummary): string | React.ReactNode => {
+                        const { fnr, type, navn } = barn;
                         const barnType =
-                            type !== BarnType.annet && type !== RegisterteBarnTypeApi.fraOppslag
+                            type === BarnType.fosterbarn
                                 ? intlHelper(intl, `step.oppsummering.dineBarn.listItem.${type}`)
                                 : '';
-                        return <>{`${navn} ${fnr} ${barnType}`}</>;
+
+                        return <>{`${navn} ${fnr || ''} ${barnType}`}</>;
                     }}
                 />
             </Block>

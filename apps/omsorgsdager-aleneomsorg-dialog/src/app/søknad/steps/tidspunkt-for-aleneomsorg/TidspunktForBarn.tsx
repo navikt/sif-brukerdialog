@@ -6,7 +6,6 @@ import { IntlShape } from 'react-intl';
 import { getRequiredFieldValidator, getDateValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import {
-    AleneomsorgTidspunkt,
     AleneomsorgTidspunktField,
     TidspunktForAleneomsorg,
     TidspunktForAleneomsorgFormFields,
@@ -18,7 +17,7 @@ import { BarnMedAleneomsorg, getMinDateYearAgo, getYear } from './tidspunktForAl
 
 interface Props {
     barnMedAleneomsorg: BarnMedAleneomsorg;
-    aleneomsorgTidspunkt: AleneomsorgTidspunkt[];
+    aleneomsorgTidspunkt: { tidspunktForAleneomsorg?: TidspunktForAleneomsorg; dato?: string };
 }
 
 const { RadioGroup, DatePicker } = getTypedFormComponents<
@@ -83,8 +82,7 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                 }}
             />
 
-            {aleneomsorgTidspunkt[getFieldName(AleneomsorgTidspunktField.tidspunktForAleneomsorg)] ===
-                TidspunktForAleneomsorg.SISTE_2_ÅRENE && (
+            {aleneomsorgTidspunkt?.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE && (
                 <Block margin="xl">
                     <DatePicker
                         name={getFieldName(AleneomsorgTidspunktField.dato) as TidspunktForAleneomsorgFormFields}
