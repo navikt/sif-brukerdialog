@@ -53,7 +53,13 @@ const Søknad = () => {
 
     if (kanBrukeSøknad === false) {
         if (location.pathname === SøknadRoutes.IKKE_TILGANG) {
-            return <IngenTilgangPage årsak={initialData.årsak} søker={initialData.søker} />;
+            return (
+                <IngenTilgangPage
+                    årsak={initialData.årsak}
+                    søker={initialData.søker}
+                    ingenTilgangMeta={initialData.ingenTilgangMeta}
+                />
+            );
         }
         setTimeout(() => {
             navigate(SøknadRoutes.IKKE_TILGANG);

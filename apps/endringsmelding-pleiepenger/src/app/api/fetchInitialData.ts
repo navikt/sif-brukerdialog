@@ -1,7 +1,11 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
-import { isSøknadInitialDataErrorState, SøknadInitialIkkeTilgang } from '../hooks/useSøknadInitialData';
+import {
+    IngenTilgangMeta,
+    isSøknadInitialDataErrorState,
+    SøknadInitialIkkeTilgang,
+} from '../hooks/useSøknadInitialData';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
 import { isK9Sak, isUgyldigK9SakFormat, K9Sak, UgyldigK9SakFormat } from '../types/K9Sak';
@@ -20,12 +24,14 @@ import søknadStateEndpoint, {
 } from './endpoints/søknadStateEndpoint';
 
 export const getKanIkkeBrukeSøknadRejection = (
-    årsak: IngenTilgangÅrsak
-): Pick<SøknadInitialIkkeTilgang, 'årsak' | 'kanBrukeSøknad' | 'status'> => {
+    årsak: IngenTilgangÅrsak,
+    ingenTilgangMeta?: IngenTilgangMeta
+): Pick<SøknadInitialIkkeTilgang, 'årsak' | 'kanBrukeSøknad' | 'status' | 'ingenTilgangMeta'> => {
     return {
         status: RequestStatus.success,
         kanBrukeSøknad: false,
         årsak,
+        ingenTilgangMeta,
     };
 };
 
@@ -84,7 +90,8 @@ const kontrollerTilgang = async (
             );
         }
     }
-    return Promise.reject(getKanIkkeBrukeSøknadRejection(resultat.årsak));
+
+    return Promise.reject(getKanIkkeBrukeSøknadRejection(resultat.årsak, resultat.ingenTilgangMeta));
 };
 
 const hentOgKontrollerLagretSøknadState = async (

@@ -44,11 +44,14 @@ type SøknadInitialNotLoggedIn = {
     status: RequestStatus.redirectingToLogin;
 };
 
+export type IngenTilgangMeta = { erArbeidstaker?: boolean; erSN?: boolean; erFrilanser?: boolean };
+
 export type SøknadInitialIkkeTilgang = {
     status: RequestStatus.success;
     kanBrukeSøknad: false;
     årsak: IngenTilgangÅrsak;
     søker: Søker;
+    ingenTilgangMeta?: IngenTilgangMeta;
 };
 
 type SøknadInitialDataState =
