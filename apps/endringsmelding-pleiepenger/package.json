@@ -126,6 +126,7 @@
         "sass-loader": "13.2.2",
         "source-map-loader": "4.0.1",
         "start-server-and-test": "2.0.0",
+        "storybook": "7.0.7",
         "style-loader": "3.3.2",
         "tailwindcss": "3.3.2",
         "ts-loader": "9.4.2",
