@@ -48,7 +48,8 @@
         "react": "18.2.0",
         "react-collapse": "5.1.1",
         "react-day-picker": "8.7.1",
-        "react-intl": "6.4.1"
+        "react-intl": "6.4.1",
+        "react-router-dom": "6.10.0"
     },
     "devDependencies": {
         "@babel/core": "7.21.4",
@@ -111,5 +112,8 @@
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "lint": "eslint ./src --ext js,ts,tsx"
     },
-    "snyk": true
+    "snyk": true,
+    "resolutions": {
+        "babel-core": "7.0.0-bridge.0"
+    }
 }

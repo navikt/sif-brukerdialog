@@ -6,7 +6,6 @@ import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { FormikState } from 'formik';
-import { ulid } from 'ulid';
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
@@ -15,6 +14,7 @@ import { getSkjemanavn } from '../types/skjemanavn';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
+import { v4 as uuid } from 'uuid';
 import {
     navigateTo,
     navigateToErrorPage,
@@ -115,7 +115,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
     const startSoknad = async (): Promise<void> => {
         try {
             await resetSoknad(false);
-            setSoknadId(ulid());
+            setSoknadId(uuid());
             await soknadTempStorage.create(søknadstype);
             await logSoknadStartet(skjemanavn);
             const firstStepID = getFirstStep(søknadstype);

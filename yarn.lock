@@ -3491,7 +3491,6 @@ __metadata:
     style-loader: 3.3.2
     ts-loader: 9.4.2
     typescript: 5.0.4
-    ulid: 2.3.0
     webpack: 5.81.0
     webpack-dev-server: 4.13.3
   languageName: unknown
@@ -3622,7 +3621,6 @@ __metadata:
     ts-loader: 9.4.2
     ts-prune: 0.10.3
     typescript: 5.0.4
-    ulid: 2.3.0
     webpack: 5.81.0
     webpack-dev-server: 4.13.3
   languageName: unknown
@@ -3730,7 +3728,6 @@ __metadata:
     style-loader: 3.3.2
     ts-loader: 9.4.2
     typescript: 5.0.4
-    ulid: 2.3.0
     webpack: 5.81.0
     webpack-dev-server: 4.13.3
   languageName: unknown
@@ -3751,7 +3748,6 @@ __metadata:
     "@testing-library/react-hooks": 8.0.1
     "@testing-library/user-event": 14.4.3
     check-peer-dependencies: ^4.2.0
-    classnames: 2.3.2
     esbuild: 0.17.18
     esbuild-jest: 0.5.0
     eslint: 8.39.0
@@ -3767,7 +3763,6 @@ __metadata:
     postcss-loader: 7.2.4
     postcss-nested: 6.0.1
     prettier: 2.8.8
-    prop-types: 15.8.1
     react: 18.2.0
     react-dom: 18.2.0
     react-scripts: 5.0.1
@@ -4072,7 +4067,7 @@ __metadata:
     rimraf: 5.0.0
     sass: 1.62.1
     sass-loader: 13.2.2
-    ulid: 2.3.0
+    uuid: 9.0.0
     webpack: 5.81.0
   peerDependencies:
     "@devexperts/remote-data-ts": 2.x
@@ -4183,6 +4178,7 @@ __metadata:
     react-day-picker: 8.7.1
     react-dom: 18.2.0
     react-intl: 6.4.1
+    react-router-dom: 6.10.0
     react-scripts: 5.0.1
     sass: 1.62.1
     sass-loader: 13.2.2
@@ -9417,7 +9413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-core@npm:7.0.0-bridge.0":
+"babel-core@npm:^7.0.0-bridge.0":
   version: 7.0.0-bridge.0
   resolution: "babel-core@npm:7.0.0-bridge.0"
   peerDependencies:
@@ -21207,6 +21203,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"picocolors@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "picocolors@npm:0.2.1"
+  checksum: 3b0f441f0062def0c0f39e87b898ae7461c3a16ffc9f974f320b44c799418cabff17780ee647fda42b856a1dc45897e2c62047e1b546d94d6d5c6962f45427b2
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
@@ -22337,7 +22340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8":
+"postcss@npm:8.4.23, postcss@npm:^8.0.9, postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.19, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
   version: 8.4.23
   resolution: "postcss@npm:8.4.23"
   dependencies:
@@ -22345,6 +22348,16 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: 8bb9d1b2ea6e694f8987d4f18c94617971b2b8d141602725fedcc2222fdc413b776a6e1b969a25d627d7b2681ca5aabb56f59e727ef94072e1b6ac8412105a2f
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^7.0.14, postcss@npm:^7.0.32, postcss@npm:^7.0.35, postcss@npm:^7.0.5, postcss@npm:^7.0.6":
+  version: 7.0.39
+  resolution: "postcss@npm:7.0.39"
+  dependencies:
+    picocolors: ^0.2.1
+    source-map: ^0.6.1
+  checksum: 4ac793f506c23259189064bdc921260d869a115a82b5e713973c5af8e94fbb5721a5cc3e1e26840500d7e1f1fa42a209747c5b1a151918a9bc11f0d7ed9048e3
   languageName: node
   linkType: hard
 
@@ -26813,15 +26826,6 @@ __metadata:
   bin:
     uglifyjs: bin/uglifyjs
   checksum: 7b3897df38b6fc7d7d9f4dcd658599d81aa2b1fb0d074829dd4e5290f7318dbca1f4af2f45acb833b95b1fe0ed4698662ab61b87e94328eb4c0a0d3435baf924
-  languageName: node
-  linkType: hard
-
-"ulid@npm:2.3.0":
-  version: 2.3.0
-  resolution: "ulid@npm:2.3.0"
-  bin:
-    ulid: ./bin/cli.js
-  checksum: d6dbf253fdc189f60fe2829d934ee5447b3dab62d05449a2e0fe89670d77087dd6eba4f844a69f9ffdb01384ec6fd97bdd9be638fc67d593569a45e8969f1e69
   languageName: node
   linkType: hard
 

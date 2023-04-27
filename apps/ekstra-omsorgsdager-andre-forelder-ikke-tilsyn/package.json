@@ -61,8 +61,7 @@
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.1",
         "react-intl": "6.4.1",
-        "react-router-dom": "6.10.0",
-        "ulid": "2.3.0"
+        "react-router-dom": "6.10.0"
     },
     "devDependencies": {
         "@babel/core": "7.21.4",
@@ -116,5 +115,8 @@
                 }
             }
         ]
+    },
+    "resolutions": {
+        "babel-core": "7.0.0-bridge.0"
     }
 }
