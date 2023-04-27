@@ -1,5 +1,22 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.8.0
+
+### Minor Changes
+
+-   cb18991: Oppdatert yarn, package.json, storybook + generell refactoring
+
+### Patch Changes
+
+-   Updated dependencies [cb18991]
+    -   @navikt/sif-common-amplitude@2.13.0
+    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-formik-ds@0.17.0
+    -   @navikt/sif-common-forms-ds@7.0.0
+    -   @navikt/sif-common-sentry@0.13.0
+    -   @navikt/sif-common-soknad-ds@8.0.0
+    -   @navikt/sif-common-utils@3.31.0
+
 ## 2.7.0
 
 ### Minor Changes

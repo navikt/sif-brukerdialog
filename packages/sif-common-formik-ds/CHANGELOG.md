@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.17.0
+
+### Minor Changes
+
+-   cb18991: Oppdatert yarn, package.json, storybook + generell refactoring
+
 ## 0.16.1
 
 ### Patch Changes

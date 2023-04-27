@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.13.0
+
+### Minor Changes
+
+-   cb18991: Oppdatert yarn, package.json, storybook + generell refactoring
+
 ## 2.12.1
 
 ### Patch Changes
