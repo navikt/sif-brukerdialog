@@ -18,6 +18,7 @@ const envSettings = (MSW) => {
         MSW: '${MSW || process.env.MSW}',
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
+        NY_ARBEIDSGIVER: '${process.env.NY_ARBEIDSGIVER}',
         IMAGE: '${process.env.IMAGE}',
     };`
         .trim()

@@ -11,9 +11,9 @@ import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
 import { IngenTilgangMeta } from '../../hooks/useSøknadInitialData';
 
-interface Props {
+export interface IngenTilgangPageProps {
     søker: Søker;
-    årsak: IngenTilgangÅrsak;
+    årsak: IngenTilgangÅrsak[];
     ingenTilgangMeta?: IngenTilgangMeta;
 }
 
@@ -118,7 +118,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     }
 };
 
-const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: Props) => {
+const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
     const { logInfo } = useAmplitudeInstance();
 
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
@@ -134,7 +134,7 @@ const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: Props) => {
                     <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
                         Hei {søker.fornavn}
                     </Heading>
-                    {getÅrsakMelding(årsak)}
+                    {getÅrsakMelding(årsak[0])}
                 </SifGuidePanel>
                 {getEnvironmentVariable('MSW') === 'on' && <DevFooter />}
             </Page>

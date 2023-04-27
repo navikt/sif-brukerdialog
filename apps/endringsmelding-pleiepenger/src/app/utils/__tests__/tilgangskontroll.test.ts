@@ -44,7 +44,7 @@ describe('tilgangskontroll', () => {
         const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
         if (result.kanBrukeSøknad === false) {
-            expect(result.årsak).toEqual(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
+            expect(result.årsak).toContain(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
         }
     });
     it('stopper hvis det er arbeidsaktivitet i sak som ikke har arbeidsgiver', () => {
@@ -66,7 +66,7 @@ describe('tilgangskontroll', () => {
         const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
         if (result.kanBrukeSøknad === false) {
-            expect(result.årsak).toEqual(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
+            expect(result.årsak).toContain(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
         }
     });
 });

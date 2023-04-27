@@ -49,7 +49,7 @@ export type IngenTilgangMeta = { erArbeidstaker?: boolean; erSN?: boolean; erFri
 export type SøknadInitialIkkeTilgang = {
     status: RequestStatus.success;
     kanBrukeSøknad: false;
-    årsak: IngenTilgangÅrsak;
+    årsak: IngenTilgangÅrsak[];
     søker: Søker;
     ingenTilgangMeta?: IngenTilgangMeta;
 };

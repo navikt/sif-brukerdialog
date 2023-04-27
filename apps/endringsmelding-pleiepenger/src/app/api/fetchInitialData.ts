@@ -24,7 +24,7 @@ import søknadStateEndpoint, {
 } from './endpoints/søknadStateEndpoint';
 
 export const getKanIkkeBrukeSøknadRejection = (
-    årsak: IngenTilgangÅrsak,
+    årsak: IngenTilgangÅrsak[],
     ingenTilgangMeta?: IngenTilgangMeta
 ): Pick<SøknadInitialIkkeTilgang, 'årsak' | 'kanBrukeSøknad' | 'status' | 'ingenTilgangMeta'> => {
     return {
@@ -40,22 +40,22 @@ const kontrollerSaker = (
     tillattEndringsperiode: DateRange
 ): Promise<{ k9saker: K9Sak[]; dateRangeAlleSaker: DateRange }> => {
     if (k9sakerResult.length === 0) {
-        return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harIngenSak));
+        return Promise.reject(getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.harIngenSak]));
     }
 
     const ugyldigk9FormatSaker: UgyldigK9SakFormat[] = k9sakerResult.filter(isUgyldigK9SakFormat);
     const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
 
     if (ugyldigk9FormatSaker.length > 0) {
-        return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harUgyldigK9FormatSak));
+        return Promise.reject(getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.harUgyldigK9FormatSak]));
     }
     const dateRangeAlleSaker = getSamletDateRangeForK9Saker(k9saker);
     if (dateRangeAlleSaker === undefined) {
-        return Promise.reject(getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.harIngenPerioder));
+        return Promise.reject(getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.harIngenPerioder]));
     }
     if (dateRangeUtils.dateRangesCollide([dateRangeAlleSaker, tillattEndringsperiode]) === false) {
         return Promise.reject(
-            getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode)
+            getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode])
         );
     }
 
@@ -151,7 +151,7 @@ export const fetchInitialData = async (
                 );
                 if (!periodeForArbeidsgiveroppslag) {
                     return Promise.reject(
-                        getKanIkkeBrukeSøknadRejection(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode)
+                        getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode])
                     );
                 }
                 return arbeidsgivereEndpoint.fetch(periodeForArbeidsgiveroppslag);

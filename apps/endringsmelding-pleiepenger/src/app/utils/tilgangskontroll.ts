@@ -11,7 +11,7 @@ dayjs.extend(isSameOrAfter);
 
 type TilgangNektet = {
     kanBrukeSøknad: false;
-    årsak: IngenTilgangÅrsak;
+    årsak: IngenTilgangÅrsak[];
     ingenTilgangMeta?: IngenTilgangMeta;
 };
 
@@ -30,7 +30,7 @@ export const tilgangskontroll = (
     if (saker.length === 0) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harIngenSak,
+            årsak: [IngenTilgangÅrsak.harIngenSak],
         };
     }
 
@@ -38,47 +38,46 @@ export const tilgangskontroll = (
     if (saker.length > 1) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harMerEnnEnSak,
+            årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
         };
     }
 
     /** Bruker har bare én sak */
 
     const sak = saker[0];
+    const ingenTilgangÅrsak: IngenTilgangÅrsak[] = [];
 
     /** Søknadsperiode er før tillatt endringsperiode */
     if (!harSøknadsperiodeInnenforTillattEndringsperiode(getSamletDateRangeForK9Saker([sak]), tillattEndringsperiode)) {
-        return {
-            kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
-            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
-        };
-    }
-    /**
-     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak
-     */
-    if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
-        return {
-            kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet,
-            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
-        };
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode);
+        // return {
+        //     kanBrukeSøknad: false,
+        //     årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
+        //     ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
+        // };
     }
 
     /** Bruker har registrert arbeidsaktivitet i sak på arbeidsgiver som ikke er registrert i AAreg */
     if (harArbeidsaktivitetUtenArbeidsgiver(sak.ytelse.arbeidstid.arbeidstakerList, arbeidsgivere)) {
-        return {
-            kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver,
-            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
-        };
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
     }
 
     /** Bruker er SN */
     if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
+    }
+
+    /**
+     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak
+     */
+    if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
+    }
+
+    if (ingenTilgangÅrsak.length > 0) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende,
+            årsak: ingenTilgangÅrsak,
             ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
         };
     }
