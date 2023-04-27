@@ -1,5 +1,22 @@
 # @navikt/omsorgspengesoknad
 
+## 1.8.0
+
+### Minor Changes
+
+-   cb189915: Oppdatert yarn, package.json, storybook + generell refactoring
+
+### Patch Changes
+
+-   Updated dependencies [cb189915]
+    -   @navikt/sif-common-amplitude@2.13.0
+    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-formik-ds@0.17.0
+    -   @navikt/sif-common-forms-ds@7.0.0
+    -   @navikt/sif-common-sentry@0.13.0
+    -   @navikt/sif-common-soknad-ds@8.0.0
+    -   @navikt/sif-common-utils@3.31.0
+
 ## 1.7.3
 
 ### Patch Changes

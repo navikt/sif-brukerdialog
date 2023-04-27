@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.13.0
+
+### Minor Changes
+
+-   cb189915: Oppdatert yarn, package.json, storybook + generell refactoring
+
 ## 0.12.1
 
 ### Patch Changes
