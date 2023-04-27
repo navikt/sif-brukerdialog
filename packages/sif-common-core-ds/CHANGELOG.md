@@ -1,5 +1,18 @@
 # @navikt/sif-common-core-ds
 
+## 7.1.0
+
+### Minor Changes
+
+-   cb189915: Oppdatert yarn, package.json, storybook + generell refactoring
+
+### Patch Changes
+
+-   Updated dependencies [cb189915]
+    -   @navikt/appstatus-react-ds@2.4.0
+    -   @navikt/sif-common-formik-ds@0.17.0
+    -   @navikt/sif-common-utils@3.31.0
+
 ## 7.0.2
 
 ### Patch Changes

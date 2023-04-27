@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 6.1.0
+
+### Minor Changes
+
+-   cb189915: Oppdatert yarn, package.json, storybook + generell refactoring
+
+### Patch Changes
+
+-   Updated dependencies [cb189915]
+    -   @navikt/sif-common-core-ds@8.0.0
+
 ## 6.0.1
 
 ### Patch Changes

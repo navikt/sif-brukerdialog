@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.4.0
+
+### Minor Changes
+
+-   cb189915: Oppdatert yarn, package.json, storybook + generell refactoring
+
 ## 2.3.1
 
 ### Patch Changes
