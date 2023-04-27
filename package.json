@@ -19,6 +19,7 @@
         "@testing-library/react": "14.0.0",
         "@testing-library/react-hooks": "8.0.1",
         "@testing-library/user-event": "14.4.3",
+        "check-peer-dependencies": "^4.2.0",
         "esbuild": "0.17.18",
         "esbuild-jest": "0.5.0",
         "eslint": "8.39.0",
@@ -88,8 +89,5 @@
     },
     "private": true,
     "snyk": true,
-    "dependencies": {
-        "check-peer-dependencies": "^4.2.0"
-    },
     "packageManager": "yarn@3.5.0"
 }
