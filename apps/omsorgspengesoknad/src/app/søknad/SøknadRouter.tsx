@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
@@ -7,6 +7,7 @@ import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
+import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
@@ -37,19 +38,24 @@ const SøknadRouter = () => {
         }
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
+    const restartSøknad = useCallback(async () => {
+        await slettMellomlagring();
+        relocateToWelcomePage();
+    }, [slettMellomlagring]);
+
     useEffect(() => {
         if (shouldResetSøknad) {
             dispatch(actionsCreator.resetSøknad());
-            setShouldResetSøknad(false);
-            navigateTo(SøknadRoutes.VELKOMMEN);
+            setTimeout(restartSøknad);
         }
-    }, [shouldResetSøknad, navigateTo, dispatch]);
+    }, [shouldResetSøknad, dispatch, restartSøknad]);
 
     if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
         setShouldResetSøknad(true);
     }
 
-    if (søknadsdata.velkommen?.harForståttRettigheterOgPlikter === false) {
+    if (søknadsdata.velkommen !== undefined && søknadsdata.velkommen.harForståttRettigheterOgPlikter !== true) {
+        setShouldResetSøknad(true);
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
