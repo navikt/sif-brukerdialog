@@ -1,5 +1,11 @@
 # @navikt/omsorgspengesoknad
 
+## 1.8.1
+
+### Patch Changes
+
+-   314e473: Restarte søknad dersom bruker kommer i en ugyldig data-situasjon på velkommen søknadsdata
+
 ## 1.8.0
 
 ### Minor Changes
