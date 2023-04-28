@@ -29,7 +29,7 @@
         "@babel/preset-typescript": "7.21.4",
         "@formatjs/intl-pluralrules": "5.2.1",
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "2.9.0",
+        "@navikt/ds-css": "2.9.2",
         "@navikt/ds-datepicker": "4.1.8",
         "@navikt/ds-icons": "2.9.0",
         "@navikt/ds-react": "2.9.0",
