@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.9.0
+
+### Minor Changes
+
+-   6017341: Logge informasjon om bruker er sn, frilanser eller arbeidstaker
+
 ## 2.8.0
 
 ### Minor Changes
