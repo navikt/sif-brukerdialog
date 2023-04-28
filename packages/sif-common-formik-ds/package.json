@@ -10,7 +10,7 @@
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },
     "dependencies": {
-        "@navikt/ds-icons": "2.9.0",
+        "@navikt/ds-icons": "2.9.2",
         "classnames": "2.3.2",
         "i18n-iso-countries": "7.6.0",
         "lodash.debounce": "4.0.8",
