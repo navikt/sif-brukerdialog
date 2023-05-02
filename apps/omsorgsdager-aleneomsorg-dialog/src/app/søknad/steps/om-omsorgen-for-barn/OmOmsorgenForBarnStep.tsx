@@ -1,11 +1,10 @@
-import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import ItemList from '@navikt/sif-common-core-ds/lib/components/item-list/ItemList';
+import ItemList from '@navikt/sif-common-core-ds/lib/components/lists/item-list/ItemList';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/AnnetBarnListAndDialog';
 import { nYearsAgo } from '../../../utils/aldersUtils';
@@ -27,7 +26,7 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { Alert, Heading } from '@navikt/ds-react';
 import {
     getOmOmsorgenForBarnStepInitialValues,

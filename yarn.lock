@@ -1264,7 +1264,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-modules-commonjs@npm:^7.20.11, @babel/plugin-transform-modules-commonjs@npm:^7.21.5":
+"@babel/plugin-transform-modules-commonjs@npm:^7.21.5":
   version: 7.21.5
   resolution: "@babel/plugin-transform-modules-commonjs@npm:7.21.5"
   dependencies:
@@ -3542,13 +3542,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^2.8.13":
-  version: 2.9.3
-  resolution: "@navikt/aksel-icons@npm:2.9.3"
-  checksum: f27a00e0830f7e413904799441b9deac4598e731e2379bed0f2a189e2b006adbe01f8835a1f6883388db37278f6aa39bc2a67086265825475fecad39e2514a5b
-  languageName: node
-  linkType: hard
-
 "@navikt/aksel-icons@npm:^2.8.16":
   version: 2.8.16
   resolution: "@navikt/aksel-icons@npm:2.8.16"
@@ -3589,13 +3582,6 @@ __metadata:
     sass-loader: 13.x
   languageName: unknown
   linkType: soft
-
-"@navikt/ds-css@npm:2.8.13":
-  version: 2.8.13
-  resolution: "@navikt/ds-css@npm:2.8.13"
-  checksum: 8e021c79481e3e9a4eff9ca8329127c9131591b37c2ca8a419c393c20d7a1112e04203ea583f1e3ccd532c789e1731bda48f74e071596153402c0b48ed1c30db
-  languageName: node
-  linkType: hard
 
 "@navikt/ds-css@npm:2.9.0":
   version: 2.9.0
@@ -3645,19 +3631,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-icons@npm:^2.8.13":
-  version: 2.9.3
-  resolution: "@navikt/ds-icons@npm:2.9.3"
-  peerDependencies:
-    "@types/react": ^17.0.30 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 542164aec27ebda4c2d564ed69c28029a417daa80e4b33c2ab302dc4964f1c55fa0e22d95847974a3bf53e474733e8ec3799d65da4495b53c0e88f419bb2a5a0
-  languageName: node
-  linkType: hard
-
 "@navikt/ds-icons@npm:^2.8.16":
   version: 2.8.16
   resolution: "@navikt/ds-icons@npm:2.8.16"
@@ -3668,29 +3641,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 0ecb4b7f8df2af13ff863d036dc160cefe233970707b803d8810d344d0689de0c70f1ceb9cba13d3176d43ae5b6deedb981a587f642dbe57bf94b1c1475c40d8
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-react@npm:2.8.13":
-  version: 2.8.13
-  resolution: "@navikt/ds-react@npm:2.8.13"
-  dependencies:
-    "@floating-ui/react": 0.17.0
-    "@navikt/aksel-icons": ^2.8.13
-    "@navikt/ds-icons": ^2.8.13
-    "@radix-ui/react-tabs": 1.0.0
-    "@radix-ui/react-toggle-group": 1.0.0
-    clsx: ^1.2.1
-    date-fns: 2.29.3
-    react-day-picker: 8.3.4
-    react-modal: 3.15.1
-  peerDependencies:
-    "@types/react": ^17.0.30 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: b1e9bd2ee7953869cbf2b8cf64ac919bdf65251c7c498c789c6d0b166d6555e5bf35a67f1039eedf60c8d66781187350f346b64abcd04e6749179dbaf926bec1
   languageName: node
   linkType: hard
 
@@ -3737,13 +3687,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 2db137cedfb2162e6e710d25afa5f2ad1fa7cb02a7080ae538591a061d3c45d2c8ed112dc1a6f648d3a813c92058e6e4febff7ff4047057faf07f97f51fc52a9
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-tailwind@npm:2.8.13":
-  version: 2.8.13
-  resolution: "@navikt/ds-tailwind@npm:2.8.13"
-  checksum: 9e57f30ff508bff402aeac78eea637e77046af9620d292044d78d011e8636c5a9e11e5746459080316c5661eddda7483d2e06de97df7b83e9efd85b234e97dfd
   languageName: node
   linkType: hard
 
@@ -5157,15 +5100,6 @@ __metadata:
   dependencies:
     "@sinonjs/commons": ^1.7.0
   checksum: 09b5a158ce013a6c37613258bad79ca4efeb99b1f59c41c73cca36cac00b258aefcf46eeea970fccf06b989414d86fe9f54c1102272c0c3bdd51a313cea80949
-  languageName: node
-  linkType: hard
-
-"@snyk/protect@npm:1.1142.0":
-  version: 1.1142.0
-  resolution: "@snyk/protect@npm:1.1142.0"
-  bin:
-    snyk-protect: bin/snyk-protect
-  checksum: b12dd368195d30eda37c277e3f14c7068d8a676d24dd0724ae11f16c9f1f42197b4868b6615d29330e061db97e73f9638d7a984fa1e316470a97b5338ac57974
   languageName: node
   linkType: hard
 
@@ -7777,21 +7711,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.0.11, @types/react-dom@npm:^18.0.0":
-  version: 18.0.11
-  resolution: "@types/react-dom@npm:18.0.11"
-  dependencies:
-    "@types/react": "*"
-  checksum: 579691e4d5ec09688087568037c35edf8cfb1ab3e07f6c60029280733ee7b5c06d66df6fcc90786702c93ac8cb13bc7ff16c79ddfc75d082938fbaa36e1cdbf4
-  languageName: node
-  linkType: hard
-
 "@types/react-dom@npm:18.2.1":
   version: 18.2.1
   resolution: "@types/react-dom@npm:18.2.1"
   dependencies:
     "@types/react": "*"
   checksum: 4e607a9d08f707ae2bd6b377f1da32989dcbe4e38ac39110423a1f6bc95dd53a5484f7f952b34e9d12b5f29a265d52a8c74c1a7d1d1e25be0fa69ccf9d64209f
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.0.0":
+  version: 18.0.11
+  resolution: "@types/react-dom@npm:18.0.11"
+  dependencies:
+    "@types/react": "*"
+  checksum: 579691e4d5ec09688087568037c35edf8cfb1ab3e07f6c60029280733ee7b5c06d66df6fcc90786702c93ac8cb13bc7ff16c79ddfc75d082938fbaa36e1cdbf4
   languageName: node
   linkType: hard
 
@@ -7834,7 +7768,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:18.0.37, @types/react@npm:>=16":
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:>=16":
   version: 18.0.37
   resolution: "@types/react@npm:18.0.37"
   dependencies:
@@ -15863,18 +15797,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^9.2.0":
-  version: 9.3.5
-  resolution: "glob@npm:9.3.5"
-  dependencies:
-    fs.realpath: ^1.0.0
-    minimatch: ^8.0.2
-    minipass: ^4.2.4
-    path-scurry: ^1.6.1
-  checksum: 94b093adbc591bc36b582f77927d1fb0dbf3ccc231828512b017601408be98d1fe798fc8c0b19c6f2d1a7660339c3502ce698de475e9d938ccbb69b47b647c84
-  languageName: node
-  linkType: hard
-
 "global-dirs@npm:^3.0.0":
   version: 3.0.1
   resolution: "global-dirs@npm:3.0.1"
@@ -16414,7 +16336,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-webpack-plugin@npm:5.5.1, html-webpack-plugin@npm:^5.0.0, html-webpack-plugin@npm:^5.5.0":
+"html-webpack-plugin@npm:5.5.1, html-webpack-plugin@npm:^5.0.0, html-webpack-plugin@npm:^5.5.0, html-webpack-plugin@npm:^5.5.1":
   version: 5.5.1
   resolution: "html-webpack-plugin@npm:5.5.1"
   dependencies:
@@ -20159,15 +20081,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^8.0.2":
-  version: 8.0.4
-  resolution: "minimatch@npm:8.0.4"
-  dependencies:
-    brace-expansion: ^2.0.1
-  checksum: 2e46cffb86bacbc524ad45a6426f338920c529dd13f3a732cc2cf7618988ee1aae88df4ca28983285aca9e0f45222019ac2d14ebd17c1edadd2ee12221ab801a
-  languageName: node
-  linkType: hard
-
 "minimatch@npm:^9.0.0":
   version: 9.0.0
   resolution: "minimatch@npm:9.0.0"
@@ -20255,7 +20168,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minipass@npm:^4.0.0, minipass@npm:^4.2.4":
+"minipass@npm:^4.0.0":
   version: 4.2.8
   resolution: "minipass@npm:4.2.8"
   checksum: 7f4914d5295a9a30807cae5227a37a926e6d910c03f315930fde52332cf0575dfbc20295318f91f0baf0e6bb11a6f668e30cde8027dea7a11b9d159867a3c830
@@ -21159,12 +21072,12 @@ __metadata:
   resolution: "omsorgsdager-aleneomsorg-dialog@workspace:apps/omsorgsdager-aleneomsorg-dialog"
   dependencies:
     "@babel/plugin-proposal-object-rest-spread": ^7.20.7
-    "@babel/plugin-transform-modules-commonjs": ^7.20.11
+    "@babel/plugin-transform-modules-commonjs": ^7.21.2
     "@babel/preset-env": ^7.21.4
     "@babel/preset-react": ^7.18.6
-    "@navikt/ds-css": 2.8.13
-    "@navikt/ds-react": 2.8.13
-    "@navikt/ds-tailwind": 2.8.13
+    "@navikt/ds-css": 2.9.0
+    "@navikt/ds-react": 2.9.0
+    "@navikt/ds-tailwind": 2.9.0
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -21172,11 +21085,11 @@ __metadata:
     "@navikt/sif-common-sentry": "*"
     "@navikt/sif-common-soknad-ds": "*"
     "@navikt/sif-common-utils": "*"
-    "@snyk/protect": 1.1142.0
+    "@snyk/protect": 1.1146.0
     "@testing-library/react": 14.0.0
     "@types/object-hash": 3.0.2
-    "@types/react": 18.0.37
-    "@types/react-dom": 18.0.11
+    "@types/react": 18.2.0
+    "@types/react-dom": 18.2.1
     "@types/react-router-dom": 5.3.3
     axios: 1.3.5
     babel-polyfill: ^6.26.0
@@ -21192,7 +21105,7 @@ __metadata:
     helmet: 6.1.5
     history: ^5.3.0
     html-webpack-harddisk-plugin: ^2.0.0
-    html-webpack-plugin: ^5.5.0
+    html-webpack-plugin: ^5.5.1
     http-proxy-middleware: ^2.0.6
     jose: 4.14.0
     jsdom: 21.1.0
@@ -21202,20 +21115,20 @@ __metadata:
     mustache-express: ^1.3.2
     npm-run-all: ^4.1.5
     object-hash: ^3.0.0
-    openid-client: ^5.4.0
+    openid-client: ^5.4.2
     promise: ^8.3.0
     react: 18.2.0
     react-dom: 18.2.0
     react-fast-compare: 3.2.1
     react-intl: 6.4.1
     react-router-dom: 6.10.0
-    rimraf: 4.3.0
+    rimraf: 5.0.0
     source-map-loader: ^4.0.1
     style-loader: 3.3.2
     ts-loader: ^9.4.2
     ulid: 2.3.0
     uuid: 9.0.0
-    webpack: 5.79.0
+    webpack: 5.81.0
     webpack-dev-server: ^4.13.3
   languageName: unknown
   linkType: soft
@@ -21293,7 +21206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openid-client@npm:5.4.2, openid-client@npm:^5.4.0":
+"openid-client@npm:5.4.2, openid-client@npm:^5.4.2":
   version: 5.4.2
   resolution: "openid-client@npm:5.4.2"
   dependencies:
@@ -21742,7 +21655,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-scurry@npm:^1.6.1, path-scurry@npm:^1.7.0":
+"path-scurry@npm:^1.7.0":
   version: 1.7.0
   resolution: "path-scurry@npm:1.7.0"
   dependencies:
@@ -24617,17 +24530,6 @@ __metadata:
   version: 1.3.0
   resolution: "rfdc@npm:1.3.0"
   checksum: fb2ba8512e43519983b4c61bd3fa77c0f410eff6bae68b08614437bc3f35f91362215f7b4a73cbda6f67330b5746ce07db5dd9850ad3edc91271ad6deea0df32
-  languageName: node
-  linkType: hard
-
-"rimraf@npm:4.3.0":
-  version: 4.3.0
-  resolution: "rimraf@npm:4.3.0"
-  dependencies:
-    glob: ^9.2.0
-  bin:
-    rimraf: dist/cjs/src/bin.js
-  checksum: 48498f1eeb9b6b848605d93fa79e7bf3c57bb47807500ee636848dc0fd3b69b6b532f1ce9d4e46c4feeb4c3ff0e8ab85cd177cbbbd65f635f8bc8cb88aee151c
   languageName: node
   linkType: hard
 
@@ -28297,7 +28199,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:5, webpack@npm:5.79.0, webpack@npm:^5.64.4, webpack@npm:^5.9.0":
+"webpack@npm:5, webpack@npm:^5.64.4, webpack@npm:^5.9.0":
   version: 5.79.0
   resolution: "webpack@npm:5.79.0"
   dependencies:

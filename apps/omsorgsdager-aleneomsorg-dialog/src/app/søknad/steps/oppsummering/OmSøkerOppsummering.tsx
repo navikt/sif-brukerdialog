@@ -2,9 +2,8 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
-import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
 import { Søker } from '../../../types/Søker';
-import { SummaryBlock } from '@navikt/sif-common-soknad-ds/lib';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds/lib';
 
 interface Props {
     søker: Søker;

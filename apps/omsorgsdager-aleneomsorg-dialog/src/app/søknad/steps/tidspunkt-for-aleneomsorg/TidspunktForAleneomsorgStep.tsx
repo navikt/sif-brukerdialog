@@ -1,5 +1,4 @@
-import React from 'react';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
@@ -12,7 +11,7 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import SøknadStep from '../../SøknadStep';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';

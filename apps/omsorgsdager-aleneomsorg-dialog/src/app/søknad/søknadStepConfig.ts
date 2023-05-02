@@ -2,8 +2,8 @@ import {
     SoknadApplicationType,
     SoknadStepsConfig,
     StepConfig,
-} from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+} from '@navikt/sif-common-soknad-ds/lib/modules/soknad-step/soknadStepTypes';
+import { soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../types/StepId';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
@@ -17,7 +17,7 @@ export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>
         return getSøknadStepRoute(step);
     });
 
-export const getSøknadStepConfigForStep = (søknadsdata: Søknadsdata, stepId: StepId): StepConfig<StepId> => {
+export const getSøknadStepConfigForStep = (_søknadsdata: Søknadsdata, stepId: StepId): StepConfig<StepId> => {
     const config = getSøknadStepConfig()[stepId];
     if (!config) {
         throw `Missing step config ${stepId}`;

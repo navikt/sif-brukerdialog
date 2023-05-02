@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
@@ -12,7 +11,7 @@ import {
     TidspunktForAleneomsorgFormValues,
 } from './TidspunktForAleneomsorgStep';
 import { dateToday } from '@navikt/sif-common-utils/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { BarnMedAleneomsorg, getMinDateYearAgo, getYear } from './tidspunktForAleneomsorgStepUtils';
 
 interface Props {

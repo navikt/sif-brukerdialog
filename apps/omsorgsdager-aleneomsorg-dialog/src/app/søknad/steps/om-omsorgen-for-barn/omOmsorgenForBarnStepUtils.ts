@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { RegistrertBarn } from 'app/types/RegistrertBarn';
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmOmsorgenForBarnSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmOmsorgenForBarnFormValues } from './OmOmsorgenForBarnStep';
 

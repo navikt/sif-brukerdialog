@@ -1,8 +1,7 @@
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import Kvittering from '@navikt/sif-common-core-ds/lib/components/kvittering/Kvittering';
+import Kvittering from '@navikt/sif-common-soknad-ds/lib/components/kvittering/Kvittering';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import { Link } from '@navikt/ds-react';
 import getLenker from '../../lenker';

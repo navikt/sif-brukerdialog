@@ -1,8 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
+import { Step, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
 import { getSøknadStepConfig } from './søknadStepConfig';
