@@ -85,7 +85,7 @@ const prepInitialData = (
         ? k9saker.find((k9sak) => k9sak.barn.aktørId === lagretSøknadState.barnAktørId)
         : undefined;
 
-    const getInitialSak = () => {
+    const getInitialSak = (): Sak | undefined => {
         if (persistedSak) {
             return getSakFromK9Sak(persistedSak, arbeidsgivere, tillattEndringsperiode);
         }

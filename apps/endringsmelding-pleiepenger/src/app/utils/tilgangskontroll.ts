@@ -6,6 +6,7 @@ import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
 import { K9Sak, K9SakArbeidstaker, K9SakArbeidstid, K9SakArbeidstidInfo } from '../types/K9Sak';
 import { getSamletDateRangeForK9Saker } from './k9SakUtils';
+import { Feature, isFeatureEnabled } from './featureToggleUtils';
 
 dayjs.extend(isSameOrAfter);
 
@@ -50,11 +51,6 @@ export const tilgangskontroll = (
     /** Søknadsperiode er før tillatt endringsperiode */
     if (!harSøknadsperiodeInnenforTillattEndringsperiode(getSamletDateRangeForK9Saker([sak]), tillattEndringsperiode)) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode);
-        // return {
-        //     kanBrukeSøknad: false,
-        //     årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
-        //     ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
-        // };
     }
 
     /** Bruker har registrert arbeidsaktivitet i sak på arbeidsgiver som ikke er registrert i AAreg */
@@ -68,10 +64,12 @@ export const tilgangskontroll = (
     }
 
     /**
-     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak
+     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = nytt arbeidsforhold
      */
-    if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
-        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
+    if (isFeatureEnabled(Feature.NY_ARBEIDSGIVER) === false) {
+        if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
+            ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
+        }
     }
 
     if (ingenTilgangÅrsak.length > 0) {
@@ -110,10 +108,10 @@ const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
 
 const harArbeidsgiverUtenArbeidsaktivitet = (
     arbeidsgivere: Arbeidsgiver[],
-    arbeidsaktiviteter: K9SakArbeidstaker[] = []
+    k9SakArbeidstaker: K9SakArbeidstaker[] = []
 ): boolean => {
     return arbeidsgivere.some((arbeidsgiver) => {
-        return finnesArbeidsgiverISak(arbeidsgiver, arbeidsaktiviteter) === false;
+        return finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
     });
 };
 
@@ -126,7 +124,10 @@ const harArbeidsaktivitetUtenArbeidsgiver = (
         .some((id) => arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === id) === false);
 };
 
-const finnesArbeidsgiverISak = (arbeidsgiver: Arbeidsgiver, arbeidsgivereISak: K9SakArbeidstaker[]): boolean => {
+export const finnesArbeidsgiverIK9Sak = (
+    arbeidsgiver: Arbeidsgiver,
+    arbeidsgivereISak: K9SakArbeidstaker[]
+): boolean => {
     return arbeidsgivereISak.map(getArbeidsaktivitetId).some((id) => id === arbeidsgiver.organisasjonsnummer);
 };
 

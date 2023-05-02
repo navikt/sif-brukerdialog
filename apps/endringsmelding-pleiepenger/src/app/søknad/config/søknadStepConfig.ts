@@ -4,7 +4,11 @@ import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
 import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
 
-export const getSøknadSteps = (hvaSkalEndres: EndringType[], harFjernetFerie: boolean): StepId[] => {
+export const getSøknadSteps = (
+    hvaSkalEndres: EndringType[],
+    harFjernetFerie: boolean,
+    harNyArbeidsgiver: boolean
+): StepId[] => {
     const steps: StepId[] = [];
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres: ferieSkalEndres } = getEndringerSomSkalGjøres(
@@ -12,6 +16,9 @@ export const getSøknadSteps = (hvaSkalEndres: EndringType[], harFjernetFerie: b
         harFjernetFerie
     );
 
+    if (harNyArbeidsgiver) {
+        steps.push(StepId.ARBEIDSSITUASJON);
+    }
     if (ferieSkalEndres) {
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
@@ -24,10 +31,11 @@ export const getSøknadSteps = (hvaSkalEndres: EndringType[], harFjernetFerie: b
 
 export const getSøknadStepConfig = (
     hvaSkalEndres: EndringType[],
-    harFjernetFerie: boolean
+    harFjernetFerie: boolean,
+    harNyArbeidsgiver: boolean
 ): SoknadStepsConfig<StepId> =>
     soknadStepUtils.getStepsConfig(
-        getSøknadSteps(hvaSkalEndres, harFjernetFerie),
+        getSøknadSteps(hvaSkalEndres, harFjernetFerie, harNyArbeidsgiver),
         SoknadApplicationType.MELDING,
         (stepId: StepId) => getSøknadStepRoute(stepId)
     );

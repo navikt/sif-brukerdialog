@@ -76,6 +76,8 @@ export interface SakLovbestemtFerie {
 
 export interface Sak {
     barn: K9SakBarn;
+    harNyArbeidsgiver: boolean;
+    nyeArbeidsgivere: Arbeidsgiver[];
     arbeidAktiviteter: ArbeidAktiviteter;
     lovbestemtFerie: SakLovbestemtFerie;
     søknadsperioder: DateRange[];

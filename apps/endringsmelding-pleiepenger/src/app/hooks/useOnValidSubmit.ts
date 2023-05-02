@@ -22,7 +22,8 @@ export const useOnValidSubmit = <T>(
 
     const { nextStep } = getSøknadStepConfig(
         state.hvaSkalEndres,
-        harFjernetLovbestemtFerie(state.søknadsdata.lovbestemtFerie)
+        harFjernetLovbestemtFerie(state.søknadsdata.lovbestemtFerie),
+        state.sak.harNyArbeidsgiver
     )[stepId];
 
     useEffect(() => {

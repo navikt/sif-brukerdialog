@@ -13,9 +13,6 @@ import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
-import { Feature, isFeatureEnabled } from '../utils/featureToggleUtils';
-import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
-import NyArbeidsgiver from '../components/ny-arbeidsgiver/NyArbeidsgiver';
 
 const Søknad = () => {
     const location = useLocation();
@@ -56,13 +53,6 @@ const Søknad = () => {
 
     if (kanBrukeSøknad === false) {
         if (location.pathname === SøknadRoutes.IKKE_TILGANG) {
-            if (
-                isFeatureEnabled(Feature.NY_ARBEIDSGIVER) &&
-                initialData.årsak.length === 1 &&
-                initialData.årsak[0] === IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet
-            ) {
-                return <NyArbeidsgiver />;
-            }
             return (
                 <IngenTilgangPage
                     årsak={initialData.årsak}

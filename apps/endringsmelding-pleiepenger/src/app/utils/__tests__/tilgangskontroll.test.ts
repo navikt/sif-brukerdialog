@@ -17,6 +17,15 @@ jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
     },
 }));
 
+jest.mock('../featureToggleUtils', () => ({
+    Feature: {
+        NY_ARBEIDSGIVER: 'on',
+    },
+    isFeatureEnabled: () => {
+        return true;
+    },
+}));
+
 describe('tilgangskontroll', () => {
     const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-01/2023-03-01');
 
@@ -28,25 +37,25 @@ describe('tilgangskontroll', () => {
         const result = tilgangskontroll([true, false] as any, [], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
-    it('stopper hvis bruker har arbeidsgiver som ikke er i sak', () => {
-        const sak: K9Sak = {
-            ytelse: {
-                arbeidstid: {
-                    arbeidstakerList: [
-                        {
-                            organisasjonsnummer: '2',
-                        },
-                    ],
-                },
-                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2023-10-01')],
-            },
-        } as K9Sak;
-        const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
-        expect(result.kanBrukeSøknad).toBeFalsy();
-        if (result.kanBrukeSøknad === false) {
-            expect(result.årsak).toContain(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
-        }
-    });
+    // it('stopper hvis bruker har arbeidsgiver som ikke er i sak', () => {
+    //     const sak: K9Sak = {
+    //         ytelse: {
+    //             arbeidstid: {
+    //                 arbeidstakerList: [
+    //                     {
+    //                         organisasjonsnummer: '2',
+    //                     },
+    //                 ],
+    //             },
+    //             søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2023-10-01')],
+    //         },
+    //     } as K9Sak;
+    //     const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
+    //     expect(result.kanBrukeSøknad).toBeFalsy();
+    //     if (result.kanBrukeSøknad === false) {
+    //         expect(result.årsak).toContain(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
+    //     }
+    // });
     it('stopper hvis det er arbeidsaktivitet i sak som ikke har arbeidsgiver', () => {
         const sak: K9Sak = {
             ytelse: {

@@ -9,6 +9,7 @@ import { useStepFormValuesContext } from '../søknad/context/StepFormValuesConte
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getLovbestemtFerieSøknadsdataFromFormValues } from '../søknad/steps/lovbestemt-ferie/lovbestemtFerieStepUtils';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonStepUtils';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
@@ -20,6 +21,8 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
         return undefined;
     }
     switch (step) {
+        case StepId.ARBEIDSSITUASJON:
+            return getArbeidssituasjonSøknadsdataFromFormValues(formValues as any);
         case StepId.LOVBESTEMT_FERIE:
             return getLovbestemtFerieSøknadsdataFromFormValues(formValues as any);
         case StepId.ARBEIDSTID:
@@ -51,6 +54,7 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
     } = useSøknadContext();
     const { stepFormValues } = useStepFormValuesContext();
 
+    /** Går gjennom og sjekker at søknadsdata stemmer overens med skjemadata */
     useEffectOnce(() => {
         const currentStep = stepConfig[stepId];
         const iSteps = <StepId[]>[];

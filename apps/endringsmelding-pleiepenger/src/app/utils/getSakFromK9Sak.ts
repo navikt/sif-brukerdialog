@@ -43,6 +43,7 @@ import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getFeriedagerMapFromPerioder } from './ferieUtils';
 import { maskString } from './maskString';
+import { finnesArbeidsgiverIK9Sak } from './tilgangskontroll';
 
 interface _PeriodisertK9FormatArbeidstidPerioder {
     periode: DateRange;
@@ -461,6 +462,10 @@ export const getSakFromK9Sak = (
         tillattEndringsperiode
     );
 
+    const nyeArbeidsgivere = arbeidsgivere.filter((arbeidsgiver) => {
+        return !finnesArbeidsgiverIK9Sak(arbeidsgiver, k9sak.ytelse.arbeidstid.arbeidstakerList || []);
+    });
+
     const arbeidstakerAktiviteter = arbeidstakerList
         ? arbeidstakerList.map((arbeidstaker) =>
               getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivere, tillattEndringsperiode)
@@ -481,6 +486,8 @@ export const getSakFromK9Sak = (
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
         },
+        nyeArbeidsgivere,
+        harNyArbeidsgiver: nyeArbeidsgivere.length > 0,
         søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
         samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,

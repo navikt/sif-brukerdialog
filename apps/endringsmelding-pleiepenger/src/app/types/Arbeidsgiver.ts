@@ -9,5 +9,4 @@ export interface Arbeidsgiver {
     navn: string;
     ansattFom?: Date;
     ansattTom?: Date;
-    erUkjentIAareg?: boolean;
 }

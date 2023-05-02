@@ -1,6 +1,7 @@
 import { EndringType } from '../../../types/EndringType';
 import { Sak } from '../../../types/Sak';
 import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
+import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata, LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { StepId } from '../../config/StepId';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
@@ -13,6 +14,7 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
+    SET_SØKNAD_ARBEIDSSITUASJON = 'setSøknadArbeidssituasjon',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_LOVBESTEMT_FERIE = 'setSøknadLovbestemtFerie',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
@@ -54,6 +56,11 @@ interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
     payload: SøknadRoutes;
 }
+interface SetSøknadArbeidssituasjon {
+    type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON;
+    payload: ArbeidssituasjonSøknadsdata;
+}
+
 interface SetSøknadArbeidstid {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID;
     payload: ArbeidstidSøknadsdata;
@@ -111,6 +118,11 @@ const setEndringsmeldingSendt = (): SetEndringsmeldingSendt => ({
     type: SøknadContextActionKeys.SET_ENDRINGSMELDING_SENDT,
 });
 
+const setSøknadArbeidssituasjon = (payload: ArbeidssituasjonSøknadsdata): SetSøknadArbeidssituasjon => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON,
+    payload,
+});
+
 const setSøknadArbeidstid = (payload: ArbeidstidSøknadsdata): SetSøknadArbeidstid => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID,
     payload,
@@ -153,6 +165,7 @@ export type SøknadContextAction =
     | ResetSøknad
     | SetSøknadHarBekreftetOpplysninger
     | SetSøknadLagret
+    | SetSøknadArbeidssituasjon
     | SetSøknadArbeidstid
     | SetSøknadLovbestemtFerie
     | SetSøknadRoute
@@ -169,6 +182,7 @@ const actionsCreator = {
     resetSøknad,
     setSøknadHarBekreftetOpplysninger,
     setSøknadLagret,
+    setSøknadArbeidssituasjon,
     setSøknadArbeidstid,
     setSøknadLovbestemtFerie,
     setSøknadRoute,

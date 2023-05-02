@@ -26,6 +26,7 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
+import ArbeidssituasjonStep from './steps/arbeidssituasjon/ArbeidssituasjonStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -38,7 +39,11 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
     const { logInfo } = useAmplitudeInstance();
 
-    const availableSteps = getSøknadSteps(hvaSkalEndres, harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie));
+    const availableSteps = getSøknadSteps(
+        hvaSkalEndres,
+        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
+        sak.harNyArbeidsgiver
+    );
 
     const { routeError, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(
         søknadRoute,
@@ -103,6 +108,9 @@ const SøknadRouter = () => {
                 <Route index element={<VelkommenPage />} />
                 <Route path={SøknadStepRoute[StepId.VELKOMMEN]} element={<VelkommenPage />} />
 
+                {isStepAvailable(StepId.ARBEIDSSITUASJON) && (
+                    <Route path={SøknadStepRoute[StepId.ARBEIDSSITUASJON]} element={<ArbeidssituasjonStep />} />
+                )}
                 {isStepAvailable(StepId.LOVBESTEMT_FERIE) && (
                     <Route path={SøknadStepRoute[StepId.LOVBESTEMT_FERIE]} element={<LovbestemtFerieStep />} />
                 )}
