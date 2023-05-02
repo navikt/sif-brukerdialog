@@ -9,7 +9,6 @@ dist-ssr
 .env
 .cache
 .turbo
-.yarn
 storybook-static
 coverage
 
