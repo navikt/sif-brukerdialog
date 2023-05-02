@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.32.0
+
+### Minor Changes
+
+-   1361721f: Diverse pakkeoppdateringer + fjerne tailwind pakke som ikke var i bruk.
+
 ## 3.31.0
 
 ### Minor Changes
