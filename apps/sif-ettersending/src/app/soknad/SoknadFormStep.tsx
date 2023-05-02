@@ -6,8 +6,7 @@ import { ProgressStep } from '@navikt/sif-common-core-ds/lib/components/progress
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds/lib';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
+import { Step, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { ApplicationType } from '../types/ApplicationType';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { useSoknadContext } from './SoknadContext';

@@ -1,8 +1,8 @@
 import { render, waitFor } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 import userEvent from '@testing-library/user-event';
-import * as stories from '../../../storybook/stories/components/FormikCheckbox.stories';
 import { StoryFormikWrapper } from '../../../storybook/decorators/StoryFormikWrapper';
+import * as stories from '../../../storybook/stories/components/FormikCheckbox.stories';
 
 const { Default } = stories;
 

@@ -4,7 +4,7 @@ import {
     durationToISODuration,
     getDatesInDateRange,
     ISODate,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '../types/Sak';
 

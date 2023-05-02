@@ -1,9 +1,4 @@
-import {
-    SoknadApplicationType,
-    SoknadStepsConfig,
-    StepConfig,
-} from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
 import { ApplicationType } from '../types/ApplicationType';
 import { getApplicationPageRoute } from '../utils/routeUtils';
 

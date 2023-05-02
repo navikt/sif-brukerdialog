@@ -17,7 +17,6 @@ RUN yarn turbo run build-app --filter=${SCOPE}
 FROM pruner AS server
 WORKDIR /apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/node_modules ./node_modules/
 COPY --from=pruner /app/apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/envSettings.js .
 COPY --from=pruner /app/apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/server.js .
 COPY --from=pruner /app/apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/tokenx.js .

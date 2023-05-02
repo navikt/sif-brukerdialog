@@ -1,16 +1,15 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
-import Step from '@navikt/sif-common-soknad-ds/lib/soknad-step/step/Step';
+import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
+import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
+import StateInfo from '../components/state-info/StateInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { StepId } from '../types/StepId';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import { getSøknadStepConfig } from './søknadStepConfig';
-import StateInfo from '../components/state-info/StateInfo';
-import InvalidStepSøknadsdataInfo from '../components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 interface Props {
     stepId: StepId;

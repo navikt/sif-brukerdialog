@@ -2,9 +2,10 @@ import { GuidePanel, GuidePanelProps, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import bemUtils from '../../utils/bemUtils';
-import VeilederSVG from '../veileder-svg/VeilederSVG';
 import { GuideMood } from './SifGuide';
+import VeilederSVG from './VeilederSVG';
 import './sifGuidePanel.scss';
+
 interface Props extends GuidePanelProps {
     mood?: GuideMood;
     switchToPosterBreakpoint?: number;

@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.31.0
+
+### Minor Changes
+
+-   cb189915: Oppdatert yarn, package.json, storybook + generell refactoring
+
 ## 3.30.1
 
 ### Patch Changes

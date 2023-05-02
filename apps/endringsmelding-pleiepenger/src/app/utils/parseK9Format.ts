@@ -1,9 +1,4 @@
-import {
-    durationUtils,
-    ISODateRangeToDateRange,
-    ISODateToDate,
-    ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
+import { durationUtils, ISODateRangeToDateRange, ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import {
     K9Format,

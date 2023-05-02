@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { SoknadFormField } from '../../types/SoknadFormData';

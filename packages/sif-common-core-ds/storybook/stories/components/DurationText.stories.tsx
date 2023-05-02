@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
-import { ISODurationToDuration } from '@navikt/sif-common-utils/lib';
+import * as React from 'react';
+import { ISODurationToDuration } from '@navikt/sif-common-utils';
 import DurationText, { getDurationString } from '../../../src/components/duration-text/DurationText';
 import { Table } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';

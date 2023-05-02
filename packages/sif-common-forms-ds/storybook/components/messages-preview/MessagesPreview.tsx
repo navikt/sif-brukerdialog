@@ -1,6 +1,6 @@
 import { Alert, Heading } from '@navikt/ds-react';
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import * as React from 'react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { createMultiLocaleObject, getMissingMessageKeys, MessageFileFormat } from '../devIntlUtils';
 import MessagesPreviewExplanation from './MessagePreviewExplanation';

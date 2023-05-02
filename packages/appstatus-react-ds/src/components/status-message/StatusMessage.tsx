@@ -1,5 +1,4 @@
 import { Alert } from '@navikt/ds-react';
-import React from 'react';
 import { SanityLocale, SanityMessageType } from '../../types';
 import { SanityStatusMessage } from '../../types/sanityObjects';
 import { getLocaleBlockContent } from '../../utils';

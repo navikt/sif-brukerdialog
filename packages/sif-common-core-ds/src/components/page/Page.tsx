@@ -7,8 +7,6 @@ interface PageProps {
     className?: string;
     title: string;
     id?: string;
-    setMainRole?: boolean;
-    ariaLabel?: string;
     topContentRenderer?: () => React.ReactElement<any>;
     children: React.ReactNode;
 }

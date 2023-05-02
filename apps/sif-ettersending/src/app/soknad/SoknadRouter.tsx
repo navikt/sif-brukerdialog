@@ -1,17 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { isFailure, isInitial, isPending, isSuccess } from '@devexperts/remote-data-ts';
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
-import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
-import SoknadErrorMessages, {
-    LastAvailableStepInfo,
-} from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
+import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
-import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
 import { SoknadFormData } from '../types/SoknadFormData';

@@ -1,13 +1,14 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
 import FormikCountrySelect from '../../../src/components/formik-country-select/FormikCountrySelect';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 
-export default {
+const meta: Meta<typeof FormikCountrySelect> = {
     title: 'Component/FormikCountrySelect',
     component: FormikCountrySelect,
     decorators: [withFormikWrapper],
-} as Meta<typeof FormikCountrySelect>;
+};
+
+export default meta;
 
 const Template: StoryFn<typeof FormikCountrySelect> = (args) => <FormikCountrySelect {...args} />;
 

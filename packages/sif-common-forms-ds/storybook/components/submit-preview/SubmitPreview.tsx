@@ -1,5 +1,5 @@
-import React from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import * as React from 'react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { Panel } from '@navikt/ds-react';
 
 interface Props {

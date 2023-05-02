@@ -8,7 +8,7 @@ import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { axiosJsonConfig } from '../api/api';
 import { ApplicationType } from '../types/ApplicationType';
 import { StepID } from './soknadStepsConfig';
-import { jsonSort } from '@navikt/sif-common-utils/lib';
+import { jsonSort } from '@navikt/sif-common-utils';
 
 export const STORAGE_VERSION = '2.0';
 

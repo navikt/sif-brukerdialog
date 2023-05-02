@@ -1,10 +1,9 @@
 import { Heading, Link } from '@navikt/ds-react';
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import Checklist from '@navikt/sif-common-core-ds/lib/components/checklist/Checklist';
-import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/components/checkmark-icon/CheckmarkIcon';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/atoms/checkmark-icon/CheckmarkIcon';
+import Checklist from '@navikt/sif-common-core-ds/lib/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../lenker';

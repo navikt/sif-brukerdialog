@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { AnnenForelderenSituasjonSøknadsdata } from 'app/types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';
 import { AnnenForeldrenSituasjon } from '../../../../types/AnnenForeldrenSituasjon';
+import { AnnenForelderenSituasjonSøknadsdata } from '../../../../types/søknadsdata/AnnenForelderenSituasjonSøknadsdata';
 import { AnnenForelderenSituasjonFormValues } from '../AnnenForelderenSituasjonStep';
 import { getAnnenForelderenSituasjonSøknadsdataFromFormValues } from '../annenForelderenSituasjonStepUtils';
 

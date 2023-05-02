@@ -1,5 +1,4 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
-import React from 'react';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -10,10 +9,12 @@ import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { Søker } from '../../types/Søker';
+import { IngenTilgangMeta } from '../../hooks/useSøknadInitialData';
 
 interface Props {
     søker: Søker;
     årsak: IngenTilgangÅrsak;
+    ingenTilgangMeta?: IngenTilgangMeta;
 }
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
@@ -104,7 +105,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">
                     <p>
-                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn 3 måneder
+                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn 6 måneder
                         siden. Du kan melde fra om endring i tjenesten <SkrivTilOssLink />, eller sende oss en ny
                         søknad.
                     </p>
@@ -117,13 +118,13 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     }
 };
 
-const IngenTilgangPage = ({ årsak, søker }: Props) => {
+const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: Props) => {
     const { logInfo } = useAmplitudeInstance();
 
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
 
     useEffectOnce(() => {
-        logInfo({ brukerIkkeTilgang: årsak });
+        logInfo({ brukerIkkeTilgang: årsak, ...ingenTilgangMeta });
     });
 
     return (

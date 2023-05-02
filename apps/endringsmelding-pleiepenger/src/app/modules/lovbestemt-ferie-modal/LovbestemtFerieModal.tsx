@@ -1,6 +1,6 @@
 import { Button, Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent, useEffect } from 'react';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import './lovbestemtFerieModal.css';
 import { Close } from '@navikt/ds-icons';
 

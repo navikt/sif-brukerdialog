@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateRange, dateRangeFormatter } from '@navikt/sif-common-utils/lib';
+import { DateRange, dateRangeFormatter } from '@navikt/sif-common-utils';
 
 interface Props {
     periode: DateRange;

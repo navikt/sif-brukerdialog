@@ -1,4 +1,4 @@
-import { isString } from 'formik';
+import { isString } from 'lodash';
 import { ISODate, ISODateRange, ISODuration } from './types';
 import { parse } from 'iso8601-duration';
 

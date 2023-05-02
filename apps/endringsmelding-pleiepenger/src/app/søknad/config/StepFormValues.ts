@@ -1,4 +1,4 @@
-import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
+import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
 import { ArbeidstidFormValues } from '../steps/arbeidstid/ArbeidstidStep';
 import { LovbestemtFerieFormValues } from '../steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { OppsummeringFormValues } from '../steps/oppsummering/OppsummeringStep';

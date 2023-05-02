@@ -1,4 +1,3 @@
-import React from 'react';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
 import { FraværDagForm, FraværDagFormFields } from './FraværDagForm';
 import { timeText } from './fraværUtilities';

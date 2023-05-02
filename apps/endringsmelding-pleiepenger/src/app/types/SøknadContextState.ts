@@ -5,7 +5,7 @@ import { Sak } from './Sak';
 import { Søknadsdata } from './søknadsdata/Søknadsdata';
 import { TimerEllerProsent } from './TimerEllerProsent';
 import { K9Sak } from './K9Sak';
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils';
 import { EndringType } from './EndringType';
 
 export interface SøknadContextState {

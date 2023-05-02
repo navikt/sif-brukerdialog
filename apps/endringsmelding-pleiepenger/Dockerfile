@@ -17,7 +17,6 @@ RUN yarn turbo run build-app --filter=${SCOPE}
 FROM pruner AS server
 WORKDIR /apps/endringsmelding-pleiepenger
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/endringsmelding-pleiepenger/node_modules ./node_modules/
 COPY --from=pruner /app/apps/endringsmelding-pleiepenger/envSettings.js .
 COPY --from=pruner /app/apps/endringsmelding-pleiepenger/server.js .
 COPY --from=pruner /app/apps/endringsmelding-pleiepenger/tokenx.js .

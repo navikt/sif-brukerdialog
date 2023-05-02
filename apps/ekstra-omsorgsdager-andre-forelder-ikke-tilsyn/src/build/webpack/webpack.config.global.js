@@ -40,23 +40,8 @@ const webpackConfig = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
             },
             {
-                test: /\.less$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            lessOptions: {
-                                math: 'always',
-                            },
-                        },
-                    },
-                ],
-            },
-            {
                 test: /\.s[ac]ss$/i,
-                use: ['style-loader', 'css-loader', 'less-loader', 'sass-loader'],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
         ],
     },

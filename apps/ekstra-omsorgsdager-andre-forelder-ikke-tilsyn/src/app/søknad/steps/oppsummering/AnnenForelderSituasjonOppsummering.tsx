@@ -1,14 +1,9 @@
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import JaNeiSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/JaNeiSvar';
-import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-block/SummaryBlock';
-import SummarySection from '@navikt/sif-common-soknad-ds/lib/soknad-summary/summary-section/SummarySection';
-import TextareaSvar from '@navikt/sif-common-soknad-ds/lib/soknad-summary/TextareaSvar';
+import { JaNeiSvar, SummaryBlock, SummarySection, TextareaSvar } from '@navikt/sif-common-soknad-ds';
+import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import { AnnenForelderApiData } from '../../../types/søknadApiData/SøknadApiData';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib/dateUtils';
-import { prettifyDateExtended } from '@navikt/sif-common-utils/lib/dateFormatter';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 interface Props {

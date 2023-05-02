@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { SoknadFormField } from '../../types/SoknadFormData';
 import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';
 import SoknadFormComponents from '../SoknadFormComponents';

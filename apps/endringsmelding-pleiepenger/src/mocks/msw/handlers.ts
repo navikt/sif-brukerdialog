@@ -81,21 +81,21 @@ export const getHandlers = () => {
     const { sak, arbeidsgiver, søker } = getMockData(scenario.value);
 
     const handlers = [
-        rest.get(`${baseUrl}/health/isAlive`, (req, res, ctx) => res(ctx.status(200))),
-        rest.get(`${baseUrl}/health/isReady`, (req, res, ctx) => res(ctx.status(200))),
-        rest.get(`${baseUrl}/oppslag/soker`, (req, res, ctx) => {
+        rest.get(`${baseUrl}/health/isAlive`, (_req, res, ctx) => res(ctx.status(200))),
+        rest.get(`${baseUrl}/health/isReady`, (_req, res, ctx) => res(ctx.status(200))),
+        rest.get(`${baseUrl}/oppslag/soker`, (_req, res, ctx) => {
             return res(ctx.status(200), ctx.json(søker));
         }),
-        rest.get(`${baseUrl}/oppslag/soker-ikkeLoggetInn`, (req, res, ctx) => {
+        rest.get(`${baseUrl}/oppslag/soker-ikkeLoggetInn`, (_req, res, ctx) => {
             return res(ctx.status(401));
         }),
-        rest.get(`${baseUrl}/innsyn/sak`, (req, res, ctx) => {
+        rest.get(`${baseUrl}/innsyn/sak`, (_req, res, ctx) => {
             return res(ctx.delay(250), ctx.status(200), ctx.json(sak));
         }),
-        rest.get(`${baseUrl}/oppslag/arbeidsgiver`, (req, res, ctx) => {
+        rest.get(`${baseUrl}/oppslag/arbeidsgiver`, (_req, res, ctx) => {
             return res(ctx.status(200), ctx.json(arbeidsgiver));
         }),
-        rest.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (req, res, ctx) => {
+        rest.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (_req, res, ctx) => {
             const data = localStorage.getItem(MellomlagringStorageKey);
             const jsonData = JSON.parse(data || '{}');
             return res(ctx.status(200), ctx.json(jsonData));
@@ -110,11 +110,11 @@ export const getHandlers = () => {
             localStorage.setItem(MellomlagringStorageKey, data);
             return res(ctx.status(200));
         }),
-        rest.delete(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (req, res, ctx) => {
+        rest.delete(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (_req, res, ctx) => {
             localStorage.setItem(MellomlagringStorageKey, '');
             return res(ctx.status(200));
         }),
-        rest.post(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, (req, res, ctx) => {
+        rest.post(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, (_req, res, ctx) => {
             return res(ctx.status(200));
         }),
     ];

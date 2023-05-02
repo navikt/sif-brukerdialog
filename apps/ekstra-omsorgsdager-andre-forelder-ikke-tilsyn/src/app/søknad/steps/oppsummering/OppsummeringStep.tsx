@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import AnnenForelderSituasjonOppsummering from './AnnenForelderSituasjonOppsummering';
@@ -16,10 +16,10 @@ import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import SøknadStep from '../../SøknadStep';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { ErrorSummary } from '@navikt/ds-react';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds/lib';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 

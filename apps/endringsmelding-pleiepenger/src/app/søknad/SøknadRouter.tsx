@@ -1,14 +1,15 @@
 import { Button } from '@navikt/ds-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import {
     EnsureCorrectSøknadRouteErrorType,
     useEnsureCorrectSøknadRoute,
 } from '@navikt/sif-common-soknad-ds/lib/hooks/useEnsureCorrectSøknadRoute';
-import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/lib/start-på-nytt-dialog/StartPåNyttDialog';
+import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/lib/modules/start-på-nytt-dialog/StartPåNyttDialog';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
@@ -25,7 +26,6 @@ import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();

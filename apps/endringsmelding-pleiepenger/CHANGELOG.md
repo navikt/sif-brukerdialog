@@ -1,5 +1,38 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.9.0
+
+### Minor Changes
+
+-   6017341: Logge informasjon om bruker er sn, frilanser eller arbeidstaker
+
+## 2.8.0
+
+### Minor Changes
+
+-   cb189915: Oppdatert yarn, package.json, storybook + generell refactoring
+
+### Patch Changes
+
+-   Updated dependencies [cb189915]
+    -   @navikt/sif-common-amplitude@2.13.0
+    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-formik-ds@0.17.0
+    -   @navikt/sif-common-forms-ds@7.0.0
+    -   @navikt/sif-common-sentry@0.13.0
+    -   @navikt/sif-common-soknad-ds@8.0.0
+    -   @navikt/sif-common-utils@3.31.0
+
+## 2.7.0
+
+### Minor Changes
+
+-   e044ef1: Utvide tillatt endringsperiode til å være fra 6 måned bakover i tid (fra 3 måneder)
+
+### Patch Changes
+
+-   28e0e75: Diverse tekstoppdateringer
+
 ## 2.6.3
 
 ### Patch Changes

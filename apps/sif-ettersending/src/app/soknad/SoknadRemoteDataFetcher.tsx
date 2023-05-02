@@ -1,15 +1,13 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/components/loading-spinner/LoadingSpinner';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import ErrorPage from '@navikt/sif-common-soknad-ds/lib/soknad-common-pages/ErrorPage';
-import SoknadErrorMessages from '@navikt/sif-common-soknad-ds/lib/soknad-error-messages/SoknadErrorMessages';
+import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
-import { ApplicationType } from '../types/ApplicationType';
-import Soknad from './Soknad';
-import { RequestStatus } from '../types/RequestStatus';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
+import { ApplicationType } from '../types/ApplicationType';
+import { RequestStatus } from '../types/RequestStatus';
+import Soknad from './Soknad';
 
 const getSøknadstypeFromYtelse = (param?: string): ApplicationType | undefined => {
     switch (param) {

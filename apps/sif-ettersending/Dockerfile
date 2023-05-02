@@ -17,7 +17,6 @@ RUN yarn turbo run build-app --filter=${SCOPE}
 FROM pruner AS server
 WORKDIR /apps/sif-ettersending
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/sif-ettersending/node_modules ./node_modules/
 COPY --from=pruner /app/apps/sif-ettersending/envSettings.js .
 COPY --from=pruner /app/apps/sif-ettersending/server.js .
 COPY --from=pruner /app/apps/sif-ettersending/tokenx.js .

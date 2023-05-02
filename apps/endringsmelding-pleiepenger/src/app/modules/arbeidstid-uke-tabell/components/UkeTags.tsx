@@ -12,7 +12,7 @@ interface Props {
 }
 
 const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, erKortUke }: Props) => {
-    const tags = [];
+    const tags: React.ReactNode[] = [];
     if (erKortUke) {
         tags.push(<KortUkeTag style={{ marginRight: '.5rem', marginBottom: '.25rem' }} />);
     }

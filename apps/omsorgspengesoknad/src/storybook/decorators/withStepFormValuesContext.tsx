@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { StepFormValues } from '../../app/types/StepFormValues';
 

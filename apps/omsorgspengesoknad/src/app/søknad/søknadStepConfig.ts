@@ -1,9 +1,4 @@
-import {
-    SoknadApplicationType,
-    SoknadStepsConfig,
-    StepConfig,
-} from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepTypes';
-import soknadStepUtils from '@navikt/sif-common-soknad-ds/lib/soknad-step/soknadStepUtils';
+import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../types/StepId';
 import { SøkersRelasjonTilBarnet } from '../types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';

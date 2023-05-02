@@ -4,7 +4,7 @@ import {
     ISODateRangeToDateRange,
     ISODurationToDecimalDuration,
     ISODurationToDuration,
-} from '@navikt/sif-common-utils/lib';
+} from '@navikt/sif-common-utils';
 import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import {
     ArbeidstidApiData,

@@ -1,7 +1,6 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
-import Tiles from '@navikt/sif-common-core-ds/lib/components/tiles/Tiles';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import Tiles from '@navikt/sif-common-core-ds/lib/atoms/tiles/Tiles';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import {

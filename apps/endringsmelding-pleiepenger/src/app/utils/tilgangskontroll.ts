@@ -1,9 +1,10 @@
-import { DateRange } from '@navikt/sif-common-utils/lib';
+import { DateRange, durationToDecimalDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
-import { K9Sak, K9SakArbeidstaker } from '../types/K9Sak';
+import { K9Sak, K9SakArbeidstaker, K9SakArbeidstid, K9SakArbeidstidInfo } from '../types/K9Sak';
 import { getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
@@ -11,6 +12,7 @@ dayjs.extend(isSameOrAfter);
 type TilgangNektet = {
     kanBrukeSøknad: false;
     årsak: IngenTilgangÅrsak;
+    ingenTilgangMeta?: IngenTilgangMeta;
 };
 
 type TilgangTillatt = {
@@ -40,43 +42,70 @@ export const tilgangskontroll = (
         };
     }
 
-    /** Har én sak, men søknadsperiode er før tillatt endringsperiode */
-    if (!harSøknadsperiodeInnenforTillattEndringsperiode(getSamletDateRangeForK9Saker(saker), tillattEndringsperiode)) {
+    /** Bruker har bare én sak */
+
+    const sak = saker[0];
+
+    /** Søknadsperiode er før tillatt endringsperiode */
+    if (!harSøknadsperiodeInnenforTillattEndringsperiode(getSamletDateRangeForK9Saker([sak]), tillattEndringsperiode)) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
+            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
         };
     }
     /**
      * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak
      */
-    if (
-        saker.some((sak) => harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList))
-    ) {
+    if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet,
+            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
         };
     }
 
-    if (
-        saker.some((sak) => harArbeidsaktivitetUtenArbeidsgiver(sak.ytelse.arbeidstid.arbeidstakerList, arbeidsgivere))
-    ) {
+    /** Bruker har registrert arbeidsaktivitet i sak på arbeidsgiver som ikke er registrert i AAreg */
+    if (harArbeidsaktivitetUtenArbeidsgiver(sak.ytelse.arbeidstid.arbeidstakerList, arbeidsgivere)) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver,
+            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
         };
     }
 
-    if (saker.some((sak) => harArbeidstidSomSelvstendigNæringsdrivende(sak))) {
+    /** Bruker er SN */
+    if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
         return {
             kanBrukeSøknad: false,
             årsak: IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende,
+            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
         };
     }
 
     return {
         kanBrukeSøknad: true,
+    };
+};
+
+const harArbeidstidPerioder = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
+    return (
+        arbeidstidInfo !== undefined &&
+        Object.keys(arbeidstidInfo.perioder).length > 0 &&
+        Object.keys(arbeidstidInfo.perioder)
+            .map((key) => durationToDecimalDuration(arbeidstidInfo.perioder[key].jobberNormaltTimerPerDag))
+            .some((decimalDuration) => {
+                return decimalDuration > 0;
+            })
+    );
+};
+
+const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
+    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
+    return {
+        erArbeidstaker: arbeidstakerList?.some((a) => harArbeidstidPerioder(a.arbeidstidInfo)),
+        erFrilanser: harArbeidstidPerioder(frilanserArbeidstidInfo),
+        erSN: harArbeidstidPerioder(selvstendigNæringsdrivendeArbeidstidInfo),
     };
 };
 
@@ -121,6 +150,7 @@ const harSøknadsperiodeInnenforTillattEndringsperiode = (
 };
 
 export const tilgangskontrollUtils = {
+    getIngenTilgangMeta,
     harArbeidsgiverUtenArbeidsaktivitet,
     harArbeidsaktivitetUtenArbeidsgiver,
     harSøknadsperiodeInnenforTillattEndringsperiode,

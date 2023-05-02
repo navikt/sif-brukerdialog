@@ -1,9 +1,8 @@
 import { Heading, Ingress } from '@navikt/ds-react';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import Block from '@navikt/sif-common-core-ds/lib/components/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/components/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
@@ -11,7 +10,7 @@ import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/samtykke-form/SamtykkeForm';
+import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
 import { SKJEMANAVN } from '../../App';
 import { getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
 import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
@@ -20,7 +19,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
 import OmSøknaden from './OmSøknaden';
-import { getDateRangeText } from '@navikt/sif-common-utils/lib';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -95,14 +94,8 @@ const VelkommenPage = () => {
                             </Heading>
                             <Ingress as="div">
                                 <p>
-                                    Du har pleiepenger for <strong>{barnetsNavn}</strong>.
-                                </p>
-                                <p>
-                                    Du kan melde om endring i{' '}
-                                    {sak.søknadsperioder.length === 1
-                                        ? 'din pleiepengeperiode'
-                                        : 'dine pleiepengeperioder'}{' '}
-                                    i tidsrommet{' '}
+                                    Du kan melde fra om endringer i pleiepenger for <strong>{barnetsNavn}</strong> i
+                                    tidsrommet{' '}
                                     {getDateRangeText(sak.samletSøknadsperiode, {
                                         compact: false,
                                         includeDayName: true,
@@ -122,14 +115,11 @@ const VelkommenPage = () => {
                                             {
                                                 'data-testid': 'endreLovbestemtFerie',
                                                 label: 'Ferie',
-                                                description:
-                                                    'Legg til, fjern eller endre lovebestemt ferie i perioden med pleiepenger',
                                                 value: EndringType.lovbestemtFerie,
                                             },
                                             {
                                                 'data-testid': 'endreArbeidstid',
-                                                label: 'Jobb i pleiepengeperioden',
-                                                description: 'Endre hvor mye du jobber i perioden med pleiepenger',
+                                                label: 'Jobb',
                                                 value: EndringType.arbeidstid,
                                             },
                                         ]}

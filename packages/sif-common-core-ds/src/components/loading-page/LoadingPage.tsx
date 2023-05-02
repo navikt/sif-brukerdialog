@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '../../utils/intlUtils';
-import LoadingSpinner from '../loading-spinner/LoadingSpinner';
+import LoadingSpinner from '../../atoms/loading-spinner/LoadingSpinner';
 import Page from '../page/Page';
 
 const LoadingPage = () => {

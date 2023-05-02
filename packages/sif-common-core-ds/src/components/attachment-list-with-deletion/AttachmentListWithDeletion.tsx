@@ -1,11 +1,10 @@
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Attachment } from '../../types/Attachment';
 import intlHelper from '../../utils/intlUtils';
 import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
-import DeleteButton from '../delete-button/DeleteButton';
-import LoadingSpinner from '../loading-spinner/LoadingSpinner';
-import UnstyledList from '../unstyled-list/UnstyledList';
+import DeleteButton from '../../atoms/delete-button/DeleteButton';
+import LoadingSpinner from '../../atoms/loading-spinner/LoadingSpinner';
+import UnstyledList from '../lists/unstyled-list/UnstyledList';
 
 interface Props {
     attachments: Attachment[];
