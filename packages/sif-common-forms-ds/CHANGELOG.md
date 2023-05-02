@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 6.2.0
+
+### Minor Changes
+
+-   1361721f: Diverse pakkeoppdateringer + fjerne tailwind pakke som ikke var i bruk.
+
+### Patch Changes
+
+-   Updated dependencies [1361721f]
+    -   @navikt/sif-common-core-ds@7.1.0
+
 ## 6.1.0
 
 ### Minor Changes
@@ -9,7 +20,7 @@
 ### Patch Changes
 
 -   Updated dependencies [cb189915]
-    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-core-ds@7.1.0
 
 ## 6.0.1
 

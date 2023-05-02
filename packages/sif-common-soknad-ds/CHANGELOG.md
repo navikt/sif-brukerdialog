@@ -1,5 +1,19 @@
 # @navikt/sif-common-soknad-ds
 
+## 7.2.0
+
+### Minor Changes
+
+-   1361721f: Diverse pakkeoppdateringer + fjerne tailwind pakke som ikke var i bruk.
+
+### Patch Changes
+
+-   Updated dependencies [1361721f]
+    -   @navikt/sif-common-formik-ds@0.18.0
+    -   @navikt/appstatus-react-ds@2.5.0
+    -   @navikt/sif-common-sentry@0.14.0
+    -   @navikt/sif-common-utils@3.32.0
+
 ## 7.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.14.0
+
+### Minor Changes
+
+-   1361721f: Diverse pakkeoppdateringer + fjerne tailwind pakke som ikke var i bruk.
+
 ## 2.13.0
 
 ### Minor Changes
