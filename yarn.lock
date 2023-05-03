@@ -3584,7 +3584,7 @@ __metadata:
   dependencies:
     "@navikt/ds-css": 2.9.3
     "@navikt/ds-react": 2.9.3
-    "@portabletext/react": 2.0.3
+    "@portabletext/react": 3.0.0
     "@sanity/client": 5.4.2
     "@types/node": 18.16.3
     "@types/react": 18.2.0
@@ -4609,15 +4609,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/react@npm:2.0.3":
-  version: 2.0.3
-  resolution: "@portabletext/react@npm:2.0.3"
+"@portabletext/react@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@portabletext/react@npm:3.0.0"
   dependencies:
     "@portabletext/toolkit": ^2.0.1
     "@portabletext/types": ^2.0.2
   peerDependencies:
     react: ^17 || ^18
-  checksum: 9c656d2dcb211497f8559e5287b842a3bb43f53cd62ad3446fe1eb250e6437a8073dde5b7c00684ef74da181cf93a46f2efafea683af2424e0c4408afe3e2f50
+  checksum: 8839959e852ed7429bb5fcdbaf620fcc1be7ba406c7998bb3b3e130642451589fd9bfd3d582e69115993ca08458f452b4c5b64e57b5b0d104c61af922a797325
   languageName: node
   linkType: hard
 
