@@ -4001,6 +4001,7 @@ __metadata:
     react-router-dom: 6.11.0
     rimraf: 5.0.0
     source-map-loader: ^4.0.1
+    start-server-and-test: 2.0.0
     style-loader: 3.3.2
     ts-loader: ^9.4.2
     ulid: 2.3.0
