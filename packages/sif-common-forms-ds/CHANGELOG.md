@@ -1,5 +1,13 @@
 # @navikt/sif-common-forms-ds
 
+## 6.2.1
+
+### Patch Changes
+
+-   Oppdatere pakker
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@7.2.1
+
 ## 6.2.0
 
 ### Minor Changes

@@ -5,7 +5,7 @@
     "license": "MIT",
     "name": "@navikt/sif-common-soknad-ds",
     "main": "lib/index.js",
-    "version": "7.2.0",
+    "version": "7.2.1",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
@@ -16,7 +16,7 @@
         "io-ts": "2.2.20"
     },
     "devDependencies": {
-        "@babel/core": "7.21.5",
+        "@babel/core": "7.21.8",
         "@babel/preset-env": "7.21.5",
         "@babel/preset-react": "7.18.6",
         "@babel/preset-typescript": "7.21.5",

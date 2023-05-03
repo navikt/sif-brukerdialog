@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.18.1
+
+### Patch Changes
+
+-   Oppdatere pakker
+
 ## 0.18.0
 
 ### Minor Changes
