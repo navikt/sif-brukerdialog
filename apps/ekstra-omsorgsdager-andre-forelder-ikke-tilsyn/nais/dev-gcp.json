@@ -5,10 +5,10 @@
     "ingresses": ["https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.dev.nav.no"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/health/isReady",
-    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "cluster": "dev-gcp",
     "env": {
-        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.dev.nav.no/oauth2/logout&redirectToApp=true",
+        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.dev.nav.no/oauth2/logout&redirectToApp=true",
         "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
         "FRONTEND_API_PATH": "/api",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
