@@ -22,6 +22,7 @@ import {
     getArbeidssituasjonSøknadsdataFromFormValues,
 } from './arbeidssituasjonStepUtils';
 import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 export interface ArbeidsforholdMap {
     [id: string]: ArbeidsforholdFormValues;
@@ -85,40 +86,44 @@ const ArbeidssituasjonStep = () => {
                 </>
             </SifGuidePanel>
 
-            <FormikWrapper
-                initialValues={getArbeidssituasjonStepInitialValues(
-                    søknadsdata,
-                    stepFormValues?.arbeidssituasjon,
-                    sak.nyeArbeidsgivere
-                )}
-                onSubmit={handleSubmit}
-                renderForm={({ values }) => {
-                    return (
-                        <>
-                            <PersistStepFormValues stepId={stepId} />
-                            <Form
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidAktivitetForm')}
-                                includeValidationSummary={true}
-                                submitPending={isSubmitting}
-                                runDelayedFormValidation={true}
-                                onBack={goBack}>
-                                {sak.nyeArbeidsgivere.map((a) => {
-                                    const arbeidsgiverFieldKey = getArbeidsforholdFormFieldKey(a.organisasjonsnummer);
-                                    const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${arbeidsgiverFieldKey}`;
-                                    return (
-                                        <ArbeidsforholdForm
-                                            arbeidsgiver={a}
-                                            values={(values.arbeidsforhold || {})[arbeidsgiverFieldKey]}
-                                            fieldName={fieldName}
-                                            key={a.organisasjonsnummer}
-                                        />
-                                    );
-                                })}
-                            </Form>
-                        </>
-                    );
-                }}
-            />
+            <Block margin="xl">
+                <FormikWrapper
+                    initialValues={getArbeidssituasjonStepInitialValues(
+                        søknadsdata,
+                        stepFormValues?.arbeidssituasjon,
+                        sak.nyeArbeidsgivere
+                    )}
+                    onSubmit={handleSubmit}
+                    renderForm={({ values }) => {
+                        return (
+                            <>
+                                <PersistStepFormValues stepId={stepId} />
+                                <Form
+                                    formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidAktivitetForm')}
+                                    includeValidationSummary={true}
+                                    submitPending={isSubmitting}
+                                    runDelayedFormValidation={true}
+                                    onBack={goBack}>
+                                    {sak.nyeArbeidsgivere.map((a) => {
+                                        const arbeidsgiverFieldKey = getArbeidsforholdFormFieldKey(
+                                            a.organisasjonsnummer
+                                        );
+                                        const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${arbeidsgiverFieldKey}`;
+                                        return (
+                                            <ArbeidsforholdForm
+                                                arbeidsgiver={a}
+                                                values={(values.arbeidsforhold || {})[arbeidsgiverFieldKey]}
+                                                parentFieldName={fieldName}
+                                                key={a.organisasjonsnummer}
+                                            />
+                                        );
+                                    })}
+                                </Form>
+                            </>
+                        );
+                    }}
+                />
+            </Block>
         </SøknadStep>
     );
 };

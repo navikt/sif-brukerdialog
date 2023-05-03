@@ -2,10 +2,15 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import { getTypedFormComponents, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import { ArbeidAktivitetType } from '../../../../types/Sak';
+import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
+import { Alert } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface Props {
     arbeidsgiver: Arbeidsgiver;
-    fieldName: string;
+    parentFieldName: string;
     values: ArbeidsforholdFormValues;
 }
 
@@ -25,35 +30,47 @@ const { NumberInput, YesOrNoQuestion } = getTypedFormComponents<
     IntlErrorObject
 >();
 
-const ArbeidsforholdForm = ({ fieldName, values }: Props) => {
-    const erAnsatt = values.erAnsatt === YesOrNo.YES;
+const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) => {
     const getFieldName = (field: ArbeidsforholdFormField): ArbeidsforholdFormField => {
-        return `${fieldName}.${field}` as ArbeidsforholdFormField;
+        return `${parentFieldName}.${field}` as ArbeidsforholdFormField;
     };
 
     return (
-        <>
-            <FormBlock>
-                <YesOrNoQuestion
-                    name={getFieldName(ArbeidsforholdFormField.erAnsatt)}
-                    validate={(value) => {
-                        const error = getYesOrNoValidator()(value);
-                        if (error) {
-                            return {
-                                key: `arbeidsforhold.validation.${ArbeidsforholdFormField.erAnsatt}.${error}`,
-                                keepKeyUnaltered: true,
-                            };
-                        }
-                        return undefined;
-                    }}
-                    legend="Er du ansatt her?"
-                />
-            </FormBlock>
-            {erAnsatt && (
+        <ArbeidsaktivitetBlock
+            type={ArbeidAktivitetType.arbeidstaker}
+            navn={arbeidsgiver.navn}
+            arbeidsgiver={arbeidsgiver}
+            renderAsExpansionCard={false}>
+            <YesOrNoQuestion
+                name={getFieldName(ArbeidsforholdFormField.erAnsatt)}
+                validate={(value) => {
+                    const error = getYesOrNoValidator()(value);
+                    if (error) {
+                        return {
+                            key: `arbeidsforhold.validation.${ArbeidsforholdFormField.erAnsatt}.${error}`,
+                            keepKeyUnaltered: true,
+                        };
+                    }
+                    return undefined;
+                }}
+                legend={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger?`}
+            />
+
+            {values.erAnsatt === YesOrNo.NO && (
+                <Block margin="l" padBottom="l">
+                    <Alert variant="warning">Når dette ikke stemmer kan du</Alert>
+                </Block>
+            )}
+            {values.erAnsatt === YesOrNo.YES && (
                 <FormBlock>
                     <NumberInput
                         name={getFieldName(ArbeidsforholdFormField.timerPerUke)}
-                        label="Hvor mange timer jobber du per uke i snitt?"
+                        label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
+                        description={<InfoNormalarbeidstid />}
+                        min={0}
+                        max={100}
+                        width="xs"
+                        maxLength={5}
                         validate={(value) => {
                             const error = getNumberValidator({ allowDecimals: true, required: true, max: 100, min: 0 })(
                                 value
@@ -68,7 +85,7 @@ const ArbeidsforholdForm = ({ fieldName, values }: Props) => {
                     />
                 </FormBlock>
             )}
-        </>
+        </ArbeidsaktivitetBlock>
     );
 };
 

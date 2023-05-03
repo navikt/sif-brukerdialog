@@ -1,12 +1,9 @@
-import { ExpansionCard, Panel } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import ArbeidsaktivitetBlock from '../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
-import { ArbeidAktivitet } from '../../types/Sak';
+import { ArbeidAktivitet, ArbeidAktivitetType } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
-import ArbeidAktivitetHeader from './components/ArbeidAktivitetHeader';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
-import './arbeidsaktivitet.scss';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -34,7 +31,24 @@ const Arbeidsaktivitet = ({
 
     return (
         <div data-testid={`aktivitet_${arbeidAktivitet.id}`}>
-            {renderAsExpansionCard ? (
+            <ArbeidsaktivitetBlock
+                type={arbeidAktivitet.type}
+                navn={arbeidAktivitet.navn}
+                arbeidsgiver={
+                    arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? arbeidAktivitet.arbeidsgiver : undefined
+                }
+                endret={harEndringer ? { tekst: 'Endret arbeidstid' } : undefined}
+                renderAsExpansionCard={renderAsExpansionCard}>
+                <ArbeidsaktivitetContent
+                    perioder={perioder}
+                    arbeidAktivitet={arbeidAktivitet}
+                    lovbestemtFerie={lovbestemtFerie}
+                    endringer={endringer}
+                    onArbeidstidAktivitetChange={onArbeidstidAktivitetChange}
+                />
+            </ArbeidsaktivitetBlock>
+
+            {/* {renderAsExpansionCard ? (
                 <ExpansionCard aria-label={arbeidAktivitet.navn} defaultOpen={true}>
                     <ExpansionCard.Header>
                         <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} erEndret={harEndringer} />
@@ -62,7 +76,7 @@ const Arbeidsaktivitet = ({
                         />
                     </Block>
                 </Panel>
-            )}
+            )} */}
         </div>
     );
 };
