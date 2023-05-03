@@ -59,14 +59,15 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                             yearAgo: getYear(1),
                             yearNow: getYear(0),
                         }),
-
                         value: TidspunktForAleneomsorg.SISTE_2_ÅRENE,
+                        'data-testid': `tidspunktForAleneomsorg_siste2årene_${barnMedAleneomsorg.idFnr}`,
                     },
                     {
                         label: intlHelper(intl, 'step.tidspunkt-for-aleneomsorg.radioPanelGroupLabel.tidligere', {
                             twoYearsAgo: getYear(2),
                         }),
                         value: TidspunktForAleneomsorg.TIDLIGERE,
+                        'data-testid': `tidspunktForAleneomsorg_tidligere-${barnMedAleneomsorg.idFnr}`,
                     },
                 ]}
                 validate={(value) => {

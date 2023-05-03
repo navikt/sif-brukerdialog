@@ -76,12 +76,14 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
                 barnet.fødselsdato
             )} ${formatName(barnet.fornavn, barnet.etternavn)}`,
             value: barnet.aktørId,
+            'data-testid': `harAleneomsorgFor-${barnet.aktørId}`,
         })),
         ...andreBarn.map((barnet) => ({
             label: `${intlHelper(intl, 'step.om-omsorgen-for-barn.form.født')} ${prettifyDate(barnet.fødselsdato)} ${
                 barnet.navn
             }`,
             value: barnet.fnr,
+            'data-testid': `harAleneomsorgFor-${barnet.fnr}`,
         })),
     ];
 };
@@ -258,6 +260,7 @@ const OmOmsorgenForBarnStep = () => {
                                                 name={OmOmsorgenForBarnFormFields.harAleneomsorgFor}
                                                 checkboxes={getBarnOptions(registrertBarn, annetBarn, intl)}
                                                 validate={getListValidator({ required: true })}
+                                                data-testid="harAleneomsorgFor"
                                             />
                                         </Block>
                                         <Block margin="xl">
@@ -287,6 +290,7 @@ const OmOmsorgenForBarnStep = () => {
                                                         )}
                                                     </ExpandableInfo>
                                                 }
+                                                data-testid="avtaleOmDeltBosted"
                                             />
 
                                             {visDeltBostedBarnValg && (

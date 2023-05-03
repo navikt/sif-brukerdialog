@@ -13,21 +13,23 @@ const KvitteringPage = () => {
 
     return (
         <Page title={intlHelper(intl, 'application.title')}>
-            <Kvittering
-                tittel={intlHelper(intl, 'kvittering.tittel')}
-                liste={{
-                    tittel: intlHelper(intl, 'kvittering.info.tittel'),
-                    punkter: [
-                        intlHelper(intl, 'kvittering.info.1'),
-                        intlHelper(intl, 'kvittering.info.2'),
-                        <span key="pkt3">
-                            <FormattedMessage id="kvittering.info.3.1" />{' '}
-                            <Link href={getLenker().saksbehandlingstider} target="_blank">
-                                <FormattedMessage id="kvittering.info.3.2.lenke" />
-                            </Link>
-                        </span>,
-                    ],
-                }}></Kvittering>
+            <div data-testid="kvittering-page">
+                <Kvittering
+                    tittel={intlHelper(intl, 'kvittering.tittel')}
+                    liste={{
+                        tittel: intlHelper(intl, 'kvittering.info.tittel'),
+                        punkter: [
+                            intlHelper(intl, 'kvittering.info.1'),
+                            intlHelper(intl, 'kvittering.info.2'),
+                            <span key="pkt3">
+                                <FormattedMessage id="kvittering.info.3.1" />{' '}
+                                <Link href={getLenker().saksbehandlingstider} target="_blank">
+                                    <FormattedMessage id="kvittering.info.3.2.lenke" />
+                                </Link>
+                            </span>,
+                        ],
+                    }}></Kvittering>
+            </div>
         </Page>
     );
 };

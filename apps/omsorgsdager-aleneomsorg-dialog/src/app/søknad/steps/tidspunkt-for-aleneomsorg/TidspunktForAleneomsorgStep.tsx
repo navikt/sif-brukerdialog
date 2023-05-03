@@ -50,17 +50,6 @@ export interface TidspunktForAleneomsorgFormValues {
     aleneomsorgTidspunkt: AleneomsorgTidspunkt;
 }
 
-/*export interface TidspunktForAleneomsorgFormValues = BarnFormValuesMap;
-
-formValues: {
-    barn: {[fnr]: {
-        dato
-    }}
-}
-
-values: { barn: { "fnr": {tidspunkt, dato}}}
-*/
-
 const { FormikWrapper, Form } = getTypedFormComponents<
     TidspunktForAleneomsorgFormFields,
     TidspunktForAleneomsorgFormValues,
@@ -164,7 +153,7 @@ const TidspunktForAleneomsorgStep = () => {
 
 export default TidspunktForAleneomsorgStep;
 
-/**
+/**TODO
  * 
  * const getFieldName = (key: string, fieldName: AleneomsorgTidspunktField): string => {
         return `${fieldName}_${key}`;
