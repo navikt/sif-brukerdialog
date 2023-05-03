@@ -17,7 +17,6 @@ RUN yarn turbo run build-app --filter=${SCOPE}
 FROM pruner AS server
 WORKDIR /apps/omsorgsdager-aleneomsorg-dialog
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/omsorgsdager-aleneomsorg-dialog/node_modules ./node_modules/
 COPY --from=pruner /app/apps/omsorgsdager-aleneomsorg-dialog/envSettings.js .
 COPY --from=pruner /app/apps/omsorgsdager-aleneomsorg-dialog/server.js .
 COPY --from=pruner /app/apps/omsorgsdager-aleneomsorg-dialog/tokenx.js .
