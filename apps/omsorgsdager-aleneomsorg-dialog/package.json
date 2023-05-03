@@ -20,6 +20,8 @@
         "start-no-decorator": "node ./src/build/scripts/start-dev-no-decorator.js",
         "start-server-local": "npm-run-all -s rm:dist build -p dev-api server-test:local",
         "start": "node ./src/build/scripts/start-dev.js",
+        "test": "react-scripts test --watchAll=false --env=jsdom",
+        "test-watch": "react-scripts test --watchAll=true --env=jsdom",
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/alive 'yarn cypress-run'",
         "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/alive",
         "cypress-open": "cypress open --project $PWD/e2e",
