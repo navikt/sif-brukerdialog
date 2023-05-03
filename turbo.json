@@ -69,6 +69,14 @@
         "e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
             "outputs": [],
             "dependsOn": ["^build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"]
+        },
+        "build-omsorgsdager-aleneomsorg-dialog": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
+        "e2e-omsorgsdager-aleneomsorg-dialog": {
+            "outputs": [],
+            "dependsOn": ["^build-omsorgsdager-aleneomsorg-dialog"]
         }
     }
 }

@@ -66,6 +66,8 @@
         "e2e-endringsmelding-pleiepenger": "turbo run ci --filter=@navikt/endringsmelding-pleiepenger",
         "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": "turbo run build-app --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
         "e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": "turbo run ci --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
+        "build-omsorgsdager-aleneomsorg-dialog": "turbo run build-app --filter=@navikt/omsorgsdager-aleneomsorg-dialog",
+        "e2e-omsorgsdager-aleneomsorg-dialog": "turbo run ci --filter=@navikt/omsorgsdager-aleneomsorg-dialog",
         "ba": "turbo run build-app",
         "clean": "turbo run clean",
         "clean-all": "turbo run clean && rm -rf node_modules",
