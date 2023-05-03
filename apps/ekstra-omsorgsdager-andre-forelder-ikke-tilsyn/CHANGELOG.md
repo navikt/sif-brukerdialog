@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.7.2
+
+### Patch Changes
+
+-   effa925: Endret ingress til Q
+
 ## 1.7.1
 
 ### Patch Changes
