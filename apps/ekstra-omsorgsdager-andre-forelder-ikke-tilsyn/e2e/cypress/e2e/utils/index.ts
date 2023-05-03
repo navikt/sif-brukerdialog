@@ -1,7 +1,7 @@
 export const submitSkjema = () => getTestElement('typedFormikForm-submitButton').click();
 export const submitModalSkjema = () => getTestElement('typedFormikForm-submitButton').eq(1).click();
 export const clickSendInnSøknad = () => cy.get('button[aria-label="Send inn søknaden"]').click();
-export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
+export const PUBLIC_PATH = 'familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn';
 
 export const clickNeiPaAlleSporsmal = () => {
     cy.get('label[class="inputPanel radioPanel"]').each((element) => {
