@@ -153,6 +153,7 @@ const TidspunktForAleneomsorgStep = () => {
 
 export default TidspunktForAleneomsorgStep;
 
+//Trigger
 /**TODO
  * 
  * const getFieldName = (key: string, fieldName: AleneomsorgTidspunktField): string => {
