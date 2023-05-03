@@ -12,6 +12,7 @@ on:
                     - omsorgspengesoknad
                     - sif-ettersending
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                    - omsorgsdager-aleneomsorg-dialog
                 required: true
         secrets:
             NAIS_DEPLOY_APIKEY:
