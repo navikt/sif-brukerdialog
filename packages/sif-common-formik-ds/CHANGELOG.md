@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 0.18.1
+
+### Patch Changes
+
+-   Oppdatere pakker
+
+## 0.18.0
+
+### Minor Changes
+
+-   1361721f: Diverse pakkeoppdateringer + fjerne tailwind pakke som ikke var i bruk.
+
 ## 0.17.0
 
 ### Minor Changes

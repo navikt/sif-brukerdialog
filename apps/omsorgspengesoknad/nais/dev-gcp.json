@@ -4,7 +4,7 @@
     "team": "dusseldorf",
     "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
-    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "ingresses": ["https://omsorgspengesoknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
     "env": {
@@ -13,7 +13,7 @@
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
         "APPSTATUS_DATASET": "staging",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
-        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengesoknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
+        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengesoknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "FRONTEND_API_PATH": "/api",
         "FRONTEND_VEDLEGG_URL": "https://omsorgspengesoknad.intern.dev.nav.no/api",
         "LOGIN_URL": "https://omsorgspengesoknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",

@@ -1,5 +1,34 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.10.1
+
+### Patch Changes
+
+-   Oppdatere pakker
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@0.18.1
+    -   @navikt/sif-common-soknad-ds@7.2.1
+    -   @navikt/sif-common-forms-ds@6.2.1
+    -   @navikt/sif-common-core-ds@7.2.1
+    -   @navikt/sif-common-utils@3.32.1
+
+## 2.10.0
+
+### Minor Changes
+
+-   1361721f: Diverse pakkeoppdateringer + fjerne tailwind pakke som ikke var i bruk.
+
+### Patch Changes
+
+-   Updated dependencies [1361721f]
+    -   @navikt/sif-common-amplitude@2.14.0
+    -   @navikt/sif-common-formik-ds@0.18.0
+    -   @navikt/sif-common-soknad-ds@7.1.0
+    -   @navikt/sif-common-forms-ds@6.1.0
+    -   @navikt/sif-common-core-ds@7.1.0
+    -   @navikt/sif-common-sentry@0.14.0
+    -   @navikt/sif-common-utils@3.32.0
+
 ## 2.9.0
 
 ### Minor Changes
@@ -16,7 +45,7 @@
 
 -   Updated dependencies [cb189915]
     -   @navikt/sif-common-amplitude@2.13.0
-    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-core-ds@7.1.0
     -   @navikt/sif-common-formik-ds@0.17.0
     -   @navikt/sif-common-forms-ds@7.0.0
     -   @navikt/sif-common-sentry@0.13.0

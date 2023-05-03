@@ -1,5 +1,17 @@
 # @navikt/appstatus-react-ds
 
+## 2.5.1
+
+### Patch Changes
+
+-   Oppdatere pakker
+
+## 2.5.0
+
+### Minor Changes
+
+-   1361721f: Diverse pakkeoppdateringer + fjerne tailwind pakke som ikke var i bruk.
+
 ## 2.4.0
 
 ### Minor Changes

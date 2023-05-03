@@ -9,7 +9,7 @@
         "APPSTATUS_DATASET": "staging",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEBUG": "true",
-        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://endringsmelding-pleiepenger.intern.dev.nav.no/oauth2/logout",
+        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://endringsmelding-pleiepenger.intern.dev.nav.no/oauth2/logout",
         "FRONTEND_API_PATH": "/api",
         "FRONTEND_INNSYN_API_PATH": "/innsynapi",
         "DOMAIN_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no",
@@ -21,7 +21,7 @@
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "USE_AMPLITUDE": "true"
     },
-    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "ingresses": ["https://endringsmelding-pleiepenger.intern.dev.nav.no"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/health/isAlive",
     "namespace": "dusseldorf",
