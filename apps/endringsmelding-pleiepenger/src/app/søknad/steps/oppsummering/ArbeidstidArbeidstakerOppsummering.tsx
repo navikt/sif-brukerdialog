@@ -1,10 +1,9 @@
+import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidstakerApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
-import { Heading } from '@navikt/ds-react';
-import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
-import NyTag from '../../../components/tags/NyTag';
 
 type Props = {
     arbeidstaker: ArbeidstakerApiData;
@@ -23,11 +22,6 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
         <Block margin="xl" padBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
             <Heading level="3" size="small">
                 {arbeidsgiver.navn}
-                {arbeidstaker._erNyArbeidsaktivitet && (
-                    <Block margin="m">
-                        <NyTag>Nytt arbeidsforhold</NyTag>
-                    </Block>
-                )}
             </Heading>
             <>
                 <ArbeidstidUkeTabell

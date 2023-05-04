@@ -1,4 +1,4 @@
-import { Alert, Button, ErrorSummary, Ingress } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, Heading, Ingress } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import { Back } from '@navikt/ds-icons';
@@ -9,7 +9,8 @@ import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
+import JaNeiSvar from '@navikt/sif-common-forms-ds/lib/components/summary/JaNeiSvar';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
@@ -22,8 +23,13 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
-import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
+import {
+    getNormalarbeidstidForNyArbeidsgiver,
+    getOppsummeringStepInitialValues,
+    oppsummeringStepUtils,
+} from './oppsummeringStepUtils';
 import './oppsummering.css';
+import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -91,6 +97,34 @@ const OppsummeringStep = () => {
                     </p>
                 </Ingress>
             </SifGuidePanel>
+
+            {sak.harNyArbeidsgiver && arbeidstid && (
+                <Block margin="xxl">
+                    <SummarySection header="Arbeidssituasjon">
+                        {sak.nyeArbeidsgivere.map((arbeidsgiver) => {
+                            const normalarbeidstid = getNormalarbeidstidForNyArbeidsgiver(arbeidstid, arbeidsgiver);
+
+                            return (
+                                <>
+                                    <Heading level="3" size="medium">
+                                        {arbeidsgiver.navn}
+                                    </Heading>
+                                    <SummaryBlock
+                                        header={`Er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger`}>
+                                        <JaNeiSvar harSvartJa={true} />
+                                    </SummaryBlock>
+                                    {normalarbeidstid && (
+                                        <SummaryBlock
+                                            header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
+                                            <DurationText duration={normalarbeidstid} />
+                                        </SummaryBlock>
+                                    )}
+                                </>
+                            );
+                        })}
+                    </SummarySection>
+                </Block>
+            )}
 
             {arbeidstidSkalEndres && (
                 <Block margin="xxl">

@@ -4,6 +4,7 @@ import {
     ISODateRangeToDateRange,
     ISODurationToDecimalDuration,
     ISODurationToDuration,
+    Duration,
 } from '@navikt/sif-common-utils';
 import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import {
@@ -16,6 +17,7 @@ import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { erKortArbeidsuke } from '../../../utils/arbeidsukeUtils';
 import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
 import { OppsummeringFormValues } from './OppsummeringStep';
+import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 
 export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {
     return {
@@ -122,6 +124,23 @@ const erArbeidstidEndringerGyldig = (arbeidstid?: ArbeidstidApiData): boolean =>
         ugyldigArbeidstid.push(selvstendigNæringsdrivendeArbeidstidInfo);
     }
     return ugyldigArbeidstid.length === 0;
+};
+
+export const getNormalarbeidstidForNyArbeidsgiver = (
+    arbeidstid: ArbeidstidApiData,
+    arbeidsgiver: Arbeidsgiver
+): Duration | undefined => {
+    const arbeidsgiverArbeidstid = arbeidstid?.arbeidstakerList.find(
+        (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+    );
+    if (arbeidsgiverArbeidstid) {
+        const keys = Object.keys(arbeidsgiverArbeidstid?.arbeidstidInfo.perioder);
+        const periode = keys.length > 0 ? arbeidsgiverArbeidstid?.arbeidstidInfo.perioder[keys[0]] : undefined;
+        if (periode) {
+            return getTimerPerUkeFraTimerPerDag(ISODurationToDuration(periode.jobberNormaltTimerPerDag), 5);
+        }
+    }
+    return undefined;
 };
 
 export const oppsummeringStepUtils = {
