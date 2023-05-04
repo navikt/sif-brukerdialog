@@ -1,7 +1,6 @@
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ISODate, ISODateRangeToDateRange, ISODateToDate, dateToISODate } from '@navikt/sif-common-utils/lib';
+import { dateToISODate, ISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { getSøknadsperioderForNyttArbeidsforhold } from '../nyttArbeidsforholdUtils';
-import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 
 describe('nyttArbeidsforholdUtils', () => {
     describe('getSøknadsperioderForNyttArbeidsforhold', () => {
