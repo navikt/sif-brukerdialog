@@ -11,13 +11,17 @@ import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
-    visOpprinneligTid?: boolean;
     medLabels?: boolean;
+    visEndringSomVanligTid: boolean;
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinneligTid = true, medLabels = false }) => {
+const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({
+    uke,
+    visEndringSomVanligTid = false,
+    medLabels = false,
+}) => {
     const intl = useIntl();
     if (uke.endret === undefined) {
         return (
@@ -25,6 +29,16 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
                 {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
                 <span data-testid="timer-faktisk">
                     <DurationText duration={uke.opprinnelig.faktisk} />
+                </span>
+            </>
+        );
+    }
+    if (visEndringSomVanligTid) {
+        return (
+            <>
+                {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
+                <span data-testid="timer-faktisk">
+                    <DurationText duration={uke.endret.faktisk} />
                 </span>
             </>
         );
@@ -42,16 +56,16 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, visOpprinnelig
                     <span className={bem.element('prosent')}> ({intl.formatNumber(endretProsent)} %)</span>
                 )}
             </div>
-            {visOpprinneligTid && (
-                <div>
-                    <span className={bem.element('opprinnelig')}>
-                        <AriaText>Endret fra </AriaText>
-                        <span className={bem.element('timer')} data-testid="timer-opprinnelig">
-                            <DurationText duration={uke.opprinnelig.faktisk} />
-                        </span>
+
+            <div>
+                <span className={bem.element('opprinnelig')}>
+                    <AriaText>Endret fra </AriaText>
+                    <span className={bem.element('timer')} data-testid="timer-opprinnelig">
+                        <DurationText duration={uke.opprinnelig.faktisk} />
                     </span>
-                </div>
-            )}
+                </span>
+            </div>
+
             {erEndringGyldig === false && (
                 <div style={{ marginTop: '0.25rem' }}>
                     <IconText icon={<ErrorColored role="presentation" aria-hidden="true" />}>For mange timer</IconText>

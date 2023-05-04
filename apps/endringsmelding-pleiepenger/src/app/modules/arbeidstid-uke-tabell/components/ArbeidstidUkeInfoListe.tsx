@@ -10,13 +10,14 @@ import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
+    visEndringSomVanligTid?: boolean;
     dagerMedFerie?: Date[];
     dagerMedFjernetFerie?: Date[];
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
+const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndringSomVanligTid }) => {
     const intl = useIntl();
 
     if (uke.endret === undefined) {
@@ -54,20 +55,24 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
                         <strong>
                             <DurationText duration={uke.endret.faktisk} />
                         </strong>
-                        {uke.endret.endretProsent !== undefined && (
+                        {visEndringSomVanligTid === false && uke.endret.endretProsent !== undefined && (
                             <span className={bem.element('prosent')}>
                                 {' '}
                                 ({intl.formatNumber(uke.endret.endretProsent)} %)
                             </span>
                         )}
                     </>
-                    <br />
-                    <span className={bem.element('opprinnelig')}>
-                        <AriaText>Endret fra </AriaText>
-                        <span className={bem.element('timer')} data-testid="timer-opprinnelig">
-                            <DurationText duration={uke.opprinnelig.faktisk} />
-                        </span>
-                    </span>
+                    {visEndringSomVanligTid === false && (
+                        <>
+                            <br />
+                            <span className={bem.element('opprinnelig')}>
+                                <AriaText>Endret fra </AriaText>
+                                <span className={bem.element('timer')} data-testid="timer-opprinnelig">
+                                    <DurationText duration={uke.opprinnelig.faktisk} />
+                                </span>
+                            </span>
+                        </>
+                    )}
                 </span>
             </p>
             {erEndringGyldig === false && (

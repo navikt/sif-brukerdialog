@@ -8,6 +8,8 @@ import {
     getWeeksInDateRange,
 } from '@navikt/sif-common-utils';
 import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils/lib';
+import { ArbeiderIPeriodenSvar } from '../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
+import { ArbeidsforholdAktivt } from '../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import {
     ArbeidAktivitet,
@@ -20,7 +22,6 @@ import {
 import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
-import { ArbeiderIPeriodenSvar } from '../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 
 export const getSøknadsperioderForNyttArbeidsforhold = (
     søknadsperioder: DateRange[],
@@ -70,6 +71,34 @@ export const getPerioderMedArbeidstidForNyArbeidsgiver = (
     return perioderMedArbeidstid;
 };
 
+export const getArbeidAktivitetFromNyttArbeidsforhold = (
+    søknadsperioder: DateRange[],
+    arbeidsgiver: Arbeidsgiver,
+    arbeidsforhold: ArbeidsforholdAktivt
+): ArbeidAktivitet => {
+    const faktiskArbeidstid: Duration =
+        arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig
+            ? arbeidsforhold.normalarbeidstid.timerPerUke
+            : { hours: '0', minutes: '0' };
+
+    const aktivitet: ArbeidAktivitet = {
+        type: ArbeidAktivitetType.arbeidstaker,
+        arbeidsgiver,
+        erNyArbeidsaktivitet: true,
+        id: arbeidsgiver.organisasjonsnummer,
+        navn: arbeidsgiver.navn,
+        harPerioderEtterTillattEndringsperiode: false,
+        harPerioderFørTillattEndringsperiode: false,
+        perioderMedArbeidstid: getPerioderMedArbeidstidForNyArbeidsgiver(
+            søknadsperioder,
+            arbeidsgiver,
+            arbeidsforhold.normalarbeidstid.timerPerUke,
+            faktiskArbeidstid
+        ),
+    };
+    return aktivitet;
+};
+
 export const getArbeidAktiviteterFromNyeArbeidsforhold = (
     søknadsperioder: DateRange[],
     nyeArbeidsgivere: Arbeidsgiver[],
@@ -83,28 +112,7 @@ export const getArbeidAktiviteterFromNyeArbeidsforhold = (
         if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
             throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
         }
-
-        const faktiskArbeidstid: Duration =
-            arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig
-                ? arbeidsforhold.normalarbeidstid.timerPerUke
-                : { hours: '0', minutes: '0' };
-
-        const aktivitet: ArbeidAktivitet = {
-            type: ArbeidAktivitetType.arbeidstaker,
-            arbeidsgiver,
-            erNyArbeidsaktivitet: true,
-            id: arbeidsgiver.organisasjonsnummer,
-            navn: arbeidsgiver.navn,
-            harPerioderEtterTillattEndringsperiode: false,
-            harPerioderFørTillattEndringsperiode: false,
-            perioderMedArbeidstid: getPerioderMedArbeidstidForNyArbeidsgiver(
-                søknadsperioder,
-                arbeidsgiver,
-                arbeidsforhold.normalarbeidstid.timerPerUke,
-                faktiskArbeidstid
-            ),
-        };
-        aktiviteter.push(aktivitet);
+        aktiviteter.push(getArbeidAktivitetFromNyttArbeidsforhold(søknadsperioder, arbeidsgiver, arbeidsforhold));
     });
     return aktiviteter;
 };

@@ -86,7 +86,10 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
             />
             {values.erAnsatt === YesOrNo.NO && (
                 <Block margin="l" padBottom="l">
-                    <Alert variant="warning">Når dette ikke stemmer kan du</Alert>
+                    <Alert variant="warning">
+                        Når du ikke er ansatt her lenger, må du be denne arbeidsgiveren om å sende en ny A-melding med
+                        sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.
+                    </Alert>
                 </Block>
             )}
             {values.erAnsatt === YesOrNo.YES && (

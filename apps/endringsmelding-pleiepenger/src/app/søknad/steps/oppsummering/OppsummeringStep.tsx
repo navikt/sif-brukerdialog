@@ -94,7 +94,7 @@ const OppsummeringStep = () => {
 
             {arbeidstidSkalEndres && (
                 <Block margin="xxl">
-                    <SummarySection header="Endringer i arbeidstid">
+                    <SummarySection header="Arbeidstid">
                         {arbeidstid && arbeidstidErEndret ? (
                             <>
                                 <ArbeidstidOppsummering

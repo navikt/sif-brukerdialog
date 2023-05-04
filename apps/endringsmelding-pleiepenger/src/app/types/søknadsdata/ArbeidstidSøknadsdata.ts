@@ -3,7 +3,7 @@ import { ArbeidAktivitetArbeidstaker } from '../Sak';
 
 export interface ArbeidstidSøknadsdata {
     arbeidAktivitetEndring: {
-        [key: string]: ArbeidstidEndringMap;
+        [uke: string]: ArbeidstidEndringMap;
     };
     nyeArbeidsaktiviteter?: ArbeidAktivitetArbeidstaker[];
 }

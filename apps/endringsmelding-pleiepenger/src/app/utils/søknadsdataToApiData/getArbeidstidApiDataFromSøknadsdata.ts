@@ -1,4 +1,5 @@
 import {
+    DateRange,
     dateRangeToISODateRange,
     durationToISODuration,
     getDateRangesFromDates,
@@ -19,10 +20,15 @@ import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiDataMap,
 } from '../../types/søknadApiData/SøknadApiData';
+import { ArbeidssituasjonSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
+import { getArbeidAktivitetFromNyttArbeidsforhold } from '../nyttArbeidsforholdUtils';
+import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
+
+type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 
 const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): ArbeidsukeMap => {
     const arbeidsukerMap: ArbeidsukeMap = {};
@@ -56,6 +62,7 @@ const getEndretArbeidstid = (
             antallDagerMedArbeidstid
         );
 
+        /** Splitt opp dersom det er enkeltdager i uken */
         const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
         perioder.sort(sortDateRange).forEach((periode) => {
             perioderMedEndretArbeidstid[dateRangeToISODateRange(periode)] = {
@@ -72,9 +79,9 @@ const getEndretArbeidstid = (
 };
 
 const getArbeidAktivitetArbeidstidInfo = (
-    aktivitetEndring?: ArbeidstidEndringMap,
-    aktivitet?: ArbeidAktivitet
-): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
+    aktivitet: ArbeidAktivitet,
+    aktivitetEndring?: ArbeidstidEndringMap
+): ArbeidstidInfo | undefined => {
     if (aktivitetEndring && aktivitet && Object.keys(aktivitetEndring).length > 0) {
         return {
             perioder: getEndretArbeidstid(aktivitetEndring, aktivitet),
@@ -83,20 +90,12 @@ const getArbeidAktivitetArbeidstidInfo = (
     return undefined;
 };
 
-const getNyArbeidsgiverArbeidstidInfo = (
-    endring: ArbeidstidEndringMap,
-    arbeidsgiver: Arbeidsgiver
-): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
-    // eslint-disable-next-line no-console
-    console.log(endring, arbeidsgiver);
-
-    return undefined;
-};
-
 export const getArbeidstidApiDataFromSøknadsdata = (
+    søknadsperioder: DateRange[],
     { arbeidAktivitetEndring }: ArbeidstidSøknadsdata,
     arbeidAktiviteter: ArbeidAktiviteter,
-    nyeArbeidsgivere: Arbeidsgiver[]
+    nyeArbeidsgivere: Arbeidsgiver[],
+    arbeidssituasjon?: ArbeidssituasjonSøknadsdata
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidAktivitetEndring[ArbeidAktivitetType.frilanser];
     const selvstendigNæringsdrivendeAktivitetEndring =
@@ -111,7 +110,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             const {
                 arbeidsgiver: { type, organisasjonsnummer },
             } = aktivitet;
-            const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(endring, aktivitet);
+            const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(aktivitet, endring);
             if (arbeidstidInfo) {
                 arbeidstakerList.push({
                     organisasjonsnummer,
@@ -124,33 +123,81 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     });
 
     /** Nye arbeidsgivere */
-    nyeArbeidsgivere.forEach((arbeidsgiver) => {
-        const { type, organisasjonsnummer } = arbeidsgiver;
-        const endring = arbeidAktivitetEndring[organisasjonsnummer];
-        if (endring) {
-            const arbeidstidInfo = getNyArbeidsgiverArbeidstidInfo(endring, arbeidsgiver);
-            if (arbeidstidInfo) {
-                arbeidstakerList.push({
-                    organisasjonsnummer,
-                    norskIdentitetsnummer: type === ArbeidsgiverType.PRIVATPERSON ? organisasjonsnummer : undefined,
-                    arbeidstidInfo,
-                    _erNyArbeidsaktivitet: false,
-                });
-            } else {
+    if (arbeidssituasjon) {
+        nyeArbeidsgivere.forEach((arbeidsgiver) => {
+            const { type, organisasjonsnummer } = arbeidsgiver;
+            const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find(
+                (a) => a.arbeidsgiverId === organisasjonsnummer
+            );
+            if (!arbeidsforhold) {
                 throw 'Ny arbeidsgiver mangler informasjon om arbeidstid';
             }
-        }
-    });
+            if (arbeidsforhold.erAnsatt === false) {
+                return;
+            }
+
+            const arbeidAktivitet = getArbeidAktivitetFromNyttArbeidsforhold(
+                søknadsperioder,
+                arbeidsgiver,
+                arbeidsforhold
+            );
+
+            const endring = arbeidAktivitetEndring[organisasjonsnummer];
+            const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);
+            const arbeidstidInfo: ArbeidstidInfo = {
+                perioder: {},
+            };
+            Object.keys(arbeidsuker).forEach((key) => {
+                const arbeidsuke = arbeidsuker[key];
+                const ukeEndring = endring ? endring[key] : undefined;
+
+                const faktiskArbeidTimerPerDag = ukeEndring
+                    ? beregnEndretFaktiskArbeidstidPerDag(
+                          arbeidsuke.normalt.uke,
+                          ukeEndring,
+                          arbeidsuke.antallDagerMedArbeidstid
+                      )
+                    : arbeidsuke.faktisk.dag;
+
+                const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(
+                    arbeidsuke.normalt.uke,
+                    arbeidsuke.antallDagerMedArbeidstid
+                );
+                /** Splitt opp dersom det er enkeltdager i uken */
+                const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
+                const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
+                perioder.sort(sortDateRange).forEach((periode) => {
+                    arbeidstidInfo.perioder[dateRangeToISODateRange(periode)] = {
+                        jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
+                        faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
+                        _endretProsent:
+                            ukeEndring !== undefined && ukeEndring.type === TimerEllerProsent.PROSENT
+                                ? ukeEndring.prosent
+                                : undefined,
+                        _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
+                        _opprinneligFaktiskPerDag: durationToISODuration(arbeidsuke.faktisk.dag),
+                    };
+                });
+            });
+
+            arbeidstakerList.push({
+                _erNyArbeidsaktivitet: true,
+                arbeidstidInfo,
+                organisasjonsnummer,
+                norskIdentitetsnummer: type === ArbeidsgiverType.PRIVATPERSON ? organisasjonsnummer : undefined,
+            });
+        });
+    }
 
     return {
         arbeidstakerList,
         frilanserArbeidstidInfo: arbeidAktiviteter.frilanser
-            ? getArbeidAktivitetArbeidstidInfo(frilansAktivitetEndring, arbeidAktiviteter.frilanser)
+            ? getArbeidAktivitetArbeidstidInfo(arbeidAktiviteter.frilanser, frilansAktivitetEndring)
             : undefined,
         selvstendigNæringsdrivendeArbeidstidInfo: arbeidAktiviteter.selvstendigNæringsdrivende
             ? getArbeidAktivitetArbeidstidInfo(
-                  selvstendigNæringsdrivendeAktivitetEndring,
-                  arbeidAktiviteter.selvstendigNæringsdrivende
+                  arbeidAktiviteter.selvstendigNæringsdrivende,
+                  selvstendigNæringsdrivendeAktivitetEndring
               )
             : undefined,
     };

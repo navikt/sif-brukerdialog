@@ -46,6 +46,7 @@ interface Props {
     periode?: DateRange;
     arbeidstidKolonneTittel?: string;
     triggerResetValg?: number;
+    visEndringSomVanligTid?: boolean;
     onEndreUker?: (uke: ArbeidstidUkeTabellItem[]) => void;
 }
 
@@ -58,6 +59,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     periode,
     arbeidstidKolonneTittel,
     triggerResetValg,
+    visEndringSomVanligTid = false,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
@@ -443,7 +445,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     <Table.DataCell
                                         data-testid="arbeidstid-faktisk"
                                         className="arbeidstidUkeTabell__faktisk">
-                                        <ArbeidstidUkeInfo uke={uke} />
+                                        <ArbeidstidUkeInfo uke={uke} visEndringSomVanligTid={visEndringSomVanligTid} />
                                     </Table.DataCell>
                                     {kanEndreEnkeltuke && (
                                         <Table.DataCell className="arbeidstidUkeTabell__endre">
