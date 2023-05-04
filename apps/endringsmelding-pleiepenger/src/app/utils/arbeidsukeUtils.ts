@@ -1,12 +1,16 @@
 import {
     dateFormatter,
     DateRange,
+    dateRangeToISODateRange,
     durationToISODuration,
+    durationUtils,
     getDatesInDateRange,
     ISODate,
+    numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '../types/Sak';
+import { beregnSnittTimerPerDag } from './beregnUtils';
 
 export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {
     return dayjs(a1.periode.from).isBefore(a2.periode.from) ? -1 : 1;
@@ -51,4 +55,38 @@ export const arbeidsukerHarLikNormaltidPerDag = (arbeidsuker: Arbeidsuke[]): boo
  */
 export const getDagerFraEnkeltdagMap = (arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap): ISODate[] => {
     return Object.keys(arbeidstidEnkeltdager).sort();
+};
+
+/**
+ * Mapper periode og enkeltdager med arbeid om til Arbeidsuke. Summerer tid per dag om til timer per uke
+ * @param periode DateRange for uken
+ * @param arbeidstidEnkeltdagerIUken Enkeltdager med arbeidstid innenfor uken
+ * @returns Arbeidsuke
+ */
+export const getArbeidsukeFromEnkeltdagerIUken = (
+    uke: DateRange,
+    arbeidstidEnkeltdagerIUken: ArbeidstidEnkeltdagMap
+): Arbeidsuke => {
+    const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
+    const antallDagerMedArbeidstid = dagerSøktFor.length;
+    const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
+    const normalt = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].normalt);
+    const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
+    const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
+
+    const arbeidsuke: Arbeidsuke = {
+        isoDateRange: dateRangeToISODateRange(uke),
+        periode: uke,
+        arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
+        faktisk: {
+            uke: faktiskSummertHeleUken,
+            dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
+        },
+        normalt: {
+            uke: normaltSummertHeleUken,
+            dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerMedArbeidstid),
+        },
+        antallDagerMedArbeidstid: dagerSøktFor.length,
+    };
+    return arbeidsuke;
 };

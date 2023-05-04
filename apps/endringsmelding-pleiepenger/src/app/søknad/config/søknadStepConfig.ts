@@ -13,7 +13,8 @@ export const getSøknadSteps = (
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres: ferieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
-        harFjernetFerie
+        harFjernetFerie,
+        harNyArbeidsgiver
     );
 
     if (harNyArbeidsgiver) {

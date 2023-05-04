@@ -25,6 +25,7 @@ import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
+    getNyeAktiviteter,
 } from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
@@ -70,7 +71,14 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const arbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter);
+    const eksisterendeArbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter);
+
+    const nyeArbeidAktiviteter: ArbeidAktivitet[] = getNyeAktiviteter(
+        sak.søknadsperioder,
+        sak.nyeArbeidsgivere,
+        søknadsdata.arbeidssituasjon
+    );
+    const arbeidAktiviteter = [...nyeArbeidAktiviteter, ...eksisterendeArbeidAktiviteter];
 
     const onArbeidstidAktivitetChange = (
         arbeidAktivitetId: string,
@@ -143,6 +151,7 @@ const ArbeidstidStep = () => {
                                         <Block key={arbeidAktivitet.id} margin="l">
                                             <Arbeidsaktivitet
                                                 renderAsExpansionCard={arbeidAktiviteter.length > 1}
+                                                expansionCardDefaultOpen={arbeidAktiviteter.length <= 2}
                                                 arbeidAktivitet={arbeidAktivitet}
                                                 endringer={endringer[arbeidAktivitet.id]}
                                                 lovbestemtFerie={søknadsdata.lovbestemtFerie}

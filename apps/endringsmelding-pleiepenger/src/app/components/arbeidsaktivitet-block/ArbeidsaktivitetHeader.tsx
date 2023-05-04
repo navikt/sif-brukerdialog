@@ -7,17 +7,25 @@ import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidAktivitetType } from '../../types/Sak';
 import EndretTag from '../tags/EndretTag';
 import './arbeidsaktivitetHeader.scss';
+import NyTag from '../tags/NyTag';
 
 interface Props {
     navn: string;
     arbeidsgiver?: Arbeidsgiver;
     type: ArbeidAktivitetType;
+    erNyAktivitet?: boolean;
     endret?: {
         tekst: string;
     };
 }
 
-const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({ type, arbeidsgiver, navn, endret }) => {
+const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
+    type,
+    arbeidsgiver,
+    navn,
+    endret,
+    erNyAktivitet,
+}) => {
     return (
         <Block margin={type !== ArbeidAktivitetType.arbeidstaker ? 'm' : 'none'}>
             <div className="arbeidsaktivitetHeader">
@@ -38,9 +46,10 @@ const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({ type, arbeidsg
                             {arbeidsgiver.ansattTom && <> Sluttdato: {dateFormatter.full(arbeidsgiver.ansattTom)}</>}
                         </BodyLong>
                     ) : undefined}
-                    {endret && (
-                        <Block margin="m">
-                            <EndretTag>{endret.tekst}</EndretTag>
+                    {(endret || erNyAktivitet) && (
+                        <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
+                            {endret && <EndretTag>{endret.tekst}</EndretTag>}
+                            {erNyAktivitet && <NyTag>Nytt arbeidsforhold</NyTag>}
                         </Block>
                     )}
                 </div>

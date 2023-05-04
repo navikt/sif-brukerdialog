@@ -397,6 +397,7 @@ const getArbeidAktivitetArbeidstaker = (
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
         navn: arbeidsgiver.navn,
+        erNyArbeidsaktivitet: false,
         ...getArbeidAktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver),
     };
 };
@@ -510,11 +511,11 @@ const getFeriedagerFromLovbestemtFerie = (lovbestemtFerie: K9SakLovbestemtFerie[
 };
 
 const getAktiviteterSomKanEndres = ({
-    arbeidstakerAktiviteter: arbeidstakerArktiviteter,
+    arbeidstakerAktiviteter,
     frilanser,
     selvstendigNæringsdrivende,
 }: ArbeidAktiviteter): ArbeidAktivitet[] => {
-    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerArktiviteter];
+    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerAktiviteter];
     if (frilanser) {
         aktiviteter.push(frilanser);
     }

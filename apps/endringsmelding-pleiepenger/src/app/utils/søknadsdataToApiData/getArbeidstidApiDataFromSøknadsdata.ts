@@ -5,7 +5,7 @@ import {
     ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
-import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
+import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {
     ArbeidAktivitet,
@@ -71,7 +71,7 @@ const getEndretArbeidstid = (
     return perioderMedEndretArbeidstid;
 };
 
-const getArbeidstidInfo = (
+const getArbeidAktivitetArbeidstidInfo = (
     aktivitetEndring?: ArbeidstidEndringMap,
     aktivitet?: ArbeidAktivitet
 ): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
@@ -83,29 +83,61 @@ const getArbeidstidInfo = (
     return undefined;
 };
 
+const getNyArbeidsgiverArbeidstidInfo = (
+    endring: ArbeidstidEndringMap,
+    arbeidsgiver: Arbeidsgiver
+): { perioder: ArbeidstidPeriodeApiDataMap } | undefined => {
+    // eslint-disable-next-line no-console
+    console.log(endring, arbeidsgiver);
+
+    return undefined;
+};
+
 export const getArbeidstidApiDataFromSøknadsdata = (
     { arbeidAktivitetEndring }: ArbeidstidSøknadsdata,
-    arbeidAktiviteter: ArbeidAktiviteter
+    arbeidAktiviteter: ArbeidAktiviteter,
+    nyeArbeidsgivere: Arbeidsgiver[]
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidAktivitetEndring[ArbeidAktivitetType.frilanser];
     const selvstendigNæringsdrivendeAktivitetEndring =
         arbeidAktivitetEndring[ArbeidAktivitetType.selvstendigNæringsdrivende];
     const arbeidstakerList: ArbeidstakerApiData[] = [];
 
+    /** Eksisterende arbeidsaktiviteter */
     arbeidAktiviteter.arbeidstakerAktiviteter.forEach((aktivitet) => {
         const endring = arbeidAktivitetEndring[aktivitet.id];
 
         if (endring) {
             const {
-                arbeidsgiver: { type, organisasjonsnummer: id },
+                arbeidsgiver: { type, organisasjonsnummer },
             } = aktivitet;
-            const arbeidstidInfo = getArbeidstidInfo(endring, aktivitet);
+            const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(endring, aktivitet);
             if (arbeidstidInfo) {
                 arbeidstakerList.push({
-                    organisasjonsnummer: id,
-                    norskIdentitetsnummer: type === ArbeidsgiverType.PRIVATPERSON ? id : undefined,
+                    organisasjonsnummer,
+                    norskIdentitetsnummer: type === ArbeidsgiverType.PRIVATPERSON ? organisasjonsnummer : undefined,
                     arbeidstidInfo,
+                    _erNyArbeidsaktivitet: false,
                 });
+            }
+        }
+    });
+
+    /** Nye arbeidsgivere */
+    nyeArbeidsgivere.forEach((arbeidsgiver) => {
+        const { type, organisasjonsnummer } = arbeidsgiver;
+        const endring = arbeidAktivitetEndring[organisasjonsnummer];
+        if (endring) {
+            const arbeidstidInfo = getNyArbeidsgiverArbeidstidInfo(endring, arbeidsgiver);
+            if (arbeidstidInfo) {
+                arbeidstakerList.push({
+                    organisasjonsnummer,
+                    norskIdentitetsnummer: type === ArbeidsgiverType.PRIVATPERSON ? organisasjonsnummer : undefined,
+                    arbeidstidInfo,
+                    _erNyArbeidsaktivitet: false,
+                });
+            } else {
+                throw 'Ny arbeidsgiver mangler informasjon om arbeidstid';
             }
         }
     });
@@ -113,10 +145,10 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     return {
         arbeidstakerList,
         frilanserArbeidstidInfo: arbeidAktiviteter.frilanser
-            ? getArbeidstidInfo(frilansAktivitetEndring, arbeidAktiviteter.frilanser)
+            ? getArbeidAktivitetArbeidstidInfo(frilansAktivitetEndring, arbeidAktiviteter.frilanser)
             : undefined,
         selvstendigNæringsdrivendeArbeidstidInfo: arbeidAktiviteter.selvstendigNæringsdrivende
-            ? getArbeidstidInfo(
+            ? getArbeidAktivitetArbeidstidInfo(
                   selvstendigNæringsdrivendeAktivitetEndring,
                   arbeidAktiviteter.selvstendigNæringsdrivende
               )

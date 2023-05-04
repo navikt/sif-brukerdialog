@@ -1,8 +1,11 @@
-import { durationsAreEqual } from '@navikt/sif-common-utils';
+import { DateRange, durationsAreEqual } from '@navikt/sif-common-utils';
+import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
+import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
+import { getArbeidAktiviteterFromNyeArbeidsforhold } from '../../../utils/nyttArbeidsforholdUtils';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
@@ -60,9 +63,9 @@ export const getArbeidsukerIArbeidAktivitet = (arbeidAktvitet: ArbeidAktivitet):
 };
 
 export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter): ArbeidAktivitet[] => {
-    const { arbeidstakerAktiviteter: arbeidstaker, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
+    const { arbeidstakerAktiviteter, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
 
-    const aktiviteter: ArbeidAktivitet[] = [...arbeidstaker];
+    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerAktiviteter];
     if (frilanser !== undefined) {
         aktiviteter.push({ ...frilanser });
     }
@@ -71,4 +74,12 @@ export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter
         aktiviteter.push({ ...selvstendigNæringsdrivende });
     }
     return aktiviteter;
+};
+
+export const getNyeAktiviteter = (
+    søknadsperioder: DateRange[],
+    nyeArbeidsgivere: Arbeidsgiver[],
+    arbeidssituasjon?: ArbeidssituasjonSøknadsdata
+): ArbeidAktivitet[] => {
+    return getArbeidAktiviteterFromNyeArbeidsforhold(søknadsperioder, nyeArbeidsgivere, arbeidssituasjon);
 };

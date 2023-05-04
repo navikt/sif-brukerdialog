@@ -4,14 +4,17 @@ export const getValgteEndringer = (hvaSkalEndres: EndringType[]): SkalEndresMap 
     return {
         arbeidstidSkalEndres: hvaSkalEndres.some((e) => e === EndringType.arbeidstid),
         lovbestemtFerieSkalEndres: hvaSkalEndres.some((e) => e === EndringType.lovbestemtFerie),
-        utenlandsoppholdSkalEndres: hvaSkalEndres.some((e) => e === EndringType.utenlandsopphold),
     };
 };
 
-export const getEndringerSomSkalGjøres = (hvaSkalEndres: EndringType[], harFjernetFerie: boolean): SkalEndresMap => {
+export const getEndringerSomSkalGjøres = (
+    hvaSkalEndres: EndringType[],
+    harFjernetFerie: boolean,
+    harNyArbeidsgiver: boolean
+): SkalEndresMap => {
     return {
-        arbeidstidSkalEndres: hvaSkalEndres.some((e) => e === EndringType.arbeidstid) || harFjernetFerie,
+        arbeidstidSkalEndres:
+            hvaSkalEndres.some((e) => e === EndringType.arbeidstid) || harFjernetFerie || harNyArbeidsgiver,
         lovbestemtFerieSkalEndres: hvaSkalEndres.some((e) => e === EndringType.lovbestemtFerie),
-        utenlandsoppholdSkalEndres: hvaSkalEndres.some((e) => e === EndringType.utenlandsopphold),
     };
 };

@@ -50,6 +50,7 @@ interface ArbeidAktivitetBase {
 export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
+    erNyArbeidsaktivitet: boolean;
 }
 export interface ArbeidAktivitetFrilanser extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.frilanser;

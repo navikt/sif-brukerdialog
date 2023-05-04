@@ -48,7 +48,7 @@ const OppsummeringStep = () => {
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
     const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie, sak.harNyArbeidsgiver);
     const step = stepConfig[stepId];
-    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
 
     const { goBack } = useStepNavigation(step);
 
@@ -77,7 +77,8 @@ const OppsummeringStep = () => {
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie)
+        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
+        sak.harNyArbeidsgiver
     );
 
     return (
@@ -96,7 +97,10 @@ const OppsummeringStep = () => {
                     <SummarySection header="Endringer i arbeidstid">
                         {arbeidstid && arbeidstidErEndret ? (
                             <>
-                                <ArbeidstidOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                                <ArbeidstidOppsummering
+                                    arbeidstid={arbeidstid}
+                                    arbeidsgivere={[...arbeidsgivere, ...sak.nyeArbeidsgivere]}
+                                />
                                 {!harGyldigArbeidstid && (
                                     <Block margin="none" padBottom="l">
                                         <Alert variant="error">

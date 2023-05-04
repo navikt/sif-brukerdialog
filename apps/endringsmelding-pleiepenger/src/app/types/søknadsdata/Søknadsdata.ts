@@ -3,6 +3,7 @@ import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { LovbestemtFerieSøknadsdata } from './LovbestemtFerieSøknadsdata';
 
+export * from './ArbeidssituasjonSøknadsdata';
 export * from './ArbeidstidSøknadsdata';
 export * from './LovbestemtFerieSøknadsdata';
 

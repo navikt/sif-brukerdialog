@@ -20,16 +20,17 @@ import {
     getArbeidsforholdFormFieldKey,
     getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
+    harSvartErIkkeAnsattHosNyArbeidsgiver,
 } from './arbeidssituasjonStepUtils';
 import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
-export interface ArbeidsforholdMap {
+export interface NyttArbeidsforholdMap {
     [id: string]: ArbeidsforholdFormValues;
 }
 
 export interface ArbeidssituasjonFormValues {
-    [ArbeidssituasjonFormFields.arbeidsforhold]: ArbeidsforholdMap;
+    [ArbeidssituasjonFormFields.arbeidsforhold]: NyttArbeidsforholdMap;
 }
 
 enum ArbeidssituasjonFormFields {
@@ -47,7 +48,7 @@ const ArbeidssituasjonStep = () => {
     const intl = useIntl();
 
     const {
-        state: { søknadsdata, hvaSkalEndres, sak },
+        state: { søknadsdata, hvaSkalEndres, sak, arbeidsgivere },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
@@ -58,10 +59,10 @@ const ArbeidssituasjonStep = () => {
     const { goBack } = useStepNavigation(step);
 
     const onValidSubmitHandler = (values: ArbeidssituasjonFormValues) => {
-        const arbeidsgivere = getArbeidssituasjonSøknadsdataFromFormValues(values);
-        if (arbeidsgivere) {
+        const arbeidssituasjonSøknadsdata = getArbeidssituasjonSøknadsdataFromFormValues(values, arbeidsgivere);
+        if (arbeidssituasjonSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadArbeidssituasjon(arbeidsgivere)];
+            return [actionsCreator.setSøknadArbeidssituasjon(arbeidssituasjonSøknadsdata)];
         }
         return [];
     };
@@ -103,6 +104,12 @@ const ArbeidssituasjonStep = () => {
                                     includeValidationSummary={true}
                                     submitPending={isSubmitting}
                                     runDelayedFormValidation={true}
+                                    submitDisabled={
+                                        values[ArbeidssituasjonFormFields.arbeidsforhold] !== undefined &&
+                                        harSvartErIkkeAnsattHosNyArbeidsgiver(
+                                            values[ArbeidssituasjonFormFields.arbeidsforhold]
+                                        )
+                                    }
                                     onBack={goBack}>
                                     {sak.nyeArbeidsgivere.map((a) => {
                                         const arbeidsgiverFieldKey = getArbeidsforholdFormFieldKey(

@@ -9,7 +9,9 @@ interface Props {
     type: ArbeidAktivitetType;
     arbeidsgiver?: Arbeidsgiver;
     endret?: { tekst: string };
+    nytt?: boolean;
     renderAsExpansionCard?: boolean;
+    expansionCardDefaultOpen?: boolean;
     children: React.ReactNode;
 }
 
@@ -18,14 +20,24 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
     type,
     arbeidsgiver,
     renderAsExpansionCard,
+    expansionCardDefaultOpen = true,
     endret,
+    nytt,
     children,
 }) => {
     const renderHeader = () => {
-        return <ArbeidsaktivitetHeader type={type} navn={navn} arbeidsgiver={arbeidsgiver} endret={endret} />;
+        return (
+            <ArbeidsaktivitetHeader
+                type={type}
+                navn={navn}
+                arbeidsgiver={arbeidsgiver}
+                endret={endret}
+                erNyAktivitet={nytt}
+            />
+        );
     };
     return renderAsExpansionCard ? (
-        <ExpansionCard aria-label={navn} defaultOpen={true}>
+        <ExpansionCard aria-label={navn} defaultOpen={expansionCardDefaultOpen}>
             <ExpansionCard.Header>{renderHeader()}</ExpansionCard.Header>
             <ExpansionCard.Content>{children}</ExpansionCard.Content>
         </ExpansionCard>

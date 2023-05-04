@@ -11,6 +11,7 @@ import { defaultMessages } from './messages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
 import { sifCommonSoknadOverrideMessages } from './sifCommonSoknadOverrideMessages';
 import { infoNormalarbeidstid } from '../søknad/steps/arbeidssituasjon/components/infoNormaltimer.messages';
+import { arbeidsforholdFormMessages } from '../søknad/steps/arbeidssituasjon/arbeidsforholdFormMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -24,6 +25,7 @@ const bokmålstekster = {
     ...sifCommonSoknadOverrideMessages.nb,
     ...ferieuttakMessages.nb,
     ...infoNormalarbeidstid.nb,
+    ...arbeidsforholdFormMessages.nb,
     ...defaultMessages.nb,
 };
 

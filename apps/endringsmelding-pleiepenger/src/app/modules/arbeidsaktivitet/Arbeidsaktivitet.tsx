@@ -10,6 +10,7 @@ interface Props {
     endringer: ArbeidstidEndringMap | undefined;
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
     renderAsExpansionCard?: boolean;
+    expansionCardDefaultOpen?: boolean;
     onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
@@ -18,6 +19,7 @@ const Arbeidsaktivitet = ({
     endringer,
     lovbestemtFerie,
     renderAsExpansionCard,
+    expansionCardDefaultOpen,
     onArbeidstidAktivitetChange,
 }: Props) => {
     const perioder = arbeidAktivitet.perioderMedArbeidstid;
@@ -38,7 +40,9 @@ const Arbeidsaktivitet = ({
                     arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? arbeidAktivitet.arbeidsgiver : undefined
                 }
                 endret={harEndringer ? { tekst: 'Endret arbeidstid' } : undefined}
-                renderAsExpansionCard={renderAsExpansionCard}>
+                nytt={arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erNyArbeidsaktivitet}
+                renderAsExpansionCard={renderAsExpansionCard}
+                expansionCardDefaultOpen={expansionCardDefaultOpen}>
                 <ArbeidsaktivitetContent
                     perioder={perioder}
                     arbeidAktivitet={arbeidAktivitet}

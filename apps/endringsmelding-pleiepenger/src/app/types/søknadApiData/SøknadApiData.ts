@@ -18,6 +18,7 @@ export interface ArbeidstakerApiData {
     arbeidstidInfo: {
         perioder: ArbeidstidPeriodeApiDataMap;
     };
+    _erNyArbeidsaktivitet: boolean;
 }
 
 export interface ArbeidstidApiData {

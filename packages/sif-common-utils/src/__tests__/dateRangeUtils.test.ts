@@ -38,6 +38,7 @@ import {
     setMaxToDateForDateRange,
     sortDateRange,
     sortDateRangeByToDate,
+    getLastDateInDateRanges,
 } from '..';
 
 describe('dateRangeUtils', () => {
@@ -892,6 +893,26 @@ describe('dateRangeUtils', () => {
             expect(result.length).toEqual(2);
             expect(result[0]).toEqual(ISODateRangeToDateRange(drStart));
             expect(result[1]).toEqual(ISODateRangeToDateRange(drEnd));
+        });
+    });
+    describe('getLastDateInDateRanges', () => {
+        it('returns no date it dateRanges are empty', () => {
+            expect(getLastDateInDateRanges([])).toBeUndefined();
+        });
+        it('returns the last in the dateRange, if one date range is passed in', () => {
+            const toISODate = '2020-01-10';
+            const from = ISODateToDate('2020-01-01');
+            const to = ISODateToDate(toISODate);
+            const result = getLastDateInDateRanges([{ from, to }]);
+            expect(dateToISODate(result)).toEqual(toISODate);
+        });
+        it('returns the last of all the dateRanges, if more than one date range is passed in', () => {
+            const lastISODate = '2022-02-01';
+            const result = getLastDateInDateRanges([
+                ISODateRangeToDateRange('2020-01-01/2020-02-01'),
+                ISODateRangeToDateRange(`2022-01-01/${lastISODate}`),
+            ]);
+            expect(dateToISODate(result)).toEqual(lastISODate);
         });
     });
 });

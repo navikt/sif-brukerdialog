@@ -1,12 +1,16 @@
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { getTypedFormComponents, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
-import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
-import { ArbeidAktivitetType } from '../../../../types/Sak';
-import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
 import { Alert } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import { getTypedFormComponents, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import {
+    getNumberValidator,
+    getRequiredFieldValidator,
+    getYesOrNoValidator,
+} from '@navikt/sif-common-formik-ds/lib/validation';
+import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
+import { ArbeidAktivitetType } from '../../../../types/Sak';
+import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
 
 interface Props {
     arbeidsgiver: Arbeidsgiver;
@@ -14,22 +18,44 @@ interface Props {
     values: ArbeidsforholdFormValues;
 }
 
+export enum ArbeiderIPeriodenSvar {
+    'somVanlig' = 'SOM_VANLIG',
+    'redusert' = 'REDUSERT',
+    'heltFravær' = 'HELT_FRAV\u00C6R',
+}
+
 export enum ArbeidsforholdFormField {
     erAnsatt = 'erAnsatt',
     timerPerUke = 'timerPerUke',
+    arbeiderIPerioden = 'arbeiderIPerioden',
 }
 
 export interface ArbeidsforholdFormValues {
     [ArbeidsforholdFormField.erAnsatt]?: YesOrNo;
     [ArbeidsforholdFormField.timerPerUke]?: string;
+    [ArbeidsforholdFormField.arbeiderIPerioden]?: ArbeiderIPeriodenSvar;
 }
 
-const { NumberInput, YesOrNoQuestion } = getTypedFormComponents<
+const { NumberInput, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,
     IntlErrorObject
 >();
 
+export const getArbeidIPeriodeArbeiderIPeriodenValidator =
+    (navn: string) =>
+    (value: any): IntlErrorObject | undefined => {
+        const error = getRequiredFieldValidator()(value);
+        return error
+            ? {
+                  key: `validation.arbeidIPeriode.arbeider.${error}`,
+                  keepKeyUnaltered: true,
+                  values: {
+                      navn,
+                  },
+              }
+            : error;
+    };
 const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) => {
     const getFieldName = (field: ArbeidsforholdFormField): ArbeidsforholdFormField => {
         return `${parentFieldName}.${field}` as ArbeidsforholdFormField;
@@ -49,41 +75,83 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                         return {
                             key: `arbeidsforhold.validation.${ArbeidsforholdFormField.erAnsatt}.${error}`,
                             keepKeyUnaltered: true,
+                            values: {
+                                navn: arbeidsgiver.navn,
+                            },
                         };
                     }
                     return undefined;
                 }}
                 legend={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger?`}
             />
-
             {values.erAnsatt === YesOrNo.NO && (
                 <Block margin="l" padBottom="l">
                     <Alert variant="warning">Når dette ikke stemmer kan du</Alert>
                 </Block>
             )}
             {values.erAnsatt === YesOrNo.YES && (
-                <FormBlock>
-                    <NumberInput
-                        name={getFieldName(ArbeidsforholdFormField.timerPerUke)}
-                        label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
-                        description={<InfoNormalarbeidstid />}
-                        min={0}
-                        max={100}
-                        width="xs"
-                        maxLength={5}
-                        validate={(value) => {
-                            const error = getNumberValidator({ allowDecimals: true, required: true, max: 100, min: 0 })(
-                                value
-                            );
-                            return error
-                                ? {
-                                      key: `arbeidsforhold.validation.${ArbeidsforholdFormField.timerPerUke}.${error}`,
-                                      keepKeyUnaltered: true,
-                                  }
-                                : undefined;
-                        }}
-                    />
-                </FormBlock>
+                <>
+                    <FormBlock>
+                        <NumberInput
+                            name={getFieldName(ArbeidsforholdFormField.timerPerUke)}
+                            label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
+                            description={<InfoNormalarbeidstid />}
+                            min={0}
+                            max={100}
+                            width="xs"
+                            maxLength={5}
+                            validate={(value) => {
+                                const error = getNumberValidator({
+                                    allowDecimals: true,
+                                    required: true,
+                                    max: 100,
+                                    min: 0,
+                                })(value);
+                                return error
+                                    ? {
+                                          key: `arbeidsforhold.validation.${ArbeidsforholdFormField.timerPerUke}.${error}`,
+                                          keepKeyUnaltered: true,
+                                          values: {
+                                              navn: arbeidsgiver.navn,
+                                          },
+                                      }
+                                    : undefined;
+                            }}
+                        />
+                    </FormBlock>
+                    <FormBlock>
+                        <RadioGroup
+                            name={getFieldName(ArbeidsforholdFormField.arbeiderIPerioden)}
+                            legend={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn}?`}
+                            validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsgiver.navn)}
+                            radios={[
+                                {
+                                    label: 'Jeg jobber ikke',
+                                    value: ArbeiderIPeriodenSvar.heltFravær,
+                                    'data-testid': ArbeiderIPeriodenSvar.heltFravær,
+                                },
+                                {
+                                    label: 'Jeg kombinerer delvis jobb med pleiepenger',
+                                    value: ArbeiderIPeriodenSvar.redusert,
+                                    'data-testid': ArbeiderIPeriodenSvar.redusert,
+                                },
+                                {
+                                    label: 'Jeg jobber som vanlig',
+                                    value: ArbeiderIPeriodenSvar.somVanlig,
+                                    'data-testid': ArbeiderIPeriodenSvar.somVanlig,
+                                },
+                            ]}
+                        />
+                    </FormBlock>
+                </>
+            )}
+            {values.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
+                <Block margin="m">
+                    <Alert variant="info">
+                        Når du kombinerer delvis jobb og pleiepenger skal du registrere hvor mye jobber hver uke hos{' '}
+                        {arbeidsgiver.navn} på steget &quot;Jobb i pleiepengeperioden&quot;.
+                    </Alert>
+                </Block>
             )}
         </ArbeidsaktivitetBlock>
     );

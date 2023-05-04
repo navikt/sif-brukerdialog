@@ -152,15 +152,22 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     const renderLastInnFlereUker = () => {
         if (paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt) {
             return (
-                <FormBlock margin="m">
+                <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
                     <Button
                         variant="tertiary"
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
                         type="button"
                         onClick={() => setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))}>
-                        Last inn flere uker
+                        Vis flere uker
                     </Button>
-                </FormBlock>
+                    <Button
+                        variant="tertiary"
+                        icon={<AddCircle role="presentation" aria-hidden={true} />}
+                        type="button"
+                        onClick={() => setAntallSynlig(Math.min(antallUkerTotalt))}>
+                        Vis alle uker
+                    </Button>
+                </Block>
             );
         }
         return null;
