@@ -64,7 +64,7 @@
         "react-dom": "18.2.0",
         "react-intl": "6.4.2",
         "react-modal": "3.16.1",
-        "react-router-dom": "6.11.0"
+        "react-router-dom": "6.11.1"
     },
     "devDependencies": {
         "@babel/core": "7.21.8",
