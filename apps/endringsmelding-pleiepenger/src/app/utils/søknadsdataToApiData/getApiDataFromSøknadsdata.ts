@@ -41,6 +41,7 @@ export const getApiDataFromSøknadsdata = (
             dataBruktTilUtledning: {
                 soknadDialogCommitSha: getCommitShaFromEnv() || '',
                 valgteEndringer: hvaSkalEndres,
+                nyeArbeidsforhold: søknadsdata.arbeidssituasjon?.arbeidsforhold,
             },
         },
     };
