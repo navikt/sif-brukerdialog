@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.7.3
+
+### Patch Changes
+
+-   e477946: Fiks logout url
+
 ## 1.7.2
 
 ### Patch Changes
