@@ -1,5 +1,15 @@
 # @navikt/sif-common-core-ds
 
+## 7.2.2
+
+### Patch Changes
+
+-   38c8814: Pakkeoppdateringer
+-   Updated dependencies [38c8814]
+    -   @navikt/sif-common-formik-ds@0.18.2
+    -   @navikt/appstatus-react-ds@2.5.2
+    -   @navikt/sif-common-utils@3.32.2
+
 ## 7.2.1
 
 ### Patch Changes
