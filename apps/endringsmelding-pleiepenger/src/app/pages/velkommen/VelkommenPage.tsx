@@ -39,7 +39,7 @@ const { FormikWrapper, Form, CheckboxGroup } = getTypedFormComponents<
 
 const VelkommenPage = () => {
     const {
-        state: { søker, sak },
+        state: { søker, sak, søknadsdata },
         dispatch,
     } = useSøknadContext();
 
@@ -50,7 +50,7 @@ const VelkommenPage = () => {
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     const startSøknad = (sak: Sak, hvaSkalEndres: EndringType[] = [EndringType.arbeidstid]) => {
-        const steps = getSøknadSteps(hvaSkalEndres, false, sak.harNyArbeidsgiver);
+        const steps = getSøknadSteps(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
         logSoknadStartet(SKJEMANAVN);
         logInfo({
             antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,

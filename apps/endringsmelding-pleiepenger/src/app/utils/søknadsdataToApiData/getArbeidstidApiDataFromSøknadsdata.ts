@@ -25,7 +25,7 @@ import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøkn
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
-import { getArbeidAktivitetFromNyttArbeidsforhold } from '../nyttArbeidsforholdUtils';
+import { getArbeidAktivitetForNyArbeidsgiver } from '../nyArbeidsgiverUtils';
 import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
@@ -136,11 +136,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 return;
             }
 
-            const arbeidAktivitet = getArbeidAktivitetFromNyttArbeidsforhold(
-                søknadsperioder,
-                arbeidsgiver,
-                arbeidsforhold
-            );
+            const arbeidAktivitet = getArbeidAktivitetForNyArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold);
 
             const endring = arbeidAktivitetEndring[organisasjonsnummer];
             const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);

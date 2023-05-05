@@ -6,7 +6,6 @@ import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadContextState } from '../types/SøknadContextState';
-import { harFjernetLovbestemtFerie } from '../utils/lovbestemtFerieUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 
 export const useOnValidSubmit = <T>(
@@ -20,11 +19,9 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStep } = getSøknadStepConfig(
-        state.hvaSkalEndres,
-        harFjernetLovbestemtFerie(state.søknadsdata.lovbestemtFerie),
-        state.sak.harNyArbeidsgiver
-    )[stepId];
+    const { nextStep } = getSøknadStepConfig(state.hvaSkalEndres, state.søknadsdata, state.sak.harNyArbeidsgiver)[
+        stepId
+    ];
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {

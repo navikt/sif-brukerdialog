@@ -1,20 +1,23 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { EndringType } from '../../types/EndringType';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
+import { harFjernetLovbestemtFerie } from '../../utils/lovbestemtFerieUtils';
+import { harNyArbeidsgiverMedRedusertJobb } from '../../utils/nyArbeidsgiverUtils';
 import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
 
 export const getSøknadSteps = (
     hvaSkalEndres: EndringType[],
-    harFjernetFerie: boolean,
+    søknadsdata: Søknadsdata,
     harNyArbeidsgiver: boolean
 ): StepId[] => {
     const steps: StepId[] = [];
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
-        harFjernetFerie,
-        harNyArbeidsgiver
+        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
+        harNyArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
     );
 
     if (harNyArbeidsgiver) {
@@ -32,11 +35,11 @@ export const getSøknadSteps = (
 
 export const getSøknadStepConfig = (
     hvaSkalEndres: EndringType[],
-    harFjernetFerie: boolean,
-    harNyArbeidsgiver: boolean
+    søknadsdata: Søknadsdata,
+    harNyttArbeidsforhold: boolean
 ): SoknadStepsConfig<StepId> =>
     soknadStepUtils.getStepsConfig(
-        getSøknadSteps(hvaSkalEndres, harFjernetFerie, harNyArbeidsgiver),
+        getSøknadSteps(hvaSkalEndres, søknadsdata, harNyttArbeidsforhold),
         SoknadApplicationType.MELDING,
         (stepId: StepId) => getSøknadStepRoute(stepId)
     );

@@ -1,5 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
@@ -9,7 +10,6 @@ import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -23,7 +23,6 @@ import {
     harSvartErIkkeAnsattHosNyArbeidsgiver,
 } from './arbeidssituasjonStepUtils';
 import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 export interface NyttArbeidsforholdMap {
     [id: string]: ArbeidsforholdFormValues;
@@ -52,8 +51,7 @@ const ArbeidssituasjonStep = () => {
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie, sak.harNyArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);

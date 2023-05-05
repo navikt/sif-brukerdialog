@@ -26,6 +26,7 @@ import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
+import { harNyArbeidsgiverMedRedusertJobb } from '../../../utils/nyArbeidsgiverUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -47,8 +48,7 @@ const OppsummeringStep = () => {
         state: { søknadsdata, sak, arbeidsgivere, hvaSkalEndres },
     } = useSøknadContext();
 
-    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie, sak.harNyArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
 
@@ -132,7 +132,7 @@ const OppsummeringStep = () => {
                 </Block>
             )}
 
-            {arbeidstidSkalEndres && (
+            {arbeidstidSkalEndres && harNyArbeidsgiverMedRedusertJobb(nyeArbeidsforhold) && (
                 <Block margin="xxl">
                     <SummarySection header="Arbeidstid">
                         {arbeidstid && arbeidstidErEndret ? (

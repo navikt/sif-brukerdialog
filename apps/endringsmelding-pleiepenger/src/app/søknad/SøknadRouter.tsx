@@ -16,7 +16,6 @@ import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import appSentryLogger from '../utils/appSentryLogger';
-import { harFjernetLovbestemtFerie } from '../utils/lovbestemtFerieUtils';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { StepId } from './config/StepId';
 import { getSøknadStepRoute, SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
@@ -39,11 +38,7 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
     const { logInfo } = useAmplitudeInstance();
 
-    const availableSteps = getSøknadSteps(
-        hvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        sak.harNyArbeidsgiver
-    );
+    const availableSteps = getSøknadSteps(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
 
     const { routeError, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(
         søknadRoute,

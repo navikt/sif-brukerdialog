@@ -8,15 +8,14 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 import { erFeriedagerEndretIPeriode } from '../../../utils/ferieUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -58,8 +57,7 @@ const LovbestemtFerieStep = () => {
         state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie, sak.harNyArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);

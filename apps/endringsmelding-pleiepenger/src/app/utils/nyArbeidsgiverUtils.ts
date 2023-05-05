@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-utils';
 import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils/lib';
 import { ArbeiderIPeriodenSvar } from '../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
-import { ArbeidsforholdAktivt } from '../types/Arbeidsforhold';
+import { Arbeidsforhold, ArbeidsforholdAktivt } from '../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import {
     ArbeidAktivitet,
@@ -23,7 +23,7 @@ import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/Arbeidssitua
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 
-export const getSøknadsperioderForNyttArbeidsforhold = (
+export const getSøknadsperioderForNyArbeidsgiver = (
     søknadsperioder: DateRange[],
     ansattFom: Date | undefined,
     ansattTom: Date | undefined
@@ -42,11 +42,7 @@ export const getPerioderMedArbeidstidForNyArbeidsgiver = (
     normalarbeidstidPerUke: Duration,
     faktiskArbeidstidPerUke: Duration
 ): PeriodeMedArbeidstid[] => {
-    const søknadsperioderForArbeidsforhold = getSøknadsperioderForNyttArbeidsforhold(
-        søknadsperioder,
-        ansattFom,
-        ansattTom
-    );
+    const søknadsperioderForArbeidsforhold = getSøknadsperioderForNyArbeidsgiver(søknadsperioder, ansattFom, ansattTom);
     const perioderMedArbeidstid: PeriodeMedArbeidstid[] = [];
 
     const arbeidstidPerDag: FaktiskOgNormalArbeidstid = {
@@ -71,7 +67,7 @@ export const getPerioderMedArbeidstidForNyArbeidsgiver = (
     return perioderMedArbeidstid;
 };
 
-export const getArbeidAktivitetFromNyttArbeidsforhold = (
+export const getArbeidAktivitetForNyArbeidsgiver = (
     søknadsperioder: DateRange[],
     arbeidsgiver: Arbeidsgiver,
     arbeidsforhold: ArbeidsforholdAktivt
@@ -99,7 +95,7 @@ export const getArbeidAktivitetFromNyttArbeidsforhold = (
     return aktivitet;
 };
 
-export const getArbeidAktiviteterFromNyeArbeidsforhold = (
+export const getArbeidAktiviteterForNyeArbeidsgivere = (
     søknadsperioder: DateRange[],
     nyeArbeidsgivere: Arbeidsgiver[],
     arbeidssituasjon?: ArbeidssituasjonSøknadsdata
@@ -112,7 +108,11 @@ export const getArbeidAktiviteterFromNyeArbeidsforhold = (
         if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
             throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
         }
-        aktiviteter.push(getArbeidAktivitetFromNyttArbeidsforhold(søknadsperioder, arbeidsgiver, arbeidsforhold));
+        aktiviteter.push(getArbeidAktivitetForNyArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold));
     });
     return aktiviteter;
+};
+
+export const harNyArbeidsgiverMedRedusertJobb = (arbeidsforhold: Arbeidsforhold[] = []): boolean => {
+    return arbeidsforhold.some((a) => a.erAnsatt === true && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert);
 };

@@ -9,7 +9,6 @@ import { EndringType } from '../../types/EndringType';
 import { K9Sak } from '../../types/K9Sak';
 import { Søker } from '../../types/Søker';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { harFjernetLovbestemtFerie } from '../../utils/lovbestemtFerieUtils';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export type SøknadStatePersistence = {
@@ -49,7 +48,7 @@ const persistedSøknadRouteIsAvailable = (søknadState: SøknadStatePersistence)
     const søknadRoute = søknadState.søknadRoute;
     const availableSteps = getSøknadSteps(
         søknadState.hvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadState.søknadsdata.lovbestemtFerie),
+        søknadState.søknadsdata,
         søknadState.harNyArbeidsgiver
     );
     return availableSteps.some((step) => getSøknadStepRoute(step) === søknadRoute);
