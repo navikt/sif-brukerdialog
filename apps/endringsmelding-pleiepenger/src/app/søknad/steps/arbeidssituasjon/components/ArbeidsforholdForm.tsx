@@ -146,15 +146,15 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                             ]}
                         />
                     </FormBlock>
+                    {values.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
+                        <Block margin="m">
+                            <Alert variant="info">
+                                Når du kombinerer delvis jobb og pleiepenger skal du registrere hvor mye jobber hver uke
+                                hos {arbeidsgiver.navn} på steget &quot;Jobb i pleiepengeperioden&quot;.
+                            </Alert>
+                        </Block>
+                    )}
                 </>
-            )}
-            {values.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
-                <Block margin="m">
-                    <Alert variant="info">
-                        Når du kombinerer delvis jobb og pleiepenger skal du registrere hvor mye jobber hver uke hos{' '}
-                        {arbeidsgiver.navn} på steget &quot;Jobb i pleiepengeperioden&quot;.
-                    </Alert>
-                </Block>
             )}
         </ArbeidsaktivitetBlock>
     );

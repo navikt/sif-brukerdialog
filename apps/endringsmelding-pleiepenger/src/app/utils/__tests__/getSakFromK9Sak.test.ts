@@ -22,6 +22,7 @@ const {
     getArbeidstidEnkeltdagMapFromPerioder,
     getArbeidsukeFromEnkeltdagerIUken,
     getArbeidsukerFromEnkeltdager,
+    erArbeidsgiverInnenforSøknadsperioder,
 } = _getSakFromK9Sak;
 
 const faktiskISODuration: ISODuration = 'PT2H0M';
@@ -282,6 +283,91 @@ describe('getSakFromK9Sak', () => {
             expect(durationToISODuration(uke.faktisk.uke)).toEqual('PT10H0M');
             expect(durationToISODuration(uke.normalt.dag)).toEqual(durationToISODuration(arbeidstid.normalt));
             expect(durationToISODuration(uke.normalt.uke)).toEqual('PT37H30M');
+        });
+    });
+    describe('erArbeidsgiverInnenforSøknadsperioder', () => {
+        const søknadsperioder: DateRange[] = [
+            ISODateRangeToDateRange('2020-01-01/2020-02-01'),
+            ISODateRangeToDateRange('2020-04-01/2020-05-01'),
+        ];
+        const arbeidsgiver: Arbeidsgiver = {
+            ansattFom: ISODateToDate('2019-01-01'),
+        } as Arbeidsgiver;
+
+        describe('uten ansattTom', () => {
+            it('returnerer true når ansattFom er før søknadsperiode', () => {
+                expect(erArbeidsgiverInnenforSøknadsperioder(arbeidsgiver, søknadsperioder)).toBeTruthy();
+            });
+            it('returnerer true når ansattFom er mellom to søknadsperiode', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        { ansattFom: ISODateToDate('2020-02-03') } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            it('returnerer true når ansattFom er i en søknadsperiode', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        { ansattFom: ISODateToDate('2020-03-02') } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            it('returnerer false når ansattFom er etter søknadsperiode', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        { ansattFom: ISODateToDate('2020-05-02') } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeFalsy();
+            });
+        });
+        describe('med ansattTom', () => {
+            describe('returnerer true når ansattFom er før søknadsperiode og ansattTom er etter søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2019-01-01'),
+                            ansattTom: ISODateToDate('2023-01-01'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            describe('returnerer true når ansattTom er i mellom søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2019-01-01'),
+                            ansattTom: ISODateToDate('2020-03-01'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            describe('returnerer false når ansattTom er før søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2019-01-01'),
+                            ansattTom: ISODateToDate('2019-12-31'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeFalsy();
+            });
+            describe('returnerer false når ansattFom og ansattTom er mellom to søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2020-03-01'),
+                            ansattTom: ISODateToDate('2020-03-02'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeFalsy();
+            });
         });
     });
 });
