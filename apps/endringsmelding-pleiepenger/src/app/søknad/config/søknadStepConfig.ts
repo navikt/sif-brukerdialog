@@ -11,7 +11,7 @@ export const getSøknadSteps = (
 ): StepId[] => {
     const steps: StepId[] = [];
 
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres: ferieSkalEndres } = getEndringerSomSkalGjøres(
+    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetFerie,
         harNyArbeidsgiver
@@ -20,7 +20,7 @@ export const getSøknadSteps = (
     if (harNyArbeidsgiver) {
         steps.push(StepId.ARBEIDSSITUASJON);
     }
-    if (ferieSkalEndres) {
+    if (lovbestemtFerieSkalEndres) {
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
     if (arbeidstidSkalEndres) {

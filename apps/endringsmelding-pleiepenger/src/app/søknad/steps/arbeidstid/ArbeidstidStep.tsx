@@ -6,15 +6,15 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import Arbeidsaktivitet from '../../../modules/arbeidsaktivitet/Arbeidsaktivitet';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import Arbeidsaktivitet from '../../../modules/arbeidsaktivitet/Arbeidsaktivitet';
+import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
+import { getArbeidAktiviteterFromNyeArbeidsforhold } from '../../../utils/nyttArbeidsforholdUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -25,7 +25,6 @@ import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
-    getNyeAktiviteter,
 } from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
@@ -71,14 +70,14 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const eksisterendeArbeidAktiviteter: ArbeidAktivitet[] = getAktiviteterSomSkalEndres(sak.arbeidAktiviteter);
-
-    const nyeArbeidAktiviteter: ArbeidAktivitet[] = getNyeAktiviteter(
-        sak.søknadsperioder,
-        sak.nyeArbeidsgivere,
-        søknadsdata.arbeidssituasjon
-    );
-    const arbeidAktiviteter = [...nyeArbeidAktiviteter, ...eksisterendeArbeidAktiviteter];
+    const arbeidAktiviteter = [
+        ...getArbeidAktiviteterFromNyeArbeidsforhold(
+            sak.søknadsperioder,
+            sak.nyeArbeidsgivere,
+            søknadsdata.arbeidssituasjon
+        ),
+        ...getAktiviteterSomSkalEndres(sak.arbeidAktiviteter),
+    ];
 
     const onArbeidstidAktivitetChange = (
         arbeidAktivitetId: string,
