@@ -17,6 +17,7 @@ import {
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import { ArbeidsgiverIkkeFunnetError } from '../types/arbeidsgiverIkkeFunnetError';
@@ -45,6 +46,8 @@ import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getFeriedagerMapFromPerioder } from './ferieUtils';
 import { maskString } from './maskString';
 import { finnesArbeidsgiverIK9Sak } from './tilgangskontroll';
+
+dayjs.extend(isSameOrBefore);
 
 interface _PeriodisertK9FormatArbeidstidPerioder {
     periode: DateRange;
@@ -521,6 +524,9 @@ const erArbeidsgiverInnenforSøknadsperioder = (arbeidsgiver: Arbeidsgiver, søk
     const sisteSøknadsdag = getLastDateInDateRanges(søknadsperioder);
     if (!arbeidsgiver.ansattFom || !sisteSøknadsdag) {
         return false;
+    }
+    if (!arbeidsgiver.ansattTom) {
+        return dayjs(arbeidsgiver.ansattFom).isSameOrBefore(sisteSøknadsdag);
     }
     const ansattPeriode: DateRange = {
         from: arbeidsgiver.ansattFom,
