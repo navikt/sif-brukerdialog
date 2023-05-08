@@ -3,7 +3,7 @@ import { enSakFlereArbeidsgivereMock } from '../../data/enSakFlereArbeidsgivereM
 import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
 import { cyHelpers } from './cyHelpers';
 
-describe('Endre arbeidstid for ny arbeidsgiver', () => {
+describe('Endre arbeidstid for flere arbeidsgivere', () => {
     contextConfig({
         arbeidsgivere: flereArbeidsgivereMock,
         saker: enSakFlereArbeidsgivereMock,

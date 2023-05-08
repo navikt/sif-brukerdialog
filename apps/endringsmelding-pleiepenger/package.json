@@ -134,7 +134,7 @@
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
         "build-storybook": "storybook build",
-        "build": "npm-run-all build-app",
+        "build": "yarn build-app",
         "build-heroku": "node src/build/scripts/heroku-build.js",
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive 'yarn cypress-run'",
         "clean": "rm -rf node_modules .dist",
