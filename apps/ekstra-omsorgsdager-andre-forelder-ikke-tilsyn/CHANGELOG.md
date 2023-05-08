@@ -1,5 +1,11 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.7.5
+
+### Patch Changes
+
+-   161dc18: Bugfix - harBekreftetOpplysninger manglet
+
 ## 1.7.4
 
 ### Patch Changes
