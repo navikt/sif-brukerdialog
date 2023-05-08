@@ -3,10 +3,31 @@ import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
 import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
 import { cyHelpers } from './cyHelpers';
 
-describe('Endre arbeidstid for én arbeidsgiver', () => {
+const settings = `
+window.appSettings={
+    API_URL_INNSYN:'http://localhost:8099',
+    FRONTEND_INNSYN_API_PATH:'http://localhost:8099/api',
+    API_URL:'http://localhost:8099',
+    FRONTEND_API_PATH:'http://localhost:8099/',
+    APP_VERSION:'dev',
+    APPSTATUS_DATASET:'staging',
+    APPSTATUS_PROJECT_ID:'ryujtq87',
+    INNSYN_URL:'http://localhost:8080',
+    DOMAIN_URL:'http://localhost:8080',
+    LOGIN_URL:'http://localhost:8099/login?redirect_location=http://localhost:8099',
+    MELLOMLAGRING:'off',
+    MSW:'off',
+    PUBLIC_PATH:'/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
+    USE_AMPLITUDE:'true',
+    NY_ARBEIDSGIVER:'true',
+    IMAGE:'ghcr.io/navikt/sif-brukerdialog/endringsmelding-pleiepenger-mono:825c85c3ef8c5a7ac4906dd4443620715a40a68a',
+};`;
+
+describe('Ny arbeidsgiver', () => {
     contextConfig({
         arbeidsgivere: flereArbeidsgivereMock,
         saker: enSakEnArbeidsgiverMock,
+        settings,
     });
 
     before(() => {
@@ -17,8 +38,6 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
     cyHelpers.startSøknad({ endreLovbestemtFerie: true });
     cyHelpers.fyllUtNyttArbeidsforhold('947064642');
     cyHelpers.leggTilOgFjernFerie();
-    // cyHelpers.endreEnkeltuke();
-    // cyHelpers.endreFlereUker();
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummeringNyttArbeidsforhold('947064642');
 });

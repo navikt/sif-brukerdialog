@@ -137,7 +137,6 @@
         "build": "npm-run-all build-app",
         "build-heroku": "node src/build/scripts/heroku-build.js",
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive 'yarn cypress-run'",
-        "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",
