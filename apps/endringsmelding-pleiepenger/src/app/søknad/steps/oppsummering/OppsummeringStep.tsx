@@ -109,7 +109,8 @@ const OppsummeringStep = () => {
                             if (!arbeidsforhold) {
                                 return;
                             }
-
+                            const getTestKey = (key: string) =>
+                                `nyArbeidsgiver_${arbeidsgiver.organisasjonsnummer}_${key}`;
                             return (
                                 <>
                                     <Heading level="3" size="medium">
@@ -117,17 +118,25 @@ const OppsummeringStep = () => {
                                     </Heading>
                                     <SummaryBlock
                                         header={`Er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger`}>
-                                        <JaNeiSvar harSvartJa={true} />
+                                        <div data-testid={getTestKey('erAnsatt')}>
+                                            <JaNeiSvar harSvartJa={true} />
+                                        </div>
                                     </SummaryBlock>
                                     {arbeidsforhold.erAnsatt && (
                                         <>
                                             <SummaryBlock
                                                 header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
-                                                <DurationText duration={arbeidsforhold.normalarbeidstid.timerPerUke} />
+                                                <div data-testid={getTestKey('timerPerUke')}>
+                                                    <DurationText
+                                                        duration={arbeidsforhold.normalarbeidstid.timerPerUke}
+                                                    />
+                                                </div>
                                             </SummaryBlock>
                                             <SummaryBlock
                                                 header={`Hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn} i perioden med pleiepenger?`}>
-                                                {ArbeiderIPeriodenSvarTekst[arbeidsforhold.arbeiderIPerioden]}
+                                                <div data-testid={getTestKey('arbeiderIPerioden')}>
+                                                    {ArbeiderIPeriodenSvarTekst[arbeidsforhold.arbeiderIPerioden]}
+                                                </div>
                                             </SummaryBlock>
                                         </>
                                     )}

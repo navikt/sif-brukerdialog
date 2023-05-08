@@ -115,12 +115,15 @@ const ArbeidssituasjonStep = () => {
                                         );
                                         const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${arbeidsgiverFieldKey}`;
                                         return (
-                                            <ArbeidsforholdForm
-                                                arbeidsgiver={a}
-                                                values={(values.arbeidsforhold || {})[arbeidsgiverFieldKey]}
-                                                parentFieldName={fieldName}
+                                            <div
                                                 key={a.organisasjonsnummer}
-                                            />
+                                                data-testid={`nyArbeidsgiver_${a.organisasjonsnummer}`}>
+                                                <ArbeidsforholdForm
+                                                    arbeidsgiver={a}
+                                                    values={(values.arbeidsforhold || {})[arbeidsgiverFieldKey]}
+                                                    parentFieldName={fieldName}
+                                                />
+                                            </div>
                                         );
                                     })}
                                 </Form>

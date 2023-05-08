@@ -51,36 +51,6 @@ const Arbeidsaktivitet = ({
                     onArbeidstidAktivitetChange={onArbeidstidAktivitetChange}
                 />
             </ArbeidsaktivitetBlock>
-
-            {/* {renderAsExpansionCard ? (
-                <ExpansionCard aria-label={arbeidAktivitet.navn} defaultOpen={true}>
-                    <ExpansionCard.Header>
-                        <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} erEndret={harEndringer} />
-                    </ExpansionCard.Header>
-                    <ExpansionCard.Content>
-                        <ArbeidsaktivitetContent
-                            perioder={perioder}
-                            arbeidAktivitet={arbeidAktivitet}
-                            lovbestemtFerie={lovbestemtFerie}
-                            endringer={endringer}
-                            onArbeidstidAktivitetChange={onArbeidstidAktivitetChange}
-                        />
-                    </ExpansionCard.Content>
-                </ExpansionCard>
-            ) : (
-                <Panel border={true}>
-                    <ArbeidAktivitetHeader arbeidAktivitet={arbeidAktivitet} erEndret={harEndringer} />
-                    <Block margin="xl">
-                        <ArbeidsaktivitetContent
-                            perioder={perioder}
-                            arbeidAktivitet={arbeidAktivitet}
-                            lovbestemtFerie={lovbestemtFerie}
-                            endringer={endringer}
-                            onArbeidstidAktivitetChange={onArbeidstidAktivitetChange}
-                        />
-                    </Block>
-                </Panel>
-            )} */}
         </div>
     );
 };

@@ -1,8 +1,4 @@
-import { contextConfig } from '../../contextConfig';
-import { enArbeidsgiverMock } from '../../data/enArbeidsgiverMock';
-import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
-import { enSakFlereArbeidsgivereMock } from '../../data/enSakFlereArbeidsgivereMock';
-import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
+import { selectRadioByNameAndValue } from '../../utils';
 import { getTestElement, submitSkjema } from '../../utils';
 
 const startUrl = 'http://localhost:8080/';
@@ -39,6 +35,17 @@ const startSøknad = ({
             getTestElement('bekreft-label').click();
             submitSkjema();
         });
+    });
+};
+
+const fyllUtNyttArbeidsforhold = (orgnummer: string) => {
+    it('fyller ut nytt arbeidsforhold', () => {
+        getTestElement(`nyArbeidsgiver_${orgnummer}`).within(() => {
+            selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.erAnsatt`, 'yes');
+            cy.get(`input[name="arbeidsforhold.a_${orgnummer}.timerPerUke"]`).clear().type('30');
+            selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.arbeiderIPerioden`, 'HELT_FRAVÆR');
+        });
+        submitSkjema();
     });
 };
 
@@ -208,6 +215,18 @@ const kontrollerOppsummering = () => {
     });
 };
 
+const kontrollerOppsummeringNyttArbeidsforhold = (orgnummer: string) => {
+    it('viser riktig informasjon i oppsummering om nytt arbeidsforhold', () => {
+        getTestElement(`nyArbeidsgiver_${orgnummer}_erAnsatt`).contains('Ja');
+        getTestElement(`nyArbeidsgiver_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
+        getTestElement(`nyArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains('Jeg jobber ikke');
+        getUkeRow(enkeltuke).within(() => {
+            expect(cy.get('[data-testid=timer-faktisk]').contains('0 t. 0 m.'));
+            expect(cy.get('[data-testid=normalt-timer]').contains('30 t. 0 m.'));
+        });
+    });
+};
+
 const bekreftOpplysningerOgSendInn = () => {
     it('bekrefter opplysninger', () => {
         getTestElement('bekreft-opplysninger').parent().click();
@@ -221,41 +240,16 @@ const bekreftOpplysningerOgSendInn = () => {
     });
 };
 
-describe('Endre arbeidstid for én arbeidsgiver', () => {
-    contextConfig({
-        arbeidsgivere: enArbeidsgiverMock,
-        saker: enSakEnArbeidsgiverMock,
-    });
-
-    before(() => {
-        cy.clock(date);
-        cy.clearLocalStorage();
-    });
-
-    startSøknad({ endreArbeidstid: true, endreLovbestemtFerie: true });
-    leggTilOgFjernFerie();
-    endreEnkeltuke();
-    endreFlereUker();
-    fortsettTilOppsummering();
-    kontrollerOppsummering();
-    bekreftOpplysningerOgSendInn();
-});
-
-describe('Endre arbeidstid for flere arbeidsgivere', () => {
-    contextConfig({
-        arbeidsgivere: flereArbeidsgivereMock,
-        saker: enSakFlereArbeidsgivereMock,
-        mellomlagring: {},
-    });
-    before(() => {
-        cy.clock(date);
-        cy.clearLocalStorage();
-        cy.visit(startUrl);
-    });
-    startSøknad({ endreArbeidstid: true });
-    endreEnkeltuke();
-    endreFlereUker();
-    fortsettTilOppsummering();
-    kontrollerOppsummering();
-    bekreftOpplysningerOgSendInn();
-});
+export const cyHelpers = {
+    startUrl,
+    date,
+    startSøknad,
+    fyllUtNyttArbeidsforhold,
+    leggTilOgFjernFerie,
+    endreEnkeltuke,
+    endreFlereUker,
+    fortsettTilOppsummering,
+    kontrollerOppsummering,
+    kontrollerOppsummeringNyttArbeidsforhold,
+    bekreftOpplysningerOgSendInn,
+};
