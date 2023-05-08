@@ -34,7 +34,7 @@
         "@storybook/addon-links": "7.0.8",
         "@storybook/node-logger": "7.0.8",
         "@storybook/preset-create-react-app": "7.0.8",
-        "@storybook/react": "7.0.8",
+        "@storybook/react": "7.0.9",
         "@storybook/testing-library": "0.1.0",
         "@types/jest": "29.5.1",
         "@types/node": "18.16.3",
