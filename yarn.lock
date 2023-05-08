@@ -3831,7 +3831,7 @@ __metadata:
     "@storybook/addon-interactions": 7.0.8
     "@storybook/addon-links": 7.0.8
     "@storybook/builder-webpack5": 7.0.8
-    "@storybook/node-logger": 7.0.8
+    "@storybook/node-logger": 7.0.9
     "@storybook/preset-create-react-app": 7.0.8
     "@storybook/react": 7.0.8
     "@storybook/react-webpack5": 7.0.8
@@ -4036,7 +4036,7 @@ __metadata:
     "@storybook/addon-links": 7.0.8
     "@storybook/builder-webpack5": 7.0.8
     "@storybook/manager-webpack5": 6.5.16
-    "@storybook/node-logger": 7.0.8
+    "@storybook/node-logger": 7.0.9
     "@storybook/preset-create-react-app": 7.0.8
     "@storybook/react": 7.0.8
     "@storybook/testing-library": 0.1.0
@@ -4179,7 +4179,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.8
     "@storybook/addon-interactions": 7.0.8
     "@storybook/addon-links": 7.0.8
-    "@storybook/node-logger": 7.0.8
+    "@storybook/node-logger": 7.0.9
     "@storybook/preset-create-react-app": 7.0.8
     "@storybook/react": 7.0.8
     "@storybook/react-webpack5": 7.0.8
@@ -4250,7 +4250,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.8
     "@storybook/addon-interactions": 7.0.8
     "@storybook/addon-links": 7.0.8
-    "@storybook/node-logger": 7.0.8
+    "@storybook/node-logger": 7.0.9
     "@storybook/preset-create-react-app": 7.0.8
     "@storybook/react": 7.0.8
     "@storybook/testing-library": 0.1.0
@@ -4310,7 +4310,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.8
     "@storybook/addon-interactions": 7.0.8
     "@storybook/addon-links": 7.0.8
-    "@storybook/node-logger": 7.0.8
+    "@storybook/node-logger": 7.0.9
     "@storybook/react": 7.0.8
     "@storybook/testing-library": 0.1.0
     "@testing-library/dom": 9.2.0
@@ -4395,7 +4395,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.8
     "@storybook/addon-interactions": 7.0.8
     "@storybook/addon-links": 7.0.8
-    "@storybook/node-logger": 7.0.8
+    "@storybook/node-logger": 7.0.9
     "@storybook/react": 7.0.8
     "@storybook/testing-library": 0.1.0
     "@testing-library/dom": 9.2.0
@@ -6429,6 +6429,18 @@ __metadata:
     npmlog: ^5.0.1
     pretty-hrtime: ^1.0.3
   checksum: 61ca7ff52f7751cf12d06b850eba9a7a10f885ad87c98b74d59c367ff5bbedf5a1588053ae599e1abf78d09222c92671b209795ede715d3568ca63dcd9bade58
+  languageName: node
+  linkType: hard
+
+"@storybook/node-logger@npm:7.0.9":
+  version: 7.0.9
+  resolution: "@storybook/node-logger@npm:7.0.9"
+  dependencies:
+    "@types/npmlog": ^4.1.2
+    chalk: ^4.1.0
+    npmlog: ^5.0.1
+    pretty-hrtime: ^1.0.3
+  checksum: a1dfe76b22d15796b1a35c88d328123558102c156e4bb78942b00262a55b86576b87f9ff9b7405692aaf203df926016b64ee440bed31cf687f8400fcbbd5adc3
   languageName: node
   linkType: hard
 
