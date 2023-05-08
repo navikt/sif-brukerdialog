@@ -26,7 +26,6 @@ import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
-import { harNyArbeidsgiverMedRedusertJobb } from '../../../utils/nyArbeidsgiverUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -132,7 +131,7 @@ const OppsummeringStep = () => {
                 </Block>
             )}
 
-            {arbeidstidSkalEndres && harNyArbeidsgiverMedRedusertJobb(nyeArbeidsforhold) && (
+            {arbeidstidSkalEndres && (
                 <Block margin="xxl">
                     <SummarySection header="Arbeidstid">
                         {arbeidstid && arbeidstidErEndret ? (
