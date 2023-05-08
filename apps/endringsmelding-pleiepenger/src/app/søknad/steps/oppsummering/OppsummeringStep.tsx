@@ -22,6 +22,7 @@ import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
+import { ArbeiderIPeriodenSvarTekst } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
@@ -119,10 +120,16 @@ const OppsummeringStep = () => {
                                         <JaNeiSvar harSvartJa={true} />
                                     </SummaryBlock>
                                     {arbeidsforhold.erAnsatt && (
-                                        <SummaryBlock
-                                            header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
-                                            <DurationText duration={arbeidsforhold.normalarbeidstid.timerPerUke} />
-                                        </SummaryBlock>
+                                        <>
+                                            <SummaryBlock
+                                                header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
+                                                <DurationText duration={arbeidsforhold.normalarbeidstid.timerPerUke} />
+                                            </SummaryBlock>
+                                            <SummaryBlock
+                                                header={`Hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn} i perioden med pleiepenger?`}>
+                                                {ArbeiderIPeriodenSvarTekst[arbeidsforhold.arbeiderIPerioden]}
+                                            </SummaryBlock>
+                                        </>
                                     )}
                                 </>
                             );

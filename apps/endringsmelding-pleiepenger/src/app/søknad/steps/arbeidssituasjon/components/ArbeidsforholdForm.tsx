@@ -36,6 +36,12 @@ export interface ArbeidsforholdFormValues {
     [ArbeidsforholdFormField.arbeiderIPerioden]?: ArbeiderIPeriodenSvar;
 }
 
+export const ArbeiderIPeriodenSvarTekst = {
+    [ArbeiderIPeriodenSvar.heltFravær]: 'Jeg jobber ikke',
+    [ArbeiderIPeriodenSvar.redusert]: 'Jeg kombinerer delvis jobb med pleiepenger',
+    [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som vanlig',
+};
+
 const { NumberInput, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,
@@ -129,17 +135,17 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                             validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsgiver.navn)}
                             radios={[
                                 {
-                                    label: 'Jeg jobber ikke',
+                                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.heltFravær],
                                     value: ArbeiderIPeriodenSvar.heltFravær,
                                     'data-testid': ArbeiderIPeriodenSvar.heltFravær,
                                 },
                                 {
-                                    label: 'Jeg kombinerer delvis jobb med pleiepenger',
+                                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.redusert],
                                     value: ArbeiderIPeriodenSvar.redusert,
                                     'data-testid': ArbeiderIPeriodenSvar.redusert,
                                 },
                                 {
-                                    label: 'Jeg jobber som vanlig',
+                                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.somVanlig],
                                     value: ArbeiderIPeriodenSvar.somVanlig,
                                     'data-testid': ArbeiderIPeriodenSvar.somVanlig,
                                 },
