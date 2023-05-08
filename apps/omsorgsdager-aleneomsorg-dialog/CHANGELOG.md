@@ -1,5 +1,11 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.0.2
+
+### Patch Changes
+
+-   cbfe50a: Bugfix - harBekreftetOpplysninger manglet
+
 ## 2.0.1
 
 ### Patch Changes
