@@ -20,7 +20,7 @@
         "@babel/preset-typescript": "7.21.5",
         "@formatjs/intl-pluralrules": "5.2.2",
         "@navikt/ds-css": "2.9.7",
-        "@navikt/ds-react": "2.9.7",
+        "@navikt/ds-react": "2.9.8",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
