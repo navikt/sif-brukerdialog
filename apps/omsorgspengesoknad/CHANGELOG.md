@@ -1,5 +1,22 @@
 # @navikt/omsorgspengesoknad
 
+## 1.10.0
+
+### Minor Changes
+
+-   7d66a381: Oppdatere pakker, fjerne snyk
+
+### Patch Changes
+
+-   Updated dependencies [7d66a381]
+    -   @navikt/sif-common-amplitude@2.15.0
+    -   @navikt/sif-common-formik-ds@0.19.0
+    -   @navikt/sif-common-soknad-ds@8.0.0
+    -   @navikt/sif-common-forms-ds@7.0.0
+    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-sentry@0.15.0
+    -   @navikt/sif-common-utils@3.33.0
+
 ## 1.9.2
 
 ### Patch Changes

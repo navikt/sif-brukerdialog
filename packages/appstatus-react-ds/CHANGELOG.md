@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.6.0
+
+### Minor Changes
+
+-   7d66a381: Oppdatere pakker, fjerne snyk
+
 ## 2.5.2
 
 ### Patch Changes
