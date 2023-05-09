@@ -8,7 +8,7 @@ const TextareaSummary = ({ text }: Props) => {
             <div
                 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}
                 dangerouslySetInnerHTML={{
-                    __html: text.replace(/\n/, '<br/>'),
+                    __html: text.replace(/\n/g, '<br/>').replace(/'/g, "''"),
                 }}
             />
         );
