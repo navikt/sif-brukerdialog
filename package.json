@@ -11,7 +11,6 @@
     "devDependencies": {
         "@changesets/cli": "2.26.1",
         "@navikt/ds-tailwind": "2.9.7",
-        "@snyk/protect": "1.1152.0",
         "@storybook/builder-webpack5": "7.0.8",
         "@storybook/manager-webpack5": "6.5.16",
         "@testing-library/dom": "9.2.0",
@@ -90,6 +89,5 @@
         "glob-parent": ">=5.1.2"
     },
     "private": true,
-    "snyk": true,
     "packageManager": "yarn@3.5.0"
 }

@@ -11,9 +11,7 @@
         "build": "npm-run-all build-app",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "start-dev": "npm-run-all -p rm:dist dev-api start-no-decorator",
-        "prepare": "npm run snyk-protect",
         "rm:dist": "rimraf dist/",
-        "snyk-protect": "snyk-protect",
         "start-api-mock": "PORT=8089 node ./server/api-mock.js",
         "start-express": "node ./server.js",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
@@ -39,7 +37,6 @@
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@snyk/protect": "1.1152.0",
         "@testing-library/react": "14.0.0",
         "axios": "1.4.0",
         "compression": "^1.7.4",
@@ -100,7 +97,6 @@
             "node_modules/(?!(@navikt)).*\\.js$"
         ]
     },
-    "snyk": true,
     "eslintConfig": {
         "overrides": [
             {

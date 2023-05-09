@@ -21,7 +21,6 @@
         "@navikt/sif-common-sentry": "*",
         "@navikt/sif-common-soknad-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@snyk/protect": "1.1152.0",
         "@testing-library/react": "14.0.0",
         "axios": "1.4.0",
         "busboy": "1.6.0",
@@ -143,9 +142,7 @@
         "cypress-run": "cypress run --project $PWD/e2e",
         "dev-api": "PORT=8089 node ./mocks/server.js",
         "msw-init": "msw init dist",
-        "prepare": "npm run snyk-protect",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
-        "snyk-protect": "snyk-protect",
         "start-express": "node ./server.js",
         "start": "node ./src/build/scripts/start-dev.js",
         "start-e2e-server": "node ./server-e2e.js",
@@ -153,7 +150,6 @@
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test --watchAll=true --env=jsdom"
     },
-    "snyk": true,
     "eslintConfig": {
         "overrides": [
             {
