@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 6.3.0
+
+### Minor Changes
+
+-   7d66a381: Oppdatere pakker, fjerne snyk
+
+### Patch Changes
+
+-   Updated dependencies [7d66a381]
+    -   @navikt/sif-common-core-ds@7.3.0
+
 ## 6.2.2
 
 ### Patch Changes
