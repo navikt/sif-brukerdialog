@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.19.0
+
+### Minor Changes
+
+-   7d66a381: Oppdatere pakker, fjerne snyk
+
 ## 0.18.2
 
 ### Patch Changes
