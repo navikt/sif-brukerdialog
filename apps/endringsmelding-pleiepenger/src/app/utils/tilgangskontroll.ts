@@ -121,14 +121,14 @@ const harArbeidsaktivitetUtenArbeidsgiver = (
 ) => {
     return arbeidsaktiviteter
         .map(getArbeidsaktivitetId)
-        .some((id) => arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === id) === false);
+        .some((id) => arbeidsgivere.some((aISak) => aISak.id === id) === false);
 };
 
 export const finnesArbeidsgiverIK9Sak = (
     arbeidsgiver: Arbeidsgiver,
     arbeidsgivereISak: K9SakArbeidstaker[]
 ): boolean => {
-    return arbeidsgivereISak.map(getArbeidsaktivitetId).some((id) => id === arbeidsgiver.organisasjonsnummer);
+    return arbeidsgivereISak.map(getArbeidsaktivitetId).some((id) => id === arbeidsgiver.id);
 };
 
 const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {

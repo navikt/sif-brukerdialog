@@ -4,7 +4,8 @@ export enum ArbeidsgiverType {
 }
 
 export interface Arbeidsgiver {
-    organisasjonsnummer: string;
+    /** Organisasjonsnummer eller fnr */
+    id: string;
     type: ArbeidsgiverType;
     navn: string;
     ansattFom?: Date;

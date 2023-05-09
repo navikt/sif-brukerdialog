@@ -20,7 +20,6 @@ import {
     getArbeidsforholdFormFieldKey,
     getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
-    harSvartErIkkeAnsattHosNyArbeidsgiver,
 } from './arbeidssituasjonStepUtils';
 import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
 
@@ -102,22 +101,12 @@ const ArbeidssituasjonStep = () => {
                                     includeValidationSummary={true}
                                     submitPending={isSubmitting}
                                     runDelayedFormValidation={true}
-                                    submitDisabled={
-                                        values[ArbeidssituasjonFormFields.arbeidsforhold] !== undefined &&
-                                        harSvartErIkkeAnsattHosNyArbeidsgiver(
-                                            values[ArbeidssituasjonFormFields.arbeidsforhold]
-                                        )
-                                    }
                                     onBack={goBack}>
                                     {sak.nyeArbeidsgivere.map((a) => {
-                                        const arbeidsgiverFieldKey = getArbeidsforholdFormFieldKey(
-                                            a.organisasjonsnummer
-                                        );
+                                        const arbeidsgiverFieldKey = getArbeidsforholdFormFieldKey(a.id);
                                         const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${arbeidsgiverFieldKey}`;
                                         return (
-                                            <div
-                                                key={a.organisasjonsnummer}
-                                                data-testid={`nyArbeidsgiver_${a.organisasjonsnummer}`}>
+                                            <div key={a.id} data-testid={`nyArbeidsgiver_${a.id}`}>
                                                 <ArbeidsforholdForm
                                                     arbeidsgiver={a}
                                                     values={(values.arbeidsforhold || {})[arbeidsgiverFieldKey]}

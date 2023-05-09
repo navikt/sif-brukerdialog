@@ -11,6 +11,7 @@ import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { ArbeidAktivitetType } from '../../../../types/Sak';
 import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
+import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 
 interface Props {
     arbeidsgiver: Arbeidsgiver;
@@ -92,10 +93,7 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
             />
             {values.erAnsatt === YesOrNo.NO && (
                 <Block margin="l" padBottom="l">
-                    <Alert variant="warning">
-                        Når du ikke er ansatt her lenger, må du be denne arbeidsgiveren om å sende en ny A-melding med
-                        sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.
-                    </Alert>
+                    <IkkeAnsattMelding />
                 </Block>
             )}
             {values.erAnsatt === YesOrNo.YES && (

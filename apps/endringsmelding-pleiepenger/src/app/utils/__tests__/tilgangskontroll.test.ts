@@ -4,9 +4,9 @@ import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
 import { K9Sak, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '../../types/K9Sak';
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 
-const arbeidsgiver1: Arbeidsgiver = { organisasjonsnummer: '1' } as Arbeidsgiver;
-const arbeidsgiver2: Arbeidsgiver = { organisasjonsnummer: '2' } as Arbeidsgiver;
-const arbeidsgiver3: Arbeidsgiver = { organisasjonsnummer: '3' } as Arbeidsgiver;
+const arbeidsgiver1: Arbeidsgiver = { id: '1' } as Arbeidsgiver;
+const arbeidsgiver2: Arbeidsgiver = { id: '2' } as Arbeidsgiver;
+const arbeidsgiver3: Arbeidsgiver = { id: '3' } as Arbeidsgiver;
 
 const arbeidstaker1: K9SakArbeidstaker = { organisasjonsnummer: '1' } as K9SakArbeidstaker;
 const arbeidstaker2: K9SakArbeidstaker = { organisasjonsnummer: '2' } as K9SakArbeidstaker;

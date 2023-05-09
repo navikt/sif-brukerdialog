@@ -380,7 +380,7 @@ const getArbeidAktivitetArbeidstaker = (
         norskIdentitetsnummer,
     } = arbeidstaker;
     const id = norskIdentitetsnummer || organisasjonsnummer;
-    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === id);
+    const arbeidsgiver = arbeidsgivere.find((a) => a.id === id);
     if (!arbeidsgiver) {
         const error: ArbeidsgiverIkkeFunnetError = {
             type: 'ArbeidsgiverIkkeFunnet',
@@ -391,13 +391,13 @@ const getArbeidAktivitetArbeidstaker = (
                 harNorskIdentitetsnummer: norskIdentitetsnummer !== undefined,
                 maskedIdentitetsnummer: maskString(norskIdentitetsnummer),
             },
-            maskedArbeidsgivere: arbeidsgivere.map((a) => maskString(a.organisasjonsnummer)),
+            maskedArbeidsgivere: arbeidsgivere.map((a) => maskString(a.id)),
         };
         throw error;
     }
     const endringsperiodeForArbeidsgiver = getEndringsperiodeForArbeidsgiver(endringsperiode, arbeidsgiver);
     return {
-        id: `id_${arbeidsgiver.organisasjonsnummer}`,
+        id: `id_${arbeidsgiver.id}`,
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
         navn: arbeidsgiver.navn,

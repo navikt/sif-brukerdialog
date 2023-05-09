@@ -39,7 +39,7 @@ const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
                     {type === ArbeidAktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
                         <BodyLong>
                             {arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON
-                                ? `Organisasjonsnummer: ${arbeidsgiver.organisasjonsnummer}`
+                                ? `Organisasjonsnummer: ${arbeidsgiver.id}`
                                 : 'Privatperson'}
                             <br />
                             {arbeidsgiver.ansattFom && <>Ansatt: {dateFormatter.full(arbeidsgiver.ansattFom)}.</>}

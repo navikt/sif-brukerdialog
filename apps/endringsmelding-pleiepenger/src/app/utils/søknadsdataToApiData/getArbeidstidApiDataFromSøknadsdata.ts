@@ -108,7 +108,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
         if (endring) {
             const {
-                arbeidsgiver: { type, organisasjonsnummer },
+                arbeidsgiver: { type, id: organisasjonsnummer },
             } = aktivitet;
             const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(aktivitet, endring);
             if (arbeidstidInfo) {
@@ -125,7 +125,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     /** Nye arbeidsgivere */
     if (arbeidssituasjon) {
         nyeArbeidsgivere.forEach((arbeidsgiver) => {
-            const { type, organisasjonsnummer } = arbeidsgiver;
+            const { type, id: organisasjonsnummer } = arbeidsgiver;
             const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find(
                 (a) => a.arbeidsgiverId === organisasjonsnummer
             );

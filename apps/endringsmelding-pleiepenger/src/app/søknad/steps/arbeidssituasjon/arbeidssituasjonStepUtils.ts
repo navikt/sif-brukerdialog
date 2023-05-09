@@ -33,7 +33,7 @@ const arbeidsforholdFormValuesToSøknadsdata = (
     if (erAnsatt && timerPerUke !== undefined && formValues.arbeiderIPerioden !== undefined) {
         return {
             erAnsatt,
-            arbeidsgiverId: arbeidsgiver.organisasjonsnummer,
+            arbeidsgiverId: arbeidsgiver.id,
             arbeiderIPerioden: formValues.arbeiderIPerioden,
             normalarbeidstid: {
                 timerPerUke: decimalDurationToDuration(timerPerUke),
@@ -43,7 +43,7 @@ const arbeidsforholdFormValuesToSøknadsdata = (
     if (!erAnsatt) {
         return {
             erAnsatt,
-            arbeidsgiverId: arbeidsgiver.organisasjonsnummer,
+            arbeidsgiverId: arbeidsgiver.id,
         };
     }
     return undefined;
@@ -63,7 +63,7 @@ export const getArbeidssituasjonStepInitialValues = (
     const arbeidsforhold: NyttArbeidsforholdMap = {};
     if (søknadsdata.arbeidssituasjon === undefined) {
         nyeArbeidsgivere.forEach((a) => {
-            arbeidsforhold[getArbeidsforholdFormFieldKey(a.organisasjonsnummer)] = {
+            arbeidsforhold[getArbeidsforholdFormFieldKey(a.id)] = {
                 erAnsatt: YesOrNo.UNANSWERED,
                 timerPerUke: '',
             };
@@ -85,7 +85,7 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
     const arbeidsforhold: Arbeidsforhold[] = [];
     Object.keys(values.arbeidsforhold).forEach((key) => {
         const arbeidsgiverId = getArbeidsgiverIdFromFormFieldKey(key);
-        const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === arbeidsgiverId);
+        const arbeidsgiver = arbeidsgivere.find((a) => a.id === arbeidsgiverId);
         const data = arbeidsforholdFormValuesToSøknadsdata(values.arbeidsforhold[key], arbeidsgiver);
         if (data) {
             arbeidsforhold.push(data);

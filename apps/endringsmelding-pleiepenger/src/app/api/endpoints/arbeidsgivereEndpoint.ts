@@ -23,7 +23,7 @@ export const arbeidsgivereEndpoint = {
             const aaArbeidsgivere: Arbeidsgiver[] = [];
             (data.organisasjoner || []).forEach((a) => {
                 aaArbeidsgivere.push({
-                    organisasjonsnummer: a.organisasjonsnummer,
+                    id: a.organisasjonsnummer,
                     type: ArbeidsgiverType.ORGANISASJON,
                     navn: a.navn,
                     ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,

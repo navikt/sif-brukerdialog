@@ -81,7 +81,7 @@ export const getArbeidAktivitetForNyArbeidsgiver = (
         type: ArbeidAktivitetType.arbeidstaker,
         arbeidsgiver,
         erNyArbeidsaktivitet: true,
-        id: arbeidsgiver.organisasjonsnummer,
+        id: arbeidsgiver.id,
         navn: arbeidsgiver.navn,
         harPerioderEtterTillattEndringsperiode: false,
         harPerioderFørTillattEndringsperiode: false,
@@ -102,9 +102,7 @@ export const getArbeidAktiviteterForNyeArbeidsgivere = (
 ): ArbeidAktivitet[] => {
     const aktiviteter: ArbeidAktivitet[] = [];
     nyeArbeidsgivere.forEach((arbeidsgiver) => {
-        const arbeidsforhold = arbeidssituasjon?.arbeidsforhold.find(
-            (s) => s.arbeidsgiverId === arbeidsgiver.organisasjonsnummer
-        );
+        const arbeidsforhold = arbeidssituasjon?.arbeidsforhold.find((s) => s.arbeidsgiverId === arbeidsgiver.id);
         if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
             throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
         }

@@ -27,6 +27,8 @@ import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
+import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
+import { harNyArbeidsgiverMedRedusertJobb } from '../../../utils/nyArbeidsgiverUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -84,7 +86,7 @@ const OppsummeringStep = () => {
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        sak.harNyArbeidsgiver
+        harNyArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
     );
 
     return (
@@ -102,15 +104,12 @@ const OppsummeringStep = () => {
                 <Block margin="xxl">
                     <SummarySection header="Arbeidssituasjon">
                         {sak.nyeArbeidsgivere.map((arbeidsgiver) => {
-                            const arbeidsforhold = nyeArbeidsforhold.find(
-                                (a) => a.arbeidsgiverId === arbeidsgiver.organisasjonsnummer
-                            );
+                            const arbeidsforhold = nyeArbeidsforhold.find((a) => a.arbeidsgiverId === arbeidsgiver.id);
 
                             if (!arbeidsforhold) {
                                 return;
                             }
-                            const getTestKey = (key: string) =>
-                                `nyArbeidsgiver_${arbeidsgiver.organisasjonsnummer}_${key}`;
+                            const getTestKey = (key: string) => `nyArbeidsgiver_${arbeidsgiver.id}_${key}`;
                             return (
                                 <>
                                     <Heading level="3" size="medium">
@@ -119,8 +118,13 @@ const OppsummeringStep = () => {
                                     <SummaryBlock
                                         header={`Er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger`}>
                                         <div data-testid={getTestKey('erAnsatt')}>
-                                            <JaNeiSvar harSvartJa={true} />
+                                            <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
                                         </div>
+                                        {arbeidsforhold.erAnsatt === false && (
+                                            <Block>
+                                                <IkkeAnsattMelding />
+                                            </Block>
+                                        )}
                                     </SummaryBlock>
                                     {arbeidsforhold.erAnsatt && (
                                         <>
