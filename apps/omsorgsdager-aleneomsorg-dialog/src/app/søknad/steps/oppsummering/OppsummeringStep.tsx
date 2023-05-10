@@ -114,7 +114,7 @@ const OppsummeringStep = () => {
                                 />
 
                                 <SummarySection
-                                    header={intlHelper(intl, 'step.oppsummering.om-omsorgen-for-barn.barnList.tittle')}>
+                                    header={intlHelper(intl, 'step.oppsummering.omOmsorgenForBarn.barnList.tittle')}>
                                     <Block margin="m">
                                         <BarnSummaryList barn={apiData.barn} />
                                     </Block>

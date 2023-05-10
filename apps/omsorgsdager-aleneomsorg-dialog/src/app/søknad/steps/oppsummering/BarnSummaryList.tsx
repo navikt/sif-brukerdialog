@@ -25,7 +25,7 @@ const tidspunktRenderer = (
                         <span>
                             {intlHelper(
                                 intl,
-                                'step.oppsummering.om-omsorgen-for-barn.harOmsorgFor.tidspunktForAleneomsorg.tidligere'
+                                'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg.tidligere'
                             )}
                         </span>
                     </>
@@ -35,7 +35,7 @@ const tidspunktRenderer = (
                         <span>
                             {intlHelper(
                                 intl,
-                                'step.oppsummering.om-omsorgen-for-barn.harOmsorgFor.tidspunktForAleneomsorg',
+                                'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg',
                                 { dato: prettifyDateExtended(ISODateToDate(dato)) }
                             )}
                         </span>

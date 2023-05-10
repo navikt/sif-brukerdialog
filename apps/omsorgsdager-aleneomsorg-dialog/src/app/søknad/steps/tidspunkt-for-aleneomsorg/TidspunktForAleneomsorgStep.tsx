@@ -125,7 +125,7 @@ const TidspunktForAleneomsorgStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    {intlHelper(intl, 'step.tidspunkt-for-aleneomsorg.stepIntro')}
+                                    {intlHelper(intl, 'step.tidspunktForAleneomsorg.stepIntro')}
                                 </SifGuidePanel>
 
                                 <Block margin="xl" padBottom="xl">
@@ -152,32 +152,3 @@ const TidspunktForAleneomsorgStep = () => {
 };
 
 export default TidspunktForAleneomsorgStep;
-
-//Trigger
-/**TODO
- * 
- * const getFieldName = (key: string, fieldName: AleneomsorgTidspunktField): string => {
-        return `${fieldName}_${key}`;
-    };
-
-
-    
- * const cleanupStep = (formData: SoknadFormData): SoknadFormData => {
-        const aleneomsorgTidspunkt: AleneomsorgTidspunkt[] = [];
-
-        formData.harAleneomsorgFor.forEach((fnrId) => {
-            const fieldNameFnr = getFieldName(fnrId, AleneomsorgTidspunktField.tidspunktForAleneomsorg);
-
-            aleneomsorgTidspunkt.push({
-                fnrId: fnrId,
-                tidspunktForAleneomsorg: formData[fieldNameFnr],
-                dato:
-                    formData[fieldNameFnr] === TidspunktForAleneomsorgFormData.SISTE_2_ÅRENE
-                        ? formData[getFieldName(fnrId, AleneomsorgTidspunktField.dato)]
-                        : undefined,
-            });
-        });
-        formData.aleneomsorgTidspunkt = aleneomsorgTidspunkt;
-        return formData;
-    };
- */
