@@ -3611,7 +3611,7 @@ __metadata:
     "@navikt/ds-css": 3.1.0
     "@navikt/ds-react": 3.1.0
     "@portabletext/react": 3.0.0
-    "@sanity/client": 6.0.1
+    "@sanity/client": 5.4.2
     "@types/node": 20.1.2
     "@types/react": 18.2.6
     "@types/react-dom": 18.2.4
@@ -4998,18 +4998,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@sanity/client@npm:6.0.1"
+"@sanity/client@npm:5.4.2":
+  version: 5.4.2
+  resolution: "@sanity/client@npm:5.4.2"
   dependencies:
-    "@sanity/eventsource": ^5.0.0
-    get-it: ^8.1.0
-    rxjs: ^7.0.0
-  checksum: d5f71c193534066102dc8ecf94d3a1eae62c9ccaab4cd9a65b8f51987e7820236a2851153bb41819ec067896bde19556d5e0c112fdfcbb613f677d57ea459215
+    "@sanity/eventsource": 5
+    get-it: ^8.1
+    rxjs: 7
+  checksum: 289e83b7c12eb0789f59b546b68f12e5f36b67acd780d454b6d16cc9b9740940e6a899cf005bc93c143dde163cba8d671b8b9a73a4309d14ca07442093ea46ef
   languageName: node
   linkType: hard
 
-"@sanity/eventsource@npm:^5.0.0":
+"@sanity/eventsource@npm:5":
   version: 5.0.0
   resolution: "@sanity/eventsource@npm:5.0.0"
   dependencies:
@@ -15183,7 +15183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-it@npm:^8.1.0":
+"get-it@npm:^8.1":
   version: 8.1.1
   resolution: "get-it@npm:8.1.1"
   dependencies:
@@ -23919,7 +23919,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.0.0":
+"rxjs@npm:7":
   version: 7.8.1
   resolution: "rxjs@npm:7.8.1"
   dependencies:
