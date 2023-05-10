@@ -2,6 +2,10 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmOmsorgenForBarnSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OmOmsorgenForBarnFormValues } from './OmOmsorgenForBarnStep';
+import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
+import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
+import { FormattedMessage } from 'react-intl';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
 
 export const getOmOmsorgenForBarnStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -66,4 +70,52 @@ export const getOmOmsorgenForBarnSøknadsdataFromFormValues = (
         };
     }
     return undefined;
+};
+
+export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn): React.ReactNode => {
+    return (
+        <span className="dineBarn">
+            <span>
+                <FormattedMessage
+                    id="step.omOmsorgenForBarn.form.født"
+                    values={{ dato: dateFormatter.compact(registrertBarn.fødselsdato) }}
+                />
+            </span>
+
+            <span className="dineBarn__navn">
+                {formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn)}
+            </span>
+        </span>
+    );
+};
+
+export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn: AnnetBarn[] = []) => {
+    return [
+        ...registrertBarn.map((barnet) => ({
+            label: (
+                <FormattedMessage
+                    id="step.omOmsorgenForBarn.form.fødtNavn"
+                    values={{
+                        dato: dateFormatter.compact(barnet.fødselsdato),
+                        navn: formatName(barnet.fornavn, barnet.etternavn),
+                    }}
+                />
+            ),
+            value: barnet.aktørId,
+            'data-testid': `harAleneomsorgFor-${barnet.aktørId}`,
+        })),
+        ...andreBarn.map((barnet) => ({
+            label: (
+                <FormattedMessage
+                    id="step.omOmsorgenForBarn.form.fødtNavn"
+                    values={{
+                        dato: dateFormatter.compact(barnet.fødselsdato),
+                        navn: barnet.navn,
+                    }}
+                />
+            ),
+            value: barnet.fnr,
+            'data-testid': `harAleneomsorgFor-${barnet.fnr}`,
+        })),
+    ];
 };
