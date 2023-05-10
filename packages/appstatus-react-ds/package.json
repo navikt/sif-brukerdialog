@@ -12,11 +12,11 @@
     },
     "dependencies": {
         "@portabletext/react": "3.0.0",
-        "@sanity/client": "5.4.2"
+        "@sanity/client": "6.0.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "2.9.8",
-        "@navikt/ds-react": "2.9.8",
+        "@navikt/ds-css": "3.0.0",
+        "@navikt/ds-react": "3.0.0",
         "@types/node": "20.1.1",
         "@types/react": "18.2.6",
         "@types/react-dom": "18.2.4",
