@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.34.0
+
+### Minor Changes
+
+-   ae1fdbf: Pakkeoppdateringer
+
 ## 3.33.0
 
 ### Minor Changes

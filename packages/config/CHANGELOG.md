@@ -1,5 +1,11 @@
 # config
 
+## 0.3.0
+
+### Minor Changes
+
+-   ae1fdbf: Pakkeoppdateringer
+
 ## 0.2.1
 
 ### Patch Changes

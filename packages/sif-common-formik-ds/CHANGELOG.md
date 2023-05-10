@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.20.0
+
+### Minor Changes
+
+-   ae1fdbf: Pakkeoppdateringer
+
 ## 0.19.0
 
 ### Minor Changes
