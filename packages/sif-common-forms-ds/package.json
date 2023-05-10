@@ -76,8 +76,8 @@
         ]
     },
     "peerDependencies": {
-        "@navikt/ds-css": "2",
-        "@navikt/ds-react": "2",
+        "@navikt/ds-css": "3",
+        "@navikt/ds-react": "3",
         "@navikt/sif-common-core-ds": "*"
     },
     "repository": {

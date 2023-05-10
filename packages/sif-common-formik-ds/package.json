@@ -72,9 +72,9 @@
         "react-refresh": "0.11.0"
     },
     "peerDependencies": {
-        "@navikt/ds-css": "2",
+        "@navikt/ds-css": "3",
         "@navikt/ds-datepicker": ">=4.1.7",
-        "@navikt/ds-react": "2",
+        "@navikt/ds-react": "3",
         "formik": "2.x",
         "react-intl": "6.x"
     },

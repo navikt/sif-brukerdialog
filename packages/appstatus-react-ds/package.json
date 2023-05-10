@@ -37,8 +37,8 @@
         "/lib"
     ],
     "peerDependencies": {
-        "@navikt/ds-css": "2",
-        "@navikt/ds-react": "2",
+        "@navikt/ds-css": "3",
+        "@navikt/ds-react": "3",
         "sass": "1.x",
         "sass-loader": "13.x"
     },
