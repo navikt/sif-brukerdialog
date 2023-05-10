@@ -33,7 +33,7 @@ const tidspunktItemLabelRenderer = (navn: string, intl: IntlShape): React.ReactN
             </div>
 
             <div>
-                <span>{intlHelper(intl, 'step.tidspunkt-for-aleneomsorg.spm', { navn })}</span>
+                <span>{intlHelper(intl, 'step.tidspunktForAleneomsorg.spm', { navn })}</span>
             </div>
         </>
     );
@@ -55,7 +55,7 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                 legend={tidspunktItemLabelRenderer(barnMedAleneomsorg.navn, intl)}
                 radios={[
                     {
-                        label: intlHelper(intl, 'step.tidspunkt-for-aleneomsorg.radioPanelGroupLabel.siste2årene', {
+                        label: intlHelper(intl, 'step.tidspunktForAleneomsorg.radioPanelGroupLabel.siste2årene', {
                             yearAgo: getYear(1),
                             yearNow: getYear(0),
                         }),
@@ -63,7 +63,7 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                         'data-testid': `tidspunktForAleneomsorg_siste2årene_${barnMedAleneomsorg.idFnr}`,
                     },
                     {
-                        label: intlHelper(intl, 'step.tidspunkt-for-aleneomsorg.radioPanelGroupLabel.tidligere', {
+                        label: intlHelper(intl, 'step.tidspunktForAleneomsorg.radioPanelGroupLabel.tidligere', {
                             twoYearsAgo: getYear(2),
                         }),
                         value: TidspunktForAleneomsorg.TIDLIGERE,
@@ -86,7 +86,7 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                 <Block margin="xl">
                     <DatePicker
                         name={getFieldName(AleneomsorgTidspunktField.dato) as TidspunktForAleneomsorgFormFields}
-                        label={intlHelper(intl, 'step.tidspunkt-for-aleneomsorg.siste2årene.dato.spm', {
+                        label={intlHelper(intl, 'step.tidspunktForAleneomsorg.siste2årene.dato.spm', {
                             navn: barnMedAleneomsorg.navn,
                         })}
                         showYearSelector={true}

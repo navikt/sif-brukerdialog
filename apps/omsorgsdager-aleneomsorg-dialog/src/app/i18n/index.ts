@@ -5,17 +5,21 @@ import annetBarnMessages from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/
 import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysninger/personalopplysninger.messages';
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { appMessages } from './appMessages';
-// import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
+import { omOmsorgenForBarnMessages } from '../søknad/steps/om-omsorgen-for-barn/omOmsorgenForBarnMessages';
+import { tidspunktForAleneomsorgMessages } from '../søknad/steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
     ...soknadIntlMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
+    ...omOmsorgenForBarnMessages.nb,
     ...annetBarnMessages.nb,
-    // ...oppsummeringMessages.nb,
+    ...tidspunktForAleneomsorgMessages.nb,
+    ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
     ...appMessages.nb,

@@ -31,7 +31,6 @@ export const getTidspunktForAleneomsorgStepInitialValues = (
     }
 
     const defaultValues = {} as AleneomsorgTidspunkt;
-    // barnMedAleneomsorg.map((barn) => (defaultValues[barn.idFnr] = {}));
 
     const { tidspunktForAleneomsorg } = søknadsdata;
 
