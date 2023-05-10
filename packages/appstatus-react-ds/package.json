@@ -15,9 +15,9 @@
         "@sanity/client": "6.0.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "3.0.0",
-        "@navikt/ds-react": "3.0.0",
-        "@types/node": "20.1.1",
+        "@navikt/ds-css": "3.0.1",
+        "@navikt/ds-react": "3.0.1",
+        "@types/node": "20.1.2",
         "@types/react": "18.2.6",
         "@types/react-dom": "18.2.4",
         "config": "*",
@@ -37,8 +37,8 @@
         "/lib"
     ],
     "peerDependencies": {
-        "@navikt/ds-css": "2",
-        "@navikt/ds-react": "2",
+        "@navikt/ds-css": ">=2",
+        "@navikt/ds-react": ">=2",
         "sass": "1.x",
         "sass-loader": "13.x"
     },
