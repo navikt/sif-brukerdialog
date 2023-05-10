@@ -3611,7 +3611,7 @@ __metadata:
     "@navikt/ds-css": 3.1.0
     "@navikt/ds-react": 3.1.0
     "@portabletext/react": 3.0.0
-    "@sanity/client": 5.4.2
+    "@sanity/client": 6.0.1
     "@types/node": 20.1.2
     "@types/react": 18.2.6
     "@types/react-dom": 18.2.4
@@ -3624,8 +3624,8 @@ __metadata:
     rimraf: 5.0.0
     sass: 1.62.1
   peerDependencies:
-    "@navikt/ds-css": 2
-    "@navikt/ds-react": 2
+    "@navikt/ds-css": 3
+    "@navikt/ds-react": 3
     sass: 1.x
     sass-loader: 13.x
   languageName: unknown
@@ -4218,9 +4218,9 @@ __metadata:
     webpack: 5.82.0
   peerDependencies:
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 2
-    "@navikt/ds-icons": 2
-    "@navikt/ds-react": 2
+    "@navikt/ds-css": 3
+    "@navikt/ds-icons": 3
+    "@navikt/ds-react": 3
     "@navikt/sif-common-formik-ds": "*"
     axios: 1
     formik: 2.2.9
@@ -4280,9 +4280,9 @@ __metadata:
     uuid: 9.0.0
     webpack: 5.82.0
   peerDependencies:
-    "@navikt/ds-css": 2
+    "@navikt/ds-css": 3
     "@navikt/ds-datepicker": ">=4.1.7"
-    "@navikt/ds-react": 2
+    "@navikt/ds-react": 3
     formik: 2.x
     react-intl: 6.x
   languageName: unknown
@@ -4342,8 +4342,8 @@ __metadata:
     storybook: 7.0.10
     webpack: 5.82.0
   peerDependencies:
-    "@navikt/ds-css": 2
-    "@navikt/ds-react": 2
+    "@navikt/ds-css": 3
+    "@navikt/ds-react": 3
     "@navikt/sif-common-core-ds": "*"
   languageName: unknown
   linkType: soft
@@ -4432,8 +4432,8 @@ __metadata:
     "@devexperts/remote-data-ts": 2.x
     "@formatjs/intl-pluralrules": 5.x
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 2.x
-    "@navikt/ds-react": 2.x
+    "@navikt/ds-css": 3
+    "@navikt/ds-react": 3
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-sentry": "*"
     "@navikt/sif-common-utils": "*"
@@ -4998,18 +4998,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:5.4.2":
-  version: 5.4.2
-  resolution: "@sanity/client@npm:5.4.2"
+"@sanity/client@npm:6.0.1":
+  version: 6.0.1
+  resolution: "@sanity/client@npm:6.0.1"
   dependencies:
-    "@sanity/eventsource": 5
-    get-it: ^8.1
-    rxjs: 7
-  checksum: 289e83b7c12eb0789f59b546b68f12e5f36b67acd780d454b6d16cc9b9740940e6a899cf005bc93c143dde163cba8d671b8b9a73a4309d14ca07442093ea46ef
+    "@sanity/eventsource": ^5.0.0
+    get-it: ^8.1.0
+    rxjs: ^7.0.0
+  checksum: d5f71c193534066102dc8ecf94d3a1eae62c9ccaab4cd9a65b8f51987e7820236a2851153bb41819ec067896bde19556d5e0c112fdfcbb613f677d57ea459215
   languageName: node
   linkType: hard
 
-"@sanity/eventsource@npm:5":
+"@sanity/eventsource@npm:^5.0.0":
   version: 5.0.0
   resolution: "@sanity/eventsource@npm:5.0.0"
   dependencies:
@@ -15183,7 +15183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-it@npm:^8.1":
+"get-it@npm:^8.1.0":
   version: 8.1.1
   resolution: "get-it@npm:8.1.1"
   dependencies:
@@ -23919,7 +23919,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:7, rxjs@npm:^7.5.1, rxjs@npm:^7.5.5, rxjs@npm:^7.8.0":
+"rxjs@npm:^7.0.0":
+  version: 7.8.1
+  resolution: "rxjs@npm:7.8.1"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: de4b53db1063e618ec2eca0f7965d9137cabe98cf6be9272efe6c86b47c17b987383df8574861bcced18ebd590764125a901d5506082be84a8b8e364bf05f119
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.5.1, rxjs@npm:^7.5.5, rxjs@npm:^7.8.0":
   version: 7.8.0
   resolution: "rxjs@npm:7.8.0"
   dependencies:
