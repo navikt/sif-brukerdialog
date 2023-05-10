@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.15.0
+
+### Minor Changes
+
+-   7d66a381: Oppdatere pakker, fjerne snyk
+
 ## 2.14.1
 
 ### Patch Changes

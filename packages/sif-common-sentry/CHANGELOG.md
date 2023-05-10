@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.15.0
+
+### Minor Changes
+
+-   7d66a381: Oppdatere pakker, fjerne snyk
+
 ## 0.14.1
 
 ### Patch Changes

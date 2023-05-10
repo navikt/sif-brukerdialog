@@ -85,6 +85,7 @@ const errorsToIgnore = [
     'Request failed with status code 401',
     /\[401\]/,
     /\[0\]/,
+    '*Non-Error promise rejection captured with value: Request timeout*',
 ];
 
 export const setupIgnoreErrorsAndAllowUrls = (

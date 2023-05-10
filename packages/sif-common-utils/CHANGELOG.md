@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.33.0
+
+### Minor Changes
+
+-   7d66a381: Oppdatere pakker, fjerne snyk
+
 ## 3.32.2
 
 ### Patch Changes
