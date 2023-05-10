@@ -10,7 +10,7 @@
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.2.2",
         "@navikt/ds-css": "2.9.8",
-        "@navikt/ds-datepicker": "4.1.8",
+        "@navikt/ds-datepicker": "4.2.0",
         "@navikt/ds-icons": "2.9.8",
         "@navikt/ds-react": "2.9.8",
         "@navikt/ds-tailwind": "2.9.8",
