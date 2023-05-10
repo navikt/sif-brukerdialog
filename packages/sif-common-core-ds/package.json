@@ -80,9 +80,9 @@
     },
     "peerDependencies": {
         "@navikt/appstatus-react-ds": "*",
-        "@navikt/ds-css": "2",
-        "@navikt/ds-icons": "2",
-        "@navikt/ds-react": "2",
+        "@navikt/ds-css": "3",
+        "@navikt/ds-icons": "3",
+        "@navikt/ds-react": "3",
         "@navikt/sif-common-formik-ds": "*",
         "axios": "1",
         "formik": "2.2.9",

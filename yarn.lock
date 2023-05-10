@@ -3624,8 +3624,8 @@ __metadata:
     rimraf: 5.0.0
     sass: 1.62.1
   peerDependencies:
-    "@navikt/ds-css": 2
-    "@navikt/ds-react": 2
+    "@navikt/ds-css": 3
+    "@navikt/ds-react": 3
     sass: 1.x
     sass-loader: 13.x
   languageName: unknown
@@ -4218,9 +4218,9 @@ __metadata:
     webpack: 5.82.0
   peerDependencies:
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 2
-    "@navikt/ds-icons": 2
-    "@navikt/ds-react": 2
+    "@navikt/ds-css": 3
+    "@navikt/ds-icons": 3
+    "@navikt/ds-react": 3
     "@navikt/sif-common-formik-ds": "*"
     axios: 1
     formik: 2.2.9
@@ -4280,9 +4280,9 @@ __metadata:
     uuid: 9.0.0
     webpack: 5.82.0
   peerDependencies:
-    "@navikt/ds-css": 2
+    "@navikt/ds-css": 3
     "@navikt/ds-datepicker": ">=4.1.7"
-    "@navikt/ds-react": 2
+    "@navikt/ds-react": 3
     formik: 2.x
     react-intl: 6.x
   languageName: unknown
@@ -4342,8 +4342,8 @@ __metadata:
     storybook: 7.0.10
     webpack: 5.82.0
   peerDependencies:
-    "@navikt/ds-css": 2
-    "@navikt/ds-react": 2
+    "@navikt/ds-css": 3
+    "@navikt/ds-react": 3
     "@navikt/sif-common-core-ds": "*"
   languageName: unknown
   linkType: soft
@@ -4432,8 +4432,8 @@ __metadata:
     "@devexperts/remote-data-ts": 2.x
     "@formatjs/intl-pluralrules": 5.x
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 2.x
-    "@navikt/ds-react": 2.x
+    "@navikt/ds-css": 3
+    "@navikt/ds-react": 3
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-sentry": "*"
     "@navikt/sif-common-utils": "*"
@@ -23919,7 +23919,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:7, rxjs@npm:^7.5.1, rxjs@npm:^7.5.5, rxjs@npm:^7.8.0":
+"rxjs@npm:7":
+  version: 7.8.1
+  resolution: "rxjs@npm:7.8.1"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: de4b53db1063e618ec2eca0f7965d9137cabe98cf6be9272efe6c86b47c17b987383df8574861bcced18ebd590764125a901d5506082be84a8b8e364bf05f119
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.5.1, rxjs@npm:^7.5.5, rxjs@npm:^7.8.0":
   version: 7.8.0
   resolution: "rxjs@npm:7.8.0"
   dependencies:
