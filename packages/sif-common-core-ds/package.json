@@ -47,7 +47,7 @@
         "@storybook/react-webpack5": "7.0.10",
         "@storybook/testing-library": "0.1.0",
         "@types/jest": "29.5.1",
-        "@types/node": "20.1.1",
+        "@types/node": "20.2.1",
         "@types/react": "18.2.6",
         "@types/react-collapse": "5.0.1",
         "@types/react-dom": "18.2.4",
