@@ -102,7 +102,7 @@ const OppsummeringStep = () => {
 
             {sak.harUkjentArbeidsgiver && ukjentArbeidsforhold && (
                 <Block margin="xxl">
-                    <SummarySection header="Arbeidssituasjon">
+                    <SummarySection header="Ukjent arbeidsforhold">
                         {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjentArbeidsforhold.find(
                                 (a) => a.arbeidsgiverId === arbeidsgiver.id
@@ -118,6 +118,7 @@ const OppsummeringStep = () => {
                                         {arbeidsgiver.navn}
                                     </Heading>
                                     <SummaryBlock
+                                        level="4"
                                         header={`Er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger`}>
                                         <div data-testid={getTestKey('erAnsatt')}>
                                             <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
@@ -131,6 +132,7 @@ const OppsummeringStep = () => {
                                     {arbeidsforhold.erAnsatt && (
                                         <>
                                             <SummaryBlock
+                                                level="4"
                                                 header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
                                                 <div data-testid={getTestKey('timerPerUke')}>
                                                     <DurationText
@@ -139,6 +141,7 @@ const OppsummeringStep = () => {
                                                 </div>
                                             </SummaryBlock>
                                             <SummaryBlock
+                                                level="4"
                                                 header={`Hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn} i perioden med pleiepenger?`}>
                                                 <div data-testid={getTestKey('arbeiderIPerioden')}>
                                                     {ArbeiderIPeriodenSvarTekst[arbeidsforhold.arbeiderIPerioden]}

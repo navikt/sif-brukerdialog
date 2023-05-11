@@ -4,6 +4,7 @@ import bemUtils from '../../utils/bemUtils';
 
 interface Props {
     header: string;
+    heading?: typeof Heading;
     level?: '1' | '2' | '3' | '4' | '5';
     size?: 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall';
     children: React.ReactNode;

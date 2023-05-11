@@ -86,7 +86,7 @@ const leggTilFerie = () => {
 };
 
 const endreOgFjernFerie = () => {
-    it.only('endre og fjerne én ferie', () => {
+    it('endre og fjerne én ferie', () => {
         /** Endre */
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();

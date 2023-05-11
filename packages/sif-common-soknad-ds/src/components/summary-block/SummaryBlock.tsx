@@ -4,12 +4,16 @@ import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content
 
 interface Props {
     header: string;
+    level?: '2' | '3' | '4';
     children: React.ReactElement<any> | Array<React.ReactElement<any>> | React.ReactNode;
 }
 
-const SummaryBlock = ({ header, children }: Props) => (
+const SummaryBlock = ({ header, level, children }: Props) => (
     <Block margin="l" padBottom="m">
-        <ContentWithHeader header={header}>{children}</ContentWithHeader>
+        <ContentWithHeader header={header} level={level}>
+            {' '}
+            {children}
+        </ContentWithHeader>
     </Block>
 );
 
