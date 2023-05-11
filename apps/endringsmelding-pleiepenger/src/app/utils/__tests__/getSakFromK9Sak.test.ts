@@ -180,9 +180,11 @@ describe('getSakFromK9Sak', () => {
             expect(keys.length).toEqual(4);
             const dag1 = result[keys[0]];
             const dag4 = result[keys[3]];
-            expect(durationToISODuration(dag1.faktisk)).toEqual(faktiskISODuration);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            expect(durationToISODuration(dag1.faktisk!)).toEqual(faktiskISODuration);
             expect(durationToISODuration(dag1.normalt)).toEqual(normaltISODuration);
-            expect(durationToISODuration(dag4.faktisk)).toEqual(periode2ISODuration);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            expect(durationToISODuration(dag4.faktisk!)).toEqual(periode2ISODuration);
             expect(durationToISODuration(dag4.normalt)).toEqual(normaltISODuration);
         });
     });
@@ -260,8 +262,8 @@ describe('getSakFromK9Sak', () => {
         it('returnerer riktig for én enkeltdag', () => {
             const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, enkeltdag);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
-            expect(durationToISODuration(uke.faktisk.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
-            expect(durationToISODuration(uke.faktisk.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.normalt.dag)).toEqual(durationToISODuration(arbeidstid.normalt));
             expect(durationToISODuration(uke.normalt.uke)).toEqual(durationToISODuration(arbeidstid.normalt));
         });
@@ -269,8 +271,8 @@ describe('getSakFromK9Sak', () => {
         it('fjerner dager som ikke er innenfor uken', () => {
             const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, helUke);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
-            expect(durationToISODuration(uke.faktisk.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
-            expect(durationToISODuration(uke.faktisk.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.normalt.dag)).toEqual(durationToISODuration(arbeidstid.normalt));
             expect(durationToISODuration(uke.normalt.uke)).toEqual(durationToISODuration(arbeidstid.normalt));
         });
@@ -279,8 +281,8 @@ describe('getSakFromK9Sak', () => {
             const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, helUke);
             expect(uke.antallDagerMedArbeidstid).toEqual(5);
             expect(uke.isoDateRange).toEqual(dateRangeToISODateRange(periodeHelUke));
-            expect(durationToISODuration(uke.faktisk.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
-            expect(durationToISODuration(uke.faktisk.uke)).toEqual('PT10H0M');
+            expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.uke)).toEqual('PT10H0M');
             expect(durationToISODuration(uke.normalt.dag)).toEqual(durationToISODuration(arbeidstid.normalt));
             expect(durationToISODuration(uke.normalt.uke)).toEqual('PT37H30M');
         });

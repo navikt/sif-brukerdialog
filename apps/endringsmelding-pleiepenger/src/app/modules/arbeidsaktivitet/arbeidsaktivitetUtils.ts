@@ -39,7 +39,7 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
             dagerMedFjernetFerie,
         },
         opprinnelig: {
-            faktisk: arbeidsuke.faktisk.uke,
+            faktisk: arbeidsuke.faktisk?.uke,
             normalt: arbeidsuke.normalt.uke,
         },
         endret: endring

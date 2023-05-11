@@ -6,6 +6,7 @@ import {
     ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
+import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {
@@ -21,12 +22,11 @@ import {
     ArbeidstidPeriodeApiDataMap,
 } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidssituasjonSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
-import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
+import { ArbeidAktivitetEndringMap } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getArbeidAktivitetForUkjentArbeidsgiver } from '../ukjentArbeidsgiverUtils';
-import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 
@@ -70,7 +70,9 @@ const getEndretArbeidstid = (
                 faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
                 _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
                 _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
-                _opprinneligFaktiskPerDag: durationToISODuration(arbeidsuke.faktisk.dag),
+                _opprinneligFaktiskPerDag: arbeidsuke.faktisk
+                    ? durationToISODuration(arbeidsuke.faktisk.dag)
+                    : undefined,
             };
         });
     });
@@ -92,7 +94,7 @@ const getArbeidAktivitetArbeidstidInfo = (
 
 export const getArbeidstidApiDataFromSøknadsdata = (
     søknadsperioder: DateRange[],
-    { arbeidAktivitetEndring }: ArbeidstidSøknadsdata,
+    arbeidAktivitetEndring: ArbeidAktivitetEndringMap,
     arbeidAktiviteter: ArbeidAktiviteter,
     ukjenteArbeidsgivere: Arbeidsgiver[],
     arbeidssituasjon?: ArbeidssituasjonSøknadsdata
@@ -149,15 +151,17 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             };
             Object.keys(arbeidsuker).forEach((key) => {
                 const arbeidsuke = arbeidsuker[key];
-                const ukeEndring = endring ? endring[key] : undefined;
+                const ukeEndring = endring[key];
 
-                const faktiskArbeidTimerPerDag = ukeEndring
-                    ? beregnEndretFaktiskArbeidstidPerDag(
-                          arbeidsuke.normalt.uke,
-                          ukeEndring,
-                          arbeidsuke.antallDagerMedArbeidstid
-                      )
-                    : arbeidsuke.faktisk.dag;
+                if (ukeEndring === undefined) {
+                    throw 'Faktisk arbeidstid er udefinert';
+                }
+
+                const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
+                    arbeidsuke.normalt.uke,
+                    ukeEndring,
+                    arbeidsuke.antallDagerMedArbeidstid
+                );
 
                 const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(
                     arbeidsuke.normalt.uke,
@@ -175,7 +179,9 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                                 ? ukeEndring.prosent
                                 : undefined,
                         _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
-                        _opprinneligFaktiskPerDag: durationToISODuration(arbeidsuke.faktisk.dag),
+                        _opprinneligFaktiskPerDag: arbeidsuke.faktisk
+                            ? durationToISODuration(arbeidsuke.faktisk.dag)
+                            : undefined,
                     };
                 });
             });

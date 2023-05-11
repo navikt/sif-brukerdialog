@@ -49,7 +49,6 @@ const ArbeidssituasjonStep = () => {
         state: { søknadsdata, hvaSkalEndres, sak, arbeidsgivere },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-
     const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
     const step = stepConfig[stepId];
 
@@ -78,8 +77,12 @@ const ArbeidssituasjonStep = () => {
                 <>
                     <BodyLong as="div">
                         <Heading level="2" size="xsmall" spacing={true}>
-                            Ukjent arbeidsforhold
+                            Vi trenger mer informasjon om ukjent arbeidsforhold
                         </Heading>
+                        <p>
+                            Vi har funnet et nytt arbeidsforhold på deg i aa-registeret, som ikke var registrert da du
+                            søkte om pleiepenger. Vi trenger litt mer informasjon før du kan fortsette.
+                        </p>
                     </BodyLong>
                 </>
             </SifGuidePanel>

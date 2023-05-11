@@ -8,7 +8,7 @@ export type ArbeidstidPeriodeApiData = {
     faktiskArbeidTimerPerDag: ISODuration;
     _endretProsent?: number;
     _opprinneligNormaltPerDag: ISODuration;
-    _opprinneligFaktiskPerDag: ISODuration;
+    _opprinneligFaktiskPerDag?: ISODuration;
 };
 
 export type ArbeidstidPeriodeApiDataMap = ISODateRangeMap<ArbeidstidPeriodeApiData>;

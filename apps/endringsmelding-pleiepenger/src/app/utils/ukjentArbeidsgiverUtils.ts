@@ -15,8 +15,8 @@ import {
     ArbeidAktivitet,
     ArbeidAktivitetType,
     ArbeidstidEnkeltdagMap,
+    ArbeidstidPerDag,
     ArbeidsukeMap,
-    FaktiskOgNormalArbeidstid,
     PeriodeMedArbeidstid,
 } from '../types/Sak';
 import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonSøknadsdata';
@@ -40,7 +40,7 @@ export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],
     { ansattFom, ansattTom }: Arbeidsgiver,
     normalarbeidstidPerUke: Duration,
-    faktiskArbeidstidPerUke: Duration
+    faktiskArbeidstidPerUke: Duration | undefined
 ): PeriodeMedArbeidstid[] => {
     const søknadsperioderForArbeidsforhold = getSøknadsperioderForUkjentArbeidsgiver(
         søknadsperioder,
@@ -49,8 +49,8 @@ export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
     );
     const perioderMedArbeidstid: PeriodeMedArbeidstid[] = [];
 
-    const arbeidstidPerDag: FaktiskOgNormalArbeidstid = {
-        faktisk: beregnSnittTimerPerDag(faktiskArbeidstidPerUke, 5),
+    const arbeidstidPerDag: ArbeidstidPerDag = {
+        faktisk: faktiskArbeidstidPerUke ? beregnSnittTimerPerDag(faktiskArbeidstidPerUke, 5) : undefined,
         normalt: beregnSnittTimerPerDag(normalarbeidstidPerUke, 5),
     };
     søknadsperioderForArbeidsforhold.forEach((periode) => {
@@ -71,15 +71,25 @@ export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
     return perioderMedArbeidstid;
 };
 
+export const getFaktiskArbeidstidForUkjentArbeidsgiver = (
+    arbeidsforhold: ArbeidsforholdAktivt
+): Duration | undefined => {
+    switch (arbeidsforhold.arbeiderIPerioden) {
+        case ArbeiderIPeriodenSvar.heltFravær:
+            return { hours: '0', minutes: '0' };
+        case ArbeiderIPeriodenSvar.somVanlig:
+            return { ...arbeidsforhold.normalarbeidstid.timerPerUke };
+        case ArbeiderIPeriodenSvar.redusert:
+            return undefined;
+    }
+};
+
 export const getArbeidAktivitetForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],
     arbeidsgiver: Arbeidsgiver,
     arbeidsforhold: ArbeidsforholdAktivt
 ): ArbeidAktivitet => {
-    const faktiskArbeidstid: Duration =
-        arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig
-            ? arbeidsforhold.normalarbeidstid.timerPerUke
-            : { hours: '0', minutes: '0' };
+    const faktiskArbeidstid = getFaktiskArbeidstidForUkjentArbeidsgiver(arbeidsforhold);
 
     const aktivitet: ArbeidAktivitet = {
         type: ArbeidAktivitetType.arbeidstaker,

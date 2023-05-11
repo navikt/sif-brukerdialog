@@ -66,10 +66,12 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
                 ISODurationToDuration(_opprinneligNormaltPerDag),
                 antallDagerMedArbeidstid
             ),
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligFaktiskPerDag),
-                antallDagerMedArbeidstid
-            ),
+            faktisk: _opprinneligFaktiskPerDag
+                ? getTimerPerUkeFraTimerPerDag(
+                      ISODurationToDuration(_opprinneligFaktiskPerDag),
+                      antallDagerMedArbeidstid
+                  )
+                : undefined,
         },
         endret: {
             faktisk: getTimerPerUkeFraTimerPerDag(

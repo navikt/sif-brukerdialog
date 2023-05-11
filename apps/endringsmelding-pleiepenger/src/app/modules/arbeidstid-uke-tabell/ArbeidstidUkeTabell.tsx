@@ -28,7 +28,7 @@ export interface ArbeidstidUkeTabellItem {
         dagerMedFjernetFerie: Date[];
     };
     opprinnelig: {
-        faktisk: Duration;
+        faktisk?: Duration;
         normalt: Duration;
     };
     endret?: {

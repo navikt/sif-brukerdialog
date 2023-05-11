@@ -1,6 +1,7 @@
-import { durationsAreEqual } from '@navikt/sif-common-utils';
+import { IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
+import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
+import { ArbeidAktivitet, ArbeidAktivitetArbeidstaker, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
@@ -42,7 +43,7 @@ export const cleanupArbeidAktivitetEndringer = (
             opprinnelig.normalt.uke,
             opprinnelig.antallDagerMedArbeidstid
         );
-        if (!durationsAreEqual(endretArbeidstid, opprinnelig.faktisk.uke)) {
+        if (!durationsAreEqual(endretArbeidstid, opprinnelig.faktisk?.uke)) {
             cleanedEndringer[key] = endring;
         }
     });
@@ -71,4 +72,28 @@ export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter
         aktiviteter.push({ ...selvstendigNæringsdrivende });
     }
     return aktiviteter;
+};
+
+export const validateUkjentArbeidsaktivitetArbeidstid = (
+    arbeidAktivitet: ArbeidAktivitetArbeidstaker,
+    endringer: ArbeidstidEndringMap = {}
+): IntlErrorObject | undefined => {
+    const manglendePeriode: ISODateRange[] = [];
+    arbeidAktivitet.perioderMedArbeidstid.forEach((periode) => {
+        Object.keys(periode.arbeidsuker).forEach((key) => {
+            const endring = endringer[key];
+            if (!endring) {
+                manglendePeriode.push(key);
+            }
+        });
+    });
+    return manglendePeriode.length > 0
+        ? {
+              key: 'arbeidstid.faktisk.mangler',
+              keepKeyUnaltered: true,
+              values: {
+                  navn: arbeidAktivitet.arbeidsgiver.navn,
+              },
+          }
+        : undefined;
 };

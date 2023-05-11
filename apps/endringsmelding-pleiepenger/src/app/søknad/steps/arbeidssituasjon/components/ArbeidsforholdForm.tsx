@@ -38,9 +38,9 @@ export interface ArbeidsforholdFormValues {
 }
 
 export const ArbeiderIPeriodenSvarTekst = {
-    [ArbeiderIPeriodenSvar.heltFravær]: 'Jeg jobber ikke',
+    [ArbeiderIPeriodenSvar.heltFravær]: 'Jeg jobber ikke her',
     [ArbeiderIPeriodenSvar.redusert]: 'Jeg kombinerer delvis jobb med pleiepenger',
-    [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som vanlig',
+    [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som normalt og har ingen fravær her',
 };
 
 const { NumberInput, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
@@ -89,7 +89,7 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                     }
                     return undefined;
                 }}
-                legend={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger?`}
+                legend={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden du har søkt pleiepenger?`}
             />
             {values.erAnsatt === YesOrNo.NO && (
                 <Block margin="l" padBottom="l">
@@ -153,8 +153,8 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                     {values.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
                         <Block margin="m">
                             <Alert variant="info">
-                                Når du kombinerer delvis jobb og pleiepenger skal du registrere hvor mye jobber hver uke
-                                hos {arbeidsgiver.navn} på steget &quot;Jobb i pleiepengeperioden&quot;.
+                                En beskrivende tittel Siden du kombinerer jobb med pleiepenger trenger du senere å fylle
+                                ut hvor mye du jobber i perioden med pleiepenger.
                             </Alert>
                         </Block>
                     )}

@@ -14,8 +14,13 @@ export type FaktiskOgNormalArbeidstid = {
     normalt: Duration;
 };
 
+export type ArbeidstidPerDag = {
+    faktisk?: Duration;
+    normalt: Duration;
+};
+
 export type ArbeidstidEnkeltdagMap = {
-    [key: ISODate]: FaktiskOgNormalArbeidstid;
+    [key: ISODate]: ArbeidstidPerDag;
 };
 
 export interface ArbeidsukeTimer {
@@ -27,7 +32,7 @@ export interface Arbeidsuke {
     isoDateRange: string;
     periode: DateRange;
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap;
-    faktisk: ArbeidsukeTimer;
+    faktisk?: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
     antallDagerMedArbeidstid: number;
 }

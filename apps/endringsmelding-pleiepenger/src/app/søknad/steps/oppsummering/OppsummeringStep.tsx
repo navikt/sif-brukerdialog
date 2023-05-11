@@ -113,7 +113,7 @@ const OppsummeringStep = () => {
                             }
                             const getTestKey = (key: string) => `ukjentArbeidsgiver_${arbeidsgiver.id}_${key}`;
                             return (
-                                <>
+                                <div key={arbeidsgiver.id}>
                                     <Heading level="3" size="medium">
                                         {arbeidsgiver.navn}
                                     </Heading>
@@ -146,7 +146,7 @@ const OppsummeringStep = () => {
                                             </SummaryBlock>
                                         </>
                                     )}
-                                </>
+                                </div>
                             );
                         })}
                     </SummarySection>

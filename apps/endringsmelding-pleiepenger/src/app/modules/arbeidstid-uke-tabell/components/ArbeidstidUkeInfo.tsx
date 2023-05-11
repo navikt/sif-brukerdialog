@@ -28,7 +28,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({
             <>
                 {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
                 <span data-testid="timer-faktisk">
-                    <DurationText duration={uke.opprinnelig.faktisk} />
+                    {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                 </span>
             </>
         );
@@ -61,7 +61,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({
                 <span className={bem.element('opprinnelig')}>
                     <AriaText>Endret fra </AriaText>
                     <span className={bem.element('timer')} data-testid="timer-opprinnelig">
-                        <DurationText duration={uke.opprinnelig.faktisk} />
+                        {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                     </span>
                 </span>
             </div>

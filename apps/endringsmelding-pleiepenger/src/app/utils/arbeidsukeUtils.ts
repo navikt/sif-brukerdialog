@@ -9,7 +9,7 @@ import {
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '../types/Sak';
+import { ArbeidstidEnkeltdagMap, Arbeidsuke, ArbeidsukeTimer } from '../types/Sak';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 
 export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {
@@ -69,19 +69,25 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
 ): Arbeidsuke => {
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
     const antallDagerMedArbeidstid = dagerSøktFor.length;
-    const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
     const normalt = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].normalt);
     const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
-    const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
+    const faktiskEnkeltdager = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
+    const harFaktiskArbeidstid = faktiskEnkeltdager.some((f) => f !== undefined);
+    const faktiskSummertHeleUken = harFaktiskArbeidstid
+        ? numberDurationAsDuration(durationUtils.summarizeDurations(faktiskEnkeltdager))
+        : undefined;
+    const faktisk: ArbeidsukeTimer | undefined = faktiskSummertHeleUken
+        ? {
+              uke: faktiskSummertHeleUken,
+              dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
+          }
+        : undefined;
 
     const arbeidsuke: Arbeidsuke = {
         isoDateRange: dateRangeToISODateRange(uke),
         periode: uke,
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
-        faktisk: {
-            uke: faktiskSummertHeleUken,
-            dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
-        },
+        faktisk,
         normalt: {
             uke: normaltSummertHeleUken,
             dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerMedArbeidstid),

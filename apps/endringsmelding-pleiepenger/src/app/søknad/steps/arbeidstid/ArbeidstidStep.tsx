@@ -11,6 +11,7 @@ import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import Arbeidsaktivitet from '../../../modules/arbeidsaktivitet/Arbeidsaktivitet';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
+import { ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
@@ -25,6 +26,7 @@ import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
+    validateUkjentArbeidsaktivitetArbeidstid,
 } from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
@@ -35,7 +37,11 @@ enum ArbeidstidFormFields {
     arbeidAktivitetEndring = 'arbeidAktivitetEndring',
 }
 
-const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
+const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
+    ArbeidstidFormFields,
+    ArbeidstidFormValues,
+    ValidationError
+>();
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
@@ -146,23 +152,46 @@ const ArbeidstidStep = () => {
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
+                                    const inputGroupName = `arbeidsgiver_${arbeidAktivitet.id}` as any;
                                     return (
-                                        <Block key={arbeidAktivitet.id} margin="l">
-                                            <Arbeidsaktivitet
-                                                renderAsExpansionCard={arbeidAktiviteter.length > 1}
-                                                expansionCardDefaultOpen={arbeidAktiviteter.length <= 2}
-                                                arbeidAktivitet={arbeidAktivitet}
-                                                endringer={endringer[arbeidAktivitet.id]}
-                                                lovbestemtFerie={søknadsdata.lovbestemtFerie}
-                                                onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
-                                                    onArbeidstidAktivitetChange(
-                                                        arbeidAktivitet.id,
-                                                        arbeidstidEndringer,
-                                                        values,
-                                                        setValues
-                                                    );
-                                                }}
-                                            />
+                                        <Block key={arbeidAktivitet.id} margin="l" id={inputGroupName} tabIndex={-1}>
+                                            <InputGroup
+                                                legend={arbeidAktivitet.navn}
+                                                hideLegend={true}
+                                                name={inputGroupName}
+                                                validate={() => {
+                                                    if (
+                                                        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
+                                                        arbeidAktivitet.erUkjentArbeidsaktivitet === true
+                                                    ) {
+                                                        return validateUkjentArbeidsaktivitetArbeidstid(
+                                                            arbeidAktivitet,
+                                                            endringer[arbeidAktivitet.id]
+                                                        );
+                                                    }
+
+                                                    return undefined;
+                                                }}>
+                                                <Arbeidsaktivitet
+                                                    renderAsExpansionCard={arbeidAktiviteter.length > 1}
+                                                    expansionCardDefaultOpen={
+                                                        arbeidAktiviteter.length <= 2 ||
+                                                        (arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
+                                                            arbeidAktivitet.erUkjentArbeidsaktivitet === true)
+                                                    }
+                                                    arbeidAktivitet={arbeidAktivitet}
+                                                    endringer={endringer[arbeidAktivitet.id]}
+                                                    lovbestemtFerie={søknadsdata.lovbestemtFerie}
+                                                    onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
+                                                        onArbeidstidAktivitetChange(
+                                                            arbeidAktivitet.id,
+                                                            arbeidstidEndringer,
+                                                            values,
+                                                            setValues
+                                                        );
+                                                    }}
+                                                />
+                                            </InputGroup>
                                         </Block>
                                     );
                                 })}
