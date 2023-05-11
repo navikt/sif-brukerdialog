@@ -22,7 +22,7 @@ interface Props {
 export enum ArbeiderIPeriodenSvar {
     'somVanlig' = 'SOM_VANLIG',
     'redusert' = 'REDUSERT',
-    'heltFravær' = 'HELT_FRAV\u00C6R',
+    'heltFravær' = 'HELT_FRAVÆR',
 }
 
 export enum ArbeidsforholdFormField {

@@ -23,7 +23,7 @@ window.appSettings={
     IMAGE:'ghcr.io/navikt/sif-brukerdialog/endringsmelding-pleiepenger-mono:825c85c3ef8c5a7ac4906dd4443620715a40a68a',
 };`;
 
-describe('Ukjent arbeidsgiver', () => {
+describe('Ukjent arbeidsgiver - jobber ikke', () => {
     contextConfig({
         arbeidsgivere: flereArbeidsgivereMock,
         saker: enSakEnArbeidsgiverMock,
@@ -36,8 +36,27 @@ describe('Ukjent arbeidsgiver', () => {
     });
 
     cyHelpers.startSøknad({ endreLovbestemtFerie: true });
-    cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
-    cyHelpers.leggTilOgFjernFerie();
+    cyHelpers.fyllUtUkjentArbeidsforhold('947064642', 'HELT_FRAVÆR');
+    cyHelpers.leggTilFerie();
     cyHelpers.fortsettTilOppsummering();
-    cyHelpers.kontrollerOppsummeringUkjentArbeidsforhold('947064642');
+    cyHelpers.kontrollerOppsummeringUkjentArbeidsforholdJobberIkke('947064642');
+});
+
+describe('Ukjent arbeidsgiver - jobber vanlig', () => {
+    contextConfig({
+        arbeidsgivere: flereArbeidsgivereMock,
+        saker: enSakEnArbeidsgiverMock,
+        settings,
+    });
+
+    before(() => {
+        cy.clock(cyHelpers.date);
+        cy.clearLocalStorage();
+    });
+
+    cyHelpers.startSøknad({ endreLovbestemtFerie: true });
+    cyHelpers.fyllUtUkjentArbeidsforhold('947064642', 'SOM_VANLIG');
+    cyHelpers.leggTilFerie();
+    cyHelpers.fortsettTilOppsummering();
+    cyHelpers.kontrollerOppsummeringUkjentArbeidsforholdJobberVanlig('947064642');
 });

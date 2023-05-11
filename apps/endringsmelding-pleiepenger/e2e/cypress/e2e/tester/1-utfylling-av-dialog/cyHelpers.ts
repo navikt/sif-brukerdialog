@@ -38,12 +38,15 @@ const startSøknad = ({
     });
 };
 
-const fyllUtUkjentArbeidsforhold = (orgnummer: string) => {
+const fyllUtUkjentArbeidsforhold = (
+    orgnummer: string,
+    arbeiderIPeriodenSvar: 'HELT_FRAVÆR' | 'REDUSERT' | 'SOM_VANLIG'
+) => {
     it('fyller ut ukjent arbeidsforhold', () => {
         getTestElement(`ukjentArbeidsgiver_${orgnummer}`).within(() => {
             selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.erAnsatt`, 'yes');
             cy.get(`input[name="arbeidsforhold.a_${orgnummer}.timerPerUke"]`).clear().type('30');
-            selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.arbeiderIPerioden`, 'HELT_FRAVÆR');
+            selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.arbeiderIPerioden`, arbeiderIPeriodenSvar);
         });
         submitSkjema();
     });
@@ -58,7 +61,12 @@ const fyllUtFerieDialog = (from, to) => {
 };
 
 const leggTilOgFjernFerie = () => {
-    it('kan legge til, endre og fjerne én ferie', () => {
+    leggTilFerie();
+    endreOgFjernFerie();
+};
+
+const leggTilFerie = () => {
+    it('kan legge til ferie', () => {
         /** Legg til */
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 1);
@@ -74,7 +82,11 @@ const leggTilOgFjernFerie = () => {
                 'søndag 20.11.2022 - fredag 25.11.2022'
             );
         });
+    });
+};
 
+const endreOgFjernFerie = () => {
+    it.only('endre og fjerne én ferie', () => {
         /** Endre */
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();
@@ -215,15 +227,35 @@ const kontrollerOppsummering = () => {
     });
 };
 
-const kontrollerOppsummeringUkjentArbeidsforhold = (orgnummer: string) => {
+const kontrollerOppsummeringUkjentArbeidsforholdJobberRedusert = (orgnummer: string) => {
     it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
         getTestElement(`ukjentArbeidsgiver_${orgnummer}_erAnsatt`).contains('Ja');
         getTestElement(`ukjentArbeidsgiver_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
-        getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains('Jeg jobber ikke');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains(
+            'Jeg kombinerer delvis jobb med pleiepenger'
+        );
         getUkeRow(enkeltuke).within(() => {
             expect(cy.get('[data-testid=timer-faktisk]').contains('0 t. 0 m.'));
             expect(cy.get('[data-testid=normalt-timer]').contains('30 t. 0 m.'));
         });
+    });
+};
+
+const kontrollerOppsummeringUkjentArbeidsforholdJobberIkke = (orgnummer: string) => {
+    it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_erAnsatt`).contains('Ja');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains('Jeg jobber ikke her');
+    });
+};
+
+const kontrollerOppsummeringUkjentArbeidsforholdJobberVanlig = (orgnummer: string) => {
+    it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_erAnsatt`).contains('Ja');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains(
+            'Jeg jobber som normalt og har ingen fravær her'
+        );
     });
 };
 
@@ -244,12 +276,16 @@ export const cyHelpers = {
     startUrl,
     date,
     startSøknad,
-    fyllUtUkjentArbeidsforhold: fyllUtUkjentArbeidsforhold,
+    fyllUtUkjentArbeidsforhold,
     leggTilOgFjernFerie,
+    leggTilFerie,
+    endreOgFjernFerie,
     endreEnkeltuke,
     endreFlereUker,
     fortsettTilOppsummering,
     kontrollerOppsummering,
-    kontrollerOppsummeringUkjentArbeidsforhold: kontrollerOppsummeringUkjentArbeidsforhold,
+    kontrollerOppsummeringUkjentArbeidsforholdJobberRedusert,
+    kontrollerOppsummeringUkjentArbeidsforholdJobberIkke,
+    kontrollerOppsummeringUkjentArbeidsforholdJobberVanlig,
     bekreftOpplysningerOgSendInn,
 };
