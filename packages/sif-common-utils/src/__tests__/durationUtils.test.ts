@@ -17,6 +17,7 @@ import {
 import { dateToISODate, ISODateToDate } from '../dateUtils';
 import {
     durationIsGreatherThanZero,
+    ensureValidHoursAndMinutes,
     getDateDurationDiff,
     getDateRangeFromDateDurationMap,
     getDatesWithDurationLongerThanZero,
@@ -33,7 +34,7 @@ import {
     summarizeDateDurationMap,
     summarizeDurations,
 } from '../durationUtils';
-import { DateDurationMap } from '../types';
+import { DateDurationMap, NumberDuration } from '../types';
 
 describe('durationUtils', () => {
     describe('getPositiveNumberValue', () => {
@@ -641,6 +642,20 @@ describe('durationUtils', () => {
             const result = ISODurationToDuration('PT5H20M10S');
             expect(result.hours).toEqual('5');
             expect(result.minutes).toEqual('20');
+        });
+    });
+    describe('ensureValidHoursAndMinutes', () => {
+        it('corrects hours and minutes when minutes are 60', () => {
+            const duration: NumberDuration = { hours: 2, minutes: 60 };
+            const { hours, minutes } = ensureValidHoursAndMinutes(duration);
+            expect(hours).toEqual(duration.hours + 1);
+            expect(minutes).toEqual(0);
+        });
+        it('does not correct hours and minutes when minutes are less than 60', () => {
+            const duration: NumberDuration = { hours: 2, minutes: 59 };
+            const { hours, minutes } = ensureValidHoursAndMinutes(duration);
+            expect(hours).toEqual(duration.hours);
+            expect(minutes).toEqual(duration.minutes);
         });
     });
 });
