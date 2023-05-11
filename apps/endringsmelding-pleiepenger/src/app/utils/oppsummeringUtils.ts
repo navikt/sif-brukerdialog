@@ -3,7 +3,16 @@ import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummerin
 import { LovbestemtFeriePeriode } from '../types/LovbestemtFeriePeriode';
 import { ArbeidstidApiData, LovbestemtFerieApiData, SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { getValgteEndringer } from './endringTypeUtils';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { ArbeiderIPeriodenSvar } from '../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 
+interface ArbeidssituasjonMetadata {
+    antallUkjentArbeidsforhold: number;
+    erAnsatt?: boolean;
+    heltFravær?: boolean;
+    redusert?: boolean;
+    somVanlig?: boolean;
+}
 interface ArbeidstidMetadata {
     endretArbeidstid?: boolean;
 }
@@ -15,7 +24,8 @@ interface LovbestemtFerieMetadata {
 }
 
 export type SøknadApiDataMetadata = LovbestemtFerieMetadata &
-    ArbeidstidMetadata & {
+    ArbeidstidMetadata &
+    ArbeidssituasjonMetadata & {
         valgtEndreArbeidstid: boolean;
         valgtEndreFerie: boolean;
     };
@@ -28,6 +38,22 @@ const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetada
         : {
               endretArbeidstid: false,
           };
+};
+const getArbeidssituasjonMetadata = (søknadsdata: Søknadsdata): ArbeidssituasjonMetadata => {
+    const ukjentArbeidsforhold = søknadsdata.arbeidssituasjon?.arbeidsforhold || [];
+    return {
+        antallUkjentArbeidsforhold: ukjentArbeidsforhold.length,
+        erAnsatt: ukjentArbeidsforhold.some((a) => a.erAnsatt),
+        heltFravær: ukjentArbeidsforhold.some(
+            (a) => a.erAnsatt && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
+        ),
+        redusert: ukjentArbeidsforhold.some(
+            (a) => a.erAnsatt && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert
+        ),
+        somVanlig: ukjentArbeidsforhold.some(
+            (a) => a.erAnsatt && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig
+        ),
+    };
 };
 const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtFerieMetadata | undefined => {
     if (!lovbestemtFerie) {
@@ -45,12 +71,13 @@ const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtF
     };
 };
 
-export const getSøknadApiDataMetadata = (apiData: SøknadApiData): SøknadApiDataMetadata => {
+export const getSøknadApiDataMetadata = (apiData: SøknadApiData, søknadsdata: Søknadsdata): SøknadApiDataMetadata => {
     const { arbeidstid, lovbestemtFerie, dataBruktTilUtledning } = apiData.ytelse;
     const endringer = getValgteEndringer(dataBruktTilUtledning.valgteEndringer);
     return {
         valgtEndreArbeidstid: endringer.arbeidstidSkalEndres,
         valgtEndreFerie: endringer.lovbestemtFerieSkalEndres,
+        ...getArbeidssituasjonMetadata(søknadsdata),
         ...getFerieMetadata(lovbestemtFerie),
         ...getArbeidstidMetadata(arbeidstid),
     };

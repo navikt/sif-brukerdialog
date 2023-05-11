@@ -13,7 +13,10 @@ import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/opps
 import { useMellomlagring } from './useMellomlagring';
 
 export const useSendSøknad = () => {
-    const { dispatch } = useSøknadContext();
+    const {
+        dispatch,
+        state: { søknadsdata },
+    } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const { slettMellomlagring } = useMellomlagring();
@@ -22,7 +25,7 @@ export const useSendSøknad = () => {
     const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
-        const metadata = getSøknadApiDataMetadata(apiData);
+        const metadata = getSøknadApiDataMetadata(apiData, søknadsdata);
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)
