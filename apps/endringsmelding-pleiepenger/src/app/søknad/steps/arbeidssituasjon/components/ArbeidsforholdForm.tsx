@@ -153,8 +153,8 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                     {values.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
                         <Block margin="m">
                             <Alert variant="info">
-                                En beskrivende tittel Siden du kombinerer jobb med pleiepenger trenger du senere å fylle
-                                ut hvor mye du jobber i perioden med pleiepenger.
+                                Siden du kombinerer jobb med pleiepenger trenger du senere å fylle ut hvor mye du jobber
+                                i perioden med pleiepenger.
                             </Alert>
                         </Block>
                     )}

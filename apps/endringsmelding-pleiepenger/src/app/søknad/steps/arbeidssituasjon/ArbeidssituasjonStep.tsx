@@ -80,8 +80,9 @@ const ArbeidssituasjonStep = () => {
                             Vi trenger mer informasjon om ukjent arbeidsforhold
                         </Heading>
                         <p>
-                            Vi har funnet et nytt arbeidsforhold på deg i aa-registeret, som ikke var registrert da du
-                            søkte om pleiepenger. Vi trenger litt mer informasjon før du kan fortsette.
+                            Vi har funnet et nytt arbeidsforhold på deg i{' '}
+                            <abbr title="Arbeidsgiver- og arbeidstakerregisteret">Aa-registeret</abbr>, som ikke var
+                            registrert da du søkte om pleiepenger. Vi trenger litt mer informasjon før du kan fortsette.
                         </p>
                     </BodyLong>
                 </>
