@@ -69,6 +69,7 @@ const leggTilFerie = () => {
     it('kan legge til ferie', () => {
         /** Legg til */
         getTestElement('dateRangeAccordion_0').within(() => {
+            getTestElement('dateRangeAccordion_0_header').click();
             cy.get('.lovbestemtFerieListe li').should('have.length', 1);
             getTestElement('leggTilFerieKnapp').click();
         });
