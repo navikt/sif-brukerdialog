@@ -211,6 +211,30 @@ const endreFlereUker = (uker: number[] = flereUker) => {
     });
 };
 
+interface UkeMedArbeidstid {
+    ukenummer: string;
+    tid: string;
+}
+const fyllUtUkjentArbeidsforholdArbeidstid = (orgnummer: string, uker: UkeMedArbeidstid[]) => {
+    it('legger til arbeidstid for enkeltuker', () => {
+        uker.forEach((uke) => {
+            cy.get(`#arbeidsgiver_${orgnummer}`).within(() => {
+                cy.get('.arbeidstidUkeTabell table')
+                    .get(`[data-testid=uke_${uke.ukenummer}]`)
+                    .within(() => {
+                        cy.get('[data-testid=endre-button]').click();
+                    });
+            });
+            getArbeidstimerModal().within(() => {
+                getTestElement('toggle-timer').click();
+                getTestElement('timer-verdi').type(uke.tid);
+                captureScreenshot();
+                cy.get('button[type="submit"]').click();
+            });
+        });
+    });
+};
+
 const fortsettTilOppsummering = () => {
     it('fortsetter til oppsummering fra arbeidstid', () => {
         captureScreenshot();
@@ -234,9 +258,21 @@ const kontrollerOppsummeringUkjentArbeidsforholdJobberRedusert = (orgnummer: str
         getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains(
             'Jeg kombinerer delvis jobb med pleiepenger'
         );
-        getUkeRow(enkeltuke).within(() => {
-            expect(cy.get('[data-testid=timer-faktisk]').contains('0 t. 0 m.'));
+        getUkeRow('4').within(() => {
+            expect(cy.get('[data-testid=timer-faktisk]').contains('1 t. 0 m.'));
+            expect(cy.get('[data-testid=normalt-timer]').contains('6 t. 0 m.'));
+        });
+        getUkeRow('5').within(() => {
+            expect(cy.get('[data-testid=timer-faktisk]').contains('2 t. 0 m.'));
             expect(cy.get('[data-testid=normalt-timer]').contains('30 t. 0 m.'));
+        });
+        getUkeRow('6').within(() => {
+            expect(cy.get('[data-testid=timer-faktisk]').contains('3 t. 0 m.'));
+            expect(cy.get('[data-testid=normalt-timer]').contains('30 t. 0 m.'));
+        });
+        getUkeRow('7').within(() => {
+            expect(cy.get('[data-testid=timer-faktisk]').contains('4 t. 0 m.'));
+            expect(cy.get('[data-testid=normalt-timer]').contains('18 t. 0 m.'));
         });
     });
 };
@@ -282,6 +318,7 @@ export const cyHelpers = {
     endreOgFjernFerie,
     endreEnkeltuke,
     endreFlereUker,
+    fyllUtUkjentArbeidsforholdArbeidstid,
     fortsettTilOppsummering,
     kontrollerOppsummering,
     kontrollerOppsummeringUkjentArbeidsforholdJobberRedusert,

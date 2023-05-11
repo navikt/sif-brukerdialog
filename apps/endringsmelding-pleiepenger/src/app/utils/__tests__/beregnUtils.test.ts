@@ -61,6 +61,19 @@ describe('beregnUtils', () => {
                 )
             ).toEqual(expectedResult);
         });
+        it('regner hele timer for 4 timer faktisk', () => {
+            const expectedResult: Duration = {
+                hours: '4',
+                minutes: '0',
+            };
+            expect(
+                beregnEndretArbeidstidForUke(
+                    { type: TimerEllerProsent.TIMER, timer: 4 },
+                    { hours: '18', minutes: '0' },
+                    3
+                )
+            ).toEqual(expectedResult);
+        });
     });
 
     describe('beregnEndretFaktiskArbeidstidPerDag', () => {

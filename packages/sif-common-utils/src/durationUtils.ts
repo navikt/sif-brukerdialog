@@ -152,18 +152,28 @@ export const getPercentageOfDuration = (duration: Duration, percentage: number):
     return decimalDurationToDuration(getPercentageOfDecimalDuration(durationToDecimalDuration(duration), percentage));
 };
 
-export const decimalDurationToNumberDuration = (duration: number): NumberDuration => {
+export const getHoursAndMinutesFromDecimalDuration = (duration: number): NumberDuration => {
     const hours = Math.floor(duration);
     const minutes = Math.round(60 * (duration % 1));
+
+    if (minutes === 60) {
+        return {
+            hours: hours + 1,
+            minutes: 0,
+        };
+    }
     return {
         hours,
         minutes,
     };
 };
 
+export const decimalDurationToNumberDuration = (duration: number): NumberDuration => {
+    return getHoursAndMinutesFromDecimalDuration(duration);
+};
+
 export const decimalDurationToDuration = (duration: number): Duration => {
-    const hours = Math.floor(duration);
-    const minutes = Math.round(60 * (duration % 1));
+    const { hours, minutes } = getHoursAndMinutesFromDecimalDuration(duration);
     return numberDurationAsDuration(
         ensureNumberDuration({
             hours,

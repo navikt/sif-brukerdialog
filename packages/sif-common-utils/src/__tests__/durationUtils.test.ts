@@ -115,6 +115,9 @@ describe('durationUtils', () => {
             it('converts 1 hour correctly', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 0 })).toEqual(1);
             });
+            it('converts 1 hour 20correctly', () => {
+                expect(durationToDecimalDuration({ hours: 1, minutes: 0 })).toEqual(1);
+            });
             it('converts 1 hour and 30 minutes correctly', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 30 })).toEqual(1.5);
             });
@@ -147,6 +150,11 @@ describe('durationUtils', () => {
             const result = decimalDurationToNumberDuration(1.5);
             expect(result.hours).toEqual(1);
             expect(result.minutes).toEqual(30);
+        });
+        it('converts 3,999 hours correctly', () => {
+            const result = decimalDurationToNumberDuration(3.9999);
+            expect(result.hours).toEqual(4);
+            expect(result.minutes).toEqual(0);
         });
         it('converts 1,98 hours correctly', () => {
             const result = decimalDurationToNumberDuration(1.98);

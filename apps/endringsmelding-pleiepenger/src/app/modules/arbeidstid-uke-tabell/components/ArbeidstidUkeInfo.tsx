@@ -45,12 +45,14 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({
     }
     const { faktisk, endretProsent } = uke.endret;
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
+
     return (
         <div className={bem.block}>
             <div className={bem.element('faktisk')}>
                 {medLabels && <BodyShort size="small">Jobber i perioden:</BodyShort>}
                 <strong className={bem.element('timer')} data-testid="timer-faktisk">
                     <DurationText duration={faktisk} />
+                    asd
                 </strong>
                 {endretProsent !== undefined && (
                     <span className={bem.element('prosent')}> ({intl.formatNumber(endretProsent)} %)</span>
