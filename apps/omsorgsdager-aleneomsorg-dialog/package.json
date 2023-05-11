@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@navikt/ds-css": "3.1.0",
-        "@navikt/ds-react": "3.1.0",
+        "@navikt/ds-react": "3.1.2",
         "@navikt/ds-tailwind": "3.1.0",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
