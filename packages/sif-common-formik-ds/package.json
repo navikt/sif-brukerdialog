@@ -58,7 +58,7 @@
         "sass": "1.62.1",
         "storybook": "7.0.10",
         "storybook-formik": "2.4.2",
-        "webpack": "5.82.0"
+        "webpack": "5.82.1"
     },
     "directories": {
         "lib": "lib"

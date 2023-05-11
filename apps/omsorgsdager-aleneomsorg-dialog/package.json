@@ -86,7 +86,7 @@
         "start-server-and-test": "2.0.0",
         "style-loader": "3.3.2",
         "ts-loader": "9.4.2",
-        "webpack": "5.82.0",
+        "webpack": "5.82.1",
         "webpack-dev-server": "4.13.3"
     },
     "resolutions": {
