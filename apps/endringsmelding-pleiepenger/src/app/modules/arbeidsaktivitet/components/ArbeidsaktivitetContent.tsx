@@ -76,7 +76,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
             )}
 
             {perioder.length !== 1 && (
-                <div style={{ borderTop: '2px solid var(--ac-accordion-header-border, var(--a-border-strong)' }}>
+                <div>
                     <DateRangeAccordion
                         dateRanges={perioder}
                         renderContent={(periode) => {

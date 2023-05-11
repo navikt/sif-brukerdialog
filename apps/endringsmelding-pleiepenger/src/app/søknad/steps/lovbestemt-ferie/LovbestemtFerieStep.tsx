@@ -130,21 +130,15 @@ const LovbestemtFerieStep = () => {
                                 onBack={goBack}>
                                 <FormBlock>
                                     {sak.søknadsperioder.length === 1 ? null : (
-                                        <div
-                                            style={{
-                                                borderBottom:
-                                                    '2px solid var(--ac-accordion-header-border, var(--a-border-strong)',
-                                            }}>
-                                            <Block margin="xl">
-                                                <Heading level="3" size="small" spacing={true}>
-                                                    Dine perioder med pleiepenger
-                                                </Heading>
-                                            </Block>
-                                        </div>
+                                        <Block margin="xl">
+                                            <Heading level="3" size="small" spacing={true}>
+                                                Dine perioder med pleiepenger
+                                            </Heading>
+                                        </Block>
                                     )}
                                     <DateRangeAccordion
                                         dateRanges={sak.søknadsperioder}
-                                        defaultOpenState={'all'}
+                                        defaultOpenState={'none'}
                                         renderContent={(søknadsperiode) => {
                                             return (
                                                 <Block
