@@ -50,7 +50,7 @@ interface ArbeidAktivitetBase {
 export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
-    erNyArbeidsaktivitet: boolean;
+    erUkjentArbeidsaktivitet: boolean;
 }
 export interface ArbeidAktivitetFrilanser extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.frilanser;
@@ -77,8 +77,8 @@ export interface SakLovbestemtFerie {
 
 export interface Sak {
     barn: K9SakBarn;
-    harNyArbeidsgiver: boolean;
-    nyeArbeidsgivere: Arbeidsgiver[];
+    harUkjentArbeidsgiver: boolean;
+    ukjenteArbeidsgivere: Arbeidsgiver[];
     arbeidAktiviteter: ArbeidAktiviteter;
     lovbestemtFerie: SakLovbestemtFerie;
     søknadsperioder: DateRange[];

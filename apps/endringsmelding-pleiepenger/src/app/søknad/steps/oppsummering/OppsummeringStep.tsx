@@ -28,7 +28,7 @@ import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
-import { harNyArbeidsgiverMedRedusertJobb } from '../../../utils/nyArbeidsgiverUtils';
+import { harUkjentArbeidsgiverMedRedusertJobb } from '../../../utils/ukjentArbeidsgiverUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -50,7 +50,7 @@ const OppsummeringStep = () => {
         state: { søknadsdata, sak, arbeidsgivere, hvaSkalEndres },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
 
@@ -75,7 +75,7 @@ const OppsummeringStep = () => {
     const {
         arbeidstid,
         lovbestemtFerie,
-        dataBruktTilUtledning: { nyeArbeidsforhold },
+        dataBruktTilUtledning: { ukjentArbeidsforhold },
     } = apiData.ytelse;
 
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
@@ -86,7 +86,7 @@ const OppsummeringStep = () => {
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        harNyArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
+        harUkjentArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
     );
 
     return (
@@ -100,16 +100,18 @@ const OppsummeringStep = () => {
                 </Ingress>
             </SifGuidePanel>
 
-            {sak.harNyArbeidsgiver && nyeArbeidsforhold && (
+            {sak.harUkjentArbeidsgiver && ukjentArbeidsforhold && (
                 <Block margin="xxl">
                     <SummarySection header="Arbeidssituasjon">
-                        {sak.nyeArbeidsgivere.map((arbeidsgiver) => {
-                            const arbeidsforhold = nyeArbeidsforhold.find((a) => a.arbeidsgiverId === arbeidsgiver.id);
+                        {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
+                            const arbeidsforhold = ukjentArbeidsforhold.find(
+                                (a) => a.arbeidsgiverId === arbeidsgiver.id
+                            );
 
                             if (!arbeidsforhold) {
                                 return;
                             }
-                            const getTestKey = (key: string) => `nyArbeidsgiver_${arbeidsgiver.id}_${key}`;
+                            const getTestKey = (key: string) => `ukjentArbeidsgiver_${arbeidsgiver.id}_${key}`;
                             return (
                                 <>
                                     <Heading level="3" size="medium">
@@ -158,7 +160,7 @@ const OppsummeringStep = () => {
                             <>
                                 <ArbeidstidOppsummering
                                     arbeidstid={arbeidstid}
-                                    arbeidsgivere={[...arbeidsgivere, ...sak.nyeArbeidsgivere]}
+                                    arbeidsgivere={[...arbeidsgivere, ...sak.ukjenteArbeidsgivere]}
                                 />
                                 {!harGyldigArbeidstid && (
                                     <Block margin="none" padBottom="l">

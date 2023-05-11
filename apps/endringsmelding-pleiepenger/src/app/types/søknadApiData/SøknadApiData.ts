@@ -19,7 +19,7 @@ export interface ArbeidstakerApiData {
     arbeidstidInfo: {
         perioder: ArbeidstidPeriodeApiDataMap;
     };
-    _erNyArbeidsaktivitet: boolean;
+    _erUkjentArbeidsaktivitet: boolean;
 }
 
 export interface ArbeidstidApiData {
@@ -49,7 +49,7 @@ interface YtelseApiData {
     dataBruktTilUtledning: {
         soknadDialogCommitSha: string;
         valgteEndringer: EndringType[];
-        nyeArbeidsforhold?: Arbeidsforhold[];
+        ukjentArbeidsforhold?: Arbeidsforhold[];
     };
 }
 

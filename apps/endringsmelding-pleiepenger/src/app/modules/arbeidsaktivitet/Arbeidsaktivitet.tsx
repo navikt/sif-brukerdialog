@@ -40,7 +40,10 @@ const Arbeidsaktivitet = ({
                     arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? arbeidAktivitet.arbeidsgiver : undefined
                 }
                 endret={harEndringer ? { tekst: 'Endret arbeidstid' } : undefined}
-                nytt={arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erNyArbeidsaktivitet}
+                erUkjent={
+                    arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
+                    arbeidAktivitet.erUkjentArbeidsaktivitet
+                }
                 renderAsExpansionCard={renderAsExpansionCard}
                 expansionCardDefaultOpen={expansionCardDefaultOpen}>
                 <ArbeidsaktivitetContent

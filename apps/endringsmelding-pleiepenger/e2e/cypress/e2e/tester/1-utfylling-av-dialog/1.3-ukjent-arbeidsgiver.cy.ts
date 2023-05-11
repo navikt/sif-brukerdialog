@@ -19,11 +19,11 @@ window.appSettings={
     MSW:'off',
     PUBLIC_PATH:'/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
     USE_AMPLITUDE:'true',
-    NY_ARBEIDSGIVER:'true',
+    UKJENT_ARBEIDSGIVER:'true',
     IMAGE:'ghcr.io/navikt/sif-brukerdialog/endringsmelding-pleiepenger-mono:825c85c3ef8c5a7ac4906dd4443620715a40a68a',
 };`;
 
-describe('Ny arbeidsgiver', () => {
+describe('Ukjent arbeidsgiver', () => {
     contextConfig({
         arbeidsgivere: flereArbeidsgivereMock,
         saker: enSakEnArbeidsgiverMock,
@@ -36,8 +36,8 @@ describe('Ny arbeidsgiver', () => {
     });
 
     cyHelpers.startSøknad({ endreLovbestemtFerie: true });
-    cyHelpers.fyllUtNyttArbeidsforhold('947064642');
+    cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
     cyHelpers.leggTilOgFjernFerie();
     cyHelpers.fortsettTilOppsummering();
-    cyHelpers.kontrollerOppsummeringNyttArbeidsforhold('947064642');
+    cyHelpers.kontrollerOppsummeringUkjentArbeidsforhold('947064642');
 });

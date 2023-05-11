@@ -38,9 +38,9 @@ const startSøknad = ({
     });
 };
 
-const fyllUtNyttArbeidsforhold = (orgnummer: string) => {
-    it('fyller ut nytt arbeidsforhold', () => {
-        getTestElement(`nyArbeidsgiver_${orgnummer}`).within(() => {
+const fyllUtUkjentArbeidsforhold = (orgnummer: string) => {
+    it('fyller ut ukjent arbeidsforhold', () => {
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}`).within(() => {
             selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.erAnsatt`, 'yes');
             cy.get(`input[name="arbeidsforhold.a_${orgnummer}.timerPerUke"]`).clear().type('30');
             selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.arbeiderIPerioden`, 'HELT_FRAVÆR');
@@ -215,11 +215,11 @@ const kontrollerOppsummering = () => {
     });
 };
 
-const kontrollerOppsummeringNyttArbeidsforhold = (orgnummer: string) => {
-    it('viser riktig informasjon i oppsummering om nytt arbeidsforhold', () => {
-        getTestElement(`nyArbeidsgiver_${orgnummer}_erAnsatt`).contains('Ja');
-        getTestElement(`nyArbeidsgiver_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
-        getTestElement(`nyArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains('Jeg jobber ikke');
+const kontrollerOppsummeringUkjentArbeidsforhold = (orgnummer: string) => {
+    it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_erAnsatt`).contains('Ja');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains('Jeg jobber ikke');
         getUkeRow(enkeltuke).within(() => {
             expect(cy.get('[data-testid=timer-faktisk]').contains('0 t. 0 m.'));
             expect(cy.get('[data-testid=normalt-timer]').contains('30 t. 0 m.'));
@@ -244,12 +244,12 @@ export const cyHelpers = {
     startUrl,
     date,
     startSøknad,
-    fyllUtNyttArbeidsforhold,
+    fyllUtUkjentArbeidsforhold: fyllUtUkjentArbeidsforhold,
     leggTilOgFjernFerie,
     endreEnkeltuke,
     endreFlereUker,
     fortsettTilOppsummering,
     kontrollerOppsummering,
-    kontrollerOppsummeringNyttArbeidsforhold,
+    kontrollerOppsummeringUkjentArbeidsforhold: kontrollerOppsummeringUkjentArbeidsforhold,
     bekreftOpplysningerOgSendInn,
 };

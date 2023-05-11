@@ -34,14 +34,14 @@ export const getApiDataFromSøknadsdata = (
                       sak.søknadsperioder,
                       arbeidstid,
                       sak.arbeidAktiviteter,
-                      sak.nyeArbeidsgivere,
+                      sak.ukjenteArbeidsgivere,
                       arbeidssituasjon
                   )
                 : undefined,
             dataBruktTilUtledning: {
                 soknadDialogCommitSha: getCommitShaFromEnv() || '',
                 valgteEndringer: hvaSkalEndres,
-                nyeArbeidsforhold: søknadsdata.arbeidssituasjon?.arbeidsforhold,
+                ukjentArbeidsforhold: søknadsdata.arbeidssituasjon?.arbeidsforhold,
             },
         },
     };

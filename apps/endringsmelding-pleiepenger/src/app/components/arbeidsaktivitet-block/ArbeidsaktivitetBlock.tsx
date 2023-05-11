@@ -9,7 +9,7 @@ interface Props {
     type: ArbeidAktivitetType;
     arbeidsgiver?: Arbeidsgiver;
     endret?: { tekst: string };
-    nytt?: boolean;
+    erUkjent?: boolean;
     renderAsExpansionCard?: boolean;
     expansionCardDefaultOpen?: boolean;
     children: React.ReactNode;
@@ -22,7 +22,7 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
     renderAsExpansionCard,
     expansionCardDefaultOpen = true,
     endret,
-    nytt,
+    erUkjent,
     children,
 }) => {
     const renderHeader = () => {
@@ -32,7 +32,7 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
                 navn={navn}
                 arbeidsgiver={arbeidsgiver}
                 endret={endret}
-                erNyAktivitet={nytt}
+                erUkjentAktivitet={erUkjent}
             />
         );
     };

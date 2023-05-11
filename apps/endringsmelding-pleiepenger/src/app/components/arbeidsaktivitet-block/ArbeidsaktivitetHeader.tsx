@@ -6,14 +6,14 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
 import { ArbeidAktivitetType } from '../../types/Sak';
 import EndretTag from '../tags/EndretTag';
-import './arbeidsaktivitetHeader.scss';
 import NyTag from '../tags/NyTag';
+import './arbeidsaktivitetHeader.scss';
 
 interface Props {
     navn: string;
     arbeidsgiver?: Arbeidsgiver;
     type: ArbeidAktivitetType;
-    erNyAktivitet?: boolean;
+    erUkjentAktivitet?: boolean;
     endret?: {
         tekst: string;
     };
@@ -24,7 +24,7 @@ const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
     arbeidsgiver,
     navn,
     endret,
-    erNyAktivitet,
+    erUkjentAktivitet,
 }) => {
     return (
         <Block margin={type !== ArbeidAktivitetType.arbeidstaker ? 'm' : 'none'}>
@@ -46,10 +46,10 @@ const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
                             {arbeidsgiver.ansattTom && <> Sluttdato: {dateFormatter.full(arbeidsgiver.ansattTom)}</>}
                         </BodyLong>
                     ) : undefined}
-                    {(endret || erNyAktivitet) && (
+                    {(endret || erUkjentAktivitet) && (
                         <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
                             {endret && <EndretTag>{endret.tekst}</EndretTag>}
-                            {erNyAktivitet && <NyTag>Nytt arbeidsforhold</NyTag>}
+                            {erUkjentAktivitet && <NyTag>Ukjent arbeidsforhold</NyTag>}
                         </Block>
                     )}
                 </div>

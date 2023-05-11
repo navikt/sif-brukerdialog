@@ -64,9 +64,9 @@ export const tilgangskontroll = (
     }
 
     /**
-     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = nytt arbeidsforhold
+     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
      */
-    if (isFeatureEnabled(Feature.NY_ARBEIDSGIVER) === false) {
+    if (isFeatureEnabled(Feature.UKJENT_ARBEIDSGIVER) === false) {
         if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
             ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
         }

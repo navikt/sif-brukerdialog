@@ -14,7 +14,7 @@ import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
-import { getArbeidAktiviteterForNyeArbeidsgivere } from '../../../utils/nyArbeidsgiverUtils';
+import { getArbeidAktiviteterForUkjenteArbeidsgivere } from '../../../utils/ukjentArbeidsgiverUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
@@ -48,7 +48,7 @@ const ArbeidstidStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -71,9 +71,9 @@ const ArbeidstidStep = () => {
     );
 
     const arbeidAktiviteter = [
-        ...getArbeidAktiviteterForNyeArbeidsgivere(
+        ...getArbeidAktiviteterForUkjenteArbeidsgivere(
             sak.søknadsperioder,
-            sak.nyeArbeidsgivere,
+            sak.ukjenteArbeidsgivere,
             søknadsdata.arbeidssituasjon
         ),
         ...getAktiviteterSomSkalEndres(sak.arbeidAktiviteter),

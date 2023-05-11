@@ -1,5 +1,5 @@
 export enum Feature {
-    NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
+    UKJENT_ARBEIDSGIVER = 'UKJENT_ARBEIDSGIVER',
 }
 
 export const isFeatureEnabled = (feature: Feature) => {

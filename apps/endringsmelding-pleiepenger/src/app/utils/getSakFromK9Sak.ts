@@ -401,7 +401,7 @@ const getArbeidAktivitetArbeidstaker = (
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
         navn: arbeidsgiver.navn,
-        erNyArbeidsaktivitet: false,
+        erUkjentArbeidsaktivitet: false,
         ...getArbeidAktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver),
     };
 };
@@ -471,7 +471,7 @@ export const getSakFromK9Sak = (
         erArbeidsgiverInnenforSøknadsperioder(a, k9sak.ytelse.søknadsperioder)
     );
 
-    const nyeArbeidsgivere = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
+    const ukjenteArbeidsgivere = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
         return !finnesArbeidsgiverIK9Sak(arbeidsgiver, k9sak.ytelse.arbeidstid.arbeidstakerList || []);
     });
 
@@ -495,8 +495,8 @@ export const getSakFromK9Sak = (
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
         },
-        nyeArbeidsgivere,
-        harNyArbeidsgiver: nyeArbeidsgivere.length > 0,
+        ukjenteArbeidsgivere: ukjenteArbeidsgivere,
+        harUkjentArbeidsgiver: ukjenteArbeidsgivere.length > 0,
         søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
         samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,

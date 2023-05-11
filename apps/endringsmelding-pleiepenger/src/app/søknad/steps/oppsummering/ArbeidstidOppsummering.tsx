@@ -16,15 +16,15 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
     const arbeidstidKolonneTittel = 'Endret arbeidstid';
 
-    const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erNyArbeidsaktivitet === false);
-    const nyeArbeidsgivere = arbeidstakerList.filter((a) => a._erNyArbeidsaktivitet === true);
+    const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsaktivitet === false);
+    const ukjenteArbeidsgivere = arbeidstakerList.filter((a) => a._erUkjentArbeidsaktivitet === true);
     return (
         <>
-            {nyeArbeidsgivere &&
-                Object.keys(nyeArbeidsgivere).map((key) => (
+            {ukjenteArbeidsgivere &&
+                Object.keys(ukjenteArbeidsgivere).map((key) => (
                     <ArbeidstidArbeidstakerOppsummering
                         key={key}
-                        arbeidstaker={nyeArbeidsgivere[key]}
+                        arbeidstaker={ukjenteArbeidsgivere[key]}
                         arbeidsgivere={arbeidsgivere}
                         arbeidstidKolonneTittel="I perioden"
                     />

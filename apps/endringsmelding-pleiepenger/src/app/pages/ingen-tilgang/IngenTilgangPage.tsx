@@ -49,7 +49,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             );
         case IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet:
             return (
-                <BodyLong as="div" data-testid="nyttArbeidsforhold">
+                <BodyLong as="div" data-testid="ukjentArbeidsforhold">
                     <p>
                         Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som
                         ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og

@@ -10,13 +10,13 @@ export const getValgteEndringer = (hvaSkalEndres: EndringType[]): SkalEndresMap 
 export const getEndringerSomSkalGjøres = (
     hvaSkalEndres: EndringType[],
     harFjernetFerie: boolean,
-    harNyArbeidsgiverMedRedusertArbeid: boolean
+    harUkjentArbeidsgiverMedRedusertArbeid: boolean
 ): SkalEndresMap => {
     return {
         arbeidstidSkalEndres:
             hvaSkalEndres.some((e) => e === EndringType.arbeidstid) ||
             harFjernetFerie ||
-            harNyArbeidsgiverMedRedusertArbeid,
+            harUkjentArbeidsgiverMedRedusertArbeid,
         lovbestemtFerieSkalEndres: hvaSkalEndres.some((e) => e === EndringType.lovbestemtFerie),
     };
 };

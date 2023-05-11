@@ -5,5 +5,5 @@ export interface ArbeidstidSøknadsdata {
     arbeidAktivitetEndring: {
         [uke: string]: ArbeidstidEndringMap;
     };
-    nyeArbeidsaktiviteter?: ArbeidAktivitetArbeidstaker[];
+    ukjenteArbeidsaktiviteter?: ArbeidAktivitetArbeidstaker[];
 }

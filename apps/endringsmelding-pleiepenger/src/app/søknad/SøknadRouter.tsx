@@ -38,7 +38,7 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
     const { logInfo } = useAmplitudeInstance();
 
-    const availableSteps = getSøknadSteps(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
+    const availableSteps = getSøknadSteps(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
 
     const { routeError, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(
         søknadRoute,

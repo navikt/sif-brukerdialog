@@ -23,7 +23,7 @@ import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/Arbeidssitua
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 
-export const getSøknadsperioderForNyArbeidsgiver = (
+export const getSøknadsperioderForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],
     ansattFom: Date | undefined,
     ansattTom: Date | undefined
@@ -36,13 +36,17 @@ export const getSøknadsperioderForNyArbeidsgiver = (
     return ansettelsesperiode ? getDateRangesWithinDateRange(søknadsperioder, ansettelsesperiode) : søknadsperioder;
 };
 
-export const getPerioderMedArbeidstidForNyArbeidsgiver = (
+export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],
     { ansattFom, ansattTom }: Arbeidsgiver,
     normalarbeidstidPerUke: Duration,
     faktiskArbeidstidPerUke: Duration
 ): PeriodeMedArbeidstid[] => {
-    const søknadsperioderForArbeidsforhold = getSøknadsperioderForNyArbeidsgiver(søknadsperioder, ansattFom, ansattTom);
+    const søknadsperioderForArbeidsforhold = getSøknadsperioderForUkjentArbeidsgiver(
+        søknadsperioder,
+        ansattFom,
+        ansattTom
+    );
     const perioderMedArbeidstid: PeriodeMedArbeidstid[] = [];
 
     const arbeidstidPerDag: FaktiskOgNormalArbeidstid = {
@@ -67,7 +71,7 @@ export const getPerioderMedArbeidstidForNyArbeidsgiver = (
     return perioderMedArbeidstid;
 };
 
-export const getArbeidAktivitetForNyArbeidsgiver = (
+export const getArbeidAktivitetForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],
     arbeidsgiver: Arbeidsgiver,
     arbeidsforhold: ArbeidsforholdAktivt
@@ -80,12 +84,12 @@ export const getArbeidAktivitetForNyArbeidsgiver = (
     const aktivitet: ArbeidAktivitet = {
         type: ArbeidAktivitetType.arbeidstaker,
         arbeidsgiver,
-        erNyArbeidsaktivitet: true,
+        erUkjentArbeidsaktivitet: true,
         id: arbeidsgiver.id,
         navn: arbeidsgiver.navn,
         harPerioderEtterTillattEndringsperiode: false,
         harPerioderFørTillattEndringsperiode: false,
-        perioderMedArbeidstid: getPerioderMedArbeidstidForNyArbeidsgiver(
+        perioderMedArbeidstid: getPerioderMedArbeidstidForUkjentArbeidsgiver(
             søknadsperioder,
             arbeidsgiver,
             arbeidsforhold.normalarbeidstid.timerPerUke,
@@ -95,22 +99,22 @@ export const getArbeidAktivitetForNyArbeidsgiver = (
     return aktivitet;
 };
 
-export const getArbeidAktiviteterForNyeArbeidsgivere = (
+export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
     søknadsperioder: DateRange[],
-    nyeArbeidsgivere: Arbeidsgiver[],
+    ukjenteArbeidsgivere: Arbeidsgiver[],
     arbeidssituasjon?: ArbeidssituasjonSøknadsdata
 ): ArbeidAktivitet[] => {
     const aktiviteter: ArbeidAktivitet[] = [];
-    nyeArbeidsgivere.forEach((arbeidsgiver) => {
+    ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
         const arbeidsforhold = arbeidssituasjon?.arbeidsforhold.find((s) => s.arbeidsgiverId === arbeidsgiver.id);
         if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
             throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
         }
-        aktiviteter.push(getArbeidAktivitetForNyArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold));
+        aktiviteter.push(getArbeidAktivitetForUkjentArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold));
     });
     return aktiviteter;
 };
 
-export const harNyArbeidsgiverMedRedusertJobb = (arbeidsforhold: Arbeidsforhold[] = []): boolean => {
+export const harUkjentArbeidsgiverMedRedusertJobb = (arbeidsforhold: Arbeidsforhold[] = []): boolean => {
     return arbeidsforhold.some((a) => a.erAnsatt === true && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert);
 };

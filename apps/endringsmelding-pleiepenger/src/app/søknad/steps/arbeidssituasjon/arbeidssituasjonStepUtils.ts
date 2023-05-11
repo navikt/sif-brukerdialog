@@ -4,7 +4,7 @@ import { Arbeidsforhold } from '../../../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { ArbeidssituasjonFormValues, NyttArbeidsforholdMap } from './ArbeidssituasjonStep';
+import { ArbeidssituasjonFormValues, UkjentArbeidsforholdMap } from './ArbeidssituasjonStep';
 import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
 
 const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold): ArbeidsforholdFormValues => {
@@ -55,14 +55,14 @@ export const getArbeidsgiverIdFromFormFieldKey = (id: string) => id.replace('a_'
 export const getArbeidssituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues: ArbeidssituasjonFormValues | undefined,
-    nyeArbeidsgivere: Arbeidsgiver[]
+    ukjenteArbeidsgivere: Arbeidsgiver[]
 ): ArbeidssituasjonFormValues => {
     if (formValues) {
         return formValues;
     }
-    const arbeidsforhold: NyttArbeidsforholdMap = {};
+    const arbeidsforhold: UkjentArbeidsforholdMap = {};
     if (søknadsdata.arbeidssituasjon === undefined) {
-        nyeArbeidsgivere.forEach((a) => {
+        ukjenteArbeidsgivere.forEach((a) => {
             arbeidsforhold[getArbeidsforholdFormFieldKey(a.id)] = {
                 erAnsatt: YesOrNo.UNANSWERED,
                 timerPerUke: '',
@@ -94,7 +94,7 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
     return { arbeidsforhold };
 };
 
-export const harSvartErIkkeAnsattHosNyArbeidsgiver = (arbeidsforhold: NyttArbeidsforholdMap): boolean => {
+export const harSvartErIkkeAnsattHosUkjentArbeidsgiver = (arbeidsforhold: UkjentArbeidsforholdMap): boolean => {
     return Object.keys(arbeidsforhold)
         .map((key) => arbeidsforhold[key])
         .some((values) => {

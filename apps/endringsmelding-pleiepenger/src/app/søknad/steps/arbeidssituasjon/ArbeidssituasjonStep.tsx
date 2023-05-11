@@ -23,12 +23,12 @@ import {
 } from './arbeidssituasjonStepUtils';
 import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
 
-export interface NyttArbeidsforholdMap {
+export interface UkjentArbeidsforholdMap {
     [id: string]: ArbeidsforholdFormValues;
 }
 
 export interface ArbeidssituasjonFormValues {
-    [ArbeidssituasjonFormFields.arbeidsforhold]: NyttArbeidsforholdMap;
+    [ArbeidssituasjonFormFields.arbeidsforhold]: UkjentArbeidsforholdMap;
 }
 
 enum ArbeidssituasjonFormFields {
@@ -50,7 +50,7 @@ const ArbeidssituasjonStep = () => {
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harNyArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
@@ -78,7 +78,7 @@ const ArbeidssituasjonStep = () => {
                 <>
                     <BodyLong as="div">
                         <Heading level="2" size="xsmall" spacing={true}>
-                            Nytt arbeidsforhold
+                            Ukjent arbeidsforhold
                         </Heading>
                     </BodyLong>
                 </>
@@ -89,7 +89,7 @@ const ArbeidssituasjonStep = () => {
                     initialValues={getArbeidssituasjonStepInitialValues(
                         søknadsdata,
                         stepFormValues?.arbeidssituasjon,
-                        sak.nyeArbeidsgivere
+                        sak.ukjenteArbeidsgivere
                     )}
                     onSubmit={handleSubmit}
                     renderForm={({ values }) => {
@@ -102,11 +102,11 @@ const ArbeidssituasjonStep = () => {
                                     submitPending={isSubmitting}
                                     runDelayedFormValidation={true}
                                     onBack={goBack}>
-                                    {sak.nyeArbeidsgivere.map((a) => {
+                                    {sak.ukjenteArbeidsgivere.map((a) => {
                                         const arbeidsgiverFieldKey = getArbeidsforholdFormFieldKey(a.id);
                                         const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${arbeidsgiverFieldKey}`;
                                         return (
-                                            <div key={a.id} data-testid={`nyArbeidsgiver_${a.id}`}>
+                                            <div key={a.id} data-testid={`ukjentArbeidsgiver_${a.id}`}>
                                                 <ArbeidsforholdForm
                                                     arbeidsgiver={a}
                                                     values={(values.arbeidsforhold || {})[arbeidsgiverFieldKey]}

@@ -3,24 +3,24 @@ import { EndringType } from '../../types/EndringType';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
 import { harFjernetLovbestemtFerie } from '../../utils/lovbestemtFerieUtils';
-import { harNyArbeidsgiverMedRedusertJobb } from '../../utils/nyArbeidsgiverUtils';
+import { harUkjentArbeidsgiverMedRedusertJobb } from '../../utils/ukjentArbeidsgiverUtils';
 import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
 
 export const getSøknadSteps = (
     hvaSkalEndres: EndringType[],
     søknadsdata: Søknadsdata,
-    harNyArbeidsgiver: boolean
+    harUkjentArbeidsgiver: boolean
 ): StepId[] => {
     const steps: StepId[] = [];
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        harNyArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
+        harUkjentArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
     );
 
-    if (harNyArbeidsgiver) {
+    if (harUkjentArbeidsgiver) {
         steps.push(StepId.ARBEIDSSITUASJON);
     }
     if (lovbestemtFerieSkalEndres) {
@@ -36,10 +36,10 @@ export const getSøknadSteps = (
 export const getSøknadStepConfig = (
     hvaSkalEndres: EndringType[],
     søknadsdata: Søknadsdata,
-    harNyttArbeidsforhold: boolean
+    harUkjentArbeidsforhold: boolean
 ): SoknadStepsConfig<StepId> =>
     soknadStepUtils.getStepsConfig(
-        getSøknadSteps(hvaSkalEndres, søknadsdata, harNyttArbeidsforhold),
+        getSøknadSteps(hvaSkalEndres, søknadsdata, harUkjentArbeidsforhold),
         SoknadApplicationType.MELDING,
         (stepId: StepId) => getSøknadStepRoute(stepId)
     );
