@@ -3832,7 +3832,7 @@ __metadata:
     "@storybook/addon-links": 7.0.10
     "@storybook/builder-webpack5": 7.0.10
     "@storybook/node-logger": 7.0.10
-    "@storybook/preset-create-react-app": 7.0.10
+    "@storybook/preset-create-react-app": 7.0.11
     "@storybook/react": 7.0.10
     "@storybook/react-webpack5": 7.0.10
     "@storybook/testing-library": 0.1.0
@@ -4035,7 +4035,7 @@ __metadata:
     "@storybook/builder-webpack5": 7.0.10
     "@storybook/manager-webpack5": 6.5.16
     "@storybook/node-logger": 7.0.10
-    "@storybook/preset-create-react-app": 7.0.10
+    "@storybook/preset-create-react-app": 7.0.11
     "@storybook/react": 7.0.10
     "@storybook/testing-library": 0.1.0
     "@testing-library/react": 14.0.0
@@ -4177,7 +4177,7 @@ __metadata:
     "@storybook/addon-interactions": 7.0.10
     "@storybook/addon-links": 7.0.10
     "@storybook/node-logger": 7.0.10
-    "@storybook/preset-create-react-app": 7.0.10
+    "@storybook/preset-create-react-app": 7.0.11
     "@storybook/react": 7.0.10
     "@storybook/react-webpack5": 7.0.10
     "@storybook/testing-library": 0.1.0
@@ -4248,7 +4248,7 @@ __metadata:
     "@storybook/addon-interactions": 7.0.10
     "@storybook/addon-links": 7.0.10
     "@storybook/node-logger": 7.0.10
-    "@storybook/preset-create-react-app": 7.0.10
+    "@storybook/preset-create-react-app": 7.0.11
     "@storybook/react": 7.0.10
     "@storybook/testing-library": 0.1.0
     "@types/jest": 29.5.1
@@ -5793,6 +5793,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/channels@npm:7.0.11":
+  version: 7.0.11
+  resolution: "@storybook/channels@npm:7.0.11"
+  checksum: 3d6eaaf19b8227c06563fea5ee0066529398564793ec3ce803be2951232b8f27687c824731d3b2d0e007dfdc27f361f31ef2a04f7407a3b1a2d377528a816ba6
+  languageName: node
+  linkType: hard
+
 "@storybook/channels@npm:7.0.6":
   version: 7.0.6
   resolution: "@storybook/channels@npm:7.0.6"
@@ -6426,13 +6433,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/preset-create-react-app@npm:7.0.10":
-  version: 7.0.10
-  resolution: "@storybook/preset-create-react-app@npm:7.0.10"
+"@storybook/preset-create-react-app@npm:7.0.11":
+  version: 7.0.11
+  resolution: "@storybook/preset-create-react-app@npm:7.0.11"
   dependencies:
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.1
     "@storybook/react-docgen-typescript-plugin": 1.0.6--canary.9.0c3f3b7.0
-    "@storybook/types": 7.0.10
+    "@storybook/types": 7.0.11
     "@types/babel__core": ^7.1.7
     babel-plugin-react-docgen: ^4.1.0
     pnp-webpack-plugin: ^1.7.0
@@ -6440,7 +6447,7 @@ __metadata:
   peerDependencies:
     "@babel/core": "*"
     react-scripts: ">=5.0.0"
-  checksum: fabc5d418ed38f469d8c6285e1ee9e3d377f01cbb0b545c4fac2357ccb15e07512a34657d7ee2ac15bb901847aac5da5cb52670283a89d79c7a02c8d04cbd691
+  checksum: a60a2b2211b0a32a656daf0cfb0dd32f38dd4dbfcd15381ae0ea1590cfeadc6a37fd5e0c1b84dc1374ae54c715287cdcad7c5cd99d47939823bb0edb40c79d9d
   languageName: node
   linkType: hard
 
@@ -6788,6 +6795,18 @@ __metadata:
     "@types/express": ^4.7.0
     file-system-cache: ^2.0.0
   checksum: c6ce373863c8c33f8a2e1409b6452934762f3e89b152952f558e1970e25c8b9dd32a5f71a239ca483736bd5ecc2b265bec413dada23349791dac6ace532dd11b
+  languageName: node
+  linkType: hard
+
+"@storybook/types@npm:7.0.11":
+  version: 7.0.11
+  resolution: "@storybook/types@npm:7.0.11"
+  dependencies:
+    "@storybook/channels": 7.0.11
+    "@types/babel__core": ^7.0.0
+    "@types/express": ^4.7.0
+    file-system-cache: ^2.0.0
+  checksum: a1b10f2c31a8e036d0b85c65685ba28f4935928f7b7894e6f6a4d60131daa0b25cab8539aaa99dc009c2b979026739fe08e719497db1bb3c268a33dacaae80a0
   languageName: node
   linkType: hard
 
