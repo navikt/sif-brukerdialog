@@ -282,7 +282,9 @@ const kontrollerOppsummeringUkjentArbeidsforholdJobberIkke = (orgnummer: string)
     it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
         getTestElement(`ukjentArbeidsgiver_${orgnummer}_erAnsatt`).contains('Ja');
         getTestElement(`ukjentArbeidsgiver_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
-        getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains('Jeg jobber ikke her');
+        getTestElement(`ukjentArbeidsgiver_${orgnummer}_arbeiderIPerioden`).contains(
+            'Jeg jobber ikke og har fullt fravær her'
+        );
     });
 };
 
