@@ -160,16 +160,25 @@ const ArbeidstidStep = () => {
                                                 hideLegend={true}
                                                 name={inputGroupName}
                                                 validate={() => {
+                                                    const arbeidsforhold =
+                                                        søknadsdata.arbeidssituasjon?.arbeidsforhold.find(
+                                                            (a) => a.arbeidsgiverId === arbeidAktivitet.id
+                                                        );
+
+                                                    if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
+                                                        return;
+                                                    }
+
                                                     if (
                                                         arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
                                                         arbeidAktivitet.erUkjentArbeidsaktivitet === true
                                                     ) {
                                                         return validateUkjentArbeidsaktivitetArbeidstid(
                                                             arbeidAktivitet,
-                                                            endringer[arbeidAktivitet.id]
+                                                            endringer[arbeidAktivitet.id],
+                                                            arbeidsforhold.arbeiderIPerioden
                                                         );
                                                     }
-
                                                     return undefined;
                                                 }}>
                                                 <Arbeidsaktivitet

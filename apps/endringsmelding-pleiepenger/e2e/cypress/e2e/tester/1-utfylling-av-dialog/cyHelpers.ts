@@ -13,7 +13,7 @@ const getUkeRow = (ukenummer) => cy.get('.arbeidstidUkeTabell table').get(`[data
 const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal');
 
 const captureScreenshot = () => {
-    cy.screenshot({ capture: 'fullPage' });
+    // cy.screenshot({ capture: 'fullPage' });
 };
 
 const startSøknad = ({

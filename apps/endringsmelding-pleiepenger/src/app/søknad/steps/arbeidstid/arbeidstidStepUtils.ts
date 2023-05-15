@@ -4,6 +4,7 @@ import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetArbeidstaker, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
 import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
+import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
@@ -76,13 +77,14 @@ export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter
 
 export const validateUkjentArbeidsaktivitetArbeidstid = (
     arbeidAktivitet: ArbeidAktivitetArbeidstaker,
-    endringer: ArbeidstidEndringMap = {}
+    endringer: ArbeidstidEndringMap = {},
+    arbeiderIPeriodenSvar: ArbeiderIPeriodenSvar
 ): IntlErrorObject | undefined => {
     const manglendePeriode: ISODateRange[] = [];
     arbeidAktivitet.perioderMedArbeidstid.forEach((periode) => {
         Object.keys(periode.arbeidsuker).forEach((key) => {
             const endring = endringer[key];
-            if (!endring) {
+            if (!endring && arbeiderIPeriodenSvar === ArbeiderIPeriodenSvar.redusert) {
                 manglendePeriode.push(key);
             }
         });

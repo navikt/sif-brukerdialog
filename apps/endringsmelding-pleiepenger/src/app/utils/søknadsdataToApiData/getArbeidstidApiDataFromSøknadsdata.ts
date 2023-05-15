@@ -27,6 +27,7 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getArbeidAktivitetForUkjentArbeidsgiver } from '../ukjentArbeidsgiverUtils';
+import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 
@@ -134,7 +135,10 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             if (!arbeidsforhold) {
                 throw 'Ukjent arbeidsgiver mangler informasjon om arbeidstid';
             }
-            if (arbeidsforhold.erAnsatt === false) {
+            if (
+                arbeidsforhold.erAnsatt === false ||
+                arbeidsforhold.arbeiderIPerioden !== ArbeiderIPeriodenSvar.redusert
+            ) {
                 return;
             }
 
