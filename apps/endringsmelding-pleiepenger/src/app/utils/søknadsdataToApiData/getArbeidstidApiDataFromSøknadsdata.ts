@@ -210,9 +210,9 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     };
 };
 
-const getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver = (
+export const getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver = (
     arbeidsforhold: ArbeidsforholdAktivt,
-    arbeidsuke: Arbeidsuke,
+    arbeidsuke: Pick<Arbeidsuke, 'normalt' | 'antallDagerMedArbeidstid'>,
     endring?: ArbeidstidEndring
 ): Duration => {
     if (!endring && arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) {
@@ -225,12 +225,10 @@ const getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver = (
             arbeidsuke.antallDagerMedArbeidstid
         );
     }
-    if (arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær) {
-        return {
-            hours: '0',
-            minutes: '0',
-        };
-    }
-
-    return beregnSnittTimerPerDag(arbeidsforhold.normalarbeidstid.timerPerUke, 5);
+    return arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
+        ? {
+              hours: '0',
+              minutes: '0',
+          }
+        : arbeidsuke.normalt.dag;
 };
