@@ -24,11 +24,7 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
                 {arbeidsgiver.navn}
             </Heading>
             <>
-                <ArbeidstidUkeTabell
-                    listItems={arbeidsuker}
-                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                    visEndringSomVanligTid={arbeidstaker._erUkjentArbeidsaktivitet}
-                />
+                <ArbeidstidUkeTabell listItems={arbeidsuker} arbeidstidKolonneTittel={arbeidstidKolonneTittel} />
             </>
         </Block>
     );

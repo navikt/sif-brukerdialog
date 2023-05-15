@@ -1,18 +1,22 @@
 import {
     DateRange,
     dateRangeToISODateRange,
+    Duration,
     durationToISODuration,
     getDateRangesFromDates,
     ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
+import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
+import { ArbeidsforholdAktivt } from '../../types/Arbeidsforhold';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
+import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {
     ArbeidAktivitet,
     ArbeidAktiviteter,
     ArbeidAktivitetType,
+    Arbeidsuke,
     ArbeidsukeMap,
     PeriodeMedArbeidstid,
 } from '../../types/Sak';
@@ -27,7 +31,6 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getArbeidAktivitetForUkjentArbeidsgiver } from '../ukjentArbeidsgiverUtils';
-import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 
@@ -135,10 +138,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             if (!arbeidsforhold) {
                 throw 'Ukjent arbeidsgiver mangler informasjon om arbeidstid';
             }
-            if (
-                arbeidsforhold.erAnsatt === false ||
-                arbeidsforhold.arbeiderIPerioden !== ArbeiderIPeriodenSvar.redusert
-            ) {
+            if (arbeidsforhold.erAnsatt === false) {
                 return;
             }
 
@@ -157,20 +157,19 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 const arbeidsuke = arbeidsuker[key];
                 const ukeEndring = endring[key];
 
-                if (ukeEndring === undefined) {
-                    throw 'Faktisk arbeidstid er udefinert';
-                }
-
-                const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
-                    arbeidsuke.normalt.uke,
-                    ukeEndring,
-                    arbeidsuke.antallDagerMedArbeidstid
+                const faktiskArbeidTimerPerDag = getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver(
+                    arbeidsforhold,
+                    arbeidsuke,
+                    ukeEndring
                 );
+
+                // console.log(faktiskArbeidTimerPerDag);
 
                 const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(
                     arbeidsuke.normalt.uke,
                     arbeidsuke.antallDagerMedArbeidstid
                 );
+
                 /** Splitt opp dersom det er enkeltdager i uken */
                 const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
                 const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
@@ -211,4 +210,27 @@ export const getArbeidstidApiDataFromSøknadsdata = (
               )
             : undefined,
     };
+};
+
+const getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver = (
+    arbeidsforhold: ArbeidsforholdAktivt,
+    arbeidsuke: Arbeidsuke,
+    endring?: ArbeidstidEndring
+): Duration => {
+    if (!endring && arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) {
+        throw 'Faktisk arbeidstid mangler for redusert arbeidsforhold';
+    }
+    if (endring) {
+        return beregnEndretFaktiskArbeidstidPerDag(
+            arbeidsuke.normalt.uke,
+            endring,
+            arbeidsuke.antallDagerMedArbeidstid
+        );
+    }
+    return arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
+        ? {
+              hours: '0',
+              minutes: '0',
+          }
+        : beregnSnittTimerPerDag(arbeidsforhold.normalarbeidstid.timerPerUke, arbeidsuke.antallDagerMedArbeidstid);
 };

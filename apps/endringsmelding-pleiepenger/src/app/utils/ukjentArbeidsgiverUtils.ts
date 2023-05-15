@@ -71,7 +71,7 @@ export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
     return perioderMedArbeidstid;
 };
 
-export const getFaktiskArbeidstidForUkjentArbeidsgiver = (
+export const getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver = (
     arbeidsforhold: ArbeidsforholdAktivt
 ): Duration | undefined => {
     switch (arbeidsforhold.arbeiderIPerioden) {
@@ -89,7 +89,7 @@ export const getArbeidAktivitetForUkjentArbeidsgiver = (
     arbeidsgiver: Arbeidsgiver,
     arbeidsforhold: ArbeidsforholdAktivt
 ): ArbeidAktivitet => {
-    const faktiskArbeidstid = getFaktiskArbeidstidForUkjentArbeidsgiver(arbeidsforhold);
+    const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver(arbeidsforhold);
 
     const aktivitet: ArbeidAktivitet = {
         type: ArbeidAktivitetType.arbeidstaker,

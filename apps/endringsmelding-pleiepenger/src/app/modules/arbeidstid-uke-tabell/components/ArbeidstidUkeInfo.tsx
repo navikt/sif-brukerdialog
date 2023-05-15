@@ -5,23 +5,19 @@ import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { erTimerGyldigInnenforAntallDager } from '../../../utils/beregnUtils';
 import IconText from '../../../components/icon-text/IconText';
+import { erTimerGyldigInnenforAntallDager } from '../../../utils/beregnUtils';
 import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
+import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
     medLabels?: boolean;
-    visEndringSomVanligTid: boolean;
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({
-    uke,
-    visEndringSomVanligTid = false,
-    medLabels = false,
-}) => {
+const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = false }) => {
     const intl = useIntl();
     if (uke.endret === undefined) {
         return (
@@ -33,7 +29,9 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({
             </>
         );
     }
-    if (visEndringSomVanligTid) {
+    const erEndret = erArbeidstidUkeTabellItemEndret(uke);
+
+    if (erEndret === false) {
         return (
             <>
                 {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}

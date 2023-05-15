@@ -7,17 +7,17 @@ import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { erTimerGyldigInnenforAntallDager } from '../../../utils/beregnUtils';
 import IconText from '../../../components/icon-text/IconText';
 import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
+import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
-    visEndringSomVanligTid?: boolean;
     dagerMedFerie?: Date[];
     dagerMedFjernetFerie?: Date[];
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndringSomVanligTid }) => {
+const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
     const intl = useIntl();
 
     if (uke.endret === undefined) {
@@ -39,6 +39,8 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
         );
     }
 
+    const erEndret = erArbeidstidUkeTabellItemEndret(uke);
+
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(uke.endret.faktisk, uke.antallDagerMedArbeidstid);
     return (
         <div className="arbeidstidInfoListe">
@@ -55,14 +57,14 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
                         <strong>
                             <DurationText duration={uke.endret.faktisk} />
                         </strong>
-                        {visEndringSomVanligTid === false && uke.endret.endretProsent !== undefined && (
+                        {erEndret && uke.endret.endretProsent !== undefined && (
                             <span className={bem.element('prosent')}>
                                 {' '}
                                 ({intl.formatNumber(uke.endret.endretProsent)} %)
                             </span>
                         )}
                     </>
-                    {visEndringSomVanligTid === false && (
+                    {erEndret && (
                         <>
                             <br />
                             <span className={bem.element('opprinnelig')}>
