@@ -2,9 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import {
     dateFormatter,
-    DateRange,
     dateRangeToISODateRange,
-    dateRangeUtils,
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
@@ -22,6 +20,7 @@ import FerieTag from '../../../components/tags/FerieTag';
 import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 import ArbeidAktivitetUtenforPeriodeInfo from './ArbeidAktivitetUtenforPeriodeInfo';
+import { harFjernetFerieIPeriode } from '../../../utils/ferieUtils';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -41,13 +40,6 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
-    const harFjernetFerieIPeriode = (periode: DateRange): boolean => {
-        if (lovbestemtFerie?.feriedagerMeta.perioderFjernet) {
-            return dateRangeUtils.dateRangesCollide([periode, ...lovbestemtFerie?.feriedagerMeta.perioderFjernet]);
-        }
-        return false;
-    };
-
     return (
         <>
             <Heading level="3" size="small" spacing={true}>
@@ -57,7 +49,6 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                 arbeidAktivitet={arbeidAktivitet}
                 tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
             />
-
             {perioder.length === 1 && (
                 <>
                     <ArbeidstidUkeTabell
@@ -74,7 +65,6 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     />
                 </>
             )}
-
             {perioder.length !== 1 && (
                 <div>
                     <DateRangeAccordion
@@ -105,7 +95,10 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     .map(ISODateRangeToDateRange)
                                     .some((dr) => isDateInDateRange(dr.from, periode));
 
-                            const harFjernetFerie = harFjernetFerieIPeriode(periode);
+                            const harFjernetFerie =
+                                lovbestemtFerie !== undefined
+                                    ? harFjernetFerieIPeriode(lovbestemtFerie, periode)
+                                    : false;
 
                             return (
                                 <div className="arbeidsaktivitetHeader">
@@ -122,7 +115,6 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     />
                 </div>
             )}
-
             <EndreArbeidstidModal
                 title={arbeidAktivitet.navn}
                 isVisible={arbeidsukerForEndring !== undefined}

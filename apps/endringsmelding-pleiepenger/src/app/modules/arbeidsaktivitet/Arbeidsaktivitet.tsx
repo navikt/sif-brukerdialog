@@ -1,5 +1,10 @@
+import { Alert } from '@navikt/ds-react';
 import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import ArbeidsaktivitetBlock from '../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import {
+    ArbeiderIPeriodenSvar,
+    ArbeiderIPeriodenSvarTekst,
+} from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
@@ -9,6 +14,7 @@ interface Props {
     arbeidAktivitet: ArbeidAktivitet;
     endringer: ArbeidstidEndringMap | undefined;
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
+    ukjentArbeidsgiverArbeiderIPerioden?: ArbeiderIPeriodenSvar;
     renderAsExpansionCard?: boolean;
     expansionCardDefaultOpen?: boolean;
     onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
@@ -20,6 +26,7 @@ const Arbeidsaktivitet = ({
     lovbestemtFerie,
     renderAsExpansionCard,
     expansionCardDefaultOpen,
+    ukjentArbeidsgiverArbeiderIPerioden,
     onArbeidstidAktivitetChange,
 }: Props) => {
     const perioder = arbeidAktivitet.perioderMedArbeidstid;
@@ -46,13 +53,28 @@ const Arbeidsaktivitet = ({
                 }
                 renderAsExpansionCard={renderAsExpansionCard}
                 expansionCardDefaultOpen={expansionCardDefaultOpen}>
-                <ArbeidsaktivitetContent
-                    perioder={perioder}
-                    arbeidAktivitet={arbeidAktivitet}
-                    lovbestemtFerie={lovbestemtFerie}
-                    endringer={endringer}
-                    onArbeidstidAktivitetChange={onArbeidstidAktivitetChange}
-                />
+                {ukjentArbeidsgiverArbeiderIPerioden &&
+                ukjentArbeidsgiverArbeiderIPerioden !== ArbeiderIPeriodenSvar.redusert ? (
+                    <>
+                        <Alert variant="info">
+                            Du har svart: {ArbeiderIPeriodenSvarTekst[ukjentArbeidsgiverArbeiderIPerioden]} i perioden
+                            med pleiepenger.
+                            <p>
+                                Hvis du ønsker å endre arbeidstid for {arbeidAktivitet.navn}, må du gå tilbake til
+                                &quot;Ukjent arbeidsforhold&quot;-siden og velge at du kombinerer delvis jobb med
+                                pleiepenger.
+                            </p>
+                        </Alert>
+                    </>
+                ) : (
+                    <ArbeidsaktivitetContent
+                        perioder={perioder}
+                        arbeidAktivitet={arbeidAktivitet}
+                        lovbestemtFerie={lovbestemtFerie}
+                        endringer={endringer}
+                        onArbeidstidAktivitetChange={onArbeidstidAktivitetChange}
+                    />
+                )}
             </ArbeidsaktivitetBlock>
         </div>
     );

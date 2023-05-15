@@ -26,6 +26,7 @@ import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
+    getUkjentArbeidsgiverArbeidssituasjon,
     validateUkjentArbeidsaktivitetArbeidstid,
 } from './arbeidstidStepUtils';
 
@@ -153,6 +154,15 @@ const ArbeidstidStep = () => {
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
                                     const inputGroupName = `arbeidsgiver_${arbeidAktivitet.id}` as any;
+                                    const ukjentArbeidsgiverArbeiderIPerioden =
+                                        søknadsdata.arbeidssituasjon !== undefined &&
+                                        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
+                                        arbeidAktivitet.erUkjentArbeidsaktivitet
+                                            ? getUkjentArbeidsgiverArbeidssituasjon(
+                                                  arbeidAktivitet.id,
+                                                  søknadsdata.arbeidssituasjon
+                                              )
+                                            : undefined;
                                     return (
                                         <Block key={arbeidAktivitet.id} margin="l" id={inputGroupName} tabIndex={-1}>
                                             <InputGroup
@@ -164,11 +174,9 @@ const ArbeidstidStep = () => {
                                                         søknadsdata.arbeidssituasjon?.arbeidsforhold.find(
                                                             (a) => a.arbeidsgiverId === arbeidAktivitet.id
                                                         );
-
                                                     if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
                                                         return;
                                                     }
-
                                                     if (
                                                         arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
                                                         arbeidAktivitet.erUkjentArbeidsaktivitet === true
@@ -187,6 +195,9 @@ const ArbeidstidStep = () => {
                                                         arbeidAktiviteter.length <= 2 ||
                                                         (arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
                                                             arbeidAktivitet.erUkjentArbeidsaktivitet === true)
+                                                    }
+                                                    ukjentArbeidsgiverArbeiderIPerioden={
+                                                        ukjentArbeidsgiverArbeiderIPerioden
                                                     }
                                                     arbeidAktivitet={arbeidAktivitet}
                                                     endringer={endringer[arbeidAktivitet.id]}
