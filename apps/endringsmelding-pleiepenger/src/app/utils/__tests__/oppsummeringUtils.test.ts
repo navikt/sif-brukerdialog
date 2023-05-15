@@ -1,4 +1,3 @@
-import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { harEndretArbeidstidForArbeidsgiver } from '../oppsummeringUtils';
 
 describe('oppsummeringUtils', () => {
