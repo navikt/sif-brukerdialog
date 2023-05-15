@@ -3,7 +3,7 @@ import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/si
 import { Arbeidsforhold } from '../../../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { ArbeidAktivitetEndringMap, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { ArbeidssituasjonFormValues, UkjentArbeidsforholdMap } from './ArbeidssituasjonStep';
 import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
 
@@ -100,4 +100,15 @@ export const harSvartErIkkeAnsattHosUkjentArbeidsgiver = (arbeidsforhold: Ukjent
         .some((values) => {
             return values[ArbeidsforholdFormField.erAnsatt] === YesOrNo.NO;
         });
+};
+
+export const harEndretArbeidstidForArbeidsgiver = (
+    arbeidsgiverId: string,
+    endringer?: ArbeidAktivitetEndringMap
+): boolean => {
+    const arbeidsgiverEndring = endringer ? endringer[arbeidsgiverId] : undefined;
+    if (arbeidsgiverEndring) {
+        return Object.keys(arbeidsgiverEndring).length > 0;
+    }
+    return false;
 };

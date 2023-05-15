@@ -105,7 +105,7 @@ export const getLovbestemtFerieOppsummeringInfo = (lovbestemtFerie: LovbestemtFe
     };
 };
 
-export const harEndretArbeidstidForArbeidsgiver = (
+export const harEndretArbeidstidForArbeidsgiverIApiData = (
     arbeidsgiverId: string,
     endringer?: ArbeidstakerApiData[]
 ): boolean => {

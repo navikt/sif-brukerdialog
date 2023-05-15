@@ -43,12 +43,6 @@ export const ArbeiderIPeriodenSvarTekst = {
     [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som normalt og har ingen fravær her',
 };
 
-export const ArbeiderIPeriodenSvarTekstVariant2 = {
-    [ArbeiderIPeriodenSvar.heltFravær]: 'Du jobber ikke og har fullt fravær her',
-    [ArbeiderIPeriodenSvar.redusert]: 'Du kombinerer delvis jobb med pleiepenger',
-    [ArbeiderIPeriodenSvar.somVanlig]: 'Du jobber som normalt og har ingen fravær her',
-};
-
 const { NumberInput, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,

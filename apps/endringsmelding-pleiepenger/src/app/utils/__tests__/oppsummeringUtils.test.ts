@@ -1,13 +1,13 @@
-import { harEndretArbeidstidForArbeidsgiver } from '../oppsummeringUtils';
+import { harEndretArbeidstidForArbeidsgiverIApiData } from '../oppsummeringUtils';
 
 describe('oppsummeringUtils', () => {
     describe('harEndretArbeidstidForArbeidsgiver', () => {
         it('returnerer false dersom endringer er undefined', () => {
-            expect(harEndretArbeidstidForArbeidsgiver('123', undefined)).toBeFalsy();
+            expect(harEndretArbeidstidForArbeidsgiverIApiData('123', undefined)).toBeFalsy();
         });
         it('returnerer false dersom endringer er defined, men ingen endringer for arbeidsgiver', () => {
             expect(
-                harEndretArbeidstidForArbeidsgiver('123', [
+                harEndretArbeidstidForArbeidsgiverIApiData('123', [
                     {
                         _erUkjentArbeidsaktivitet: false,
                         arbeidstidInfo: {
@@ -20,7 +20,7 @@ describe('oppsummeringUtils', () => {
         });
         it('returnerer true dersom endringer er defined, og endringer finnes for arbeidsgiver', () => {
             expect(
-                harEndretArbeidstidForArbeidsgiver('123', [
+                harEndretArbeidstidForArbeidsgiverIApiData('123', [
                     {
                         _erUkjentArbeidsaktivitet: false,
                         arbeidstidInfo: {
