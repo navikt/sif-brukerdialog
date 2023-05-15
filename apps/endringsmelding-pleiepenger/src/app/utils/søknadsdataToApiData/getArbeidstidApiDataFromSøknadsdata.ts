@@ -103,20 +103,20 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     ukjenteArbeidsgivere: Arbeidsgiver[],
     arbeidssituasjon?: ArbeidssituasjonSøknadsdata
 ): ArbeidstidApiData => {
-    const frilansAktivitetEndring = arbeidAktivitetEndring[ArbeidAktivitetType.frilanser];
+    const frilansAktivitetEndring = arbeidAktivitetEndring[ArbeidAktivitetType.frilanser]?.endringer;
     const selvstendigNæringsdrivendeAktivitetEndring =
-        arbeidAktivitetEndring[ArbeidAktivitetType.selvstendigNæringsdrivende];
+        arbeidAktivitetEndring[ArbeidAktivitetType.selvstendigNæringsdrivende]?.endringer;
     const arbeidstakerList: ArbeidstakerApiData[] = [];
 
     /** Eksisterende arbeidsaktiviteter */
     arbeidAktiviteter.arbeidstakerAktiviteter.forEach((aktivitet) => {
-        const endring = arbeidAktivitetEndring[aktivitet.id];
+        const endringer = arbeidAktivitetEndring[aktivitet.id]?.endringer;
 
-        if (endring) {
+        if (endringer) {
             const {
                 arbeidsgiver: { type, id: organisasjonsnummer },
             } = aktivitet;
-            const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(aktivitet, endring);
+            const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(aktivitet, endringer);
             if (arbeidstidInfo) {
                 arbeidstakerList.push({
                     organisasjonsnummer,

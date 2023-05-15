@@ -12,7 +12,7 @@ import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/Arbeidsfor
 import { ArbeidstidFormValues } from './ArbeidstidStep';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
-    arbeidAktivitetEndring: {},
+    arbeidAktivitet: {},
 };
 
 export const getArbeidstidStepInitialValues = (
@@ -26,12 +26,12 @@ export const getArbeidstidStepInitialValues = (
         return arbeidstidInitialFormValues;
     }
     return {
-        arbeidAktivitetEndring: søknadsdata.arbeidstid.arbeidAktivitetEndring,
+        arbeidAktivitet: søknadsdata.arbeidstid.arbeidAktivitet,
     };
 };
 
 export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormValues): ArbeidstidSøknadsdata => {
-    return { arbeidAktivitetEndring: values.arbeidAktivitetEndring };
+    return { arbeidAktivitet: values.arbeidAktivitet };
 };
 
 export const cleanupArbeidAktivitetEndringer = (

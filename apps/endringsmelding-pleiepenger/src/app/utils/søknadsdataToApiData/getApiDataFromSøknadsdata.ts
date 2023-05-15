@@ -32,7 +32,7 @@ export const getApiDataFromSøknadsdata = (
             arbeidstid: arbeidstid
                 ? getArbeidstidApiDataFromSøknadsdata(
                       sak.søknadsperioder,
-                      arbeidstid.arbeidAktivitetEndring,
+                      arbeidstid.arbeidAktivitet,
                       sak.arbeidAktiviteter,
                       sak.ukjenteArbeidsgivere,
                       arbeidssituasjon

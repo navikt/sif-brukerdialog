@@ -173,7 +173,7 @@ export const cleanupArbeidstidEtterArbeidssituasjon = (
         harUkjentArbeidsgiverMedRedusertJobb(arbeidssituasjon.arbeidsforhold)
     );
     /** Bruker skal kun endre ferie, kombinerer ikke jobb med pleiepenger og har ikke fjernet ferie */
-    const arbeidAktivitetEndring = { ...arbeidstid.arbeidAktivitetEndring };
+    const arbeidAktivitetEndring = { ...arbeidstid.arbeidAktivitet };
     if (lovbestemtFerieSkalEndres && arbeidstidSkalEndres === false) {
         arbeidssituasjon.arbeidsforhold.forEach((a) => {
             if (arbeidAktivitetEndring[a.arbeidsgiverId]) {
@@ -185,7 +185,7 @@ export const cleanupArbeidstidEtterArbeidssituasjon = (
         }
         return {
             ...arbeidstid,
-            arbeidAktivitetEndring,
+            arbeidAktivitet: arbeidAktivitetEndring,
         };
     }
     return arbeidstid;

@@ -1,9 +1,13 @@
+import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 import { ArbeidstidEndringMap } from '../ArbeidstidEndring';
 
 export interface ArbeidAktivitetEndringMap {
-    [aktivitetId: string]: ArbeidstidEndringMap;
+    [aktivitetId: string]: {
+        jobberIPerioden?: ArbeiderIPeriodenSvar;
+        endringer: ArbeidstidEndringMap;
+    };
 }
 
 export interface ArbeidstidSøknadsdata {
-    arbeidAktivitetEndring: ArbeidAktivitetEndringMap;
+    arbeidAktivitet: ArbeidAktivitetEndringMap;
 }

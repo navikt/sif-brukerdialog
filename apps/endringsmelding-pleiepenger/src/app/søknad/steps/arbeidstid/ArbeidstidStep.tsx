@@ -31,11 +31,15 @@ import {
 } from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitetEndring]: { [aktivitetId: string]: ArbeidstidEndringMap };
+    [ArbeidstidFormFields.arbeidAktivitet]: {
+        [aktivitetId: string]: {
+            endringer: ArbeidstidEndringMap;
+        };
+    };
 }
 
 enum ArbeidstidFormFields {
-    arbeidAktivitetEndring = 'arbeidAktivitetEndring',
+    arbeidAktivitet = 'arbeidAktivitet',
 }
 
 const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
@@ -93,9 +97,11 @@ const ArbeidstidStep = () => {
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
         const newValues: ArbeidstidFormValues = {
-            arbeidAktivitetEndring: {
-                ...values.arbeidAktivitetEndring,
-                [arbeidAktivitetId]: arbeidstidEndringMap,
+            arbeidAktivitet: {
+                ...values.arbeidAktivitet,
+                [arbeidAktivitetId]: {
+                    endringer: arbeidstidEndringMap,
+                },
             },
         };
 
@@ -142,7 +148,7 @@ const ArbeidstidStep = () => {
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
                 onSubmit={handleSubmit}
                 renderForm={({ setValues, values }) => {
-                    const endringer = values.arbeidAktivitetEndring || {};
+                    const aktiviteter = values.arbeidAktivitet || {};
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -154,6 +160,7 @@ const ArbeidstidStep = () => {
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
                                     const inputGroupName = `arbeidsgiver_${arbeidAktivitet.id}` as any;
+                                    const endringer = aktiviteter[arbeidAktivitet.id]?.endringer;
                                     const ukjentArbeidsgiverArbeiderIPerioden =
                                         søknadsdata.arbeidssituasjon !== undefined &&
                                         arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
@@ -183,7 +190,7 @@ const ArbeidstidStep = () => {
                                                     ) {
                                                         return validateUkjentArbeidsaktivitetArbeidstid(
                                                             arbeidAktivitet,
-                                                            endringer[arbeidAktivitet.id],
+                                                            endringer,
                                                             arbeidsforhold.arbeiderIPerioden
                                                         );
                                                     }
@@ -200,7 +207,7 @@ const ArbeidstidStep = () => {
                                                         ukjentArbeidsgiverArbeiderIPerioden
                                                     }
                                                     arbeidAktivitet={arbeidAktivitet}
-                                                    endringer={endringer[arbeidAktivitet.id]}
+                                                    endringer={endringer}
                                                     lovbestemtFerie={søknadsdata.lovbestemtFerie}
                                                     onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
                                                         onArbeidstidAktivitetChange(
