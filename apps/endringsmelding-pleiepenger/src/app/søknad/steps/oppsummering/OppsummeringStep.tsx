@@ -81,13 +81,16 @@ const OppsummeringStep = () => {
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
-    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
         harUkjentArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
     );
+
+    const harIngenEndringer =
+        (arbeidstidSkalEndres && arbeidstidErEndret === false) ||
+        (lovbestemtFerieSkalEndres && lovbestemtFerieErEndret === false);
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
