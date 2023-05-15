@@ -12,12 +12,14 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import JaNeiSvar from '@navikt/sif-common-forms-ds/lib/components/summary/JaNeiSvar';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import { harUkjentArbeidsgiverMedRedusertJobb } from '../../../utils/ukjentArbeidsgiverUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -27,8 +29,6 @@ import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
-import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
-import { harUkjentArbeidsgiverMedRedusertJobb } from '../../../utils/ukjentArbeidsgiverUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',

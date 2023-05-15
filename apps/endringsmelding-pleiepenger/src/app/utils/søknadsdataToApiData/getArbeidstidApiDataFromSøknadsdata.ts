@@ -148,7 +148,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 arbeidsforhold
             );
 
-            const endring = arbeidAktivitetEndring[organisasjonsnummer];
+            const endring = arbeidAktivitetEndring[organisasjonsnummer] || {};
             const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);
             const arbeidstidInfo: ArbeidstidInfo = {
                 perioder: {},
