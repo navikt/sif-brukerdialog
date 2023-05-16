@@ -9,7 +9,7 @@ import {
 } from '../types/søknadApiData/SøknadApiData';
 import { getValgteEndringer } from './endringTypeUtils';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
-import { ArbeiderIPeriodenSvar } from '../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
+import { ArbeiderIPeriodenSvar } from '../types/arbeiderIPeriodenSvar';
 
 interface ArbeidssituasjonMetadata {
     antallUkjentArbeidsforhold: number;

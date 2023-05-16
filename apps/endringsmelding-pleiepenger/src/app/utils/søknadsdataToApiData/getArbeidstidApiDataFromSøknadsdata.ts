@@ -7,7 +7,6 @@ import {
     ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
-import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidsforholdAktivt } from '../../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
@@ -31,6 +30,7 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getArbeidAktivitetForUkjentArbeidsgiver } from '../ukjentArbeidsgiverUtils';
+import { ArbeiderIPeriodenSvar } from '../../types/arbeiderIPeriodenSvar';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 

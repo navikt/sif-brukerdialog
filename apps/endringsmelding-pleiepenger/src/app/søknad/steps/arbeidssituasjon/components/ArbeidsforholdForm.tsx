@@ -12,17 +12,12 @@ import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAn
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { ArbeidAktivitetType } from '../../../../types/Sak';
 import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
+import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst } from '../../../../types/arbeiderIPeriodenSvar';
 
 interface Props {
     arbeidsgiver: Arbeidsgiver;
     parentFieldName: string;
     values: ArbeidsforholdFormValues;
-}
-
-export enum ArbeiderIPeriodenSvar {
-    'somVanlig' = 'SOM_VANLIG',
-    'redusert' = 'REDUSERT',
-    'heltFravær' = 'HELT_FRAVÆR',
 }
 
 export enum ArbeidsforholdFormField {
@@ -36,12 +31,6 @@ export interface ArbeidsforholdFormValues {
     [ArbeidsforholdFormField.timerPerUke]?: string;
     [ArbeidsforholdFormField.arbeiderIPerioden]?: ArbeiderIPeriodenSvar;
 }
-
-export const ArbeiderIPeriodenSvarTekst = {
-    [ArbeiderIPeriodenSvar.heltFravær]: 'Jeg jobber ikke og har fullt fravær her',
-    [ArbeiderIPeriodenSvar.redusert]: 'Jeg kombinerer delvis jobb med pleiepenger',
-    [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som normalt og har ingen fravær her',
-};
 
 const { NumberInput, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
     ArbeidsforholdFormField,

@@ -1,4 +1,4 @@
-import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
+import { ArbeiderIPeriodenSvar } from '../arbeiderIPeriodenSvar';
 import { ArbeidstidEndringMap } from '../ArbeidstidEndring';
 
 export interface ArbeidAktivitetEndringMap {

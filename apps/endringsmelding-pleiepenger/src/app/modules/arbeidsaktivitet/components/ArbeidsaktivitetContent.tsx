@@ -1,30 +1,30 @@
 import { Heading } from '@navikt/ds-react';
 import React, { useState } from 'react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import {
     dateFormatter,
     dateRangeToISODateRange,
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
+import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
+import EndretTag from '../../../components/tags/EndretTag';
+import FerieTag from '../../../components/tags/FerieTag';
+import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
+import EndreArbeidstidModal from '../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
+import { ArbeidsaktivitetFormValues } from '../../../søknad/steps/arbeidstid/ArbeidstidStep';
 import { cleanupArbeidAktivitetEndringer } from '../../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetType, Arbeidsuke, PeriodeMedArbeidstid } from '../../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getEndringsdato, getTillattEndringsperiode } from '../../../utils/endringsperiode';
+import { harFjernetFerieIPeriode } from '../../../utils/ferieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../../arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import EndreArbeidstidForm from '../../endre-arbeidstid-form/EndreArbeidstidForm';
-import EndreArbeidstidModal from '../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
-import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
-import EndretTag from '../../../components/tags/EndretTag';
-import FerieTag from '../../../components/tags/FerieTag';
-import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 import ArbeidAktivitetUtenforPeriodeInfo from './ArbeidAktivitetUtenforPeriodeInfo';
-import { harFjernetFerieIPeriode } from '../../../utils/ferieUtils';
 import ArbeiderIPeriodenFormPart from './ArbeiderIPeriodenFormPart';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { ArbeiderIPeriodenSvar } from '../../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
-import { ArbeidsaktivitetFormValues } from '../../../søknad/steps/arbeidstid/ArbeidstidStep';
+import { ArbeiderIPeriodenSvar } from '../../../types/arbeiderIPeriodenSvar';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];

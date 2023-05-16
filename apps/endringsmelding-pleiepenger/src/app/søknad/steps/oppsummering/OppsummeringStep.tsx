@@ -16,6 +16,7 @@ import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsat
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { ArbeiderIPeriodenSvarTekst } from '../../../types/arbeiderIPeriodenSvar';
 import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
@@ -24,7 +25,6 @@ import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
-import { ArbeiderIPeriodenSvarTekst } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';

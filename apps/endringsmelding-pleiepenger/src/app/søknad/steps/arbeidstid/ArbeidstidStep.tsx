@@ -10,6 +10,7 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import Arbeidsaktivitet from '../../../modules/arbeidsaktivitet/Arbeidsaktivitet';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
+import { ArbeiderIPeriodenSvar } from '../../../types/arbeiderIPeriodenSvar';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -22,7 +23,6 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,

@@ -8,7 +8,7 @@ import {
     getWeeksInDateRange,
 } from '@navikt/sif-common-utils';
 import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils/lib';
-import { ArbeiderIPeriodenSvar } from '../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
+import { ArbeiderIPeriodenSvar } from '../types/arbeiderIPeriodenSvar';
 import { Arbeidsforhold, ArbeidsforholdAktivt } from '../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import {

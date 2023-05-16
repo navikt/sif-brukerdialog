@@ -1,11 +1,11 @@
 import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import ArbeidsaktivitetBlock from '../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import { ArbeidsaktivitetFormValues } from '../../søknad/steps/arbeidstid/ArbeidstidStep';
+import { ArbeiderIPeriodenSvar } from '../../types/arbeiderIPeriodenSvar';
 import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
-import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
-import { ArbeidsaktivitetFormValues } from '../../søknad/steps/arbeidstid/ArbeidstidStep';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
