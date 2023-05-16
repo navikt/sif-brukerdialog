@@ -225,7 +225,7 @@ const fyllUtArbeidstidUkjentArbeidsgiver = (
         it('legger til arbeidstid for enkeltuker', () => {
             selectRadioByNameAndValue(`arbeidAktivitet.a_${orgnummer}.arbeiderIPerioden`, arbeiderIPeriodenSvar);
             uker.forEach((uke) => {
-                cy.get(`#arbeidsgiver_a_${orgnummer}`).within(() => {
+                getTestElement(`aktivitet_a_${orgnummer}`).within(() => {
                     cy.get('.arbeidstidUkeTabell table')
                         .get(`[data-testid=uke_${uke.ukenummer}]`)
                         .within(() => {
