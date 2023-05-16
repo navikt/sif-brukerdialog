@@ -48,17 +48,19 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
+    const erNyArbeidsgiver =
+        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erUkjentArbeidsaktivitet;
     const arbeiderIPerioden = formValues?.arbeiderIPerioden;
 
     return (
         <>
-            {arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erUkjentArbeidsaktivitet && (
+            {erNyArbeidsgiver && (
                 <Block>
                     <ArbeiderIPeriodenFormPart arbeidAktivitet={arbeidAktivitet} parentFieldName={parentFieldName} />
                 </Block>
             )}
-            {arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
-                <Block>
+            {(erNyArbeidsgiver === false || arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) && (
+                <Block margin={erNyArbeidsgiver ? 'xl' : 'none'}>
                     <Heading level="3" size="small" spacing={true}>
                         {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Uker med pleiepenger'}
                     </Heading>
