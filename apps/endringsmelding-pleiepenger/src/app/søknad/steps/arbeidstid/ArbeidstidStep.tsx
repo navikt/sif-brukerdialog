@@ -96,7 +96,7 @@ const ArbeidstidStep = () => {
             arbeidAktivitet: {
                 ...values.arbeidAktivitet,
                 [arbeidAktivitetKey]: {
-                    arbeiderIPerioden: currentAktivitetValues.arbeiderIPerioden,
+                    arbeiderIPerioden: currentAktivitetValues?.arbeiderIPerioden,
                     endringer: arbeidstidEndringMap,
                 },
             },
