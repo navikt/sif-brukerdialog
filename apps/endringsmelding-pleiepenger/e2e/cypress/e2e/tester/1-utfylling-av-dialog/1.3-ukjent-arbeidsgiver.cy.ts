@@ -2,6 +2,7 @@ import { contextConfig } from '../../contextConfig';
 import { enSakEnArbeidsgiverEnPeriodeMock } from '../../data/enSakEnArbeidsgiverEnPeriodeMock';
 import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
 import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
+import { submitSkjema } from '../../utils';
 import { cyHelpers } from './cyHelpers';
 
 const settings = `
@@ -37,8 +38,9 @@ describe('Ukjent arbeidsgiver - jobber ikke', () => {
     });
 
     cyHelpers.startSøknad({ endreLovbestemtFerie: true });
-    cyHelpers.fyllUtUkjentArbeidsforhold('947064642', 'HELT_FRAVÆR');
-    cyHelpers.leggTilFerie();
+    cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
+    cyHelpers.leggTilFerie(true);
+    cyHelpers.fyllUtArbeidstidUkjentArbeidsgiver('947064642', 'HELT_FRAVÆR');
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummeringUkjentArbeidsforholdJobberIkke('947064642');
 });
@@ -56,8 +58,9 @@ describe('Ukjent arbeidsgiver - jobber vanlig', () => {
     });
 
     cyHelpers.startSøknad({ endreLovbestemtFerie: true });
-    cyHelpers.fyllUtUkjentArbeidsforhold('947064642', 'SOM_VANLIG');
-    cyHelpers.leggTilFerie();
+    cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
+    cyHelpers.leggTilFerie(true);
+    cyHelpers.fyllUtArbeidstidUkjentArbeidsgiver('947064642', 'SOM_VANLIG');
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummeringUkjentArbeidsforholdJobberVanlig('947064642');
 });
@@ -75,8 +78,8 @@ describe('Ukjent arbeidsgiver - redusert', () => {
     });
 
     cyHelpers.startSøknad({ endreLovbestemtFerie: false, endreArbeidstid: true });
-    cyHelpers.fyllUtUkjentArbeidsforhold('947064642', 'REDUSERT');
-    cyHelpers.fyllUtUkjentArbeidsforholdArbeidstid('947064642', [
+    cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
+    cyHelpers.fyllUtArbeidstidUkjentArbeidsgiver('947064642', 'REDUSERT', [
         {
             ukenummer: '4',
             tid: '1',

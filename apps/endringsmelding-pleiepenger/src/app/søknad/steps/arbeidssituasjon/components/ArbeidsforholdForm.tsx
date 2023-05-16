@@ -1,4 +1,3 @@
-import { Alert } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { getTypedFormComponents, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
@@ -12,7 +11,6 @@ import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAn
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { ArbeidAktivitetType } from '../../../../types/Sak';
 import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
-import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst } from '../../../../types/arbeiderIPeriodenSvar';
 
 interface Props {
     arbeidsgiver: Arbeidsgiver;
@@ -23,16 +21,14 @@ interface Props {
 export enum ArbeidsforholdFormField {
     erAnsatt = 'erAnsatt',
     timerPerUke = 'timerPerUke',
-    arbeiderIPerioden = 'arbeiderIPerioden',
 }
 
 export interface ArbeidsforholdFormValues {
     [ArbeidsforholdFormField.erAnsatt]?: YesOrNo;
     [ArbeidsforholdFormField.timerPerUke]?: string;
-    [ArbeidsforholdFormField.arbeiderIPerioden]?: ArbeiderIPeriodenSvar;
 }
 
-const { NumberInput, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
+const { NumberInput, YesOrNoQuestion } = getTypedFormComponents<
     ArbeidsforholdFormField,
     ArbeidsforholdFormValues,
     IntlErrorObject
@@ -115,38 +111,6 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                             }}
                         />
                     </FormBlock>
-                    <FormBlock>
-                        <RadioGroup
-                            name={getFieldName(ArbeidsforholdFormField.arbeiderIPerioden)}
-                            legend={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn}?`}
-                            validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsgiver.navn)}
-                            radios={[
-                                {
-                                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.heltFravær],
-                                    value: ArbeiderIPeriodenSvar.heltFravær,
-                                    'data-testid': ArbeiderIPeriodenSvar.heltFravær,
-                                },
-                                {
-                                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.redusert],
-                                    value: ArbeiderIPeriodenSvar.redusert,
-                                    'data-testid': ArbeiderIPeriodenSvar.redusert,
-                                },
-                                {
-                                    label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.somVanlig],
-                                    value: ArbeiderIPeriodenSvar.somVanlig,
-                                    'data-testid': ArbeiderIPeriodenSvar.somVanlig,
-                                },
-                            ]}
-                        />
-                    </FormBlock>
-                    {values.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
-                        <Block margin="m">
-                            <Alert variant="info">
-                                Siden du kombinerer jobb med pleiepenger trenger du senere å fylle ut hvor mye du jobber
-                                i perioden med pleiepenger.
-                            </Alert>
-                        </Block>
-                    )}
                 </>
             )}
         </ArbeidsaktivitetBlock>

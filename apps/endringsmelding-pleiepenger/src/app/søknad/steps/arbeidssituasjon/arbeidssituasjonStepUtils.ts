@@ -29,7 +29,7 @@ const arbeidsforholdFormValuesToSøknadsdata = (
     const erAnsatt = formValues.erAnsatt === YesOrNo.YES;
     const timerPerUke = getNumberFromNumberInputValue(formValues.timerPerUke);
 
-    if (erAnsatt && timerPerUke !== undefined && formValues.arbeiderIPerioden !== undefined) {
+    if (erAnsatt && timerPerUke !== undefined) {
         return {
             erAnsatt,
             arbeidsgiverKey: arbeidsgiver.key,
