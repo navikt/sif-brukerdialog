@@ -4,6 +4,8 @@ import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/Arbeidst
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidstakerApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
+import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
+import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst } from '../../../types/arbeiderIPeriodenSvar';
 
 type Props = {
     arbeidstaker: ArbeidstakerApiData;
@@ -14,22 +16,33 @@ type Props = {
 const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbeidstidKolonneTittel }: Props) => {
     const { organisasjonsnummer, arbeidstidInfo } = arbeidstaker;
     const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
+
     if (!arbeidsgiver) {
         return null;
     }
-    const arbeidsuker = oppsummeringStepUtils.getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
+
     return (
         <Block margin="xl" padBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
             <Heading level="3" size="small">
                 {arbeidsgiver.navn}
             </Heading>
-            <>
-                <ArbeidstidUkeTabell
-                    listItems={arbeidsuker}
-                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                    visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsaktivitet}
-                />
-            </>
+            {arbeidstaker._erUkjentArbeidsaktivitet && arbeidstaker._arbeiderIPerioden && (
+                <SummaryBlock
+                    header={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn}?`}>
+                    {ArbeiderIPeriodenSvarTekst[arbeidstaker._arbeiderIPerioden]}
+                </SummaryBlock>
+            )}
+            {(arbeidstaker._erUkjentArbeidsaktivitet === false ||
+                (arbeidstaker._erUkjentArbeidsaktivitet === true &&
+                    arbeidstaker._arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert)) && (
+                <Block margin={arbeidstaker._erUkjentArbeidsaktivitet === true ? 'l' : 'none'}>
+                    <ArbeidstidUkeTabell
+                        listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(arbeidstidInfo.perioder)}
+                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                        visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsaktivitet}
+                    />
+                </Block>
+            )}
         </Block>
     );
 };

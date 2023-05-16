@@ -185,6 +185,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
             arbeidstakerList.push({
                 _erUkjentArbeidsaktivitet: true,
+                _arbeiderIPerioden: arbeiderIPerioden,
                 arbeidstidInfo,
                 organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
             });
