@@ -6,6 +6,7 @@ import { ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetType } from '../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
+import './arbeidsaktivitetContentHeader.scss';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;

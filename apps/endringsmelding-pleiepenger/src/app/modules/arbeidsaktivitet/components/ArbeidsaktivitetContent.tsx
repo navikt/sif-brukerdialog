@@ -124,8 +124,8 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                             : false;
 
                                     return (
-                                        <div className="arbeidsaktivitetHeader">
-                                            <div className="arbeidsaktivitetHeader__title">
+                                        <div className="arbeidsaktivitetContentHeader">
+                                            <div className="arbeidsaktivitetContentHeader__title">
                                                 {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
                                             </div>
                                             <TagsContainer>
