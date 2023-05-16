@@ -8,6 +8,7 @@ import {
     getWeeksInDateRange,
 } from '@navikt/sif-common-utils';
 import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils/lib';
+import { ArbeidAktivitetFormValuesMap } from '../søknad/steps/arbeidstid/ArbeidstidForm';
 import { ArbeiderIPeriodenSvar } from '../types/arbeiderIPeriodenSvar';
 import { ArbeidsforholdAktivt } from '../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
@@ -22,7 +23,6 @@ import {
 import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
-import { ArbeidAktivitetFormValuesMap } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 
 export const getSøknadsperioderForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],

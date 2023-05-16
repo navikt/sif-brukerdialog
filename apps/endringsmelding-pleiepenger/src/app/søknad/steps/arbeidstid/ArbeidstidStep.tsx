@@ -1,116 +1,27 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import Arbeidsaktivitet from '../../../modules/arbeidsaktivitet/Arbeidsaktivitet';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
-import { ArbeiderIPeriodenSvar } from '../../../types/arbeiderIPeriodenSvar';
-import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitetType } from '../../../types/Sak';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
-import { getArbeidAktiviteterForUkjenteArbeidsgivere } from '../../../utils/ukjentArbeidsgiverUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
-import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import {
-    getAktiviteterSomSkalEndres,
-    getArbeidstidStepInitialValues,
-    getArbeidstidSøknadsdataFromFormValues,
-    validateUkjentArbeidsaktivitetArbeidstid,
-} from './arbeidstidStepUtils';
-
-export type ArbeidAktivitetFormValuesMap = {
-    [aktivitetId: string]: ArbeidsaktivitetFormValues;
-};
-
-export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitet]: ArbeidAktivitetFormValuesMap;
-}
-export interface ArbeidsaktivitetFormValues {
-    endringer: ArbeidstidEndringMap;
-    arbeiderIPerioden?: ArbeiderIPeriodenSvar;
-}
-
-enum ArbeidstidFormFields {
-    arbeidAktivitet = 'arbeidAktivitet',
-}
-
-const { FormikWrapper, Form, InputGroup } = getTypedFormComponents<
-    ArbeidstidFormFields,
-    ArbeidstidFormValues,
-    ValidationError
->();
+import ArbeidstidForm from './ArbeidstidForm';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
-    const intl = useIntl();
 
     const {
-        dispatch,
         state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
-    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
     const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
-
-    const onValidSubmitHandler = (values: ArbeidstidFormValues) => {
-        const arbeidstidSøknadsdata = getArbeidstidSøknadsdataFromFormValues(values);
-        if (arbeidstidSøknadsdata) {
-            clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadArbeidstid(arbeidstidSøknadsdata)];
-        }
-        return [];
-    };
-
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
-        onValidSubmitHandler,
-        stepId,
-        (state: SøknadContextState) => {
-            return lagreSøknadState(state);
-        }
-    );
-
-    const onArbeidstidAktivitetChange = (
-        arbeidAktivitetKey: string,
-        arbeidstidEndringMap: ArbeidstidEndringMap,
-        values: Partial<ArbeidstidFormValues>,
-        setValues: (values: ArbeidstidFormValues) => void
-    ) => {
-        const currentAktivitetValues = (values.arbeidAktivitet || {})[arbeidAktivitetKey];
-        const newValues: ArbeidstidFormValues = {
-            arbeidAktivitet: {
-                ...values.arbeidAktivitet,
-                [arbeidAktivitetKey]: {
-                    arbeiderIPerioden: currentAktivitetValues?.arbeiderIPerioden,
-                    endringer: arbeidstidEndringMap,
-                },
-            },
-        };
-
-        setValues(newValues);
-
-        /** Oppdater state før mellomlagring */
-        const arbeidstidSøknadsdata = getArbeidstidSøknadsdataFromFormValues(newValues);
-        if (arbeidstidSøknadsdata) {
-            dispatch(actionsCreator.setSøknadArbeidstid(arbeidstidSøknadsdata));
-            dispatch(actionsCreator.requestLagreSøknad());
-        }
-    };
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -140,95 +51,7 @@ const ArbeidstidStep = () => {
                     </Alert>
                 </Block>
             )}
-
-            <FormikWrapper
-                initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
-                onSubmit={handleSubmit}
-                renderForm={({ setValues, values }) => {
-                    const aktiviteterValuesMap = values.arbeidAktivitet || {};
-                    const arbeidAktiviteter = [
-                        ...getArbeidAktiviteterForUkjenteArbeidsgivere(
-                            sak.søknadsperioder,
-                            sak.ukjenteArbeidsgivere,
-                            aktiviteterValuesMap,
-                            søknadsdata.arbeidssituasjon
-                        ),
-                        ...getAktiviteterSomSkalEndres(sak.arbeidAktiviteter),
-                    ];
-                    return (
-                        <>
-                            <PersistStepFormValues stepId={stepId} />
-                            <Form
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidAktivitetForm')}
-                                includeValidationSummary={true}
-                                submitPending={isSubmitting}
-                                runDelayedFormValidation={true}
-                                onBack={goBack}>
-                                {arbeidAktiviteter.map((arbeidAktivitet) => {
-                                    const inputGroupName = `arbeidsgiver_${arbeidAktivitet.key}` as any;
-                                    const endringer = aktiviteterValuesMap[arbeidAktivitet.key]?.endringer;
-
-                                    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${arbeidAktivitet.key}`;
-                                    const aktivitetFormValues = (values.arbeidAktivitet || {})[arbeidAktivitet.key];
-                                    const arbeiderIPeriodenSvar = aktivitetFormValues?.arbeiderIPerioden;
-
-                                    return (
-                                        <Block key={arbeidAktivitet.key} margin="l" id={inputGroupName} tabIndex={-1}>
-                                            <InputGroup
-                                                legend={arbeidAktivitet.navn}
-                                                hideLegend={true}
-                                                name={inputGroupName}
-                                                validate={() => {
-                                                    const arbeidsforhold =
-                                                        søknadsdata.arbeidssituasjon?.arbeidsforhold.find(
-                                                            (a) => a.arbeidsgiverKey === arbeidAktivitet.key
-                                                        );
-
-                                                    if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
-                                                        return;
-                                                    }
-                                                    if (
-                                                        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                                        arbeidAktivitet.erUkjentArbeidsaktivitet === true
-                                                    ) {
-                                                        return validateUkjentArbeidsaktivitetArbeidstid(
-                                                            arbeidAktivitet,
-                                                            endringer,
-                                                            arbeiderIPeriodenSvar
-                                                        );
-                                                    }
-                                                    return undefined;
-                                                }}>
-                                                <Arbeidsaktivitet
-                                                    renderAsExpansionCard={arbeidAktiviteter.length > 1}
-                                                    expansionCardDefaultOpen={
-                                                        arbeidAktiviteter.length <= 2 ||
-                                                        (arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                                            arbeidAktivitet.erUkjentArbeidsaktivitet === true)
-                                                    }
-                                                    parentFieldName={aktivitetFieldName}
-                                                    formValues={aktivitetFormValues}
-                                                    arbeidAktivitet={arbeidAktivitet}
-                                                    endringer={endringer}
-                                                    lovbestemtFerie={søknadsdata.lovbestemtFerie}
-                                                    onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
-                                                        onArbeidstidAktivitetChange(
-                                                            arbeidAktivitet.key,
-                                                            arbeidstidEndringer,
-                                                            values,
-                                                            setValues
-                                                        );
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </Block>
-                                    );
-                                })}
-                            </Form>
-                        </>
-                    );
-                }}
-            />
+            <ArbeidstidForm goBack={goBack} />
         </SøknadStep>
     );
 };

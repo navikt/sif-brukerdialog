@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormikRadioGroup, IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ArbeiderIPeriodenSvar } from '../../../types/arbeiderIPeriodenSvar';
-import { ArbeidAktivitetArbeidstaker } from '../../../types/Sak';
+import { ArbeiderIPeriodenSvar } from '../../../../../types/arbeiderIPeriodenSvar';
+import { ArbeidAktivitetArbeidstaker } from '../../../../../types/Sak';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitetArbeidstaker;

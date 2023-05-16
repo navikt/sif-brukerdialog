@@ -5,7 +5,7 @@ import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetArbeidstaker, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
 import { ArbeidAktivitetEndringMap, ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
-import { ArbeidstidFormValues } from './ArbeidstidStep';
+import { ArbeidstidFormValues } from './ArbeidstidForm';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
     arbeidAktivitet: {},

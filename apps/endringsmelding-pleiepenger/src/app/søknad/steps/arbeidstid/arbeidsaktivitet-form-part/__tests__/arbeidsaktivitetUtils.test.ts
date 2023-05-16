@@ -1,7 +1,7 @@
 import { ISODateRange } from '@navikt/sif-common-utils';
-import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { Arbeidsuke } from '../../../types/Sak';
-import { TimerEllerProsent } from '../../../types/TimerEllerProsent';
+import { ArbeidstidEndringMap } from '../../../../../types/ArbeidstidEndring';
+import { Arbeidsuke } from '../../../../../types/Sak';
+import { TimerEllerProsent } from '../../../../../types/TimerEllerProsent';
 import { getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 
 describe('arbeidsaktivitetUtils', () => {
