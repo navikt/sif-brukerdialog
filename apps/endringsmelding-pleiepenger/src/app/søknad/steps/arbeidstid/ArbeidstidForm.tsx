@@ -152,34 +152,3 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
 };
 
 export default ArbeidstidForm;
-
-/**
- *
-
-        //         <ArbeidsaktivitetFormPart
-                                    //             key={arbeidAktivitet.key}
-                                    //             renderAsExpansionCard={arbeidAktiviteter.length > 1}
-                                    //             expansionCardDefaultOpen={
-                                    //                 arbeidAktiviteter.length <= 2 ||
-                                    //                 (arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                    //                     arbeidAktivitet.erUkjentArbeidsaktivitet === true)
-                                    //             }
-                                    //             parentFieldName={aktivitetFieldName}
-                                    //             formValues={aktivitetFormValues}
-                                    //             arbeidAktivitet={arbeidAktivitet}
-                                    //             endringer={endringer}
-                                    //             lovbestemtFerie={søknadsdata.lovbestemtFerie}
-                                    //             onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
-                                    //                 onArbeidstidAktivitetChange(
-                                    //                     arbeidAktivitet.key,
-                                    //                     arbeidstidEndringer,
-                                    //                     values,
-                                    //                     setValues
-                                    //                 );
-                                    //             }}
-                                    //         />
-                                    //     </InputGroup>
-                                    // </Block>
-                                // );
-                            // })}
-                            */
