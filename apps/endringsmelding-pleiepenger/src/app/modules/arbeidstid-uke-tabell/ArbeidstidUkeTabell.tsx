@@ -46,6 +46,7 @@ interface Props {
     periode?: DateRange;
     arbeidstidKolonneTittel?: string;
     triggerResetValg?: number;
+    visEndringSomOpprinnelig?: boolean;
     onEndreUker?: (uke: ArbeidstidUkeTabellItem[]) => void;
 }
 
@@ -58,6 +59,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     periode,
     arbeidstidKolonneTittel,
     triggerResetValg,
+    visEndringSomOpprinnelig,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
@@ -262,7 +264,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                 </Block>
                                             </BodyShort>
                                             <div style={{ padding: '.5rem 0' }}>
-                                                <ArbeidstidUkeInfoListe uke={uke} />
+                                                <ArbeidstidUkeInfoListe
+                                                    uke={uke}
+                                                    visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                                                />
                                             </div>
                                         </div>
                                         {kanEndreEnkeltuke && (
@@ -443,7 +448,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     <Table.DataCell
                                         data-testid="arbeidstid-faktisk"
                                         className="arbeidstidUkeTabell__faktisk">
-                                        <ArbeidstidUkeInfo uke={uke} />
+                                        <ArbeidstidUkeInfo
+                                            uke={uke}
+                                            visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                                        />
                                     </Table.DataCell>
                                     {kanEndreEnkeltuke && (
                                         <Table.DataCell className="arbeidstidUkeTabell__endre">

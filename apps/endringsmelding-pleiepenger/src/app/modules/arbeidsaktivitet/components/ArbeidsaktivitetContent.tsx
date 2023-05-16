@@ -77,6 +77,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     lovbestemtFerie
                                 )}
                                 periode={perioder[0]}
+                                visEndringSomOpprinnelig={erNyArbeidsgiver}
                                 triggerResetValg={resetUkerTabellCounter}
                                 onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                                     setArbeidsukerForEndring(
@@ -101,6 +102,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                             listItems={listItems}
                                             periode={periode}
                                             triggerResetValg={resetUkerTabellCounter}
+                                            visEndringSomOpprinnelig={erNyArbeidsgiver}
                                             onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
                                                 setArbeidsukerForEndring(
                                                     uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])

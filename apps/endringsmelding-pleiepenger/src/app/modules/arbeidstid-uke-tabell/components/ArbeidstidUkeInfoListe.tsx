@@ -11,16 +11,15 @@ import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
-    dagerMedFerie?: Date[];
-    dagerMedFjernetFerie?: Date[];
+    visEndringSomOpprinnelig?: boolean;
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke }) => {
+const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndringSomOpprinnelig }) => {
     const intl = useIntl();
 
-    if (uke.endret === undefined) {
+    if (uke.endret === undefined || visEndringSomOpprinnelig) {
         return (
             <div className="arbeidstidInfoListe">
                 <p>

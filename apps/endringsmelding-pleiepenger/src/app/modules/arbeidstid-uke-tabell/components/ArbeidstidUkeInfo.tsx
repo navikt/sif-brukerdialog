@@ -12,12 +12,13 @@ import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;
+    visEndringSomOpprinnelig?: boolean;
     medLabels?: boolean;
 }
 
 const bem = BemUtils('endretArbeidstid');
 
-const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = false }) => {
+const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = false, visEndringSomOpprinnelig }) => {
     const intl = useIntl();
     if (uke.endret === undefined) {
         return (
@@ -31,7 +32,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
     }
     const erEndret = erArbeidstidUkeTabellItemEndret(uke);
 
-    if (erEndret === false) {
+    if (erEndret === false || visEndringSomOpprinnelig) {
         return (
             <>
                 {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
