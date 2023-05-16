@@ -6,7 +6,7 @@ import { ArbeidAktivitetArbeidstaker } from '../../../types/Sak';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitetArbeidstaker;
-    fieldName: string;
+    parentFieldName: string;
 }
 
 export const ArbeiderIPeriodenSvarTekst = {
@@ -15,10 +15,10 @@ export const ArbeiderIPeriodenSvarTekst = {
     [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som normalt og har ingen fravær her',
 };
 
-const ArbeiderIPeriodenFormPart: React.FunctionComponent<Props> = ({ fieldName, arbeidAktivitet }) => {
+const ArbeiderIPeriodenFormPart: React.FunctionComponent<Props> = ({ parentFieldName, arbeidAktivitet }) => {
     return (
         <FormikRadioGroup
-            name={`${fieldName}`}
+            name={`${parentFieldName}.arbeiderIPerioden`}
             legend={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidAktivitet.arbeidsgiver.navn}?`}
             validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidAktivitet.arbeidsgiver.navn)}
             radios={[

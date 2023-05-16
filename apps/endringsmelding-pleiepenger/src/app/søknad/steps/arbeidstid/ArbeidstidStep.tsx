@@ -22,20 +22,22 @@ import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
+import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
-    getUkjentArbeidsgiverArbeidssituasjon,
     validateUkjentArbeidsaktivitetArbeidstid,
 } from './arbeidstidStepUtils';
 
 export interface ArbeidstidFormValues {
     [ArbeidstidFormFields.arbeidAktivitet]: {
-        [aktivitetId: string]: {
-            endringer: ArbeidstidEndringMap;
-        };
+        [aktivitetId: string]: ArbeidsaktivitetFormValues;
     };
+}
+export interface ArbeidsaktivitetFormValues {
+    endringer: ArbeidstidEndringMap;
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar;
 }
 
 enum ArbeidstidFormFields {
@@ -94,13 +96,15 @@ const ArbeidstidStep = () => {
         arbeidAktivitetId: string,
         arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
-        setValues: (values: ArbeidstidFormValues) => void
+        setValues: (values: ArbeidstidFormValues) => void,
+        arbeiderIPerioden?: ArbeiderIPeriodenSvar
     ) => {
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitet: {
                 ...values.arbeidAktivitet,
                 [arbeidAktivitetId]: {
                     endringer: arbeidstidEndringMap,
+                    arbeiderIPerioden,
                 },
             },
         };
@@ -161,15 +165,12 @@ const ArbeidstidStep = () => {
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
                                     const inputGroupName = `arbeidsgiver_${arbeidAktivitet.id}` as any;
                                     const endringer = aktiviteter[arbeidAktivitet.id]?.endringer;
-                                    const ukjentArbeidsgiverArbeiderIPerioden =
-                                        søknadsdata.arbeidssituasjon !== undefined &&
-                                        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                        arbeidAktivitet.erUkjentArbeidsaktivitet
-                                            ? getUkjentArbeidsgiverArbeidssituasjon(
-                                                  arbeidAktivitet.id,
-                                                  søknadsdata.arbeidssituasjon
-                                              )
-                                            : undefined;
+
+                                    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.a_${arbeidAktivitet.id}`;
+                                    const aktivitetFormValues = (values.arbeidAktivitet || {})[
+                                        `a_${arbeidAktivitet.id}`
+                                    ];
+
                                     return (
                                         <Block key={arbeidAktivitet.id} margin="l" id={inputGroupName} tabIndex={-1}>
                                             <InputGroup
@@ -203,9 +204,8 @@ const ArbeidstidStep = () => {
                                                         (arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
                                                             arbeidAktivitet.erUkjentArbeidsaktivitet === true)
                                                     }
-                                                    ukjentArbeidsgiverArbeiderIPerioden={
-                                                        ukjentArbeidsgiverArbeiderIPerioden
-                                                    }
+                                                    parentFieldName={aktivitetFieldName}
+                                                    formValues={aktivitetFormValues}
                                                     arbeidAktivitet={arbeidAktivitet}
                                                     endringer={endringer}
                                                     lovbestemtFerie={søknadsdata.lovbestemtFerie}

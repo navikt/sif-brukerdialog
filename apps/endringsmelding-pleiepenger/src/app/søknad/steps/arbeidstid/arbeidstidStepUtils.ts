@@ -2,11 +2,7 @@ import { IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
 import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetArbeidstaker, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
-import {
-    ArbeidssituasjonSøknadsdata,
-    ArbeidstidSøknadsdata,
-    Søknadsdata,
-} from '../../../types/søknadsdata/Søknadsdata';
+import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
 import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
@@ -104,10 +100,10 @@ export const validateUkjentArbeidsaktivitetArbeidstid = (
         : undefined;
 };
 
-export const getUkjentArbeidsgiverArbeidssituasjon = (
-    arbeidsgiverId: string,
-    arbeidssituasjon: ArbeidssituasjonSøknadsdata
-): ArbeiderIPeriodenSvar | undefined => {
-    const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find((a) => a.arbeidsgiverId === arbeidsgiverId);
-    return arbeidsforhold?.erAnsatt ? arbeidsforhold.arbeiderIPerioden : undefined;
-};
+// export const getUkjentArbeidsgiverArbeidssituasjon = (
+//     arbeidsgiverId: string,
+//     arbeidssituasjon: ArbeidssituasjonSøknadsdata
+// ): ArbeiderIPeriodenSvar | undefined => {
+//     const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find((a) => a.arbeidsgiverId === arbeidsgiverId);
+//     return arbeidsforhold?.erAnsatt ? arbeidsforhold.arbeiderIPerioden : undefined;
+// };
