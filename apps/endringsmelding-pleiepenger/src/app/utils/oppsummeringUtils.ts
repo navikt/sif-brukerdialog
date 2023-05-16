@@ -7,16 +7,12 @@ import {
     LovbestemtFerieApiData,
     SøknadApiData,
 } from '../types/søknadApiData/SøknadApiData';
-import { getValgteEndringer } from './endringTypeUtils';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
-import { ArbeiderIPeriodenSvar } from '../types/arbeiderIPeriodenSvar';
+import { getValgteEndringer } from './endringTypeUtils';
 
 interface ArbeidssituasjonMetadata {
     antallUkjentArbeidsforhold: number;
     erAnsatt?: boolean;
-    heltFravær?: boolean;
-    redusert?: boolean;
-    somVanlig?: boolean;
 }
 interface ArbeidstidMetadata {
     endretArbeidstid?: boolean;
@@ -44,20 +40,12 @@ const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetada
               endretArbeidstid: false,
           };
 };
+
 const getArbeidssituasjonMetadata = (søknadsdata: Søknadsdata): ArbeidssituasjonMetadata => {
     const ukjentArbeidsforhold = søknadsdata.arbeidssituasjon?.arbeidsforhold || [];
     return {
         antallUkjentArbeidsforhold: ukjentArbeidsforhold.length,
         erAnsatt: ukjentArbeidsforhold.some((a) => a.erAnsatt),
-        heltFravær: ukjentArbeidsforhold.some(
-            (a) => a.erAnsatt && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
-        ),
-        redusert: ukjentArbeidsforhold.some(
-            (a) => a.erAnsatt && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert
-        ),
-        somVanlig: ukjentArbeidsforhold.some(
-            (a) => a.erAnsatt && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig
-        ),
     };
 };
 const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtFerieMetadata | undefined => {

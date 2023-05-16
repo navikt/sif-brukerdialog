@@ -1,16 +1,9 @@
 import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import {
-    ArbeidssituasjonSøknadsdata,
-    ArbeidstidSøknadsdata,
-    Søknadsdata,
-} from '../../../types/søknadsdata/Søknadsdata';
-import { getFeriedagerMeta, harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
-import { EndringType } from '../../../types/EndringType';
-import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
-import { harUkjentArbeidsgiverMedRedusertJobb } from '../../../utils/ukjentArbeidsgiverUtils';
 
 const initialSøknadsdata: Søknadsdata = {
     id: undefined,
@@ -68,16 +61,10 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                 };
             case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON:
-                const arbeidstid = cleanupArbeidstidEtterArbeidssituasjon(
-                    state.hvaSkalEndres,
-                    state.søknadsdata,
-                    action.payload
-                );
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        arbeidstid,
                         arbeidssituasjon: {
                             ...action.payload,
                         },
@@ -157,36 +144,4 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
         }
     }
     return state;
-};
-
-export const cleanupArbeidstidEtterArbeidssituasjon = (
-    hvaSkalEndres: EndringType[],
-    { lovbestemtFerie, arbeidstid }: Søknadsdata,
-    arbeidssituasjon: ArbeidssituasjonSøknadsdata
-): ArbeidstidSøknadsdata | undefined => {
-    if (!arbeidstid) {
-        return undefined;
-    }
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
-        hvaSkalEndres,
-        harFjernetLovbestemtFerie(lovbestemtFerie),
-        harUkjentArbeidsgiverMedRedusertJobb(arbeidssituasjon.arbeidsforhold)
-    );
-    /** Bruker skal kun endre ferie, kombinerer ikke jobb med pleiepenger og har ikke fjernet ferie */
-    const arbeidAktivitetEndring = { ...arbeidstid.arbeidAktivitet };
-    if (lovbestemtFerieSkalEndres && arbeidstidSkalEndres === false) {
-        arbeidssituasjon.arbeidsforhold.forEach((a) => {
-            if (arbeidAktivitetEndring[a.arbeidsgiverKey]) {
-                delete arbeidAktivitetEndring[a.arbeidsgiverKey];
-            }
-        });
-        if (Object.keys(arbeidAktivitetEndring).length === 0) {
-            return undefined;
-        }
-        return {
-            ...arbeidstid,
-            arbeidAktivitet: arbeidAktivitetEndring,
-        };
-    }
-    return arbeidstid;
 };

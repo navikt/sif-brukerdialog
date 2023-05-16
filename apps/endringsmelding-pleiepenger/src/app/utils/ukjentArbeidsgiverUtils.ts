@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-utils';
 import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils/lib';
 import { ArbeiderIPeriodenSvar } from '../types/arbeiderIPeriodenSvar';
-import { Arbeidsforhold, ArbeidsforholdAktivt } from '../types/Arbeidsforhold';
+import { ArbeidsforholdAktivt } from '../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../types/Arbeidsgiver';
 import {
     ArbeidAktivitet,
@@ -72,14 +72,16 @@ export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
 };
 
 export const getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver = (
-    arbeidsforhold: ArbeidsforholdAktivt
+    arbeidsforhold: ArbeidsforholdAktivt,
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar
 ): Duration | undefined => {
-    switch (arbeidsforhold.arbeiderIPerioden) {
+    switch (arbeiderIPerioden) {
         case ArbeiderIPeriodenSvar.heltFravær:
             return { hours: '0', minutes: '0' };
         case ArbeiderIPeriodenSvar.somVanlig:
             return { ...arbeidsforhold.normalarbeidstid.timerPerUke };
         case ArbeiderIPeriodenSvar.redusert:
+        default:
             return undefined;
     }
 };
@@ -87,9 +89,10 @@ export const getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver = (
 export const getArbeidAktivitetForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],
     arbeidsgiver: Arbeidsgiver,
-    arbeidsforhold: ArbeidsforholdAktivt
+    arbeidsforhold: ArbeidsforholdAktivt,
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar
 ): ArbeidAktivitet => {
-    const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver(arbeidsforhold);
+    const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver(arbeidsforhold, arbeiderIPerioden);
 
     const aktivitet: ArbeidAktivitet = {
         key: arbeidsgiver.key,
@@ -123,8 +126,4 @@ export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
         aktiviteter.push(getArbeidAktivitetForUkjentArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold));
     });
     return aktiviteter;
-};
-
-export const harUkjentArbeidsgiverMedRedusertJobb = (arbeidsforhold: Arbeidsforhold[] = []): boolean => {
-    return arbeidsforhold.some((a) => a.erAnsatt === true && a.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert);
 };

@@ -168,6 +168,7 @@ const ArbeidstidStep = () => {
 
                                     const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${arbeidAktivitet.key}`;
                                     const aktivitetFormValues = (values.arbeidAktivitet || {})[arbeidAktivitet.key];
+                                    const arbeiderIPeriodenSvar = aktivitetFormValues.arbeiderIPerioden;
 
                                     return (
                                         <Block key={arbeidAktivitet.key} margin="l" id={inputGroupName} tabIndex={-1}>
@@ -180,6 +181,7 @@ const ArbeidstidStep = () => {
                                                         søknadsdata.arbeidssituasjon?.arbeidsforhold.find(
                                                             (a) => a.arbeidsgiverKey === arbeidAktivitet.key
                                                         );
+
                                                     if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
                                                         return;
                                                     }
@@ -190,7 +192,7 @@ const ArbeidstidStep = () => {
                                                         return validateUkjentArbeidsaktivitetArbeidstid(
                                                             arbeidAktivitet,
                                                             endringer,
-                                                            arbeidsforhold.arbeiderIPerioden
+                                                            arbeiderIPeriodenSvar
                                                         );
                                                     }
                                                     return undefined;

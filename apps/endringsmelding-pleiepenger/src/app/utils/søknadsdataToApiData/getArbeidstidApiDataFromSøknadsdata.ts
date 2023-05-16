@@ -8,7 +8,7 @@ import {
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
-import { ArbeidsforholdAktivt } from '../../types/Arbeidsforhold';
+import { ArbeiderIPeriodenSvar } from '../../types/arbeiderIPeriodenSvar';
 import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {
@@ -30,7 +30,6 @@ import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getArbeidAktivitetForUkjentArbeidsgiver } from '../ukjentArbeidsgiverUtils';
-import { ArbeiderIPeriodenSvar } from '../../types/arbeiderIPeriodenSvar';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 
@@ -130,8 +129,9 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     /** Ukjente arbeidsgivere */
     if (arbeidssituasjon) {
         ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
+            const { arbeiderIPerioden } = arbeidAktivitetEndring[arbeidsgiver.key];
             const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find((a) => a.arbeidsgiverKey === arbeidsgiver.key);
-            if (!arbeidsforhold) {
+            if (!arbeidsforhold || !arbeiderIPerioden) {
                 throw 'Ukjent arbeidsgiver mangler informasjon om arbeidstid';
             }
             if (arbeidsforhold.erAnsatt === false) {
@@ -154,7 +154,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 const ukeEndring = endring[key];
 
                 const faktiskArbeidTimerPerDag = getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver(
-                    arbeidsforhold,
+                    arbeiderIPerioden,
                     arbeidsuke,
                     ukeEndring
                 );
@@ -206,11 +206,11 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 };
 
 export const getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver = (
-    arbeidsforhold: ArbeidsforholdAktivt,
+    arbeiderIPerioden: ArbeiderIPeriodenSvar,
     arbeidsuke: Pick<Arbeidsuke, 'normalt' | 'antallDagerMedArbeidstid'>,
     endring?: ArbeidstidEndring
 ): Duration => {
-    if (!endring && arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) {
+    if (!endring && arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) {
         throw 'Faktisk arbeidstid mangler for redusert arbeidsforhold';
     }
     if (endring) {
@@ -220,7 +220,7 @@ export const getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver = (
             arbeidsuke.antallDagerMedArbeidstid
         );
     }
-    return arbeidsforhold.arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
+    return arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
         ? {
               hours: '0',
               minutes: '0',

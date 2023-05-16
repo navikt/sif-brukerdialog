@@ -16,11 +16,9 @@ import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsat
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { ArbeiderIPeriodenSvarTekst } from '../../../types/arbeiderIPeriodenSvar';
 import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
 import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
-import { harUkjentArbeidsgiverMedRedusertJobb } from '../../../utils/ukjentArbeidsgiverUtils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -85,7 +83,7 @@ const OppsummeringStep = () => {
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        harUkjentArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
+        sak.harUkjentArbeidsgiver
     );
 
     const harIngenEndringer =
@@ -141,13 +139,6 @@ const OppsummeringStep = () => {
                                                     <DurationText
                                                         duration={arbeidsforhold.normalarbeidstid.timerPerUke}
                                                     />
-                                                </div>
-                                            </SummaryBlock>
-                                            <SummaryBlock
-                                                level="4"
-                                                header={`Hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn} i perioden med pleiepenger?`}>
-                                                <div data-testid={getTestKey('arbeiderIPerioden')}>
-                                                    {ArbeiderIPeriodenSvarTekst[arbeidsforhold.arbeiderIPerioden]}
                                                 </div>
                                             </SummaryBlock>
                                         </>

@@ -1,5 +1,4 @@
 import { Duration } from '@navikt/sif-common-utils/lib';
-import { ArbeiderIPeriodenSvar } from './arbeiderIPeriodenSvar';
 
 interface ArbeidsforholdBase {
     arbeidsgiverKey: string;
@@ -8,7 +7,6 @@ interface ArbeidsforholdBase {
 
 export type ArbeidsforholdAktivt = ArbeidsforholdBase & {
     erAnsatt: true;
-    arbeiderIPerioden: ArbeiderIPeriodenSvar;
     normalarbeidstid: {
         timerPerUke: Duration;
     };

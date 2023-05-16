@@ -3,7 +3,6 @@ import { EndringType } from '../../types/EndringType';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
 import { harFjernetLovbestemtFerie } from '../../utils/lovbestemtFerieUtils';
-import { harUkjentArbeidsgiverMedRedusertJobb } from '../../utils/ukjentArbeidsgiverUtils';
 import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
 
@@ -17,7 +16,7 @@ export const getSøknadSteps = (
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        harUkjentArbeidsgiverMedRedusertJobb(søknadsdata.arbeidssituasjon?.arbeidsforhold)
+        harUkjentArbeidsgiver
     );
 
     if (harUkjentArbeidsgiver) {

@@ -94,7 +94,7 @@ export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter
 export const validateUkjentArbeidsaktivitetArbeidstid = (
     arbeidAktivitet: ArbeidAktivitetArbeidstaker,
     endringer: ArbeidstidEndringMap = {},
-    arbeiderIPeriodenSvar: ArbeiderIPeriodenSvar
+    arbeiderIPeriodenSvar?: ArbeiderIPeriodenSvar
 ): IntlErrorObject | undefined => {
     const manglendePeriode: ISODateRange[] = [];
     arbeidAktivitet.perioderMedArbeidstid.forEach((periode) => {

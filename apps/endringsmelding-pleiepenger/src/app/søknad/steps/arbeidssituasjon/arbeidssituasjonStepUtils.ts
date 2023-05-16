@@ -12,7 +12,6 @@ const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold):
         ? {
               erAnsatt: YesOrNo.YES,
               timerPerUke: `${durationToDecimalDuration(arbeidsforhold.normalarbeidstid.timerPerUke)}`,
-              arbeiderIPerioden: arbeidsforhold.arbeiderIPerioden,
           }
         : {
               erAnsatt: YesOrNo.NO,
@@ -34,7 +33,6 @@ const arbeidsforholdFormValuesToSøknadsdata = (
         return {
             erAnsatt,
             arbeidsgiverKey: arbeidsgiver.key,
-            arbeiderIPerioden: formValues.arbeiderIPerioden,
             normalarbeidstid: {
                 timerPerUke: decimalDurationToDuration(timerPerUke),
             },
