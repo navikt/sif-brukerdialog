@@ -39,7 +39,7 @@ const Arbeidsaktivitet = ({
         });
 
     return (
-        <div data-testid={`aktivitet_${arbeidAktivitet.id}`}>
+        <div data-testid={`aktivitet_${arbeidAktivitet.key}`}>
             <ArbeidsaktivitetBlock
                 type={arbeidAktivitet.type}
                 navn={arbeidAktivitet.navn}

@@ -9,7 +9,9 @@ export const getArbeidsgivereIK9Sak = (arbeidsgivere: Arbeidsgiver[], sak: K9Sak
         return [];
     }
     return arbeidsgivere.filter((arbeidsgiver) => {
-        return arbeidstakerList.some(({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.id);
+        return arbeidstakerList.some(
+            ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+        );
     });
 };
 

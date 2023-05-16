@@ -13,7 +13,7 @@ type Props = {
 
 const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbeidstidKolonneTittel }: Props) => {
     const { organisasjonsnummer, arbeidstidInfo } = arbeidstaker;
-    const arbeidsgiver = arbeidsgivere.find((a) => a.id === organisasjonsnummer);
+    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
     if (!arbeidsgiver) {
         return null;
     }

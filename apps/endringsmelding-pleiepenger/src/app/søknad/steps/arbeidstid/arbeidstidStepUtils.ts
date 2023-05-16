@@ -11,8 +11,6 @@ const arbeidstidInitialFormValues: ArbeidstidFormValues = {
     arbeidAktivitet: {},
 };
 
-export const getArbeidstidFormAktivitetKey = (aktivitetId: string): string => `a_${aktivitetId}`;
-
 export const getArbeidstidStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues?: ArbeidstidFormValues

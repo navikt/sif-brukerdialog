@@ -2,7 +2,7 @@ import { Duration } from '@navikt/sif-common-utils/lib';
 import { ArbeiderIPeriodenSvar } from '../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 
 interface ArbeidsforholdBase {
-    arbeidsgiverId: string;
+    arbeidsgiverKey: string;
     erAnsatt: boolean;
 }
 

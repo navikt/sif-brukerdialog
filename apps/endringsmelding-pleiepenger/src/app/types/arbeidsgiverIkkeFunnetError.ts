@@ -3,12 +3,6 @@ import { isObjectLike } from 'lodash';
 export type ArbeidsgiverIkkeFunnetError = {
     type: 'ArbeidsgiverIkkeFunnet';
     message: 'getArbeidAktivitetArbeidstaker - arbeidsgiver ikke funnet';
-    arbeidstaker: {
-        harOrganisasjonsnummer: boolean;
-        maskedOrganisasjonsnummer?: string;
-        harNorskIdentitetsnummer: boolean;
-        maskedIdentitetsnummer?: string;
-    };
     maskedArbeidsgivere?: Array<string | undefined>;
 };
 

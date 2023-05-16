@@ -119,25 +119,24 @@ const harArbeidsaktivitetUtenArbeidsgiver = (
     arbeidsaktiviteter: K9SakArbeidstaker[] = [],
     arbeidsgivere: Arbeidsgiver[]
 ) => {
-    return arbeidsaktiviteter
-        .map(getArbeidsaktivitetId)
-        .some((id) => arbeidsgivere.some((aISak) => aISak.id === id) === false);
+    return arbeidsaktiviteter.some(
+        ({ organisasjonsnummer }) =>
+            arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === organisasjonsnummer) === false
+    );
 };
 
 export const finnesArbeidsgiverIK9Sak = (
     arbeidsgiver: Arbeidsgiver,
     arbeidsgivereISak: K9SakArbeidstaker[]
 ): boolean => {
-    return arbeidsgivereISak.map(getArbeidsaktivitetId).some((id) => id === arbeidsgiver.id);
+    return arbeidsgivereISak.some(
+        ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+    );
 };
 
 const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
     const { selvstendigNæringsdrivendeArbeidstidInfo: sn } = sak.ytelse.arbeidstid;
     return sn !== undefined && sn.perioder && Object.keys(sn.perioder).length > 0;
-};
-
-const getArbeidsaktivitetId = (arbeidsaktivitet: K9SakArbeidstaker): string => {
-    return arbeidsaktivitet.norskIdentitetsnummer || arbeidsaktivitet.organisasjonsnummer;
 };
 
 const harSøknadsperiodeInnenforTillattEndringsperiode = (

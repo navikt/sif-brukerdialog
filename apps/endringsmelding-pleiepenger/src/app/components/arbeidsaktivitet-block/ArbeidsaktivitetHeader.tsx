@@ -3,7 +3,7 @@ import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
+import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { ArbeidAktivitetType } from '../../types/Sak';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
@@ -38,9 +38,7 @@ const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
                     </Heading>
                     {type === ArbeidAktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
                         <BodyLong>
-                            {arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON
-                                ? `Organisasjonsnummer: ${arbeidsgiver.id}`
-                                : 'Privatperson'}
+                            Organisasjonsnummer: {arbeidsgiver.organisasjonsnummer}
                             <br />
                             {arbeidsgiver.ansattFom && <>Ansatt: {dateFormatter.full(arbeidsgiver.ansattFom)}.</>}
                             {arbeidsgiver.ansattTom && <> Sluttdato: {dateFormatter.full(arbeidsgiver.ansattTom)}</>}

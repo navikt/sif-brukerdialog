@@ -14,7 +14,6 @@ export type ArbeidstidPeriodeApiData = {
 export type ArbeidstidPeriodeApiDataMap = ISODateRangeMap<ArbeidstidPeriodeApiData>;
 
 export interface ArbeidstakerApiData {
-    norskIdentitetsnummer?: string;
     organisasjonsnummer: string;
     arbeidstidInfo: {
         perioder: ArbeidstidPeriodeApiDataMap;

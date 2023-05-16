@@ -10,7 +10,7 @@ import {
 import { ArbeiderIPeriodenSvar } from '../../søknad/steps/arbeidssituasjon/components/ArbeidsforholdForm';
 import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidsforholdAktivt } from '../../types/Arbeidsforhold';
-import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
+import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {
     ArbeidAktivitet,
@@ -110,17 +110,16 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
     /** Eksisterende arbeidsaktiviteter */
     arbeidAktiviteter.arbeidstakerAktiviteter.forEach((aktivitet) => {
-        const endringer = arbeidAktivitetEndring[aktivitet.id]?.endringer;
+        const endringer = arbeidAktivitetEndring[aktivitet.key]?.endringer;
 
         if (endringer) {
             const {
-                arbeidsgiver: { type, id: organisasjonsnummer },
+                arbeidsgiver: { organisasjonsnummer },
             } = aktivitet;
             const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(aktivitet, endringer);
             if (arbeidstidInfo) {
                 arbeidstakerList.push({
                     organisasjonsnummer,
-                    norskIdentitetsnummer: type === ArbeidsgiverType.PRIVATPERSON ? organisasjonsnummer : undefined,
                     arbeidstidInfo,
                     _erUkjentArbeidsaktivitet: false,
                 });
@@ -131,10 +130,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     /** Ukjente arbeidsgivere */
     if (arbeidssituasjon) {
         ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
-            const { type, id: organisasjonsnummer } = arbeidsgiver;
-            const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find(
-                (a) => a.arbeidsgiverId === organisasjonsnummer
-            );
+            const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find((a) => a.arbeidsgiverKey === arbeidsgiver.key);
             if (!arbeidsforhold) {
                 throw 'Ukjent arbeidsgiver mangler informasjon om arbeidstid';
             }
@@ -148,7 +144,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 arbeidsforhold
             );
 
-            const endring = arbeidAktivitetEndring[organisasjonsnummer] || {};
+            const endring = arbeidAktivitetEndring[arbeidsgiver.key] || {};
             const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);
             const arbeidstidInfo: ArbeidstidInfo = {
                 perioder: {},
@@ -190,8 +186,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             arbeidstakerList.push({
                 _erUkjentArbeidsaktivitet: true,
                 arbeidstidInfo,
-                organisasjonsnummer,
-                norskIdentitetsnummer: type === ArbeidsgiverType.PRIVATPERSON ? organisasjonsnummer : undefined,
+                organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
             });
         });
     }

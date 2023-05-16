@@ -108,15 +108,15 @@ const OppsummeringStep = () => {
                     <SummarySection header="Ukjent arbeidsforhold">
                         {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjentArbeidsforhold.find(
-                                (a) => a.arbeidsgiverId === arbeidsgiver.id
+                                (a) => a.arbeidsgiverKey === arbeidsgiver.key
                             );
 
                             if (!arbeidsforhold) {
                                 return;
                             }
-                            const getTestKey = (key: string) => `ukjentArbeidsgiver_${arbeidsgiver.id}_${key}`;
+                            const getTestKey = (key: string) => `ukjentArbeidsgiver_${arbeidsgiver.key}_${key}`;
                             return (
-                                <div key={arbeidsgiver.id}>
+                                <div key={arbeidsgiver.key}>
                                     <Heading level="3" size="medium">
                                         {arbeidsgiver.navn}
                                     </Heading>

@@ -92,10 +92,10 @@ export const getArbeidAktivitetForUkjentArbeidsgiver = (
     const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver(arbeidsforhold);
 
     const aktivitet: ArbeidAktivitet = {
+        key: arbeidsgiver.key,
         type: ArbeidAktivitetType.arbeidstaker,
         arbeidsgiver,
         erUkjentArbeidsaktivitet: true,
-        id: arbeidsgiver.id,
         navn: arbeidsgiver.navn,
         harPerioderEtterTillattEndringsperiode: false,
         harPerioderFørTillattEndringsperiode: false,
@@ -116,7 +116,7 @@ export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
 ): ArbeidAktivitet[] => {
     const aktiviteter: ArbeidAktivitet[] = [];
     ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
-        const arbeidsforhold = arbeidssituasjon?.arbeidsforhold.find((s) => s.arbeidsgiverId === arbeidsgiver.id);
+        const arbeidsforhold = arbeidssituasjon?.arbeidsforhold.find((s) => s.arbeidsgiverKey === arbeidsgiver.key);
         if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
             throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
         }

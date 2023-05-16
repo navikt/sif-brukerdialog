@@ -17,7 +17,6 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import {
-    getArbeidsforholdFormFieldKey,
     getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
 } from './arbeidssituasjonStepUtils';
@@ -107,13 +106,12 @@ const ArbeidssituasjonStep = () => {
                                     runDelayedFormValidation={true}
                                     onBack={goBack}>
                                     {sak.ukjenteArbeidsgivere.map((a) => {
-                                        const arbeidsgiverFieldKey = getArbeidsforholdFormFieldKey(a.id);
-                                        const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${arbeidsgiverFieldKey}`;
+                                        const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${a.key}`;
                                         return (
-                                            <div key={a.id} data-testid={`ukjentArbeidsgiver_${a.id}`}>
+                                            <div key={a.key} data-testid={`ukjentArbeidsgiver_${a.key}`}>
                                                 <ArbeidsforholdForm
                                                     arbeidsgiver={a}
-                                                    values={(values.arbeidsforhold || {})[arbeidsgiverFieldKey]}
+                                                    values={(values.arbeidsforhold || {})[a.key]}
                                                     parentFieldName={fieldName}
                                                 />
                                             </div>

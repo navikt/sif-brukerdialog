@@ -176,8 +176,8 @@ export const cleanupArbeidstidEtterArbeidssituasjon = (
     const arbeidAktivitetEndring = { ...arbeidstid.arbeidAktivitet };
     if (lovbestemtFerieSkalEndres && arbeidstidSkalEndres === false) {
         arbeidssituasjon.arbeidsforhold.forEach((a) => {
-            if (arbeidAktivitetEndring[a.arbeidsgiverId]) {
-                delete arbeidAktivitetEndring[a.arbeidsgiverId];
+            if (arbeidAktivitetEndring[a.arbeidsgiverKey]) {
+                delete arbeidAktivitetEndring[a.arbeidsgiverKey];
             }
         });
         if (Object.keys(arbeidAktivitetEndring).length === 0) {

@@ -35,7 +35,7 @@ export const maskK9Sak = (sak: K9Sak) => {
 const maskSak = (sak: Sak) => {
     return {
         arbeidsaktiviteter: sak.utledet.aktiviteterSomKanEndres.map((aktivitet) => ({
-            id: maskString(aktivitet.id),
+            id: maskString(aktivitet.key),
             perioderMedArbeidstid: aktivitet.perioderMedArbeidstid,
         })),
     };
@@ -45,7 +45,7 @@ const maskArbeidsgivere = (arbeidsgivere: Arbeidsgiver[]) => {
     return arbeidsgivere.map((a) => ({
         ansattFom: a.ansattFom,
         ansattTom: a.ansattTom,
-        a: maskString(a.id),
+        a: maskString(a.key),
     }));
 };
 

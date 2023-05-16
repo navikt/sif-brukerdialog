@@ -44,7 +44,7 @@ export interface PeriodeMedArbeidstid extends DateRange {
 }
 
 interface ArbeidAktivitetBase {
-    id: string;
+    key: string;
     type: ArbeidAktivitetType;
     navn: string;
     perioderMedArbeidstid: PeriodeMedArbeidstid[];

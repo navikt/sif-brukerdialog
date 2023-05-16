@@ -377,27 +377,19 @@ const getArbeidAktivitetArbeidstaker = (
     const {
         arbeidstidInfo: { perioder },
         organisasjonsnummer,
-        norskIdentitetsnummer,
     } = arbeidstaker;
-    const id = norskIdentitetsnummer || organisasjonsnummer;
-    const arbeidsgiver = arbeidsgivere.find((a) => a.id === id);
+    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
     if (!arbeidsgiver) {
         const error: ArbeidsgiverIkkeFunnetError = {
             type: 'ArbeidsgiverIkkeFunnet',
             message: 'getArbeidAktivitetArbeidstaker - arbeidsgiver ikke funnet',
-            arbeidstaker: {
-                harOrganisasjonsnummer: organisasjonsnummer !== undefined,
-                maskedOrganisasjonsnummer: maskString(organisasjonsnummer),
-                harNorskIdentitetsnummer: norskIdentitetsnummer !== undefined,
-                maskedIdentitetsnummer: maskString(norskIdentitetsnummer),
-            },
-            maskedArbeidsgivere: arbeidsgivere.map((a) => maskString(a.id)),
+            maskedArbeidsgivere: arbeidsgivere.map((a) => maskString(a.key)),
         };
         throw error;
     }
     const endringsperiodeForArbeidsgiver = getEndringsperiodeForArbeidsgiver(endringsperiode, arbeidsgiver);
     return {
-        id: `id_${arbeidsgiver.id}`,
+        key: arbeidsgiver.key,
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
         navn: arbeidsgiver.navn,
@@ -418,7 +410,7 @@ const getArbeidAktivitetFrilanser = (
 ): ArbeidAktivitetFrilanser | undefined => {
     return frilanserArbeidstidInfo !== undefined
         ? {
-              id: ArbeidAktivitetType.frilanser,
+              key: ArbeidAktivitetType.frilanser,
               type: ArbeidAktivitetType.frilanser,
               navn: 'Frilanser',
               ...getArbeidAktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode),
@@ -438,7 +430,7 @@ const getArbeidAktivitetSelvstendigNæringsdrivende = (
 ): ArbeidAktivitetSelvstendigNæringsdrivende | undefined => {
     return selvstendigNæringsdrivendeArbeidstidInfo
         ? {
-              id: ArbeidAktivitetType.selvstendigNæringsdrivende,
+              key: ArbeidAktivitetType.selvstendigNæringsdrivende,
               type: ArbeidAktivitetType.selvstendigNæringsdrivende,
               navn: 'Selvstendig næringsdrivende',
               ...getArbeidAktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode),

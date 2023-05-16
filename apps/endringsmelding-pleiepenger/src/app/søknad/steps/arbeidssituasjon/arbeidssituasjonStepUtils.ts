@@ -33,7 +33,7 @@ const arbeidsforholdFormValuesToSøknadsdata = (
     if (erAnsatt && timerPerUke !== undefined && formValues.arbeiderIPerioden !== undefined) {
         return {
             erAnsatt,
-            arbeidsgiverId: arbeidsgiver.id,
+            arbeidsgiverKey: arbeidsgiver.key,
             arbeiderIPerioden: formValues.arbeiderIPerioden,
             normalarbeidstid: {
                 timerPerUke: decimalDurationToDuration(timerPerUke),
@@ -43,14 +43,11 @@ const arbeidsforholdFormValuesToSøknadsdata = (
     if (!erAnsatt) {
         return {
             erAnsatt,
-            arbeidsgiverId: arbeidsgiver.id,
+            arbeidsgiverKey: arbeidsgiver.key,
         };
     }
     return undefined;
 };
-
-export const getArbeidsforholdFormFieldKey = (id: string) => `a_${id}`;
-export const getArbeidsgiverIdFromFormFieldKey = (id: string) => id.replace('a_', '');
 
 export const getArbeidssituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -63,14 +60,14 @@ export const getArbeidssituasjonStepInitialValues = (
     const arbeidsforhold: UkjentArbeidsforholdMap = {};
     if (søknadsdata.arbeidssituasjon === undefined) {
         ukjenteArbeidsgivere.forEach((a) => {
-            arbeidsforhold[getArbeidsforholdFormFieldKey(a.id)] = {
+            arbeidsforhold[a.key] = {
                 erAnsatt: YesOrNo.UNANSWERED,
                 timerPerUke: '',
             };
         });
     } else {
         (søknadsdata.arbeidssituasjon.arbeidsforhold || []).forEach((a) => {
-            arbeidsforhold[getArbeidsforholdFormFieldKey(a.arbeidsgiverId)] = arbeidsforholdSøknadsdataToFormValues(a);
+            arbeidsforhold[a.arbeidsgiverKey] = arbeidsforholdSøknadsdataToFormValues(a);
         });
     }
     return {
@@ -84,8 +81,7 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
 ): ArbeidssituasjonSøknadsdata => {
     const arbeidsforhold: Arbeidsforhold[] = [];
     Object.keys(values.arbeidsforhold).forEach((key) => {
-        const arbeidsgiverId = getArbeidsgiverIdFromFormFieldKey(key);
-        const arbeidsgiver = arbeidsgivere.find((a) => a.id === arbeidsgiverId);
+        const arbeidsgiver = arbeidsgivere.find((a) => a.key === key);
         const data = arbeidsforholdFormValuesToSøknadsdata(values.arbeidsforhold[key], arbeidsgiver);
         if (data) {
             arbeidsforhold.push(data);

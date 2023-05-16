@@ -25,7 +25,6 @@ import SøknadStep from '../../SøknadStep';
 import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import {
     getAktiviteterSomSkalEndres,
-    getArbeidstidFormAktivitetKey,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
     validateUkjentArbeidsaktivitetArbeidstid,
@@ -94,12 +93,11 @@ const ArbeidstidStep = () => {
     ];
 
     const onArbeidstidAktivitetChange = (
-        arbeidAktivitetId: string,
+        arbeidAktivitetKey: string,
         arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
-        const arbeidAktivitetKey = getArbeidstidFormAktivitetKey(arbeidAktivitetId);
         const currentAktivitetValues = (values.arbeidAktivitet || {})[arbeidAktivitetKey];
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitet: {
@@ -165,17 +163,14 @@ const ArbeidstidStep = () => {
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
-                                    const inputGroupName = `arbeidsgiver_${arbeidAktivitet.id}` as any;
-                                    const aktivitetKey = getArbeidstidFormAktivitetKey(arbeidAktivitet.id);
-                                    const endringer = aktiviteter[aktivitetKey]?.endringer;
+                                    const inputGroupName = `arbeidsgiver_${arbeidAktivitet.key}` as any;
+                                    const endringer = aktiviteter[arbeidAktivitet.key]?.endringer;
 
-                                    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${aktivitetKey}`;
-                                    const aktivitetFormValues = (values.arbeidAktivitet || {})[
-                                        `a_${arbeidAktivitet.id}`
-                                    ];
+                                    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${arbeidAktivitet.key}`;
+                                    const aktivitetFormValues = (values.arbeidAktivitet || {})[arbeidAktivitet.key];
 
                                     return (
-                                        <Block key={arbeidAktivitet.id} margin="l" id={inputGroupName} tabIndex={-1}>
+                                        <Block key={arbeidAktivitet.key} margin="l" id={inputGroupName} tabIndex={-1}>
                                             <InputGroup
                                                 legend={arbeidAktivitet.navn}
                                                 hideLegend={true}
@@ -183,7 +178,7 @@ const ArbeidstidStep = () => {
                                                 validate={() => {
                                                     const arbeidsforhold =
                                                         søknadsdata.arbeidssituasjon?.arbeidsforhold.find(
-                                                            (a) => a.arbeidsgiverId === arbeidAktivitet.id
+                                                            (a) => a.arbeidsgiverKey === arbeidAktivitet.key
                                                         );
                                                     if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
                                                         return;
@@ -214,7 +209,7 @@ const ArbeidstidStep = () => {
                                                     lovbestemtFerie={søknadsdata.lovbestemtFerie}
                                                     onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
                                                         onArbeidstidAktivitetChange(
-                                                            arbeidAktivitet.id,
+                                                            arbeidAktivitet.key,
                                                             arbeidstidEndringer,
                                                             values,
                                                             setValues

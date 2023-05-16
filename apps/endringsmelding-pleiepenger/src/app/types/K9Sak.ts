@@ -13,7 +13,6 @@ export interface K9SakArbeidstidInfo {
 }
 
 export type K9SakArbeidstaker = {
-    norskIdentitetsnummer?: string;
     organisasjonsnummer: string;
     arbeidstidInfo: K9SakArbeidstidInfo;
 };
