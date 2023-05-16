@@ -16,9 +16,11 @@ export const ArbeiderIPeriodenSvarTekst = {
 };
 
 const ArbeiderIPeriodenFormPart: React.FunctionComponent<Props> = ({ parentFieldName, arbeidAktivitet }) => {
+    const fieldName = `${parentFieldName}.arbeiderIPerioden`;
+
     return (
         <FormikRadioGroup
-            name={`${parentFieldName}.arbeiderIPerioden`}
+            name={fieldName}
             legend={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidAktivitet.arbeidsgiver.navn}?`}
             validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidAktivitet.arbeidsgiver.navn)}
             radios={[

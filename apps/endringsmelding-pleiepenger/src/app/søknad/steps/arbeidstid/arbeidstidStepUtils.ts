@@ -2,7 +2,7 @@ import { IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
 import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, ArbeidAktivitetArbeidstaker, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
-import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { ArbeidAktivitetEndringMap, ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
 import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import { ArbeidstidFormValues } from './ArbeidstidStep';
@@ -10,6 +10,8 @@ import { ArbeidstidFormValues } from './ArbeidstidStep';
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
     arbeidAktivitet: {},
 };
+
+export const getArbeidstidFormAktivitetKey = (aktivitetId: string): string => `a_${aktivitetId}`;
 
 export const getArbeidstidStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -27,7 +29,23 @@ export const getArbeidstidStepInitialValues = (
 };
 
 export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormValues): ArbeidstidSøknadsdata => {
-    return { arbeidAktivitet: values.arbeidAktivitet };
+    const arbeidAktivitet: ArbeidAktivitetEndringMap = {};
+    Object.keys(values.arbeidAktivitet).forEach((key) => {
+        const aktivitet = values.arbeidAktivitet[key];
+        if (
+            aktivitet.arbeiderIPerioden === undefined ||
+            aktivitet.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert
+        ) {
+            arbeidAktivitet[key] = values.arbeidAktivitet[key];
+        } else {
+            /** Ukjent arbeidsforhold hvor en ikke kombinerer */
+            arbeidAktivitet[key] = {
+                endringer: {},
+                arbeiderIPerioden: aktivitet.arbeiderIPerioden,
+            };
+        }
+    });
+    return { arbeidAktivitet };
 };
 
 export const cleanupArbeidAktivitetEndringer = (
@@ -99,11 +117,3 @@ export const validateUkjentArbeidsaktivitetArbeidstid = (
           }
         : undefined;
 };
-
-// export const getUkjentArbeidsgiverArbeidssituasjon = (
-//     arbeidsgiverId: string,
-//     arbeidssituasjon: ArbeidssituasjonSøknadsdata
-// ): ArbeiderIPeriodenSvar | undefined => {
-//     const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find((a) => a.arbeidsgiverId === arbeidsgiverId);
-//     return arbeidsforhold?.erAnsatt ? arbeidsforhold.arbeiderIPerioden : undefined;
-// };

@@ -3,7 +3,7 @@ import { ArbeidstidEndringMap } from '../ArbeidstidEndring';
 
 export interface ArbeidAktivitetEndringMap {
     [aktivitetId: string]: {
-        jobberIPerioden?: ArbeiderIPeriodenSvar;
+        arbeiderIPerioden?: ArbeiderIPeriodenSvar;
         endringer: ArbeidstidEndringMap;
     };
 }

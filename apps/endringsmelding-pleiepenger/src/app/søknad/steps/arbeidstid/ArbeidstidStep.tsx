@@ -25,6 +25,7 @@ import SøknadStep from '../../SøknadStep';
 import { ArbeiderIPeriodenSvar } from '../arbeidssituasjon/components/ArbeidsforholdForm';
 import {
     getAktiviteterSomSkalEndres,
+    getArbeidstidFormAktivitetKey,
     getArbeidstidStepInitialValues,
     getArbeidstidSøknadsdataFromFormValues,
     validateUkjentArbeidsaktivitetArbeidstid,
@@ -96,15 +97,16 @@ const ArbeidstidStep = () => {
         arbeidAktivitetId: string,
         arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
-        setValues: (values: ArbeidstidFormValues) => void,
-        arbeiderIPerioden?: ArbeiderIPeriodenSvar
+        setValues: (values: ArbeidstidFormValues) => void
     ) => {
+        const arbeidAktivitetKey = getArbeidstidFormAktivitetKey(arbeidAktivitetId);
+        const currentAktivitetValues = (values.arbeidAktivitet || {})[arbeidAktivitetKey];
         const newValues: ArbeidstidFormValues = {
             arbeidAktivitet: {
                 ...values.arbeidAktivitet,
-                [arbeidAktivitetId]: {
+                [arbeidAktivitetKey]: {
+                    ...currentAktivitetValues,
                     endringer: arbeidstidEndringMap,
-                    arbeiderIPerioden,
                 },
             },
         };
@@ -164,9 +166,10 @@ const ArbeidstidStep = () => {
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
                                     const inputGroupName = `arbeidsgiver_${arbeidAktivitet.id}` as any;
-                                    const endringer = aktiviteter[arbeidAktivitet.id]?.endringer;
+                                    const aktivitetKey = getArbeidstidFormAktivitetKey(arbeidAktivitet.id);
+                                    const endringer = aktiviteter[aktivitetKey]?.endringer;
 
-                                    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.a_${arbeidAktivitet.id}`;
+                                    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${aktivitetKey}`;
                                     const aktivitetFormValues = (values.arbeidAktivitet || {})[
                                         `a_${arbeidAktivitet.id}`
                                     ];
