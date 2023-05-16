@@ -34,11 +34,8 @@
                 },
                 "lovbestemtFerie": {
                     "perioder": {
-                        "2023-01-01/2023-01-10": {
-                            "skalHaFerie": true
-                        },
                         "2023-01-12/2023-01-15": {
-                            "skalHaFerie": false
+                            "skalHaFerie": true
                         }
                     }
                 },

@@ -1,0 +1,13 @@
+.arbeidsaktivitetContent {
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        &__title {
+            display: inline-block;
+            padding-right: 1rem;
+        }
+        @media (max-width: 640px) {
+            display: block;
+        }
+    }
+}

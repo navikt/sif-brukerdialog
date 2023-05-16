@@ -6,21 +6,22 @@ import {
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
+import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
+import EndretTag from '../../../components/tags/EndretTag';
+import FerieTag from '../../../components/tags/FerieTag';
+import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
+import EndreArbeidstidModal from '../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { cleanupArbeidAktivitetEndringer } from '../../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitet, Arbeidsuke, PeriodeMedArbeidstid } from '../../../types/Sak';
 import { LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getEndringsdato, getTillattEndringsperiode } from '../../../utils/endringsperiode';
+import { harFjernetFerieIPeriode } from '../../../utils/ferieUtils';
 import ArbeidstidUkeTabell, { ArbeidstidUkeTabellItem } from '../../arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import EndreArbeidstidForm from '../../endre-arbeidstid-form/EndreArbeidstidForm';
-import EndreArbeidstidModal from '../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
-import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
-import EndretTag from '../../../components/tags/EndretTag';
-import FerieTag from '../../../components/tags/FerieTag';
-import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 import ArbeidAktivitetUtenforPeriodeInfo from './ArbeidAktivitetUtenforPeriodeInfo';
-import { harFjernetFerieIPeriode } from '../../../utils/ferieUtils';
+import './arbeidsaktivitetContent.scss';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -101,8 +102,8 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     : false;
 
                             return (
-                                <div className="arbeidsaktivitetHeader">
-                                    <div className="arbeidsaktivitetHeader__title">
+                                <div className="arbeidsaktivitetContent__header">
+                                    <div className="arbeidsaktivitetContent__header__title">
                                         {dateFormatter.full(periode.from)} - {dateFormatter.full(periode.to)}
                                     </div>
                                     <TagsContainer>
