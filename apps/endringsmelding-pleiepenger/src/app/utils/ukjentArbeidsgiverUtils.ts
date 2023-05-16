@@ -122,8 +122,11 @@ export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
     const aktiviteter: ArbeidAktivitet[] = [];
     ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
         const arbeidsforhold = arbeidssituasjon?.arbeidsforhold.find((s) => s.arbeidsgiverKey === arbeidsgiver.key);
-        if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
+        if (!arbeidsforhold) {
             throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
+        }
+        if (arbeidsforhold.erAnsatt === false) {
+            return;
         }
         const arbeiderIPerioden = arbeidAktivitetFormValues[arbeidsgiver.key]?.arbeiderIPerioden;
         aktiviteter.push(

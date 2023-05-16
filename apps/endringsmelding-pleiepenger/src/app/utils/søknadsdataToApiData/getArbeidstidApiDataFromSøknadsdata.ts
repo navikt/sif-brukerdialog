@@ -129,7 +129,11 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     /** Ukjente arbeidsgivere */
     if (arbeidssituasjon) {
         ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
-            const { arbeiderIPerioden } = arbeidAktivitetEndring[arbeidsgiver.key];
+            const endring = arbeidAktivitetEndring[arbeidsgiver.key];
+            if (!endring) {
+                return;
+            }
+            const { arbeiderIPerioden } = endring;
             const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find((a) => a.arbeidsgiverKey === arbeidsgiver.key);
             if (!arbeidsforhold || !arbeiderIPerioden) {
                 throw 'Ukjent arbeidsgiver mangler informasjon om arbeidstid';
@@ -144,7 +148,6 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 arbeidsforhold
             );
 
-            const endring = arbeidAktivitetEndring[arbeidsgiver.key] || {};
             const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);
             const arbeidstidInfo: ArbeidstidInfo = {
                 perioder: {},
