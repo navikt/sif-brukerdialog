@@ -79,12 +79,10 @@ export const getArbeidsukerIArbeidAktivitet = (arbeidAktvitet: ArbeidAktivitet):
 
 export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter): ArbeidAktivitet[] => {
     const { arbeidstakerAktiviteter, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
-
     const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerAktiviteter];
     if (frilanser !== undefined) {
         aktiviteter.push({ ...frilanser });
     }
-
     if (selvstendigNæringsdrivende !== undefined) {
         aktiviteter.push({ ...selvstendigNæringsdrivende });
     }

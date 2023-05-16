@@ -151,7 +151,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             };
             Object.keys(arbeidsuker).forEach((key) => {
                 const arbeidsuke = arbeidsuker[key];
-                const ukeEndring = endring[key];
+                const ukeEndring = endring.endringer[key];
 
                 const faktiskArbeidTimerPerDag = getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver(
                     arbeiderIPerioden,

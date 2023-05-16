@@ -30,10 +30,12 @@ import {
     validateUkjentArbeidsaktivitetArbeidstid,
 } from './arbeidstidStepUtils';
 
+export type ArbeidAktivitetFormValuesMap = {
+    [aktivitetId: string]: ArbeidsaktivitetFormValues;
+};
+
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitet]: {
-        [aktivitetId: string]: ArbeidsaktivitetFormValues;
-    };
+    [ArbeidstidFormFields.arbeidAktivitet]: ArbeidAktivitetFormValuesMap;
 }
 export interface ArbeidsaktivitetFormValues {
     endringer: ArbeidstidEndringMap;
@@ -83,15 +85,6 @@ const ArbeidstidStep = () => {
         }
     );
 
-    const arbeidAktiviteter = [
-        ...getArbeidAktiviteterForUkjenteArbeidsgivere(
-            sak.søknadsperioder,
-            sak.ukjenteArbeidsgivere,
-            søknadsdata.arbeidssituasjon
-        ),
-        ...getAktiviteterSomSkalEndres(sak.arbeidAktiviteter),
-    ];
-
     const onArbeidstidAktivitetChange = (
         arbeidAktivitetKey: string,
         arbeidstidEndringMap: ArbeidstidEndringMap,
@@ -103,7 +96,7 @@ const ArbeidstidStep = () => {
             arbeidAktivitet: {
                 ...values.arbeidAktivitet,
                 [arbeidAktivitetKey]: {
-                    ...currentAktivitetValues,
+                    arbeiderIPerioden: currentAktivitetValues.arbeiderIPerioden,
                     endringer: arbeidstidEndringMap,
                 },
             },
@@ -152,7 +145,16 @@ const ArbeidstidStep = () => {
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
                 onSubmit={handleSubmit}
                 renderForm={({ setValues, values }) => {
-                    const aktiviteter = values.arbeidAktivitet || {};
+                    const aktiviteterValuesMap = values.arbeidAktivitet || {};
+                    const arbeidAktiviteter = [
+                        ...getArbeidAktiviteterForUkjenteArbeidsgivere(
+                            sak.søknadsperioder,
+                            sak.ukjenteArbeidsgivere,
+                            aktiviteterValuesMap,
+                            søknadsdata.arbeidssituasjon
+                        ),
+                        ...getAktiviteterSomSkalEndres(sak.arbeidAktiviteter),
+                    ];
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -164,11 +166,11 @@ const ArbeidstidStep = () => {
                                 onBack={goBack}>
                                 {arbeidAktiviteter.map((arbeidAktivitet) => {
                                     const inputGroupName = `arbeidsgiver_${arbeidAktivitet.key}` as any;
-                                    const endringer = aktiviteter[arbeidAktivitet.key]?.endringer;
+                                    const endringer = aktiviteterValuesMap[arbeidAktivitet.key]?.endringer;
 
                                     const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${arbeidAktivitet.key}`;
                                     const aktivitetFormValues = (values.arbeidAktivitet || {})[arbeidAktivitet.key];
-                                    const arbeiderIPeriodenSvar = aktivitetFormValues.arbeiderIPerioden;
+                                    const arbeiderIPeriodenSvar = aktivitetFormValues?.arbeiderIPerioden;
 
                                     return (
                                         <Block key={arbeidAktivitet.key} margin="l" id={inputGroupName} tabIndex={-1}>

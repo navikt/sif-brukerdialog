@@ -22,6 +22,7 @@ import {
 import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
+import { ArbeidAktivitetFormValuesMap } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 
 export const getSøknadsperioderForUkjentArbeidsgiver = (
     søknadsperioder: DateRange[],
@@ -115,6 +116,7 @@ export const getArbeidAktivitetForUkjentArbeidsgiver = (
 export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
     søknadsperioder: DateRange[],
     ukjenteArbeidsgivere: Arbeidsgiver[],
+    arbeidAktivitetFormValues: ArbeidAktivitetFormValuesMap,
     arbeidssituasjon?: ArbeidssituasjonSøknadsdata
 ): ArbeidAktivitet[] => {
     const aktiviteter: ArbeidAktivitet[] = [];
@@ -123,7 +125,10 @@ export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
         if (!arbeidsforhold || arbeidsforhold.erAnsatt === false) {
             throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
         }
-        aktiviteter.push(getArbeidAktivitetForUkjentArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold));
+        const arbeiderIPerioden = arbeidAktivitetFormValues[arbeidsgiver.key]?.arbeiderIPerioden;
+        aktiviteter.push(
+            getArbeidAktivitetForUkjentArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold, arbeiderIPerioden)
+        );
     });
     return aktiviteter;
 };
