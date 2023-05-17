@@ -11,15 +11,14 @@ import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-form
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import { SKJEMANAVN } from '../../App';
-import { getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
 import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import { EndringType } from '../../types/EndringType';
 import { Sak } from '../../types/Sak';
 import OmSøknaden from './OmSøknaden';
-import { getDateRangeText } from '@navikt/sif-common-utils';
 
 export enum VelkommenFormFields {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -57,25 +56,10 @@ const VelkommenPage = () => {
             erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerAktiviteter.length > 0,
             erFrilanser: sak.arbeidAktiviteter.frilanser !== undefined,
         });
-        dispatch(actionsCreator.startSøknad(sak, hvaSkalEndres));
-        dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(steps[0])));
+        dispatch(actionsCreator.startSøknad(sak, hvaSkalEndres, steps[0]));
     };
 
-    if (!sak) {
-        return (
-            <Page title="Velkommen">
-                <SifGuidePanel>
-                    <Heading level="1" size="large">
-                        Velkommen {søker.fornavn}
-                    </Heading>
-                    <p>Vi kan ikke finne en aktiv sak på deg</p>
-                </SifGuidePanel>
-            </Page>
-        );
-    }
-
-    const { fornavn, mellomnavn, etternavn } = sak.barn;
-    const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
+    const barnetsNavn = formatName(sak.barn.fornavn, sak.barn.etternavn, sak.barn.mellomnavn);
 
     return (
         <Page title="Velkommen">

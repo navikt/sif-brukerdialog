@@ -2,7 +2,7 @@ import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
-import { SøknadRoutes } from '../../config/SøknadRoutes';
+import { SøknadRoutes, getSøknadStepRoute } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 const initialSøknadsdata: Søknadsdata = {
@@ -27,7 +27,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 },
                 sak,
                 hvaSkalEndres,
-                søknadRoute: SøknadRoutes.ARBEIDSTID,
+                søknadRoute: getSøknadStepRoute(action.payload.step),
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
