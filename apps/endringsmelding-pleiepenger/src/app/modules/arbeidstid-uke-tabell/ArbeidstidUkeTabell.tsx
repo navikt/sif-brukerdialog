@@ -38,6 +38,7 @@ export interface ArbeidstidUkeTabellItem {
 }
 
 interface Props {
+    arbeidsaktivitetKey: string;
     listItems: ArbeidstidUkeTabellItem[];
     visNormaltid?: boolean;
     paginering?: {
@@ -60,6 +61,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     arbeidstidKolonneTittel,
     triggerResetValg,
     visEndringSomOpprinnelig,
+    arbeidsaktivitetKey,
     onEndreUker,
 }) => {
     const antallUkerTotalt = listItems.length;
@@ -226,7 +228,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                     <ol className="arbeidstidUkeListe">
                         {synligeUker.map((uke) => {
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
-                            const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
+                            const ukePeriodeTekstId = `${arbeidsaktivitetKey}_${uke.isoDateRange}`;
                             const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
 
                             return (

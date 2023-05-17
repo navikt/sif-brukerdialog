@@ -6,6 +6,7 @@ import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidstidApiData } from '../../../types/søknadApiData/SøknadApiData';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
+import { ArbeidAktivitetType } from '../../../types/Sak';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
@@ -46,6 +47,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
+                            arbeidsaktivitetKey={ArbeidAktivitetType.frilanser}
                             listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
                                 frilanserArbeidstidInfo.perioder
                             )}
@@ -61,6 +63,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
+                            arbeidsaktivitetKey={ArbeidAktivitetType.selvstendigNæringsdrivende}
                             listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
                                 selvstendigNæringsdrivendeArbeidstidInfo.perioder
                             )}

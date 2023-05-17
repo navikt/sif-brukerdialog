@@ -91,6 +91,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                         {perioder.length === 1 && (
                             <>
                                 <ArbeidstidUkeTabell
+                                    arbeidsaktivitetKey={arbeidAktivitet.key}
                                     listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                         perioder[0].arbeidsuker,
                                         endringer,
@@ -120,6 +121,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                             );
                                         return (
                                             <ArbeidstidUkeTabell
+                                                arbeidsaktivitetKey={arbeidAktivitet.key}
                                                 listItems={listItems}
                                                 periode={periode}
                                                 triggerResetValg={resetUkerTabellCounter}
