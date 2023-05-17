@@ -4,10 +4,10 @@ import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { RequestStatus } from '@types';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
-import { RequestStatus } from '../types/RequestStatus';
 import appSentryLogger from '../utils/appSentryLogger';
 import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';

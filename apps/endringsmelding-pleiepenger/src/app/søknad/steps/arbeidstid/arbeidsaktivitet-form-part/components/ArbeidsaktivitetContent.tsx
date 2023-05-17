@@ -8,6 +8,15 @@ import {
     isDateInDateRange,
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
+import {
+    ArbeidAktivitet,
+    ArbeidAktivitetType,
+    ArbeiderIPeriodenSvar,
+    ArbeidstidEndringMap,
+    Arbeidsuke,
+    LovbestemtFerieSøknadsdata,
+    PeriodeMedArbeidstid,
+} from '@types';
 import DateRangeAccordion from '../../../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
@@ -17,10 +26,6 @@ import ArbeidstidUkeTabell, {
 } from '../../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
-import { ArbeiderIPeriodenSvar } from '../../../../../types/arbeiderIPeriodenSvar';
-import { ArbeidstidEndringMap } from '../../../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet, ArbeidAktivitetType, Arbeidsuke, PeriodeMedArbeidstid } from '../../../../../types/Sak';
-import { LovbestemtFerieSøknadsdata } from '../../../../../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getEndringsdato, getTillattEndringsperiode } from '../../../../../utils/endringsperiode';
 import { harFjernetFerieIPeriode } from '../../../../../utils/ferieUtils';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';

@@ -16,18 +16,6 @@ import {
     joinAdjacentDateRanges,
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { ArbeidsgiverIkkeFunnetError } from '../types/arbeidsgiverIkkeFunnetError';
-import {
-    K9Sak,
-    K9SakArbeidstaker,
-    K9SakArbeidstidInfo,
-    K9SakArbeidstidPeriodeMap,
-    K9SakLovbestemtFerie,
-} from '../types/K9Sak';
 import {
     ArbeidAktivitet,
     ArbeidAktivitetArbeidstaker,
@@ -35,12 +23,22 @@ import {
     ArbeidAktivitetFrilanser,
     ArbeidAktivitetSelvstendigNæringsdrivende,
     ArbeidAktivitetType,
+    Arbeidsgiver,
+    ArbeidsgiverIkkeFunnetError,
     ArbeidstidEnkeltdagMap,
     Arbeidsuke,
     ArbeidsukeMap,
+    K9Sak,
+    K9SakArbeidstaker,
+    K9SakArbeidstidInfo,
+    K9SakArbeidstidPeriodeMap,
+    K9SakLovbestemtFerie,
     PeriodeMedArbeidstid,
     Sak,
-} from '../types/Sak';
+} from '@types';
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getFeriedagerMapFromPerioder } from './ferieUtils';

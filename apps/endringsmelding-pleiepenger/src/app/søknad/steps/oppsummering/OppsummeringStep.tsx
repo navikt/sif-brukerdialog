@@ -45,7 +45,7 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const intl = useIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, hvaSkalEndres },
+        state: { søknadsdata, sak, arbeidsgivere, valgtHvaSkalEndres: hvaSkalEndres },
     } = useSøknadContext();
 
     const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);

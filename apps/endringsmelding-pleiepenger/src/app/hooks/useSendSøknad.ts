@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { SøknadApiData } from '@types';
 import { AxiosError, isAxiosError } from 'axios';
 import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
 import { SKJEMANAVN } from '../App';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
 import { useMellomlagring } from './useMellomlagring';

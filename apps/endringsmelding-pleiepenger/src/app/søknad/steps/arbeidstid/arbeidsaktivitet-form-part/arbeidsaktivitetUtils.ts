@@ -1,14 +1,18 @@
 import { durationUtils } from '@navikt/sif-common-utils';
+import {
+    ArbeidstidEndring,
+    ArbeidstidEndringMap,
+    Arbeidsuke,
+    ArbeidsukeMap,
+    LovbestemtFerieSøknadsdata,
+    TimerEllerProsent,
+} from '@types';
 import dayjs from 'dayjs';
 import { uniqBy } from 'lodash';
-import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../../../types/ArbeidstidEndring';
-import { Arbeidsuke, ArbeidsukeMap } from '../../../../types/Sak';
-import { LovbestemtFerieSøknadsdata } from '../../../../types/søknadsdata/LovbestemtFerieSøknadsdata';
-import { TimerEllerProsent } from '../../../../types/TimerEllerProsent';
+import { ArbeidstidUkeTabellItem } from '../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import { erKortArbeidsuke } from '../../../../utils/arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../../../utils/beregnUtils';
 import { getLovbestemtFerieSøknadsdataForPeriode } from '../../../../utils/lovbestemtFerieUtils';
-import { ArbeidstidUkeTabellItem } from '../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;

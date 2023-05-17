@@ -2,22 +2,24 @@ import { useState } from 'react';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils';
+import {
+    Arbeidsgiver,
+    IngenTilgangÅrsak,
+    K9Sak,
+    RequestStatus,
+    Sak,
+    Søker,
+    SøknadContextState,
+    TimerEllerProsent,
+} from '@types';
+import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
+import { fetchInitialData } from '../api/fetchInitialData';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
-import { K9Sak } from '../types/K9Sak';
-import { RequestStatus } from '../types/RequestStatus';
-import { Sak } from '../types/Sak';
-import { Søker } from '../types/Søker';
-import { SøknadContextState } from '../types/SøknadContextState';
-import { TimerEllerProsent } from '../types/TimerEllerProsent';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';
-import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
-import { fetchInitialData } from '../api/fetchInitialData';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
 
@@ -113,7 +115,7 @@ const prepInitialData = (
         k9saker,
         sak,
         arbeidsgivere,
-        hvaSkalEndres: sak && lagretSøknadState ? lagretSøknadState.hvaSkalEndres : [],
+        valgtHvaSkalEndres: sak && lagretSøknadState ? lagretSøknadState.hvaSkalEndres : [],
         søknadsdata: {} as any,
         inputPreferanser: {
             timerEllerProsent: TimerEllerProsent.PROSENT,

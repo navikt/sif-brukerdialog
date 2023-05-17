@@ -14,7 +14,7 @@ const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
 
     const {
-        state: { søknadsdata, sak, hvaSkalEndres },
+        state: { søknadsdata, sak, valgtHvaSkalEndres: hvaSkalEndres },
     } = useSøknadContext();
 
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);

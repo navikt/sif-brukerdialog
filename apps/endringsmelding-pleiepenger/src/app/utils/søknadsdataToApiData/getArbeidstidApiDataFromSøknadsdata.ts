@@ -7,26 +7,25 @@ import {
     ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
-import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
-import { ArbeiderIPeriodenSvar } from '../../types/arbeiderIPeriodenSvar';
-import { Arbeidsgiver } from '../../types/Arbeidsgiver';
-import { ArbeidstidEndring, ArbeidstidEndringMap } from '../../types/ArbeidstidEndring';
 import {
     ArbeidAktivitet,
+    ArbeidAktivitetEndringMap,
     ArbeidAktiviteter,
     ArbeidAktivitetType,
+    ArbeiderIPeriodenSvar,
+    Arbeidsgiver,
+    ArbeidstakerApiData,
+    ArbeidstidApiData,
+    ArbeidstidEndring,
+    ArbeidstidEndringMap,
+    ArbeidstidPeriodeApiDataMap,
     Arbeidsuke,
     ArbeidsukeMap,
     PeriodeMedArbeidstid,
-} from '../../types/Sak';
-import {
-    ArbeidstakerApiData,
-    ArbeidstidApiData,
-    ArbeidstidPeriodeApiDataMap,
-} from '../../types/søknadApiData/SøknadApiData';
-import { ArbeidAktivitetEndringMap } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
-import { UkjentArbeidsforholdSøknadsdata } from '../../types/søknadsdata/UkjentArbeidsforholdSøknadsdata';
-import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+    TimerEllerProsent,
+    UkjentArbeidsforholdSøknadsdata,
+} from '@types';
+import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
 import { getArbeidAktivitetForUkjentArbeidsforhold } from '../ukjentArbeidsforholdUtils';

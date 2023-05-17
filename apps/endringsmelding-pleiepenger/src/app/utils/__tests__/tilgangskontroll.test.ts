@@ -1,7 +1,5 @@
 import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
-import { Arbeidsgiver } from '../../types/Arbeidsgiver';
-import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
-import { K9Sak, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '../../types/K9Sak';
+import { Arbeidsgiver, IngenTilgangÅrsak, K9Sak, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 
 const arbeidsgiver1: Arbeidsgiver = { key: 'a_1', organisasjonsnummer: '1' } as Arbeidsgiver;

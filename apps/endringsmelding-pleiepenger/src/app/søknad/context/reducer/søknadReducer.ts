@@ -1,8 +1,7 @@
 import { guid } from '@navikt/sif-common-utils';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { SøknadContextState, Søknadsdata } from '@types';
 import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
-import { SøknadRoutes, getSøknadStepRoute } from '../../config/SøknadRoutes';
+import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 const initialSøknadsdata: Søknadsdata = {
@@ -12,7 +11,7 @@ const initialSøknadsdata: Søknadsdata = {
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
-            const { sak, hvaSkalEndres } = action.payload;
+            const { sak, valgtHvaSkalEndres } = action.payload;
             return {
                 ...state,
                 søknadsdata: {
@@ -26,7 +25,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 },
                 sak,
-                hvaSkalEndres,
+                valgtHvaSkalEndres,
                 søknadRoute: getSøknadStepRoute(action.payload.step),
                 børMellomlagres: true,
             };
@@ -39,7 +38,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                  * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
                  * Verdien settes på nytt når søker starter ny meldning
                  */
-                hvaSkalEndres: [],
+                valgtHvaSkalEndres: [],
             };
     }
 
@@ -114,7 +113,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
                     endringsmeldingSendt: false,
-                    hvaSkalEndres: [],
+                    valgtHvaSkalEndres: [],
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
             case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:

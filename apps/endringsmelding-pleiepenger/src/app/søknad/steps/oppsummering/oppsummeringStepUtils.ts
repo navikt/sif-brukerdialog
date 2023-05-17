@@ -5,14 +5,14 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiData,
     ArbeidstidPeriodeApiDataMap,
     LovbestemtFerieApiData,
-} from '../../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+    Søknadsdata,
+} from '@types';
+import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import { erKortArbeidsuke } from '../../../utils/arbeidsukeUtils';
 import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
 import { OppsummeringFormValues } from './OppsummeringStep';

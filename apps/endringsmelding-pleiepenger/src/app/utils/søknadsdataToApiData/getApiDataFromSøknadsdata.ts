@@ -1,9 +1,6 @@
 import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { EndringType } from '../../types/EndringType';
-import { Sak } from '../../types/Sak';
-import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { EndringType, Sak, SøknadApiData, Søknadsdata } from '@types';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
 

@@ -11,9 +11,9 @@ import {
     sortDateRange,
     sortDates,
 } from '@navikt/sif-common-utils';
+import { LovbestemtFerieSøknadsdata } from '@types';
 import dayjs from 'dayjs';
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
-import { LovbestemtFerieSøknadsdata } from '../types/søknadsdata/LovbestemtFerieSøknadsdata';
 import { getFeriedagerMeta } from './lovbestemtFerieUtils';
 
 export const getFeriedagerIUke = (feriedager: Date[], uke: DateRange, inkluderHelg: boolean): Date[] => {

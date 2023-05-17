@@ -1,7 +1,6 @@
 import { ExpansionCard, Panel } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { Arbeidsgiver } from '../../types/Arbeidsgiver';
-import { ArbeidAktivitetType } from '../../types/Sak';
+import { ArbeidAktivitetType, Arbeidsgiver } from '@types';
 import ArbeidsaktivitetHeader from './ArbeidsaktivitetHeader';
 
 interface Props {

@@ -1,4 +1,4 @@
-import { EndringType, SkalEndresMap } from '../types/EndringType';
+import { EndringType, SkalEndresMap } from '@types';
 
 export const getValgteEndringer = (hvaSkalEndres: EndringType[]): SkalEndresMap => {
     return {

@@ -1,4 +1,4 @@
-import { LovbestemtFerieSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { LovbestemtFerieSøknadsdata, Søknadsdata } from '@types';
 import { sortFeriedagerMap as sortFeriedagMap } from '../../../utils/ferieUtils';
 import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
 import { LovbestemtFerieFormValues } from './LovbestemtFerieStep';

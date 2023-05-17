@@ -128,7 +128,10 @@
     "jest": {
         "transformIgnorePatterns": [
             "node_modules/(?!(@navikt)).*\\.js$"
-        ]
+        ],
+        "moduleNameMapper": {
+            "^@types$": "<rootDir>/src/app/types/index.ts"
+        }
     },
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",

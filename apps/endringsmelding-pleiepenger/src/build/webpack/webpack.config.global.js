@@ -15,7 +15,9 @@ const webpackConfig = {
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
-        alias: {},
+        alias: {
+            '@types': path.resolve(__dirname, './../../app/types'),
+        },
     },
     module: {
         rules: [

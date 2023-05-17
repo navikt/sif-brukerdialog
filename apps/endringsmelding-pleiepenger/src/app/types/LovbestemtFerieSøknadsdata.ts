@@ -1,6 +1,6 @@
 import { DateRange } from '@navikt/sif-common-utils';
-import { FeriedagMap } from '../../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
-import { LovbestemtFeriePeriode } from '../LovbestemtFeriePeriode';
+import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
+import { LovbestemtFeriePeriode } from './LovbestemtFeriePeriode';
 
 export interface FeriedagerMeta {
     /** Alle feriedager, de som er uendret, fjernet og lagt til */

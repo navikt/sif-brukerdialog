@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SøknadContextState } from '@types';
 import { StepId } from '../søknad/config/StepId';
 import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
 import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { SøknadContextState } from '../types/SøknadContextState';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 
 export const useOnValidSubmit = <T>(
@@ -19,9 +19,11 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStep } = getSøknadStepConfig(state.hvaSkalEndres, state.søknadsdata, state.sak.harUkjentArbeidsforhold)[
-        stepId
-    ];
+    const { nextStep } = getSøknadStepConfig(
+        state.valgtHvaSkalEndres,
+        state.søknadsdata,
+        state.sak.harUkjentArbeidsforhold
+    )[stepId];
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {

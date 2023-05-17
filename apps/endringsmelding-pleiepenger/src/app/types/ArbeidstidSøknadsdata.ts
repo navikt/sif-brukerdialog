@@ -1,5 +1,5 @@
-import { ArbeiderIPeriodenSvar } from '../arbeiderIPeriodenSvar';
-import { ArbeidstidEndringMap } from '../ArbeidstidEndring';
+import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
+import { ArbeidstidEndringMap } from './ArbeidstidEndring';
 
 export interface ArbeidAktivitetEndringMap {
     [aktivitetId: string]: {

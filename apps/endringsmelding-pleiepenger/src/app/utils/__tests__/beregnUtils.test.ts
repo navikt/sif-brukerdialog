@@ -1,5 +1,5 @@
 import { decimalDurationToDuration, Duration } from '@navikt/sif-common-utils';
-import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { TimerEllerProsent } from '@types';
 import {
     avrundDesimaltid,
     beregnEndretArbeidstidForUke,

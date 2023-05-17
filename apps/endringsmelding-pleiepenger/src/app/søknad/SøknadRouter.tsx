@@ -31,7 +31,7 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { endringsmeldingSendt, søknadsdata, hvaSkalEndres, søknadRoute, k9saker, sak },
+        state: { endringsmeldingSendt, søknadsdata, valgtHvaSkalEndres: hvaSkalEndres, søknadRoute, k9saker, sak },
     } = useSøknadContext();
 
     const [shouldResetSøknad, setShouldResetSøknad] = useState(false);

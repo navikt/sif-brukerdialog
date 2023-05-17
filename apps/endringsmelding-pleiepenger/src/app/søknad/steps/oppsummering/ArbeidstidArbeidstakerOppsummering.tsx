@@ -1,11 +1,9 @@
 import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
-import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { ArbeidstakerApiData } from '../../../types/søknadApiData/SøknadApiData';
-import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
-import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst } from '../../../types/arbeiderIPeriodenSvar';
+import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst, Arbeidsgiver, ArbeidstakerApiData } from '@types';
+import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 type Props = {
     arbeidstaker: ArbeidstakerApiData;

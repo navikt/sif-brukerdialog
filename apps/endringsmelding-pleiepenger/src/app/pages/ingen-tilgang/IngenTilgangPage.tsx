@@ -4,12 +4,11 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
+import { IngenTilgangMeta } from '../../hooks/useSøknadInitialData';
 import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
-import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
-import { Søker } from '../../types/Søker';
-import { IngenTilgangMeta } from '../../hooks/useSøknadInitialData';
 
 export interface IngenTilgangPageProps {
     søker: Søker;

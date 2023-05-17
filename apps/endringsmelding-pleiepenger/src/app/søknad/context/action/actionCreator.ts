@@ -1,8 +1,11 @@
-import { EndringType } from '../../../types/EndringType';
-import { Sak } from '../../../types/Sak';
-import { SøknadContextInputPreferanse } from '../../../types/SøknadContextState';
-import { UkjentArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/UkjentArbeidsforholdSøknadsdata';
-import { ArbeidstidSøknadsdata, LovbestemtFerieSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import {
+    ArbeidstidSøknadsdata,
+    EndringType,
+    LovbestemtFerieSøknadsdata,
+    Sak,
+    SøknadContextInputPreferanse,
+    UkjentArbeidsforholdSøknadsdata,
+} from '@types';
 import { StepId } from '../../config/StepId';
 import { SøknadRoutes } from '../../config/SøknadRoutes';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
@@ -35,7 +38,7 @@ interface ResetSøknad {
 }
 interface StartSøknad {
     type: SøknadContextActionKeys.START_SØKNAD;
-    payload: { sak: Sak; hvaSkalEndres: EndringType[]; step: StepId };
+    payload: { sak: Sak; valgtHvaSkalEndres: EndringType[]; step: StepId };
 }
 interface AvbrytSøknad {
     type: SøknadContextActionKeys.AVBRYT_SØKNAD;
@@ -96,7 +99,7 @@ const resetSøknad = (): ResetSøknad => ({
 
 const startSøknad = (sak: Sak, hvaSkalEndres: EndringType[], step: StepId): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
-    payload: { sak, hvaSkalEndres, step },
+    payload: { sak, valgtHvaSkalEndres: hvaSkalEndres, step },
 });
 
 const avbrytSøknad = (): AvbrytSøknad => ({

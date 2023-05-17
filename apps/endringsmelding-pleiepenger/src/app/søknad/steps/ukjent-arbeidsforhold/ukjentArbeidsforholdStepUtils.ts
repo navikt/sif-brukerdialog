@@ -1,11 +1,14 @@
 import { getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
-import { Arbeidsforhold } from '../../../types/Arbeidsforhold';
-import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { UkjentArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/UkjentArbeidsforholdSøknadsdata';
-import { ArbeidAktivitetEndringMap, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import {
+    ArbeidAktivitetEndringMap,
+    Arbeidsforhold,
+    Arbeidsgiver,
+    Søknadsdata,
+    UkjentArbeidsforholdSøknadsdata,
+} from '@types';
 import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
-import { UkjentArbeidsforholdMap, UkjentArbeidsforholdFormValues } from './UkjentArbeidsforholdStep';
+import { UkjentArbeidsforholdFormValues, UkjentArbeidsforholdMap } from './UkjentArbeidsforholdStep';
 
 const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold): ArbeidsforholdFormValues => {
     return arbeidsforhold.erAnsatt

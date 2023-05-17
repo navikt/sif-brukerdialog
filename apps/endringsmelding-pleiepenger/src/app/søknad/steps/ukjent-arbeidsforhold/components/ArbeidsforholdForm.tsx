@@ -6,10 +6,9 @@ import {
     getRequiredFieldValidator,
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/lib/validation';
+import { ArbeidAktivitetType, Arbeidsgiver } from '@types';
 import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
-import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
-import { ArbeidAktivitetType } from '../../../../types/Sak';
 import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
 
 interface Props {

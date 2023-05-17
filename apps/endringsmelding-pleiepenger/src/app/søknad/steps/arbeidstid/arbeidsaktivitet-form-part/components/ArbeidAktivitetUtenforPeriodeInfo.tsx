@@ -1,8 +1,8 @@
+import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import React from 'react';
+import { ArbeidAktivitet } from '@types';
 import { SkrivTilOssLink } from '../../../../../lenker';
-import { ArbeidAktivitet } from '../../../../../types/Sak';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;

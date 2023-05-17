@@ -1,9 +1,16 @@
 import { IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
 import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
-import { ArbeiderIPeriodenSvar } from '../../../types/arbeiderIPeriodenSvar';
-import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
-import { ArbeidAktivitet, ArbeidAktivitetArbeidstaker, ArbeidAktiviteter, ArbeidsukeMap } from '../../../types/Sak';
-import { ArbeidAktivitetEndringMap, ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import {
+    ArbeidAktivitet,
+    ArbeidAktivitetArbeidstaker,
+    ArbeidAktivitetEndringMap,
+    ArbeidAktiviteter,
+    ArbeiderIPeriodenSvar,
+    ArbeidstidEndringMap,
+    ArbeidstidSøknadsdata,
+    ArbeidsukeMap,
+    Søknadsdata,
+} from '@types';
 import { beregnEndretArbeidstidForUke } from '../../../utils/beregnUtils';
 import { ArbeidstidFormValues } from './ArbeidstidForm';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
 import { dateRangeToISODateRange, getDateRangeText } from '@navikt/sif-common-utils';
-import { LovbestemtFerieApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { LovbestemtFerieApiData } from '@types';
 import { getLovbestemtFerieOppsummeringInfo } from '../../../utils/oppsummeringUtils';
 
 interface Props {

@@ -1,5 +1,5 @@
 import { dateToISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
-import { K9Sak } from '../../types/K9Sak';
+import { K9Sak } from '@types';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../k9SakUtils';
 
 describe('getDateRangeForSaker', () => {

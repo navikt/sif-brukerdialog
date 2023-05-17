@@ -1,4 +1,4 @@
-import { isValidSøkerResponse, Søker } from '../../types/Søker';
+import { isValidSøkerResponse, Søker } from '@types';
 import api, { ApiEndpointPsb } from '../api';
 
 type SøkerDTO = {

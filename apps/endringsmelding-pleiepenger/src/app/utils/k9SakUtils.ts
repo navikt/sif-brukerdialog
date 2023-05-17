@@ -1,7 +1,6 @@
 import { DateRange, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
+import { Arbeidsgiver, K9Sak } from '@types';
 import dayjs from 'dayjs';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { K9Sak } from '../types/K9Sak';
 
 export const getArbeidsgivereIK9Sak = (arbeidsgivere: Arbeidsgiver[], sak: K9Sak): Arbeidsgiver[] => {
     const { arbeidstakerList } = sak.ytelse.arbeidstid;

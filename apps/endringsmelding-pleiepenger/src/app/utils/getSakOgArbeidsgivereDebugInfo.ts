@@ -1,7 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { K9Sak, K9SakArbeidstaker } from '../types/K9Sak';
-import { Sak } from '../types/Sak';
+import { Arbeidsgiver, K9Sak, K9SakArbeidstaker, Sak } from '@types';
 import { maskString } from './maskString';
 
 const maskK9Arbeidstaker = (k9Arbeidstaker: K9SakArbeidstaker) => {

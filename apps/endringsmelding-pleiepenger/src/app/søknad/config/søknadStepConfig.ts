@@ -1,6 +1,5 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
-import { EndringType } from '../../types/EndringType';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { EndringType, Søknadsdata } from '@types';
 import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
 import { harFjernetLovbestemtFerie } from '../../utils/lovbestemtFerieUtils';
 import { StepId } from './StepId';

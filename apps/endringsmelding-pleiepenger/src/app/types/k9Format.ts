@@ -3,10 +3,12 @@ import {
     isISODateOrNull,
     isISODateRange,
     isISODuration,
+    ISODate,
+    ISODateRange,
     ISODateRangeMap,
+    ISODuration,
     isStringOrNull,
 } from '@navikt/sif-common-utils';
-import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
 import { isObject, isString } from 'formik';
 import { isArray } from 'lodash';
 

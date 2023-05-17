@@ -1,12 +1,17 @@
 import { DateRange, durationToDecimalDuration } from '@navikt/sif-common-utils';
+import {
+    Arbeidsgiver,
+    IngenTilgangÅrsak,
+    K9Sak,
+    K9SakArbeidstaker,
+    K9SakArbeidstid,
+    K9SakArbeidstidInfo,
+} from '@types';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
-import { K9Sak, K9SakArbeidstaker, K9SakArbeidstid, K9SakArbeidstidInfo } from '../types/K9Sak';
-import { getSamletDateRangeForK9Saker } from './k9SakUtils';
 import { Feature, isFeatureEnabled } from './featureToggleUtils';
+import { getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
 

@@ -1,12 +1,10 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { ArbeidAktivitetType, Arbeidsgiver, ArbeidstidApiData } from '@types';
 import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
-import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { ArbeidstidApiData } from '../../../types/søknadApiData/SøknadApiData';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
-import { ArbeidAktivitetType } from '../../../types/Sak';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;

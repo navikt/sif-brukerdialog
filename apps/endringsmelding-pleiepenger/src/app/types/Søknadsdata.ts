@@ -1,11 +1,7 @@
-import { StepId } from '../../søknad/config/StepId';
-import { UkjentArbeidsforholdSøknadsdata } from './UkjentArbeidsforholdSøknadsdata';
+import { StepId } from '../søknad/config/StepId';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { LovbestemtFerieSøknadsdata } from './LovbestemtFerieSøknadsdata';
-
-export * from './UkjentArbeidsforholdSøknadsdata';
-export * from './ArbeidstidSøknadsdata';
-export * from './LovbestemtFerieSøknadsdata';
+import { UkjentArbeidsforholdSøknadsdata } from './UkjentArbeidsforholdSøknadsdata';
 
 export interface Søknadsdata {
     id: string;

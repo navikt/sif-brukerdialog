@@ -1,10 +1,10 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { getEnvVariableOrDefault } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
+import { RequestStatus } from '@types';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
-import { RequestStatus } from '../types/RequestStatus';
 
 export * from './endpoints';
 

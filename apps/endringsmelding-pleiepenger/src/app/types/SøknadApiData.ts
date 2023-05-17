@@ -1,8 +1,8 @@
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
-import { LovbestemtFerieType } from '../../types/LovbestemtFerieType';
-import { Arbeidsforhold } from '../Arbeidsforhold';
-import { EndringType } from '../EndringType';
-import { ArbeiderIPeriodenSvar } from '../arbeiderIPeriodenSvar';
+import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
+import { Arbeidsforhold } from './Arbeidsforhold';
+import { EndringType } from './EndringType';
+import { LovbestemtFerieType } from './LovbestemtFerieType';
 
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;

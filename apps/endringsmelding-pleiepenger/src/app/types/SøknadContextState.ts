@@ -1,12 +1,12 @@
+import { DateRange } from '@navikt/sif-common-utils';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { Arbeidsgiver } from './Arbeidsgiver';
-import { Søker } from './Søker';
-import { Sak } from './Sak';
-import { Søknadsdata } from './søknadsdata/Søknadsdata';
-import { TimerEllerProsent } from './TimerEllerProsent';
-import { K9Sak } from './K9Sak';
-import { DateRange } from '@navikt/sif-common-utils';
 import { EndringType } from './EndringType';
+import { K9Sak } from './K9Sak';
+import { Sak } from './Sak';
+import { Søker } from './Søker';
+import { Søknadsdata } from './Søknadsdata';
+import { TimerEllerProsent } from './TimerEllerProsent';
 
 export interface SøknadContextState {
     versjon: string;
@@ -19,7 +19,7 @@ export interface SøknadContextState {
     søknadRoute?: SøknadRoutes;
     endringsmeldingSendt?: boolean;
     børMellomlagres?: boolean;
-    hvaSkalEndres: EndringType[];
+    valgtHvaSkalEndres: EndringType[];
     inputPreferanser: SøknadContextInputPreferanse;
 }
 

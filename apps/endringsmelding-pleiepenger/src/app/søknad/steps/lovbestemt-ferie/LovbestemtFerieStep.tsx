@@ -7,12 +7,12 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
+import { SøknadContextState } from '@types';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
-import { SøknadContextState } from '../../../types/SøknadContextState';
 import { getValgteEndringer } from '../../../utils/endringTypeUtils';
 import { erFeriedagerEndretIPeriode } from '../../../utils/ferieUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
@@ -54,7 +54,7 @@ const LovbestemtFerieStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak, hvaSkalEndres },
+        state: { søknadsdata, sak, valgtHvaSkalEndres: hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);

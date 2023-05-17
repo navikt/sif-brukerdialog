@@ -2,15 +2,20 @@ import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/util
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
+    Arbeidsgiver,
+    IngenTilgangÅrsak,
+    isK9Sak,
+    isUgyldigK9SakFormat,
+    K9Sak,
+    RequestStatus,
+    Søker,
+    UgyldigK9SakFormat,
+} from '@types';
+import {
     IngenTilgangMeta,
     isSøknadInitialDataErrorState,
     SøknadInitialIkkeTilgang,
 } from '../hooks/useSøknadInitialData';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
-import { isK9Sak, isUgyldigK9SakFormat, K9Sak, UgyldigK9SakFormat } from '../types/K9Sak';
-import { RequestStatus } from '../types/RequestStatus';
-import { Søker } from '../types/Søker';
 import appSentryLogger from '../utils/appSentryLogger';
 import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';

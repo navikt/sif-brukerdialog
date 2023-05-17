@@ -1,5 +1,5 @@
+import { Arbeidsuke } from '@types';
 import dayjs from 'dayjs';
-import { Arbeidsuke } from '../../types/Sak';
 import { erKortArbeidsuke, getDagerTekst } from '../../utils/arbeidsukeUtils';
 
 export type EndreArbeidstidIntlValues = {

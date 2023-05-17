@@ -1,13 +1,13 @@
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
-import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
-import { LovbestemtFeriePeriode } from '../types/LovbestemtFeriePeriode';
 import {
     ArbeidstakerApiData,
     ArbeidstidApiData,
     LovbestemtFerieApiData,
+    LovbestemtFeriePeriode,
     SøknadApiData,
-} from '../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+    Søknadsdata,
+} from '@types';
+import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 import { getValgteEndringer } from './endringTypeUtils';
 
 interface UkjentArbeidsforholdMetadata {
