@@ -57,7 +57,7 @@ const LovbestemtFerieStep = () => {
         state: { søknadsdata, sak, hvaSkalEndres },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);

@@ -17,7 +17,7 @@ export type SøknadStatePersistence = {
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
-    harUkjentArbeidsgiver: boolean;
+    harUkjentArbeidsforhold: boolean;
     hvaSkalEndres: EndringType[];
     metadata: {
         updatedTimestamp: string;
@@ -49,7 +49,7 @@ const persistedSøknadRouteIsAvailable = (søknadState: SøknadStatePersistence)
     const availableSteps = getSøknadSteps(
         søknadState.hvaSkalEndres,
         søknadState.søknadsdata,
-        søknadState.harUkjentArbeidsgiver
+        søknadState.harUkjentArbeidsforhold
     );
     return availableSteps.some((step) => getSøknadStepRoute(step) === søknadRoute);
 };
@@ -75,7 +75,7 @@ export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersisten
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søknadsdata, søknadRoute, barnAktørId, hvaSkalEndres, harUkjentArbeidsgiver }, søker) => {
+    update: ({ søknadsdata, søknadRoute, barnAktørId, hvaSkalEndres, harUkjentArbeidsforhold }, søker) => {
         return persistSetup.update({
             versjon: APP_VERSJON,
             søknadHashString: createHashString({ søker, barnAktørId }),
@@ -83,7 +83,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             søknadsdata,
             søknadRoute,
             hvaSkalEndres,
-            harUkjentArbeidsgiver,
+            harUkjentArbeidsforhold,
             metadata: {
                 updatedTimestamp: new Date().toISOString(),
             },

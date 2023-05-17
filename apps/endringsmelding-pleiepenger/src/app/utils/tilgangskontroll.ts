@@ -66,7 +66,7 @@ export const tilgangskontroll = (
     /**
      * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
      */
-    if (isFeatureEnabled(Feature.UKJENT_ARBEIDSGIVER) === false) {
+    if (isFeatureEnabled(Feature.UKJENT_ARBEIDSFOHOLD) === false) {
         if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
             ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
         }

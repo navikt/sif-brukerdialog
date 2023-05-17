@@ -5,8 +5,8 @@ export const defaultMessages: MessageFileFormat = {
         'application.title': 'Endringsmelding pleiepenger sykt barn',
         'application.bannerTitle': 'Endringsmelding pleiepenger sykt barn',
 
-        'step.arbeidssituasjon.pageTitle': 'Ukjent arbeidsforhold',
-        'step.arbeidssituasjon.stepTitle': 'Ukjent arbeidsforhold',
+        'step.ukjentArbeidsforhold.pageTitle': 'Ukjent arbeidsforhold',
+        'step.ukjentArbeidsforhold.stepTitle': 'Ukjent arbeidsforhold',
 
         'step.aktivitet.pageTitle': 'Velg arbeidsforhold - Endringsmelding pleiepenger sykt barn',
         'step.aktivitet.stepTitle': 'Velg arbeidsforhold',

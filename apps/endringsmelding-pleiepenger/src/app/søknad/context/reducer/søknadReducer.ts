@@ -60,12 +60,12 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON:
+            case SøknadContextActionKeys.SET_SØKNAD_UKJENT_ARBEIDSFOHOLD:
                 return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        arbeidssituasjon: {
+                        ukjentArbeidsforhold: {
                             ...action.payload,
                         },
                     },

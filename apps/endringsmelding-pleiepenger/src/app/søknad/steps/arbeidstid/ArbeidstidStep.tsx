@@ -18,7 +18,7 @@ const ArbeidstidStep = () => {
     } = useSøknadContext();
 
     const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);

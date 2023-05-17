@@ -24,12 +24,12 @@ import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiDataMap,
 } from '../../types/søknadApiData/SøknadApiData';
-import { ArbeidssituasjonSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { ArbeidAktivitetEndringMap } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
+import { UkjentArbeidsforholdSøknadsdata } from '../../types/søknadsdata/UkjentArbeidsforholdSøknadsdata';
 import { TimerEllerProsent } from '../../types/TimerEllerProsent';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
-import { getArbeidAktivitetForUkjentArbeidsgiver } from '../ukjentArbeidsgiverUtils';
+import { getArbeidAktivitetForUkjentArbeidsforhold } from '../ukjentArbeidsforholdUtils';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 
@@ -100,7 +100,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     arbeidAktivitetEndring: ArbeidAktivitetEndringMap,
     arbeidAktiviteter: ArbeidAktiviteter,
     ukjenteArbeidsgivere: Arbeidsgiver[],
-    arbeidssituasjon?: ArbeidssituasjonSøknadsdata
+    ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidAktivitetEndring[ArbeidAktivitetType.frilanser]?.endringer;
     const selvstendigNæringsdrivendeAktivitetEndring =
@@ -127,14 +127,16 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     });
 
     /** Ukjente arbeidsgivere */
-    if (arbeidssituasjon) {
+    if (ukjentArbeidsforhold) {
         ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
             const endring = arbeidAktivitetEndring[arbeidsgiver.key];
             if (!endring) {
                 return;
             }
             const { arbeiderIPerioden } = endring;
-            const arbeidsforhold = arbeidssituasjon.arbeidsforhold.find((a) => a.arbeidsgiverKey === arbeidsgiver.key);
+            const arbeidsforhold = ukjentArbeidsforhold.arbeidsforhold.find(
+                (a) => a.arbeidsgiverKey === arbeidsgiver.key
+            );
             if (!arbeidsforhold || !arbeiderIPerioden) {
                 throw 'Ukjent arbeidsgiver mangler informasjon om arbeidstid';
             }
@@ -142,7 +144,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 return;
             }
 
-            const arbeidAktivitet = getArbeidAktivitetForUkjentArbeidsgiver(
+            const arbeidAktivitet = getArbeidAktivitetForUkjentArbeidsforhold(
                 søknadsperioder,
                 arbeidsgiver,
                 arbeidsforhold
@@ -156,7 +158,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 const arbeidsuke = arbeidsuker[key];
                 const ukeEndring = endring.endringer[key];
 
-                const faktiskArbeidTimerPerDag = getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver(
+                const faktiskArbeidTimerPerDag = getFaktiskArbeidTimerPerDagForUkjentArbeidsforhold(
                     arbeiderIPerioden,
                     arbeidsuke,
                     ukeEndring
@@ -209,7 +211,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     };
 };
 
-export const getFaktiskArbeidTimerPerDagForUkjentArbeidsgiver = (
+export const getFaktiskArbeidTimerPerDagForUkjentArbeidsforhold = (
     arbeiderIPerioden: ArbeiderIPeriodenSvar,
     arbeidsuke: Pick<Arbeidsuke, 'normalt' | 'antallDagerMedArbeidstid'>,
     endring?: ArbeidstidEndring

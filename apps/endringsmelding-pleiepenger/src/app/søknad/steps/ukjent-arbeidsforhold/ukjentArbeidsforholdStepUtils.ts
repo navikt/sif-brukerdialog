@@ -2,10 +2,10 @@ import { getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formi
 import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import { Arbeidsforhold } from '../../../types/Arbeidsforhold';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { UkjentArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/UkjentArbeidsforholdSøknadsdata';
 import { ArbeidAktivitetEndringMap, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { ArbeidssituasjonFormValues, UkjentArbeidsforholdMap } from './ArbeidssituasjonStep';
 import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
+import { UkjentArbeidsforholdMap, UkjentArbeidsforholdFormValues } from './UkjentArbeidsforholdStep';
 
 const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold): ArbeidsforholdFormValues => {
     return arbeidsforhold.erAnsatt
@@ -47,16 +47,16 @@ const arbeidsforholdFormValuesToSøknadsdata = (
     return undefined;
 };
 
-export const getArbeidssituasjonStepInitialValues = (
+export const getUkjentArbeidsforholdStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues: ArbeidssituasjonFormValues | undefined,
+    formValues: UkjentArbeidsforholdFormValues | undefined,
     ukjenteArbeidsgivere: Arbeidsgiver[]
-): ArbeidssituasjonFormValues => {
+): UkjentArbeidsforholdFormValues => {
     if (formValues) {
         return formValues;
     }
     const arbeidsforhold: UkjentArbeidsforholdMap = {};
-    if (søknadsdata.arbeidssituasjon === undefined) {
+    if (søknadsdata.ukjentArbeidsforhold === undefined) {
         ukjenteArbeidsgivere.forEach((a) => {
             arbeidsforhold[a.key] = {
                 erAnsatt: YesOrNo.UNANSWERED,
@@ -64,7 +64,7 @@ export const getArbeidssituasjonStepInitialValues = (
             };
         });
     } else {
-        (søknadsdata.arbeidssituasjon.arbeidsforhold || []).forEach((a) => {
+        (søknadsdata.ukjentArbeidsforhold.arbeidsforhold || []).forEach((a) => {
             arbeidsforhold[a.arbeidsgiverKey] = arbeidsforholdSøknadsdataToFormValues(a);
         });
     }
@@ -73,10 +73,10 @@ export const getArbeidssituasjonStepInitialValues = (
     };
 };
 
-export const getArbeidssituasjonSøknadsdataFromFormValues = (
-    values: ArbeidssituasjonFormValues,
+export const getUkjentArbeidsforholdSøknadsdataFromFormValues = (
+    values: UkjentArbeidsforholdFormValues,
     arbeidsgivere: Arbeidsgiver[]
-): ArbeidssituasjonSøknadsdata => {
+): UkjentArbeidsforholdSøknadsdata => {
     const arbeidsforhold: Arbeidsforhold[] = [];
     Object.keys(values.arbeidsforhold).forEach((key) => {
         const arbeidsgiver = arbeidsgivere.find((a) => a.key === key);
@@ -88,7 +88,7 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
     return { arbeidsforhold };
 };
 
-export const harSvartErIkkeAnsattHosUkjentArbeidsgiver = (arbeidsforhold: UkjentArbeidsforholdMap): boolean => {
+export const harSvartErIkkeAnsattHosUkjentArbeidsforhold = (arbeidsforhold: UkjentArbeidsforholdMap): boolean => {
     return Object.keys(arbeidsforhold)
         .map((key) => arbeidsforhold[key])
         .some((values) => {

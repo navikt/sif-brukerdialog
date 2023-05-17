@@ -40,7 +40,7 @@ const startSøknad = ({
 
 const fyllUtUkjentArbeidsforhold = (orgnummer: string) => {
     it('fyller ut ukjent arbeidsforhold', () => {
-        getTestElement(`ukjentArbeidsgiver_a_${orgnummer}`).within(() => {
+        getTestElement(`ukjentArbeidsforhold_a_${orgnummer}`).within(() => {
             selectRadioByNameAndValue(`arbeidsforhold.a_${orgnummer}.erAnsatt`, 'yes');
             cy.get(`input[name="arbeidsforhold.a_${orgnummer}.timerPerUke"]`).clear().type('30');
         });
@@ -216,7 +216,7 @@ interface UkeMedArbeidstid {
     tid: string;
 }
 
-const fyllUtArbeidstidUkjentArbeidsgiver = (
+const fyllUtArbeidstidUkjentArbeidsforhold = (
     orgnummer: string,
     arbeiderIPeriodenSvar: 'HELT_FRAVÆR' | 'SOM_VANLIG' | 'REDUSERT',
     uker?: UkeMedArbeidstid[]
@@ -265,9 +265,9 @@ const kontrollerOppsummering = () => {
 
 const kontrollerOppsummeringUkjentArbeidsforholdJobberRedusert = (orgnummer: string) => {
     it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
-        getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_erAnsatt`).contains('Ja');
-        getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
-        // getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_arbeiderIPerioden`).contains(
+        getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_erAnsatt`).contains('Ja');
+        getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
+        // getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_arbeiderIPerioden`).contains(
         //     'Jeg kombinerer delvis jobb med pleiepenger'
         // );
         getUkeRow('4').within(() => {
@@ -291,9 +291,9 @@ const kontrollerOppsummeringUkjentArbeidsforholdJobberRedusert = (orgnummer: str
 
 const kontrollerOppsummeringUkjentArbeidsforholdJobberIkke = (orgnummer: string) => {
     it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
-        getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_erAnsatt`).contains('Ja');
-        getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
-        // getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_arbeiderIPerioden`).contains(
+        getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_erAnsatt`).contains('Ja');
+        getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
+        // getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_arbeiderIPerioden`).contains(
         //     'Jeg jobber ikke og har fullt fravær her'
         // );
     });
@@ -301,9 +301,9 @@ const kontrollerOppsummeringUkjentArbeidsforholdJobberIkke = (orgnummer: string)
 
 const kontrollerOppsummeringUkjentArbeidsforholdJobberVanlig = (orgnummer: string) => {
     it('viser riktig informasjon i oppsummering om ukjent arbeidsforhold', () => {
-        getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_erAnsatt`).contains('Ja');
-        getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
-        // getTestElement(`ukjentArbeidsgiver_a_${orgnummer}_arbeiderIPerioden`).contains(
+        getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_erAnsatt`).contains('Ja');
+        getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_timerPerUke`).contains('30 t. 0 m');
+        // getTestElement(`ukjentArbeidsforhold_a_${orgnummer}_arbeiderIPerioden`).contains(
         //     'Jeg jobber som normalt og har ingen fravær her'
         // );
     });
@@ -332,7 +332,7 @@ export const cyHelpers = {
     endreOgFjernFerie,
     endreEnkeltuke,
     endreFlereUker,
-    fyllUtArbeidstidUkjentArbeidsgiver,
+    fyllUtArbeidstidUkjentArbeidsforhold,
     fortsettTilOppsummering,
     kontrollerOppsummering,
     kontrollerOppsummeringUkjentArbeidsforholdJobberRedusert,

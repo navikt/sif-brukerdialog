@@ -1,6 +1,6 @@
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 
-export const arbeidsforholdFormMessages: MessageFileFormat = {
+export const ukjentArbeidsforholdFormMessages: MessageFileFormat = {
     nb: {
         'arbeidsforhold.validation.erAnsatt.yesOrNoIsUnanswered':
             'Du må svare på om det stemmer at du er ansatt hos {navn} i perioden med pleiepenger.',

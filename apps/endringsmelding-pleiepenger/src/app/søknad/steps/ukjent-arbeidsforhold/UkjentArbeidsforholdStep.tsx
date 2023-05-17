@@ -17,47 +17,47 @@ import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import {
-    getArbeidssituasjonStepInitialValues,
-    getArbeidssituasjonSøknadsdataFromFormValues,
-} from './arbeidssituasjonStepUtils';
+    getUkjentArbeidsforholdStepInitialValues,
+    getUkjentArbeidsforholdSøknadsdataFromFormValues,
+} from './ukjentArbeidsforholdStepUtils';
 import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
 
 export interface UkjentArbeidsforholdMap {
     [id: string]: ArbeidsforholdFormValues;
 }
 
-export interface ArbeidssituasjonFormValues {
-    [ArbeidssituasjonFormFields.arbeidsforhold]: UkjentArbeidsforholdMap;
+export interface UkjentArbeidsforholdFormValues {
+    [UkjentArbeidsforholdFormFields.arbeidsforhold]: UkjentArbeidsforholdMap;
 }
 
-enum ArbeidssituasjonFormFields {
+enum UkjentArbeidsforholdFormFields {
     arbeidsforhold = 'arbeidsforhold',
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<
-    ArbeidssituasjonFormFields,
-    ArbeidssituasjonFormValues,
+    UkjentArbeidsforholdFormFields,
+    UkjentArbeidsforholdFormValues,
     ValidationError
 >();
 
-const ArbeidssituasjonStep = () => {
-    const stepId = StepId.ARBEIDSSITUASJON;
+const UkjentArbeidsforholdStep = () => {
+    const stepId = StepId.UKJENT_ARBEIDSFOHOLD;
     const intl = useIntl();
 
     const {
         state: { søknadsdata, hvaSkalEndres, sak, arbeidsgivere },
     } = useSøknadContext();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
     const step = stepConfig[stepId];
 
     const { goBack } = useStepNavigation(step);
 
-    const onValidSubmitHandler = (values: ArbeidssituasjonFormValues) => {
-        const arbeidssituasjonSøknadsdata = getArbeidssituasjonSøknadsdataFromFormValues(values, arbeidsgivere);
-        if (arbeidssituasjonSøknadsdata) {
+    const onValidSubmitHandler = (values: UkjentArbeidsforholdFormValues) => {
+        const ukjentArbeidsforholdSøknadsdata = getUkjentArbeidsforholdSøknadsdataFromFormValues(values, arbeidsgivere);
+        if (ukjentArbeidsforholdSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadArbeidssituasjon(arbeidssituasjonSøknadsdata)];
+            return [actionsCreator.setSøknadUkjentArbeidsforhold(ukjentArbeidsforholdSøknadsdata)];
         }
         return [];
     };
@@ -89,9 +89,9 @@ const ArbeidssituasjonStep = () => {
 
             <Block margin="xl">
                 <FormikWrapper
-                    initialValues={getArbeidssituasjonStepInitialValues(
+                    initialValues={getUkjentArbeidsforholdStepInitialValues(
                         søknadsdata,
-                        stepFormValues?.arbeidssituasjon,
+                        stepFormValues?.ukjentArbeidsforhold,
                         sak.ukjenteArbeidsgivere
                     )}
                     onSubmit={handleSubmit}
@@ -106,9 +106,9 @@ const ArbeidssituasjonStep = () => {
                                     runDelayedFormValidation={true}
                                     onBack={goBack}>
                                     {sak.ukjenteArbeidsgivere.map((a) => {
-                                        const fieldName = `${ArbeidssituasjonFormFields.arbeidsforhold}.${a.key}`;
+                                        const fieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${a.key}`;
                                         return (
-                                            <div key={a.key} data-testid={`ukjentArbeidsgiver_${a.key}`}>
+                                            <div key={a.key} data-testid={`ukjentArbeidsforhold_${a.key}`}>
                                                 <ArbeidsforholdForm
                                                     arbeidsgiver={a}
                                                     values={(values.arbeidsforhold || {})[a.key]}
@@ -127,4 +127,4 @@ const ArbeidssituasjonStep = () => {
     );
 };
 
-export default ArbeidssituasjonStep;
+export default UkjentArbeidsforholdStep;

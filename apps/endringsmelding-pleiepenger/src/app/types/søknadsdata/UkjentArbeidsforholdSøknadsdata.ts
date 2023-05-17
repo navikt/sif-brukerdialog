@@ -1,5 +1,5 @@
 import { Arbeidsforhold } from '../Arbeidsforhold';
 
-export interface ArbeidssituasjonSøknadsdata {
+export interface UkjentArbeidsforholdSøknadsdata {
     arbeidsforhold: Arbeidsforhold[];
 }

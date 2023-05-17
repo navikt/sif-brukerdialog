@@ -8,7 +8,7 @@ export const lagreSøknadState = (state: SøknadContextState) => {
             barnAktørId: sak.barn.aktørId,
             søknadsdata,
             versjon,
-            harUkjentArbeidsgiver: state.sak.harUkjentArbeidsgiver,
+            harUkjentArbeidsforhold: state.sak.harUkjentArbeidsforhold,
             søknadRoute,
             hvaSkalEndres,
             metadata: {

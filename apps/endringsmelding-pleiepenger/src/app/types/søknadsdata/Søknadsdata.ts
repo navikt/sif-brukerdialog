@@ -1,9 +1,9 @@
 import { StepId } from '../../søknad/config/StepId';
-import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
+import { UkjentArbeidsforholdSøknadsdata } from './UkjentArbeidsforholdSøknadsdata';
 import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 import { LovbestemtFerieSøknadsdata } from './LovbestemtFerieSøknadsdata';
 
-export * from './ArbeidssituasjonSøknadsdata';
+export * from './UkjentArbeidsforholdSøknadsdata';
 export * from './ArbeidstidSøknadsdata';
 export * from './LovbestemtFerieSøknadsdata';
 
@@ -12,7 +12,7 @@ export interface Søknadsdata {
     [StepId.VELKOMMEN]?: {
         harForståttRettigheterOgPlikter?: boolean;
     };
-    [StepId.ARBEIDSSITUASJON]?: ArbeidssituasjonSøknadsdata;
+    [StepId.UKJENT_ARBEIDSFOHOLD]?: UkjentArbeidsforholdSøknadsdata;
     [StepId.ARBEIDSTID]?: ArbeidstidSøknadsdata;
     [StepId.LOVBESTEMT_FERIE]?: LovbestemtFerieSøknadsdata;
     [StepId.OPPSUMMERING]?: {

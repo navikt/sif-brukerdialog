@@ -19,7 +19,7 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStep } = getSøknadStepConfig(state.hvaSkalEndres, state.søknadsdata, state.sak.harUkjentArbeidsgiver)[
+    const { nextStep } = getSøknadStepConfig(state.hvaSkalEndres, state.søknadsdata, state.sak.harUkjentArbeidsforhold)[
         stepId
     ];
 

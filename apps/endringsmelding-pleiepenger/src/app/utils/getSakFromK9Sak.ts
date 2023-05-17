@@ -488,7 +488,7 @@ export const getSakFromK9Sak = (
             type: 'PLEIEPENGER_SYKT_BARN',
         },
         ukjenteArbeidsgivere: ukjenteArbeidsgivere,
-        harUkjentArbeidsgiver: ukjenteArbeidsgivere.length > 0,
+        harUkjentArbeidsforhold: ukjenteArbeidsgivere.length > 0,
         søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
         samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,

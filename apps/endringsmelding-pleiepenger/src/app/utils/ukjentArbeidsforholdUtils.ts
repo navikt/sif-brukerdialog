@@ -20,11 +20,11 @@ import {
     ArbeidsukeMap,
     PeriodeMedArbeidstid,
 } from '../types/Sak';
-import { ArbeidssituasjonSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { UkjentArbeidsforholdSøknadsdata } from '../types/søknadsdata/UkjentArbeidsforholdSøknadsdata';
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 
-export const getSøknadsperioderForUkjentArbeidsgiver = (
+export const getSøknadsperioderForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
     ansattFom: Date | undefined,
     ansattTom: Date | undefined
@@ -37,13 +37,13 @@ export const getSøknadsperioderForUkjentArbeidsgiver = (
     return ansettelsesperiode ? getDateRangesWithinDateRange(søknadsperioder, ansettelsesperiode) : søknadsperioder;
 };
 
-export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
+export const getPerioderMedArbeidstidForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
     { ansattFom, ansattTom }: Arbeidsgiver,
     normalarbeidstidPerUke: Duration,
     faktiskArbeidstidPerUke: Duration | undefined
 ): PeriodeMedArbeidstid[] => {
-    const søknadsperioderForArbeidsforhold = getSøknadsperioderForUkjentArbeidsgiver(
+    const søknadsperioderForArbeidsforhold = getSøknadsperioderForUkjentArbeidsforhold(
         søknadsperioder,
         ansattFom,
         ansattTom
@@ -72,7 +72,7 @@ export const getPerioderMedArbeidstidForUkjentArbeidsgiver = (
     return perioderMedArbeidstid;
 };
 
-export const getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver = (
+export const getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold = (
     arbeidsforhold: ArbeidsforholdAktivt,
     arbeiderIPerioden?: ArbeiderIPeriodenSvar
 ): Duration | undefined => {
@@ -87,13 +87,13 @@ export const getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver = (
     }
 };
 
-export const getArbeidAktivitetForUkjentArbeidsgiver = (
+export const getArbeidAktivitetForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
     arbeidsgiver: Arbeidsgiver,
     arbeidsforhold: ArbeidsforholdAktivt,
     arbeiderIPerioden?: ArbeiderIPeriodenSvar
 ): ArbeidAktivitet => {
-    const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsgiver(arbeidsforhold, arbeiderIPerioden);
+    const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold(arbeidsforhold, arbeiderIPerioden);
 
     const aktivitet: ArbeidAktivitet = {
         key: arbeidsgiver.key,
@@ -103,7 +103,7 @@ export const getArbeidAktivitetForUkjentArbeidsgiver = (
         navn: arbeidsgiver.navn,
         harPerioderEtterTillattEndringsperiode: false,
         harPerioderFørTillattEndringsperiode: false,
-        perioderMedArbeidstid: getPerioderMedArbeidstidForUkjentArbeidsgiver(
+        perioderMedArbeidstid: getPerioderMedArbeidstidForUkjentArbeidsforhold(
             søknadsperioder,
             arbeidsgiver,
             arbeidsforhold.normalarbeidstid.timerPerUke,
@@ -117,20 +117,20 @@ export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
     søknadsperioder: DateRange[],
     ukjenteArbeidsgivere: Arbeidsgiver[],
     arbeidAktivitetFormValues: ArbeidAktivitetFormValuesMap,
-    arbeidssituasjon?: ArbeidssituasjonSøknadsdata
+    ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
 ): ArbeidAktivitet[] => {
     const aktiviteter: ArbeidAktivitet[] = [];
     ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
-        const arbeidsforhold = arbeidssituasjon?.arbeidsforhold.find((s) => s.arbeidsgiverKey === arbeidsgiver.key);
+        const arbeidsforhold = ukjentArbeidsforhold?.arbeidsforhold.find((s) => s.arbeidsgiverKey === arbeidsgiver.key);
         if (!arbeidsforhold) {
-            throw 'Arbeidssituasjoninfo mangler for arbeidsgiver';
+            throw 'UkjentArbeidsforholdinfo mangler for arbeidsgiver';
         }
         if (arbeidsforhold.erAnsatt === false) {
             return;
         }
         const arbeiderIPerioden = arbeidAktivitetFormValues[arbeidsgiver.key]?.arbeiderIPerioden;
         aktiviteter.push(
-            getArbeidAktivitetForUkjentArbeidsgiver(søknadsperioder, arbeidsgiver, arbeidsforhold, arbeiderIPerioden)
+            getArbeidAktivitetForUkjentArbeidsforhold(søknadsperioder, arbeidsgiver, arbeidsforhold, arbeiderIPerioden)
         );
     });
     return aktiviteter;

@@ -48,7 +48,7 @@ const OppsummeringStep = () => {
         state: { søknadsdata, sak, arbeidsgivere, hvaSkalEndres },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsgiver);
+    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
     const step = stepConfig[stepId];
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
 
@@ -83,7 +83,7 @@ const OppsummeringStep = () => {
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        sak.harUkjentArbeidsgiver
+        sak.harUkjentArbeidsforhold
     );
 
     const harIngenEndringer =
@@ -101,7 +101,7 @@ const OppsummeringStep = () => {
                 </Ingress>
             </SifGuidePanel>
 
-            {sak.harUkjentArbeidsgiver && ukjentArbeidsforhold && (
+            {sak.harUkjentArbeidsforhold && ukjentArbeidsforhold && (
                 <Block margin="xxl">
                     <SummarySection header="Ukjent arbeidsforhold">
                         {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
@@ -112,7 +112,7 @@ const OppsummeringStep = () => {
                             if (!arbeidsforhold) {
                                 return;
                             }
-                            const getTestKey = (key: string) => `ukjentArbeidsgiver_${arbeidsgiver.key}_${key}`;
+                            const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
                             return (
                                 <div key={arbeidsgiver.key}>
                                     <Heading level="3" size="medium">

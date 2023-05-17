@@ -9,18 +9,18 @@ import { getSøknadStepRoute } from './SøknadRoutes';
 export const getSøknadSteps = (
     hvaSkalEndres: EndringType[],
     søknadsdata: Søknadsdata,
-    harUkjentArbeidsgiver: boolean
+    harUkjentArbeidsforhold: boolean
 ): StepId[] => {
     const steps: StepId[] = [];
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         hvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        harUkjentArbeidsgiver
+        harUkjentArbeidsforhold
     );
 
-    if (harUkjentArbeidsgiver) {
-        steps.push(StepId.ARBEIDSSITUASJON);
+    if (harUkjentArbeidsforhold) {
+        steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
     if (lovbestemtFerieSkalEndres) {
         steps.push(StepId.LOVBESTEMT_FERIE);

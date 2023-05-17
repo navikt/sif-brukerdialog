@@ -12,7 +12,7 @@ export const getApiDataFromSøknadsdata = (
     sak: Sak,
     hvaSkalEndres: EndringType[]
 ): SøknadApiData | undefined => {
-    const { id, arbeidstid, lovbestemtFerie, arbeidssituasjon } = søknadsdata;
+    const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
 
     if (!arbeidstid && !lovbestemtFerie) {
         return undefined;
@@ -35,13 +35,13 @@ export const getApiDataFromSøknadsdata = (
                       arbeidstid.arbeidAktivitet,
                       sak.arbeidAktiviteter,
                       sak.ukjenteArbeidsgivere,
-                      arbeidssituasjon
+                      ukjentArbeidsforhold
                   )
                 : undefined,
             dataBruktTilUtledning: {
                 soknadDialogCommitSha: getCommitShaFromEnv() || '',
                 valgteEndringer: hvaSkalEndres,
-                ukjentArbeidsforhold: søknadsdata.arbeidssituasjon?.arbeidsforhold,
+                ukjentArbeidsforhold: søknadsdata.ukjentArbeidsforhold?.arbeidsforhold,
             },
         },
     };

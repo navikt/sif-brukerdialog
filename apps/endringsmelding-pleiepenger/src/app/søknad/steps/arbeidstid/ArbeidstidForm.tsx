@@ -10,7 +10,7 @@ import { ArbeidstidEndringMap } from '../../../types/ArbeidstidEndring';
 import { ArbeidAktivitetType } from '../../../types/Sak';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { getArbeidAktiviteterForUkjenteArbeidsgivere } from '../../../utils/ukjentArbeidsgiverUtils';
+import { getArbeidAktiviteterForUkjenteArbeidsgivere } from '../../../utils/ukjentArbeidsforholdUtils';
 import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -107,7 +107,7 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                         sak.søknadsperioder,
                         sak.ukjenteArbeidsgivere,
                         aktiviteterValuesMap,
-                        søknadsdata.arbeidssituasjon
+                        søknadsdata.ukjentArbeidsforhold
                     ),
                     ...getAktiviteterSomSkalEndres(sak.arbeidAktiviteter),
                 ];

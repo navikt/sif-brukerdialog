@@ -10,7 +10,7 @@ import {
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getValgteEndringer } from './endringTypeUtils';
 
-interface ArbeidssituasjonMetadata {
+interface UkjentArbeidsforholdMetadata {
     antallUkjentArbeidsforhold: number;
     erAnsatt?: boolean;
 }
@@ -26,7 +26,7 @@ interface LovbestemtFerieMetadata {
 
 export type SøknadApiDataMetadata = LovbestemtFerieMetadata &
     ArbeidstidMetadata &
-    ArbeidssituasjonMetadata & {
+    UkjentArbeidsforholdMetadata & {
         valgtEndreArbeidstid: boolean;
         valgtEndreFerie: boolean;
     };
@@ -41,8 +41,8 @@ const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetada
           };
 };
 
-const getArbeidssituasjonMetadata = (søknadsdata: Søknadsdata): ArbeidssituasjonMetadata => {
-    const ukjentArbeidsforhold = søknadsdata.arbeidssituasjon?.arbeidsforhold || [];
+const getUkjentArbeidsforholdMetadata = (søknadsdata: Søknadsdata): UkjentArbeidsforholdMetadata => {
+    const ukjentArbeidsforhold = søknadsdata.ukjentArbeidsforhold?.arbeidsforhold || [];
     return {
         antallUkjentArbeidsforhold: ukjentArbeidsforhold.length,
         erAnsatt: ukjentArbeidsforhold.some((a) => a.erAnsatt),
@@ -70,7 +70,7 @@ export const getSøknadApiDataMetadata = (apiData: SøknadApiData, søknadsdata:
     return {
         valgtEndreArbeidstid: endringer.arbeidstidSkalEndres,
         valgtEndreFerie: endringer.lovbestemtFerieSkalEndres,
-        ...getArbeidssituasjonMetadata(søknadsdata),
+        ...getUkjentArbeidsforholdMetadata(søknadsdata),
         ...getFerieMetadata(lovbestemtFerie),
         ...getArbeidstidMetadata(arbeidstid),
     };

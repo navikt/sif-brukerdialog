@@ -21,7 +21,7 @@ window.appSettings={
     MSW:'off',
     PUBLIC_PATH:'/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
     USE_AMPLITUDE:'true',
-    UKJENT_ARBEIDSGIVER:'true',
+    UKJENT_ARBEIDSFOHOLD:'true',
     IMAGE:'ghcr.io/navikt/sif-brukerdialog/endringsmelding-pleiepenger-mono:825c85c3ef8c5a7ac4906dd4443620715a40a68a',
 };`;
 
@@ -40,7 +40,7 @@ describe('Ukjent arbeidsgiver - jobber ikke', () => {
     cyHelpers.startSøknad({ endreLovbestemtFerie: true });
     cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
     cyHelpers.leggTilFerie(true);
-    cyHelpers.fyllUtArbeidstidUkjentArbeidsgiver('947064642', 'HELT_FRAVÆR');
+    cyHelpers.fyllUtArbeidstidUkjentArbeidsforhold('947064642', 'HELT_FRAVÆR');
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummeringUkjentArbeidsforholdJobberIkke('947064642');
 });
@@ -60,7 +60,7 @@ describe('Ukjent arbeidsgiver - jobber vanlig', () => {
     cyHelpers.startSøknad({ endreLovbestemtFerie: true });
     cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
     cyHelpers.leggTilFerie(true);
-    cyHelpers.fyllUtArbeidstidUkjentArbeidsgiver('947064642', 'SOM_VANLIG');
+    cyHelpers.fyllUtArbeidstidUkjentArbeidsforhold('947064642', 'SOM_VANLIG');
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummeringUkjentArbeidsforholdJobberVanlig('947064642');
 });
@@ -79,7 +79,7 @@ describe('Ukjent arbeidsgiver - redusert', () => {
 
     cyHelpers.startSøknad({ endreLovbestemtFerie: false, endreArbeidstid: true });
     cyHelpers.fyllUtUkjentArbeidsforhold('947064642');
-    cyHelpers.fyllUtArbeidstidUkjentArbeidsgiver('947064642', 'REDUSERT', [
+    cyHelpers.fyllUtArbeidstidUkjentArbeidsforhold('947064642', 'REDUSERT', [
         {
             ukenummer: '4',
             tid: '1',

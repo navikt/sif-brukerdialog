@@ -82,7 +82,7 @@ export interface SakLovbestemtFerie {
 
 export interface Sak {
     barn: K9SakBarn;
-    harUkjentArbeidsgiver: boolean;
+    harUkjentArbeidsforhold: boolean;
     ukjenteArbeidsgivere: Arbeidsgiver[];
     arbeidAktiviteter: ArbeidAktiviteter;
     lovbestemtFerie: SakLovbestemtFerie;

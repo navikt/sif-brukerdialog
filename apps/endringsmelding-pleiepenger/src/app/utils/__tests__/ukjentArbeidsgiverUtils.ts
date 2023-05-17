@@ -1,9 +1,9 @@
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { dateToISODate, ISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { getSøknadsperioderForUkjentArbeidsgiver } from '../ukjentArbeidsgiverUtils';
+import { getSøknadsperioderForUkjentArbeidsforhold } from '../ukjentArbeidsforholdUtils';
 
-describe('ukjentArbeidsgiverUtils', () => {
-    describe('getSøknadsperioderForUkjentArbeidsgiver', () => {
+describe('ukjentArbeidsforholdUtils', () => {
+    describe('getSøknadsperioderForUkjentArbeidsforhold', () => {
         const søknadsperioder: DateRange[] = [
             ISODateRangeToDateRange('2020-01-01/2020-02-01'),
             ISODateRangeToDateRange('2020-05-01/2020-06-01'),
@@ -11,7 +11,7 @@ describe('ukjentArbeidsgiverUtils', () => {
         it('avgrenser søknadsperioder til ansettelsesperiode med fom og tom', () => {
             const fomIsoDate: ISODate = '2020-01-15';
             const tomIsoDate: ISODate = '2020-05-16';
-            const perioder = getSøknadsperioderForUkjentArbeidsgiver(
+            const perioder = getSøknadsperioderForUkjentArbeidsforhold(
                 søknadsperioder,
                 ISODateToDate(fomIsoDate),
                 ISODateToDate(tomIsoDate)
@@ -24,7 +24,7 @@ describe('ukjentArbeidsgiverUtils', () => {
         });
         it('avgrenser søknadsperioder til ansettelsesperiode med bare fom', () => {
             const fomIsoDate: ISODate = '2020-01-15';
-            const perioder = getSøknadsperioderForUkjentArbeidsgiver(
+            const perioder = getSøknadsperioderForUkjentArbeidsforhold(
                 søknadsperioder,
                 ISODateToDate(fomIsoDate),
                 undefined
@@ -37,7 +37,7 @@ describe('ukjentArbeidsgiverUtils', () => {
         });
         it('avgrenser søknadsperioder til ansettelsesperiode med bare tom', () => {
             const tomIsoDate: ISODate = '2020-01-15';
-            const perioder = getSøknadsperioderForUkjentArbeidsgiver(
+            const perioder = getSøknadsperioderForUkjentArbeidsforhold(
                 søknadsperioder,
                 undefined,
                 ISODateToDate(tomIsoDate)

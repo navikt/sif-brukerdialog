@@ -6,7 +6,7 @@ import { StepFormValues } from '../søknad/config/StepFormValues';
 import { StepId } from '../søknad/config/StepId';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
-import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonStepUtils';
+import { getUkjentArbeidsforholdSøknadsdataFromFormValues } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdStepUtils';
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getLovbestemtFerieSøknadsdataFromFormValues } from '../søknad/steps/lovbestemt-ferie/lovbestemtFerieStepUtils';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
@@ -26,8 +26,8 @@ const getStepSøknadsdataFromStepFormValues = (
         return undefined;
     }
     switch (step) {
-        case StepId.ARBEIDSSITUASJON:
-            return getArbeidssituasjonSøknadsdataFromFormValues(formValues as any, arbeidsgivere);
+        case StepId.UKJENT_ARBEIDSFOHOLD:
+            return getUkjentArbeidsforholdSøknadsdataFromFormValues(formValues as any, arbeidsgivere);
         case StepId.LOVBESTEMT_FERIE:
             return getLovbestemtFerieSøknadsdataFromFormValues(formValues as any);
         case StepId.ARBEIDSTID:

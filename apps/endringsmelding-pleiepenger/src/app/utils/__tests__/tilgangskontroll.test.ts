@@ -19,7 +19,7 @@ jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
 
 jest.mock('../featureToggleUtils', () => ({
     Feature: {
-        UKJENT_ARBEIDSGIVER: 'on',
+        UKJENT_ARBEIDSFOHOLD: 'on',
     },
     isFeatureEnabled: () => {
         return true;
