@@ -130,7 +130,9 @@
             "node_modules/(?!(@navikt)).*\\.js$"
         ],
         "moduleNameMapper": {
-            "^@types$": "<rootDir>/src/app/types/index.ts"
+            "^@hooks$": "<rootDir>/src/app/hooks/index.ts",
+            "^@types$": "<rootDir>/src/app/types/index.ts",
+            "^@utils$": "<rootDir>/src/app/utils/index.ts"
         }
     },
     "scripts": {
