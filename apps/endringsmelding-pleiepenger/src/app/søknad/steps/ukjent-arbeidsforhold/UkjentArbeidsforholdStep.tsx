@@ -13,19 +13,21 @@ import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
-import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
 import {
     getUkjentArbeidsforholdStepInitialValues,
     getUkjentArbeidsforholdSøknadsdataFromFormValues,
 } from './ukjentArbeidsforholdStepUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import UkjentArbeidsgiverFormPart, {
+    UkjentArbeidsgiverFormValues,
+} from './ukjent-arbeidsgiver-form-part/UkjentArbeidsgiverFormPart';
 
-export interface UkjentArbeidsforholdMap {
-    [id: string]: ArbeidsforholdFormValues;
+export interface UkjentArbeidsgiverMap {
+    [arbeidsgiverKey: string]: UkjentArbeidsgiverFormValues;
 }
 
 export interface UkjentArbeidsforholdFormValues {
-    [UkjentArbeidsforholdFormFields.arbeidsforhold]: UkjentArbeidsforholdMap;
+    [UkjentArbeidsforholdFormFields.arbeidsforhold]: UkjentArbeidsgiverMap;
 }
 
 enum UkjentArbeidsforholdFormFields {
@@ -45,6 +47,7 @@ const UkjentArbeidsforholdStep = () => {
     const {
         state: { søknadsdata, valgtHvaSkalEndres: hvaSkalEndres, sak, arbeidsgivere },
     } = useSøknadContext();
+
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
     const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
     const step = stepConfig[stepId];
@@ -107,7 +110,7 @@ const UkjentArbeidsforholdStep = () => {
                                         const fieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${a.key}`;
                                         return (
                                             <div key={a.key} data-testid={`ukjentArbeidsforhold_${a.key}`}>
-                                                <ArbeidsforholdForm
+                                                <UkjentArbeidsgiverFormPart
                                                     arbeidsgiver={a}
                                                     values={(values.arbeidsforhold || {})[a.key]}
                                                     parentFieldName={fieldName}

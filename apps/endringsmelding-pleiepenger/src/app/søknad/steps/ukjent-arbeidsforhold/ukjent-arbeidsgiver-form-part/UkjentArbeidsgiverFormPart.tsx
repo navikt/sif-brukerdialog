@@ -9,27 +9,27 @@ import {
 import { ArbeidAktivitetType, Arbeidsgiver } from '@types';
 import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
-import { InfoNormalarbeidstid } from './InfoNormalarbeidstid';
+import { InfoNormalarbeidstid } from '../info-normalarbeidstid/InfoNormalarbeidstid';
 
 interface Props {
     arbeidsgiver: Arbeidsgiver;
     parentFieldName: string;
-    values: ArbeidsforholdFormValues;
+    values: UkjentArbeidsgiverFormValues;
 }
 
-export enum ArbeidsforholdFormField {
+export enum UkjentArbeidsgiverFormField {
     erAnsatt = 'erAnsatt',
     timerPerUke = 'timerPerUke',
 }
 
-export interface ArbeidsforholdFormValues {
-    [ArbeidsforholdFormField.erAnsatt]?: YesOrNo;
-    [ArbeidsforholdFormField.timerPerUke]?: string;
+export interface UkjentArbeidsgiverFormValues {
+    [UkjentArbeidsgiverFormField.erAnsatt]?: YesOrNo;
+    [UkjentArbeidsgiverFormField.timerPerUke]?: string;
 }
 
 const { NumberInput, YesOrNoQuestion } = getTypedFormComponents<
-    ArbeidsforholdFormField,
-    ArbeidsforholdFormValues,
+    UkjentArbeidsgiverFormField,
+    UkjentArbeidsgiverFormValues,
     IntlErrorObject
 >();
 
@@ -39,7 +39,7 @@ export const getArbeidIPeriodeArbeiderIPeriodenValidator =
         const error = getRequiredFieldValidator()(value);
         return error
             ? {
-                  key: `validation.arbeidIPeriode.arbeider.${error}`,
+                  key: `ukjentArbeidsgiver.validation.arbeider.${error}`,
                   keepKeyUnaltered: true,
                   values: {
                       navn,
@@ -47,9 +47,10 @@ export const getArbeidIPeriodeArbeiderIPeriodenValidator =
               }
             : error;
     };
-const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) => {
-    const getFieldName = (field: ArbeidsforholdFormField): ArbeidsforholdFormField => {
-        return `${parentFieldName}.${field}` as ArbeidsforholdFormField;
+
+const UkjentArbeidsgiverFormPart = ({ parentFieldName, values, arbeidsgiver }: Props) => {
+    const getFieldName = (field: UkjentArbeidsgiverFormField): UkjentArbeidsgiverFormField => {
+        return `${parentFieldName}.${field}` as UkjentArbeidsgiverFormField;
     };
 
     return (
@@ -59,12 +60,12 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
             arbeidsgiver={arbeidsgiver}
             renderAsExpansionCard={false}>
             <YesOrNoQuestion
-                name={getFieldName(ArbeidsforholdFormField.erAnsatt)}
+                name={getFieldName(UkjentArbeidsgiverFormField.erAnsatt)}
                 validate={(value) => {
                     const error = getYesOrNoValidator()(value);
                     if (error) {
                         return {
-                            key: `arbeidsforhold.validation.${ArbeidsforholdFormField.erAnsatt}.${error}`,
+                            key: `ukjentArbeidsgiver.validation.${UkjentArbeidsgiverFormField.erAnsatt}.${error}`,
                             keepKeyUnaltered: true,
                             values: {
                                 navn: arbeidsgiver.navn,
@@ -84,7 +85,7 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                 <>
                     <FormBlock>
                         <NumberInput
-                            name={getFieldName(ArbeidsforholdFormField.timerPerUke)}
+                            name={getFieldName(UkjentArbeidsgiverFormField.timerPerUke)}
                             label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
                             description={<InfoNormalarbeidstid />}
                             min={0}
@@ -100,7 +101,7 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
                                 })(value);
                                 return error
                                     ? {
-                                          key: `arbeidsforhold.validation.${ArbeidsforholdFormField.timerPerUke}.${error}`,
+                                          key: `ukjentArbeidsgiver.validation.${UkjentArbeidsgiverFormField.timerPerUke}.${error}`,
                                           keepKeyUnaltered: true,
                                           values: {
                                               navn: arbeidsgiver.navn,
@@ -116,4 +117,4 @@ const ArbeidsforholdForm = ({ parentFieldName, values, arbeidsgiver }: Props) =>
     );
 };
 
-export default ArbeidsforholdForm;
+export default UkjentArbeidsgiverFormPart;

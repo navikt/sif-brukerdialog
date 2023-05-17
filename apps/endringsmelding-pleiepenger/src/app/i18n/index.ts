@@ -7,25 +7,25 @@ import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysn
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
 import { oppsummeringStepMessages } from '../søknad/steps/oppsummering/oppsummeringStepMessages';
-import { infoNormalarbeidstid } from '../søknad/steps/ukjent-arbeidsforhold/components/infoNormaltimer.messages';
-import { ukjentArbeidsforholdFormMessages } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdFormMessages';
+import { ukjentArbeidsgiverFormMessages } from '../søknad/steps/ukjent-arbeidsforhold/ukjent-arbeidsgiver-form-part/ukjentArbeidsgiverFormMessages';
 import { defaultMessages } from './messages';
 import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
 import { sifCommonSoknadOverrideMessages } from './sifCommonSoknadOverrideMessages';
+import { infoNormalarbeidstid } from '../søknad/steps/ukjent-arbeidsforhold/info-normalarbeidstid/infoNormaltimer.messages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
-    ...soknadIntlMessages.nb,
-    ...endreArbeidstidMessages.nb,
     ...arbeidstidStepMessages.nb,
-    ...velkommenPageMessages.nb,
-    ...personalOpplysningerMessages.nb,
-    ...samtykkeFormOverrideMessages.nb,
-    ...oppsummeringStepMessages.nb,
-    ...sifCommonSoknadOverrideMessages.nb,
+    ...endreArbeidstidMessages.nb,
     ...ferieuttakMessages.nb,
     ...infoNormalarbeidstid.nb,
-    ...ukjentArbeidsforholdFormMessages.nb,
+    ...oppsummeringStepMessages.nb,
+    ...personalOpplysningerMessages.nb,
+    ...samtykkeFormOverrideMessages.nb,
+    ...sifCommonSoknadOverrideMessages.nb,
+    ...soknadIntlMessages.nb,
+    ...ukjentArbeidsgiverFormMessages.nb,
+    ...velkommenPageMessages.nb,
     ...defaultMessages.nb,
 };
 
