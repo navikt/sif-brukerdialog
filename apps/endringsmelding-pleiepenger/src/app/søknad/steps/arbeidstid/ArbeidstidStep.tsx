@@ -1,12 +1,11 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { useStepNavigation, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
+import { harFjernetLovbestemtFerie } from '@utils';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidForm from './ArbeidstidForm';
 

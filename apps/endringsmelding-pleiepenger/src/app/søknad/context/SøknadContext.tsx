@@ -1,6 +1,6 @@
 import { createContext, Dispatch, FunctionComponent, ReactNode, useMemo, useReducer } from 'react';
+import { SøknadInitialData } from '@hooks';
 import { SøknadContextState } from '@types';
-import { SøknadInitialData } from '../../hooks/useSøknadInitialData';
 import { SøknadContextAction } from './action/actionCreator';
 import { søknadReducer } from './reducer/søknadReducer';
 

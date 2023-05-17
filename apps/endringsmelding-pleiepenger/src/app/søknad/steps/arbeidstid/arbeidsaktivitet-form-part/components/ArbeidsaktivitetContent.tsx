@@ -17,6 +17,7 @@ import {
     LovbestemtFerieSøknadsdata,
     PeriodeMedArbeidstid,
 } from '@types';
+import { getEndringsdato, getTillattEndringsperiode, harFjernetFerieIPeriode } from '@utils';
 import DateRangeAccordion from '../../../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
@@ -26,8 +27,6 @@ import ArbeidstidUkeTabell, {
 } from '../../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
-import { getEndringsdato, getTillattEndringsperiode } from '../../../../../utils/endringsperiode';
-import { harFjernetFerieIPeriode } from '../../../../../utils/ferieUtils';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';
 import { cleanupArbeidAktivitetEndringer, validateUkjentArbeidsaktivitetArbeidstid } from '../../arbeidstidStepUtils';
 import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';

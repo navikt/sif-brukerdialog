@@ -4,7 +4,7 @@ import { EndringType, K9Sak, Søker, Søknadsdata } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
-import { SøknadRoutes, getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
+import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 

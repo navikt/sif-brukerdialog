@@ -1,6 +1,6 @@
 import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState, Søknadsdata } from '@types';
-import { getFeriedagerMeta } from '../../../utils/lovbestemtFerieUtils';
+import { getFeriedagerMeta } from '@utils';
 import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 

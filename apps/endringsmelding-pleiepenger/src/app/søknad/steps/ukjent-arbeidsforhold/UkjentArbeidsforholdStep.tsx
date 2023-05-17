@@ -1,19 +1,16 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
+import { useOnValidSubmit, useStepNavigation, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { SøknadContextState } from '@types';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import ArbeidsforholdForm, { ArbeidsforholdFormValues } from './components/ArbeidsforholdForm';
@@ -21,6 +18,7 @@ import {
     getUkjentArbeidsforholdStepInitialValues,
     getUkjentArbeidsforholdSøknadsdataFromFormValues,
 } from './ukjentArbeidsforholdStepUtils';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 
 export interface UkjentArbeidsforholdMap {
     [id: string]: ArbeidsforholdFormValues;

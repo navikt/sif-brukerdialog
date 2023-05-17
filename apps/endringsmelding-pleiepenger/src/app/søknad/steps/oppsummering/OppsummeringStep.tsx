@@ -1,6 +1,7 @@
 import { Alert, Button, ErrorSummary, Heading, Ingress } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
+import { useSendSøknad, useStepNavigation, useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { Back } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -12,16 +13,10 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import JaNeiSvar from '@navikt/sif-common-forms-ds/lib/components/summary/JaNeiSvar';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { getApiDataFromSøknadsdata, getEndringerSomSkalGjøres, harFjernetLovbestemtFerie } from '@utils';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
-import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
-import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
-import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';

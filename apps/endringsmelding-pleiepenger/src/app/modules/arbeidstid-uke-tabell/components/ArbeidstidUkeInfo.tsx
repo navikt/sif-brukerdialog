@@ -5,8 +5,8 @@ import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import { erTimerGyldigInnenforAntallDager } from '@utils';
 import IconText from '../../../components/icon-text/IconText';
-import { erTimerGyldigInnenforAntallDager } from '../../../utils/beregnUtils';
 import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
 import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
 

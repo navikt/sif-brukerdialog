@@ -1,9 +1,9 @@
+import { useSøknadContext } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { EndringType } from '@types';
 import { SKJEMANAVN } from '../App';
 import { getSøknadSteps } from '../søknad/config/søknadStepConfig';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 
 export const useStartSøknad = () => {
     const { logSoknadStartet, logInfo } = useAmplitudeInstance();

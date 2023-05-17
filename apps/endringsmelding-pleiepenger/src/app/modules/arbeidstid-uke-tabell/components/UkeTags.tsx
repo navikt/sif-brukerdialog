@@ -1,8 +1,8 @@
 import React from 'react';
+import { getFeriedagerIUkeTekst } from '@utils';
 import FerieTag from '../../../components/tags/FerieTag';
 import KortUkeTag from '../../../components/tags/KortUkeTag';
 import TagsContainer from '../../../components/tags/tags-container/TagsContainer';
-import { getFeriedagerIUkeTekst } from '../../../utils/ferieUtils';
 
 interface Props {
     erKortUke?: boolean;

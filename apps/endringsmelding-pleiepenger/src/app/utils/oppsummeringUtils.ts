@@ -1,12 +1,5 @@
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
-import {
-    ArbeidstakerApiData,
-    ArbeidstidApiData,
-    LovbestemtFerieApiData,
-    LovbestemtFeriePeriode,
-    SøknadApiData,
-    Søknadsdata,
-} from '@types';
+import { ArbeidstidApiData, LovbestemtFerieApiData, LovbestemtFeriePeriode, SøknadApiData, Søknadsdata } from '@types';
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 import { getValgteEndringer } from './endringTypeUtils';
 
@@ -91,15 +84,4 @@ export const getLovbestemtFerieOppsummeringInfo = (lovbestemtFerie: LovbestemtFe
         perioderLagtTil,
         perioderFjernet,
     };
-};
-
-export const harEndretArbeidstidForArbeidsgiverIApiData = (
-    arbeidsgiverId: string,
-    endringer?: ArbeidstakerApiData[]
-): boolean => {
-    const arbeidsgiverEndring = endringer ? endringer.find((a) => a.organisasjonsnummer === arbeidsgiverId) : undefined;
-    if (arbeidsgiverEndring) {
-        return Object.keys(arbeidsgiverEndring.arbeidstidInfo.perioder).length > 0;
-    }
-    return false;
 };

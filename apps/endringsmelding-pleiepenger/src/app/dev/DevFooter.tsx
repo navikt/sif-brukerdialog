@@ -1,12 +1,12 @@
 import { Button, Heading, Modal, Radio, RadioGroup } from '@navikt/ds-react';
 import ModalContent from '@navikt/ds-react/esm/modal/ModalContent';
 import React, { useState } from 'react';
+import { useSøknadContext } from '@hooks';
 import { Settings } from '@navikt/ds-icons';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
 

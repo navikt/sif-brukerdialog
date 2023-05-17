@@ -1,6 +1,6 @@
-import { harEndretArbeidstidForArbeidsgiverIApiData } from '../oppsummeringUtils';
+import { harEndretArbeidstidForArbeidsgiverIApiData } from '../apiDataUtils';
 
-describe('oppsummeringUtils', () => {
+describe('apiDataUtils', () => {
     describe('harEndretArbeidstidForArbeidsgiver', () => {
         it('returnerer false dersom endringer er undefined', () => {
             expect(harEndretArbeidstidForArbeidsgiverIApiData('123', undefined)).toBeFalsy();

@@ -1,5 +1,6 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
+import { useOnValidSubmit, useStepNavigation, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
@@ -8,18 +9,14 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '@types';
+import { erFeriedagerEndretIPeriode, getValgteEndringer } from '@utils';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../components/tags/EndretTag';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
-import { getValgteEndringer } from '../../../utils/endringTypeUtils';
-import { erFeriedagerEndretIPeriode } from '../../../utils/ferieUtils';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';

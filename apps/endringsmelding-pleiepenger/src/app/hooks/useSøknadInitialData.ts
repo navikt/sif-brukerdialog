@@ -12,11 +12,11 @@ import {
     SøknadContextState,
     TimerEllerProsent,
 } from '@types';
+import { appSentryLogger } from '@utils';
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../api/fetchInitialData';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
-import appSentryLogger from '../utils/appSentryLogger';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';

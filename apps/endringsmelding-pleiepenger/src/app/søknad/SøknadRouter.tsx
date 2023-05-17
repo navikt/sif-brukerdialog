@@ -10,18 +10,18 @@ import {
     useEnsureCorrectSøknadRoute,
 } from '@navikt/sif-common-soknad-ds/lib/hooks/useEnsureCorrectSøknadRoute';
 import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/lib/modules/start-på-nytt-dialog/StartPåNyttDialog';
+import { appSentryLogger } from '@utils';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useSøknadContext } from '../hooks/useSøknadContext';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelgSakPage from '../pages/velg-sak/VelgSakPage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { StepId } from './config/StepId';
 import { getSøknadStepRoute, SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
 import { getSøknadSteps } from './config/søknadStepConfig';
 import actionsCreator from './context/action/actionCreator';
-import { useSøknadContext } from './context/hooks/useSøknadContext';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';

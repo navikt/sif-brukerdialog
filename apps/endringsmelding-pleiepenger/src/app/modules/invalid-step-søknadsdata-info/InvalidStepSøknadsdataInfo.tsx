@@ -2,12 +2,11 @@ import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
-import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
 import { StepId } from '../../søknad/config/StepId';
-import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 
 interface Props {
     stepId: StepId;

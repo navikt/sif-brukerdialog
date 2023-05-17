@@ -4,9 +4,8 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
+import { appSentryLogger, relocateToWelcomePage } from '@utils';
 import søknadStateEndpoint from '../../api/endpoints/søknadStateEndpoint';
-import appSentryLogger from '../../utils/appSentryLogger';
-import { relocateToWelcomePage } from '../../utils/navigationUtils';
 
 interface State {
     eventId: string | null;

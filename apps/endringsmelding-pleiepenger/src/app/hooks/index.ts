@@ -8,3 +8,4 @@ export * from './useSøknadInitialData';
 export * from './useSøknadsdataStatus';
 export * from './useStartSøknad';
 export * from './useStepNavigation';
+export * from './useSøknadContext';

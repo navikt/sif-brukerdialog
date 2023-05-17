@@ -12,9 +12,8 @@ import {
     LovbestemtFerieApiData,
     Søknadsdata,
 } from '@types';
+import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@utils';
 import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
-import { erKortArbeidsuke } from '../../../utils/arbeidsukeUtils';
-import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
 import { OppsummeringFormValues } from './OppsummeringStep';
 
 export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {

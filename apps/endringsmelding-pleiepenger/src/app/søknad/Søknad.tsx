@@ -5,10 +5,10 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { RequestStatus } from '@types';
+import { appSentryLogger } from '@utils';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
-import appSentryLogger from '../utils/appSentryLogger';
 import { SøknadRoutes } from './config/SøknadRoutes';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';

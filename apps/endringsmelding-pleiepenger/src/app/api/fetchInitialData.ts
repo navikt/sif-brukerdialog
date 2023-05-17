@@ -11,12 +11,12 @@ import {
     Søker,
     UgyldigK9SakFormat,
 } from '@types';
+import { appSentryLogger } from '@utils';
 import {
     IngenTilgangMeta,
     isSøknadInitialDataErrorState,
     SøknadInitialIkkeTilgang,
 } from '../hooks/useSøknadInitialData';
-import appSentryLogger from '../utils/appSentryLogger';
 import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag, getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';

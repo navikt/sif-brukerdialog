@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useSøknadContext } from '@hooks';
 import { StepConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../søknad/config/StepId';
 import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 
 type emptyFunction = () => void;
 

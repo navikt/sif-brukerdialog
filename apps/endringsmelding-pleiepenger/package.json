@@ -127,7 +127,8 @@
     },
     "jest": {
         "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
+            "node_modules/(?!(@navikt)).*\\.js$",
+            "node_modules/@navikt/sif-common-core-js/.*"
         ],
         "moduleNameMapper": {
             "^@hooks$": "<rootDir>/src/app/hooks/index.ts",

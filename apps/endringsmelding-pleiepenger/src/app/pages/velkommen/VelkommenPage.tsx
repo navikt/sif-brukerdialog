@@ -1,5 +1,6 @@
 import { Heading, Ingress } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
+import { useSakUtledet as useSakInfo, useStartSøknad } from '@hooks';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -11,8 +12,6 @@ import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
 import { EndringType } from '@types';
-import { useSakUtledet as useSakInfo } from '../../hooks/useSakInfo';
-import { useStartSøknad } from '../../hooks/useStartSøknad';
 import OmSøknaden from './OmSøknaden';
 
 export enum VelkommenFormFields {

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
+import { useSøknadContext } from '@hooks';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { Arbeidsgiver, Søknadsdata } from '@types';
 import { StepFormValues } from '../søknad/config/StepFormValues';
 import { StepId } from '../søknad/config/StepId';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getLovbestemtFerieSøknadsdataFromFormValues } from '../søknad/steps/lovbestemt-ferie/lovbestemtFerieStepUtils';

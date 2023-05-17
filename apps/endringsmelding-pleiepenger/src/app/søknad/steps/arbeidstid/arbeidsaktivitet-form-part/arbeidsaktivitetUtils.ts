@@ -7,12 +7,15 @@ import {
     LovbestemtFerieSøknadsdata,
     TimerEllerProsent,
 } from '@types';
+import {
+    beregnEndretFaktiskArbeidstidPerDag,
+    erKortArbeidsuke,
+    getLovbestemtFerieSøknadsdataForPeriode,
+    getTimerPerUkeFraTimerPerDag,
+} from '@utils';
 import dayjs from 'dayjs';
 import { uniqBy } from 'lodash';
 import { ArbeidstidUkeTabellItem } from '../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
-import { erKortArbeidsuke } from '../../../../utils/arbeidsukeUtils';
-import { beregnEndretFaktiskArbeidstidPerDag, getTimerPerUkeFraTimerPerDag } from '../../../../utils/beregnUtils';
-import { getLovbestemtFerieSøknadsdataForPeriode } from '../../../../utils/lovbestemtFerieUtils';
 
 const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;

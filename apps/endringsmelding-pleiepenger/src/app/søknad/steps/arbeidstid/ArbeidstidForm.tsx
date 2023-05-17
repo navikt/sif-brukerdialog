@@ -1,16 +1,15 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ArbeidAktivitetType, ArbeiderIPeriodenSvar, ArbeidstidEndringMap, SøknadContextState } from '@types';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { getArbeidAktiviteterForUkjenteArbeidsgivere } from '@utils';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { getArbeidAktiviteterForUkjenteArbeidsgivere } from '../../../utils/ukjentArbeidsforholdUtils';
 import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
 import {
