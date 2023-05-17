@@ -2,7 +2,7 @@ export * from './_ArbeiderIPeriodenSvar';
 export * from './_Arbeidsforhold';
 export * from './_ArbeidstidEndring';
 export * from './_Arbeidsgiver';
-export * from './ArbeidsgiverIkkeFunnetError';
+export * from './_ArbeidsgiverIkkeFunnetError';
 export * from './ArbeidstidSøknadsdata';
 export * from './EndringType';
 export * from './IngenTilgangÅrsak';
