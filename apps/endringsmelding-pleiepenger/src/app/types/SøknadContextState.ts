@@ -1,6 +1,6 @@
 import { DateRange } from '@navikt/sif-common-utils';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
-import { Arbeidsgiver } from './Arbeidsgiver';
+import { Arbeidsgiver } from './_Arbeidsgiver';
 import { EndringType } from './EndringType';
 import { K9Sak } from './K9Sak';
 import { Sak } from './Sak';
