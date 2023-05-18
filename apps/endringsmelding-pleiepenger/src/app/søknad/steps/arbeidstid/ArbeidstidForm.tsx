@@ -4,14 +4,14 @@ import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { ArbeidAktivitetType, ArbeiderIPeriodenSvar, ArbeidstidEndringMap, SøknadContextState } from '@types';
-import { getArbeidAktiviteterForUkjenteArbeidsgivere } from '@utils';
+import { ArbeidsaktivitetType, ArbeiderIPeriodenSvar, ArbeidstidEndringMap, SøknadContextState } from '@types';
+import { getArbeidsaktiviteterForUkjenteArbeidsgivere } from '@utils';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import ArbeidAktivitetFormPart from './arbeid-aktivitet-form-part/ArbeidAktivitetFormPart';
+import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
 import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,
@@ -20,12 +20,12 @@ import {
 
 const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
 
-export type ArbeidAktivitetFormValuesMap = {
+export type ArbeidsaktivitetFormValuesMap = {
     [aktivitetId: string]: ArbeidsaktivitetFormValues;
 };
 
 export interface ArbeidstidFormValues {
-    [ArbeidstidFormFields.arbeidAktivitet]: ArbeidAktivitetFormValuesMap;
+    [ArbeidstidFormFields.arbeidsaktivitet]: ArbeidsaktivitetFormValuesMap;
 }
 export interface ArbeidsaktivitetFormValues {
     endringer: ArbeidstidEndringMap;
@@ -33,7 +33,7 @@ export interface ArbeidsaktivitetFormValues {
 }
 
 export enum ArbeidstidFormFields {
-    arbeidAktivitet = 'arbeidAktivitet',
+    arbeidsaktivitet = 'arbeidsaktivitet',
 }
 
 interface Props {
@@ -67,16 +67,16 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
     );
 
     const onArbeidstidAktivitetChange = (
-        arbeidAktivitetKey: string,
+        arbeidsaktivitetKey: string,
         arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
         setValues: (values: ArbeidstidFormValues) => void
     ) => {
-        const currentAktivitetValues = (values.arbeidAktivitet || {})[arbeidAktivitetKey];
+        const currentAktivitetValues = (values.arbeidsaktivitet || {})[arbeidsaktivitetKey];
         const newValues: ArbeidstidFormValues = {
-            arbeidAktivitet: {
-                ...values.arbeidAktivitet,
-                [arbeidAktivitetKey]: {
+            arbeidsaktivitet: {
+                ...values.arbeidsaktivitet,
+                [arbeidsaktivitetKey]: {
                     arbeiderIPerioden: currentAktivitetValues?.arbeiderIPerioden,
                     endringer: arbeidstidEndringMap,
                 },
@@ -97,15 +97,15 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
             initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
             onSubmit={handleSubmit}
             renderForm={({ setValues, values }) => {
-                const aktiviteterValuesMap = values.arbeidAktivitet || {};
-                const arbeidAktiviteter = [
-                    ...getArbeidAktiviteterForUkjenteArbeidsgivere(
+                const aktiviteterValuesMap = values.arbeidsaktivitet || {};
+                const arbeidsaktiviteter = [
+                    ...getArbeidsaktiviteterForUkjenteArbeidsgivere(
                         sak.søknadsperioder,
                         sak.ukjenteArbeidsgivere,
                         aktiviteterValuesMap,
                         søknadsdata.ukjentArbeidsforhold
                     ),
-                    ...getAktiviteterSomSkalEndres(sak.arbeidAktiviteter),
+                    ...getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter),
                 ];
                 return (
                     <>
@@ -116,25 +116,25 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            {arbeidAktiviteter.map((arbeidAktivitet) => (
-                                <Block margin="l" key={arbeidAktivitet.key}>
-                                    <ArbeidAktivitetFormPart
-                                        arbeidAktivitet={arbeidAktivitet}
+                            {arbeidsaktiviteter.map((arbeidsaktivitet) => (
+                                <Block margin="l" key={arbeidsaktivitet.key}>
+                                    <ArbeidsaktivitetFormPart
+                                        arbeidsaktivitet={arbeidsaktivitet}
                                         lovbestemtFerie={søknadsdata.lovbestemtFerie}
-                                        aktivitetFormValues={(values.arbeidAktivitet || {})[arbeidAktivitet.key]}
+                                        aktivitetFormValues={(values.arbeidsaktivitet || {})[arbeidsaktivitet.key]}
                                         onArbeidstidChange={(arbeidstidEndringer) => {
                                             onArbeidstidAktivitetChange(
-                                                arbeidAktivitet.key,
+                                                arbeidsaktivitet.key,
                                                 arbeidstidEndringer,
                                                 values,
                                                 setValues
                                             );
                                         }}
-                                        renderAsExpansionCard={arbeidAktiviteter.length > 1}
+                                        renderAsExpansionCard={arbeidsaktiviteter.length > 1}
                                         expansionCardDefaultOpen={
-                                            arbeidAktiviteter.length <= 2 ||
-                                            (arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                                arbeidAktivitet.erUkjentArbeidsforhold === true)
+                                            arbeidsaktiviteter.length <= 2 ||
+                                            (arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker &&
+                                                arbeidsaktivitet.erUkjentArbeidsforhold === true)
                                         }
                                     />
                                 </Block>

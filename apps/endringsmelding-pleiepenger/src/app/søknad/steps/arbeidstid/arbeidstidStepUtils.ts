@@ -1,10 +1,10 @@
 import { IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
 import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import {
-    ArbeidAktivitet,
-    ArbeidAktivitetArbeidstaker,
-    ArbeidAktivitetEndringMap,
-    ArbeidAktiviteter,
+    Arbeidsaktivitet,
+    ArbeidsaktivitetArbeidstaker,
+    ArbeidsaktivitetEndringMap,
+    Arbeidsaktiviteter,
     ArbeiderIPeriodenSvar,
     ArbeidstidEndringMap,
     ArbeidstidSøknadsdata,
@@ -15,7 +15,7 @@ import { beregnEndretArbeidstidForUke } from '@utils';
 import { ArbeidstidFormValues } from './ArbeidstidForm';
 
 const arbeidstidInitialFormValues: ArbeidstidFormValues = {
-    arbeidAktivitet: {},
+    arbeidsaktivitet: {},
 };
 
 export const getArbeidstidStepInitialValues = (
@@ -29,35 +29,35 @@ export const getArbeidstidStepInitialValues = (
         return arbeidstidInitialFormValues;
     }
     return {
-        arbeidAktivitet: søknadsdata.arbeidstid.arbeidAktivitet,
+        arbeidsaktivitet: søknadsdata.arbeidstid.arbeidsaktivitet,
     };
 };
 
 export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormValues): ArbeidstidSøknadsdata => {
-    const arbeidAktivitet: ArbeidAktivitetEndringMap = {};
-    Object.keys(values.arbeidAktivitet).forEach((key) => {
-        const aktivitet = values.arbeidAktivitet[key];
+    const arbeidsaktivitet: ArbeidsaktivitetEndringMap = {};
+    Object.keys(values.arbeidsaktivitet).forEach((key) => {
+        const aktivitet = values.arbeidsaktivitet[key];
         if (
             aktivitet.arbeiderIPerioden === undefined ||
             aktivitet.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert
         ) {
-            arbeidAktivitet[key] = values.arbeidAktivitet[key];
+            arbeidsaktivitet[key] = values.arbeidsaktivitet[key];
         } else {
             /** Ukjent arbeidsforhold hvor en ikke kombinerer */
-            arbeidAktivitet[key] = {
+            arbeidsaktivitet[key] = {
                 endringer: {},
                 arbeiderIPerioden: aktivitet.arbeiderIPerioden,
             };
         }
     });
-    return { arbeidAktivitet };
+    return { arbeidsaktivitet };
 };
 
-export const cleanupArbeidAktivitetEndringer = (
+export const cleanupArbeidsaktivitetEndringer = (
     endringer: ArbeidstidEndringMap,
-    arbeidAktivitet: ArbeidAktivitet
+    arbeidsaktivitet: Arbeidsaktivitet
 ): ArbeidstidEndringMap => {
-    const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);
+    const arbeidsuker = getArbeidsukerIArbeidsaktivitet(arbeidsaktivitet);
     const cleanedEndringer: ArbeidstidEndringMap = {};
     Object.keys(endringer).forEach((key) => {
         const endring = endringer[key];
@@ -74,7 +74,7 @@ export const cleanupArbeidAktivitetEndringer = (
     return cleanedEndringer;
 };
 
-export const getArbeidsukerIArbeidAktivitet = (arbeidAktvitet: ArbeidAktivitet): ArbeidsukeMap => {
+export const getArbeidsukerIArbeidsaktivitet = (arbeidAktvitet: Arbeidsaktivitet): ArbeidsukeMap => {
     const arbeidsukerMap: ArbeidsukeMap = {};
     arbeidAktvitet.perioderMedArbeidstid.forEach(({ arbeidsuker }) => {
         Object.keys(arbeidsuker).forEach((key) => {
@@ -84,9 +84,9 @@ export const getArbeidsukerIArbeidAktivitet = (arbeidAktvitet: ArbeidAktivitet):
     return arbeidsukerMap;
 };
 
-export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter): ArbeidAktivitet[] => {
-    const { arbeidstakerAktiviteter, frilanser, selvstendigNæringsdrivende } = arbeidAktiviteter;
-    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerAktiviteter];
+export const getAktiviteterSomSkalEndres = (arbeidsaktiviteter: Arbeidsaktiviteter): Arbeidsaktivitet[] => {
+    const { arbeidstakerAktiviteter, frilanser, selvstendigNæringsdrivende } = arbeidsaktiviteter;
+    const aktiviteter: Arbeidsaktivitet[] = [...arbeidstakerAktiviteter];
     if (frilanser !== undefined) {
         aktiviteter.push({ ...frilanser });
     }
@@ -97,12 +97,12 @@ export const getAktiviteterSomSkalEndres = (arbeidAktiviteter: ArbeidAktiviteter
 };
 
 export const validateUkjentArbeidsaktivitetArbeidstid = (
-    arbeidAktivitet: ArbeidAktivitetArbeidstaker,
+    arbeidsaktivitet: ArbeidsaktivitetArbeidstaker,
     endringer: ArbeidstidEndringMap = {},
     arbeiderIPeriodenSvar?: ArbeiderIPeriodenSvar
 ): IntlErrorObject | undefined => {
     const manglendePeriode: ISODateRange[] = [];
-    arbeidAktivitet.perioderMedArbeidstid.forEach((periode) => {
+    arbeidsaktivitet.perioderMedArbeidstid.forEach((periode) => {
         Object.keys(periode.arbeidsuker).forEach((key) => {
             const endring = endringer[key];
             if (!endring && arbeiderIPeriodenSvar === ArbeiderIPeriodenSvar.redusert) {
@@ -115,7 +115,7 @@ export const validateUkjentArbeidsaktivitetArbeidstid = (
               key: 'arbeidstid.faktisk.mangler',
               keepKeyUnaltered: true,
               values: {
-                  navn: arbeidAktivitet.arbeidsgiver.navn,
+                  navn: arbeidsaktivitet.arbeidsgiver.navn,
               },
           }
         : undefined;

@@ -8,10 +8,10 @@ import {
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import {
-    ArbeidAktivitet,
-    ArbeidAktivitetEndringMap,
-    ArbeidAktiviteter,
-    ArbeidAktivitetType,
+    Arbeidsaktivitet,
+    ArbeidsaktivitetEndringMap,
+    Arbeidsaktiviteter,
+    ArbeidsaktivitetType,
     ArbeiderIPeriodenSvar,
     Arbeidsgiver,
     ArbeidstakerApiData,
@@ -25,10 +25,10 @@ import {
     TimerEllerProsent,
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
-import { getArbeidsukerIArbeidAktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
+import { getArbeidsukerIArbeidsaktivitet } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getDagerFraEnkeltdagMap } from '../arbeidsukeUtils';
 import { beregnEndretFaktiskArbeidstidPerDag, beregnSnittTimerPerDag } from '../beregnUtils';
-import { getArbeidAktivitetForUkjentArbeidsforhold } from '../ukjentArbeidsforholdUtils';
+import { getArbeidsaktivitetForUkjentArbeidsforhold } from '../ukjentArbeidsforholdUtils';
 
 type ArbeidstidInfo = { perioder: ArbeidstidPeriodeApiDataMap };
 
@@ -44,7 +44,7 @@ const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): Arbeidsu
 
 const getEndretArbeidstid = (
     endringUkeMap: ArbeidstidEndringMap,
-    arbeidAktivitet: ArbeidAktivitet
+    arbeidsaktivitet: Arbeidsaktivitet
 ): ArbeidstidPeriodeApiDataMap => {
     const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
@@ -52,7 +52,7 @@ const getEndretArbeidstid = (
 
     endringKeys.forEach((isoDateRange) => {
         const endring = endringUkeMap[isoDateRange];
-        const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidAktivitet.perioderMedArbeidstid);
+        const arbeidsuker = getAlleArbeidsukerIPerioder(arbeidsaktivitet.perioderMedArbeidstid);
         const arbeidsuke = arbeidsuker[isoDateRange];
         const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
         const { antallDagerMedArbeidstid } = arbeidsuke;
@@ -82,8 +82,8 @@ const getEndretArbeidstid = (
     return perioderMedEndretArbeidstid;
 };
 
-const getArbeidAktivitetArbeidstidInfo = (
-    aktivitet: ArbeidAktivitet,
+const getArbeidsaktivitetArbeidstidInfo = (
+    aktivitet: Arbeidsaktivitet,
     aktivitetEndring?: ArbeidstidEndringMap
 ): ArbeidstidInfo | undefined => {
     if (aktivitetEndring && aktivitet && Object.keys(aktivitetEndring).length > 0) {
@@ -96,25 +96,25 @@ const getArbeidAktivitetArbeidstidInfo = (
 
 export const getArbeidstidApiDataFromSøknadsdata = (
     søknadsperioder: DateRange[],
-    arbeidAktivitetEndring: ArbeidAktivitetEndringMap,
-    arbeidAktiviteter: ArbeidAktiviteter,
+    arbeidsaktivitetEndring: ArbeidsaktivitetEndringMap,
+    arbeidsaktiviteter: Arbeidsaktiviteter,
     ukjenteArbeidsgivere: Arbeidsgiver[],
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
 ): ArbeidstidApiData => {
-    const frilansAktivitetEndring = arbeidAktivitetEndring[ArbeidAktivitetType.frilanser]?.endringer;
+    const frilansAktivitetEndring = arbeidsaktivitetEndring[ArbeidsaktivitetType.frilanser]?.endringer;
     const selvstendigNæringsdrivendeAktivitetEndring =
-        arbeidAktivitetEndring[ArbeidAktivitetType.selvstendigNæringsdrivende]?.endringer;
+        arbeidsaktivitetEndring[ArbeidsaktivitetType.selvstendigNæringsdrivende]?.endringer;
     const arbeidstakerList: ArbeidstakerApiData[] = [];
 
     /** Eksisterende arbeidsaktiviteter */
-    arbeidAktiviteter.arbeidstakerAktiviteter.forEach((aktivitet) => {
-        const endringer = arbeidAktivitetEndring[aktivitet.key]?.endringer;
+    arbeidsaktiviteter.arbeidstakerAktiviteter.forEach((aktivitet) => {
+        const endringer = arbeidsaktivitetEndring[aktivitet.key]?.endringer;
 
         if (endringer) {
             const {
                 arbeidsgiver: { organisasjonsnummer },
             } = aktivitet;
-            const arbeidstidInfo = getArbeidAktivitetArbeidstidInfo(aktivitet, endringer);
+            const arbeidstidInfo = getArbeidsaktivitetArbeidstidInfo(aktivitet, endringer);
             if (arbeidstidInfo) {
                 arbeidstakerList.push({
                     organisasjonsnummer,
@@ -128,7 +128,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     /** Ukjente arbeidsgivere */
     if (ukjentArbeidsforhold) {
         ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
-            const endring = arbeidAktivitetEndring[arbeidsgiver.key];
+            const endring = arbeidsaktivitetEndring[arbeidsgiver.key];
             if (!endring) {
                 return;
             }
@@ -143,13 +143,13 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 return;
             }
 
-            const arbeidAktivitet = getArbeidAktivitetForUkjentArbeidsforhold(
+            const arbeidsaktivitet = getArbeidsaktivitetForUkjentArbeidsforhold(
                 søknadsperioder,
                 arbeidsgiver,
                 arbeidsforhold
             );
 
-            const arbeidsuker = getArbeidsukerIArbeidAktivitet(arbeidAktivitet);
+            const arbeidsuker = getArbeidsukerIArbeidsaktivitet(arbeidsaktivitet);
             const arbeidstidInfo: ArbeidstidInfo = {
                 perioder: {},
             };
@@ -198,12 +198,12 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
     return {
         arbeidstakerList,
-        frilanserArbeidstidInfo: arbeidAktiviteter.frilanser
-            ? getArbeidAktivitetArbeidstidInfo(arbeidAktiviteter.frilanser, frilansAktivitetEndring)
+        frilanserArbeidstidInfo: arbeidsaktiviteter.frilanser
+            ? getArbeidsaktivitetArbeidstidInfo(arbeidsaktiviteter.frilanser, frilansAktivitetEndring)
             : undefined,
-        selvstendigNæringsdrivendeArbeidstidInfo: arbeidAktiviteter.selvstendigNæringsdrivende
-            ? getArbeidAktivitetArbeidstidInfo(
-                  arbeidAktiviteter.selvstendigNæringsdrivende,
+        selvstendigNæringsdrivendeArbeidstidInfo: arbeidsaktiviteter.selvstendigNæringsdrivende
+            ? getArbeidsaktivitetArbeidstidInfo(
+                  arbeidsaktiviteter.selvstendigNæringsdrivende,
                   selvstendigNæringsdrivendeAktivitetEndring
               )
             : undefined,

@@ -17,12 +17,12 @@ import {
     numberDurationAsDuration,
 } from '@navikt/sif-common-utils';
 import {
-    ArbeidAktivitet,
-    ArbeidAktivitetArbeidstaker,
-    ArbeidAktiviteter,
-    ArbeidAktivitetFrilanser,
-    ArbeidAktivitetSelvstendigNæringsdrivende,
-    ArbeidAktivitetType,
+    Arbeidsaktivitet,
+    ArbeidsaktivitetArbeidstaker,
+    Arbeidsaktiviteter,
+    ArbeidsaktivitetFrilanser,
+    ArbeidsaktivitetSelvstendigNæringsdrivende,
+    ArbeidsaktivitetType,
     Arbeidsgiver,
     ArbeidsgiverIkkeFunnetError,
     ArbeidstidEnkeltdagMap,
@@ -346,11 +346,11 @@ const harPerioderEtterEndringsperiode = (
  * @param endringsperiode
  * @returns
  */
-const getArbeidAktivitetPerioderPart = (
+const getArbeidsaktivitetPerioderPart = (
     arbeidstidPerioder: K9SakArbeidstidPeriodeMap,
     endringsperiode: DateRange
 ): Pick<
-    ArbeidAktivitet,
+    Arbeidsaktivitet,
     'perioderMedArbeidstid' | 'harPerioderEtterTillattEndringsperiode' | 'harPerioderFørTillattEndringsperiode'
 > => {
     return {
@@ -367,11 +367,11 @@ const getArbeidAktivitetPerioderPart = (
  * @param endringsperiode
  * @returns
  */
-const getArbeidAktivitetArbeidstaker = (
+const getArbeidsaktivitetArbeidstaker = (
     arbeidstaker: K9SakArbeidstaker,
     arbeidsgivere: Arbeidsgiver[],
     endringsperiode: DateRange
-): ArbeidAktivitetArbeidstaker => {
+): ArbeidsaktivitetArbeidstaker => {
     const {
         arbeidstidInfo: { perioder },
         organisasjonsnummer,
@@ -380,7 +380,7 @@ const getArbeidAktivitetArbeidstaker = (
     if (!arbeidsgiver) {
         const error: ArbeidsgiverIkkeFunnetError = {
             type: 'ArbeidsgiverIkkeFunnet',
-            message: 'getArbeidAktivitetArbeidstaker - arbeidsgiver ikke funnet',
+            message: 'getArbeidsaktivitetArbeidstaker - arbeidsgiver ikke funnet',
             maskedArbeidsgivere: arbeidsgivere.map((a) => maskString(a.key)),
         };
         throw error;
@@ -389,10 +389,10 @@ const getArbeidAktivitetArbeidstaker = (
     return {
         key: arbeidsgiver.key,
         arbeidsgiver,
-        type: ArbeidAktivitetType.arbeidstaker,
+        type: ArbeidsaktivitetType.arbeidstaker,
         navn: arbeidsgiver.navn,
         erUkjentArbeidsforhold: false,
-        ...getArbeidAktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver),
+        ...getArbeidsaktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver),
     };
 };
 
@@ -402,16 +402,16 @@ const getArbeidAktivitetArbeidstaker = (
  * @param endringsperiode
  * @returns
  */
-const getArbeidAktivitetFrilanser = (
+const getArbeidsaktivitetFrilanser = (
     frilanserArbeidstidInfo: K9SakArbeidstidInfo | undefined,
     endringsperiode: DateRange
-): ArbeidAktivitetFrilanser | undefined => {
+): ArbeidsaktivitetFrilanser | undefined => {
     return frilanserArbeidstidInfo !== undefined
         ? {
-              key: ArbeidAktivitetType.frilanser,
-              type: ArbeidAktivitetType.frilanser,
+              key: ArbeidsaktivitetType.frilanser,
+              type: ArbeidsaktivitetType.frilanser,
               navn: 'Frilanser',
-              ...getArbeidAktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode),
+              ...getArbeidsaktivitetPerioderPart(frilanserArbeidstidInfo.perioder, endringsperiode),
           }
         : undefined;
 };
@@ -422,16 +422,16 @@ const getArbeidAktivitetFrilanser = (
  * @param endringsperiode
  * @returns
  */
-const getArbeidAktivitetSelvstendigNæringsdrivende = (
+const getArbeidsaktivitetSelvstendigNæringsdrivende = (
     selvstendigNæringsdrivendeArbeidstidInfo: K9SakArbeidstidInfo | undefined,
     endringsperiode: DateRange
-): ArbeidAktivitetSelvstendigNæringsdrivende | undefined => {
+): ArbeidsaktivitetSelvstendigNæringsdrivende | undefined => {
     return selvstendigNæringsdrivendeArbeidstidInfo
         ? {
-              key: ArbeidAktivitetType.selvstendigNæringsdrivende,
-              type: ArbeidAktivitetType.selvstendigNæringsdrivende,
+              key: ArbeidsaktivitetType.selvstendigNæringsdrivende,
+              type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
               navn: 'Selvstendig næringsdrivende',
-              ...getArbeidAktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode),
+              ...getArbeidsaktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode),
           }
         : undefined;
 };
@@ -467,11 +467,11 @@ export const getSakFromK9Sak = (
 
     const arbeidstakerAktiviteter = arbeidstakerList
         ? arbeidstakerList.map((arbeidstaker) =>
-              getArbeidAktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode)
+              getArbeidsaktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode)
           )
         : [];
-    const frilanser = getArbeidAktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
-    const selvstendigNæringsdrivende = getArbeidAktivitetSelvstendigNæringsdrivende(
+    const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
+    const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
         selvstendigNæringsdrivendeArbeidstidInfo,
         tillattEndringsperiode
     );
@@ -490,7 +490,7 @@ export const getSakFromK9Sak = (
         søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
         samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,
-        arbeidAktiviteter: {
+        arbeidsaktiviteter: {
             arbeidstakerAktiviteter,
             frilanser,
             selvstendigNæringsdrivende,
@@ -536,16 +536,16 @@ const getFeriedagerFromLovbestemtFerie = (lovbestemtFerie: K9SakLovbestemtFerie[
 
 /**
  * Henter ut alle arbeidsaktiviteter som kan endres i sak
- * @param ArbeidAktiviteter
- * @returns array av ArbeidAktivitet
+ * @param Arbeidsaktiviteter
+ * @returns array av Arbeidsaktivitet
  */
 
 const getAktiviteterSomKanEndres = ({
     arbeidstakerAktiviteter,
     frilanser,
     selvstendigNæringsdrivende,
-}: ArbeidAktiviteter): ArbeidAktivitet[] => {
-    const aktiviteter: ArbeidAktivitet[] = [...arbeidstakerAktiviteter];
+}: Arbeidsaktiviteter): Arbeidsaktivitet[] => {
+    const aktiviteter: Arbeidsaktivitet[] = [...arbeidstakerAktiviteter];
     if (frilanser) {
         aktiviteter.push(frilanser);
     }
@@ -560,10 +560,10 @@ const getAktiviteterSomKanEndres = ({
  */
 export const _getSakFromK9Sak = {
     erArbeidsgiverInnenforSøknadsperioder,
-    getArbeidAktivitetArbeidstaker,
-    getArbeidAktivitetFrilanser,
+    getArbeidsaktivitetArbeidstaker,
+    getArbeidsaktivitetFrilanser,
     getArbeidstidPerioderIDateRange,
-    getArbeidAktivitetSelvstendigNæringsdrivende,
+    getArbeidsaktivitetSelvstendigNæringsdrivende,
     getArbeidsukerMapFromArbeidsuker,
     getArbeidstidEnkeltdagMapFromPerioder,
     getEndringsperiodeForArbeidsgiver,

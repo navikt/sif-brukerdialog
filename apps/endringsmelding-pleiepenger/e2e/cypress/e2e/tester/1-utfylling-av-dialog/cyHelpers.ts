@@ -223,7 +223,7 @@ const fyllUtArbeidstidUkjentArbeidsforhold = (
 ) => {
     if (arbeiderIPeriodenSvar === 'REDUSERT' && uker) {
         it('legger til arbeidstid for enkeltuker', () => {
-            selectRadioByNameAndValue(`arbeidAktivitet.a_${orgnummer}.arbeiderIPerioden`, arbeiderIPeriodenSvar);
+            selectRadioByNameAndValue(`arbeidsaktivitet.a_${orgnummer}.arbeiderIPerioden`, arbeiderIPeriodenSvar);
             uker.forEach((uke) => {
                 getTestElement(`aktivitet_a_${orgnummer}`).within(() => {
                     cy.get('.arbeidstidUkeTabell table')
@@ -242,7 +242,7 @@ const fyllUtArbeidstidUkjentArbeidsforhold = (
         });
     } else {
         it(`Velger ${arbeiderIPeriodenSvar} for ukjent arbeidsgiver`, () => {
-            selectRadioByNameAndValue(`arbeidAktivitet.a_${orgnummer}.arbeiderIPerioden`, arbeiderIPeriodenSvar);
+            selectRadioByNameAndValue(`arbeidsaktivitet.a_${orgnummer}.arbeiderIPerioden`, arbeiderIPeriodenSvar);
         });
     }
 };

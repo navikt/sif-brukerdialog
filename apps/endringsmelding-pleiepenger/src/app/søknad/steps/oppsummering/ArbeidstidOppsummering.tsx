@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { ArbeidAktivitetType, Arbeidsgiver, ArbeidstidApiData } from '@types';
+import { ArbeidsaktivitetType, Arbeidsgiver, ArbeidstidApiData } from '@types';
 import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
@@ -45,7 +45,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            arbeidsaktivitetKey={ArbeidAktivitetType.frilanser}
+                            arbeidsaktivitetKey={ArbeidsaktivitetType.frilanser}
                             listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
                                 frilanserArbeidstidInfo.perioder
                             )}
@@ -61,7 +61,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     </Heading>
                     <>
                         <ArbeidstidUkeTabell
-                            arbeidsaktivitetKey={ArbeidAktivitetType.selvstendigNæringsdrivende}
+                            arbeidsaktivitetKey={ArbeidsaktivitetType.selvstendigNæringsdrivende}
                             listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
                                 selvstendigNæringsdrivendeArbeidstidInfo.perioder
                             )}

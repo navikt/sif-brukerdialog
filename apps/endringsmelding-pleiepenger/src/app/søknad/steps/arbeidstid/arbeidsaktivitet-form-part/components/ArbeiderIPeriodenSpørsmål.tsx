@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormikRadioGroup, IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { ArbeidAktivitetArbeidstaker, ArbeiderIPeriodenSvar } from '@types';
+import { ArbeidsaktivitetArbeidstaker, ArbeiderIPeriodenSvar } from '@types';
 
 interface Props {
-    arbeidAktivitet: ArbeidAktivitetArbeidstaker;
+    arbeidsaktivitet: ArbeidsaktivitetArbeidstaker;
     parentFieldName: string;
 }
 
@@ -14,14 +14,14 @@ export const ArbeiderIPeriodenSvarTekst = {
     [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som normalt og har ingen fravær her',
 };
 
-const ArbeiderIPeriodenSpørsmål: React.FunctionComponent<Props> = ({ parentFieldName, arbeidAktivitet }) => {
+const ArbeiderIPeriodenSpørsmål: React.FunctionComponent<Props> = ({ parentFieldName, arbeidsaktivitet }) => {
     const fieldName = `${parentFieldName}.arbeiderIPerioden`;
 
     return (
         <FormikRadioGroup
             name={fieldName}
-            legend={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidAktivitet.arbeidsgiver.navn}?`}
-            validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidAktivitet.arbeidsgiver.navn)}
+            legend={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidsaktivitet.arbeidsgiver.navn}?`}
+            validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsaktivitet.arbeidsgiver.navn)}
             radios={[
                 {
                     label: ArbeiderIPeriodenSvarTekst[ArbeiderIPeriodenSvar.heltFravær],

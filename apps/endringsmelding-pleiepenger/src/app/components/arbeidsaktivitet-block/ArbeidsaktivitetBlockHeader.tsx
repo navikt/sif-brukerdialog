@@ -3,22 +3,22 @@ import React from 'react';
 import { Office1 } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { ArbeidAktivitetType, Arbeidsgiver } from '@types';
+import { ArbeidsaktivitetType, Arbeidsgiver } from '@types';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
-import './arbeidAktivitetBlockHeader.scss';
+import './arbeidsaktivitetBlockHeader.scss';
 
 interface Props {
     navn: string;
     arbeidsgiver?: Arbeidsgiver;
-    type: ArbeidAktivitetType;
+    type: ArbeidsaktivitetType;
     erUkjentAktivitet?: boolean;
     endret?: {
         tekst: string;
     };
 }
 
-const ArbeidAktivitetBlockHeader: React.FunctionComponent<Props> = ({
+const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
     type,
     arbeidsgiver,
     navn,
@@ -26,16 +26,16 @@ const ArbeidAktivitetBlockHeader: React.FunctionComponent<Props> = ({
     erUkjentAktivitet,
 }) => {
     return (
-        <Block margin={type !== ArbeidAktivitetType.arbeidstaker ? 'm' : 'none'}>
-            <div className="arbeidAktivitetBlockHeader">
-                <div className="arbeidAktivitetBlockHeader__icon">
+        <Block margin={type !== ArbeidsaktivitetType.arbeidstaker ? 'm' : 'none'}>
+            <div className="arbeidsaktivitetBlockHeader">
+                <div className="arbeidsaktivitetBlockHeader__icon">
                     <Office1 role="presentation" aria-hidden={true} />
                 </div>
-                <div className="arbeidAktivitetBlockHeader__content">
+                <div className="arbeidsaktivitetBlockHeader__content">
                     <Heading level="2" size="medium">
                         {navn}
                     </Heading>
-                    {type === ArbeidAktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
+                    {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
                         <BodyLong>
                             Organisasjonsnummer: {arbeidsgiver.organisasjonsnummer}
                             <br />
@@ -55,4 +55,4 @@ const ArbeidAktivitetBlockHeader: React.FunctionComponent<Props> = ({
     );
 };
 
-export default ArbeidAktivitetBlockHeader;
+export default ArbeidsaktivitetBlockHeader;

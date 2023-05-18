@@ -9,8 +9,8 @@ import {
 } from '@navikt/sif-common-utils';
 import { getDateRangeFromDateRanges } from '@navikt/sif-common-utils/lib';
 import {
-    ArbeidAktivitet,
-    ArbeidAktivitetType,
+    Arbeidsaktivitet,
+    ArbeidsaktivitetType,
     ArbeiderIPeriodenSvar,
     ArbeidsforholdAktivt,
     Arbeidsgiver,
@@ -20,7 +20,7 @@ import {
     PeriodeMedArbeidstid,
     UkjentArbeidsforholdSøknadsdata,
 } from '@types';
-import { ArbeidAktivitetFormValuesMap } from '../søknad/steps/arbeidstid/ArbeidstidForm';
+import { ArbeidsaktivitetFormValuesMap } from '../søknad/steps/arbeidstid/ArbeidstidForm';
 import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 
@@ -87,17 +87,17 @@ export const getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold = (
     }
 };
 
-export const getArbeidAktivitetForUkjentArbeidsforhold = (
+export const getArbeidsaktivitetForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
     arbeidsgiver: Arbeidsgiver,
     arbeidsforhold: ArbeidsforholdAktivt,
     arbeiderIPerioden?: ArbeiderIPeriodenSvar
-): ArbeidAktivitet => {
+): Arbeidsaktivitet => {
     const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold(arbeidsforhold, arbeiderIPerioden);
 
-    const aktivitet: ArbeidAktivitet = {
+    const aktivitet: Arbeidsaktivitet = {
         key: arbeidsgiver.key,
-        type: ArbeidAktivitetType.arbeidstaker,
+        type: ArbeidsaktivitetType.arbeidstaker,
         arbeidsgiver,
         erUkjentArbeidsforhold: true,
         navn: arbeidsgiver.navn,
@@ -113,13 +113,13 @@ export const getArbeidAktivitetForUkjentArbeidsforhold = (
     return aktivitet;
 };
 
-export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
+export const getArbeidsaktiviteterForUkjenteArbeidsgivere = (
     søknadsperioder: DateRange[],
     ukjenteArbeidsgivere: Arbeidsgiver[],
-    arbeidAktivitetFormValues: ArbeidAktivitetFormValuesMap,
+    arbeidsaktivitetFormValues: ArbeidsaktivitetFormValuesMap,
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
-): ArbeidAktivitet[] => {
-    const aktiviteter: ArbeidAktivitet[] = [];
+): Arbeidsaktivitet[] => {
+    const aktiviteter: Arbeidsaktivitet[] = [];
     ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
         const arbeidsforhold = ukjentArbeidsforhold?.arbeidsforhold.find((s) => s.arbeidsgiverKey === arbeidsgiver.key);
         if (!arbeidsforhold) {
@@ -128,9 +128,9 @@ export const getArbeidAktiviteterForUkjenteArbeidsgivere = (
         if (arbeidsforhold.erAnsatt === false) {
             return;
         }
-        const arbeiderIPerioden = arbeidAktivitetFormValues[arbeidsgiver.key]?.arbeiderIPerioden;
+        const arbeiderIPerioden = arbeidsaktivitetFormValues[arbeidsgiver.key]?.arbeiderIPerioden;
         aktiviteter.push(
-            getArbeidAktivitetForUkjentArbeidsforhold(søknadsperioder, arbeidsgiver, arbeidsforhold, arbeiderIPerioden)
+            getArbeidsaktivitetForUkjentArbeidsforhold(søknadsperioder, arbeidsgiver, arbeidsforhold, arbeiderIPerioden)
         );
     });
     return aktiviteter;

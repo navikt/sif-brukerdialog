@@ -1,18 +1,18 @@
 import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import {
-    ArbeidAktivitet,
-    ArbeidAktivitetType,
+    Arbeidsaktivitet,
+    ArbeidsaktivitetType,
     ArbeiderIPeriodenSvar,
     Arbeidsforhold,
     ArbeidstidEndringMap,
     LovbestemtFerieSøknadsdata,
 } from '@types';
-import ArbeidAktivitetBlock from '../../../../components/arbeid-aktivitet-block/ArbeidAktivitetBlock';
+import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import { ArbeidsaktivitetFormValues, ArbeidstidFormFields } from '../ArbeidstidForm';
-import ArbeidsaktivitetContent from './components/ArbeidAktivitetContent';
+import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
 
 interface Props {
-    arbeidAktivitet: ArbeidAktivitet;
+    arbeidsaktivitet: Arbeidsaktivitet;
     arbeidsforhold?: Arbeidsforhold;
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
     renderAsExpansionCard?: boolean;
@@ -22,17 +22,17 @@ interface Props {
     onArbeidstidChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
-const ArbeidAktivitetFormPart = ({
-    arbeidAktivitet,
+const ArbeidsaktivitetFormPart = ({
+    arbeidsaktivitet,
     lovbestemtFerie,
     renderAsExpansionCard,
     expansionCardDefaultOpen,
     aktivitetFormValues,
     onArbeidstidChange,
 }: Props) => {
-    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${arbeidAktivitet.key}`;
+    const aktivitetFieldName = `${ArbeidstidFormFields.arbeidsaktivitet}.${arbeidsaktivitet.key}`;
     const endringer = aktivitetFormValues?.endringer;
-    const perioder = arbeidAktivitet.perioderMedArbeidstid;
+    const perioder = arbeidsaktivitet.perioderMedArbeidstid;
 
     const harEndringer =
         endringer !== undefined &&
@@ -43,31 +43,34 @@ const ArbeidAktivitetFormPart = ({
         });
 
     return (
-        <div data-testid={`aktivitet_${arbeidAktivitet.key}`}>
-            <ArbeidAktivitetBlock
-                type={arbeidAktivitet.type}
-                navn={arbeidAktivitet.navn}
+        <div data-testid={`aktivitet_${arbeidsaktivitet.key}`}>
+            <ArbeidsaktivitetBlock
+                type={arbeidsaktivitet.type}
+                navn={arbeidsaktivitet.navn}
                 arbeidsgiver={
-                    arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker ? arbeidAktivitet.arbeidsgiver : undefined
+                    arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker
+                        ? arbeidsaktivitet.arbeidsgiver
+                        : undefined
                 }
                 endret={harEndringer ? { tekst: 'Endret arbeidstid' } : undefined}
                 erUkjent={
-                    arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erUkjentArbeidsforhold
+                    arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker &&
+                    arbeidsaktivitet.erUkjentArbeidsforhold
                 }
                 renderAsExpansionCard={renderAsExpansionCard}
                 expansionCardDefaultOpen={expansionCardDefaultOpen}>
                 <ArbeidsaktivitetContent
                     perioder={perioder}
-                    arbeidAktivitet={arbeidAktivitet}
+                    arbeidsaktivitet={arbeidsaktivitet}
                     lovbestemtFerie={lovbestemtFerie}
                     endringer={endringer}
                     parentFieldName={aktivitetFieldName}
                     formValues={aktivitetFormValues}
                     onArbeidstidAktivitetChange={onArbeidstidChange}
                 />
-            </ArbeidAktivitetBlock>
+            </ArbeidsaktivitetBlock>
         </div>
     );
 };
 
-export default ArbeidAktivitetFormPart;
+export default ArbeidsaktivitetFormPart;

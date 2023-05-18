@@ -17,8 +17,8 @@ export const useStartSøknad = () => {
         logSoknadStartet(SKJEMANAVN);
         logInfo({
             antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
-            erArbeidstaker: sak.arbeidAktiviteter.arbeidstakerAktiviteter.length > 0,
-            erFrilanser: sak.arbeidAktiviteter.frilanser !== undefined,
+            erArbeidstaker: sak.arbeidsaktiviteter.arbeidstakerAktiviteter.length > 0,
+            erFrilanser: sak.arbeidsaktiviteter.frilanser !== undefined,
         });
         dispatch(actionsCreator.startSøknad(sak, hvaSkalEndres, steps[0]));
     };

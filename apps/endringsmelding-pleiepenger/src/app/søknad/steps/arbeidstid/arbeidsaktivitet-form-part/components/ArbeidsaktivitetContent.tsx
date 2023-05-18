@@ -9,8 +9,8 @@ import {
     ISODateRangeToDateRange,
 } from '@navikt/sif-common-utils';
 import {
-    ArbeidAktivitet,
-    ArbeidAktivitetType,
+    Arbeidsaktivitet,
+    ArbeidsaktivitetType,
     ArbeiderIPeriodenSvar,
     ArbeidstidEndringMap,
     Arbeidsuke,
@@ -28,17 +28,17 @@ import ArbeidstidUkeTabell, {
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';
-import { cleanupArbeidAktivitetEndringer, validateUkjentArbeidsaktivitetArbeidstid } from '../../arbeidstidStepUtils';
-import { arbeidAktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidAktivitetUtils';
-import ArbeidAktivitetUtenforPeriodeInfo from './ArbeidAktivitetUtenforPeriodeInfo';
+import { cleanupArbeidsaktivitetEndringer, validateUkjentArbeidsaktivitetArbeidstid } from '../../arbeidstidStepUtils';
+import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
+import ArbeidsaktivitetUtenforPeriodeInfo from './ArbeidsaktivitetUtenforPeriodeInfo';
 import ArbeiderIPeriodenSpørsmål from './ArbeiderIPeriodenSpørsmål';
-import './arbeidAktivitetContent.scss';
+import './arbeidsaktivitetContent.scss';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
     endringer: ArbeidstidEndringMap | undefined;
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
-    arbeidAktivitet: ArbeidAktivitet;
+    arbeidsaktivitet: Arbeidsaktivitet;
     parentFieldName: string;
     formValues: ArbeidsaktivitetFormValues;
     onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
@@ -48,7 +48,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     perioder,
     endringer,
     lovbestemtFerie,
-    arbeidAktivitet,
+    arbeidsaktivitet,
     formValues,
     parentFieldName,
     onArbeidstidAktivitetChange,
@@ -57,14 +57,14 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
     const erNyArbeidsgiver =
-        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erUkjentArbeidsforhold;
+        arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker && arbeidsaktivitet.erUkjentArbeidsforhold;
     const arbeiderIPerioden = formValues?.arbeiderIPerioden;
 
     return (
         <>
             {erNyArbeidsgiver && (
                 <Block>
-                    <ArbeiderIPeriodenSpørsmål arbeidAktivitet={arbeidAktivitet} parentFieldName={parentFieldName} />
+                    <ArbeiderIPeriodenSpørsmål arbeidsaktivitet={arbeidsaktivitet} parentFieldName={parentFieldName} />
                 </Block>
             )}
             {(erNyArbeidsgiver === false || arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) && (
@@ -72,21 +72,21 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     <Heading level="3" size="small" spacing={true}>
                         {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Uker med pleiepenger'}
                     </Heading>
-                    <ArbeidAktivitetUtenforPeriodeInfo
-                        arbeidAktivitet={arbeidAktivitet}
+                    <ArbeidsaktivitetUtenforPeriodeInfo
+                        arbeidsaktivitet={arbeidsaktivitet}
                         tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
                     />
                     <FormikInputGroup
-                        legend={arbeidAktivitet.navn}
+                        legend={arbeidsaktivitet.navn}
                         hideLegend={true}
-                        name={`arbeidsgiver_${arbeidAktivitet.key}`}
+                        name={`arbeidsgiver_${arbeidsaktivitet.key}`}
                         validate={() => {
                             if (
-                                arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                arbeidAktivitet.erUkjentArbeidsforhold === true
+                                arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker &&
+                                arbeidsaktivitet.erUkjentArbeidsforhold === true
                             ) {
                                 return validateUkjentArbeidsaktivitetArbeidstid(
-                                    arbeidAktivitet,
+                                    arbeidsaktivitet,
                                     endringer,
                                     arbeiderIPerioden
                                 );
@@ -96,8 +96,8 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                         {perioder.length === 1 && (
                             <>
                                 <ArbeidstidUkeTabell
-                                    arbeidsaktivitetKey={arbeidAktivitet.key}
-                                    listItems={arbeidAktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                                    arbeidsaktivitetKey={arbeidsaktivitet.key}
+                                    listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                         perioder[0].arbeidsuker,
                                         endringer,
                                         lovbestemtFerie
@@ -119,14 +119,14 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     dateRanges={perioder}
                                     renderContent={(periode) => {
                                         const listItems =
-                                            arbeidAktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                                            arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                                 periode.arbeidsuker,
                                                 endringer,
                                                 lovbestemtFerie
                                             );
                                         return (
                                             <ArbeidstidUkeTabell
-                                                arbeidsaktivitetKey={arbeidAktivitet.key}
+                                                arbeidsaktivitetKey={arbeidsaktivitet.key}
                                                 listItems={listItems}
                                                 periode={periode}
                                                 triggerResetValg={resetUkerTabellCounter}
@@ -152,8 +152,8 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                                 : false;
 
                                         return (
-                                            <div className="arbeidAktivitetContentHeader">
-                                                <div className="arbeidAktivitetContentHeader__title">
+                                            <div className="arbeidsaktivitetContentHeader">
+                                                <div className="arbeidsaktivitetContentHeader__title">
                                                     {dateFormatter.full(periode.from)} -{' '}
                                                     {dateFormatter.full(periode.to)}
                                                 </div>
@@ -174,7 +174,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
             )}
 
             <EndreArbeidstidModal
-                title={arbeidAktivitet.navn}
+                title={arbeidsaktivitet.navn}
                 isVisible={arbeidsukerForEndring !== undefined}
                 onClose={() => setArbeidsukerForEndring(undefined)}>
                 <EndreArbeidstidForm
@@ -193,12 +193,12 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                             nyeEndringer[dateRangeToISODateRange(periode)] = endring;
                         });
                         onArbeidstidAktivitetChange(
-                            cleanupArbeidAktivitetEndringer(
+                            cleanupArbeidsaktivitetEndringer(
                                 {
                                     ...endringer,
                                     ...nyeEndringer,
                                 },
-                                arbeidAktivitet
+                                arbeidsaktivitet
                             )
                         );
                         setResetUkerTabellCounter(resetUkerTabellCounter + 1);

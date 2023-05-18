@@ -1,16 +1,16 @@
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import { ArbeidAktivitet } from '@types';
+import { Arbeidsaktivitet } from '@types';
 import { SkrivTilOssLink } from '../../../../../lenker';
 
 interface Props {
-    arbeidAktivitet: ArbeidAktivitet;
+    arbeidsaktivitet: Arbeidsaktivitet;
     tillattEndringsperiode: DateRange;
 }
 
-const ArbeidAktivitetUtenforPeriodeInfo: React.FunctionComponent<Props> = ({
-    arbeidAktivitet: { harPerioderEtterTillattEndringsperiode, harPerioderFørTillattEndringsperiode },
+const ArbeidsaktivitetUtenforPeriodeInfo: React.FunctionComponent<Props> = ({
+    arbeidsaktivitet: { harPerioderEtterTillattEndringsperiode, harPerioderFørTillattEndringsperiode },
     tillattEndringsperiode,
 }) => {
     const førDato = dateFormatter.full(tillattEndringsperiode.from);
@@ -45,4 +45,4 @@ const ArbeidAktivitetUtenforPeriodeInfo: React.FunctionComponent<Props> = ({
     return null;
 };
 
-export default ArbeidAktivitetUtenforPeriodeInfo;
+export default ArbeidsaktivitetUtenforPeriodeInfo;

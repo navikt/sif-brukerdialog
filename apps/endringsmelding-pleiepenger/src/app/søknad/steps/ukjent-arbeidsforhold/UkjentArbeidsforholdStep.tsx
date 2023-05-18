@@ -101,7 +101,7 @@ const UkjentArbeidsforholdStep = () => {
                             <>
                                 <PersistStepFormValues stepId={stepId} />
                                 <Form
-                                    formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidAktivitetForm')}
+                                    formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidsaktivitetForm')}
                                     includeValidationSummary={true}
                                     submitPending={isSubmitting}
                                     runDelayedFormValidation={true}
