@@ -25,11 +25,10 @@ export const useSendSøknad = () => {
     const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
-        const metadata = getSøknadApiDataMetadata(apiData, søknadsdata);
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)
-            .then(async () => onSøknadSendSuccess(metadata))
+            .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata)))
             .catch((error) => {
                 if (isAxiosError(error)) {
                     appSentryLogger.logError('Innsending feilet', error.message);

@@ -31,11 +31,6 @@ export interface K9SakBarn {
     aktørId: string;
     identitetsnummer: string;
 }
-interface K9SakOpptjeningAktivitetFrilanser {
-    startdato: Date;
-    sluttdato?: Date;
-    jobberFortsattSomFrilanser: boolean;
-}
 
 export interface K9SakLovbestemtFerie extends DateRange {
     skalHaFerie: boolean;
@@ -59,7 +54,11 @@ interface K9SakYtelse {
         perioder: K9SakUtenlandsopphold[];
     };
     opptjeningAktivitet: {
-        frilanser?: K9SakOpptjeningAktivitetFrilanser;
+        frilanser?: {
+            startdato: Date;
+            sluttdato?: Date;
+            jobberFortsattSomFrilanser: boolean;
+        };
     };
     arbeidstid: K9SakArbeidstid;
 }
