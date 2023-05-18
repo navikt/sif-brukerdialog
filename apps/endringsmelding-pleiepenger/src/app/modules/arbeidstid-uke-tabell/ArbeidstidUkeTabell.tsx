@@ -1,15 +1,16 @@
-import { Alert, BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@navikt/ds-react';
+import { BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@navikt/ds-react';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { AddCircle, Edit } from '@navikt/ds-icons';
+import { AddCircle } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { dateFormatter, DateRange, Duration, getDateRangeText, ISODateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import EditButton from '../../components/buttons/EditButton';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
+import EndreUkerFooter from './components/EndreUkerFooter';
+import EndreUkerHeader from './components/EndreUkerHeader';
 import UkeInfoIkon from './components/UkeInfo';
 import UkeTags from './components/UkeTags';
 import './arbeidstidUkeTabell.scss';
@@ -129,28 +130,16 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     };
 
     const renderEndreUkerHeader = () => (
-        <>
-            <Checkbox
-                checked={visVelgUke}
-                data-testid="endre-flere-uker-cb"
-                onChange={(evt) => {
-                    setVisVelgUke(evt.target.checked);
-                    setVisMeldingOmUkerMåVelges(false);
-                    setValgteUker([]);
-                }}
-                aria-label={`Jeg ønsker å endre flere uker samtidig ${
-                    periode ? `i perioden ${getDateRangeText(periode)}` : ''
-                }`}>
-                Jeg ønsker å endre flere uker samtidig
-            </Checkbox>
-            {visVelgUke && (ukerMedFerie.length > 0 || korteUker.length > 0) && (
-                <Block margin="m" padBottom="l">
-                    <Alert variant="info">
-                        Korte uker, altså ikke hele uker, eller uker med ferie må endres hver for seg.
-                    </Alert>
-                </Block>
-            )}
-        </>
+        <EndreUkerHeader
+            periode={periode}
+            onChange={(checked) => {
+                setVisVelgUke(checked);
+                setVisMeldingOmUkerMåVelges(false);
+                setValgteUker([]);
+            }}
+            checked={visVelgUke}
+            visKorteUkerMelding={visVelgUke && (ukerMedFerie.length > 0 || korteUker.length > 0)}
+        />
     );
 
     const renderLastInnFlereUker = () => {
@@ -177,44 +166,23 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         return null;
     };
 
-    const renderEndreUkerFooter = () => {
-        if (kanVelgeFlereUker && visVelgUke) {
-            return (
-                <div className="arbeidstidUkeFooter">
-                    <FormBlock margin="m" paddingBottom="m">
-                        <div aria-relevant="additions removals" aria-live="polite">
-                            {visMeldingOmUkerMåVelges && valgteUker.length === 0 && (
-                                <Block padBottom="l">
-                                    <Alert variant="info">Du må velge uker først</Alert>
-                                </Block>
-                            )}
-                        </div>
-                        <Button
-                            icon={<Edit role="presentation" aria-hidden={true} />}
-                            variant="primary"
-                            type="button"
-                            data-testid="endre-flere-uker-button"
-                            onClick={() => {
-                                if (valgteUker.length === 0) {
-                                    setVisMeldingOmUkerMåVelges(true);
-                                    return;
-                                }
-                                endreFlereUker();
-                            }}>
-                            Endre valgte uker
-                        </Button>
-                    </FormBlock>
-                </div>
-            );
-        }
-        return null;
-    };
-
     const renderUkerFooter = () => {
         return (
             <>
                 {renderLastInnFlereUker()}
-                {kanVelgeFlereUker && renderEndreUkerFooter()}
+                {kanVelgeFlereUker && visVelgUke && (
+                    <EndreUkerFooter
+                        antallValgteUker={valgteUker.length}
+                        visVelgUkerMelding={visMeldingOmUkerMåVelges && valgteUker.length === 0}
+                        onEndreUker={() => {
+                            if (valgteUker.length === 0) {
+                                setVisMeldingOmUkerMåVelges(true);
+                                return;
+                            }
+                            endreFlereUker();
+                        }}
+                    />
+                )}
             </>
         );
     };
