@@ -99,7 +99,7 @@ export const getArbeidAktivitetForUkjentArbeidsforhold = (
         key: arbeidsgiver.key,
         type: ArbeidAktivitetType.arbeidstaker,
         arbeidsgiver,
-        erUkjentArbeidsaktivitet: true,
+        erUkjentArbeidsforhold: true,
         navn: arbeidsgiver.navn,
         harPerioderEtterTillattEndringsperiode: false,
         harPerioderFørTillattEndringsperiode: false,

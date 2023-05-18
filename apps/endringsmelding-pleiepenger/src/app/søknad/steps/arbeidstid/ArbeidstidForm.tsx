@@ -11,7 +11,7 @@ import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
 import actionsCreator from '../../context/action/actionCreator';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
+import ArbeidAktivitetFormPart from './arbeid-aktivitet-form-part/ArbeidAktivitetFormPart';
 import {
     getAktiviteterSomSkalEndres,
     getArbeidstidStepInitialValues,
@@ -111,18 +111,18 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                     <>
                         <PersistStepFormValues stepId={stepId} />
                         <Form
-                            formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidAktivitetForm')}
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidstidForm')}
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             {arbeidAktiviteter.map((arbeidAktivitet) => (
                                 <Block margin="l" key={arbeidAktivitet.key}>
-                                    <ArbeidsaktivitetFormPart
+                                    <ArbeidAktivitetFormPart
                                         arbeidAktivitet={arbeidAktivitet}
                                         lovbestemtFerie={søknadsdata.lovbestemtFerie}
                                         aktivitetFormValues={(values.arbeidAktivitet || {})[arbeidAktivitet.key]}
-                                        onArbeidstidAktivitetChange={(arbeidstidEndringer) => {
+                                        onArbeidstidChange={(arbeidstidEndringer) => {
                                             onArbeidstidAktivitetChange(
                                                 arbeidAktivitet.key,
                                                 arbeidstidEndringer,
@@ -134,7 +134,7 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                                         expansionCardDefaultOpen={
                                             arbeidAktiviteter.length <= 2 ||
                                             (arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                                arbeidAktivitet.erUkjentArbeidsaktivitet === true)
+                                                arbeidAktivitet.erUkjentArbeidsforhold === true)
                                         }
                                     />
                                 </Block>

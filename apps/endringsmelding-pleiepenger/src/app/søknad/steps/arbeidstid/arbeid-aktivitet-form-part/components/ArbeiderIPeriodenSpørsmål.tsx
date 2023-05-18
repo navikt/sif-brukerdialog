@@ -14,7 +14,7 @@ export const ArbeiderIPeriodenSvarTekst = {
     [ArbeiderIPeriodenSvar.somVanlig]: 'Jeg jobber som normalt og har ingen fravær her',
 };
 
-const ArbeiderIPeriodenFormPart: React.FunctionComponent<Props> = ({ parentFieldName, arbeidAktivitet }) => {
+const ArbeiderIPeriodenSpørsmål: React.FunctionComponent<Props> = ({ parentFieldName, arbeidAktivitet }) => {
     const fieldName = `${parentFieldName}.arbeiderIPerioden`;
 
     return (
@@ -58,4 +58,4 @@ export const getArbeidIPeriodeArbeiderIPeriodenValidator =
             : error;
     };
 
-export default ArbeiderIPeriodenFormPart;
+export default ArbeiderIPeriodenSpørsmål;

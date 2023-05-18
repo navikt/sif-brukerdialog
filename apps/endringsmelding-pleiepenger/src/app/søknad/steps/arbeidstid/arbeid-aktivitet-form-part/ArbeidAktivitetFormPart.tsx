@@ -7,10 +7,9 @@ import {
     ArbeidstidEndringMap,
     LovbestemtFerieSøknadsdata,
 } from '@types';
-import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import ArbeidAktivitetBlock from '../../../../components/arbeid-aktivitet-block/ArbeidAktivitetBlock';
 import { ArbeidsaktivitetFormValues, ArbeidstidFormFields } from '../ArbeidstidForm';
-import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
-import './arbeidsaktivitetContentHeader.scss';
+import ArbeidsaktivitetContent from './components/ArbeidAktivitetContent';
 
 interface Props {
     arbeidAktivitet: ArbeidAktivitet;
@@ -20,16 +19,16 @@ interface Props {
     expansionCardDefaultOpen?: boolean;
     aktivitetFormValues: ArbeidsaktivitetFormValues;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
-    onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
+    onArbeidstidChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
-const ArbeidsaktivitetFormPart = ({
+const ArbeidAktivitetFormPart = ({
     arbeidAktivitet,
     lovbestemtFerie,
     renderAsExpansionCard,
     expansionCardDefaultOpen,
     aktivitetFormValues,
-    onArbeidstidAktivitetChange,
+    onArbeidstidChange,
 }: Props) => {
     const aktivitetFieldName = `${ArbeidstidFormFields.arbeidAktivitet}.${arbeidAktivitet.key}`;
     const endringer = aktivitetFormValues?.endringer;
@@ -45,7 +44,7 @@ const ArbeidsaktivitetFormPart = ({
 
     return (
         <div data-testid={`aktivitet_${arbeidAktivitet.key}`}>
-            <ArbeidsaktivitetBlock
+            <ArbeidAktivitetBlock
                 type={arbeidAktivitet.type}
                 navn={arbeidAktivitet.navn}
                 arbeidsgiver={
@@ -53,8 +52,7 @@ const ArbeidsaktivitetFormPart = ({
                 }
                 endret={harEndringer ? { tekst: 'Endret arbeidstid' } : undefined}
                 erUkjent={
-                    arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                    arbeidAktivitet.erUkjentArbeidsaktivitet
+                    arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erUkjentArbeidsforhold
                 }
                 renderAsExpansionCard={renderAsExpansionCard}
                 expansionCardDefaultOpen={expansionCardDefaultOpen}>
@@ -65,11 +63,11 @@ const ArbeidsaktivitetFormPart = ({
                     endringer={endringer}
                     parentFieldName={aktivitetFieldName}
                     formValues={aktivitetFormValues}
-                    onArbeidstidAktivitetChange={onArbeidstidAktivitetChange}
+                    onArbeidstidAktivitetChange={onArbeidstidChange}
                 />
-            </ArbeidsaktivitetBlock>
+            </ArbeidAktivitetBlock>
         </div>
     );
 };
 
-export default ArbeidsaktivitetFormPart;
+export default ArbeidAktivitetFormPart;

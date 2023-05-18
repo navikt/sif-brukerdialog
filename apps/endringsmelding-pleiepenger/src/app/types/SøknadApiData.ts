@@ -19,7 +19,7 @@ export interface ArbeidstakerApiData {
     arbeidstidInfo: {
         perioder: ArbeidstidPeriodeApiDataMap;
     };
-    _erUkjentArbeidsaktivitet: boolean;
+    _erUkjentArbeidsforhold: boolean;
     _arbeiderIPerioden?: ArbeiderIPeriodenSvar;
 }
 

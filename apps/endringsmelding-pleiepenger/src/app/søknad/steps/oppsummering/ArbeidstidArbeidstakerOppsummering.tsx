@@ -24,21 +24,21 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
             <Heading level="3" size="small">
                 {arbeidsgiver.navn}
             </Heading>
-            {arbeidstaker._erUkjentArbeidsaktivitet && arbeidstaker._arbeiderIPerioden && (
+            {arbeidstaker._erUkjentArbeidsforhold && arbeidstaker._arbeiderIPerioden && (
                 <SummaryBlock
                     header={`I perioden med pleiepenger, hvilken situasjon gjelder for deg hos ${arbeidsgiver.navn}?`}>
                     {ArbeiderIPeriodenSvarTekst[arbeidstaker._arbeiderIPerioden]}
                 </SummaryBlock>
             )}
-            {(arbeidstaker._erUkjentArbeidsaktivitet === false ||
-                (arbeidstaker._erUkjentArbeidsaktivitet === true &&
+            {(arbeidstaker._erUkjentArbeidsforhold === false ||
+                (arbeidstaker._erUkjentArbeidsforhold === true &&
                     arbeidstaker._arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert)) && (
-                <Block margin={arbeidstaker._erUkjentArbeidsaktivitet === true ? 'l' : 'none'}>
+                <Block margin={arbeidstaker._erUkjentArbeidsforhold === true ? 'l' : 'none'}>
                     <ArbeidstidUkeTabell
                         arbeidsaktivitetKey={arbeidsgiver.key}
                         listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(arbeidstidInfo.perioder)}
                         arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                        visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsaktivitet}
+                        visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsforhold}
                     />
                 </Block>
             )}

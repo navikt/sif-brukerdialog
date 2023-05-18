@@ -7,7 +7,7 @@ import {
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ArbeidAktivitetType, Arbeidsgiver } from '@types';
-import ArbeidsaktivitetBlock from '../../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import ArbeidAktivitetBlock from '../../../../components/arbeid-aktivitet-block/ArbeidAktivitetBlock';
 import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { InfoNormalarbeidstid } from '../info-normalarbeidstid/InfoNormalarbeidstid';
 
@@ -54,7 +54,7 @@ const UkjentArbeidsgiverFormPart = ({ parentFieldName, values, arbeidsgiver }: P
     };
 
     return (
-        <ArbeidsaktivitetBlock
+        <ArbeidAktivitetBlock
             type={ArbeidAktivitetType.arbeidstaker}
             navn={arbeidsgiver.navn}
             arbeidsgiver={arbeidsgiver}
@@ -113,7 +113,7 @@ const UkjentArbeidsgiverFormPart = ({ parentFieldName, values, arbeidsgiver }: P
                     </FormBlock>
                 </>
             )}
-        </ArbeidsaktivitetBlock>
+        </ArbeidAktivitetBlock>
     );
 };
 

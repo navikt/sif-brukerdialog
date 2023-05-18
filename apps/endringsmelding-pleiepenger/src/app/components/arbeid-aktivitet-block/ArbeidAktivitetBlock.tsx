@@ -1,7 +1,7 @@
 import { ExpansionCard, Panel } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { ArbeidAktivitetType, Arbeidsgiver } from '@types';
-import ArbeidsaktivitetHeader from './ArbeidsaktivitetHeader';
+import ArbeidAktivitetBlockHeader from './ArbeidAktivitetBlockHeader';
 
 interface Props {
     navn: string;
@@ -14,7 +14,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
+const ArbeidAktivitetBlock: React.FunctionComponent<Props> = ({
     navn,
     type,
     arbeidsgiver,
@@ -26,7 +26,7 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
 }) => {
     const renderHeader = () => {
         return (
-            <ArbeidsaktivitetHeader
+            <ArbeidAktivitetBlockHeader
                 type={type}
                 navn={navn}
                 arbeidsgiver={arbeidsgiver}
@@ -48,4 +48,4 @@ const ArbeidsaktivitetBlock: React.FunctionComponent<Props> = ({
     );
 };
 
-export default ArbeidsaktivitetBlock;
+export default ArbeidAktivitetBlock;

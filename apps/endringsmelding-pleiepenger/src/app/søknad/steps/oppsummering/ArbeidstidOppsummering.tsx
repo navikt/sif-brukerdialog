@@ -15,8 +15,8 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
     const arbeidstidKolonneTittel = 'Endret arbeidstid';
 
-    const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsaktivitet === false);
-    const ukjenteArbeidsgivere = arbeidstakerList.filter((a) => a._erUkjentArbeidsaktivitet === true);
+    const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
+    const ukjenteArbeidsgivere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
     return (
         <>
             {ukjenteArbeidsgivere &&

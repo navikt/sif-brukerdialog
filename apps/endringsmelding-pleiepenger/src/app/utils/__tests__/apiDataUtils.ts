@@ -9,7 +9,7 @@ describe('apiDataUtils', () => {
             expect(
                 harEndretArbeidstidForArbeidsgiverIApiData('123', [
                     {
-                        _erUkjentArbeidsaktivitet: false,
+                        _erUkjentArbeidsforhold: false,
                         arbeidstidInfo: {
                             perioder: {},
                         },
@@ -22,7 +22,7 @@ describe('apiDataUtils', () => {
             expect(
                 harEndretArbeidstidForArbeidsgiverIApiData('123', [
                     {
-                        _erUkjentArbeidsaktivitet: false,
+                        _erUkjentArbeidsforhold: false,
                         arbeidstidInfo: {
                             perioder: {
                                 '2020-01-01/2020-02-01': {

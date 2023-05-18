@@ -1,8 +1,8 @@
 import { ISODateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndringMap, Arbeidsuke, TimerEllerProsent } from '@types';
-import { getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
+import { getEndringerForArbeidsukeForm } from '../arbeidAktivitetUtils';
 
-describe('arbeidsaktivitetUtils', () => {
+describe('arbeidAktivitetUtils', () => {
     describe('getEndringerForArbeidsukeForm', () => {
         const uke1: ISODateRange = '2023-01-02/2023-01-08';
         const uke2: ISODateRange = '2023-01-09/2023-01-15';

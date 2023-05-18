@@ -55,7 +55,7 @@ interface ArbeidAktivitetBase {
 export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
-    erUkjentArbeidsaktivitet: boolean;
+    erUkjentArbeidsforhold: boolean;
 }
 export interface ArbeidAktivitetFrilanser extends ArbeidAktivitetBase {
     type: ArbeidAktivitetType.frilanser;

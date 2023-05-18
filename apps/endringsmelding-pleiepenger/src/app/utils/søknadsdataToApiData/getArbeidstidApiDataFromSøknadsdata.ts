@@ -119,7 +119,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 arbeidstakerList.push({
                     organisasjonsnummer,
                     arbeidstidInfo,
-                    _erUkjentArbeidsaktivitet: false,
+                    _erUkjentArbeidsforhold: false,
                 });
             }
         }
@@ -188,7 +188,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             });
 
             arbeidstakerList.push({
-                _erUkjentArbeidsaktivitet: true,
+                _erUkjentArbeidsforhold: true,
                 _arbeiderIPerioden: arbeiderIPerioden,
                 arbeidstidInfo,
                 organisasjonsnummer: arbeidsgiver.organisasjonsnummer,

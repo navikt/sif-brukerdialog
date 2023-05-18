@@ -29,9 +29,10 @@ import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/En
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';
 import { cleanupArbeidAktivitetEndringer, validateUkjentArbeidsaktivitetArbeidstid } from '../../arbeidstidStepUtils';
-import { arbeidsaktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
+import { arbeidAktivitetUtils, getEndringerForArbeidsukeForm } from '../arbeidAktivitetUtils';
 import ArbeidAktivitetUtenforPeriodeInfo from './ArbeidAktivitetUtenforPeriodeInfo';
-import ArbeiderIPeriodenFormPart from './ArbeiderIPeriodenFormPart';
+import ArbeiderIPeriodenSpørsmål from './ArbeiderIPeriodenSpørsmål';
+import './arbeidAktivitetContent.scss';
 
 interface Props {
     perioder: PeriodeMedArbeidstid[];
@@ -56,14 +57,14 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
     const erNyArbeidsgiver =
-        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erUkjentArbeidsaktivitet;
+        arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker && arbeidAktivitet.erUkjentArbeidsforhold;
     const arbeiderIPerioden = formValues?.arbeiderIPerioden;
 
     return (
         <>
             {erNyArbeidsgiver && (
                 <Block>
-                    <ArbeiderIPeriodenFormPart arbeidAktivitet={arbeidAktivitet} parentFieldName={parentFieldName} />
+                    <ArbeiderIPeriodenSpørsmål arbeidAktivitet={arbeidAktivitet} parentFieldName={parentFieldName} />
                 </Block>
             )}
             {(erNyArbeidsgiver === false || arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) && (
@@ -82,7 +83,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                         validate={() => {
                             if (
                                 arbeidAktivitet.type === ArbeidAktivitetType.arbeidstaker &&
-                                arbeidAktivitet.erUkjentArbeidsaktivitet === true
+                                arbeidAktivitet.erUkjentArbeidsforhold === true
                             ) {
                                 return validateUkjentArbeidsaktivitetArbeidstid(
                                     arbeidAktivitet,
@@ -96,7 +97,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                             <>
                                 <ArbeidstidUkeTabell
                                     arbeidsaktivitetKey={arbeidAktivitet.key}
-                                    listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                                    listItems={arbeidAktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                         perioder[0].arbeidsuker,
                                         endringer,
                                         lovbestemtFerie
@@ -118,7 +119,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     dateRanges={perioder}
                                     renderContent={(periode) => {
                                         const listItems =
-                                            arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                                            arbeidAktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
                                                 periode.arbeidsuker,
                                                 endringer,
                                                 lovbestemtFerie
@@ -151,8 +152,8 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                                 : false;
 
                                         return (
-                                            <div className="arbeidsaktivitetContentHeader">
-                                                <div className="arbeidsaktivitetContentHeader__title">
+                                            <div className="arbeidAktivitetContentHeader">
+                                                <div className="arbeidAktivitetContentHeader__title">
                                                     {dateFormatter.full(periode.from)} -{' '}
                                                     {dateFormatter.full(periode.to)}
                                                 </div>

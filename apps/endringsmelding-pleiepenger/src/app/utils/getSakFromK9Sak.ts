@@ -391,7 +391,7 @@ const getArbeidAktivitetArbeidstaker = (
         arbeidsgiver,
         type: ArbeidAktivitetType.arbeidstaker,
         navn: arbeidsgiver.navn,
-        erUkjentArbeidsaktivitet: false,
+        erUkjentArbeidsforhold: false,
         ...getArbeidAktivitetPerioderPart(perioder, endringsperiodeForArbeidsgiver),
     };
 };

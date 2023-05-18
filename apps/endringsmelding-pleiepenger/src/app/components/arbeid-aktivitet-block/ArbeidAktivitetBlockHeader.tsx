@@ -6,7 +6,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { ArbeidAktivitetType, Arbeidsgiver } from '@types';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
-import './arbeidsaktivitetHeader.scss';
+import './arbeidAktivitetBlockHeader.scss';
 
 interface Props {
     navn: string;
@@ -18,7 +18,7 @@ interface Props {
     };
 }
 
-const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
+const ArbeidAktivitetBlockHeader: React.FunctionComponent<Props> = ({
     type,
     arbeidsgiver,
     navn,
@@ -27,11 +27,11 @@ const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
 }) => {
     return (
         <Block margin={type !== ArbeidAktivitetType.arbeidstaker ? 'm' : 'none'}>
-            <div className="arbeidsaktivitetHeader">
-                <div className="arbeidsaktivitetHeader__icon">
+            <div className="arbeidAktivitetBlockHeader">
+                <div className="arbeidAktivitetBlockHeader__icon">
                     <Office1 role="presentation" aria-hidden={true} />
                 </div>
-                <div className="arbeidsaktivitetHeader__content">
+                <div className="arbeidAktivitetBlockHeader__content">
                     <Heading level="2" size="medium">
                         {navn}
                     </Heading>
@@ -55,4 +55,4 @@ const ArbeidsaktivitetHeader: React.FunctionComponent<Props> = ({
     );
 };
 
-export default ArbeidsaktivitetHeader;
+export default ArbeidAktivitetBlockHeader;
