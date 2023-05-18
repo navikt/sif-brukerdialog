@@ -1,6 +1,6 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import { useOnValidSubmit, useStepNavigation, useSøknadContext } from '@hooks';
+import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
@@ -12,10 +12,10 @@ import { SøknadContextState } from '@types';
 import { erFeriedagerEndretIPeriode, getValgteEndringer } from '@utils';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../components/tags/EndretTag';
+import { useStepConfig } from '../../../hooks/useStepConfig';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
-import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
@@ -53,11 +53,11 @@ const LovbestemtFerieStep = () => {
         dispatch,
         state: { søknadsdata, sak, valgtHvaSkalEndres: hvaSkalEndres },
     } = useSøknadContext();
-    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
-    const step = stepConfig[stepId];
 
-    const { goBack } = useStepNavigation(step);
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const { goBack, stepConfig } = useStepConfig(stepId);
+
     const harValgtAtArbeidstidSkalEndres = getValgteEndringer(hvaSkalEndres).arbeidstidSkalEndres;
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
@@ -77,7 +77,6 @@ const LovbestemtFerieStep = () => {
         }
     );
 
-    /** Kalles hver gang values i formik endres */
     const oppdaterSøknadState = (values: LovbestemtFerieFormValues) => {
         const ferie = getLovbestemtFerieSøknadsdataFromFormValues(values);
         dispatch(actionsCreator.setSøknadLovbestemtFerie(ferie));

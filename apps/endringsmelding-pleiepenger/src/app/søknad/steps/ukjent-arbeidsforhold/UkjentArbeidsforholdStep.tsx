@@ -1,9 +1,9 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { useStepNavigation, useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { useStepConfig } from '../../../hooks/useStepConfig';
 import { StepId } from '../../config/StepId';
-import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import SøknadStep from '../../SøknadStep';
 import UkjentArbeidsforholdForm from './UkjentArbeidsforholdForm';
 
@@ -11,13 +11,10 @@ const UkjentArbeidsforholdStep = () => {
     const stepId = StepId.UKJENT_ARBEIDSFOHOLD;
 
     const {
-        state: { søknadsdata, valgtHvaSkalEndres: hvaSkalEndres, sak, arbeidsgivere },
+        state: { søknadsdata, sak, arbeidsgivere },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
-    const step = stepConfig[stepId];
-
-    const { goBack } = useStepNavigation(step);
+    const { goBack, stepConfig } = useStepConfig(stepId);
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>

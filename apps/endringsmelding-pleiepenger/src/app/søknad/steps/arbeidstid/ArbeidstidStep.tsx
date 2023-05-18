@@ -1,26 +1,19 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { useStepNavigation, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { harFjernetLovbestemtFerie } from '@utils';
+import { useStepConfig } from '../../../hooks/useStepConfig';
+import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
 import { StepId } from '../../config/StepId';
-import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidForm from './ArbeidstidForm';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
 
-    const {
-        state: { søknadsdata, sak, valgtHvaSkalEndres: hvaSkalEndres },
-    } = useSøknadContext();
+    const { goBack, stepConfig } = useStepConfig(stepId);
 
-    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
-    const step = stepConfig[stepId];
-
-    const { goBack } = useStepNavigation(step);
+    const { harFjernetFerie } = useSøknadsdataInfo();
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>

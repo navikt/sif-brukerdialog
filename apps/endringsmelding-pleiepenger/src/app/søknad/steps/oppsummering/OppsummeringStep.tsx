@@ -1,7 +1,7 @@
 import { Alert, Button, ErrorSummary, Heading, Ingress } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
-import { useSendSøknad, useStepNavigation, useSøknadContext, useSøknadsdataStatus } from '@hooks';
+import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { Back } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -15,8 +15,8 @@ import JaNeiSvar from '@navikt/sif-common-forms-ds/lib/components/summary/JaNeiS
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { getApiDataFromSøknadsdata, getEndringerSomSkalGjøres, harFjernetLovbestemtFerie } from '@utils';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
+import { useStepConfig } from '../../../hooks/useStepConfig';
 import { StepId } from '../../config/StepId';
-import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
@@ -40,26 +40,22 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const intl = useIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgtHvaSkalEndres: hvaSkalEndres },
+        state: { søknadsdata, sak, arbeidsgivere, valgtHvaSkalEndres },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
-    const step = stepConfig[stepId];
+    const { goBack, stepConfig } = useStepConfig(stepId);
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
-
-    const { goBack } = useStepNavigation(step);
-
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
+
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         if (previousSøknadError === undefined && sendSøknadError !== undefined) {
             sendSøknadErrorSummary.current?.focus();
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, hvaSkalEndres);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, valgtHvaSkalEndres);
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;
@@ -76,7 +72,7 @@ const OppsummeringStep = () => {
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
-        hvaSkalEndres,
+        valgtHvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
         sak.harUkjentArbeidsforhold
     );
