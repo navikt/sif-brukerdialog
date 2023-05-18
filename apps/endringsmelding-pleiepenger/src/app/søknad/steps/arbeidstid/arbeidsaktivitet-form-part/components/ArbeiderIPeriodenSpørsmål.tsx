@@ -49,7 +49,7 @@ export const getArbeidIPeriodeArbeiderIPeriodenValidator =
         const error = getRequiredFieldValidator()(value);
         return error
             ? {
-                  key: `ukjentArbeidsgiver.validation.arbeider.${error}`,
+                  key: `ukjentArbeidsforhold.validation.arbeider.${error}`,
                   keepKeyUnaltered: true,
                   values: {
                       navn,

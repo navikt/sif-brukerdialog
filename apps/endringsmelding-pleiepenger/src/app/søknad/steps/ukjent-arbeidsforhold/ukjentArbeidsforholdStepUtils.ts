@@ -1,11 +1,13 @@
-import { getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { getNumberFromNumberInputValue, IntlErrorObject, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { decimalDurationToDuration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
-import { Arbeidsforhold, Arbeidsgiver, Søknadsdata, UkjentArbeidsforholdSøknadsdata } from '@types';
-import { UkjentArbeidsforholdFormValues, UkjentArbeidsgiverMap } from './UkjentArbeidsforholdStep';
+import { Arbeidsforhold, Arbeidsgiver, UkjentArbeidsforholdSøknadsdata } from '@types';
 import {
+    UkjentArbeidsforholdFormValues,
     UkjentArbeidsgiverFormField,
     UkjentArbeidsgiverFormValues,
-} from './ukjent-arbeidsgiver-form-part/UkjentArbeidsgiverFormPart';
+    UkjentArbeidsgiverMap,
+} from './UkjentArbeidsforholdForm';
 
 const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold): UkjentArbeidsgiverFormValues => {
     return arbeidsforhold.erAnsatt
@@ -48,7 +50,7 @@ const ukjentArbeidsgiverFormValuesToSøknadsdata = (
 };
 
 export const getUkjentArbeidsforholdStepInitialValues = (
-    søknadsdata: Søknadsdata,
+    ukjentArbeidsforholdSøknadsdata: UkjentArbeidsforholdSøknadsdata | undefined,
     formValues: UkjentArbeidsforholdFormValues | undefined,
     ukjenteArbeidsgivere: Arbeidsgiver[]
 ): UkjentArbeidsforholdFormValues => {
@@ -56,7 +58,7 @@ export const getUkjentArbeidsforholdStepInitialValues = (
         return formValues;
     }
     const arbeidsforhold: UkjentArbeidsgiverMap = {};
-    if (søknadsdata.ukjentArbeidsforhold === undefined) {
+    if (ukjentArbeidsforholdSøknadsdata === undefined) {
         ukjenteArbeidsgivere.forEach((a) => {
             arbeidsforhold[a.key] = {
                 erAnsatt: YesOrNo.UNANSWERED,
@@ -64,7 +66,7 @@ export const getUkjentArbeidsforholdStepInitialValues = (
             };
         });
     } else {
-        (søknadsdata.ukjentArbeidsforhold.arbeidsforhold || []).forEach((a) => {
+        (ukjentArbeidsforholdSøknadsdata.arbeidsforhold || []).forEach((a) => {
             arbeidsforhold[a.arbeidsgiverKey] = arbeidsforholdSøknadsdataToFormValues(a);
         });
     }
@@ -88,10 +90,36 @@ export const getUkjentArbeidsforholdSøknadsdataFromFormValues = (
     return { arbeidsforhold };
 };
 
-export const harSvartErIkkeAnsattHosUkjentArbeidsforhold = (arbeidsforhold: UkjentArbeidsgiverMap): boolean => {
-    return Object.keys(arbeidsforhold)
-        .map((key) => arbeidsforhold[key])
-        .some((values) => {
-            return values[UkjentArbeidsgiverFormField.erAnsatt] === YesOrNo.NO;
-        });
+export const getErAnsattValidator =
+    (arbeidsgiverNavn: string) =>
+    (value: any): IntlErrorObject | undefined => {
+        const error = getYesOrNoValidator()(value);
+        if (error) {
+            return {
+                key: `ukjentArbeidsforhold.validation.${UkjentArbeidsgiverFormField.erAnsatt}.${error}`,
+                keepKeyUnaltered: true,
+                values: {
+                    navn: arbeidsgiverNavn,
+                },
+            };
+        }
+        return undefined;
+    };
+
+export const getTimerPerUkeValidator = (arbeidsgiverNavn: string) => (value) => {
+    const error = getNumberValidator({
+        allowDecimals: true,
+        required: true,
+        max: 100,
+        min: 0,
+    })(value);
+    return error
+        ? {
+              key: `ukjentArbeidsforhold.validation.${UkjentArbeidsgiverFormField.timerPerUke}.${error}`,
+              keepKeyUnaltered: true,
+              values: {
+                  navn: arbeidsgiverNavn,
+              },
+          }
+        : undefined;
 };

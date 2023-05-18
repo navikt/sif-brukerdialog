@@ -8,6 +8,9 @@ interface Props {
     onChange?: () => void;
 }
 
+/**
+ * Oppdaterer StepFormValuesContext når formik values endrer seg
+ */
 const PersistStepFormValues: React.FunctionComponent<Props> = ({ stepId, onChange }) => {
     const { setStepFormValues } = useStepFormValuesContext();
     return (
