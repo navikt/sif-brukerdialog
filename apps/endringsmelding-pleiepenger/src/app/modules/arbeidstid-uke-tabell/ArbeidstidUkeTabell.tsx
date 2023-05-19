@@ -45,8 +45,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     arbeidsaktivitetKey,
     onEndreUker,
 }) => {
-    const { visibleItems, totalItemsCount, visibleItemsCount, showMoreItems, showAllItems } =
-        usePagination<ArbeidstidUkeTabellItem>(listItems, 10);
+    const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<ArbeidstidUkeTabellItem>(
+        listItems,
+        10
+    );
 
     const {
         listState: {
@@ -109,16 +111,16 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     const renderEndreUkerHeader = () => (
         <EndreUkerHeader
             periode={periode}
-            onChange={(checked) => {
+            onUkerKanVelgesChange={(checked) => {
                 setItemsAreSelectable(checked);
             }}
-            checked={itemsAreSelectable}
+            ukerKanVelges={itemsAreSelectable}
             visKorteUkerMelding={itemsAreSelectable && (ukerMedFerie.length > 0 || korteUker.length > 0)}
         />
     );
 
     const renderLastInnFlereUker = () => {
-        if (paginering && visibleItemsCount !== undefined && visibleItemsCount < totalItemsCount) {
+        if (paginering && hasMoreItems) {
             return (
                 <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
                     <Button
@@ -145,7 +147,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         return (
             <>
                 {renderLastInnFlereUker()}
-                {multipleSelectEnabled && itemsAreSelectable && (
+                {multipleSelectEnabled && (
                     <EndreUkerFooter
                         antallValgteUker={selectedItems.length}
                         visVelgUkerMelding={showSelectItemsMessage}
@@ -372,7 +374,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                                         </span>
                                                         <span className="arbeidsukeTidsrom__info">
                                                             {uke.erKortUke && <UkeInfoIkon uke={uke} />}
-                                                            {/* {uke.harFjernetFeriedager && <FjernetFerieIkon uke={uke} />} */}
                                                         </span>
                                                     </div>
                                                 </div>

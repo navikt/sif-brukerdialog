@@ -4,25 +4,25 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { DateRange, getDateRangeText } from '@navikt/sif-common-utils/lib';
 
 interface Props {
-    checked: boolean;
     periode?: DateRange;
     visKorteUkerMelding?: boolean;
-    onChange: (checked: boolean) => void;
+    ukerKanVelges: boolean;
+    onUkerKanVelgesChange: (checked: boolean) => void;
 }
 
 const EndreUkerHeader: React.FunctionComponent<Props> = ({
-    checked: visVelgUke,
-    onChange,
     periode,
+    ukerKanVelges,
+    onUkerKanVelgesChange: onUkerKanVelgesChange,
     visKorteUkerMelding,
 }) => {
     return (
         <>
             <Checkbox
-                checked={visVelgUke}
+                checked={ukerKanVelges}
                 data-testid="endre-flere-uker-cb"
                 onChange={(evt) => {
-                    onChange(evt.target.checked);
+                    onUkerKanVelgesChange(evt.target.checked);
                 }}
                 aria-label={`Jeg ønsker å endre flere uker samtidig ${
                     periode ? `i perioden ${getDateRangeText(periode)}` : ''

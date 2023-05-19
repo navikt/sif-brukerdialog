@@ -61,7 +61,7 @@ export const useSelectableList = <T>({ items, onEditItems }: Props<T>) => {
     };
 
     const selectAllIsIndeterminate = selectedItems.length > 0 && selectedItems.length !== items.length;
-    const multipleSelectEnabled = onEditItems !== undefined && items.length > 1;
+    const multipleSelectEnabled = itemsAreSelectable && onEditItems !== undefined && items.length > 1;
     const singleSelectEnabled = onEditItems !== undefined && itemsAreSelectable !== true;
 
     return {
