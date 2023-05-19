@@ -46,7 +46,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     onEndreUker,
 }) => {
     const { visibleItems, totalItemsCount, visibleItemsCount, showMoreItems, showAllItems } =
-        usePagination<ArbeidstidUkeTabellItem>(listItems, 3);
+        usePagination<ArbeidstidUkeTabellItem>(listItems, 10);
 
     const {
         listState: {
