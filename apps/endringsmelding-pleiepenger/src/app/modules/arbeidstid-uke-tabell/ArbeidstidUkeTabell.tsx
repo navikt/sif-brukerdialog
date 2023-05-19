@@ -1,5 +1,5 @@
 import { BodyShort, Button, Checkbox, Heading, Table, Tooltip } from '@navikt/ds-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
@@ -49,16 +49,22 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         usePagination<ArbeidstidUkeTabellItem>(listItems, 3);
 
     const {
-        listState: { showSelectItems, selectedItems, multipleSelectEnabled, singleSelectEnabled },
-        setShowSelectItems,
+        listState: {
+            itemsAreSelectable,
+            selectedItems,
+            multipleSelectEnabled,
+            singleSelectEnabled,
+            showSelectItemsMessage,
+        },
+        setItemsAreSelectable,
         setSelectedItems,
         setItemSelected,
         isItemSelected,
         editItem,
         editSelectedItems,
+        setShowSelectItemsMessage,
     } = useSelectableList<ArbeidstidUkeTabellItem>({ items: listItems, onEditItems: onEndreUker });
 
-    const [visMeldingOmUkerMåVelges, setVisMeldingOmUkerMåVelges] = useState<boolean>(false);
     const renderAsList = useMediaQuery({ minWidth: 500 }) === false;
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
 
@@ -69,11 +75,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
     useEffect(() => {
         setSelectedItems([]);
-        setShowSelectItems(false);
-    }, [triggerResetValg, setSelectedItems, setShowSelectItems]);
+        setShowSelectItemsMessage(false);
+    }, [triggerResetValg, setSelectedItems, setShowSelectItemsMessage]);
 
     const onToggleUke = (uke: ArbeidstidUkeTabellItem, selected: boolean) => {
-        setVisMeldingOmUkerMåVelges(false);
         setItemSelected(uke, selected);
     };
 
@@ -105,12 +110,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         <EndreUkerHeader
             periode={periode}
             onChange={(checked) => {
-                setShowSelectItems(checked);
-                setVisMeldingOmUkerMåVelges(false);
-                setSelectedItems([]);
+                setItemsAreSelectable(checked);
             }}
-            checked={showSelectItems}
-            visKorteUkerMelding={showSelectItems && (ukerMedFerie.length > 0 || korteUker.length > 0)}
+            checked={itemsAreSelectable}
+            visKorteUkerMelding={itemsAreSelectable && (ukerMedFerie.length > 0 || korteUker.length > 0)}
         />
     );
 
@@ -142,17 +145,11 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         return (
             <>
                 {renderLastInnFlereUker()}
-                {multipleSelectEnabled && showSelectItems && (
+                {multipleSelectEnabled && itemsAreSelectable && (
                     <EndreUkerFooter
                         antallValgteUker={selectedItems.length}
-                        visVelgUkerMelding={visMeldingOmUkerMåVelges && selectedItems.length === 0}
-                        onEndreUker={() => {
-                            if (selectedItems.length === 0) {
-                                setVisMeldingOmUkerMåVelges(true);
-                                return;
-                            }
-                            editSelectedItems();
-                        }}
+                        visVelgUkerMelding={showSelectItemsMessage}
+                        onEndreUker={editSelectedItems}
                     />
                 )}
             </>
@@ -174,8 +171,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             return (
                                 <li key={uke.isoDateRange} className={`${selected ? 'arbeidstidUke--valgt' : ''}`}>
                                     <div
-                                        className={`arbeidstidUke${showSelectItems ? ' arbeidstidUke--velgUker' : ''}`}>
-                                        {showSelectItems && (
+                                        className={`arbeidstidUke${
+                                            itemsAreSelectable ? ' arbeidstidUke--velgUker' : ''
+                                        }`}>
+                                        {itemsAreSelectable && (
                                             <div className="arbeidstidUke__velgUke">
                                                 {uke.kanEndres && uke.kanVelges && (
                                                     <Checkbox
@@ -237,7 +236,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                 <Table className="arbeidstidUkeTabell">
                     <Table.Header>
                         <Table.Row>
-                            {showSelectItems && (
+                            {itemsAreSelectable && (
                                 <Table.DataCell className="arbeidstidUkeTabell__velgUke">
                                     <Checkbox
                                         checked={selectedItems.length === visibleItems.length}
@@ -245,6 +244,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                             selectedItems.length > 0 && selectedItems.length !== visibleItems.length
                                         }
                                         onChange={() => {
+                                            setShowSelectItemsMessage(false);
                                             selectedItems.length
                                                 ? setSelectedItems([])
                                                 : setSelectedItems(
@@ -294,7 +294,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         {visibleItems.map((uke) => {
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
                             const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
-
                             const selected = isItemSelected(uke);
 
                             return (
@@ -303,7 +302,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     selected={selected}
                                     style={{ verticalAlign: 'top' }}
                                     data-testid={`uke_${ukenummer}`}>
-                                    {showSelectItems && (
+                                    {itemsAreSelectable && (
                                         <Table.DataCell className="arbeidstidUkeTabell__velgUke">
                                             {uke.kanEndres && uke.kanVelges && (
                                                 <Checkbox

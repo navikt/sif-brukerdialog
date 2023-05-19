@@ -10,8 +10,9 @@ interface Props<T> {
 }
 
 export const useSelectableList = <T>({ items, onEditItems }: Props<T>) => {
-    const [showSelectItems, setShowSelectItems] = useState<boolean>(false);
+    const [itemsAreSelectable, doSetItemsAreSelectable] = useState<boolean>(false);
     const [selectedItems, setSelectedItems] = useState<Array<T & ListItem>>([]);
+    const [showSelectItemsMessage, setShowSelectItemsMessage] = useState(false);
 
     const isItemSelected = (item: T & ListItem): boolean => {
         return selectedItems.some((i) => i.id === item.id);
@@ -27,6 +28,7 @@ export const useSelectableList = <T>({ items, onEditItems }: Props<T>) => {
     };
 
     const setItemSelected = (item: T & ListItem, selected: boolean) => {
+        setShowSelectItemsMessage(false);
         if (selected) {
             setSelectedItems(selectedItems.filter((i) => i.id !== item.id));
         } else {
@@ -35,7 +37,11 @@ export const useSelectableList = <T>({ items, onEditItems }: Props<T>) => {
     };
 
     const editSelectedItems = () => {
-        if (!onEditItems || selectedItems.length === 0) {
+        if (!onEditItems) {
+            return;
+        }
+        if (selectedItems.length === 0) {
+            setShowSelectItemsMessage(true);
             return;
         }
         onEditItems(selectedItems);
@@ -48,26 +54,34 @@ export const useSelectableList = <T>({ items, onEditItems }: Props<T>) => {
         onEditItems([item]);
     };
 
+    const setItemsAreSelectable = (selectable: boolean) => {
+        doSetItemsAreSelectable(selectable);
+        setSelectedItems([]);
+        setShowSelectItemsMessage(false);
+    };
+
     const selectAllIsIndeterminate = selectedItems.length > 0 && selectedItems.length !== items.length;
     const multipleSelectEnabled = onEditItems !== undefined && items.length > 1;
-    const singleSelectEnabled = onEditItems !== undefined && showSelectItems !== true;
+    const singleSelectEnabled = onEditItems !== undefined && itemsAreSelectable !== true;
 
     return {
         listState: {
             isSelectable: onEditItems !== undefined,
             selectedItems,
-            showSelectItems,
+            itemsAreSelectable,
             selectAllIsIndeterminate,
             multipleSelectEnabled,
             singleSelectEnabled,
+            showSelectItemsMessage,
         },
-        onChangeItems: onEditItems,
-        setShowSelectItems,
+        onEditItems,
+        setItemsAreSelectable,
         setSelectedItems,
         toggleItem,
         setItemSelected,
         isItemSelected,
         editItem,
         editSelectedItems,
+        setShowSelectItemsMessage,
     };
 };
