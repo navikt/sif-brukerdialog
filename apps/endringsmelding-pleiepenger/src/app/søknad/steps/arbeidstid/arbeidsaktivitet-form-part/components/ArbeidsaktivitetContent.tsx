@@ -22,9 +22,8 @@ import DateRangeAccordion from '../../../../../components/date-range-accordion/D
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
 import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
-import ArbeidstidUkeTabell, {
-    ArbeidstidUkeTabellItem,
-} from '../../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import ArbeidstidUkeTabell from '../../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabellItem';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';

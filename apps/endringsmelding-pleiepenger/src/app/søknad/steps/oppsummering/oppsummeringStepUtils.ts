@@ -13,7 +13,7 @@ import {
     Søknadsdata,
 } from '@types';
 import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@utils';
-import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabellItem';
 import { OppsummeringFormValues } from './OppsummeringStep';
 
 export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {

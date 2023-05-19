@@ -1,5 +1,5 @@
 import { durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
-import { ArbeidstidUkeTabellItem } from './ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from './ArbeidstidUkeTabellItem';
 
 export const erArbeidstidUkeTabellItemEndret = (uke: ArbeidstidUkeTabellItem): boolean => {
     if (!uke.endret) {

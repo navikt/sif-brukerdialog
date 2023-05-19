@@ -2,7 +2,7 @@ import { Tooltip } from '@navikt/ds-react';
 import React from 'react';
 import { InformationColored } from '@navikt/ds-icons';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabellItem';
 
 interface Props {
     uke: ArbeidstidUkeTabellItem;

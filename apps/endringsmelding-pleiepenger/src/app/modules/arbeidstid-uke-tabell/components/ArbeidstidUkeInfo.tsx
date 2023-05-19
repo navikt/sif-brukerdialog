@@ -7,7 +7,7 @@ import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-tex
 import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
 import IconText from '../../../components/icon-text/IconText';
-import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabell';
+import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabellItem';
 import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
 
 interface Props {
