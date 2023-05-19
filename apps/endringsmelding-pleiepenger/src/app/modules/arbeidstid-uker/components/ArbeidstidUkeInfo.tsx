@@ -4,19 +4,16 @@ import { useIntl } from 'react-intl';
 import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
-import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
 import IconText from '../../../components/icon-text/IconText';
-import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabellItem';
-import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
+import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
+import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
 
 interface Props {
-    uke: ArbeidstidUkeTabellItem;
+    uke: ArbeidstidUkerItem;
     visEndringSomOpprinnelig?: boolean;
     medLabels?: boolean;
 }
-
-const bem = BemUtils('endretArbeidstid');
 
 const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = false, visEndringSomOpprinnelig }) => {
     const intl = useIntl();
@@ -30,7 +27,7 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
             </>
         );
     }
-    const erEndret = erArbeidstidUkeTabellItemEndret(uke);
+    const erEndret = erArbeidstidUkeItemEndret(uke);
 
     if (erEndret === false || visEndringSomOpprinnelig) {
         return (
@@ -46,21 +43,21 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
 
     return (
-        <div className={bem.block}>
-            <div className={bem.element('faktisk')}>
+        <div className={'endretArbeidstid'}>
+            <div className="endretArbeidstid_faktisk">
                 {medLabels && <BodyShort size="small">Jobber i perioden:</BodyShort>}
-                <strong className={bem.element('timer')} data-testid="timer-faktisk">
+                <strong className="endretArbeidstid__timer" data-testid="timer-faktisk">
                     <DurationText duration={faktisk} />
                 </strong>
                 {endretProsent !== undefined && (
-                    <span className={bem.element('prosent')}> ({intl.formatNumber(endretProsent)} %)</span>
+                    <span className="endretArbeidstid__prosent"> ({intl.formatNumber(endretProsent)} %)</span>
                 )}
             </div>
 
             <div>
-                <span className={bem.element('opprinnelig')}>
+                <span className="endretArbeidstid__opprinnelig">
                     <AriaText>Endret fra </AriaText>
-                    <span className={bem.element('timer')} data-testid="timer-opprinnelig">
+                    <span className="endretArbeidstid__timer" data-testid="timer-opprinnelig">
                         {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                     </span>
                 </span>

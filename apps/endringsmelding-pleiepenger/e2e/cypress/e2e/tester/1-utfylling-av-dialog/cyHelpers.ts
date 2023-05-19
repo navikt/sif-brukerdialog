@@ -9,7 +9,7 @@ const flereUker = [46, 47];
 
 const getAktivitet = () => getTestElement('aktivitet_a_947064649');
 const getPeriode = () => getTestElement('dateRangeAccordion_0');
-const getUkeRow = (ukenummer) => cy.get('.arbeidstidUkeTabell table').get(`[data-testid=uke_${ukenummer}]`);
+const getUkeRow = (ukenummer) => cy.get('.arbeidstidUker table').get(`[data-testid=uke_${ukenummer}]`);
 const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal');
 
 const captureScreenshot = () => {
@@ -226,7 +226,7 @@ const fyllUtArbeidstidUkjentArbeidsforhold = (
             selectRadioByNameAndValue(`arbeidsaktivitet.a_${orgnummer}.arbeiderIPerioden`, arbeiderIPeriodenSvar);
             uker.forEach((uke) => {
                 getTestElement(`aktivitet_a_${orgnummer}`).within(() => {
-                    cy.get('.arbeidstidUkeTabell table')
+                    cy.get('.arbeidstidUker table')
                         .get(`[data-testid=uke_${uke.ukenummer}]`)
                         .within(() => {
                             cy.get('[data-testid=endre-button]').click();

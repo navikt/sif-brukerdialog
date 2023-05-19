@@ -9,7 +9,30 @@ interface Props<T> {
     onEditItems?: (items: Array<T & ListItem>) => void;
 }
 
-export const useSelectableList = <T>({ items, onEditItems }: Props<T>) => {
+interface ListState<T> {
+    isSelectable: boolean;
+    itemsAreSelectable: boolean;
+    multipleSelectEnabled: boolean;
+    selectAllIsIndeterminate: boolean;
+    selectedItems: Array<T>;
+    showSelectItemsMessage: boolean;
+    singleSelectEnabled: boolean;
+}
+
+export interface SelectableListType<T> {
+    listState: ListState<T>;
+    editItem: (item: T & ListItem) => void;
+    editSelectedItems: () => void;
+    isItemSelected: (item: T & ListItem) => boolean;
+    onEditItems?: (items: Array<T & ListItem>) => void;
+    setItemsAreSelectable: (selectable: boolean) => void;
+    setItemSelected: (item: T & ListItem, selected: boolean) => void;
+    setSelectedItems: (items: Array<T & ListItem>) => void;
+    setShowSelectItemsMessage: (visible: boolean) => void;
+    toggleItem: (item: T & ListItem) => void;
+}
+
+export const useSelectableList = <T>({ items, onEditItems }: Props<T>): SelectableListType<T> => {
     const [itemsAreSelectable, doSetItemsAreSelectable] = useState<boolean>(false);
     const [selectedItems, setSelectedItems] = useState<Array<T & ListItem>>([]);
     const [showSelectItemsMessage, setShowSelectItemsMessage] = useState(false);
@@ -60,13 +83,14 @@ export const useSelectableList = <T>({ items, onEditItems }: Props<T>) => {
         setShowSelectItemsMessage(false);
     };
 
+    const isSelectable = onEditItems !== undefined;
     const selectAllIsIndeterminate = selectedItems.length > 0 && selectedItems.length !== items.length;
-    const multipleSelectEnabled = itemsAreSelectable && onEditItems !== undefined && items.length > 1;
+    const multipleSelectEnabled = isSelectable && items.length > 1;
     const singleSelectEnabled = onEditItems !== undefined && itemsAreSelectable !== true;
 
     return {
         listState: {
-            isSelectable: onEditItems !== undefined,
+            isSelectable,
             selectedItems,
             itemsAreSelectable,
             selectAllIsIndeterminate,

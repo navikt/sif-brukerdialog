@@ -3,18 +3,15 @@ import { useIntl } from 'react-intl';
 import { ErrorColored } from '@navikt/ds-icons';
 import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
-import BemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { erTimerGyldigInnenforAntallDager } from '@utils';
 import IconText from '../../../components/icon-text/IconText';
-import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabellItem';
-import { erArbeidstidUkeTabellItemEndret } from '../arbeidstidUkeTabellUtils';
+import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
+import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
 
 interface Props {
-    uke: ArbeidstidUkeTabellItem;
+    uke: ArbeidstidUkerItem;
     visEndringSomOpprinnelig?: boolean;
 }
-
-const bem = BemUtils('endretArbeidstid');
 
 const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndringSomOpprinnelig }) => {
     const intl = useIntl();
@@ -38,7 +35,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
         );
     }
 
-    const erEndret = erArbeidstidUkeTabellItemEndret(uke);
+    const erEndret = erArbeidstidUkeItemEndret(uke);
 
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(uke.endret.faktisk, uke.antallDagerMedArbeidstid);
     return (
@@ -57,7 +54,7 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
                             <DurationText duration={uke.endret.faktisk} />
                         </strong>
                         {erEndret && uke.endret.endretProsent !== undefined && (
-                            <span className={bem.element('prosent')}>
+                            <span className={'endretArbeidstid__prosent'}>
                                 {' '}
                                 ({intl.formatNumber(uke.endret.endretProsent)} %)
                             </span>
@@ -66,9 +63,9 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
                     {erEndret && (
                         <>
                             <br />
-                            <span className={bem.element('opprinnelig')}>
+                            <span className={'endretArbeidstid__opprinnelig'}>
                                 <AriaText>Endret fra </AriaText>
-                                <span className={bem.element('timer')} data-testid="timer-opprinnelig">
+                                <span className={'endretArbeidstid__timer'} data-testid="timer-opprinnelig">
                                     {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                                 </span>
                             </span>

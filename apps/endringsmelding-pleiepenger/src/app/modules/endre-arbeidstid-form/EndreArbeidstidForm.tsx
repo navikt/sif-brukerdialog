@@ -26,7 +26,7 @@ import {
 } from '@utils';
 import dayjs from 'dayjs';
 import actionsCreator from '../../søknad/context/action/actionCreator';
-import UkeTags from '../arbeidstid-uke-tabell/components/UkeTags';
+import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';

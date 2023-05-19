@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { SummaryBlock } from '@navikt/sif-common-soknad-ds';
 import { ArbeiderIPeriodenSvar, ArbeiderIPeriodenSvarTekst, Arbeidsgiver, ArbeidstakerApiData } from '@types';
-import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 type Props = {
@@ -34,9 +34,9 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
                 (arbeidstaker._erUkjentArbeidsforhold === true &&
                     arbeidstaker._arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert)) && (
                 <Block margin={arbeidstaker._erUkjentArbeidsforhold === true ? 'l' : 'none'}>
-                    <ArbeidstidUkeTabell
+                    <ArbeidstidUker
                         arbeidsaktivitetKey={arbeidsgiver.key}
-                        listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(arbeidstidInfo.perioder)}
+                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(arbeidstidInfo.perioder)}
                         arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsforhold}
                     />

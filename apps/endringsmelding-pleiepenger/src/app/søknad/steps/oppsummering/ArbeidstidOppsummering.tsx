@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { ArbeidsaktivitetType, Arbeidsgiver, ArbeidstidApiData } from '@types';
-import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
+import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
@@ -44,11 +44,9 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                         Frilanser
                     </Heading>
                     <>
-                        <ArbeidstidUkeTabell
+                        <ArbeidstidUker
                             arbeidsaktivitetKey={ArbeidsaktivitetType.frilanser}
-                            listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
-                                frilanserArbeidstidInfo.perioder
-                            )}
+                            listItems={oppsummeringStepUtils.getArbeidstidUkerItems(frilanserArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -60,9 +58,9 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                         Selvstendig næringsdrivende
                     </Heading>
                     <>
-                        <ArbeidstidUkeTabell
+                        <ArbeidstidUker
                             arbeidsaktivitetKey={ArbeidsaktivitetType.selvstendigNæringsdrivende}
-                            listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
+                            listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
                                 selvstendigNæringsdrivendeArbeidstidInfo.perioder
                             )}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}

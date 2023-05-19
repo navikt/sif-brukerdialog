@@ -22,8 +22,8 @@ import DateRangeAccordion from '../../../../../components/date-range-accordion/D
 import EndretTag from '../../../../../components/tags/EndretTag';
 import FerieTag from '../../../../../components/tags/FerieTag';
 import TagsContainer from '../../../../../components/tags/tags-container/TagsContainer';
-import ArbeidstidUkeTabell from '../../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
-import { ArbeidstidUkeTabellItem } from '../../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabellItem';
+import ArbeidstidUker from '../../../../../modules/arbeidstid-uker/ArbeidstidUker';
+import { ArbeidstidUkerItem } from '../../../../../modules/arbeidstid-uker/ArbeidstidUkerItem';
 import EndreArbeidstidForm from '../../../../../modules/endre-arbeidstid-form/EndreArbeidstidForm';
 import EndreArbeidstidModal from '../../../../../modules/endre-arbeidstid-modal/EndreArbeidstidModal';
 import { ArbeidsaktivitetFormValues } from '../../ArbeidstidForm';
@@ -94,9 +94,9 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                         }}>
                         {perioder.length === 1 && (
                             <>
-                                <ArbeidstidUkeTabell
+                                <ArbeidstidUker
                                     arbeidsaktivitetKey={arbeidsaktivitet.key}
-                                    listItems={arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
+                                    listItems={arbeidsaktivitetUtils.getArbeidstidUkerItemFromArbeidsuker(
                                         perioder[0].arbeidsuker,
                                         endringer,
                                         lovbestemtFerie
@@ -104,7 +104,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     periode={perioder[0]}
                                     visEndringSomOpprinnelig={erNyArbeidsgiver}
                                     triggerResetValg={resetUkerTabellCounter}
-                                    onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
+                                    onEndreUker={(uker: ArbeidstidUkerItem[]) => {
                                         setArbeidsukerForEndring(
                                             uker.map((uke) => perioder[0].arbeidsuker[uke.isoDateRange])
                                         );
@@ -117,20 +117,19 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                 <DateRangeAccordion
                                     dateRanges={perioder}
                                     renderContent={(periode) => {
-                                        const listItems =
-                                            arbeidsaktivitetUtils.getArbeidstidUkeTabellItemFromArbeidsuker(
-                                                periode.arbeidsuker,
-                                                endringer,
-                                                lovbestemtFerie
-                                            );
+                                        const listItems = arbeidsaktivitetUtils.getArbeidstidUkerItemFromArbeidsuker(
+                                            periode.arbeidsuker,
+                                            endringer,
+                                            lovbestemtFerie
+                                        );
                                         return (
-                                            <ArbeidstidUkeTabell
+                                            <ArbeidstidUker
                                                 arbeidsaktivitetKey={arbeidsaktivitet.key}
                                                 listItems={listItems}
                                                 periode={periode}
                                                 triggerResetValg={resetUkerTabellCounter}
                                                 visEndringSomOpprinnelig={erNyArbeidsgiver}
-                                                onEndreUker={(uker: ArbeidstidUkeTabellItem[]) => {
+                                                onEndreUker={(uker: ArbeidstidUkerItem[]) => {
                                                     setArbeidsukerForEndring(
                                                         uker.map((uke) => periode.arbeidsuker[uke.isoDateRange])
                                                     );

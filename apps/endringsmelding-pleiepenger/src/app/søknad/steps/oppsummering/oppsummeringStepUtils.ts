@@ -13,7 +13,7 @@ import {
     Søknadsdata,
 } from '@types';
 import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@utils';
-import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabellItem';
+import { ArbeidstidUkerItem } from '../../../modules/arbeidstid-uker/ArbeidstidUkerItem';
 import { OppsummeringFormValues } from './OppsummeringStep';
 
 export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {
@@ -49,11 +49,11 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
         _endretProsent,
     }: ArbeidstidPeriodeApiData,
     isoDateRange: ISODateRange
-): ArbeidstidUkeTabellItem => {
+): ArbeidstidUkerItem => {
     const periode = ISODateRangeToDateRange(isoDateRange);
     const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
 
-    const arbeidsuke: ArbeidstidUkeTabellItem = {
+    const arbeidsuke: ArbeidstidUkerItem = {
         id: isoDateRange,
         kanEndres: false,
         kanVelges: false,
@@ -84,8 +84,8 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     return arbeidsuke;
 };
 
-const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
-    const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
+const getArbeidstidUkerItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkerItem[] => {
+    const arbeidsuker: ArbeidstidUkerItem[] = [];
     Object.keys(perioder)
         .sort()
         .forEach((isoDateRange) => {
@@ -127,7 +127,7 @@ const erArbeidstidEndringerGyldig = (arbeidstid?: ArbeidstidApiData): boolean =>
 };
 
 export const oppsummeringStepUtils = {
-    getArbeidstidUkeTabellItems,
+    getArbeidstidUkerItems,
     harEndringerILovbestemtFerieApiData,
     harEndringerIArbeidstid,
     erArbeidstidEndringerGyldig,

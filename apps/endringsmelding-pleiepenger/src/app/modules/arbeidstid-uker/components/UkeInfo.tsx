@@ -2,10 +2,10 @@ import { Tooltip } from '@navikt/ds-react';
 import React from 'react';
 import { InformationColored } from '@navikt/ds-icons';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import { ArbeidstidUkeTabellItem } from '../ArbeidstidUkeTabellItem';
+import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
 
 interface Props {
-    uke: ArbeidstidUkeTabellItem;
+    uke: ArbeidstidUkerItem;
 }
 
 const UkeInfoIkon: React.FunctionComponent<Props> = ({ uke }) => {

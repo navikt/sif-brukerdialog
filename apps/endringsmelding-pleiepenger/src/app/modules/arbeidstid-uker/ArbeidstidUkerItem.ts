@@ -1,6 +1,6 @@
 import { DateRange, ISODateRange, Duration } from '@navikt/sif-common-utils/lib';
 
-export interface ArbeidstidUkeTabellItem {
+export interface ArbeidstidUkerItem {
     id: string;
     kanEndres: boolean;
     kanVelges: boolean;

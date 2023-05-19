@@ -15,22 +15,22 @@ import {
 } from '@utils';
 import dayjs from 'dayjs';
 import { uniqBy } from 'lodash';
-import { ArbeidstidUkeTabellItem } from '../../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabellItem';
+import { ArbeidstidUkerItem } from '../../../../modules/arbeidstid-uker/ArbeidstidUkerItem';
 
-const sorterItemsPåStartdato = (u1: ArbeidstidUkeTabellItem, u2: ArbeidstidUkeTabellItem): number => {
+const sorterItemsPåStartdato = (u1: ArbeidstidUkerItem, u2: ArbeidstidUkerItem): number => {
     return dayjs(u1.periode.from).isBefore(u2.periode.from) ? -1 : 1;
 };
 
-const sorterListeItems = (items: ArbeidstidUkeTabellItem[]): ArbeidstidUkeTabellItem[] => {
+const sorterListeItems = (items: ArbeidstidUkerItem[]): ArbeidstidUkerItem[] => {
     return items.sort(sorterItemsPåStartdato);
 };
 
-const arbeidsukeToArbeidstidUkeTabellItem = (
+const arbeidsukeToArbeidstidUkerItem = (
     arbeidsuke: Arbeidsuke,
     endring: ArbeidstidEndring | undefined,
     dagerMedFerie: Date[] | undefined = [],
     dagerMedFjernetFerie: Date[] | undefined = []
-): ArbeidstidUkeTabellItem => {
+): ArbeidstidUkerItem => {
     const erKortUke = erKortArbeidsuke(arbeidsuke.periode);
     return {
         id: arbeidsuke.isoDateRange,
@@ -66,12 +66,12 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
     };
 };
 
-const getArbeidstidUkeTabellItemFromArbeidsuker = (
+const getArbeidstidUkerItemFromArbeidsuker = (
     arbeidsuker: ArbeidsukeMap,
     endringer: ArbeidstidEndringMap = {},
     lovbestemtFerie?: LovbestemtFerieSøknadsdata
-): ArbeidstidUkeTabellItem[] => {
-    const items: ArbeidstidUkeTabellItem[] = [];
+): ArbeidstidUkerItem[] => {
+    const items: ArbeidstidUkerItem[] = [];
     Object.keys(arbeidsuker).map((key) => {
         const arbeidsuke = arbeidsuker[key];
         const endring = endringer[arbeidsuke.isoDateRange];
@@ -80,7 +80,7 @@ const getArbeidstidUkeTabellItemFromArbeidsuker = (
             : undefined;
 
         items.push(
-            arbeidsukeToArbeidstidUkeTabellItem(
+            arbeidsukeToArbeidstidUkerItem(
                 arbeidsuke,
                 endring,
                 ferieIPerioden?.feriedagerMeta.datoerMedFerie,
@@ -103,6 +103,6 @@ export const getEndringerForArbeidsukeForm = (
 };
 
 export const arbeidsaktivitetUtils = {
-    getArbeidstidUkeTabellItemFromArbeidsuker,
+    getArbeidstidUkerItemFromArbeidsuker,
     sorterListeItems,
 };
