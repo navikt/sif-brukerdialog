@@ -7,6 +7,8 @@ import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-tex
 import { dateFormatter, DateRange, Duration, getDateRangeText, ISODateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import EditButton from '../../components/buttons/EditButton';
+import { usePagination } from '../../hooks/usePagination';
+import { useSelectableList } from '../../hooks/useSelectableList';
 import ArbeidstidUkeInfo from './components/ArbeidstidUkeInfo';
 import ArbeidstidUkeInfoListe from './components/ArbeidstidUkeInfoListe';
 import EndreUkerFooter from './components/EndreUkerFooter';
@@ -16,6 +18,7 @@ import UkeTags from './components/UkeTags';
 import './arbeidstidUkeTabell.scss';
 
 export interface ArbeidstidUkeTabellItem {
+    id: string;
     kanEndres: boolean;
     kanVelges: boolean;
     isoDateRange: ISODateRange;
@@ -65,46 +68,43 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
     arbeidsaktivitetKey,
     onEndreUker,
 }) => {
-    const antallUkerTotalt = listItems.length;
-    const [visVelgUke, setVisVelgUke] = useState<boolean>(false);
-    const [antallSynlig, setAntallSynlig] = useState<number | undefined>(
-        paginering ? Math.min(antallUkerTotalt, paginering.antall) : undefined
-    );
-    const [valgteUker, setValgteUker] = useState<string[]>([]);
+    const { visibleItems, totalItemsCount, visibleItemsCount, showMoreItems, showAllItems } =
+        usePagination<ArbeidstidUkeTabellItem>(listItems, 3);
+
+    const {
+        listState: { showSelectItems, selectedItems },
+        setShowSelectItems,
+        setSelectedItems,
+        setItemSelected,
+        isItemSelected,
+    } = useSelectableList<ArbeidstidUkeTabellItem>({ items: listItems });
+
     const [visMeldingOmUkerMåVelges, setVisMeldingOmUkerMåVelges] = useState<boolean>(false);
     const renderAsList = useMediaQuery({ minWidth: 500 }) === false;
     const renderCompactTable = useMediaQuery({ minWidth: 736 }) === false && renderAsList === false;
-    const kanVelgeFlereUker = onEndreUker !== undefined && antallUkerTotalt > 1;
-    const kanEndreEnkeltuke = onEndreUker && visVelgUke !== true;
+    const kanVelgeFlereUker = onEndreUker !== undefined && totalItemsCount > 1;
+    const kanEndreEnkeltuke = onEndreUker && showSelectItems !== true;
 
-    const synligeItems = listItems.filter((_i, idx) => idx < (antallSynlig || 0));
-
-    const korteUker = synligeItems.filter((i) => i.erKortUke).map((uke) => uke.periode);
-    const ukerMedFerie = synligeItems
+    const korteUker = visibleItems.filter((i) => i.erKortUke).map((uke) => uke.periode);
+    const ukerMedFerie = visibleItems
         .filter((i) => i.ferie && i.ferie?.dagerMedFerie.length > 0)
         .map((uke) => uke.periode);
 
     useEffect(() => {
-        setValgteUker([]);
-        setVisVelgUke(false);
-    }, [triggerResetValg]);
+        setSelectedItems([]);
+        setShowSelectItems(false);
+    }, [triggerResetValg, setSelectedItems, setShowSelectItems]);
 
-    const onToggleUke = (id: string, selected: boolean) => {
+    const onToggleUke = (uke: ArbeidstidUkeTabellItem, selected: boolean) => {
         setVisMeldingOmUkerMåVelges(false);
-        if (selected) {
-            setValgteUker(valgteUker.filter((ukeId) => ukeId !== id));
-        } else {
-            setValgteUker([...valgteUker, id]);
-        }
+        setItemSelected(uke, selected);
     };
-
-    const synligeUker = antallSynlig ? listItems.slice(0, antallSynlig) : listItems;
 
     const endreFlereUker = () => {
         if (!onEndreUker) {
             return;
         }
-        onEndreUker(listItems.filter((uke) => valgteUker.includes(uke.isoDateRange)));
+        onEndreUker(listItems.filter((uke) => selectedItems.includes(uke.isoDateRange)));
     };
 
     const renderEditButton = (uke: ArbeidstidUkeTabellItem, ukenummer: number, renderLabel: boolean) => {
@@ -113,14 +113,16 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         }
 
         const title =
-            valgteUker.length > 1 ? 'Endre valgte uker' : `Endre uke ${ukenummer} (${getDateRangeText(uke.periode)})`;
+            selectedItems.length > 1
+                ? 'Endre valgte uker'
+                : `Endre uke ${ukenummer} (${getDateRangeText(uke.periode)})`;
 
         return (
             <EditButton
                 className="endreArbeidstidUkeButton"
                 data-testid="endre-button"
                 onClick={() => {
-                    valgteUker.length > 1 ? endreFlereUker() : onEndreUker([uke]);
+                    selectedItems.length > 1 ? endreFlereUker() : onEndreUker([uke]);
                 }}
                 title={title}
                 aria-label={title}>
@@ -133,31 +135,31 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         <EndreUkerHeader
             periode={periode}
             onChange={(checked) => {
-                setVisVelgUke(checked);
+                setShowSelectItems(checked);
                 setVisMeldingOmUkerMåVelges(false);
-                setValgteUker([]);
+                setSelectedItems([]);
             }}
-            checked={visVelgUke}
-            visKorteUkerMelding={visVelgUke && (ukerMedFerie.length > 0 || korteUker.length > 0)}
+            checked={showSelectItems}
+            visKorteUkerMelding={showSelectItems && (ukerMedFerie.length > 0 || korteUker.length > 0)}
         />
     );
 
     const renderLastInnFlereUker = () => {
-        if (paginering && antallSynlig !== undefined && antallSynlig < antallUkerTotalt) {
+        if (paginering && visibleItemsCount !== undefined && visibleItemsCount < totalItemsCount) {
             return (
                 <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
                     <Button
                         variant="tertiary"
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
                         type="button"
-                        onClick={() => setAntallSynlig(Math.min(antallSynlig + paginering?.antall, antallUkerTotalt))}>
+                        onClick={showMoreItems}>
                         Vis flere uker
                     </Button>
                     <Button
                         variant="tertiary"
                         icon={<AddCircle role="presentation" aria-hidden={true} />}
                         type="button"
-                        onClick={() => setAntallSynlig(Math.min(antallUkerTotalt))}>
+                        onClick={showAllItems}>
                         Vis alle uker
                     </Button>
                 </Block>
@@ -170,12 +172,12 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
         return (
             <>
                 {renderLastInnFlereUker()}
-                {kanVelgeFlereUker && visVelgUke && (
+                {kanVelgeFlereUker && showSelectItems && (
                     <EndreUkerFooter
-                        antallValgteUker={valgteUker.length}
-                        visVelgUkerMelding={visMeldingOmUkerMåVelges && valgteUker.length === 0}
+                        antallValgteUker={selectedItems.length}
+                        visVelgUkerMelding={visMeldingOmUkerMåVelges && selectedItems.length === 0}
                         onEndreUker={() => {
-                            if (valgteUker.length === 0) {
+                            if (selectedItems.length === 0) {
                                 setVisMeldingOmUkerMåVelges(true);
                                 return;
                             }
@@ -194,22 +196,23 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
 
                 <div className="arbeidstidUkeListeWrapper">
                     <ol className="arbeidstidUkeListe">
-                        {synligeUker.map((uke) => {
+                        {visibleItems.map((uke) => {
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
                             const ukePeriodeTekstId = `${arbeidsaktivitetKey}_${uke.isoDateRange}`;
-                            const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
+                            const selected = onEndreUker !== undefined && isItemSelected(uke);
 
                             return (
                                 <li key={uke.isoDateRange} className={`${selected ? 'arbeidstidUke--valgt' : ''}`}>
-                                    <div className={`arbeidstidUke${visVelgUke ? ' arbeidstidUke--velgUker' : ''}`}>
-                                        {visVelgUke && (
+                                    <div
+                                        className={`arbeidstidUke${showSelectItems ? ' arbeidstidUke--velgUker' : ''}`}>
+                                        {showSelectItems && (
                                             <div className="arbeidstidUke__velgUke">
                                                 {uke.kanEndres && uke.kanVelges && (
                                                     <Checkbox
                                                         hideLabel
                                                         checked={selected}
                                                         onChange={() => {
-                                                            onToggleUke(uke.isoDateRange, selected);
+                                                            onToggleUke(uke, selected);
                                                         }}
                                                         aria-labelledby={ukePeriodeTekstId}>
                                                         {' '}
@@ -264,18 +267,18 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                 <Table className="arbeidstidUkeTabell">
                     <Table.Header>
                         <Table.Row>
-                            {visVelgUke && (
+                            {showSelectItems && (
                                 <Table.DataCell className="arbeidstidUkeTabell__velgUke">
                                     <Checkbox
-                                        checked={valgteUker.length === synligeUker.length}
+                                        checked={selectedItems.length === visibleItems.length}
                                         indeterminate={
-                                            valgteUker.length > 0 && valgteUker.length !== synligeUker.length
+                                            selectedItems.length > 0 && selectedItems.length !== visibleItems.length
                                         }
                                         onChange={() => {
-                                            valgteUker.length
-                                                ? setValgteUker([])
-                                                : setValgteUker(
-                                                      synligeUker
+                                            selectedItems.length
+                                                ? setSelectedItems([])
+                                                : setSelectedItems(
+                                                      visibleItems
                                                           .filter((uke) => uke.kanEndres && uke.kanVelges)
                                                           .map(({ isoDateRange }) => isoDateRange)
                                                   );
@@ -319,11 +322,11 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {synligeUker.map((uke) => {
+                        {visibleItems.map((uke) => {
                             const ukenummer = dayjs(uke.periode.from).isoWeek();
                             const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
 
-                            const selected = onEndreUker !== undefined && valgteUker.includes(uke.isoDateRange);
+                            const selected = onEndreUker !== undefined && selectedItems.includes(uke.isoDateRange);
 
                             return (
                                 <Table.Row
@@ -331,14 +334,14 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                     selected={selected}
                                     style={{ verticalAlign: 'top' }}
                                     data-testid={`uke_${ukenummer}`}>
-                                    {visVelgUke && (
+                                    {showSelectItems && (
                                         <Table.DataCell className="arbeidstidUkeTabell__velgUke">
                                             {uke.kanEndres && uke.kanVelges && (
                                                 <Checkbox
                                                     hideLabel
                                                     checked={selected}
                                                     onChange={() => {
-                                                        onToggleUke(uke.isoDateRange, selected);
+                                                        onToggleUke(uke, selected);
                                                     }}
                                                     aria-labelledby={ukePeriodeTekstId}>
                                                     {' '}

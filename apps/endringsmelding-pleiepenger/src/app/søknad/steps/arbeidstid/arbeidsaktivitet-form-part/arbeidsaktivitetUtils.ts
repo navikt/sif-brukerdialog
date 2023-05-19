@@ -33,6 +33,7 @@ const arbeidsukeToArbeidstidUkeTabellItem = (
 ): ArbeidstidUkeTabellItem => {
     const erKortUke = erKortArbeidsuke(arbeidsuke.periode);
     return {
+        id: arbeidsuke.isoDateRange,
         isoDateRange: arbeidsuke.isoDateRange,
         periode: arbeidsuke.periode,
         kanEndres: durationUtils.durationIsGreatherThanZero(arbeidsuke.normalt.uke),
