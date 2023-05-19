@@ -1,0 +1,24 @@
+{
+    "app": "omsorgspengerutbetaling-soknad",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/health/isReady",
+    "externalHosts": ["www.nav.no"],
+    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling"],
+    "cluster": "prod-gcp",
+    "env": {
+        "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/oauth2/logout",
+        "API_URL": "http://k9-brukerdialog-api",
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
+        "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api",
+        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
+        "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/soknad",
+        "NYNORSK": "off",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "production",
+        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
+        "NPM_CONFIG_CACHE": "/tmp"
+    }
+}
