@@ -1,5 +1,19 @@
 # @navikt/sif-common-core-ds
 
+## 7.4.0
+
+### Minor Changes
+
+-   ae1fdbf7: Pakkeoppdateringer
+
+### Patch Changes
+
+-   a1e69480: Oppdatere utgått lenke til informasjon om vedlegg på nav.no
+-   Updated dependencies [ae1fdbf7]
+    -   @navikt/sif-common-formik-ds@0.20.0
+    -   @navikt/appstatus-react-ds@2.7.0
+    -   @navikt/sif-common-utils@3.34.0
+
 ## 7.3.0
 
 ### Minor Changes

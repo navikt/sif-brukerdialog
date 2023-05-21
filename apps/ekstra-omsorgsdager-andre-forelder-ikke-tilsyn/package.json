@@ -3,7 +3,7 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.8.0",
+    "version": "1.9.0",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "private": true,
     "scripts": {
@@ -27,9 +27,9 @@
         "start-e2e-server": "node ./server-e2e.js"
     },
     "dependencies": {
-        "@navikt/ds-css": "2.9.8",
-        "@navikt/ds-react": "2.9.8",
-        "@navikt/ds-tailwind": "2.9.8",
+        "@navikt/ds-css": "3.1.3",
+        "@navikt/ds-react": "3.1.3",
+        "@navikt/ds-tailwind": "3.1.3",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
@@ -42,10 +42,10 @@
         "cookie-parser": "1.4.6",
         "dayjs": "1.11.7",
         "dotenv": "16.0.3",
-        "eslint": "8.39.0",
+        "eslint": "8.40.0",
         "express": "4.18.2",
         "formik": "2.2.9",
-        "helmet": "6.1.5",
+        "helmet": "7.0.0",
         "history": "5.3.0",
         "http-proxy-middleware": "2.0.6",
         "jose": "4.14.4",
@@ -63,7 +63,7 @@
     "devDependencies": {
         "@babel/core": "7.21.8",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
-        "@babel/plugin-transform-modules-commonjs": "7.21.2",
+        "@babel/plugin-transform-modules-commonjs": "7.21.5",
         "@babel/preset-env": "7.21.5",
         "@babel/preset-react": "7.18.6",
         "@types/jest": "29.5.1",
@@ -75,7 +75,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.7.3",
-        "cypress": "12.11.0",
+        "cypress": "12.12.0",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.1",
         "jsdom": "22.0.0",
@@ -91,7 +91,7 @@
         "style-loader": "3.3.2",
         "ts-loader": "9.4.2",
         "typescript": "5.0.4",
-        "webpack": "5.82.0",
+        "webpack": "5.82.1",
         "webpack-dev-server": "4.15.0"
     },
     "jest": {
