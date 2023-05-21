@@ -84,48 +84,6 @@ export const appMessages: MessageFileFormat = {
         'step.dine-barn.pageTitle': 'Om barn',
         'step.dine-barn.stepTitle': 'Om barn',
         'step.dine-barn.stepIndicatorLabel': 'Om barn',
-        'step.dine-barn.nextButtonLabel': 'Fortsett',
-        'step.dine-barn.counsellorPanel.avsnitt.1':
-            'Når du er selvstendig næringsdrivende eller frilanser, må du som hovedregel selv dekke de 10 første omsorgsdagene du bruker hvert kalenderår. Du kan altså ha rett til utbetaling av omsorgspenger fra den 11. dagen per kalenderår. De 10 første dagene som du skal dekke selv, trenger ikke å tas ut sammenhengende.',
-        'step.dine-barn.counsellorPanel.avsnitt.2':
-            'Du kan ha rett til utbetaling fra den første dagen når du kun har barn som fyller 13 år i år eller er eldre, og som har kronisk sykdom eller funksjonshemning. Dette gjelder bare når du har søkt og fått ekstra omsorgsdager for barn i denne situasjonen.',
-
-        'step.dine-barn.seksjonsTittel': 'Dine barn',
-        'step.dine-barn.født': 'Født',
-
-        'step.dine-barn.annetBarnListAndDialog.addLabel': 'Legg til barn',
-        'step.dine-barn.annetBarnListAndDialog.listTitle': 'Barn du har lagt til',
-        'step.dine-barn.annetBarnListAndDialog.modalTitle': 'Legg til barn',
-
-        'step.dine-barn.harFåttEkstraOmsorgsdager.label': 'Ekstra omsorgsdager',
-        'step.dine-barn.harFåttEkstraOmsorgsdager.spm':
-            'Har du fått ekstra omsorgsdager for barn som har kronisk sykdom eller funksjonshemning?',
-        'step.dine-barn.harFåttEkstraOmsorgsdager.spm.ettBarn':
-            'Har du fått ekstra omsorgsdager for barnet på grunn av kronisk sykdom eller funksjonshemning?',
-
-        'step.dine-barn.harFåttEkstraOmsorgsdager.nei.alertStripe':
-            'Du har ikke rett til å bruke omsorgsdager. Når du kun har barn som er 13 år i år eller eldre, må du ha søkt om og fått ekstra omsorgsdager for å kunne bruke omsorgsdager.',
-        'step.dine-barn.utvidetRettFor.spm': 'Kryss av for barn du har fått ekstra omsorgsdager for:',
-        'step.dine-barn.utvidetRettFor.info':
-            'Du kan ha rett til utbetaling fra NAV fra den første omsorgsdagen du brukte. Dette er fordi du kun har barn som er 13 år i år eller eldre, og som du har fått ekstra omsorgsdager for. Gå videre til neste steg og legg inn dagene du vil søke utbetaling for.',
-        'step.dine-barn.utvidetRettFor.info.ettBarn':
-            'Du kan ha rett til utbetaling fra NAV fra den første omsorgsdagen du brukte. Dette er fordi du kun har barn som er 13 år i år eller eldre, og som du har fått ekstra omsorgsdager for. Gå videre til neste steg og legg inn dagene du vil søke utbetaling for.',
-
-        'step.dine-barn.bekrefterDektTiDagerSelv.info.titel': 'Omsorgsdager du må dekke selv',
-        'step.dine-barn.bekrefterDektTiDagerSelv.info':
-            'Når du har barn som har fylt 12 år i år, eller er yngre, må du dekke de 10 første omsorgsdagene du bruker hvert kalenderår. Du kan søke om utbetaling fra NAV fra den 11. dagen.',
-        'step.dine-barn.bekrefterDektTiDagerSelv.label':
-            'For å gå videre må du bekrefte at du har dekket 10 omsorgsdager i år:',
-        'step.dine-barn.bekrefterDektTiDagerSelv': 'Ja, jeg bekrefter at jeg har dekket 10 omsorgsdager i år.',
-
-        'step.dine-barn.info.ingenbarn.1':
-            'Vi fant ingen barn registrert på deg. Har du  barn som ikke er registrert her, kan du selv legge inn disse. Dette kan være fosterbarn, eller om du har barn som er fylt 18 år og som har ekstra omsorgsdager på grunn av kronisk sykdom eller funksjonshemning.',
-        'step.dine-barn.info.ingenbarn.2': 'Du må registrere minst ett barn for å kunne gå videre i søknaden.',
-        'step.dine-barn.info.spm.andreBarn': 'Har du barn som ikke er registrert her?',
-        'step.dine-barn.info.spm.flereBarn': 'Har du flere barn som ikke er registrert her?',
-        'step.dine-barn.info.spm.text':
-            'Hvis du har barn som ikke er registrert her, kan du legge inn disse selv. Det kan for eksempel være fosterbarn.',
-        'step.dine-barn.formLeggTilBarn.aldersGrenseInfo': '(Du kan ikke legge til barn som er 19 år eller eldre)',
 
         'relasjonTilBarnet.mor': 'Mor',
         'relasjonTilBarnet.far': 'Far',
@@ -136,53 +94,6 @@ export const appMessages: MessageFileFormat = {
         'step.fravaer.stepTitle': 'Dager du søker om utbetaling for',
         'step.fravaer.stepIndicatorLabel': 'Dager du søker om utbetaling for',
         'step.fravaer.nextButtonLabel': 'Fortsett',
-        'step.fravaer.counsellorpanel.content':
-            'I de fleste tilfeller må man som selvstendig næringsdrivende og frilanser betale de 10 første dager med omsorgspenger i året selv.',
-        'step.fravaer.dager_med_fullt_fravært.label': 'Dager med fullt fravær',
-        'step.fravaer.dager_med_fullt_fravært.info': 'TODO',
-        'step.fravaer.dager_med_delvis_fravært.label': 'Dager med delvis fravær',
-        'step.fravaer.dager_med_delvis_fravært.info': 'TODO',
-        'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm':
-            'Har du vært i utlandet noen av dagene du søker omsorgspenger for?',
-
-        'step.fravaer.info.1':
-            'Du kan få utbetalt omsorgspenger for bruk av omsorgsdager i opptil tre måneder tilbake i tid, regnet fra måneden før NAV mottok søknad fra deg.',
-        'step.fravaer.info.2':
-            'Du kan kun søke om utbetaling fra ett og samme år. Det betyr at hvis du skal søke om utbetaling for {forrigeÅr} i tillegg til {inneværendeÅr}, må du sende to søknader.',
-
-        'step.fravaer.spm.harPerioderMedFravær': 'Har du hatt hele dager med fravær fra jobb?',
-        'step.fravaer.dager.tittel': 'Omsorgsdager du søker utbetaling for',
-        'step.fravaer.dager.info':
-            'Her skal du legge inn dagene du søker utbetaling for. Basert på svarene du har gitt i søknaden, kan du søke utbetaling fra den 11. omsorgsdagen du brukte.',
-        'step.fravaer.dager.info.harBarnMedUtvidetRett':
-            'Her skal du legge inn dagene du søker utbetaling for. Basert på svarene du har gitt i søknaden, kan du søke utbetaling fra den første omsorgsdagen du brukte.',
-        'step.fravaer.harPerioderMedFravær.listTitle': 'Dager med fullt fravær fra jobb',
-        'step.fravaer.harPerioderMedFravær.addLabel': 'Legg til dager med fullt fravær fra jobb',
-        'step.fravaer.harPerioderMedFravær.modalTitle': 'Dager med fullt fravær fra jobb',
-        'fravær.form.periode.tittel': 'Dager du søker utbetaling for',
-        'step.fravaer.info.ikkeHelg.tittel': 'Hvorfor kan jeg ikke velge lørdag eller søndag?',
-        'step.fravaer.info.ikkeHelg.tekst':
-            'Du kan kun få utbetalt omsorgspenger for hverdager, selv om du jobber lørdag eller søndag. Derfor kan du ikke velge lørdag eller søndag som start- eller sluttdato i perioden du legger inn.',
-        'step.fravaer.spm.harDagerMedDelvisFravær': 'Har du hatt dager med delvis fravær fra jobb?',
-        'step.fravaer.spm.hjemmePgaStengtBhgSkole.2021':
-            'Har du vært hjemme fra jobb fordi barnehagen eller skolen har vært stengt på grunn av koronaviruset?',
-        'step.fravaer.harDagerMedDelvisFravær.listTitle': 'Dager med delvis fravær fra jobb',
-        'step.fravaer.harDagerMedDelvisFravær.addLabel': 'Legg til dag med delvis fravær fra jobb',
-        'step.fravaer.harDagerMedDelvisFravær.modalTitle': 'Dag med delvis fravær fra jobb',
-        'step.fravaer.måVelgeSituasjon': 'Du må velge én av situasjonene over.',
-        'step.fravaer.utenlandsopphold.tittel': 'Utenlandsopphold i dagene med fravær',
-        'step.fravaer.utenlandsopphold.addLabel': 'Legg til utenlandsopphold',
-        'step.fravaer.utenlandsopphold.modalTitle': 'Utenlandsopphold siste 12 måneder',
-
-        'fravær.antallTimer': 'Antall timer',
-        'fravær.time': 'time',
-        'fravær.timer': 'timer',
-        'fravær.timer.label': 'Timer',
-        'fravær.delvis.fjern.fjernDag': 'Fjern dag med delvis fravær ({dato}, {timer})',
-        'fravær.delvis.fjern.fjernDagUtenTimer': 'Fjern dag med delvis fravær ({dato}, antall timer ikke valgt)',
-        'fravær.delvis.fjern.fjernTimer': 'Fjern dag med delvis fravær (dato ikke valgt, {timer} valgt)',
-        'fravær.delvis.fjern.fjernUtenDagOgTimer': 'Fjern dag med delvis fravær (dato og antall timer ikke valgt)',
-        'list.fjernKnapp': 'Fjern',
 
         'step.vedlegg_stengtSkoleBhg.stepTitle': 'Last opp bekreftelse fra barnehagen eller skolen',
         'step.vedlegg_stengtSkoleBhg.pageTitle': 'Last opp dokumenter',
@@ -283,26 +194,6 @@ export const appMessages: MessageFileFormat = {
         'step.fravaerFra.info':
             'Du har opplyst at du er både selvstendig næringsdrivende og frilanser. Nå trenger vi å vite hvilket arbeid du hadde fravær fra i dagene du brukte omsorgsdager.',
         'step.fravaerFra.dag.spm': 'Hvilket arbeid hadde du fravær fra {dato}?',
-
-        'step.medlemskap.pageTitle': 'Medlemskap i folketrygden - Søknad om utbetaling av omsorgspenger',
-        'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
-        'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
-        'step.medlemskap.nextButtonLabel': 'Fortsett',
-        'steg.medlemsskap.annetLandSiste12.spm': 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?',
-        'steg.medlemsskap.annetLandNeste12.spm':
-            'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?',
-        'steg.medlemsskap.annetLandSiste12.hjelp':
-            'Du svarer ja bare hvis du har oppholdt deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.',
-        'steg.medlemsskap.annetLandSiste12.listeTittel': 'Utenlandsopphold siste 12 måneder',
-        'steg.medlemsskap.annetLandNeste12.hjelp':
-            'Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.',
-        'steg.medlemsskap.annetLandNeste12.listeTittel': 'Utenlandsopphold neste 12 måneder',
-        'steg.medlemsskap.annetLandSisteOgNeste12.listeTittel': 'Utenlandsopphold siste 12 måneder og neste 12 måneder',
-        'steg.medlemsskap.info.1':
-            'Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på ',
-        'steg.medlemsskap.info.2': 'nav.no',
-        'steg.medlemsskap.hvaBetyrDette': 'Hva betyr dette?',
-        'steg.medlemsskap.utenlandsopphold.leggTilLabel': 'Legg til nytt utenlandsopphold',
 
         'step.oppsummering.pageTitle': 'Oppsummering - Søknad om utbetaling av omsorgspenger',
         'step.oppsummering.stepTitle': 'Oppsummering',

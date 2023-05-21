@@ -1,14 +1,19 @@
-import { prettifyDate } from '@navikt/sif-common-utils';
+import { dateFormatter, prettifyDate } from '@navikt/sif-common-utils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import dayjs from 'dayjs';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DineBarnFormValues } from './DineBarnStep';
 import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
-import { IntlShape } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { dateToday } from '@navikt/sif-common-utils';
+
+export const nYearsAgo = (years: number): Date => {
+    return dayjs(dateToday).subtract(years, 'y').startOf('year').toDate();
+};
 
 export const minstEtBarn12årIårellerYngre = (
     registrertBarn: RegistrertBarn[],
@@ -27,24 +32,30 @@ export const getBarnOptions = (registrertBarn: RegistrertBarn[] = [], andreBarn:
         ...registrertBarn.map((barnet) => ({
             label: `${formatName(barnet.fornavn, barnet.etternavn)} ${prettifyDate(barnet.fødselsdato)}`,
             value: barnet.aktørId,
+            'data-testid': `harUtvidetRettFor-${barnet.aktørId}`,
         })),
         ...andreBarn.map((barnet) => ({
             label: `${barnet.navn} ${prettifyDate(barnet.fødselsdato)} `,
             value: barnet.fnr,
+            'data-testid': `harUtvidetRettFor-${barnet.fnr}`,
         })),
     ];
 };
 
-export const barnItemLabelRenderer = (barnet: RegistrertBarn, intl: IntlShape) => (
-    <div style={{ display: 'flex' }}>
-        <span style={{ order: 1 }}>
-            {intlHelper(intl, 'step.omBarna.født')} {prettifyDate(barnet.fødselsdato)}
+export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn) => {
+    return (
+        <span className="dineBarn">
+            <FormattedMessage
+                id="step.dine-barn.født"
+                values={{ dato: dateFormatter.compact(registrertBarn.fødselsdato) }}
+            />
+
+            <span className="dineBarn__navn">
+                {formatName(registrertBarn.fornavn, registrertBarn.etternavn, registrertBarn.mellomnavn)}
+            </span>
         </span>
-        <span style={{ order: 2, paddingLeft: '1rem', justifySelf: 'flex-end' }}>
-            {formatName(barnet.fornavn, barnet.etternavn, barnet.mellomnavn)}
-        </span>
-    </div>
-);
+    );
+};
 
 export const getDineBarnSøknadsdataFromFormValues = (
     values: DineBarnFormValues,
@@ -76,4 +87,40 @@ export const getDineBarnSøknadsdataFromFormValues = (
         };
     }
     return undefined;
+};
+
+export const getDineBarnStepInitialValues = (
+    søknadsdata: Søknadsdata,
+    formValues?: DineBarnFormValues
+): DineBarnFormValues => {
+    if (formValues) {
+        return formValues;
+    }
+
+    const defaultValues: DineBarnFormValues = {
+        andreBarn: undefined,
+        harDekketTiFørsteDagerSelv: undefined,
+        harUtvidetRett: YesOrNo.UNANSWERED,
+        harUtvidetRettFor: [],
+    };
+
+    const { dineBarn } = søknadsdata;
+    if (dineBarn) {
+        switch (dineBarn.type) {
+            case 'minstEtt12årEllerYngre':
+                return {
+                    ...defaultValues,
+                    andreBarn: dineBarn.andreBarn,
+                    harDekketTiFørsteDagerSelv: dineBarn.harDekketTiFørsteDagerSelv,
+                };
+            case 'alleBarnEldre12år':
+                return {
+                    ...defaultValues,
+                    andreBarn: dineBarn.andreBarn,
+                    harUtvidetRett: dineBarn.harUtvidetRett,
+                    harUtvidetRettFor: dineBarn.harUtvidetRettFor,
+                };
+        }
+    }
+    return defaultValues;
 };

@@ -1,0 +1,25 @@
+import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
+
+export const MedlemskapMessages: MessageFileFormat = {
+    nb: {
+        'step.medlemskap.pageTitle': 'Medlemskap i folketrygden - Søknad om utbetaling av omsorgspenger',
+        'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
+        'step.medlemskap.stepIndicatorLabel': 'Om medlemskap i folketrygden',
+        'step.medlemskap.nextButtonLabel': 'Fortsett',
+        'steg.medlemskap.annetLandSiste12.spm': 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?',
+        'steg.medlemskap.annetLandNeste12.spm':
+            'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?',
+        'steg.medlemskap.annetLandSiste12.hjelp':
+            'Du svarer ja bare hvis du har oppholdt deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.',
+        'steg.medlemskap.annetLandSiste12.listeTittel': 'Utenlandsopphold siste 12 måneder',
+        'steg.medlemskap.annetLandNeste12.hjelp':
+            'Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.',
+        'steg.medlemskap.annetLandNeste12.listeTittel': 'Utenlandsopphold neste 12 måneder',
+        'steg.medlemskap.annetLandSisteOgNeste12.listeTittel': 'Utenlandsopphold siste 12 måneder og neste 12 måneder',
+        'steg.medlemskap.info.1':
+            'Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på ',
+        'steg.medlemskap.info.2': 'nav.no',
+        'steg.medlemskap.hvaBetyrDette': 'Hva betyr dette?',
+        'steg.medlemskap.utenlandsopphold.leggTilLabel': 'Legg til nytt utenlandsopphold',
+    },
+};

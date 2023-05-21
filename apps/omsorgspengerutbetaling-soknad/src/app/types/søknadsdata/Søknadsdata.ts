@@ -19,8 +19,8 @@ export interface Søknadsdata {
         harForståttRettigheterOgPlikter?: boolean;
     };
     [StepId.DINE_BARN]?: DineBarnSøknadsdata;
-    [StepId.FRAVÆR]?: LegeerklæringSøknadsdata;
-    [StepId.LEGEERKLÆRING]?: FraværSøknadsdata;
+    [StepId.FRAVÆR]?: FraværSøknadsdata;
+    [StepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;
     [StepId.ARBEIDSSITUASJON]?: ArbeidssituasjonSøknadsdata;
     [StepId.FRAVÆR_FRA]?: FraværFraSøknadsdata;
     [StepId.MEDLEMSKAP]?: MedlemskapSøknadsdata;
