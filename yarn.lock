@@ -3590,6 +3590,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/aksel-icons@npm:^2.9.8":
+  version: 2.9.8
+  resolution: "@navikt/aksel-icons@npm:2.9.8"
+  checksum: 75d49e382b11e79995daa622aa9405c6b7c1857a4a865aee92462f65346adbcf130cd369fb4550e31e558985d31a6f14b9d754a91d5329c9cdd3944490cb94ea
+  languageName: node
+  linkType: hard
+
 "@navikt/aksel-icons@npm:^3.0.1":
   version: 3.0.1
   resolution: "@navikt/aksel-icons@npm:3.0.1"
@@ -3631,6 +3638,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/ds-css@npm:2.9.8":
+  version: 2.9.8
+  resolution: "@navikt/ds-css@npm:2.9.8"
+  checksum: b931bb875d8e32dafb0c67a3554217276899e61104e13942a197590467f576fac9ce2b13524141e822450add32f433a7b7a7ac84ea484189616e214946adf72c
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-css@npm:3":
   version: 3.0.1
   resolution: "@navikt/ds-css@npm:3.0.1"
@@ -3666,6 +3680,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/ds-icons@npm:2.9.8, @navikt/ds-icons@npm:^2.9.8":
+  version: 2.9.8
+  resolution: "@navikt/ds-icons@npm:2.9.8"
+  peerDependencies:
+    "@types/react": ^17.0.30 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 37788d056c41cf8450c5ec837449c6f967652f1880ffc267bcee45be7f02a27234061305ef4365a2bef3d35004b9e808df854fe7336498b9cbd1ebaa13b95a5e
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-icons@npm:3.1.3":
   version: 3.1.3
   resolution: "@navikt/ds-icons@npm:3.1.3"
@@ -3676,6 +3703,29 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 0726c87dd7b0ae0745f7320b73014b45248dd29b8075999a0a607ef469101269112b7a083849c87ff6b3d1c0582d9164305c11710e40204b824be88cee2154cc
+  languageName: node
+  linkType: hard
+
+"@navikt/ds-react@npm:2.9.8":
+  version: 2.9.8
+  resolution: "@navikt/ds-react@npm:2.9.8"
+  dependencies:
+    "@floating-ui/react": 0.17.0
+    "@navikt/aksel-icons": ^2.9.8
+    "@navikt/ds-icons": ^2.9.8
+    "@radix-ui/react-tabs": 1.0.0
+    "@radix-ui/react-toggle-group": 1.0.0
+    clsx: ^1.2.1
+    date-fns: 2.29.3
+    react-day-picker: 8.3.4
+    react-modal: 3.15.1
+  peerDependencies:
+    "@types/react": ^17.0.30 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 25ffd57da6f37550c0239ec0caef78c036f1b22a338f1e44ef147891ae6135f651271508320fa401a74a2c4b8e2f21840d2053273536da47e0c46f17d62f5398
   languageName: node
   linkType: hard
 
@@ -3720,6 +3770,13 @@ __metadata:
     "@types/react":
       optional: true
   checksum: cea00776e4019ef0b574b3e9ddf94ffbe7f3116861c17e3eccdb87bf95b972f1350dc0db37bd407df093e0982860530f9daca87214a73594a5767b1a2c89cd5c
+  languageName: node
+  linkType: hard
+
+"@navikt/ds-tailwind@npm:2.9.8":
+  version: 2.9.8
+  resolution: "@navikt/ds-tailwind@npm:2.9.8"
+  checksum: 60b511b1db93b97c680feaf0bc37c9a33acddd65d490f66df5501f73e2eae777ec3e90968200faf8db3750e7ac8c4398f3f11a8fdb9a352d7f22540cb5c4e5ac
   languageName: node
   linkType: hard
 
@@ -4005,6 +4062,79 @@ __metadata:
     ulid: 2.3.0
     uuid: 9.0.0
     webpack: 5.82.1
+    webpack-dev-server: 4.15.0
+  languageName: unknown
+  linkType: soft
+
+"@navikt/omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad":
+  version: 0.0.0-use.local
+  resolution: "@navikt/omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad"
+  dependencies:
+    "@babel/core": 7.21.8
+    "@babel/preset-env": ^7.20.2
+    "@babel/preset-react": ^7.18.6
+    "@babel/preset-typescript": 7.21.5
+    "@navikt/ds-css": 2.9.8
+    "@navikt/ds-icons": 2.9.8
+    "@navikt/ds-react": 2.9.8
+    "@navikt/ds-tailwind": 2.9.8
+    "@navikt/sif-common-amplitude": "*"
+    "@navikt/sif-common-core-ds": "*"
+    "@navikt/sif-common-formik-ds": "*"
+    "@navikt/sif-common-forms-ds": "*"
+    "@navikt/sif-common-sentry": "*"
+    "@navikt/sif-common-soknad-ds": "*"
+    "@navikt/sif-common-utils": "*"
+    "@testing-library/react": 14.0.0
+    "@types/jest": ^29.5.0
+    "@types/lodash": ^4.14.192
+    "@types/object-hash": ^3.0.2
+    "@types/react": 18.2.6
+    "@types/react-dom": 18.2.4
+    "@types/react-router-dom": 5.3.3
+    axios: 1.4.0
+    babel-polyfill: ^6.26.0
+    busboy: 1.6.0
+    case-sensitive-paths-webpack-plugin: ^2.4.0
+    compression: ^1.7.4
+    cookie-parser: ^1.4.6
+    css-loader: ^6.7.3
+    cypress: 12.11.0
+    cypress-file-upload: 5.0.8
+    dotenv: ^16.0.3
+    express: ^4.18.2
+    helmet: 6.1.5
+    history: ^5.3.0
+    html-webpack-harddisk-plugin: 2.0.0
+    html-webpack-plugin: 5.5.1
+    http-proxy-middleware: ^2.0.6
+    jose: 4.14.4
+    jsdom: 22.0.0
+    lodash: ^4.17.21
+    mini-css-extract-plugin: ^2.7.5
+    mustache-express: ^1.3.2
+    nav-datovelger: ^12.6.0
+    object-hash: ^3.0.0
+    openid-client: ^5.4.2
+    postcss: 8.4.23
+    postcss-loader: 7.3.0
+    promise: ^8.3.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-fast-compare: 3.2.1
+    react-intl: 6.4.2
+    react-router-dom: 6.11.1
+    react-scripts: ^5.0.1
+    sass: 1.62.1
+    sass-loader: 13.2.2
+    source-map-loader: ^4.0.1
+    start-server-and-test: 2.0.0
+    style-loader: ^3.3.2
+    ts-loader: ^9.4.2
+    typescript: 5.0.4
+    ulid: ^2.3.0
+    uuid: ^9.0.0
+    webpack: 5.82.0
     webpack-dev-server: 4.15.0
   languageName: unknown
   linkType: soft
@@ -9887,7 +10017,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-polyfill@npm:6.26.0":
+"babel-polyfill@npm:6.26.0, babel-polyfill@npm:^6.26.0":
   version: 6.26.0
   resolution: "babel-polyfill@npm:6.26.0"
   dependencies:
@@ -11429,7 +11559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie-parser@npm:1.4.6":
+"cookie-parser@npm:1.4.6, cookie-parser@npm:^1.4.6":
   version: 1.4.6
   resolution: "cookie-parser@npm:1.4.6"
   dependencies:
@@ -11798,6 +11928,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"css-loader@npm:^6.7.3":
+  version: 6.7.4
+  resolution: "css-loader@npm:6.7.4"
+  dependencies:
+    icss-utils: ^5.1.0
+    postcss: ^8.4.21
+    postcss-modules-extract-imports: ^3.0.0
+    postcss-modules-local-by-default: ^4.0.1
+    postcss-modules-scope: ^3.0.0
+    postcss-modules-values: ^4.0.0
+    postcss-value-parser: ^4.2.0
+    semver: ^7.3.8
+  peerDependencies:
+    webpack: ^5.0.0
+  checksum: 6021fa9e375d767b9675e295c1513f2ee4ae04f76d9de69a75b8446e05f6e02b2170407ea72939925b788dcd5aa308527f6b41be3870dc1f4b0bfff8d2532c6e
+  languageName: node
+  linkType: hard
+
 "css-mediaquery@npm:^0.1.2":
   version: 0.1.2
   resolution: "css-mediaquery@npm:0.1.2"
@@ -12092,6 +12240,58 @@ __metadata:
   peerDependencies:
     cypress: ">3.0.0"
   checksum: 9c70ca7e0bb137d0ec0b8d38987219ce15b26ac3a40e3ed4e78e6ad4690392eab905586848eec6ad8edd42ee480e68ccc63007b2ebd0a02f4b3eca116ff017e3
+  languageName: node
+  linkType: hard
+
+"cypress@npm:12.11.0":
+  version: 12.11.0
+  resolution: "cypress@npm:12.11.0"
+  dependencies:
+    "@cypress/request": ^2.88.10
+    "@cypress/xvfb": ^1.2.4
+    "@types/node": ^14.14.31
+    "@types/sinonjs__fake-timers": 8.1.1
+    "@types/sizzle": ^2.3.2
+    arch: ^2.2.0
+    blob-util: ^2.0.2
+    bluebird: ^3.7.2
+    buffer: ^5.6.0
+    cachedir: ^2.3.0
+    chalk: ^4.1.0
+    check-more-types: ^2.24.0
+    cli-cursor: ^3.1.0
+    cli-table3: ~0.6.1
+    commander: ^6.2.1
+    common-tags: ^1.8.0
+    dayjs: ^1.10.4
+    debug: ^4.3.4
+    enquirer: ^2.3.6
+    eventemitter2: 6.4.7
+    execa: 4.1.0
+    executable: ^4.1.1
+    extract-zip: 2.0.1
+    figures: ^3.2.0
+    fs-extra: ^9.1.0
+    getos: ^3.2.1
+    is-ci: ^3.0.0
+    is-installed-globally: ~0.4.0
+    lazy-ass: ^1.6.0
+    listr2: ^3.8.3
+    lodash: ^4.17.21
+    log-symbols: ^4.0.0
+    minimist: ^1.2.8
+    ospath: ^1.2.2
+    pretty-bytes: ^5.6.0
+    proxy-from-env: 1.0.0
+    request-progress: ^3.0.0
+    semver: ^7.3.2
+    supports-color: ^8.1.1
+    tmp: ~0.2.1
+    untildify: ^4.0.0
+    yauzl: ^2.10.0
+  bin:
+    cypress: bin/cypress
+  checksum: 56e5ebaec59dffca5d19704f2b2674cbb0002f20050c1d624217ede157c528757f58ad42f0899fc67c32c61d5461eef5e2a3a99a6a52b77b152362a025a22599
   languageName: node
   linkType: hard
 
@@ -12793,7 +12993,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:16.0.3, dotenv@npm:^16.0.0":
+"dotenv@npm:16.0.3, dotenv@npm:^16.0.0, dotenv@npm:^16.0.3":
   version: 16.0.3
   resolution: "dotenv@npm:16.0.3"
   checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
@@ -12996,7 +13196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^5.14.0":
+"enhanced-resolve@npm:^5.13.0, enhanced-resolve@npm:^5.14.0":
   version: 5.14.0
   resolution: "enhanced-resolve@npm:5.14.0"
   dependencies:
@@ -14207,7 +14407,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:4.18.2, express@npm:^4.17.1, express@npm:^4.17.3":
+"express@npm:4.18.2, express@npm:^4.17.1, express@npm:^4.17.3, express@npm:^4.18.2":
   version: 4.18.2
   resolution: "express@npm:4.18.2"
   dependencies:
@@ -15847,6 +16047,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"helmet@npm:6.1.5":
+  version: 6.1.5
+  resolution: "helmet@npm:6.1.5"
+  checksum: 58cc8f8715e2c486f3c7a58f89fcda3c9e83ab427bfe16d8486d8be53a681afc291f9900b9e60e5d42c63c25ece3da864a33cdd621a12f5a67cbc9046cff393d
+  languageName: node
+  linkType: hard
+
 "helmet@npm:7.0.0":
   version: 7.0.0
   resolution: "helmet@npm:7.0.0"
@@ -15861,7 +16068,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"history@npm:5.3.0":
+"history@npm:5.3.0, history@npm:^5.3.0":
   version: 5.3.0
   resolution: "history@npm:5.3.0"
   dependencies:
@@ -16113,7 +16320,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-proxy-middleware@npm:2.0.6, http-proxy-middleware@npm:^2.0.3":
+"http-proxy-middleware@npm:2.0.6, http-proxy-middleware@npm:^2.0.3, http-proxy-middleware@npm:^2.0.6":
   version: 2.0.6
   resolution: "http-proxy-middleware@npm:2.0.6"
   dependencies:
@@ -19515,6 +19722,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mini-css-extract-plugin@npm:^2.7.5":
+  version: 2.7.6
+  resolution: "mini-css-extract-plugin@npm:2.7.6"
+  dependencies:
+    schema-utils: ^4.0.0
+  peerDependencies:
+    webpack: ^5.0.0
+  checksum: be6f7cefc6275168eb0a6b8fe977083a18c743c9612c9f00e6c1a62c3393ca7960e93fba1a7ebb09b75f36a0204ad087d772c1ef574bc29c90c0e8175a3c0b83
+  languageName: node
+  linkType: hard
+
 "minimalistic-assert@npm:^1.0.0, minimalistic-assert@npm:^1.0.1":
   version: 1.0.1
   resolution: "minimalistic-assert@npm:1.0.1"
@@ -19837,7 +20055,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mustache-express@npm:1.3.2":
+"mustache-express@npm:1.3.2, mustache-express@npm:^1.3.2":
   version: 1.3.2
   resolution: "mustache-express@npm:1.3.2"
   dependencies:
@@ -20508,79 +20726,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad":
-  version: 0.0.0-use.local
-  resolution: "omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad"
-  dependencies:
-    "@babel/core": 7.21.8
-    "@babel/preset-env": ^7.20.2
-    "@babel/preset-react": ^7.18.6
-    "@babel/preset-typescript": 7.21.5
-    "@navikt/ds-css": 2.9.8
-    "@navikt/ds-icons": 2.9.8
-    "@navikt/ds-react": 2.9.8
-    "@navikt/ds-tailwind": 2.9.8
-    "@navikt/sif-common-amplitude": "*"
-    "@navikt/sif-common-core-ds": "*"
-    "@navikt/sif-common-formik-ds": "*"
-    "@navikt/sif-common-forms-ds": "*"
-    "@navikt/sif-common-sentry": "*"
-    "@navikt/sif-common-soknad-ds": "*"
-    "@navikt/sif-common-utils": "*"
-    "@testing-library/react": 14.0.0
-    "@types/jest": ^29.5.0
-    "@types/lodash": ^4.14.192
-    "@types/object-hash": ^3.0.2
-    "@types/react": 18.2.6
-    "@types/react-dom": 18.2.4
-    "@types/react-router-dom": 5.3.3
-    axios: 1.4.0
-    babel-polyfill: ^6.26.0
-    busboy: 1.6.0
-    case-sensitive-paths-webpack-plugin: ^2.4.0
-    compression: ^1.7.4
-    cookie-parser: ^1.4.6
-    css-loader: ^6.7.3
-    cypress: 12.11.0
-    cypress-file-upload: 5.0.8
-    dotenv: ^16.0.3
-    express: ^4.18.2
-    helmet: 6.1.5
-    history: ^5.3.0
-    html-webpack-harddisk-plugin: 2.0.0
-    html-webpack-plugin: 5.5.1
-    http-proxy-middleware: ^2.0.6
-    jose: 4.14.4
-    jsdom: 22.0.0
-    lodash: ^4.17.21
-    mini-css-extract-plugin: ^2.7.5
-    mustache-express: ^1.3.2
-    nav-datovelger: ^12.6.0
-    object-hash: ^3.0.0
-    openid-client: ^5.4.2
-    postcss: 8.4.23
-    postcss-loader: 7.3.0
-    promise: ^8.3.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-fast-compare: 3.2.1
-    react-intl: 6.4.2
-    react-router-dom: 6.11.1
-    react-scripts: ^5.0.1
-    sass: 1.62.1
-    sass-loader: 13.2.2
-    source-map-loader: ^4.0.1
-    start-server-and-test: 2.0.0
-    style-loader: ^3.3.2
-    ts-loader: ^9.4.2
-    typescript: 5.0.4
-    ulid: ^2.3.0
-    uuid: ^9.0.0
-    webpack: 5.82.0
-    webpack-dev-server: 4.15.0
-  languageName: unknown
-  linkType: soft
-
 "on-finished@npm:2.4.1":
   version: 2.4.1
   resolution: "on-finished@npm:2.4.1"
@@ -20645,7 +20790,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openid-client@npm:5.4.2":
+"openid-client@npm:5.4.2, openid-client@npm:^5.4.2":
   version: 5.4.2
   resolution: "openid-client@npm:5.4.2"
   dependencies:
@@ -21905,6 +22050,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-modules-local-by-default@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "postcss-modules-local-by-default@npm:4.0.1"
+  dependencies:
+    icss-utils: ^5.0.0
+    postcss-selector-parser: ^6.0.2
+    postcss-value-parser: ^4.1.0
+  peerDependencies:
+    postcss: ^8.1.0
+  checksum: 1a95eb8bc54a363a77dbd77a0a88f500e7937ecbed5903becef9362eace28de406e6fdf62640126c22964678370e87eb10481eea2703702772935b4515603bfd
+  languageName: node
+  linkType: hard
+
 "postcss-modules-scope@npm:^2.2.0":
   version: 2.2.0
   resolution: "postcss-modules-scope@npm:2.2.0"
@@ -22311,7 +22469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.23, postcss@npm:^8.0.9, postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.19, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
+"postcss@npm:8.4.23, postcss@npm:^8.0.9, postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.19, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
   version: 8.4.23
   resolution: "postcss@npm:8.4.23"
   dependencies:
@@ -22555,7 +22713,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"promise@npm:8.3.0, promise@npm:^8.1.0":
+"promise@npm:8.3.0, promise@npm:^8.1.0, promise@npm:^8.3.0":
   version: 8.3.0
   resolution: "promise@npm:8.3.0"
   dependencies:
@@ -24790,7 +24948,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-loader@npm:4.0.1":
+"source-map-loader@npm:4.0.1, source-map-loader@npm:^4.0.1":
   version: 4.0.1
   resolution: "source-map-loader@npm:4.0.1"
   dependencies:
@@ -26318,7 +26476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-loader@npm:9.4.2":
+"ts-loader@npm:9.4.2, ts-loader@npm:^9.4.2":
   version: 9.4.2
   resolution: "ts-loader@npm:9.4.2"
   dependencies:
@@ -27510,6 +27668,43 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 3fbd82dadc75c8f823c900c5d50263830b77e6be6a8abb26eec12f93dec94c2f07fa44c1ef1f28319682404e532d9707ed04ed6cb89af87ca7d544e435d8ef95
+  languageName: node
+  linkType: hard
+
+"webpack@npm:5.82.0":
+  version: 5.82.0
+  resolution: "webpack@npm:5.82.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^1.0.0
+    "@webassemblyjs/ast": ^1.11.5
+    "@webassemblyjs/wasm-edit": ^1.11.5
+    "@webassemblyjs/wasm-parser": ^1.11.5
+    acorn: ^8.7.1
+    acorn-import-assertions: ^1.7.6
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.13.0
+    es-module-lexer: ^1.2.1
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-even-better-errors: ^2.3.1
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.2
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.3.7
+    watchpack: ^2.4.0
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 499e7f5f24fccaa76f64f2a01f91f371073416f568ef6171dc73187a89078f0c33410d4c9f40d411f0827bab8455f8476eabd803ef4d2920d9a2e5f17efa2703
   languageName: node
   linkType: hard
 

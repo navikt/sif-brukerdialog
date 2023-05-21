@@ -2,7 +2,7 @@
     "author": "NAV",
     "description": "Søknad om utbetaling av omsorgsdager for selvstendige og frilansere",
     "license": "MIT",
-    "name": "omsorgspengerutbetaling-soknad",
+    "name": "@navikt/omsorgspengerutbetaling-soknad",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "1.0.0",
     "private": true,
