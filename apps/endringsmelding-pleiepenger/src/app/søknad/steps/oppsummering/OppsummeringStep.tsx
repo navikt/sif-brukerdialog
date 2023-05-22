@@ -74,7 +74,7 @@ const OppsummeringStep = () => {
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
         valgtHvaSkalEndres,
         harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        sak.harUkjentArbeidsforhold
+        søknadsdata.ukjentArbeidsforhold?.arbeidsforhold
     );
 
     const harIngenEndringer =

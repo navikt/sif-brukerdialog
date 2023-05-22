@@ -13,7 +13,7 @@ export const useStartSøknad = () => {
     } = useSøknadContext();
 
     const startSøknad = (hvaSkalEndres: EndringType[] = [EndringType.arbeidstid]) => {
-        const steps = getSøknadSteps(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
+        const steps = getSøknadSteps(hvaSkalEndres, sak.harUkjentArbeidsforhold, søknadsdata);
         logSoknadStartet(SKJEMANAVN);
         logInfo({
             antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,

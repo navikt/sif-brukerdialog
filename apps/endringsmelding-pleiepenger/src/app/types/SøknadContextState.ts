@@ -7,6 +7,7 @@ import { Sak } from './Sak';
 import { Søker } from './Søker';
 import { Søknadsdata } from './Søknadsdata';
 import { TimerEllerProsent } from './TimerEllerProsent';
+import { StepId } from '../søknad/config/StepId';
 
 export interface SøknadContextState {
     versjon: string;
@@ -20,6 +21,7 @@ export interface SøknadContextState {
     endringsmeldingSendt?: boolean;
     børMellomlagres?: boolean;
     valgtHvaSkalEndres: EndringType[];
+    søknadSteps: StepId[];
     inputPreferanser: SøknadContextInputPreferanse;
 }
 

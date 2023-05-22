@@ -4,8 +4,8 @@ import { EndringType, K9Sak, Søker, Søknadsdata } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
+import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
-import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export type SøknadStatePersistence = {
@@ -15,7 +15,8 @@ export type SøknadStatePersistence = {
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
     harUkjentArbeidsforhold: boolean;
-    hvaSkalEndres: EndringType[];
+    valgtHvaSkalEndres: EndringType[];
+    søknadSteps: StepId[];
     metadata: {
         updatedTimestamp: string;
     };
@@ -42,13 +43,7 @@ const createHashString = (info: SøknadStateHashInfo) => {
 };
 
 const persistedSøknadRouteIsAvailable = (søknadState: SøknadStatePersistence): boolean => {
-    const søknadRoute = søknadState.søknadRoute;
-    const availableSteps = getSøknadSteps(
-        søknadState.hvaSkalEndres,
-        søknadState.søknadsdata,
-        søknadState.harUkjentArbeidsforhold
-    );
-    return availableSteps.some((step) => getSøknadStepRoute(step) === søknadRoute);
+    return (søknadState.søknadSteps || []).some((step) => getSøknadStepRoute(step) === søknadState.søknadRoute);
 };
 
 export const isPersistedSøknadStateValid = (
@@ -60,7 +55,7 @@ export const isPersistedSøknadStateValid = (
         søknadState.versjon === APP_VERSJON &&
         søknadState.søknadHashString === createHashString(info) &&
         k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId) &&
-        søknadState.hvaSkalEndres.length > 0 &&
+        søknadState.valgtHvaSkalEndres.length > 0 &&
         persistedSøknadRouteIsAvailable(søknadState)
     );
 };
@@ -72,15 +67,26 @@ export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersisten
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søknadsdata, søknadRoute, barnAktørId, hvaSkalEndres, harUkjentArbeidsforhold }, søker) => {
+    update: (
+        {
+            søknadsdata,
+            søknadRoute,
+            barnAktørId,
+            valgtHvaSkalEndres: hvaSkalEndres,
+            harUkjentArbeidsforhold,
+            søknadSteps,
+        },
+        søker
+    ) => {
         return persistSetup.update({
             versjon: APP_VERSJON,
             søknadHashString: createHashString({ søker, barnAktørId }),
             barnAktørId,
             søknadsdata,
             søknadRoute,
-            hvaSkalEndres,
+            valgtHvaSkalEndres: hvaSkalEndres,
             harUkjentArbeidsforhold,
+            søknadSteps,
             metadata: {
                 updatedTimestamp: new Date().toISOString(),
             },

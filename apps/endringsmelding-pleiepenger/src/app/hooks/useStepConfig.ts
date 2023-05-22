@@ -5,10 +5,10 @@ import { useSøknadContext } from './useSøknadContext';
 
 export const useStepConfig = (stepId: StepId) => {
     const {
-        state: { søknadsdata, sak, valgtHvaSkalEndres: hvaSkalEndres },
+        state: { søknadSteps },
     } = useSøknadContext();
 
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
+    const stepConfig = getSøknadStepConfig(søknadSteps);
 
     const { goBack } = useStepNavigation(stepConfig[stepId]);
 

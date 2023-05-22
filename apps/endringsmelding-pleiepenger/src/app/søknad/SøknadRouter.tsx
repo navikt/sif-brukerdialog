@@ -20,7 +20,6 @@ import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { StepId } from './config/StepId';
 import { getSøknadStepRoute, SøknadRoutes, SøknadStepRoute } from './config/SøknadRoutes';
-import { getSøknadSteps } from './config/søknadStepConfig';
 import actionsCreator from './context/action/actionCreator';
 import ArbeidstidStep from './steps/arbeidstid/ArbeidstidStep';
 import LovbestemtFerieStep from './steps/lovbestemt-ferie/LovbestemtFerieStep';
@@ -31,19 +30,17 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { endringsmeldingSendt, søknadsdata, valgtHvaSkalEndres: hvaSkalEndres, søknadRoute, k9saker, sak },
+        state: { endringsmeldingSendt, søknadsdata, søknadSteps = [], søknadRoute, k9saker, sak },
     } = useSøknadContext();
 
     const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
     const { slettMellomlagring } = useMellomlagring();
     const { logInfo } = useAmplitudeInstance();
 
-    const availableSteps = getSøknadSteps(hvaSkalEndres, søknadsdata, sak.harUkjentArbeidsforhold);
-
     const { routeError, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(
         søknadRoute,
         SøknadRoutes.VELKOMMEN,
-        availableSteps.map((step) => getSøknadStepRoute(step))
+        søknadSteps.map((step) => getSøknadStepRoute(step))
     );
 
     usePersistSøknadState();
@@ -85,7 +82,7 @@ const SøknadRouter = () => {
     }
 
     const isStepAvailable = (stepId?: StepId): boolean => {
-        return availableSteps.some((id) => id === stepId);
+        return søknadSteps.some((id) => id === stepId);
     };
 
     if (søknadsdata.velkommen?.harForståttRettigheterOgPlikter === false) {

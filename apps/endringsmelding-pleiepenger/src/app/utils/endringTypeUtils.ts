@@ -1,4 +1,4 @@
-import { EndringType, SkalEndresMap } from '@types';
+import { Arbeidsforhold, EndringType, SkalEndresMap } from '@types';
 
 export const getValgteEndringer = (hvaSkalEndres: EndringType[]): SkalEndresMap => {
     return {
@@ -10,13 +10,13 @@ export const getValgteEndringer = (hvaSkalEndres: EndringType[]): SkalEndresMap 
 export const getEndringerSomSkalGjøres = (
     hvaSkalEndres: EndringType[],
     harFjernetFerie: boolean,
-    harUkjentArbeidsforholdMedRedusertArbeid: boolean
+    ukjentArbeidsforhold?: Arbeidsforhold[]
 ): SkalEndresMap => {
     return {
         arbeidstidSkalEndres:
             hvaSkalEndres.some((e) => e === EndringType.arbeidstid) ||
             harFjernetFerie ||
-            harUkjentArbeidsforholdMedRedusertArbeid,
+            (ukjentArbeidsforhold !== undefined && ukjentArbeidsforhold.some((a) => a.erAnsatt === true)),
         lovbestemtFerieSkalEndres: hvaSkalEndres.some((e) => e === EndringType.lovbestemtFerie),
     };
 };

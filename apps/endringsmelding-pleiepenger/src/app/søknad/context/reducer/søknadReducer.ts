@@ -3,6 +3,7 @@ import { SøknadContextState, Søknadsdata } from '@types';
 import { getFeriedagerMeta } from '@utils';
 import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+import { getSøknadSteps } from '../../config/søknadStepConfig';
 
 const initialSøknadsdata: Søknadsdata = {
     id: undefined,
@@ -12,6 +13,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
             const { sak, valgtHvaSkalEndres } = action.payload;
+            const søknadSteps = getSøknadSteps(valgtHvaSkalEndres, sak.harUkjentArbeidsforhold);
             return {
                 ...state,
                 søknadsdata: {
@@ -26,6 +28,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 },
                 sak,
                 valgtHvaSkalEndres,
+                søknadSteps,
                 søknadRoute: getSøknadStepRoute(action.payload.step),
                 børMellomlagres: true,
             };
@@ -80,7 +83,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE:
-                return {
+                const newState: SøknadContextState = {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
@@ -88,6 +91,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                             ...action.payload,
                         },
                     },
+                };
+                const søknadSteps = getSøknadSteps(
+                    state.valgtHvaSkalEndres,
+                    state.sak.harUkjentArbeidsforhold,
+                    state.søknadsdata
+                );
+
+                return {
+                    ...newState,
+                    søknadSteps,
                 };
 
             case SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER:

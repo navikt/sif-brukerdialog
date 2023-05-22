@@ -51,14 +51,14 @@ const LovbestemtFerieStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak, valgtHvaSkalEndres: hvaSkalEndres },
+        state: { søknadsdata, sak, valgtHvaSkalEndres },
     } = useSøknadContext();
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
 
-    const harValgtAtArbeidstidSkalEndres = getValgteEndringer(hvaSkalEndres).arbeidstidSkalEndres;
+    const harValgtAtArbeidstidSkalEndres = getValgteEndringer(valgtHvaSkalEndres).arbeidstidSkalEndres;
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);

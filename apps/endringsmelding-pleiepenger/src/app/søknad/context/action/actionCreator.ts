@@ -97,9 +97,9 @@ const resetSøknad = (): ResetSøknad => ({
     type: SøknadContextActionKeys.RESET_SØKNAD,
 });
 
-const startSøknad = (sak: Sak, hvaSkalEndres: EndringType[], step: StepId): StartSøknad => ({
+const startSøknad = (sak: Sak, valgtHvaSkalEndres: EndringType[], step: StepId): StartSøknad => ({
     type: SøknadContextActionKeys.START_SØKNAD,
-    payload: { sak, valgtHvaSkalEndres: hvaSkalEndres, step },
+    payload: { sak, valgtHvaSkalEndres, step },
 });
 
 const avbrytSøknad = (): AvbrytSøknad => ({

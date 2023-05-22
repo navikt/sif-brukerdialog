@@ -5,18 +5,17 @@ import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
 
 export const getSøknadSteps = (
-    hvaSkalEndres: EndringType[],
-    søknadsdata: Søknadsdata,
-    harUkjentArbeidsforhold: boolean
+    valgtHvaSkalEndres: EndringType[],
+    harUkjentArbeidsforhold: boolean,
+    søknadsdata?: Søknadsdata
 ): StepId[] => {
     const steps: StepId[] = [];
 
     const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
-        hvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        harUkjentArbeidsforhold
+        valgtHvaSkalEndres,
+        harFjernetLovbestemtFerie(søknadsdata?.lovbestemtFerie),
+        søknadsdata?.ukjentArbeidsforhold?.arbeidsforhold
     );
-
     if (harUkjentArbeidsforhold) {
         steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
@@ -30,13 +29,7 @@ export const getSøknadSteps = (
     return steps;
 };
 
-export const getSøknadStepConfig = (
-    hvaSkalEndres: EndringType[],
-    søknadsdata: Søknadsdata,
-    harUkjentArbeidsforhold: boolean
-): SoknadStepsConfig<StepId> =>
-    soknadStepUtils.getStepsConfig(
-        getSøknadSteps(hvaSkalEndres, søknadsdata, harUkjentArbeidsforhold),
-        SoknadApplicationType.MELDING,
-        (stepId: StepId) => getSøknadStepRoute(stepId)
+export const getSøknadStepConfig = (søknadSteps: StepId[]): SoknadStepsConfig<StepId> =>
+    soknadStepUtils.getStepsConfig(søknadSteps, SoknadApplicationType.MELDING, (stepId: StepId) =>
+        getSøknadStepRoute(stepId)
     );

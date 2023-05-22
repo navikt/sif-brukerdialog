@@ -19,11 +19,7 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStep } = getSøknadStepConfig(
-        state.valgtHvaSkalEndres,
-        state.søknadsdata,
-        state.sak.harUkjentArbeidsforhold
-    )[stepId];
+    const { nextStep } = getSøknadStepConfig(state.søknadSteps)[stepId];
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {

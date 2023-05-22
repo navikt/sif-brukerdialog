@@ -2,7 +2,7 @@ import { SøknadContextState } from '@types';
 import søknadStateEndpoint from '../api/endpoints/søknadStateEndpoint';
 
 export const lagreSøknadState = (state: SøknadContextState) => {
-    const { versjon, søknadsdata, søker, søknadRoute, sak, valgtHvaSkalEndres: hvaSkalEndres } = state;
+    const { versjon, søknadsdata, søker, søknadRoute, sak, søknadSteps, valgtHvaSkalEndres } = state;
     return søknadStateEndpoint.update(
         {
             barnAktørId: sak.barn.aktørId,
@@ -10,7 +10,8 @@ export const lagreSøknadState = (state: SøknadContextState) => {
             versjon,
             harUkjentArbeidsforhold: state.sak.harUkjentArbeidsforhold,
             søknadRoute,
-            hvaSkalEndres,
+            valgtHvaSkalEndres,
+            søknadSteps,
             metadata: {
                 updatedTimestamp: new Date().toISOString(),
             },
