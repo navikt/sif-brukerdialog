@@ -115,7 +115,7 @@ const prepInitialData = (
         k9saker,
         sak,
         arbeidsgivere,
-        valgtHvaSkalEndres: sak && lagretSøknadState ? lagretSøknadState.valgtHvaSkalEndres : [],
+        valgteEndringer: sak && lagretSøknadState ? lagretSøknadState.valgteEndringer : {},
         søknadsdata: {} as any,
         søknadSteps: [],
         inputPreferanser: {

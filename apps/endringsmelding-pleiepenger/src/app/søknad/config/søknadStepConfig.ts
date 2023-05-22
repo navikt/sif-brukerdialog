@@ -1,28 +1,34 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
-import { EndringType, Søknadsdata } from '@types';
-import { getEndringerSomSkalGjøres, harFjernetLovbestemtFerie } from '@utils';
+import { Arbeidsforhold, Søknadsdata } from '@types';
+import { harFjernetLovbestemtFerie } from '@utils';
 import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
+import { ValgteEndringer } from '../../types/ValgteEndringer';
+
+const erAnsattIUkjentArbeidsforhold = (arbeidsforhold: Arbeidsforhold[] = []): boolean => {
+    return arbeidsforhold.some((a) => a.erAnsatt === true);
+};
 
 export const getSøknadSteps = (
-    valgtHvaSkalEndres: EndringType[],
+    valgteEndringer: ValgteEndringer,
     harUkjentArbeidsforhold: boolean,
     søknadsdata?: Søknadsdata
 ): StepId[] => {
     const steps: StepId[] = [];
 
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
-        valgtHvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadsdata?.lovbestemtFerie),
-        søknadsdata?.ukjentArbeidsforhold?.arbeidsforhold
-    );
     if (harUkjentArbeidsforhold) {
         steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
-    if (lovbestemtFerieSkalEndres) {
+
+    if (valgteEndringer.lovbestemtFerie) {
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
-    if (arbeidstidSkalEndres) {
+
+    if (
+        valgteEndringer.arbeidstid ||
+        harFjernetLovbestemtFerie(søknadsdata?.lovbestemtFerie) ||
+        erAnsattIUkjentArbeidsforhold(søknadsdata?.ukjentArbeidsforhold?.arbeidsforhold)
+    ) {
         steps.push(StepId.ARBEIDSTID);
     }
     steps.push(StepId.OPPSUMMERING);

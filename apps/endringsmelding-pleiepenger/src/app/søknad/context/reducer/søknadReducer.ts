@@ -1,19 +1,26 @@
 import { guid } from '@navikt/sif-common-utils';
-import { SøknadContextState, Søknadsdata } from '@types';
+import { EndringType, SøknadContextState, Søknadsdata } from '@types';
 import { getFeriedagerMeta } from '@utils';
 import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 import { getSøknadSteps } from '../../config/søknadStepConfig';
+import { ValgteEndringer } from '../../../types/ValgteEndringer';
 
 const initialSøknadsdata: Søknadsdata = {
     id: undefined,
 } as any;
 
+const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
+    arbeidstid: endringer.some((a) => a === EndringType.arbeidstid),
+    lovbestemtFerie: endringer.some((a) => a === EndringType.lovbestemtFerie),
+});
+
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
             const { sak, valgtHvaSkalEndres } = action.payload;
-            const søknadSteps = getSøknadSteps(valgtHvaSkalEndres, sak.harUkjentArbeidsforhold);
+            const valgteEndringer = getValgteEndringer(valgtHvaSkalEndres);
+            const søknadSteps = getSøknadSteps(valgteEndringer, sak.harUkjentArbeidsforhold);
             return {
                 ...state,
                 søknadsdata: {
@@ -27,9 +34,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 },
                 sak,
-                valgtHvaSkalEndres,
+                valgteEndringer,
                 søknadSteps,
-                søknadRoute: getSøknadStepRoute(action.payload.step),
+                søknadRoute: getSøknadStepRoute(søknadSteps[0]),
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -41,7 +48,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                  * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
                  * Verdien settes på nytt når søker starter ny meldning
                  */
-                valgtHvaSkalEndres: [],
             };
     }
 
@@ -93,7 +99,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
                 const søknadSteps = getSøknadSteps(
-                    state.valgtHvaSkalEndres,
+                    state.valgteEndringer,
                     state.sak.harUkjentArbeidsforhold,
                     state.søknadsdata
                 );
@@ -118,6 +124,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
+                    valgteEndringer: {},
                     endringsmeldingSendt: true,
                 };
             case SøknadContextActionKeys.RESET_SØKNAD:
@@ -126,7 +133,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
                     endringsmeldingSendt: false,
-                    valgtHvaSkalEndres: [],
+                    valgteEndringer: {},
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
             case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:

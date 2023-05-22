@@ -1,7 +1,6 @@
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidApiData, LovbestemtFerieApiData, LovbestemtFeriePeriode, SøknadApiData, Søknadsdata } from '@types';
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
-import { getValgteEndringer } from './endringTypeUtils';
 
 interface UkjentArbeidsforholdMetadata {
     antallUkjentArbeidsforhold: number;
@@ -58,11 +57,15 @@ const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtF
 };
 
 export const getSøknadApiDataMetadata = (apiData: SøknadApiData, søknadsdata: Søknadsdata): SøknadApiDataMetadata => {
-    const { arbeidstid, lovbestemtFerie, dataBruktTilUtledning } = apiData.ytelse;
-    const endringer = getValgteEndringer(dataBruktTilUtledning.valgteEndringer);
+    const {
+        arbeidstid,
+        lovbestemtFerie,
+        dataBruktTilUtledning: { valgteEndringer },
+    } = apiData.ytelse;
+
     return {
-        valgtEndreArbeidstid: endringer.arbeidstidSkalEndres,
-        valgtEndreFerie: endringer.lovbestemtFerieSkalEndres,
+        valgtEndreArbeidstid: valgteEndringer.arbeidstid || false,
+        valgtEndreFerie: valgteEndringer.lovbestemtFerie || false,
         ...getUkjentArbeidsforholdMetadata(søknadsdata),
         ...getFerieMetadata(lovbestemtFerie),
         ...getArbeidstidMetadata(arbeidstid),

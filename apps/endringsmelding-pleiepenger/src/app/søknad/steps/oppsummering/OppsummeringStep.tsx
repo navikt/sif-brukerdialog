@@ -13,7 +13,7 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import JaNeiSvar from '@navikt/sif-common-forms-ds/lib/components/summary/JaNeiSvar';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
-import { getApiDataFromSøknadsdata, getEndringerSomSkalGjøres, harFjernetLovbestemtFerie } from '@utils';
+import { getApiDataFromSøknadsdata } from '@utils';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { StepId } from '../../config/StepId';
@@ -40,7 +40,7 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const intl = useIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgtHvaSkalEndres },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
@@ -55,7 +55,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, valgtHvaSkalEndres);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, valgteEndringer);
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;
@@ -71,15 +71,9 @@ const OppsummeringStep = () => {
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
 
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
-        valgtHvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie),
-        søknadsdata.ukjentArbeidsforhold?.arbeidsforhold
-    );
-
     const harIngenEndringer =
-        (arbeidstidSkalEndres && arbeidstidErEndret === false) ||
-        (lovbestemtFerieSkalEndres && lovbestemtFerieErEndret === false);
+        (valgteEndringer.arbeidstid && arbeidstidErEndret === false) ||
+        (valgteEndringer.lovbestemtFerie && lovbestemtFerieErEndret === false);
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -141,7 +135,7 @@ const OppsummeringStep = () => {
                 </Block>
             )}
 
-            {(arbeidstidSkalEndres || (arbeidstid && arbeidstidErEndret)) && (
+            {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
                 <Block margin="xxl">
                     <SummarySection header="Arbeidstid">
                         {arbeidstid && arbeidstidErEndret ? (
@@ -167,7 +161,7 @@ const OppsummeringStep = () => {
                     </SummarySection>
                 </Block>
             )}
-            {lovbestemtFerieSkalEndres && (
+            {valgteEndringer.lovbestemtFerie && (
                 <Block margin="xxl" padBottom="m">
                     <SummarySection header="Endringer i ferie">
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (

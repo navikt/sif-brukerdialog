@@ -9,7 +9,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '@types';
-import { erFeriedagerEndretIPeriode, getValgteEndringer } from '@utils';
+import { erFeriedagerEndretIPeriode } from '@utils';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
 import EndretTag from '../../../components/tags/EndretTag';
 import { useStepConfig } from '../../../hooks/useStepConfig';
@@ -51,14 +51,12 @@ const LovbestemtFerieStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak, valgtHvaSkalEndres },
+        state: { søknadsdata, sak, valgteEndringer },
     } = useSøknadContext();
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
-
-    const harValgtAtArbeidstidSkalEndres = getValgteEndringer(valgtHvaSkalEndres).arbeidstidSkalEndres;
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
@@ -188,7 +186,7 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
                                 </FormBlock>
-                                {harFjernetFerieIValues && harValgtAtArbeidstidSkalEndres === false && (
+                                {harFjernetFerieIValues && valgteEndringer.arbeidstid === false && (
                                     <Block margin="l">
                                         <Alert variant="warning">
                                             Du har fjernet dager med ferie. Hvis du skal du jobbe disse dagene må du se

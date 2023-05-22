@@ -1,8 +1,8 @@
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
 import { Arbeidsforhold } from './Arbeidsforhold';
-import { EndringType } from './EndringType';
 import { LovbestemtFerieType } from './LovbestemtFerieType';
+import { ValgteEndringer } from './ValgteEndringer';
 
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;
@@ -49,7 +49,7 @@ interface YtelseApiData {
     barn: BarnApiData;
     dataBruktTilUtledning: {
         soknadDialogCommitSha: string;
-        valgteEndringer: EndringType[];
+        valgteEndringer: ValgteEndringer;
         ukjentArbeidsforhold?: Arbeidsforhold[];
     };
 }

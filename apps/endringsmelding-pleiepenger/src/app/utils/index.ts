@@ -4,7 +4,6 @@ export * from './arbeidsgiverKeyUtils';
 export * from './arbeidsukeUtils';
 export * from './beregnUtils';
 export * from './endringsperiode';
-export * from './endringTypeUtils';
 export * from './featureToggleUtils';
 export * from './ferieUtils';
 export * from './getSakFromK9Sak';

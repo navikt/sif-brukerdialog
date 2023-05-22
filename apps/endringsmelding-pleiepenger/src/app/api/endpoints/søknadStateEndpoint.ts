@@ -1,12 +1,13 @@
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
-import { EndringType, K9Sak, Søker, Søknadsdata } from '@types';
+import { K9Sak, Søker, Søknadsdata } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
 import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
+import { ValgteEndringer } from '../../types/ValgteEndringer';
 
 export type SøknadStatePersistence = {
     versjon: string;
@@ -15,7 +16,7 @@ export type SøknadStatePersistence = {
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
     harUkjentArbeidsforhold: boolean;
-    valgtHvaSkalEndres: EndringType[];
+    valgteEndringer: ValgteEndringer;
     søknadSteps: StepId[];
     metadata: {
         updatedTimestamp: string;
@@ -55,7 +56,6 @@ export const isPersistedSøknadStateValid = (
         søknadState.versjon === APP_VERSJON &&
         søknadState.søknadHashString === createHashString(info) &&
         k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId) &&
-        søknadState.valgtHvaSkalEndres.length > 0 &&
         persistedSøknadRouteIsAvailable(søknadState)
     );
 };
@@ -68,14 +68,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: (
-        {
-            søknadsdata,
-            søknadRoute,
-            barnAktørId,
-            valgtHvaSkalEndres: hvaSkalEndres,
-            harUkjentArbeidsforhold,
-            søknadSteps,
-        },
+        { søknadsdata, søknadRoute, barnAktørId, valgteEndringer, harUkjentArbeidsforhold, søknadSteps },
         søker
     ) => {
         return persistSetup.update({
@@ -84,7 +77,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             barnAktørId,
             søknadsdata,
             søknadRoute,
-            valgtHvaSkalEndres: hvaSkalEndres,
+            valgteEndringer,
             harUkjentArbeidsforhold,
             søknadSteps,
             metadata: {
