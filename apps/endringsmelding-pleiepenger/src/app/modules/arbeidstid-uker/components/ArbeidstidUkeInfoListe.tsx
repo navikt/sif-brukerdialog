@@ -28,7 +28,20 @@ const ArbeidstidUkeInfoListe: React.FunctionComponent<Props> = ({ uke, visEndrin
                 <p>
                     <span className="arbeidstidInfoListe__label">Arbeid i perioden:</span>
                     <span className="arbeidstidInfoListe__value">
-                        {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
+                        {uke.endret === undefined && uke.opprinnelig.faktisk && (
+                            <DurationText duration={uke.opprinnelig.faktisk} />
+                        )}
+                        {uke.endret !== undefined && uke.endret.faktisk && (
+                            <>
+                                <DurationText duration={uke.endret.faktisk} />
+                                {uke.endret && uke.endret.endretProsent !== undefined && (
+                                    <span className={'endretArbeidstid__prosent'}>
+                                        {' '}
+                                        ({intl.formatNumber(uke.endret.endretProsent)} %)
+                                    </span>
+                                )}
+                            </>
+                        )}
                     </span>
                 </p>
             </div>

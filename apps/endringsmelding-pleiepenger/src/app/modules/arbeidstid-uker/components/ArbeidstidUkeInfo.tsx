@@ -30,12 +30,16 @@ const ArbeidstidUkeInfo: React.FunctionComponent<Props> = ({ uke, medLabels = fa
     const erEndret = erArbeidstidUkeItemEndret(uke);
 
     if (erEndret === false || visEndringSomOpprinnelig) {
+        const { endretProsent } = uke.endret;
         return (
             <>
                 {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
                 <span data-testid="timer-faktisk">
                     <DurationText duration={uke.endret.faktisk} />
                 </span>
+                {endretProsent !== undefined && (
+                    <span className="endretArbeidstid__prosent"> ({intl.formatNumber(endretProsent)} %)</span>
+                )}
             </>
         );
     }
