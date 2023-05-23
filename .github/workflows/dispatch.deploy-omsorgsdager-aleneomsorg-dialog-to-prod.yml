@@ -1,4 +1,4 @@
-name: Deploy omsorgspengesøknad to prod
+name: Deploy omsorgsdager-aleneomsorg-dialog to prod
 
 on:
     workflow_dispatch:
@@ -18,18 +18,18 @@ jobs:
               uses: cypress-io/github-action@v4.2.2 # use the explicit version number
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspenger
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg
               with:
-                  project: ./apps/omsorgspengesoknad/e2e
-                  build: yarn build-omsorgspengesoknad
-                  start: yarn e2e-omsorgspengesoknad
+                  project: ./apps/omsorgsdager-aleneomsorg-dialog/e2e
+                  build: yarn build-omsorgsdager-aleneomsorg-dialog
+                  start: yarn e2e-omsorgsdager-aleneomsorg-dialog
 
     deploy-to-prod:
-        name: Deploy omsorgspengesøknad to prod
+        name: Deploy omsorgsdager-aleneomsorg-dialog to prod
         needs: [run-cypress-test]
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
         secrets:
             NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
         with:
-            app-name: 'omsorgspengesoknad'
-            working-directory: 'apps/omsorgspengesoknad'
+            app-name: 'omsorgsdager-aleneomsorg-dialog'
+            working-directory: 'apps/omsorgsdager-aleneomsorg-dialog'
