@@ -1,4 +1,5 @@
 name: Deploy sif-ettersending to prod
+run-name: Deploy sif-ettersending to prod
 
 on:
     push:

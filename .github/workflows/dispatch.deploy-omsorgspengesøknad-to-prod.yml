@@ -1,4 +1,5 @@
 name: Deploy omsorgspengesøknad to prod
+run-name: Deploy omsorgspengesøknad to prod
 
 on:
     push:

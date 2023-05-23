@@ -1,4 +1,5 @@
 name: Deploy omsorgsdager-aleneomsorg-dialog to prod
+run-name: Deploy omsorgsdager-aleneomsorg-dialog to prod
 
 on:
     push:
