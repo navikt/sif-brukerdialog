@@ -115,7 +115,7 @@ const SøknadRouter = () => {
 
                 <Route path={SøknadStepRoute[StepId.MELDING_SENDT]} element={<KvitteringPage />} />
 
-                {/* Dersom bruker har fjernet ferie, vært innom arbeidstid, angret fjernet ferie og brukt nettleser-back */}
+                {/* Hvis bruker har fjernet ferie, vært innom arbeidstid, angret fjernet ferie og brukt nettleser-back */}
                 {isStepAvailable(StepId.ARBEIDSTID) === false && isStepAvailable(StepId.LOVBESTEMT_FERIE) && (
                     <Route
                         path={SøknadStepRoute[StepId.ARBEIDSTID]}

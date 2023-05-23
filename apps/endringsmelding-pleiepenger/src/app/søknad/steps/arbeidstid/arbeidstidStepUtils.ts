@@ -3,7 +3,7 @@ import { durationsAreEqual, ISODateRange } from '@navikt/sif-common-utils';
 import {
     Arbeidsaktivitet,
     ArbeidsaktivitetArbeidstaker,
-    ArbeidsaktivitetEndringMap,
+    ArbeidstidArbeidsaktivitetMap,
     Arbeidsaktiviteter,
     ArbeiderIPeriodenSvar,
     ArbeidstidEndringMap,
@@ -34,7 +34,7 @@ export const getArbeidstidStepInitialValues = (
 };
 
 export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormValues): ArbeidstidSøknadsdata => {
-    const arbeidsaktivitet: ArbeidsaktivitetEndringMap = {};
+    const arbeidsaktivitet: ArbeidstidArbeidsaktivitetMap = {};
     Object.keys(values.arbeidsaktivitet).forEach((key) => {
         const aktivitet = values.arbeidsaktivitet[key];
         if (

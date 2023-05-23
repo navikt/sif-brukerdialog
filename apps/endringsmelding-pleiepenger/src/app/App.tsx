@@ -28,7 +28,7 @@ ensureBaseNameForReactRouter(publicPath);
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvironmentVariable('MSW') === 'on') {
+        if (getEnvironmentVariable('MSW') === 'son') {
             return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',

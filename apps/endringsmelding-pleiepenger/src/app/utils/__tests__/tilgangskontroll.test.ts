@@ -79,14 +79,14 @@ describe('tilgangskontroll', () => {
 });
 
 describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
-    it('returnerer true dersom arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
+    it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
         const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver3],
             [arbeidstaker1, arbeidstaker2]
         );
         expect(result).toBeTruthy();
     });
-    it('returnerer false dersom alle arbeidsgivere har arbeidsaktivitet i sak', () => {
+    it('returnerer false hvis alle arbeidsgivere har arbeidsaktivitet i sak', () => {
         const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver1, arbeidsgiver2],
             [arbeidstaker1, arbeidstaker2]
@@ -95,14 +95,14 @@ describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
     });
 });
 describe('harArbeidstakerISakUtenArbeidsforhold', () => {
-    it('returnerer true dersom har har arbeidsaktivitet i sak med ikke tilhørende arbeidsgiver', () => {
+    it('returnerer true hvis har har arbeidsaktivitet i sak med ikke tilhørende arbeidsgiver', () => {
         const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
             [arbeidsgiver3]
         );
         expect(result).toBeTruthy();
     });
-    it('returnerer false dersom alle arbeidsaktiviteter i sak har tilhørende arbeidsgiver', () => {
+    it('returnerer false hvis alle arbeidsaktiviteter i sak har tilhørende arbeidsgiver', () => {
         const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
             [arbeidsgiver1, arbeidsgiver2]
@@ -116,7 +116,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     const søknadsperiodeUtenfor: DateRange = ISODateRangeToDateRange('2022-01-01/2022-01-01');
     const søknadsperiodeInnenfor: DateRange = ISODateRangeToDateRange('2022-01-02/2022-02-01');
 
-    it('returnerer true dersom søknadsperioder er innenfor tillatt endringsperiode', () => {
+    it('returnerer true hvis søknadsperioder er innenfor tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeInnenfor,
             tillatEndringsperiode
@@ -124,7 +124,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
         expect(result).toBeTruthy();
     });
 
-    it('returnerer false dersom søknadsperioder er før tillatt endringsperiode', () => {
+    it('returnerer false hvis søknadsperioder er før tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeUtenfor,
             tillatEndringsperiode
@@ -163,7 +163,7 @@ describe('ingenTilgangMeta', () => {
         });
         expect(result.erArbeidstaker).toBeFalsy();
     });
-    it('returnerer erFrilanser:false dersom bruker ikke har timer som frilanser', () => {
+    it('returnerer erFrilanser:false hvis bruker ikke har timer som frilanser', () => {
         const result = tilgangskontrollUtils.getIngenTilgangMeta({
             arbeidstakerList: [],
             frilanserArbeidstidInfo: { perioder: perioderIngenTid },
@@ -171,7 +171,7 @@ describe('ingenTilgangMeta', () => {
         });
         expect(result.erFrilanser).toBeFalsy();
     });
-    it('returnerer erFrilanser:true dersom bruker har timer som frilanser', () => {
+    it('returnerer erFrilanser:true hvis bruker har timer som frilanser', () => {
         const result = tilgangskontrollUtils.getIngenTilgangMeta({
             arbeidstakerList: [],
             frilanserArbeidstidInfo: { perioder: perioder },

@@ -121,7 +121,7 @@
 
 ### Patch Changes
 
--   0a874c2: Bugfix. Forhindre oppslag på arbeidsgiver dersom søknadsperioder er utenfor tillatt endringsperiode eller fra-dato for oppslaget er etter til-dato.
+-   0a874c2: Bugfix. Forhindre oppslag på arbeidsgiver hvis søknadsperioder er utenfor tillatt endringsperiode eller fra-dato for oppslaget er etter til-dato.
 
 ## 2.6.1
 
@@ -259,7 +259,7 @@
 ### Patch Changes
 
 -   a8f8a431: Oppdatere ingress til innsyn
--   47c76689: Bugfix - legge til sjekk på at det faktisk er gjort endringer. Dette ble ikke fanget opp dersom bruker satte verdiene tilbake til slik det opprinnelig var på saken.
+-   47c76689: Bugfix - legge til sjekk på at det faktisk er gjort endringer. Dette ble ikke fanget opp hvis bruker satte verdiene tilbake til slik det opprinnelig var på saken.
 
 ## 1.8.0
 
@@ -380,7 +380,7 @@
 ### Patch Changes
 
 -   d2d634b: Utvide med å logge antall arbeidsaktiviteter som kan endres når bruker starter en endring
--   d2d634b: Logge axiosError til sentry dersom innsending av melding feiler
+-   d2d634b: Logge axiosError til sentry hvis innsending av melding feiler
 
 ## 1.2.1
 
@@ -562,7 +562,7 @@
 
 ### Minor Changes
 
--   451fef8: Legge til sjekk som gjør at bruker sendes til publicPath dersom en kommer til root (/)
+-   451fef8: Legge til sjekk som gjør at bruker sendes til publicPath hvis en kommer til root (/)
 
 ### Patch Changes
 

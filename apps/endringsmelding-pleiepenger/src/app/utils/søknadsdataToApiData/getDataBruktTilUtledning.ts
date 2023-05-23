@@ -1,46 +1,66 @@
 import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { durationToISODuration } from '@navikt/sif-common-utils/lib';
-import { DataBruktTilUtledningApiData, Søknadsdata, UkjentArbeidsforholdApiData, ValgteEndringer } from '@types';
+import {
+    ArbeiderIPeriodenSvar,
+    Arbeidsforhold,
+    ArbeidstidSøknadsdata,
+    DataBruktTilUtledningApiData,
+    UkjentArbeidsforholdApiData,
+    UkjentArbeidsforholdSøknadsdata,
+    ValgteEndringer,
+} from '@types';
 import { getOrgNummerFromArbeidsgiverKey } from '../arbeidsgiverUtils';
 
 export const getDataBruktTilUtledningApiData = (
-    søknadsdata: Søknadsdata,
-    valgteEndringer: ValgteEndringer
+    valgteEndringer: ValgteEndringer,
+    ukjentArbeidsforhold: UkjentArbeidsforholdSøknadsdata | undefined,
+    arbeidstid: ArbeidstidSøknadsdata | undefined
 ): DataBruktTilUtledningApiData => {
     return {
         soknadDialogCommitSha: getCommitShaFromEnv() || '',
         valgteEndringer,
-        ukjentArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(søknadsdata),
+        ukjentArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
+            ukjentArbeidsforhold?.arbeidsforhold,
+            arbeidstid
+        ),
     };
 };
 
-export const getUkjentArbeidsforholdApiDataFromSøknadsdata = ({
-    ukjentArbeidsforhold,
-    arbeidstid,
-}: Søknadsdata): UkjentArbeidsforholdApiData[] => {
-    if (ukjentArbeidsforhold === undefined || arbeidstid === undefined) {
-        return [];
-    }
-    return ukjentArbeidsforhold.arbeidsforhold.map((arbeidsforhold): UkjentArbeidsforholdApiData => {
-        const organisasjonsnummer = getOrgNummerFromArbeidsgiverKey(arbeidsforhold.arbeidsgiverKey);
-        if (arbeidsforhold.erAnsatt) {
-            const arbeidstidForArbeidsforhold = arbeidstid.arbeidsaktivitet[arbeidsforhold.arbeidsgiverKey];
-            if (!arbeidstidForArbeidsforhold || !arbeidstidForArbeidsforhold.arbeiderIPerioden) {
-                throw 'getUkjentArbeidsforholdApiDataFromSøknadsdata: arbeidstidForArbeidsforhold ikke funnet';
-            }
-
-            return {
-                organisasjonsnummer,
-                erAnsatt: true,
-                arbeiderIPerioden: arbeidstidForArbeidsforhold.arbeiderIPerioden,
-                normalarbeidstid: {
-                    timerPerUke: durationToISODuration(arbeidsforhold.normalarbeidstid.timerPerUke),
-                },
-            };
+export const mapArbeidsforholdToArbeidsforholdApiData = (
+    arbeidsforhold: Arbeidsforhold,
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar
+): UkjentArbeidsforholdApiData => {
+    const organisasjonsnummer = getOrgNummerFromArbeidsgiverKey(arbeidsforhold.arbeidsgiverKey);
+    if (arbeidsforhold.erAnsatt) {
+        if (!arbeiderIPerioden) {
+            throw 'mapArbeidsforholdToArbeidsforholdApiData: arbeiderIPerioden er ikke besvart ukjent arbeidsforhold hvor en er ansatt';
         }
         return {
             organisasjonsnummer,
-            erAnsatt: false,
+            erAnsatt: true,
+            arbeiderIPerioden,
+            normalarbeidstid: {
+                timerPerUke: durationToISODuration(arbeidsforhold.normalarbeidstid.timerPerUke),
+            },
         };
+    }
+    return {
+        organisasjonsnummer,
+        erAnsatt: false,
+    };
+};
+
+export const getUkjentArbeidsforholdApiDataFromSøknadsdata = (
+    ukjenteArbeidsforhold: Arbeidsforhold[] | undefined,
+    arbeidstid: ArbeidstidSøknadsdata | undefined
+): UkjentArbeidsforholdApiData[] => {
+    if (ukjenteArbeidsforhold === undefined) {
+        return [];
+    }
+    return ukjenteArbeidsforhold.map((arbeidsforhold): UkjentArbeidsforholdApiData => {
+        const arbeiderIPerioden = arbeidstid
+            ? arbeidstid.arbeidsaktivitet[arbeidsforhold.arbeidsgiverKey]?.arbeiderIPerioden
+            : undefined;
+        return mapArbeidsforholdToArbeidsforholdApiData(arbeidsforhold, arbeiderIPerioden);
     });
 };

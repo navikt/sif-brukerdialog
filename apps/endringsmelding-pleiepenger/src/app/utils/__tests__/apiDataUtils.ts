@@ -2,10 +2,10 @@ import { harEndretArbeidstidForArbeidsgiverIApiData } from '../apiDataUtils';
 
 describe('apiDataUtils', () => {
     describe('harEndretArbeidstidForArbeidsgiver', () => {
-        it('returnerer false dersom endringer er undefined', () => {
+        it('returnerer false hvis endringer er undefined', () => {
             expect(harEndretArbeidstidForArbeidsgiverIApiData('123', undefined)).toBeFalsy();
         });
-        it('returnerer false dersom endringer er defined, men ingen endringer for arbeidsgiver', () => {
+        it('returnerer false hvis endringer er defined, men ingen endringer for arbeidsgiver', () => {
             expect(
                 harEndretArbeidstidForArbeidsgiverIApiData('123', [
                     {
@@ -18,7 +18,7 @@ describe('apiDataUtils', () => {
                 ])
             ).toBeFalsy();
         });
-        it('returnerer true dersom endringer er defined, og endringer finnes for arbeidsgiver', () => {
+        it('returnerer true hvis endringer er defined, og endringer finnes for arbeidsgiver', () => {
             expect(
                 harEndretArbeidstidForArbeidsgiverIApiData('123', [
                     {

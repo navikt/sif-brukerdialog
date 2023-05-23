@@ -6,7 +6,7 @@ import { K9SakBarn } from './K9Sak';
 export interface Sak {
     /** Barn i sak */
     barn: K9SakBarn;
-    /** Settes til true dersom det finnes en arbeidsgiver som ikke har arbeidstid i sak */
+    /** Settes til true hvis det finnes en arbeidsgiver som ikke har arbeidstid i sak */
     harUkjentArbeidsforhold: boolean;
     /** Alle arbeidsgivere som ikke finnes i sak, men som finnes i Aa-reg */
     ukjenteArbeidsgivere: Arbeidsgiver[];

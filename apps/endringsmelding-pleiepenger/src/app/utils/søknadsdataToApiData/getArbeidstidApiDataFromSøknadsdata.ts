@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-utils';
 import {
     Arbeidsaktivitet,
-    ArbeidsaktivitetEndringMap,
+    ArbeidstidArbeidsaktivitetMap,
     Arbeidsaktiviteter,
     ArbeidsaktivitetType,
     ArbeiderIPeriodenSvar,
@@ -64,7 +64,7 @@ const getEndretArbeidstid = (
             antallDagerMedArbeidstid
         );
 
-        /** Splitt opp dersom det er enkeltdager i uken */
+        /** Splitt opp hvis det er enkeltdager i uken */
         const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
         perioder.sort(sortDateRange).forEach((periode) => {
             perioderMedEndretArbeidstid[dateRangeToISODateRange(periode)] = {
@@ -96,7 +96,7 @@ const getArbeidsaktivitetArbeidstidInfo = (
 
 export const getArbeidstidApiDataFromSøknadsdata = (
     søknadsperioder: DateRange[],
-    arbeidsaktivitetEndring: ArbeidsaktivitetEndringMap,
+    arbeidsaktivitetEndring: ArbeidstidArbeidsaktivitetMap,
     arbeidsaktiviteter: Arbeidsaktiviteter,
     ukjenteArbeidsgivere: Arbeidsgiver[],
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
@@ -168,7 +168,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                     arbeidsuke.antallDagerMedArbeidstid
                 );
 
-                /** Splitt opp dersom det er enkeltdager i uken */
+                /** Splitt opp hvis det er enkeltdager i uken */
                 const dagerSøktFor = getDagerFraEnkeltdagMap(arbeidsuke.arbeidstidEnkeltdager);
                 const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
                 perioder.sort(sortDateRange).forEach((periode) => {

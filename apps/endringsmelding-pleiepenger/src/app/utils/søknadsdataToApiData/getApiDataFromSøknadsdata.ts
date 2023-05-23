@@ -35,7 +35,11 @@ export const getApiDataFromSøknadsdata = (
                       ukjentArbeidsforhold
                   )
                 : undefined,
-            dataBruktTilUtledning: getDataBruktTilUtledningApiData(søknadsdata, valgteEndringer),
+            dataBruktTilUtledning: getDataBruktTilUtledningApiData(
+                valgteEndringer,
+                søknadsdata.ukjentArbeidsforhold,
+                søknadsdata.arbeidstid
+            ),
         },
     };
 };
