@@ -10,6 +10,7 @@ import {
     Sak,
     Søker,
     SøknadContextState,
+    SøknadInitialDataState,
     TimerEllerProsent,
 } from '@types';
 import { appSentryLogger } from '@utils';
@@ -17,7 +18,6 @@ import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../api/fetchInitialData';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
-import { SøknadInitialDataState } from '../types/SøknadInitialDataState';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';

@@ -1,13 +1,12 @@
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
-import { K9Sak, Søker, Søknadsdata } from '@types';
+import { K9Sak, Søker, Søknadsdata, ValgteEndringer } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
 import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
-import { ValgteEndringer } from '../../types/ValgteEndringer';
 
 export type SøknadStatePersistence = {
     versjon: string;

@@ -1,6 +1,5 @@
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
-import { Arbeidsforhold } from './Arbeidsforhold';
 import { LovbestemtFerieType } from './LovbestemtFerieType';
 import { ValgteEndringer } from './ValgteEndringer';
 
@@ -42,17 +41,37 @@ interface BarnApiData {
     norskIdentitetsnummer: string;
 }
 
+export interface DataBruktTilUtledningApiData {
+    soknadDialogCommitSha: string;
+    valgteEndringer: ValgteEndringer;
+    ukjentArbeidsforhold?: UkjentArbeidsforholdApiData[];
+}
+
 interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
     arbeidstid?: ArbeidstidApiData;
     lovbestemtFerie?: LovbestemtFerieApiData;
     barn: BarnApiData;
-    dataBruktTilUtledning: {
-        soknadDialogCommitSha: string;
-        valgteEndringer: ValgteEndringer;
-        ukjentArbeidsforhold?: Arbeidsforhold[];
-    };
+    dataBruktTilUtledning: DataBruktTilUtledningApiData;
 }
+
+interface UkjentArbeidsforholdApiDataBase {
+    organisasjonsnummer: string;
+    erAnsatt: boolean;
+}
+
+interface UkjentArbeidsforholdApiDataErAnsatt extends UkjentArbeidsforholdApiDataBase {
+    erAnsatt: true;
+    normalarbeidstid: {
+        timerPerUke: ISODuration;
+    };
+    arbeiderIPerioden: ArbeiderIPeriodenSvar;
+}
+interface UkjentArbeidsforholdApiDataErIkkeAnsatt extends UkjentArbeidsforholdApiDataBase {
+    erAnsatt: false;
+}
+
+export type UkjentArbeidsforholdApiData = UkjentArbeidsforholdApiDataErAnsatt | UkjentArbeidsforholdApiDataErIkkeAnsatt;
 
 export interface SøknadApiData {
     id: string;

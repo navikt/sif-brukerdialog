@@ -9,11 +9,11 @@ import {
     K9Sak,
     RequestStatus,
     Søker,
+    SøknadInitialIkkeTilgang,
     UgyldigK9SakFormat,
 } from '@types';
 import { appSentryLogger } from '@utils';
 import { IngenTilgangMeta, isSøknadInitialDataErrorState } from '../hooks/useSøknadInitialData';
-import { SøknadInitialIkkeTilgang } from '../types/SøknadInitialDataState';
 import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag } from '../utils/initialDataUtils';
 import { getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';

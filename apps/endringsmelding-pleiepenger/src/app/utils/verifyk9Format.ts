@@ -19,7 +19,7 @@ import {
     K9FormatTilsynsordningPerioder,
     K9FormatUtenlandsopphold,
     K9FormatYtelse,
-} from '../types';
+} from '@types';
 
 const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) => !isISODateRange(key)) === false;
 

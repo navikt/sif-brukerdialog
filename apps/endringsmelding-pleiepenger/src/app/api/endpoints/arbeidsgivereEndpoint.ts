@@ -2,6 +2,7 @@ import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-co
 import { Arbeidsgiver } from '@types';
 import api from '../api';
 import { ApiEndpointPsb } from './';
+import { getArbeidsgiverKey } from '../../utils/arbeidsgiverUtils';
 
 type AAregArbeidsgiver = {
     organisasjoner?: {
@@ -36,5 +37,3 @@ export const arbeidsgivereEndpoint = {
         }
     },
 };
-
-export const getArbeidsgiverKey = (orgnr: string) => `a_${orgnr}`;

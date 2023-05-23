@@ -17,5 +17,7 @@ export * from './Søker';
 export * from './SøknadApiData';
 export * from './SøknadContextState';
 export * from './Søknadsdata';
+export * from './SøknadInitialDataState';
 export * from './TimerEllerProsent';
 export * from './UkjentArbeidsforholdSøknadsdata';
+export * from './ValgteEndringer';

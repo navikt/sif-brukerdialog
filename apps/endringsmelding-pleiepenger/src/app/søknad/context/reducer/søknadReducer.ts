@@ -1,10 +1,9 @@
 import { guid } from '@navikt/sif-common-utils';
-import { EndringType, SøknadContextState, Søknadsdata } from '@types';
+import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from '@types';
 import { getFeriedagerMeta } from '@utils';
 import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
-import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 import { getSøknadSteps } from '../../config/søknadStepConfig';
-import { ValgteEndringer } from '../../../types/ValgteEndringer';
+import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 const initialSøknadsdata: Søknadsdata = {
     id: undefined,

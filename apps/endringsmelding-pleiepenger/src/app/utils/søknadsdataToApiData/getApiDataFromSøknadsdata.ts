@@ -1,8 +1,7 @@
-import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { Sak, SøknadApiData, Søknadsdata } from '@types';
-import { ValgteEndringer } from '../../types/ValgteEndringer';
+import { Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
+import { getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
@@ -36,11 +35,7 @@ export const getApiDataFromSøknadsdata = (
                       ukjentArbeidsforhold
                   )
                 : undefined,
-            dataBruktTilUtledning: {
-                soknadDialogCommitSha: getCommitShaFromEnv() || '',
-                valgteEndringer,
-                ukjentArbeidsforhold: søknadsdata.ukjentArbeidsforhold?.arbeidsforhold,
-            },
+            dataBruktTilUtledning: getDataBruktTilUtledningApiData(søknadsdata, valgteEndringer),
         },
     };
 };

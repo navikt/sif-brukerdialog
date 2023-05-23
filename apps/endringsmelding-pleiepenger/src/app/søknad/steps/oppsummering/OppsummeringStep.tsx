@@ -22,6 +22,7 @@ import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
+import { ISODurationToDuration } from '@navikt/sif-common-utils/lib';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -91,7 +92,7 @@ const OppsummeringStep = () => {
                     <SummarySection header="Ukjent arbeidsforhold">
                         {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjentArbeidsforhold.find(
-                                (a) => a.arbeidsgiverKey === arbeidsgiver.key
+                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer
                             );
 
                             if (!arbeidsforhold) {
@@ -122,7 +123,9 @@ const OppsummeringStep = () => {
                                                 header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
                                                 <div data-testid={getTestKey('timerPerUke')}>
                                                     <DurationText
-                                                        duration={arbeidsforhold.normalarbeidstid.timerPerUke}
+                                                        duration={ISODurationToDuration(
+                                                            arbeidsforhold.normalarbeidstid.timerPerUke
+                                                        )}
                                                     />
                                                 </div>
                                             </SummaryBlock>

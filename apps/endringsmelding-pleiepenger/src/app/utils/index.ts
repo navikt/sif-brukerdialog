@@ -1,3 +1,4 @@
+// export * from './lagreSøknadState'; // Tatt ut pga jest feil: encountered an unexpected token. Kan nok fikses med config endringer
 export * from './apiDataUtils';
 export * from './appSentryLogger';
 export * from './arbeidsukeUtils';
@@ -8,7 +9,6 @@ export * from './ferieUtils';
 export * from './getSakFromK9Sak';
 export * from './getSakOgArbeidsgivereDebugInfo';
 export * from './k9SakUtils';
-// export * from './lagreSøknadState'; // Tatt ut pga jest feil: encountered an unexpected token. Kan nok fikses med config endringer
 export * from './lovbestemtFerieUtils';
 export * from './maskString';
 export * from './navigationUtils';
