@@ -128,12 +128,13 @@
     "jest": {
         "transformIgnorePatterns": [
             "node_modules/(?!(@navikt)).*\\.js$",
-            "node_modules/@navikt/sif-common-core-js/.*"
+            "node_modules/(?!(axios)).*\\.js$"
         ],
         "moduleNameMapper": {
             "^@hooks$": "<rootDir>/src/app/hooks/index.ts",
             "^@types$": "<rootDir>/src/app/types/index.ts",
-            "^@utils$": "<rootDir>/src/app/utils/index.ts"
+            "^@utils$": "<rootDir>/src/app/utils/index.ts",
+            "axios": "axios/dist/node/axios.cjs"
         }
     },
     "scripts": {
