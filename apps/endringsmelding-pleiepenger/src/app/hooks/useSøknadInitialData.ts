@@ -17,34 +17,12 @@ import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../api/fetchInitialData';
 import { APP_VERSJON } from '../constants/APP_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
+import { SøknadInitialDataState } from '../types/SøknadInitialDataState';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
-
-type SøknadInitialSuccess = {
-    status: RequestStatus.success;
-    kanBrukeSøknad: true;
-    data: SøknadInitialData;
-};
-
-type SøknadInitialError = {
-    status: RequestStatus.error;
-    error: any;
-};
-
-type SøknadInitialForbidden = {
-    status: RequestStatus.forbidden;
-};
-
-type SøknadInitialLoading = {
-    status: RequestStatus.loading;
-};
-
-type SøknadInitialNotLoggedIn = {
-    status: RequestStatus.redirectingToLogin;
-};
 
 export type IngenTilgangMeta = { erArbeidstaker?: boolean; erSN?: boolean; erFrilanser?: boolean };
 
@@ -55,14 +33,6 @@ export type SøknadInitialIkkeTilgang = {
     søker: Søker;
     ingenTilgangMeta?: IngenTilgangMeta;
 };
-
-type SøknadInitialDataState =
-    | SøknadInitialSuccess
-    | SøknadInitialError
-    | SøknadInitialLoading
-    | SøknadInitialForbidden
-    | SøknadInitialIkkeTilgang
-    | SøknadInitialNotLoggedIn;
 
 export const isSøknadInitialDataErrorState = (error: any): error is SøknadInitialDataState => {
     return error !== undefined && Object.keys(error).length > 0 && error.status !== undefined;

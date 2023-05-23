@@ -3,6 +3,31 @@ import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieSt
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { K9SakBarn } from './K9Sak';
 
+export interface Sak {
+    /** Barn i sak */
+    barn: K9SakBarn;
+    /** Settes til true dersom det finnes en arbeidsgiver som ikke har arbeidstid i sak */
+    harUkjentArbeidsforhold: boolean;
+    /** Alle arbeidsgivere som ikke finnes i sak, men som finnes i Aa-reg */
+    ukjenteArbeidsgivere: Arbeidsgiver[];
+    /** Alle arbeidsaktiviteter i sak. Arbeidsgivere flates ut og legges sammen med evt. frilans og selvstendig */
+    arbeidsaktiviteter: Arbeidsaktiviteter;
+    /** Ferie i søknadsperiodene */
+    lovbestemtFerie: SakLovbestemtFerie;
+    /** Søknadsperioder som er innenfor tillatt endringsperiode. Periodene som overlapper kuttes. */
+    søknadsperioder: DateRange[];
+    /** DateRange med alle søknadsperioder som er innenfor tillatt endringsperiode */
+    samletSøknadsperiode: DateRange;
+    /** Ytelse = PSB */
+    ytelse: {
+        type: string;
+    };
+    utledet: {
+        /** Alle aktiviteter i sak som kan endres; arbeidsgivere, frilans og selvstendig */
+        aktiviteterSomKanEndres: Arbeidsaktivitet[];
+    };
+}
+
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
     frilanser = 'frilanser',
@@ -78,29 +103,4 @@ export interface Arbeidsaktiviteter {
 
 export interface SakLovbestemtFerie {
     feriedager: FeriedagMap;
-}
-
-export interface Sak {
-    /** Barn i sak */
-    barn: K9SakBarn;
-    /** Settes til true dersom det finnes en arbeidsgiver som ikke har arbeidstid i sak */
-    harUkjentArbeidsforhold: boolean;
-    /** Alle arbeidsgivere som ikke finnes i sak, men som finnes i Aa-reg */
-    ukjenteArbeidsgivere: Arbeidsgiver[];
-    /** Alle arbeidsaktiviteter i sak. Arbeidsgivere flates ut og legges sammen med evt. frilans og selvstendig */
-    arbeidsaktiviteter: Arbeidsaktiviteter;
-    /** Ferie i søknadsperiodene */
-    lovbestemtFerie: SakLovbestemtFerie;
-    /** Søknadsperioder som er innenfor tillatt endringsperiode. Periodene som overlapper kuttes. */
-    søknadsperioder: DateRange[];
-    /** DateRange med alle søknadsperioder som er innenfor tillatt endringsperiode */
-    samletSøknadsperiode: DateRange;
-    /** Ytelse = PSB */
-    ytelse: {
-        type: string;
-    };
-    utledet: {
-        /** Alle aktiviteter i sak som kan endres; arbeidsgivere, frilans og selvstendig */
-        aktiviteterSomKanEndres: Arbeidsaktivitet[];
-    };
 }

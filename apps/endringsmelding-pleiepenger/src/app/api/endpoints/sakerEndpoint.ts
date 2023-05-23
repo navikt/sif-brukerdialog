@@ -3,7 +3,7 @@ import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakForma
 import { appSentryLogger, maskString, parseK9Format } from '@utils';
 import api from '../api';
 import { ApiEndpointInnsyn } from './';
-import { verifyK9Format } from '../../utils/k9FormatUtils';
+import { verifyK9Format } from '../../utils/verifyk9Format';
 
 export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 

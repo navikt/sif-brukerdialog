@@ -1,6 +1,5 @@
 export * from './apiDataUtils';
 export * from './appSentryLogger';
-export * from './arbeidsgiverKeyUtils';
 export * from './arbeidsukeUtils';
 export * from './beregnUtils';
 export * from './endringsperiode';

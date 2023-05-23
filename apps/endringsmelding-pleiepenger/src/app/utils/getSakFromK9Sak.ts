@@ -53,6 +53,74 @@ interface _PeriodisertK9FormatArbeidstidPerioder {
 }
 
 /**
+ *
+ * Henter ut info fra K9Sak og klargjør sak for videre behandling i dialogen
+ * @param k9sak Sak hentet fra K9
+ * @param alleArbeidsgivere Liste med arbeidsgivere
+ * @param tillattEndringsperiode Periode hvor en kan endre
+ * @returns Sak
+ */
+export const getSakFromK9Sak = (
+    k9sak: K9Sak,
+    alleArbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange
+): Sak => {
+    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
+        k9sak.ytelse.arbeidstid;
+
+    const søknadsperioderInneforTillattEndringsperiode = dateRangeUtils.getDateRangesWithinDateRange(
+        k9sak.ytelse.søknadsperioder,
+        tillattEndringsperiode
+    );
+
+    const arbeidsgivereISøknadsperioder = alleArbeidsgivere.filter((a) =>
+        erArbeidsgiverInnenforSøknadsperioder(a, k9sak.ytelse.søknadsperioder)
+    );
+
+    const ukjenteArbeidsgivere = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
+        return !finnesArbeidsgiverIK9Sak(arbeidsgiver, k9sak.ytelse.arbeidstid.arbeidstakerList || []);
+    });
+
+    const arbeidstakerAktiviteter = arbeidstakerList
+        ? arbeidstakerList.map((arbeidstaker) =>
+              getArbeidsaktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode)
+          )
+        : [];
+    const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
+    const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
+        selvstendigNæringsdrivendeArbeidstidInfo,
+        tillattEndringsperiode
+    );
+    const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
+        arbeidstakerAktiviteter,
+        frilanser,
+        selvstendigNæringsdrivende,
+    });
+
+    return {
+        ytelse: {
+            type: 'PLEIEPENGER_SYKT_BARN',
+        },
+        ukjenteArbeidsgivere: ukjenteArbeidsgivere,
+        harUkjentArbeidsforhold: ukjenteArbeidsgivere.length > 0,
+        søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
+        samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
+        barn: k9sak.barn,
+        arbeidsaktiviteter: {
+            arbeidstakerAktiviteter,
+            frilanser,
+            selvstendigNæringsdrivende,
+        },
+        lovbestemtFerie: {
+            feriedager: getFeriedagerFromLovbestemtFerie(k9sak.ytelse.lovbestemtFerie.perioder),
+        },
+        utledet: {
+            aktiviteterSomKanEndres,
+        },
+    };
+};
+
+/**
  * Korter ned periode til sluttdato for arbeidsforholdet, hvis denne er satt
  * @param tillattEndringsperiode
  * @param arbeidsgiver
@@ -434,74 +502,6 @@ const getArbeidsaktivitetSelvstendigNæringsdrivende = (
               ...getArbeidsaktivitetPerioderPart(selvstendigNæringsdrivendeArbeidstidInfo.perioder, endringsperiode),
           }
         : undefined;
-};
-
-/**
- *
- * Henter ut info fra K9Sak og klargjør sak for videre behandling i dialogen
- * @param k9sak Sak hentet fra K9
- * @param alleArbeidsgivere Liste med arbeidsgivere
- * @param tillattEndringsperiode Periode hvor en kan endre
- * @returns Sak
- */
-export const getSakFromK9Sak = (
-    k9sak: K9Sak,
-    alleArbeidsgivere: Arbeidsgiver[],
-    tillattEndringsperiode: DateRange
-): Sak => {
-    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
-        k9sak.ytelse.arbeidstid;
-
-    const søknadsperioderInneforTillattEndringsperiode = dateRangeUtils.getDateRangesWithinDateRange(
-        k9sak.ytelse.søknadsperioder,
-        tillattEndringsperiode
-    );
-
-    const arbeidsgivereISøknadsperioder = alleArbeidsgivere.filter((a) =>
-        erArbeidsgiverInnenforSøknadsperioder(a, k9sak.ytelse.søknadsperioder)
-    );
-
-    const ukjenteArbeidsgivere = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
-        return !finnesArbeidsgiverIK9Sak(arbeidsgiver, k9sak.ytelse.arbeidstid.arbeidstakerList || []);
-    });
-
-    const arbeidstakerAktiviteter = arbeidstakerList
-        ? arbeidstakerList.map((arbeidstaker) =>
-              getArbeidsaktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode)
-          )
-        : [];
-    const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
-    const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
-        selvstendigNæringsdrivendeArbeidstidInfo,
-        tillattEndringsperiode
-    );
-    const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
-        arbeidstakerAktiviteter,
-        frilanser,
-        selvstendigNæringsdrivende,
-    });
-
-    return {
-        ytelse: {
-            type: 'PLEIEPENGER_SYKT_BARN',
-        },
-        ukjenteArbeidsgivere: ukjenteArbeidsgivere,
-        harUkjentArbeidsforhold: ukjenteArbeidsgivere.length > 0,
-        søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
-        samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
-        barn: k9sak.barn,
-        arbeidsaktiviteter: {
-            arbeidstakerAktiviteter,
-            frilanser,
-            selvstendigNæringsdrivende,
-        },
-        lovbestemtFerie: {
-            feriedager: getFeriedagerFromLovbestemtFerie(k9sak.ytelse.lovbestemtFerie.perioder),
-        },
-        utledet: {
-            aktiviteterSomKanEndres,
-        },
-    };
 };
 
 /**

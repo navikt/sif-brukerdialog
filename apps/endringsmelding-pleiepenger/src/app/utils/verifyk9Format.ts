@@ -23,6 +23,27 @@ import {
 
 const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) => !isISODateRange(key)) === false;
 
+export const verifyK9Format = (sak: any): sak is K9Format => {
+    const maybeK9Sak = sak as K9Format;
+    try {
+        if (
+            isObject(maybeK9Sak) &&
+            verifyK9FormatBarn(maybeK9Sak.barn) &&
+            isObject(maybeK9Sak.søknad) &&
+            verifyK9FormatYtelse(maybeK9Sak.søknad.ytelse)
+        ) {
+            return true;
+        }
+    } catch (error) {
+        const k9FormatError: K9FormatError = {
+            type: 'k9formatError',
+            error: error,
+        };
+        throw k9FormatError;
+    }
+    return false;
+};
+
 const verifyK9FormatBarn = (barn: any): barn is K9FormatBarn => {
     const maybeBarn = barn as K9FormatBarn;
     if (
@@ -197,25 +218,4 @@ const verifyK9FormatYtelse = (ytelse: any): ytelse is K9FormatYtelse => {
         return true;
     }
     throw 'verifyK9FormatYtelse';
-};
-
-export const verifyK9Format = (sak: any): sak is K9Format => {
-    const maybeK9Sak = sak as K9Format;
-    try {
-        if (
-            isObject(maybeK9Sak) &&
-            verifyK9FormatBarn(maybeK9Sak.barn) &&
-            isObject(maybeK9Sak.søknad) &&
-            verifyK9FormatYtelse(maybeK9Sak.søknad.ytelse)
-        ) {
-            return true;
-        }
-    } catch (error) {
-        const k9FormatError: K9FormatError = {
-            type: 'k9formatError',
-            error: error,
-        };
-        throw k9FormatError;
-    }
-    return false;
 };
