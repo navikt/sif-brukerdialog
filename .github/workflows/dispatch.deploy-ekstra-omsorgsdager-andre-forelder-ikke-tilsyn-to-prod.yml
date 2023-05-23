@@ -2,10 +2,6 @@ name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to prod
 
 on:
     workflow_dispatch:
-        secrets:
-            NAIS_DEPLOY_APIKEY:
-                description: Nais deploy APIKEY
-                required: false
 
 jobs:
     run-cypress-test:

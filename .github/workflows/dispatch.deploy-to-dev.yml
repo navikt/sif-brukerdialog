@@ -14,10 +14,6 @@ on:
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - omsorgsdager-aleneomsorg-dialog
                 required: true
-        secrets:
-            NAIS_DEPLOY_APIKEY:
-                description: Nais deploy APIKEY
-                required: false
 
 jobs:
     deploy-to-dev:
