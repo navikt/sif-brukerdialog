@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.16.1
+
+### Patch Changes
+
+-   4d1cb8b: Pakkeoppdateringer
+
 ## 2.16.0
 
 ### Minor Changes
