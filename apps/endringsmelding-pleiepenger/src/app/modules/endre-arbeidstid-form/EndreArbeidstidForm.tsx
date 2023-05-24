@@ -31,7 +31,7 @@ import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endr
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
 
-export type EndreArbeidstidData = {
+type EndreArbeidstidData = {
     perioder: DateRange[];
     endring: ArbeidstidEndring;
 };

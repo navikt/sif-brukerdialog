@@ -96,7 +96,7 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
         <FormikWrapper
             initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues?.arbeidstid)}
             onSubmit={handleSubmit}
-            renderForm={({ setValues, values }) => {
+            renderForm={({ setValues, values, validateForm }) => {
                 const aktiviteterValuesMap = values.arbeidsaktivitet || {};
                 const arbeidsaktiviteter = [
                     ...getArbeidsaktiviteterForUkjenteArbeidsgivere(
@@ -129,6 +129,9 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                                                 values,
                                                 setValues
                                             );
+                                            setTimeout(() => {
+                                                validateForm();
+                                            });
                                         }}
                                         renderAsExpansionCard={arbeidsaktiviteter.length > 1}
                                         expansionCardDefaultOpen={

@@ -10,6 +10,7 @@ import {
     ArbeidstidSøknadsdata,
     ArbeidsukeMap,
     Søknadsdata,
+    ArbeidsaktivitetType,
 } from '@types';
 import { beregnEndretArbeidstidForUke } from '@utils';
 import { ArbeidstidFormValues } from './ArbeidstidForm';
@@ -119,4 +120,18 @@ export const validateUkjentArbeidsaktivitetArbeidstid = (
               },
           }
         : undefined;
+};
+
+export const getUkjentArbeidsaktivitetArbeidstidValidator = (
+    arbeidsaktivitet: Arbeidsaktivitet,
+    endringer?: ArbeidstidEndringMap,
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar
+) => {
+    if (
+        arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker &&
+        arbeidsaktivitet.erUkjentArbeidsforhold === true
+    ) {
+        return () => validateUkjentArbeidsaktivitetArbeidstid(arbeidsaktivitet, endringer, arbeiderIPerioden);
+    }
+    return undefined;
 };
