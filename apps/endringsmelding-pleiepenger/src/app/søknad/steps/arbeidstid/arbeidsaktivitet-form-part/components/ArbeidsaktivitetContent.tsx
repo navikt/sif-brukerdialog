@@ -121,6 +121,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                     <FormikInputGroup
                         legend={arbeidsaktivitet.navn}
                         hideLegend={true}
+                        errorPropagation={false}
                         name={`arbeidsgiver_${arbeidsaktivitet.key}`}
                         validate={getUkjentArbeidsaktivitetArbeidstidValidator(
                             arbeidsaktivitet,
