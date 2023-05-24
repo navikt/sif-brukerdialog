@@ -30,6 +30,7 @@ export interface SelectableListType<T> {
     setSelectedItems: (items: Array<T & ListItem>) => void;
     setShowSelectItemsMessage: (visible: boolean) => void;
     toggleItem: (item: T & ListItem) => void;
+    resetList: () => void;
 }
 
 export const useSelectableList = <T>({ items, onEditItems }: Props<T>): SelectableListType<T> => {
@@ -83,6 +84,12 @@ export const useSelectableList = <T>({ items, onEditItems }: Props<T>): Selectab
         setShowSelectItemsMessage(false);
     };
 
+    const resetList = () => {
+        setSelectedItems([]);
+        setItemsAreSelectable(false);
+        setShowSelectItemsMessage(false);
+    };
+
     const isSelectable = onEditItems !== undefined;
     const selectAllIsIndeterminate = selectedItems.length > 0 && selectedItems.length !== items.length;
     const multipleSelectEnabled = isSelectable && items.length > 1;
@@ -107,5 +114,6 @@ export const useSelectableList = <T>({ items, onEditItems }: Props<T>): Selectab
         editItem,
         editSelectedItems,
         setShowSelectItemsMessage,
+        resetList,
     };
 };

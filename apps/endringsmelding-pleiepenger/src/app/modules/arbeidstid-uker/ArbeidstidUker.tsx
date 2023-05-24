@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { DateRange, getDateRangeText } from '@navikt/sif-common-utils';
 import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
@@ -22,7 +23,7 @@ interface Props {
     };
     periode?: DateRange;
     arbeidstidKolonneTittel?: string;
-    triggerResetValg?: number;
+    triggerResetValgCounter?: number;
     visEndringSomOpprinnelig?: boolean;
     onEndreUker?: (uke: ArbeidstidUkerItem[]) => void;
 }
@@ -34,7 +35,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     },
     periode,
     arbeidstidKolonneTittel,
-    triggerResetValg,
+    triggerResetValgCounter,
     visEndringSomOpprinnelig,
     arbeidsaktivitetKey,
     onEndreUker,
@@ -48,10 +49,9 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     const {
         listState: { itemsAreSelectable, selectedItems, multipleSelectEnabled, showSelectItemsMessage },
         setItemsAreSelectable,
-        setSelectedItems,
+        resetList,
         editItem,
         editSelectedItems,
-        setShowSelectItemsMessage,
     } = selectableList;
 
     const renderAsList = useMediaQuery({ minWidth: 500 }) === false;
@@ -62,10 +62,13 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
         .filter((i) => i.ferie && i.ferie?.dagerMedFerie.length > 0)
         .map((uke) => uke.periode);
 
+    const resetCount = usePrevious(triggerResetValgCounter);
+
     useEffect(() => {
-        setSelectedItems([]);
-        setShowSelectItemsMessage(false);
-    }, [triggerResetValg, setSelectedItems, setShowSelectItemsMessage]);
+        if (resetCount !== triggerResetValgCounter) {
+            resetList();
+        }
+    }, [triggerResetValgCounter, resetCount, resetList]);
 
     const renderEditButton = (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => {
         if (!onEndreUker || !uke.kanEndres) {
