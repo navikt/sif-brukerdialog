@@ -81,7 +81,7 @@
         "@storybook/node-logger": "7.0.14",
         "@storybook/preset-create-react-app": "7.0.14",
         "@storybook/react": "7.0.14",
-        "@storybook/react-webpack5": "7.0.14",
+        "@storybook/react-webpack5": "7.0.15",
         "@storybook/testing-library": "0.1.0",
         "@types/flat": "5.0.2",
         "@types/intl": "1.2.0",
