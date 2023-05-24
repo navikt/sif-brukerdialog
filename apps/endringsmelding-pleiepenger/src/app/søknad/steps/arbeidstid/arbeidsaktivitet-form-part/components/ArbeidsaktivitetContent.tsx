@@ -65,13 +65,11 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
     const renderArbeidstidUker = (periode: PeriodeMedArbeidstid) => {
         return (
             <ArbeidstidUker
-                arbeidsaktivitetKey={arbeidsaktivitet.key}
                 listItems={arbeidsaktivitetUtils.getArbeidstidUkerItemFromArbeidsuker(
                     periode.arbeidsuker,
                     endringer,
                     lovbestemtFerie
                 )}
-                periode={periode}
                 visEndringSomOpprinnelig={erNyArbeidsgiver}
                 triggerResetValgCounter={resetUkerTabellCounter}
                 onEndreUker={(uker: ArbeidstidUkerItem[]) => {

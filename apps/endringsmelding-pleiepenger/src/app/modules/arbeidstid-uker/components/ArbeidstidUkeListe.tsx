@@ -1,4 +1,4 @@
-import { BodyShort, Checkbox, Heading } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
@@ -7,10 +7,10 @@ import { SelectableListType } from '../../../hooks/useSelectableList';
 import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
 import ArbeidstidUkeInfoListe from './ArbeidstidUkeInfoListe';
 import UkeTags from './UkeTags';
+import VelgArbeidsukeItem from './VelgArbeidsukeItem';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
-    arbeidsaktivitetKey: string;
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;
     renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => JSX.Element | undefined;
@@ -18,7 +18,6 @@ interface Props {
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     uker,
-    arbeidsaktivitetKey,
     visEndringSomOpprinnelig,
     selectableList,
     renderEditButton,
@@ -32,7 +31,6 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
         <ol className="arbeidstidUkeListe">
             {uker.map((uke) => {
                 const ukenummer = dayjs(uke.periode.from).isoWeek();
-                const ukePeriodeTekstId = `${arbeidsaktivitetKey}_${uke.isoDateRange}`;
                 const selected = isItemSelected(uke);
 
                 return (
@@ -40,20 +38,14 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                         <div className={`arbeidstidUke${itemsAreSelectable ? ' arbeidstidUke--velgUker' : ''}`}>
                             {itemsAreSelectable && (
                                 <div className="arbeidstidUke__velgUke">
-                                    {uke.kanEndres && uke.kanVelges && (
-                                        <Checkbox
-                                            hideLabel
-                                            checked={selected}
-                                            onChange={() => {
-                                                setItemSelected(uke, selected);
-                                            }}
-                                            aria-labelledby={ukePeriodeTekstId}>
-                                            {' '}
-                                        </Checkbox>
-                                    )}
+                                    <VelgArbeidsukeItem
+                                        uke={uke}
+                                        selected={selected}
+                                        onChange={() => setItemSelected(uke, selected)}
+                                    />
                                 </div>
                             )}
-                            <div className="arbeidstidUke__info" id={ukePeriodeTekstId}>
+                            <div className="arbeidstidUke__info">
                                 <Heading level="3" size="xsmall">
                                     Uke {ukenummer}{' '}
                                 </Heading>

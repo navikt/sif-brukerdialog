@@ -43,7 +43,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, stepConfig, child
             {isDevMode && 1 + 1 === 2 ? (
                 <Block margin="xxl">
                     <Accordion>
-                        <AccordionItem title="Develop info">
+                        <AccordionItem>
                             <AccordionHeader>Dev-info</AccordionHeader>
                             <AccordionContent>
                                 <StateInfo />

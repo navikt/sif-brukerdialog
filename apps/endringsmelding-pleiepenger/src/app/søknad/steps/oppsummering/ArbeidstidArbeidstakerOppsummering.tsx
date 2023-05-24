@@ -35,7 +35,6 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
                     arbeidstaker._arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert)) && (
                 <Block margin={arbeidstaker._erUkjentArbeidsforhold === true ? 'l' : 'none'}>
                     <ArbeidstidUker
-                        arbeidsaktivitetKey={arbeidsgiver.key}
                         listItems={oppsummeringStepUtils.getArbeidstidUkerItems(arbeidstidInfo.perioder)}
                         arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         visEndringSomOpprinnelig={arbeidstaker._erUkjentArbeidsforhold}

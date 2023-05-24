@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import { AddCircle } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
-import { DateRange, getDateRangeText } from '@navikt/sif-common-utils';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
@@ -16,12 +16,10 @@ import EndreUkerHeader from './components/EndreUkerHeader';
 import './arbeidstidUker.scss';
 
 interface Props {
-    arbeidsaktivitetKey: string;
     listItems: ArbeidstidUkerItem[];
     paginering?: {
         antall: number;
     };
-    periode?: DateRange;
     arbeidstidKolonneTittel?: string;
     triggerResetValgCounter?: number;
     visEndringSomOpprinnelig?: boolean;
@@ -33,11 +31,10 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     paginering = {
         antall: 10,
     },
-    periode,
     arbeidstidKolonneTittel,
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
-    arbeidsaktivitetKey,
+
     onEndreUker,
 }) => {
     const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<ArbeidstidUkerItem>(
@@ -97,7 +94,6 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
     const renderEndreUkerHeader = () =>
         multipleSelectEnabled ? (
             <EndreUkerHeader
-                periode={periode}
                 onUkerKanVelgesChange={(checked) => {
                     setItemsAreSelectable(checked);
                 }}
@@ -150,7 +146,6 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
             <div className="arbeidstidUkeListeWrapper">
                 {renderEndreUkerHeader()}
                 <ArbeidstidUkeListe
-                    arbeidsaktivitetKey={arbeidsaktivitetKey}
                     uker={visibleItems}
                     selectableList={selectableList}
                     visEndringSomOpprinnelig={visEndringSomOpprinnelig}
@@ -165,7 +160,6 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
         <>
             {renderEndreUkerHeader()}
             <ArbeidstidUkeTabell
-                arbeidsaktivitetKey={arbeidsaktivitetKey}
                 uker={visibleItems}
                 selectableList={selectableList}
                 visEndringSomOpprinnelig={visEndringSomOpprinnelig}

@@ -1,5 +1,6 @@
 import { Checkbox, Table, Tooltip } from '@navikt/ds-react';
 import React from 'react';
+import AriaText from '@navikt/sif-common-core-ds/lib/atoms/aria-text/AriaText';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import { dateFormatter, getDateRangeText } from '@navikt/sif-common-utils/lib';
@@ -9,10 +10,10 @@ import { ArbeidstidUkerItem } from '../ArbeidstidUkerItem';
 import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
 import UkeInfoIkon from './UkeInfo';
 import UkeTags from './UkeTags';
+import VelgArbeidsukeItem from './VelgArbeidsukeItem';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
-    arbeidsaktivitetKey: string;
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;
     renderCompactTable: boolean;
@@ -42,7 +43,8 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
             <Table.Header>
                 <Table.Row>
                     {itemsAreSelectable && (
-                        <Table.DataCell className="arbeidstidUkeTabell__velgUke">
+                        <Table.HeaderCell className="arbeidstidUkeTabell__velgUke">
+                            <AriaText>Velg uke</AriaText>
                             <Checkbox
                                 checked={selectedItems.length === uker.length}
                                 indeterminate={selectedItems.length > 0 && selectedItems.length !== uker.length}
@@ -55,7 +57,7 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                                 hideLabel>
                                 Velg alle uker i tabellen
                             </Checkbox>
-                        </Table.DataCell>
+                        </Table.HeaderCell>
                     )}
                     {renderCompactTable && <Table.HeaderCell>Uke</Table.HeaderCell>}
                     {!renderCompactTable && (
@@ -88,7 +90,6 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
             <Table.Body>
                 {uker.map((uke) => {
                     const ukenummer = dayjs(uke.periode.from).isoWeek();
-                    const ukePeriodeTekstId = `id-${uke.isoDateRange}`;
                     const selected = isItemSelected(uke);
 
                     return (
@@ -99,26 +100,21 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             data-testid={`uke_${ukenummer}`}>
                             {itemsAreSelectable && (
                                 <Table.DataCell className="arbeidstidUkeTabell__velgUke">
-                                    {uke.kanEndres && uke.kanVelges && (
-                                        <Checkbox
-                                            hideLabel
-                                            checked={selected}
-                                            onChange={() => {
-                                                setItemSelected(uke, selected);
-                                            }}
-                                            aria-labelledby={ukePeriodeTekstId}>
-                                            {' '}
-                                        </Checkbox>
-                                    )}
+                                    <VelgArbeidsukeItem
+                                        uke={uke}
+                                        selected={selected}
+                                        onChange={() => setItemSelected(uke, selected)}
+                                    />
                                 </Table.DataCell>
                             )}
                             {renderCompactTable && (
                                 <Table.DataCell>
-                                    <div id={ukePeriodeTekstId}>
+                                    <div>
                                         Uke {ukenummer}
-                                        <br />
-                                        {dateFormatter.compact(uke.periode.from)} - {` `}
-                                        {dateFormatter.compact(uke.periode.to)}
+                                        <div>
+                                            {dateFormatter.compact(uke.periode.from)} - {` `}
+                                            {dateFormatter.compact(uke.periode.to)}
+                                        </div>
                                     </div>
 
                                     <div>
@@ -142,10 +138,10 @@ const ArbeidstidUkeTabell: React.FunctionComponent<Props> = ({
                             {!renderCompactTable && (
                                 <>
                                     <Table.DataCell data-testid="ukenummer" className="arbeidstidUker__ukenummer">
-                                        {ukenummer}
+                                        <AriaText>Uke</AriaText> {ukenummer}
                                     </Table.DataCell>
                                     <Table.DataCell data-testid="periode" className="arbeidstidUker__periode">
-                                        <div id={ukePeriodeTekstId}>
+                                        <div>
                                             <div className="arbeidsukeTidsrom">
                                                 <span className="arbeidsukeTidsrom__tekst">
                                                     {getDateRangeText(uke.periode)}
