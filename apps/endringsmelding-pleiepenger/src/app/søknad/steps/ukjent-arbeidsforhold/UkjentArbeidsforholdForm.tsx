@@ -115,7 +115,7 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
                                 const arbeidsgiverFieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${arbeidsgiver.key}`;
                                 const arbeidsgiverValues = (values.arbeidsforhold || {})[arbeidsgiver.key];
                                 return (
-                                    <div
+                                    <FormBlock
                                         key={arbeidsgiver.key}
                                         data-testid={`ukjentArbeidsforhold_${arbeidsgiver.key}`}>
                                         <ArbeidsaktivitetBlock
@@ -148,7 +148,7 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
                                                 </FormBlock>
                                             )}
                                         </ArbeidsaktivitetBlock>
-                                    </div>
+                                    </FormBlock>
                                 );
                             })}
                         </Form>

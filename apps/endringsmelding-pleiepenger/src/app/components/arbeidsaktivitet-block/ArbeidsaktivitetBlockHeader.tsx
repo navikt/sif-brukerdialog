@@ -36,7 +36,7 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
                         {navn}
                     </Heading>
                     {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
-                        <BodyLong>
+                        <BodyLong as="div">
                             <div>Organisasjonsnummer: {arbeidsgiver.organisasjonsnummer}</div>
                             {arbeidsgiver.ansattFom && <>Ansatt: {dateFormatter.full(arbeidsgiver.ansattFom)}.</>}
                             {arbeidsgiver.ansattTom && <> Sluttdato: {dateFormatter.full(arbeidsgiver.ansattTom)}</>}
