@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 // import { handleDateRangeValidationError } from '../utils';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-// import { dateToday, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+// import { dateToday, prettifyDate } from '@navikt/sif-common-core-ds/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ISOStringToDate } from '@navikt/sif-common-formik-ds';
 import {
