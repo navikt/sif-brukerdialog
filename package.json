@@ -38,7 +38,7 @@
         "react-dom": "18.2.0",
         "react-scripts": "5.0.1",
         "react-syntax-highlighter": "15.5.0",
-        "storybook": "7.0.15",
+        "storybook": "7.0.17",
         "turbo": "1.9.8",
         "typescript": "5.0.4",
         "webpack": "5.83.1",

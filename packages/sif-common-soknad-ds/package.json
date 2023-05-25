@@ -64,7 +64,7 @@
         "rimraf": "5.0.1",
         "sass": "1.62.1",
         "sass-loader": "13.3.0",
-        "storybook": "7.0.15",
+        "storybook": "7.0.17",
         "uuid": "9.0.0",
         "webpack": "5.83.1"
     },
