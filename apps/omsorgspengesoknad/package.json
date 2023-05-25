@@ -8,7 +8,7 @@
     "private": true,
     "dependencies": {
         "@navikt/ds-css": "3.2.3",
-        "@navikt/ds-icons": "3.2.3",
+        "@navikt/ds-icons": "3.2.4",
         "@navikt/ds-react": "3.2.3",
         "@navikt/ds-tailwind": "3.2.3",
         "@navikt/sif-common-amplitude": "*",
