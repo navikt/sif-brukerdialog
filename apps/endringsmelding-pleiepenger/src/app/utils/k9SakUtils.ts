@@ -1,5 +1,5 @@
 import { DateRange, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
-import { K9Sak } from '@types';
+import { Arbeidsgiver, K9Sak, K9SakArbeidstaker } from '@types';
 
 export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefined => {
     const sakerDateRanges = saker
@@ -8,4 +8,13 @@ export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefi
             return getDateRangeFromDateRanges(sak.ytelse.søknadsperioder);
         });
     return sakerDateRanges.length === 0 ? undefined : getDateRangeFromDateRanges(sakerDateRanges);
+};
+
+export const finnesArbeidsgiverIK9Sak = (
+    arbeidsgiver: Arbeidsgiver,
+    arbeidsgivereISak: K9SakArbeidstaker[]
+): boolean => {
+    return arbeidsgivereISak.some(
+        ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+    );
 };

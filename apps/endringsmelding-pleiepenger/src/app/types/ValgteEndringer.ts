@@ -1,4 +1,4 @@
 export interface ValgteEndringer {
-    arbeidstid?: boolean;
-    lovbestemtFerie?: boolean;
+    arbeidstid: boolean;
+    lovbestemtFerie: boolean;
 }

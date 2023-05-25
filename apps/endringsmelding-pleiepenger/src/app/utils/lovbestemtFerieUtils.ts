@@ -3,13 +3,6 @@ import { FeriedagerMeta, LovbestemtFeriePeriode, LovbestemtFerieSøknadsdata } f
 import { Feriedag, FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { getFeriedagerIPeriode } from './ferieUtils';
 
-export const harFjernetLovbestemtFerie = (ferieSøknad: LovbestemtFerieSøknadsdata | undefined): boolean => {
-    if (!ferieSøknad) {
-        return false;
-    }
-    return ferieSøknad.feriedagerMeta.datoerFjernet.length > 0;
-};
-
 export const getLovbestemtFerieSøknadsdataForPeriode = (
     ferieSøknad: LovbestemtFerieSøknadsdata,
     periode: DateRange

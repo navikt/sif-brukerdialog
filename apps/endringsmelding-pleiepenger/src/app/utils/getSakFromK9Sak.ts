@@ -42,8 +42,8 @@ import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieSt
 import { getDagerFraEnkeltdagMap } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getFeriedagerMapFromPerioder } from './ferieUtils';
+import { finnesArbeidsgiverIK9Sak } from './k9SakUtils';
 import { maskString } from './maskString';
-import { finnesArbeidsgiverIK9Sak } from './tilgangskontroll';
 
 dayjs.extend(isSameOrBefore);
 

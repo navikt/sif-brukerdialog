@@ -29,12 +29,20 @@ describe('getDataBruktTilUtledning', () => {
         expect(result.soknadDialogCommitSha).toEqual(commitSha);
     });
     it('returnerer riktig valgte endringer når kun ferie er valgt', () => {
-        const result = getDataBruktTilUtledningApiData({ lovbestemtFerie: true }, undefined, undefined);
+        const result = getDataBruktTilUtledningApiData(
+            { lovbestemtFerie: true, arbeidstid: false },
+            undefined,
+            undefined
+        );
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeFalsy();
     });
     it('returnerer riktig valgte endringer når kun arbeidstid er valgt', () => {
-        const result = getDataBruktTilUtledningApiData({ arbeidstid: true }, undefined, undefined);
+        const result = getDataBruktTilUtledningApiData(
+            { arbeidstid: true, lovbestemtFerie: false },
+            undefined,
+            undefined
+        );
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
         expect(result.valgteEndringer.lovbestemtFerie).toBeFalsy();
     });

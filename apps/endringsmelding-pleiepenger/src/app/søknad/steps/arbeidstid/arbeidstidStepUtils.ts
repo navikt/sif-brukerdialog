@@ -42,7 +42,14 @@ export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormVa
             aktivitet.arbeiderIPerioden === undefined ||
             aktivitet.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert
         ) {
-            arbeidsaktivitet[key] = values.arbeidsaktivitet[key];
+            const endringer = values.arbeidsaktivitet[key] ? values.arbeidsaktivitet[key].endringer : undefined;
+            /** Legg til søknadsdata kun når det faktisk er endringer */
+            if (endringer && Object.keys(endringer).length > 0) {
+                arbeidsaktivitet[key] = {
+                    endringer,
+                    arbeiderIPerioden: aktivitet.arbeiderIPerioden,
+                };
+            }
         } else {
             /** Ukjent arbeidsforhold hvor en ikke kombinerer */
             arbeidsaktivitet[key] = {

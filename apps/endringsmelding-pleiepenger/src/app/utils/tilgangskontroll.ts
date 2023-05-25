@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
 import { Feature, isFeatureEnabled } from './featureToggleUtils';
-import { getSamletDateRangeForK9Saker } from './k9SakUtils';
+import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
 
@@ -127,15 +127,6 @@ const harArbeidsaktivitetUtenArbeidsgiver = (
     return arbeidsaktiviteter.some(
         ({ organisasjonsnummer }) =>
             arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === organisasjonsnummer) === false
-    );
-};
-
-export const finnesArbeidsgiverIK9Sak = (
-    arbeidsgiver: Arbeidsgiver,
-    arbeidsgivereISak: K9SakArbeidstaker[]
-): boolean => {
-    return arbeidsgivereISak.some(
-        ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
     );
 };
 

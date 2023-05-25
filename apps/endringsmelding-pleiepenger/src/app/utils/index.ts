@@ -16,5 +16,6 @@ export * from './navigationUtils';
 export * from './oppsummeringUtils';
 export * from './parseK9Format';
 export * from './søknadsdataToApiData';
+export * from './søknadsdataUtils';
 export * from './tilgangskontroll';
 export * from './ukjentArbeidsforholdUtils';

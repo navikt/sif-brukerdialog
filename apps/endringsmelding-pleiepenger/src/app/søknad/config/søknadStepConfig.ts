@@ -1,6 +1,6 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { Arbeidsforhold, Søknadsdata, ValgteEndringer } from '@types';
-import { harFjernetLovbestemtFerie } from '@utils';
+import { harEndretArbeidstid, harFjernetLovbestemtFerie } from '@utils';
 import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
 
@@ -23,10 +23,13 @@ export const getSøknadSteps = (
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
 
+    const { lovbestemtFerie, arbeidstid, ukjentArbeidsforhold } = søknadsdata || {};
+
     if (
-        valgteEndringer.arbeidstid ||
-        harFjernetLovbestemtFerie(søknadsdata?.lovbestemtFerie) ||
-        erAnsattIUkjentArbeidsforhold(søknadsdata?.ukjentArbeidsforhold?.arbeidsforhold)
+        valgteEndringer.arbeidstid === true ||
+        harFjernetLovbestemtFerie(lovbestemtFerie) ||
+        harEndretArbeidstid(arbeidstid) ||
+        erAnsattIUkjentArbeidsforhold(ukjentArbeidsforhold?.arbeidsforhold)
     ) {
         steps.push(StepId.ARBEIDSTID);
     }

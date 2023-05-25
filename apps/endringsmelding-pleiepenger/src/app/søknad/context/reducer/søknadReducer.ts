@@ -123,7 +123,10 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
-                    valgteEndringer: {},
+                    valgteEndringer: {
+                        arbeidstid: false,
+                        lovbestemtFerie: false,
+                    },
                     endringsmeldingSendt: true,
                 };
             case SøknadContextActionKeys.RESET_SØKNAD:
@@ -132,7 +135,10 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
                     endringsmeldingSendt: false,
-                    valgteEndringer: {},
+                    valgteEndringer: {
+                        arbeidstid: false,
+                        lovbestemtFerie: false,
+                    },
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
             case SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA:
