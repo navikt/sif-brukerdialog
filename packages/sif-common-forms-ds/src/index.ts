@@ -3,5 +3,7 @@ export * from './forms/ferieuttak';
 export * from './forms/fosterbarn';
 export * from './forms/fravær';
 export * from './forms/tidsperiode';
+export * from './forms/opptjening-utland';
 export * from './forms/utenlandsopphold';
+export * from './forms/utenlandsk-næring';
 export * from './forms/virksomhet';
