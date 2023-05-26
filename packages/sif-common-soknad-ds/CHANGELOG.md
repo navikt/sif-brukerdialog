@@ -1,5 +1,16 @@
 # @navikt/sif-common-soknad-ds
 
+## 7.4.2
+
+### Patch Changes
+
+-   bd6fae3: Pakkeoppdateringer
+-   Updated dependencies [bd6fae3]
+    -   @navikt/sif-common-formik-ds@0.20.2
+    -   @navikt/appstatus-react-ds@2.7.2
+    -   @navikt/sif-common-sentry@0.16.2
+    -   @navikt/sif-common-utils@3.34.2
+
 ## 7.4.1
 
 ### Patch Changes
