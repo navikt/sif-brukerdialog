@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 6.5.0
+
+### Minor Changes
+
+-   298c10e: Utvide med nye forms fra sif-common-forms
+
 ## 6.4.1
 
 ### Patch Changes
