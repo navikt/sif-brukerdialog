@@ -16,7 +16,7 @@
         "@sentry/types": "7.53.1"
     },
     "devDependencies": {
-        "@types/node": "20.2.4",
+        "@types/node": "20.2.5",
         "axios": "1.4.0",
         "config": "*",
         "copyfiles": "2.4.1",
