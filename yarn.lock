@@ -4020,7 +4020,7 @@ __metadata:
     jose: 4.14.4
     jsdom: 22.0.0
     less: 4.1.3
-    less-loader: 11.1.0
+    less-loader: 11.1.1
     mini-css-extract-plugin: 2.7.6
     mustache-express: 1.3.2
     npm-run-all: 4.1.5
@@ -12298,7 +12298,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:2.6.9, debug@npm:^2.2.0, debug@npm:^2.3.3, debug@npm:^2.6.0, debug@npm:^2.6.9":
+"deasync@npm:^0.1.9":
+  version: 0.1.28
+  resolution: "deasync@npm:0.1.28"
+  dependencies:
+    bindings: ^1.5.0
+    node-addon-api: ^1.7.1
+  checksum: e0c1ef427875c897e0d903a08410df1d0a3dfd0d2a0a1e43fb6c2824dfbc504b810bd08a0d30653117259316e1aa65409c96dbed40101c934f75bac7499e1265
+  languageName: node
+  linkType: hard
+
+"debug@npm:2.6.9, debug@npm:^2.2.0, debug@npm:^2.3.3, debug@npm:^2.6.0, debug@npm:^2.6.1, debug@npm:^2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
   dependencies:
@@ -18722,15 +18732,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"less-loader@npm:11.1.0":
-  version: 11.1.0
-  resolution: "less-loader@npm:11.1.0"
+"less-loader@npm:11.1.1":
+  version: 11.1.1
+  resolution: "less-loader@npm:11.1.1"
   dependencies:
-    klona: ^2.0.4
+    klona: ^2.0.6
+    v: ^0.3.0
   peerDependencies:
     less: ^3.5.0 || ^4.0.0
     webpack: ^5.0.0
-  checksum: 041216e0a6d95e24c9724f470719db3eb70b3888c45b1a1e9cd55edabe8ae79709522cd6c6713b466b3e9948544074e2a5b2be50ac3ced5ff41dfa9675f3b182
+  checksum: f080a8377f57d3ac369e1ff3b56389f78e4c0e666540a418bd5e39e0ed9ae82c6404e3ca71e8a32051d9551579ccc60aab18088dcf9ddb138f7c2ed81d9daf0e
   languageName: node
   linkType: hard
 
@@ -20091,6 +20102,15 @@ __metadata:
   version: 3.1.1
   resolution: "node-abort-controller@npm:3.1.1"
   checksum: 2c340916af9710328b11c0828223fc65ba320e0d082214a211311bf64c2891028e42ef276b9799188c4ada9e6e1c54cf7a0b7c05dd9d59fcdc8cd633304c8047
+  languageName: node
+  linkType: hard
+
+"node-addon-api@npm:^1.7.1":
+  version: 1.7.2
+  resolution: "node-addon-api@npm:1.7.2"
+  dependencies:
+    node-gyp: latest
+  checksum: 938922b3d7cb34ee137c5ec39df6289a3965e8cab9061c6848863324c21a778a81ae3bc955554c56b6b86962f6ccab2043dd5fa3f33deab633636bd28039333f
   languageName: node
   linkType: hard
 
@@ -22846,7 +22866,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"randombytes@npm:^2.0.0, randombytes@npm:^2.0.1, randombytes@npm:^2.0.5, randombytes@npm:^2.1.0":
+"randombytes@npm:^2.0.0, randombytes@npm:^2.0.1, randombytes@npm:^2.0.3, randombytes@npm:^2.0.5, randombytes@npm:^2.1.0":
   version: 2.1.0
   resolution: "randombytes@npm:2.1.0"
   dependencies:
@@ -23402,7 +23422,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:1 || 2, readable-stream@npm:^2.0.0, readable-stream@npm:^2.0.1, readable-stream@npm:^2.0.2, readable-stream@npm:^2.1.5, readable-stream@npm:^2.2.2, readable-stream@npm:^2.3.3, readable-stream@npm:^2.3.6, readable-stream@npm:~2.3.6":
+"readable-stream@npm:1 || 2, readable-stream@npm:^2.0.0, readable-stream@npm:^2.0.1, readable-stream@npm:^2.0.2, readable-stream@npm:^2.0.5, readable-stream@npm:^2.1.5, readable-stream@npm:^2.2.2, readable-stream@npm:^2.3.3, readable-stream@npm:^2.3.6, readable-stream@npm:~2.3.6":
   version: 2.3.8
   resolution: "readable-stream@npm:2.3.8"
   dependencies:
@@ -24617,6 +24637,20 @@ __metadata:
   dependencies:
     semver: ~7.0.0
   checksum: 1012e9b6c504e559a948078177b3eedbb9d7e4d15878e2bda56314d08db609ca5da485be4ac9f838759faae8057935ee0246fcdf63f1233c86bd9fecb2a5544b
+  languageName: node
+  linkType: hard
+
+"simple-websocket@npm:^5.0.0":
+  version: 5.1.1
+  resolution: "simple-websocket@npm:5.1.1"
+  dependencies:
+    debug: ^3.1.0
+    inherits: ^2.0.1
+    randombytes: ^2.0.3
+    readable-stream: ^2.0.5
+    safe-buffer: ^5.0.1
+    ws: ^3.3.1
+  checksum: 846ba5a4e8419a4b3186e8618ed55969d498d494c8c78002a7f6adfef51edfb1f673380ad28cd92d59c8a70d2247395ad8ad1117c1597839500e6c5efd1c3f30
   languageName: node
   linkType: hard
 
@@ -26661,6 +26695,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ultron@npm:~1.1.0":
+  version: 1.1.1
+  resolution: "ultron@npm:1.1.1"
+  checksum: aa7b5ebb1b6e33287b9d873c6756c4b7aa6d1b23d7162ff25b0c0ce5c3c7e26e2ab141a5dc6e96c10ac4d00a372e682ce298d784f06ffcd520936590b4bc0653
+  languageName: node
+  linkType: hard
+
 "unbox-primitive@npm:^1.0.2":
   version: 1.0.2
   resolution: "unbox-primitive@npm:1.0.2"
@@ -27051,6 +27092,20 @@ __metadata:
     "@types/istanbul-lib-coverage": ^2.0.1
     convert-source-map: ^1.6.0
   checksum: 2069d59ee46cf8d83b4adfd8a5c1a90834caffa9f675e4360f1157ffc8578ef0f763c8f32d128334424159bb6b01f3876acd39cd13297b2769405a9da241f8d1
+  languageName: node
+  linkType: hard
+
+"v@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "v@npm:0.3.0"
+  dependencies:
+    deasync: ^0.1.9
+    debug: ^2.6.1
+    simple-websocket: ^5.0.0
+  dependenciesMeta:
+    deasync:
+      optional: true
+  checksum: 55a52287b7d417f348516d50e2103f3ef46db371e736da94d55ae2fdc61bdeb3f58eea689ffa69aebe2e93a1abd7a9424eabc552f6060884e434b872229b2045
   languageName: node
   linkType: hard
 
@@ -28037,6 +28092,17 @@ __metadata:
     imurmurhash: ^0.1.4
     signal-exit: ^3.0.7
   checksum: 5da60bd4eeeb935eec97ead3df6e28e5917a6bd317478e4a85a5285e8480b8ed96032bbcc6ecd07b236142a24f3ca871c924ec4a6575e623ec1b11bf8c1c253c
+  languageName: node
+  linkType: hard
+
+"ws@npm:^3.3.1":
+  version: 3.3.3
+  resolution: "ws@npm:3.3.3"
+  dependencies:
+    async-limiter: ~1.0.0
+    safe-buffer: ~5.1.0
+    ultron: ~1.1.0
+  checksum: 20b7bf34bb88715b9e2d435b76088d770e063641e7ee697b07543815fabdb752335261c507a973955e823229d0af8549f39cc669825e5c8404aa0422615c81d9
   languageName: node
   linkType: hard
 
