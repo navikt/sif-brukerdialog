@@ -25,14 +25,15 @@ jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
 
 describe('getDataBruktTilUtledning', () => {
     it('returnerer commitSha', () => {
-        const result = getDataBruktTilUtledningApiData(valgteEndringer, undefined, undefined);
+        const result = getDataBruktTilUtledningApiData(valgteEndringer, undefined, undefined, []);
         expect(result.soknadDialogCommitSha).toEqual(commitSha);
     });
     it('returnerer riktig valgte endringer når kun ferie er valgt', () => {
         const result = getDataBruktTilUtledningApiData(
             { lovbestemtFerie: true, arbeidstid: false },
             undefined,
-            undefined
+            undefined,
+            []
         );
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeFalsy();
@@ -41,7 +42,8 @@ describe('getDataBruktTilUtledning', () => {
         const result = getDataBruktTilUtledningApiData(
             { arbeidstid: true, lovbestemtFerie: false },
             undefined,
-            undefined
+            undefined,
+            []
         );
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
         expect(result.valgteEndringer.lovbestemtFerie).toBeFalsy();
@@ -50,7 +52,8 @@ describe('getDataBruktTilUtledning', () => {
         const result = getDataBruktTilUtledningApiData(
             { arbeidstid: true, lovbestemtFerie: true },
             undefined,
-            undefined
+            undefined,
+            []
         );
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();

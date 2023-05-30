@@ -56,7 +56,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, valgteEndringer);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, valgteEndringer, arbeidsgivere);
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;
@@ -65,7 +65,7 @@ const OppsummeringStep = () => {
     const {
         arbeidstid,
         lovbestemtFerie,
-        dataBruktTilUtledning: { ukjentArbeidsforhold },
+        dataBruktTilUtledning: { ukjenteArbeidsforhold },
     } = apiData.ytelse;
 
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
@@ -87,11 +87,11 @@ const OppsummeringStep = () => {
                 </Ingress>
             </SifGuidePanel>
 
-            {sak.harUkjentArbeidsforhold && ukjentArbeidsforhold && (
+            {sak.harUkjentArbeidsforhold && ukjenteArbeidsforhold && (
                 <Block margin="xxl">
                     <SummarySection header="Ukjent arbeidsforhold">
                         {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
-                            const arbeidsforhold = ukjentArbeidsforhold.find(
+                            const arbeidsforhold = ukjenteArbeidsforhold.find(
                                 (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer
                             );
 

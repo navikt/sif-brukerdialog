@@ -3,6 +3,7 @@ import { durationToISODuration } from '@navikt/sif-common-utils/lib';
 import {
     ArbeiderIPeriodenSvar,
     Arbeidsforhold,
+    Arbeidsgiver,
     ArbeidstidSøknadsdata,
     DataBruktTilUtledningApiData,
     UkjentArbeidsforholdApiData,
@@ -14,15 +15,20 @@ import { getOrgNummerFromArbeidsgiverKey } from '../arbeidsgiverUtils';
 export const getDataBruktTilUtledningApiData = (
     valgteEndringer: ValgteEndringer,
     ukjentArbeidsforhold: UkjentArbeidsforholdSøknadsdata | undefined,
-    arbeidstid: ArbeidstidSøknadsdata | undefined
+    arbeidstid: ArbeidstidSøknadsdata | undefined,
+    arbeidsgivere: Arbeidsgiver[]
 ): DataBruktTilUtledningApiData => {
     return {
         soknadDialogCommitSha: getCommitShaFromEnv() || '',
         valgteEndringer,
-        ukjentArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
+        ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
             ukjentArbeidsforhold?.arbeidsforhold,
             arbeidstid
         ),
+        arbeidsgivere: arbeidsgivere.map((a) => ({
+            organisasjonsnummer: a.organisasjonsnummer,
+            navn: a.navn,
+        })),
     };
 };
 

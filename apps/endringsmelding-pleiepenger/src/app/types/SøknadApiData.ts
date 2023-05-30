@@ -41,10 +41,15 @@ interface BarnApiData {
     norskIdentitetsnummer: string;
 }
 
+interface ArbeidsgiverMedNavn {
+    organisasjonsnummer: string;
+    navn: string;
+}
 export interface DataBruktTilUtledningApiData {
     soknadDialogCommitSha: string;
     valgteEndringer: ValgteEndringer;
     ukjenteArbeidsforhold?: UkjentArbeidsforholdApiData[];
+    arbeidsgivere: ArbeidsgiverMedNavn[];
 }
 
 interface YtelseApiData {
