@@ -15,6 +15,7 @@ export type ArbeidstidPeriodeApiDataMap = ISODateRangeMap<ArbeidstidPeriodeApiDa
 
 export interface ArbeidstakerApiData {
     organisasjonsnummer: string;
+    organisasjonsnavn: string;
     arbeidstidInfo: {
         perioder: ArbeidstidPeriodeApiDataMap;
     };
@@ -41,15 +42,10 @@ interface BarnApiData {
     norskIdentitetsnummer: string;
 }
 
-interface ArbeidsgiverMedNavn {
-    organisasjonsnummer: string;
-    navn: string;
-}
 export interface DataBruktTilUtledningApiData {
     soknadDialogCommitSha: string;
     valgteEndringer: ValgteEndringer;
     ukjenteArbeidsforhold?: UkjentArbeidsforholdApiData[];
-    arbeidsgivere: ArbeidsgiverMedNavn[];
 }
 
 interface YtelseApiData {
@@ -62,6 +58,7 @@ interface YtelseApiData {
 
 interface UkjentArbeidsforholdApiDataBase {
     organisasjonsnummer: string;
+    organisasjonsnavn: string;
     erAnsatt: boolean;
 }
 

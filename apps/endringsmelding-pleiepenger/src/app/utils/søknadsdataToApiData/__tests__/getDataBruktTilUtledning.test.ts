@@ -1,6 +1,8 @@
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import {
     ArbeiderIPeriodenSvar,
     ArbeidsforholdAktivt,
+    Arbeidsgiver,
     ArbeidstidSøknadsdata,
     TimerEllerProsent,
     ValgteEndringer,
@@ -61,6 +63,14 @@ describe('getDataBruktTilUtledning', () => {
 });
 
 describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
+    const arbeidsgivere: Arbeidsgiver[] = [
+        {
+            organisasjonsnummer: '123',
+            key: 'a_123',
+            navn: 'Arbeidsgibvernavn',
+            ansattFom: ISODateToDate('2001-01-01'),
+        },
+    ];
     const arbeidstid: ArbeidstidSøknadsdata = {
         arbeidsaktivitet: {
             a_123: {
@@ -74,14 +84,25 @@ describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
         },
     };
     it('returnerer tomt array hvis ukjent arbeidsforhold er undefined', () => {
-        expect(getUkjentArbeidsforholdApiDataFromSøknadsdata(undefined, undefined)).toHaveLength(0);
-        expect(getUkjentArbeidsforholdApiDataFromSøknadsdata(undefined, arbeidstid)).toHaveLength(0);
+        expect(getUkjentArbeidsforholdApiDataFromSøknadsdata(undefined, undefined, arbeidsgivere)).toHaveLength(0);
+        expect(getUkjentArbeidsforholdApiDataFromSøknadsdata(undefined, arbeidstid, arbeidsgivere)).toHaveLength(0);
     });
 });
 
 describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
+    const arbeidsgiver: Arbeidsgiver = {
+        organisasjonsnummer: '123',
+        key: 'a_123',
+        navn: 'Arbeidsgibvernavn',
+        ansattFom: ISODateToDate('2001-01-01'),
+    };
+
     it('returnerer riktig hvis en ikke er ansatt i arbeidsforholdet', () => {
-        const result = mapArbeidsforholdToArbeidsforholdApiData({ arbeidsgiverKey: '123', erAnsatt: false }, undefined);
+        const result = mapArbeidsforholdToArbeidsforholdApiData(
+            { arbeidsgiverKey: '123', erAnsatt: false },
+            arbeidsgiver,
+            undefined
+        );
         expect(result.erAnsatt).toBeFalsy();
         expect(result.organisasjonsnummer).toEqual('123');
     });
@@ -93,7 +114,11 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             normalarbeidstid: { timerPerUke: { hours: '40', minutes: '5' } },
         };
         it('returnerer riktig når bruker jobber som normalt i perioden', () => {
-            const result = mapArbeidsforholdToArbeidsforholdApiData(arbeidsforhold, ArbeiderIPeriodenSvar.somVanlig);
+            const result = mapArbeidsforholdToArbeidsforholdApiData(
+                arbeidsforhold,
+                arbeidsgiver,
+                ArbeiderIPeriodenSvar.somVanlig
+            );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
             if (result.erAnsatt) {
@@ -102,7 +127,11 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             }
         });
         it('returnerer riktig når en ikke jobber i perioden', () => {
-            const result = mapArbeidsforholdToArbeidsforholdApiData(arbeidsforhold, ArbeiderIPeriodenSvar.heltFravær);
+            const result = mapArbeidsforholdToArbeidsforholdApiData(
+                arbeidsforhold,
+                arbeidsgiver,
+                ArbeiderIPeriodenSvar.heltFravær
+            );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
             if (result.erAnsatt) {
@@ -111,7 +140,11 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             }
         });
         it('returnerer riktig når en kombinerer jobb og pleiepenger i perioden', () => {
-            const result = mapArbeidsforholdToArbeidsforholdApiData(arbeidsforhold, ArbeiderIPeriodenSvar.redusert);
+            const result = mapArbeidsforholdToArbeidsforholdApiData(
+                arbeidsforhold,
+                arbeidsgiver,
+                ArbeiderIPeriodenSvar.redusert
+            );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
             if (result.erAnsatt) {

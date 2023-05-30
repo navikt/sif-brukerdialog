@@ -14,6 +14,7 @@ describe('apiDataUtils', () => {
                             perioder: {},
                         },
                         organisasjonsnummer: '456',
+                        organisasjonsnavn: '123',
                     },
                 ])
             ).toBeFalsy();
@@ -33,6 +34,7 @@ describe('apiDataUtils', () => {
                             },
                         },
                         organisasjonsnummer: '123',
+                        organisasjonsnavn: '123',
                     },
                 ])
             ).toBeTruthy();

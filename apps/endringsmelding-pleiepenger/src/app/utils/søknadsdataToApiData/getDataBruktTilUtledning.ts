@@ -23,17 +23,15 @@ export const getDataBruktTilUtledningApiData = (
         valgteEndringer,
         ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
             ukjentArbeidsforhold?.arbeidsforhold,
-            arbeidstid
+            arbeidstid,
+            arbeidsgivere
         ),
-        arbeidsgivere: arbeidsgivere.map((a) => ({
-            organisasjonsnummer: a.organisasjonsnummer,
-            navn: a.navn,
-        })),
     };
 };
 
 export const mapArbeidsforholdToArbeidsforholdApiData = (
     arbeidsforhold: Arbeidsforhold,
+    arbeidsgiver: Arbeidsgiver,
     arbeiderIPerioden?: ArbeiderIPeriodenSvar
 ): UkjentArbeidsforholdApiData => {
     const organisasjonsnummer = getOrgNummerFromArbeidsgiverKey(arbeidsforhold.arbeidsgiverKey);
@@ -43,6 +41,7 @@ export const mapArbeidsforholdToArbeidsforholdApiData = (
         }
         return {
             organisasjonsnummer,
+            organisasjonsnavn: arbeidsgiver.navn,
             erAnsatt: true,
             arbeiderIPerioden,
             normalarbeidstid: {
@@ -52,13 +51,15 @@ export const mapArbeidsforholdToArbeidsforholdApiData = (
     }
     return {
         organisasjonsnummer,
+        organisasjonsnavn: arbeidsgiver.navn,
         erAnsatt: false,
     };
 };
 
 export const getUkjentArbeidsforholdApiDataFromSøknadsdata = (
     ukjenteArbeidsforhold: Arbeidsforhold[] | undefined,
-    arbeidstid: ArbeidstidSøknadsdata | undefined
+    arbeidstid: ArbeidstidSøknadsdata | undefined,
+    arbeidsgivere: Arbeidsgiver[]
 ): UkjentArbeidsforholdApiData[] => {
     if (ukjenteArbeidsforhold === undefined) {
         return [];
@@ -67,6 +68,10 @@ export const getUkjentArbeidsforholdApiDataFromSøknadsdata = (
         const arbeiderIPerioden = arbeidstid
             ? arbeidstid.arbeidsaktivitet[arbeidsforhold.arbeidsgiverKey]?.arbeiderIPerioden
             : undefined;
-        return mapArbeidsforholdToArbeidsforholdApiData(arbeidsforhold, arbeiderIPerioden);
+        const arbeidsgiver = arbeidsgivere.find((a) => a.key === arbeidsforhold.arbeidsgiverKey);
+        if (!arbeidsgiver) {
+            throw 'Arbeidsgiver ikke funnet for arbeidsforhold';
+        }
+        return mapArbeidsforholdToArbeidsforholdApiData(arbeidsforhold, arbeidsgiver, arbeiderIPerioden);
     });
 };

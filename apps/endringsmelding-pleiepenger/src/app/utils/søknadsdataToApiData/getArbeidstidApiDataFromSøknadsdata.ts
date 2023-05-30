@@ -112,11 +112,12 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
         if (endringer) {
             const {
-                arbeidsgiver: { organisasjonsnummer },
+                arbeidsgiver: { organisasjonsnummer, navn },
             } = aktivitet;
             const arbeidstidInfo = getArbeidsaktivitetArbeidstidInfo(aktivitet, endringer);
             if (arbeidstidInfo) {
                 arbeidstakerList.push({
+                    organisasjonsnavn: navn,
                     organisasjonsnummer,
                     arbeidstidInfo,
                     _erUkjentArbeidsforhold: false,
@@ -192,6 +193,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 _arbeiderIPerioden: arbeiderIPerioden,
                 arbeidstidInfo,
                 organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
+                organisasjonsnavn: arbeidsgiver.navn,
             });
         });
     }
