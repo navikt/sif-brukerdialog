@@ -44,7 +44,7 @@ interface BarnApiData {
 export interface DataBruktTilUtledningApiData {
     soknadDialogCommitSha: string;
     valgteEndringer: ValgteEndringer;
-    ukjentArbeidsforhold?: UkjentArbeidsforholdApiData[];
+    ukjenteArbeidsforhold?: UkjentArbeidsforholdApiData[];
 }
 
 interface YtelseApiData {
