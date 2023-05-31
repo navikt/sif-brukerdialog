@@ -112,6 +112,8 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                     <Form.Form
                         includeButtons={true}
                         onCancel={onCancel}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}
                         formErrorHandler={getFormErrorHandler(intl, 'utenlandskNæringForm')}>
                         <Block padBottom="l">
                             <Heading level="1" size="large">

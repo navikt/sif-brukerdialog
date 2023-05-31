@@ -102,6 +102,8 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                     <Form.Form
                         includeButtons={true}
                         onCancel={onCancel}
+                        submitButtonLabel="Ok"
+                        showButtonArrows={false}
                         formErrorHandler={getFormErrorHandler(intl, 'opptjeningUtlandForm')}>
                         <Heading level="1" size="large">
                             <FormattedMessage id="opptjeningUtland.form.tittel" />
