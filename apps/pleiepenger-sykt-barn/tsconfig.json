@@ -1,0 +1,13 @@
+{
+    "extends": "../../packages/config/tsconfig-apps.json",
+    "compilerOptions": {
+        "outDir": "build/dist",
+        "paths": {
+            "app": ["./src/app"],
+            "app/*": ["./src/app/*"]
+        },
+        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
+    },
+    "exclude": ["node_modules", "src/build", "**.js", "dist"],
+    "include": ["./src/app/**/*", "./src/mocks/**/*"]
+}

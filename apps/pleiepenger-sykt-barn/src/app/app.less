@@ -1,0 +1,73 @@
+html {
+    font-size: 112.5%;
+}
+
+.omsorgstilbudKalender {
+    &__mnd {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.55);
+        &:first-child {
+            padding-top: 0;
+            margin-top: 0;
+            border-top: none;
+        }
+    }
+}
+
+.infoMessageContent {
+    p:first-child {
+        margin-top: 0;
+    }
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.formSection {
+    margin-bottom: 3rem;
+}
+
+.formikInput__suffix--text {
+    white-space: initial;
+}
+
+@media screen and (max-width: 590px) {
+    .step__backLink {
+        margin-bottom: 0;
+    }
+    .stegindikator {
+        display: none;
+    }
+}
+
+.modal.calendarDialog {
+    width: 100%;
+    max-width: 45rem;
+    .dialogFormWrapper {
+        width: 100%;
+    }
+}
+
+.m-caps {
+    text-transform: capitalize;
+}
+
+.inputPanelGruppe .skjemagruppe__legend + .skjemagruppe__description {
+    margin-top: -0.5rem;
+}
+
+.arbeidstidUkeInput {
+    margin-bottom: 0 !important;
+}
+
+.skjemagruppe.radiogruppe .skjemaelement.siste-element {
+    margin-bottom: 0;
+}
+
+.infoList {
+    margin-top: 0.5rem;
+    li  {
+        margin-bottom: 0.5rem;
+    }
+}
