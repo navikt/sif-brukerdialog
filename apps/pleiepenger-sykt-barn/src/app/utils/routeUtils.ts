@@ -1,16 +1,17 @@
 import RouteConfig from '../config/routeConfig';
-import { getSøknadStepConfig, StepID } from '../søknad/søknadStepsConfig';
+import { getSøknadStepConfig } from '../søknad/søknadStepsConfig';
+import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import {
+    arbeidIPeriodeStepIsAvailable,
     arbeidssituasjonStepAvailable,
     legeerklæringStepAvailable,
     medlemskapStepAvailable,
+    nattevåkOgBeredskapStepAvailable,
+    omsorgstilbudStepAvailable,
     opplysningerOmBarnetStepAvailable,
     opplysningerOmTidsromStepAvailable,
     oppsummeringStepAvailable,
-    omsorgstilbudStepAvailable,
-    nattevåkOgBeredskapStepAvailable,
-    arbeidIPeriodeStepIsAvailable,
 } from './stepUtils';
 
 export const getNextStepRoute = (stepId: StepID, formData?: SøknadFormValues): string | undefined => {

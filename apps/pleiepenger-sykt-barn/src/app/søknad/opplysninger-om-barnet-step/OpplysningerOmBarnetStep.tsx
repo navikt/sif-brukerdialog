@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-import { StepConfigProps, StepID } from '../søknadStepsConfig';
+import { StepConfigProps } from '../søknadStepsConfig';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { SøknadFormValues, SøknadFormField } from '../../types/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
@@ -12,6 +12,7 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { StepID } from '../../types/StepID';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
     return barn && barn.length > 0;

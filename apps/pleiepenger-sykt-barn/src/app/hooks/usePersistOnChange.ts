@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StepID } from '../søknad/søknadStepsConfig';
+import { StepID } from '../types/StepID';
 import { useHasChanged } from './useHasChanged';
 import usePersistSoknad from './usePersistSoknad';
 

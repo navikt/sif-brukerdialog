@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { axiosConfigPsb } from '../../config/axiosConfig';
-import { StepID } from '../../søknad/søknadStepsConfig';
 import { ResourceType } from '../../types/ResourceType';
 import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 import {
@@ -13,6 +12,7 @@ import {
     sendApplication,
     uploadFile,
 } from '../api';
+import { StepID } from '../../types/StepID';
 
 jest.mock('../../utils/envUtils.ts', () => {
     return { getEnvironmentVariable: () => 'mockedApiUrl', getEnvVariableOrDefault: () => 'mockedApiUrl' };

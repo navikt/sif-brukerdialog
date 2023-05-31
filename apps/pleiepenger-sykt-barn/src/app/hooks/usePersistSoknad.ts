@@ -4,11 +4,11 @@ import { AxiosError } from 'axios';
 import { useFormikContext } from 'formik';
 import { persist } from '../api/api';
 import { useSøknadsdataContext } from '../søknad/SøknadsdataContext';
-import { StepID } from '../søknad/søknadStepsConfig';
 import { ImportertSøknadMetadata } from '../types/ImportertSøknad';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { navigateToErrorPage, relocateToLoginPage } from '../utils/navigationUtils';
 import { useNavigate } from 'react-router-dom';
+import { StepID } from '../types/StepID';
 
 interface PersistSoknadProps {
     stepID?: StepID;

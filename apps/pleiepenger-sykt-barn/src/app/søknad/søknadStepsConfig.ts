@@ -1,18 +1,7 @@
+import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { getSøknadsperiodeFromFormData } from '../utils/formDataUtils';
 import { skalBrukerSvareArbeidstid, skalBrukerSvarePåBeredskapOgNattevåk } from '../utils/stepUtils';
-
-export enum StepID {
-    'OPPLYSNINGER_OM_BARNET' = 'opplysninger-om-barnet',
-    'ARBEIDSSITUASJON' = 'arbeidssituasjon',
-    'ARBEIDSTID' = 'arbeidstid',
-    'OMSORGSTILBUD' = 'omsorgstilbud',
-    'NATTEVÅK_OG_BEREDSKAP' = 'nattevåkOgBeredskap',
-    'TIDSROM' = 'tidsrom',
-    'MEDLEMSKAP' = 'medlemskap',
-    'LEGEERKLÆRING' = 'legeerklaering',
-    'SUMMARY' = 'oppsummering',
-}
 
 export interface StepConfigItemTexts {
     pageTitle: string;

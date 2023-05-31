@@ -1,9 +1,10 @@
 import { NavigateFunction } from 'react-router';
 import RouteConfig from '../config/routeConfig';
 import routeConfig, { getRouteUrl } from '../config/routeConfig';
-import { StepID } from '../søknad/søknadStepsConfig';
+
 // import appSentryLogger from './appSentryLogger';
 import { getEnvironmentVariable } from './envUtils';
+import { StepID } from '../types/StepID';
 
 export const userIsCurrentlyOnErrorPage = () => {
     return window.location.pathname === getRouteUrl(routeConfig.ERROR_PAGE_ROUTE);

@@ -2,7 +2,6 @@ import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/
 import axios, { AxiosResponse } from 'axios';
 import { axiosConfigPsb, axiosConfigInnsyn } from '../config/axiosConfig';
 import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
-import { StepID } from '../søknad/søknadStepsConfig';
 import { ResourceType, ResourceTypeInnsyn } from '../types/ResourceType';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/SøknadFormValues';
@@ -10,6 +9,7 @@ import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadT
 import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';
 import { ImportertSøknadMetadata } from '../types/ImportertSøknad';
 import { Feature, isFeatureEnabled } from '../utils/featureToggleUtils';
+import { StepID } from '../types/StepID';
 
 export enum ApiEndpointInnsyn {
     'forrigeSøknad' = 'soknad/psb/siste',

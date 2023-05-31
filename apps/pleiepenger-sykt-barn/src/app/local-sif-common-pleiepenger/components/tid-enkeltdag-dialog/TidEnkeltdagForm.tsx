@@ -174,6 +174,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                 includeValidationSummary={false}
                                 includeButtons={true}
                                 submitButtonLabel="Lagre"
+                                showButtonArrows={false}
                                 cancelButtonLabel="Avbryt">
                                 <FormComponents.TimeInput
                                     name={FormFields.tid}

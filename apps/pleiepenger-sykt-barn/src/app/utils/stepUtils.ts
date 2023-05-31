@@ -1,8 +1,10 @@
 import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { getSøknadStepConfig, StepConfigInterface, StepConfigItemTexts, StepID } from '../søknad/søknadStepsConfig';
+import { getSøknadStepConfig, StepConfigInterface, StepConfigItemTexts } from '../søknad/søknadStepsConfig';
+import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
+import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
 import {
     arbeidssituasjonStepIsValid,
     legeerklæringStepIsValid,
@@ -13,9 +15,8 @@ import {
 } from '../validation/stepValidations';
 import { erAnsattISøknadsperiode } from './ansattUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
-import { erSNISøknadsperiode } from './selvstendigUtils';
 import { isAvailable } from './routeUtils';
-import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
+import { erSNISøknadsperiode } from './selvstendigUtils';
 
 export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepConfigInterface): StepConfigItemTexts => {
     const conf = stepConfig[stepId];

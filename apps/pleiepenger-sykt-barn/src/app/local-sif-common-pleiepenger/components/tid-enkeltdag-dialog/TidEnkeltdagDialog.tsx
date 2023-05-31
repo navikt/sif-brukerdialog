@@ -29,8 +29,8 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
                 <Heading level="1" size="medium" style={{ paddingRight: '3rem', minWidth: '14rem' }}>
                     {`${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`}
                 </Heading>
+                <TidEnkeltdagForm {...formProps} />
             </ModalContent>
-            <TidEnkeltdagForm {...formProps} />
         </Modal>
     ) : null;
 };

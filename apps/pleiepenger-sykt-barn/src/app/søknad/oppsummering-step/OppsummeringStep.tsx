@@ -38,7 +38,7 @@ import { getArbeidsforhold, harArbeidIPerioden, harFraværFraJobb } from '../arb
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
-import { getSøknadStepConfig, StepID } from '../søknadStepsConfig';
+import { getSøknadStepConfig } from '../søknadStepsConfig';
 import ApiValidationSummary from './api-validation-summary/ApiValidationSummary';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
@@ -50,6 +50,7 @@ import {
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
+import { StepID } from '../../types/StepID';
 
 interface Props {
     values: SøknadFormValues;

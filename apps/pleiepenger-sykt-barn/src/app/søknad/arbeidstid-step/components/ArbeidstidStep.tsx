@@ -1,25 +1,26 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { DateRange } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
+import FormSection from '../../../components/form-section/FormSection';
 import usePersistSoknad from '../../../hooks/usePersistSoknad';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import GeneralErrorPage from '../../../pages/general-error-page/GeneralErrorPage';
 import { FrilansFormField } from '../../../types/FrilansFormData';
 import { SelvstendigFormField } from '../../../types/SelvstendigFormData';
+import { StepID } from '../../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../../types/SøknadFormValues';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../../../utils/selvstendigUtils';
 import SøknadFormStep from '../../SøknadFormStep';
 import { useSøknadsdataContext } from '../../SøknadsdataContext';
-import { StepConfigProps, StepID } from '../../søknadStepsConfig';
+import { StepConfigProps } from '../../søknadStepsConfig';
 import { cleanupArbeidstidStep } from '../utils/cleanupArbeidstidStep';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
 import ArbeidIPeriodeSpørsmålFrilans from './ArbeidIPeriodeSpørsmålFrilans';
-import FormSection from '../../../components/form-section/FormSection';
 
 interface Props extends StepConfigProps {
     periode: DateRange;

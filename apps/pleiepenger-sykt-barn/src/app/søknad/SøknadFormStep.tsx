@@ -4,11 +4,13 @@ import { useIntl } from 'react-intl';
 import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
 import Step, { StepProps } from '../components/step/Step';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
+import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
 import { getStepTexts } from '../utils/stepUtils';
@@ -64,43 +66,54 @@ const SøknadFormStep = (props: Props) => {
     }
 
     const texts = getStepTexts(intl, id, stepConfig);
+
     return (
-        <Step
-            stepConfig={stepConfig}
-            onFortsettSenere={handleAvsluttOgFortsettSenere}
-            onAvbryt={handleAvbrytSøknad}
-            {...props}>
-            <SøknadFormComponents.Form
-                onValidSubmit={onValidFormSubmit}
-                includeButtons={false}
-                includeValidationSummary={true}
-                runDelayedFormValidation={true}
-                cleanup={
-                    /**TODO: Fjernet cleanup enn så lenge - den stopper at bruker kommer videre til neste steg*/
-                    1 + 1 === 3 ? props.onStepCleanup : undefined
-                }
-                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                formFooter={
-                    <>
-                        {customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}
-                        {showSubmitButton && (
-                            <FormBlock>
-                                <Button
-                                    type="submit"
-                                    variant="primary"
-                                    className={'step__button'}
-                                    loading={showButtonSpinner || false}
-                                    disabled={buttonDisabled || false}
-                                    aria-label={texts.nextButtonAriaLabel}>
-                                    {texts.nextButtonLabel}
-                                </Button>
-                            </FormBlock>
-                        )}
-                    </>
-                }>
-                {children}
-            </SøknadFormComponents.Form>
-        </Step>
+        <>
+            <SøknadStep
+                activeStepId={StepID.TIDSROM}
+                pageTitle="ABC"
+                onCancel={handleAvbrytSøknad}
+                onContinueLater={handleAvsluttOgFortsettSenere}
+                steps={[{ id: StepID.TIDSROM, index: 0, label: 'BAC', completed: true }]}>
+                <SøknadFormComponents.Form
+                    onValidSubmit={onValidFormSubmit}
+                    includeButtons={false}
+                    includeValidationSummary={true}
+                    runDelayedFormValidation={true}
+                    cleanup={
+                        /**TODO: Fjernet cleanup enn så lenge - den stopper at bruker kommer videre til neste steg*/
+                        1 + 1 === 3 ? props.onStepCleanup : undefined
+                    }
+                    formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                    formFooter={
+                        <>
+                            {customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}
+                            {showSubmitButton && (
+                                <FormBlock>
+                                    <Button
+                                        type="submit"
+                                        variant="primary"
+                                        className={'step__button'}
+                                        loading={showButtonSpinner || false}
+                                        disabled={buttonDisabled || false}
+                                        aria-label={texts.nextButtonAriaLabel}>
+                                        {texts.nextButtonLabel}
+                                    </Button>
+                                </FormBlock>
+                            )}
+                        </>
+                    }>
+                    {children}
+                </SøknadFormComponents.Form>
+            </SøknadStep>
+            <Step
+                stepConfig={stepConfig}
+                onFortsettSenere={handleAvsluttOgFortsettSenere}
+                onAvbryt={handleAvbrytSøknad}
+                {...props}>
+                sdf
+            </Step>
+        </>
     );
 };
 

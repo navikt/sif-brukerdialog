@@ -17,7 +17,7 @@ import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps, StepID } from '../søknadStepsConfig';
+import { StepConfigProps } from '../søknadStepsConfig';
 import ArbeidssituasjonArbeidsgivere from './components/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN from './components/ArbeidssituasjonSN';
@@ -27,6 +27,7 @@ import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import FormSection from '../../components/form-section/FormSection';
+import { StepID } from '../../types/StepID';
 
 interface LoadState {
     isLoading: boolean;

@@ -4,11 +4,11 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/types';
 import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils/lib';
 import { isEqual } from 'lodash';
-import { StepID } from '../søknad/søknadStepsConfig';
 import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { søkerKunHelgedager } from '../utils/formDataUtils';
 import { getAttachmentsApiDataFromSøknadsdata } from '../utils/søknadsdataToApiData/getAttachmentsApiDataFromSøknadsdata';
+import { StepID } from '../types/StepID';
 
 export const apiVedleggIsInvalid = (apiVedlegg: string[], vedleggFormData: Attachment[]) => {
     const apiVedleggFromFormdata = vedleggFormData ? getAttachmentsApiDataFromSøknadsdata(vedleggFormData) : [];

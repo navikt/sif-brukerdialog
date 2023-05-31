@@ -1,21 +1,22 @@
+import { Link } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/BostedUtlandListAndDialog';
 import { useFormikContext } from 'formik';
 import getLenker from '../../lenker';
+import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import { getMedlemsskapDateRanges } from '../../utils/medlemsskapUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps, StepID } from '../søknadStepsConfig';
+import { StepConfigProps } from '../søknadStepsConfig';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { Link } from '@navikt/ds-react';
 
 type Props = {
     søknadsdato: Date;
