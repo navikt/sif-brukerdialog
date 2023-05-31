@@ -9,8 +9,7 @@ export const InfoNormalarbeidstid = () => {
             <ExpandableInfo title="Hva menes med normalt?">
                 <p>
                     Med <q>normalt</q> mener vi hvor mye du jobber når du ikke har fravær på grunn av pleiepenger. Det
-                    er normalarbeidstiden din før du starter med pleiepenger som vi er ute etter, uavhengig av om du har
-                    søkt for første gang, eller en forlengelse.
+                    er altså normalarbeidstiden din før du starter med pleiepenger som vi er ute etter.
                 </p>
                 <p>
                     Hvis du mottar ytelse fra NAV (for eksempel foreldrepenger eller sykepenger) opplyser du om det som

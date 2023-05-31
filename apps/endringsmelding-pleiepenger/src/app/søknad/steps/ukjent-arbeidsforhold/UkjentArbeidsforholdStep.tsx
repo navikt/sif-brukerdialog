@@ -21,12 +21,12 @@ const UkjentArbeidsforholdStep = () => {
             <SifGuidePanel>
                 <BodyLong as="div">
                     <Heading level="2" size="xsmall" spacing={true}>
-                        Vi trenger mer informasjon om ukjent arbeidsforhold
+                        Vi trenger informasjon om et nytt arbeidsforhold
                     </Heading>
                     <p>
-                        Vi har funnet et nytt arbeidsforhold på deg i{' '}
-                        <abbr title="Arbeidsgiver- og arbeidstakerregisteret">Aa-registeret</abbr>, som ikke var
-                        registrert da du søkte om pleiepenger. Vi trenger litt mer informasjon før du kan fortsette.
+                        Vi har funnet et arbeidsforhold på deg i{' '}
+                        <abbr title="Arbeidsgiver- og arbeidstakerregisteret">AA-registeret</abbr> som ikke var der da
+                        du sendte inn søknad om pleiepenger. Vi trenger litt informasjon fra deg før du kan fortsette.
                     </p>
                 </BodyLong>
             </SifGuidePanel>

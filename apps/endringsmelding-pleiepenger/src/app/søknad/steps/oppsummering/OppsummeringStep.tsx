@@ -89,7 +89,7 @@ const OppsummeringStep = () => {
 
             {sak.harUkjentArbeidsforhold && ukjenteArbeidsforhold && (
                 <Block margin="xxl">
-                    <SummarySection header="Ukjent arbeidsforhold">
+                    <SummarySection header="Nytt arbeidsforhold">
                         {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjenteArbeidsforhold.find(
                                 (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer
@@ -106,7 +106,7 @@ const OppsummeringStep = () => {
                                     </Heading>
                                     <SummaryBlock
                                         level="4"
-                                        header={`Er ansatt hos ${arbeidsgiver.navn} i perioden med pleiepenger`}>
+                                        header={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden du har søkt pleiepenger?`}>
                                         <div data-testid={getTestKey('erAnsatt')}>
                                             <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
                                         </div>

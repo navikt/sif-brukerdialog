@@ -45,7 +45,7 @@ const ArbeidsaktivitetBlockHeader: React.FunctionComponent<Props> = ({
                     {(endret || erUkjentAktivitet) && (
                         <Block margin="m" style={{ gap: '.5rem', display: 'flex' }}>
                             {endret && <EndretTag>{endret.tekst}</EndretTag>}
-                            {erUkjentAktivitet && <NyTag>Ukjent arbeidsforhold</NyTag>}
+                            {erUkjentAktivitet && <NyTag>Nytt arbeidsforhold</NyTag>}
                         </Block>
                     )}
                 </div>
