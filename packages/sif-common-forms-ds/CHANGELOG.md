@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 6.5.2
+
+### Patch Changes
+
+-   0fcdb59: Endre label på ok knapp i dialoger
+
 ## 6.5.1
 
 ### Patch Changes
