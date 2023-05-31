@@ -37,7 +37,9 @@ function FormikRadioGroup<FieldName, ErrorType>({
                 return (
                     <RadioGroup
                         {...restProps}
-                        description={restProps.description ? <BodyShort>{restProps.description}</BodyShort> : undefined}
+                        description={
+                            restProps.description ? <BodyShort as="div">{restProps.description}</BodyShort> : undefined
+                        }
                         name={field.name}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         value={field.value || ''}>
