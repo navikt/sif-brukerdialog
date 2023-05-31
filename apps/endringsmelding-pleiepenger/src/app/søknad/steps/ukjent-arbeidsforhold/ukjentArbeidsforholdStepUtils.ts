@@ -118,6 +118,8 @@ export const getTimerPerUkeValidator = (arbeidsgiverNavn: string) => (value) => 
               key: `ukjentArbeidsforhold.validation.${UkjentArbeidsgiverFormField.timerPerUke}.${error}`,
               keepKeyUnaltered: true,
               values: {
+                  minTimer: 0,
+                  maksTimer: 100,
                   navn: arbeidsgiverNavn,
               },
           }
