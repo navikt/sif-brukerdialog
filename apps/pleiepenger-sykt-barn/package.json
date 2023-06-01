@@ -10,7 +10,6 @@
         "build-heroku": "node src/build/scripts/heroku-build.js",
         "start-api-mock": "node server/api-mock.js",
         "dev-api": "node server/api-mock.js",
-        "dev": "npm-run-all -p start-api-mock start-no-decorator",
         "start": "node ./src/build/scripts/start-dev.js",
         "start-no-decorator": "node ./src/build/scripts/start-dev-no-decorator.js",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",

@@ -1,13 +1,9 @@
 import { NavigateFunction } from 'react-router';
-import RouteConfig from '../config/routeConfig';
-import routeConfig, { getRouteUrl } from '../config/routeConfig';
-
-// import appSentryLogger from './appSentryLogger';
+import RouteConfig, { getRouteUrl } from '../config/routeConfig';
 import { getEnvironmentVariable } from './envUtils';
-import { StepID } from '../types/StepID';
 
 export const userIsCurrentlyOnErrorPage = () => {
-    return window.location.pathname === getRouteUrl(routeConfig.ERROR_PAGE_ROUTE);
+    return window.location.pathname === getRouteUrl(RouteConfig.ERROR_PAGE_ROUTE);
 };
 
 /** Hard redirect enforcing page reload */
@@ -19,13 +15,6 @@ const relocateTo = (url: string): void => {
 export const navigateTo = (route: string, navigate: NavigateFunction): void => {
     navigate(route);
 };
-export const navigateToSoknadStep = (step: StepID, navigate: NavigateFunction): void => {
-    // eslint-disable-next-line no-console
-    console.log(step, navigate);
-
-    /** TODO */
-    // navigateTo(getStepRou)
-}; //history.push(`${step}`);
 
 export const relocateToLoginPage = (): void => relocateTo(getEnvironmentVariable('LOGIN_URL'));
 export const relocateToNavFrontpage = (): void => relocateTo('https://www.nav.no/');

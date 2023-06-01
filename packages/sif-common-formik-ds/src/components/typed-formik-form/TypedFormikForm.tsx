@@ -113,18 +113,17 @@ function TypedFormikForm<FormValues, ErrorType>({
         }
     }
 
-    const runCleanup = async (evt: React.FormEvent<HTMLFormElement>) => {
+    const runCleanup = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.stopPropagation();
         evt.preventDefault();
         formik.setValues(cleanup ? cleanup(formik.values) : formik.values);
     };
 
-    const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
         if (cleanup !== undefined) {
             runCleanup(evt);
-            setTimeout(() => {
-                handleSubmit(evt);
-            });
+            await Promise.resolve(); // La values oppdatere seg før en kaller handleSubmit
+            handleSubmit(evt);
         } else {
             handleSubmit(evt);
         }

@@ -87,28 +87,9 @@ const SøknadFormStep = (props: Props) => {
                     onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
                     submitPending={showButtonSpinner}
                     submitDisabled={buttonDisabled}
-                    cleanup={
-                        /**TODO: Fjernet cleanup enn så lenge - den stopper at bruker kommer videre til neste steg*/
-                        1 + 1 === 3 ? props.onStepCleanup : undefined
-                    }
+                    cleanup={props.onStepCleanup}
                     formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                    formFooter={
-                        <>
-                            {customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}
-                            {/* {showSubmitButton && (
-                                    <FormBlock>
-                                        <Button
-                                            type="submit"
-                                            variant="primary"
-                                            className={'step__button'}
-                                            loading={showButtonSpinner || false}
-                                            disabled={buttonDisabled || false}>
-                                            {texts.nextButtonLabel}
-                                        </Button>
-                                    </FormBlock>
-                                )} */}
-                        </>
-                    }>
+                    formFooter={<>{customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}</>}>
                     {children}
                 </SøknadFormComponents.Form>
             </SøknadStep>

@@ -1,4 +1,4 @@
-import { ErrorSummary } from '@navikt/ds-react';
+import { BodyLong, ErrorSummary } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,6 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { StepID } from '../../../types/StepID';
-import { navigateToSoknadStep } from '../../../utils/navigationUtils';
 import { ApiValidationError } from '../../../validation/apiValuesValidation';
 
 interface Props {
@@ -27,12 +26,12 @@ const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadS
                 {errors.map((error) => {
                     const stepTexts = soknadStepUtils.getStepTexts(intl, søknadStepConfig[error.stepId]);
                     return (
-                        <>
+                        <BodyLong as="div" key={error.stepId} className="bodyTextColor">
                             <p>{error.feilmelding}</p>
                             <p>
                                 <FormattedMessage id="steg.oppsummering.validering.navigasjonTilStegInfo" />
                             </p>
-                            <ActionLink onClick={() => navigateToSoknadStep(error.stepId, navigate)}>
+                            <ActionLink onClick={() => navigate(søknadStepConfig[error.stepId].route)}>
                                 <FormattedMessage
                                     id="steg.oppsummering.validering.navigasjonTilStegGåTil"
                                     tagName="span"
@@ -40,7 +39,7 @@ const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadS
                                 &quot;
                                 {stepTexts.stepTitle}&quot;
                             </ActionLink>
-                        </>
+                        </BodyLong>
                     );
                 })}
             </ErrorSummary>

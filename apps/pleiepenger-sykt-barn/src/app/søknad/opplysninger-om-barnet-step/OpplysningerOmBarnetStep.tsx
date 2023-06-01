@@ -1,18 +1,18 @@
 import React from 'react';
-import { useFormikContext } from 'formik';
-import { StepCommonProps } from '../../types/StepCommonProps';
-import { SøkerdataContext } from '../../context/SøkerdataContext';
-import { SøknadFormValues, SøknadFormField } from '../../types/SøknadFormValues';
-import SøknadFormStep from '../SøknadFormStep';
-import AnnetBarnPart from './AnnetBarnPart';
-import RegistrertBarnPart from './RegistrertBarnPart';
-import { Søkerdata } from '../../types/Søkerdata';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { useFormikContext } from 'formik';
+import { SøkerdataContext } from '../../context/SøkerdataContext';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
+import { Søkerdata } from '../../types/Søkerdata';
+import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import SøknadFormStep from '../SøknadFormStep';
+import AnnetBarnPart from './AnnetBarnPart';
+import RegistrertBarnPart from './RegistrertBarnPart';
 
 const harRegistrerteBarn = ({ barn }: Søkerdata) => {
     return barn && barn.length > 0;
