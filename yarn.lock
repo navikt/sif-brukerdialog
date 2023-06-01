@@ -4020,7 +4020,7 @@ __metadata:
     jose: 4.14.4
     jsdom: 22.0.0
     less: 4.1.3
-    less-loader: 11.1.0
+    less-loader: 11.1.2
     mini-css-extract-plugin: 2.7.6
     mustache-express: 1.3.2
     npm-run-all: 4.1.5
@@ -18722,15 +18722,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"less-loader@npm:11.1.0":
-  version: 11.1.0
-  resolution: "less-loader@npm:11.1.0"
+"less-loader@npm:11.1.2":
+  version: 11.1.2
+  resolution: "less-loader@npm:11.1.2"
   dependencies:
-    klona: ^2.0.4
+    klona: ^2.0.6
   peerDependencies:
     less: ^3.5.0 || ^4.0.0
     webpack: ^5.0.0
-  checksum: 041216e0a6d95e24c9724f470719db3eb70b3888c45b1a1e9cd55edabe8ae79709522cd6c6713b466b3e9948544074e2a5b2be50ac3ced5ff41dfa9675f3b182
+  checksum: d9deeb44256689d72198d8684233f45fb7f172c899e93adfe5954c8dc4c1004e10e93056a65fc01d0b906ec30c41f203db3751263288073cc72bcc2009b97ddc
   languageName: node
   linkType: hard
 
