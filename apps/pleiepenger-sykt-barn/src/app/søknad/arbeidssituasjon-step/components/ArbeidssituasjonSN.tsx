@@ -50,7 +50,7 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
             </Block>
             {harHattInntektSomSN === YesOrNo.YES && (
                 <FormBlock margin="l">
-                    <ResponsivePanel>
+                    <ResponsivePanel border={true}>
                         <ArbSNFormComponents.RadioGroup
                             name={SelvstendigFormField.harFlereVirksomheter}
                             data-testid="har-flere-virksomheter"

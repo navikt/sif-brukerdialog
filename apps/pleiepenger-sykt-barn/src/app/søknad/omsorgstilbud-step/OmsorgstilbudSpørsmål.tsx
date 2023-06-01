@@ -196,7 +196,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                     )}
                     {inkluderFastPlan && omsorgstilbud.erLiktHverUke === YesOrNo.YES && (
                         <FormBlock>
-                            <ResponsivePanel>
+                            <ResponsivePanel border={true}>
                                 <SøknadFormComponents.InputGroup
                                     legend={intlHelper(
                                         intl,
@@ -232,7 +232,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                             omsorgstilbud.erIOmsorgstilbudFremtid === YesOrNoOrDoNotKnow.YES)) ||
                         omsorgstilbud.erLiktHverUke === YesOrNo.NO) && (
                         <FormBlock>
-                            <ResponsivePanel>
+                            <ResponsivePanel border={true}>
                                 <OmsorgstilbudVariert
                                     omsorgsdager={omsorgstilbud.enkeltdager || {}}
                                     tittel={intlHelper(

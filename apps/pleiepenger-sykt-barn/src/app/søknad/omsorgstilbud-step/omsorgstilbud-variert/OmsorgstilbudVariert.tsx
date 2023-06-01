@@ -1,4 +1,3 @@
-import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import {
@@ -71,18 +70,13 @@ const OmsorgstilbudVariert: React.FunctionComponent<Props> = ({
 
     return (
         <>
-            <Block padBottom="m">
-                <Heading level="2" size="xsmall">
-                    {tittel}
-                </Heading>
-            </Block>
             <SøknadFormComponents.InputGroup
                 name={formFieldName}
-                legend="TODO"
+                legend={tittel}
                 validate={() => validateOmsorgstilbudEnkeltdagerIPeriode(tidIOmsorgstilbud, periode)}>
                 {kanLeggeTilPeriode && (
                     <>
-                        <Block margin="m" padBottom="xl">
+                        <Block margin="m" padBottom="l">
                             <OmsorgstilbudPeriode periode={periode} onPeriodeChange={handleOnPeriodeChange} />
                         </Block>
                     </>

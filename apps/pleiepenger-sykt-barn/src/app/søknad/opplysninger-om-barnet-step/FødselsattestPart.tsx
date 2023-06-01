@@ -93,6 +93,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin="l">
                     <FormikFileUploader
+                        legend={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg.legend')}
                         name={SøknadFormField.fødselsattest}
                         label={intlHelper(intl, 'steg.omBarnet.fødselsattest.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}

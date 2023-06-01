@@ -31,6 +31,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { Alert } from '@navikt/ds-react';
+import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 
 const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormData, ValidationError>();
 const StønadGodtgjørelseFormComponents = getTypedFormComponents<
@@ -143,30 +144,29 @@ const ArbeidssituasjonFrilans = ({
                 />
                 {stønadGodtgjørelse && stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES && (
                     <Block margin="l">
-                        <ConditionalResponsivePanel usePanelLayout={true}>
-                            <Block>
-                                <StønadGodtgjørelseFormComponents.RadioGroup
-                                    name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePeroden}
-                                    legend={intlHelper(
-                                        intl,
-                                        'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden.spm'
-                                    )}
-                                    radios={[
-                                        {
-                                            label: 'Ja',
-                                            value: YesOrNo.YES,
-                                            'data-testid': 'mottar-stønadGodtgjørelse-i-hele-peroden_yes',
-                                        },
-                                        {
-                                            label: 'Nei',
-                                            value: YesOrNo.NO,
-                                            'data-testid': 'mottar-stønadGodtgjørelse-i-hele-peroden_no',
-                                        },
-                                    ]}
-                                    validate={getRequiredFieldValidator()}
-                                    value={stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden}
-                                />
-                            </Block>
+                        <ResponsivePanel border={true}>
+                            <StønadGodtgjørelseFormComponents.RadioGroup
+                                name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePeroden}
+                                legend={intlHelper(
+                                    intl,
+                                    'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden.spm'
+                                )}
+                                radios={[
+                                    {
+                                        label: 'Ja',
+                                        value: YesOrNo.YES,
+                                        'data-testid': 'mottar-stønadGodtgjørelse-i-hele-peroden_yes',
+                                    },
+                                    {
+                                        label: 'Nei',
+                                        value: YesOrNo.NO,
+                                        'data-testid': 'mottar-stønadGodtgjørelse-i-hele-peroden_no',
+                                    },
+                                ]}
+                                validate={getRequiredFieldValidator()}
+                                value={stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden}
+                            />
+
                             {stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden === YesOrNo.NO && (
                                 <>
                                     <Block margin="l">
@@ -265,7 +265,7 @@ const ArbeidssituasjonFrilans = ({
                                     </Block>
                                 </>
                             )}
-                        </ConditionalResponsivePanel>
+                        </ResponsivePanel>
                     </Block>
                 )}
             </FormBlock>
@@ -304,7 +304,9 @@ const ArbeidssituasjonFrilans = ({
             </FormBlock>
             {harHattInntektSomFrilanser === YesOrNo.YES && (
                 <Block margin="l">
-                    <ConditionalResponsivePanel usePanelLayout={harHattInntektSomFrilanser === YesOrNo.YES}>
+                    <ConditionalResponsivePanel
+                        usePanelLayout={harHattInntektSomFrilanser === YesOrNo.YES}
+                        border={true}>
                         <ArbFriFormComponents.CheckboxGroup
                             legend={intlHelper(intl, 'frilanser.type.tittel')}
                             name={FrilansFormField.frilansTyper}

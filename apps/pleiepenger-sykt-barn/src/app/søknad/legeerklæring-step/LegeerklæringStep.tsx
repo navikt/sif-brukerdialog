@@ -112,6 +112,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Block margin="l">
                     <FormikFileUploader
+                        legend={intlHelper(intl, 'steg.lege.vedlegg.legend')}
                         name={SøknadFormField.legeerklæring}
                         label={intlHelper(intl, 'steg.lege.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}

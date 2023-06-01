@@ -87,7 +87,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
                                         <FormComponents.DateIntervalPicker
-                                            legend="TODO"
+                                            legend={intlText('omsorgstilbudPeriodeForm.periode.legend')}
                                             fromDatepickerProps={{
                                                 label: intlText('omsorgstilbudPeriodeForm.fraOgMed.label'),
                                                 name: FormFields.fom,

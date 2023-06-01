@@ -107,7 +107,7 @@ const ArbeidIPeriodeSpørsmål = ({
             />
             {arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
                 <FormBlock margin="l">
-                    <ResponsivePanel>
+                    <ResponsivePanel border={true}>
                         <Ingress>
                             <FormattedMessage id="arbeidIPeriode.redusert.info.tittel" />
                         </Ingress>

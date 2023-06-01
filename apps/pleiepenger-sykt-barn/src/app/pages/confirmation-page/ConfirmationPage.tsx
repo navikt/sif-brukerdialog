@@ -33,11 +33,8 @@ const ConfirmationPage = ({ kvitteringInfo }: Props) => {
                         <FormattedMessage id="page.confirmation.tittel.1" />
                     </Heading>
                     <Block margin="m">
-                        <Heading level="2" size="small">
+                        <Heading level="2" size="small" style={{ maxWidth: '20rem', margin: 'auto' }}>
                             <FormattedMessage id="page.confirmation.tittel.2" />
-                        </Heading>
-                        <Heading level="2" size="small">
-                            <FormattedMessage id="page.confirmation.tittel.3" />
                         </Heading>
                     </Block>
                 </Block>

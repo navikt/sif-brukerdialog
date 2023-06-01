@@ -16,6 +16,7 @@ import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValu
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { StepCommonProps } from '../../types/StepCommonProps';
+import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 
 const cleanupStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };
@@ -74,25 +75,27 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                 </FormBlock>
 
                 {harNattevåk === YesOrNo.YES && (
-                    <FormBlock>
-                        <SøknadFormComponents.Textarea
-                            name={SøknadFormField.harNattevåk_ekstrainfo}
-                            label={<FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm'} />}
-                            validate={getStringValidator({ required: true, maxLength: 1000 })}
-                            maxLength={1000}
-                            description={
-                                <ExpandableInfo
-                                    title={intlHelper(
-                                        intl,
-                                        'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning.tittel'
-                                    )}>
-                                    <FormattedMessage
-                                        id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning'}
-                                    />
-                                </ExpandableInfo>
-                            }
-                            data-testid="nattevåk-tilleggsinfo"
-                        />
+                    <FormBlock margin="l">
+                        <ResponsivePanel border={true}>
+                            <SøknadFormComponents.Textarea
+                                name={SøknadFormField.harNattevåk_ekstrainfo}
+                                label={<FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm'} />}
+                                validate={getStringValidator({ required: true, maxLength: 1000 })}
+                                maxLength={1000}
+                                description={
+                                    <ExpandableInfo
+                                        title={intlHelper(
+                                            intl,
+                                            'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning.tittel'
+                                        )}>
+                                        <FormattedMessage
+                                            id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning'}
+                                        />
+                                    </ExpandableInfo>
+                                }
+                                data-testid="nattevåk-tilleggsinfo"
+                            />
+                        </ResponsivePanel>
                     </FormBlock>
                 )}
             </FormSection>
@@ -116,25 +119,27 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                     />
                 </FormBlock>
                 {harBeredskap === YesOrNo.YES && (
-                    <FormBlock>
-                        <SøknadFormComponents.Textarea
-                            name={SøknadFormField.harBeredskap_ekstrainfo}
-                            label={<FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm'} />}
-                            maxLength={1000}
-                            validate={getStringValidator({ required: true, maxLength: 1000 })}
-                            description={
-                                <ExpandableInfo
-                                    title={intlHelper(
-                                        intl,
-                                        'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning.tittel'
-                                    )}>
-                                    <FormattedMessage
-                                        id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning'}
-                                    />
-                                </ExpandableInfo>
-                            }
-                            data-testid="beredskap-tilleggsinfo"
-                        />
+                    <FormBlock margin="l">
+                        <ResponsivePanel border={true}>
+                            <SøknadFormComponents.Textarea
+                                name={SøknadFormField.harBeredskap_ekstrainfo}
+                                label={<FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm'} />}
+                                maxLength={1000}
+                                validate={getStringValidator({ required: true, maxLength: 1000 })}
+                                description={
+                                    <ExpandableInfo
+                                        title={intlHelper(
+                                            intl,
+                                            'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning.tittel'
+                                        )}>
+                                        <FormattedMessage
+                                            id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning'}
+                                        />
+                                    </ExpandableInfo>
+                                }
+                                data-testid="beredskap-tilleggsinfo"
+                            />
+                        </ResponsivePanel>
                     </FormBlock>
                 )}
             </FormSection>

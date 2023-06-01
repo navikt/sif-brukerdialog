@@ -1,23 +1,27 @@
 import { useContext, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { date1YearAgo, date1YearFromNow, DateRange } from '@navikt/sif-common-utils';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
+import { date1YearAgo, date1YearFromNow, DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData';
+import FormSection from '../../components/form-section/FormSection';
+import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import useEffectOnce from '../../hooks/useEffectOnce';
 import getLenker from '../../lenker';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
 import ArbeidssituasjonArbeidsgivere from './components/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN from './components/ArbeidssituasjonSN';
@@ -25,9 +29,6 @@ import ArbeidssituasjonStepVeileder from './components/ArbeidssituasjonStepVeile
 import { oppdaterSøknadMedArbeidsgivere } from './utils/arbeidsgivereUtils';
 import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep';
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
-import FormSection from '../../components/form-section/FormSection';
-import { StepID } from '../../types/StepID';
 
 interface LoadState {
     isLoading: boolean;
@@ -117,26 +118,28 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                             />
                             {harOpptjeningUtland === YesOrNo.YES && (
                                 <FormBlock>
-                                    <OpptjeningUtlandListAndDialog
-                                        minDate={date1YearAgo}
-                                        maxDate={date1YearFromNow}
-                                        name={SøknadFormField.opptjeningUtland}
-                                        validate={getListValidator({ required: true })}
-                                        labels={{
-                                            addLabel: intlHelper(
-                                                intl,
-                                                'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.addLabel'
-                                            ),
-                                            listTitle: intlHelper(
-                                                intl,
-                                                'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.listTitle'
-                                            ),
-                                            modalTitle: intlHelper(
-                                                intl,
-                                                'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.modalTitle'
-                                            ),
-                                        }}
-                                    />
+                                    <ResponsivePanel border={true}>
+                                        <OpptjeningUtlandListAndDialog
+                                            minDate={date1YearAgo}
+                                            maxDate={date1YearFromNow}
+                                            name={SøknadFormField.opptjeningUtland}
+                                            validate={getListValidator({ required: true })}
+                                            labels={{
+                                                addLabel: intlHelper(
+                                                    intl,
+                                                    'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.addLabel'
+                                                ),
+                                                listTitle: intlHelper(
+                                                    intl,
+                                                    'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.listTitle'
+                                                ),
+                                                modalTitle: intlHelper(
+                                                    intl,
+                                                    'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.modalTitle'
+                                                ),
+                                            }}
+                                        />
+                                    </ResponsivePanel>
                                 </FormBlock>
                             )}
                         </div>
@@ -150,17 +153,19 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                                 />
                                 {harUtenlandskNæring === YesOrNo.YES && (
                                     <FormBlock>
-                                        <UtenlandskNæringListAndDialog
-                                            name={SøknadFormField.utenlandskNæring}
-                                            validate={getListValidator({ required: true })}
-                                            labels={{
-                                                addLabel: 'Legg til næringsvirksomhet i et annet EØS-land',
-                                                deleteLabel: 'Fjern',
-                                                editLabel: 'Endre',
-                                                infoTitle: 'Virksomhet',
-                                                modalTitle: 'Virksomhet',
-                                            }}
-                                        />
+                                        <ResponsivePanel border={true}>
+                                            <UtenlandskNæringListAndDialog
+                                                name={SøknadFormField.utenlandskNæring}
+                                                validate={getListValidator({ required: true })}
+                                                labels={{
+                                                    addLabel: 'Legg til næringsvirksomhet i et annet EØS-land',
+                                                    deleteLabel: 'Fjern',
+                                                    editLabel: 'Endre',
+                                                    infoTitle: 'Virksomhet',
+                                                    modalTitle: 'Virksomhet',
+                                                }}
+                                            />
+                                        </ResponsivePanel>
                                     </FormBlock>
                                 )}
                             </div>

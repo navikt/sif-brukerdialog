@@ -23,6 +23,7 @@ export type FieldArrayRemoveFn = (index: number) => undefined;
 interface FormikFileUploader extends TypedFormInputValidationProps<SøknadFormField, ValidationError> {
     name: SøknadFormField;
     label: string;
+    legend: string;
     onFileUploadComplete?: () => void;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
@@ -33,6 +34,8 @@ type Props = FormikFileUploader;
 
 const FormikFileUploader = ({
     name,
+    label,
+    legend,
     onFileInputClick,
     onFileUploadComplete,
     onErrorUploadingAttachments,
@@ -121,8 +124,9 @@ const FormikFileUploader = ({
     return (
         <FormikFileInput<SøknadFormField, ValidationError>
             name={name}
-            legend="TODO"
-            buttonLabel="TODO"
+            legend={legend}
+            hideLabel={true}
+            buttonLabel={label}
             accept={VALID_EXTENSIONS.join(', ')}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
                 const attachments = files.map((file) => addPendingAttachmentToFieldArray(file, push));

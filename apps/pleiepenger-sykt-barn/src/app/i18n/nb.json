@@ -249,6 +249,7 @@
     "steg.omBarnet.fødselsattest.tittel": "Fødselsattest",
     "steg.omBarnet.fødselsattest.info": "Når barnet bor i utlandet og ikke har fødselsnummer eller D-nummer, må du legge ved en kopi av fødselsattest for barnet.",
     "steg.omBarnet.fødselsattest.vedlegg": "Last opp fødselsattest",
+    "steg.omBarnet.fødselsattest.vedlegg.legend": "Dokumenter lastet opp",
     "steg.omBarnet.fødselsdato": "Barnets fødselsdato",
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon.spm": "Hvilken relasjon har du til barnet?",
@@ -423,6 +424,7 @@
     "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.listeTittel": "Utenlandsopphold neste 12 måneder",
 
+    "steg.lege.vedlegg.legend": "Dokumenter lastet opp",
     "steg.lege.vedlegg": "Last opp dokumentasjonen",
     "steg.legeerklaering.counsellorpanel.1": "Her skal du laste opp legeerklæringen. Det gjør du enten ved å ta bilde av leggerklæringen, eller ved å skanne den. Vennligst sjekk at bildet du laster opp er av god kvalitet slik at all tekst er leselig.",
     "steg.legeerklaering.counsellorpanel.2": "Vi kan ikke behandle søknaden din før vi mottar legeerklæringen. Hvis du ikke har legeerklæringen tilgjengelig nå, anbefaler vi at du venter med å søke til du har den tilgjengelig. Hvis du ikke kan vente med å sende søknaden, kan du fortsette uten legeerklæring, men da må du ettersende den så snart som mulig.",
@@ -503,8 +505,7 @@
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel.1": "Takk!",
-    "page.confirmation.tittel.2": "Vi har mottatt søknaden din",
-    "page.confirmation.tittel.3": "om pleiepenger for sykt barn",
+    "page.confirmation.tittel.2": "Vi har mottatt søknaden din om pleiepenger for sykt barn",
 
     "page.confirmation.tittel.advarsel.list.tittel": "Husk å be arbeidsgiver(e) å sende inntektsmelding så snart som mulig hvis:",
     "page.confirmation.tittel.advarsel.list.item.1": "du søker for første gang, eller",
