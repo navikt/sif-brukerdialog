@@ -1,7 +1,4 @@
-import { IntlShape } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { getSøknadStepConfigOld, StepConfigInterface, StepConfigItemTexts } from '../søknad/søknadStepsConfig';
 import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
@@ -17,17 +14,7 @@ import { erAnsattISøknadsperiode } from './ansattUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
 import { isAvailable } from './routeUtils';
 import { erSNISøknadsperiode } from './selvstendigUtils';
-
-export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepConfigInterface): StepConfigItemTexts => {
-    const conf = stepConfig[stepId];
-    return {
-        pageTitle: intlHelper(intl, conf.pageTitle),
-        stepTitle: intlHelper(intl, conf.stepTitle),
-        stepIndicatorLabel: intlHelper(intl, conf.stepIndicatorLabel),
-        nextButtonLabel: conf.nextButtonLabel ? intlHelper(intl, conf.nextButtonLabel) : undefined,
-        nextButtonAriaLabel: conf.nextButtonAriaLabel ? intlHelper(intl, conf.nextButtonAriaLabel) : undefined,
-    };
-};
+import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 
 export const opplysningerOmBarnetStepAvailable = (formData: SøknadFormValues) => {
     return welcomingPageIsValid(formData);
@@ -102,7 +89,7 @@ export const skalBrukerSvareArbeidstid = (søknadsperiode: DateRange, formValues
 };
 
 export const getGyldigRedirectStepForMellomlagretSøknad = (lastStepID: StepID, values: SøknadFormValues): StepID => {
-    const stepConfig = getSøknadStepConfigOld(values);
+    const stepConfig = getSøknadStepConfig(values);
     /** Vi mellomlagrer steget bruker er på når hen går videre til neste steg. Derfor
      * skal vi redirekte til påfølgende steg.
      */

@@ -29,7 +29,7 @@ import {
 } from '../../validation/fieldValidations';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps } from '../søknadStepsConfig';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning from './harUtenlandsoppholdUtenInnleggelseEllerInnleggelseForEgenRegning';
 
 dayjs.extend(minMax);
@@ -48,7 +48,7 @@ const cleanupTidsromStep = (values: SøknadFormValues, søknadsperiode: DateRang
     return cleanedValues;
 };
 
-const TidsromStep = ({ onValidSubmit }: StepConfigProps) => {
+const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const søkerdata = React.useContext(SøkerdataContext);
 

@@ -23,9 +23,9 @@ import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValu
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../validation/fieldValidations';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps } from '../søknadStepsConfig';
+import { StepCommonProps } from '../../types/StepCommonProps';
 
-const LegeerklæringStep = ({ onValidSubmit }: StepConfigProps) => {
+const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const intl = useIntl();

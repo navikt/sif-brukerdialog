@@ -1,5 +1,5 @@
 import RouteConfig from '../config/routeConfig';
-import { getSøknadStepConfigOld } from '../søknad/søknadStepsConfig';
+import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import {
@@ -15,11 +15,7 @@ import {
 } from './stepUtils';
 
 export const getNextStepRoute = (stepId: StepID, formData?: SøknadFormValues): string | undefined => {
-    const stepConfig = getSøknadStepConfigOld(formData);
-    const nextStep =
-        stepConfig[stepId] && stepConfig[stepId].included === true ? stepConfig[stepId].nextStep : undefined;
-
-    return nextStep ? nextStep : undefined;
+    return getSøknadStepConfig(formData)[stepId].nextStep || undefined;
 };
 
 export const isAvailable = (path: StepID | RouteConfig, values: SøknadFormValues, søknadHasBeenSent?: boolean) => {

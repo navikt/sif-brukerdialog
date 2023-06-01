@@ -17,7 +17,7 @@ import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps } from '../søknadStepsConfig';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import ArbeidssituasjonArbeidsgivere from './components/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN from './components/ArbeidssituasjonSN';
@@ -39,7 +39,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: StepConfigProps & Props) => {
+const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: StepCommonProps & Props) => {
     const formikProps = useFormikContext<SøknadFormValues>();
     const intl = useIntl();
     const {

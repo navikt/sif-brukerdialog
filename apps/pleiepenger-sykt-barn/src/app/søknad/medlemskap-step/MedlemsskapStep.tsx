@@ -15,14 +15,14 @@ import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValu
 import { getMedlemsskapDateRanges } from '../../utils/medlemsskapUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps } from '../søknadStepsConfig';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
 
 type Props = {
     søknadsdato: Date;
 };
 
-const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepConfigProps & Props) => {
+const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const intl = useIntl();
     const { neste12Måneder, siste12Måneder } = getMedlemsskapDateRanges(søknadsdato);

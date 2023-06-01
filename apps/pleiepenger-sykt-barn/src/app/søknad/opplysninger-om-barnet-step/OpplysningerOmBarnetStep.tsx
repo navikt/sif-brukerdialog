@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-import { StepConfigProps } from '../søknadStepsConfig';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { SøknadFormValues, SøknadFormField } from '../../types/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
@@ -18,7 +18,7 @@ const harRegistrerteBarn = ({ barn }: Søkerdata) => {
     return barn && barn.length > 0;
 };
 
-const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepConfigProps) => {
+const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
 
     const { søknadenGjelderEtAnnetBarn } = values;

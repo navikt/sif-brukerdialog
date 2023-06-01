@@ -7,7 +7,7 @@ import { StepID } from '../../types/StepID';
 import { SøknadFormValues } from '../../types/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps } from '../søknadStepsConfig';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import omsorgstilbudInfo from './info/OmsorgstilbudInfo';
 import OmsorgstilbudSpørsmål from './OmsorgstilbudSpørsmål';
 import { cleanupOmsorgstilbudStep } from './omsorgstilbudStepUtils';
@@ -16,7 +16,7 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepConfigProps & Props) => {
+const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepCommonProps & Props) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const { omsorgstilbud } = values;
     const { persistSoknad } = usePersistSoknad();

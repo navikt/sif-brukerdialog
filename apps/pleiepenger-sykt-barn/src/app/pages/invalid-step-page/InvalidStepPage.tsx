@@ -7,7 +7,6 @@ import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/atoms/formatted
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getBackLinkFromNotIncludedStep } from '../../søknad/søknadStepsConfig';
 import { StepID } from '../../types/StepID';
 import { navigateTo } from '../../utils/navigationUtils';
 
@@ -50,3 +49,13 @@ const InvalidStepPage = ({ stepId }: Props) => {
 };
 
 export default InvalidStepPage;
+
+export const getBackLinkFromNotIncludedStep = (stepId: StepID): string | undefined => {
+    if (stepId === StepID.NATTEVÅK_OG_BEREDSKAP) {
+        return StepID.OMSORGSTILBUD;
+    }
+    if (stepId === StepID.ARBEIDSTID) {
+        return StepID.ARBEIDSSITUASJON;
+    }
+    return undefined;
+};

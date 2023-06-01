@@ -27,6 +27,7 @@ import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
+import { StepID } from '../../types/StepID';
 import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
@@ -38,7 +39,7 @@ import { getArbeidsforhold, harArbeidIPerioden, harFraværFraJobb } from '../arb
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
-import { getSøknadStepConfigOld } from '../søknadStepsConfig';
+import { getSøknadStepConfig } from '../søknadStepConfig';
 import ApiValidationSummary from './api-validation-summary/ApiValidationSummary';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
@@ -50,7 +51,6 @@ import {
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
-import { StepID } from '../../types/StepID';
 
 interface Props {
     values: SøknadFormValues;
@@ -95,7 +95,7 @@ const OppsummeringStep = ({ onApplicationSent, values, søknadsdato }: Props) =>
 
     const { søknadsdata } = useSøknadsdataContext();
 
-    const søknadStepConfig = getSøknadStepConfigOld(values);
+    const søknadStepConfig = getSøknadStepConfig(values);
 
     const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAmplitudeInstance();
     const { logSenderInnSøknadMedIngenFravær } = useLogSøknadInfo();

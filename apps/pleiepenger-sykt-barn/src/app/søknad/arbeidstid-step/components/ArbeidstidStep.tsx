@@ -17,12 +17,12 @@ import { SøknadFormField, SøknadFormValues } from '../../../types/SøknadFormV
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../../../utils/selvstendigUtils';
 import SøknadFormStep from '../../SøknadFormStep';
 import { useSøknadsdataContext } from '../../SøknadsdataContext';
-import { StepConfigProps } from '../../søknadStepsConfig';
+import { StepCommonProps } from '../../../types/StepCommonProps';
 import { cleanupArbeidstidStep } from '../utils/cleanupArbeidstidStep';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
 import ArbeidIPeriodeSpørsmålFrilans from './ArbeidIPeriodeSpørsmålFrilans';
 
-interface Props extends StepConfigProps {
+interface Props extends StepCommonProps {
     periode: DateRange;
 }
 

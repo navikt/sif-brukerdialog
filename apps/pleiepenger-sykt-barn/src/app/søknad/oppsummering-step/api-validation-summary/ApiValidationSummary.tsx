@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionLink';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
+import { StepID } from '../../../types/StepID';
 import { navigateToSoknadStep } from '../../../utils/navigationUtils';
-import { getStepTexts } from '../../../utils/stepUtils';
 import { ApiValidationError } from '../../../validation/apiValuesValidation';
-import { StepConfigInterface } from '../../søknadStepsConfig';
 
 interface Props {
     errors: ApiValidationError[];
-    søknadStepConfig: StepConfigInterface;
+    søknadStepConfig: SoknadStepsConfig<StepID>;
 }
 
 const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadStepConfig }) => {
@@ -25,7 +25,7 @@ const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadS
         <FormBlock>
             <ErrorSummary heading={intlHelper(intl, 'formikValidationErrorSummary.tittel')}>
                 {errors.map((error) => {
-                    const stepTexts = getStepTexts(intl, error.stepId, søknadStepConfig);
+                    const stepTexts = soknadStepUtils.getStepTexts(intl, søknadStepConfig[error.stepId]);
                     return (
                         <>
                             <p>{error.feilmelding}</p>
@@ -42,8 +42,6 @@ const ApiValidationSummary: React.FunctionComponent<Props> = ({ errors, søknadS
                             </ActionLink>
                         </>
                     );
-
-                    // return <ErrorSummaryItem key={error.skjemaelementId}>{}</ErrorSummaryItem>;
                 })}
             </ErrorSummary>
         </FormBlock>

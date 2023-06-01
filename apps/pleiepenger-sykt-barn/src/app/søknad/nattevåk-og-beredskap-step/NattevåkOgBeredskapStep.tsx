@@ -15,7 +15,7 @@ import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepConfigProps } from '../søknadStepsConfig';
+import { StepCommonProps } from '../../types/StepCommonProps';
 
 const cleanupStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };
@@ -28,7 +28,7 @@ const cleanupStep = (values: SøknadFormValues): SøknadFormValues => {
     return cleanedValues;
 };
 
-const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepConfigProps) => {
+const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
     const intl = useIntl();
     const [loaded, setLoaded] = useState<boolean>(false);
 

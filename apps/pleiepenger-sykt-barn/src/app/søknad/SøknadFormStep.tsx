@@ -3,20 +3,16 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
 import usePersistSoknad from '../hooks/usePersistSoknad';
-import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
+import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
-import { getStepTexts } from '../utils/stepUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';
-import { getSøknadStepConfigOld } from './søknadStepsConfig';
-import { StepID } from '../types/StepID';
 
 interface Props {
     stepId: StepID;
@@ -40,13 +36,17 @@ const SøknadFormStep = (props: Props) => {
         onValidFormSubmit,
         showButtonSpinner,
         buttonDisabled,
-        stepId: id,
+        stepId,
         customErrorSummary,
         showSubmitButton = true,
     } = props;
-    const stepConfig = getSøknadStepConfigOld(formik.values);
-    useLogSidevisning(id);
+    useLogSidevisning(stepId);
     const { logHendelse } = useAmplitudeInstance();
+
+    const søknadStepConfig = getSøknadStepConfig(formik.values);
+    const stepConfig = søknadStepConfig[stepId];
+    const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
+    const { index } = stepConfig;
 
     const handleAvbrytSøknad = async () => {
         await purge();
@@ -56,28 +56,24 @@ const SøknadFormStep = (props: Props) => {
 
     const handleAvsluttOgFortsettSenere = async () => {
         /** Mellomlagring lagrer forrige steg, derfor må dette hentes ut her **/
-        const prevStep = stepConfig[id].prevStep;
-        await persistSoknad({ stepID: prevStep });
+        await persistSoknad({ stepID: stepConfig.previousStep });
         await logHendelse(ApplikasjonHendelse.fortsettSenere);
         relocateToDinePleiepenger();
     };
 
-    if (stepConfig === undefined || stepConfig[id] === undefined || stepConfig[id].included === false) {
-        return <InvalidStepPage stepId={id} />;
-    }
-
-    const texts = getStepTexts(intl, id, stepConfig);
-    const stepConfigNew = getSøknadStepConfig(formik.values);
-    const { pageTitleIntlKey, index } = stepConfigNew[id];
+    // TODO - sjekke om denne fortsatt må være med
+    // if (stepConfig === undefined || stepConfig[id] === undefined || stepConfig[id].included === false) {
+    //     return <InvalidStepPage stepId={id} />;
+    // }
 
     return (
         <>
             <SøknadStep
-                activeStepId={id}
-                pageTitle={intlHelper(intl, pageTitleIntlKey)}
+                activeStepId={stepId}
+                pageTitle={texts.pageTitle}
                 onCancel={handleAvbrytSøknad}
                 onContinueLater={handleAvsluttOgFortsettSenere}
-                steps={soknadStepUtils.getProgressStepsFromConfig(stepConfigNew, index, intl)}>
+                steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>
                 <SøknadFormComponents.Form
                     onValidSubmit={onValidFormSubmit}
                     includeButtons={false}
@@ -98,8 +94,7 @@ const SøknadFormStep = (props: Props) => {
                                         variant="primary"
                                         className={'step__button'}
                                         loading={showButtonSpinner || false}
-                                        disabled={buttonDisabled || false}
-                                        aria-label={texts.nextButtonAriaLabel}>
+                                        disabled={buttonDisabled || false}>
                                         {texts.nextButtonLabel}
                                     </Button>
                                 </FormBlock>
