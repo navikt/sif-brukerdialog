@@ -9,7 +9,7 @@ export type ComponentMessages<Messages> = Record<string, Messages>;
 
 export const sifCommonPleiepengerMessages = {
     nb: {
-        ...arbeidstidPeriodeMessages,
+        ...arbeidstidPeriodeMessages.nb,
         ...omsorgstibudPeriodeMessages.nb,
         ...omsorgstilbudEnkeltdagFormMessages.nb,
         ...timerOgMinutterMessages.nb,

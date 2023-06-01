@@ -37,7 +37,7 @@ interface ConfigStepHelperType {
     included: boolean;
 }
 
-export const getSøknadStepConfig = (formValues: SøknadFormValues | undefined): StepConfigInterface => {
+export const getSøknadStepConfigOld = (formValues: SøknadFormValues | undefined): StepConfigInterface => {
     const includeNattevåkAndBeredskap = skalBrukerSvarePåBeredskapOgNattevåk(formValues);
     const søknadsperiode = formValues ? getSøknadsperiodeFromFormData(formValues) : undefined;
     const includeArbeidstid =

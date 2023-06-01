@@ -80,7 +80,7 @@ const TidsromStep = ({ onValidSubmit }: StepConfigProps) => {
 
     return (
         <SøknadFormStep
-            id={StepID.TIDSROM}
+            stepId={StepID.TIDSROM}
             onValidFormSubmit={onValidSubmit}
             onStepCleanup={(values) => cleanupTidsromStep(values, periode)}
             showSubmitButton={!søkerKunHelgedager(values.periodeFra, values.periodeTil)}>

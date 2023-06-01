@@ -43,7 +43,10 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepConfigProps) => {
     });
 
     return (
-        <SøknadFormStep id={StepID.NATTEVÅK_OG_BEREDSKAP} onValidFormSubmit={onValidSubmit} onStepCleanup={cleanupStep}>
+        <SøknadFormStep
+            stepId={StepID.NATTEVÅK_OG_BEREDSKAP}
+            onValidFormSubmit={onValidSubmit}
+            onStepCleanup={cleanupStep}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
                     <FormattedMessage id={'steg.nattevåkOgBeredskap.veileder'} />

@@ -3,21 +3,24 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
+import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
-import Step, { StepProps } from '../components/step/Step';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
-import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
 import { getStepTexts } from '../utils/stepUtils';
 import SøknadFormComponents from './SøknadFormComponents';
-import { getSøknadStepConfig } from './søknadStepsConfig';
+import { getSøknadStepConfig } from './søknadStepConfig';
+import { getSøknadStepConfigOld } from './søknadStepsConfig';
+import { StepID } from '../types/StepID';
 
-export interface FormikStepProps {
+interface Props {
+    stepId: StepID;
+    useValidationErrorSummary?: boolean;
     children: React.ReactNode;
     showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
@@ -28,8 +31,6 @@ export interface FormikStepProps {
     onStepCleanup?: (values: SøknadFormValues) => SøknadFormValues;
 }
 
-type Props = FormikStepProps & Omit<StepProps, 'onAvbryt' | 'onFortsettSenere'>;
-
 const SøknadFormStep = (props: Props) => {
     const formik = useFormikContext<SøknadFormValues>();
     const { persistSoknad } = usePersistSoknad();
@@ -39,11 +40,11 @@ const SøknadFormStep = (props: Props) => {
         onValidFormSubmit,
         showButtonSpinner,
         buttonDisabled,
-        id,
+        stepId: id,
         customErrorSummary,
         showSubmitButton = true,
     } = props;
-    const stepConfig = getSøknadStepConfig(formik.values);
+    const stepConfig = getSøknadStepConfigOld(formik.values);
     useLogSidevisning(id);
     const { logHendelse } = useAmplitudeInstance();
 
@@ -66,15 +67,17 @@ const SøknadFormStep = (props: Props) => {
     }
 
     const texts = getStepTexts(intl, id, stepConfig);
+    const stepConfigNew = getSøknadStepConfig(formik.values);
+    const { pageTitleIntlKey, index } = stepConfigNew[id];
 
     return (
         <>
             <SøknadStep
-                activeStepId={StepID.TIDSROM}
-                pageTitle="ABC"
+                activeStepId={id}
+                pageTitle={intlHelper(intl, pageTitleIntlKey)}
                 onCancel={handleAvbrytSøknad}
                 onContinueLater={handleAvsluttOgFortsettSenere}
-                steps={[{ id: StepID.TIDSROM, index: 0, label: 'BAC', completed: true }]}>
+                steps={soknadStepUtils.getProgressStepsFromConfig(stepConfigNew, index, intl)}>
                 <SøknadFormComponents.Form
                     onValidSubmit={onValidFormSubmit}
                     includeButtons={false}
@@ -106,13 +109,6 @@ const SøknadFormStep = (props: Props) => {
                     {children}
                 </SøknadFormComponents.Form>
             </SøknadStep>
-            <Step
-                stepConfig={stepConfig}
-                onFortsettSenere={handleAvsluttOgFortsettSenere}
-                onAvbryt={handleAvbrytSøknad}
-                {...props}>
-                sdf
-            </Step>
         </>
     );
 };

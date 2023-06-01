@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { getSøknadStepConfig, StepConfigInterface, StepConfigItemTexts } from '../søknad/søknadStepsConfig';
+import { getSøknadStepConfigOld, StepConfigInterface, StepConfigItemTexts } from '../søknad/søknadStepsConfig';
 import { StepID } from '../types/StepID';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
@@ -102,7 +102,7 @@ export const skalBrukerSvareArbeidstid = (søknadsperiode: DateRange, formValues
 };
 
 export const getGyldigRedirectStepForMellomlagretSøknad = (lastStepID: StepID, values: SøknadFormValues): StepID => {
-    const stepConfig = getSøknadStepConfig(values);
+    const stepConfig = getSøknadStepConfigOld(values);
     /** Vi mellomlagrer steget bruker er på når hen går videre til neste steg. Derfor
      * skal vi redirekte til påfølgende steg.
      */

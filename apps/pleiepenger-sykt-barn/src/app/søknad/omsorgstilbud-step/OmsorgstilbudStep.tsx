@@ -31,7 +31,7 @@ const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepConfigProps &
 
     return (
         <SøknadFormStep
-            id={StepID.OMSORGSTILBUD}
+            stepId={StepID.OMSORGSTILBUD}
             onStepCleanup={(values) => cleanupOmsorgstilbudStep(values, søknadsperiode)}
             onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xl">{omsorgstilbudInfo.stepIntro}</Block>

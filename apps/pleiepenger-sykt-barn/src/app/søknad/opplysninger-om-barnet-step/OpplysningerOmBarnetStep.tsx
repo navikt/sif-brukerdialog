@@ -33,7 +33,7 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepConfigProps) => {
 
     return (
         <SøknadFormStep
-            id={StepID.OPPLYSNINGER_OM_BARNET}
+            stepId={StepID.OPPLYSNINGER_OM_BARNET}
             onValidFormSubmit={onValidSubmit}
             buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             {søkerdata && (

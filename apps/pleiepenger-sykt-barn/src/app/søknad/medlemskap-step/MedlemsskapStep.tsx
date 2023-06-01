@@ -28,7 +28,7 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepConfigProps & Prop
     const { neste12Måneder, siste12Måneder } = getMedlemsskapDateRanges(søknadsdato);
 
     return (
-        <SøknadFormStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
+        <SøknadFormStep stepId={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xxl">
                 <SifGuidePanel>
                     {intlHelper(intl, 'step.medlemskap.veileder')}{' '}

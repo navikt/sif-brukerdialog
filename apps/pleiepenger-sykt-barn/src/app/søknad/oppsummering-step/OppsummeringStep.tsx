@@ -38,7 +38,7 @@ import { getArbeidsforhold, harArbeidIPerioden, harFraværFraJobb } from '../arb
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
-import { getSøknadStepConfig } from '../søknadStepsConfig';
+import { getSøknadStepConfigOld } from '../søknadStepsConfig';
 import ApiValidationSummary from './api-validation-summary/ApiValidationSummary';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
@@ -95,7 +95,7 @@ const OppsummeringStep = ({ onApplicationSent, values, søknadsdato }: Props) =>
 
     const { søknadsdata } = useSøknadsdataContext();
 
-    const søknadStepConfig = getSøknadStepConfig(values);
+    const søknadStepConfig = getSøknadStepConfigOld(values);
 
     const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAmplitudeInstance();
     const { logSenderInnSøknadMedIngenFravær } = useLogSøknadInfo();
@@ -176,7 +176,7 @@ const OppsummeringStep = ({ onApplicationSent, values, søknadsdato }: Props) =>
 
                 return (
                     <SøknadFormStep
-                        id={StepID.SUMMARY}
+                        stepId={StepID.SUMMARY}
                         onValidFormSubmit={() => {
                             if (apiValuesValidationErrors === undefined) {
                                 setTimeout(() => {

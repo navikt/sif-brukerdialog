@@ -88,7 +88,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepConfigProps) => {
 
     return (
         <SøknadFormStep
-            id={StepID.LEGEERKLÆRING}
+            stepId={StepID.LEGEERKLÆRING}
             onValidFormSubmit={() => {
                 onValidSubmit();
             }}

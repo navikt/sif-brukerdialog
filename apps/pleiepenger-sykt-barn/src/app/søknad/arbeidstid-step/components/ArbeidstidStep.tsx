@@ -52,7 +52,7 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
     };
     return (
         <SøknadFormStep
-            id={StepID.ARBEIDSTID}
+            stepId={StepID.ARBEIDSTID}
             onValidFormSubmit={onValidSubmit}
             onStepCleanup={(values) => cleanupArbeidstidStep(values, arbeid, periode)}>
             <Block padBottom="m">

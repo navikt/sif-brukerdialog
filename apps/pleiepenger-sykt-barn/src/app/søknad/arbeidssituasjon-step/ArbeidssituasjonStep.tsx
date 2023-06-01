@@ -66,7 +66,7 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
 
     return (
         <SøknadFormStep
-            id={StepID.ARBEIDSSITUASJON}
+            stepId={StepID.ARBEIDSSITUASJON}
             onValidFormSubmit={onValidSubmit}
             buttonDisabled={isLoading}
             onStepCleanup={
