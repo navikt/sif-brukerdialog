@@ -13,6 +13,7 @@ import { SøknadFormValues } from '../types/SøknadFormValues';
 import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
     stepId: StepID;
@@ -70,6 +71,7 @@ const SøknadFormStep = (props: Props) => {
         <>
             <SøknadStep
                 activeStepId={stepId}
+                bannerTitle={intlHelper(intl, 'application.title')}
                 pageTitle={texts.pageTitle}
                 onCancel={handleAvbrytSøknad}
                 onContinueLater={handleAvsluttOgFortsettSenere}
