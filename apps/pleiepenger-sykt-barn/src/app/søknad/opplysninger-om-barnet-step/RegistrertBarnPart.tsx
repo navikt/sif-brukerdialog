@@ -24,7 +24,7 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
     } = useFormikContext<SøknadFormValues>();
 
     return (
-        <SkjemagruppeQuestion legend="TODO">
+        <SkjemagruppeQuestion legend="Barn" hideLegend={true}>
             <SøknadFormComponents.RadioGroup
                 name={SøknadFormField.barnetSøknadenGjelder}
                 legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}

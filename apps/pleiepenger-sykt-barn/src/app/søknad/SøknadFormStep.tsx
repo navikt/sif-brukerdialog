@@ -1,8 +1,9 @@
-import { Button } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
@@ -13,7 +14,6 @@ import { SøknadFormValues } from '../types/SøknadFormValues';
 import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
     stepId: StepID;
@@ -39,9 +39,10 @@ const SøknadFormStep = (props: Props) => {
         buttonDisabled,
         stepId,
         customErrorSummary,
-        showSubmitButton = true,
+        // showSubmitButton = true,
     } = props;
     useLogSidevisning(stepId);
+    const navigate = useNavigate();
     const { logHendelse } = useAmplitudeInstance();
 
     const søknadStepConfig = getSøknadStepConfig(formik.values);
@@ -67,6 +68,8 @@ const SøknadFormStep = (props: Props) => {
     //     return <InvalidStepPage stepId={id} />;
     // }
 
+    const { previousStepRoute } = stepConfig;
+
     return (
         <>
             <SøknadStep
@@ -78,9 +81,12 @@ const SøknadFormStep = (props: Props) => {
                 steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>
                 <SøknadFormComponents.Form
                     onValidSubmit={onValidFormSubmit}
-                    includeButtons={false}
+                    includeButtons={true}
                     includeValidationSummary={true}
                     runDelayedFormValidation={true}
+                    onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
+                    submitPending={showButtonSpinner}
+                    submitDisabled={buttonDisabled}
                     cleanup={
                         /**TODO: Fjernet cleanup enn så lenge - den stopper at bruker kommer videre til neste steg*/
                         1 + 1 === 3 ? props.onStepCleanup : undefined
@@ -89,18 +95,18 @@ const SøknadFormStep = (props: Props) => {
                     formFooter={
                         <>
                             {customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}
-                            {showSubmitButton && (
-                                <FormBlock>
-                                    <Button
-                                        type="submit"
-                                        variant="primary"
-                                        className={'step__button'}
-                                        loading={showButtonSpinner || false}
-                                        disabled={buttonDisabled || false}>
-                                        {texts.nextButtonLabel}
-                                    </Button>
-                                </FormBlock>
-                            )}
+                            {/* {showSubmitButton && (
+                                    <FormBlock>
+                                        <Button
+                                            type="submit"
+                                            variant="primary"
+                                            className={'step__button'}
+                                            loading={showButtonSpinner || false}
+                                            disabled={buttonDisabled || false}>
+                                            {texts.nextButtonLabel}
+                                        </Button>
+                                    </FormBlock>
+                                )} */}
                         </>
                     }>
                     {children}
