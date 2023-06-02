@@ -8,7 +8,7 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { StepID } from '../../types/StepID';
-import { navigateTo } from '../../utils/navigationUtils';
+import RouteConfig from '../../config/routeConfig';
 
 interface Props {
     stepId: StepID;
@@ -17,7 +17,8 @@ interface Props {
 const InvalidStepPage = ({ stepId }: Props) => {
     const intl = useIntl();
     const navigate = useNavigate();
-    const backLink = getBackLinkFromNotIncludedStep(stepId);
+    const backLink = getPrevStepFromNotIncludedStep(stepId);
+
     return (
         <Page title={intlHelper(intl, 'page.invalidStepPage.sidetittel')}>
             <div style={{ paddingTop: '1rem' }}>
@@ -32,7 +33,7 @@ const InvalidStepPage = ({ stepId }: Props) => {
                                 <ActionLink
                                     onClick={() => {
                                         if (backLink) {
-                                            navigateTo(backLink, navigate);
+                                            navigate(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${backLink}`);
                                         } else {
                                             history.go(-1);
                                         }
@@ -50,7 +51,7 @@ const InvalidStepPage = ({ stepId }: Props) => {
 
 export default InvalidStepPage;
 
-export const getBackLinkFromNotIncludedStep = (stepId: StepID): string | undefined => {
+export const getPrevStepFromNotIncludedStep = (stepId: StepID): string | undefined => {
     if (stepId === StepID.NATTEVÅK_OG_BEREDSKAP) {
         return StepID.OMSORGSTILBUD;
     }

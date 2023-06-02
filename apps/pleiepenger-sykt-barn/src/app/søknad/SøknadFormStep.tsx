@@ -14,12 +14,13 @@ import { SøknadFormValues } from '../types/SøknadFormValues';
 import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';
+import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
 
 interface Props {
     stepId: StepID;
     useValidationErrorSummary?: boolean;
     children: React.ReactNode;
-    showSubmitButton?: boolean;
+    showSubmitButton?: boolean; // TODO
     showButtonSpinner?: boolean;
     buttonDisabled?: boolean;
     skipValidation?: boolean;
@@ -32,23 +33,19 @@ const SøknadFormStep = (props: Props) => {
     const formik = useFormikContext<SøknadFormValues>();
     const { persistSoknad } = usePersistSoknad();
     const intl = useIntl();
-    const {
-        children,
-        onValidFormSubmit,
-        showButtonSpinner,
-        buttonDisabled,
-        stepId,
-        customErrorSummary,
-        // showSubmitButton = true,
-    } = props;
+    const { children, onValidFormSubmit, showButtonSpinner, buttonDisabled, stepId, customErrorSummary } = props;
     useLogSidevisning(stepId);
     const navigate = useNavigate();
     const { logHendelse } = useAmplitudeInstance();
 
     const søknadStepConfig = getSøknadStepConfig(formik.values);
-    const stepConfig = søknadStepConfig[stepId];
-    const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
-    const { index } = stepConfig;
+    const currentStepConfig = søknadStepConfig[stepId];
+
+    if (currentStepConfig === undefined) {
+        return <InvalidStepPage stepId={stepId} />;
+    }
+    const texts = soknadStepUtils.getStepTexts(intl, currentStepConfig);
+    const { index } = currentStepConfig;
 
     const handleAvbrytSøknad = async () => {
         await purge();
@@ -58,17 +55,12 @@ const SøknadFormStep = (props: Props) => {
 
     const handleAvsluttOgFortsettSenere = async () => {
         /** Mellomlagring lagrer forrige steg, derfor må dette hentes ut her **/
-        await persistSoknad({ stepID: stepConfig.previousStep });
+        await persistSoknad({ stepID: currentStepConfig.previousStep });
         await logHendelse(ApplikasjonHendelse.fortsettSenere);
         relocateToDinePleiepenger();
     };
 
-    // TODO - sjekke om denne fortsatt må være med
-    // if (stepConfig === undefined || stepConfig[id] === undefined || stepConfig[id].included === false) {
-    //     return <InvalidStepPage stepId={id} />;
-    // }
-
-    const { previousStepRoute } = stepConfig;
+    const { previousStepRoute } = currentStepConfig;
 
     return (
         <>
