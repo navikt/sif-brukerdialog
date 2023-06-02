@@ -63,6 +63,8 @@
         "e2e-omsorgspengesoknad": "turbo run ci --filter=@navikt/omsorgspengesoknad",
         "build-endringsmelding-pleiepenger": "turbo run build-app --filter=@navikt/endringsmelding-pleiepenger",
         "e2e-endringsmelding-pleiepenger": "turbo run ci --filter=@navikt/endringsmelding-pleiepenger",
+        "build-pleiepenger-sykt-barn": "turbo run build-app --filter=@navikt/pleiepenger-sykt-barn",
+        "e2e-pleiepenger-sykt-barn": "turbo run ci --filter=@navikt/pleiepenger-sykt-barn",
         "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": "turbo run build-app --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
         "e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": "turbo run ci --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
         "build-omsorgsdager-aleneomsorg-dialog": "turbo run build-app --filter=@navikt/omsorgsdager-aleneomsorg-dialog",

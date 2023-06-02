@@ -62,6 +62,14 @@
             "outputs": [],
             "dependsOn": ["^build-endringsmelding-pleiepenger"]
         },
+        "build-pleiepenger-sykt-barn": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
+        "e2e-pleiepenger-sykt-barn": {
+            "outputs": [],
+            "dependsOn": ["^build-pleiepenger-sykt-barn"]
+        },
         "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
             "outputs": [],
             "dependsOn": ["^build-package"]
