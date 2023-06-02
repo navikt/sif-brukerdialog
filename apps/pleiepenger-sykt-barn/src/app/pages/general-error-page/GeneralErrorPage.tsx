@@ -4,11 +4,14 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 
 const GeneralErrorPage = () => {
     const intl = useIntl();
     return (
-        <Page title={intlHelper(intl, 'page.generalErrorPage.sidetittel')}>
+        <Page
+            title={intlHelper(intl, 'page.generalErrorPage.sidetittel')}
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
             <div style={{ paddingTop: '1rem' }}>
                 <SifGuidePanel poster={true} compact={true} mood="uncertain">
                     <Heading level="2" size="medium">

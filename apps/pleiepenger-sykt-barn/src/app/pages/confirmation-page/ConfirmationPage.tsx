@@ -7,6 +7,7 @@ import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/atoms/formatted
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import getLenker from '../../lenker';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
 import './confirmationPage.less';
@@ -25,7 +26,10 @@ const ConfirmationPage = ({ kvitteringInfo }: Props) => {
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
     return (
-        <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
+        <Page
+            title={intlHelper(intl, 'page.confirmation.sidetittel')}
+            className={bem.block}
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
             <div className={bem.element('centeredContent')}>
                 <CheckmarkIcon />
                 <Block margin="xl">

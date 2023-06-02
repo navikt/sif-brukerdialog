@@ -5,6 +5,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import getLenker from '../../lenker';
 
 const IkkeTilgangPage = () => {
@@ -14,7 +15,7 @@ const IkkeTilgangPage = () => {
         <Page
             className="ikkeTilgangPage"
             title={intlHelper(intl, 'application.title')}
-            topContentRenderer={() => <h1>{intlHelper(intl, 'application.title')}</h1>}>
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
             <Block margin="xxl">
                 <SifGuidePanel poster={true}>
                     <p>

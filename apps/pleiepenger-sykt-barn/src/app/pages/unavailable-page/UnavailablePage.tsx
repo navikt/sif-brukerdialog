@@ -6,6 +6,7 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import './unavailablePage.less';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 
 const bem = bemUtils('introPage');
 
@@ -16,7 +17,7 @@ const UnavailablePage = () => {
     const title = intlHelper(intl, 'application.title');
     useLogSidevisning(SIFCommonPageKey.ikkeTilgjengelig);
     return (
-        <Page className={bem.block} title={title} topContentRenderer={() => <h1>title</h1>}>
+        <Page className={bem.block} title={title} topContentRenderer={() => <SoknadHeader title={title} />}>
             <Block margin="xxxl">
                 <Alert variant="warning">
                     <p>

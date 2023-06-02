@@ -7,8 +7,9 @@ import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/atoms/formatted
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { StepID } from '../../types/StepID';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import RouteConfig from '../../config/routeConfig';
+import { StepID } from '../../types/StepID';
 
 interface Props {
     stepId: StepID;
@@ -20,7 +21,9 @@ const InvalidStepPage = ({ stepId }: Props) => {
     const backLink = getPrevStepFromNotIncludedStep(stepId);
 
     return (
-        <Page title={intlHelper(intl, 'page.invalidStepPage.sidetittel')}>
+        <Page
+            title={intlHelper(intl, 'page.invalidStepPage.sidetittel')}
+            topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
             <div style={{ paddingTop: '1rem' }}>
                 <SifGuidePanel poster={true} compact={true} mood="uncertain">
                     <Heading level="2" size="medium">
