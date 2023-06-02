@@ -20,7 +20,7 @@ interface Props {
     stepId: StepID;
     useValidationErrorSummary?: boolean;
     children: React.ReactNode;
-    showSubmitButton?: boolean; // TODO
+    showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
     buttonDisabled?: boolean;
     skipValidation?: boolean;
@@ -33,7 +33,15 @@ const SøknadFormStep = (props: Props) => {
     const formik = useFormikContext<SøknadFormValues>();
     const { persistSoknad } = usePersistSoknad();
     const intl = useIntl();
-    const { children, onValidFormSubmit, showButtonSpinner, buttonDisabled, stepId, customErrorSummary } = props;
+    const {
+        children,
+        onValidFormSubmit,
+        showButtonSpinner,
+        buttonDisabled,
+        stepId,
+        customErrorSummary,
+        showSubmitButton = true,
+    } = props;
     useLogSidevisning(stepId);
     const navigate = useNavigate();
     const { logHendelse } = useAmplitudeInstance();
@@ -74,6 +82,7 @@ const SøknadFormStep = (props: Props) => {
                 <SøknadFormComponents.Form
                     onValidSubmit={onValidFormSubmit}
                     includeButtons={true}
+                    showSubmitButton={showSubmitButton}
                     includeValidationSummary={true}
                     runDelayedFormValidation={true}
                     onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}

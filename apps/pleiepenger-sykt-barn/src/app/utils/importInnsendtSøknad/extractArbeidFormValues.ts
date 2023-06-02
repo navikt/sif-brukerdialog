@@ -56,7 +56,7 @@ export const mapArbeidsgiverToFormValues = (
     return formValues;
 };
 
-//TODO
+//TODO - denne må endres dersom vi skrur på preutfylling
 /*export const mapFrilanserToFormValues = (frilanser: FrilansApiData): FrilansFormData => {
     if (frilanser.harInntektSomFrilanser) {
         return {

@@ -114,11 +114,11 @@ const SøknadContent = ({
         relocateToLoginPage();
     };
 
-    const navigateToNextStepFrom = async (stepID: StepID) => {
+    const navigateToNextStepFrom = async (stepId: StepID) => {
         setTimeout(() => {
-            const nextStepRoute = getNextStepRoute(stepID, values);
+            const nextStepRoute = getNextStepRoute(stepId, values);
             if (nextStepRoute) {
-                persistSoknad({ formValues: values, stepID })
+                persistSoknad({ formValues: values, stepID: stepId })
                     .then(() => {
                         navigateTo(nextStepRoute, navigate);
                     })
@@ -126,7 +126,7 @@ const SøknadContent = ({
                         if (apiUtils.isUnauthorized(error)) {
                             userNotLoggedIn();
                         } else {
-                            logApiError(ApiError.mellomlagring, { stepId: stepID });
+                            logApiError(ApiError.mellomlagring, { stepId: stepId });
                             return navigateToErrorPage(navigate);
                         }
                     });
