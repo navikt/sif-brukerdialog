@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
@@ -11,76 +11,78 @@ const OmsorgstilbudStepInfo = () => {
     const intl = useIntl();
     return (
         <SifGuidePanel>
-            <p>
-                <FormattedMessage id="steg.omsorgstilbud.veileder.1" />
-            </p>
-            <ul>
-                <li>
-                    <FormattedMessage id="steg.omsorgstilbud.veileder.1.1" />
-                </li>
-                <li>
-                    <FormattedMessage id="steg.omsorgstilbud.veileder.1.2" />
-                </li>
-                <li>
-                    <FormattedMessage id="steg.omsorgstilbud.veileder.1.3" />
-                </li>
-                <li>
-                    <FormattedMessage id="steg.omsorgstilbud.veileder.1.4" />
-                </li>
-                <li>
-                    <FormattedMessage id="steg.omsorgstilbud.veileder.1.5" />
-                </li>
-                <li>
-                    <FormattedMessage id="steg.omsorgstilbud.veileder.1.6" />
-                </li>
-            </ul>
-            <p>
-                <FormattedHtmlMessage id="steg.omsorgstilbud.veileder.2" />
-            </p>
-            <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.eksempel.tittel')}>
-                    <p>{intlHelper(intl, 'steg.omsorgstilbud.eksempel.1')}</p>
-                    <p>{intlHelper(intl, 'steg.omsorgstilbud.eksempel.2')}</p>
-                </ExpandableInfo>
-            </Block>
-            <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.3')}>
-                    <p>
-                        <FormattedMessage id="steg.omsorgstilbud.veileder.3.1" />{' '}
-                        <strong>
-                            <FormattedMessage id="steg.omsorgstilbud.veileder.3.2" />
-                        </strong>{' '}
-                        <FormattedMessage id="steg.omsorgstilbud.veileder.3.3" />
-                    </p>
-                    <p>
-                        <FormattedMessage id="steg.omsorgstilbud.veileder.3.4" />
-                    </p>
-                </ExpandableInfo>
-            </Block>
+            <BodyLong as="div">
+                <p>
+                    <FormattedMessage id="steg.omsorgstilbud.veileder.1" />
+                </p>
+                <ul>
+                    <li>
+                        <FormattedMessage id="steg.omsorgstilbud.veileder.1.1" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="steg.omsorgstilbud.veileder.1.2" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="steg.omsorgstilbud.veileder.1.3" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="steg.omsorgstilbud.veileder.1.4" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="steg.omsorgstilbud.veileder.1.5" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="steg.omsorgstilbud.veileder.1.6" />
+                    </li>
+                </ul>
+                <p>
+                    <FormattedHtmlMessage id="steg.omsorgstilbud.veileder.2" />
+                </p>
+                <Block>
+                    <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.eksempel.tittel')}>
+                        <p>{intlHelper(intl, 'steg.omsorgstilbud.eksempel.1')}</p>
+                        <p>{intlHelper(intl, 'steg.omsorgstilbud.eksempel.2')}</p>
+                    </ExpandableInfo>
+                </Block>
+                <Block>
+                    <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.3')}>
+                        <p>
+                            <FormattedMessage id="steg.omsorgstilbud.veileder.3.1" />{' '}
+                            <strong>
+                                <FormattedMessage id="steg.omsorgstilbud.veileder.3.2" />
+                            </strong>{' '}
+                            <FormattedMessage id="steg.omsorgstilbud.veileder.3.3" />
+                        </p>
+                        <p>
+                            <FormattedMessage id="steg.omsorgstilbud.veileder.3.4" />
+                        </p>
+                    </ExpandableInfo>
+                </Block>
 
-            <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.4')}>
-                    <p>
-                        <FormattedMessage id="steg.omsorgstilbud.veileder.4.1" />
-                    </p>
-                </ExpandableInfo>
-            </Block>
-            <Block>
-                <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.5')}>
-                    <p>
-                        <FormattedMessage id="steg.omsorgstilbud.veileder.5.1" />
-                    </p>
-                    <p>
-                        <FormattedMessage id="steg.omsorgstilbud.veileder.5.2" />
-                    </p>
-                    <p>
-                        <FormattedHtmlMessage id="steg.omsorgstilbud.veileder.5.3" />
-                    </p>
-                    <p>
-                        <FormattedMessage id="steg.omsorgstilbud.veileder.5.4" />
-                    </p>
-                </ExpandableInfo>
-            </Block>
+                <Block>
+                    <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.4')}>
+                        <p>
+                            <FormattedMessage id="steg.omsorgstilbud.veileder.4.1" />
+                        </p>
+                    </ExpandableInfo>
+                </Block>
+                <Block>
+                    <ExpandableInfo title={intlHelper(intl, 'steg.omsorgstilbud.veileder.5')}>
+                        <p>
+                            <FormattedMessage id="steg.omsorgstilbud.veileder.5.1" />
+                        </p>
+                        <p>
+                            <FormattedMessage id="steg.omsorgstilbud.veileder.5.2" />
+                        </p>
+                        <p>
+                            <FormattedHtmlMessage id="steg.omsorgstilbud.veileder.5.3" />
+                        </p>
+                        <p>
+                            <FormattedMessage id="steg.omsorgstilbud.veileder.5.4" />
+                        </p>
+                    </ExpandableInfo>
+                </Block>
+            </BodyLong>
         </SifGuidePanel>
     );
 };

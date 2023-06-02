@@ -21,6 +21,7 @@ import { StepCommonProps } from '../../../types/StepCommonProps';
 import { cleanupArbeidstidStep } from '../utils/cleanupArbeidstidStep';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
 import ArbeidIPeriodeSpørsmålFrilans from './ArbeidIPeriodeSpørsmålFrilans';
+import { BodyLong } from '@navikt/ds-react';
 
 interface Props extends StepCommonProps {
     periode: DateRange;
@@ -57,12 +58,14 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
             onStepCleanup={(values) => cleanupArbeidstidStep(values, arbeid, periode)}>
             <Block padBottom="m">
                 <SifGuidePanel>
-                    <p>
-                        <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
-                    </p>
-                    <p>
-                        <FormattedMessage id={'arbeidIPeriode.StepInfo.2'} />
-                    </p>
+                    <BodyLong as="div">
+                        <p>
+                            <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
+                        </p>
+                        <p>
+                            <FormattedMessage id={'arbeidIPeriode.StepInfo.2'} />
+                        </p>
+                    </BodyLong>
                 </SifGuidePanel>
             </Block>
 

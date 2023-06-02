@@ -1,4 +1,4 @@
-import { Link } from '@navikt/ds-react';
+import { BodyLong, Link } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -32,11 +32,13 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
         <SøknadFormStep stepId={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xxl">
                 <SifGuidePanel>
-                    {intlHelper(intl, 'step.medlemskap.veileder')}{' '}
-                    <Link href={getLenker().medlemskap} target="_blank">
-                        nav.no
-                    </Link>
-                    .
+                    <BodyLong as="div">
+                        {intlHelper(intl, 'step.medlemskap.veileder')}{' '}
+                        <Link href={getLenker().medlemskap} target="_blank">
+                            nav.no
+                        </Link>
+                        .
+                    </BodyLong>
                 </SifGuidePanel>
             </Block>
             <SøknadFormComponents.YesOrNoQuestion

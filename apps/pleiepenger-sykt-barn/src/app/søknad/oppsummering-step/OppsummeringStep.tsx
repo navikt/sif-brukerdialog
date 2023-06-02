@@ -1,4 +1,4 @@
-import { Alert } from '@navikt/ds-react';
+import { Alert, BodyLong } from '@navikt/ds-react';
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -194,7 +194,9 @@ const OppsummeringStep = ({ onApplicationSent, values, søknadsdato }: Props) =>
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
                         <SifGuidePanel>
-                            <FormattedMessage id="steg.oppsummering.info" />
+                            <BodyLong as="div">
+                                <FormattedMessage id="steg.oppsummering.info" />
+                            </BodyLong>
                         </SifGuidePanel>
 
                         {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
