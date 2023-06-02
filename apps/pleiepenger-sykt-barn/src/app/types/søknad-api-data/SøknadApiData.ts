@@ -131,6 +131,17 @@ export interface BeredskapApiData {
     tilleggsinformasjon?: string;
 }
 
+export interface ArbeidsforholdAvsluttetFørSøknadsperiode {
+    erAnsatt: false;
+    sluttetFørSøknadsdato: true;
+    orgnr: string;
+}
+
+export interface DataBruktTilUtledning {
+    soknadDialogCommitSha?: string;
+    annet: Record<string, any>;
+}
+
 export interface SøknadApiData {
     apiDataVersjon: string;
     språk: Locale;
@@ -158,4 +169,5 @@ export interface SøknadApiData {
     utenlandskNæring: UtenlandskNæringApiData[];
     /** Alle felter med _ brukes ikke i mottak, kun for å vise i oppsummering */
     _barnetHarIkkeFnr?: boolean;
+    dataBruktTilUtledning: DataBruktTilUtledning;
 }

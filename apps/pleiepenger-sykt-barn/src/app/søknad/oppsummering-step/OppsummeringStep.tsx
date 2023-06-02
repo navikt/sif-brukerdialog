@@ -32,6 +32,7 @@ import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import appSentryLogger from '../../utils/appSentryLogger';
+import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
 import { navigateTo, relocateToLoginPage } from '../../utils/navigationUtils';
 import { getApiDataFromSøknadsdata } from '../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { validateApiValues } from '../../validation/apiValuesValidation';
@@ -159,6 +160,7 @@ const OppsummeringStep = ({ onApplicationSent, values, søknadsdato }: Props) =>
                     barn,
                     søknadsdata,
                     harBekreftetOpplysninger,
+                    getDataBruktTilUtledning(søknadsdata),
                     intl.locale as Locale
                 );
                 if (apiValues === undefined) {

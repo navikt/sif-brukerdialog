@@ -102,20 +102,6 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
         );
     };
 
-    // const getTimerSuffix = () => {
-    //     if (arbeidsuke && arbeidsuke.arbeidsdagerPeriode) {
-    //         return `timer (${getArbeidsdagerIUkeTekst(arbeidsuke.arbeidsdagerPeriode)})`;
-    //     }
-    //     return 'timer';
-    // };
-
-    // const getProsentSuffix = () => {
-    //     if (arbeidsuke && arbeidsuke.arbeidsdagerPeriode) {
-    //         return `prosent av normalt (${getArbeidsdagerIUkeTekst(arbeidsuke.arbeidsdagerPeriode)})`;
-    //     }
-    //     return `prosent av normalt`;
-    // };
-
     return (
         <FormBlock paddingBottom="l" margin={arbeidsuke ? 'm' : undefined}>
             {timerEllerProsent === TimerEllerProsent.PROSENT && (
@@ -127,8 +113,6 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
                     validate={getArbeidIPeriodeProsentAvNormaltValidator(intlValues, arbeidsuke)}
                     width="xs"
                     maxLength={4}
-                    // suffixStyle="text"
-                    // suffix={getProsentSuffix()}
                 />
             )}
             {timerEllerProsent === TimerEllerProsent.TIMER && (
@@ -146,8 +130,6 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
                     data-testid="timer-verdi"
                     width="xs"
                     maxLength={4}
-                    // suffixStyle="text"
-                    // suffix={getTimerSuffix()}
                 />
             )}
         </FormBlock>

@@ -20,6 +20,7 @@ const envSettings = () => {
     const INNSYN_URL = process.env.INNSYN_URL;
     const FORENKLET_ARBEID = process.env.FORENKLET_ARBEID;
     const PREUTFYLLING = process.env.PREUTFYLLING;
+    const IMAGE = process.env.IMAGE;
 
     const appSettings = `
     window.appSettings = {
@@ -41,6 +42,7 @@ const envSettings = () => {
         INNSYN_URL: '${INNSYN_URL}',
         FORENKLET_ARBEID: '${FORENKLET_ARBEID}',
         PREUTFYLLING: '${PREUTFYLLING}',
+        IMAGE: '${IMAGE}',
     };`
         .trim()
         .replace(/ /g, '');

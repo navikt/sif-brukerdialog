@@ -1,7 +1,7 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../types';
-import { SøknadApiData, SøknadApiDataVersjon } from '../../types/søknad-api-data/SøknadApiData';
+import { DataBruktTilUtledning, SøknadApiData, SøknadApiDataVersjon } from '../../types/søknad-api-data/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import appSentryLogger from '../appSentryLogger';
 import { getValidSpråk } from '../sprakUtils';
@@ -24,6 +24,7 @@ export const getApiDataFromSøknadsdata = (
     barn: RegistrerteBarn[],
     søknadsdata: Søknadsdata,
     harBekreftetOpplysninger: boolean,
+    dataBruktTilUtledning: DataBruktTilUtledning,
     locale: Locale = 'nb'
 ): SøknadApiData | undefined => {
     const { søknadsperiode, harForståttRettigheterOgPlikter } = søknadsdata;
@@ -68,6 +69,7 @@ export const getApiDataFromSøknadsdata = (
                     søknadsdata.legeerklæring !== undefined
                         ? getAttachmentsApiDataFromSøknadsdata(søknadsdata.legeerklæring)
                         : [],
+                dataBruktTilUtledning,
             };
 
             return apiData;
