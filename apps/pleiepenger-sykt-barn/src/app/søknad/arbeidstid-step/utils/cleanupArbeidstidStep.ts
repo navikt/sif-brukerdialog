@@ -219,7 +219,11 @@ export const cleanupArbeidstidSelvstendigNæringdrivende = (
             selvstendig_arbeidsforhold?.arbeidIPeriode &&
             periodeSomSelvstendigNæringsdrivende &&
             selvstendig_arbeidsforhold.normalarbeidstid
-                ? cleanupArbeidIPeriode(søknadsperiode, selvstendig_arbeidsforhold?.arbeidIPeriode, normalarbeidstid)
+                ? cleanupArbeidIPeriode(
+                      periodeSomSelvstendigNæringsdrivende,
+                      selvstendig_arbeidsforhold?.arbeidIPeriode,
+                      normalarbeidstid
+                  )
                 : undefined,
     };
 };
