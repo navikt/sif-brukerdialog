@@ -82,6 +82,7 @@ const SøknadFormStep = (props: Props) => {
                 <SøknadFormComponents.Form
                     onValidSubmit={onValidFormSubmit}
                     includeButtons={true}
+                    submitButtonLabel={texts.nextButtonLabel}
                     showSubmitButton={showSubmitButton}
                     includeValidationSummary={true}
                     runDelayedFormValidation={true}

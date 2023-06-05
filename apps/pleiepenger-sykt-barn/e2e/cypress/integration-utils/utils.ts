@@ -1,28 +1,10 @@
-export const clickFortsett = () => cy.get('button[aria-label="Fortsett til neste steg"]').click();
-export const clickSendInnSøknad = () => cy.get('button[aria-label="Send inn søknaden"]').click();
+export const clickFortsett = () => {
+    getElement('button').contains('Neste').click();
+};
+export const clickSendInnSøknad = () => {
+    cy.get('button').contains('Send inn søknaden').click();
+};
 export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
-
-export const clickNeiPaAlleSporsmal = () => {
-    cy.get('label[class="navds-radio__label"]').each((element) => {
-        if (element.text() === 'Nei') {
-            element.click();
-        }
-    });
-};
-
-export const clickJaPaAlleSporsmal = () => {
-    cy.get('label[class="navds-radio__label"]').each((element) => {
-        if (element.text() === 'Ja') {
-            element.click();
-        }
-    });
-};
-
-export const selectRadioYesOrNo = (key, selectYes) => {
-    getTestElement(`${key}_${selectYes ? 'yes' : 'no'}`)
-        .parent()
-        .click();
-};
 
 export const selectRadioNyYesOrNo = (key, selectYes) => {
     getTestElement(`${key}_${selectYes ? 'yes' : 'no'}`).click({ force: true });
