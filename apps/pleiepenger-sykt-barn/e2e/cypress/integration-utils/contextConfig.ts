@@ -16,15 +16,20 @@ interface ConfigProps {
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step, arbeidsgivere } = props || {};
     beforeEach('intercept api-kall', () => {
-        cy.intercept(`DELETE`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
-        cy.intercept(`PUT`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
-        cy.intercept(`POST`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
-        cy.intercept(`GET`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
-        cy.intercept('GET', `${API}/oppslag/arbeidsgiver*`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
-        cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock);
-        cy.intercept('GET', `${API}/oppslag/barn*`, cyApiMockData.barnMock);
-        cy.intercept('POST', `${API}/pleiepenger-sykt-barn/innsending`, {});
-        cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
+        try {
+            cy.intercept(`DELETE`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
+            cy.intercept(`PUT`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
+            cy.intercept(`POST`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
+            cy.intercept(`GET`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
+            cy.intercept('GET', `${API}/oppslag/arbeidsgiver*`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
+            cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock);
+            cy.intercept('GET', `${API}/oppslag/barn*`, cyApiMockData.barnMock);
+            cy.intercept('POST', `${API}/pleiepenger-sykt-barn/innsending`, {});
+            cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
+        } catch (e) {
+            // eslint-disable-next-line no-console
+            console.log(e);
+        }
     });
 
     before('gå til ønsket side', () => {
