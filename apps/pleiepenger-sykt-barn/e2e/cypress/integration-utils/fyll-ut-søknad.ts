@@ -11,9 +11,9 @@ import { fyllUtVelkommenSide } from './steps/velkommenside';
 
 export const fyllUtEnkelSøknad = () => {
     fyllUtVelkommenSide();
-    fyllUtOmBarnSteg();
+    fyllUtOmBarnSteg(TestType.KOMPLETT);
     fyllUtPeriodeSteg(TestType.KOMPLETT);
-    fyllUtArbeidssituasjonSteg();
+    fyllUtArbeidssituasjonSteg(TestType.KOMPLETT);
     fyllUtArbeidIPeriodeSteg();
     fyllUtOmsorgstilbudSteg(); // Avhenger av perioden !!!
     fyllUtMedlemskapSteg();
