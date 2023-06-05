@@ -42,4 +42,4 @@ jobs:
           - name: Setup kernel for react + node, increase watchers
             run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
           - name: Run E2E with
-            run: npm run e2e-docker-compose
+            run: npm run ./apps/pleiepenger-sykt-barn/e2e-docker-compose
