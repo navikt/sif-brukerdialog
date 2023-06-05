@@ -8,6 +8,7 @@ on:
             - 'apps/pleiepenger-sykt-barn/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
+            - '.github/workflows/test.pleiepenger-sykt-barn.yml'
 
 env:
     APP_NAME: 'pleiepenger-sykt-barn'
