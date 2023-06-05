@@ -30,16 +30,15 @@ jobs:
 
             - name: Run code tests
               run: yarn test --filter=pleiepenger-sykt-barn
-
-      e2e:
-          name: End to End testing with Cypress
-          runs-on: ubuntu-latest
-          strategy:
-              matrix:
-                  node-version: [16.x]
-          steps:
-            - uses: actions/checkout@v3
-            - name: Setup kernel for react + node, increase watchers
-              run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-            - name: Run E2E with
-              run: npm run e2e-docker-compose
+    e2e:
+        name: End to End testing with Cypress
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+          - uses: actions/checkout@v3
+          - name: Setup kernel for react + node, increase watchers
+            run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+          - name: Run E2E with
+            run: npm run e2e-docker-compose
