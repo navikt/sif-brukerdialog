@@ -31,37 +31,15 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=pleiepenger-sykt-barn
 
-    run-cypress-test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-                  cache: 'yarn'
-
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4 # use the explicit version number
-              env:
-                  API_URL_INNSYN: http://localhost:8099
-                  API_URL: http://localhost:8099
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger-sykt-barn
-                  MSW: off
-                  APP_VERSION: dev
-                  FRONTEND_API_PATH: http://localhost:8099/
-                  FRONTEND_VEDLEGG_URL: http://localhost:8099/api
-                  FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
-                  VELG_SAK: off
-                  # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-                  # in GitHub repo → Settings → Secrets → Actions
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-                  # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  project: ./apps/pleiepenger-sykt-barn/e2e
-                  build: yarn build-pleiepenger-sykt-barn
-                  start: yarn e2e-pleiepenger-sykt-barn
+      e2e:
+            name: End to End testing with Cypress
+            runs-on: ubuntu-latest
+            strategy:
+                matrix:
+                    node-version: [16.x]
+            steps:
+                - uses: actions/checkout@v3
+                - name: Setup kernel for react + node, increase watchers
+                  run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+                - name: Run E2E with
+                  run: npm run e2e-docker-compose
