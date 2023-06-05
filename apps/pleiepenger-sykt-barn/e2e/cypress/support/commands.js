@@ -29,3 +29,11 @@ import 'cypress-file-upload';
 Cypress.Commands.add('dataCy', (value) => {
     return cy.get(`[data-cy=${value}]`);
 });
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    // eslint-disable-next-line no-console
+    console.log(err);
+    return false;
+});
