@@ -1,0 +1,14 @@
+FROM node:16-alpine
+
+WORKDIR /usr/src/app
+ENV API_URL=http://api-mock:8082
+ENV FRONTEND_API_PATH=http://api-mock:8082
+ENV FRONTEND_VEDLEGG_URL=http://localhost:8080/api
+ENV PUBLIC_PATH=/familie/sykdom-i-familien/soknad/pleiepenger
+COPY . .
+RUN apk update && apk add bash && apk add curl
+RUN apk add --no-cache make gcc g++ python3
+RUN CYPRESS_INSTALL_BINARY=0 npm ci
+RUN npm run build
+EXPOSE 8080
+CMD ["npm", "run", "server-test"]
