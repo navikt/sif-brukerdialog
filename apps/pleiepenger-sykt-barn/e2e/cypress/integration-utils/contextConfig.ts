@@ -20,14 +20,14 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`PUT`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
         cy.intercept(`POST`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
         cy.intercept(`GET`, `${API}/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {});
-        cy.intercept(`*arbeidsgiver*`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
-        cy.intercept(`/oppslag/arbeidsgiver*`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
-        cy.intercept(`${API}/oppslag/arbeidsgiver*`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
-        cy.intercept(`${API}/oppslag/arbeidsgiver*`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
-        cy.intercept(`${API}/oppslag/arbeidsgiver**`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
+        cy.intercept('GET', `${API}/oppslag/arbeidsgiver*`, arbeidsgivere || cyApiMockData.arbeidsgivereMock);
         cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock);
         cy.intercept('GET', `${API}/oppslag/barn*`, cyApiMockData.barnMock);
         cy.intercept('POST', `${API}/pleiepenger-sykt-barn/innsending`, {});
+        cy.intercept(
+            { method: 'GET', hostname: 'localhost', url: '/oppslag/arbeidsgiver' },
+            arbeidsgivere || cyApiMockData.arbeidsgivereMock
+        );
         cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
     });
 
