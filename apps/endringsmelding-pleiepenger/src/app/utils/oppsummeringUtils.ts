@@ -4,7 +4,8 @@ import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummerin
 
 interface UkjentArbeidsforholdMetadata {
     antallUkjentArbeidsforhold: number;
-    erAnsatt?: boolean;
+    antallAnsatt?: number;
+    antallIkkeAnsatt?: number;
 }
 interface ArbeidstidMetadata {
     endretArbeidstid?: boolean;
@@ -37,7 +38,8 @@ const getUkjentArbeidsforholdMetadata = (søknadsdata: Søknadsdata): UkjentArbe
     const ukjentArbeidsforhold = søknadsdata.ukjentArbeidsforhold?.arbeidsforhold || [];
     return {
         antallUkjentArbeidsforhold: ukjentArbeidsforhold.length,
-        erAnsatt: ukjentArbeidsforhold.some((a) => a.erAnsatt),
+        antallAnsatt: ukjentArbeidsforhold.filter((a) => a.erAnsatt).length,
+        antallIkkeAnsatt: ukjentArbeidsforhold.filter((a) => a.erAnsatt === false).length,
     };
 };
 const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtFerieMetadata | undefined => {
