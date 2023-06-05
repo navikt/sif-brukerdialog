@@ -5,7 +5,7 @@
     "license": "MIT",
     "name": "@navikt/sif-common-soknad-ds",
     "main": "lib/index.js",
-    "version": "7.4.1",
+    "version": "7.4.2",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },

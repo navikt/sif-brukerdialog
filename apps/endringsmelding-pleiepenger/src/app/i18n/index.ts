@@ -19,14 +19,14 @@ const bokmålstekster = {
     ...endreArbeidstidMessages.nb,
     ...ferieuttakMessages.nb,
     ...infoNormalarbeidstid.nb,
-    ...oppsummeringStepMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...samtykkeFormOverrideMessages.nb,
-    ...sifCommonSoknadOverrideMessages.nb,
     ...soknadIntlMessages.nb,
     ...ukjentArbeidsforholdFormMessages.nb,
     ...velkommenPageMessages.nb,
+    ...oppsummeringStepMessages.nb,
     ...defaultMessages.nb,
+    ...sifCommonSoknadOverrideMessages.nb,
 };
 
 export const applicationIntlMessages: MessageFileFormat = {

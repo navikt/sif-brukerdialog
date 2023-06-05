@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 0.20.3
+
+### Patch Changes
+
+-   2da21be: Småfiks. Sette as=div på FormikRadioGroup description. Håndtere undefined i FormikTimeInput.
+
+## 0.20.2
+
+### Patch Changes
+
+-   bd6fae3: Pakkeoppdateringer
+
 ## 0.20.1
 
 ### Patch Changes

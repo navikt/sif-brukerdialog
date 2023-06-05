@@ -1,5 +1,19 @@
 # @navikt/sif-common-forms-ds
 
+## 6.5.2
+
+### Patch Changes
+
+-   0fcdb59: Endre label på ok knapp i dialoger
+
+## 6.5.1
+
+### Patch Changes
+
+-   bd6fae3: Pakkeoppdateringer
+-   Updated dependencies [bd6fae3]
+    -   @navikt/sif-common-core-ds@7.4.2
+
 ## 6.5.0
 
 ### Minor Changes
