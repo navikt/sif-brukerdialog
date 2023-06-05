@@ -28,6 +28,8 @@ const ensureBaseNameForReactRouter = (routerBaseUrl: string) => {
 
 appSentryLogger.init();
 
+/** Trigger test */
+
 const App = () => {
     const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
