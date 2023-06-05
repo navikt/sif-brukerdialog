@@ -20,9 +20,9 @@ const bokmålstekster = {
     ...personalOpplysningerMessages.nb,
     ...samtykkeFormOverrideMessages.nb,
     ...oppsummeringStepMessages.nb,
-    ...sifCommonSoknadOverrideMessages.nb,
     ...ferieuttakMessages.nb,
     ...defaultMessages.nb,
+    ...sifCommonSoknadOverrideMessages.nb,
 };
 
 export const applicationIntlMessages: MessageFileFormat = {
