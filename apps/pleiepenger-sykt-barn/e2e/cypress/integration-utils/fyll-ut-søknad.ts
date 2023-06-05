@@ -12,7 +12,7 @@ import { fyllUtVelkommenSide } from './steps/velkommenside';
 export const fyllUtEnkelSøknad = () => {
     fyllUtVelkommenSide();
     fyllUtOmBarnSteg();
-    fyllUtPeriodeSteg();
+    fyllUtPeriodeSteg(TestType.KOMPLETT);
     fyllUtArbeidssituasjonSteg();
     fyllUtArbeidIPeriodeSteg();
     fyllUtOmsorgstilbudSteg(); // Avhenger av perioden !!!
