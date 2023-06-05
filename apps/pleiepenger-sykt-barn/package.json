@@ -26,7 +26,8 @@
         "e2e-docker-compose": "docker-compose -f ./e2e/docker-compose.yml up --build --exit-code-from e2e",
         "e2e-docker-rm": "docker rm $(docker ps -a -f status=exited -q) ",
         "e2e-docker-rmi": "docker images -a | grep e2e | awk '{print $3}' | xargs docker rmi",
-        "server-test": "node ./server-test.js"
+        "server-test": "node ./server-test.js",
+        "ci": "npm-run-all e2e-docker-compose"
     },
     "dependencies": {
         "@formatjs/intl-pluralrules": "5.2.2",
