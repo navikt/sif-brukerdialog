@@ -21,7 +21,6 @@ import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
-import { søkerKunFortid, søkerKunFremtid } from '../../utils/søknadsperiodeUtils';
 import {
     validateFerieuttakIPerioden,
     validateFradato,
@@ -33,20 +32,6 @@ import SøknadFormStep from '../SøknadFormStep';
 import harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning from './harUtenlandsoppholdUtenInnleggelseEllerInnleggelseForEgenRegning';
 
 dayjs.extend(minMax);
-
-const cleanupTidsromStep = (values: SøknadFormValues, søknadsperiode: DateRange): SøknadFormValues => {
-    const cleanedValues = { ...values };
-
-    if (cleanedValues.omsorgstilbud && søkerKunFortid(søknadsperiode)) {
-        cleanedValues.omsorgstilbud.erIOmsorgstilbudFremtid = undefined;
-        cleanedValues.omsorgstilbud.erLiktHverUke = undefined;
-    }
-    if (cleanedValues.omsorgstilbud && søkerKunFremtid(søknadsperiode)) {
-        cleanedValues.omsorgstilbud.erIOmsorgstilbudFortid = undefined;
-        cleanedValues.omsorgstilbud.erLiktHverUke = undefined;
-    }
-    return cleanedValues;
-};
 
 const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
@@ -82,7 +67,6 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
         <SøknadFormStep
             stepId={StepID.TIDSROM}
             onValidFormSubmit={onValidSubmit}
-            onStepCleanup={(values) => cleanupTidsromStep(values, periode)}
             showSubmitButton={!søkerKunHelgedager(values.periodeFra, values.periodeTil)}>
             <SøknadFormComponents.DateRangePicker
                 legend={intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.spm')}

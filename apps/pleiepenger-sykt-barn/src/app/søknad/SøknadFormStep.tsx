@@ -26,7 +26,6 @@ interface Props {
     skipValidation?: boolean;
     onValidFormSubmit?: () => void;
     customErrorSummary?: () => React.ReactNode;
-    onStepCleanup?: (values: SøknadFormValues) => SøknadFormValues;
 }
 
 const SøknadFormStep = (props: Props) => {
@@ -89,7 +88,6 @@ const SøknadFormStep = (props: Props) => {
                     onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
                     submitPending={showButtonSpinner}
                     submitDisabled={buttonDisabled}
-                    cleanup={props.onStepCleanup}
                     formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                     formFooter={<>{customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}</>}>
                     {children}

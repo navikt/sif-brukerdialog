@@ -19,7 +19,7 @@ import { StepCommonProps } from '../../types/StepCommonProps';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { BodyLong } from '@navikt/ds-react';
 
-const cleanupStep = (values: SøknadFormValues): SøknadFormValues => {
+export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };
     if (values.harNattevåk === YesOrNo.NO) {
         cleanedValues.harNattevåk_ekstrainfo = undefined;
@@ -45,10 +45,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
     });
 
     return (
-        <SøknadFormStep
-            stepId={StepID.NATTEVÅK_OG_BEREDSKAP}
-            onValidFormSubmit={onValidSubmit}
-            onStepCleanup={cleanupStep}>
+        <SøknadFormStep stepId={StepID.NATTEVÅK_OG_BEREDSKAP} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
                     <BodyLong>

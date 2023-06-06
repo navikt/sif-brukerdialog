@@ -27,7 +27,7 @@ import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN from './components/ArbeidssituasjonSN';
 import ArbeidssituasjonStepVeileder from './components/ArbeidssituasjonStepVeileder';
 import { oppdaterSøknadMedArbeidsgivere } from './utils/arbeidsgivereUtils';
-import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep';
+// import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep';
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
 
 interface LoadState {
@@ -66,13 +66,7 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
     });
 
     return (
-        <SøknadFormStep
-            stepId={StepID.ARBEIDSSITUASJON}
-            onValidFormSubmit={onValidSubmit}
-            buttonDisabled={isLoading}
-            onStepCleanup={
-                søknadsperiode ? (values) => cleanupArbeidssituasjonStep(values, søknadsperiode) : undefined
-            }>
+        <SøknadFormStep stepId={StepID.ARBEIDSSITUASJON} onValidFormSubmit={onValidSubmit} buttonDisabled={isLoading}>
             {isLoading && <LoadingSpinner type="XS" title="Henter arbeidsforhold" />}
             {!isLoading && søknadsperiode && (
                 <>

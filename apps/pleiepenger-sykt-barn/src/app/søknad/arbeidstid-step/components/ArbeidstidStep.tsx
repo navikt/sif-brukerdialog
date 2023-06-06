@@ -18,7 +18,7 @@ import { getPeriodeSomSelvstendigInnenforPeriode } from '../../../utils/selvsten
 import SøknadFormStep from '../../SøknadFormStep';
 import { useSøknadsdataContext } from '../../SøknadsdataContext';
 import { StepCommonProps } from '../../../types/StepCommonProps';
-import { cleanupArbeidstidStep } from '../utils/cleanupArbeidstidStep';
+// import { cleanupArbeidstidStep } from '../utils/cleanupArbeidstidStep';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
 import { BodyLong } from '@navikt/ds-react';
 
@@ -52,10 +52,7 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
     };
 
     return (
-        <SøknadFormStep
-            stepId={StepID.ARBEIDSTID}
-            onValidFormSubmit={onValidSubmit}
-            onStepCleanup={(values) => cleanupArbeidstidStep(values, arbeid, periode)}>
+        <SøknadFormStep stepId={StepID.ARBEIDSTID} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="m">
                 <SifGuidePanel>
                     <BodyLong as="div">

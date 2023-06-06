@@ -34,12 +34,18 @@ import { getArbeidsforhold, harFraværFraJobb } from './arbeidstid-step/utils/ar
 import { getIngenFraværConfirmationDialog } from './confirmation-dialogs/ingenFraværConfirmation';
 import LegeerklæringStep from './legeerklæring-step/LegeerklæringStep';
 import MedlemsskapStep from './medlemskap-step/MedlemsskapStep';
-import NattevåkOgBeredskapStep from './nattevåk-og-beredskap-step/NattevåkOgBeredskapStep';
+import NattevåkOgBeredskapStep, {
+    cleanupNattevåkOgBeredskapStep,
+} from './nattevåk-og-beredskap-step/NattevåkOgBeredskapStep';
 import OmsorgstilbudStep from './omsorgstilbud-step/OmsorgstilbudStep';
 import OpplysningerOmBarnetStep from './opplysninger-om-barnet-step/OpplysningerOmBarnetStep';
 import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSøknadsdataContext } from './SøknadsdataContext';
 import TidsromStep from './tidsrom-step/TidsromStep';
+import { cleanupArbeidssituasjonStep } from './arbeidssituasjon-step/utils/cleanupArbeidssituasjonStep';
+import { cleanupArbeidstidStep } from './arbeidstid-step/utils/cleanupArbeidstidStep';
+import { cleanupOmsorgstilbudStep } from './omsorgstilbud-step/omsorgstilbudStepUtils';
+import { cleanupTidsromStep } from './tidsrom-step/cleanupTidsromStep';
 
 interface PleiepengesøknadContentProps {
     /** Sist steg som bruker submittet skjema */
@@ -201,11 +207,14 @@ const SøknadContent = ({
                         path={StepID.TIDSROM}
                         element={
                             <TidsromStep
-                                onValidSubmit={() => {
-                                    setTimeout(() => {
-                                        setSøknadsdata(getSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.TIDSROM);
-                                    });
+                                onValidSubmit={async () => {
+                                    await Promise.resolve();
+                                    const periode = getSøknadsperiodeFromFormData(values);
+                                    const cleanedValues = periode ? cleanupTidsromStep(values, periode) : values;
+                                    setValues(cleanedValues);
+                                    await Promise.resolve();
+                                    setSøknadsdata(getSøknadsdataFromFormValues(cleanedValues));
+                                    navigateToNextStepFrom(StepID.TIDSROM);
                                 }}
                             />
                         }
@@ -217,11 +226,16 @@ const SøknadContent = ({
                         path={StepID.ARBEIDSSITUASJON}
                         element={
                             <ArbeidssituasjonStep
-                                onValidSubmit={() => {
-                                    setTimeout(() => {
-                                        setSøknadsdata(getSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.ARBEIDSSITUASJON);
-                                    });
+                                onValidSubmit={async () => {
+                                    await Promise.resolve();
+                                    const periode = getSøknadsperiodeFromFormData(values);
+                                    const cleanedValues = periode
+                                        ? cleanupArbeidssituasjonStep(values, periode)
+                                        : values;
+                                    setValues(cleanedValues);
+                                    await Promise.resolve();
+                                    setSøknadsdata(getSøknadsdataFromFormValues(cleanedValues));
+                                    navigateToNextStepFrom(StepID.ARBEIDSSITUASJON);
                                 }}
                                 søknadsdato={søknadsdato}
                                 søknadsperiode={søknadsperiode}
@@ -236,31 +250,37 @@ const SøknadContent = ({
                         element={
                             <ArbeidstidStep
                                 periode={søknadsperiode}
-                                onValidSubmit={() => {
-                                    setTimeout(() => {
-                                        const søknadsdata = getSøknadsdataFromFormValues(values);
-                                        setSøknadsdata(søknadsdata);
-                                        if (
-                                            søknadsdata.arbeid &&
-                                            harFraværFraJobb(getArbeidsforhold(søknadsdata.arbeid)) === false
-                                        ) {
-                                            setConfirmationDialog(
-                                                getIngenFraværConfirmationDialog({
-                                                    onCancel: () => {
-                                                        logBekreftIngenFraværFraJobb(false);
-                                                        setConfirmationDialog(undefined);
-                                                    },
-                                                    onConfirm: () => {
-                                                        logBekreftIngenFraværFraJobb(true);
-                                                        setConfirmationDialog(undefined);
-                                                        navigateToNextStepFrom(StepID.ARBEIDSTID);
-                                                    },
-                                                })
-                                            );
-                                        } else {
-                                            navigateToNextStepFrom(StepID.ARBEIDSTID);
-                                        }
-                                    });
+                                onValidSubmit={async () => {
+                                    const søknadsdata = getSøknadsdataFromFormValues(values);
+                                    await Promise.resolve();
+                                    const periode = getSøknadsperiodeFromFormData(values);
+                                    const cleanedValues =
+                                        periode && søknadsdata.arbeid
+                                            ? cleanupArbeidstidStep(values, søknadsdata.arbeid, periode)
+                                            : values;
+                                    setValues(cleanedValues);
+                                    await Promise.resolve();
+                                    setSøknadsdata(søknadsdata);
+                                    if (
+                                        søknadsdata.arbeid &&
+                                        harFraværFraJobb(getArbeidsforhold(søknadsdata.arbeid)) === false
+                                    ) {
+                                        setConfirmationDialog(
+                                            getIngenFraværConfirmationDialog({
+                                                onCancel: () => {
+                                                    logBekreftIngenFraværFraJobb(false);
+                                                    setConfirmationDialog(undefined);
+                                                },
+                                                onConfirm: () => {
+                                                    logBekreftIngenFraværFraJobb(true);
+                                                    setConfirmationDialog(undefined);
+                                                    navigateToNextStepFrom(StepID.ARBEIDSTID);
+                                                },
+                                            })
+                                        );
+                                    } else {
+                                        navigateToNextStepFrom(StepID.ARBEIDSTID);
+                                    }
                                 }}
                             />
                         }
@@ -272,11 +292,14 @@ const SøknadContent = ({
                         path={StepID.OMSORGSTILBUD}
                         element={
                             <OmsorgstilbudStep
-                                onValidSubmit={() => {
-                                    setTimeout(() => {
-                                        setSøknadsdata(getSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.OMSORGSTILBUD);
-                                    });
+                                onValidSubmit={async () => {
+                                    await Promise.resolve();
+                                    const periode = getSøknadsperiodeFromFormData(values);
+                                    const cleanedValues = periode ? cleanupOmsorgstilbudStep(values, periode) : values;
+                                    setValues(cleanedValues);
+                                    await Promise.resolve();
+                                    setSøknadsdata(getSøknadsdataFromFormValues(values));
+                                    navigateToNextStepFrom(StepID.OMSORGSTILBUD);
                                 }}
                                 søknadsperiode={søknadsperiode}
                             />
@@ -289,11 +312,12 @@ const SøknadContent = ({
                         path={StepID.NATTEVÅK_OG_BEREDSKAP}
                         element={
                             <NattevåkOgBeredskapStep
-                                onValidSubmit={() => {
-                                    setTimeout(() => {
-                                        setSøknadsdata(getSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.NATTEVÅK_OG_BEREDSKAP);
-                                    });
+                                onValidSubmit={async () => {
+                                    const cleanedValues = cleanupNattevåkOgBeredskapStep(values);
+                                    setValues(cleanedValues);
+                                    await Promise.resolve();
+                                    setSøknadsdata(getSøknadsdataFromFormValues(values));
+                                    navigateToNextStepFrom(StepID.NATTEVÅK_OG_BEREDSKAP);
                                 }}
                             />
                         }

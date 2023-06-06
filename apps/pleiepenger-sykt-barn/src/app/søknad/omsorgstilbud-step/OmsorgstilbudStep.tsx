@@ -10,7 +10,6 @@ import SøknadFormStep from '../SøknadFormStep';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import omsorgstilbudInfo from './info/OmsorgstilbudInfo';
 import OmsorgstilbudSpørsmål from './OmsorgstilbudSpørsmål';
-import { cleanupOmsorgstilbudStep } from './omsorgstilbudStepUtils';
 
 interface Props {
     søknadsperiode: DateRange;
@@ -30,10 +29,7 @@ const OmsorgstilbudStep = ({ onValidSubmit, søknadsperiode }: StepCommonProps &
     }, [omsorgstilbudChanged, persistSoknad]);
 
     return (
-        <SøknadFormStep
-            stepId={StepID.OMSORGSTILBUD}
-            onStepCleanup={(values) => cleanupOmsorgstilbudStep(values, søknadsperiode)}
-            onValidFormSubmit={onValidSubmit}>
+        <SøknadFormStep stepId={StepID.OMSORGSTILBUD} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xl">{omsorgstilbudInfo.stepIntro}</Block>
 
             <OmsorgstilbudSpørsmål
