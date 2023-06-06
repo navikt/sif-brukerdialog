@@ -127,16 +127,22 @@
     },
     "jest": {
         "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
+            "node_modules/(?!(@navikt)).*\\.js$",
+            "node_modules/(?!(axios)).*\\.js$"
+        ],
+        "moduleNameMapper": {
+            "^@hooks$": "<rootDir>/src/app/hooks/index.ts",
+            "^@types$": "<rootDir>/src/app/types/index.ts",
+            "^@utils$": "<rootDir>/src/app/utils/index.ts",
+            "axios": "axios/dist/node/axios.cjs"
+        }
     },
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
         "build-storybook": "storybook build",
-        "build": "npm-run-all build-app",
+        "build": "yarn build-app",
         "build-heroku": "node src/build/scripts/heroku-build.js",
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive 'yarn cypress-run'",
-        "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",

@@ -1,7 +1,5 @@
 import { decimalDurationToDuration, Duration, durationToDecimalDuration } from '@navikt/sif-common-utils';
-import { ArbeidstidEndring } from '../types/ArbeidstidEndring';
-import { ArbeidsukeTimer } from '../types/Sak';
-import { TimerEllerProsent } from '../types/TimerEllerProsent';
+import { ArbeidstidEndring, TimerEllerProsent } from '@types';
 
 export const beregnEndretArbeidstidForUke = (
     endring: ArbeidstidEndring,
@@ -43,13 +41,12 @@ export const getTimerPerUkeFraTimerPerDag = (tidPerDag: Duration, antallDagerMed
     return summerTimerPerDag(tidPerDag, antallDagerMedArbeidstid);
 };
 
-export const getTimerPerDagOgUkeFraUke = (timerPerUke: Duration, antallDager: number): ArbeidsukeTimer => {
-    return {
-        dag: beregnSnittTimerPerDag(timerPerUke, antallDager),
-        uke: timerPerUke,
-    };
-};
-
+/**
+ * Kontrollerer at antall timer ikke er mer en mulig innenfor antall dager
+ * @param duration
+ * @param antallDager
+ * @returns
+ */
 export const erTimerGyldigInnenforAntallDager = (duration: Duration, antallDager: number): boolean => {
     return durationToDecimalDuration(duration) <= antallDager * 24;
 };

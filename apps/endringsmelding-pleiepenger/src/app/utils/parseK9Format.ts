@@ -1,5 +1,4 @@
 import { durationUtils, ISODateRangeToDateRange, ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
 import {
     K9Format,
     K9FormatArbeidstid,
@@ -7,8 +6,6 @@ import {
     K9FormatBarn,
     K9FormatLovbestemtFeriePerioder,
     K9FormatUtenlandsoppholdPerioder,
-} from '../types/k9Format';
-import {
     K9Sak,
     K9SakArbeidstid,
     K9SakArbeidstidInfo,
@@ -16,7 +13,8 @@ import {
     K9SakBarn,
     K9SakLovbestemtFerie,
     K9SakUtenlandsopphold,
-} from '../types/K9Sak';
+} from '@types';
+import dayjs from 'dayjs';
 
 /**
  * Henter ut informasjon om barn fra k9sak

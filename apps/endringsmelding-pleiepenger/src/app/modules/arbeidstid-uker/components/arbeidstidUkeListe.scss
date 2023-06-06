@@ -1,0 +1,34 @@
+.arbeidstidUkeListe {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--ac-table-row-border, var(--a-border-default));
+    border-top-width: 2px;
+    li {
+        padding: var(--a-spacing-4) var(--a-spacing-3);
+        border-bottom: 1px solid var(--ac-table-row-border, var(--a-border-default));
+    }
+
+    .arbeidstidUke {
+        &--velgUker {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        &--valgt {
+            background-color: var(--ac-table-row-selected, var(--a-surface-action-subtle));
+        }
+        &__velgUke {
+            min-width: 2.5rem;
+            flex-grow: 0;
+            margin-top: -0.75rem;
+            align-self: flex-start;
+        }
+        &__info {
+            flex-grow: 1;
+        }
+        &__endre {
+            flex-grow: 0;
+        }
+    }
+}

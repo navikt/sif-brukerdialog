@@ -1,7 +1,8 @@
 import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, ArbeidsgiverType } from '../../types/Arbeidsgiver';
+import { Arbeidsgiver } from '@types';
 import api from '../api';
 import { ApiEndpointPsb } from './';
+import { getArbeidsgiverKey } from '../../utils/arbeidsgiverUtils';
 
 type AAregArbeidsgiver = {
     organisasjoner?: {
@@ -23,8 +24,8 @@ export const arbeidsgivereEndpoint = {
             const aaArbeidsgivere: Arbeidsgiver[] = [];
             (data.organisasjoner || []).forEach((a) => {
                 aaArbeidsgivere.push({
+                    key: getArbeidsgiverKey(a.organisasjonsnummer),
                     organisasjonsnummer: a.organisasjonsnummer,
-                    type: ArbeidsgiverType.ORGANISASJON,
                     navn: a.navn,
                     ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
                     ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,

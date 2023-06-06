@@ -8,8 +8,7 @@ import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
-import { Step, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
+import { SoknadStepsConfig, soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import StateInfo from '../dev/state-info/StateInfo';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import InvalidStepSøknadsdataInfo from '../modules/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
@@ -44,7 +43,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, stepConfig, child
             {isDevMode && 1 + 1 === 2 ? (
                 <Block margin="xxl">
                     <Accordion>
-                        <AccordionItem title="Develop info">
+                        <AccordionItem>
                             <AccordionHeader>Dev-info</AccordionHeader>
                             <AccordionContent>
                                 <StateInfo />

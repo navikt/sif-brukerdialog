@@ -4,9 +4,7 @@ import {
     joinAdjacentDateRanges,
     sortDateRange,
 } from '@navikt/sif-common-utils';
-import { LovbestemtFerieType } from '../../types/LovbestemtFerieType';
-import { LovbestemtFerieApiData } from '../../types/søknadApiData/SøknadApiData';
-import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
+import { LovbestemtFerieApiData, LovbestemtFerieSøknadsdata, LovbestemtFerieType } from '@types';
 
 export const getLovbestemtFerieApiDataFromSøknadsdata = ({
     feriedagerMeta: { perioderFjernet, perioderLagtTil },

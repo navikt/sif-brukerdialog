@@ -1,15 +1,11 @@
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
+import { K9Sak, Søker, Søknadsdata, ValgteEndringer } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
+import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
-import { getSøknadSteps } from '../../søknad/config/søknadStepConfig';
-import { EndringType } from '../../types/EndringType';
-import { K9Sak } from '../../types/K9Sak';
-import { Søker } from '../../types/Søker';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { harFjernetLovbestemtFerie } from '../../utils/lovbestemtFerieUtils';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 export type SøknadStatePersistence = {
@@ -18,7 +14,9 @@ export type SøknadStatePersistence = {
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
-    hvaSkalEndres: EndringType[];
+    harUkjentArbeidsforhold: boolean;
+    valgteEndringer: ValgteEndringer;
+    søknadSteps: StepId[];
     metadata: {
         updatedTimestamp: string;
     };
@@ -45,12 +43,7 @@ const createHashString = (info: SøknadStateHashInfo) => {
 };
 
 const persistedSøknadRouteIsAvailable = (søknadState: SøknadStatePersistence): boolean => {
-    const søknadRoute = søknadState.søknadRoute;
-    const availableSteps = getSøknadSteps(
-        søknadState.hvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadState.søknadsdata.lovbestemtFerie)
-    );
-    return availableSteps.some((step) => getSøknadStepRoute(step) === søknadRoute);
+    return (søknadState.søknadSteps || []).some((step) => getSøknadStepRoute(step) === søknadState.søknadRoute);
 };
 
 export const isPersistedSøknadStateValid = (
@@ -62,7 +55,6 @@ export const isPersistedSøknadStateValid = (
         søknadState.versjon === APP_VERSJON &&
         søknadState.søknadHashString === createHashString(info) &&
         k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId) &&
-        søknadState.hvaSkalEndres.length > 0 &&
         persistedSøknadRouteIsAvailable(søknadState)
     );
 };
@@ -74,14 +66,19 @@ export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersisten
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søknadsdata, søknadRoute, barnAktørId, hvaSkalEndres }, søker) => {
+    update: (
+        { søknadsdata, søknadRoute, barnAktørId, valgteEndringer, harUkjentArbeidsforhold, søknadSteps },
+        søker
+    ) => {
         return persistSetup.update({
             versjon: APP_VERSJON,
             søknadHashString: createHashString({ søker, barnAktørId }),
             barnAktørId,
             søknadsdata,
             søknadRoute,
-            hvaSkalEndres,
+            valgteEndringer,
+            harUkjentArbeidsforhold,
+            søknadSteps,
             metadata: {
                 updatedTimestamp: new Date().toISOString(),
             },

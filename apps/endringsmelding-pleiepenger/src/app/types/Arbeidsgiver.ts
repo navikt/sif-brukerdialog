@@ -1,13 +1,7 @@
-export enum ArbeidsgiverType {
-    'PRIVATPERSON' = 'PRIVAT',
-    'ORGANISASJON' = 'ORGANISASJON',
-}
-
 export interface Arbeidsgiver {
+    key: string /** orgnummer prefixet med a_ */;
     organisasjonsnummer: string;
-    type: ArbeidsgiverType;
     navn: string;
     ansattFom?: Date;
     ansattTom?: Date;
-    erUkjentIAareg?: boolean;
 }

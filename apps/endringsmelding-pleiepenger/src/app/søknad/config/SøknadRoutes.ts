@@ -4,6 +4,8 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
     switch (stepId) {
         case StepId.VELKOMMEN:
             return SøknadRoutes.VELKOMMEN;
+        case StepId.UKJENT_ARBEIDSFOHOLD:
+            return SøknadRoutes.UKJENT_ARBEIDSFOHOLD;
         case StepId.ARBEIDSTID:
             return SøknadRoutes.ARBEIDSTID;
         case StepId.LOVBESTEMT_FERIE:
@@ -17,6 +19,7 @@ export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
 
 export const SøknadStepRoute = {
     [StepId.VELKOMMEN]: 'velkommen',
+    [StepId.UKJENT_ARBEIDSFOHOLD]: 'ukjentArbeidsforhold',
     [StepId.ARBEIDSTID]: 'arbeidstid',
     [StepId.LOVBESTEMT_FERIE]: 'lovbestemt-ferie',
     [StepId.OPPSUMMERING]: 'oppsummering',
@@ -27,6 +30,7 @@ export enum SøknadRoutes {
     APP_ROOT = '/',
     INNLOGGET_ROOT = '/melding/*',
     VELKOMMEN = '/melding/velkommen',
+    UKJENT_ARBEIDSFOHOLD = '/melding/ukjentArbeidsforhold',
     ARBEIDSTID = '/melding/arbeidstid',
     LOVBESTEMT_FERIE = '/melding/lovbestemt-ferie',
     OPPSUMMERING = '/melding/oppsummering',

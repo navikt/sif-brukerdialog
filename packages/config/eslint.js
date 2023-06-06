@@ -20,6 +20,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'warn',
         'react/react-in-jsx-scope': 0,
         'react/jsx-uses-react': 0,
+        'react/prop-types': 0,
         'no-console': 'error',
     },
     plugins: ['jsx-a11y', 'react-hooks'],
