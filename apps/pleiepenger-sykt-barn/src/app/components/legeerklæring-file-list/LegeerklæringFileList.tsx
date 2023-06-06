@@ -27,9 +27,9 @@ const LegeerklæringAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionF
 
     if (!containsAnyUploadedAttachments(legeerklæring)) {
         const noAttachmentsText = (
-            <div data-testid="ingenLegeerklæring">
+            <p data-testid="ingenLegeerklæring">
                 <FormattedMessage id="vedleggsliste.ingenLegeerklæringLastetOpp" />
-            </div>
+            </p>
         );
         if (wrapNoAttachmentsInBox) {
             return <Block margin="m">{noAttachmentsText}</Block>;

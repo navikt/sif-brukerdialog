@@ -3,7 +3,6 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
@@ -16,7 +15,9 @@ import { date1YearAgo, date1YearFromNow, date3YearsAgo, DateRange } from '@navik
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
+import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
@@ -29,9 +30,7 @@ import {
 } from '../../validation/fieldValidations';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
 import harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning from './harUtenlandsoppholdUtenInnleggelseEllerInnleggelseForEgenRegning';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 
 dayjs.extend(minMax);
 
@@ -167,9 +166,9 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                     )}
                     {visInfoOmUtenlandsopphold && (
                         <Block margin="l" padBottom="l">
-                            <SifGuidePanel compact={true}>
+                            <Alert variant="info">
                                 <FormattedMessage id="steg.tidsrom.veileder.utenlandsopphold" />
-                            </SifGuidePanel>
+                            </Alert>
                         </Block>
                     )}
 

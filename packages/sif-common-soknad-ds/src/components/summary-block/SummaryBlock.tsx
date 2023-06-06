@@ -8,7 +8,7 @@ interface Props {
 }
 
 const SummaryBlock = ({ header, children }: Props) => (
-    <Block margin="l">
+    <Block margin="xl">
         <ContentWithHeader header={header}>{children}</ContentWithHeader>
     </Block>
 );

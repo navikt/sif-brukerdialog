@@ -17,6 +17,7 @@ import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
+import { BodyLong } from '@navikt/ds-react';
 
 const cleanupStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };
@@ -50,11 +51,15 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
             onStepCleanup={cleanupStep}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
-                    <FormattedMessage id={'steg.nattevåkOgBeredskap.veileder'} />
+                    <BodyLong>
+                        <FormattedMessage id={'steg.nattevåkOgBeredskap.veileder'} />
+                    </BodyLong>
                 </SifGuidePanel>
             </Block>
             <FormSection title="Nattevåk">
-                <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.veileder'} tagName="p" />
+                <BodyLong>
+                    <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.veileder'} />
+                </BodyLong>
 
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
@@ -100,7 +105,9 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                 )}
             </FormSection>
             <FormSection title="Beredskap">
-                <FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.veileder'} tagName="p" />
+                <BodyLong>
+                    <FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.veileder'} />
+                </BodyLong>
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
                         legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.beredskap.spm')}

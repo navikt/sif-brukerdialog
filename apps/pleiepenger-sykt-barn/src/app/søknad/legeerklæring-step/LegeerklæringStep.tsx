@@ -1,4 +1,4 @@
-import { Alert, Link } from '@navikt/ds-react';
+import { Alert, BodyLong, Link } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
@@ -97,12 +97,14 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
-                    <p>
-                        <FormattedMessage id={'steg.legeerklaering.counsellorpanel.1'} />
-                    </p>
-                    <p>
-                        <FormattedMessage id={'steg.legeerklaering.counsellorpanel.2'} />{' '}
-                    </p>
+                    <BodyLong as="div">
+                        <p>
+                            <FormattedMessage id={'steg.legeerklaering.counsellorpanel.1'} />
+                        </p>
+                        <p>
+                            <FormattedMessage id={'steg.legeerklaering.counsellorpanel.2'} />{' '}
+                        </p>
+                    </BodyLong>
                 </SifGuidePanel>
             </Block>
 

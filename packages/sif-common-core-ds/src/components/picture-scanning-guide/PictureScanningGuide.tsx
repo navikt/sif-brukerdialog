@@ -1,6 +1,7 @@
 import { BodyLong, Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { ExternalLink } from '@navikt/ds-icons';
+import Block from '../../atoms/block/Block';
 import ExpandableInfo from '../../components/expandable-info/ExpandableInfo';
 import bemUtils from '../../utils/bemUtils';
 import intlHelper from '../../utils/intlUtils';
@@ -16,9 +17,11 @@ const PictureScanningGuide = () => {
     return (
         <ExpandableInfo title={intlHelper(intl, 'psg.expandable.tittel')}>
             <div className={bem.block}>
-                <Heading level="2" size="small" spacing={true}>
-                    <FormattedMessage id="psg.section1.tittel" />
-                </Heading>
+                <Block margin="l">
+                    <Heading level="2" size="small" spacing={true}>
+                        <FormattedMessage id="psg.section1.tittel" />
+                    </Heading>
+                </Block>
                 <BodyLong as="div">
                     <ul>
                         <li>
@@ -33,7 +36,7 @@ const PictureScanningGuide = () => {
                     </ul>
                 </BodyLong>
 
-                <div className="mt-8">
+                <div>
                     <Heading level="3" size="xsmall" spacing={true}>
                         <FormattedMessage id="psg.section2.tittel" />
                     </Heading>
@@ -51,7 +54,7 @@ const PictureScanningGuide = () => {
                     </ul>
                 </div>
 
-                <div className="mt-8">
+                <div>
                     <Heading level="3" size="xsmall" spacing={true}>
                         <FormattedMessage id="psg.icon.heading" />
                     </Heading>
