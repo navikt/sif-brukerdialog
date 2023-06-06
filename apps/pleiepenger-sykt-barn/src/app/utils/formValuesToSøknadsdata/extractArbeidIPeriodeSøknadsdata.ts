@@ -92,6 +92,8 @@ export const extractArbeidIPeriodeSøknadsdata = ({
 export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
     arbeiderIPerioden,
     snittTimerPerUke,
+    prosentAvNormalt,
+    timerEllerProsent,
     erLiktHverUke,
     arbeidsuker,
     misterHonorarerFraVervIPerioden,
@@ -101,7 +103,15 @@ export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
         misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterDelerAvHonorarer
     ) {
         if (erLiktHverUke === YesOrNo.YES) {
-            const timerISnittPerUke = getNumberFromNumberInputValue(snittTimerPerUke);
+            const arbeiderProsent =
+                timerEllerProsent === TimerEllerProsent.PROSENT
+                    ? getNumberFromNumberInputValue(prosentAvNormalt)
+                    : undefined;
+
+            const timerISnittPerUke =
+                timerEllerProsent === TimerEllerProsent.TIMER
+                    ? getNumberFromNumberInputValue(snittTimerPerUke)
+                    : undefined;
 
             if (snittTimerPerUke && timerISnittPerUke) {
                 return {
@@ -109,6 +119,14 @@ export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
                     arbeiderIPerioden: arbeiderIPerioden,
                     misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
                     timerISnittPerUke,
+                };
+            }
+            if (arbeiderProsent && prosentAvNormalt) {
+                return {
+                    type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
+                    arbeiderIPerioden: arbeiderIPerioden,
+                    misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
+                    prosentAvNormalt: arbeiderProsent,
                 };
             }
         }

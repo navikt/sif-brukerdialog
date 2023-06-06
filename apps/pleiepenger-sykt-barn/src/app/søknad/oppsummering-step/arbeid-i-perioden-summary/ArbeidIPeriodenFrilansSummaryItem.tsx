@@ -7,6 +7,7 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils/lib';
+
 import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
 import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { MisterHonorarerFraVervIPerioden } from '../../../types/ArbeidIPeriodeFormValues';
@@ -15,6 +16,8 @@ import { ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/arbeidIP
 import { ArbeidIPeriodeFrilansApiData } from '../../../types/søknad-api-data/arbeidIPeriodeFrilansApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 import { ArbeidIPeriodenFrilansSummaryItemType } from './ArbeidIPeriodenSummary';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { NormalarbeidstidApiData } from '../../../types/søknad-api-data/normalarbeidstidApiData';
 
 interface Props {
     arbeidsforhold: ArbeidIPeriodenFrilansSummaryItemType;
@@ -35,6 +38,9 @@ const ArbeidIPeriodeFrilansSummaryItem: React.FunctionComponent<Props> = ({
 
     const timerNormalt = formatTimerOgMinutter(intl, decimalDurationToDuration(timerNormaltNumber));
 
+    const getTimerFraProsentAvNormalt = (prosent: number): string => {
+        return formatTimerOgMinutter(intl, decimalDurationToDuration((timerNormaltNumber / 100) * prosent));
+    };
     const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[]) => {
         return (
             <ul>
@@ -71,6 +77,18 @@ const ArbeidIPeriodeFrilansSummaryItem: React.FunctionComponent<Props> = ({
         </li>
     );
 
+    const getArbeidProsentTekst = (prosent: number, normalarbeidstid: NormalarbeidstidApiData) => {
+        const timer = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);
+        if (!timer) {
+            return undefined;
+        }
+        return intlHelper(intl, 'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent', {
+            prosent: Intl.NumberFormat().format(prosent),
+            timerNormalt,
+            timerIPeriode: getTimerFraProsentAvNormalt(prosent),
+        });
+    };
+
     const getArbeidIPeriodenDetaljer = (arbeidIPeriode: ArbeidIPeriodeFrilansApiData) => {
         switch (arbeidIPeriode.type) {
             case ArbeidIPeriodeType.arbeiderIkke:
@@ -105,6 +123,24 @@ const ArbeidIPeriodeFrilansSummaryItem: React.FunctionComponent<Props> = ({
                                         ),
                                     }}
                                 />
+                            </li>
+                        </ul>
+                    </>
+                );
+            case ArbeidIPeriodeType.arbeiderProsentAvNormalt:
+                return (
+                    <>
+                        <ul>
+                            {arbeidIPeriode.arbeiderIPerioden && getFrilanserTekst(arbeidIPeriode.arbeiderIPerioden)}
+                            {misterHonorarerIPerioden && getVervTekst(misterHonorarerIPerioden)}
+                        </ul>
+
+                        <ul>
+                            <li>
+                                {getArbeidProsentTekst(
+                                    arbeidIPeriode.prosentAvNormalt,
+                                    arbeidsforhold.normalarbeidstid
+                                )}
                             </li>
                         </ul>
                     </>

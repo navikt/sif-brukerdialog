@@ -20,7 +20,6 @@ import { useSøknadsdataContext } from '../../SøknadsdataContext';
 import { StepCommonProps } from '../../../types/StepCommonProps';
 import { cleanupArbeidstidStep } from '../utils/cleanupArbeidstidStep';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
-import ArbeidIPeriodeSpørsmålFrilans from './ArbeidIPeriodeSpørsmålFrilans';
 import { BodyLong } from '@navikt/ds-react';
 
 interface Props extends StepCommonProps {
@@ -51,6 +50,7 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
     const handleArbeidstidChanged = () => {
         persistSoknad({ stepID: StepID.ARBEIDSTID });
     };
+
     return (
         <SøknadFormStep
             stepId={StepID.ARBEIDSTID}
@@ -108,7 +108,8 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
                         <FormSection title={intlHelper(intl, 'arbeidIPeriode.FrilansLabel')}>
                             <>
                                 <div data-testid="arbeidIPerioden_frilanser">
-                                    <ArbeidIPeriodeSpørsmålFrilans
+                                    <ArbeidIPeriodeSpørsmål
+                                        aktivitetType="frilans"
                                         normalarbeidstid={arbeid.frilans.arbeidsforhold.normalarbeidstid}
                                         arbeidsstedNavn="Frilansoppdrag"
                                         arbeidsforholdType={ArbeidsforholdType.FRILANSER}

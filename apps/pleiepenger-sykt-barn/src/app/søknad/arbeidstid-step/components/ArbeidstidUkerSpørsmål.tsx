@@ -5,6 +5,8 @@ import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { dateFormatter, dateRangeToISODateRange, decimalDurationToDuration } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+import { ArbeidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger';
+import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { TimerEllerProsent } from '../../../types';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
@@ -17,8 +19,6 @@ import {
     getArbeidsukerIPerioden,
 } from '../utils/arbeidstidUtils';
 import ArbeidstidInput from './ArbeidstidInput';
-import { ArbeidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger';
-import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 
 dayjs.extend(weekOfYear);
 
@@ -39,6 +39,7 @@ interface Props {
     intlValues: ArbeidIPeriodeIntlValues;
     erFrilanser?: boolean;
     frilansVervString?: string;
+    frilansVervValideringString?: string;
 }
 
 const getPeriodeISøknadsperiodeInfo = (intl: IntlShape, periode: DateRange, søknadsperiode: DateRange) => {
@@ -72,6 +73,7 @@ const ArbeidstidUkerSpørsmål: React.FunctionComponent<Props> = ({
     intlValues,
     erFrilanser,
     frilansVervString,
+    frilansVervValideringString,
 }) => {
     const arbeidsuker = getArbeidsukerIPerioden(periode);
     const intl = useIntl();
@@ -110,7 +112,9 @@ const ArbeidstidUkerSpørsmål: React.FunctionComponent<Props> = ({
                             intlValues={intlValues}
                             normalarbeidstid={normalarbeidstid}
                             timerEllerProsent={timerEllerProsent}
+                            frilans={erFrilanser}
                             frilansVervString={frilansVervString}
+                            frilansVervValideringString={frilansVervValideringString}
                         />
                     </div>
                 );

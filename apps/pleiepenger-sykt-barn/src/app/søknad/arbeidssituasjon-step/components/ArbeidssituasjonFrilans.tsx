@@ -497,9 +497,7 @@ const ArbeidssituasjonFrilans = ({
                 stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.NO && (
                     <Block margin="l">
                         <Alert variant="info">
-                            Jobber du ikke lenger i frilansoppdrag registrert på deg og ønsker å få dette fjernet? Be de
-                            som har gjort registreringen, om å oppdatere informasjonen i AA-registeret. Du kan fortsette
-                            på søknaden uavhengig .
+                            <FormattedMessage id={'frilanser.ingenFrilans.info'} />
                         </Alert>
                     </Block>
                 )}

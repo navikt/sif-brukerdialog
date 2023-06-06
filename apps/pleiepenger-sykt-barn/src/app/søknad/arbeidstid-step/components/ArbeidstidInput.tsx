@@ -1,3 +1,4 @@
+import { BodyShort } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -12,12 +13,10 @@ import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../type
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/normalarbeidstidSøknadsdata';
 import SøknadFormComponents from '../../SøknadFormComponents';
-// import { getArbeidsdagerIUkeTekst } from '../utils/arbeidstidUtils';
 import {
     getArbeidIPeriodeProsentAvNormaltValidator,
     getArbeidIPeriodeTimerPerUkeISnittValidator,
 } from '../validationArbeidIPeriodeSpørsmål';
-import { BodyShort } from '@navikt/ds-react';
 
 interface Props {
     arbeidsuke?: ArbeidsukeInfo;
@@ -28,6 +27,7 @@ interface Props {
     arbeidIPeriode: ArbeidIPeriodeFormValues;
     frilans?: boolean;
     frilansVervString?: string;
+    frilansVervValideringString?: string;
 }
 
 export const søkerKunHeleUker = (periode: DateRange): boolean => {
@@ -46,6 +46,7 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
     normalarbeidstid,
     frilans,
     frilansVervString,
+    frilansVervValideringString,
 }) => {
     const intl = useIntl();
 
@@ -74,6 +75,8 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
                     <FormattedMessage id="arbeidIPeriode.uke.ukedatoer" values={{ ukedatoer }} />
                 </BodyShort>
             </>
+        ) : frilans ? (
+            intlHelper(intl, 'arbeidIPeriode.prosent.frilanser.spm', { frilansVervString })
         ) : (
             intlHelper(
                 intl,
@@ -93,7 +96,7 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
                 </BodyShort>
             </>
         ) : frilans ? (
-            intlHelper(intl, 'arbeidIPeriode.timerAvNormalt.frilanser.spm', { frilansVervString })
+            intlHelper(intl, 'arbeidIPeriode.timer.frilanser.spm', { frilansVervString })
         ) : (
             intlHelper(intl, 'arbeidIPeriode.timerAvNormalt.spm', {
                 ...intlValues,
@@ -110,7 +113,11 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
                     name={prosentFieldName}
                     label={getProsentLabel()}
                     data-testid="prosent-verdi"
-                    validate={getArbeidIPeriodeProsentAvNormaltValidator(intlValues, arbeidsuke)}
+                    validate={getArbeidIPeriodeProsentAvNormaltValidator(
+                        intlValues,
+                        arbeidsuke,
+                        frilans ? frilansVervValideringString : undefined
+                    )}
                     width="xs"
                     maxLength={4}
                 />
@@ -125,7 +132,7 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
                         intlValues,
                         normalarbeidstid.timerPerUkeISnitt,
                         arbeidsuke,
-                        frilansVervString
+                        frilans ? frilansVervValideringString : undefined
                     )}
                     data-testid="timer-verdi"
                     width="xs"

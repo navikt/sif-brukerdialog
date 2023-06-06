@@ -75,6 +75,9 @@ export const cleanupArbeidIPeriode = (
     if (config.isIncluded(ArbeidIPeriodeFormField.timerEllerProsent)) {
         arbeid.timerEllerProsent = arbeidIPerioden.timerEllerProsent;
     }
+    if (config.isIncluded(ArbeidIPeriodeFormField.timerEllerProsent)) {
+        arbeid.timerEllerProsent = arbeidIPerioden.timerEllerProsent;
+    }
     if (arbeid.erLiktHverUke === YesOrNo.YES) {
         return arbeid.timerEllerProsent === TimerEllerProsent.PROSENT
             ? { ...arbeid, prosentAvNormalt: arbeidIPerioden.prosentAvNormalt, arbeidsuker: undefined }

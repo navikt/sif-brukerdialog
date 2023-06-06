@@ -25,6 +25,13 @@ interface ArbeidISøknadsperiodeTimerISnittPerUkeSøknadsdata {
     timerISnittPerUke: number;
 }
 
+interface ArbeidISøknadsperiodeProsentSøknadsdata {
+    type: ArbeidIPeriodeType.arbeiderProsentAvNormalt;
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar;
+    misterHonorarerFraVervIPerioden?: MisterHonorarerFraVervIPerioden;
+    prosentAvNormalt: number;
+}
+
 interface ArbeidISøknadsperiodeUlikeUkerTimer {
     type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
@@ -36,4 +43,5 @@ export type ArbeidIPeriodeFrilansSøknadsdata =
     | ArbeidISøknadsperiodeJobberIkkeSøknadsdata
     | ArbeidISøknadsperiodeJobberVanligSøknadsdata
     | ArbeidISøknadsperiodeTimerISnittPerUkeSøknadsdata
+    | ArbeidISøknadsperiodeProsentSøknadsdata
     | ArbeidISøknadsperiodeUlikeUkerTimer;

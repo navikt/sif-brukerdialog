@@ -101,6 +101,12 @@ export const getArbeidIPeriodeFrilansApiDataFromSøknadsdata = (
                 arbeiderIPerioden: arbeid.arbeiderIPerioden,
                 arbeidsuker: getArbeidsukerTimerApiData(arbeid.arbeidsuker),
             };
+        case ArbeidIPeriodeType.arbeiderProsentAvNormalt:
+            return {
+                type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
+                arbeiderIPerioden: arbeid.arbeiderIPerioden,
+                prosentAvNormalt: arbeid.prosentAvNormalt,
+            };
     }
 };
 
