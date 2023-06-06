@@ -78,6 +78,6 @@ export async function getArbeidsgivereRemoteData(fromDate: Date, toDate: Date): 
         } else {
             appSentryLogger.logApiError(error);
         }
-        return Promise.reject([]);
+        return Promise.reject(error);
     }
 }

@@ -60,7 +60,13 @@ export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {
 };
 
 const erFrilanserUtenOppdrag = () => {
-    contextConfig({ mellomlagring, arbeidsgivere: { ...cyApiMockData.arbeidsgivereMock, frilansoppdrag: [] } });
+    contextConfig({ mellomlagring });
+    beforeEach('er frilanser uten oppdrag', () => {
+        cy.intercept(`/oppslag/arbeidsgiver**`, { ...cyApiMockData.arbeidsgivereMock, frilansoppdrag: [] }).as(
+            'getArbeidsgivere'
+        );
+    });
+
     it('er frilanser uten oppdrag', () => {
         gotoStep('arbeidssituasjon');
         fyllUtArbeidssituasjonFrilanser();

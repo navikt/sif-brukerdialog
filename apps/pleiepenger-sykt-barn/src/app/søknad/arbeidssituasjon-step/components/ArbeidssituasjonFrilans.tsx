@@ -311,20 +311,17 @@ const ArbeidssituasjonFrilans = ({
                             legend={intlHelper(intl, 'frilanser.type.tittel')}
                             name={FrilansFormField.frilansTyper}
                             data-testid="frilans-typer"
-                            defaultChecked={true}
                             validate={getCheckedValidator()}
                             checkboxes={[
                                 {
                                     label: intlHelper(intl, 'frilanser.type.FRILANS'),
                                     value: FrilansTyper.FRILANS,
-                                    checked: frilansTyper?.some((type) => type === FrilansTyper.FRILANS),
                                     'data-testid': 'frilans-typer_frilans',
                                 },
 
                                 {
                                     label: intlHelper(intl, 'frilanser.type.STYREVERV'),
                                     value: FrilansTyper.STYREVERV,
-                                    checked: frilansTyper?.some((type) => type === FrilansTyper.STYREVERV),
                                     'data-testid': 'frilans-typer_styreverv',
                                 },
                             ]}

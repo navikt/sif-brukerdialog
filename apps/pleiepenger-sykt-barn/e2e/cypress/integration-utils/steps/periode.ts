@@ -1,18 +1,12 @@
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
+import { selectRadioNyYesOrNo } from '../utils';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-const {
-    getTestElement,
-    getInputByName,
-    clickFortsett,
-    selectRadioYes,
-    getElement,
-    clickNeiPaAlleSporsmal,
-} = require('../utils');
+const { getTestElement, getInputByName, clickFortsett, selectRadioYes, getElement } = require('../utils');
 
 const fraDato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
 const tilDato = dayjs().startOf('week').add(1, 'week').format('YYYY-MM-DD');
@@ -55,7 +49,9 @@ export const fyllUtPeriode = () => {
 export const fyllUtPeriodeEnkelt = () => {
     getInputByName('periodeFra').click().type(fraDato).blur();
     getInputByName('periodeTil').click().type(tilDato).blur();
-    clickNeiPaAlleSporsmal();
+
+    selectRadioNyYesOrNo('er-iUtlandetIPerioden', false);
+    selectRadioNyYesOrNo('er-ferieuttakIPerioden', false);
 
     clickFortsett();
 };
@@ -105,9 +101,11 @@ export const fyllUtPeriodeSteg = (testType?) => {
         switch (testType) {
             case 'komplett':
                 fyllUtPeriode();
+                cy.wait('@getArbeidsgivere');
                 break;
             default:
                 fyllUtPeriodeEnkelt();
+                cy.wait('@getArbeidsgivere');
                 break;
         }
     });

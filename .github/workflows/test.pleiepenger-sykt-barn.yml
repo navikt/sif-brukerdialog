@@ -8,6 +8,7 @@ on:
             - 'apps/pleiepenger-sykt-barn/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
+            - '.github/workflows/test.pleiepenger-sykt-barn.yml'
 
 env:
     APP_NAME: 'pleiepenger-sykt-barn'
@@ -30,7 +31,6 @@ jobs:
 
             - name: Run code tests
               run: yarn test --filter=pleiepenger-sykt-barn
-
     run-cypress-test:
         runs-on: ubuntu-latest
         steps:
@@ -46,16 +46,9 @@ jobs:
             - name: Run cypress tests
               uses: cypress-io/github-action@v4 # use the explicit version number
               env:
-                  API_URL_INNSYN: http://localhost:8099
-                  API_URL: http://localhost:8099
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger-sykt-barn
-                  MSW: off
-                  APP_VERSION: dev
-                  FRONTEND_API_PATH: http://localhost:8099/
-                  FRONTEND_VEDLEGG_URL: http://localhost:8099/api
-                  FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
-                  VELG_SAK: off
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
+                  FRONTEND_API_PATH: http://localhost:8082/
                   # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
                   # in GitHub repo → Settings → Secrets → Actions
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
