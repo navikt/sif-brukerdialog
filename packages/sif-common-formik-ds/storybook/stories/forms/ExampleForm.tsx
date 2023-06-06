@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
 import { Heading, Panel } from '@navikt/ds-react';
 import * as React from 'react';
-import '@navikt/ds-datepicker/lib/index.css';
+import { useIntl } from 'react-intl';
 import { ISODateString } from '@navikt/ds-datepicker/lib/types';
+import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
 import { getTypedFormComponents } from '../../../src/components/getTypedFormComponents';
 import { YesOrNo } from '../../../src/types';
-import { ValidationError } from '../../../src/validation/types';
-import { mockAnimalOptions, MockAnimals } from '../../mock-data';
 import { getCheckedValidator, getRequiredFieldValidator } from '../../../src/validation';
-import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
 import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
-import ExampleListAndDialog from './ExampleListAndDialog';
+import { ValidationError } from '../../../src/validation/types';
 import FormBlock from '../../components/form-block/FormBlock';
+import { mockAnimalOptions, MockAnimals } from '../../mock-data';
+import ExampleListAndDialog from './ExampleListAndDialog';
+import '@navikt/ds-datepicker/lib/index.css';
 
 enum Fields {
     checked = 'checked',

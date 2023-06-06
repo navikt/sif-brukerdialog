@@ -128,7 +128,6 @@ function TypedFormikForm<FormValues, ErrorType>({
             setTimeout(() => {
                 handleSubmit(evt);
             });
-            handleSubmit(evt);
         } else {
             handleSubmit(evt);
         }
