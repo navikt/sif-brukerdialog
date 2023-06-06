@@ -69,7 +69,7 @@ export const mellomlagring = {
     },
     metadata: {
         lastStepID: 'legeerklaering',
-        version: '13.3.0',
+        version: '13.4.0',
         updatedTimestemp: '2022-10-19T13:14:12.851Z',
     },
 };
