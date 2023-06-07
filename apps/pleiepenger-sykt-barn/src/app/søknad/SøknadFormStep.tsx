@@ -70,30 +70,28 @@ const SøknadFormStep = (props: Props) => {
     const { previousStepRoute } = currentStepConfig;
 
     return (
-        <>
-            <SøknadStep
-                activeStepId={stepId}
-                bannerTitle={intlHelper(intl, 'application.title')}
-                pageTitle={texts.pageTitle}
-                onCancel={handleAvbrytSøknad}
-                onContinueLater={handleAvsluttOgFortsettSenere}
-                steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>
-                <SøknadFormComponents.Form
-                    onValidSubmit={onValidFormSubmit}
-                    includeButtons={true}
-                    submitButtonLabel={texts.nextButtonLabel}
-                    showSubmitButton={showSubmitButton}
-                    includeValidationSummary={true}
-                    runDelayedFormValidation={true}
-                    onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
-                    submitPending={showButtonSpinner}
-                    submitDisabled={buttonDisabled}
-                    formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                    formFooter={<>{customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}</>}>
-                    {children}
-                </SøknadFormComponents.Form>
-            </SøknadStep>
-        </>
+        <SøknadStep
+            activeStepId={stepId}
+            bannerTitle={intlHelper(intl, 'application.title')}
+            pageTitle={texts.pageTitle}
+            onCancel={handleAvbrytSøknad}
+            onContinueLater={handleAvsluttOgFortsettSenere}
+            steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>
+            <SøknadFormComponents.Form
+                onValidSubmit={onValidFormSubmit}
+                includeButtons={true}
+                submitButtonLabel={texts.nextButtonLabel}
+                showSubmitButton={showSubmitButton}
+                includeValidationSummary={true}
+                runDelayedFormValidation={true}
+                onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
+                submitPending={showButtonSpinner}
+                submitDisabled={buttonDisabled}
+                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                formFooter={<>{customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}</>}>
+                {children}
+            </SøknadFormComponents.Form>
+        </SøknadStep>
     );
 };
 

@@ -121,7 +121,7 @@ function TypedFormikForm<FormValues, ErrorType>({
         formik.setValues(cleanup ? cleanup(formik.values) : formik.values);
     };
 
-    const onSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         if (cleanup !== undefined) {
             runCleanup(evt);
             // La values oppdatere seg før en kaller handleSubmit
