@@ -8,7 +8,7 @@ export const mapVirksomhetApiDataToVirksomhet = ({
     tilOgMed,
     erNyoppstartet,
     navnPåVirksomheten,
-    næringstyper,
+    næringstype,
     registrertINorge,
     fiskerErPåBladB,
     næringsinntekt,
@@ -20,7 +20,7 @@ export const mapVirksomhetApiDataToVirksomhet = ({
 }: VirksomhetApiData): Virksomhet => {
     const erPågående = tilOgMed === undefined;
     const virksomhet: Virksomhet = {
-        næringstype: næringstyper[0],
+        næringstype,
         navnPåVirksomheten,
         fiskerErPåBladB: booleanToYesOrNoOrUnanswered(fiskerErPåBladB),
         registrertINorge: booleanToYesOrNo(registrertINorge),

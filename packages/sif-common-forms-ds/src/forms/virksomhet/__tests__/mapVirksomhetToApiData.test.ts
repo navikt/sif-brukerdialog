@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { dateToISODate, jsonSort } from '@navikt/sif-common-utils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { jsonSort } from '@navikt/sif-common-core/lib/utils/jsonSort';
+import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import dayjs from 'dayjs';
 
 import { mapVirksomhetToVirksomhetApiData } from '../mapVirksomhetToApiData';
@@ -26,9 +27,9 @@ const virksomhetFormData: Virksomhet = {
 };
 
 const virksomhetApiData: VirksomhetApiData = {
-    næringstyper: [Næringstype.ANNEN],
+    næringstype: Næringstype.ANNEN,
     navnPåVirksomheten: 'ABC',
-    fraOgMed: dateToISODate(fom),
+    fraOgMed: formatDateToApiFormat(fom),
     tilOgMed: null,
     næringsinntekt: 123,
     registrertINorge: true,

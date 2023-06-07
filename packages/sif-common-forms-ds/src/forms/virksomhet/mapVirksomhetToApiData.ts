@@ -1,5 +1,5 @@
 import { getCountryName, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { Virksomhet, VirksomhetApiData } from './types';
 import { erFiskerNæringstype, erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
@@ -14,7 +14,7 @@ export const mapVirksomhetToVirksomhetApiData = (
     const erNyoppstartet = erVirksomhetRegnetSomNyoppstartet(virksomhet.fom);
 
     const data: VirksomhetApiData = {
-        næringstyper: [virksomhet.næringstype],
+        næringstype: virksomhet.næringstype,
         navnPåVirksomheten: virksomhet.navnPåVirksomheten,
         registrertINorge,
         ...(registrertINorge

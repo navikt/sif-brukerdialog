@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { ISODate } from '@navikt/sif-common-utils';
+import { ISODate } from '@navikt/sif-common-utils/lib';
 
 export enum Næringstype {
     'FISKE' = 'FISKE',
@@ -78,7 +78,7 @@ export const isVirksomhet = (virksomhet: Partial<Virksomhet>): virksomhet is Vir
 };
 
 export interface VirksomhetApiData {
-    næringstyper: Næringstype[];
+    næringstype: Næringstype;
     fiskerErPåBladB?: boolean;
     fraOgMed: ISODate;
     tilOgMed?: ISODate | null;
