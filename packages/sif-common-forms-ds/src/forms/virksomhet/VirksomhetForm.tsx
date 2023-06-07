@@ -45,7 +45,6 @@ import {
     mapFormValuesToVirksomhet,
     mapVirksomhetToFormValues,
 } from './virksomhetUtils';
-import dayjs from 'dayjs';
 
 interface Props {
     virksomhet?: Virksomhet;
