@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { ApiError, ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import apiUtils from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { dateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
@@ -26,7 +25,7 @@ import { cleanupAndSetFormikValues } from '../utils/cleanupAndSetFormikValues';
 import { getSøknadsperiodeFromFormData } from '../utils/formDataUtils';
 import { getSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/getSøknadsdataFromFormValues';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
-import { navigateTo, navigateToErrorPage, relocateToLoginPage } from '../utils/navigationUtils';
+import { navigateTo } from '../utils/navigationUtils';
 import { getNextStepRoute, isAvailable } from '../utils/routeUtils';
 import { getGyldigRedirectStepForMellomlagretSøknad } from '../utils/stepUtils';
 import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
@@ -64,7 +63,7 @@ const SøknadContent = ({
     const [kvitteringInfo, setKvitteringInfo] = React.useState<KvitteringInfo | undefined>(undefined);
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialog | undefined>(undefined);
     const { values, setValues } = useFormikContext<SøknadFormValues>();
-    const { logHendelse, logUserLoggedOut, logSoknadStartet, logApiError } = useAmplitudeInstance();
+    const { logHendelse, logSoknadStartet } = useAmplitudeInstance();
     const { setSøknadsdata, setImportertSøknadMetadata } = useSøknadsdataContext();
     const { logBekreftIngenFraværFraJobb } = useLogSøknadInfo();
     const { persistSoknad } = usePersistSoknad();
@@ -110,27 +109,13 @@ const SøknadContent = ({
         søknadHasBeenSent,
     ]);
 
-    const userNotLoggedIn = async () => {
-        await logUserLoggedOut('Mellomlagring ved navigasjon');
-        relocateToLoginPage();
-    };
-
     const navigateToNextStepFrom = async (stepId: StepID) => {
         setTimeout(() => {
             const nextStepRoute = getNextStepRoute(stepId, values);
             if (nextStepRoute) {
-                persistSoknad({ formValues: values, stepID: stepId })
-                    .then(() => {
-                        navigateTo(nextStepRoute, navigate);
-                    })
-                    .catch((error) => {
-                        if (apiUtils.isUnauthorized(error)) {
-                            userNotLoggedIn();
-                        } else {
-                            logApiError(ApiError.mellomlagring, { stepId: stepId });
-                            return navigateToErrorPage(navigate);
-                        }
-                    });
+                persistSoknad({ formValues: values, stepID: stepId }).then(() => {
+                    navigateTo(nextStepRoute, navigate);
+                });
             }
         });
     };
