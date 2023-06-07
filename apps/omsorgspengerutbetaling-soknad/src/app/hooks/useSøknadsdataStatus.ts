@@ -4,28 +4,25 @@ import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
-import { DeltBostedFormValues } from '../søknad/steps/delt-bosted/DeltBostedForm';
-import { getDeltBostedSøknadsdataFromFormValues } from '../søknad/steps/delt-bosted/deltBostedStepUtils';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { getLegeerklæringSøknadsdataFromFormValues } from '../søknad/steps/legeerklæring/legeerklæringStepUtils';
-import { OmBarnetFormValues } from '../søknad/steps/om-barnet/OmBarnetStep';
-import { getOmBarnetSøknadsdataFromFormValues } from '../søknad/steps/om-barnet/omBarnetStepUtils';
 import { StepFormValues } from '../types/StepFormValues';
 import { StepId } from '../types/StepId';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { getDineBarnSøknadsdataFromFormValues } from '../søknad/steps/dine-barn/dineBarnStepUtils';
+import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
+import { getFraværSøknadsdataFromFormValues } from '../søknad/steps/fravær/FraværStepUtils';
+import { FraværFormValues } from '../søknad/steps/fravær/FraværStep';
+import { getArbeidssituasjonSøknadsdataFromFormValues } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonStepUtils';
+import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
+import { getFraværFraSøknadsdataFromFormValues } from '../søknad/steps/fravær-fra/FraværFraUtils';
+import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraStep';
+import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
+import { getMedlemskapSøknadsdataFromFormValues } from '../søknad/steps/medlemskap/medlemskapStepUtils';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
-};
-
-export const isSøknadsdataStepValid = (step: StepId, søknadsdata: Søknadsdata): boolean => {
-    switch (step) {
-        case StepId.DELT_BOSTED:
-            return (søknadsdata.deltBosted?.vedlegg || []).length > 0;
-        default:
-            return true;
-    }
 };
 
 const getStepSøknadsdataFromStepFormValues = (
@@ -37,14 +34,20 @@ const getStepSøknadsdataFromStepFormValues = (
     if (!formValues) {
         return undefined;
     }
-    //TODO
+
     switch (step) {
-        case StepId.OM_BARNET:
-            return getOmBarnetSøknadsdataFromFormValues(formValues as OmBarnetFormValues, state);
+        case StepId.DINE_BARN:
+            return getDineBarnSøknadsdataFromFormValues(formValues as DineBarnFormValues, state);
+        case StepId.FRAVÆR:
+            return getFraværSøknadsdataFromFormValues(formValues as FraværFormValues);
         case StepId.LEGEERKLÆRING:
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
-        case StepId.DELT_BOSTED:
-            return getDeltBostedSøknadsdataFromFormValues(formValues as DeltBostedFormValues);
+        case StepId.ARBEIDSSITUASJON:
+            return getArbeidssituasjonSøknadsdataFromFormValues(formValues as ArbeidssituasjonFormValues);
+        case StepId.FRAVÆR_FRA:
+            return getFraværFraSøknadsdataFromFormValues(formValues as FraværFraFormValues);
+        case StepId.MEDLEMSKAP:
+            return getMedlemskapSøknadsdataFromFormValues(formValues as MedlemskapFormValues);
     }
     return undefined;
 };
@@ -78,10 +81,7 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
         const precedingSteps = getPrecedingSteps(currentStep.index, stepConfig);
 
         precedingSteps.forEach((step) => {
-            if (
-                isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, state) === false ||
-                isSøknadsdataStepValid(step, søknadsdata) === false
-            ) {
+            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, state) === false) {
                 invalidSteps.push(step);
             }
         });

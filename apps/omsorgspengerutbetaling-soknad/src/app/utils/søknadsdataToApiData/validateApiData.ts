@@ -1,10 +1,8 @@
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
-import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { StepId } from '../../types/StepId';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export enum API_DATA_VALIDATION_ERROR {
     'undefined' = 'undefined',
@@ -27,7 +25,6 @@ interface ApiDataValidationError {
 /** Ikke tatt i bruk enda */
 export const validateApiData = (
     apiData: SøknadApiData | undefined,
-    søknadsdata: Søknadsdata,
     intl: IntlShape
 ): undefined | ApiDataValidationError => {
     if (!apiData) {
@@ -36,12 +33,6 @@ export const validateApiData = (
             message: intlHelper(intl, 'apiDataValidation.undefined'),
         };
     }
-    if (includeDeltBostedStep(søknadsdata.omBarnet) && (apiData.samværsavtale || []).length === 0) {
-        return {
-            error: API_DATA_VALIDATION_ERROR.omsorgsavtaleMangler,
-            message: intlHelper(intl, 'apiDataValidation.omsorgsavtaleMangler'),
-            step: StepId.DELT_BOSTED,
-        };
-    }
+    // TODO
     return undefined;
 };

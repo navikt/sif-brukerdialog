@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { ArrayHelpers } from 'formik';
 import api, { ApiEndpoint } from '../../api/api';
-import { getAttachmentURLFrontend } from '../../utils/attachmentUtils';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 
 export interface PersistedFile {
     isPersistedFile: boolean;

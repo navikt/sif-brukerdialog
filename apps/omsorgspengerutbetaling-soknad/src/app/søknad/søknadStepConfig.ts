@@ -1,12 +1,22 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../types/StepId';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { ArbeidSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib/types';
 
-export const includeFraværFraStep = (arbeidssituasjon?: ArbeidssituasjonSøknadsdata): boolean => {
-    const erFrilanser = arbeidssituasjon?.frilans_erFrilanser === YesOrNo.YES;
-    const erSelvstendigNæringsdrivende = arbeidssituasjon?.selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
+export const includeFraværFraStep = (arbeidssituasjon?: ArbeidSøknadsdata): boolean => {
+    if (!arbeidssituasjon) {
+        return false;
+    }
+
+    const { frilans, selvstendig } = arbeidssituasjon;
+
+    if (!frilans || !selvstendig) {
+        return false;
+    }
+
+    const erFrilanser = frilans.type === 'pågående' || frilans.type === 'sluttetISøknadsperiode';
+    const erSelvstendigNæringsdrivende = selvstendig.type === 'erSN';
+
     return erFrilanser && erSelvstendigNæringsdrivende;
 };
 
@@ -16,7 +26,7 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
         StepId.FRAVÆR,
         StepId.LEGEERKLÆRING,
         StepId.ARBEIDSSITUASJON,
-        ...(includeFraværFraStep(søknadsdata?.arbeidssituasjon) ? StepId.FRAVÆR_FRA : []),
+        ...(includeFraværFraStep(søknadsdata?.arbeidssituasjon) ? [StepId.FRAVÆR_FRA] : []),
         StepId.MEDLEMSKAP,
         StepId.OPPSUMMERING,
     ];

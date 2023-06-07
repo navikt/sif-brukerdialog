@@ -4,7 +4,7 @@ import { MedlemskapApiData, UtenlandsoppholdApiData } from '../../types/søknadA
 import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds/lib/utils/countryUtils';
 import { MedlemskapSøknadsdata } from '../../types/søknadsdata/MedlemskapSøknadsdata';
 
-export const mapBostedUtlandToApi = (opphold: BostedUtland, locale: string): UtenlandsoppholdApiData => ({
+export const mapBostedUtlandToApiData = (opphold: BostedUtland, locale: string): UtenlandsoppholdApiData => ({
     landnavn: getCountryName(opphold.landkode, locale),
     landkode: opphold.landkode,
     fraOgMed: dateToISODate(opphold.fom),
@@ -32,12 +32,12 @@ export const getMedlemskapApiDataFromSøknadsdata = (
             return {
                 harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
                 utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApiData(o, locale)
                 ),
 
                 skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApiData(o, locale)
                 ),
             };
 
@@ -45,7 +45,7 @@ export const getMedlemskapApiDataFromSøknadsdata = (
             return {
                 harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
                 utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApiData(o, locale)
                 ),
                 skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 utenlandsoppholdNeste12Mnd: [],
@@ -56,7 +56,7 @@ export const getMedlemskapApiDataFromSøknadsdata = (
                 utenlandsoppholdSiste12Mnd: [],
                 skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApiData(o, locale)
                 ),
             };
     }

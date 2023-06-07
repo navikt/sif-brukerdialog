@@ -1,6 +1,6 @@
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 
-export const omOmsorgenForBarnMessages: MessageFileFormat = {
+export const dineBarnMessages: MessageFileFormat = {
     nb: {
         'step.dine-barn.nextButtonLabel': 'Fortsett',
         'step.dine-barn.counsellorPanel.avsnitt.1':
@@ -44,5 +44,10 @@ export const omOmsorgenForBarnMessages: MessageFileFormat = {
         'step.dine-barn.info.spm.text':
             'Hvis du har barn som ikke er registrert her, kan du legge inn disse selv. Det kan for eksempel være fosterbarn.',
         'step.dine-barn.formLeggTilBarn.aldersGrenseInfo': '(Du kan ikke legge til barn som er 19 år eller eldre)',
+
+        'relasjonTilBarnet.mor': 'Mor',
+        'relasjonTilBarnet.far': 'Far',
+        'relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
+        'relasjonTilBarnet.fosterforelder': 'Fosterforelder',
     },
 };

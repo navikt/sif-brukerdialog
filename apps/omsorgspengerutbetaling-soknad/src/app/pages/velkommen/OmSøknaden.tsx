@@ -2,9 +2,11 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import BehandlingAvPersonopplysningerContent from './personalopplysninger/BehandlingAvPersonopplysningerContent';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 const OmSøknaden = () => {
+    const intl = useIntl();
     return (
         <Block margin="xl">
             <Heading level="2" size="medium">

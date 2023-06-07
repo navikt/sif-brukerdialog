@@ -1,6 +1,6 @@
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 
-export const MedlemskapMessages: MessageFileFormat = {
+export const medlemskapMessages: MessageFileFormat = {
     nb: {
         'step.medlemskap.pageTitle': 'Medlemskap i folketrygden - Søknad om utbetaling av omsorgspenger',
         'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
