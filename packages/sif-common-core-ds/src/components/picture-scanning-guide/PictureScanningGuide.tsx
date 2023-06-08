@@ -30,6 +30,9 @@ const PictureScanningGuide = () => {
                         <li>
                             <FormattedMessage id="psg.section1.liste.3" />
                         </li>
+                        <li>
+                            <FormattedMessage id="psg.section1.liste.4" />
+                        </li>
                     </ul>
                 </BodyLong>
 

@@ -1,19 +1,18 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
+import { IngenTilgangMeta } from '@hooks';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
 import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
-import { IngenTilgangÅrsak } from '../../types/IngenTilgangÅrsak';
-import { Søker } from '../../types/Søker';
-import { IngenTilgangMeta } from '../../hooks/useSøknadInitialData';
 
-interface Props {
+export interface IngenTilgangPageProps {
     søker: Søker;
-    årsak: IngenTilgangÅrsak;
+    årsak: IngenTilgangÅrsak[];
     ingenTilgangMeta?: IngenTilgangMeta;
 }
 
@@ -49,7 +48,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             );
         case IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet:
             return (
-                <BodyLong as="div" data-testid="nyttArbeidsforhold">
+                <BodyLong as="div" data-testid="ukjentArbeidsforhold">
                     <p>
                         Du kan ikke bruke denne tjenesten. Dette er fordi vi har funnet et arbeidsforhold på deg, som
                         ikke er registrert i pleiepengesaken din. Du må derfor sende en ny søknad, slik at saken og
@@ -118,7 +117,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     }
 };
 
-const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: Props) => {
+const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
     const { logInfo } = useAmplitudeInstance();
 
     useLogSidevisning(SIFCommonPageKey.ikkeTilgang);
@@ -134,7 +133,7 @@ const IngenTilgangPage = ({ årsak, søker, ingenTilgangMeta }: Props) => {
                     <Heading level="1" size="large" spacing={true} data-testid="ingen-tilgang-heading">
                         Hei {søker.fornavn}
                     </Heading>
-                    {getÅrsakMelding(årsak)}
+                    {getÅrsakMelding(årsak[0])}
                 </SifGuidePanel>
                 {getEnvironmentVariable('MSW') === 'on' && <DevFooter />}
             </Page>

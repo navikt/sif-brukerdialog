@@ -1,6 +1,6 @@
-import { Edit } from '@navikt/ds-icons';
 import { Button, ButtonProps } from '@navikt/ds-react';
 import React from 'react';
+import { Edit } from '@navikt/ds-icons';
 
 const EditButton: React.FunctionComponent<ButtonProps> = ({ ...rest }) => {
     return (

@@ -17,6 +17,7 @@ import {
 import { dateToISODate, ISODateToDate } from '../dateUtils';
 import {
     durationIsGreatherThanZero,
+    ensureValidHoursAndMinutes,
     getDateDurationDiff,
     getDateRangeFromDateDurationMap,
     getDatesWithDurationLongerThanZero,
@@ -33,7 +34,7 @@ import {
     summarizeDateDurationMap,
     summarizeDurations,
 } from '../durationUtils';
-import { DateDurationMap } from '../types';
+import { DateDurationMap, NumberDuration } from '../types';
 
 describe('durationUtils', () => {
     describe('getPositiveNumberValue', () => {
@@ -115,6 +116,9 @@ describe('durationUtils', () => {
             it('converts 1 hour correctly', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 0 })).toEqual(1);
             });
+            it('converts 1 hour 20correctly', () => {
+                expect(durationToDecimalDuration({ hours: 1, minutes: 0 })).toEqual(1);
+            });
             it('converts 1 hour and 30 minutes correctly', () => {
                 expect(durationToDecimalDuration({ hours: 1, minutes: 30 })).toEqual(1.5);
             });
@@ -147,6 +151,11 @@ describe('durationUtils', () => {
             const result = decimalDurationToNumberDuration(1.5);
             expect(result.hours).toEqual(1);
             expect(result.minutes).toEqual(30);
+        });
+        it('converts 3,999 hours correctly', () => {
+            const result = decimalDurationToNumberDuration(3.9999);
+            expect(result.hours).toEqual(4);
+            expect(result.minutes).toEqual(0);
         });
         it('converts 1,98 hours correctly', () => {
             const result = decimalDurationToNumberDuration(1.98);
@@ -633,6 +642,20 @@ describe('durationUtils', () => {
             const result = ISODurationToDuration('PT5H20M10S');
             expect(result.hours).toEqual('5');
             expect(result.minutes).toEqual('20');
+        });
+    });
+    describe('ensureValidHoursAndMinutes', () => {
+        it('corrects hours and minutes when minutes are 60', () => {
+            const duration: NumberDuration = { hours: 2, minutes: 60 };
+            const { hours, minutes } = ensureValidHoursAndMinutes(duration);
+            expect(hours).toEqual(duration.hours + 1);
+            expect(minutes).toEqual(0);
+        });
+        it('does not correct hours and minutes when minutes are less than 60', () => {
+            const duration: NumberDuration = { hours: 2, minutes: 59 };
+            const { hours, minutes } = ensureValidHoursAndMinutes(duration);
+            expect(hours).toEqual(duration.hours);
+            expect(minutes).toEqual(duration.minutes);
         });
     });
 });

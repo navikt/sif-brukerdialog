@@ -1,8 +1,5 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { isFailure, isInitial, isPending, isSuccess } from '@devexperts/remote-data-ts';
-import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import { ErrorPage, LastAvailableStepInfo, SoknadErrorMessages, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
@@ -23,16 +20,13 @@ interface Props {
     søker: Person;
     søknadstype: ApplicationType;
     soknadId?: string;
+    onKvitteringUnmount?: () => void;
 }
 
-const SoknadRouter = ({ søker, søknadstype, soknadId = '123' }: Props) => {
+const SoknadRouter = ({ søker, søknadstype, soknadId, onKvitteringUnmount }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
-    const { soknadStepsConfig, sendSoknadStatus } = useSoknadContext();
-
-    if (location.pathname === APPLICATION_SENDT_PAGE && soknadId === undefined) {
-        return <Navigate replace={true} to="velkommen" />;
-    }
+    const { soknadStepsConfig } = useSoknadContext();
 
     return (
         <Routes>
@@ -50,49 +44,40 @@ const SoknadRouter = ({ søker, søknadstype, soknadId = '123' }: Props) => {
                         path={StepID.OPPSUMMERING}
                         element={<OppsummeringStep soknadId={soknadId} søknadstype={søknadstype} søker={søker} />}
                     />
+                    <Route
+                        path="*"
+                        element={
+                            <ErrorPage
+                                contentRenderer={(): JSX.Element => {
+                                    const availableSteps = getAvailableSteps(values, søknadstype);
+                                    const lastAvailableStep = availableSteps.slice(-1)[0];
+                                    const lastAvailableStepInfo: LastAvailableStepInfo | undefined = lastAvailableStep
+                                        ? {
+                                              route: soknadStepsConfig[lastAvailableStep].route,
+                                              title: soknadStepUtils.getStepTexts(
+                                                  intl,
+                                                  soknadStepsConfig[lastAvailableStep]
+                                              ).stepTitle,
+                                          }
+                                        : undefined;
+
+                                    return (
+                                        <SoknadErrorMessages.MissingSoknadDataError
+                                            lastAvailableStep={lastAvailableStepInfo}
+                                        />
+                                    );
+                                }}
+                            />
+                        }
+                    />
                 </>
             )}
 
             <Route
                 path={APPLICATION_SENDT_PAGE}
-                element={
-                    <LoadWrapper
-                        isLoading={isPending(sendSoknadStatus.status) || isInitial(sendSoknadStatus.status)}
-                        contentRenderer={(): React.ReactNode => {
-                            if (isSuccess(sendSoknadStatus.status)) {
-                                return <ConfirmationPage søknadstype={søknadstype} />;
-                            }
-                            if (isFailure(sendSoknadStatus.status)) {
-                                return <ErrorPage />;
-                            }
-                            return <div>Det oppstod en feil</div>;
-                        }}
-                    />
-                }
+                element={<ConfirmationPage søknadstype={søknadstype} onUnmount={onKvitteringUnmount} />}
             />
-            <Route element={soknadId === undefined ? <Navigate replace={true} to="velkommen" /> : undefined} />
-            <Route
-                path="*"
-                element={
-                    <ErrorPage
-                        contentRenderer={(): JSX.Element => {
-                            const availableSteps = getAvailableSteps(values, søknadstype);
-                            const lastAvailableStep = availableSteps.slice(-1)[0];
-                            const lastAvailableStepInfo: LastAvailableStepInfo | undefined = lastAvailableStep
-                                ? {
-                                      route: soknadStepsConfig[lastAvailableStep].route,
-                                      title: soknadStepUtils.getStepTexts(intl, soknadStepsConfig[lastAvailableStep])
-                                          .stepTitle,
-                                  }
-                                : undefined;
-
-                            return (
-                                <SoknadErrorMessages.MissingSoknadDataError lastAvailableStep={lastAvailableStepInfo} />
-                            );
-                        }}
-                    />
-                }
-            />
+            <Route path="*" element={soknadId === undefined ? <Navigate replace={true} to="velkommen" /> : undefined} />
         </Routes>
     );
 };

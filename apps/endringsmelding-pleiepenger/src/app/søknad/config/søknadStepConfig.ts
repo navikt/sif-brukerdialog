@@ -1,33 +1,43 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
-import { EndringType } from '../../types/EndringType';
-import { getEndringerSomSkalGjøres } from '../../utils/endringTypeUtils';
+import { Arbeidsforhold, Søknadsdata, ValgteEndringer } from '@types';
+import { harEndretArbeidstid, harFjernetLovbestemtFerie } from '@utils';
 import { StepId } from './StepId';
 import { getSøknadStepRoute } from './SøknadRoutes';
 
-export const getSøknadSteps = (hvaSkalEndres: EndringType[], harFjernetFerie: boolean): StepId[] => {
+const erAnsattIUkjentArbeidsforhold = (arbeidsforhold: Arbeidsforhold[] = []): boolean => {
+    return arbeidsforhold.some((a) => a.erAnsatt === true);
+};
+
+export const getSøknadSteps = (
+    valgteEndringer: ValgteEndringer,
+    harUkjentArbeidsforhold: boolean,
+    søknadsdata?: Søknadsdata
+): StepId[] => {
     const steps: StepId[] = [];
 
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres: ferieSkalEndres } = getEndringerSomSkalGjøres(
-        hvaSkalEndres,
-        harFjernetFerie
-    );
+    if (harUkjentArbeidsforhold) {
+        steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
+    }
 
-    if (ferieSkalEndres) {
+    if (valgteEndringer.lovbestemtFerie) {
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
-    if (arbeidstidSkalEndres) {
+
+    const { lovbestemtFerie, arbeidstid, ukjentArbeidsforhold } = søknadsdata || {};
+
+    if (
+        valgteEndringer.arbeidstid === true ||
+        harFjernetLovbestemtFerie(lovbestemtFerie) ||
+        harEndretArbeidstid(arbeidstid) ||
+        erAnsattIUkjentArbeidsforhold(ukjentArbeidsforhold?.arbeidsforhold)
+    ) {
         steps.push(StepId.ARBEIDSTID);
     }
     steps.push(StepId.OPPSUMMERING);
     return steps;
 };
 
-export const getSøknadStepConfig = (
-    hvaSkalEndres: EndringType[],
-    harFjernetFerie: boolean
-): SoknadStepsConfig<StepId> =>
-    soknadStepUtils.getStepsConfig(
-        getSøknadSteps(hvaSkalEndres, harFjernetFerie),
-        SoknadApplicationType.MELDING,
-        (stepId: StepId) => getSøknadStepRoute(stepId)
+export const getSøknadStepConfig = (søknadSteps: StepId[]): SoknadStepsConfig<StepId> =>
+    soknadStepUtils.getStepsConfig(søknadSteps, SoknadApplicationType.MELDING, (stepId: StepId) =>
+        getSøknadStepRoute(stepId)
     );

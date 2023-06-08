@@ -1,9 +1,9 @@
 import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ArbeidstidUkeTabell from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
-import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { ArbeidstakerApiData, ArbeidstidApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { Arbeidsgiver, ArbeidstidApiData } from '@types';
+import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
+import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 interface Props {
@@ -15,40 +15,37 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
     const arbeidstidKolonneTittel = 'Endret arbeidstid';
 
+    const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
+    const ukjenteArbeidsgivere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
     return (
         <>
-            {arbeidstakerList &&
-                Object.keys(arbeidstakerList).map((key) => {
-                    const { organisasjonsnummer, arbeidstidInfo }: ArbeidstakerApiData = (arbeidstakerList as any)[key];
-                    const arbeidsgiver = arbeidsgivere.find((a) => a.organisasjonsnummer === organisasjonsnummer);
-                    if (!arbeidsgiver) {
-                        return null;
-                    }
-                    const arbeidsuker = oppsummeringStepUtils.getArbeidstidUkeTabellItems(arbeidstidInfo.perioder);
-                    return (
-                        <Block margin="xl" key={key} padBottom="l" data-testid={`oppsummering-${organisasjonsnummer}`}>
-                            <Heading level="3" size="small">
-                                {arbeidsgiver.navn}
-                            </Heading>
-                            <>
-                                <ArbeidstidUkeTabell
-                                    listItems={arbeidsuker}
-                                    arbeidstidKolonneTittel={arbeidstidKolonneTittel}
-                                />
-                            </>
-                        </Block>
-                    );
-                })}
+            {ukjenteArbeidsgivere &&
+                Object.keys(ukjenteArbeidsgivere).map((key) => (
+                    <ArbeidstidArbeidstakerOppsummering
+                        key={key}
+                        arbeidstaker={ukjenteArbeidsgivere[key]}
+                        arbeidsgivere={arbeidsgivere}
+                        arbeidstidKolonneTittel="I perioden"
+                    />
+                ))}
+
+            {eksisterendeArbeidstakere &&
+                Object.keys(eksisterendeArbeidstakere).map((key) => (
+                    <ArbeidstidArbeidstakerOppsummering
+                        key={key}
+                        arbeidstaker={eksisterendeArbeidstakere[key]}
+                        arbeidsgivere={arbeidsgivere}
+                    />
+                ))}
+
             {frilanserArbeidstidInfo && (
                 <Block margin="xl" padBottom="l">
                     <Heading level="3" size="small">
                         Frilanser
                     </Heading>
                     <>
-                        <ArbeidstidUkeTabell
-                            listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
-                                frilanserArbeidstidInfo.perioder
-                            )}
+                        <ArbeidstidUker
+                            listItems={oppsummeringStepUtils.getArbeidstidUkerItems(frilanserArbeidstidInfo.perioder)}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />
                     </>
@@ -60,8 +57,8 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                         Selvstendig næringsdrivende
                     </Heading>
                     <>
-                        <ArbeidstidUkeTabell
-                            listItems={oppsummeringStepUtils.getArbeidstidUkeTabellItems(
+                        <ArbeidstidUker
+                            listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
                                 selvstendigNæringsdrivendeArbeidstidInfo.perioder
                             )}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}

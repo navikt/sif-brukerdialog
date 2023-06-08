@@ -1,8 +1,8 @@
 import { Button, Heading, Modal } from '@navikt/ds-react';
 import React, { FunctionComponent, useEffect } from 'react';
+import { Close } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import './lovbestemtFerieModal.css';
-import { Close } from '@navikt/ds-icons';
 
 interface Props {
     title: string;

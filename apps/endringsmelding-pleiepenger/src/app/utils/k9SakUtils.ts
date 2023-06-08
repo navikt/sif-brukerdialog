@@ -1,19 +1,5 @@
 import { DateRange, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { K9Sak } from '../types/K9Sak';
-
-export const getArbeidsgivereIK9Sak = (arbeidsgivere: Arbeidsgiver[], sak: K9Sak): Arbeidsgiver[] => {
-    const { arbeidstakerList } = sak.ytelse.arbeidstid;
-    if (arbeidstakerList === undefined || arbeidstakerList.length === 0) {
-        return [];
-    }
-    return arbeidsgivere.filter((arbeidsgiver) => {
-        return arbeidstakerList.some(
-            ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
-        );
-    });
-};
+import { Arbeidsgiver, K9Sak, K9SakArbeidstaker } from '@types';
 
 export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefined => {
     const sakerDateRanges = saker
@@ -24,16 +10,11 @@ export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefi
     return sakerDateRanges.length === 0 ? undefined : getDateRangeFromDateRanges(sakerDateRanges);
 };
 
-export const getPeriodeForArbeidsgiverOppslag = (
-    dateRangeAlleSaker: DateRange,
-    tillattEndringsperiode: DateRange
-): DateRange | undefined => {
-    const dateRange = {
-        from: dayjs.max(dayjs(dateRangeAlleSaker.from), dayjs(tillattEndringsperiode.from)).toDate(),
-        to: dayjs.min(dayjs(dateRangeAlleSaker.to), dayjs(tillattEndringsperiode.to)).toDate(),
-    };
-    if (dayjs(dateRange.to).isBefore(dateRange.from)) {
-        return undefined;
-    }
-    return dateRange;
+export const finnesArbeidsgiverIK9Sak = (
+    arbeidsgiver: Arbeidsgiver,
+    arbeidsgivereISak: K9SakArbeidstaker[]
+): boolean => {
+    return arbeidsgivereISak.some(
+        ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+    );
 };

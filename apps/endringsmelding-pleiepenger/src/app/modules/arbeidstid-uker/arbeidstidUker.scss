@@ -1,0 +1,55 @@
+@use './components/arbeidstidUkeListe.scss';
+@use './components/arbeidstidUkeTabell.scss';
+
+.endretArbeidstid__faktisk {
+    font-weight: 700;
+}
+.endretArbeidstid__opprinnelig {
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+.endretArbeidstid__timer,
+.endretArbeidstid__prosent {
+    white-space: nowrap;
+}
+
+.arbeidsukeTidsrom {
+    width: 100%;
+    display: flex;
+    &__tekst {
+        flex-grow: 2;
+    }
+    &__info {
+        font-size: 1.4rem;
+        white-space: nowrap;
+        svg {
+            margin: 0 0.25rem;
+        }
+    }
+}
+
+.arbeidstidInfoListe {
+    margin-bottom: 0.5rem;
+    p {
+        display: flex;
+        width: 100%;
+        margin: 0 0 0.125rem 0;
+    }
+    &__label {
+        width: 50%;
+    }
+}
+
+.arbeidstidUkeListeWrapper  {
+    position: relative;
+    .arbeidstidUkeFooter {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0%) 0px, rgba(255, 255, 255, 1) 0.5rem);
+        padding: 0.25rem 0 0.25rem 0;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
+        button {
+            width: 100%;
+        }
+    }
+}

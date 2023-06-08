@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useSøknadContext } from '@hooks';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { lagreSøknadState } from '../utils/lagreSøknadState';
 
 export const usePersistSøknadState = () => {

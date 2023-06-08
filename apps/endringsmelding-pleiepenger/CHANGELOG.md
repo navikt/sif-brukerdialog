@@ -1,5 +1,56 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.13.0
+
+### Minor Changes
+
+-   5beb8c9: Pakkeoppdateringer og fix etter breaking change i react-router-dom. Sørger for at bruker blir værende på kvitteringsside når søknad er innsendt. Bug var at bruker ble sendt direkte til velkommenside etter å ha sendt inn søknad.
+
+### Patch Changes
+
+-   Updated dependencies [5beb8c9]
+    -   @navikt/sif-common-amplitude@2.17.0
+    -   @navikt/sif-common-formik-ds@0.21.0
+    -   @navikt/sif-common-soknad-ds@9.0.0
+    -   @navikt/sif-common-forms-ds@7.0.0
+    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-sentry@0.17.0
+    -   @navikt/sif-common-utils@3.36.0
+
+## 2.12.4
+
+### Patch Changes
+
+-   fcdaba8: Utvide log til amplitude til å inkludere antall ukjente arbeidsgivere - dvs. arbeidsgivere ikke i saken.
+
+## 2.12.3
+
+### Patch Changes
+
+-   bd6fae3: Pakkeoppdateringer
+-   Updated dependencies [bd6fae3]
+    -   @navikt/sif-common-amplitude@2.16.2
+    -   @navikt/sif-common-formik-ds@0.20.2
+    -   @navikt/sif-common-soknad-ds@7.4.2
+    -   @navikt/sif-common-forms-ds@6.5.1
+    -   @navikt/sif-common-core-ds@7.4.2
+    -   @navikt/sif-common-sentry@0.16.2
+    -   @navikt/sif-common-utils@3.34.2
+
+## 2.12.1
+
+### Patch Changes
+
+-   4d1cb8b: Pakkeoppdateringer
+-   Updated dependencies [4d1cb8b]
+    -   @navikt/sif-common-amplitude@2.16.1
+    -   @navikt/sif-common-formik-ds@0.20.1
+    -   @navikt/sif-common-soknad-ds@7.4.1
+    -   @navikt/sif-common-forms-ds@6.4.1
+    -   @navikt/sif-common-core-ds@7.4.1
+    -   @navikt/sif-common-sentry@0.16.1
+    -   @navikt/sif-common-utils@3.34.1
+
 ## 2.12.0
 
 ### Minor Changes
@@ -121,7 +172,7 @@
 
 ### Patch Changes
 
--   0a874c2: Bugfix. Forhindre oppslag på arbeidsgiver dersom søknadsperioder er utenfor tillatt endringsperiode eller fra-dato for oppslaget er etter til-dato.
+-   0a874c2: Bugfix. Forhindre oppslag på arbeidsgiver hvis søknadsperioder er utenfor tillatt endringsperiode eller fra-dato for oppslaget er etter til-dato.
 
 ## 2.6.1
 
@@ -259,7 +310,7 @@
 ### Patch Changes
 
 -   a8f8a431: Oppdatere ingress til innsyn
--   47c76689: Bugfix - legge til sjekk på at det faktisk er gjort endringer. Dette ble ikke fanget opp dersom bruker satte verdiene tilbake til slik det opprinnelig var på saken.
+-   47c76689: Bugfix - legge til sjekk på at det faktisk er gjort endringer. Dette ble ikke fanget opp hvis bruker satte verdiene tilbake til slik det opprinnelig var på saken.
 
 ## 1.8.0
 
@@ -380,7 +431,7 @@
 ### Patch Changes
 
 -   d2d634b: Utvide med å logge antall arbeidsaktiviteter som kan endres når bruker starter en endring
--   d2d634b: Logge axiosError til sentry dersom innsending av melding feiler
+-   d2d634b: Logge axiosError til sentry hvis innsending av melding feiler
 
 ## 1.2.1
 
@@ -562,7 +613,7 @@
 
 ### Minor Changes
 
--   451fef8: Legge til sjekk som gjør at bruker sendes til publicPath dersom en kommer til root (/)
+-   451fef8: Legge til sjekk som gjør at bruker sendes til publicPath hvis en kommer til root (/)
 
 ### Patch Changes
 

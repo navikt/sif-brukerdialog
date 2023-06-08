@@ -1,17 +1,23 @@
 import { DateRange, durationToDecimalDuration } from '@navikt/sif-common-utils';
+import {
+    Arbeidsgiver,
+    IngenTilgangÅrsak,
+    K9Sak,
+    K9SakArbeidstaker,
+    K9SakArbeidstid,
+    K9SakArbeidstidInfo,
+} from '@types';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import { IngenTilgangÅrsak } from '../types/IngenTilgangÅrsak';
-import { K9Sak, K9SakArbeidstaker, K9SakArbeidstid, K9SakArbeidstidInfo } from '../types/K9Sak';
-import { getSamletDateRangeForK9Saker } from './k9SakUtils';
+import { Feature, isFeatureEnabled } from './featureToggleUtils';
+import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
 
 type TilgangNektet = {
     kanBrukeSøknad: false;
-    årsak: IngenTilgangÅrsak;
+    årsak: IngenTilgangÅrsak[];
     ingenTilgangMeta?: IngenTilgangMeta;
 };
 
@@ -30,7 +36,7 @@ export const tilgangskontroll = (
     if (saker.length === 0) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harIngenSak,
+            årsak: [IngenTilgangÅrsak.harIngenSak],
         };
     }
 
@@ -38,47 +44,43 @@ export const tilgangskontroll = (
     if (saker.length > 1) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harMerEnnEnSak,
+            årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
         };
     }
 
     /** Bruker har bare én sak */
 
     const sak = saker[0];
+    const ingenTilgangÅrsak: IngenTilgangÅrsak[] = [];
 
     /** Søknadsperiode er før tillatt endringsperiode */
     if (!harSøknadsperiodeInnenforTillattEndringsperiode(getSamletDateRangeForK9Saker([sak]), tillattEndringsperiode)) {
-        return {
-            kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
-            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
-        };
-    }
-    /**
-     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak
-     */
-    if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
-        return {
-            kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet,
-            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
-        };
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode);
     }
 
     /** Bruker har registrert arbeidsaktivitet i sak på arbeidsgiver som ikke er registrert i AAreg */
     if (harArbeidsaktivitetUtenArbeidsgiver(sak.ytelse.arbeidstid.arbeidstakerList, arbeidsgivere)) {
-        return {
-            kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver,
-            ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
-        };
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
     }
 
     /** Bruker er SN */
     if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
+    }
+
+    /**
+     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
+     */
+    if (isFeatureEnabled(Feature.UKJENT_ARBEIDSFOHOLD) === false) {
+        if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
+            ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
+        }
+    }
+
+    if (ingenTilgangÅrsak.length > 0) {
         return {
             kanBrukeSøknad: false,
-            årsak: IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende,
+            årsak: ingenTilgangÅrsak,
             ingenTilgangMeta: getIngenTilgangMeta(sak.ytelse.arbeidstid),
         };
     }
@@ -111,10 +113,10 @@ const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
 
 const harArbeidsgiverUtenArbeidsaktivitet = (
     arbeidsgivere: Arbeidsgiver[],
-    arbeidsaktiviteter: K9SakArbeidstaker[] = []
+    k9SakArbeidstaker: K9SakArbeidstaker[] = []
 ): boolean => {
     return arbeidsgivere.some((arbeidsgiver) => {
-        return finnesArbeidsgiverISak(arbeidsgiver, arbeidsaktiviteter) === false;
+        return finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
     });
 };
 
@@ -122,22 +124,15 @@ const harArbeidsaktivitetUtenArbeidsgiver = (
     arbeidsaktiviteter: K9SakArbeidstaker[] = [],
     arbeidsgivere: Arbeidsgiver[]
 ) => {
-    return arbeidsaktiviteter
-        .map(getArbeidsaktivitetId)
-        .some((id) => arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === id) === false);
-};
-
-const finnesArbeidsgiverISak = (arbeidsgiver: Arbeidsgiver, arbeidsgivereISak: K9SakArbeidstaker[]): boolean => {
-    return arbeidsgivereISak.map(getArbeidsaktivitetId).some((id) => id === arbeidsgiver.organisasjonsnummer);
+    return arbeidsaktiviteter.some(
+        ({ organisasjonsnummer }) =>
+            arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === organisasjonsnummer) === false
+    );
 };
 
 const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
     const { selvstendigNæringsdrivendeArbeidstidInfo: sn } = sak.ytelse.arbeidstid;
     return sn !== undefined && sn.perioder && Object.keys(sn.perioder).length > 0;
-};
-
-const getArbeidsaktivitetId = (arbeidsaktivitet: K9SakArbeidstaker): string => {
-    return arbeidsaktivitet.norskIdentitetsnummer || arbeidsaktivitet.organisasjonsnummer;
 };
 
 const harSøknadsperiodeInnenforTillattEndringsperiode = (

@@ -1,0 +1,16 @@
+.arbeidstidUkeTabell {
+    &__ukenummer {
+        width: 3ch;
+    }
+    &__periode {
+        width: 44%;
+    }
+    &__endre {
+        width: 5ch;
+        text-align: right;
+        button {
+            margin-top: -0.3rem;
+            margin-bottom: -0.3rem;
+        }
+    }
+}

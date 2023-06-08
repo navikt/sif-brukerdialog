@@ -1,12 +1,22 @@
 import { Link } from '@navikt/ds-react';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import Kvittering from '@navikt/sif-common-soknad-ds/lib/components/kvittering/Kvittering';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import Kvittering from '@navikt/sif-common-soknad-ds/lib/components/kvittering/Kvittering';
+import { useEffect } from 'react';
 
-const KvitteringPage = () => {
+interface Props {
+    onUnmount: () => void;
+}
+
+const KvitteringPage = ({ onUnmount }: Props) => {
     useLogSidevisning(SIFCommonPageKey.kvittering);
+    useEffect(() => {
+        return () => {
+            onUnmount();
+        };
+    });
     return (
         <Page title="Endringsmelding er mottatt">
             <Kvittering tittel="Melding om endring er lagt til saken din">

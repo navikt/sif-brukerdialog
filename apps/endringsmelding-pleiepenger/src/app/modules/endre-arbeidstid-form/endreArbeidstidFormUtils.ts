@@ -1,7 +1,7 @@
-import dayjs from 'dayjs';
-import { Arbeidsuke } from '../../types/Sak';
-import { erKortArbeidsuke, getDagerTekst, sorterArbeidsuker } from '../../utils/arbeidsukeUtils';
 import { getDateRangeText } from '@navikt/sif-common-utils';
+import { Arbeidsuke } from '@types';
+import dayjs from 'dayjs';
+import { erKortArbeidsuke, getDagerTekst, sorterArbeidsuker } from '../../utils/arbeidsukeUtils';
 
 interface ArbeidsukerPerÅr {
     [isoWeekYear: string]: Arbeidsuke[];

@@ -1,10 +1,11 @@
 import { Alert, BodyShort, Heading, Ingress, ToggleGroup } from '@navikt/ds-react';
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
+import { useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { getDurationString } from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
     getNumberFromNumberInputValue,
@@ -14,26 +15,23 @@ import {
 import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { DateRange } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import actionsCreator from '../../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import { ArbeidstidEndring } from '../../types/ArbeidstidEndring';
-import { Arbeidsuke } from '../../types/Sak';
-import { LovbestemtFerieSøknadsdata } from '../../types/søknadsdata/LovbestemtFerieSøknadsdata';
-import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@types';
 import {
     arbeidsukerHarLikNormaltidPerDag,
     erKortArbeidsuke,
     getArbeidsukeUkenummer,
     getDagerTekst,
-} from '../../utils/arbeidsukeUtils';
-import { getFeriedagerIUke, getFeriedagerIUkeTekst } from '../../utils/ferieUtils';
-import UkeTags from '../arbeidstid-uke-tabell/components/UkeTags';
+    getFeriedagerIUke,
+    getFeriedagerIUkeTekst,
+} from '@utils';
+import dayjs from 'dayjs';
+import actionsCreator from '../../søknad/context/action/actionCreator';
+import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
 import './endreArbeidstidForm.scss';
 
-export type EndreArbeidstidData = {
+type EndreArbeidstidData = {
     perioder: DateRange[];
     endring: ArbeidstidEndring;
 };

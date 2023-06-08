@@ -1,24 +1,23 @@
-import { Alert, Button, ErrorSummary, Ingress } from '@navikt/ds-react';
+import { Alert, Button, ErrorSummary, Heading, Ingress } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
+import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { Back } from '@navikt/ds-icons';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
-import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
-import { getEndringerSomSkalGjøres } from '../../../utils/endringTypeUtils';
-import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
-import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import JaNeiSvar from '@navikt/sif-common-forms-ds/lib/components/summary/JaNeiSvar';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { ISODurationToDuration } from '@navikt/sif-common-utils/lib';
+import { getApiDataFromSøknadsdata } from '@utils';
+import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
+import { useStepConfig } from '../../../hooks/useStepConfig';
 import { StepId } from '../../config/StepId';
-import { getSøknadStepConfig } from '../../config/søknadStepConfig';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
@@ -42,43 +41,40 @@ const OppsummeringStep = () => {
     const stepId = StepId.OPPSUMMERING;
     const intl = useIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, hvaSkalEndres },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer },
     } = useSøknadContext();
 
-    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie);
-    const step = stepConfig[stepId];
-    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
-
-    const { goBack } = useStepNavigation(step);
-
+    const { goBack, stepConfig } = useStepConfig(stepId);
+    const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
+
     const previousSøknadError = usePrevious(sendSøknadError);
     const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         if (previousSøknadError === undefined && sendSøknadError !== undefined) {
             sendSøknadErrorSummary.current?.focus();
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, hvaSkalEndres);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, sak, valgteEndringer, arbeidsgivere);
 
     if (!apiData) {
         return <Alert variant="error">ApiData er undefined</Alert>;
     }
 
-    const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
+    const {
+        arbeidstid,
+        lovbestemtFerie,
+        dataBruktTilUtledning: { ukjenteArbeidsforhold },
+    } = apiData.ytelse;
 
     const arbeidstidErEndret = oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid);
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
-    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
-    const { arbeidstidSkalEndres, lovbestemtFerieSkalEndres } = getEndringerSomSkalGjøres(
-        hvaSkalEndres,
-        harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie)
-    );
+    const harIngenEndringer =
+        (valgteEndringer.arbeidstid && arbeidstidErEndret === false) ||
+        (valgteEndringer.lovbestemtFerie && lovbestemtFerieErEndret === false);
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -91,12 +87,66 @@ const OppsummeringStep = () => {
                 </Ingress>
             </SifGuidePanel>
 
-            {arbeidstidSkalEndres && (
+            {sak.harUkjentArbeidsforhold && ukjenteArbeidsforhold && (
                 <Block margin="xxl">
-                    <SummarySection header="Endringer i arbeidstid">
+                    <SummarySection header="Nytt arbeidsforhold">
+                        {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
+                            const arbeidsforhold = ukjenteArbeidsforhold.find(
+                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+                            );
+
+                            if (!arbeidsforhold) {
+                                return;
+                            }
+                            const getTestKey = (key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
+                            return (
+                                <Block key={arbeidsgiver.key} padBottom="l">
+                                    <Heading level="3" size="small">
+                                        {arbeidsgiver.navn}
+                                    </Heading>
+                                    <SummaryBlock
+                                        level="4"
+                                        header={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden du har søkt pleiepenger?`}>
+                                        <div data-testid={getTestKey('erAnsatt')}>
+                                            <JaNeiSvar harSvartJa={arbeidsforhold.erAnsatt} />
+                                        </div>
+                                        {arbeidsforhold.erAnsatt === false && (
+                                            <Block>
+                                                <IkkeAnsattMelding />
+                                            </Block>
+                                        )}
+                                    </SummaryBlock>
+                                    {arbeidsforhold.erAnsatt && (
+                                        <>
+                                            <SummaryBlock
+                                                level="4"
+                                                header={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}>
+                                                <div data-testid={getTestKey('timerPerUke')}>
+                                                    <DurationText
+                                                        duration={ISODurationToDuration(
+                                                            arbeidsforhold.normalarbeidstid.timerPerUke
+                                                        )}
+                                                    />
+                                                </div>
+                                            </SummaryBlock>
+                                        </>
+                                    )}
+                                </Block>
+                            );
+                        })}
+                    </SummarySection>
+                </Block>
+            )}
+
+            {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
+                <Block margin="xxl">
+                    <SummarySection header="Arbeidstid">
                         {arbeidstid && arbeidstidErEndret ? (
                             <>
-                                <ArbeidstidOppsummering arbeidstid={arbeidstid} arbeidsgivere={arbeidsgivere} />
+                                <ArbeidstidOppsummering
+                                    arbeidstid={arbeidstid}
+                                    arbeidsgivere={[...arbeidsgivere, ...sak.ukjenteArbeidsgivere]}
+                                />
                                 {!harGyldigArbeidstid && (
                                     <Block margin="none" padBottom="l">
                                         <Alert variant="error">
@@ -114,7 +164,7 @@ const OppsummeringStep = () => {
                     </SummarySection>
                 </Block>
             )}
-            {lovbestemtFerieSkalEndres && (
+            {valgteEndringer.lovbestemtFerie && (
                 <Block margin="xxl" padBottom="m">
                     <SummarySection header="Endringer i ferie">
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (

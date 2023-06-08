@@ -54,7 +54,7 @@ function FormikTimeInput<FieldName, ErrorType>({
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         id={name as any}
                         onFocus={(evt) => {
-                            if (evt.target.id === ref.current.props.id) {
+                            if (evt.target.id === ref.current.props?.id) {
                                 focusFirstElement(evt.target);
                             }
                         }}

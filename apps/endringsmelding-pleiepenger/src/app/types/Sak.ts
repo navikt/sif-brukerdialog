@@ -3,7 +3,32 @@ import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieSt
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { K9SakBarn } from './K9Sak';
 
-export enum ArbeidAktivitetType {
+export interface Sak {
+    /** Barn i sak */
+    barn: K9SakBarn;
+    /** Settes til true hvis det finnes en arbeidsgiver som ikke har arbeidstid i sak */
+    harUkjentArbeidsforhold: boolean;
+    /** Alle arbeidsgivere som ikke finnes i sak, men som finnes i Aa-reg */
+    ukjenteArbeidsgivere: Arbeidsgiver[];
+    /** Alle arbeidsaktiviteter i sak. Arbeidsgivere flates ut og legges sammen med evt. frilans og selvstendig */
+    arbeidsaktiviteter: Arbeidsaktiviteter;
+    /** Ferie i søknadsperiodene */
+    lovbestemtFerie: SakLovbestemtFerie;
+    /** Søknadsperioder som er innenfor tillatt endringsperiode. Periodene som overlapper kuttes. */
+    søknadsperioder: DateRange[];
+    /** DateRange med alle søknadsperioder som er innenfor tillatt endringsperiode */
+    samletSøknadsperiode: DateRange;
+    /** Ytelse = PSB */
+    ytelse: {
+        type: string;
+    };
+    utledet: {
+        /** Alle aktiviteter i sak som kan endres; arbeidsgivere, frilans og selvstendig */
+        aktiviteterSomKanEndres: Arbeidsaktivitet[];
+    };
+}
+
+export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
     frilanser = 'frilanser',
     selvstendigNæringsdrivende = 'selvstendigNæringsdrivende',
@@ -14,8 +39,13 @@ export type FaktiskOgNormalArbeidstid = {
     normalt: Duration;
 };
 
+export type ArbeidstidPerDag = {
+    faktisk?: Duration;
+    normalt: Duration;
+};
+
 export type ArbeidstidEnkeltdagMap = {
-    [key: ISODate]: FaktiskOgNormalArbeidstid;
+    [key: ISODate]: ArbeidstidPerDag;
 };
 
 export interface ArbeidsukeTimer {
@@ -27,7 +57,7 @@ export interface Arbeidsuke {
     isoDateRange: string;
     periode: DateRange;
     arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap;
-    faktisk: ArbeidsukeTimer;
+    faktisk?: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
     antallDagerMedArbeidstid: number;
 }
@@ -38,52 +68,39 @@ export interface PeriodeMedArbeidstid extends DateRange {
     arbeidsuker: ArbeidsukeMap;
 }
 
-interface ArbeidAktivitetBase {
-    id: string;
-    type: ArbeidAktivitetType;
+interface ArbeidsaktivitetBase {
+    key: string;
+    type: ArbeidsaktivitetType;
     navn: string;
     perioderMedArbeidstid: PeriodeMedArbeidstid[];
     harPerioderFørTillattEndringsperiode: boolean;
     harPerioderEtterTillattEndringsperiode: boolean;
 }
 
-export interface ArbeidAktivitetArbeidstaker extends ArbeidAktivitetBase {
-    type: ArbeidAktivitetType.arbeidstaker;
+export interface ArbeidsaktivitetArbeidstaker extends ArbeidsaktivitetBase {
+    type: ArbeidsaktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
+    erUkjentArbeidsforhold: boolean;
 }
-export interface ArbeidAktivitetFrilanser extends ArbeidAktivitetBase {
-    type: ArbeidAktivitetType.frilanser;
-}
-
-export interface ArbeidAktivitetSelvstendigNæringsdrivende extends ArbeidAktivitetBase {
-    type: ArbeidAktivitetType.selvstendigNæringsdrivende;
+export interface ArbeidsaktivitetFrilanser extends ArbeidsaktivitetBase {
+    type: ArbeidsaktivitetType.frilanser;
 }
 
-export type ArbeidAktivitet =
-    | ArbeidAktivitetArbeidstaker
-    | ArbeidAktivitetFrilanser
-    | ArbeidAktivitetSelvstendigNæringsdrivende;
+export interface ArbeidsaktivitetSelvstendigNæringsdrivende extends ArbeidsaktivitetBase {
+    type: ArbeidsaktivitetType.selvstendigNæringsdrivende;
+}
 
-export interface ArbeidAktiviteter {
-    arbeidstakerAktiviteter: ArbeidAktivitetArbeidstaker[];
-    frilanser?: ArbeidAktivitetFrilanser;
-    selvstendigNæringsdrivende?: ArbeidAktivitetSelvstendigNæringsdrivende;
+export type Arbeidsaktivitet =
+    | ArbeidsaktivitetArbeidstaker
+    | ArbeidsaktivitetFrilanser
+    | ArbeidsaktivitetSelvstendigNæringsdrivende;
+
+export interface Arbeidsaktiviteter {
+    arbeidstakerAktiviteter: ArbeidsaktivitetArbeidstaker[];
+    frilanser?: ArbeidsaktivitetFrilanser;
+    selvstendigNæringsdrivende?: ArbeidsaktivitetSelvstendigNæringsdrivende;
 }
 
 export interface SakLovbestemtFerie {
     feriedager: FeriedagMap;
-}
-
-export interface Sak {
-    barn: K9SakBarn;
-    arbeidAktiviteter: ArbeidAktiviteter;
-    lovbestemtFerie: SakLovbestemtFerie;
-    søknadsperioder: DateRange[];
-    samletSøknadsperiode: DateRange;
-    ytelse: {
-        type: string;
-    };
-    utledet: {
-        aktiviteterSomKanEndres: ArbeidAktivitet[];
-    };
 }

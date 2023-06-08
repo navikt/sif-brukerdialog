@@ -1,18 +1,17 @@
-import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { EndringType } from '../../types/EndringType';
-import { Sak } from '../../types/Sak';
-import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
+import { getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     sak: Sak,
-    hvaSkalEndres: EndringType[]
+    valgteEndringer: ValgteEndringer,
+    arbeidsgivere: Arbeidsgiver[]
 ): SøknadApiData | undefined => {
-    const { id, arbeidstid, lovbestemtFerie } = søknadsdata;
+    const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
+
     if (!arbeidstid && !lovbestemtFerie) {
         return undefined;
     }
@@ -28,11 +27,21 @@ export const getApiDataFromSøknadsdata = (
                 norskIdentitetsnummer: sak.barn.identitetsnummer,
             },
             lovbestemtFerie: lovbestemtFerie ? getLovbestemtFerieApiDataFromSøknadsdata(lovbestemtFerie) : undefined,
-            arbeidstid: arbeidstid ? getArbeidstidApiDataFromSøknadsdata(arbeidstid, sak.arbeidAktiviteter) : undefined,
-            dataBruktTilUtledning: {
-                soknadDialogCommitSha: getCommitShaFromEnv() || '',
-                valgteEndringer: hvaSkalEndres,
-            },
+            arbeidstid: arbeidstid
+                ? getArbeidstidApiDataFromSøknadsdata(
+                      sak.søknadsperioder,
+                      arbeidstid.arbeidsaktivitet,
+                      sak.arbeidsaktiviteter,
+                      sak.ukjenteArbeidsgivere,
+                      ukjentArbeidsforhold
+                  )
+                : undefined,
+            dataBruktTilUtledning: getDataBruktTilUtledningApiData(
+                valgteEndringer,
+                søknadsdata.ukjentArbeidsforhold,
+                søknadsdata.arbeidstid,
+                arbeidsgivere
+            ),
         },
     };
 };

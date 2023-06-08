@@ -1,6 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { useSøknadContext } from '@hooks';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
@@ -9,11 +10,10 @@ import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { getSakFromK9Sak } from '@utils';
 import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
-import { getSakFromK9Sak } from '../../utils/getSakFromK9Sak';
 
 enum FormFields {
     barnAktørId = 'barnAktørId',
