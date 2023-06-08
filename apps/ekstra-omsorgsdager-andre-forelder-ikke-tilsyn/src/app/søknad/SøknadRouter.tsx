@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
-import { useResetSøknadAfterSend } from '../hooks/useResetSøknadAfterSend';
+import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
@@ -25,7 +25,7 @@ const SøknadRouter = () => {
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
     const { slettMellomlagring } = useMellomlagring();
-    const { shouldResetSøknad } = useResetSøknadAfterSend();
+    const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
 
@@ -63,7 +63,10 @@ const SøknadRouter = () => {
             />
             <Route path={SøknadStepRoutePath[StepId.OM_BARNA]} element={<OmBarnaStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
+            <Route
+                path={SøknadStepRoutePath[StepId.KVITTERING]}
+                element={<KvitteringPage onUnmount={() => setShouldResetSøknad(true)} />}
+            />
             <Route
                 path="*"
                 element={

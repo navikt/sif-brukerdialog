@@ -1,5 +1,4 @@
 import { Button } from '@navikt/ds-react';
-// import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -13,7 +12,7 @@ import StartPåNyttDialog from '@navikt/sif-common-soknad-ds/lib/modules/start-p
 import { appSentryLogger } from '@utils';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
-import { useResetSøknadAfterSend } from '../hooks/useResetSøknadAfterSend';
+import { useResetSøknad } from '../hooks/useResetSøknad';
 import { useSøknadContext } from '../hooks/useSøknadContext';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import VelgSakPage from '../pages/velg-sak/VelgSakPage';
@@ -35,7 +34,7 @@ const SøknadRouter = () => {
     const { slettMellomlagring } = useMellomlagring();
     const { logInfo } = useAmplitudeInstance();
 
-    const { shouldResetSøknad } = useResetSøknadAfterSend();
+    const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     const { routeError, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(
         søknadRoute,
@@ -100,7 +99,10 @@ const SøknadRouter = () => {
                     <Route path={SøknadStepRoute[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
                 )}
 
-                <Route path={SøknadStepRoute[StepId.MELDING_SENDT]} element={<KvitteringPage />} />
+                <Route
+                    path={SøknadStepRoute[StepId.MELDING_SENDT]}
+                    element={<KvitteringPage onUnmount={() => setShouldResetSøknad(true)} />}
+                />
 
                 {/* Hvis bruker har fjernet ferie, vært innom arbeidstid, angret fjernet ferie og brukt nettleser-back */}
                 {isStepAvailable(StepId.ARBEIDSTID) === false && isStepAvailable(StepId.LOVBESTEMT_FERIE) && (
