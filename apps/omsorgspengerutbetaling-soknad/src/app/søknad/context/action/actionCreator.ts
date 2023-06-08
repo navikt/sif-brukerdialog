@@ -3,7 +3,7 @@ import {
     DineBarnSøknadsdata,
     FraværSøknadsdata,
     LegeerklæringSøknadsdata,
-    ArbeidssituasjonSøknadsdata,
+    ArbeidSøknadsdata,
     FraværFraSøknadsdata,
     MedlemskapSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
@@ -67,7 +67,7 @@ interface SetSøknadLegeerklæring {
 }
 interface SetSøknadArbeidssituasjon {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON;
-    payload: ArbeidssituasjonSøknadsdata;
+    payload: ArbeidSøknadsdata;
 }
 interface SetSøknadFraværFra {
     type: SøknadContextActionKeys.SET_SØKNAD_FRAVÆR_FRA;
@@ -122,7 +122,7 @@ const setSøknadLegeerklæring = (payload: LegeerklæringSøknadsdata): SetSøkn
     type: SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING,
     payload,
 });
-const setSøknadArbeidssituasjon = (payload: ArbeidssituasjonSøknadsdata): SetSøknadArbeidssituasjon => ({
+const setSøknadArbeidssituasjon = (payload: ArbeidSøknadsdata): SetSøknadArbeidssituasjon => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON,
     payload,
 });

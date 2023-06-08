@@ -16,8 +16,6 @@ import { fraværFraMessages } from '../søknad/steps/fravær-fra/fraværFraMessa
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 
-export const appBokmålstekster = require('./nb.json');
-
 const bokmålstekster = {
     ...allCommonMessages.nb,
     ...soknadIntlMessages.nb,
@@ -29,7 +27,6 @@ const bokmålstekster = {
     ...arbeidssituasjonMessages.nb,
     ...virksomhetMessages.nb,
     ...fraværFraMessages.nb,
-    ...appBokmålstekster,
     ...legeerklæringMessages.nb,
     ...medlemskapMessages.nb,
     ...oppsummeringMessages.nb,

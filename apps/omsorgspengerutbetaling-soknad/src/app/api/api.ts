@@ -8,7 +8,7 @@ export enum ApiEndpoint {
     'barn' = 'oppslag/barn',
     'send_søknad' = 'omsorgspenger-utbetaling-snf/innsending',
     'vedlegg' = 'vedlegg',
-    MELLOMLAGRING = 'mellomlagring/OMSORGSPENGER_UTBETALING_SNF',
+    'mellomlagring' = 'mellomlagring/OMSORGSPENGER_UTBETALING_SNF',
 }
 
 const axiosConfigCommon: AxiosRequestConfig = {

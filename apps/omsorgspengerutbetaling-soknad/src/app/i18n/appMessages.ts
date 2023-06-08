@@ -101,6 +101,12 @@ export const appMessages: MessageFileFormat = {
         'step.oppsummering.pageTitle': 'Oppsummering - Søknad om utbetaling av omsorgspenger',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
+        'initialLoadError.pageTitle': 'Det oppstod en feil',
+        'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
+
+        'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+        'resetMellomlagring.startPåNytt': 'Start på nytt',
+
         'validation.harUtvidetRett.yesOrNoIsUnanswered':
             'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemming eller ikke.',
         'validation.harUtvidetRettFor.listIsEmpty': 'Du må krysse av for det eller de barna som har utvidet rett.',

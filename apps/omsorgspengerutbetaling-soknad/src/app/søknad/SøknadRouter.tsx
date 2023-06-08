@@ -13,7 +13,7 @@ import DineBarnStep from './steps/dine-barn/DineBarnStep';
 import FraværStep from './steps/fravær/FraværStep';
 import LegeerklæringStep from './steps/legeerklæring/LegeerklæringStep';
 import ArbeidssituasjonStep from './steps/arbeidssituasjon/ArbeidssituasjonStep';
-import FraværFraStep from './steps/fraværFra/FraværFraStep';
+import FraværFraStep from './steps/fravær-fra/FraværFraStep';
 import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';

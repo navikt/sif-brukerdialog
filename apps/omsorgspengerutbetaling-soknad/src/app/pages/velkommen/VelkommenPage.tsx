@@ -25,7 +25,7 @@ const VelkommenPage = () => {
         await logSoknadStartet(SKJEMANAVN);
         dispatch(actionsCreator.startSøknad());
         //TODO
-        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_BARNET));
+        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.DINE_BARN));
     };
     return (
         <Page title={intlHelper(intl, 'page.velkommen.sidetittel')}>
