@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.35.0
+
+### Minor Changes
+
+-   8bf09ef: La til timeUtils
+
 ## 3.34.3
 
 ### Patch Changes
