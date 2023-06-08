@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
+import { useSøknadContext } from '@hooks';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { relocateToDinePleiepenger, relocateToWelcomePage } from '../utils/navigationUtils';
 import { useMellomlagring } from './useMellomlagring';
 

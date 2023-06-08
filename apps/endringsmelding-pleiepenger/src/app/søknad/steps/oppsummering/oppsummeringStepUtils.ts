@@ -5,16 +5,15 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import { ArbeidstidUkeTabellItem } from '../../../modules/arbeidstid-uke-tabell/ArbeidstidUkeTabell';
 import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiData,
     ArbeidstidPeriodeApiDataMap,
     LovbestemtFerieApiData,
-} from '../../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { erKortArbeidsuke } from '../../../utils/arbeidsukeUtils';
-import { getTimerPerUkeFraTimerPerDag } from '../../../utils/beregnUtils';
+    Søknadsdata,
+} from '@types';
+import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@utils';
+import { ArbeidstidUkerItem } from '../../../modules/arbeidstid-uker/ArbeidstidUkerItem';
 import { OppsummeringFormValues } from './OppsummeringStep';
 
 export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {
@@ -50,11 +49,12 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
         _endretProsent,
     }: ArbeidstidPeriodeApiData,
     isoDateRange: ISODateRange
-): ArbeidstidUkeTabellItem => {
+): ArbeidstidUkerItem => {
     const periode = ISODateRangeToDateRange(isoDateRange);
     const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
 
-    const arbeidsuke: ArbeidstidUkeTabellItem = {
+    const arbeidsuke: ArbeidstidUkerItem = {
+        id: isoDateRange,
         kanEndres: false,
         kanVelges: false,
         isoDateRange,
@@ -66,10 +66,12 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
                 ISODurationToDuration(_opprinneligNormaltPerDag),
                 antallDagerMedArbeidstid
             ),
-            faktisk: getTimerPerUkeFraTimerPerDag(
-                ISODurationToDuration(_opprinneligFaktiskPerDag),
-                antallDagerMedArbeidstid
-            ),
+            faktisk: _opprinneligFaktiskPerDag
+                ? getTimerPerUkeFraTimerPerDag(
+                      ISODurationToDuration(_opprinneligFaktiskPerDag),
+                      antallDagerMedArbeidstid
+                  )
+                : undefined,
         },
         endret: {
             faktisk: getTimerPerUkeFraTimerPerDag(
@@ -82,8 +84,8 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
     return arbeidsuke;
 };
 
-const getArbeidstidUkeTabellItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkeTabellItem[] => {
-    const arbeidsuker: ArbeidstidUkeTabellItem[] = [];
+const getArbeidstidUkerItems = (perioder: ArbeidstidPeriodeApiDataMap): ArbeidstidUkerItem[] => {
+    const arbeidsuker: ArbeidstidUkerItem[] = [];
     Object.keys(perioder)
         .sort()
         .forEach((isoDateRange) => {
@@ -125,7 +127,7 @@ const erArbeidstidEndringerGyldig = (arbeidstid?: ArbeidstidApiData): boolean =>
 };
 
 export const oppsummeringStepUtils = {
-    getArbeidstidUkeTabellItems,
+    getArbeidstidUkerItems,
     harEndringerILovbestemtFerieApiData,
     harEndringerIArbeidstid,
     erArbeidstidEndringerGyldig,

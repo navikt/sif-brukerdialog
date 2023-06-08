@@ -1,4 +1,6 @@
-import { isValidSøkerResponse, Søker } from '../../types/Søker';
+import { isStringOrNull } from '@navikt/sif-common-utils';
+import { Søker } from '@types';
+import { isObject, isString } from 'formik';
 import api, { ApiEndpointPsb } from '../api';
 
 type SøkerDTO = {
@@ -17,6 +19,22 @@ const søkerEndpoint = {
         }
         return Promise.resolve(data);
     },
+};
+
+const isValidSøkerResponse = (response: any): response is Søker => {
+    if (
+        isObject(response) &&
+        isString(response.aktørId) &&
+        isString(response.fødselsdato) &&
+        isString(response.fødselsnummer) &&
+        isStringOrNull(response.fornavn) &&
+        isStringOrNull(response.mellomnavn) &&
+        isStringOrNull(response.etternavn)
+    ) {
+        return true;
+    } else {
+        return false;
+    }
 };
 
 export default søkerEndpoint;

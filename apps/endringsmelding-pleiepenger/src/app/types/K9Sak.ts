@@ -13,7 +13,6 @@ export interface K9SakArbeidstidInfo {
 }
 
 export type K9SakArbeidstaker = {
-    norskIdentitetsnummer?: string;
     organisasjonsnummer: string;
     arbeidstidInfo: K9SakArbeidstidInfo;
 };
@@ -31,11 +30,6 @@ export interface K9SakBarn {
     etternavn: string;
     aktørId: string;
     identitetsnummer: string;
-}
-interface K9SakOpptjeningAktivitetFrilanser {
-    startdato: Date;
-    sluttdato?: Date;
-    jobberFortsattSomFrilanser: boolean;
 }
 
 export interface K9SakLovbestemtFerie extends DateRange {
@@ -60,7 +54,11 @@ interface K9SakYtelse {
         perioder: K9SakUtenlandsopphold[];
     };
     opptjeningAktivitet: {
-        frilanser?: K9SakOpptjeningAktivitetFrilanser;
+        frilanser?: {
+            startdato: Date;
+            sluttdato?: Date;
+            jobberFortsattSomFrilanser: boolean;
+        };
     };
     arbeidstid: K9SakArbeidstid;
 }

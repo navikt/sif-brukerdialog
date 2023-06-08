@@ -1,4 +1,6 @@
-export enum Feature {}
+export enum Feature {
+    UKJENT_ARBEIDSFOHOLD = 'UKJENT_ARBEIDSFOHOLD',
+}
 
 export const isFeatureEnabled = (feature: Feature) => {
     const appSettings = (window as any).appSettings;

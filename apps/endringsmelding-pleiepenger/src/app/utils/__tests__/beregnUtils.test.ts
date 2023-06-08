@@ -1,5 +1,5 @@
 import { decimalDurationToDuration, Duration } from '@navikt/sif-common-utils';
-import { TimerEllerProsent } from '../../types/TimerEllerProsent';
+import { TimerEllerProsent } from '@types';
 import {
     avrundDesimaltid,
     beregnEndretArbeidstidForUke,
@@ -58,6 +58,19 @@ describe('beregnUtils', () => {
                     { type: TimerEllerProsent.TIMER, timer: 5.5 },
                     { hours: '10', minutes: '30' },
                     5
+                )
+            ).toEqual(expectedResult);
+        });
+        it('regner hele timer for 4 timer faktisk', () => {
+            const expectedResult: Duration = {
+                hours: '4',
+                minutes: '0',
+            };
+            expect(
+                beregnEndretArbeidstidForUke(
+                    { type: TimerEllerProsent.TIMER, timer: 4 },
+                    { hours: '18', minutes: '0' },
+                    3
                 )
             ).toEqual(expectedResult);
         });

@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.35.0
+
+### Minor Changes
+
+-   8bf09ef: La til timeUtils
+
+## 3.34.3
+
+### Patch Changes
+
+-   016d965: Korrigere timer og minutter dersom minutter === 60
+
 ## 3.34.2
 
 ### Patch Changes

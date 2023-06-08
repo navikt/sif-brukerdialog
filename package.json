@@ -39,7 +39,7 @@
         "react-scripts": "5.0.1",
         "react-syntax-highlighter": "15.5.0",
         "storybook": "7.0.17",
-        "turbo": "1.9.9",
+        "turbo": "1.10.1",
         "typescript": "5.0.4",
         "webpack": "5.84.1",
         "yarn-audit-fix": "9.3.10"

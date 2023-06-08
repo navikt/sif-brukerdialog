@@ -64,3 +64,8 @@ export type DateDurationMap = {
         percentage?: number;
     };
 };
+
+export interface Time {
+    hours: string;
+    minutes: string;
+}

@@ -1,14 +1,11 @@
 import { Alert, Button } from '@navikt/ds-react';
 import React from 'react';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils';
-import { LovbestemtFeriePeriode } from '../../types/LovbestemtFeriePeriode';
+import { LovbestemtFeriePeriode } from '@types';
 import DeleteButton from '../../components/buttons/DeleteButton';
 import EditButton from '../../components/buttons/EditButton';
 import FerieTag from '../../components/tags/FerieTag';
 import './lovbestemtFerieListe.scss';
-
-const bem = bemUtils('lovbestemtFerieListe');
 
 interface Props {
     perioder: LovbestemtFeriePeriode[];
@@ -20,7 +17,7 @@ interface Props {
 const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit, onDelete, onUndoDelete }) => {
     return (
         <>
-            <ul className={bem.block}>
+            <ul className="lovbestemtFerieListe">
                 {perioder.length === 0 && (
                     <li>
                         <Alert inline={true} variant="info">
@@ -36,12 +33,13 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                     const periodeTekst = fra === til ? fra : `${fra} - ${til}`;
                     return (
                         <li key={dateRangeToISODateRange({ from: from, to: to })}>
-                            <div className={bem.element('ferie')}>
+                            <div className="lovbestemtFerieListe__ferie">
                                 <div
-                                    className={bem.element(
-                                        'ferie__periode',
-                                        periode.skalHaFerie === false ? 'fjernet' : undefined
-                                    )}>
+                                    className={`lovbestemtFerieListe__ferie__periode ${
+                                        periode.skalHaFerie === false
+                                            ? 'lovbestemtFerieListe__ferie__periode--fjernet'
+                                            : undefined
+                                    }`}>
                                     <span className={'dato'}>{periodeTekst}</span>
                                     {periode.liggerISak && periode.skalHaFerie === false && (
                                         <FerieTag type="fjernet">Ferie fjernet</FerieTag>
@@ -50,7 +48,7 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                         <FerieTag type="registrert">Ferie lagt til</FerieTag>
                                     )}
                                 </div>
-                                <div className={bem.element('ferie__actions')}>
+                                <div className="lovbestemtFerieListe__ferie__actions">
                                     {periode.skalHaFerie === false && onUndoDelete && (
                                         <Button
                                             type="button"
@@ -64,7 +62,7 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                     {periode.skalHaFerie === true && (
                                         <>
                                             {onEdit && (
-                                                <div className={bem.element('ferie__endreKnapp')}>
+                                                <div className="lovbestemtFerieListe__ferie__endreKnapp">
                                                     <EditButton
                                                         onClick={() => onEdit(periode)}
                                                         title="Endre ferie"
@@ -73,7 +71,7 @@ const LovbestemtFerieListe: React.FunctionComponent<Props> = ({ perioder, onEdit
                                                 </div>
                                             )}
                                             {onDelete && (
-                                                <div className={bem.element('ferie__fjernKnapp')}>
+                                                <div className="lovbestemtFerieListe__ferie__fjernKnapp">
                                                     <DeleteButton
                                                         onClick={() => {
                                                             onDelete(periode);

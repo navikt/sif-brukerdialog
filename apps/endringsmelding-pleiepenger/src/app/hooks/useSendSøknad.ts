@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSøknadContext } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { SøknadApiData } from '@types';
+import { appSentryLogger } from '@utils';
 import { AxiosError, isAxiosError } from 'axios';
 import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
 import { SKJEMANAVN } from '../App';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
-import appSentryLogger from '../utils/appSentryLogger';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
 import { useMellomlagring } from './useMellomlagring';
 
 export const useSendSøknad = () => {
-    const { dispatch } = useSøknadContext();
+    const {
+        dispatch,
+        state: { søknadsdata },
+    } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
     const { slettMellomlagring } = useMellomlagring();
@@ -22,11 +25,10 @@ export const useSendSøknad = () => {
     const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
-        const metadata = getSøknadApiDataMetadata(apiData);
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)
-            .then(async () => onSøknadSendSuccess(metadata))
+            .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata)))
             .catch((error) => {
                 if (isAxiosError(error)) {
                     appSentryLogger.logError('Innsending feilet', error.message);

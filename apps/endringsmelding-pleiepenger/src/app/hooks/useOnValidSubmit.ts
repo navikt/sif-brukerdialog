@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSøknadContext } from '@hooks';
+import { SøknadContextState } from '@types';
+import { relocateToLoginPage } from '@utils';
 import { StepId } from '../søknad/config/StepId';
 import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
 import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
-import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { SøknadContextState } from '../types/SøknadContextState';
-import { harFjernetLovbestemtFerie } from '../utils/lovbestemtFerieUtils';
-import { relocateToLoginPage } from '../utils/navigationUtils';
 
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
@@ -20,10 +19,7 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStep } = getSøknadStepConfig(
-        state.hvaSkalEndres,
-        harFjernetLovbestemtFerie(state.søknadsdata.lovbestemtFerie)
-    )[stepId];
+    const { nextStep } = getSøknadStepConfig(state.søknadSteps)[stepId];
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {

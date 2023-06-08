@@ -11,6 +11,7 @@ import {
     getLastWeekDayInMonth,
     isDateWeekDay,
     ISODateToDate,
+    sortDates,
 } from './dateUtils';
 
 dayjs.extend(isSameOrBefore);
@@ -637,6 +638,38 @@ export const getDateRangesWithinDateRange = <Type extends DateRange>(
     return dateRanges
         .filter((dr) => dateRangesCollide([dr, limitDateRange]))
         .map((dr) => (adjustToLimit ? limitDateRangeToDateRange(dr, limitDateRange) : dr));
+};
+
+/**
+ *
+ * @param dateRanges array of DateRange
+ * @returns the last date in the dateranges
+ */
+export const getLastDateInDateRanges = (dateRanges: DateRange[]): Date | undefined => {
+    if (dateRanges.length === 0) {
+        return undefined;
+    }
+    if (dateRanges.length === 0) {
+        return dateRanges[0].to;
+    }
+    const dates = dateRanges.map((dr) => dr.to).sort(sortDates);
+    return dates[dates.length - 1];
+};
+
+/**
+ *
+ * @param dateRanges array of DateRange
+ * @returns the last date in the dateranges
+ */
+export const getFirstDateInDateRanges = (dateRanges: DateRange[]): Date | undefined => {
+    if (dateRanges.length === 0) {
+        return undefined;
+    }
+    if (dateRanges.length === 0) {
+        return dateRanges[0].from;
+    }
+    const dates = dateRanges.map((dr) => dr.from).sort(sortDates);
+    return dates[0];
 };
 
 // const dateRangeDifference = (range1: DateRange[], range2: DateRange[]): DateRange[] {

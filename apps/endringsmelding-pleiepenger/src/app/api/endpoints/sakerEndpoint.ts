@@ -1,11 +1,9 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { verifyK9Format, K9Format, isK9FormatError, K9FormatArbeidstid } from '../../types/k9Format';
-import { K9Sak, UgyldigK9SakFormat } from '../../types/K9Sak';
-import appSentryLogger from '../../utils/appSentryLogger';
-import { maskString } from '../../utils/maskString';
-import { parseK9Format } from '../../utils/parseK9Format';
+import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@types';
+import { appSentryLogger, maskString, parseK9Format } from '@utils';
 import api from '../api';
 import { ApiEndpointInnsyn } from './';
+import { verifyK9Format } from '../../utils/verifyk9Format';
 
 export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 

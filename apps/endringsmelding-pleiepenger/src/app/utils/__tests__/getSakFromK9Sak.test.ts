@@ -9,9 +9,7 @@ import {
     ISODuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import { Arbeidsgiver } from '../../types/Arbeidsgiver';
-import { K9SakArbeidstidPeriodeMap } from '../../types/K9Sak';
-import { ArbeidstidEnkeltdagMap, FaktiskOgNormalArbeidstid } from '../../types/Sak';
+import { Arbeidsgiver, ArbeidstidEnkeltdagMap, FaktiskOgNormalArbeidstid, K9SakArbeidstidPeriodeMap } from '@types';
 import { _getSakFromK9Sak } from '../getSakFromK9Sak';
 
 const {
@@ -22,6 +20,7 @@ const {
     getArbeidstidEnkeltdagMapFromPerioder,
     getArbeidsukeFromEnkeltdagerIUken,
     getArbeidsukerFromEnkeltdager,
+    erArbeidsgiverInnenforSøknadsperioder,
 } = _getSakFromK9Sak;
 
 const faktiskISODuration: ISODuration = 'PT2H0M';
@@ -179,9 +178,11 @@ describe('getSakFromK9Sak', () => {
             expect(keys.length).toEqual(4);
             const dag1 = result[keys[0]];
             const dag4 = result[keys[3]];
-            expect(durationToISODuration(dag1.faktisk)).toEqual(faktiskISODuration);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            expect(durationToISODuration(dag1.faktisk!)).toEqual(faktiskISODuration);
             expect(durationToISODuration(dag1.normalt)).toEqual(normaltISODuration);
-            expect(durationToISODuration(dag4.faktisk)).toEqual(periode2ISODuration);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            expect(durationToISODuration(dag4.faktisk!)).toEqual(periode2ISODuration);
             expect(durationToISODuration(dag4.normalt)).toEqual(normaltISODuration);
         });
     });
@@ -259,8 +260,8 @@ describe('getSakFromK9Sak', () => {
         it('returnerer riktig for én enkeltdag', () => {
             const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, enkeltdag);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
-            expect(durationToISODuration(uke.faktisk.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
-            expect(durationToISODuration(uke.faktisk.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.normalt.dag)).toEqual(durationToISODuration(arbeidstid.normalt));
             expect(durationToISODuration(uke.normalt.uke)).toEqual(durationToISODuration(arbeidstid.normalt));
         });
@@ -268,8 +269,8 @@ describe('getSakFromK9Sak', () => {
         it('fjerner dager som ikke er innenfor uken', () => {
             const uke = getArbeidsukeFromEnkeltdagerIUken(periodeEnDag, helUke);
             expect(uke.antallDagerMedArbeidstid).toEqual(1);
-            expect(durationToISODuration(uke.faktisk.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
-            expect(durationToISODuration(uke.faktisk.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.uke)).toEqual(durationToISODuration(arbeidstid.faktisk));
             expect(durationToISODuration(uke.normalt.dag)).toEqual(durationToISODuration(arbeidstid.normalt));
             expect(durationToISODuration(uke.normalt.uke)).toEqual(durationToISODuration(arbeidstid.normalt));
         });
@@ -278,10 +279,95 @@ describe('getSakFromK9Sak', () => {
             const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, helUke);
             expect(uke.antallDagerMedArbeidstid).toEqual(5);
             expect(uke.isoDateRange).toEqual(dateRangeToISODateRange(periodeHelUke));
-            expect(durationToISODuration(uke.faktisk.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
-            expect(durationToISODuration(uke.faktisk.uke)).toEqual('PT10H0M');
+            expect(durationToISODuration(uke.faktisk!.dag)).toEqual(durationToISODuration(arbeidstid.faktisk));
+            expect(durationToISODuration(uke.faktisk!.uke)).toEqual('PT10H0M');
             expect(durationToISODuration(uke.normalt.dag)).toEqual(durationToISODuration(arbeidstid.normalt));
             expect(durationToISODuration(uke.normalt.uke)).toEqual('PT37H30M');
+        });
+    });
+    describe('erArbeidsgiverInnenforSøknadsperioder', () => {
+        const søknadsperioder: DateRange[] = [
+            ISODateRangeToDateRange('2020-01-01/2020-02-01'),
+            ISODateRangeToDateRange('2020-04-01/2020-05-01'),
+        ];
+        const arbeidsgiver: Arbeidsgiver = {
+            ansattFom: ISODateToDate('2019-01-01'),
+        } as Arbeidsgiver;
+
+        describe('uten ansattTom', () => {
+            it('returnerer true når ansattFom er før søknadsperiode', () => {
+                expect(erArbeidsgiverInnenforSøknadsperioder(arbeidsgiver, søknadsperioder)).toBeTruthy();
+            });
+            it('returnerer true når ansattFom er mellom to søknadsperiode', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        { ansattFom: ISODateToDate('2020-02-03') } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            it('returnerer true når ansattFom er i en søknadsperiode', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        { ansattFom: ISODateToDate('2020-03-02') } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            it('returnerer false når ansattFom er etter søknadsperiode', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        { ansattFom: ISODateToDate('2020-05-02') } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeFalsy();
+            });
+        });
+        describe('med ansattTom', () => {
+            describe('returnerer true når ansattFom er før søknadsperiode og ansattTom er etter søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2019-01-01'),
+                            ansattTom: ISODateToDate('2023-01-01'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            describe('returnerer true når ansattTom er i mellom søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2019-01-01'),
+                            ansattTom: ISODateToDate('2020-03-01'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeTruthy();
+            });
+            describe('returnerer false når ansattTom er før søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2019-01-01'),
+                            ansattTom: ISODateToDate('2019-12-31'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeFalsy();
+            });
+            describe('returnerer false når ansattFom og ansattTom er mellom to søknadsperioder', () => {
+                expect(
+                    erArbeidsgiverInnenforSøknadsperioder(
+                        {
+                            ansattFom: ISODateToDate('2020-03-01'),
+                            ansattTom: ISODateToDate('2020-03-02'),
+                        } as Arbeidsgiver,
+                        søknadsperioder
+                    )
+                ).toBeFalsy();
+            });
         });
     });
 });

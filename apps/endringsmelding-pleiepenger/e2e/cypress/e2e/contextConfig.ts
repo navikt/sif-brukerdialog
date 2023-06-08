@@ -11,12 +11,13 @@ interface ConfigProps {
     step?: string;
     saker: any;
     arbeidsgivere: any;
+    settings?: any;
 }
 
 export const mockApiBaseUrl = 'http://localhost:8099/';
 
 export const contextConfig = (props: ConfigProps) => {
-    const { mellomlagring, step, saker, arbeidsgivere } = props;
+    const { mellomlagring, step, saker, arbeidsgivere, settings } = props;
 
     beforeEach('intercept api-kall', () => {
         cy.intercept(
@@ -41,6 +42,9 @@ export const contextConfig = (props: ConfigProps) => {
         cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock).as(
             'getSoker'
         );
+        if (settings) {
+            cy.intercept('GET', `*settings*`, settings).as('getSettings');
+        }
     });
 
     if (step) {

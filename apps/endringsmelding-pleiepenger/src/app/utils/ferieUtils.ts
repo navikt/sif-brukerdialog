@@ -1,6 +1,7 @@
 import {
     dateFormatter,
     DateRange,
+    dateRangeUtils,
     dateToISODate,
     getDateRangesFromDates,
     getDatesInDateRange,
@@ -10,6 +11,7 @@ import {
     sortDateRange,
     sortDates,
 } from '@navikt/sif-common-utils';
+import { LovbestemtFerieSøknadsdata } from '@types';
 import dayjs from 'dayjs';
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { getFeriedagerMeta } from './lovbestemtFerieUtils';
@@ -87,4 +89,11 @@ export const sortFeriedagerMap = (feriedager: FeriedagMap): FeriedagMap => {
         .sort()
         .forEach((key) => (sorterteFeriedager[key] = feriedager[key]));
     return sorterteFeriedager;
+};
+
+export const harFjernetFerieIPeriode = (lovbestemtFerie: LovbestemtFerieSøknadsdata, periode: DateRange): boolean => {
+    if (lovbestemtFerie?.feriedagerMeta.perioderFjernet) {
+        return dateRangeUtils.dateRangesCollide([periode, ...lovbestemtFerie?.feriedagerMeta.perioderFjernet]);
+    }
+    return false;
 };

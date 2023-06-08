@@ -2,10 +2,10 @@ import { Alert, Heading, Link } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
-import { useSøknadsdataStatus } from '../../hooks/useSøknadsdataStatus';
 import { StepId } from '../../søknad/config/StepId';
 
 interface Props {
@@ -16,7 +16,10 @@ interface Props {
 const InvalidStepSøknadsdataInfo: React.FunctionComponent<Props> = ({ stepId, stepConfig }) => {
     const intl = useIntl();
     const navigate = useNavigate();
-    const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig);
+    const {
+        state: { arbeidsgivere },
+    } = useSøknadContext();
+    const { invalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
 
     if (invalidSteps.length > 0) {
         const step = invalidSteps[0];

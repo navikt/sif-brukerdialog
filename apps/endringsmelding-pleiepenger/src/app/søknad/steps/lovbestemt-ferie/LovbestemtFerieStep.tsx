@@ -1,5 +1,6 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
+import { useOnValidSubmit, useSøknadContext } from '@hooks';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
@@ -7,20 +8,15 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
+import { SøknadContextState } from '@types';
+import { erFeriedagerEndretIPeriode } from '@utils';
 import DateRangeAccordion from '../../../components/date-range-accordion/DateRangeAccordion';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import EndretTag from '../../../components/tags/EndretTag';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { getValgteEndringer } from '../../../utils/endringTypeUtils';
-import { erFeriedagerEndretIPeriode } from '../../../utils/ferieUtils';
+import { useStepConfig } from '../../../hooks/useStepConfig';
+import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { harFjernetLovbestemtFerie } from '../../../utils/lovbestemtFerieUtils';
 import { StepId } from '../../config/StepId';
-import { getSøknadStepConfig } from '../../config/søknadStepConfig';
 import actionsCreator from '../../context/action/actionCreator';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
@@ -55,15 +51,12 @@ const LovbestemtFerieStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak, hvaSkalEndres },
+        state: { søknadsdata, sak, valgteEndringer },
     } = useSøknadContext();
-    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
-    const harFjernetFerie = harFjernetLovbestemtFerie(søknadsdata.lovbestemtFerie);
-    const stepConfig = getSøknadStepConfig(hvaSkalEndres, harFjernetFerie);
-    const step = stepConfig[stepId];
 
-    const { goBack } = useStepNavigation(step);
-    const harValgtAtArbeidstidSkalEndres = getValgteEndringer(hvaSkalEndres).arbeidstidSkalEndres;
+    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const { goBack, stepConfig } = useStepConfig(stepId);
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
@@ -82,7 +75,6 @@ const LovbestemtFerieStep = () => {
         }
     );
 
-    /** Kalles hver gang values i formik endres */
     const oppdaterSøknadState = (values: LovbestemtFerieFormValues) => {
         const ferie = getLovbestemtFerieSøknadsdataFromFormValues(values);
         dispatch(actionsCreator.setSøknadLovbestemtFerie(ferie));
@@ -132,21 +124,15 @@ const LovbestemtFerieStep = () => {
                                 onBack={goBack}>
                                 <FormBlock>
                                     {sak.søknadsperioder.length === 1 ? null : (
-                                        <div
-                                            style={{
-                                                borderBottom:
-                                                    '2px solid var(--ac-accordion-header-border, var(--a-border-strong)',
-                                            }}>
-                                            <Block margin="xl">
-                                                <Heading level="3" size="small" spacing={true}>
-                                                    Dine perioder med pleiepenger
-                                                </Heading>
-                                            </Block>
-                                        </div>
+                                        <Block margin="xl">
+                                            <Heading level="3" size="small" spacing={true}>
+                                                Dine perioder med pleiepenger
+                                            </Heading>
+                                        </Block>
                                     )}
                                     <DateRangeAccordion
                                         dateRanges={sak.søknadsperioder}
-                                        defaultOpenState={'all'}
+                                        defaultOpenState={'none'}
                                         renderContent={(søknadsperiode) => {
                                             return (
                                                 <Block
@@ -200,7 +186,7 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
                                 </FormBlock>
-                                {harFjernetFerieIValues && harValgtAtArbeidstidSkalEndres === false && (
+                                {harFjernetFerieIValues && valgteEndringer.arbeidstid === false && (
                                     <Block margin="l">
                                         <Alert variant="warning">
                                             Du har fjernet dager med ferie. Hvis du skal du jobbe disse dagene må du se
