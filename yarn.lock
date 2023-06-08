@@ -4116,7 +4116,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/appstatus-react-ds@*, @navikt/appstatus-react-ds@2.7.2, @navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds":
+"@navikt/appstatus-react-ds@*, @navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
@@ -4142,6 +4142,21 @@ __metadata:
     sass-loader: 13.x
   languageName: unknown
   linkType: soft
+
+"@navikt/appstatus-react-ds@npm:2.7.2":
+  version: 2.7.2
+  resolution: "@navikt/appstatus-react-ds@npm:2.7.2"
+  dependencies:
+    "@portabletext/react": 3.0.0
+    "@sanity/client": 5.4.2
+  peerDependencies:
+    "@navikt/ds-css": 3
+    "@navikt/ds-react": 3
+    sass: 1.x
+    sass-loader: 13.x
+  checksum: ff4535193b56a9ecec73db01426d7b8ff3aafd06e64e3ac81ad886711918496b7ae44e92ad1c1f534a7fc3abc744b4d847cc2e8c3814b89fcb035cda84dfe837
+  languageName: node
+  linkType: hard
 
 "@navikt/ds-css@npm:3":
   version: 3.0.1
@@ -5284,6 +5299,18 @@ __metadata:
     webpack-plugin-serve:
       optional: true
   checksum: c45beded9c56fbbdc7213a2c36131ace5db360ed704d462cc39d6678f980173a91c9a3f691e6bd3a026f25486644cd0027e8a12a0a4eced8e8b886a0472e7d34
+  languageName: node
+  linkType: hard
+
+"@portabletext/react@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@portabletext/react@npm:3.0.0"
+  dependencies:
+    "@portabletext/toolkit": ^2.0.1
+    "@portabletext/types": ^2.0.2
+  peerDependencies:
+    react: ^17 || ^18
+  checksum: 8839959e852ed7429bb5fcdbaf620fcc1be7ba406c7998bb3b3e130642451589fd9bfd3d582e69115993ca08458f452b4c5b64e57b5b0d104c61af922a797325
   languageName: node
   linkType: hard
 
