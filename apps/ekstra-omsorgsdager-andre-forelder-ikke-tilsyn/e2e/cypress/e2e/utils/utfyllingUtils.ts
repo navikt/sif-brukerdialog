@@ -75,6 +75,7 @@ const sendInnSøknad = () => {
     it('Sender inn søknad', () => {
         getTestElement('bekreft-label').click();
         getTestElement('typedFormikForm-submitButton').click();
+        cy.wait('@innsending');
     });
 };
 const kontrollerKvittering = () => {

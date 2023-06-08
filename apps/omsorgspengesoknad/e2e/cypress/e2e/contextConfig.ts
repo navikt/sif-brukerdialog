@@ -21,7 +21,7 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`DELETE`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, mellomlagring || {});
         cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, {});
         cy.intercept(`POST`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, {});
-        cy.intercept(`POST`, `${API}/omsorgspenger-utvidet-rett/innsending`, {});
+        cy.intercept(`POST`, `${API}/omsorgspenger-utvidet-rett/innsending`, {}).as('innsending');
         cy.intercept('POST', `${API}/vedlegg`, {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
