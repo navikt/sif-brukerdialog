@@ -7,9 +7,19 @@ import Checklist from '@navikt/sif-common-core-ds/lib/components/lists/checklist
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../lenker';
+import { useEffect } from 'react';
 
-const KvitteringPage = () => {
+interface Props {
+    onUnmount: () => void;
+}
+const KvitteringPage = ({ onUnmount }: Props) => {
     const intl = useIntl();
+
+    useEffect(() => {
+        return () => {
+            onUnmount();
+        };
+    });
 
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
