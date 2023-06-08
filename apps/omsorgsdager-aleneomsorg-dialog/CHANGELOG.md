@@ -1,5 +1,22 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.3.0
+
+### Minor Changes
+
+-   5beb8c9: Pakkeoppdateringer og fix etter breaking change i react-router-dom. Sørger for at bruker blir værende på kvitteringsside når søknad er innsendt. Bug var at bruker ble sendt direkte til velkommenside etter å ha sendt inn søknad.
+
+### Patch Changes
+
+-   Updated dependencies [5beb8c9]
+    -   @navikt/sif-common-amplitude@2.17.0
+    -   @navikt/sif-common-formik-ds@0.21.0
+    -   @navikt/sif-common-soknad-ds@9.0.0
+    -   @navikt/sif-common-forms-ds@7.0.0
+    -   @navikt/sif-common-core-ds@8.0.0
+    -   @navikt/sif-common-sentry@0.17.0
+    -   @navikt/sif-common-utils@3.36.0
+
 ## 2.2.2
 
 ### Patch Changes

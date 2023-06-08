@@ -1,5 +1,19 @@
 # @navikt/sif-common-soknad-ds
 
+## 9.0.0
+
+### Minor Changes
+
+-   5beb8c9: Pakkeoppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [5beb8c9]
+    -   @navikt/sif-common-formik-ds@0.21.0
+    -   @navikt/appstatus-react-ds@2.8.0
+    -   @navikt/sif-common-sentry@0.17.0
+    -   @navikt/sif-common-utils@3.36.0
+
 ## 8.0.0
 
 ### Patch Changes

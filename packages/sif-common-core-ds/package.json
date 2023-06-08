@@ -5,7 +5,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-core-ds",
     "types": "lib/index.d.js",
-    "version": "7.4.2",
+    "version": "8.0.0",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-core-ds/issues"
     },
