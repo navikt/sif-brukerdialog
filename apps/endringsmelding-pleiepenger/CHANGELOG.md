@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.12.4
+
+### Patch Changes
+
+-   fcdaba8: Utvide log til amplitude til å inkludere antall ukjente arbeidsgivere - dvs. arbeidsgivere ikke i saken.
+
 ## 2.12.3
 
 ### Patch Changes
