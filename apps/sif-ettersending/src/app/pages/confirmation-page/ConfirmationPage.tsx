@@ -9,18 +9,28 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../lenker';
 import { ApplicationType } from '../../types/ApplicationType';
 import './confirmationPage.css';
+import { useEffect } from 'react';
 
 interface Props {
     søknadstype: ApplicationType;
+    onUnmount?: () => void;
 }
 ApplicationType;
 
 const bem = bemUtils('confirmationPage');
 
-const ConfirmationPage = ({ søknadstype }: Props) => {
+const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
     const intl = useIntl();
 
     useLogSidevisning(SIFCommonPageKey.kvittering);
+
+    useEffect(() => {
+        return () => {
+            if (onUnmount) {
+                onUnmount();
+            }
+        };
+    }, [onUnmount]);
 
     return (
         <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>

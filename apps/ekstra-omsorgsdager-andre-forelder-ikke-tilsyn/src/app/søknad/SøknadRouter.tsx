@@ -1,29 +1,31 @@
-import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useResetSøknad } from '../hooks/useResetSøknad';
+import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
+import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
-import AnnenForelderenSituasjonStep from './steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
-import OmBarnaStep from './steps/om-barna/OmBarnaStep';
+import AnnenForelderenSituasjonStep from './steps/annen-forelderens-situasjon/AnnenForelderenSituasjonStep';
 import OmAnnenForelderStep from './steps/om-annen-forelder/OmAnnenForelderStep';
+import OmBarnaStep from './steps/om-barna/OmBarnaStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
-import KvitteringPage from '../pages/kvittering/KvitteringPage';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
     const { slettMellomlagring } = useMellomlagring();
+    const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
 
@@ -37,16 +39,8 @@ const SøknadRouter = () => {
         }
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
-    useEffect(() => {
-        if (shouldResetSøknad) {
-            dispatch(actionsCreator.resetSøknad());
-            setShouldResetSøknad(false);
-            navigateTo(SøknadRoutes.VELKOMMEN);
-        }
-    }, [shouldResetSøknad, navigateTo, dispatch]);
-
-    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
-        setShouldResetSøknad(true);
+    if (shouldResetSøknad) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
     }
 
     if (søknadsdata.velkommen?.harForståttRettigheterOgPlikter === false) {
@@ -69,7 +63,10 @@ const SøknadRouter = () => {
             />
             <Route path={SøknadStepRoutePath[StepId.OM_BARNA]} element={<OmBarnaStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
+            <Route
+                path={SøknadStepRoutePath[StepId.KVITTERING]}
+                element={<KvitteringPage onUnmount={() => setShouldResetSøknad(true)} />}
+            />
             <Route
                 path="*"
                 element={

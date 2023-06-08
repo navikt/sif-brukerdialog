@@ -5,7 +5,7 @@ import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-am
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { FormikState } from 'formik';
+import { v4 as uuid } from 'uuid';
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
 import { ApplicationType } from '../types/ApplicationType';
@@ -14,7 +14,6 @@ import { getSkjemanavn } from '../types/skjemanavn';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
-import { v4 as uuid } from 'uuid';
 import {
     navigateTo,
     navigateToErrorPage,
@@ -37,8 +36,6 @@ interface Props {
     route?: string;
 }
 
-type resetFormFunc = (nextState?: Partial<FormikState<Partial<SoknadFormData>>>) => void;
-
 const isOnWelcomingPage = (path: string, søknadstype: ApplicationType) => {
     const config = getRouteConfig(søknadstype);
     return path === config.WELCOMING_PAGE_ROUTE || path === config.APPLICATION_ROUTE_PREFIX;
@@ -51,7 +48,6 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
     const [initialFormData, setInitialFormData] = useState<Partial<SoknadFormData>>({ ...initialSoknadFormData });
     const [sendSoknadStatus, setSendSoknadStatus] = useState<SendSoknadStatus>(initialSendSoknadState);
     const [soknadId, setSoknadId] = useState<string | undefined>();
-    const [soknadSent, setSoknadSent] = useState<boolean>(false);
     const skjemanavn = getSkjemanavn(søknadstype);
     const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut, logInfo } =
         useAmplitudeInstance();
@@ -73,13 +69,6 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
             resetSoknad(true);
         }
     });
-
-    /** Forhindre at bruker kommer til søknad med verdier etter at søknad er sendt inn  */
-    if (soknadSent && getRouteConfig(søknadstype).APPLICATION_SENDT_ROUTE !== location.pathname) {
-        setInitializing(true);
-        setSoknadSent(false);
-        navigateToWelcomePage(søknadstype);
-    }
 
     const resetSoknad = async (checkIfRedirectToFrontpage = true): Promise<void> => {
         await soknadTempStorage.purge(søknadstype);
@@ -146,19 +135,17 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         }
     };
 
-    const doSendSoknad = async (apiValues: SoknadApiData, resetFormikForm: resetFormFunc): Promise<void> => {
+    const doSendSoknad = async (apiValues: SoknadApiData): Promise<void> => {
         try {
             await sendSoknad(apiValues);
             await soknadTempStorage.purge(søknadstype);
             await logSoknadSent(skjemanavn);
             await logInfo({ 'Antall vedlegg sendt': apiValues.vedlegg.length });
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
-            navigateToKvitteringPage(søknadstype, navigate);
-
-            setSoknadId(undefined);
-            setInitialFormData({ ...initialSoknadFormData });
-            resetFormikForm({ values: initialSoknadFormData });
-            setSoknadSent(true);
+            // setSoknadSent(true);
+            setTimeout(() => {
+                navigateToKvitteringPage(søknadstype, navigate);
+            });
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Logget ut ved innsending');
@@ -177,13 +164,19 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         }
     };
 
-    const triggerSend = (apiValues: SoknadApiData, resetForm: resetFormFunc) => {
+    const triggerSend = (apiValues: SoknadApiData) => {
         setTimeout(() => {
             setSendSoknadStatus({ ...sendSoknadStatus, status: pending });
             setTimeout(() => {
-                doSendSoknad(apiValues, resetForm);
+                doSendSoknad(apiValues);
             });
         });
+    };
+
+    const handleOnKvitteringUnmount = async () => {
+        setInitializing(true);
+        setSoknadId(undefined);
+        navigateToWelcomePage(søknadstype);
     };
 
     return (
@@ -194,7 +187,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                     <SoknadFormComponents.FormikWrapper
                         initialValues={initialFormData}
                         onSubmit={() => null}
-                        renderForm={({ values, setValues, resetForm }) => {
+                        renderForm={({ values, setValues }) => {
                             const navigateToNextStepFromStep = async (stepID: StepID) => {
                                 const soknadStepsConfig = getSoknadStepsConfig(søknadstype);
                                 const stepToPersist = soknadStepsConfig[stepID].nextStep;
@@ -238,12 +231,19 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                             setValues({ ...values, harForståttRettigheterOgPlikter: true });
                                             startSoknad();
                                         },
-                                        sendSoknad: (values) => triggerSend(values, resetForm),
+                                        sendSoknad: (values) => triggerSend(values),
                                         gotoNextStepFromStep: (stepID: StepID) => {
                                             navigateToNextStepFromStep(stepID);
                                         },
                                     }}>
-                                    <SoknadRouter søker={søker} søknadstype={søknadstype} soknadId={soknadId} />
+                                    <SoknadRouter
+                                        søker={søker}
+                                        søknadstype={søknadstype}
+                                        soknadId={soknadId}
+                                        onKvitteringUnmount={() => {
+                                            handleOnKvitteringUnmount();
+                                        }}
+                                    />
                                 </SoknadContextProvider>
                             );
                         }}

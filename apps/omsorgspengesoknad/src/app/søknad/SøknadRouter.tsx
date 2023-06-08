@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
+import { useResetSøknad } from '../hooks/useResetSøknad';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
 import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
-import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
 import DeltBostedStep from './steps/delt-bosted/DeltBostedStep';
@@ -19,12 +20,12 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
     const { slettMellomlagring } = useMellomlagring();
+    const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
 
@@ -38,24 +39,11 @@ const SøknadRouter = () => {
         }
     }, [navigateTo, pathname, stateSøknadRoute, isFirstTimeLoadingApp]);
 
-    const restartSøknad = useCallback(async () => {
-        await slettMellomlagring();
-        relocateToWelcomePage();
-    }, [slettMellomlagring]);
-
-    useEffect(() => {
-        if (shouldResetSøknad) {
-            dispatch(actionsCreator.resetSøknad());
-            setTimeout(restartSøknad);
-        }
-    }, [shouldResetSøknad, dispatch, restartSøknad]);
-
-    if (søknadSendt && pathname !== SøknadRoutes.SØKNAD_SENDT && !shouldResetSøknad) {
-        setShouldResetSøknad(true);
+    if (shouldResetSøknad) {
+        return <LoadingSpinner size="3xlarge" style="block" />;
     }
 
     if (søknadsdata.velkommen !== undefined && søknadsdata.velkommen.harForståttRettigheterOgPlikter !== true) {
-        setShouldResetSøknad(true);
         return (
             <Routes>
                 <Route index element={<VelkommenPage />} />
@@ -72,7 +60,10 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.DELT_BOSTED]} element={<DeltBostedStep />} />
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
+            <Route
+                path={SøknadStepRoutePath[StepId.KVITTERING]}
+                element={<KvitteringPage onUnmount={() => setShouldResetSøknad(true)} />}
+            />
             <Route
                 path="*"
                 element={
