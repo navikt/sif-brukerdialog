@@ -1,5 +1,5 @@
 ---
-'@navikt/sif-common-utils': patch
+'@navikt/sif-common-utils': minor
 ---
 
 La til timeUtils
