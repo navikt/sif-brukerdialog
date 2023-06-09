@@ -17,6 +17,7 @@ import FraværFraStep from './steps/fravær-fra/FraværFraStep';
 import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
+import { useResetSøknad } from '../hooks/useResetSøknad';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -26,8 +27,8 @@ const SøknadRouter = () => {
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
-    const [shouldResetSøknad, setShouldResetSøknad] = useState(false);
     const { slettMellomlagring } = useMellomlagring();
+    const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
 
@@ -78,7 +79,10 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.FRAVÆR_FRA]} element={<FraværFraStep />} />
             <Route path={SøknadStepRoutePath[StepId.MEDLEMSKAP]} element={<MedlemskapStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
+            <Route
+                path={SøknadStepRoutePath[StepId.KVITTERING]}
+                element={<KvitteringPage onUnmount={() => setShouldResetSøknad(true)} />}
+            />
             <Route
                 path="*"
                 element={
