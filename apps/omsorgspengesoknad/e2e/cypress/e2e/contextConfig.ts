@@ -28,6 +28,7 @@ export const contextConfig = (props?: ConfigProps) => {
         });
         cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock);
         cy.intercept('GET', `${API}/oppslag/barn*`, props?.barn || cyApiMockData.barnMock);
+        cy.intercept({ hostname: 'ryujtq87.api.sanity.io' }, {});
     });
 
     if (step) {
