@@ -17,17 +17,17 @@ export const dineBarnMessages: MessageFileFormat = {
 
         'step.dineBarn.harFåttEkstraOmsorgsdager.label': 'Ekstra omsorgsdager',
         'step.dineBarn.harFåttEkstraOmsorgsdager.spm':
-            'Har du fått ekstra omsorgsdager for barn som har kronisk sykdom eller funksjonshemning?',
+            'Har du søkt om eller fått ekstra omsorgsdager fordi du har barn som er kronisk sykt, funksjonshemmet eller langvarig sykt?',
         'step.dineBarn.harFåttEkstraOmsorgsdager.spm.ettBarn':
-            'Har du fått ekstra omsorgsdager for barnet på grunn av kronisk sykdom eller funksjonshemning?',
+            'Har du søkt om eller fått ekstra omsorgsdager fordi barnet er kronisk sykt, funksjonshemmet eller langvarig sykt?',
 
         'step.dineBarn.harFåttEkstraOmsorgsdager.nei.alertStripe':
-            'Du har ikke rett til å bruke omsorgsdager. Når du kun har barn som er 13 år i år eller eldre, må du ha søkt om og fått ekstra omsorgsdager for å kunne bruke omsorgsdager.',
-        'step.dineBarn.utvidetRettFor.spm': 'Kryss av for barn du har fått ekstra omsorgsdager for:',
+            'Når du kun har barn som er 13 år i år eller eldre, må du ha søkt om eller fått ekstra omsorgsdager for å kunne søke om utbetaling.',
+        'step.dineBarn.utvidetRettFor.spm': 'Velg barn du har søkt om eller fått ekstra omsorgsdager for:',
         'step.dineBarn.utvidetRettFor.info':
-            'Du kan ha rett til utbetaling fra NAV fra den første omsorgsdagen du brukte. Dette er fordi du kun har barn som er 13 år i år eller eldre, og som du har fått ekstra omsorgsdager for. Gå videre til neste steg og legg inn dagene du vil søke utbetaling for.',
+            'Du kan ha rett til utbetaling fra NAV fra den første omsorgsdagen du brukte. Dette er fordi du kun har barn som er 13 år i år eller eldre, og som du har søkt om eller fått ekstra omsorgsdager for. Fortsett til neste steg for å legge inn dagene du søker om utbetaling for.',
         'step.dineBarn.utvidetRettFor.info.ettBarn':
-            'Du kan ha rett til utbetaling fra NAV fra den første omsorgsdagen du brukte. Dette er fordi du kun har barn som er 13 år i år eller eldre, og som du har fått ekstra omsorgsdager for. Gå videre til neste steg og legg inn dagene du vil søke utbetaling for.',
+            'Du kan ha rett til utbetaling fra NAV fra den første omsorgsdagen du brukte. Dette er fordi du kun har barn som er 13 år i år eller eldre, og som du har søkt om eller fått ekstra omsorgsdager for. Fortsett til neste steg for å legge inn dagene du søker om utbetaling for.',
 
         'step.dineBarn.bekrefterDektTiDagerSelv.info.titel': 'Omsorgsdager du må dekke selv',
         'step.dineBarn.bekrefterDektTiDagerSelv.info':

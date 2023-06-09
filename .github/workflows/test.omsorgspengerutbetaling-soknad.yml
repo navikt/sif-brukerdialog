@@ -1,0 +1,31 @@
+# This workflow trigger on push to apps/omsorgspengerutbetaling-soknad
+name: test.omsorgspengerutbetaling-soknad
+on:
+    push:
+        paths:
+            - 'apps/omsorgspengerutbetaling-soknad/**/*'
+            - 'nais-config/**/*'
+            - 'packages/**/*'
+            - .github/workflows/app.omsorgspengerutbetaling-soknad.yml
+
+env:
+    APP_NAME: 'omsorgspengerutbetaling-soknad'
+
+jobs:
+    run-script-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
+
+            - name: Install dependencies (yarn)
+              run: yarn
+
+            - name: Run code tests
+              run: yarn test --filter=omsorgspengerutbetaling-soknad
