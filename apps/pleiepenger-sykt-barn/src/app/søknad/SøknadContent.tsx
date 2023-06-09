@@ -19,13 +19,13 @@ import { KvitteringInfo } from '../types/KvitteringInfo';
 import { StepID } from '../types/StepID';
 import { Søkerdata } from '../types/Søkerdata';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { initialValues, SøknadFormValues } from '../types/SøknadFormValues';
 import { MellomlagringMetadata } from '../types/SøknadTempStorageData';
 import { cleanupAndSetFormikValues } from '../utils/cleanupAndSetFormikValues';
 import { getSøknadsperiodeFromFormData } from '../utils/formDataUtils';
 import { getSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/getSøknadsdataFromFormValues';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
-import { navigateTo } from '../utils/navigationUtils';
+import { navigateTo, relocateToSoknad } from '../utils/navigationUtils';
 import { getNextStepRoute, isAvailable } from '../utils/routeUtils';
 import { getGyldigRedirectStepForMellomlagretSøknad } from '../utils/stepUtils';
 import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
@@ -47,22 +47,14 @@ interface PleiepengesøknadContentProps {
     /** Forrige søknad sendt inn av bruker */
     forrigeSøknad: ImportertSøknad | undefined;
     søker: Søker;
-    onSøknadSent: () => void;
-    onSøknadStart: () => void;
 }
 
-const SøknadContent = ({
-    mellomlagringMetadata,
-    forrigeSøknad,
-    søker,
-    onSøknadSent,
-    onSøknadStart,
-}: PleiepengesøknadContentProps) => {
+const SøknadContent = ({ mellomlagringMetadata, forrigeSøknad, søker }: PleiepengesøknadContentProps) => {
     const location = useLocation();
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const [kvitteringInfo, setKvitteringInfo] = React.useState<KvitteringInfo | undefined>(undefined);
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialog | undefined>(undefined);
-    const { values, setValues } = useFormikContext<SøknadFormValues>();
+    const { values, setValues, resetForm } = useFormikContext<SøknadFormValues>();
     const { logHendelse, logSoknadStartet } = useAmplitudeInstance();
     const { setSøknadsdata, setImportertSøknadMetadata } = useSøknadsdataContext();
     const { logBekreftIngenFraværFraJobb } = useLogSøknadInfo();
@@ -109,6 +101,15 @@ const SøknadContent = ({
         søknadHasBeenSent,
     ]);
 
+    const onKvitteringUnmount = () => {
+        setTimeout(() => {
+            resetForm({ values: initialValues, submitCount: 0 });
+            if (!isOnWelcomPage) {
+                relocateToSoknad();
+            }
+        });
+    };
+
     const navigateToNextStepFrom = async (stepId: StepID) => {
         setTimeout(() => {
             const nextStepRoute = getNextStepRoute(stepId, values);
@@ -121,7 +122,7 @@ const SøknadContent = ({
     };
 
     const startSoknad = async () => {
-        onSøknadStart();
+        // onSøknadStart();
         await logSoknadStartet(SKJEMANAVN);
         await purge();
 
@@ -344,7 +345,6 @@ const SøknadContent = ({
                                 onApplicationSent={(apiData: SøknadApiData, søkerdata: Søkerdata) => {
                                     setKvitteringInfo(getKvitteringInfoFromApiData(apiData, søkerdata));
                                     setSøknadHasBeenSent(true);
-                                    onSøknadSent();
                                     navigateTo(RouteConfig.SØKNAD_SENDT_ROUTE, navigate);
                                 }}
                             />
@@ -353,7 +353,10 @@ const SøknadContent = ({
                 )}
 
                 {isAvailable(RouteConfig.SØKNAD_SENDT_ROUTE, values, søknadHasBeenSent) && (
-                    <Route path={'soknad-sendt'} element={<ConfirmationPage kvitteringInfo={kvitteringInfo} />} />
+                    <Route
+                        path={'soknad-sendt'}
+                        element={<ConfirmationPage kvitteringInfo={kvitteringInfo} onUnmount={onKvitteringUnmount} />}
+                    />
                 )}
 
                 <Route path="*" element={<Navigate to={'/soknad/velkommen'} replace={true} />} />

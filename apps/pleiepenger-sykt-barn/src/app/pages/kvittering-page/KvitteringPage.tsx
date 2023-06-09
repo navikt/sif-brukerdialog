@@ -1,5 +1,4 @@
 import { Alert, Heading, Link } from '@navikt/ds-react';
-import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
@@ -15,37 +14,31 @@ import './confirmationPage.less';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
-    onUnmount: () => void;
 }
 
 const bem = bemUtils('confirmationPage');
 
-const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
+const KvitteringPage = ({ kvitteringInfo }: Props) => {
     const intl = useIntl();
 
-    useEffect(() => {
-        return () => {
-            onUnmount();
-        };
-    });
     const lenker = getLenker(intl.locale);
 
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
     return (
         <Page
-            title={intlHelper(intl, 'page.confirmation.sidetittel')}
+            title={intlHelper(intl, 'page.kvittering.sidetittel')}
             className={bem.block}
             topContentRenderer={() => <SoknadHeader title={intlHelper(intl, 'application.title')} />}>
             <div className={bem.element('centeredContent')}>
                 <CheckmarkIcon />
                 <Block margin="xl">
                     <Heading level="1" size="large">
-                        <FormattedMessage id="page.confirmation.tittel.1" />
+                        <FormattedMessage id="page.kvittering.tittel.1" />
                     </Heading>
                     <Block margin="m">
                         <Heading level="2" size="small" style={{ maxWidth: '20rem', margin: 'auto' }}>
-                            <FormattedMessage id="page.confirmation.tittel.2" />
+                            <FormattedMessage id="page.kvittering.tittel.2" />
                         </Heading>
                     </Block>
                 </Block>
@@ -53,13 +46,13 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
             {kvitteringInfo?.arbeidsgivere && (
                 <Block margin="xl">
                     <Alert variant="warning">
-                        {intlHelper(intl, 'page.confirmation.tittel.advarsel.list.tittel')}
+                        {intlHelper(intl, 'page.kvittering.tittel.advarsel.list.tittel')}
                         <ul style={{ marginTop: '0rem', marginBottom: '0rem' }}>
                             <li>
-                                <FormattedMessage id="page.confirmation.tittel.advarsel.list.item.1" />
+                                <FormattedMessage id="page.kvittering.tittel.advarsel.list.item.1" />
                             </li>
                             <li>
-                                <FormattedMessage id="page.confirmation.tittel.advarsel.list.item.2" />
+                                <FormattedMessage id="page.kvittering.tittel.advarsel.list.item.2" />
                             </li>
                         </ul>
                     </Alert>
@@ -68,28 +61,28 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
 
             <Block margin="xxl">
                 <Heading level="2" size="medium">
-                    <FormattedHtmlMessage id="page.confirmation.dinePP.info.tittel" />
+                    <FormattedHtmlMessage id="page.kvittering.dinePP.info.tittel" />
                 </Heading>
                 <Block margin="m">
                     <ul>
                         {kvitteringInfo?.arbeidsgivere && (
                             <li>
-                                <FormattedMessage id="page.confirmation.dinePP.list.item.1" />
+                                <FormattedMessage id="page.kvittering.dinePP.list.item.1" />
                             </li>
                         )}
                         <li>
-                            <FormattedMessage id="page.confirmation.dinePP.list.item.2" />
+                            <FormattedMessage id="page.kvittering.dinePP.list.item.2" />
                         </li>
                         <li>
-                            <FormattedMessage id="page.confirmation.dinePP.list.item.3" />
+                            <FormattedMessage id="page.kvittering.dinePP.list.item.3" />
                         </li>
                         <li>
-                            <FormattedMessage id="page.confirmation.dinePP.list.item.4" />
+                            <FormattedMessage id="page.kvittering.dinePP.list.item.4" />
                         </li>
                     </ul>
                     <Block margin="xl">
                         <Link href={lenker.innsynSIF} target="_blank" className="knapp knapp--hoved">
-                            <FormattedMessage id="page.confirmation.dinePP.lenke" />
+                            <FormattedMessage id="page.kvittering.dinePP.lenke" />
                         </Link>
                     </Block>
                 </Block>
@@ -98,4 +91,4 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
     );
 };
 
-export default ConfirmationPage;
+export default KvitteringPage;
