@@ -41,7 +41,7 @@ export const getFraværFraStepInitialValues = (
     }
 
     const defaultValues: FraværFraFormValues = {
-        aktivitetFravær: [],
+        aktivitetFravær: {},
     };
 
     const { fravaerFra } = søknadsdata;
@@ -61,8 +61,5 @@ export const getFraværFraSøknadsdataFromFormValues = (
 ): FraværFraSøknadsdata | undefined => {
     const { aktivitetFravær } = values;
 
-    if (aktivitetFravær.length === 0) {
-        return undefined;
-    }
     return { type: 'harFraværFra', aktivitetFravær };
 };

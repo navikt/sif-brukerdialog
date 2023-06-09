@@ -63,26 +63,26 @@ export const appMessages: MessageFileFormat = {
         'steg.footer.avbryt': 'Avbryt og slett søknad',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
-        'step.dine-barn.pageTitle': 'Om barn',
-        'step.dine-barn.stepTitle': 'Om barn',
-        'step.dine-barn.stepIndicatorLabel': 'Om barn',
+        'step.dineBarn.pageTitle': 'Om barn',
+        'step.dineBarn.stepTitle': 'Om barn',
+        'step.dineBarn.stepIndicatorLabel': 'Om barn',
 
         'step.fravaer.pageTitle': 'Dager du søker om utbetaling for - Søknad om utbetaling av omsorgspenger',
         'step.fravaer.stepTitle': 'Dager du søker om utbetaling for',
 
-        'step.vedlegg_legeerklæring.pageTitle': 'Legeerklæring',
-        'step.vedlegg_legeerklæring.stepTitle': 'Last opp legeerklæring',
+        'step.legeerklæring.pageTitle': 'Legeerklæring',
+        'step.legeerklæring.stepTitle': 'Last opp legeerklæring',
 
-        'step.vedlegg_legeerklæring.counsellorpanel.1':
+        'step.legeerklæring.counsellorpanel.1':
             'Hvis du søker om utbetaling for mer enn 3 sammenhengende dager, må du laste opp en legeerklæring som gjelder fra og med den 4. dagen.',
-        'step.vedlegg_legeerklæring.counsellorpanel.2':
+        'step.legeerklæring.counsellorpanel.2':
             'Hvis du søker for kortere periode eller for enkeltdager trenger du ikke legeerklæring. Du kan da fortsette søknaden uten å laste opp noe.',
-        'step.vedlegg_legeerklæring.counsellorpanel.3':
+        'step.legeerklæring.counsellorpanel.3':
             'Hvis du søker for mer enn 3 sammenhengende dager, men ikke har legeerklæring tilgjengelig nå,',
-        'step.vedlegg_legeerklæring.counsellorpanel.3.lenkeEttersending': 'kan du ettersende den her.',
+        'step.legeerklæring.counsellorpanel.3.lenkeEttersending': 'kan du ettersende den her.',
 
-        'step.vedlegg_legeerklæring.uploadBtn': 'Last opp legeerklæring',
-        'step.vedlegg_legeerklæring.nextButtonLabel': 'Fortsett',
+        'step.legeerklæring.uploadBtn': 'Last opp legeerklæring',
+        'step.legeerklæring.nextButtonLabel': 'Fortsett',
 
         'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
         'vedleggsliste.ingenLegeerklæringLastetOpp': 'Ingen vedlegg er lastet opp',
@@ -97,6 +97,9 @@ export const appMessages: MessageFileFormat = {
 
         'step.fravaerFra.pageTitle': 'Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser',
         'step.fravaerFra.stepTitle': 'Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser',
+
+        'step.medlemskap.pageTitle': 'Medlemskap i folketrygden - Søknad om utbetaling av omsorgspenger',
+        'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
 
         'step.oppsummering.pageTitle': 'Oppsummering - Søknad om utbetaling av omsorgspenger',
         'step.oppsummering.stepTitle': 'Oppsummering',

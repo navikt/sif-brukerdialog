@@ -1,6 +1,6 @@
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 
-export const MedlemskapMessages: MessageFileFormat = {
+export const fraværStepMessages: MessageFileFormat = {
     nb: {
         'step.fravaer.counsellorpanel.content':
             'I de fleste tilfeller må man som selvstendig næringsdrivende og frilanser betale de 10 første dager med omsorgspenger i året selv.',

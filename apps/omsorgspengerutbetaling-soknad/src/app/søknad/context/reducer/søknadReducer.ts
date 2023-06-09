@@ -70,7 +70,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
-                        legeerklaering: {
+                        legeerklæring: {
                             ...action.payload,
                         },
                     },

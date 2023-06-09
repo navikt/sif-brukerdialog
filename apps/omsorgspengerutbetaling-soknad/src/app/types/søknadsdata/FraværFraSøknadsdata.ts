@@ -2,7 +2,7 @@ import { AktivitetFravær } from '../AktivitetFravær';
 
 interface HarFraværFra {
     type: 'harFraværFra';
-    aktivitetFravær: AktivitetFravær[];
+    aktivitetFravær: AktivitetFravær;
 }
 
 export type FraværFraSøknadsdata = HarFraværFra;

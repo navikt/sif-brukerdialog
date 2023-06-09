@@ -29,7 +29,7 @@ import PersistStepFormValues from '../../../components/persist-step-form-values/
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import FraværStepInfo from './FraværStepInfo';
-import { Alert } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
 
 export enum FraværFormFields {
@@ -164,7 +164,10 @@ const FraværStep = () => {
                                     <FraværStepInfo.IntroVeileder />
                                 </FormBlock>
                                 <FormBlock>
-                                    <Block title={intlHelper(intl, 'step.fravaer.dager.tittel')}>
+                                    <FormBlock>
+                                        <Heading level="2" size="medium">
+                                            <FormattedMessage id="step.fravaer.dager.tittel" />
+                                        </Heading>
                                         <p>
                                             {søkerHarBarnMedUtvidetRett ? (
                                                 <FormattedMessage id="step.fravaer.dager.info.harBarnMedUtvidetRett" />
@@ -172,13 +175,13 @@ const FraværStep = () => {
                                                 <FormattedMessage id="step.fravaer.dager.info" />
                                             )}
                                         </p>
-                                        <FormBlock>
+                                        <Block margin="m">
                                             <YesOrNoQuestion
                                                 name={FraværFormFields.harPerioderMedFravær}
                                                 legend={intlHelper(intl, 'step.fravaer.spm.harPerioderMedFravær')}
                                                 validate={getYesOrNoValidator()}
                                             />
-                                        </FormBlock>
+                                        </Block>
                                         {/* DAGER MED FULLT FRAVÆR*/}
                                         {harPerioderMedFravær === YesOrNo.YES && (
                                             <>
@@ -260,21 +263,27 @@ const FraværStep = () => {
                                                 </Alert>
                                             </FormBlock>
                                         )}
-                                    </Block>
+                                    </FormBlock>
                                 </FormBlock>
                                 {kanIkkeFortsette === false && (
                                     <>
-                                        <Block title={intlHelper(intl, 'step.fravaer.utenlandsopphold.tittel')}>
-                                            <YesOrNoQuestion
-                                                name={FraværFormFields.perioder_harVærtIUtlandet}
-                                                legend={intlHelper(
-                                                    intl,
-                                                    'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm'
-                                                )}
-                                                validate={getYesOrNoValidator()}
-                                            />
+                                        <FormBlock margin="xl">
+                                            <Heading level="2" size="medium">
+                                                <FormattedMessage id="step.fravaer.utenlandsopphold.tittel" />
+                                            </Heading>
+                                            <Block margin="l">
+                                                <YesOrNoQuestion
+                                                    name={FraværFormFields.perioder_harVærtIUtlandet}
+                                                    legend={intlHelper(
+                                                        intl,
+                                                        'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm'
+                                                    )}
+                                                    validate={getYesOrNoValidator()}
+                                                />
+                                            </Block>
+
                                             {perioder_harVærtIUtlandet === YesOrNo.YES && (
-                                                <FormBlock margin="l">
+                                                <FormBlock margin="m">
                                                     <BostedUtlandListAndDialog<FraværFormFields>
                                                         name={FraværFormFields.perioder_utenlandsopphold}
                                                         minDate={førsteOgSisteDagMedFravær.min || gyldigTidsrom.from}
@@ -293,7 +302,7 @@ const FraværStep = () => {
                                                     />
                                                 </FormBlock>
                                             )}
-                                        </Block>
+                                        </FormBlock>
                                     </>
                                 )}
                             </Form>

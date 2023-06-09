@@ -55,7 +55,7 @@ const submitDisabled = (values: Partial<ArbeidssituasjonFormValues>): boolean =>
     const erFrilanser = values[ArbeidssituasjonFormFields.frilans_erFrilanser];
     const erSelvstendigNæringsdrivende = values[ArbeidssituasjonFormFields.selvstendig_erSelvstendigNæringsdrivende];
 
-    return !(erFrilanser === YesOrNo.NO && erSelvstendigNæringsdrivende === YesOrNo.NO);
+    return erFrilanser === YesOrNo.NO && erSelvstendigNæringsdrivende === YesOrNo.NO;
 };
 
 const ArbeidssituasjonStep = () => {
@@ -111,13 +111,13 @@ const ArbeidssituasjonStep = () => {
                                 </SifGuidePanel>
 
                                 <FormBlock>
-                                    <FrilansFormPart />
+                                    <FrilansFormPart values={values} />
                                 </FormBlock>
 
                                 <FormBlock>
-                                    <SelvstendigNæringsdrivendeFormPart />
+                                    <SelvstendigNæringsdrivendeFormPart values={values} />
                                 </FormBlock>
-                                {!submitDisabled(values) && (
+                                {submitDisabled(values) && (
                                     <FormBlock margin="l">
                                         <Alert variant="warning">
                                             <FormattedMessage id="step.arbeidssituasjon.advarsel.ingenSituasjonValgt" />

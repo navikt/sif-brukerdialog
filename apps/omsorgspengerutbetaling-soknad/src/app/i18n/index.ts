@@ -8,13 +8,15 @@ import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerkl
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
-import { dineBarnMessages } from '../søknad/steps/dine-barn/DineBarnMessages';
+import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 import fraværMessages from '@navikt/sif-common-forms-ds/lib/forms/fravær/fraværMessages';
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/bostedUtlandMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/virksomhetMessages';
 import { fraværFraMessages } from '../søknad/steps/fravær-fra/fraværFraMessages';
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
+import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
+import annetBarnMessages from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/annetBarnMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -22,7 +24,9 @@ const bokmålstekster = {
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
     ...dineBarnMessages.nb,
+    ...annetBarnMessages.nb,
     ...bostedUtlandMessages.nb,
+    ...fraværStepMessages.nb,
     ...fraværMessages.nb,
     ...arbeidssituasjonMessages.nb,
     ...virksomhetMessages.nb,

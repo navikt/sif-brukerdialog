@@ -2,7 +2,7 @@ import { FraværDag, FraværPeriode, dateErHelg } from '@navikt/sif-common-forms
 import { Aktivitet, AktivitetFravær, ApiAktivitet } from '../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { flatten, uniqBy } from 'lodash';
 import { DateRange, dateToISOString } from '@navikt/sif-common-formik-ds/lib';
@@ -40,7 +40,7 @@ export const getUtbetalingsperioderApiDataFromSøknadsdata = (søknadsdata: Søk
         throw Error('fravaerFra er undefined når erFrilanser && erSN');
     }
 
-    const aktivitetFravær = fravaerFra ? fravaerFra.aktivitetFravær : [];
+    const aktivitetFravær = fravaerFra ? fravaerFra.aktivitetFravær : {};
 
     const apiAktivitet: ApiAktivitet[] = getAktivitetFromAktivitetFravær(aktivitetFravær, erFrilanser, erSN);
 
@@ -72,7 +72,7 @@ export const getUtbetalingsperioderApiDataFromSøknadsdata = (søknadsdata: Søk
 };
 
 export const getAktivitetFromAktivitetFravær = (
-    aktivitetFravær: AktivitetFravær[],
+    aktivitetFravær: AktivitetFravær,
     erFrilanser: boolean,
     erSelvstendigNæringsdrivende: boolean
 ): ApiAktivitet[] => {
@@ -88,13 +88,13 @@ export const getAktivitetFromAktivitetFravær = (
     ];
 };
 
-const harFraværSomFrilanser = (dager: AktivitetFravær[] = []) => {
-    return dager.some((ff) => ff.aktivitet === Aktivitet.BEGGE || ff.aktivitet === Aktivitet.FRILANSER);
+const harFraværSomFrilanser = (dager: AktivitetFravær) => {
+    return Object.keys(dager).map((aktivitet) => aktivitet === Aktivitet.BEGGE || aktivitet === Aktivitet.FRILANSER);
 };
 
-const harFraværSomSN = (fraværFraDag: AktivitetFravær[] = []) => {
-    return fraværFraDag.some(
-        (ff) => ff.aktivitet === Aktivitet.BEGGE || ff.aktivitet === Aktivitet.SELVSTENDIG_VIRKSOMHET
+const harFraværSomSN = (fraværFraDag: AktivitetFravær) => {
+    return Object.keys(fraværFraDag).map(
+        (aktivitet) => aktivitet === Aktivitet.BEGGE || aktivitet === Aktivitet.SELVSTENDIG_VIRKSOMHET
     );
 };
 
@@ -135,8 +135,9 @@ const getApiAktivitetFromAktivitet = (aktivitet: Aktivitet): ApiAktivitet[] => {
     }
 };
 
-const getApiAktivitetForDag = (dato: Date, fravær: AktivitetFravær[]): ApiAktivitet[] => {
-    const aktivitetFravær = fravær.find((fa) => dayjs(fa.dato).isSame(dato, 'day'));
+const getApiAktivitetForDag = (dato: Date, fravær: AktivitetFravær): ApiAktivitet[] => {
+    const dateString = dateToISOString(dato);
+    const aktivitetFravær = fravær[dateString];
     if (!aktivitetFravær) {
         throw new Error('Missing aktivitet for date');
     }

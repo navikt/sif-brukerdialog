@@ -22,8 +22,8 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     registrerteBarn: RegistrertBarn[]
 ): SøknadApiData | undefined => {
-    const { id, dineBarn, fravaer, arbeidssituasjon, medlemskap, legeerklaering } = søknadsdata;
-    if (!id || !dineBarn || !medlemskap || !legeerklaering || !arbeidssituasjon) {
+    const { id, dineBarn, fravaer, arbeidssituasjon, medlemskap, legeerklæring } = søknadsdata;
+    if (!id || !dineBarn || !medlemskap || !legeerklæring || !arbeidssituasjon) {
         return undefined;
     }
     const { frilans, selvstendig } = arbeidssituasjon;
@@ -42,7 +42,7 @@ export const getApiDataFromSøknadsdata = (
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
-        vedlegg: getVedleggApiData(søknadsdata.legeerklaering?.vedlegg),
+        vedlegg: getVedleggApiData(søknadsdata.legeerklæring?.vedlegg),
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
     };

@@ -25,12 +25,16 @@ import dayjs from 'dayjs';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 
+export enum AktivitetFraværField {
+    aktivitet = 'aktivitet',
+}
+
 export enum FraværFraFormFields {
     aktivitetFravær = 'aktivitetFravær',
 }
 
 export interface FraværFraFormValues {
-    [FraværFraFormFields.aktivitetFravær]: AktivitetFravær[];
+    [FraværFraFormFields.aktivitetFravær]: AktivitetFravær;
 }
 
 const { FormikWrapper, Form, RadioGroup } = getTypedFormComponents<
@@ -69,9 +73,9 @@ const FraværFraStep = () => {
         }
     );
 
-    const getFieldName = (dato: Date): string => {
+    const getFieldName = (dato: Date, field: AktivitetFraværField): string => {
         const key = dateToISOString(dato);
-        return `${FraværFraFormFields.aktivitetFravær}_${key}`;
+        return `${FraværFraFormFields.aktivitetFravær}.${key}.${field}`;
     };
 
     const { fravaer } = søknadsdata;
@@ -114,8 +118,9 @@ const FraværFraStep = () => {
 
                                 <FormBlock>
                                     {utbetalingsdatoer.map((date) => {
-                                        const fieldName = getFieldName(date);
+                                        const fieldName = getFieldName(date, AktivitetFraværField.aktivitet);
                                         const dato = dayjs(date).format('dddd D. MMM YYYY');
+
                                         return (
                                             <FormBlock key={fieldName}>
                                                 <RadioGroup

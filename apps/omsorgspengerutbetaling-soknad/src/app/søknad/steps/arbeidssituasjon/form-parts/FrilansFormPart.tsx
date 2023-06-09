@@ -17,7 +17,11 @@ const { YesOrNoQuestion, DatePicker } = getTypedFormComponents<
     ValidationError
 >();
 
-const FrilansFormPart = (values: Partial<ArbeidssituasjonFormValues>) => {
+interface Props {
+    values: Partial<ArbeidssituasjonFormValues>;
+}
+
+const FrilansFormPart: React.FC<Props> = ({ values }) => {
     const intl = useIntl();
 
     const { frilans_erFrilanser, frilans_jobberFortsattSomFrilans, frilans_startdato } = values;

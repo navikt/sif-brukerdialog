@@ -19,7 +19,11 @@ const { YesOrNoQuestion } = getTypedFormComponents<
     ValidationError
 >();
 
-const SelvstendigNæringsdrivendeFormPart = (values: Partial<ArbeidssituasjonFormValues>) => {
+interface Props {
+    values: Partial<ArbeidssituasjonFormValues>;
+}
+
+const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
     const intl = useIntl();
     const skipOrgNumValidation = getEnvironmentVariable('SKIP_ORGNUM_VALIDATION') === 'true';
     const { selvstendig_erSelvstendigNæringsdrivende, selvstendig_virksomhet, selvstendig_harFlereVirksomheter } =

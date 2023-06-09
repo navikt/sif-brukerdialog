@@ -1,7 +1,7 @@
 import React from 'react';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
-import { UtenlandsoppholdApiData } from '../../../types/søknadApiData/SøknadApiData';
-import './utenlandsoppholdSummaryItem.less';
+import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import './utenlandsoppholdSummaryItem.css';
 
 export const renderUtenlandsoppholdIPeriodenSummary = (opphold: UtenlandsoppholdApiData): React.ReactNode => {
     return (

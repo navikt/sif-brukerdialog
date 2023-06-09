@@ -9,9 +9,9 @@ export const getLegeerklæringStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    const {} = søknadsdata.legeerklaering || {};
+    const {} = søknadsdata.legeerklæring || {};
     return {
-        vedlegg: [...(søknadsdata.legeerklaering?.vedlegg || [])],
+        vedlegg: [...(søknadsdata.legeerklæring?.vedlegg || [])],
     };
 };
 

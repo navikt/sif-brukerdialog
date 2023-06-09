@@ -112,15 +112,15 @@ const DineBarnStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    <FormattedMessage id="step.dine-barn.counsellorPanel.avsnitt.1" />
+                                    <FormattedMessage id="step.dineBarn.counsellorPanel.avsnitt.1" />
                                     <Block margin="l">
-                                        <FormattedMessage id="step.dine-barn.counsellorPanel.avsnitt.2" />
+                                        <FormattedMessage id="step.dineBarn.counsellorPanel.avsnitt.2" />
                                     </Block>
                                 </SifGuidePanel>
 
                                 <FormBlock>
                                     <Heading level="2" size="medium">
-                                        <FormattedMessage id="step.dine-barn.seksjonsTittel" />
+                                        <FormattedMessage id="step.dineBarn.seksjonsTittel" />
                                     </Heading>
 
                                     {registrerteBarn.length > 0 && (
@@ -140,10 +140,10 @@ const DineBarnStep = () => {
                                         <ContentWithHeader
                                             header={
                                                 andreBarn.length === 0
-                                                    ? intlHelper(intl, 'step.dine-barn.info.spm.andreBarn')
-                                                    : intlHelper(intl, 'step.dine-barn.info.spm.flereBarn')
+                                                    ? intlHelper(intl, 'step.dineBarn.info.spm.andreBarn')
+                                                    : intlHelper(intl, 'step.dineBarn.info.spm.flereBarn')
                                             }>
-                                            {intlHelper(intl, 'step.dine-barn.info.spm.text')}
+                                            {intlHelper(intl, 'step.dineBarn.info.spm.text')}
                                         </ContentWithHeader>
                                     </FormBlock>
                                     <Block margin="l">
@@ -152,15 +152,15 @@ const DineBarnStep = () => {
                                             labels={{
                                                 addLabel: intlHelper(
                                                     intl,
-                                                    'step.dine-barn.annetBarnListAndDialog.addLabel'
+                                                    'step.dineBarn.annetBarnListAndDialog.addLabel'
                                                 ),
                                                 listTitle: intlHelper(
                                                     intl,
-                                                    'step.dine-barn.annetBarnListAndDialog.listTitle'
+                                                    'step.dineBarn.annetBarnListAndDialog.listTitle'
                                                 ),
                                                 modalTitle: intlHelper(
                                                     intl,
-                                                    'step.dine-barn.annetBarnListAndDialog.modalTitle'
+                                                    'step.dineBarn.annetBarnListAndDialog.modalTitle'
                                                 ),
                                             }}
                                             maxDate={dateToday}
@@ -168,7 +168,7 @@ const DineBarnStep = () => {
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...andreBarnFnr]}
                                             aldersGrenseText={intlHelper(
                                                 intl,
-                                                'step.dine-barn.formLeggTilBarn.aldersGrenseInfo'
+                                                'step.dineBarn.formLeggTilBarn.aldersGrenseInfo'
                                             )}
                                             visBarnTypeValg={true}
                                             // onAfterChange={() => setAndreBarnChanged(true)}
@@ -176,24 +176,27 @@ const DineBarnStep = () => {
                                     </Block>
                                 </FormBlock>
                                 {minstEtBarn12årIårellerYngre(registrerteBarn, andreBarn) === false && (
-                                    <>
+                                    <FormBlock>
                                         <Heading level="2" size="medium">
-                                            <FormattedMessage id="step.dine-barn.harFåttEkstraOmsorgsdager.label" />
+                                            <FormattedMessage id="step.dineBarn.harFåttEkstraOmsorgsdager.label" />
                                         </Heading>
-
-                                        <YesOrNoQuestion
-                                            name={DineBarnFormFields.harUtvidetRett}
-                                            legend={
-                                                registrerteBarn.length + andreBarn.length === 1
-                                                    ? intlHelper(
-                                                          intl,
-                                                          'step.dine-barn.harFåttEkstraOmsorgsdager.spm.ettBarn'
-                                                      )
-                                                    : intlHelper(intl, 'step.dine-barn.harFåttEkstraOmsorgsdager.spm')
-                                            }
-                                            validate={getYesOrNoValidator()}
-                                        />
-
+                                        <FormBlock>
+                                            <YesOrNoQuestion
+                                                name={DineBarnFormFields.harUtvidetRett}
+                                                legend={
+                                                    registrerteBarn.length + andreBarn.length === 1
+                                                        ? intlHelper(
+                                                              intl,
+                                                              'step.dineBarn.harFåttEkstraOmsorgsdager.spm.ettBarn'
+                                                          )
+                                                        : intlHelper(
+                                                              intl,
+                                                              'step.dineBarn.harFåttEkstraOmsorgsdager.spm'
+                                                          )
+                                                }
+                                                validate={getYesOrNoValidator()}
+                                            />
+                                        </FormBlock>
                                         <FormBlock>
                                             {harUtvidetRett === YesOrNo.YES && (
                                                 <>
@@ -202,7 +205,7 @@ const DineBarnStep = () => {
                                                             <CheckboxGroup
                                                                 legend={intlHelper(
                                                                     intl,
-                                                                    'step.dine-barn.utvidetRettFor.spm'
+                                                                    'step.dineBarn.utvidetRettFor.spm'
                                                                 )}
                                                                 name={DineBarnFormFields.harUtvidetRettFor}
                                                                 checkboxes={barnOptions}
@@ -211,7 +214,7 @@ const DineBarnStep = () => {
                                                             {harUtvidetRettFor && harUtvidetRettFor.length > 0 && (
                                                                 <Block margin="l">
                                                                     <Alert variant="info">
-                                                                        <FormattedMessage id="step.dine-barn.utvidetRettFor.info" />
+                                                                        <FormattedMessage id="step.dineBarn.utvidetRettFor.info" />
                                                                     </Alert>
                                                                 </Block>
                                                             )}
@@ -220,7 +223,7 @@ const DineBarnStep = () => {
                                                     {registrerteBarn.length + andreBarn.length === 1 && (
                                                         <Block margin="l">
                                                             <Alert variant="info">
-                                                                <FormattedMessage id="step.dine-barn.utvidetRettFor.info.ettBarn" />
+                                                                <FormattedMessage id="step.dineBarn.utvidetRettFor.info.ettBarn" />
                                                             </Alert>
                                                         </Block>
                                                     )}
@@ -229,24 +232,24 @@ const DineBarnStep = () => {
 
                                             {harUtvidetRett === YesOrNo.NO && (
                                                 <Alert variant="info">
-                                                    <FormattedMessage id="step.dine-barn.harFåttEkstraOmsorgsdager.nei.alertStripe" />
+                                                    <FormattedMessage id="step.dineBarn.harFåttEkstraOmsorgsdager.nei.alertStripe" />
                                                 </Alert>
                                             )}
                                         </FormBlock>
-                                    </>
+                                    </FormBlock>
                                 )}
                                 {minstEtBarn12årIårellerYngre(registrerteBarn, andreBarn) && (
                                     <Block
-                                        title={intlHelper(intl, 'step.dine-barn.bekrefterDektTiDagerSelv.info.titel')}>
-                                        <FormattedMessage id="step.dine-barn.bekrefterDektTiDagerSelv.info" />
+                                        title={intlHelper(intl, 'step.dineBarn.bekrefterDektTiDagerSelv.info.titel')}>
+                                        <FormattedMessage id="step.dineBarn.bekrefterDektTiDagerSelv.info" />
                                         <FormBlock>
                                             <ContentWithHeader
                                                 header={intlHelper(
                                                     intl,
-                                                    'step.dine-barn.bekrefterDektTiDagerSelv.label'
+                                                    'step.dineBarn.bekrefterDektTiDagerSelv.label'
                                                 )}>
                                                 <ConfirmationCheckbox
-                                                    label={intlHelper(intl, 'step.dine-barn.bekrefterDektTiDagerSelv')}
+                                                    label={intlHelper(intl, 'step.dineBarn.bekrefterDektTiDagerSelv')}
                                                     name={DineBarnFormFields.harDekketTiFørsteDagerSelv}
                                                     validate={getCheckedValidator()}
                                                 />
@@ -258,7 +261,7 @@ const DineBarnStep = () => {
                                 {andreBarn.length === 0 && registrerteBarn.length === 0 && (
                                     <Block margin="l">
                                         <Alert variant="warning">
-                                            <FormattedMessage id="step.dine-barn.info.ingenbarn.2" />
+                                            <FormattedMessage id="step.dineBarn.info.ingenbarn.2" />
                                         </Alert>
                                     </Block>
                                 )}

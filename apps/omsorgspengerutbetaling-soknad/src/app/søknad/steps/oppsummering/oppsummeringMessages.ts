@@ -2,45 +2,43 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const oppsummeringMessages: MessageFileFormat = {
     nb: {
-        'steg.oppsummering.info':
+        'step.oppsummering.info':
             'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
-        'steg.oppsummering.søker.omDeg': 'Om deg',
-        'steg.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+        'step.oppsummering.søker.header': 'Om deg som søker',
+        'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
+        'step.oppsummering.søker.omDeg': 'Om deg',
 
-        'steg.oppsummering.dineBarn': 'Dine Barn',
-        'steg.oppsummering.dineBarn.bekrefterDektTiDagerSelv': 'Har du dekket de 10 første omsorgsdagene selv?',
+        'step.oppsummering.dineBarn': 'Dine Barn',
+        'step.oppsummering.dineBarn.bekrefterDektTiDagerSelv': 'Har du dekket de 10 første omsorgsdagene selv?',
         'step.oppsummering.dineBarn.listItem': ' (fnr. {identitetsnummer})',
         'step.oppsummering.dineBarn.listItem.utvidetRett': 'Ekstra omsorgsdager.',
         'step.oppsummering.dineBarn.listItem.årsak.FOSTERBARN': '(Barnet er mitt fosterbarn).',
 
-        'steg.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
-        'steg.oppsummering.utbetalinger.header': 'Omsorgsdager du søker utbetaling for',
+        'step.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
+        'step.oppsummering.utbetalinger.header': 'Omsorgsdager du søker utbetaling for',
 
-        'steg.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
+        'step.oppsummering.medlemskap.header': 'Medlemskap i folketrygden',
 
-        'steg.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
-        'steg.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
-        'steg.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
-        'steg.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
-        'steg.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
-        'steg.oppsummering.bekrefterOpplysninger':
+        'step.oppsummering.utlandetSiste12.header': 'Har du bodd i utlandet i de siste 12 månedene?',
+        'step.oppsummering.utlandetNeste12.header': 'Skal du bo i utlandet i de neste 12 månedene?',
+        'step.oppsummering.utlandetSiste12.liste.header': 'Utenlandsopphold siste 12 måneder',
+        'step.oppsummering.utlandetNeste12.liste.header': 'Utenlandsopphold neste 12 måneder',
+        'step.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
+        'step.oppsummering.bekrefterOpplysninger':
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
-        'steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
+        'step.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
 
-        'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
+        'step.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
 
-        'steg.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
+        'step.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
 
-        'steg.oppsummering.dokumenter.header': 'Vedlegg',
-        'steg.oppsummering.dokumenter.ingenVedlegg': 'Ingen vedlegg er lastet opp',
-        'steg.oppsummering.dokumenterLegeerklæring.header': 'Legeerklæring',
-        'steg.oppsummering.dokumenterSmittevern.header': 'Bekreftelse fra lege',
-        'steg.oppsummering.dokumenterStengtBhgSkole.header': 'Bekreftelse fra barnehage eller skole',
+        'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp',
+        'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
-        'steg.oppsummering.fravær.årsak': 'Årsak: {årsak}.',
-        'steg.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
-        'steg.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
-        'steg.oppsummering.dokumenter.ikkelastetopp': 'Ikke lastet opp, må ettersendes',
+        'step.oppsummering.fravær.årsak': 'Årsak: {årsak}.',
+        'step.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
+        'step.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
+        'step.oppsummering.dokumenter.ikkelastetopp': 'Ikke lastet opp, må ettersendes',
 
         'summary.virksomhet.header': 'Selvstendig næringsdrivende',
         'summary.virksomhet.næringstype': 'Næringstype',

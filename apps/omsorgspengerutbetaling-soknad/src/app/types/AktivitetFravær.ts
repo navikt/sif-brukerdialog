@@ -8,7 +8,8 @@ export enum ApiAktivitet {
     SELVSTENDIG_VIRKSOMHET = 'SELVSTENDIG_VIRKSOMHET',
 }
 
-export interface AktivitetFravær {
-    dato: Date;
-    aktivitet: Aktivitet;
-}
+export type AktivitetFravær = {
+    [dato: string]: {
+        aktivitet: Aktivitet;
+    };
+};

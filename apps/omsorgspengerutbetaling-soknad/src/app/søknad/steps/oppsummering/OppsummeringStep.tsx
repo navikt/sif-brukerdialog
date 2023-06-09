@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds/lib';
+import { ErrorPage, SummarySection } from '@navikt/sif-common-soknad-ds/lib';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
-import OmSøkerOppsummering from './OmSøkerOppsummering';
+import OmSøkerOppsummering from './components/OmSøkerOppsummering';
 import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
@@ -19,8 +19,13 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
-import VedleggOppsummering from './VedleggOppsummering';
-import DineBarnOppsummering from './DineBarnOppsummering';
+import VedleggOppsummering from './components/VedleggOppsummering';
+import DineBarnOppsummering from './components/DineBarnOppsummering';
+import MedlemskapOppsummering from './components/MedlemskapOppsummering';
+import FrilansOppsummering from './components/FrilansOppsummering';
+import SelvstendigOppsummering from './components/SelvstendigOppsummering';
+import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
+import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -110,10 +115,19 @@ const OppsummeringStep = () => {
                                     barn={apiData.barn}
                                     harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
                                 />
+                                <SummarySection header={intlHelper(intl, 'step.oppsummering.utbetalinger.header')}>
+                                    <UtbetalingsperioderOppsummering
+                                        utbetalingsperioder={apiData.utbetalingsperioder}
+                                    />
+                                    <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
+                                </SummarySection>
 
+                                <FrilansOppsummering frilans={apiData.frilans} />
+                                <SelvstendigOppsummering selvstendig={apiData.selvstendigNæringsdrivende} />
+                                <MedlemskapOppsummering medlemskap={apiData.medlemskap} />
                                 <VedleggOppsummering
                                     apiData={apiData}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklaering}
+                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
                                 />
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}

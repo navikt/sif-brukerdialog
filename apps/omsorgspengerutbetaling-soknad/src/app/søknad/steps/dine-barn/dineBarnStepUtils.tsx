@@ -46,7 +46,7 @@ export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn) => {
     return (
         <span className="dineBarn">
             <FormattedMessage
-                id="step.dine-barn.født"
+                id="step.dineBarn.født"
                 values={{ dato: dateFormatter.compact(registrertBarn.fødselsdato) }}
             />
 
