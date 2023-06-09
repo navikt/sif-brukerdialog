@@ -7,10 +7,10 @@
     "version": "1.12.0",
     "private": true,
     "dependencies": {
-        "@navikt/ds-css": "4.0.0",
+        "@navikt/ds-css": "4.1.2",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "4.0.0",
-        "@navikt/ds-tailwind": "4.0.0",
+        "@navikt/ds-react": "4.1.2",
+        "@navikt/ds-tailwind": "4.1.2",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
@@ -40,13 +40,13 @@
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "6.4.3",
-        "react-router-dom": "6.12.0"
+        "react-router-dom": "6.12.1"
     },
     "devDependencies": {
-        "@babel/core": "7.22.1",
-        "@babel/preset-env": "7.22.4",
-        "@babel/preset-react": "7.22.3",
-        "@babel/preset-typescript": "7.21.5",
+        "@babel/core": "7.22.5",
+        "@babel/preset-env": "7.22.5",
+        "@babel/preset-react": "7.22.5",
+        "@babel/preset-typescript": "7.22.5",
         "@storybook/addon-actions": "7.0.20",
         "@storybook/addon-essentials": "7.0.20",
         "@storybook/addon-interactions": "7.0.20",
