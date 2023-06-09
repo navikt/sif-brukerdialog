@@ -19,7 +19,7 @@
         "@babel/core": "7.22.1",
         "@babel/preset-env": "7.22.4",
         "@babel/preset-react": "7.22.3",
-        "@babel/preset-typescript": "7.21.5",
+        "@babel/preset-typescript": "7.22.5",
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.2.3",
         "@navikt/appstatus-react-ds": "*",
