@@ -1,5 +1,4 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import { CommonDataBruktTilUtledningApiData } from '@navikt/sif-common-core-ds/lib/types';
 
 export type ISO8601Duration = string;
 
@@ -22,5 +21,4 @@ export interface SoknadApiData {
     beskrivelse?: string;
     vedlegg: string[];
     søknadstype: YtelseTypeApi;
-    dataBruktTilUtledning: CommonDataBruktTilUtledningApiData;
 }

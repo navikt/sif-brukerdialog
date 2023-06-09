@@ -1,4 +1,3 @@
-import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { RegistrertBarn } from '../../types/RegistrertBarn';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
@@ -21,8 +20,5 @@ export const getApiDataFromSøknadsdata = (
         ...getApiDataAnnenForelderFromSøknadsdata(omAnnenForelder, annenForelderSituasjon),
         ...getOmBarnaApiDataFromSøknadsdata(omBarna, registrertBarn),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
-        dataBruktTilUtledning: {
-            soknadDialogCommitSha: getCommitShaFromEnv() || '',
-        },
     };
 };

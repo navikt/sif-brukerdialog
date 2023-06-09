@@ -1,4 +1,3 @@
-import { CommonDataBruktTilUtledningApiData } from '@navikt/sif-common-core-ds/lib/types';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import { ISODate } from '@navikt/sif-common-utils/lib/types';
@@ -23,5 +22,4 @@ export interface SøknadApiData {
     barn: ApiBarn[];
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
-    dataBruktTilUtledning: CommonDataBruktTilUtledningApiData;
 }

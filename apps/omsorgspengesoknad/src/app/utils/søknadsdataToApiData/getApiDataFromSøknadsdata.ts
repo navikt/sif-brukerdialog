@@ -1,5 +1,4 @@
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
@@ -29,8 +28,5 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         ...getOmBarnetApiDataFromSøknadsdata(omBarnet),
         legeerklæring: getVedleggApiData(søknadsdata.legeerklaering?.vedlegg),
         samværsavtale: inkluderDeltBosted ? getVedleggApiData(søknadsdata.deltBosted?.vedlegg) : undefined,
-        dataBruktTilUtledning: {
-            soknadDialogCommitSha: getCommitShaFromEnv() || '',
-        },
     };
 };
