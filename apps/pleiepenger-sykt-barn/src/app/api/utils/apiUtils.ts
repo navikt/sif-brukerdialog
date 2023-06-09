@@ -1,10 +1,14 @@
+import { getGitShaRequestHeader } from '@navikt/sif-common-core-ds/lib/utils/gitShaHeaderUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import axios from 'axios';
 import { axiosConfigPsb } from '../../config/axiosConfig';
 import { ResourceType, ResourceTypeInnsyn } from '../../types/ResourceType';
-import { getEnvironmentVariable } from '../../utils/envUtils';
 
 export const multipartConfig = { ...axiosConfigPsb, headers: { 'Content-Type': 'multipart/form-data' } };
-export const axiosJsonConfig = { ...axiosConfigPsb, headers: { 'Content-type': 'application/json; charset=utf-8' } };
+export const axiosJsonConfig = {
+    ...axiosConfigPsb,
+    headers: { 'Content-type': 'application/json; charset=utf-8', ...getGitShaRequestHeader() },
+};
 
 export const sendMultipartPostRequest = (url: string, formData: FormData) => {
     return axios.post(url, formData, multipartConfig);

@@ -2,7 +2,7 @@ import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { OmsorgstilbudApiData, OmsorgstilbudSvarApi } from '../../types/søknad-api-data/SøknadApiData';
 import { apiVedleggIsInvalid, isOmsorgstilbudApiDataValid } from '../apiValuesValidation';
 
-jest.mock('../../utils/envUtils', () => {
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'http://localhost:8082',
     };

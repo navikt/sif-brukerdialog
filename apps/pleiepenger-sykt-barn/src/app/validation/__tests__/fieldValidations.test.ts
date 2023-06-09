@@ -1,6 +1,6 @@
 import { hasValue } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 
-jest.mock('../../utils/envUtils', () => {
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'someEnvVar',
     };

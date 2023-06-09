@@ -137,10 +137,11 @@ export interface ArbeidsforholdAvsluttetFørSøknadsperiode {
     orgnr: string;
 }
 
-export interface DataBruktTilUtledning {
-    soknadDialogCommitSha?: string;
-    annet: Record<string, any>;
+export interface DataBruktTilUtledningAnnetData {
+    arbeidsforholdAvsluttetFørSøknadsperiode?: ArbeidsforholdAvsluttetFørSøknadsperiode[];
 }
+
+export type DataBruktTilUtledningAnnetDataJsonString = string;
 
 export interface SøknadApiData {
     apiDataVersjon: string;
@@ -167,7 +168,7 @@ export interface SøknadApiData {
     harVærtEllerErVernepliktig?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandetApiData[];
     utenlandskNæring: UtenlandskNæringApiData[];
+    dataBruktTilUtledning: DataBruktTilUtledningAnnetDataJsonString;
     /** Alle felter med _ brukes ikke i mottak, kun for å vise i oppsummering */
     _barnetHarIkkeFnr?: boolean;
-    dataBruktTilUtledning: DataBruktTilUtledning;
 }

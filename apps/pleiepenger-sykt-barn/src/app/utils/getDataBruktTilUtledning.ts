@@ -1,7 +1,6 @@
-import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import {
     ArbeidsforholdAvsluttetFørSøknadsperiode,
-    DataBruktTilUtledning,
+    DataBruktTilUtledningAnnetData,
 } from '../types/søknad-api-data/SøknadApiData';
 import { ArbeidsgivereSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
@@ -22,13 +21,10 @@ const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
         });
 };
 
-export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledning => {
+export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
     return {
-        soknadDialogCommitSha: getCommitShaFromEnv(),
-        annet: {
-            arbeidsforholdAvsluttetFørSøknadsperiode: getArbeidsforhorholdAvsluttetFørSøknadsperiode(
-                søknadsdata.arbeid?.arbeidsgivere
-            ),
-        },
+        arbeidsforholdAvsluttetFørSøknadsperiode: getArbeidsforhorholdAvsluttetFørSøknadsperiode(
+            søknadsdata.arbeid?.arbeidsgivere
+        ),
     };
 };

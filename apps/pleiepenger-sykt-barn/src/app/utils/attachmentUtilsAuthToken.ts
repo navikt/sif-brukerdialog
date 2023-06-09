@@ -1,4 +1,4 @@
-import { getEnvironmentVariable } from './envUtils';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 export const getAttachmentURLFrontend = (url: string): string => {
     return url.replace(getEnvironmentVariable('VEDLEGG_API_URL'), getEnvironmentVariable('FRONTEND_VEDLEGG_URL'));

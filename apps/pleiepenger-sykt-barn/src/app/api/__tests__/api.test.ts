@@ -14,7 +14,7 @@ import {
 } from '../api';
 import { StepID } from '../../types/StepID';
 
-jest.mock('../../utils/envUtils.ts', () => {
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return { getEnvironmentVariable: () => 'mockedApiUrl', getEnvVariableOrDefault: () => 'mockedApiUrl' };
 });
 

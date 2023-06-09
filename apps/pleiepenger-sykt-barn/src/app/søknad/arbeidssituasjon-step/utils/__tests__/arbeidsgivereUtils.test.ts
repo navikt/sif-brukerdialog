@@ -53,7 +53,7 @@ const arbeidsforholdUbesvart: ArbeidsforholdFormValues = {
 
 const arbeidsforhold: ArbeidsforholdFormValues[] = [arbeidsforholdErAnsatt, arbeidsforholdUbesvart];
 
-jest.mock('../../../../utils/envUtils', () => {
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return {
         getEnvironmentVariable: () => 'someEnvVar',
     };

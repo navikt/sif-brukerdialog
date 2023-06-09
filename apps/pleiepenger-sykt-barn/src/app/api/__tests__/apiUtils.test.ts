@@ -5,8 +5,12 @@ import { getApiUrlByResourceType, multipartConfig, sendMultipartPostRequest } fr
 
 const mockedApiUrl = 'mockedApiUrl';
 
-jest.mock('../../utils/envUtils.ts', () => {
-    return { getEnvironmentVariable: () => 'mockedApiUrl', getEnvVariableOrDefault: () => 'mockedApiUrl' };
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
+    return {
+        getEnvironmentVariable: () => 'mockedApiUrl',
+        getEnvVariableOrDefault: () => 'mockedApiUrl',
+        getCommitShaFromEnv: () => 'abc',
+    };
 });
 
 jest.mock('axios');
