@@ -8,7 +8,7 @@ import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerkl
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
-import { dineBarnMessages } from '../søknad/steps/dine-barn/dDineBarnMessages';
+import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 import fraværMessages from '@navikt/sif-common-forms-ds/lib/forms/fravær/fraværMessages';
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/bostedUtlandMessages';
 import virksomhetMessages from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/virksomhetMessages';
