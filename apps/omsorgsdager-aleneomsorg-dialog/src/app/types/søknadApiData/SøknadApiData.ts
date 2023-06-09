@@ -1,6 +1,7 @@
+import { CommonDataBruktTilUtledningApiData } from '@navikt/sif-common-core-ds/lib/types';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-import { ISODate } from '@navikt/sif-common-utils/lib/types';
 import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { ISODate } from '@navikt/sif-common-utils/lib/types';
 import { TidspunktForAleneomsorg } from '../../søknad/steps/tidspunkt-for-aleneomsorg/TidspunktForAleneomsorgStep';
 
 export enum RegisterteBarnTypeApi {
@@ -22,4 +23,5 @@ export interface SøknadApiData {
     barn: ApiBarn[];
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
+    dataBruktTilUtledning: CommonDataBruktTilUtledningApiData;
 }

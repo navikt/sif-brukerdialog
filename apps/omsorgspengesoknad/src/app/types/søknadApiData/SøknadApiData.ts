@@ -1,4 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { CommonDataBruktTilUtledningApiData } from '@navikt/sif-common-core-ds/lib/types';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 
 export interface OmBarnetApiData {
@@ -20,4 +21,5 @@ export interface SøknadApiData extends OmBarnetApiData {
     samværsavtale?: string[];
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
+    dataBruktTilUtledning: CommonDataBruktTilUtledningApiData;
 }

@@ -1,3 +1,4 @@
+import { CommonDataBruktTilUtledningApiData } from '@navikt/sif-common-core-ds/lib/types';
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
 import { LovbestemtFerieType } from './LovbestemtFerieType';
@@ -42,8 +43,7 @@ interface BarnApiData {
     norskIdentitetsnummer: string;
 }
 
-export interface DataBruktTilUtledningApiData {
-    soknadDialogCommitSha: string;
+export interface DataBruktTilUtledningApiData extends CommonDataBruktTilUtledningApiData {
     valgteEndringer: ValgteEndringer;
     ukjenteArbeidsforhold?: UkjentArbeidsforholdApiData[];
 }

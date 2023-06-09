@@ -1,11 +1,11 @@
-// import { attachmentUploadHasFailed } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
-import { SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
-import { SoknadFormData } from '../types/SoknadFormData';
-import { ApplicationType } from '../types/ApplicationType';
-import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
 import { IntlShape } from 'react-intl';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
+import { ApplicationType } from '../types/ApplicationType';
+import { SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
+import { SoknadFormData } from '../types/SoknadFormData';
+import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
 
 const getSøknadstypeApi = (søknadstype: ApplicationType): YtelseTypeApi => {
     switch (søknadstype) {
@@ -51,6 +51,9 @@ export const mapFormDataToApiData = (
         søknadstype: søknadstype ? getSøknadstypeApi(søknadstype) : getSøknadstypeApi(søknadstypeFraURL),
         beskrivelse,
         vedlegg: getVedleggUrlFromAttachments(dokumenter),
+        dataBruktTilUtledning: {
+            soknadDialogCommitSha: getCommitShaFromEnv() || '',
+        },
     };
     return apiData;
 };

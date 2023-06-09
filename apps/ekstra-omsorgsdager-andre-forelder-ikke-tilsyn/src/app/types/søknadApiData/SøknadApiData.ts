@@ -1,3 +1,4 @@
+import { CommonDataBruktTilUtledningApiData } from '@navikt/sif-common-core-ds/lib/types';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { ISODate } from '@navikt/sif-common-utils';
 import { AnnenForeldrenSituasjon } from '../AnnenForeldrenSituasjon';
@@ -25,4 +26,5 @@ export interface SøknadApiData {
     annenForelder: AnnenForelderApiData;
     barn: ApiBarn[];
     harBekreftetOpplysninger: boolean;
+    dataBruktTilUtledning: CommonDataBruktTilUtledningApiData;
 }
