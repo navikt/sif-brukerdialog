@@ -19,7 +19,7 @@ export const contextConfig = (props?: ConfigProps) => {
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
         cy.intercept(`GET`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, mellomlagring || { noData: 1 });
         cy.intercept(`DELETE`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, mellomlagring || {});
-        cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, {});
+        cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, {}).as('putMellomlagring');
         cy.intercept(`POST`, `${API}/mellomlagring/OMSORGSPENGER_UTVIDET_RETT`, {});
         cy.intercept(`POST`, `${API}/omsorgspenger-utvidet-rett/innsending`, {}).as('innsending');
         cy.intercept('POST', `${API}/vedlegg`, {
@@ -28,6 +28,7 @@ export const contextConfig = (props?: ConfigProps) => {
         });
         cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock);
         cy.intercept('GET', `${API}/oppslag/barn*`, props?.barn || cyApiMockData.barnMock);
+        cy.intercept({ hostname: 'ryujtq87.api.sanity.io' }, {});
     });
 
     if (step) {
