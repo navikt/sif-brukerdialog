@@ -1,4 +1,3 @@
-import { getCommitShaFromEnv } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { durationToISODuration } from '@navikt/sif-common-utils/lib';
 import {
     ArbeiderIPeriodenSvar,
@@ -6,6 +5,7 @@ import {
     Arbeidsgiver,
     ArbeidstidSøknadsdata,
     DataBruktTilUtledningApiData,
+    DataBruktTilUtledningApiDataAnnetData as DataBruktTilUtledningAnnetDataApiData,
     UkjentArbeidsforholdApiData,
     UkjentArbeidsforholdSøknadsdata,
     ValgteEndringer,
@@ -13,19 +13,23 @@ import {
 import { getOrgNummerFromArbeidsgiverKey } from '../arbeidsgiverUtils';
 
 export const getDataBruktTilUtledningApiData = (
-    valgteEndringer: ValgteEndringer,
     ukjentArbeidsforhold: UkjentArbeidsforholdSøknadsdata | undefined,
     arbeidstid: ArbeidstidSøknadsdata | undefined,
     arbeidsgivere: Arbeidsgiver[]
 ): DataBruktTilUtledningApiData => {
     return {
-        soknadDialogCommitSha: getCommitShaFromEnv() || '',
-        valgteEndringer,
         ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
             ukjentArbeidsforhold?.arbeidsforhold,
             arbeidstid,
             arbeidsgivere
         ),
+    };
+};
+export const getDataBruktTilUtledningAnnetDataApiData = (
+    valgteEndringer: ValgteEndringer
+): DataBruktTilUtledningAnnetDataApiData => {
+    return {
+        valgteEndringer,
     };
 };
 

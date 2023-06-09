@@ -1,4 +1,3 @@
-import { CommonDataBruktTilUtledningApiData } from '@navikt/sif-common-core-ds/lib/types';
 import { ISODate, ISODateRangeMap, ISODuration } from '@navikt/sif-common-utils';
 import { ArbeiderIPeriodenSvar } from './ArbeiderIPeriodenSvar';
 import { LovbestemtFerieType } from './LovbestemtFerieType';
@@ -43,10 +42,15 @@ interface BarnApiData {
     norskIdentitetsnummer: string;
 }
 
-export interface DataBruktTilUtledningApiData extends CommonDataBruktTilUtledningApiData {
-    valgteEndringer: ValgteEndringer;
+export interface DataBruktTilUtledningApiData {
     ukjenteArbeidsforhold?: UkjentArbeidsforholdApiData[];
 }
+
+export interface DataBruktTilUtledningApiDataAnnetData {
+    valgteEndringer: ValgteEndringer;
+}
+
+export type DataBruktTilUtledningApiDataAnnetDataJsonString = string;
 
 interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
@@ -54,6 +58,9 @@ interface YtelseApiData {
     lovbestemtFerie?: LovbestemtFerieApiData;
     barn: BarnApiData;
     dataBruktTilUtledning: DataBruktTilUtledningApiData;
+    annetDataBruktTilUtledning: {
+        annetData: DataBruktTilUtledningApiDataAnnetDataJsonString;
+    };
 }
 
 interface UkjentArbeidsforholdApiDataBase {
