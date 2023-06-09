@@ -16,6 +16,7 @@ export const dineBarnMessages: MessageFileFormat = {
         'step.dineBarn.annetBarnListAndDialog.modalTitle': 'Legg til barn',
 
         'step.dineBarn.harFåttEkstraOmsorgsdager.label': 'Ekstra omsorgsdager',
+
         'step.dineBarn.harFåttEkstraOmsorgsdager.spm':
             'Har du søkt om eller fått ekstra omsorgsdager fordi du har barn som er kronisk sykt, funksjonshemmet eller langvarig sykt?',
         'step.dineBarn.harFåttEkstraOmsorgsdager.spm.ettBarn':
