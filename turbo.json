@@ -69,13 +69,9 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "e2e-psb": {
+        "start-e2e-server": {
             "outputs": [],
-            "dependsOn": ["^build-pleiepenger-sykt-barn"]
-        },
-        "e2e-pleiepenger-sykt-barn": {
-            "outputs": [],
-            "dependsOn": ["^build-pleiepenger-sykt-barn"]
+            "dependsOn": []
         },
         "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
             "outputs": [],
