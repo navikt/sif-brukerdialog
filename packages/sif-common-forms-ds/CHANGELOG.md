@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 7.1.0
+
+### Minor Changes
+
+-   52e5e64: Bruker ikke korona for perioder og dager fra 2023
+
 ## 7.0.1
 
 ### Patch Changes
