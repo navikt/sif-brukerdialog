@@ -1,10 +1,10 @@
 // import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { contextConfig, gotoStep } from '../../contextConfig';
 import { mellomlagring } from '../../mocks/mellomlagring';
 import { getTestElement, gåTilOppsummeringFraArbeidssituasjon, selectRadioNyYesOrNo, setInputValue } from '../../utils';
 
 import dayjs = require('dayjs');
+import { gotoArbeidssituasjonStep } from '../../contextConfig';
 
 /** Formaterte verdier fra mock-data */
 const periodeFraString = dayjs(ISODateToDate(mellomlagring.formValues.periodeFra)).format('D. MMMM YYYY');
@@ -36,6 +36,8 @@ export const fyllUtArbeidssituasjonAnsatt = (
 
 const ansattHeleSøknadsperiodeTest = () => {
     it('er ansatt og jobber 40 timer hos arbeidsgiver i perioden', () => {
+        gotoArbeidssituasjonStep();
+
         fyllUtArbeidssituasjonAnsatt({ erAnsatt: true, sluttetFørSøknadsperiode: false, timerPerUke: '40' });
 
         gåTilOppsummeringFraArbeidssituasjon();
@@ -48,6 +50,8 @@ const ansattHeleSøknadsperiodeTest = () => {
 
 const ansattISøknadsperiodeTest = () => {
     it('er ikke ansatt lenger, men sluttet inne i søknadsperioden perioden. Jobber 30 timer i uken.', () => {
+        gotoArbeidssituasjonStep();
+
         fyllUtArbeidssituasjonAnsatt({ erAnsatt: false, sluttetFørSøknadsperiode: false, timerPerUke: '30' });
         gåTilOppsummeringFraArbeidssituasjon();
 
@@ -60,6 +64,8 @@ const ansattISøknadsperiodeTest = () => {
 
 const sluttetFørSøknadsperiodeTest = () => {
     it('er ikke ansatt og sluttet før søknadsperiode', () => {
+        gotoArbeidssituasjonStep();
+
         fyllUtArbeidssituasjonAnsatt({ erAnsatt: false, sluttetFørSøknadsperiode: true });
 
         gåTilOppsummeringFraArbeidssituasjon();
@@ -71,10 +77,6 @@ const sluttetFørSøknadsperiodeTest = () => {
 };
 
 export const testArbeidssituasjonAnsatt = () => {
-    contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
-    beforeEach(() => {
-        gotoStep('arbeidssituasjon');
-    });
     describe('Arbeidssituasjon ansatt', () => {
         ansattHeleSøknadsperiodeTest();
         ansattISøknadsperiodeTest();

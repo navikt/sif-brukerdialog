@@ -1,6 +1,8 @@
-import { contextConfig, gotoStep } from '../../contextConfig';
+import * as dayjs from 'dayjs';
+import * as locale from 'dayjs/locale/nb';
+import * as isoWeek from 'dayjs/plugin/isoWeek';
+import { gotoArbeidssituasjonStep } from '../../contextConfig';
 import { cyApiMockData } from '../../cyApiMockData';
-import { mellomlagring } from '../../mocks/mellomlagring';
 import {
     getTestElement,
     gåTilOppsummeringFraArbeidssituasjon,
@@ -9,10 +11,6 @@ import {
     selectRadioYes,
     setInputValue,
 } from '../../utils';
-
-import * as dayjs from 'dayjs';
-import * as locale from 'dayjs/locale/nb';
-import * as isoWeek from 'dayjs/plugin/isoWeek';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
@@ -60,7 +58,6 @@ export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {
 };
 
 const erFrilanserUtenOppdrag = () => {
-    contextConfig({ mellomlagring });
     beforeEach('er frilanser uten oppdrag', () => {
         cy.intercept(`/oppslag/arbeidsgiver**`, { ...cyApiMockData.arbeidsgivereMock, frilansoppdrag: [] }).as(
             'getArbeidsgivere'
@@ -68,7 +65,7 @@ const erFrilanserUtenOppdrag = () => {
     });
 
     it('er frilanser uten oppdrag', () => {
-        gotoStep('arbeidssituasjon');
+        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonFrilanser();
         gåTilOppsummeringFraArbeidssituasjon();
 
@@ -82,7 +79,7 @@ const erFrilanserUtenOppdrag = () => {
 
 const erFrilanserMedOppdrag = () => {
     it('er frilanser med oppdrag', () => {
-        gotoStep('arbeidssituasjon');
+        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonFrilanser();
         gåTilOppsummeringFraArbeidssituasjon();
 
@@ -96,7 +93,7 @@ const erFrilanserMedOppdrag = () => {
 
 const erIkkeFrilanser = () => {
     it('er ikke frilanser', () => {
-        gotoStep('arbeidssituasjon');
+        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonErIkkeFrilanser();
         gåTilOppsummeringFraArbeidssituasjon();
 
@@ -110,10 +107,6 @@ const erIkkeFrilanser = () => {
 
 export const testArbeidssituasjonFrilanser = () => {
     describe('Arbeidssituasjon frilanser', () => {
-        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
-        beforeEach(() => {
-            gotoStep('arbeidssituasjon');
-        });
         erIkkeFrilanser();
         erFrilanserUtenOppdrag();
         erFrilanserMedOppdrag();

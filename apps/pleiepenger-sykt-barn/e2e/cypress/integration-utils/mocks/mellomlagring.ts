@@ -68,7 +68,7 @@ export const mellomlagring = {
         utenlandskNæring: [],
     },
     metadata: {
-        lastStepID: 'arbeidssituasjon',
+        lastStepID: 'tidsrom',
         version: '13.4.0',
         updatedTimestemp: '2022-10-19T13:14:12.851Z',
     },

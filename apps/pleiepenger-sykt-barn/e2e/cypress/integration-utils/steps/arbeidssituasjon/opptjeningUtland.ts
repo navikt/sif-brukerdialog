@@ -1,5 +1,4 @@
-import { contextConfig, gotoStep } from '../../contextConfig';
-import { mellomlagring } from '../../mocks/mellomlagring';
+import { gotoArbeidssituasjonStep } from '../../contextConfig';
 import { TestType } from '../../types/TestTyper';
 import {
     getElement,
@@ -55,12 +54,8 @@ export const fyllUtArbeidssituasjonOpptjeningUtland = (type: TestType = TestType
 
 export const testArbeidssituasjonOpptjeningUtland = () => {
     describe('Arbeidssituasjonopptjening utland', () => {
-        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
-        beforeEach(() => {
-            gotoStep('arbeidssituasjon');
-        });
         it('har ikke utenlandsk opptjening', () => {
-            gotoStep('arbeidssituasjon');
+            gotoArbeidssituasjonStep();
             fyllUtArbeidssituasjonUtenOpptjeningUtland();
             gåTilOppsummeringFraArbeidssituasjon();
 
@@ -68,7 +63,7 @@ export const testArbeidssituasjonOpptjeningUtland = () => {
             el.should('contain', 'Nei');
         });
         it('har utenlandsk opptjening', () => {
-            gotoStep('arbeidssituasjon');
+            gotoArbeidssituasjonStep();
             fyllUtArbeidssituasjonMedOpptjeningUtland();
             gåTilOppsummeringFraArbeidssituasjon();
 

@@ -16,6 +16,12 @@ export const gotoStep = (step: string) => {
     cy.visit(url);
 };
 
+export const gotoArbeidssituasjonStep = () => {
+    const url = `${PUBLIC_PATH}/soknad/arbeidssituasjon}`;
+    cy.visit(url);
+    cy.wait('@getArbeidsgivere');
+};
+
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step } = props || {};
     beforeEach('intercept api-kall', () => {

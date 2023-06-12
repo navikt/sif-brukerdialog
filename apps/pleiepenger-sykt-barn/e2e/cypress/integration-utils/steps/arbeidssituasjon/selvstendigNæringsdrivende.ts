@@ -1,6 +1,5 @@
 import dayjs = require('dayjs');
-import { contextConfig, gotoStep } from '../../contextConfig';
-import { mellomlagring } from '../../mocks/mellomlagring';
+import { gotoArbeidssituasjonStep } from '../../contextConfig';
 import {
     clickFortsett,
     getElement,
@@ -76,7 +75,7 @@ export const fyllUtArbeidssituasjonErSelvstendig = () => {
 
 const erIkkeSN = () => {
     it('Er ikke selvstendig næringsdrivende', () => {
-        gotoStep('arbeidssituasjon');
+        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonErIkkeSelvstendig();
         gåTilOppsummeringFraArbeidssituasjon();
         const el = getTestElement('arbeidssituasjon-sn');
@@ -86,7 +85,7 @@ const erIkkeSN = () => {
 
 const erSN = () => {
     it('Er selvstendig næringsdrivende', () => {
-        gotoStep('arbeidssituasjon');
+        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonErSelvstendig();
         clickFortsett();
         getTestElement('arbeidIPerioden_selvstendig').within(() => {
@@ -106,10 +105,6 @@ const erSN = () => {
 
 export const testArbeidssituasjonSN = () => {
     describe('Arbeidssituasjon selvstendig næringsdrivende', () => {
-        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
-        beforeEach(() => {
-            gotoStep('arbeidssituasjon');
-        });
         erIkkeSN();
         erSN();
     });
