@@ -8,7 +8,7 @@ export default defineConfig({
         },
         screenshotOnRunFailure: false,
         video: false,
-        projectId: '5485qe',
+        // projectId: '5485qe',
         baseUrl: 'http://localhost:8080/soknad',
     },
 });

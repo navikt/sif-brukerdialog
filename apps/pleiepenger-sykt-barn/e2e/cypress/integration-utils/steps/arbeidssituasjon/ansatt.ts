@@ -1,11 +1,9 @@
-// import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { gotoArbeidssituasjonStep } from '../../contextConfig';
 import { mellomlagring } from '../../mocks/mellomlagring';
 import { getTestElement, gåTilOppsummeringFraArbeidssituasjon, selectRadioNyYesOrNo, setInputValue } from '../../utils';
 
 import dayjs = require('dayjs');
-import { gotoArbeidssituasjonStep } from '../../contextConfig';
-
 /** Formaterte verdier fra mock-data */
 const periodeFraString = dayjs(ISODateToDate(mellomlagring.formValues.periodeFra)).format('D. MMMM YYYY');
 
