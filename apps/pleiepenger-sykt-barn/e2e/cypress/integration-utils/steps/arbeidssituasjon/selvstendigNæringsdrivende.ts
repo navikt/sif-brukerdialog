@@ -1,5 +1,4 @@
 import dayjs = require('dayjs');
-import { gotoArbeidssituasjonStep } from '../../contextConfig';
 import {
     clickFortsett,
     getElement,
@@ -75,7 +74,6 @@ export const fyllUtArbeidssituasjonErSelvstendig = () => {
 
 const erIkkeSN = () => {
     it('Er ikke selvstendig næringsdrivende', () => {
-        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonErIkkeSelvstendig();
         gåTilOppsummeringFraArbeidssituasjon();
         const el = getTestElement('arbeidssituasjon-sn');
@@ -85,7 +83,6 @@ const erIkkeSN = () => {
 
 const erSN = () => {
     it('Er selvstendig næringsdrivende', () => {
-        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonErSelvstendig();
         clickFortsett();
         getTestElement('arbeidIPerioden_selvstendig').within(() => {

@@ -1,7 +1,6 @@
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
-import { gotoArbeidssituasjonStep } from '../../contextConfig';
 import { cyApiMockData } from '../../cyApiMockData';
 import {
     getTestElement,
@@ -65,7 +64,6 @@ const erFrilanserUtenOppdrag = () => {
     });
 
     it('er frilanser uten oppdrag', () => {
-        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonFrilanser();
         gåTilOppsummeringFraArbeidssituasjon();
 
@@ -79,7 +77,6 @@ const erFrilanserUtenOppdrag = () => {
 
 const erFrilanserMedOppdrag = () => {
     it('er frilanser med oppdrag', () => {
-        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonFrilanser();
         gåTilOppsummeringFraArbeidssituasjon();
 
@@ -93,7 +90,6 @@ const erFrilanserMedOppdrag = () => {
 
 const erIkkeFrilanser = () => {
     it('er ikke frilanser', () => {
-        gotoArbeidssituasjonStep();
         fyllUtArbeidssituasjonErIkkeFrilanser();
         gåTilOppsummeringFraArbeidssituasjon();
 

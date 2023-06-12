@@ -1,4 +1,4 @@
-import { contextConfig } from '../integration-utils/contextConfig';
+import { contextConfig, gotoArbeidssituasjonStep } from '../integration-utils/contextConfig';
 import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 import { testArbeidssituasjonAnsatt } from '../integration-utils/steps/arbeidssituasjon/ansatt';
 import { testArbeidssituasjonFrilanser } from '../integration-utils/steps/arbeidssituasjon/frilanser';
@@ -7,7 +7,10 @@ import { testArbeidssituasjonSN } from '../integration-utils/steps/arbeidssituas
 import { testArbeidssituasjonUtenlandskNæring } from '../integration-utils/steps/arbeidssituasjon/utenlandskNæring';
 
 describe('Arbeidssituasjoner', () => {
-    contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
+    contextConfig({ mellomlagring });
+    beforeEach(() => {
+        gotoArbeidssituasjonStep();
+    });
 
     testArbeidssituasjonAnsatt();
     testArbeidssituasjonFrilanser();

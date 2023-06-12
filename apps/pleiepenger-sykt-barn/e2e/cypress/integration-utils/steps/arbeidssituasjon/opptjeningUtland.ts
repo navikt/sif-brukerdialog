@@ -1,4 +1,3 @@
-import { gotoArbeidssituasjonStep } from '../../contextConfig';
 import { TestType } from '../../types/TestTyper';
 import {
     getElement,
@@ -55,7 +54,6 @@ export const fyllUtArbeidssituasjonOpptjeningUtland = (type: TestType = TestType
 export const testArbeidssituasjonOpptjeningUtland = () => {
     describe('Arbeidssituasjonopptjening utland', () => {
         it('har ikke utenlandsk opptjening', () => {
-            gotoArbeidssituasjonStep();
             fyllUtArbeidssituasjonUtenOpptjeningUtland();
             gåTilOppsummeringFraArbeidssituasjon();
 
@@ -63,7 +61,6 @@ export const testArbeidssituasjonOpptjeningUtland = () => {
             el.should('contain', 'Nei');
         });
         it('har utenlandsk opptjening', () => {
-            gotoArbeidssituasjonStep();
             fyllUtArbeidssituasjonMedOpptjeningUtland();
             gåTilOppsummeringFraArbeidssituasjon();
 

@@ -8,22 +8,21 @@ const getUrlForStep = (step?) => {
 };
 interface ConfigProps {
     mellomlagring?: any;
-    step?: string;
 }
 
 export const gotoStep = (step: string) => {
-    const url = `${PUBLIC_PATH}/soknad${step ? `/${step}` : ''}`;
-    cy.visit(url);
+    cy.visit(getUrlForStep(step));
 };
 
 export const gotoArbeidssituasjonStep = () => {
-    const url = `${PUBLIC_PATH}/soknad/arbeidssituasjon}`;
-    cy.visit(url);
+    cy.visit(getUrlForStep('arbeidssituasjon'));
+    cy.wait(200);
     cy.wait('@getArbeidsgivere');
 };
 
 export const contextConfig = (props?: ConfigProps) => {
-    const { mellomlagring, step } = props || {};
+    const { mellomlagring } = props || {};
+
     beforeEach('intercept api-kall', () => {
         cy.intercept(`DELETE`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as('deleteMellomlagring');
         cy.intercept(`PUT`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as('putMellomlagring');
@@ -34,9 +33,5 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`GET`, `/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgivereMock).as('getArbeidsgivere');
         cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, {}).as('postInnsending');
         cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
-    });
-
-    before('gå til ønsket side', () => {
-        cy.visit(getUrlForStep(step));
     });
 };
