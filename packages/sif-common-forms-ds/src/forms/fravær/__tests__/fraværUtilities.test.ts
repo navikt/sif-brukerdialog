@@ -3,6 +3,8 @@ import { DateRange } from '@navikt/sif-common-utils';
 import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 import { FraværDagFormFields } from '../FraværDagForm';
 import {
+    brukHjemmePgaKoronaDagForm,
+    brukHjemmePgaKoronaPeriodeForm,
     dateCollideWithRanges,
     getHjemmePgaKoronaFormValueFromFraværÅrsak,
     getÅrsakFromFraværFormValues,
@@ -99,7 +101,16 @@ describe('timeText', () => {
             expect(result.timerFravær).toEqual('1');
             expect(result.årsak).toEqual(FraværÅrsak.ordinært);
         });
+        it('maps all values when form is complete med dato fra 2023', () => {
+            const result = mapFormValuesToFraværDag({ ...formValues, dato: '2023-01-01' }, 'abc');
+            expect(result.id).toEqual('abc');
+            expect(dateToISOString(result.dato)).toEqual('2023-01-01');
+            expect(result.timerArbeidsdag).toEqual('2');
+            expect(result.timerFravær).toEqual('1');
+            expect(result.årsak).toEqual(undefined);
+        });
     });
+
     describe('mapFormValuesToFraværPeriode', () => {
         const formValues: FraværPeriodeFormValues = {
             id: 'abc',
@@ -115,12 +126,24 @@ describe('timeText', () => {
             expect(dateToISOString(result.tilOgMed)).toEqual('2000-10-11');
             expect(result.årsak).toEqual(FraværÅrsak.smittevernhensyn);
         });
+
         it('maps all values when form is complete and hjemmePgaKorona: YesOrNo.NO', () => {
             const result = mapFormValuesToFraværPeriode({ ...formValues, hjemmePgaKorona: YesOrNo.NO }, 'abc');
             expect(result.id).toEqual('abc');
             expect(dateToISOString(result.fraOgMed)).toEqual('2000-10-10');
             expect(dateToISOString(result.tilOgMed)).toEqual('2000-10-11');
             expect(result.årsak).toEqual(FraværÅrsak.ordinært);
+        });
+
+        it('maps all values when form is complete med datoer fra 2023', () => {
+            const result = mapFormValuesToFraværPeriode(
+                { ...formValues, fraOgMed: '2023-01-01', tilOgMed: '2023-02-01' },
+                'abc'
+            );
+            expect(result.id).toEqual('abc');
+            expect(dateToISOString(result.fraOgMed)).toEqual('2023-01-01');
+            expect(dateToISOString(result.tilOgMed)).toEqual('2023-02-01');
+            expect(result.årsak).toEqual(undefined);
         });
     });
     describe('dateCollideWithRanges', () => {
@@ -229,6 +252,53 @@ describe('timeText', () => {
             it('a range surrounds another range', () => {
                 expect(validateNoCollisions([], [periode1, periode2])).toBeDefined();
             });
+        });
+    });
+
+    describe('brukHjemmePgaKoronaPeriodeForm for perioder før 2023', () => {
+        it('True når datoer er før periode', () => {
+            const result = brukHjemmePgaKoronaPeriodeForm(new Date('01.01.2022'), new Date('05.03.2022'));
+            expect(result).toBeTruthy();
+        });
+        it('False når fra dato er etter periode', () => {
+            const result = brukHjemmePgaKoronaPeriodeForm(new Date('01.01.2023'), new Date('05.03.2022'));
+            expect(result).toBeFalsy();
+        });
+        it('False når til dato er etter periode', () => {
+            const result = brukHjemmePgaKoronaPeriodeForm(new Date('01.01.2022'), new Date('05.03.2023'));
+            expect(result).toBeFalsy();
+        });
+        it('False når til og fra datoer er etter periode', () => {
+            const result = brukHjemmePgaKoronaPeriodeForm(new Date('01.01.2023'), new Date('05.03.2023'));
+            expect(result).toBeFalsy();
+        });
+        it('False når til og fra datoer er undefined', () => {
+            const result = brukHjemmePgaKoronaPeriodeForm();
+            expect(result).toBeFalsy();
+        });
+        it('False når fra dato er undefined', () => {
+            const result = brukHjemmePgaKoronaPeriodeForm(undefined, new Date('05.03.2023'));
+            expect(result).toBeFalsy();
+        });
+
+        it('False når til dato er undefined', () => {
+            const result = brukHjemmePgaKoronaPeriodeForm(new Date('05.03.2023'), undefined);
+            expect(result).toBeFalsy();
+        });
+    });
+
+    describe('brukHjemmePgaKoronaDagForm', () => {
+        it('True når dag dato er før periode', () => {
+            const result = brukHjemmePgaKoronaDagForm(new Date('12.11.2022'));
+            expect(result).toBeTruthy();
+        });
+        it('False når dag dato er etter periode', () => {
+            const result = brukHjemmePgaKoronaDagForm(new Date('01.01.2023'));
+            expect(result).toBeFalsy();
+        });
+        it('False når dag dato er undefined', () => {
+            const result = brukHjemmePgaKoronaDagForm(undefined);
+            expect(result).toBeFalsy();
         });
     });
 });
