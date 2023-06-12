@@ -1,3 +1,4 @@
+// import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { contextConfig, gotoStep } from '../../contextConfig';
 import { mellomlagring } from '../../mocks/mellomlagring';
@@ -35,7 +36,6 @@ export const fyllUtArbeidssituasjonAnsatt = (
 
 const ansattHeleSøknadsperiodeTest = () => {
     it('er ansatt og jobber 40 timer hos arbeidsgiver i perioden', () => {
-        gotoStep('arbeidssituasjon');
         fyllUtArbeidssituasjonAnsatt({ erAnsatt: true, sluttetFørSøknadsperiode: false, timerPerUke: '40' });
 
         gåTilOppsummeringFraArbeidssituasjon();
@@ -48,7 +48,6 @@ const ansattHeleSøknadsperiodeTest = () => {
 
 const ansattISøknadsperiodeTest = () => {
     it('er ikke ansatt lenger, men sluttet inne i søknadsperioden perioden. Jobber 30 timer i uken.', () => {
-        gotoStep('arbeidssituasjon');
         fyllUtArbeidssituasjonAnsatt({ erAnsatt: false, sluttetFørSøknadsperiode: false, timerPerUke: '30' });
         gåTilOppsummeringFraArbeidssituasjon();
 
@@ -61,7 +60,6 @@ const ansattISøknadsperiodeTest = () => {
 
 const sluttetFørSøknadsperiodeTest = () => {
     it('er ikke ansatt og sluttet før søknadsperiode', () => {
-        gotoStep('arbeidssituasjon');
         fyllUtArbeidssituasjonAnsatt({ erAnsatt: false, sluttetFørSøknadsperiode: true });
 
         gåTilOppsummeringFraArbeidssituasjon();
@@ -73,6 +71,10 @@ const sluttetFørSøknadsperiodeTest = () => {
 };
 
 export const testArbeidssituasjonAnsatt = () => {
+    contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
+    beforeEach(() => {
+        gotoStep('arbeidssituasjon');
+    });
     describe('Arbeidssituasjon ansatt', () => {
         ansattHeleSøknadsperiodeTest();
         ansattISøknadsperiodeTest();

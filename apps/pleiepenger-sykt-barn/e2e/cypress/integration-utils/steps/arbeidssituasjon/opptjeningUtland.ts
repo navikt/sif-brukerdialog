@@ -1,5 +1,5 @@
-import dayjs = require('dayjs');
-import { gotoStep } from '../../contextConfig';
+import { contextConfig, gotoStep } from '../../contextConfig';
+import { mellomlagring } from '../../mocks/mellomlagring';
 import { TestType } from '../../types/TestTyper';
 import {
     getElement,
@@ -11,6 +11,7 @@ import {
     selectRadioYes,
 } from '../../utils';
 
+import dayjs = require('dayjs');
 const arbeidsgiverenAnnetEQS = 'Google';
 const dato = dayjs().startOf('day').subtract(1, 'day');
 const fraDatoTilDato = dato.format('DD.MM.YYYY');
@@ -54,6 +55,10 @@ export const fyllUtArbeidssituasjonOpptjeningUtland = (type: TestType = TestType
 
 export const testArbeidssituasjonOpptjeningUtland = () => {
     describe('Arbeidssituasjonopptjening utland', () => {
+        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
+        beforeEach(() => {
+            gotoStep('arbeidssituasjon');
+        });
         it('har ikke utenlandsk opptjening', () => {
             gotoStep('arbeidssituasjon');
             fyllUtArbeidssituasjonUtenOpptjeningUtland();

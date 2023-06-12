@@ -109,8 +109,11 @@ const erIkkeFrilanser = () => {
 };
 
 export const testArbeidssituasjonFrilanser = () => {
-    contextConfig({ mellomlagring });
     describe('Arbeidssituasjon frilanser', () => {
+        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
+        beforeEach(() => {
+            gotoStep('arbeidssituasjon');
+        });
         erIkkeFrilanser();
         erFrilanserUtenOppdrag();
         erFrilanserMedOppdrag();

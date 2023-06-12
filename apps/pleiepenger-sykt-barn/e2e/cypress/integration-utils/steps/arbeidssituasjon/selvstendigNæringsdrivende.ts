@@ -1,5 +1,6 @@
 import dayjs = require('dayjs');
-import { gotoStep } from '../../contextConfig';
+import { contextConfig, gotoStep } from '../../contextConfig';
+import { mellomlagring } from '../../mocks/mellomlagring';
 import {
     clickFortsett,
     getElement,
@@ -105,6 +106,10 @@ const erSN = () => {
 
 export const testArbeidssituasjonSN = () => {
     describe('Arbeidssituasjon selvstendig næringsdrivende', () => {
+        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
+        beforeEach(() => {
+            gotoStep('arbeidssituasjon');
+        });
         erIkkeSN();
         erSN();
     });

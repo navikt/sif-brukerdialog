@@ -1,5 +1,5 @@
-import dayjs = require('dayjs');
-import { gotoStep } from '../../contextConfig';
+import { contextConfig, gotoStep } from '../../contextConfig';
+import { mellomlagring } from '../../mocks/mellomlagring';
 import { TestType } from '../../types/TestTyper';
 import {
     getElement,
@@ -11,6 +11,7 @@ import {
     selectRadioYes,
 } from '../../utils';
 
+import dayjs = require('dayjs');
 const navnPåVirksomheten = 'Fisk Virksomhet';
 const dato = dayjs().startOf('day').subtract(1, 'day');
 const virksomhetensOrganisasjonsnummer = '999263550'; /** Navs orgnur */
@@ -53,6 +54,10 @@ export const fyllUtArbeidssituasjonUtenlandskNæring = (type: TestType = TestTyp
 
 export const testArbeidssituasjonUtenlandskNæring = () => {
     describe('Arbeidssituasjon utenlandsk næring', () => {
+        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
+        beforeEach(() => {
+            gotoStep('arbeidssituasjon');
+        });
         it('har ikke utenlandsk næring', () => {
             gotoStep('arbeidssituasjon');
             fyllUtArbeidssituasjonUtenUtenlandskNæring();
