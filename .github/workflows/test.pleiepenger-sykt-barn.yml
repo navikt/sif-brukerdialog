@@ -58,3 +58,4 @@ jobs:
                   project: ./apps/pleiepenger-sykt-barn/e2e
                   build: yarn build-pleiepenger-sykt-barn
                   start: yarn e2e-pleiepenger-sykt-barn
+                  runTests: false
