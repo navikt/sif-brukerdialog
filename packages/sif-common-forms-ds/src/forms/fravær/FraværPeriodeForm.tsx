@@ -20,7 +20,12 @@ import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/typ
 import dayjs from 'dayjs';
 import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/atoms/formatted-html-message/FormattedHtmlMessage';
 import { handleDateRangeValidationError } from '../../utils';
-import { isFraværPeriode, mapFormValuesToFraværPeriode, mapFraværPeriodeToFormValues } from './fraværUtilities';
+import {
+    brukHjemmePgaKoronaPeriodeForm,
+    isFraværPeriode,
+    mapFormValuesToFraværPeriode,
+    mapFraværPeriodeToFormValues,
+} from './fraværUtilities';
 import {
     FraværFieldValidationErrors,
     validateErSammeÅr,
@@ -161,6 +166,8 @@ const FraværPeriodeForm = ({
                     const { fraOgMed, tilOgMed } = formik.values;
                     const fromDate: Date | undefined = ISOStringToDate(fraOgMed);
                     const toDate: Date | undefined = ISOStringToDate(tilOgMed);
+
+                    const visKoronaSpm = brukHjemmePgaKoronaPeriodeForm(fromDate, toDate);
                     return (
                         <Form.Form
                             onCancel={onCancel}
@@ -245,30 +252,33 @@ const FraværPeriodeForm = ({
                                 validateErSammeÅr(fraOgMed, tilOgMed) && (
                                     <Alert variant="warning">{begrensTilSammeÅrAlertStripeTekst}</Alert>
                                 )}
+                            {visKoronaSpm && (
+                                <>
+                                    <FormBlock>
+                                        <Form.YesOrNoQuestion
+                                            legend={formLabels.hjemmePgaKorona}
+                                            name={FraværPeriodeFormFields.hjemmePgaKorona}
+                                            validate={getYesOrNoValidator()}
+                                            description={
+                                                <ExpandableInfo title={intlHelper(intl, 'info.smittevern.tittel')}>
+                                                    <FormattedHtmlMessage id="info.smittevern.info.html" />
+                                                </ExpandableInfo>
+                                            }
+                                        />
+                                    </FormBlock>
 
-                            <FormBlock>
-                                <Form.YesOrNoQuestion
-                                    legend={formLabels.hjemmePgaKorona}
-                                    name={FraværPeriodeFormFields.hjemmePgaKorona}
-                                    validate={getYesOrNoValidator()}
-                                    description={
-                                        <ExpandableInfo title={intlHelper(intl, 'info.smittevern.tittel')}>
-                                            <FormattedHtmlMessage id="info.smittevern.info.html" />
-                                        </ExpandableInfo>
-                                    }
-                                />
-                            </FormBlock>
-
-                            {formik.values.hjemmePgaKorona === YesOrNo.YES && (
-                                <FormBlock>
-                                    <Form.RadioGroup
-                                        legend={formLabels.årsak}
-                                        name={FraværPeriodeFormFields.årsak}
-                                        validate={getRequiredFieldValidator()}
-                                        radios={fraværÅrsakRadios}
-                                        description={<ÅrsakInfo />}
-                                    />
-                                </FormBlock>
+                                    {formik.values.hjemmePgaKorona === YesOrNo.YES && (
+                                        <FormBlock>
+                                            <Form.RadioGroup
+                                                legend={formLabels.årsak}
+                                                name={FraværPeriodeFormFields.årsak}
+                                                validate={getRequiredFieldValidator()}
+                                                radios={fraværÅrsakRadios}
+                                                description={<ÅrsakInfo />}
+                                            />
+                                        </FormBlock>
+                                    )}
+                                </>
                             )}
                         </Form.Form>
                     );
