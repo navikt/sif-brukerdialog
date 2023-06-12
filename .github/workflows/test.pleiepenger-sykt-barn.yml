@@ -57,6 +57,7 @@ jobs:
                   wait-on: 'http://localhost:8080'
                   wait-on-timeout: 60
                   runTests: false
+            - run: yarn e2e-psb
             # - name: Run cypress tests
             # uses: cypress-io/github-action@v5 # use the explicit version number
             # env:

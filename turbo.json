@@ -17,6 +17,9 @@
             "dependsOn": ["^build-package"]
         },
         "ci": {
+            "outputs": []
+        },
+        "cypress-run": {
             "outputs": [],
             "dependsOn": ["^build-package", "^build-app"]
         },
@@ -65,6 +68,10 @@
         "build-pleiepenger-sykt-barn": {
             "outputs": [],
             "dependsOn": ["^build-package"]
+        },
+        "e2e-psb": {
+            "outputs": [],
+            "dependsOn": ["^build-pleiepenger-sykt-barn"]
         },
         "e2e-pleiepenger-sykt-barn": {
             "outputs": [],
