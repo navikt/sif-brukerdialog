@@ -43,19 +43,32 @@ jobs:
                   node-version: 16
                   cache: 'yarn'
 
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4 # use the explicit version number
+            - name: Start cypress tests
+              uses: cypress-io/github-action@v5
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
                   FRONTEND_API_PATH: http://localhost:8082/
-                  # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-                  # in GitHub repo → Settings → Secrets → Actions
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-                  # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   project: ./apps/pleiepenger-sykt-barn/e2e
                   build: yarn build-pleiepenger-sykt-barn
                   start: yarn e2e-pleiepenger-sykt-barn
+                  wait-on: 'http://localhost:8080'
+                  wait-on-timeout: 60
                   runTests: false
+            # - name: Run cypress tests
+            # uses: cypress-io/github-action@v5 # use the explicit version number
+            # env:
+            #     DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+            #     PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
+            #     FRONTEND_API_PATH: http://localhost:8082/
+            #     # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+            #     # in GitHub repo → Settings → Secrets → Actions
+            #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            #     # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+            #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            # with:
+            #     project: ./apps/pleiepenger-sykt-barn/e2e
+            #     build: yarn build-pleiepenger-sykt-barn
+            #     start: yarn e2e-pleiepenger-sykt-barn
