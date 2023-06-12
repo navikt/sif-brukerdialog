@@ -53,24 +53,26 @@ export const fyllUtArbeidssituasjonOpptjeningUtland = (type: TestType = TestType
 };
 
 export const testArbeidssituasjonOpptjeningUtland = () => {
-    it('har ikke utenlandsk opptjening', () => {
-        gotoStep('arbeidssituasjon');
-        fyllUtArbeidssituasjonUtenOpptjeningUtland();
-        gåTilOppsummeringFraArbeidssituasjon();
+    describe('Arbeidssituasjonopptjening utland', () => {
+        it('har ikke utenlandsk opptjening', () => {
+            gotoStep('arbeidssituasjon');
+            fyllUtArbeidssituasjonUtenOpptjeningUtland();
+            gåTilOppsummeringFraArbeidssituasjon();
 
-        const el = getTestElement('oppsummering-opptjeningUtland-nei');
-        el.should('contain', 'Nei');
-    });
-    it('har utenlandsk opptjening', () => {
-        gotoStep('arbeidssituasjon');
-        fyllUtArbeidssituasjonMedOpptjeningUtland();
-        gåTilOppsummeringFraArbeidssituasjon();
+            const el = getTestElement('oppsummering-opptjeningUtland-nei');
+            el.should('contain', 'Nei');
+        });
+        it('har utenlandsk opptjening', () => {
+            gotoStep('arbeidssituasjon');
+            fyllUtArbeidssituasjonMedOpptjeningUtland();
+            gåTilOppsummeringFraArbeidssituasjon();
 
-        const el = getTestElement('oppsummering-opptjeningUtland');
-        el.should('contain', expectedOpptjeningDato);
-        el.should(
-            'contain',
-            `Jobbet i ${expectedOpptjeningLand} som ${expectedOpptjeningType} hos ${arbeidsgiverenAnnetEQS}`
-        );
+            const el = getTestElement('oppsummering-opptjeningUtland');
+            el.should('contain', expectedOpptjeningDato);
+            el.should(
+                'contain',
+                `Jobbet i ${expectedOpptjeningLand} som ${expectedOpptjeningType} hos ${arbeidsgiverenAnnetEQS}`
+            );
+        });
     });
 };

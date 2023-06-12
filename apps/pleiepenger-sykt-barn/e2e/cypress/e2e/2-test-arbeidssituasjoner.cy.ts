@@ -8,14 +8,14 @@ import { testArbeidssituasjonOpptjeningUtland } from '../integration-utils/steps
 
 describe('Arbeidssituasjoner', () => {
     contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
-    context('Starter med mellomlagring og fyller ut arbeidssituasjon', () => {
-        it('henter mellomlagring og annen info', () => {
-            cy.wait(['@getMellomlagring', '@getSøker', '@getBarn']);
-        });
-        testArbeidssituasjonAnsatt();
-        testArbeidssituasjonFrilanser();
-        testArbeidssituasjonSN();
-        testArbeidssituasjonUtenlandskNæring();
-        testArbeidssituasjonOpptjeningUtland();
+
+    it('henter mellomlagring og annen info', () => {
+        cy.wait(['@getMellomlagring', '@getSøker', '@getBarn']);
     });
+
+    testArbeidssituasjonAnsatt();
+    testArbeidssituasjonFrilanser();
+    testArbeidssituasjonSN();
+    testArbeidssituasjonUtenlandskNæring();
+    testArbeidssituasjonOpptjeningUtland();
 });

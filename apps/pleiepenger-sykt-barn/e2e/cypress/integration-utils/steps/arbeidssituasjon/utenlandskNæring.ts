@@ -52,27 +52,29 @@ export const fyllUtArbeidssituasjonUtenlandskNæring = (type: TestType = TestTyp
 };
 
 export const testArbeidssituasjonUtenlandskNæring = () => {
-    it('har ikke utenlandsk næring', () => {
-        gotoStep('arbeidssituasjon');
-        fyllUtArbeidssituasjonUtenUtenlandskNæring();
-        gåTilOppsummeringFraArbeidssituasjon();
+    describe('Arbeidssituasjon utenlandsk næring', () => {
+        it('har ikke utenlandsk næring', () => {
+            gotoStep('arbeidssituasjon');
+            fyllUtArbeidssituasjonUtenUtenlandskNæring();
+            gåTilOppsummeringFraArbeidssituasjon();
 
-        const el = getTestElement('arbeidssituasjon-harUtenlandskNæringSvar');
-        el.should('contain', 'Nei');
-    });
+            const el = getTestElement('arbeidssituasjon-harUtenlandskNæringSvar');
+            el.should('contain', 'Nei');
+        });
 
-    it('har utenlandsk næring', () => {
-        gotoStep('arbeidssituasjon');
-        fyllUtArbeidssituasjonMedUtenlandskNæring();
-        gåTilOppsummeringFraArbeidssituasjon();
+        it('har utenlandsk næring', () => {
+            gotoStep('arbeidssituasjon');
+            fyllUtArbeidssituasjonMedUtenlandskNæring();
+            gåTilOppsummeringFraArbeidssituasjon();
 
-        const el = getTestElement('arbeidssituasjon-utenlandskNæring');
-        el.should('contain', `Navn: ${navnPåVirksomheten}`);
-        el.should('contain', `Næringstype: ${expectedNæringstype}`);
-        el.should(
-            'contain',
-            `Registrert i ${expectedutenlandskNæringLand} (organisasjonsnummer ${virksomhetensOrganisasjonsnummer}).`
-        );
-        el.should('contain', `Startet ${fraDatoTilDato} (pågående).`);
+            const el = getTestElement('arbeidssituasjon-utenlandskNæring');
+            el.should('contain', `Navn: ${navnPåVirksomheten}`);
+            el.should('contain', `Næringstype: ${expectedNæringstype}`);
+            el.should(
+                'contain',
+                `Registrert i ${expectedutenlandskNæringLand} (organisasjonsnummer ${virksomhetensOrganisasjonsnummer}).`
+            );
+            el.should('contain', `Startet ${fraDatoTilDato} (pågående).`);
+        });
     });
 };

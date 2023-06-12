@@ -74,7 +74,6 @@ const sluttetFørSøknadsperiodeTest = () => {
 
 export const testArbeidssituasjonAnsatt = () => {
     describe('Arbeidssituasjon ansatt', () => {
-        contextConfig({ mellomlagring, step: 'arbeidssituasjon' });
         ansattHeleSøknadsperiodeTest();
         ansattISøknadsperiodeTest();
         sluttetFørSøknadsperiodeTest();
