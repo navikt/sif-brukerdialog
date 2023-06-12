@@ -1,4 +1,5 @@
 import { cyApiMockData } from './cyApiMockData';
+import { mellomlagring } from './mocks/mellomlagring';
 
 const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
 
@@ -15,6 +16,7 @@ export const gotoStep = (step: string) => {
 };
 
 export const gotoArbeidssituasjonStep = () => {
+    cy.intercept(`GET`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring).as('getMellomlagring');
     cy.visit(getUrlForStep('arbeidssituasjon'));
     cy.wait(200);
     cy.wait('@getArbeidsgivere');
