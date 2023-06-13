@@ -1,30 +1,30 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { SelvstendigApiData } from '../../../../types/søknadApiData/SelvstendigApiData';
 import { JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetSummary';
+import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
 
 interface Props {
-    selvstendig: SelvstendigApiData;
+    virksomhet?: VirksomhetApiData;
 }
 
-const SelvstendigOppsummering: React.FC<Props> = ({ selvstendig }) => {
+const SelvstendigOppsummering: React.FC<Props> = ({ virksomhet }) => {
     const intl = useIntl();
-    const { harInntektSomSelvstendig } = selvstendig;
+
     return (
         <SummarySection header={intlHelper(intl, 'summary.virksomhet.header')}>
             <SummaryBlock header={intlHelper(intl, 'summary.virksomhet.harDuHattInntekt.header')}>
-                <JaNeiSvar harSvartJa={harInntektSomSelvstendig === true} />
+                <JaNeiSvar harSvartJa={virksomhet !== undefined} />
             </SummaryBlock>
 
-            {harInntektSomSelvstendig && (
+            {virksomhet && (
                 <>
                     <SummaryBlock header={intlHelper(intl, 'summary.virksomhet.harFlereVirksomheter.header')}>
-                        <JaNeiSvar harSvartJa={selvstendig.virksomhet.harFlereAktiveVirksomheter} />
+                        <JaNeiSvar harSvartJa={virksomhet.harFlereAktiveVirksomheter} />
                     </SummaryBlock>
                     <SummaryBlock header={intlHelper(intl, 'summary.virksomhet.virksomhetInfo.tittel')}>
-                        <VirksomhetSummary virksomhet={selvstendig.virksomhet} />
+                        <VirksomhetSummary virksomhet={virksomhet} />
                     </SummaryBlock>
                 </>
             )}

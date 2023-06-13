@@ -5,7 +5,7 @@ import { DatoSvar, JaNeiSvar, SummaryBlock, SummarySection } from '@navikt/sif-c
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
-    frilans: FrilansApiData;
+    frilans?: FrilansApiData;
 }
 
 const FrilansOppsummering: React.FC<Props> = ({ frilans }) => {
@@ -17,7 +17,7 @@ const FrilansOppsummering: React.FC<Props> = ({ frilans }) => {
                 <JaNeiSvar harSvartJa={frilans !== undefined} />
             </SummaryBlock>
 
-            {frilans?.harInntektSomFrilanser && (
+            {frilans && (
                 <>
                     <SummaryBlock header={intlHelper(intl, 'frilanser.summary.nårStartet.header')}>
                         <DatoSvar apiDato={frilans.startdato} />

@@ -1,20 +1,17 @@
 import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/mapVirksomhetToApiData';
-import { SelvstendigApiData } from '../../types/søknadApiData/SelvstendigApiData';
 import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
+import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
 
-export const getSelvstendigApiDataFromSøknadsdata = (selvstendig: ArbeidSelvstendigSøknadsdata): SelvstendigApiData => {
+export const getSelvstendigApiDataFromSøknadsdata = (
+    selvstendig: ArbeidSelvstendigSøknadsdata
+): VirksomhetApiData | undefined => {
     switch (selvstendig.type) {
         case 'erIkkeSN':
-            return {
-                harInntektSomSelvstendig: false,
-            };
+            return undefined;
 
         case 'erSN':
             const { virksomhet, harFlereVirksomheter } = selvstendig;
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
-            return {
-                harInntektSomSelvstendig: true,
-                virksomhet: virksomhetApi,
-            };
+            return virksomhetApi;
     }
 };

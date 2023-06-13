@@ -3,7 +3,7 @@ import { ApiAktivitet } from '../AktivitetFravær';
 import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import { ISODate } from '@navikt/sif-common-utils/lib/types';
 import { FrilansApiData } from './FrilansApiData';
-import { SelvstendigApiData } from './SelvstendigApiData';
+import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
 
 export type ISO8601Duration = string;
 
@@ -37,6 +37,15 @@ export interface ApiBarn {
     type: RegistrertBarnTypeApi | BarnType;
 }
 
+export type YesNoSvar = boolean;
+
+export type Spørsmål = string;
+
+export interface YesNoSpørsmålOgSvar {
+    spørsmål: Spørsmål;
+    svar: YesNoSvar;
+}
+
 export interface SøknadApiData {
     id: string;
     språk: Locale;
@@ -46,6 +55,8 @@ export interface SøknadApiData {
         harForståttRettigheterOgPlikter: boolean;
     };
 
+    spørsmål: YesNoSpørsmålOgSvar[];
+
     barn: ApiBarn[]; // Dine barn
     harDekketTiFørsteDagerSelv?: boolean; // Dine barn
 
@@ -54,8 +65,8 @@ export interface SøknadApiData {
 
     vedlegg: string[]; // legeerklæring
 
-    frilans: FrilansApiData; // arbeidssituasjon frilans
-    selvstendigNæringsdrivende: SelvstendigApiData; // arbeidssituasjon
+    frilans?: FrilansApiData; // arbeidssituasjon frilans
+    selvstendigNæringsdrivende?: VirksomhetApiData; // arbeidssituasjon
 
     bosteder: UtenlandsoppholdApiData[]; // medlemskap
 }

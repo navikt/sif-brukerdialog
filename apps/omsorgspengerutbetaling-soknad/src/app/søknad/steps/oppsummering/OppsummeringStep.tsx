@@ -64,7 +64,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, registrerteBarn);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, registrerteBarn, intl);
 
     if (!apiData) {
         return (
@@ -126,7 +126,7 @@ const OppsummeringStep = () => {
                                 </SummarySection>
 
                                 <FrilansOppsummering frilans={apiData.frilans} />
-                                <SelvstendigOppsummering selvstendig={apiData.selvstendigNæringsdrivende} />
+                                <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
                                 <MedlemskapOppsummering bosteder={apiData.bosteder} />
                                 <VedleggOppsummering
                                     apiData={apiData}

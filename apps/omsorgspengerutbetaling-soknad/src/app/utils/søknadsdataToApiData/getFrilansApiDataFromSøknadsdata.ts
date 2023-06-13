@@ -1,16 +1,13 @@
 import { FrilansApiData } from '../../types/søknadApiData/FrilansApiData';
 import { ArbeidFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 
-export const getFrilansApiDataFromSøknadsdata = (frilans: ArbeidFrilansSøknadsdata): FrilansApiData => {
+export const getFrilansApiDataFromSøknadsdata = (frilans: ArbeidFrilansSøknadsdata): FrilansApiData | undefined => {
     switch (frilans.type) {
         case 'erIkkeFrilanser':
-            return {
-                harInntektSomFrilanser: false,
-            };
+            return undefined;
 
         case 'sluttetISøknadsperiode':
             return {
-                harInntektSomFrilanser: true,
                 startdato: frilans.startdato,
                 jobberFortsattSomFrilans: false,
                 sluttdato: frilans.sluttdato,
@@ -18,7 +15,6 @@ export const getFrilansApiDataFromSøknadsdata = (frilans: ArbeidFrilansSøknads
 
         case 'pågående':
             return {
-                harInntektSomFrilanser: true,
                 startdato: frilans.startdato,
                 jobberFortsattSomFrilans: true,
             };
