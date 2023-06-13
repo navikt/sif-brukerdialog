@@ -29,15 +29,21 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=omsorgspengesoknad
 
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
+            - name: Build and start e2e server
+              uses: cypress-io/github-action@v5
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspenger
               with:
                   project: ./apps/omsorgspengesoknad/e2e
                   build: yarn build-omsorgspengesoknad
-                  start: yarn e2e-omsorgspengesoknad
+                  start: yarn turbo start-e2e-server --filter=omsorgspengesoknad
+                  wait-on: 'http://localhost:8080'
+                  wait-on-timeout: 60
+                  runTests: false
+
+            - name: Run cypress tests
+              run: yarn turbo cypress-run --filter=omsorgspengesoknad
 
     deploy-to-prod:
         name: Deploy omsorgspengesøknad to prod
