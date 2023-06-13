@@ -3,7 +3,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { DateRange } from '@navikt/sif-common-utils';
+import { DateRange, date99YearsFromNow } from '@navikt/sif-common-utils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import {
@@ -202,6 +202,7 @@ const ArbeidssituasjonFrilans = ({
                                                     showYearSelector={true}
                                                     minDate={søknadsperiode.from}
                                                     maxDate={søknadsperiode.to}
+                                                    dayPickerProps={{ defaultMonth: søknadsperiode.to }}
                                                     data-testid="stønadGodtgjørelse-startdato"
                                                     validate={getstønadGodtgjørelseStartdatoValidator(
                                                         stønadGodtgjørelse,
@@ -254,6 +255,7 @@ const ArbeidssituasjonFrilans = ({
                                                     showYearSelector={true}
                                                     minDate={søknadsperiode.from}
                                                     maxDate={søknadsperiode.to}
+                                                    dayPickerProps={{ defaultMonth: søknadsperiode.to }}
                                                     data-testid="stønadGodtgjørelse-sluttdato"
                                                     validate={getstønadGodtgjørelseSluttdatoValidator(
                                                         stønadGodtgjørelse,
@@ -376,6 +378,8 @@ const ArbeidssituasjonFrilans = ({
                                         label={intlHelper(intl, `frilanser.nårStartet.${getFrilansTypeTekst()}.spm`)}
                                         showYearSelector={true}
                                         maxDate={søknadsdato}
+                                        minDate={date99YearsFromNow}
+                                        dayPickerProps={{ defaultMonth: søknadsperiode.to }}
                                         validate={(value) => {
                                             const error = getFrilanserStartdatoValidator(
                                                 formValues,

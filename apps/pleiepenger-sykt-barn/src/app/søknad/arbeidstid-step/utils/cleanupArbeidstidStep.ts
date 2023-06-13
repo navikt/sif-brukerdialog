@@ -75,9 +75,6 @@ export const cleanupArbeidIPeriode = (
     if (config.isIncluded(ArbeidIPeriodeFormField.timerEllerProsent)) {
         arbeid.timerEllerProsent = arbeidIPerioden.timerEllerProsent;
     }
-    if (config.isIncluded(ArbeidIPeriodeFormField.timerEllerProsent)) {
-        arbeid.timerEllerProsent = arbeidIPerioden.timerEllerProsent;
-    }
     if (arbeid.erLiktHverUke === YesOrNo.YES) {
         return arbeid.timerEllerProsent === TimerEllerProsent.PROSENT
             ? { ...arbeid, prosentAvNormalt: arbeidIPerioden.prosentAvNormalt, arbeidsuker: undefined }
@@ -120,9 +117,13 @@ export const cleanupArbeidIPeriodeFrilans = (
         if (config.isIncluded(ArbeidIPeriodeFormField.erLiktHverUke)) {
             arbeid.erLiktHverUke = arbeidIPerioden.erLiktHverUke;
         }
-
+        if (config.isIncluded(ArbeidIPeriodeFormField.timerEllerProsent)) {
+            arbeid.timerEllerProsent = arbeidIPerioden.timerEllerProsent;
+        }
         if (arbeid.erLiktHverUke === YesOrNo.YES) {
-            return { ...arbeid, snittTimerPerUke: arbeidIPerioden.snittTimerPerUke, arbeidsuker: undefined };
+            return arbeid.timerEllerProsent === TimerEllerProsent.PROSENT
+                ? { ...arbeid, prosentAvNormalt: arbeidIPerioden.prosentAvNormalt, arbeidsuker: undefined }
+                : { ...arbeid, snittTimerPerUke: arbeidIPerioden.snittTimerPerUke, arbeidsuker: undefined };
         } else {
             return {
                 ...arbeid,
@@ -222,11 +223,7 @@ export const cleanupArbeidstidSelvstendigNæringdrivende = (
             selvstendig_arbeidsforhold?.arbeidIPeriode &&
             periodeSomSelvstendigNæringsdrivende &&
             selvstendig_arbeidsforhold.normalarbeidstid
-                ? cleanupArbeidIPeriode(
-                      periodeSomSelvstendigNæringsdrivende,
-                      selvstendig_arbeidsforhold?.arbeidIPeriode,
-                      normalarbeidstid
-                  )
+                ? cleanupArbeidIPeriode(søknadsperiode, selvstendig_arbeidsforhold?.arbeidIPeriode, normalarbeidstid)
                 : undefined,
     };
 };

@@ -18,7 +18,6 @@ import { getPeriodeSomSelvstendigInnenforPeriode } from '../../../utils/selvsten
 import SøknadFormStep from '../../SøknadFormStep';
 import { useSøknadsdataContext } from '../../SøknadsdataContext';
 import { StepCommonProps } from '../../../types/StepCommonProps';
-// import { cleanupArbeidstidStep } from '../utils/cleanupArbeidstidStep';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
 import { BodyLong } from '@navikt/ds-react';
 
