@@ -42,7 +42,7 @@ jobs:
                   node-version: 16
                   cache: 'yarn'
 
-            - name: Start e2e server
+            - name: Build and start e2e server
               uses: cypress-io/github-action@v5
               env:
                   API_URL: http://localhost:8089/
