@@ -29,15 +29,21 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=omsorgsdager-aleneomsorg-dialog
 
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
+            - name: Build and start e2e server
+              uses: cypress-io/github-action@v5
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg
               with:
                   project: ./apps/omsorgsdager-aleneomsorg-dialog/e2e
                   build: yarn build-omsorgsdager-aleneomsorg-dialog
-                  start: yarn e2e-omsorgsdager-aleneomsorg-dialog
+                  start: yarn turbo start-e2e-server --filter=omsorgsdager-aleneomsorg-dialog
+                  wait-on: 'http://localhost:8080'
+                  wait-on-timeout: 60
+                  runTests: false
+
+            - name: Run cypress tests
+              run: yarn turbo cypress-run --filter=omsorgsdager-aleneomsorg-dialog
 
     deploy-to-prod:
         name: Deploy omsorgsdager-aleneomsorg-dialog to prod
