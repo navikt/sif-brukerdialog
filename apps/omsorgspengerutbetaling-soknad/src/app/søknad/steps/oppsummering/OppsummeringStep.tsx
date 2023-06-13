@@ -94,8 +94,11 @@ const OppsummeringStep = () => {
                     apiData
                         ? sendSøknad({
                               ...apiData,
-                              harBekreftetOpplysninger:
-                                  values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                              bekreftelser: {
+                                  harForståttRettigheterOgPlikter: apiData.bekreftelser.harForståttRettigheterOgPlikter,
+                                  harBekreftetOpplysninger:
+                                      values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                              },
                           })
                         : undefined;
                 }}

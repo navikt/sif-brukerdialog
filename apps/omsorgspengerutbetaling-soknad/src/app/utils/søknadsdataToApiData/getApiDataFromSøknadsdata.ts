@@ -36,7 +36,11 @@ export const getApiDataFromSøknadsdata = (
     return {
         id,
         språk,
-        harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
+        bekreftelser: {
+            harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
+            harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
+        },
+
         barn: getDineBarnApiDataFromSøknadsdata(dineBarn, registrerteBarn),
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravaer),
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
@@ -44,6 +48,5 @@ export const getApiDataFromSøknadsdata = (
         utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
         vedlegg: getVedleggApiData(søknadsdata.legeerklæring?.vedlegg),
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
-        harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
     };
 };

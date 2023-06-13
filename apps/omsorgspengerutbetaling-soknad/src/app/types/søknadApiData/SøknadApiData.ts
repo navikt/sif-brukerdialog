@@ -48,7 +48,10 @@ export interface SøknadApiData {
     id: string;
     språk: Locale;
 
-    harForståttRettigheterOgPlikter: boolean;
+    bekreftelser: {
+        harBekreftetOpplysninger: boolean;
+        harForståttRettigheterOgPlikter: boolean;
+    };
 
     barn: ApiBarn[]; // Dine barn
     harDekketTiFørsteDagerSelv?: boolean; // Dine barn
@@ -62,6 +65,4 @@ export interface SøknadApiData {
     selvstendigNæringsdrivende: SelvstendigApiData; // arbeidssituasjon
 
     medlemskap: MedlemskapApiData; // medlemskap
-
-    harBekreftetOpplysninger: boolean;
 }
