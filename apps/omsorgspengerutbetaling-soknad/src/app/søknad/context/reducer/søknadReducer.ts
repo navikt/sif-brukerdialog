@@ -65,6 +65,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+            case SøknadContextActionKeys.SET_SØKNAD_SMITTEVERN_DOKUMENTER:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        vedlegg_smittevernhensyn: {
+                            ...action.payload,
+                        },
+                    },
+                };
             case SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING:
                 return {
                     ...state,

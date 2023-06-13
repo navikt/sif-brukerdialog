@@ -35,6 +35,12 @@ export const oppsummeringMessages: MessageFileFormat = {
         'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp',
         'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
+        'step.oppsummering.dokumenter.header': 'Vedlegg',
+        'step.oppsummering.dokumenter.ingenVedlegg': 'Ingen vedlegg er lastet opp',
+
+        'step.oppsummering.dokumenterSmittevern.header': 'Bekreftelse fra lege',
+        'step.oppsummering.dokumenterStengtBhgSkole.header': 'Bekreftelse fra barnehage eller skole',
+
         'step.oppsummering.fravær.årsak': 'Årsak: {årsak}.',
         'step.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
         'step.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',

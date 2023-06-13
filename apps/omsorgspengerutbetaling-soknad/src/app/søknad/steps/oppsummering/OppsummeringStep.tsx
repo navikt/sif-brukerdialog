@@ -19,13 +19,14 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
-import VedleggOppsummering from './components/VedleggOppsummering';
+import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import DineBarnOppsummering from './components/DineBarnOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import FrilansOppsummering from './components/FrilansOppsummering';
 import SelvstendigOppsummering from './components/SelvstendigOppsummering';
 import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
 import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
+import VedleggOppsummering from './components/VedleggOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -128,10 +129,18 @@ const OppsummeringStep = () => {
                                 <FrilansOppsummering frilans={apiData.frilans} />
                                 <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
                                 <MedlemskapOppsummering bosteder={apiData.bosteder} />
-                                <VedleggOppsummering
-                                    apiData={apiData}
-                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
-                                />
+                                {søknadsdata.legeerklæring && (
+                                    <LegeerklæringOppsummering
+                                        apiData={apiData}
+                                        legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                    />
+                                )}
+                                {søknadsdata.vedlegg_smittevernhensyn && (
+                                    <VedleggOppsummering
+                                        apiData={apiData}
+                                        smittevernDokumenterSøknadsdata={søknadsdata.vedlegg_smittevernhensyn}
+                                    />
+                                )}
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}
                                     label={

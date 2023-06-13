@@ -17,6 +17,7 @@ import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessag
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 import { fraværStepMessages } from '../søknad/steps/fravær/fraværStepMessages';
 import annetBarnMessages from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/annetBarnMessages';
+import { smittevernDokumenterMessages } from '../søknad/steps/smittevern-dokumenter/smittevernDokumenterMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -28,6 +29,7 @@ const bokmålstekster = {
     ...bostedUtlandMessages.nb,
     ...fraværStepMessages.nb,
     ...fraværMessages.nb,
+    ...smittevernDokumenterMessages.nb,
     ...arbeidssituasjonMessages.nb,
     ...virksomhetMessages.nb,
     ...fraværFraMessages.nb,

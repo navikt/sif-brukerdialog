@@ -29,6 +29,8 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
     const erFrilanser = frilans_erFrilanser === YesOrNo.YES;
     const harSluttetSomFrilanser = frilans_jobberFortsattSomFrilans === YesOrNo.NO;
 
+    // TODO Riktig validerig angående søknadsperiode?
+
     return (
         <>
             <YesOrNoQuestion
