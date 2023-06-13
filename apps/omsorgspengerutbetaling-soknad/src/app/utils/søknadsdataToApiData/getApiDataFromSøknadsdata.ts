@@ -52,6 +52,9 @@ export const getApiDataFromSøknadsdata = (
         });
     }
 
+    const harDekketTiFørsteDagerSelv =
+        dineBarn.type === 'minstEtt12årEllerYngre' && dineBarn.harDekketTiFørsteDagerSelv === true;
+
     return {
         id,
         språk,
@@ -61,6 +64,7 @@ export const getApiDataFromSøknadsdata = (
         },
         spørsmål: yesOrNoQuestions,
         barn: getDineBarnApiDataFromSøknadsdata(dineBarn, registrerteBarn),
+        harDekketTiFørsteDagerSelv,
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravaer),
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
