@@ -42,8 +42,8 @@ jobs:
                   node-version: 16
                   cache: 'yarn'
 
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
+            - name: Start e2e server
+              uses: cypress-io/github-action@v5
               env:
                   API_URL: http://localhost:8089/
                   FRONTEND_API_PATH: http://localhost:8089/
@@ -54,5 +54,9 @@ jobs:
               with:
                   project: ./apps/sif-ettersending/e2e
                   build: yarn build-sif-ettersending
-                  start: yarn e2e-sif-ettersending
-                  record: false
+                  start: yarn turbo start-e2e-server --filter=@navikt/sif-ettersending
+                  wait-on: 'http://localhost:8080'
+                  wait-on-timeout: 60
+                  runTests: false
+            - name: Run cypress tests
+              run: yarn turbo cypress-run --filter=@navikt/sif-ettersending
