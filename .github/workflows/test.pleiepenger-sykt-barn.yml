@@ -50,6 +50,7 @@ jobs:
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
                   FRONTEND_API_PATH: http://localhost:8082/
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
               with:
                   project: ./apps/pleiepenger-sykt-barn/e2e
                   build: yarn build-pleiepenger-sykt-barn
@@ -60,3 +61,5 @@ jobs:
 
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=pleiepenger-sykt-barn
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
