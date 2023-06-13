@@ -4547,7 +4547,7 @@ __metadata:
     "@portabletext/react": 3.0.2
     "@sanity/client": 5.4.2
     "@types/node": 20.2.5
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     config: "*"
     copyfiles: 2.4.1
@@ -4685,7 +4685,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.2
     "@types/object-hash": 3.0.2
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     "@types/react-router-dom": 5.3.3
     autoprefixer: 10.4.14
@@ -4776,7 +4776,7 @@ __metadata:
     "@types/jest": 29.5.2
     "@types/js-cookie": 3.0.3
     "@types/object-hash": 3.0.2
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-collapse": 5.0.1
     "@types/react-document-title": 2.0.5
     "@types/react-dom": 18.2.4
@@ -4897,7 +4897,7 @@ __metadata:
     "@navikt/sif-common-utils": "*"
     "@testing-library/react": 14.0.0
     "@types/object-hash": 3.0.2
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     "@types/react-router-dom": 5.3.3
     axios: 1.4.0
@@ -4975,7 +4975,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.2
     "@types/object-hash": 3.0.2
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     "@types/react-router-dom": 5.3.3
     axios: 1.4.0
@@ -5072,7 +5072,7 @@ __metadata:
   dependencies:
     "@types/amplitude-js": 8.16.2
     "@types/node": 20.2.5
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     amplitude-js: 8.21.9
     config: "*"
     constate: 3.3.2
@@ -5117,7 +5117,7 @@ __metadata:
     "@storybook/testing-library": 0.1.0
     "@types/jest": 29.5.2
     "@types/node": 20.2.5
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-collapse": 5.0.1
     "@types/react-dom": 18.2.4
     axios: 1.4.0
@@ -5187,7 +5187,7 @@ __metadata:
     "@storybook/testing-library": 0.1.0
     "@types/jest": 29.5.2
     "@types/node": 20.2.5
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     "@types/uuid": 9.0.2
     classnames: 2.3.2
@@ -5249,7 +5249,7 @@ __metadata:
     "@testing-library/user-event": 14.4.3
     "@types/jest": 29.5.2
     "@types/node": 20.2.5
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     "@types/react-responsive": 8.0.5
     axios: 1.4.0
@@ -5335,7 +5335,7 @@ __metadata:
     "@testing-library/user-event": 14.4.3
     "@types/jest": 29.5.2
     "@types/node": 20.2.5
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     "@types/react-modal": 3.16.0
     axios: 1.4.0
@@ -5384,7 +5384,7 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@types/jest": 29.5.2
     "@types/node": 20.2.5
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-dom": 18.2.4
     "@types/uuid": 9.0.2
     config: "*"
@@ -5425,7 +5425,7 @@ __metadata:
     "@navikt/sif-common-utils": "*"
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.2
-    "@types/react": 18.2.9
+    "@types/react": 18.2.12
     "@types/react-collapse": 5.0.1
     "@types/react-dom": 18.2.4
     "@types/react-router-dom": 5.3.3
@@ -8763,14 +8763,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.9":
-  version: 18.2.9
-  resolution: "@types/react@npm:18.2.9"
+"@types/react@npm:18.2.12":
+  version: 18.2.12
+  resolution: "@types/react@npm:18.2.12"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: f155256171a2d701eb962a1d3aa2a1c9ee36d9dd4a4aecb911d29e50717aab1a76914aef25242665147c455b9e8d081d1a60275d13ca81075c148ebd6607414a
+  checksum: ad85a7eadaf1b35cfeee9f715b39311420ff46d46e0650377d918b3f888c2e47416037da4a765e1dccd3d1916abd54c105a3bee803c971ba56c955a7768ce976
   languageName: node
   linkType: hard
 
