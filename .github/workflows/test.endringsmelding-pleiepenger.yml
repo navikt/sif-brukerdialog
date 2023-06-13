@@ -9,6 +9,7 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/app.endringsmelding-pleiepenger.yml
+            - .github/workflows/test.endringsmelding-pleiepenger.yml
 
 env:
     APP_NAME: 'endringsmelding-pleiepenger'
