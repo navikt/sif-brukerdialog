@@ -135,10 +135,13 @@ const OppsummeringStep = () => {
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}
                                     />
                                 )}
-                                {søknadsdata.vedlegg_smittevernhensyn && (
+
+                                {/* TODO VIS KUN HVIS SØKER for 2023*/}
+                                {(søknadsdata.vedlegg_smittevernhensyn || søknadsdata.vedlegg_stengtSkoleBhg) && (
                                     <VedleggOppsummering
                                         apiData={apiData}
                                         smittevernDokumenterSøknadsdata={søknadsdata.vedlegg_smittevernhensyn}
+                                        stengtBhgSkoleDokumenterSøknadsdata={søknadsdata.vedlegg_stengtSkoleBhg}
                                     />
                                 )}
                                 <ConfirmationCheckbox

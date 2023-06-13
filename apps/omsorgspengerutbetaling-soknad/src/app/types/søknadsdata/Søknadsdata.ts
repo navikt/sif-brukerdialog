@@ -6,10 +6,12 @@ import { ArbeidSøknadsdata } from './ArbeidSøknadsdata';
 import { FraværFraSøknadsdata } from './FraværFraSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 import { SmittevernDokumenterSøknadsdata } from './SmittevernDokumenterSøknadsdata';
+import { StengtBhgSkoleDokumenterSøknadsdata } from './StengtBhgSkoleDokumenterSøknadsdata';
 
 export * from './DineBarnSøknadsdata';
 export * from './FraværSøknadsdata';
 export * from './SmittevernDokumenterSøknadsdata';
+export * from './StengtBhgSkoleDokumenterSøknadsdata';
 export * from './LegeerklæringSøknadsdata';
 export * from './ArbeidSøknadsdata';
 export * from './FraværFraSøknadsdata';
@@ -23,6 +25,7 @@ export interface Søknadsdata {
     [StepId.DINE_BARN]?: DineBarnSøknadsdata;
     [StepId.FRAVÆR]?: FraværSøknadsdata;
     [StepId.DOKUMENTER_SMITTEVERNHENSYN]?: SmittevernDokumenterSøknadsdata;
+    [StepId.DOKUMENTER_STENGT_SKOLE_BHG]?: StengtBhgSkoleDokumenterSøknadsdata;
     [StepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;
     [StepId.ARBEIDSSITUASJON]?: ArbeidSøknadsdata;
     [StepId.FRAVÆR_FRA]?: FraværFraSøknadsdata;

@@ -12,7 +12,7 @@ import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøkna
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
-import { brukEndringeneFor2023, harFraværPgaSmittevernhensyn } from '../midlertidigUtils';
+import { brukEndringeneFor2023, harFraværPgaSmittevernhensyn, harFraværPgaStengBhgSkole } from '../midlertidigUtils';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -73,6 +73,9 @@ export const getApiDataFromSøknadsdata = (
     const vedleggSmittevern = harFraværPgaSmittevernhensyn(fraværPerioder, fraværDager)
         ? getVedleggApiData(søknadsdata.vedlegg_smittevernhensyn?.vedlegg)
         : [];
+    const vedleggStengtBhgSkole = harFraværPgaStengBhgSkole(fraværPerioder, fraværDager)
+        ? getVedleggApiData(søknadsdata.vedlegg_stengtSkoleBhg?.vedlegg)
+        : [];
 
     return {
         id,
@@ -88,7 +91,7 @@ export const getApiDataFromSøknadsdata = (
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
-        vedlegg: [...vedleggLegeerklæring, ...vedleggSmittevern],
+        vedlegg: [...vedleggLegeerklæring, ...vedleggSmittevern, ...vedleggStengtBhgSkole],
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
     };
 };

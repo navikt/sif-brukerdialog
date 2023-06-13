@@ -11,9 +11,9 @@ export const getSmittevernDokumenterStepInitialValues = (
     if (formValues) {
         return formValues;
     }
-    const {} = søknadsdata.legeerklæring || {};
+    const {} = søknadsdata.vedlegg_smittevernhensyn || {};
     return {
-        vedlegg: [...(søknadsdata.legeerklæring?.vedlegg || [])],
+        vedlegg: [...(søknadsdata.vedlegg_smittevernhensyn?.vedlegg || [])],
     };
 };
 

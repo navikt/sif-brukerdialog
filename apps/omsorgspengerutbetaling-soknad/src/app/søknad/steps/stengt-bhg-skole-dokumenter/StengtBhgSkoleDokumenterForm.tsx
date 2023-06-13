@@ -21,24 +21,24 @@ import FormikFileUploader from '../../../components/formik-file-uploader/FormikF
 import { relocateToLoginPage } from '../../../utils/navigationUtils';
 import { validateAttachments, ValidateAttachmentsErrors } from '../../../utils/validateAttachments';
 import getLenker from '../../../lenker';
-import SmittevernDokumenterAttachmentList from './SmittevernDokumenterAttachmentList';
+import StengtBhgSkoleDokumenterAttachmentList from './StengtBhgSkoleDokumenterAttachmentList';
 
 interface Props {
-    values: Partial<SmittevernDokumenterFormValues>;
+    values: Partial<StengtBhgSkoleDokumenterFormValues>;
     goBack?: () => void;
     isSubmitting?: boolean;
     andreVedlegg?: Attachment[];
 }
 
-export enum SmittevernDokumenterFormFields {
+export enum StengtBhgSkoleDokumenterFormFields {
     vedlegg = 'vedlegg',
 }
 
-export interface SmittevernDokumenterFormValues {
-    [SmittevernDokumenterFormFields.vedlegg]: Attachment[];
+export interface StengtBhgSkoleDokumenterFormValues {
+    [StengtBhgSkoleDokumenterFormFields.vedlegg]: Attachment[];
 }
 
-const { Form } = getTypedFormComponents<SmittevernDokumenterFormFields, SmittevernDokumenterFormValues>();
+const { Form } = getTypedFormComponents<StengtBhgSkoleDokumenterFormFields, StengtBhgSkoleDokumenterFormValues>();
 
 export const validateDocuments = (attachments: Attachment[]): ValidationResult<ValidationError> => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
@@ -55,13 +55,15 @@ export const validateDocuments = (attachments: Attachment[]): ValidationResult<V
     return undefined;
 };
 
-const SmittevernDokumenterForm: React.FC<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
+const StengtBhgSkoleDokumenterForm: React.FC<Props> = ({ values, goBack, andreVedlegg = [], isSubmitting }) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
 
+    //TODO Andre vedlegg validering ?
+
     const hasPendingUploads: boolean = (values.vedlegg || []).find((a: any) => a.pending === true) !== undefined;
-    const smittevernDokumenterAttachments = values.vedlegg ? values.vedlegg : [];
-    const totalSize = getTotalSizeOfAttachments([...smittevernDokumenterAttachments, ...andreVedlegg]);
+    const stengtBhgSkoleDokumenterAttachments = values.vedlegg ? values.vedlegg : [];
+    const totalSize = getTotalSizeOfAttachments([...stengtBhgSkoleDokumenterAttachments, ...andreVedlegg]);
     const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     return (
@@ -75,14 +77,14 @@ const SmittevernDokumenterForm: React.FC<Props> = ({ values, goBack, andreVedleg
             <Block padBottom="xl">
                 <SifGuidePanel>
                     <Block padBottom={'l'}>
-                        <FormattedMessage id="step.vedlegg_smittevernhensyn.info.1" />
+                        <FormattedMessage id="step.vedlegg_stengtSkoleBhg.info.1" />
                     </Block>
                     <Block padBottom={'l'}>
-                        <FormattedMessage id="step.vedlegg_smittevernhensyn.info.2" />{' '}
+                        <FormattedMessage id="step.vedlegg_stengtSkoleBhg.info.2" />{' '}
                         <Link href={getLenker(intl.locale).veiledningEttersendelse} target="_blank">
-                            <FormattedMessage id="step.vedlegg_smittevernhensyn.info.3" />
+                            <FormattedMessage id="step.vedlegg_stengtSkoleBhg.info.3" />
                         </Link>
-                        <FormattedMessage id="step.vedlegg_smittevernhensyn.info.4" />
+                        <FormattedMessage id="step.vedlegg_stengtSkoleBhg.info.4" />
                     </Block>
                 </SifGuidePanel>
             </Block>
@@ -92,9 +94,9 @@ const SmittevernDokumenterForm: React.FC<Props> = ({ values, goBack, andreVedleg
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <FormBlock>
                     <FormikFileUploader
-                        attachments={smittevernDokumenterAttachments}
-                        name={SmittevernDokumenterFormFields.vedlegg}
-                        buttonLabel={intlHelper(intl, 'step.vedlegg_smittevernhensyn.knappLabel')}
+                        attachments={stengtBhgSkoleDokumenterAttachments}
+                        name={StengtBhgSkoleDokumenterFormFields.vedlegg}
+                        buttonLabel={intlHelper(intl, 'step.vedlegg_stengtSkoleBhg.knappLabel')}
                         apiEndpoint={ApiEndpoint.vedlegg}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {
@@ -128,8 +130,8 @@ const SmittevernDokumenterForm: React.FC<Props> = ({ values, goBack, andreVedleg
             <Block margin={'l'}>
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
-            <div data-testid="smittevernDokumenter-liste">
-                <SmittevernDokumenterAttachmentList
+            <div data-testid="stengtBhgSkoleDokumenter-liste">
+                <StengtBhgSkoleDokumenterAttachmentList
                     wrapNoAttachmentsInBlock={true}
                     includeDeletionFunctionality={true}
                 />
@@ -138,4 +140,4 @@ const SmittevernDokumenterForm: React.FC<Props> = ({ values, goBack, andreVedleg
     );
 };
 
-export default SmittevernDokumenterForm;
+export default StengtBhgSkoleDokumenterForm;

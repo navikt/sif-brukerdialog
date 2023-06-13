@@ -75,6 +75,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+            case SøknadContextActionKeys.DOKUMENTER_STENGT_SKOLE_BHG:
+                return {
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        vedlegg_stengtSkoleBhg: {
+                            ...action.payload,
+                        },
+                    },
+                };
             case SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING:
                 return {
                     ...state,
