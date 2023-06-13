@@ -47,6 +47,6 @@ export const getApiDataFromSøknadsdata = (
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
         vedlegg: getVedleggApiData(søknadsdata.legeerklæring?.vedlegg),
-        medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
+        bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
     };
 };

@@ -1,6 +1,6 @@
-import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
+import { BostedUtland, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import { dateToISODate } from '@navikt/sif-common-utils';
-import { MedlemskapApiData, UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiData';
+import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiData';
 import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds/lib/utils/countryUtils';
 import { MedlemskapSøknadsdata } from '../../types/søknadsdata/MedlemskapSøknadsdata';
 
@@ -15,49 +15,60 @@ export const mapBostedUtlandToApiData = (opphold: BostedUtland, locale: string):
 export const getMedlemskapApiDataFromSøknadsdata = (
     locale: string,
     medlemskapSøknadsdata?: MedlemskapSøknadsdata
-): MedlemskapApiData => {
+): UtenlandsoppholdApiData[] => {
     if (medlemskapSøknadsdata === undefined) {
         throw Error('medlemskapSøknadsdata undefined');
     }
 
     switch (medlemskapSøknadsdata?.type) {
         case 'harIkkeBoddSkalIkkeBo':
-            return {
-                harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
-                utenlandsoppholdSiste12Mnd: [],
-                skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
-                utenlandsoppholdNeste12Mnd: [],
-            };
+            return [];
         case 'harBoddSkalBo':
-            return {
-                harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
-                utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd.map((o) =>
-                    mapBostedUtlandToApiData(o, locale)
-                ),
-
-                skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
-                utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd.map((o) =>
-                    mapBostedUtlandToApiData(o, locale)
-                ),
-            };
+            return settInnBosteder(
+                medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
+                medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd,
+                medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
+                medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd,
+                locale
+            );
 
         case 'harBodd':
-            return {
-                harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
-                utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd.map((o) =>
-                    mapBostedUtlandToApiData(o, locale)
-                ),
-                skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
-                utenlandsoppholdNeste12Mnd: [],
-            };
+            return settInnBosteder(
+                medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
+                medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd,
+                medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
+                [],
+                locale
+            );
         case 'skalBo':
-            return {
-                harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
-                utenlandsoppholdSiste12Mnd: [],
-                skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
-                utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd.map((o) =>
-                    mapBostedUtlandToApiData(o, locale)
-                ),
-            };
+            return settInnBosteder(
+                medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
+                [],
+                medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
+                medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd,
+                locale
+            );
     }
+};
+
+const settInnBosteder = (
+    harBoddUtenforNorgeSiste12Mnd: boolean,
+    utenlandsoppholdSiste12Mnd: Utenlandsopphold[],
+    skalBoUtenforNorgeNeste12Mnd: boolean,
+    utenlandsoppholdNeste12Mnd: Utenlandsopphold[],
+    locale: string
+): UtenlandsoppholdApiData[] => {
+    const mappedSiste12Mnd = harBoddUtenforNorgeSiste12Mnd
+        ? utenlandsoppholdSiste12Mnd.map((utenlandsopphold: Utenlandsopphold) => {
+              return mapBostedUtlandToApiData(utenlandsopphold, locale);
+          })
+        : [];
+
+    const mappedNeste12Mnd = skalBoUtenforNorgeNeste12Mnd
+        ? utenlandsoppholdNeste12Mnd.map((utenlandsopphold: Utenlandsopphold) => {
+              return mapBostedUtlandToApiData(utenlandsopphold, locale);
+          })
+        : [];
+
+    return [...mappedSiste12Mnd, ...mappedNeste12Mnd];
 };

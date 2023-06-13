@@ -127,7 +127,7 @@ const OppsummeringStep = () => {
 
                                 <FrilansOppsummering frilans={apiData.frilans} />
                                 <SelvstendigOppsummering selvstendig={apiData.selvstendigNæringsdrivende} />
-                                <MedlemskapOppsummering medlemskap={apiData.medlemskap} />
+                                <MedlemskapOppsummering bosteder={apiData.bosteder} />
                                 <VedleggOppsummering
                                     apiData={apiData}
                                     legeerklæringSøknadsdata={søknadsdata.legeerklæring}

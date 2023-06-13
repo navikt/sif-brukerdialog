@@ -15,13 +15,6 @@ export interface UtenlandsoppholdApiData {
     erEØSLand: boolean;
 }
 
-export interface MedlemskapApiData {
-    harBoddIUtlandetSiste12Mnd: boolean;
-    skalBoIUtlandetNeste12Mnd: boolean;
-    utenlandsoppholdNeste12Mnd: UtenlandsoppholdApiData[];
-    utenlandsoppholdSiste12Mnd: UtenlandsoppholdApiData[];
-}
-
 export interface UtbetalingsperiodeApi {
     fraOgMed: ISODate; // @JsonFormat(pattern = "yyyy-MM-dd")
     tilOgMed: ISODate; // @JsonFormat(pattern = "yyyy-MM-dd")
@@ -64,5 +57,5 @@ export interface SøknadApiData {
     frilans: FrilansApiData; // arbeidssituasjon frilans
     selvstendigNæringsdrivende: SelvstendigApiData; // arbeidssituasjon
 
-    medlemskap: MedlemskapApiData; // medlemskap
+    bosteder: UtenlandsoppholdApiData[]; // medlemskap
 }
