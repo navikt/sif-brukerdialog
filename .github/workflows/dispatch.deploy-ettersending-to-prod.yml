@@ -29,11 +29,10 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=sif-ettersending
 
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
+            - name: Build and start e2e server
+              uses: cypress-io/github-action@v5
               env:
                   API_URL: http://localhost:8089/
-                  VEDLEGG_API_URL: http://localhost:8089/
                   FRONTEND_API_PATH: http://localhost:8089/
                   FRONTEND_VEDLEGG_URL: https://k9-ettersending-soknad.intern.dev.nav.no/api
                   LIVETS_SLUTTFASE: on
@@ -42,8 +41,13 @@ jobs:
               with:
                   project: ./apps/sif-ettersending/e2e
                   build: yarn build-sif-ettersending
-                  start: yarn e2e-sif-ettersending
-                  record: false
+                  start: yarn turbo start-e2e-server --filter=sif-ettersending
+                  wait-on: 'http://localhost:8080'
+                  wait-on-timeout: 60
+                  runTests: false
+
+            - name: Run cypress tests
+              run: yarn turbo cypress-run --filter=sif-ettersending
 
     deploy-to-prod:
         name: Deploy sif-ettersending to prod

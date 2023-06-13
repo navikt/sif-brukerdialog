@@ -16,13 +16,6 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "ci": {
-            "outputs": []
-        },
-        "cypress-run": {
-            "outputs": [],
-            "dependsOn": ["^build-package", "^build-app"]
-        },
         "test-watch": {
             "outputs": [],
             "dependsOn": ["^build-package"]
@@ -41,53 +34,32 @@
         "clean": {
             "cache": false
         },
+        "start-e2e-server": {
+            "outputs": []
+        },
+        "cypress-run": {
+            "outputs": [],
+            "dependsOn": ["^start-e2e-server", "^build-app"]
+        },
         "build-omsorgspengesoknad": {
             "outputs": [],
             "dependsOn": ["^build-package"]
-        },
-        "e2e-omsorgspengesoknad": {
-            "outputs": [],
-            "dependsOn": ["^build-omsorgspengesoknad"]
         },
         "build-sif-ettersending": {
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "e2e-sif-ettersending": {
-            "outputs": [],
-            "dependsOn": ["^build-sif-ettersending"]
-        },
         "build-endringsmelding-pleiepenger": {
             "outputs": [],
             "dependsOn": ["^build-package"]
-        },
-        "e2e-endringsmelding-pleiepenger": {
-            "outputs": [],
-            "dependsOn": ["^build-endringsmelding-pleiepenger"]
-        },
-        "build-pleiepenger-sykt-barn": {
-            "outputs": [],
-            "dependsOn": ["^build-package"]
-        },
-        "start-e2e-server": {
-            "outputs": [],
-            "dependsOn": []
         },
         "build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "e2e-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn": {
-            "outputs": [],
-            "dependsOn": ["^build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"]
-        },
         "build-omsorgsdager-aleneomsorg-dialog": {
             "outputs": [],
             "dependsOn": ["^build-package"]
-        },
-        "e2e-omsorgsdager-aleneomsorg-dialog": {
-            "outputs": [],
-            "dependsOn": ["^build-omsorgsdager-aleneomsorg-dialog"]
         }
     }
 }
