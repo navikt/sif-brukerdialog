@@ -1,15 +1,4 @@
-// import { contextConfig, gotoStep } from '../../contextConfig';
-// import { cyApiMockData } from '../../cyApiMockData';
-// import { mellomlagring } from '../../mocks/mellomlagring';
-import {
-    getInputByName,
-    getTestElement,
-    // gåTilOppsummeringFraArbeidssituasjon,
-    selectRadioNo,
-    selectRadioNyYesOrNo,
-    selectRadioYes,
-    // setInputValue,
-} from '../../utils';
+import { getInputByName, getTestElement, selectRadioNo, selectRadioNyYesOrNo, selectRadioYes } from '../../utils';
 
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';

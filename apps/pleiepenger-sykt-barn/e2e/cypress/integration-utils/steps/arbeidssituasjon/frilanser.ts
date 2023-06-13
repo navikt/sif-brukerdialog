@@ -19,10 +19,6 @@ export const fyllUtArbeidssituasjonFrilanser = () => {
         if ($body.find('[data-testid=er-frilanser_yes]').length) {
             selectRadioYes('er-frilanser');
         }
-
-        // const startdato = mellomlagring.formValues.frilans.;
-
-        //cy.get('[name="frilans.startdato"]').click().type(startdato).blur();
         selectRadioYes('er-fortsatt-frilanser');
         setInputValue('normalarbeidstid.timerPerUke', '5');
     });
@@ -70,7 +66,6 @@ const erFrilanserUtenOppdrag = () => {
         const el = getTestElement('arbeidssituasjon-frilanser');
         el.should('contain', 'Jeg jobber som frilanser');
         el.should('contain', 'Startet 1. oktober 2022');
-        // el.should('contain', 'Er fortsatt frilanser');
         el.should('contain', 'Jobber normalt 5 timer per uke');
     });
 };
@@ -83,7 +78,6 @@ const erFrilanserMedOppdrag = () => {
         const el = getTestElement('arbeidssituasjon-frilanser');
         el.should('contain', 'Jeg jobber som frilanser');
         el.should('contain', 'Startet 1. oktober 2022');
-        // el.should('contain', 'Er fortsatt frilanser');
         el.should('contain', 'Jobber normalt 5 timer per uke');
     });
 };

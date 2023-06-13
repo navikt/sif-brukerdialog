@@ -38,8 +38,6 @@ const fyllUtArbeidssituasjonMedOpptjeningUtland = () => {
     });
 };
 
-// arbeidssituasjon-opptjeningUtland
-
 export const fyllUtArbeidssituasjonOpptjeningUtland = (type: TestType = TestType.ENKEL) => {
     switch (type) {
         case TestType.KOMPLETT:

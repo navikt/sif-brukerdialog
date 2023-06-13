@@ -15,7 +15,6 @@ const expectedRelasjonTilBarn = 'mor';
 const relasjonAnnetBeskrivelse = 'Annet relasjon beskrivelse';
 const årsakManglerIdentitetsnummer = 'Barnet bor i utlandet';
 const fileName = 'fødselsattest.png';
-// const ingenVedleggText = 'Ingen vedlegg er lastet opp';
 
 export const fyllUtBarnRegistrert = () => {
     getTestElement('opplysninger-om-barnet').then(() => {
