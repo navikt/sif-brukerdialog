@@ -9,16 +9,19 @@ export type ArbeidsukerTimerSøknadsdata = {
 }[];
 
 interface ArbeidISøknadsperiodeJobberIkkeSøknadsdata {
+    gjelderFrilans: true;
     type: ArbeidIPeriodeType.arbeiderIkke;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
     misterHonorarerFraVervIPerioden?: MisterHonorarerFraVervIPerioden;
 }
 interface ArbeidISøknadsperiodeJobberVanligSøknadsdata {
+    gjelderFrilans: true;
     type: ArbeidIPeriodeType.arbeiderVanlig;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
     misterHonorarerFraVervIPerioden?: MisterHonorarerFraVervIPerioden;
 }
 interface ArbeidISøknadsperiodeTimerISnittPerUkeSøknadsdata {
+    gjelderFrilans: true;
     type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
     misterHonorarerFraVervIPerioden?: MisterHonorarerFraVervIPerioden;
@@ -26,6 +29,7 @@ interface ArbeidISøknadsperiodeTimerISnittPerUkeSøknadsdata {
 }
 
 interface ArbeidISøknadsperiodeProsentSøknadsdata {
+    gjelderFrilans: true;
     type: ArbeidIPeriodeType.arbeiderProsentAvNormalt;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
     misterHonorarerFraVervIPerioden?: MisterHonorarerFraVervIPerioden;
@@ -33,6 +37,7 @@ interface ArbeidISøknadsperiodeProsentSøknadsdata {
 }
 
 interface ArbeidISøknadsperiodeUlikeUkerTimer {
+    gjelderFrilans: true;
     type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
     misterHonorarerFraVervIPerioden?: MisterHonorarerFraVervIPerioden;
@@ -45,3 +50,7 @@ export type ArbeidIPeriodeFrilansSøknadsdata =
     | ArbeidISøknadsperiodeTimerISnittPerUkeSøknadsdata
     | ArbeidISøknadsperiodeProsentSøknadsdata
     | ArbeidISøknadsperiodeUlikeUkerTimer;
+
+export const isArbeidIPeriodeFrilansSøknadsdata = (value: any): value is ArbeidIPeriodeFrilansSøknadsdata => {
+    return (value as ArbeidIPeriodeFrilansSøknadsdata).gjelderFrilans === true;
+};

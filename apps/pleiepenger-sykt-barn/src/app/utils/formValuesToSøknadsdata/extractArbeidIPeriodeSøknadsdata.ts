@@ -115,6 +115,7 @@ export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
 
             if (snittTimerPerUke && timerISnittPerUke) {
                 return {
+                    gjelderFrilans: true,
                     type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke,
                     arbeiderIPerioden: arbeiderIPerioden,
                     misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
@@ -123,6 +124,7 @@ export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
             }
             if (arbeiderProsent && prosentAvNormalt) {
                 return {
+                    gjelderFrilans: true,
                     type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
                     arbeiderIPerioden: arbeiderIPerioden,
                     misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
@@ -133,6 +135,7 @@ export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
 
         if ((erLiktHverUke === YesOrNo.NO || erLiktHverUke === undefined) && arbeidsuker) {
             return {
+                gjelderFrilans: true,
                 type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
                 arbeiderIPerioden: arbeiderIPerioden,
                 misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
@@ -143,12 +146,14 @@ export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
 
     if (arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær) {
         return {
+            gjelderFrilans: true,
             type: ArbeidIPeriodeType.arbeiderIkke,
             arbeiderIPerioden: arbeiderIPerioden,
             misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
         };
     }
     return {
+        gjelderFrilans: true,
         type: ArbeidIPeriodeType.arbeiderVanlig,
         arbeiderIPerioden: arbeiderIPerioden,
         misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,

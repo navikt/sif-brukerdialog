@@ -14,7 +14,10 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
 import { ArbeidIPeriodeType } from '../../../types/arbeidIPeriodeType';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
-import { ArbeidIPeriodeFrilansSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
+import {
+    ArbeidIPeriodeFrilansSøknadsdata,
+    isArbeidIPeriodeFrilansSøknadsdata,
+} from '../../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
 import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/arbeidsforholdSøknadsdata';
 import { ArbeidSøknadsdata } from '../../../types/søknadsdata/arbeidSøknadsdata';
@@ -115,6 +118,12 @@ export const harFraværFraJobb = (arbeidsforhold: ArbeidsforholdSøknadsdata[]):
     return arbeidsforhold.some(({ arbeidISøknadsperiode }) => {
         if (!arbeidISøknadsperiode) {
             return false;
+        }
+
+        if (isArbeidIPeriodeFrilansSøknadsdata(arbeidISøknadsperiode)) {
+            if (arbeidISøknadsperiode.misterHonorarerFraVervIPerioden !== undefined) {
+                return true;
+            }
         }
 
         return (
