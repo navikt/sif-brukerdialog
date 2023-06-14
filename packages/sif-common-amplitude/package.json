@@ -12,8 +12,8 @@
     },
     "devDependencies": {
         "@types/amplitude-js": "8.16.2",
-        "@types/node": "20.2.5",
-        "@types/react": "18.2.9",
+        "@types/node": "20.3.1",
+        "@types/react": "18.2.12",
         "amplitude-js": "8.21.9",
         "config": "*",
         "constate": "3.3.2",
