@@ -27,7 +27,7 @@
         "start-e2e-server": "node ./server-e2e.js"
     },
     "dependencies": {
-        "@navikt/ds-css": "4.1.2",
+        "@navikt/ds-css": "4.1.4",
         "@navikt/ds-react": "4.1.2",
         "@navikt/ds-tailwind": "4.1.2",
         "@navikt/sif-common-amplitude": "*",
