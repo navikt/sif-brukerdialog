@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-forms-ds",
     "types": "lib/index.d.js",
-    "version": "7.1.0",
+    "version": "8.0.0",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
