@@ -730,7 +730,7 @@
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.nei": "Jobber ikke i søknadsperioden",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig": "Jobber som normalt, har ikke fravær på grunn av pleiepenger.",
 
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.REDUSERT": "Frilanser: jobber",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.REDUSERT": "Frilanser: Kombinerer delvis jobb med pleiepenger",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.HELT_FRAVÆR": "Frilanser: Jobber ikke i søknadsperioden",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.SOM_VANLIG": "Frilanser: Jobber som normalt, har ikke fravær på grunn av pleiepenger.",
 
@@ -979,7 +979,7 @@
     "validation.arbeidIPeriode.fast.frilansVerv.timerPerUke.ingenTidRegistrert": "Du må oppgi hvor mange timer i uke {ukeinfo} {frilansVervValideringString} i perioden.",
 
     "validation.arbeidIPeriode.frilans.valideringString": "jobber du {hverUke} som frilanser i søknadsperioden",
-    "validation.arbeidIPeriode.verv.valideringString": "bruker du {hverUke} på det du får honorar for i søknadsperioden",
+    "validation.arbeidIPeriode.verv.valideringString": "du bruker {hverUke} på det du får honorar for i søknadsperioden",
     "validation.arbeidIPeriode.frilansVerv.valideringString": "jobber du {hverUke} som frilanser i søknadsperioden, inkludert tiden du bruker på det du får honorar for",
 
     "validation.arbeidIPeriode.fast.tid.timeHasNoValue": "Du må fylle ut timer og minutter for {dag} {hvor}.",

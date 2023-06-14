@@ -377,7 +377,7 @@ const ArbeidssituasjonFrilans = ({
                                         name={FrilansFormField.startdato}
                                         label={intlHelper(intl, `frilanser.nårStartet.${getFrilansTypeTekst()}.spm`)}
                                         showYearSelector={true}
-                                        maxDate={søknadsdato}
+                                        maxDate={søknadsperiode.to}
                                         minDate={date99YearsFromNow}
                                         dayPickerProps={{ defaultMonth: søknadsperiode.to }}
                                         validate={(value) => {
