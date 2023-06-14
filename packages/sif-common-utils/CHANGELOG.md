@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.37.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 3.36.1
 
 ### Patch Changes

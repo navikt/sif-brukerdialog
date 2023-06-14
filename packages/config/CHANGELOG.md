@@ -1,5 +1,11 @@
 # config
 
+## 0.4.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 0.3.1
 
 ### Patch Changes
