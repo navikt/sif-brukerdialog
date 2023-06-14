@@ -102,16 +102,13 @@ export const getArbeidsperiodeIForholdTilSøknadsperiode = (
     return ArbeidsperiodeIForholdTilSøknadsperiode.gjelderHelePerioden;
 };
 
-const frilansArbeiderVanlig = (arbeidISøknadsperiode: ArbeidIPeriodeFrilansSøknadsdata) => {
-    if (arbeidISøknadsperiode.type === ArbeidIPeriodeType.arbeiderVanlig || ArbeidIPeriodeType.arbeiderIkke) {
-        if (arbeidISøknadsperiode.misterHonorarerFraVervIPerioden) {
-            return false;
-        }
-        if (arbeidISøknadsperiode.arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig) {
-            return true;
-        }
-    }
-    return false;
+export const harFraværSomFrilanser = ({
+    misterHonorarerFraVervIPerioden,
+    arbeiderIPerioden,
+}: ArbeidIPeriodeFrilansSøknadsdata): boolean => {
+    return misterHonorarerFraVervIPerioden !== undefined || arbeiderIPerioden !== ArbeiderIPeriodenSvar.somVanlig
+        ? true
+        : false;
 };
 
 export const harFraværFraJobb = (arbeidsforhold: ArbeidsforholdSøknadsdata[]): boolean => {
@@ -119,17 +116,10 @@ export const harFraværFraJobb = (arbeidsforhold: ArbeidsforholdSøknadsdata[]):
         if (!arbeidISøknadsperiode) {
             return false;
         }
-
         if (isArbeidIPeriodeFrilansSøknadsdata(arbeidISøknadsperiode)) {
-            if (arbeidISøknadsperiode.misterHonorarerFraVervIPerioden !== undefined) {
-                return true;
-            }
+            return harFraværSomFrilanser(arbeidISøknadsperiode);
         }
-
-        return (
-            arbeidISøknadsperiode.type !== ArbeidIPeriodeType.arbeiderVanlig &&
-            !frilansArbeiderVanlig(arbeidISøknadsperiode as ArbeidIPeriodeFrilansSøknadsdata)
-        );
+        return arbeidISøknadsperiode.type !== ArbeidIPeriodeType.arbeiderVanlig;
     });
 };
 

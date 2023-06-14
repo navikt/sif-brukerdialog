@@ -8,8 +8,12 @@ import {
     ArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsperiodeIForholdTilSøknadsperiode,
     harFraværFraJobb,
+    harFraværSomFrilanser,
     summerArbeidstimerIArbeidsuker,
 } from '../arbeidstidUtils';
+import { ArbeidIPeriodeFrilansSøknadsdata } from '../../../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
+import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
+import { MisterHonorarerFraVervIPerioden } from '../../../../types/ArbeidIPeriodeFormValues';
 
 const normalarbeidstid: NormalarbeidstidSøknadsdata = {
     timerPerUkeISnitt: 20,
@@ -36,6 +40,59 @@ const arbeiderRedusert: ArbeidIPeriodeSøknadsdata = {
 const arbeidsforhold: ArbeidsforholdSøknadsdata[] = [{ normalarbeidstid, arbeidISøknadsperiode: arbeiderVanlig }];
 
 describe('arbeidstidUtils', () => {
+    describe('harFraværSomFrilanser', () => {
+        const arbeidIPeriodeBase: ArbeidIPeriodeFrilansSøknadsdata = {
+            gjelderFrilans: true,
+            type: ArbeidIPeriodeType.arbeiderVanlig,
+            arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig,
+            misterHonorarerFraVervIPerioden: undefined,
+        };
+        it('returnerer true dersom bruker mister alle honorar', () => {
+            expect(
+                harFraværSomFrilanser({
+                    ...arbeidIPeriodeBase,
+                    arbeiderIPerioden: undefined,
+                    misterHonorarerFraVervIPerioden: MisterHonorarerFraVervIPerioden.misterAlleHonorarer,
+                })
+            ).toBeTruthy();
+        });
+        it('returnerer true dersom bruker mister deler av honorar', () => {
+            expect(
+                harFraværSomFrilanser({
+                    ...arbeidIPeriodeBase,
+                    arbeiderIPerioden: undefined,
+                    misterHonorarerFraVervIPerioden: MisterHonorarerFraVervIPerioden.misterDelerAvHonorarer,
+                })
+            ).toBeTruthy();
+        });
+        it('returnerer true dersom bruker ikke jobber og ikke mister honorar', () => {
+            expect(
+                harFraværSomFrilanser({
+                    ...arbeidIPeriodeBase,
+                    arbeiderIPerioden: ArbeiderIPeriodenSvar.heltFravær,
+                    misterHonorarerFraVervIPerioden: undefined,
+                })
+            ).toBeTruthy();
+        });
+        it('returnerer true dersom bruker jobber redusert og ikke mister honorar', () => {
+            expect(
+                harFraværSomFrilanser({
+                    ...arbeidIPeriodeBase,
+                    arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
+                    misterHonorarerFraVervIPerioden: undefined,
+                })
+            ).toBeTruthy();
+        });
+        it('returnerer false dersom bruker jobber som vanlig og ikke mister honorar', () => {
+            expect(
+                harFraværSomFrilanser({
+                    ...arbeidIPeriodeBase,
+                    arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig,
+                    misterHonorarerFraVervIPerioden: undefined,
+                })
+            ).toBeFalsy();
+        });
+    });
     describe('harFraværFraJobb', () => {
         it('returnerer false når en kun jobber normalt', () => {
             expect(harFraværFraJobb(arbeidsforhold)).toBeFalsy();
