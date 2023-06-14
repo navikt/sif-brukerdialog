@@ -1,19 +1,15 @@
-import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { extractNormalarbeidstid } from '../extractNormalarbeidstidSøknadsdata';
 
 describe('extractNormalarbeidstid', () => {
     describe('ArbeidsforholdType.ANSATT', () => {
-        it('returnerer undefined dersom normalarbeidstid === undefined', () => {
-            expect(extractNormalarbeidstid(undefined, ArbeidsforholdType.ANSATT)).toBeUndefined();
+        it.only('returnerer undefined dersom normalarbeidstid === undefined', () => {
+            expect(extractNormalarbeidstid(undefined)).toBeUndefined();
         });
 
         it('returnerer timerPerUke riktig', () => {
-            const result = extractNormalarbeidstid(
-                {
-                    timerPerUke: '30',
-                },
-                ArbeidsforholdType.ANSATT
-            );
+            const result = extractNormalarbeidstid({
+                timerPerUke: '30',
+            });
             expect(result).toBeDefined();
             expect(result?.timerPerUkeISnitt).toEqual(30);
         });

@@ -15,7 +15,6 @@ import { StønadGodtgjørelseFormData } from '../types/StønadGodtgjørelseFormD
 import { YesOrNoOrDoNotKnow } from './YesOrNoOrDoNotKnow';
 
 export enum SøknadFormField {
-    brukForrigeSøknad = 'brukForrigeSøknad',
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
     barnetsNavn = 'barnetsNavn',
@@ -73,7 +72,6 @@ export interface OmsorgstilbudFormValues {
 }
 
 export interface SøknadFormValues {
-    [SøknadFormField.brukForrigeSøknad]?: YesOrNo;
     [SøknadFormField.harForståttRettigheterOgPlikter]: boolean;
     [SøknadFormField.harBekreftetOpplysninger]: boolean;
     [SøknadFormField.barnetsNavn]: string;
@@ -118,7 +116,6 @@ export interface SøknadFormValues {
 }
 
 export const initialValues: SøknadFormValues = {
-    [SøknadFormField.brukForrigeSøknad]: undefined,
     [SøknadFormField.periodeFra]: undefined,
     [SøknadFormField.periodeTil]: undefined,
     [SøknadFormField.barnetsNavn]: '',

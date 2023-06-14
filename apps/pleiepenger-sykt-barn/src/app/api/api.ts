@@ -1,32 +1,18 @@
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosResponse } from 'axios';
-import { axiosConfigPsb, axiosConfigInnsyn } from '../config/axiosConfig';
-import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
-import { ResourceType, ResourceTypeInnsyn } from '../types/ResourceType';
+import { axiosConfigPsb } from '../config/axiosConfig';
+import { ResourceType } from '../types/ResourceType';
+import { StepID } from '../types/StepID';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadTempStorageData';
+import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
 import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';
-import { ImportertSøknadMetadata } from '../types/ImportertSøknad';
-import { Feature, isFeatureEnabled } from '../utils/featureToggleUtils';
-import { StepID } from '../types/StepID';
-
-export enum ApiEndpointInnsyn {
-    'forrigeSøknad' = 'soknad/psb/siste',
-}
 
 export const getPersistUrl = (stepID?: StepID) =>
     stepID ? `${ResourceType.MELLOMLAGRING}?lastStepID=${encodeURI(stepID)}` : ResourceType.MELLOMLAGRING;
 
-export const persist = ({
-    formValues,
-    lastStepID,
-    importertSøknadMetadata,
-}: {
-    formValues?: SøknadFormValues;
-    lastStepID?: StepID;
-    importertSøknadMetadata?: ImportertSøknadMetadata;
-}) => {
+export const persist = ({ formValues, lastStepID }: { formValues?: SøknadFormValues; lastStepID?: StepID }) => {
     const url = getPersistUrl(lastStepID);
     if (formValues) {
         const body: SøknadTempStorageData = {
@@ -35,7 +21,6 @@ export const persist = ({
                 lastStepID,
                 version: MELLOMLAGRING_VERSION,
                 updatedTimestemp: new Date().toISOString(),
-                importertSøknadMetadata,
             },
         };
         return axios.put(url, { ...body }, axiosJsonConfig);
@@ -50,18 +35,6 @@ export const rehydrate = () =>
     });
 export const purge = () => axios.delete(ResourceType.MELLOMLAGRING, { ...axiosConfigPsb, data: {} });
 
-export const getForrigeSoknad = () => {
-    if (isFeatureEnabled(Feature.PREUTFYLLING) == false) {
-        return Promise.resolve(undefined);
-    }
-    return axios
-        .get(ResourceTypeInnsyn.FORRIGE_SOKNAD, {
-            ...axiosConfigInnsyn,
-            transformResponse: storageParser,
-        })
-        .then((result) => Promise.resolve(result))
-        .catch(() => Promise.resolve(undefined));
-};
 export const getBarn = () => axios.get(ResourceType.BARN, axiosJsonConfig);
 export const getSøker = () => axios.get(ResourceType.SØKER, axiosJsonConfig);
 export const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregArbeidsgiverRemoteData>> => {

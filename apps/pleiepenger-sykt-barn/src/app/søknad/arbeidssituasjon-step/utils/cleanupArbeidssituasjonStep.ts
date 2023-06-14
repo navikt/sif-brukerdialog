@@ -1,29 +1,12 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-
-import { ArbeidsforholdFormValues, NormalarbeidstidFormValues } from '../../../types/ArbeidsforholdFormValues';
+import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
 import { FrilansFormData, FrilansTyper } from '../../../types/FrilansFormData';
 import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
+import { StønadGodtgjørelseFormData } from '../../../types/StønadGodtgjørelseFormData';
 import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import { erFrilanserISøknadsperiode, kunStyrevervUtenNormalArbeidstid } from '../../../utils/frilanserUtils';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
-import { StønadGodtgjørelseFormData } from '../../../types/StønadGodtgjørelseFormData';
-
-const cleanupNormalarbeidstid = ({
-    erLiktSomForrigeSøknad,
-    timerPerUke,
-}: NormalarbeidstidFormValues): NormalarbeidstidFormValues => {
-    if (erLiktSomForrigeSøknad === YesOrNo.YES) {
-        return {
-            erLiktSomForrigeSøknad,
-            timerPerUke,
-        };
-    }
-
-    return {
-        timerPerUke,
-    };
-};
 
 export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormValues): ArbeidsforholdFormValues => {
     const cleanedArbeidsforhold = { ...arbeidsforhold };
@@ -38,9 +21,6 @@ export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormVa
         cleanedArbeidsforhold.normalarbeidstid = undefined;
         cleanedArbeidsforhold.sluttetFørSøknadsperiode = YesOrNo.YES;
         cleanedArbeidsforhold.arbeidIPeriode = undefined;
-    }
-    if (cleanedArbeidsforhold.normalarbeidstid) {
-        cleanedArbeidsforhold.normalarbeidstid = cleanupNormalarbeidstid(cleanedArbeidsforhold.normalarbeidstid);
     }
     return cleanedArbeidsforhold;
 };
@@ -88,10 +68,6 @@ export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, value
         }
     }
 
-    if (frilans.arbeidsforhold && frilans.arbeidsforhold.normalarbeidstid) {
-        frilans.arbeidsforhold.normalarbeidstid = cleanupNormalarbeidstid(frilans.arbeidsforhold.normalarbeidstid);
-    }
-
     return frilans;
 };
 
@@ -102,12 +78,6 @@ const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormData): Selvst
         selvstendig.virksomhet = undefined;
         selvstendig.arbeidsforhold = undefined;
     }
-    if (selvstendig.arbeidsforhold && selvstendig.arbeidsforhold.normalarbeidstid) {
-        selvstendig.arbeidsforhold.normalarbeidstid = cleanupNormalarbeidstid(
-            selvstendig.arbeidsforhold.normalarbeidstid
-        );
-    }
-
     return selvstendig;
 };
 

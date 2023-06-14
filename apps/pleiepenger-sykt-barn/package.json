@@ -12,6 +12,7 @@
         "start-no-decorator": "node ./src/build/scripts/start-dev-no-decorator.js",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
         "dev-api": "node server/api-mock.js",
+        "lint": "eslint ./src --ext ts,tsx",
         "start": "node ./src/build/scripts/start-dev.js",
         "start-express": "node ./server.js",
         "test": "react-scripts test --watchAll=false --env=jsdom --runInBand",

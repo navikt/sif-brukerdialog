@@ -1,5 +1,4 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { ArbeidsforholdType } from '../../local-sif-common-pleiepenger';
 import { ArbeidsforholdFormValues } from '../../types/ArbeidsforholdFormValues';
 import { ArbeidAnsattSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { extractArbeidsforholdSøknadsdata } from './extractArbeidsforholdSøknadsdata';
@@ -21,7 +20,7 @@ export const extractArbeidAnsattSøknadsdata = (
             arbeidsgiver: arbeidsforhold.arbeidsgiver,
         };
     }
-    const arbeidsforholdSøknadsdata = extractArbeidsforholdSøknadsdata(arbeidsforhold, ArbeidsforholdType.ANSATT);
+    const arbeidsforholdSøknadsdata = extractArbeidsforholdSøknadsdata(arbeidsforhold);
     if (arbeidsforholdSøknadsdata) {
         if (erAnsatt === false && sluttetFørSøknadsperiode === false) {
             return {

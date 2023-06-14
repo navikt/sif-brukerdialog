@@ -2,18 +2,14 @@ import React from 'react';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import * as apiUtils from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { AxiosError, AxiosResponse } from 'axios';
-import { getBarn, getForrigeSoknad, getSøker, purge, rehydrate } from '../api/api';
+import { getBarn, getSøker, purge, rehydrate } from '../api/api';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
 import LoadingPage from '../pages/loading-page/LoadingPage';
-import { ImportertSøknad } from '../types/ImportertSøknad';
-import { InnsendtSøknad } from '../types/InnsendtSøknad';
 import { Søkerdata } from '../types/Søkerdata';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../types/SøknadFormValues';
 import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
-import { forrigeSøknadErGyldig } from '../utils/forrigeSøknadUtils';
-import { importerSøknad } from '../utils/importInnsendtSøknad/importSøknad';
 import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
 
 interface Props {
@@ -22,7 +18,6 @@ interface Props {
     contentLoadedRenderer: (content: {
         formValues: SøknadFormValues;
         søkerdata?: Søkerdata;
-        forrigeSøknad?: ImportertSøknad;
         mellomlagringMetadata?: MellomlagringMetadata;
     }) => React.ReactNode;
 }
@@ -32,7 +27,6 @@ interface State {
     willRedirectToLoginPage: boolean;
     formValues: SøknadFormValues;
     søkerdata?: Søkerdata;
-    forrigeSøknad?: ImportertSøknad;
     mellomlagringMetadata?: MellomlagringMetadata;
     harIkkeTilgang: boolean;
 }
@@ -68,13 +62,12 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
 
     async loadAppEssentials() {
         try {
-            const [mellomlagringResponse, søkerResponse, barnResponse, forrigeSøknadResponse] = await Promise.all([
+            const [mellomlagringResponse, søkerResponse, barnResponse] = await Promise.all([
                 rehydrate(),
                 getSøker(),
                 getBarn(),
-                getForrigeSoknad(),
             ]);
-            this.handleSøkerdataFetchSuccess(mellomlagringResponse, søkerResponse, barnResponse, forrigeSøknadResponse);
+            this.handleSøkerdataFetchSuccess(mellomlagringResponse, søkerResponse, barnResponse);
         } catch (error: any) {
             this.handleSøkerdataFetchError(error);
         }
@@ -96,8 +89,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
     async handleSøkerdataFetchSuccess(
         mellomlagringResponse: AxiosResponse,
         søkerResponse: AxiosResponse,
-        barnResponse?: AxiosResponse,
-        forrigeSøknadReponse?: AxiosResponse<InnsendtSøknad>
+        barnResponse?: AxiosResponse
     ) {
         const registrerteBarn = barnResponse ? barnResponse.data.barn : undefined;
         const mellomlagring = await this.getValidMellomlagring(mellomlagringResponse?.data);
@@ -112,31 +104,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
               }
             : { ...initialValues };
 
-        let forrigeSøknad: ImportertSøknad | undefined;
-        if (
-            mellomlagring === undefined &&
-            forrigeSøknadReponse?.data.søknad &&
-            forrigeSøknadErGyldig(forrigeSøknadReponse.data.søknad)
-        ) {
-            const result = importerSøknad(forrigeSøknadReponse.data.søknad, registrerteBarn);
-            if (result) {
-                const { formValues, søknadsperiode, endringer, registrertBarn, ansattNormalarbeidstidSnitt } = result;
-
-                forrigeSøknad = {
-                    formValues,
-                    metaData: {
-                        søknadId: forrigeSøknadReponse.data.søknadId,
-                        mottatt: forrigeSøknadReponse.data.søknad.mottatt,
-                        endringer,
-                        søknadsperiode,
-                        barn: registrertBarn,
-                        ansattNormalarbeidstidSnitt,
-                    },
-                };
-            }
-        }
-
-        this.updateSøkerdata(formValuesToUse, søkerdata, forrigeSøknad, mellomlagring?.metadata, () => {
+        this.updateSøkerdata(formValuesToUse, søkerdata, mellomlagring?.metadata, () => {
             this.stopLoading();
             if (userIsCurrentlyOnErrorPage()) {
                 this.props.onError();
@@ -147,7 +115,6 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
     updateSøkerdata(
         formValues: SøknadFormValues,
         søkerdata: Søkerdata,
-        forrigeSøknad: ImportertSøknad | undefined,
         mellomlagringMetadata?: MellomlagringMetadata,
         callback?: () => void
     ) {
@@ -156,7 +123,6 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
                 formValues: formValues || this.state.formValues,
                 søkerdata: søkerdata || this.state.søkerdata,
                 mellomlagringMetadata: mellomlagringMetadata || this.state.mellomlagringMetadata,
-                forrigeSøknad: forrigeSøknad || this.state.forrigeSøknad,
             },
             callback
         );
@@ -186,15 +152,8 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
 
     render() {
         const { contentLoadedRenderer } = this.props;
-        const {
-            isLoading,
-            harIkkeTilgang,
-            willRedirectToLoginPage,
-            formValues,
-            søkerdata,
-            forrigeSøknad,
-            mellomlagringMetadata,
-        } = this.state;
+        const { isLoading, harIkkeTilgang, willRedirectToLoginPage, formValues, søkerdata, mellomlagringMetadata } =
+            this.state;
         if (isLoading || willRedirectToLoginPage) {
             return <LoadingPage />;
         }
@@ -206,7 +165,6 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
                 {contentLoadedRenderer({
                     formValues,
                     søkerdata,
-                    forrigeSøknad,
                     mellomlagringMetadata,
                 })}
             </SøkerdataContextProvider>

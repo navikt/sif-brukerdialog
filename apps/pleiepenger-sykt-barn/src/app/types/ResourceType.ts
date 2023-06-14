@@ -6,7 +6,3 @@ export enum ResourceType {
     VEDLEGG = 'vedlegg',
     MELLOMLAGRING = 'mellomlagring/PLEIEPENGER_SYKT_BARN',
 }
-
-export enum ResourceTypeInnsyn {
-    FORRIGE_SOKNAD = 'soknad/psb/siste',
-}

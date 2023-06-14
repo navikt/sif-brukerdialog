@@ -6,13 +6,11 @@ export enum ArbeidsforholdFormField {
     erAnsatt = 'erAnsatt',
     sluttetFørSøknadsperiode = 'sluttetFørSøknadsperiode',
     normalarbeidstid = 'normalarbeidstid',
-    normalarbeidstid_erLiktSomForrigeSøknad = 'normalarbeidstid.erLiktSomForrigeSøknad',
     normalarbeidstid_TimerPerUke = 'normalarbeidstid.timerPerUke',
     arbeidIPeriode = 'arbeidIPeriode',
 }
 
 export type NormalarbeidstidFormValues = {
-    erLiktSomForrigeSøknad?: YesOrNo;
     timerPerUke?: string;
 };
 

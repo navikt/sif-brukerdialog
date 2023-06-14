@@ -99,8 +99,6 @@ const arbeidsgivereMock = {
     privatarbeidsgiver: [],
 };
 
-const FORRIGE_SØKNAD = './server/mockdata/depr_søknad.json';
-
 const MELLOMLAGRING_JSON = `${os.tmpdir()}/pleiepenger-sykt-barn-mellomlagring.json`;
 
 const isJSON = (str) => {
@@ -166,14 +164,6 @@ const startExpressServer = () => {
         res.sendStatus(200);
     });
 
-    server.get('/soknad/psb/siste', (req, res) => {
-        if (existsSync(FORRIGE_SØKNAD)) {
-            const body = readFileSync(FORRIGE_SØKNAD);
-            res.send(JSON.parse(body));
-        } else {
-            res.send({});
-        }
-    });
     server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
             const body = readFileSync(MELLOMLAGRING_JSON);

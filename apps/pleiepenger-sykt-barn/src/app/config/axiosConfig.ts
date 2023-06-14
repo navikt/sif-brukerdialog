@@ -10,8 +10,3 @@ export const axiosConfigPsb: AxiosRequestConfig = {
     ...axiosConfigCommon,
     baseURL: getEnvVariableOrDefault('FRONTEND_API_PATH', 'http://localhost:8082'),
 };
-
-export const axiosConfigInnsyn = {
-    ...axiosConfigCommon,
-    baseURL: getEnvVariableOrDefault('FRONTEND_INNSYN_API_PATH', 'http://localhost:8082'),
-};

@@ -18,7 +18,6 @@ const envSettings = () => {
     const USE_AMPLITUDE = process.env.USE_AMPLITUDE;
     const INNSYN_URL = process.env.INNSYN_URL;
     const FORENKLET_ARBEID = process.env.FORENKLET_ARBEID;
-    const PREUTFYLLING = process.env.PREUTFYLLING;
     const IMAGE = process.env.IMAGE;
 
     const appSettings = `
@@ -39,7 +38,6 @@ const envSettings = () => {
         USE_AMPLITUDE: '${USE_AMPLITUDE}',
         INNSYN_URL: '${INNSYN_URL}',
         FORENKLET_ARBEID: '${FORENKLET_ARBEID}',
-        PREUTFYLLING: '${PREUTFYLLING}',
         IMAGE: '${IMAGE}',
     };`
         .trim()

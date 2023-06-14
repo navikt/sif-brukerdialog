@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { dateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
@@ -14,7 +13,6 @@ import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
 import { Søker } from '../types';
 import { ConfirmationDialog } from '../types/ConfirmationDialog';
-import { ImportertSøknad } from '../types/ImportertSøknad';
 import { KvitteringInfo } from '../types/KvitteringInfo';
 import { StepID } from '../types/StepID';
 import { Søkerdata } from '../types/Søkerdata';
@@ -44,19 +42,17 @@ import TidsromStep from './tidsrom-step/TidsromStep';
 interface PleiepengesøknadContentProps {
     /** Sist steg som bruker submittet skjema */
     mellomlagringMetadata?: MellomlagringMetadata;
-    /** Forrige søknad sendt inn av bruker */
-    forrigeSøknad: ImportertSøknad | undefined;
     søker: Søker;
 }
 
-const SøknadContent = ({ mellomlagringMetadata, forrigeSøknad, søker }: PleiepengesøknadContentProps) => {
+const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadContentProps) => {
     const location = useLocation();
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const [kvitteringInfo, setKvitteringInfo] = React.useState<KvitteringInfo | undefined>(undefined);
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialog | undefined>(undefined);
     const { values, setValues, resetForm } = useFormikContext<SøknadFormValues>();
     const { logHendelse, logSoknadStartet } = useAmplitudeInstance();
-    const { setSøknadsdata, setImportertSøknadMetadata } = useSøknadsdataContext();
+    const { setSøknadsdata } = useSøknadsdataContext();
     const { logBekreftIngenFraværFraJobb } = useLogSøknadInfo();
     const { persistSoknad } = usePersistSoknad();
 
@@ -81,9 +77,6 @@ const SøknadContent = ({ mellomlagringMetadata, forrigeSøknad, søker }: Pleie
     /** Redirect til riktig side */
     useEffect(() => {
         if (mellomlagringMetadata !== undefined) {
-            if (mellomlagringMetadata.importertSøknadMetadata !== undefined) {
-                setImportertSøknadMetadata(mellomlagringMetadata?.importertSøknadMetadata);
-            }
             if (isOnWelcomPage && nextStepRoute !== undefined && mellomlagringMetadata.lastStepID) {
                 sendUserToStep(getGyldigRedirectStepForMellomlagretSøknad(mellomlagringMetadata.lastStepID, values));
             }
@@ -91,15 +84,7 @@ const SøknadContent = ({ mellomlagringMetadata, forrigeSøknad, søker }: Pleie
                 sendUserToStep(StepID.OPPLYSNINGER_OM_BARNET);
             }
         }
-    }, [
-        mellomlagringMetadata,
-        isOnWelcomPage,
-        nextStepRoute,
-        sendUserToStep,
-        setImportertSøknadMetadata,
-        values,
-        søknadHasBeenSent,
-    ]);
+    }, [mellomlagringMetadata, isOnWelcomPage, nextStepRoute, sendUserToStep, values, søknadHasBeenSent]);
 
     const onKvitteringUnmount = () => {
         setTimeout(() => {
@@ -122,22 +107,11 @@ const SøknadContent = ({ mellomlagringMetadata, forrigeSøknad, søker }: Pleie
     };
 
     const startSoknad = async () => {
-        // onSøknadStart();
         await logSoknadStartet(SKJEMANAVN);
         await purge();
 
-        const initialFormValues =
-            forrigeSøknad && values.brukForrigeSøknad === YesOrNo.YES
-                ? { ...forrigeSøknad?.formValues, brukForrigeSøknad: YesOrNo.YES }
-                : undefined;
+        const initialFormValues = undefined;
 
-        if (forrigeSøknad && values.brukForrigeSøknad === YesOrNo.YES) {
-            setImportertSøknadMetadata(forrigeSøknad?.metaData);
-        }
-
-        if (initialFormValues) {
-            setValues(initialFormValues);
-        }
         await persistSoknad({ formValues: initialFormValues, stepID: StepID.OPPLYSNINGER_OM_BARNET });
 
         setTimeout(() => {

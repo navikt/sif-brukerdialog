@@ -69,7 +69,7 @@ export const mellomlagring = {
     },
     metadata: {
         lastStepID: 'tidsrom',
-        version: '13.4.0',
+        version: '13.5.0',
         updatedTimestemp: '2022-10-19T13:14:12.851Z',
     },
 };

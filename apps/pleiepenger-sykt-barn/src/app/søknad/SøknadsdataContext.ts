@@ -1,18 +1,15 @@
 import { createContext, useContext } from 'react';
-import { ImportertSøknadMetadata } from '../types/ImportertSøknad';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 export interface SøknadsdataContextInterface {
     søknadsdata: Søknadsdata;
-    importertSøknadMetadata?: ImportertSøknadMetadata | undefined;
+
     setSøknadsdata: (søknadsdata: Søknadsdata) => void;
-    setImportertSøknadMetadata: (søknad: ImportertSøknadMetadata) => void;
 }
 
 export const SøknadsdataContext = createContext<SøknadsdataContextInterface>({
     søknadsdata: {},
     setSøknadsdata: () => null,
-    setImportertSøknadMetadata: () => null,
 });
 
 export const SøknadsdataContextProvider = SøknadsdataContext.Provider;

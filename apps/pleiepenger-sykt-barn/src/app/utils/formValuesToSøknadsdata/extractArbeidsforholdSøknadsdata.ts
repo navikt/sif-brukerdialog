@@ -1,4 +1,3 @@
-import { ArbeidsforholdType } from '../../local-sif-common-pleiepenger';
 import {
     ArbeidsforholdFormValues,
     ArbeidsforholdFrilanserFormValues,
@@ -12,10 +11,9 @@ import {
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidsforholdSøknadsdata = (
-    arbeidsforhold: ArbeidsforholdFormValues | ArbeidsforholdSelvstendigFormValues,
-    arbeidsforholdType: ArbeidsforholdType
+    arbeidsforhold: ArbeidsforholdFormValues | ArbeidsforholdSelvstendigFormValues
 ): ArbeidsforholdSøknadsdata | undefined => {
-    const normalarbeidstid = extractNormalarbeidstid(arbeidsforhold.normalarbeidstid, arbeidsforholdType);
+    const normalarbeidstid = extractNormalarbeidstid(arbeidsforhold.normalarbeidstid);
 
     if (normalarbeidstid) {
         const arbeidISøknadsperiode = arbeidsforhold.arbeidIPeriode
@@ -32,10 +30,9 @@ export const extractArbeidsforholdSøknadsdata = (
 };
 
 export const extractArbeidsforholdFrilansSøknadsdata = (
-    arbeidsforhold: ArbeidsforholdFrilanserFormValues,
-    arbeidsforholdType: ArbeidsforholdType
+    arbeidsforhold: ArbeidsforholdFrilanserFormValues
 ): ArbeidsforholdSøknadsdata | undefined => {
-    const normalarbeidstid = extractNormalarbeidstid(arbeidsforhold.normalarbeidstid, arbeidsforholdType);
+    const normalarbeidstid = extractNormalarbeidstid(arbeidsforhold.normalarbeidstid);
 
     if (normalarbeidstid) {
         const arbeidISøknadsperiode = arbeidsforhold.arbeidIPeriode

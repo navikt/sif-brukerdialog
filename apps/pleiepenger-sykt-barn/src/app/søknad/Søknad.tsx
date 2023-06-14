@@ -17,7 +17,7 @@ const Søknad = () => {
             onError={() => {
                 navigateToErrorPage(navigate);
             }}
-            contentLoadedRenderer={({ formValues, mellomlagringMetadata, søkerdata, forrigeSøknad }) => {
+            contentLoadedRenderer={({ formValues, mellomlagringMetadata, søkerdata }) => {
                 if (!søkerdata) {
                     navigateToErrorPage(navigate);
                     return;
@@ -33,7 +33,6 @@ const Søknad = () => {
                                 return (
                                     <SøknadContent
                                         mellomlagringMetadata={mellomlagringMetadata}
-                                        forrigeSøknad={forrigeSøknad}
                                         søker={søkerdata.søker}
                                     />
                                 );
