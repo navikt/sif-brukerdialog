@@ -30,7 +30,7 @@ jobs:
               run: yarn test --filter=sif-ettersending
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v5
+              uses: cypress-io/github-action@v5.8.1
               env:
                   API_URL: http://localhost:8089/
                   FRONTEND_API_PATH: http://localhost:8089/
