@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 8.0.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
+### Patch Changes
+
+-   Updated dependencies [d3ae045]
+    -   @navikt/sif-common-core-ds@9.0.0
+
 ## 7.1.0
 
 ### Minor Changes
