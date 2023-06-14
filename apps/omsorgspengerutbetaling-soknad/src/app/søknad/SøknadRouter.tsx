@@ -18,8 +18,6 @@ import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import { useResetSøknad } from '../hooks/useResetSøknad';
-import SmittevernDokumenterStep from './steps/smittevern-dokumenter/SmittevernDokumenterStep';
-import StengtBhgSkoleDokumenterStep from './steps/stengt-bhg-skole-dokumenter/StengtBhgSkoleDokumenterStep';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -76,14 +74,6 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.VELKOMMEN]} element={<VelkommenPage />} />
             <Route path={SøknadStepRoutePath[StepId.DINE_BARN]} element={<DineBarnStep />} />
             <Route path={SøknadStepRoutePath[StepId.FRAVÆR]} element={<FraværStep />} />
-            <Route
-                path={SøknadStepRoutePath[StepId.DOKUMENTER_SMITTEVERNHENSYN]}
-                element={<SmittevernDokumenterStep />}
-            />
-            <Route
-                path={SøknadStepRoutePath[StepId.DOKUMENTER_STENGT_SKOLE_BHG]}
-                element={<StengtBhgSkoleDokumenterStep />}
-            />
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
             <Route path={SøknadStepRoutePath[StepId.ARBEIDSSITUASJON]} element={<ArbeidssituasjonStep />} />
             <Route path={SøknadStepRoutePath[StepId.FRAVÆR_FRA]} element={<FraværFraStep />} />

@@ -1,5 +1,4 @@
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
-import { SmittevernDokumenterSøknadsdata } from '../../../types/søknadsdata/SmittevernDokumenterSøknadsdata';
 import {
     DineBarnSøknadsdata,
     FraværSøknadsdata,
@@ -7,7 +6,6 @@ import {
     ArbeidSøknadsdata,
     FraværFraSøknadsdata,
     MedlemskapSøknadsdata,
-    StengtBhgSkoleDokumenterSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 
@@ -19,8 +17,6 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_DINE_BARN = 'setSøknadDineBarn',
     SET_SØKNAD_FRAVÆR = 'setSøknadFravær',
-    SET_SØKNAD_SMITTEVERN_DOKUMENTER = 'setSøknadSmittevernDokumenter',
-    DOKUMENTER_STENGT_SKOLE_BHG = 'setSøknadStengtBhgSkoleDokumenter',
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_ARBEIDSSITUASJON = 'setSøknadArbeidssituasjon',
     SET_SØKNAD_FRAVÆR_FRA = 'setSøknadFraværFra',
@@ -64,15 +60,6 @@ interface SetSøknadDineBarn {
 interface SetSøknadFravær {
     type: SøknadContextActionKeys.SET_SØKNAD_FRAVÆR;
     payload: FraværSøknadsdata;
-}
-interface SetSøknadSmittevernDokumenter {
-    type: SøknadContextActionKeys.SET_SØKNAD_SMITTEVERN_DOKUMENTER;
-    payload: SmittevernDokumenterSøknadsdata;
-}
-
-interface SetSøknadStengtBhgSkoleDokumenter {
-    type: SøknadContextActionKeys.DOKUMENTER_STENGT_SKOLE_BHG;
-    payload: StengtBhgSkoleDokumenterSøknadsdata;
 }
 
 interface SetSøknadLegeerklæring {
@@ -133,18 +120,6 @@ const setSøknadFravær = (payload: FraværSøknadsdata): SetSøknadFravær => (
     payload,
 });
 
-const setSøknadSmittevernDokumenter = (payload: SmittevernDokumenterSøknadsdata): SetSøknadSmittevernDokumenter => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_SMITTEVERN_DOKUMENTER,
-    payload,
-});
-
-const setSøknadStengtBhgSkoleDokumenter = (
-    payload: StengtBhgSkoleDokumenterSøknadsdata
-): SetSøknadStengtBhgSkoleDokumenter => ({
-    type: SøknadContextActionKeys.DOKUMENTER_STENGT_SKOLE_BHG,
-    payload,
-});
-
 const setSøknadLegeerklæring = (payload: LegeerklæringSøknadsdata): SetSøknadLegeerklæring => ({
     type: SøknadContextActionKeys.SET_SØKNAD_LEGEERKLÆRING,
     payload,
@@ -180,8 +155,6 @@ export type SøknadContextAction =
     | SetSøknadSendt
     | SetSøknadDineBarn
     | SetSøknadFravær
-    | SetSøknadSmittevernDokumenter
-    | SetSøknadStengtBhgSkoleDokumenter
     | SetSøknadLegeerklæring
     | SetSøknadArbeidssituasjon
     | SetSøknadFraværFra
@@ -198,8 +171,6 @@ const actionsCreator = {
     setSøknadRoute,
     setSøknadDineBarn,
     setSøknadFravær,
-    setSøknadSmittevernDokumenter,
-    setSøknadStengtBhgSkoleDokumenter,
     setSøknadLegeerklæring,
     setSøknadArbeidssituasjon,
     setSøknadFraværFra,

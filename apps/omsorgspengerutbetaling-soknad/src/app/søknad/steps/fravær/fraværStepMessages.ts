@@ -30,8 +30,7 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravaer.info.ikkeHelg.tekst':
             'Du kan kun få utbetalt omsorgspenger for hverdager, selv om du jobber lørdag eller søndag. Derfor kan du ikke velge lørdag eller søndag som start- eller sluttdato i perioden du legger inn.',
         'step.fravaer.spm.harDagerMedDelvisFravær': 'Har du hatt dager med delvis fravær fra jobb?',
-        'step.fravaer.spm.hjemmePgaStengtBhgSkole.2021':
-            'Har du vært hjemme fra jobb fordi barnehagen eller skolen har vært stengt på grunn av koronaviruset?',
+
         'step.fravaer.harDagerMedDelvisFravær.listTitle': 'Dager med delvis fravær fra jobb',
         'step.fravaer.harDagerMedDelvisFravær.addLabel': 'Legg til dag med delvis fravær fra jobb',
         'step.fravaer.harDagerMedDelvisFravær.modalTitle': 'Dag med delvis fravær fra jobb',

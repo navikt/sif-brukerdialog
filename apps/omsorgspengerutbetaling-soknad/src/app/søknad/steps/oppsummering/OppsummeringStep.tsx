@@ -26,7 +26,6 @@ import FrilansOppsummering from './components/FrilansOppsummering';
 import SelvstendigOppsummering from './components/SelvstendigOppsummering';
 import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
 import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
-import VedleggOppsummering from './components/VedleggOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -129,21 +128,12 @@ const OppsummeringStep = () => {
                                 <FrilansOppsummering frilans={apiData.frilans} />
                                 <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
                                 <MedlemskapOppsummering bosteder={apiData.bosteder} />
-                                {søknadsdata.legeerklæring && (
-                                    <LegeerklæringOppsummering
-                                        apiData={apiData}
-                                        legeerklæringSøknadsdata={søknadsdata.legeerklæring}
-                                    />
-                                )}
 
-                                {/* TODO VIS KUN HVIS SØKER for 2023*/}
-                                {(søknadsdata.vedlegg_smittevernhensyn || søknadsdata.vedlegg_stengtSkoleBhg) && (
-                                    <VedleggOppsummering
-                                        apiData={apiData}
-                                        smittevernDokumenterSøknadsdata={søknadsdata.vedlegg_smittevernhensyn}
-                                        stengtBhgSkoleDokumenterSøknadsdata={søknadsdata.vedlegg_stengtSkoleBhg}
-                                    />
-                                )}
+                                <LegeerklæringOppsummering
+                                    apiData={apiData}
+                                    legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                />
+
                                 <ConfirmationCheckbox
                                     disabled={isSubmitting}
                                     label={

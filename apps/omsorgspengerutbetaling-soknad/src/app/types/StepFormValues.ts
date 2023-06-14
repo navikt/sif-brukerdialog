@@ -7,16 +7,12 @@ import { FraværFraFormValues } from '../søknad/steps/fravær-fra/FraværFraSte
 import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
 import { OppsummeringFormValues } from '../søknad/steps/oppsummering/OppsummeringStep';
 import { StepId } from './StepId';
-import { SmittevernDokumenterFormValues } from '../søknad/steps/smittevern-dokumenter/SmittevernDokumenterForm';
-import { StengtBhgSkoleDokumenterFormValues } from '../søknad/steps/stengt-bhg-skole-dokumenter/StengtBhgSkoleDokumenterForm';
 
 export interface StepFormValues {
     [StepId.VELKOMMEN]?: SamtykkeFormValues;
     [StepId.DINE_BARN]?: DineBarnFormValues;
     [StepId.FRAVÆR]?: FraværFormValues;
-    [StepId.DOKUMENTER_SMITTEVERNHENSYN]?: SmittevernDokumenterFormValues;
     [StepId.LEGEERKLÆRING]?: LegeerklæringFormValues;
-    [StepId.DOKUMENTER_STENGT_SKOLE_BHG]?: StengtBhgSkoleDokumenterFormValues;
     [StepId.ARBEIDSSITUASJON]?: ArbeidssituasjonFormValues;
     [StepId.FRAVÆR_FRA]?: FraværFraFormValues;
     [StepId.MEDLEMSKAP]?: MedlemskapFormValues;

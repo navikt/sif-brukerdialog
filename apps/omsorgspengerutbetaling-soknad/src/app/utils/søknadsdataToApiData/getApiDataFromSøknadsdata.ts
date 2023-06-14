@@ -12,7 +12,6 @@ import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøkna
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
-import { brukEndringeneFor2023, harFraværPgaSmittevernhensyn, harFraværPgaStengBhgSkole } from '../midlertidigUtils';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -27,8 +26,8 @@ export const getApiDataFromSøknadsdata = (
     intl: IntlShape
 ): SøknadApiData | undefined => {
     const { id, dineBarn, fravaer, arbeidssituasjon, medlemskap, legeerklæring } = søknadsdata;
-    // TODO Check !legeerklaring
-    if (!id || !dineBarn || !medlemskap || !arbeidssituasjon) {
+
+    if (!id || !dineBarn || !medlemskap || !legeerklæring || !arbeidssituasjon) {
         return undefined;
     }
     const { frilans, selvstendig } = arbeidssituasjon;
@@ -57,26 +56,6 @@ export const getApiDataFromSøknadsdata = (
     const harDekketTiFørsteDagerSelv =
         dineBarn.type === 'minstEtt12årEllerYngre' && dineBarn.harDekketTiFørsteDagerSelv === true;
 
-    const fraværDager =
-        søknadsdata.fravaer?.type === 'harFulltOgDelvisFravær' || søknadsdata.fravaer?.type === 'harKunDelvisFravær'
-            ? søknadsdata.fravaer.fraværDager
-            : [];
-    const fraværPerioder =
-        søknadsdata.fravaer?.type === 'harFulltOgDelvisFravær' || søknadsdata.fravaer?.type === 'harKunFulltFravær'
-            ? søknadsdata.fravaer.fraværPerioder
-            : [];
-
-    const vedleggLegeerklæring = brukEndringeneFor2023(fraværDager, fraværPerioder)
-        ? getVedleggApiData(legeerklæring?.vedlegg)
-        : [];
-
-    const vedleggSmittevern = harFraværPgaSmittevernhensyn(fraværPerioder, fraværDager)
-        ? getVedleggApiData(søknadsdata.vedlegg_smittevernhensyn?.vedlegg)
-        : [];
-    const vedleggStengtBhgSkole = harFraværPgaStengBhgSkole(fraværPerioder, fraværDager)
-        ? getVedleggApiData(søknadsdata.vedlegg_stengtSkoleBhg?.vedlegg)
-        : [];
-
     return {
         id,
         språk,
@@ -91,7 +70,7 @@ export const getApiDataFromSøknadsdata = (
         frilans: getFrilansApiDataFromSøknadsdata(frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
         utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
-        vedlegg: [...vedleggLegeerklæring, ...vedleggSmittevern, ...vedleggStengtBhgSkole],
+        vedlegg: getVedleggApiData(legeerklæring?.vedlegg),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
     };
 };

@@ -2,11 +2,6 @@ import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig }
 import { StepId } from '../types/StepId';
 import { ArbeidSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
-import {
-    brukEndringeneFor2023,
-    harFraværPgaSmittevernhensyn,
-    harFraværPgaStengBhgSkole,
-} from '../utils/midlertidigUtils';
 
 export const includeFraværFraStep = (arbeidssituasjon?: ArbeidSøknadsdata): boolean => {
     if (!arbeidssituasjon) {
@@ -26,20 +21,10 @@ export const includeFraværFraStep = (arbeidssituasjon?: ArbeidSøknadsdata): bo
 };
 
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
-    const fraværDager =
-        søknadsdata.fravaer?.type === 'harFulltOgDelvisFravær' || søknadsdata.fravaer?.type === 'harKunDelvisFravær'
-            ? søknadsdata.fravaer.fraværDager
-            : [];
-    const fraværPerioder =
-        søknadsdata.fravaer?.type === 'harFulltOgDelvisFravær' || søknadsdata.fravaer?.type === 'harKunFulltFravær'
-            ? søknadsdata.fravaer.fraværPerioder
-            : [];
     return [
         StepId.DINE_BARN,
         StepId.FRAVÆR,
-        ...(harFraværPgaSmittevernhensyn(fraværPerioder, fraværDager) ? [StepId.DOKUMENTER_SMITTEVERNHENSYN] : []),
-        ...(harFraværPgaStengBhgSkole(fraværPerioder, fraværDager) ? [StepId.DOKUMENTER_STENGT_SKOLE_BHG] : []),
-        ...(brukEndringeneFor2023(fraværDager, fraværPerioder) ? [StepId.LEGEERKLÆRING] : []),
+        StepId.LEGEERKLÆRING,
         StepId.ARBEIDSSITUASJON,
         ...(includeFraværFraStep(søknadsdata?.arbeidssituasjon) ? [StepId.FRAVÆR_FRA] : []),
         StepId.MEDLEMSKAP,
