@@ -45,7 +45,7 @@ export const mapArbeidsforholdToArbeidsforholdApiData = (
         }
         return {
             organisasjonsnummer,
-            organisasjonsnavn: arbeidsgiver.navn,
+            organisasjonsnavn: arbeidsgiver.navn || organisasjonsnummer,
             erAnsatt: true,
             arbeiderIPerioden,
             normalarbeidstid: {
@@ -55,7 +55,7 @@ export const mapArbeidsforholdToArbeidsforholdApiData = (
     }
     return {
         organisasjonsnummer,
-        organisasjonsnavn: arbeidsgiver.navn,
+        organisasjonsnavn: arbeidsgiver.navn || organisasjonsnummer,
         erAnsatt: false,
     };
 };
