@@ -38,6 +38,10 @@ export interface ArbeidIPeriodeApiDataUlikeUkerTimer {
     arbeidsuker: ArbeidsukeTimerApiData[];
 }
 
+/**
+ * Denne er ikke optimal for frilans hvor en har to spørsmål i dialogen,
+ * som skal sendes inn som en.
+ */
 export type ArbeidIPeriodeApiData =
     | ArbeidIPeriodeApiDataJobberIkke
     | ArbeidIPeriodeApiDataJobberVanlig

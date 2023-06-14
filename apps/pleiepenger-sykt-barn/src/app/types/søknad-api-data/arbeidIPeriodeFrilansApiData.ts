@@ -29,6 +29,16 @@ export interface ArbeidIPeriodeApiDataProsent {
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
     prosentAvNormalt: number;
 }
+
+/**
+ * Denne typen er ikke optimal i og med vi slår sammen
+ * de som mottar og honorar som én verdi. Så kombinasjonen
+ * av det som ligger i ArbeidIPeriodeFrilansApiData må sees på i sammenheng med honorar-
+ * feltene i FrilansApiData.
+ *
+ * Dette bør skrives om på et tidspunkt, men vil kreve endringer både i backend og frontend.
+ */
+
 export type ArbeidIPeriodeFrilansApiData =
     | ArbeidIPeriodeApiDataJobberIkke
     | ArbeidIPeriodeApiDataJobberSomVanlig
