@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.9.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 2.8.1
 
 ### Patch Changes

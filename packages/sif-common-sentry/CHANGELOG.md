@@ -1,5 +1,11 @@
 # @navikt/sif-common-sentry
 
+## 0.18.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 0.17.0
 
 ### Minor Changes

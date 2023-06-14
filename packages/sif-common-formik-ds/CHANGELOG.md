@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.22.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 0.21.1
 
 ### Patch Changes
