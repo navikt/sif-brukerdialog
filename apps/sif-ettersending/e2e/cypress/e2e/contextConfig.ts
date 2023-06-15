@@ -21,7 +21,7 @@ export const contextConfig = (props?: ConfigProps) => {
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
         cy.intercept(`/oppslag/soker`, cyApiMockData.søkerMock).as('getSøker');
-        cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
+        cy.intercept({ hostname: 'ryujtq87.api.sanity.io' }, {});
     });
 
     if (step) {
