@@ -22,8 +22,9 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSDAGER_ALENEOMSORG`, {});
         cy.intercept(`POST`, `${API}/mellomlagring/OMSORGSDAGER_ALENEOMSORG`, {});
         cy.intercept(`POST`, `${API}/omsorgsdager-aleneomsorg/innsending`, {}).as('innsending');
-        cy.intercept('GET', `${API}/oppslag/soker`, cyApiMockData.søkerMock);
-        cy.intercept('GET', `${API}/oppslag/barn`, cyApiMockData.barnMock);
+        cy.intercept('GET', `${API}/oppslag/soker`, cyApiMockData.søkerMock).as('getSøker');
+        cy.intercept('GET', `${API}/oppslag/barn`, cyApiMockData.barnMock).as('getBarn');
+        cy.intercept('*.api.sanity.io', {});
     });
 
     if (step) {

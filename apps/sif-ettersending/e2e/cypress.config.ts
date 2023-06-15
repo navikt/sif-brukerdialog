@@ -2,13 +2,14 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
     e2e: {
+        requestTimeout: 15000,
         testIsolation: false,
         setupNodeEvents(on, config) {
             // implement node event listeners here
         },
         screenshotOnRunFailure: false,
         video: false,
-        projectId: '5485qe',
+        // projectId: '5485qe',
         baseUrl: 'http://localhost:8080/soknad',
     },
 });

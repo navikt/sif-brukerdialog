@@ -52,6 +52,9 @@ jobs:
                   LIVETS_SLUTTFASE: on
                   NPM_CONFIG_CACHE: /tmp
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  APPSTATUS_PROJECT_ID: ryujtq87
+                  APPSTATUS_DATASET: staging
               with:
                   project: ./apps/sif-ettersending/e2e
                   build: yarn build-sif-ettersending
@@ -61,3 +64,5 @@ jobs:
                   runTests: false
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=sif-ettersending
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
