@@ -7,7 +7,7 @@ const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/etterse
 
 const velgYtelse = () => {
     it('Velg ytelse', () => {
-        cy.wait(1500);
+        cy.wait('@getSøker');
         cy.get('[type="radio"]').first().check();
         getTestElement('typedFormikForm-submitButton').click({ force: true });
         const el = getElement('h2').first();

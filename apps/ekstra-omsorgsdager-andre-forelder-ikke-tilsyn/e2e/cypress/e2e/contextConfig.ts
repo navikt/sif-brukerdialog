@@ -22,8 +22,8 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSPENGER_MIDLERTIDIG_ALENE`, {});
         cy.intercept(`POST`, `${API}/mellomlagring/OMSORGSPENGER_MIDLERTIDIG_ALENE`, {});
         cy.intercept(`POST`, `${API}/omsorgspenger-midlertidig-alene/innsending`, {}).as('innsending');
-        cy.intercept('GET', `${API}/oppslag/soker`, cyApiMockData.søkerMock);
-        cy.intercept('GET', `${API}/oppslag/barn`, cyApiMockData.barnMock);
+        cy.intercept('GET', `${API}/oppslag/soker`, cyApiMockData.søkerMock).as('getSøker');
+        cy.intercept('GET', `${API}/oppslag/barn`, cyApiMockData.barnMock).as('getBarn');
     });
 
     if (step) {
