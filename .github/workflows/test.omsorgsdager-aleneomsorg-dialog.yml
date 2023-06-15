@@ -57,7 +57,7 @@ jobs:
                   project: ./apps/omsorgsdager-aleneomsorg-dialog/e2e
                   build: yarn build-omsorgsdager-aleneomsorg-dialog
                   start: yarn turbo start-e2e-server --filter=omsorgsdager-aleneomsorg-dialog
-                  wait-on: 'http://localhost:8080'
+                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/alive'
                   wait-on-timeout: 60
                   runTests: false
 
