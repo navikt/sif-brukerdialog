@@ -42,12 +42,13 @@ jobs:
                   project: ./apps/sif-ettersending/e2e
                   build: yarn build-sif-ettersending
                   start: yarn turbo start-e2e-server --filter=sif-ettersending
-                  wait-on: 'http://localhost:8080'
+                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/health/isAlive'
                   wait-on-timeout: 60
                   runTests: false
-
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=sif-ettersending
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
     deploy-to-prod:
         name: Deploy sif-ettersending to prod

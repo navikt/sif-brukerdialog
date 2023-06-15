@@ -38,12 +38,14 @@ jobs:
                   project: ./apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/e2e
                   build: yarn build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                   start: yarn turbo start-e2e-server --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-                  wait-on: 'http://localhost:8080'
+                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/alive'
                   wait-on-timeout: 60
                   runTests: false
 
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
     deploy-to-prod:
         name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to prod

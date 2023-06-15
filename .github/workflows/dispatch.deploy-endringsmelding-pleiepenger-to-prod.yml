@@ -46,12 +46,14 @@ jobs:
                   project: ./apps/endringsmelding-pleiepenger/e2e
                   build: yarn build-endringsmelding-pleiepenger
                   start: yarn turbo start-e2e-server --filter=endringsmelding-pleiepenger
-                  wait-on: 'http://localhost:8080'
+                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive'
                   wait-on-timeout: 60
                   runTests: false
 
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=endringsmelding-pleiepenger
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
     deploy-to-prod:
         name: Deploy endringsmelding-pleiepenger to prod
