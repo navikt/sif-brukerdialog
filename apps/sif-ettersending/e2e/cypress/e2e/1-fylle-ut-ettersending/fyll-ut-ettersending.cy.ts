@@ -8,7 +8,7 @@ const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/etterse
 
 const velgYtelse = () => {
     it('Velg ytelse', () => {
-        cy.wait(4000);
+        cy.visit(velgYtelseUrl);
         cy.get('[type="radio"]').first().check();
         getTestElement('typedFormikForm-submitButton').click({ force: true });
         const el = getElement('h2').first();
@@ -69,9 +69,6 @@ const kontrollerKvittering = () => {
 
 describe('Velger ytelse', () => {
     contextConfig();
-    before(() => {
-        cy.visit(velgYtelseUrl);
-    });
     velgYtelse();
 });
 
