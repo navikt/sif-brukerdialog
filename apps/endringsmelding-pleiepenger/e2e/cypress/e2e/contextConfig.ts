@@ -42,7 +42,7 @@ export const contextConfig = (props: ConfigProps) => {
         cy.intercept('GET', `${mockApiBaseUrl}/oppslag/soker?ytelse=endringsmelding-pleiepenger`, søkerMock).as(
             'getSoker'
         );
-        cy.intercept({ hostname: 'ryujtq87.api.sanity.io' }, {});
+        cy.intercept({ hostname: '*.api.sanity.io' }, {});
         if (settings) {
             cy.intercept('GET', `*settings*`, settings).as('getSettings');
         }

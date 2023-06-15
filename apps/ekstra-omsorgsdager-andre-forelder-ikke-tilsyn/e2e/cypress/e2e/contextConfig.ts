@@ -24,7 +24,7 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`POST`, `${API}/omsorgspenger-midlertidig-alene/innsending`, {}).as('innsending');
         cy.intercept('GET', `${API}/oppslag/soker`, cyApiMockData.søkerMock).as('getSøker');
         cy.intercept('GET', `${API}/oppslag/barn`, cyApiMockData.barnMock).as('getBarn');
-        cy.intercept({ hostname: 'ryujtq87.api.sanity.io' }, {});
+        cy.intercept({ hostname: '*.api.sanity.io' }, {});
     });
 
     if (step) {
