@@ -3,11 +3,11 @@ import { cyApiMockData } from '../data/cyApiMockData';
 import { getElement, getTestElement, getTestElementByType, submitSkjema } from '../utils';
 
 const fileName = 'navlogopng.png';
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
+const velgYtelseUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/pleiepenger/melding';
 
 const velgYtelse = () => {
     it('Velg ytelse', () => {
-        cy.wait('@getSøker');
         cy.get('[type="radio"]').first().check();
         getTestElement('typedFormikForm-submitButton').click({ force: true });
         const el = getElement('h2').first();
@@ -65,13 +65,24 @@ const kontrollerKvittering = () => {
         getTestElement('søknad-mottatt').should('exist');
     });
 };
+
+describe('Velger ytelse', () => {
+    contextConfig();
+    before(() => {
+        cy.visit(velgYtelseUrl);
+    });
+    velgYtelse();
+});
+
 describe('Fylle ut skjema med vedlegg', () => {
     context('med utmocket, tom mellomlagring', () => {
         contextConfig();
         before(() => {
             cy.visit(startUrl);
         });
-        velgYtelse();
+        it('Henter søker', () => {
+            cy.wait('@getSøker');
+        });
         startSøknad();
         fyllUtBeskrivelse();
         lastOppDokument();

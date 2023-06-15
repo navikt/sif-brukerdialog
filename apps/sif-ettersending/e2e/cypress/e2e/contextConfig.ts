@@ -20,8 +20,8 @@ export const contextConfig = (props?: ConfigProps) => {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
-        cy.intercept(`/oppslag/soker`, cyApiMockData.søkerMock).as('getSøker');
         cy.intercept('*.api.sanity.io', {});
+        cy.intercept(`/oppslag/soker`, cyApiMockData.søkerMock).as('getSøker');
     });
 
     if (step) {
