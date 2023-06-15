@@ -70,3 +70,5 @@ jobs:
 
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=endringsmelding-pleiepenger
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
