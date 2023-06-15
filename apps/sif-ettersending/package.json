@@ -95,7 +95,7 @@
         "build": "npm-run-all build-app",
         "build-app": "node src/build/scripts/production-build.js",
         "cypress-open": "cypress open --project $PWD/e2e",
-        "cypress-run": "cypress run --project $PWD/e2e --record",
+        "cypress-run": "cypress run --project $PWD/e2e",
         "clean": "rm -rf node_modules .dist",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "snd": "yarn start-no-decorator",
