@@ -5095,7 +5095,7 @@ __metadata:
     eslint-plugin-react-hooks: 4.6.0
     eslint-webpack-plugin: 4.0.1
     express: 4.18.2
-    formik: 2.4.1
+    formik: 2.4.2
     fs-extra: 11.1.1
     helmet: 7.0.0
     html-webpack-harddisk-plugin: 2.0.0
@@ -5120,7 +5120,7 @@ __metadata:
     react-dom: 18.2.0
     react-intl: 6.4.4
     react-responsive: 9.0.2
-    react-router-dom: 6.12.1
+    react-router-dom: 6.13.0
     react-scripts: 5.0.1
     sass: 1.63.4
     sass-loader: 13.3.2
@@ -5130,7 +5130,7 @@ __metadata:
     ts-loader: 9.4.3
     typescript: 5.1.3
     uuid: 9.0.0
-    webpack: 5.86.0
+    webpack: 5.87.0
     webpack-dev-server: 4.15.1
   languageName: unknown
   linkType: soft
@@ -6042,6 +6042,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sanity/client@npm:5.4.2":
+  version: 5.4.2
+  resolution: "@sanity/client@npm:5.4.2"
+  dependencies:
+    "@sanity/eventsource": 5
+    get-it: ^8.1
+    rxjs: 7
+  checksum: 289e83b7c12eb0789f59b546b68f12e5f36b67acd780d454b6d16cc9b9740940e6a899cf005bc93c143dde163cba8d671b8b9a73a4309d14ca07442093ea46ef
+  languageName: node
+  linkType: hard
+
 "@sanity/client@npm:6.1.3":
   version: 6.1.3
   resolution: "@sanity/client@npm:6.1.3"
@@ -6053,7 +6064,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/eventsource@npm:^5.0.0":
+"@sanity/eventsource@npm:5, @sanity/eventsource@npm:^5.0.0":
   version: 5.0.0
   resolution: "@sanity/eventsource@npm:5.0.0"
   dependencies:
@@ -16394,7 +16405,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-it@npm:^8.1.0":
+"get-it@npm:^8.1, get-it@npm:^8.1.0":
   version: 8.1.3
   resolution: "get-it@npm:8.1.3"
   dependencies:
@@ -25204,7 +25215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.0.0":
+"rxjs@npm:7, rxjs@npm:^7.0.0":
   version: 7.8.1
   resolution: "rxjs@npm:7.8.1"
   dependencies:

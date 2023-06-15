@@ -33,6 +33,6 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept('GET', `/oppslag/barn*`, cyApiMockData.barnMock).as('getBarn');
         cy.intercept(`GET`, `/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgivereMock).as('getArbeidsgivere');
         cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, {}).as('postInnsending');
-        cy.intercept(`https://ryujtq87.api.sanity.io*`, {});
+        cy.intercept('*.api.sanity.io', {});
     });
 };
