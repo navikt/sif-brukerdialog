@@ -61,3 +61,5 @@ jobs:
 
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=omsorgspengesoknad
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

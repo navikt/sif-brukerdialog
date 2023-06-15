@@ -62,3 +62,5 @@ jobs:
                   runTests: false
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=sif-ettersending
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
