@@ -26,8 +26,8 @@ export const contextConfig = (props?: ConfigProps) => {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
-        cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock);
-        cy.intercept('GET', `${API}/oppslag/barn*`, props?.barn || cyApiMockData.barnMock);
+        cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
+        cy.intercept('GET', `${API}/oppslag/barn*`, props?.barn || cyApiMockData.barnMock).as('getBarn');
         cy.intercept({ hostname: 'ryujtq87.api.sanity.io' }, {});
     });
 
