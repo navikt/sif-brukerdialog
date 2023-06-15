@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 8.1.0
+
+### Minor Changes
+
+-   ea79f31c: Oppdatere pakker. Justere timout på cypress-tester. Utvide start-e2e-server på oms-alene
+
+### Patch Changes
+
+-   Updated dependencies [ea79f31c]
+    -   @navikt/sif-common-core-ds@9.1.0
+
 ## 8.0.0
 
 ### Minor Changes

@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.9.0",
+    "version": "2.10.0",
     "bugs": {
         "url": "https://github.com/navikt/appstatus-react-ds/issues"
     },
