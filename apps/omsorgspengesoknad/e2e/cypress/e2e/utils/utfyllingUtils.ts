@@ -18,6 +18,7 @@ interface BarnOgDeltBostedProps {
 
 const startSøknad = () => {
     it('Starter søknad', () => {
+        cy.wait(['@getSøker', '@getBarn']);
         getTestElement('bekreft-label').click();
         getTestElement('typedFormikForm-submitButton').click();
         cy.wait('@putMellomlagring');

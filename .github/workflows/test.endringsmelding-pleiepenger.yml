@@ -58,6 +58,8 @@ jobs:
                   FRONTEND_VEDLEGG_URL: http://localhost:8099/api
                   FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
                   VELG_SAK: off
+                  APPSTATUS_PROJECT_ID: ryujtq87
+                  APPSTATUS_DATASET: staging
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
@@ -70,3 +72,5 @@ jobs:
 
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=endringsmelding-pleiepenger
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

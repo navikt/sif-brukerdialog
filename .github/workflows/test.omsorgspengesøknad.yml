@@ -51,6 +51,8 @@ jobs:
                   FRONTEND_API_PATH: http://localhost:8089/
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  APPSTATUS_PROJECT_ID: ryujtq87
+                  APPSTATUS_DATASET: staging
               with:
                   project: ./apps/omsorgspengesoknad/e2e
                   build: yarn build-omsorgspengesoknad
@@ -61,3 +63,5 @@ jobs:
 
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=omsorgspengesoknad
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

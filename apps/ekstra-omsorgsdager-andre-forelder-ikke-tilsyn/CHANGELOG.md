@@ -1,5 +1,19 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.12.0
+
+### Minor Changes
+
+-   ea79f31c: Oppdatere pakker. Justere timout på cypress-tester. Utvide start-e2e-server på oms-alene
+
+### Patch Changes
+
+-   Updated dependencies [ea79f31c]
+    -   @navikt/sif-common-formik-ds@0.23.0
+    -   @navikt/sif-common-soknad-ds@11.0.0
+    -   @navikt/sif-common-core-ds@10.0.0
+    -   @navikt/sif-common-sentry@0.19.0
+
 ## 1.11.0
 
 ### Minor Changes
