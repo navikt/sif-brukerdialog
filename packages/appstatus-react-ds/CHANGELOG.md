@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.10.1
+
+### Patch Changes
+
+-   cc50b642: Diverse mindre pakkeoppdateringer
+
 ## 2.10.0
 
 ### Minor Changes

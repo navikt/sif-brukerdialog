@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "private": true,
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
@@ -27,9 +27,9 @@
         "start-e2e-server": "node ./server-e2e.js"
     },
     "dependencies": {
-        "@navikt/ds-css": "4.1.4",
-        "@navikt/ds-react": "4.1.4",
-        "@navikt/ds-tailwind": "4.1.4",
+        "@navikt/ds-css": "4.1.6",
+        "@navikt/ds-react": "4.1.6",
+        "@navikt/ds-tailwind": "4.1.6",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
@@ -73,7 +73,7 @@
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.8.1",
         "cypress": "12.14.0",
-        "dotenv": "16.1.4",
+        "dotenv": "16.2.0",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.3",
         "jsdom": "22.1.0",
