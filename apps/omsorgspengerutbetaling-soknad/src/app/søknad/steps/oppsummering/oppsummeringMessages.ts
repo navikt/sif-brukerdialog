@@ -35,7 +35,6 @@ export const oppsummeringMessages: MessageFileFormat = {
         'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp',
         'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
-        'step.oppsummering.fravær.årsak': 'Årsak: {årsak}.',
         'step.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
         'step.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
         'step.oppsummering.dokumenter.ikkelastetopp': 'Ikke lastet opp, må ettersendes',

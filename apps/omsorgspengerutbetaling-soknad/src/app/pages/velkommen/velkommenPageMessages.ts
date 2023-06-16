@@ -2,6 +2,7 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const velkommenPageMessages: MessageFileFormat = {
     nb: {
+        'page.velkommen.sidetittel': 'Søknad om utbetaling av omsorgspenger',
         'page.velkommen.guide.tittel': 'Hei {navn}',
         'page.velkommen.guide.ingress': 'Velkommen til søknad om omsorgspenger.',
         'page.velkommen.guide.tekst.1.1': 'Denne søknaden bruker du når du er ',
