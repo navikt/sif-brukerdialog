@@ -8,6 +8,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.omsorgspengesøknad.yml
             - .github/workflows/test.omsorgspengesøknad.yml
+    workflow_call:
 
 env:
     APP_NAME: 'omsorgspengesoknad'

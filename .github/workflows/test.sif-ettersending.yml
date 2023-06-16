@@ -8,6 +8,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.sif-ettersending.yml
             - .github/workflows/test.sif-ettersending.yml
+    workflow_call:
 
 env:
     APP_NAME: 'ettersending'
