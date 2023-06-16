@@ -57,7 +57,7 @@ jobs:
                   project: ./apps/omsorgspengesoknad/e2e
                   build: yarn build-omsorgspengesoknad
                   start: yarn turbo start-e2e-server --filter=omsorgspengesoknad
-                  wait-on: 'http://localhost:8080'
+                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/alive'
                   wait-on-timeout: 60
                   runTests: false
 
