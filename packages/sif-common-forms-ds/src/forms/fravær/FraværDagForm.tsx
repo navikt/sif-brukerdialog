@@ -1,9 +1,6 @@
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import FormattedHtmlMessage from '@navikt/sif-common-core-ds/lib/atoms/formatted-html-message/FormattedHtmlMessage';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
@@ -11,41 +8,28 @@ import { FormikDatepickerProps } from '@navikt/sif-common-formik-ds/lib/componen
 import {
     getDateValidator,
     getRequiredFieldValidator,
-    getYesOrNoValidator,
     ValidateDateError,
     ValidateNumberError,
-    ValidateRequiredFieldError,
-    ValidateYesOrNoError,
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { DateRange, dateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import FraværTimerSelect from './FraværTimerSelect';
-import {
-    brukHjemmePgaKoronaDagForm,
-    isFraværDag,
-    mapFormValuesToFraværDag,
-    mapFraværDagToFormValues,
-    toMaybeNumber,
-} from './fraværUtilities';
+import { isFraværDag, mapFormValuesToFraværDag, mapFraværDagToFormValues, toMaybeNumber } from './fraværUtilities';
 import {
     FraværFieldValidationErrors,
     validateFraværDagCollision,
     validateLessOrEqualTo,
     validateNotHelgedag,
 } from './fraværValidationUtils';
-import { getFraværÅrsakRadios } from './fraværÅrsakRadios';
 import { FraværDag, FraværDagFormValues } from './types';
-import ÅrsakInfo from './ÅrsakInfo';
 
 export interface FraværDagFormLabels {
     tittel: string;
     dato: string;
     antallArbeidstimer: string;
     timerFravær: string;
-    hjemmePgaKorona: string;
-    årsak: string;
     ok: string;
     avbryt: string;
 }
@@ -67,8 +51,6 @@ export enum FraværDagFormFields {
     dato = 'dato',
     timerArbeidsdag = 'timerArbeidsdag',
     timerFravær = 'timerFravær',
-    hjemmePgaKorona = 'hjemmePgaKorona',
-    årsak = 'årsak',
 }
 
 export const FraværDagFormErrors = {
@@ -85,14 +67,10 @@ export const FraværDagFormErrors = {
         [ValidateNumberError.numberHasNoValue]: 'fraværDagForm.timerArbeidsdag.numberHasNoValue',
     },
     [FraværDagFormFields.timerFravær]: {
-        [ValidateNumberError.numberHasNoValue]: 'fraværDagForm.timerFravær.numbverHasNoValue',
+        [ValidateNumberError.numberHasNoValue]: 'fraværDagForm.timerFravær.numberHasNoValue',
         [FraværFieldValidationErrors.fravær_timer_mer_enn_arbeidstimer]:
             'fraværDagForm.timerFravær.fravær_timer_mer_enn_arbeidstimer',
     },
-    [FraværDagFormFields.hjemmePgaKorona]: {
-        [ValidateYesOrNoError.yesOrNoIsUnanswered]: 'fraværDagForm.hjemmePgaKorona.yesOrNoIsUnanswered',
-    },
-    [FraværDagFormFields.årsak]: { [ValidateRequiredFieldError.noValue]: 'fraværDagForm.årsak.noValue' },
 };
 
 export const FraværDagFormName = 'fraværDagForm';
@@ -104,7 +82,6 @@ const FraværDagFormView = ({
         dato: undefined,
         timerArbeidsdag: undefined,
         timerFravær: undefined,
-        årsak: undefined,
     },
     dagDescription,
     maxDate,
@@ -129,14 +106,12 @@ const FraværDagFormView = ({
     const formLabels: FraværDagFormLabels = {
         ok: intlHelper(intl, 'fravær.form.felles.ok'),
         avbryt: intlHelper(intl, 'fravær.form.felles.avbryt'),
-        årsak: intlHelper(intl, 'fravær.form.felles.årsak'),
         tittel: intlHelper(intl, 'fravær.form.dag.tittel'),
         dato: intlHelper(intl, 'fravær.form.dag.dato'),
         antallArbeidstimer: intlHelper(intl, 'fravær.form.dag.antallArbeidstimer'),
         timerFravær: intlHelper(intl, 'fravær.form.dag.timerFravær'),
-        hjemmePgaKorona: intlHelper(intl, 'fravær.form.felles.hjemmePgaKorona'),
     };
-    const fraværÅrsakRadios = getFraværÅrsakRadios(intl);
+
     const disabledDateRanges = dateRangesToDisable
         ? dateRangesToDisable.filter((range) => {
               const { dato } = fraværDag;
@@ -217,33 +192,6 @@ const FraværDagFormView = ({
                                     maksTid={maksArbeidstidPerDag}
                                 />
                             </FormBlock>
-                            {brukHjemmePgaKoronaDagForm(valgtDato) && (
-                                <>
-                                    <FormBlock>
-                                        <FraværDagForm.YesOrNoQuestion
-                                            legend={formLabels.hjemmePgaKorona}
-                                            name={FraværDagFormFields.hjemmePgaKorona}
-                                            validate={getYesOrNoValidator()}
-                                            description={
-                                                <ExpandableInfo title={intlHelper(intl, 'info.smittevern.tittel')}>
-                                                    <FormattedHtmlMessage id="info.smittevern.info.html" />
-                                                </ExpandableInfo>
-                                            }
-                                        />
-                                    </FormBlock>
-                                    {values.hjemmePgaKorona === YesOrNo.YES && (
-                                        <FormBlock>
-                                            <FraværDagForm.RadioGroup
-                                                legend={formLabels.årsak}
-                                                name={FraværDagFormFields.årsak}
-                                                validate={getRequiredFieldValidator()}
-                                                radios={fraværÅrsakRadios}
-                                                description={<ÅrsakInfo />}
-                                            />
-                                        </FormBlock>
-                                    )}
-                                </>
-                            )}
                         </FraværDagForm.Form>
                     );
                 }}

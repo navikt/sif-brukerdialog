@@ -19,13 +19,7 @@ const FraværDagerList = ({ fraværDager = [], onDelete, onEdit }: Props) => {
 
     const renderFraværDagLabel = (fraværDag: FraværDag): React.ReactNode => {
         const title = getFraværDagListItemTitle(fraværDag);
-        return (
-            <FraværListItem
-                title={title}
-                årsak={fraværDag.årsak}
-                onEdit={onEdit ? () => onEdit(fraværDag) : undefined}
-            />
-        );
+        return <FraværListItem title={title} onEdit={onEdit ? () => onEdit(fraværDag) : undefined} />;
     };
 
     return (
