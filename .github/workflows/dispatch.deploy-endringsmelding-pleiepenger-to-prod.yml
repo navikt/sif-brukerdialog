@@ -10,8 +10,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    run-tests:
-        name: Run tests
+    run-script-tests:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -29,6 +28,18 @@ jobs:
             - name: Run code tests
               run: yarn test --filter=endringsmelding-pleiepenger
 
+    run-cypress-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
+
             - name: Build and start e2e server
               uses: cypress-io/github-action@v5.8.1
               env:
@@ -42,6 +53,10 @@ jobs:
                   FRONTEND_VEDLEGG_URL: http://localhost:8099/api
                   FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
                   VELG_SAK: off
+                  APPSTATUS_PROJECT_ID: ryujtq87
+                  APPSTATUS_DATASET: staging
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   project: ./apps/endringsmelding-pleiepenger/e2e
                   build: yarn build-endringsmelding-pleiepenger
@@ -57,7 +72,7 @@ jobs:
 
     deploy-to-prod:
         name: Deploy endringsmelding-pleiepenger to prod
-        needs: [run-tests]
+        needs: [run-script-tests, run-cypress-test]
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
         secrets:
             NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
