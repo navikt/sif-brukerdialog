@@ -21,7 +21,7 @@ export interface UtbetalingsperiodeApi {
     antallTimerBorte: string | null; // f eks PT5H30M | "null" (type Duration)
     antallTimerPlanlagt: string | null; // f eks PT5H30M | "null" (type Duration)
     aktivitetFravær: ApiAktivitet[];
-    // årsak: FraværÅrsak; // Deprecated
+    årsak: string; // Deprecated
 }
 
 export enum RegistrertBarnTypeApi {

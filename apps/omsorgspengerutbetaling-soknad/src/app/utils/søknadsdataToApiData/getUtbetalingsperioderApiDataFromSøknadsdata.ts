@@ -108,6 +108,7 @@ const mapFraværDagTilUtbetalingsperiodeApi = (
         antallTimerPlanlagt: timeToIso8601Duration(decimalTimeToTime(parseFloat(fraværDag.timerArbeidsdag))),
         antallTimerBorte: timeToIso8601Duration(decimalTimeToTime(parseFloat(fraværDag.timerFravær))),
         aktivitetFravær,
+        årsak: 'ORDINÆRT_FRAVÆR',
     };
 };
 
@@ -121,6 +122,7 @@ const mapFraværPeriodeTilUtbetalingsperiodeApi = (
         antallTimerPlanlagt: null,
         antallTimerBorte: null,
         aktivitetFravær,
+        årsak: 'ORDINÆRT_FRAVÆR',
     };
 };
 

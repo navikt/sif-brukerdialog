@@ -160,7 +160,7 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværFormValues):
         };
     }
 
-    if (harDelvisFravær && !harFulltFravær) {
+    if (harDelvisFravær && harFulltFravær) {
         return {
             type: 'harFulltOgDelvisFravær',
             harPerioderMedFravær: true,
