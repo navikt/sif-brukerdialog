@@ -8,6 +8,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.omsorgsdager-aleneomsorg-dialog.yml
             - .github/workflows/test.omsorgsdager-aleneomsorg-dialog.yml
+    workflow_call:
 
 env:
     APP_NAME: 'omsorgsdager-aleneomsorg-dialog'
