@@ -3363,9 +3363,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/android-arm64@npm:0.18.2"
+"@esbuild/android-arm64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/android-arm64@npm:0.18.3"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
@@ -3377,9 +3377,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/android-arm@npm:0.18.2"
+"@esbuild/android-arm@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/android-arm@npm:0.18.3"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
@@ -3391,9 +3391,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/android-x64@npm:0.18.2"
+"@esbuild/android-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/android-x64@npm:0.18.3"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
@@ -3405,9 +3405,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-arm64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/darwin-arm64@npm:0.18.2"
+"@esbuild/darwin-arm64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/darwin-arm64@npm:0.18.3"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -3419,9 +3419,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/darwin-x64@npm:0.18.2"
+"@esbuild/darwin-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/darwin-x64@npm:0.18.3"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -3433,9 +3433,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-arm64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/freebsd-arm64@npm:0.18.2"
+"@esbuild/freebsd-arm64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/freebsd-arm64@npm:0.18.3"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -3447,9 +3447,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/freebsd-x64@npm:0.18.2"
+"@esbuild/freebsd-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/freebsd-x64@npm:0.18.3"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
@@ -3461,9 +3461,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-arm64@npm:0.18.2"
+"@esbuild/linux-arm64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-arm64@npm:0.18.3"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -3475,9 +3475,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-arm@npm:0.18.2"
+"@esbuild/linux-arm@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-arm@npm:0.18.3"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
@@ -3489,9 +3489,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ia32@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-ia32@npm:0.18.2"
+"@esbuild/linux-ia32@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-ia32@npm:0.18.3"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
@@ -3503,9 +3503,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-loong64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-loong64@npm:0.18.2"
+"@esbuild/linux-loong64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-loong64@npm:0.18.3"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
@@ -3517,9 +3517,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-mips64el@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-mips64el@npm:0.18.2"
+"@esbuild/linux-mips64el@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-mips64el@npm:0.18.3"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
@@ -3531,9 +3531,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ppc64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-ppc64@npm:0.18.2"
+"@esbuild/linux-ppc64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-ppc64@npm:0.18.3"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
@@ -3545,9 +3545,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-riscv64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-riscv64@npm:0.18.2"
+"@esbuild/linux-riscv64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-riscv64@npm:0.18.3"
   conditions: os=linux & cpu=riscv64
   languageName: node
   linkType: hard
@@ -3559,9 +3559,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-s390x@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-s390x@npm:0.18.2"
+"@esbuild/linux-s390x@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-s390x@npm:0.18.3"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
@@ -3573,9 +3573,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/linux-x64@npm:0.18.2"
+"@esbuild/linux-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/linux-x64@npm:0.18.3"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
@@ -3587,9 +3587,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/netbsd-x64@npm:0.18.2"
+"@esbuild/netbsd-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/netbsd-x64@npm:0.18.3"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -3601,9 +3601,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/openbsd-x64@npm:0.18.2"
+"@esbuild/openbsd-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/openbsd-x64@npm:0.18.3"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -3615,9 +3615,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/sunos-x64@npm:0.18.2"
+"@esbuild/sunos-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/sunos-x64@npm:0.18.3"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
@@ -3629,9 +3629,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-arm64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/win32-arm64@npm:0.18.2"
+"@esbuild/win32-arm64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/win32-arm64@npm:0.18.3"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -3643,9 +3643,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/win32-ia32@npm:0.18.2"
+"@esbuild/win32-ia32@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/win32-ia32@npm:0.18.3"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
@@ -3657,9 +3657,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-x64@npm:0.18.2":
-  version: 0.18.2
-  resolution: "@esbuild/win32-x64@npm:0.18.2"
+"@esbuild/win32-x64@npm:0.18.3":
+  version: 0.18.3
+  resolution: "@esbuild/win32-x64@npm:0.18.3"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -4531,10 +4531,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^4.1.4":
-  version: 4.1.4
-  resolution: "@navikt/aksel-icons@npm:4.1.4"
-  checksum: 0e6b9f9f0afc904a26a14846a5f59d934e4577f6aeda2bdb1766a52f6ae984a53941d9f321f7a994a64c19d0b3dfb08d9c14e3a0b944ca56b00b9c5ee95cdeda
+"@navikt/aksel-icons@npm:^4.1.6":
+  version: 4.1.6
+  resolution: "@navikt/aksel-icons@npm:4.1.6"
+  checksum: cdb19df1f57f8a856c77dc8e08f77031e8ffe71d7ff3c08fbe82db7c2da21e0e826e9ce533bd2626b0aabd446a1f24b59b4615cf3aeea150972b848f8b7efa1b
   languageName: node
   linkType: hard
 
@@ -4542,8 +4542,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
-    "@navikt/ds-css": 4.1.4
-    "@navikt/ds-react": 4.1.4
+    "@navikt/ds-css": 4.1.6
+    "@navikt/ds-react": 4.1.6
     "@portabletext/react": 3.0.2
     "@sanity/client": 6.1.3
     "@types/node": 20.3.1
@@ -4572,10 +4572,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-css@npm:4.1.4":
-  version: 4.1.4
-  resolution: "@navikt/ds-css@npm:4.1.4"
-  checksum: 4b7a9ac5e509a2743587fba5fdb568f734a3e4b11ae0a32b2aeba73b877b3c5f0ef428dce7d9a00ed5f00a4d09545439cbf7b14a364502ccabe33412805ea2ba
+"@navikt/ds-css@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@navikt/ds-css@npm:4.1.6"
+  checksum: 567d5dd27370c40941faa36a567d2def1257d17015e1fd494783dd1bc0240c93694e47a9c62c6da3135ef02435d26ce651d3c1c2aacf2a738dc8b303ca05b6dd
   languageName: node
   linkType: hard
 
@@ -4635,12 +4635,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-react@npm:4.1.4":
-  version: 4.1.4
-  resolution: "@navikt/ds-react@npm:4.1.4"
+"@navikt/ds-react@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@navikt/ds-react@npm:4.1.6"
   dependencies:
     "@floating-ui/react": 0.24.1
-    "@navikt/aksel-icons": ^4.1.4
+    "@navikt/aksel-icons": ^4.1.6
     "@radix-ui/react-tabs": 1.0.0
     "@radix-ui/react-toggle-group": 1.0.0
     clsx: ^1.2.1
@@ -4653,14 +4653,14 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 7fb1a5aa76474c3762fde68225eb2e95fe9b9a692aed6a0e942dcd70553a3aa7bd49303b2f5213b354d42d9944af30858c3f774949b1c076b7e8a56467779e63
+  checksum: 170a595c34849c7ec639cb63830a1cebde2d12a642849283a11944c0d08c479edf5f3e88271b90765e8a448697ddf7c9673198ddd59a64b98fd524bccd6b7132
   languageName: node
   linkType: hard
 
-"@navikt/ds-tailwind@npm:4.1.4":
-  version: 4.1.4
-  resolution: "@navikt/ds-tailwind@npm:4.1.4"
-  checksum: 8db4032b81c260ffa147b3d0ffd5b003b240dff8f5f1e8a7b22d03518b140f215213349f8bb524620f17c9c1d2af27c4bdd8a300fa6e931622d16cb94e7a0e5d
+"@navikt/ds-tailwind@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@navikt/ds-tailwind@npm:4.1.6"
+  checksum: bc6365268bc0d587c6a6413011847a499516d8740764d0a661ee7dc2591718c65ce43b3b2ad88016e42543acb74746193982073a0a97dd3d28c18a55037b48b4
   languageName: node
   linkType: hard
 
@@ -4673,9 +4673,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.22.5
     "@babel/preset-env": 7.22.5
     "@babel/preset-react": 7.22.5
-    "@navikt/ds-css": 4.1.4
-    "@navikt/ds-react": 4.1.4
-    "@navikt/ds-tailwind": 4.1.4
+    "@navikt/ds-css": 4.1.6
+    "@navikt/ds-react": 4.1.6
+    "@navikt/ds-tailwind": 4.1.6
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -4697,7 +4697,7 @@ __metadata:
     css-loader: 6.8.1
     cypress: 12.14.0
     dayjs: 1.11.8
-    dotenv: 16.1.4
+    dotenv: 16.2.0
     eslint: 8.42.0
     express: 4.18.2
     formik: 2.4.2
@@ -4748,10 +4748,10 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.4
     "@mswjs/data": 0.13.0
-    "@navikt/ds-css": 4.1.4
+    "@navikt/ds-css": 4.1.6
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 4.1.4
-    "@navikt/ds-tailwind": 4.1.4
+    "@navikt/ds-react": 4.1.6
+    "@navikt/ds-tailwind": 4.1.6
     "@navikt/fnrvalidator": 1.3.0
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
@@ -4796,7 +4796,7 @@ __metadata:
     date-fns: 2.30.0
     dayjs: 1.11.8
     detect-browser: 5.3.0
-    dotenv: 16.1.4
+    dotenv: 16.2.0
     express: 4.18.2
     flat: 5.0.2
     formik: 2.4.2
@@ -4820,7 +4820,7 @@ __metadata:
     lodash: 4.17.21
     mini-css-extract-plugin: 2.7.6
     monocle-ts: 2.3.13
-    msw: 1.2.1
+    msw: 1.2.2
     mustache-express: 1.3.2
     newtype-ts: 0.3.5
     object-hash: 3.0.0
@@ -4885,9 +4885,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.22.5
     "@babel/preset-env": 7.22.5
     "@babel/preset-react": 7.22.5
-    "@navikt/ds-css": 4.1.4
-    "@navikt/ds-react": 4.1.4
-    "@navikt/ds-tailwind": 4.1.4
+    "@navikt/ds-css": 4.1.6
+    "@navikt/ds-react": 4.1.6
+    "@navikt/ds-tailwind": 4.1.6
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -4908,7 +4908,7 @@ __metadata:
     css-loader: 6.8.1
     cypress: 12.14.0
     dayjs: 1.11.8
-    dotenv: 16.1.4
+    dotenv: 16.2.0
     express: 4.18.2
     formik: 2.4.2
     helmet: 7.0.0
@@ -4951,10 +4951,10 @@ __metadata:
     "@babel/preset-env": 7.22.5
     "@babel/preset-react": 7.22.5
     "@babel/preset-typescript": 7.22.5
-    "@navikt/ds-css": 4.1.4
+    "@navikt/ds-css": 4.1.6
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 4.1.4
-    "@navikt/ds-tailwind": 4.1.4
+    "@navikt/ds-react": 4.1.6
+    "@navikt/ds-tailwind": 4.1.6
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -4988,7 +4988,7 @@ __metadata:
     cypress: 12.14.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.8
-    dotenv: 16.1.4
+    dotenv: 16.2.0
     express: 4.18.2
     formik: 2.4.2
     helmet: 7.0.0
@@ -5030,7 +5030,7 @@ __metadata:
   resolution: "@navikt/sif-brukerdialog@workspace:."
   dependencies:
     "@changesets/cli": 2.26.1
-    "@navikt/ds-tailwind": 4.1.4
+    "@navikt/ds-tailwind": 4.1.6
     "@storybook/builder-webpack5": 7.0.21
     "@storybook/manager-webpack5": 6.5.16
     "@testing-library/dom": 9.3.1
@@ -5039,7 +5039,7 @@ __metadata:
     "@testing-library/react-hooks": 8.0.1
     "@testing-library/user-event": 14.4.3
     check-peer-dependencies: ^4.2.0
-    esbuild: 0.18.2
+    esbuild: 0.18.3
     esbuild-jest: 0.5.0
     eslint: 8.42.0
     eslint-plugin-prettier: 4.2.1
@@ -5062,7 +5062,7 @@ __metadata:
     turbo: 1.10.3
     typescript: 5.1.3
     webpack: 5.87.0
-    yarn-audit-fix: 9.3.10
+    yarn-audit-fix: 9.3.11
   languageName: unknown
   linkType: soft
 
@@ -5097,11 +5097,11 @@ __metadata:
     "@babel/preset-typescript": 7.22.5
     "@formatjs/intl-pluralrules": 5.2.4
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 4.1.4
+    "@navikt/ds-css": 4.1.6
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 4.1.4
-    "@navikt/ds-tailwind": 4.1.4
+    "@navikt/ds-react": 4.1.6
+    "@navikt/ds-tailwind": 4.1.6
     "@navikt/fnrvalidator": 1.3.0
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-utils": "*"
@@ -5171,10 +5171,10 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@babel/preset-typescript": 7.22.5
     "@formatjs/intl-pluralrules": 5.2.4
-    "@navikt/ds-css": 4.1.4
+    "@navikt/ds-css": 4.1.6
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 4.1.4
+    "@navikt/ds-react": 4.1.6
     "@navikt/fnrvalidator": 1.3.0
     "@storybook/addon-a11y": 7.0.21
     "@storybook/addon-actions": 7.0.21
@@ -5231,8 +5231,8 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@babel/preset-typescript": 7.22.5
     "@formatjs/intl-pluralrules": 5.2.4
-    "@navikt/ds-css": 4.1.4
-    "@navikt/ds-react": 4.1.4
+    "@navikt/ds-css": 4.1.6
+    "@navikt/ds-react": 4.1.6
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-utils": "*"
@@ -5314,8 +5314,8 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.4
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 4.1.4
-    "@navikt/ds-react": 4.1.4
+    "@navikt/ds-css": 4.1.6
+    "@navikt/ds-react": 4.1.6
     "@navikt/nav-dekoratoren-moduler": 1.6.9
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -5411,11 +5411,11 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.4
-    "@navikt/ds-css": 4.1.4
+    "@navikt/ds-css": 4.1.6
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 4.1.4
-    "@navikt/ds-tailwind": 4.1.4
+    "@navikt/ds-react": 4.1.6
+    "@navikt/ds-tailwind": 4.1.6
     "@navikt/nav-dekoratoren-moduler": 1.6.9
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
@@ -5442,7 +5442,7 @@ __metadata:
     cypress-file-upload: 5.0.8
     date-fns: 2.30.0
     dayjs: 1.11.8
-    dotenv: 16.1.4
+    dotenv: 16.2.0
     express: 4.18.2
     formik: 2.4.2
     fp-ts: 2.16.0
@@ -12238,6 +12238,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "commander@npm:11.0.0"
+  checksum: 6621954e1e1d078b4991c1f5bbd9439ad37aa7768d6ab4842de1dbd4d222c8a27e1b8e62108b3a92988614af45031d5bb2a2aaa92951f4d0c934d1a1ac564bb4
+  languageName: node
+  linkType: hard
+
 "commander@npm:^2.11.0, commander@npm:^2.18.0, commander@npm:^2.19.0, commander@npm:^2.20.0":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
@@ -13832,10 +13839,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:16.1.4":
-  version: 16.1.4
-  resolution: "dotenv@npm:16.1.4"
-  checksum: c1b2e13df4d374a6a29e134c56c7b040ba20500677fe8b9939ea654f3b3badb9aaa0b172e40e4dfa1233a4177dbb8fb79d84cc79a50ac9c9641fe2ad98c14876
+"dotenv@npm:16.2.0":
+  version: 16.2.0
+  resolution: "dotenv@npm:16.2.0"
+  checksum: 07ff2c3bccf3f0a7bd5e991f53cc97d8d093748154f2f74d7c2c7fdf669728234670a116b37dc38458951e61ab28ed8a92050d91461a8992117aa7605c688b1d
   languageName: node
   linkType: hard
 
@@ -14297,32 +14304,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.18.2":
-  version: 0.18.2
-  resolution: "esbuild@npm:0.18.2"
+"esbuild@npm:0.18.3":
+  version: 0.18.3
+  resolution: "esbuild@npm:0.18.3"
   dependencies:
-    "@esbuild/android-arm": 0.18.2
-    "@esbuild/android-arm64": 0.18.2
-    "@esbuild/android-x64": 0.18.2
-    "@esbuild/darwin-arm64": 0.18.2
-    "@esbuild/darwin-x64": 0.18.2
-    "@esbuild/freebsd-arm64": 0.18.2
-    "@esbuild/freebsd-x64": 0.18.2
-    "@esbuild/linux-arm": 0.18.2
-    "@esbuild/linux-arm64": 0.18.2
-    "@esbuild/linux-ia32": 0.18.2
-    "@esbuild/linux-loong64": 0.18.2
-    "@esbuild/linux-mips64el": 0.18.2
-    "@esbuild/linux-ppc64": 0.18.2
-    "@esbuild/linux-riscv64": 0.18.2
-    "@esbuild/linux-s390x": 0.18.2
-    "@esbuild/linux-x64": 0.18.2
-    "@esbuild/netbsd-x64": 0.18.2
-    "@esbuild/openbsd-x64": 0.18.2
-    "@esbuild/sunos-x64": 0.18.2
-    "@esbuild/win32-arm64": 0.18.2
-    "@esbuild/win32-ia32": 0.18.2
-    "@esbuild/win32-x64": 0.18.2
+    "@esbuild/android-arm": 0.18.3
+    "@esbuild/android-arm64": 0.18.3
+    "@esbuild/android-x64": 0.18.3
+    "@esbuild/darwin-arm64": 0.18.3
+    "@esbuild/darwin-x64": 0.18.3
+    "@esbuild/freebsd-arm64": 0.18.3
+    "@esbuild/freebsd-x64": 0.18.3
+    "@esbuild/linux-arm": 0.18.3
+    "@esbuild/linux-arm64": 0.18.3
+    "@esbuild/linux-ia32": 0.18.3
+    "@esbuild/linux-loong64": 0.18.3
+    "@esbuild/linux-mips64el": 0.18.3
+    "@esbuild/linux-ppc64": 0.18.3
+    "@esbuild/linux-riscv64": 0.18.3
+    "@esbuild/linux-s390x": 0.18.3
+    "@esbuild/linux-x64": 0.18.3
+    "@esbuild/netbsd-x64": 0.18.3
+    "@esbuild/openbsd-x64": 0.18.3
+    "@esbuild/sunos-x64": 0.18.3
+    "@esbuild/win32-arm64": 0.18.3
+    "@esbuild/win32-ia32": 0.18.3
+    "@esbuild/win32-x64": 0.18.3
   dependenciesMeta:
     "@esbuild/android-arm":
       optional: true
@@ -14370,7 +14377,7 @@ __metadata:
       optional: true
   bin:
     esbuild: bin/esbuild
-  checksum: 64d82cc5fa1280f1730f96fdb9a74a23effb01de63d020c99f9090ea792fe78199daf083e842eccd3a55ccbad3d1bafb2f4b86280b6c8ce203fa309f06312597
+  checksum: c31287c53fa5baef93a82ef39006e5521735986788ba4f54226aa475f44fb5ba22219a42663add78d30fc2aad258f78393e7d0aa54c971b463a6bcecb30be963
   languageName: node
   linkType: hard
 
@@ -20838,7 +20845,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@latest, msw@npm:1.2.1":
+msw@latest:
   version: 1.2.1
   resolution: "msw@npm:1.2.1"
   dependencies:
@@ -20869,6 +20876,40 @@ __metadata:
   bin:
     msw: cli/index.js
   checksum: 97b9c5ffc81b4380dd24ff40ac52ca02f406c88f86d8209ba991da19aad0bcfc37e807794aa1b9bf29f89cd86fd31e492bf4418c5ff02559b4f80d6ce4fb417b
+  languageName: node
+  linkType: hard
+
+"msw@npm:1.2.2":
+  version: 1.2.2
+  resolution: "msw@npm:1.2.2"
+  dependencies:
+    "@mswjs/cookies": ^0.2.2
+    "@mswjs/interceptors": ^0.17.5
+    "@open-draft/until": ^1.0.3
+    "@types/cookie": ^0.4.1
+    "@types/js-levenshtein": ^1.1.1
+    chalk: 4.1.1
+    chokidar: ^3.4.2
+    cookie: ^0.4.2
+    graphql: ^15.0.0 || ^16.0.0
+    headers-polyfill: ^3.1.2
+    inquirer: ^8.2.0
+    is-node-process: ^1.2.0
+    js-levenshtein: ^1.1.6
+    node-fetch: ^2.6.7
+    outvariant: ^1.4.0
+    path-to-regexp: ^6.2.0
+    strict-event-emitter: ^0.4.3
+    type-fest: ^2.19.0
+    yargs: ^17.3.1
+  peerDependencies:
+    typescript: ">= 4.4.x <= 5.1.x"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    msw: cli/index.js
+  checksum: e42cec8f5523663020bdecf6a7977a10aa86a4718d1920def3fbde0ff3734391873668cc6e3996d6790add3c74dac95a952f8560ce2543697280125eb55138e8
   languageName: node
   linkType: hard
 
@@ -29243,9 +29284,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yarn-audit-fix@npm:9.3.10":
-  version: 9.3.10
-  resolution: "yarn-audit-fix@npm:9.3.10"
+"yarn-audit-fix@npm:9.3.11":
+  version: 9.3.11
+  resolution: "yarn-audit-fix@npm:9.3.11"
   dependencies:
     "@types/find-cache-dir": ^3.2.1
     "@types/fs-extra": ^11.0.1
@@ -29254,7 +29295,7 @@ __metadata:
     "@types/yarnpkg__lockfile": ^1.1.5
     "@yarnpkg/lockfile": ^1.1.0
     chalk: ^5.2.0
-    commander: ^10.0.0
+    commander: ^11.0.0
     find-cache-dir: ^4.0.0
     find-up: ^6.3.0
     fs-extra: ^10.1.0
@@ -29267,7 +29308,7 @@ __metadata:
     tslib: ^2.5.0
   bin:
     yarn-audit-fix: target/es6/cli.js
-  checksum: 8e8407ba90a08286c8ef24bced8af850ab39701df0bc056e416da8666b0066f074885704dcb1143bd28134d6766f08615b285457f5c2c8c185b4f67b592088a6
+  checksum: 9e9bdd8c19945535649834c28f136b93c61adea39337cd90b56d6eaf200056f6abe93b243f8d0955276894830fa43f8a6d693321eb1bbd8cb7cbeecf92e9687d
   languageName: node
   linkType: hard
 
