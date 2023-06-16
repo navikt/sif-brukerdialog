@@ -10,6 +10,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.endringsmelding-pleiepenger.yml
             - .github/workflows/test.endringsmelding-pleiepenger.yml
+    workflow_call:
 
 env:
     APP_NAME: 'endringsmelding-pleiepenger'
