@@ -4,14 +4,18 @@ import {
 } from '../types/søknad-api-data/SøknadApiData';
 import { ArbeidsgivereSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
-const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
+export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
     arbeidsgivere?: ArbeidsgivereSøknadsdata
 ): ArbeidsforholdAvsluttetFørSøknadsperiode[] | undefined => {
     if (!arbeidsgivere) {
         return undefined;
     }
-    return Object.keys(arbeidsgivere)
-        .filter((key) => arbeidsgivere[key].ansattISøknadsperiode === false)
+
+    const arbeidsforhold: ArbeidsforholdAvsluttetFørSøknadsperiode[] = Array.from(arbeidsgivere.keys())
+        .filter((key) => {
+            const ansatt = arbeidsgivere.get(key);
+            return ansatt && ansatt.type === 'sluttetFørSøknadsperiode';
+        })
         .map((key) => {
             return {
                 erAnsatt: false,
@@ -19,6 +23,8 @@ const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
                 orgnr: key,
             };
         });
+
+    return arbeidsforhold.length === 0 ? undefined : arbeidsforhold;
 };
 
 export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
