@@ -7,8 +7,6 @@ import './stateInfo.scss';
 const StateInfo = () => {
     const {
         state: {
-            // eslint-disable-next-line no-unused-vars
-            //TODO
             søknadsdata: { ...rest },
         },
     } = useSøknadContext();

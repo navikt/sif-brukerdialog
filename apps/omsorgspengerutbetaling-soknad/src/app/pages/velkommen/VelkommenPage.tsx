@@ -24,7 +24,6 @@ const VelkommenPage = () => {
     const startSøknad = async () => {
         await logSoknadStartet(SKJEMANAVN);
         dispatch(actionsCreator.startSøknad());
-        //TODO
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.DINE_BARN));
     };
     return (
