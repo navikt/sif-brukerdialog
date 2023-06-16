@@ -11,41 +11,7 @@ on:
 
 jobs:
     run-tests:
-        name: Run tests
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-                  cache: 'yarn'
-
-            - name: Install dependencies (yarn)
-              run: yarn
-
-            - name: Run code tests
-              run: yarn test --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-
-            - name: Build and start e2e server
-              uses: cypress-io/github-action@v5.8.1
-              env:
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-              with:
-                  project: ./apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/e2e
-                  build: yarn build-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-                  start: yarn turbo start-e2e-server --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/alive'
-                  wait-on-timeout: 60
-                  runTests: false
-
-            - name: Run cypress tests
-              run: yarn turbo cypress-run --filter=ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
-              env:
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        uses: ./.github/workflows/test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.yml
 
     deploy-to-prod:
         name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to prod
