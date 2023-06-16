@@ -78,6 +78,11 @@
         "webpack": "5.86.0",
         "webpack-dev-server": "4.15.0"
     },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!(@navikt)).*\\.js$"
+        ]
+    },
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
         "build-storybook": "storybook build",
