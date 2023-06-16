@@ -103,7 +103,7 @@
         "html-webpack-plugin": "5.5.3",
         "jsdom": "22.1.0",
         "mini-css-extract-plugin": "2.7.6",
-        "msw": "1.2.1",
+        "msw": "1.2.2",
         "postcss": "8.4.24",
         "postcss-import": "15.1.0",
         "postcss-loader": "7.3.3",
