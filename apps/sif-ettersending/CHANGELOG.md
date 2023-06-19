@@ -1,5 +1,15 @@
 # @navikt/sif-ettersending
 
+## 3.14.2
+
+### Patch Changes
+
+-   7e9863c7: Oppdatert versjon av pakker for test og bygg
+-   Updated dependencies [7e9863c7]
+    -   @navikt/sif-common-formik-ds@0.23.2
+    -   @navikt/sif-common-soknad-ds@10.1.2
+    -   @navikt/sif-common-core-ds@9.1.2
+
 ## 3.14.1
 
 ### Patch Changes

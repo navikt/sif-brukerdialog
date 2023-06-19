@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.23.2
+
+### Patch Changes
+
+-   7e9863c7: Oppdatert versjon av pakker for test og bygg
+
 ## 0.23.1
 
 ### Patch Changes
