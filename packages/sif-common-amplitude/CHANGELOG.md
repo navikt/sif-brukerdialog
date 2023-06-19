@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.18.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 2.17.0
 
 ### Minor Changes

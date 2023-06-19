@@ -1,5 +1,59 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.15.2
+
+### Patch Changes
+
+-   7e9863c7: Oppdatert versjon av pakker for test og bygg
+-   Updated dependencies [7e9863c7]
+    -   @navikt/sif-common-formik-ds@0.23.2
+    -   @navikt/sif-common-soknad-ds@10.1.2
+    -   @navikt/sif-common-forms-ds@8.1.2
+    -   @navikt/sif-common-core-ds@9.1.2
+
+## 2.15.1
+
+### Patch Changes
+
+-   cc50b642: Diverse mindre pakkeoppdateringer
+-   Updated dependencies [cc50b642]
+    -   @navikt/sif-common-formik-ds@0.23.1
+    -   @navikt/sif-common-soknad-ds@10.1.1
+    -   @navikt/sif-common-forms-ds@8.1.1
+    -   @navikt/sif-common-core-ds@9.1.1
+
+## 2.15.0
+
+### Minor Changes
+
+-   ea79f31c: Oppdatere pakker. Justere timout på cypress-tester. Utvide start-e2e-server på oms-alene
+
+### Patch Changes
+
+-   Updated dependencies [ea79f31c]
+    -   @navikt/sif-common-formik-ds@0.23.0
+    -   @navikt/sif-common-soknad-ds@11.0.0
+    -   @navikt/sif-common-forms-ds@9.0.0
+    -   @navikt/sif-common-core-ds@10.0.0
+    -   @navikt/sif-common-sentry@0.19.0
+
+## 2.14.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
+### Patch Changes
+
+-   Updated dependencies [d3ae045]
+    -   @navikt/sif-common-amplitude@2.18.0
+    -   @navikt/sif-common-formik-ds@0.22.0
+    -   @navikt/sif-common-soknad-ds@10.0.0
+    -   @navikt/sif-common-forms-ds@8.0.0
+    -   @navikt/sif-common-core-ds@9.0.0
+    -   @navikt/sif-common-sentry@0.18.0
+    -   @navikt/sif-common-utils@3.37.0
+
 ## 2.13.1
 
 ### Patch Changes

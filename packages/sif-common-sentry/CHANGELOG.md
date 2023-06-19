@@ -1,5 +1,17 @@
 # @navikt/sif-common-sentry
 
+## 0.19.0
+
+### Minor Changes
+
+-   ea79f31c: Oppdatere pakker. Justere timout på cypress-tester. Utvide start-e2e-server på oms-alene
+
+## 0.18.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 0.17.0
 
 ### Minor Changes

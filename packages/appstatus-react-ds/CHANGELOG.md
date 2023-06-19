@@ -1,5 +1,23 @@
 # @navikt/appstatus-react-ds
 
+## 2.10.1
+
+### Patch Changes
+
+-   cc50b642: Diverse mindre pakkeoppdateringer
+
+## 2.10.0
+
+### Minor Changes
+
+-   ea79f31c: Oppdatere pakker. Justere timout på cypress-tester. Utvide start-e2e-server på oms-alene
+
+## 2.9.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 2.8.1
 
 ### Patch Changes

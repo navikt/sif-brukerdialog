@@ -11,41 +11,7 @@ on:
 
 jobs:
     run-tests:
-        name: Run tests
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-                  cache: 'yarn'
-
-            - name: Install dependencies (yarn)
-              run: yarn
-
-            - name: Run code tests
-              run: yarn test --filter=endringsmelding-pleiepenger
-
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
-              env:
-                  API_URL_INNSYN: http://localhost:8099
-                  API_URL: http://localhost:8099
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger
-                  MSW: off
-                  APP_VERSION: dev
-                  FRONTEND_API_PATH: http://localhost:8099/
-                  FRONTEND_VEDLEGG_URL: http://localhost:8099/api
-                  FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
-                  VELG_SAK: off
-              with:
-                  project: ./apps/endringsmelding-pleiepenger/e2e
-                  build: yarn build-endringsmelding-pleiepenger
-                  start: yarn e2e-endringsmelding-pleiepenger
+        uses: ./.github/workflows/test.endringsmelding-pleiepenger.yml
 
     deploy-to-prod:
         name: Deploy endringsmelding-pleiepenger to prod

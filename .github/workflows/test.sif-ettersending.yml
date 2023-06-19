@@ -7,6 +7,8 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/app.sif-ettersending.yml
+            - .github/workflows/test.sif-ettersending.yml
+    workflow_call:
 
 env:
     APP_NAME: 'ettersending'
@@ -42,8 +44,8 @@ jobs:
                   node-version: 16
                   cache: 'yarn'
 
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
+            - name: Build and start e2e server
+              uses: cypress-io/github-action@v5.8.1
               env:
                   API_URL: http://localhost:8089/
                   FRONTEND_API_PATH: http://localhost:8089/
@@ -51,8 +53,17 @@ jobs:
                   LIVETS_SLUTTFASE: on
                   NPM_CONFIG_CACHE: /tmp
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  APPSTATUS_PROJECT_ID: ryujtq87
+                  APPSTATUS_DATASET: staging
               with:
                   project: ./apps/sif-ettersending/e2e
                   build: yarn build-sif-ettersending
-                  start: yarn e2e-sif-ettersending
-                  record: false
+                  start: yarn turbo start-e2e-server --filter=sif-ettersending
+                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/health/isAlive'
+                  wait-on-timeout: 60
+                  runTests: false
+            - name: Run cypress tests
+              run: yarn turbo cypress-run --filter=sif-ettersending
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

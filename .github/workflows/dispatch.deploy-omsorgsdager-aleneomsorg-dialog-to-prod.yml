@@ -11,33 +11,7 @@ on:
 
 jobs:
     run-tests:
-        name: Run tests
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-                  cache: 'yarn'
-
-            - name: Install dependencies (yarn)
-              run: yarn
-
-            - name: Run code tests
-              run: yarn test --filter=omsorgsdager-aleneomsorg-dialog
-
-            - name: Run cypress tests
-              uses: cypress-io/github-action@v4.2.2 # use the explicit version number
-              env:
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg
-              with:
-                  project: ./apps/omsorgsdager-aleneomsorg-dialog/e2e
-                  build: yarn build-omsorgsdager-aleneomsorg-dialog
-                  start: yarn e2e-omsorgsdager-aleneomsorg-dialog
+        uses: ./.github/workflows/test.omsorgsdager-aleneomsorg-dialog.yml
 
     deploy-to-prod:
         name: Deploy omsorgsdager-aleneomsorg-dialog to prod

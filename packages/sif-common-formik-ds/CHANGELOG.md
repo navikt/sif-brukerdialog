@@ -1,5 +1,29 @@
 # @navikt/sif-common-formik-ds
 
+## 0.23.2
+
+### Patch Changes
+
+-   7e9863c7: Oppdatert versjon av pakker for test og bygg
+
+## 0.23.1
+
+### Patch Changes
+
+-   cc50b642: Diverse mindre pakkeoppdateringer
+
+## 0.23.0
+
+### Minor Changes
+
+-   ea79f31c: Oppdatere pakker. Justere timout på cypress-tester. Utvide start-e2e-server på oms-alene
+
+## 0.22.0
+
+### Minor Changes
+
+-   d3ae045: Oppdatere minor og patch
+
 ## 0.21.1
 
 ### Patch Changes
