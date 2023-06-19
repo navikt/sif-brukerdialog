@@ -210,7 +210,7 @@ const ArbeidIPeriodeSpørsmål = ({
                                     legend={intlHelper(
                                         intl,
                                         frilansRedusert || vervRedusert
-                                            ? `arbeidIPeriode.erLiktHverUke.${getFrilansVerv()}.spm`
+                                            ? `arbeidIPeriode.erLiktHverUke.spm.${getFrilansVerv()}`
                                             : `arbeidIPeriode.erLiktHverUke.spm`,
                                         intlValues
                                     )}

@@ -627,9 +627,9 @@
     "arbeidIPeriode.arbeiderIPerioden.svar.verv.misterDeller": "Jeg mister deler av honorar",
 
     "arbeidIPeriode.erLiktHverUke.spm": "Jobber du like mye hver uke {hvor} i perioden?",
-    "arbeidIPeriode.erLiktHverUke.frilans.spm": "Jobber du like mye hver uke som frilanser i perioden?",
-    "arbeidIPeriode.erLiktHverUke.verv.spm": "Bruker du like mange timer på det du får honorar for hver uke, eller varierer det fra uke til uke?",
-    "arbeidIPeriode.erLiktHverUke.frilansVerv.spm": "Jobber du like mye hver uke som frilanser i perioden?",
+    "arbeidIPeriode.erLiktHverUke.spm.frilans": "Jobber du like mye hver uke som frilanser i perioden?",
+    "arbeidIPeriode.erLiktHverUke.spm.verv": "Bruker du like mange timer på det du får honorar for hver uke, eller varierer det fra uke til uke?",
+    "arbeidIPeriode.erLiktHverUke.spm.frilansVerv": "Jobber du like mye hver uke som frilanser i perioden og bruker du like mange timer på det du får honorar for hver uke?",
     "arbeidIPeriode.erLiktHverUke.prosent.spm": "Jobber du like mye hver uke {hvor} i perioden?",
     "arbeidIPeriode.erLiktHverUke.timer.spm": "Jobber du like mange timer hver uke {hvor} i perioden?",
     "arbeidIPeriode.erLiktHverUke.ja": "Ja",

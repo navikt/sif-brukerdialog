@@ -27,7 +27,6 @@ import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN from './components/ArbeidssituasjonSN';
 import ArbeidssituasjonStepVeileder from './components/ArbeidssituasjonStepVeileder';
 import { oppdaterSøknadMedArbeidsgivere } from './utils/arbeidsgivereUtils';
-// import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep';
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
 
 interface LoadState {

@@ -41,6 +41,7 @@ export const cleanupAndSetFormikValues = async (
     if (!periode) {
         return Promise.resolve(values);
     }
-    setValues(cleanupSøknadStepValues(step, values, periode));
-    return Promise.resolve(values);
+    const cleanedValues = cleanupSøknadStepValues(step, values, periode);
+    setValues(cleanedValues);
+    return Promise.resolve(cleanedValues);
 };

@@ -187,7 +187,8 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         values,
                                         setValues
                                     );
-                                    setSøknadsdata(getSøknadsdataFromFormValues(cleanedValues));
+                                    const søknadsdata = getSøknadsdataFromFormValues(cleanedValues);
+                                    setSøknadsdata(søknadsdata);
                                     navigateToNextStepFrom(StepID.ARBEIDSSITUASJON);
                                 }}
                                 søknadsdato={søknadsdato}
