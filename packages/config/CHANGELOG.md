@@ -1,5 +1,11 @@
 # config
 
+## 0.4.1
+
+### Patch Changes
+
+-   7e9863c7: Oppdatert versjon av pakker for test og bygg
+
 ## 0.4.0
 
 ### Minor Changes
