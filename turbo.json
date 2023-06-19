@@ -61,10 +61,6 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
-        "e2e-omsorgsdager-aleneomsorg-dialog": {
-            "outputs": [],
-            "dependsOn": ["^build-omsorgsdager-aleneomsorg-dialog"]
-        },
         "build-omsorgspengerutbetaling-soknad": {
             "outputs": [],
             "dependsOn": ["^build-package"]
