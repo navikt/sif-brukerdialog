@@ -12,6 +12,11 @@ describe('Kan jeg klikke meg enkelt gjennom en hele søknad', () => {
     context('med utmocket, tom mellomlagring', () => {
         contextConfig();
 
+        it('Går til startsiden', () => {
+            cy.visit('/');
+            cy.wait(['@getBarn', '@getSøker']);
+        });
+
         fyllUtEnkelSøknad();
 
         it('STEG 9: Oppsummering - test', () => {
