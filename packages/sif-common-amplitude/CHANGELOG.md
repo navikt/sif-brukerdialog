@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.18.1
+
+### Patch Changes
+
+-   0e25e34f: Patch fra designsystemet, minor react-day-picker + mindre patch på react
+
 ## 2.18.0
 
 ### Minor Changes
