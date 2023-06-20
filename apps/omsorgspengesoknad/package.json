@@ -7,7 +7,7 @@
     "version": "1.14.2",
     "private": true,
     "dependencies": {
-        "@navikt/ds-css": "4.1.6",
+        "@navikt/ds-css": "4.1.7",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "4.1.6",
         "@navikt/ds-tailwind": "4.1.6",
