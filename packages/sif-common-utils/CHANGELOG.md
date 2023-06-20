@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.37.1
+
+### Patch Changes
+
+-   0e25e34f: Patch fra designsystemet, minor react-day-picker + mindre patch på react
+
 ## 3.37.0
 
 ### Minor Changes

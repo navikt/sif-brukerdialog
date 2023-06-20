@@ -1,5 +1,19 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.5.3
+
+### Patch Changes
+
+-   0e25e34f: Patch fra designsystemet, minor react-day-picker + mindre patch på react
+-   Updated dependencies [0e25e34f]
+    -   @navikt/sif-common-amplitude@2.18.1
+    -   @navikt/sif-common-formik-ds@0.23.3
+    -   @navikt/sif-common-soknad-ds@10.1.3
+    -   @navikt/sif-common-forms-ds@8.1.3
+    -   @navikt/sif-common-core-ds@9.1.3
+    -   @navikt/sif-common-sentry@0.19.1
+    -   @navikt/sif-common-utils@3.37.1
+
 ## 2.5.2
 
 ### Patch Changes

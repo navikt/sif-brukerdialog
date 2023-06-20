@@ -1,5 +1,16 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.1.3
+
+### Patch Changes
+
+-   0e25e34f: Patch fra designsystemet, minor react-day-picker + mindre patch på react
+-   Updated dependencies [0e25e34f]
+    -   @navikt/sif-common-formik-ds@0.23.3
+    -   @navikt/appstatus-react-ds@2.10.2
+    -   @navikt/sif-common-sentry@0.19.1
+    -   @navikt/sif-common-utils@3.37.1
+
 ## 10.1.2
 
 ### Patch Changes
