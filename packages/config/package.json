@@ -2,7 +2,7 @@
     "license": "MIT",
     "main": "index.js",
     "name": "config",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "private": true,
     "dependencies": {
         "@typescript-eslint/eslint-plugin": "5.60.0",

@@ -1,5 +1,13 @@
 # @navikt/sif-common-forms-ds
 
+## 8.1.3
+
+### Patch Changes
+
+-   0e25e34f: Patch fra designsystemet, minor react-day-picker + mindre patch på react
+-   Updated dependencies [0e25e34f]
+    -   @navikt/sif-common-core-ds@9.1.3
+
 ## 8.1.2
 
 ### Patch Changes
