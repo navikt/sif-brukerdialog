@@ -196,9 +196,9 @@ describe('extractArbeidIPeriodeFrilanserSøknadsdata', () => {
                 prosentAvNormalt: '40',
             };
             const result = extractArbeidIPeriodeFrilanserSøknadsdata(redusert);
+            expect(result?.type).toEqual(ArbeidIPeriodeType.arbeiderProsentAvNormalt);
             expect(result?.gjelderFrilans).toBeTruthy();
             expect(result?.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.redusert);
-            expect(result?.type).toEqual(ArbeidIPeriodeType.arbeiderProsentAvNormalt);
             if (result?.type === ArbeidIPeriodeType.arbeiderProsentAvNormalt) {
                 expect(result.prosentAvNormalt).toEqual(40);
             }
@@ -212,9 +212,9 @@ describe('extractArbeidIPeriodeFrilanserSøknadsdata', () => {
                 snittTimerPerUke: '5',
             };
             const result = extractArbeidIPeriodeFrilanserSøknadsdata(redusert);
+            expect(result?.type).toEqual(ArbeidIPeriodeType.arbeiderTimerISnittPerUke);
             expect(result?.gjelderFrilans).toBeTruthy();
             expect(result?.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.redusert);
-            expect(result?.type).toEqual(ArbeidIPeriodeType.arbeiderTimerISnittPerUke);
             if (result?.type === ArbeidIPeriodeType.arbeiderTimerISnittPerUke) {
                 expect(result.timerISnittPerUke).toEqual(5);
             }
@@ -230,9 +230,9 @@ describe('extractArbeidIPeriodeFrilanserSøknadsdata', () => {
             const result = extractArbeidIPeriodeFrilanserSøknadsdata({
                 ...redusert,
             });
+            expect(result?.type).toEqual(ArbeidIPeriodeType.arbeiderUlikeUkerTimer);
             expect(result?.gjelderFrilans).toBeTruthy();
             expect(result?.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.redusert);
-            expect(result?.type).toEqual(ArbeidIPeriodeType.arbeiderUlikeUkerTimer);
             if (result?.type === ArbeidIPeriodeType.arbeiderUlikeUkerTimer) {
                 ArbeidIPeriodeType.arbeiderUlikeUkerTimer;
                 expect(result?.arbeidsuker).toHaveLength(1);
@@ -245,6 +245,7 @@ describe('extractArbeidIPeriodeFrilanserSøknadsdata', () => {
             const result = extractArbeidIPeriodeFrilanserSøknadsdata({
                 misterHonorarerFraVervIPerioden: MisterHonorarerFraVervIPerioden.misterAlleHonorarer,
             });
+            expect(result?.type).toEqual(ArbeidIPeriodeType.arbeiderIkke);
             expect(result?.gjelderFrilans).toBeTruthy();
             expect(result?.arbeiderIPerioden).toBeUndefined();
             expect(result?.misterHonorarerFraVervIPerioden).toEqual(
