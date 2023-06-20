@@ -130,7 +130,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
         return (
             <>
                 {renderLastInnFlereUker()}
-                {multipleSelectEnabled && (
+                {multipleSelectEnabled && itemsAreSelectable && (
                     <EndreUkerFooter
                         antallValgteUker={selectedItems.length}
                         visVelgUkerMelding={showSelectItemsMessage}

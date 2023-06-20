@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.15.4
+
+### Patch Changes
+
+-   Fiks visning av endre flere uker-knapp
+
 ## 2.15.3
 
 ### Patch Changes
