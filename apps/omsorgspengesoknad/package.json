@@ -60,7 +60,7 @@
         "@types/jest": "29.5.2",
         "@types/object-hash": "3.0.2",
         "@types/react": "18.2.12",
-        "@types/react-dom": "18.2.5",
+        "@types/react-dom": "18.2.6",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
