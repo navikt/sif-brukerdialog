@@ -4,6 +4,7 @@
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
+    "sourceMap": true,
     "exclude": ["node_modules", "src/build", "**.js", "dist"],
     "include": ["./src/app/**/*", "./src/mocks/**/*"]
 }
