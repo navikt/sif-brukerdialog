@@ -1,7 +1,7 @@
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@types';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
-import { getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
+import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
 
 export const getApiDataFromSøknadsdata = (
@@ -37,11 +37,13 @@ export const getApiDataFromSøknadsdata = (
                   )
                 : undefined,
             dataBruktTilUtledning: getDataBruktTilUtledningApiData(
-                valgteEndringer,
                 søknadsdata.ukjentArbeidsforhold,
                 søknadsdata.arbeidstid,
                 arbeidsgivere
             ),
+            annetDataBruktTilUtledning: {
+                annetData: JSON.stringify(getDataBruktTilUtledningAnnetDataApiData(valgteEndringer)),
+            },
         },
     };
 };

@@ -1,5 +1,4 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
-// import { ApplicationType } from './ApplicationType';
 
 export type ISO8601Duration = string;
 
@@ -13,6 +12,7 @@ export enum YtelseTypeApi {
     'OMP_DELE_DAGER' = 'OMP_DELE_DAGER',
     'ukjent' = 'ukjent',
 }
+
 export interface SoknadApiData {
     id: string;
     språk: Locale;
