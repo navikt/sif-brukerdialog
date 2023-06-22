@@ -1,6 +1,6 @@
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
-import { K9Sak, Søker, Søknadsdata, ValgteEndringer } from '@types';
+import { K9Sak, Søker, Søknadsdata, TempFormValues, ValgteEndringer } from '@types';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { APP_VERSJON } from '../../constants/APP_VERSJON';
@@ -20,6 +20,7 @@ export type SøknadStatePersistence = {
     metadata: {
         updatedTimestamp: string;
     };
+    tempFormValues?: TempFormValues;
 };
 
 interface SøknadStateHashInfo {
@@ -67,7 +68,15 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: (
-        { søknadsdata, søknadRoute, barnAktørId, valgteEndringer, harUkjentArbeidsforhold, søknadSteps },
+        {
+            søknadsdata,
+            søknadRoute,
+            barnAktørId,
+            valgteEndringer,
+            harUkjentArbeidsforhold,
+            søknadSteps,
+            tempFormValues,
+        },
         søker
     ) => {
         return persistSetup.update({
@@ -82,6 +91,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             metadata: {
                 updatedTimestamp: new Date().toISOString(),
             },
+            tempFormValues,
         });
     },
     fetch: async () => {

@@ -51,9 +51,9 @@ const ukjentArbeidsgiverFormValuesToSøknadsdata = (
 
 export const getUkjentArbeidsforholdStepInitialValues = (
     ukjentArbeidsforholdSøknadsdata: UkjentArbeidsforholdSøknadsdata | undefined,
-    formValues: UkjentArbeidsforholdFormValues | undefined,
+    formValues: Partial<UkjentArbeidsforholdFormValues> | undefined,
     ukjenteArbeidsgivere: Arbeidsgiver[]
-): UkjentArbeidsforholdFormValues => {
+): Partial<UkjentArbeidsforholdFormValues> => {
     if (formValues) {
         return formValues;
     }

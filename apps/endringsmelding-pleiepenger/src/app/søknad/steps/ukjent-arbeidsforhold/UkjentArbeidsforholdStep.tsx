@@ -11,7 +11,7 @@ const UkjentArbeidsforholdStep = () => {
     const stepId = StepId.UKJENT_ARBEIDSFOHOLD;
 
     const {
-        state: { søknadsdata, sak, arbeidsgivere },
+        state: { søknadsdata, sak, arbeidsgivere, tempFormValues },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
@@ -38,6 +38,9 @@ const UkjentArbeidsforholdStep = () => {
                     arbeidsgivere={arbeidsgivere}
                     ukjenteArbeidsgivere={sak.ukjenteArbeidsgivere}
                     ukjentArbeidsforholdSøknadsdata={søknadsdata.ukjentArbeidsforhold}
+                    tempFormValues={
+                        tempFormValues?.stepId === StepId.UKJENT_ARBEIDSFOHOLD ? tempFormValues.values : undefined
+                    }
                 />
             </Block>
         </SøknadStep>

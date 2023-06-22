@@ -1,3 +1,4 @@
+import { Button } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
@@ -15,6 +16,7 @@ import ArbeidsaktivitetBlock from '../../../components/arbeidsaktivitet-block/Ar
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { InfoNormalarbeidstid } from '../../../components/info-normalarbeidstid/InfoNormalarbeidstid';
 import { useOnValidSubmit } from '../../../hooks';
+import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -61,6 +63,7 @@ interface Props {
     arbeidsgivere: Arbeidsgiver[];
     ukjenteArbeidsgivere: Arbeidsgiver[];
     ukjentArbeidsforholdSøknadsdata?: UkjentArbeidsforholdSøknadsdata;
+    tempFormValues?: Partial<UkjentArbeidsforholdFormValues>;
     stepId: StepId;
     goBack?: () => void;
 }
@@ -71,6 +74,7 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
     arbeidsgivere,
     ukjenteArbeidsgivere,
     ukjentArbeidsforholdSøknadsdata,
+    tempFormValues,
 }) => {
     const intl = useIntl();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -84,6 +88,8 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
         return [];
     };
 
+    const { persistTempFormValues } = usePersistTempFormValues();
+
     const { handleSubmit, isSubmitting } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
@@ -91,9 +97,10 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
             return lagreSøknadState(state);
         }
     );
-    const initialValues: UkjentArbeidsforholdFormValues = getUkjentArbeidsforholdStepInitialValues(
+
+    const initialValues: Partial<UkjentArbeidsforholdFormValues> = getUkjentArbeidsforholdStepInitialValues(
         ukjentArbeidsforholdSøknadsdata,
-        stepFormValues?.ukjentArbeidsforhold,
+        tempFormValues || stepFormValues?.ukjentArbeidsforhold,
         ukjenteArbeidsgivere
     );
 
@@ -135,6 +142,16 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
                                             )}
                                             {arbeidsgiverValues.erAnsatt === YesOrNo.YES && (
                                                 <FormBlock>
+                                                    <Button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            persistTempFormValues({
+                                                                stepId: StepId.UKJENT_ARBEIDSFOHOLD,
+                                                                values,
+                                                            })
+                                                        }>
+                                                        Lagre formValues
+                                                    </Button>
                                                     <FormikNumberInput
                                                         name={`${arbeidsgiverFieldName}.${UkjentArbeidsgiverFormField.timerPerUke}`}
                                                         label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
