@@ -5,18 +5,13 @@ import {
     Arbeidsgiver,
     ArbeidstidSøknadsdata,
     TimerEllerProsent,
-    ValgteEndringer,
 } from '../../../types';
 import {
-    getDataBruktTilUtledningApiData,
+    getDataBruktTilUtledningAnnetDataApiData,
     getUkjentArbeidsforholdApiDataFromSøknadsdata,
     mapArbeidsforholdToArbeidsforholdApiData,
 } from '../getDataBruktTilUtledning';
 
-const valgteEndringer: ValgteEndringer = {
-    arbeidstid: true,
-    lovbestemtFerie: true,
-};
 const commitSha = 'abc';
 
 jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
@@ -25,38 +20,19 @@ jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
     },
 }));
 
-describe('getDataBruktTilUtledning', () => {
-    it('returnerer commitSha', () => {
-        const result = getDataBruktTilUtledningApiData(valgteEndringer, undefined, undefined, []);
-        expect(result.soknadDialogCommitSha).toEqual(commitSha);
-    });
+describe('getDataBruktTilUtledningAnnetData', () => {
     it('returnerer riktig valgte endringer når kun ferie er valgt', () => {
-        const result = getDataBruktTilUtledningApiData(
-            { lovbestemtFerie: true, arbeidstid: false },
-            undefined,
-            undefined,
-            []
-        );
+        const result = getDataBruktTilUtledningAnnetDataApiData({ lovbestemtFerie: true, arbeidstid: false });
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeFalsy();
     });
     it('returnerer riktig valgte endringer når kun arbeidstid er valgt', () => {
-        const result = getDataBruktTilUtledningApiData(
-            { arbeidstid: true, lovbestemtFerie: false },
-            undefined,
-            undefined,
-            []
-        );
+        const result = getDataBruktTilUtledningAnnetDataApiData({ arbeidstid: true, lovbestemtFerie: false });
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
         expect(result.valgteEndringer.lovbestemtFerie).toBeFalsy();
     });
     it('returnerer riktig valgte endringer når både ferie og arbeidstid er valgt', () => {
-        const result = getDataBruktTilUtledningApiData(
-            { arbeidstid: true, lovbestemtFerie: true },
-            undefined,
-            undefined,
-            []
-        );
+        const result = getDataBruktTilUtledningAnnetDataApiData({ arbeidstid: true, lovbestemtFerie: true });
         expect(result.valgteEndringer.lovbestemtFerie).toBeTruthy();
         expect(result.valgteEndringer.arbeidstid).toBeTruthy();
     });

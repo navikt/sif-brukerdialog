@@ -15,7 +15,7 @@ import { useMellomlagring } from './useMellomlagring';
 export const useSendSøknad = () => {
     const {
         dispatch,
-        state: { søknadsdata },
+        state: { søknadsdata, valgteEndringer },
     } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
@@ -28,7 +28,7 @@ export const useSendSøknad = () => {
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)
-            .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata)))
+            .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer)))
             .catch((error) => {
                 if (isAxiosError(error)) {
                     appSentryLogger.logError('Innsending feilet', error.message);
