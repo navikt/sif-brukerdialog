@@ -14,7 +14,7 @@ import {
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import ConditionalResponsivePanel from '../../../components/conditional-responsive-panel/ConditionalResponsivePanel';
 import { Arbeidsgiver } from '../../../types';
-import { FrilansFormData, FrilansFormField, FrilansTyper } from '../../../types/FrilansFormData';
+import { FrilansFormData, FrilansFormField, Frilanstype } from '../../../types/FrilansFormData';
 import { erFrilanserISøknadsperiode, harFrilansoppdrag } from '../../../utils/frilanserUtils';
 import { getFrilanserStartdatoValidator } from '../validation/frilansStartdatoValidator';
 import FrilansoppdragInfo from './info/FrilansoppdragInfo';
@@ -59,7 +59,7 @@ const ArbeidssituasjonFrilans = ({
     const {
         harHattInntektSomFrilanser,
         arbeidsforhold,
-        misterHonorarStyreverv,
+        misterHonorar: misterHonorar,
         frilansTyper = [],
         erFortsattFrilanser,
         startdato,
@@ -68,7 +68,7 @@ const ArbeidssituasjonFrilans = ({
     const intl = useIntl();
 
     const søkerHarFrilansoppdrag = harFrilansoppdrag(frilansoppdrag);
-    const mottarHonorarForStyreverv = frilansTyper?.some((type) => type === FrilansTyper.STYREVERV);
+    const mottarHonorar = frilansTyper?.some((type) => type === Frilanstype.HONORARARBEID);
 
     const erAktivFrilanserIPerioden = erFrilanserISøknadsperiode(søknadsperiode, formValues);
     const harGyldigStartdato = startdato ? ISODateToDate(startdato) : undefined;
@@ -91,12 +91,12 @@ const ArbeidssituasjonFrilans = ({
         if (!frilansTyper || frilansTyper.length === 0) {
             return false;
         }
-        if (frilansTyper.length === 1 && mottarHonorarForStyreverv && misterHonorarStyreverv === YesOrNo.YES) {
+        if (frilansTyper.length === 1 && mottarHonorar && misterHonorar === YesOrNo.YES) {
             return true;
         }
-        if (!mottarHonorarForStyreverv) {
+        if (!mottarHonorar) {
             return true;
-        } else if (mottarHonorarForStyreverv && frilansTyper.length > 1 && misterHonorarStyreverv !== undefined) {
+        } else if (mottarHonorar && frilansTyper.length > 1 && misterHonorar !== undefined) {
             return true;
         }
 
@@ -107,9 +107,8 @@ const ArbeidssituasjonFrilans = ({
         if (frilansTyper === undefined || frilansTyper.length === 0) {
             return '';
         }
-        const erFrilanser = frilansTyper.some((type) => type === FrilansTyper.FRILANS);
-        const erVerv =
-            frilansTyper.some((type) => type === FrilansTyper.STYREVERV) && misterHonorarStyreverv === YesOrNo.YES;
+        const erFrilanser = frilansTyper.some((type) => type === Frilanstype.FRILANSARBEID);
+        const erVerv = frilansTyper.some((type) => type === Frilanstype.HONORARARBEID) && misterHonorar === YesOrNo.YES;
 
         if (erFrilanser && !erVerv) {
             return 'frilans';
@@ -316,55 +315,52 @@ const ArbeidssituasjonFrilans = ({
                             validate={getCheckedValidator()}
                             checkboxes={[
                                 {
-                                    label: intlHelper(intl, 'frilanser.type.FRILANS'),
-                                    value: FrilansTyper.FRILANS,
-                                    'data-testid': 'frilans-typer_frilans',
+                                    label: intlHelper(intl, 'frilanser.type.FRILANSARBEID'),
+                                    value: Frilanstype.FRILANSARBEID,
+                                    'data-testid': 'frilans-typer_frilansarbeid',
                                 },
 
                                 {
-                                    label: intlHelper(intl, 'frilanser.type.STYREVERV'),
-                                    value: FrilansTyper.STYREVERV,
-                                    'data-testid': 'frilans-typer_styreverv',
+                                    label: intlHelper(intl, 'frilanser.type.HONORARARBEID'),
+                                    value: Frilanstype.HONORARARBEID,
+                                    'data-testid': 'frilans-typer_honorararbeid',
                                 },
                             ]}
                         />
 
-                        {mottarHonorarForStyreverv && (
+                        {mottarHonorar && (
                             <>
                                 <FormBlock>
                                     <ArbFriFormComponents.RadioGroup
-                                        name={FrilansFormField.misterHonorarStyreverv}
-                                        data-testid="misterHonorarStyreverv"
-                                        legend={intlHelper(intl, 'frilanser.misterHonorarStyreverv.tittle')}
+                                        name={FrilansFormField.misterHonorar}
+                                        data-testid="misterHonorar"
+                                        legend={intlHelper(intl, 'frilanser.misterHonorar.tittle')}
                                         validate={getYesOrNoValidator()}
                                         radios={[
                                             {
                                                 label: 'Ja',
                                                 value: YesOrNo.YES,
-                                                'data-testid': 'mister-honorarStyreverv_yes',
+                                                'data-testid': 'mister-honorar_yes',
                                             },
                                             {
                                                 label: 'Nei',
                                                 value: YesOrNo.NO,
-                                                'data-testid': 'mister-honorarStyreverv_no',
+                                                'data-testid': 'mister-honorar_no',
                                             },
                                         ]}
-                                        value={misterHonorarStyreverv}
+                                        value={misterHonorar}
                                         description={
                                             <ExpandableInfo
-                                                title={intlHelper(
-                                                    intl,
-                                                    'frilanser.misterHonorarStyreverv.description.tittel'
-                                                )}>
-                                                <FormattedMessage id={'frilanser.misterHonorarStyreverv.description'} />
+                                                title={intlHelper(intl, 'frilanser.misterHonorar.description.tittel')}>
+                                                <FormattedMessage id={'frilanser.misterHonorar.description'} />
                                             </ExpandableInfo>
                                         }
                                     />
                                 </FormBlock>
-                                {misterHonorarStyreverv === YesOrNo.NO && (
+                                {misterHonorar === YesOrNo.NO && (
                                     <Block margin="l">
                                         <Alert variant="info">
-                                            <FormattedMessage id={'frilanser.misterHonorarStyreverv.nei.info'} />
+                                            <FormattedMessage id={'frilanser.misterHonorar.nei.info'} />
                                         </Alert>
                                     </Block>
                                 )}
@@ -483,7 +479,7 @@ const ArbeidssituasjonFrilans = ({
                                             erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
                                             brukKunSnittPerUke={true}
                                             frilansTyper={frilansTyper}
-                                            misterHonorarStyreverv={misterHonorarStyreverv}
+                                            misterHonorar={misterHonorar}
                                             mottarStønadGodtgjørelse={
                                                 stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES
                                             }

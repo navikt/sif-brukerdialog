@@ -5,17 +5,17 @@ import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/lib/forms/ut
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
-import { ArbeidsgiverApiData } from './arbeidsgiverApiData';
-import { FrilansApiData } from './frilansApiData';
-import { SelvstendigApiData } from './selvstendigApiData';
-import { StønadGodtgjørelseApiData } from './stønadGodtgjørelseApiData';
+import { ArbeidsgiverApiData } from './ArbeidsgiverApiData';
+import { FrilansApiData } from './FrilansApiData';
+import { SelvstendigApiData } from './SelvstendigApiData';
+import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
 
-export * from './arbeidIPeriodeApiData';
-export * from './arbeidsgiverApiData';
-export * from './normalarbeidstidApiData';
-export * from './arbeidsforholdApiData';
-export * from './selvstendigApiData';
-export * from './frilansApiData';
+export * from './ArbeidIPeriodeApiData';
+export * from './ArbeidsgiverApiData';
+export * from './NormalarbeidstidApiData';
+export * from './ArbeidsforholdApiData';
+export * from './SelvstendigApiData';
+export * from './FrilansApiData';
 
 export const SøknadApiDataVersjon = 'Søknad-1.1.0';
 

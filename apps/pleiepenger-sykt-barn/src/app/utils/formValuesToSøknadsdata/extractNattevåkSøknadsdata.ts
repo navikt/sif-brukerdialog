@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { NattevåkSøknadsdata } from '../../types/søknadsdata/nattevåkSøknadsdata';
+import { NattevåkSøknadsdata } from '../../types/søknadsdata/NattevåkSøknadsdata';
 import { SøknadFormValues } from '../../types/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
 

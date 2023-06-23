@@ -1,43 +1,50 @@
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ArbeidIPeriodeType } from '../arbeidIPeriodeType';
+import { DateRange } from '@navikt/sif-common-utils/lib';
+import { ArbeidIPeriodeType } from '../ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../RedusertArbeidstidType';
 
-export type ArbeidsukerTimerSøknadsdata = {
+export type ArbeidsukeTimerSøknadsdata = {
     periode: DateRange;
     timer: number;
-}[];
+};
 
-interface ArbeidISøknadsperiodeJobberIkkeSøknadsdata {
-    type: ArbeidIPeriodeType.arbeiderIkke;
-    arbeiderIPerioden: false;
+export type ArbeidsukerTimerSøknadsdata = ArbeidsukeTimerSøknadsdata[];
+
+interface ArbeiderRedusertBase {
+    type: RedusertArbeidstidType;
 }
-interface ArbeidISøknadsperiodeJobberVanligSøknadsdata {
-    type: ArbeidIPeriodeType.arbeiderVanlig;
-    arbeiderIPerioden: true;
-    arbeiderRedusert: false;
-}
-interface ArbeidISøknadsperiodeTimerISnittPerUkeSøknadsdata {
-    type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke;
-    arbeiderIPerioden: true;
-    arbeiderRedusert: true;
-    timerISnittPerUke: number;
-}
-interface ArbeidISøknadsperiodeProsentSøknadsdata {
-    type: ArbeidIPeriodeType.arbeiderProsentAvNormalt;
-    arbeiderIPerioden: true;
-    arbeiderRedusert: true;
+interface ArbeiderRedusertProsentAvNormalt extends ArbeiderRedusertBase {
+    type: RedusertArbeidstidType.prosentAvNormalt;
     prosentAvNormalt: number;
 }
+interface ArbeiderRedusertTimerISnittPerUke extends ArbeiderRedusertBase {
+    type: RedusertArbeidstidType.timerISnittPerUke;
+    timerPerUke: Duration;
+}
 
-interface ArbeidISøknadsperiodeUlikeUkerTimer {
-    type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer;
-    arbeiderIPerioden: true;
-    arbeiderRedusert: true;
-    arbeidsuker: ArbeidsukerTimerSøknadsdata;
+interface ArbeiderReduserUlikeUkerTimer extends ArbeiderRedusertBase {
+    type: RedusertArbeidstidType.ulikeUkerTimer;
+    arbeidsuker: ArbeidsukeTimerSøknadsdata[];
+}
+
+type ArbeidIPeriodeRedusertSøknadsdata =
+    | ArbeiderRedusertTimerISnittPerUke
+    | ArbeiderRedusertProsentAvNormalt
+    | ArbeiderReduserUlikeUkerTimer;
+
+export interface ArbeidIPeriodeSøknadsdataJobberIkke {
+    type: ArbeidIPeriodeType.arbeiderIkke;
+}
+
+export interface ArbeidIPeriodeSøknadsdataJobberVanlig {
+    type: ArbeidIPeriodeType.arbeiderVanlig;
+}
+
+export interface ArbeidIPeriodeSøknadsdataRedusert {
+    type: ArbeidIPeriodeType.arbeiderRedusert;
+    redusertArbeid: ArbeidIPeriodeRedusertSøknadsdata;
 }
 
 export type ArbeidIPeriodeSøknadsdata =
-    | ArbeidISøknadsperiodeJobberVanligSøknadsdata
-    | ArbeidISøknadsperiodeJobberIkkeSøknadsdata
-    | ArbeidISøknadsperiodeTimerISnittPerUkeSøknadsdata
-    | ArbeidISøknadsperiodeProsentSøknadsdata
-    | ArbeidISøknadsperiodeUlikeUkerTimer;
+    | ArbeidIPeriodeSøknadsdataJobberIkke
+    | ArbeidIPeriodeSøknadsdataJobberVanlig
+    | ArbeidIPeriodeSøknadsdataRedusert;

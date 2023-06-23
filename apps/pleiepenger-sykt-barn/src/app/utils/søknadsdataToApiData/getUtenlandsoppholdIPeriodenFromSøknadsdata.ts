@@ -1,6 +1,6 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/utenlandsoppholdIPeriodenSøknadsdata';
+import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/UtenlandsoppholdIPeriodenSøknadsdata';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { countryIsMemberOfEøsOrEfta, getCountryName } from '@navikt/sif-common-formik-ds';

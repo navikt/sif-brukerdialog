@@ -5,29 +5,24 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
-import { FrilansTyper } from '../../../../types/FrilansFormData';
+import { Frilanstype } from '../../../../types/FrilansFormData';
 
 interface Props {
     arbeidsforholdType: ArbeidsforholdType;
-    frilansTyper?: FrilansTyper[];
-    misterHonorarStyreverv?: YesOrNo;
+    frilansTyper?: Frilanstype[];
+    misterHonorar?: YesOrNo;
 }
 
 const InfoArbeiderNormaltTimerIUken: React.FunctionComponent<Props> = ({
     arbeidsforholdType,
     frilansTyper,
-    misterHonorarStyreverv,
+    misterHonorar,
 }) => {
     switch (arbeidsforholdType) {
         case ArbeidsforholdType.ANSATT:
             return <InfoArbeiderNormaltTimerAnsatt />;
         case ArbeidsforholdType.FRILANSER:
-            return (
-                <InfoArbeiderNormaltTimerFrilanser
-                    frilansTyper={frilansTyper}
-                    misterHonorarStyreverv={misterHonorarStyreverv}
-                />
-            );
+            return <InfoArbeiderNormaltTimerFrilanser frilansTyper={frilansTyper} misterHonorar={misterHonorar} />;
         case ArbeidsforholdType.SELVSTENDIG:
             return <InfoArbeiderNormaltTimerSN />;
     }
@@ -90,11 +85,11 @@ const InfoArbeiderNormaltTimerAnsatt = () => {
 };
 
 interface PropsFrilans {
-    frilansTyper?: FrilansTyper[];
-    misterHonorarStyreverv?: YesOrNo;
+    frilansTyper?: Frilanstype[];
+    misterHonorar?: YesOrNo;
 }
 
-const InfoArbeiderNormaltTimerFrilanser = ({ frilansTyper, misterHonorarStyreverv }: PropsFrilans) => {
+const InfoArbeiderNormaltTimerFrilanser = ({ frilansTyper, misterHonorar }: PropsFrilans) => {
     const intl = useIntl();
     if (frilansTyper === undefined) {
         <></>;
@@ -102,23 +97,23 @@ const InfoArbeiderNormaltTimerFrilanser = ({ frilansTyper, misterHonorarStyrever
     return (
         <>
             <Block margin="l">
-                {frilansTyper && frilansTyper.some((type) => type === FrilansTyper.FRILANS) && (
+                {frilansTyper && frilansTyper.some((type) => type === Frilanstype.FRILANSARBEID) && (
                     <ExpandableInfo
-                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
-                        <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.frilans.info'} />
+                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info.tittel')}>
+                        <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info'} />
                     </ExpandableInfo>
                 )}
 
                 {frilansTyper &&
-                    frilansTyper.some((type) => type === FrilansTyper.STYREVERV) &&
-                    misterHonorarStyreverv === YesOrNo.YES && (
+                    frilansTyper.some((type) => type === Frilanstype.HONORARARBEID) &&
+                    misterHonorar === YesOrNo.YES && (
                         <ExpandableInfo
-                            title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.styreverv.info.tittel')}>
+                            title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.tittel')}>
                             <p>
-                                <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.styreverv.info.1'} />
+                                <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.1'} />
                             </p>
                             <p>
-                                <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.styreverv.info.2'} />
+                                <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.2'} />
                             </p>
                         </ExpandableInfo>
                     )}

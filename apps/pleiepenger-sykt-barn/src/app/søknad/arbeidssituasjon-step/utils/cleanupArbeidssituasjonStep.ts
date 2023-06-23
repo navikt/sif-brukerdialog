@@ -1,11 +1,11 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
-import { FrilansFormData, FrilansTyper } from '../../../types/FrilansFormData';
+import { FrilansFormData, Frilanstype } from '../../../types/FrilansFormData';
 import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
 import { StønadGodtgjørelseFormData } from '../../../types/StønadGodtgjørelseFormData';
 import { SøknadFormValues } from '../../../types/SøknadFormValues';
-import { erFrilanserISøknadsperiode, kunStyrevervUtenNormalArbeidstid } from '../../../utils/frilanserUtils';
+import { erFrilanserISøknadsperiode, kunHonorararbeidUtenNormalArbeidstid } from '../../../utils/frilanserUtils';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 
 export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormValues): ArbeidsforholdFormValues => {
@@ -34,30 +34,30 @@ export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, value
     if (frilans.harHattInntektSomFrilanser === YesOrNo.NO) {
         /** Er ikke frilanser i perioden */
         frilans.frilansTyper = undefined;
-        frilans.misterHonorarStyreverv = undefined;
+        frilans.misterHonorar = undefined;
         frilans.startdato = undefined;
         frilans.sluttdato = undefined;
         frilans.erFortsattFrilanser = undefined;
         frilans.arbeidsforhold = undefined;
     }
     if (frilans.harHattInntektSomFrilanser === YesOrNo.YES) {
-        if (kunStyrevervUtenNormalArbeidstid(frilans.frilansTyper, frilans.misterHonorarStyreverv)) {
+        if (kunHonorararbeidUtenNormalArbeidstid(frilans.frilansTyper, frilans.misterHonorar)) {
             frilans.startdato = undefined;
             frilans.arbeidsforhold = undefined;
         }
-        if (!frilans.frilansTyper?.some((type) => type === FrilansTyper.STYREVERV)) {
-            frilans.misterHonorarStyreverv = undefined;
+        if (!frilans.frilansTyper?.some((type) => type === Frilanstype.HONORARARBEID)) {
+            frilans.misterHonorar = undefined;
         }
 
         if (
-            !frilans.frilansTyper?.some((type) => type === FrilansTyper.FRILANS) &&
+            !frilans.frilansTyper?.some((type) => type === Frilanstype.FRILANSARBEID) &&
             frilans.arbeidsforhold?.arbeidIPeriode?.arbeiderIPerioden
         ) {
             frilans.arbeidsforhold.arbeidIPeriode.arbeiderIPerioden = undefined;
         }
 
         if (
-            !frilans.frilansTyper?.some((type) => type === FrilansTyper.STYREVERV) &&
+            !frilans.frilansTyper?.some((type) => type === Frilanstype.HONORARARBEID) &&
             frilans.arbeidsforhold?.arbeidIPeriode?.misterHonorarerFraVervIPerioden
         ) {
             frilans.arbeidsforhold.arbeidIPeriode.misterHonorarerFraVervIPerioden = undefined;

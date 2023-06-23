@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { FrilansTyper } from '../FrilansFormData';
-import { ArbeidsforholdSøknadsdata } from './arbeidsforholdSøknadsdata';
+import { Frilanstype } from '../FrilansFormData';
+import { ArbeidsforholdSøknadsdata } from './ArbeidsforholdSøknadsdata';
 
 export interface ArbeidFrilansSøknadsdataErIkkeFrilanser {
     type: 'erIkkeFrilanser';
@@ -11,7 +11,7 @@ export interface ArbeidFrilansSøknadsdataErIkkeFrilanser {
 export interface ArbeidFrilansSøknadsdataPågående {
     type: 'pågående';
     erFrilanser: true;
-    frilansType: FrilansTyper[];
+    frilansType: Frilanstype[];
     misterHonorar?: YesOrNo;
     startdato: Date;
     aktivPeriode: DateRange;
@@ -21,19 +21,19 @@ export interface ArbeidFrilansSøknadsdataPågående {
 export interface ArbeidFrilansSøknadsdataSluttetISøknadsperiode {
     type: 'sluttetISøknadsperiode';
     erFrilanser: true;
-    frilansType: FrilansTyper[];
+    frilansType: Frilanstype[];
     misterHonorar?: YesOrNo;
     startdato: Date;
-    erFortsattFrilanser: false;
     sluttdato: Date;
+    erFortsattFrilanser: false;
     aktivPeriode: DateRange;
     arbeidsforhold: ArbeidsforholdSøknadsdata;
 }
 
-export interface ArbeidFrilansKunStyrevervSøknadsdataPågående {
-    type: 'pågåendeKunStyreverv';
+export interface ArbeidFrilansKunHonorararbeidSøknadsdataPågående {
+    type: 'pågåendeKunHonorararbeid';
     erFrilanser: true;
-    frilansType: [FrilansTyper.STYREVERV];
+    frilansType: [Frilanstype.HONORARARBEID];
     misterHonorar: YesOrNo.NO;
 }
 
@@ -41,4 +41,4 @@ export type ArbeidFrilansSøknadsdata =
     | ArbeidFrilansSøknadsdataErIkkeFrilanser
     | ArbeidFrilansSøknadsdataPågående
     | ArbeidFrilansSøknadsdataSluttetISøknadsperiode
-    | ArbeidFrilansKunStyrevervSøknadsdataPågående;
+    | ArbeidFrilansKunHonorararbeidSøknadsdataPågående;

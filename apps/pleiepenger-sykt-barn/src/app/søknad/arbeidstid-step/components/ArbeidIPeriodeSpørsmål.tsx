@@ -15,7 +15,7 @@ import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleie
 import { TimerEllerProsent } from '../../../types';
 import { ArbeidIPeriodeFormField, MisterHonorarerFraVervIPerioden } from '../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsforholdFormValues, ArbeidsforholdFrilanserFormValues } from '../../../types/ArbeidsforholdFormValues';
-import { FrilansTyper } from '../../../types/FrilansFormData';
+import { Frilanstype } from '../../../types/FrilansFormData';
 import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { søkerNoeFremtid } from '../../../utils/søknadsperiodeUtils';
 import SøknadFormComponents from '../../SøknadFormComponents';
@@ -37,7 +37,7 @@ interface Props {
     arbeidsforhold: ArbeidsforholdFormValues | ArbeidsforholdFrilanserFormValues;
     arbeidsforholdType: ArbeidsforholdType;
     arbeidsstedNavn: string;
-    frilansType?: FrilansTyper[];
+    frilansType?: Frilanstype[];
     misterHonorarer?: YesOrNo;
     arbeidsperiode: DateRange;
     søknadsperiode: DateRange;
@@ -89,12 +89,12 @@ const ArbeidIPeriodeSpørsmål = ({
 
     const frilansRedusert =
         frilansType &&
-        frilansType.some((type) => type === FrilansTyper.FRILANS) &&
+        frilansType.some((type) => type === Frilanstype.FRILANSARBEID) &&
         arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert;
 
     const vervRedusert =
         frilansType &&
-        frilansType.some((type) => type === FrilansTyper.STYREVERV) &&
+        frilansType.some((type) => type === Frilanstype.HONORARARBEID) &&
         misterHonorarer === YesOrNo.YES &&
         misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterDelerAvHonorarer;
 
@@ -115,7 +115,7 @@ const ArbeidIPeriodeSpørsmål = ({
         <>
             {(aktivitetType === 'sn' ||
                 aktivitetType === 'arbeidstaker' ||
-                (frilansType && frilansType.some((type) => type === FrilansTyper.FRILANS))) && (
+                (frilansType && frilansType.some((type) => type === Frilanstype.FRILANSARBEID))) && (
                 <SøknadFormComponents.RadioGroup
                     name={getFieldName(ArbeidIPeriodeFormField.arbeiderIPerioden)}
                     legend={intlHelper(intl, `arbeidIPeriode.arbeiderIPerioden.spm`, intlValues)}
@@ -140,7 +140,7 @@ const ArbeidIPeriodeSpørsmål = ({
                 />
             )}
             {frilansType &&
-                frilansType.some((type) => type === FrilansTyper.STYREVERV && misterHonorarer === YesOrNo.YES) && (
+                frilansType.some((type) => type === Frilanstype.HONORARARBEID && misterHonorarer === YesOrNo.YES) && (
                     <FormBlock>
                         <SøknadFormComponents.RadioGroup
                             name={getFieldName(ArbeidIPeriodeFormField.misterHonorarerFraVervIPerioden)}

@@ -36,10 +36,10 @@ export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
         selectRadioYes('er-frilanser');
 
-        getTestElement('frilans-typer_frilans').click({ force: true });
-        getTestElement('frilans-typer_styreverv').click({ force: true });
+        getTestElement('frilans-typer_frilansarbeid').click({ force: true });
+        getTestElement('frilans-typer_honorararbeid').click({ force: true });
 
-        selectRadioNyYesOrNo('mister-honorarStyreverv', true);
+        selectRadioNyYesOrNo('mister-honorar', true);
         const startdato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
         cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
 
@@ -88,10 +88,7 @@ const erIkkeFrilanser = () => {
         gåTilOppsummeringFraArbeidssituasjon();
 
         const el = getTestElement('arbeidssituasjon-frilanser');
-        el.should(
-            'contain',
-            'Er ikke frilanser eller får ikke honorar for styreverv/andre små verv i perioden det søkes for'
-        );
+        el.should('contain', 'Er ikke frilanser eller får ikke honorari perioden det søkes for');
     });
 };
 

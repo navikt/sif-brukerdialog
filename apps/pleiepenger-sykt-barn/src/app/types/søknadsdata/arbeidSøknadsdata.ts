@@ -1,8 +1,8 @@
-import { ArbeidsgivereSøknadsdata } from './arbeidAnsattSøknadsdata';
-import { ArbeidFrilansSøknadsdata } from './arbeidFrilansSøknadsdata';
-import { ArbeidSelvstendigSøknadsdata } from './arbeidSelvstendigSøknadsdata';
-import { OpptjeningUtlandSøknadsdata } from './opptjeningUtlandSøknadsdata';
-import { UtenlandskNæringSøknadsdata } from './utenlandskNæringSøknadsdata';
+import { ArbeidsgivereSøknadsdata } from './ArbeidAnsattSøknadsdata';
+import { ArbeidFrilansSøknadsdata } from './ArbeidFrilansSøknadsdata';
+import { ArbeidSelvstendigSøknadsdata } from './ArbeidSelvstendigSøknadsdata';
+import { OpptjeningUtlandSøknadsdata } from './OpptjeningUtlandSøknadsdata';
+import { UtenlandskNæringSøknadsdata } from './UtenlandskNæringSøknadsdata';
 
 export interface ArbeidSøknadsdata {
     arbeidsgivere?: ArbeidsgivereSøknadsdata;

@@ -1,14 +1,15 @@
-import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { DateRange, getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
 import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
-import { TimerEllerProsent } from '../../types';
+// import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
+// import { TimerEllerProsent } from '../../types';
 import {
     ArbeidIPeriodeFormValues,
     ArbeidsukerFormValues,
-    MisterHonorarerFraVervIPerioden,
+    // MisterHonorarerFraVervIPerioden,
 } from '../../types/ArbeidIPeriodeFormValues';
-import { ArbeidIPeriodeType } from '../../types/arbeidIPeriodeType';
-import { ArbeidIPeriodeFrilansSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
+// import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
+// import { ArbeidIPeriodeFrilansSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
 import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const getMinDateRangeFromDateRanges = (dr1: DateRange, dr2: DateRange): DateRange => ({
@@ -29,140 +30,143 @@ export const extractArbeidsukerTimerSøknadsdata = (arbeidsuker: ArbeidsukerForm
     return arbeidsukerSøknadsdata;
 };
 
-export const extractArbeidIPeriodeSøknadsdata = ({
-    arbeiderIPerioden,
-    prosentAvNormalt,
-    snittTimerPerUke,
-    timerEllerProsent,
-    erLiktHverUke,
-    arbeidsuker,
-}: ArbeidIPeriodeFormValues): ArbeidIPeriodeSøknadsdata | undefined => {
-    if (arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær) {
-        return {
-            type: ArbeidIPeriodeType.arbeiderIkke,
-            arbeiderIPerioden: false,
-        };
-    }
-    if (arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig) {
-        return {
-            type: ArbeidIPeriodeType.arbeiderVanlig,
-            arbeiderIPerioden: true,
-            arbeiderRedusert: false,
-        };
-    }
+export const extractArbeidIPeriodeSøknadsdata = (
+    _formValues: ArbeidIPeriodeFormValues
+): ArbeidIPeriodeSøknadsdata | undefined => {
+    // const { arbeiderIPerioden, prosentAvNormalt, snittTimerPerUke, timerEllerProsent, erLiktHverUke, arbeidsuker } =
+    //     formValues;
 
-    if (erLiktHverUke === YesOrNo.YES) {
-        const arbeiderProsent =
-            timerEllerProsent === TimerEllerProsent.PROSENT
-                ? getNumberFromNumberInputValue(prosentAvNormalt)
-                : undefined;
+    // if (arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær) {
+    //     return {
+    //         type: ArbeidIPeriodeType.arbeiderIkke,
+    //         arbeiderIPerioden: false,
+    //     };
+    // }
+    // if (arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig) {
+    //     return {
+    //         type: ArbeidIPeriodeType.arbeiderVanlig,
+    //         arbeiderIPerioden: true,
+    //         arbeiderRedusert: false,
+    //     };
+    // }
 
-        const timerISnittPerUke =
-            timerEllerProsent === TimerEllerProsent.TIMER ? getNumberFromNumberInputValue(snittTimerPerUke) : undefined;
+    // if (erLiktHverUke === YesOrNo.YES) {
+    //     const arbeiderProsent =
+    //         timerEllerProsent === TimerEllerProsent.PROSENT
+    //             ? getNumberFromNumberInputValue(prosentAvNormalt)
+    //             : undefined;
 
-        if (snittTimerPerUke && timerISnittPerUke) {
-            return {
-                type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke,
-                arbeiderIPerioden: true,
-                arbeiderRedusert: true,
-                timerISnittPerUke,
-            };
-        }
-        if (arbeiderProsent && prosentAvNormalt) {
-            return {
-                type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
-                arbeiderIPerioden: true,
-                arbeiderRedusert: true,
-                prosentAvNormalt: arbeiderProsent,
-            };
-        }
-    }
-    if ((erLiktHverUke === YesOrNo.NO || erLiktHverUke === undefined) && arbeidsuker) {
-        return {
-            type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
-            arbeiderRedusert: true,
-            arbeiderIPerioden: true,
-            arbeidsuker: extractArbeidsukerTimerSøknadsdata(arbeidsuker),
-        };
-    }
+    //     const timerISnittPerUke =
+    //         timerEllerProsent === TimerEllerProsent.TIMER ? getNumberFromNumberInputValue(snittTimerPerUke) : undefined;
+
+    //     if (snittTimerPerUke && timerISnittPerUke) {
+    //         return {
+    //             type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke,
+    //             arbeiderIPerioden: true,
+    //             arbeiderRedusert: true,
+    //             timerISnittPerUke,
+    //         };
+    //     }
+    //     if (arbeiderProsent && prosentAvNormalt) {
+    //         return {
+    //             type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
+    //             arbeiderIPerioden: true,
+    //             arbeiderRedusert: true,
+    //             prosentAvNormalt: arbeiderProsent,
+    //         };
+    //     }
+    // }
+    // if ((erLiktHverUke === YesOrNo.NO || erLiktHverUke === undefined) && arbeidsuker) {
+    //     return {
+    //         type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
+    //         arbeiderRedusert: true,
+    //         arbeiderIPerioden: true,
+    //         arbeidsuker: extractArbeidsukerTimerSøknadsdata(arbeidsuker),
+    //     };
+    // }
 
     return undefined;
 };
 
-export const extractArbeidIPeriodeFrilanserSøknadsdata = ({
-    arbeiderIPerioden,
-    snittTimerPerUke,
-    prosentAvNormalt,
-    timerEllerProsent,
-    erLiktHverUke,
-    arbeidsuker,
-    misterHonorarerFraVervIPerioden,
-}: ArbeidIPeriodeFormValues): ArbeidIPeriodeFrilansSøknadsdata | undefined => {
-    if (
-        arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert ||
-        misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterDelerAvHonorarer ||
-        (arbeiderIPerioden !== ArbeiderIPeriodenSvar.heltFravær &&
-            misterHonorarerFraVervIPerioden !== undefined &&
-            misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterAlleHonorarer)
-    ) {
-        if (erLiktHverUke === YesOrNo.YES) {
-            const arbeiderProsent =
-                timerEllerProsent === TimerEllerProsent.PROSENT
-                    ? getNumberFromNumberInputValue(prosentAvNormalt)
-                    : undefined;
+export const extractArbeidIPeriodeFrilanserSøknadsdata = (
+    _formValues: ArbeidIPeriodeFormValues
+): ArbeidIPeriodeSøknadsdata | undefined => {
+    // const {
+    //     arbeiderIPerioden,
+    //     snittTimerPerUke,
+    //     prosentAvNormalt,
+    //     timerEllerProsent,
+    //     erLiktHverUke,
+    //     arbeidsuker,
+    //     misterHonorarerFraVervIPerioden,
+    // } = formValues;
+    return {} as any;
+    // TODO
+    // if (
+    //     arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert ||
+    //     misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterDelerAvHonorarer ||
+    //     (arbeiderIPerioden !== ArbeiderIPeriodenSvar.heltFravær &&
+    //         misterHonorarerFraVervIPerioden !== undefined &&
+    //         misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterAlleHonorarer)
+    // ) {
+    //     if (erLiktHverUke === YesOrNo.YES) {
+    //         const arbeiderProsent =
+    //             timerEllerProsent === TimerEllerProsent.PROSENT
+    //                 ? getNumberFromNumberInputValue(prosentAvNormalt)
+    //                 : undefined;
 
-            const timerISnittPerUke =
-                timerEllerProsent === TimerEllerProsent.TIMER
-                    ? getNumberFromNumberInputValue(snittTimerPerUke)
-                    : undefined;
+    //         const timerISnittPerUke =
+    //             timerEllerProsent === TimerEllerProsent.TIMER
+    //                 ? getNumberFromNumberInputValue(snittTimerPerUke)
+    //                 : undefined;
 
-            if (snittTimerPerUke && timerISnittPerUke) {
-                return {
-                    gjelderFrilans: true,
-                    type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke,
-                    arbeiderIPerioden: arbeiderIPerioden,
-                    misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
-                    timerISnittPerUke,
-                };
-            }
-            if (arbeiderProsent && prosentAvNormalt) {
-                return {
-                    gjelderFrilans: true,
-                    type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
-                    arbeiderIPerioden: arbeiderIPerioden,
-                    misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
-                    prosentAvNormalt: arbeiderProsent,
-                };
-            }
-        }
+    //         if (snittTimerPerUke && timerISnittPerUke) {
+    //             return {
+    //                 gjelderFrilans: true,
+    //                 type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke,
+    //                 arbeiderIPerioden: arbeiderIPerioden,
+    //                 misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
+    //                 timerISnittPerUke,
+    //             };
+    //         }
+    //         if (arbeiderProsent && prosentAvNormalt) {
+    //             return {
+    //                 gjelderFrilans: true,
+    //                 type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
+    //                 arbeiderIPerioden: arbeiderIPerioden,
+    //                 misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
+    //                 prosentAvNormalt: arbeiderProsent,
+    //             };
+    //         }
+    //     }
 
-        if ((erLiktHverUke === YesOrNo.NO || erLiktHverUke === undefined) && arbeidsuker) {
-            return {
-                gjelderFrilans: true,
-                type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
-                arbeiderIPerioden: arbeiderIPerioden,
-                misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
-                arbeidsuker: extractArbeidsukerTimerSøknadsdata(arbeidsuker),
-            };
-        }
-    }
+    //     if ((erLiktHverUke === YesOrNo.NO || erLiktHverUke === undefined) && arbeidsuker) {
+    //         return {
+    //             gjelderFrilans: true,
+    //             type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
+    //             arbeiderIPerioden: arbeiderIPerioden,
+    //             misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
+    //             arbeidsuker: extractArbeidsukerTimerSøknadsdata(arbeidsuker),
+    //         };
+    //     }
+    // }
 
-    if (
-        arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær ||
-        misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterAlleHonorarer
-    ) {
-        return {
-            gjelderFrilans: true,
-            type: ArbeidIPeriodeType.arbeiderIkke,
-            arbeiderIPerioden,
-            misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
-        };
-    }
+    // if (
+    //     arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær ||
+    //     misterHonorarerFraVervIPerioden === MisterHonorarerFraVervIPerioden.misterAlleHonorarer
+    // ) {
+    //     return {
+    //         gjelderFrilans: true,
+    //         type: ArbeidIPeriodeType.arbeiderIkke,
+    //         arbeiderIPerioden,
+    //         misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
+    //     };
+    // }
 
-    return {
-        gjelderFrilans: true,
-        type: ArbeidIPeriodeType.arbeiderVanlig,
-        arbeiderIPerioden: arbeiderIPerioden,
-        misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
-    };
+    // return {
+    //     gjelderFrilans: true,
+    //     type: ArbeidIPeriodeType.arbeiderVanlig,
+    //     arbeiderIPerioden: arbeiderIPerioden,
+    //     misterHonorarerFraVervIPerioden: misterHonorarerFraVervIPerioden,
+    // };
 };

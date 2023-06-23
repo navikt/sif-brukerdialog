@@ -99,7 +99,7 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
             {frilans.arbeidsforhold &&
                 arbeid.frilans?.erFrilanser === true &&
                 arbeid.frilans?.frilansType.length > 0 &&
-                arbeid.frilans?.type !== 'pågåendeKunStyreverv' && (
+                arbeid.frilans?.type !== 'pågåendeKunHonorararbeid' && (
                     <FormBlock>
                         <FormSection title={intlHelper(intl, 'arbeidIPeriode.FrilansLabel')}>
                             <>

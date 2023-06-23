@@ -11,7 +11,7 @@ import {
     ArbeidsforholdFrilanserFormValues,
     ArbeidsforholdSelvstendigFormValues,
 } from '../../../../types/ArbeidsforholdFormValues';
-import { FrilansTyper } from '../../../../types/FrilansFormData';
+import { Frilanstype } from '../../../../types/FrilansFormData';
 import { getArbeidsforholdIntlValues } from '../../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../../validation/arbeiderNormaltTimerIUkenValidator';
 import InfoArbeiderNormaltTimerIUken from '../info/InfoArbeiderNormaltTimerIUken';
@@ -23,8 +23,8 @@ interface Props {
     arbeidsforholdType: ArbeidsforholdType;
     erAktivtArbeidsforhold: boolean;
     brukKunSnittPerUke: boolean;
-    frilansTyper?: FrilansTyper[];
-    misterHonorarStyreverv?: YesOrNo;
+    frilansTyper?: Frilanstype[];
+    misterHonorar?: YesOrNo;
     mottarStønadGodtgjørelse?: boolean;
 }
 
@@ -38,7 +38,7 @@ const NormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     arbeidsstedNavn,
     brukKunSnittPerUke,
     frilansTyper,
-    misterHonorarStyreverv,
+    misterHonorar,
     mottarStønadGodtgjørelse,
 }) => {
     const intl = useIntl();
@@ -56,9 +56,8 @@ const NormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
         if (frilansTyper === undefined || frilansTyper.length === 0) {
             return '';
         }
-        const erFrilanser = frilansTyper.some((type) => type === FrilansTyper.FRILANS);
-        const erVerv =
-            frilansTyper.some((type) => type === FrilansTyper.STYREVERV) && misterHonorarStyreverv === YesOrNo.YES;
+        const erFrilanser = frilansTyper.some((type) => type === Frilanstype.FRILANSARBEID);
+        const erVerv = frilansTyper.some((type) => type === Frilanstype.HONORARARBEID) && misterHonorar === YesOrNo.YES;
 
         if (erFrilanser && !erVerv) {
             return 'frilanser';
@@ -100,7 +99,7 @@ const NormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
                     <InfoArbeiderNormaltTimerIUken
                         arbeidsforholdType={arbeidsforholdType}
                         frilansTyper={frilansTyper}
-                        misterHonorarStyreverv={misterHonorarStyreverv}
+                        misterHonorar={misterHonorar}
                     />
                 }
                 // suffix={intlHelper(intl, `arbeidsforhold.timerPerUke.suffix`)}

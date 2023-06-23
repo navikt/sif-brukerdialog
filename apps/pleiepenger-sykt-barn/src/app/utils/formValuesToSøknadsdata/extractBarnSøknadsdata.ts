@@ -1,6 +1,6 @@
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../types';
 import { OmBarnetFormData } from '../../types/SøknadFormValues';
-import { OmBarnetSøknadsdata } from '../../types/søknadsdata/omBarnetSøknadsdata';
+import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
 
 export const extractBarnSøknadsdata = (values: OmBarnetFormData): OmBarnetSøknadsdata | undefined => {
     if (values.barnetSøknadenGjelder) {

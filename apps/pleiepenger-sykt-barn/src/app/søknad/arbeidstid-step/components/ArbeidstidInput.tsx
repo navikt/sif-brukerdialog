@@ -11,7 +11,7 @@ import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/com
 import { TimerEllerProsent } from '../../../types';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
-import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/normalarbeidstidSøknadsdata';
+import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import {
     getArbeidIPeriodeProsentAvNormaltValidator,

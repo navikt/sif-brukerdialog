@@ -4,7 +4,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
 import { Arbeidsgiver } from '../types';
-import { FrilansFormData, FrilansTyper } from '../types/FrilansFormData';
+import { FrilansFormData, Frilanstype } from '../types/FrilansFormData';
 import minMax from 'dayjs/plugin/minMax';
 
 dayjs.extend(minMax);
@@ -34,11 +34,11 @@ export const erFrilanserISøknadsperiode = (
         sluttdato,
         startdato,
         frilansTyper,
-        misterHonorarStyreverv,
+        misterHonorar,
     }: FrilansFormData
 ): boolean => {
     if (erFortsattFrilanser === YesOrNo.YES) {
-        return !kunStyrevervUtenNormalArbeidstid(frilansTyper, misterHonorarStyreverv);
+        return !kunHonorararbeidUtenNormalArbeidstid(frilansTyper, misterHonorar);
     }
     const frilansStartdato = datepickerUtils.getDateFromDateString(startdato);
     const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
@@ -115,8 +115,8 @@ export const getPeriodeSomFrilanserInnenforSøknadsperiode = (
     };
 };
 
-export const kunStyrevervUtenNormalArbeidstid = (frilansType?: FrilansTyper[], misterHonorar?: YesOrNo) =>
+export const kunHonorararbeidUtenNormalArbeidstid = (frilansType?: Frilanstype[], misterHonorar?: YesOrNo) =>
     frilansType &&
     frilansType.length === 1 &&
-    frilansType.some((type) => type === FrilansTyper.STYREVERV) &&
+    frilansType.some((type) => type === Frilanstype.HONORARARBEID) &&
     misterHonorar === YesOrNo.NO;

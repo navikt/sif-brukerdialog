@@ -1,4 +1,4 @@
-import { BeredskapSøknadsdata } from '../../types/søknadsdata/beredskapSøknadsdata';
+import { BeredskapSøknadsdata } from '../../types/søknadsdata/BeredskapSøknadsdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 
 type BeredskapApiData = Pick<SøknadApiData, 'beredskap'>;

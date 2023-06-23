@@ -11,17 +11,20 @@ import {
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
-import { ArbeidIPeriodeType } from '../../../types/arbeidIPeriodeType';
+// import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
+// import {
+//     ArbeidIPeriodeFrilansSøknadsdata,
+//     isArbeidIPeriodeFrilansSøknadsdata,
+// } from '../../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
 import {
-    ArbeidIPeriodeFrilansSøknadsdata,
-    isArbeidIPeriodeFrilansSøknadsdata,
-} from '../../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
-import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
-import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/arbeidsforholdSøknadsdata';
-import { ArbeidSøknadsdata } from '../../../types/søknadsdata/arbeidSøknadsdata';
-import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/normalarbeidstidSøknadsdata';
+    ArbeidsukerTimerSøknadsdata,
+    // ArbeidsukeTimerSøknadsdata,
+} from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
+import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/ArbeidsforholdSøknadsdata';
+import { ArbeidSøknadsdata } from '../../../types/søknadsdata/ArbeidSøknadsdata';
+import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 import { OpenDateRange } from '../../../types';
 
@@ -102,23 +105,23 @@ export const getArbeidsperiodeIForholdTilSøknadsperiode = (
     return ArbeidsperiodeIForholdTilSøknadsperiode.gjelderHelePerioden;
 };
 
-export const harFraværSomFrilanser = ({
-    misterHonorarerFraVervIPerioden,
-    arbeiderIPerioden,
-}: ArbeidIPeriodeFrilansSøknadsdata): boolean => {
-    return misterHonorarerFraVervIPerioden !== undefined || arbeiderIPerioden !== ArbeiderIPeriodenSvar.somVanlig
-        ? true
-        : false;
-};
+// export const harFraværSomFrilanser = ({
+//     misterHonorarerFraVervIPerioden,
+//     arbeiderIPerioden,
+// }: ArbeidIPeriodeFrilansSøknadsdata): boolean => {
+//     return misterHonorarerFraVervIPerioden !== undefined || arbeiderIPerioden !== ArbeiderIPeriodenSvar.somVanlig
+//         ? true
+//         : false;
+// };
 
 export const harFraværFraJobb = (arbeidsforhold: ArbeidsforholdSøknadsdata[]): boolean => {
     return arbeidsforhold.some(({ arbeidISøknadsperiode }) => {
         if (!arbeidISøknadsperiode) {
             return false;
         }
-        if (isArbeidIPeriodeFrilansSøknadsdata(arbeidISøknadsperiode)) {
-            return harFraværSomFrilanser(arbeidISøknadsperiode);
-        }
+        // if (isArbeidIPeriodeFrilansSøknadsdata(arbeidISøknadsperiode)) {
+        //     return harFraværSomFrilanser(arbeidISøknadsperiode);
+        // }
         return arbeidISøknadsperiode.type !== ArbeidIPeriodeType.arbeiderVanlig;
     });
 };

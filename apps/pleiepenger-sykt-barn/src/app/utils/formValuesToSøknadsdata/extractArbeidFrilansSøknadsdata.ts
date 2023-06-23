@@ -1,8 +1,8 @@
 import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
-import { FrilansFormData, FrilansTyper } from '../../types/FrilansFormData';
+import { FrilansFormData, Frilanstype } from '../../types/FrilansFormData';
 import { ArbeidFrilansSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getPeriodeSomFrilanserInnenforSøknadsperiode, kunStyrevervUtenNormalArbeidstid } from '../frilanserUtils';
+import { getPeriodeSomFrilanserInnenforSøknadsperiode, kunHonorararbeidUtenNormalArbeidstid } from '../frilanserUtils';
 import { extractArbeidsforholdFrilansSøknadsdata } from './extractArbeidsforholdSøknadsdata';
 
 export const extractArbeidFrilansSøknadsdata = (
@@ -23,11 +23,11 @@ export const extractArbeidFrilansSøknadsdata = (
         return undefined;
     }
 
-    if (kunStyrevervUtenNormalArbeidstid(frilans.frilansTyper, frilans.misterHonorarStyreverv)) {
+    if (kunHonorararbeidUtenNormalArbeidstid(frilans.frilansTyper, frilans.misterHonorar)) {
         return {
-            type: 'pågåendeKunStyreverv',
+            type: 'pågåendeKunHonorararbeid',
             erFrilanser: true,
-            frilansType: [FrilansTyper.STYREVERV],
+            frilansType: [Frilanstype.HONORARARBEID],
             misterHonorar: YesOrNo.NO,
         };
     }
@@ -50,8 +50,8 @@ export const extractArbeidFrilansSøknadsdata = (
             erFrilanser: true,
             frilansType: frilans.frilansTyper,
             aktivPeriode,
-            misterHonorar: frilans.frilansTyper.some((type) => type === FrilansTyper.STYREVERV)
-                ? frilans.misterHonorarStyreverv
+            misterHonorar: frilans.frilansTyper.some((type) => type === Frilanstype.HONORARARBEID)
+                ? frilans.misterHonorar
                 : undefined,
             erFortsattFrilanser: false,
             startdato,
@@ -66,8 +66,8 @@ export const extractArbeidFrilansSøknadsdata = (
             type: 'pågående',
             erFrilanser: true,
             frilansType: frilans.frilansTyper,
-            misterHonorar: frilans.frilansTyper.some((type) => type === FrilansTyper.STYREVERV)
-                ? frilans.misterHonorarStyreverv
+            misterHonorar: frilans.frilansTyper.some((type) => type === Frilanstype.HONORARARBEID)
+                ? frilans.misterHonorar
                 : undefined,
             startdato,
             aktivPeriode,

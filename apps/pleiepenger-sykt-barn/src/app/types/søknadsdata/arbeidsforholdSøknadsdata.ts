@@ -1,8 +1,7 @@
-import { ArbeidIPeriodeFrilansSøknadsdata } from './arbeidIPeriodeFrilansSøknadsdata';
-import { ArbeidIPeriodeSøknadsdata } from './arbeidIPeriodeSøknadsdata';
-import { NormalarbeidstidSøknadsdata } from './normalarbeidstidSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from './ArbeidIPeriodeSøknadsdata';
+import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 export interface ArbeidsforholdSøknadsdata {
     normalarbeidstid: NormalarbeidstidSøknadsdata;
-    arbeidISøknadsperiode?: ArbeidIPeriodeSøknadsdata | ArbeidIPeriodeFrilansSøknadsdata;
+    arbeidISøknadsperiode?: ArbeidIPeriodeSøknadsdata;
 }

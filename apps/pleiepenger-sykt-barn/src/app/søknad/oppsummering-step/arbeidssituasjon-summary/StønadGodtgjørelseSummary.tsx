@@ -1,6 +1,6 @@
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { StønadGodtgjørelseApiData } from '../../../types/søknad-api-data/stønadGodtgjørelseApiData';
+import { StønadGodtgjørelseApiData } from '../../../types/søknad-api-data/StønadGodtgjørelseApiData';
 
 interface Props {
     stønadGodtgjørelse: StønadGodtgjørelseApiData;

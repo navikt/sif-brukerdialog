@@ -1,6 +1,6 @@
 import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
-import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
-import { ArbeidIPeriodeType } from '../arbeidIPeriodeType';
+import { ArbeidIPeriodeType } from '../ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../RedusertArbeidstidType';
 
 export type ArbeidsukeTimerApiData = {
     periode: {
@@ -10,41 +10,42 @@ export type ArbeidsukeTimerApiData = {
     timer: ISODuration;
 };
 
+interface ArbeiderRedusertBase {
+    type: RedusertArbeidstidType;
+}
+interface ArbeiderRedusertProsentAvNormalt extends ArbeiderRedusertBase {
+    type: RedusertArbeidstidType.prosentAvNormalt;
+    prosentAvNormalt: number;
+}
+interface ArbeiderRedusertTimerISnittPerUke extends ArbeiderRedusertBase {
+    type: RedusertArbeidstidType.timerISnittPerUke;
+    timerPerUke: ISODuration;
+}
+
+interface ArbeiderReduserUlikeUkerTimer extends ArbeiderRedusertBase {
+    type: RedusertArbeidstidType.ulikeUkerTimer;
+    arbeidsuker: ArbeidsukeTimerApiData[];
+}
+
+export type ArbeidRedusertIPeriodeApiData =
+    | ArbeiderRedusertTimerISnittPerUke
+    | ArbeiderRedusertProsentAvNormalt
+    | ArbeiderReduserUlikeUkerTimer;
+
 export interface ArbeidIPeriodeApiDataJobberIkke {
     type: ArbeidIPeriodeType.arbeiderIkke;
-    arbeiderIPerioden: ArbeiderIPeriodenSvar.heltFravær;
 }
 
 export interface ArbeidIPeriodeApiDataJobberVanlig {
     type: ArbeidIPeriodeType.arbeiderVanlig;
-    arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig;
 }
 
-export interface ArbeidIPeriodeApiDataProsent {
-    type: ArbeidIPeriodeType.arbeiderProsentAvNormalt;
-    arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert;
-    prosentAvNormalt: number;
+export interface ArbeidIPeriodeApiDataRedusert {
+    type: ArbeidIPeriodeType.arbeiderRedusert;
+    redusertArbeid: ArbeidRedusertIPeriodeApiData;
 }
 
-export interface ArbeidIPeriodeApiDataTimerPerUke {
-    type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke;
-    arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert;
-    timerPerUke: ISODuration;
-}
-
-export interface ArbeidIPeriodeApiDataUlikeUkerTimer {
-    type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer;
-    arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert;
-    arbeidsuker: ArbeidsukeTimerApiData[];
-}
-
-/**
- * Denne er ikke optimal for frilans hvor en har to spørsmål i dialogen,
- * som skal sendes inn som en.
- */
 export type ArbeidIPeriodeApiData =
     | ArbeidIPeriodeApiDataJobberIkke
     | ArbeidIPeriodeApiDataJobberVanlig
-    | ArbeidIPeriodeApiDataProsent
-    | ArbeidIPeriodeApiDataTimerPerUke
-    | ArbeidIPeriodeApiDataUlikeUkerTimer;
+    | ArbeidIPeriodeApiDataRedusert;
