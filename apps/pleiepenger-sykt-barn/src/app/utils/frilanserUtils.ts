@@ -33,12 +33,12 @@ export const erFrilanserISøknadsperiode = (
         erFortsattFrilanser,
         sluttdato,
         startdato,
-        frilansTyper,
+        frilanstyper,
         misterHonorar,
     }: FrilansFormData
 ): boolean => {
     if (erFortsattFrilanser === YesOrNo.YES) {
-        return !kunHonorararbeidUtenNormalArbeidstid(frilansTyper, misterHonorar);
+        return !kunHonorararbeidUtenNormalArbeidstid(frilanstyper, misterHonorar);
     }
     const frilansStartdato = datepickerUtils.getDateFromDateString(startdato);
     const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);

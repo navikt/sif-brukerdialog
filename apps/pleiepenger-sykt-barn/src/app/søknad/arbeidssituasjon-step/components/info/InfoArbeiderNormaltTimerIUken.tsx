@@ -2,33 +2,11 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { Frilanstype } from '../../../../types/FrilansFormData';
 
-interface Props {
-    arbeidsforholdType: ArbeidsforholdType;
-    frilansTyper?: Frilanstype[];
-    misterHonorar?: YesOrNo;
-}
-
-const InfoArbeiderNormaltTimerIUken: React.FunctionComponent<Props> = ({
-    arbeidsforholdType,
-    frilansTyper,
-    misterHonorar,
-}) => {
-    switch (arbeidsforholdType) {
-        case ArbeidsforholdType.ANSATT:
-            return <InfoArbeiderNormaltTimerAnsatt />;
-        case ArbeidsforholdType.FRILANSER:
-            return <InfoArbeiderNormaltTimerFrilanser frilansTyper={frilansTyper} misterHonorar={misterHonorar} />;
-        case ArbeidsforholdType.SELVSTENDIG:
-            return <InfoArbeiderNormaltTimerSN />;
-    }
-};
-
-const InfoArbeiderNormaltTimerAnsatt = () => {
+export const InfoArbeiderNormaltTimerAnsatt = () => {
     const intl = useIntl();
     return (
         <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.ansatt.normalTimer.info.tittel')}>
@@ -85,27 +63,30 @@ const InfoArbeiderNormaltTimerAnsatt = () => {
 };
 
 interface PropsFrilans {
-    frilansTyper?: Frilanstype[];
+    frilanstyper?: Frilanstype[];
     misterHonorar?: YesOrNo;
 }
 
-const InfoArbeiderNormaltTimerFrilanser = ({ frilansTyper, misterHonorar }: PropsFrilans) => {
+export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFrilans> = ({
+    frilanstyper,
+    misterHonorar,
+}) => {
     const intl = useIntl();
-    if (frilansTyper === undefined) {
+    if (frilanstyper === undefined) {
         <></>;
     }
     return (
         <>
             <Block margin="l">
-                {frilansTyper && frilansTyper.some((type) => type === Frilanstype.FRILANSARBEID) && (
+                {frilanstyper && frilanstyper.some((type) => type === Frilanstype.FRILANSARBEID) && (
                     <ExpandableInfo
                         title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info.tittel')}>
                         <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info'} />
                     </ExpandableInfo>
                 )}
 
-                {frilansTyper &&
-                    frilansTyper.some((type) => type === Frilanstype.HONORARARBEID) &&
+                {frilanstyper &&
+                    frilanstyper.some((type) => type === Frilanstype.HONORARARBEID) &&
                     misterHonorar === YesOrNo.YES && (
                         <ExpandableInfo
                             title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.tittel')}>
@@ -122,7 +103,7 @@ const InfoArbeiderNormaltTimerFrilanser = ({ frilansTyper, misterHonorar }: Prop
     );
 };
 
-const InfoArbeiderNormaltTimerSN = () => {
+export const InfoArbeiderNormaltTimerSN = () => {
     const intl = useIntl();
     return (
         <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.selvstendig.normalTimer.info.tittel')}>
@@ -178,5 +159,3 @@ const InfoArbeiderNormaltTimerSN = () => {
         </ExpandableInfo>
     );
 };
-
-export default InfoArbeiderNormaltTimerIUken;

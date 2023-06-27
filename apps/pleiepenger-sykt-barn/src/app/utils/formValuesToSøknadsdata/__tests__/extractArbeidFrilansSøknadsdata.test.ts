@@ -24,13 +24,13 @@
 // const kunFrilansFormData: FrilansFormData = {
 //     harHattInntektSomFrilanser: YesOrNo.YES,
 //     erFortsattFrilanser: YesOrNo.YES,
-//     frilansTyper: [Frilanstype.FRILANSARBEID],
+//     frilanstyper: [Frilanstype.FRILANSARBEID],
 //     startdato: '2020-01-01',
 //     arbeidsforhold: mockArbeidsforhold,
 // };
 // const kunHonorarFormData: FrilansFormData = {
 //     harHattInntektSomFrilanser: YesOrNo.YES,
-//     frilansTyper: [Frilanstype.HONORARARBEID],
+//     frilanstyper: [Frilanstype.HONORARARBEID],
 //     erFortsattFrilanser: YesOrNo.YES,
 //     misterHonorar: YesOrNo.YES,
 //     startdato: '2020-01-01',
@@ -39,7 +39,7 @@
 
 // const frilansOgHonorarFormData: FrilansFormData = {
 //     harHattInntektSomFrilanser: YesOrNo.YES,
-//     frilansTyper: [Frilanstype.HONORARARBEID, Frilanstype.FRILANSARBEID],
+//     frilanstyper: [Frilanstype.HONORARARBEID, Frilanstype.FRILANSARBEID],
 //     erFortsattFrilanser: YesOrNo.YES,
 //     misterHonorar: YesOrNo.YES,
 //     startdato: '2020-01-01',

@@ -5,7 +5,6 @@ import { Arbeidsgiver } from './Arbeidsgiver';
 export enum ArbeidsforholdFormField {
     erAnsatt = 'erAnsatt',
     sluttetFørSøknadsperiode = 'sluttetFørSøknadsperiode',
-    normalarbeidstid = 'normalarbeidstid',
     normalarbeidstid_TimerPerUke = 'normalarbeidstid.timerPerUke',
     arbeidIPeriode = 'arbeidIPeriode',
 }
@@ -26,6 +25,7 @@ export type ArbeidsforholdFrilanserFormValues = Omit<
     ArbeidsforholdFormValues,
     'arbeidsgiver' | 'erAnsatt' | 'sluttetFørSøknadsperiode'
 >;
+
 export type ArbeidsforholdSelvstendigFormValues = Omit<
     ArbeidsforholdFormValues,
     'arbeidsgiver' | 'erAnsatt' | 'sluttetFørSøknadsperiode'

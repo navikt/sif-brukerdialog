@@ -29,7 +29,7 @@
 //     //             harInntektSomFrilanser: true,
 //     //             startdato: dateToISODate(arbeidFrilansSøknadsdata.startdato),
 //     //             jobberFortsattSomFrilans: true,
-//     //             frilansTyper: arbeidFrilansSøknadsdata.frilansType,
+//     //             frilanstyper: arbeidFrilansSøknadsdata.frilansType,
 //     //             misterHonorarer: arbeidFrilansSøknadsdata.misterHonorar
 //     //                 ? arbeidFrilansSøknadsdata.misterHonorar === YesOrNo.YES
 //     //                     ? true
@@ -47,7 +47,7 @@
 //     //             startdato: dateToISODate(arbeidFrilansSøknadsdata.startdato),
 //     //             jobberFortsattSomFrilans: false,
 //     //             sluttdato: dateToISODate(arbeidFrilansSøknadsdata.sluttdato),
-//     //             frilansTyper: arbeidFrilansSøknadsdata.frilansType,
+//     //             frilanstyper: arbeidFrilansSøknadsdata.frilansType,
 //     //             misterHonorarer: arbeidFrilansSøknadsdata.misterHonorar
 //     //                 ? arbeidFrilansSøknadsdata.misterHonorar === YesOrNo.YES
 //     //                     ? true
@@ -63,7 +63,7 @@
 //     //         return {
 //     //             type: 'harIkkeArbeidsforhold',
 //     //             harInntektSomFrilanser: true,
-//     //             frilansTyper: [FrilansTyper.HONORARARBEID],
+//     //             frilanstyper: [FrilansTyper.HONORARARBEID],
 //     //             misterHonorarer: false,
 //     //         };
 //     // }

@@ -33,7 +33,7 @@ export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, value
 
     if (frilans.harHattInntektSomFrilanser === YesOrNo.NO) {
         /** Er ikke frilanser i perioden */
-        frilans.frilansTyper = undefined;
+        frilans.frilanstyper = undefined;
         frilans.misterHonorar = undefined;
         frilans.startdato = undefined;
         frilans.sluttdato = undefined;
@@ -41,23 +41,23 @@ export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, value
         frilans.arbeidsforhold = undefined;
     }
     if (frilans.harHattInntektSomFrilanser === YesOrNo.YES) {
-        if (kunHonorararbeidUtenNormalArbeidstid(frilans.frilansTyper, frilans.misterHonorar)) {
+        if (kunHonorararbeidUtenNormalArbeidstid(frilans.frilanstyper, frilans.misterHonorar)) {
             frilans.startdato = undefined;
             frilans.arbeidsforhold = undefined;
         }
-        if (!frilans.frilansTyper?.some((type) => type === Frilanstype.HONORARARBEID)) {
+        if (!frilans.frilanstyper?.some((type) => type === Frilanstype.HONORARARBEID)) {
             frilans.misterHonorar = undefined;
         }
 
         if (
-            !frilans.frilansTyper?.some((type) => type === Frilanstype.FRILANSARBEID) &&
+            !frilans.frilanstyper?.some((type) => type === Frilanstype.FRILANSARBEID) &&
             frilans.arbeidsforhold?.arbeidIPeriode?.arbeiderIPerioden
         ) {
             frilans.arbeidsforhold.arbeidIPeriode.arbeiderIPerioden = undefined;
         }
 
         if (
-            !frilans.frilansTyper?.some((type) => type === Frilanstype.HONORARARBEID) &&
+            !frilans.frilanstyper?.some((type) => type === Frilanstype.HONORARARBEID) &&
             frilans.arbeidsforhold?.arbeidIPeriode?.misterHonorarerFraVervIPerioden
         ) {
             frilans.arbeidsforhold.arbeidIPeriode.misterHonorarerFraVervIPerioden = undefined;

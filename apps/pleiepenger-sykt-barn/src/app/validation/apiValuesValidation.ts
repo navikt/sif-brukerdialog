@@ -145,7 +145,7 @@ export const validateApiValues = (
 
         // TODO - trengs denne etter refactoring
         // if (values.frilans.harInntektSomFrilanser === true) {
-        //     if (values.frilans.frilansTyper === undefined || values.frilans.frilansTyper.length === 0) {
+        //     if (values.frilans.frilanstyper === undefined || values.frilans.frilanstyper.length === 0) {
         //         errors.push({
         //             skjemaelementId: 'arbeidssituasjon',
         //             feilmelding: intlHelper(

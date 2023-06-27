@@ -104,11 +104,10 @@ export interface SøknadFormValues {
     [SøknadFormField.harBeredskap_ekstrainfo]?: string;
     [SøknadFormField.harVærtEllerErVernepliktig]?: YesOrNo;
     [SøknadFormField.frilans]: FrilansFormData;
-    [SøknadFormField.stønadGodtgjørelse]: StønadGodtgjørelseFormData;
-
     [SøknadFormField.selvstendig]: SelvstendigFormData;
-    [SøknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SøknadFormField.ansatt_arbeidsforhold]: ArbeidsforholdFormValues[];
+    [SøknadFormField.stønadGodtgjørelse]: StønadGodtgjørelseFormData;
+    [SøknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SøknadFormField.harOpptjeningUtland]: YesOrNo;
     [SøknadFormField.opptjeningUtland]: OpptjeningUtland[];
     [SøknadFormField.harUtenlandskNæring]: YesOrNo;

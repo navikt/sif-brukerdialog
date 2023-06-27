@@ -31,7 +31,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans /*, frilansoppdrag*/ }: Props)
         <>TODO</>
         // <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
         //     <ul data-testid="arbeidssituasjon-frilanser">
-        //         {frilans.frilansTyper.map((type) => {
+        //         {frilans.frilanstyper.map((type) => {
         //             return (
         //                 <li key={type}>
         //                     <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.${type}`} />

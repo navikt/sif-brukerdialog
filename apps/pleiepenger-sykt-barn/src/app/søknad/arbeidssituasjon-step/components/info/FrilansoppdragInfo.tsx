@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FrilansoppdragListe from '../frilansoppdrag-liste/FrilansoppdragListe';
 import { Arbeidsgiver } from '../../../../types';
+import FrilansoppdragListe from './FrilansoppdragListe';
 
 interface Props {
     frilansoppdrag: Arbeidsgiver[];

@@ -12,20 +12,17 @@ const validateArbeiderNormaltTimerIUken = (value: any) => {
     })(value);
 };
 
-export const getArbeiderNormaltTimerIUkenValidator =
-    (intlValues: { hvor: string; jobber: string; frilansVervString?: string }) => (value: any) => {
-        const error = validateArbeiderNormaltTimerIUken(value);
-        return error
-            ? {
-                  key: `validation.arbeidsforhold.arbeiderNormaltTimerPerUke.${
-                      intlValues.frilansVervString ? 'frilansVerv.' : ''
-                  }${error}`,
-                  values: {
-                      ...intlValues,
-                      min: MIN_TIMER_NORMAL_ARBEIDSFORHOLD,
-                      max: MAX_TIMER_NORMAL_ARBEIDSFORHOLD,
-                  },
-                  keepKeyUnaltered: true,
-              }
-            : undefined;
-    };
+export const getArbeiderNormaltTimerIUkenValidator = (intlValues: { hvor: string; jobber: string }) => (value: any) => {
+    const error = validateArbeiderNormaltTimerIUken(value);
+    return error
+        ? {
+              key: `validation.arbeidsforhold.arbeiderNormaltTimerPerUke.${error}`,
+              values: {
+                  ...intlValues,
+                  min: MIN_TIMER_NORMAL_ARBEIDSFORHOLD,
+                  max: MAX_TIMER_NORMAL_ARBEIDSFORHOLD,
+              },
+              keepKeyUnaltered: true,
+          }
+        : undefined;
+};

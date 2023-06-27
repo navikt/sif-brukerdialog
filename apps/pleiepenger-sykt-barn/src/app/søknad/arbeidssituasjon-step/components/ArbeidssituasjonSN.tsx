@@ -9,24 +9,35 @@ import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik-ds/
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetInfoAndDialog';
+import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
+import getLenker from '../../../lenker';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { SelvstendigFormData, SelvstendigFormField } from '../../../types/SelvstendigFormData';
+import { SøknadFormValues } from '../../../types/SøknadFormValues';
+import { getArbeidsforholdIntlValues } from '../utils/arbeidsforholdIntlValues';
+import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNormaltTimerIUkenValidator';
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
-import NormalarbeidstidSpørsmål from './normalarbeidstid-spørsmål/NormalarbeidstidSpørsmål';
+import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormData, ValidationError>();
 
 interface Props {
-    formValues: SelvstendigFormData;
-    urlSkatteetatenSN: string;
     søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: Props) => {
+const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
     const intl = useIntl();
-    const { harHattInntektSomSN, virksomhet, harFlereVirksomheter, arbeidsforhold } = formValues;
+    const { values } = useFormikContext<SøknadFormValues>();
+    const { harHattInntektSomSN, virksomhet, harFlereVirksomheter, arbeidsforhold } = values.selvstendig;
     const søkerHarFlereVirksomheter = harFlereVirksomheter === YesOrNo.YES;
+    const urlSkatteetatenSN = getLenker(intl.locale).skatteetatenSN;
+
+    const intlValues = getArbeidsforholdIntlValues(intl, {
+        arbeidsforhold: {
+            type: ArbeidsforholdType.SELVSTENDIG,
+        },
+    });
 
     return (
         <div data-testid="arbeidssituasjonSelvstendig">
@@ -107,13 +118,26 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                             </FormBlock>
                         )}
                         {virksomhet !== undefined && (
-                            <NormalarbeidstidSpørsmål
-                                arbeidsforholdFieldName={SelvstendigFormField.arbeidsforhold}
-                                arbeidsforhold={arbeidsforhold || {}}
-                                arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
-                                erAktivtArbeidsforhold={true}
-                                brukKunSnittPerUke={true}
-                            />
+                            <FormBlock>
+                                <ArbSNFormComponents.NumberInput
+                                    label={intlHelper(
+                                        intl,
+                                        `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`,
+                                        intlValues
+                                    )}
+                                    name={SelvstendigFormField.arbeidsforhold}
+                                    description={<InfoArbeiderNormaltTimerSN />}
+                                    width="xs"
+                                    validate={getArbeiderNormaltTimerIUkenValidator({
+                                        ...intlValues,
+                                    })}
+                                    value={
+                                        arbeidsforhold?.normalarbeidstid
+                                            ? arbeidsforhold.normalarbeidstid.timerPerUke || ''
+                                            : ''
+                                    }
+                                />
+                            </FormBlock>
                         )}
                     </ResponsivePanel>
                 </FormBlock>

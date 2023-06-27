@@ -19,11 +19,11 @@ export const extractArbeidFrilansSøknadsdata = (
         };
     }
 
-    if (frilans.frilansTyper === undefined) {
+    if (frilans.frilanstyper === undefined) {
         return undefined;
     }
 
-    if (kunHonorararbeidUtenNormalArbeidstid(frilans.frilansTyper, frilans.misterHonorar)) {
+    if (kunHonorararbeidUtenNormalArbeidstid(frilans.frilanstyper, frilans.misterHonorar)) {
         return {
             type: 'pågåendeKunHonorararbeid',
             erFrilanser: true,
@@ -48,9 +48,9 @@ export const extractArbeidFrilansSøknadsdata = (
         return {
             type: 'sluttetISøknadsperiode',
             erFrilanser: true,
-            frilansType: frilans.frilansTyper,
+            frilansType: frilans.frilanstyper,
             aktivPeriode,
-            misterHonorar: frilans.frilansTyper.some((type) => type === Frilanstype.HONORARARBEID)
+            misterHonorar: frilans.frilanstyper.some((type) => type === Frilanstype.HONORARARBEID)
                 ? frilans.misterHonorar
                 : undefined,
             erFortsattFrilanser: false,
@@ -65,8 +65,8 @@ export const extractArbeidFrilansSøknadsdata = (
         return {
             type: 'pågående',
             erFrilanser: true,
-            frilansType: frilans.frilansTyper,
-            misterHonorar: frilans.frilansTyper.some((type) => type === Frilanstype.HONORARARBEID)
+            frilansType: frilans.frilanstyper,
+            misterHonorar: frilans.frilanstyper.some((type) => type === Frilanstype.HONORARARBEID)
                 ? frilans.misterHonorar
                 : undefined,
             startdato,

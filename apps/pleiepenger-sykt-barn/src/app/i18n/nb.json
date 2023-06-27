@@ -90,6 +90,9 @@
     "timeInput.hours": "Timer",
     "timeInput.minutes": "Minutter",
 
+    "arbeidsperiode.avsluttet": "Periode: {fra} - {til}",
+    "arbeidsperiode.pågående": "Periode: {fra} - pågående",
+
     "fileUploadErrors.part1": "Det har dessverre skjedd en feil under opplasting av følgende vedlegg:",
     "formikValidationErrorSummary.tittel": "Her har det skjedd en feil",
 
@@ -298,9 +301,6 @@
 
     "steg.arbeidssituasjon.frilanser.tittel": "Frilanser, oppdragstaker og honorarer",
 
-    "frilansoppdragListe.oppdrag": "Periode: {tidsrom}",
-    "frilansoppdragListe.tidsrom.avsluttet": "Periode: {fra} - {til}",
-    "frilansoppdragListe.tidsrom.pågående": "Periode: {fra} - pågående",
     "frilansoppdragInfo.tittel": "Du har {antall,  plural, one {frilansoppdrag} other {frilansoppdragene}} registrert på deg i AA-registeret.",
     "frilansoppdragInfo.tittel.1": "Hvis du har omsorgsstønad, fosterhjemsgodtgjørelse, er dette også registrert som frilansoppdrag. Det samme gjelder hvis du har et verv som du får honorar for.",
 
@@ -550,9 +550,8 @@
     "arbeidsforhold.sluttetFørSøknadsperiode.spm": "Sluttet du hos {navn} før {fraDato}?",
     "arbeidsforhold.avsluttet.info": "Sluttdato var innenfor perioden du søker om pleiepenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}",
     "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm": "Hvor mange timer jobber du normalt per uke {hvor}?",
-    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.frilanser.spm": "Oppgi hvor mange timer du {jobber} som frilanser. {infoStønadGodtgjørelse} Du må oppgi tiden i et snitt per uke:",
-    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.verv.spm": "Oppgi hvor mange timer du {bruker} på det du får honorar for. { infoStønadGodtgjørelse } Du må oppgi tiden i et snitt per uke:",
-    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.frilanserVerv.spm": "Oppgi samlet antall timer du {jobber} som frilanser, og {bruker} på det du får honorar for. {infoStønadGodtgjørelse} Du må oppgi tiden i et snitt per uke:",
+    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.FRILANSARBEID.spm": "Oppgi hvor mange timer du {jobber} som frilanser. {infoStønadGodtgjørelse} Du må oppgi tiden i et snitt per uke:",
+    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.HONORARARBEID.spm": "Oppgi hvor mange timer du {bruker} på det du får honorar for. { infoStønadGodtgjørelse } Du må oppgi tiden i et snitt per uke:",
     "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse": "Du skal ikke inkludere timer for omsorgsstønad/fosterhjemgodtgjørelse.",
     "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.avsluttet.spm": "Hvor mange timer jobbet du normalt per uke {hvor}?",
     "arbeidsforhold.utledet": "timer i uka",
@@ -883,14 +882,18 @@
     "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooSmall": "Antall timer du normalt {jobber} per uke {hvor} kan ikke være mindre enn {min}.",
     "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge": "Antall timer du normalt {jobber} per uke {hvor} kan ikke være mer enn {max}.",
 
-    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.string.frilanser": "hvor mange timer du {jobber} som frilanser",
-    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.string.verv": "hvor mange timer du {bruker} på det du får honorar for",
-    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.string.frilanserVerv": "i samlet antall timer du {jobber} som frilanser, og {bruker} på det du får honorar for",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.string.FRILANSARBEID": "hvor mange timer du {jobber} som frilanser",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.string.HONORARARBEID": "hvor mange timer du {bruker} på det du får honorar for",
 
-    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansVerv.numberHasNoValue": "Du må oppgi {frilansVervString} per uke i perioden når du ikke har fravær på grunn av pleiepenger.",
-    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansVerv.numberHasInvalidFormat": "Antall timer du normalt {frilansVervString} per uke kan kun bestå av tall.",
-    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansVerv.numberIsTooSmall": "Antall timer du normalt {frilansVervString} per uke kan ikke være mindre enn {min}.",
-    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.frilansVerv.numberIsTooLarge": "Antall timer du normalt {frilansVervString} per uke kan ikke være mer enn {max}.",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.FRILANSARBEID.numberHasNoValue": "Du må oppgi {frilansVervString} per uke i perioden når du ikke har fravær på grunn av pleiepenger.",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.FRILANSARBEID.numberHasInvalidFormat": "Antall timer du normalt {frilansVervString} per uke kan kun bestå av tall.",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.FRILANSARBEID.numberIsTooSmall": "Antall timer du normalt {frilansVervString} per uke kan ikke være mindre enn {min}.",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.FRILANSARBEID.numberIsTooLarge": "Antall timer du normalt {frilansVervString} per uke kan ikke være mer enn {max}.",
+
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.HONORARARBEID.numberHasNoValue": "Du må oppgi {frilansVervString} per uke i perioden når du ikke har fravær på grunn av pleiepenger.",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.HONORARARBEID.numberHasInvalidFormat": "Antall timer du normalt {frilansVervString} per uke kan kun bestå av tall.",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.HONORARARBEID.numberIsTooSmall": "Antall timer du normalt {frilansVervString} per uke kan ikke være mindre enn {min}.",
+    "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.HONORARARBEID.numberIsTooLarge": "Antall timer du normalt {frilansVervString} per uke kan ikke være mer enn {max}.",
 
     "validation.arbeidsforhold.erFasteUkedager.ingenTidRegistrert": "Du må fylle ut hvor mange timer du {jobber} hver ukedag {hvor} i perioden.",
     "validation.arbeidsforhold.erFasteUkedager.yesOrNoIsUnanswered": "Du må svare på om du jobber faste dager {hvor}",
@@ -906,32 +909,32 @@
 
     "validation.stønadGodtgjørelse.mottarStønadGodtgjørelse.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du mottar omsorgsstønad eller fosterhjemsgodtgjørelse.",
     "validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du jobber som frilanser, eller om du får honorar for verv.",
-    "validation.frilans.frilansTyper.notChecked": "Du må krysse av for hva som gjelder for deg.",
+    "validation.frilans.frilanstyper.notChecked": "Du må krysse av for hva som gjelder for deg.",
     "validation.frilans.misterHonorar.yesOrNoIsUnanswered": "Du må svare ja eller nei på om mister du honorar for verv i perioden du søker for.",
 
     "validation.frilans.startdato.frilans": "begynte å jobbe som frilanser",
     "validation.frilans.startdato.verv": "startet å få honorar",
     "validation.frilans.startdato.frilansVerv": "begynte å jobbe som frilanser/startet å få honorar",
 
-    "validation.frilans.startdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilansTyper}. Skriv inn eller velg dato fra kalenderen.",
-    "validation.frilans.startdato.dateHasInvalidFormat": "Du må oppgi datoen for når du {frilansTyper} i et gyldig format. Gyldig format er dd.mm.åååå.",
-    "validation.frilans.startdato.dateIsAfterMax": "Datoen for når du {frilansTyper} kan ikke være etter dagens dato.",
-    "validation.frilans.startdato.startetEtterSøknadsperiode": "Du har oppgitt at du startet {frilansTyper} etter perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
+    "validation.frilans.startdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilanstyper}. Skriv inn eller velg dato fra kalenderen.",
+    "validation.frilans.startdato.dateHasInvalidFormat": "Du må oppgi datoen for når du {frilanstyper} i et gyldig format. Gyldig format er dd.mm.åååå.",
+    "validation.frilans.startdato.dateIsAfterMax": "Datoen for når du {frilanstyper} kan ikke være etter dagens dato.",
+    "validation.frilans.startdato.startetEtterSøknadsperiode": "Du har oppgitt at du startet {frilanstyper} etter perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
 
     "validation.frilans.sluttdato.frilans": "sluttet å jobbe som frilanser",
     "validation.frilans.sluttdato.verv": "sluttet å få honorar",
     "validation.frilans.sluttdato.frilansVerv": "sluttet å jobbe som frilanser/sluttet å få honorar",
 
-    "validation.frilans.sluttdato.sluttetFørSøknadsperiode": "Du har oppgitt at du {frilansTyper} før perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
-    "validation.frilans.sluttdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilansTyper}. Skriv inn eller velg dato fra kalenderen.",
-    "validation.frilans.sluttdato.dateHasInvalidFormat": "Du må oppgi datoen for når du {frilansTyper} i et gyldig format. Gyldig format er dd.mm.åååå.",
-    "validation.frilans.sluttdato.dateIsAfterMax": "Datoen for når du {frilansTyper} kan ikke være etter dagens dato.",
-    "validation.frilans.sluttdato.dateIsBeforeMin": "Datoen for når du {frilansTyper} kan ikke være før datoen du startet.",
+    "validation.frilans.sluttdato.sluttetFørSøknadsperiode": "Du har oppgitt at du {frilanstyper} før perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
+    "validation.frilans.sluttdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilanstyper}. Skriv inn eller velg dato fra kalenderen.",
+    "validation.frilans.sluttdato.dateHasInvalidFormat": "Du må oppgi datoen for når du {frilanstyper} i et gyldig format. Gyldig format er dd.mm.åååå.",
+    "validation.frilans.sluttdato.dateIsAfterMax": "Datoen for når du {frilanstyper} kan ikke være etter dagens dato.",
+    "validation.frilans.sluttdato.dateIsBeforeMin": "Datoen for når du {frilanstyper} kan ikke være før datoen du startet.",
 
     "validation.frilans.erFortsattFrilanser.frilans": "jobber som frilanser",
     "validation.frilans.erFortsattFrilanser.verv": "får honorar fra verv",
     "validation.frilans.erFortsattFrilanser.frilansVerv": "jobber som frilanser og får honorar fra verv",
-    "validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du fortsatt {frilansTyper}.",
+    "validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du fortsatt {frilanstyper}.",
 
     "validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du er selvstendig næringsdrivende i perioden du søker for.",
     "validation.selvstendig.harFlereVirksomheter.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.",
