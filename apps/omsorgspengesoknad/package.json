@@ -65,7 +65,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.8.1",
-        "cypress": "12.14.0",
+        "cypress": "12.16.0",
         "cypress-file-upload": "5.0.8",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.3",
