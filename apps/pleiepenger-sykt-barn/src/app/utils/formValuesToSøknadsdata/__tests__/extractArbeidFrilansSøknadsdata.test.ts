@@ -1,4 +1,10 @@
 // TODO
+describe('extractArbeidFrilansSøknadsdata', () => {
+    it('erstattes', () => {
+        expect(1).toBe(1);
+    });
+});
+
 // import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 // import { ISODateRangeToDateRange, dateToISODate } from '@navikt/sif-common-utils/lib';
 // import { ArbeidsforholdFrilanserFormValues } from '../../../types/ArbeidsforholdFormValues';

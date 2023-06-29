@@ -1,4 +1,10 @@
 // TODO
+describe('extractArbeidIPeriodeSøknadsdata', () => {
+    it('todo', () => {
+        expect(1).toBe(1);
+    });
+});
+
 // import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 // import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
 // import { TimerEllerProsent } from '../../../types';

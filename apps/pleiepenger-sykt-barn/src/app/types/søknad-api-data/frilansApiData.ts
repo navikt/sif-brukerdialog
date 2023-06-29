@@ -54,26 +54,26 @@ type FrilanserMedArbeidsforholdPart =
           arbeidsforhold: ArbeidsforholdApiData;
       });
 
-export type FrilanserIngenInntekt = {
+export type FrilansApiDataIngenInntekt = {
     harInntektSomFrilanser: false;
 };
 
-export type FrilanserKunFrilansarbeid = FrilanserMedArbeidsforholdPart & { frilansarbeid: Frilansarbeid };
+export type FrilansApiDataKunFrilansarbeid = FrilanserMedArbeidsforholdPart & { frilansarbeid: Frilansarbeid };
 
-export type FrilanserKunHonorararbeid = FrilanserMedArbeidsforholdPart & {
+export type FrilansApiDataKunHonorararbeid = FrilanserMedArbeidsforholdPart & {
     honorararbeid: Honorararbeid;
 };
 
-export type FrilanserFrilansarbeidOgHonorararbeid = FrilanserMedArbeidsforholdPart & {
+export type FrilansApiDataFrilansarbeidOgHonorararbeid = FrilanserMedArbeidsforholdPart & {
     frilansarbeid: Frilansarbeid;
     honorararbeid: Honorararbeid;
 };
 
 export type FrilansApiData =
-    | FrilanserIngenInntekt
-    | FrilanserKunFrilansarbeid
-    | FrilanserKunHonorararbeid
-    | FrilanserFrilansarbeidOgHonorararbeid;
+    | FrilansApiDataIngenInntekt
+    | FrilansApiDataKunFrilansarbeid
+    | FrilansApiDataKunHonorararbeid
+    | FrilansApiDataFrilansarbeidOgHonorararbeid;
 
 // /** Eksempler */
 // const frilanserMedIngenInntekt: FrilanserIngenInntekt = {

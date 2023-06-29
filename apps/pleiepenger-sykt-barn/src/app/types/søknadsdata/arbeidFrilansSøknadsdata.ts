@@ -2,6 +2,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { Frilanstype } from '../FrilansFormData';
 import { ArbeidsforholdSøknadsdata } from './ArbeidsforholdSøknadsdata';
+import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 export interface ArbeidFrilansSøknadsdataErIkkeFrilanser {
     type: 'erIkkeFrilanser';
@@ -42,3 +43,68 @@ export type ArbeidFrilansSøknadsdata =
     | ArbeidFrilansSøknadsdataPågående
     | ArbeidFrilansSøknadsdataSluttetISøknadsperiode
     | ArbeidFrilansKunHonorararbeidSøknadsdataPågående;
+
+interface Frilansarbeid {
+    normalarbeidstid?: NormalarbeidstidSøknadsdata;
+}
+
+type HonorararbeidMisterIkkeHonorar = {
+    misterHonorar: false;
+    normalarbeidstid?: NormalarbeidstidSøknadsdata; // Påkrevd dersom bruker også har frilansarbeid. Da trenger vi dette for å regne ut redusert arbeidstid.
+};
+
+type HonorararbeidMisterHonorar = {
+    misterHonorar: true;
+    normalarbeidstid: NormalarbeidstidSøknadsdata;
+};
+
+type FrilanserAvsluttetIPeriodePart = {
+    erFortsattFrilanser: false;
+    startdato: Date;
+    sluttdato: Date;
+    aktivPeriode: DateRange;
+};
+
+type FrilanserPågåendePart = {
+    erFortsattFrilanser: true;
+    startdato: Date;
+    aktivPeriode: DateRange;
+};
+
+export type FrilanserPeriodePart = FrilanserAvsluttetIPeriodePart | FrilanserPågåendePart;
+
+export type FrilanserMedInntektPart = {
+    harInntektSomFrilanser: true;
+    periodeinfo: FrilanserPeriodePart;
+};
+
+/** Frilanstyper */
+
+export type FrilansSøknadsdataIngenInntekt = {
+    harInntektSomFrilanser: false;
+};
+
+export type FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
+    harInntektSomFrilanser: true;
+    honorararbeid: HonorararbeidMisterIkkeHonorar;
+};
+
+export type FrilansSøknadsdataKunHonorararbeidMisterHonorar = FrilanserMedInntektPart & {
+    honorararbeid: HonorararbeidMisterHonorar;
+};
+
+export type FrilansSøknadsdataKunFrilansarbeid = FrilanserMedInntektPart & {
+    frilansarbeid: Frilansarbeid;
+};
+
+export type FrilansSøknadsdataFrilansarbeidOgHonorararbeid = FrilanserMedInntektPart & {
+    frilansarbeid: Frilansarbeid;
+    honorararbeid: HonorararbeidMisterIkkeHonorar | HonorararbeidMisterHonorar;
+};
+
+export type FrilanserSøknadsdata =
+    | FrilansSøknadsdataIngenInntekt
+    | FrilansSøknadsdataKunFrilansarbeid
+    | FrilansSøknadsdataKunHonorararbeidMisterHonorar
+    | FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar
+    | FrilansSøknadsdataFrilansarbeidOgHonorararbeid;

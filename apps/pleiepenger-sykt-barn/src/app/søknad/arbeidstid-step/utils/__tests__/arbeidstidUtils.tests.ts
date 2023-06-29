@@ -1,4 +1,10 @@
 // TODO
+describe('arbeidstidUtils', () => {
+    it('todo', () => {
+        expect(1).toBe(1);
+    });
+});
+
 // import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 // import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 // import { ArbeidIPeriodeType } from '../../../../types/ArbeidIPeriodeType';

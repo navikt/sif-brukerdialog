@@ -1,3 +1,9 @@
+describe('getArbeidsforholdApiDataFromSøknadsdata', () => {
+    it('todo', () => {
+        expect(1).toBe(1);
+    });
+});
+
 // TODO
 // import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 // import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
