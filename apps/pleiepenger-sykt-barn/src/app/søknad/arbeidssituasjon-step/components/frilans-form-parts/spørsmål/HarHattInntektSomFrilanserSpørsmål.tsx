@@ -15,7 +15,6 @@ const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({ 
     return (
         <ArbFriFormComponents.YesOrNoQuestion
             name={FrilansFormField.harHattInntektSomFrilanser}
-            data-testid="er-frilanser"
             legend={intlHelper(intl, 'frilanser.harDuHattInntekt.spm')}
             validate={getYesOrNoValidator()}
             description={

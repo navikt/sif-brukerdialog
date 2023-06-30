@@ -1,14 +1,14 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { dateRangeToISODateRange, ISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { FrilansFormData, Frilanstype } from '../../../types/FrilansFormData';
 import {
     FrilansSøknadsdataFrilansarbeidOgHonorararbeid,
-    FrilansSøknadsdataIngenInntekt,
+    FrilansSøknadsdataIngenInntektSomFrilanser,
     FrilansSøknadsdataKunFrilansarbeid,
     FrilansSøknadsdataKunHonorararbeidMisterHonorar,
     FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar,
 } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { extractFrilanserSøknadsdata } from '../extractFrilanserSøknadsdata';
-import { ISODate, ISODateRangeToDateRange, ISODateToDate, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
 
 describe('extractFrilanserSøknadsdata', () => {
     const søknadsperiodeIsoDateRange = '2022-01-01/2022-01-02';
@@ -22,7 +22,9 @@ describe('extractFrilanserSøknadsdata', () => {
         const values: FrilansFormData = {
             harHattInntektSomFrilanser: YesOrNo.NO,
         };
-        expect(extractFrilanserSøknadsdata(values, søknadsperiode)).toEqual(<FrilansSøknadsdataIngenInntekt>{
+        expect(extractFrilanserSøknadsdata(values, søknadsperiode)).toEqual(<
+            FrilansSøknadsdataIngenInntektSomFrilanser
+        >{
             harInntektSomFrilanser: false,
         });
     });
@@ -36,6 +38,7 @@ describe('extractFrilanserSøknadsdata', () => {
             const result = extractFrilanserSøknadsdata(values, søknadsperiode);
             const expectedResult: FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
                 harInntektSomFrilanser: true,
+                misterInntektSomFrilanserIPeriode: false,
                 honorararbeid: {
                     misterHonorar: false,
                 },
@@ -58,11 +61,13 @@ describe('extractFrilanserSøknadsdata', () => {
                 søknadsperiode
             ) as FrilansSøknadsdataKunHonorararbeidMisterHonorar;
             expect(result.harInntektSomFrilanser).toBeTruthy();
+            expect(result.misterInntektSomFrilanserIPeriode).toBeTruthy();
             expect(result.periodeinfo.erFortsattFrilanser).toBeTruthy();
             expect(result.periodeinfo.startdato).toEqual(ISODateToDate(startdato));
             expect(dateRangeToISODateRange(result.periodeinfo.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
             expect(result.honorararbeid.misterHonorar).toBeTruthy();
             expect(result.honorararbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeHonorararbeid);
+            expect(result.arbeidsforhold?.normalarbeidstid.timerPerUkeISnitt).toEqual(timerPerUkeHonorararbeid);
         });
     });
 
@@ -78,10 +83,12 @@ describe('extractFrilanserSøknadsdata', () => {
         };
         const result = extractFrilanserSøknadsdata(values, søknadsperiode) as FrilansSøknadsdataKunFrilansarbeid;
         expect(result.harInntektSomFrilanser).toBeTruthy();
+        expect(result.misterInntektSomFrilanserIPeriode).toBeTruthy();
         expect(result.periodeinfo.erFortsattFrilanser).toBeTruthy();
         expect(result.periodeinfo.startdato).toEqual(ISODateToDate(startdato));
         expect(dateRangeToISODateRange(result.periodeinfo.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
         expect(result.frilansarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
+        expect(result.arbeidsforhold?.normalarbeidstid.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
     });
 
     describe('frilansarbeid og honorar, mister honorar', () => {
@@ -103,14 +110,26 @@ describe('extractFrilanserSøknadsdata', () => {
             søknadsperiode
         ) as FrilansSøknadsdataFrilansarbeidOgHonorararbeid;
 
-        const { frilansarbeid, harInntektSomFrilanser, honorararbeid, periodeinfo, ...rest } = result;
+        const {
+            frilansarbeid,
+            harInntektSomFrilanser,
+            misterInntektSomFrilanserIPeriode,
+            honorararbeid,
+            periodeinfo,
+            arbeidsforhold,
+            ...rest
+        } = result;
         expect(harInntektSomFrilanser).toBeTruthy();
+        expect(misterInntektSomFrilanserIPeriode).toBeTruthy();
         expect(periodeinfo.erFortsattFrilanser).toBeTruthy();
         expect(periodeinfo.startdato).toEqual(ISODateToDate(startdato));
         expect(dateRangeToISODateRange(periodeinfo.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
         expect(frilansarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
         expect(honorararbeid.misterHonorar).toBeTruthy();
         expect(honorararbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeHonorararbeid);
+        expect(arbeidsforhold.normalarbeidstid?.timerPerUkeISnitt).toEqual(
+            timerPerUkeHonorararbeid + timerPerUkeFrilansarbeid
+        );
         expect(rest).toEqual({});
     });
 
@@ -130,13 +149,23 @@ describe('extractFrilanserSøknadsdata', () => {
             søknadsperiode
         ) as FrilansSøknadsdataFrilansarbeidOgHonorararbeid;
 
-        const { frilansarbeid, harInntektSomFrilanser, periodeinfo, honorararbeid, ...rest } = result;
+        const {
+            frilansarbeid,
+            harInntektSomFrilanser,
+            periodeinfo,
+            honorararbeid,
+            arbeidsforhold,
+            misterInntektSomFrilanserIPeriode,
+            ...rest
+        } = result;
         expect(harInntektSomFrilanser).toBeTruthy();
+        expect(misterInntektSomFrilanserIPeriode).toBeTruthy();
         expect(periodeinfo.erFortsattFrilanser).toBeTruthy();
         expect(periodeinfo.startdato).toEqual(ISODateToDate(startdato));
         expect(dateRangeToISODateRange(periodeinfo.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
         expect(frilansarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
         expect(honorararbeid.misterHonorar).toBeFalsy();
+        expect(arbeidsforhold.normalarbeidstid.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
         expect(rest).toEqual({});
     });
 });

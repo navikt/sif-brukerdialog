@@ -27,7 +27,7 @@ describe('extractArbeidSelvstendigSøknadsdata', () => {
     describe('Er ikke selvstendig i søknadsperiode', () => {
         it('returnerer erIkkeSN dersom bruker svarer at en ikke er selvstendig', () => {
             const result = extractArbeidSelvstendigSøknadsdata(undefined, søknadsperiode);
-            expect(result?.type).toEqual('erIkkeSN');
+            expect(result?.erSN).toBeFalsy();
         });
         it('returnerer undefined dersom arbeidsforhold ikke kan hentes ut', () => {
             arbeidsforholdSpy.mockReturnValue(undefined);
@@ -54,8 +54,7 @@ describe('extractArbeidSelvstendigSøknadsdata', () => {
         it('returnerer riktig info når en har én eller flere virksomheter', () => {
             const result = extractArbeidSelvstendigSøknadsdata(formData, søknadsperiode);
             expect(result).toBeDefined();
-            expect(result?.type).toEqual('erSN');
-            if (result?.type === 'erSN') {
+            if (result?.erSN === true) {
                 expect(result?.arbeidsforhold).toBeDefined();
                 expect(result?.startdato).toBeDefined();
             }
@@ -63,8 +62,8 @@ describe('extractArbeidSelvstendigSøknadsdata', () => {
         it('returnerer arbeidsforhold og startdato info når en har én eller flere virksomheter', () => {
             const result = extractArbeidSelvstendigSøknadsdata(formData, søknadsperiode);
             expect(result).toBeDefined();
-            expect(result?.type).toEqual('erSN');
-            if (result?.type === 'erSN') {
+            expect(result?.erSN).toEqual(true);
+            if (result?.erSN === true) {
                 expect(result?.arbeidsforhold).toBeDefined();
                 expect(result?.startdato).toBeDefined();
                 expect(result?.virksomhet).toBeDefined();

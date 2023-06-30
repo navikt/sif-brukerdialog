@@ -27,8 +27,8 @@ import { navigateTo, relocateToSoknad } from '../utils/navigationUtils';
 import { getNextStepRoute, isAvailable } from '../utils/routeUtils';
 import { getGyldigRedirectStepForMellomlagretSøknad } from '../utils/stepUtils';
 import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
-import ArbeidstidStep from './arbeidstid-step/components/ArbeidstidStep';
-import { getArbeidsforhold, harFraværFraJobb } from './arbeidstid-step/utils/arbeidstidUtils';
+import ArbeidstidStep from './arbeidstid-step/ArbeidstidStep';
+import { getAlleArbeidsforholdIPerioden, harFraværFraJobb } from './arbeidstid-step/utils/arbeidstidUtils';
 import { getIngenFraværConfirmationDialog } from './confirmation-dialogs/ingenFraværConfirmation';
 import LegeerklæringStep from './legeerklæring-step/LegeerklæringStep';
 import MedlemsskapStep from './medlemskap-step/MedlemsskapStep';
@@ -95,11 +95,11 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
         });
     };
 
-    const navigateToNextStepFrom = async (stepId: StepID) => {
+    const navigateToNextStepFrom = async (stepId: StepID, formValues: SøknadFormValues) => {
         setTimeout(() => {
-            const nextStepRoute = getNextStepRoute(stepId, values);
+            const nextStepRoute = getNextStepRoute(stepId, formValues);
             if (nextStepRoute) {
-                persistSoknad({ formValues: values, stepID: stepId }).then(() => {
+                persistSoknad({ formValues, stepID: stepId }).then(() => {
                     navigateTo(nextStepRoute, navigate);
                 });
             }
@@ -149,7 +149,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                 onValidSubmit={() => {
                                     setTimeout(() => {
                                         setSøknadsdata(getSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.OPPLYSNINGER_OM_BARNET);
+                                        navigateToNextStepFrom(StepID.OPPLYSNINGER_OM_BARNET, values);
                                     });
                                 }}
                             />
@@ -169,7 +169,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         setValues
                                     );
                                     setSøknadsdata(getSøknadsdataFromFormValues(cleanedValues));
-                                    navigateToNextStepFrom(StepID.TIDSROM);
+                                    navigateToNextStepFrom(StepID.TIDSROM, cleanedValues);
                                 }}
                             />
                         }
@@ -189,7 +189,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                     );
                                     const søknadsdata = getSøknadsdataFromFormValues(cleanedValues);
                                     setSøknadsdata(søknadsdata);
-                                    navigateToNextStepFrom(StepID.ARBEIDSSITUASJON);
+                                    navigateToNextStepFrom(StepID.ARBEIDSSITUASJON, cleanedValues);
                                 }}
                                 søknadsdato={søknadsdato}
                                 søknadsperiode={søknadsperiode}
@@ -203,7 +203,6 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                         path={StepID.ARBEIDSTID}
                         element={
                             <ArbeidstidStep
-                                periode={søknadsperiode}
                                 onValidSubmit={async () => {
                                     const cleanedValues = await cleanupAndSetFormikValues(
                                         StepID.ARBEIDSTID,
@@ -214,7 +213,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                     setSøknadsdata(søknadsdata);
                                     if (
                                         søknadsdata.arbeid &&
-                                        harFraværFraJobb(getArbeidsforhold(søknadsdata.arbeid)) === false
+                                        harFraværFraJobb(getAlleArbeidsforholdIPerioden(søknadsdata.arbeid)) === false
                                     ) {
                                         setConfirmationDialog(
                                             getIngenFraværConfirmationDialog({
@@ -225,12 +224,12 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                                 onConfirm: () => {
                                                     logBekreftIngenFraværFraJobb(true);
                                                     setConfirmationDialog(undefined);
-                                                    navigateToNextStepFrom(StepID.ARBEIDSTID);
+                                                    navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
                                                 },
                                             })
                                         );
                                     } else {
-                                        navigateToNextStepFrom(StepID.ARBEIDSTID);
+                                        navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
                                     }
                                 }}
                             />
@@ -250,7 +249,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         setValues
                                     );
                                     setSøknadsdata(getSøknadsdataFromFormValues(cleanedValues));
-                                    navigateToNextStepFrom(StepID.OMSORGSTILBUD);
+                                    navigateToNextStepFrom(StepID.OMSORGSTILBUD, cleanedValues);
                                 }}
                                 søknadsperiode={søknadsperiode}
                             />
@@ -270,7 +269,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         setValues
                                     );
                                     setSøknadsdata(getSøknadsdataFromFormValues(cleanedValues));
-                                    navigateToNextStepFrom(StepID.NATTEVÅK_OG_BEREDSKAP);
+                                    navigateToNextStepFrom(StepID.NATTEVÅK_OG_BEREDSKAP, cleanedValues);
                                 }}
                             />
                         }
@@ -285,7 +284,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                 onValidSubmit={() => {
                                     setTimeout(() => {
                                         setSøknadsdata(getSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.MEDLEMSKAP);
+                                        navigateToNextStepFrom(StepID.MEDLEMSKAP, values);
                                     });
                                 }}
                                 søknadsdato={søknadsdato}
@@ -302,7 +301,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                 onValidSubmit={() => {
                                     setTimeout(() => {
                                         setSøknadsdata(getSøknadsdataFromFormValues(values));
-                                        navigateToNextStepFrom(StepID.LEGEERKLÆRING);
+                                        navigateToNextStepFrom(StepID.LEGEERKLÆRING, values);
                                     });
                                 }}
                             />

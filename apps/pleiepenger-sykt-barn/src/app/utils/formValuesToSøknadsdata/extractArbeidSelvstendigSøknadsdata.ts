@@ -2,6 +2,7 @@ import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import dayjs from 'dayjs';
 import { SelvstendigFormData } from '../../types/SelvstendigFormData';
 import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { getPeriodeSomSelvstendigInnenforPeriode } from '../selvstendigUtils';
 import { extractArbeidsforholdSøknadsdata } from './extractArbeidsforholdSøknadsdata';
 
 export const extractArbeidSelvstendigSøknadsdata = (
@@ -10,7 +11,6 @@ export const extractArbeidSelvstendigSøknadsdata = (
 ): ArbeidSelvstendigSøknadsdata | undefined => {
     if (!selvstendig || selvstendig.harHattInntektSomSN === YesOrNo.NO) {
         return {
-            type: 'erIkkeSN',
             erSN: false,
         };
     }
@@ -21,10 +21,16 @@ export const extractArbeidSelvstendigSøknadsdata = (
 
     const virksomhet = selvstendig.virksomhet;
 
+    const periodeSomSelvstendigISøknadsperiode =
+        selvstendig.harHattInntektSomSN === YesOrNo.YES && selvstendig.virksomhet !== undefined
+            ? getPeriodeSomSelvstendigInnenforPeriode(søknadsperiode, selvstendig.virksomhet)
+            : undefined;
+
     if (arbeidsforhold && virksomhet && dayjs(virksomhet.fom).isBefore(søknadsperiode.to, 'day')) {
         return {
-            type: 'erSN',
             erSN: true,
+            erSelvstendigISøknadsperiode: periodeSomSelvstendigISøknadsperiode !== undefined,
+            periodeSomSelvstendigISøknadsperiode,
             arbeidsforhold,
             virksomhet,
             harFlereVirksomheter: selvstendig.harFlereVirksomheter === YesOrNo.YES,

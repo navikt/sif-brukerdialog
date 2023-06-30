@@ -5,19 +5,19 @@ import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { dateFormatter, dateRangeToISODateRange, decimalDurationToDuration } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-import { ArbeidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger';
-import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
-import { TimerEllerProsent } from '../../../types';
-import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
-import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
-import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
-import SøknadFormComponents from '../../SøknadFormComponents';
-import { ArbeidsukeFieldName } from '../types/Arbeidsuke';
+import { ArbeidIPeriodeIntlValues } from '../../../../local-sif-common-pleiepenger';
+import { formatTimerOgMinutter } from '../../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
+import { TimerEllerProsent } from '../../../../types';
+import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../../types/ArbeidIPeriodeFormValues';
+import { ArbeidsukeInfo } from '../../../../types/ArbeidsukeInfo';
+import { NormalarbeidstidSøknadsdata } from '../../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
+import SøknadFormComponents from '../../../SøknadFormComponents';
+import { ArbeidsukeFieldName } from '../../types/Arbeidsuke';
 import {
     ArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsukerIPerioden,
-} from '../utils/arbeidstidUtils';
+} from '../../utils/arbeidstidUtils';
 import ArbeidstidInput from './ArbeidstidInput';
 
 dayjs.extend(weekOfYear);

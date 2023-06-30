@@ -73,6 +73,7 @@ const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormData): Selvst
 
     if (selvstendig.harHattInntektSomSN === YesOrNo.NO) {
         selvstendig.virksomhet = undefined;
+        selvstendig.harFlereVirksomheter = undefined;
         selvstendig.arbeidsforhold = undefined;
     }
     return selvstendig;

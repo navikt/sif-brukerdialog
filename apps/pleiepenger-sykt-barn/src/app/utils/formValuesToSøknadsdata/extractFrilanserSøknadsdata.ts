@@ -3,17 +3,19 @@ import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { FrilansFormData, Frilanstype } from '../../types/FrilansFormData';
 import {
-    FrilanserMedInntektPart,
+    FrilanserMisterInntekt,
     FrilanserPeriodePart,
     FrilanserSøknadsdata,
     FrilansSøknadsdataFrilansarbeidOgHonorararbeid,
-    FrilansSøknadsdataIngenInntekt,
+    FrilansSøknadsdataIngenInntektSomFrilanser,
     FrilansSøknadsdataKunFrilansarbeid,
     FrilansSøknadsdataKunHonorararbeidMisterHonorar,
     FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar,
 } from '../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { getPeriodeSomFrilanserInnenforSøknadsperiode } from '../frilanserUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
+import { extractArbeidIPeriodeSøknadsdata } from './extractArbeidIPeriodeSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 
 export const extractFrilanserSøknadsdata = (
     frilans: FrilansFormData,
@@ -23,10 +25,10 @@ export const extractFrilanserSøknadsdata = (
 
     /** Har ingen inntekt som frilanser */
     if (!harInntektSomFrilanser) {
-        return <FrilansSøknadsdataIngenInntekt>{
-            type: 'ingenInntekt',
+        const søknadsdata: FrilansSøknadsdataIngenInntektSomFrilanser = {
             harInntektSomFrilanser: false,
         };
+        return søknadsdata;
     }
 
     const harFrilansarbeid = frilans.frilanstyper?.includes(Frilanstype.FRILANSARBEID);
@@ -36,8 +38,8 @@ export const extractFrilanserSøknadsdata = (
     /** Har kun honorararbeid og mister ingen inntekt  */
     if (!harFrilansarbeid && harHonorararbeid && !misterHonorar) {
         const søknadsdata: FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
-            type: 'kunHonorararbeidMisterIkkeHonorar',
             harInntektSomFrilanser: true,
+            misterInntektSomFrilanserIPeriode: false,
             honorararbeid: {
                 misterHonorar: false,
             },
@@ -45,10 +47,18 @@ export const extractFrilanserSøknadsdata = (
         return søknadsdata;
     }
 
-    const frilanserMedArbeidforhold: FrilanserMedInntektPart = {
+    const frilanserMedArbeidforhold: Omit<FrilanserMisterInntekt, 'arbeidsforhold'> = {
         harInntektSomFrilanser: true,
+        misterInntektSomFrilanserIPeriode: true,
         periodeinfo: getFrilanserPeriode(frilans, søknadsperiode),
+        // arbeidsforhold: {
+        //     normalarbeidstid: { timerPerUkeISnitt: 2 },
+        // },
     };
+
+    const arbeidISøknadsperiode: ArbeidIPeriodeSøknadsdata | undefined = frilans.arbeidsforhold?.arbeidIPeriode
+        ? extractArbeidIPeriodeSøknadsdata(frilans.arbeidsforhold.arbeidIPeriode)
+        : undefined;
 
     /** Kun honorararbeid - mister honorar */
     if (!harFrilansarbeid && harHonorararbeid && misterHonorar && frilans.honorararbeid_normalarbeidstid) {
@@ -57,11 +67,15 @@ export const extractFrilanserSøknadsdata = (
             throw 'Normalarbeidstid for honorararbeid er ikke gyldig';
         }
         const søknadsdata: FrilansSøknadsdataKunHonorararbeidMisterHonorar = {
-            type: 'kunHonorararbeidMisterHonorar',
             ...frilanserMedArbeidforhold,
+            frilansarbeid: undefined,
             honorararbeid: {
                 misterHonorar: true,
                 normalarbeidstid,
+            },
+            arbeidsforhold: {
+                normalarbeidstid,
+                arbeidISøknadsperiode,
             },
         };
         return søknadsdata;
@@ -73,10 +87,14 @@ export const extractFrilanserSøknadsdata = (
             throw 'Normalarbeidstid for frilansarbeid er ikke gyldig';
         }
         const søknadsdata: FrilansSøknadsdataKunFrilansarbeid = {
-            type: 'kunFrilansarbeid',
             ...frilanserMedArbeidforhold,
             frilansarbeid: {
                 normalarbeidstid,
+            },
+            honorararbeid: undefined,
+            arbeidsforhold: {
+                normalarbeidstid,
+                arbeidISøknadsperiode,
             },
         };
         return søknadsdata;
@@ -85,19 +103,22 @@ export const extractFrilanserSøknadsdata = (
     /** Frilansarbeid og honorararbeid */
     if (harFrilansarbeid && harHonorararbeid) {
         const normalarbeidstidFrilanser = extractNormalarbeidstid(frilans.frilansarbeid_normalarbeidstid);
-        if (misterHonorar && !normalarbeidstidFrilanser) {
+        if (!normalarbeidstidFrilanser) {
             throw 'Mangler normalarbeidstid for frilansarbeid';
         }
         /** Mister ikke honorar */
         if (misterHonorar === false) {
             const søknadsdata: FrilansSøknadsdataFrilansarbeidOgHonorararbeid = {
-                type: 'frilansarbeidOgHonorararbeid',
                 ...frilanserMedArbeidforhold,
                 honorararbeid: {
                     misterHonorar: false,
                 },
                 frilansarbeid: {
                     normalarbeidstid: normalarbeidstidFrilanser,
+                },
+                arbeidsforhold: {
+                    normalarbeidstid: normalarbeidstidFrilanser,
+                    arbeidISøknadsperiode,
                 },
             };
             return søknadsdata;
@@ -113,7 +134,6 @@ export const extractFrilanserSøknadsdata = (
         }
 
         const søknadsdata: FrilansSøknadsdataFrilansarbeidOgHonorararbeid = {
-            type: 'frilansarbeidOgHonorararbeid',
             ...frilanserMedArbeidforhold,
             honorararbeid: {
                 misterHonorar: true,
@@ -121,6 +141,13 @@ export const extractFrilanserSøknadsdata = (
             },
             frilansarbeid: {
                 normalarbeidstid: normalarbeidstidFrilanser,
+            },
+            arbeidsforhold: {
+                normalarbeidstid: {
+                    timerPerUkeISnitt:
+                        normalarbeidstidHonorararbeid.timerPerUkeISnitt + normalarbeidstidFrilanser.timerPerUkeISnitt,
+                },
+                arbeidISøknadsperiode,
             },
         };
         return søknadsdata;

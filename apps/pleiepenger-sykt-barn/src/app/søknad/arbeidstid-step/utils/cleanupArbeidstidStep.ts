@@ -17,7 +17,7 @@ import {
 import { FrilansFormData } from '../../../types/FrilansFormData';
 import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import {
-    ArbeidFrilansSøknadsdata,
+    FrilanserSøknadsdata,
     ArbeidSelvstendigSøknadsdata,
     ArbeidsgivereSøknadsdata,
     ArbeidSøknadsdata,
@@ -25,7 +25,7 @@ import {
 } from '../../../types/søknadsdata/Søknadsdata';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../../../utils/frilanserUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../../../utils/selvstendigUtils';
-import { getArbeidsukeKey } from '../components/ArbeidstidUkerSpørsmål';
+import { getArbeidsukeKey } from '../components/arbeidstid-uker-spørsmål/ArbeidstidUkerSpørsmål';
 import { arbeidIPeriodeSpørsmålConfig } from './arbeidIPeriodeSpørsmålConfig';
 import { getArbeidsukerIPerioden, skalSvarePåOmEnJobberLiktIPerioden } from './arbeidstidUtils';
 
@@ -167,10 +167,10 @@ export const cleanupArbeidstidAnsatt = (
 
 export const cleanupArbeidstidFrilans = (
     frilans: FrilansFormData,
-    frilansSøknadsdata: ArbeidFrilansSøknadsdata | undefined,
+    frilanserSøknadsdata: FrilanserSøknadsdata | undefined,
     søknadsperiode: DateRange
 ): ArbeidsforholdFrilanserFormValues | undefined => {
-    if (frilans.arbeidsforhold === undefined || !frilansSøknadsdata) {
+    if (frilans.arbeidsforhold === undefined || !frilanserSøknadsdata) {
         return undefined;
     }
 
@@ -179,11 +179,11 @@ export const cleanupArbeidstidFrilans = (
         ? frilans.arbeidsforhold.arbeidIPeriode?.erLiktHverUke
         : YesOrNo.NO;
 
-    const normalarbeidstid =
-        frilansSøknadsdata.erFrilanser &&
-        (frilansSøknadsdata.type === 'pågående' || frilansSøknadsdata.type === 'sluttetISøknadsperiode')
-            ? frilansSøknadsdata.arbeidsforhold.normalarbeidstid
-            : undefined;
+    const normalarbeidstid = undefined; // TODO
+    // frilanserSøknadsdata.erFrilanser &&
+    // (frilanserSøknadsdata.type === 'pågående' || frilanserSøknadsdata.type === 'sluttetISøknadsperiode')
+    //     ? frilanserSøknadsdata.arbeidsforhold.normalarbeidstid
+    //     : undefined;
 
     return {
         ...frilans.arbeidsforhold,
@@ -238,7 +238,11 @@ export const cleanupArbeidstidStep = (
     values.ansatt_arbeidsforhold = arbeidSøknadsdata.arbeidsgivere
         ? cleanupArbeidstidAnsatt(søknadsperiode, values.ansatt_arbeidsforhold, arbeidSøknadsdata.arbeidsgivere)
         : values.ansatt_arbeidsforhold;
-    values.frilans.arbeidsforhold = cleanupArbeidstidFrilans(values.frilans, arbeidSøknadsdata.frilans, søknadsperiode);
+    values.frilans.arbeidsforhold = cleanupArbeidstidFrilans(
+        values.frilans,
+        arbeidSøknadsdata.frilanser,
+        søknadsperiode
+    );
     values.selvstendig.arbeidsforhold = cleanupArbeidstidSelvstendigNæringdrivende(
         søknadsperiode,
         arbeidSøknadsdata.selvstendig,

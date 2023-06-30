@@ -21,13 +21,13 @@ import { søkerNoeFremtid } from '../../../utils/søknadsperiodeUtils';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { arbeidIPeriodeSpørsmålConfig } from '../utils/arbeidIPeriodeSpørsmålConfig';
 import {
-    getArbeidIPeriodeArbeiderIPeriodenValidator,
-    getArbeidIPeriodeArbeiderIPeriodenVervValidator,
+    // getArbeidIPeriodeArbeiderIPeriodenValidator,
+    getArbeidIPeriodeArbeiderIPeriodenMisterHonorararbeidValidator,
     getArbeidIPeriodeErLiktHverUkeValidator,
     getArbeidIPeriodeTimerEllerProsentValidator,
 } from '../validationArbeidIPeriodeSpørsmål';
-import ArbeidstidInput from './ArbeidstidInput';
-import ArbeidstidUkerSpørsmål from './ArbeidstidUkerSpørsmål';
+import ArbeidstidInput from './arbeidstid-uker-spørsmål/ArbeidstidInput';
+import ArbeidstidUkerSpørsmål from './arbeidstid-uker-spørsmål/ArbeidstidUkerSpørsmål';
 import InfoOmEndring from './InfoOmEndring';
 
 interface Props {
@@ -113,7 +113,7 @@ const ArbeidIPeriodeSpørsmål = ({
 
     return (
         <>
-            {(aktivitetType === 'sn' ||
+            {/* {(aktivitetType === 'sn' ||
                 aktivitetType === 'arbeidstaker' ||
                 (frilansType && frilansType.some((type) => type === Frilanstype.FRILANSARBEID))) && (
                 <SøknadFormComponents.RadioGroup
@@ -138,14 +138,14 @@ const ArbeidIPeriodeSpørsmål = ({
                         },
                     ]}
                 />
-            )}
+            )} */}
             {frilansType &&
                 frilansType.some((type) => type === Frilanstype.HONORARARBEID && misterHonorarer === YesOrNo.YES) && (
                     <FormBlock>
                         <SøknadFormComponents.RadioGroup
                             name={getFieldName(ArbeidIPeriodeFormField.misterHonorarerFraVervIPerioden)}
                             legend={intlHelper(intl, `arbeidIPeriode.arbeiderIPerioden.verv.spm`)}
-                            validate={getArbeidIPeriodeArbeiderIPeriodenVervValidator()}
+                            validate={getArbeidIPeriodeArbeiderIPeriodenMisterHonorararbeidValidator()}
                             radios={[
                                 {
                                     label: intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.svar.verv.misterHonorar'),

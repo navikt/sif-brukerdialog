@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DateRange, getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange, YesOrNo, getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
 import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 // import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
 // import { TimerEllerProsent } from '../../types';
@@ -11,6 +11,10 @@ import {
 // import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 // import { ArbeidIPeriodeFrilansSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
 import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
+import { TimerEllerProsent } from '../../types';
+import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 
 export const getMinDateRangeFromDateRanges = (dr1: DateRange, dr2: DateRange): DateRange => ({
     from: dateUtils.getLastOfTwoDates(dr1.from, dr2.from),
@@ -31,59 +35,59 @@ export const extractArbeidsukerTimerSøknadsdata = (arbeidsuker: ArbeidsukerForm
 };
 
 export const extractArbeidIPeriodeSøknadsdata = (
-    _formValues: ArbeidIPeriodeFormValues
+    formValues: ArbeidIPeriodeFormValues
 ): ArbeidIPeriodeSøknadsdata | undefined => {
-    // const { arbeiderIPerioden, prosentAvNormalt, snittTimerPerUke, timerEllerProsent, erLiktHverUke, arbeidsuker } =
-    //     formValues;
+    const { arbeiderIPerioden, prosentAvNormalt, snittTimerPerUke, timerEllerProsent, erLiktHverUke, arbeidsuker } =
+        formValues;
 
-    // if (arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær) {
-    //     return {
-    //         type: ArbeidIPeriodeType.arbeiderIkke,
-    //         arbeiderIPerioden: false,
-    //     };
-    // }
-    // if (arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig) {
-    //     return {
-    //         type: ArbeidIPeriodeType.arbeiderVanlig,
-    //         arbeiderIPerioden: true,
-    //         arbeiderRedusert: false,
-    //     };
-    // }
+    if (arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær) {
+        return {
+            type: ArbeidIPeriodeType.arbeiderIkke,
+        };
+    }
+    if (arbeiderIPerioden === ArbeiderIPeriodenSvar.somVanlig) {
+        return {
+            type: ArbeidIPeriodeType.arbeiderVanlig,
+        };
+    }
 
-    // if (erLiktHverUke === YesOrNo.YES) {
-    //     const arbeiderProsent =
-    //         timerEllerProsent === TimerEllerProsent.PROSENT
-    //             ? getNumberFromNumberInputValue(prosentAvNormalt)
-    //             : undefined;
+    if (erLiktHverUke === YesOrNo.YES) {
+        const arbeiderProsent =
+            timerEllerProsent === TimerEllerProsent.PROSENT
+                ? getNumberFromNumberInputValue(prosentAvNormalt)
+                : undefined;
 
-    //     const timerISnittPerUke =
-    //         timerEllerProsent === TimerEllerProsent.TIMER ? getNumberFromNumberInputValue(snittTimerPerUke) : undefined;
+        const timerISnittPerUke =
+            timerEllerProsent === TimerEllerProsent.TIMER ? getNumberFromNumberInputValue(snittTimerPerUke) : undefined;
 
-    //     if (snittTimerPerUke && timerISnittPerUke) {
-    //         return {
-    //             type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke,
-    //             arbeiderIPerioden: true,
-    //             arbeiderRedusert: true,
-    //             timerISnittPerUke,
-    //         };
-    //     }
-    //     if (arbeiderProsent && prosentAvNormalt) {
-    //         return {
-    //             type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
-    //             arbeiderIPerioden: true,
-    //             arbeiderRedusert: true,
-    //             prosentAvNormalt: arbeiderProsent,
-    //         };
-    //     }
-    // }
-    // if ((erLiktHverUke === YesOrNo.NO || erLiktHverUke === undefined) && arbeidsuker) {
-    //     return {
-    //         type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
-    //         arbeiderRedusert: true,
-    //         arbeiderIPerioden: true,
-    //         arbeidsuker: extractArbeidsukerTimerSøknadsdata(arbeidsuker),
-    //     };
-    // }
+        if (snittTimerPerUke && timerISnittPerUke !== undefined) {
+            return {
+                type: ArbeidIPeriodeType.arbeiderRedusert,
+                redusertArbeid: {
+                    type: RedusertArbeidstidType.timerISnittPerUke,
+                    timerISnittPerUke,
+                },
+            };
+        }
+        if (arbeiderProsent && prosentAvNormalt) {
+            return {
+                type: ArbeidIPeriodeType.arbeiderRedusert,
+                redusertArbeid: {
+                    type: RedusertArbeidstidType.prosentAvNormalt,
+                    prosentAvNormalt: arbeiderProsent,
+                },
+            };
+        }
+    }
+    if ((erLiktHverUke === YesOrNo.NO || erLiktHverUke === undefined) && arbeidsuker) {
+        return {
+            type: ArbeidIPeriodeType.arbeiderRedusert,
+            redusertArbeid: {
+                type: RedusertArbeidstidType.ulikeUkerTimer,
+                arbeidsuker: extractArbeidsukerTimerSøknadsdata(arbeidsuker),
+            },
+        };
+    }
 
     return undefined;
 };

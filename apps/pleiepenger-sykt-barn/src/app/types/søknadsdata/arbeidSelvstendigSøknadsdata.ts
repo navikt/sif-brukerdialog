@@ -1,13 +1,14 @@
 import { Virksomhet } from '@navikt/sif-common-forms-ds/lib';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidsforholdSøknadsdata } from './Søknadsdata';
 
 export interface ArbeidSelvstendigSøknadsdataErIkkeSN {
-    type: 'erIkkeSN';
     erSN: false;
 }
 export interface ArbeidSelvstendigSøknadsdataErSN {
-    type: 'erSN';
     erSN: true;
+    erSelvstendigISøknadsperiode: boolean;
+    periodeSomSelvstendigISøknadsperiode?: DateRange;
     startdato: Date;
     virksomhet: Virksomhet;
     harFlereVirksomheter: boolean;

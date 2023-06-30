@@ -23,7 +23,6 @@ const ErAnsattIArbeidsforholdSpørsmål: React.FunctionComponent<Props> = ({ arb
             legend={intlHelper(intl, 'arbeidsforhold.erAnsatt.spm', {
                 navn: arbeidsforhold.arbeidsgiver.navn,
             })}
-            data-testid="er-ansatt"
             name={fieldName}
             radios={[
                 {

@@ -19,6 +19,7 @@ import { getArbeidsforholdIntlValues } from '../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNormaltTimerIUkenValidator';
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
 import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
+import { ArbeidsforholdFormField } from '../../../types/ArbeidsforholdFormValues';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormData, ValidationError>();
 
@@ -45,7 +46,6 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                 <ArbSNFormComponents.YesOrNoQuestion
                     name={SelvstendigFormField.harHattInntektSomSN}
                     legend={intlHelper(intl, 'selvstendig.harDuHattInntekt.spm')}
-                    data-testid="er-selvstendig"
                     validate={getYesOrNoValidator()}
                     description={
                         <ExpandableInfo title={intlHelper(intl, 'selvstendig.harDuHattInntekt.hjelpetekst.tittel')}>
@@ -125,7 +125,9 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                                         `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`,
                                         intlValues
                                     )}
-                                    name={SelvstendigFormField.arbeidsforhold}
+                                    name={
+                                        `${SelvstendigFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
+                                    }
                                     description={<InfoArbeiderNormaltTimerSN />}
                                     width="xs"
                                     validate={getArbeiderNormaltTimerIUkenValidator({

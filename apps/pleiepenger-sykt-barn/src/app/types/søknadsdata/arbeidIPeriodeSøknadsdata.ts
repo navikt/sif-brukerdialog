@@ -18,7 +18,7 @@ interface ArbeiderRedusertProsentAvNormalt extends ArbeiderRedusertBase {
 }
 interface ArbeiderRedusertTimerISnittPerUke extends ArbeiderRedusertBase {
     type: RedusertArbeidstidType.timerISnittPerUke;
-    timerPerUke: Duration;
+    timerISnittPerUke: number;
 }
 
 interface ArbeiderReduserUlikeUkerTimer extends ArbeiderRedusertBase {

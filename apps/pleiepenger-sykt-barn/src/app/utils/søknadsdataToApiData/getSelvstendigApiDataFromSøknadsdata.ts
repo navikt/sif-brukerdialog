@@ -11,12 +11,12 @@ export const getSelvstendigApiDataFromSøknadsdata = (
     if (!arbeidSelvstendigSøknadsdata) {
         return { harInntektSomSelvstendig: false };
     }
-    switch (arbeidSelvstendigSøknadsdata.type) {
-        case 'erIkkeSN':
+    switch (arbeidSelvstendigSøknadsdata.erSN) {
+        case false:
             return {
                 harInntektSomSelvstendig: false,
             };
-        case 'erSN':
+        case true:
             const { arbeidsforhold, harFlereVirksomheter, virksomhet } = arbeidSelvstendigSøknadsdata;
             return {
                 harInntektSomSelvstendig: true,

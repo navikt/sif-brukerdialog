@@ -126,16 +126,28 @@ export const getArbeidIPeriodeTimerEllerProsentValidator =
         return undefined;
     };
 
-export const getArbeidIPeriodeArbeiderIPeriodenValidator = (intlValues: ArbeidIPeriodeIntlValues) => (value: any) => {
+export const getArbeidIPeriodeArbeiderIPeriodenAnsattValidator = (intlValues: { hvor: string }) => (value: any) => {
     const error = getRequiredFieldValidator()(value);
     return error
         ? {
-              key: 'validation.arbeidIPeriode.arbeider',
+              key: 'validation.arbeidIPeriode.ansatt',
               values: intlValues,
               keepKeyUnaltered: true,
           }
         : error;
 };
+
+export const getArbeidIPeriodeArbeiderIPeriodenValidator =
+    (key: string, intlValues: { hvor: string }) => (value: any) => {
+        const error = getRequiredFieldValidator()(value);
+        return error
+            ? {
+                  key,
+                  values: intlValues,
+                  keepKeyUnaltered: true,
+              }
+            : error;
+    };
 
 export const getArbeidIPeriodeArbeiderIPeriodenFrilanserValidator = () => (value: any) => {
     const error = getRequiredFieldValidator()(value);
@@ -147,11 +159,11 @@ export const getArbeidIPeriodeArbeiderIPeriodenFrilanserValidator = () => (value
         : error;
 };
 
-export const getArbeidIPeriodeArbeiderIPeriodenVervValidator = () => (value: any) => {
+export const getArbeidIPeriodeArbeiderIPeriodenMisterHonorararbeidValidator = () => (value: any) => {
     const error = getRequiredFieldValidator()(value);
     return error
         ? {
-              key: 'validation.arbeidIPeriode.verv',
+              key: 'validation.arbeidIPeriode.honorararbeid',
               keepKeyUnaltered: true,
           }
         : error;
