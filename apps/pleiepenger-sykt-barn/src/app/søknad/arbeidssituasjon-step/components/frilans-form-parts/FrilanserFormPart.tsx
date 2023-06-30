@@ -146,7 +146,7 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                                 {visNormalarbeidstidFrilansarbeid && (
                                     <FormBlock>
                                         <FrilansNormalarbeidstidSpørsmål
-                                            fieldName={FrilansFormField.normalarbeidstidFrilansarbeid}
+                                            fieldName={FrilansFormField.frilansarbeid_normalarbeidstid}
                                             frilanstype={Frilanstype.FRILANSARBEID}
                                             arbeidsforhold={arbeidsforhold || {}}
                                             erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
@@ -167,7 +167,7 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                                 {visNormalarbeidstidHonorararbeid && (
                                     <FormBlock>
                                         <FrilansNormalarbeidstidSpørsmål
-                                            fieldName={FrilansFormField.normalarbeidstidHonorararbeid}
+                                            fieldName={FrilansFormField.honorararbeid_normalarbeidstid}
                                             frilanstype={Frilanstype.HONORARARBEID}
                                             arbeidsforhold={arbeidsforhold || {}}
                                             erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}

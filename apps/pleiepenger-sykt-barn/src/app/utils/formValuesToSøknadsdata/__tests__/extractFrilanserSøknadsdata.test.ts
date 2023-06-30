@@ -5,6 +5,7 @@ import {
     FrilansSøknadsdataIngenInntekt,
     FrilansSøknadsdataKunFrilansarbeid,
     FrilansSøknadsdataKunHonorararbeidMisterHonorar,
+    FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar,
 } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { extractFrilanserSøknadsdata } from '../extractFrilanserSøknadsdata';
 import { ISODate, ISODateRangeToDateRange, ISODateToDate, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
@@ -33,12 +34,13 @@ describe('extractFrilanserSøknadsdata', () => {
                 misterHonorar: YesOrNo.NO,
             };
             const result = extractFrilanserSøknadsdata(values, søknadsperiode);
-            expect(result).toEqual(<FrilansSøknadsdataKunHonorararbeidMisterHonorar>{
+            const expectedResult: FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
                 harInntektSomFrilanser: true,
                 honorararbeid: {
                     misterHonorar: false,
                 },
-            });
+            };
+            expect(result).toEqual(expectedResult);
         });
         it('mister honorar', () => {
             const values: FrilansFormData = {
@@ -47,7 +49,7 @@ describe('extractFrilanserSøknadsdata', () => {
                 misterHonorar: YesOrNo.YES,
                 startdato,
                 erFortsattFrilanser: YesOrNo.YES,
-                normalarbeidstidHonorararbeid: {
+                honorararbeid_normalarbeidstid: {
                     timerPerUke: `${timerPerUkeHonorararbeid}`,
                 },
             };
@@ -70,7 +72,7 @@ describe('extractFrilanserSøknadsdata', () => {
             frilanstyper: [Frilanstype.FRILANSARBEID],
             startdato,
             erFortsattFrilanser: YesOrNo.YES,
-            normalarbeidstidFrilansarbeid: {
+            frilansarbeid_normalarbeidstid: {
                 timerPerUke: `${timerPerUkeFrilansarbeid}`,
             },
         };
@@ -89,10 +91,10 @@ describe('extractFrilanserSøknadsdata', () => {
             startdato,
             erFortsattFrilanser: YesOrNo.YES,
             misterHonorar: YesOrNo.YES,
-            normalarbeidstidFrilansarbeid: {
+            frilansarbeid_normalarbeidstid: {
                 timerPerUke: `${timerPerUkeFrilansarbeid}`,
             },
-            normalarbeidstidHonorararbeid: {
+            honorararbeid_normalarbeidstid: {
                 timerPerUke: `${timerPerUkeHonorararbeid}`,
             },
         };
@@ -119,7 +121,7 @@ describe('extractFrilanserSøknadsdata', () => {
             startdato,
             erFortsattFrilanser: YesOrNo.YES,
             misterHonorar: YesOrNo.NO,
-            normalarbeidstidFrilansarbeid: {
+            frilansarbeid_normalarbeidstid: {
                 timerPerUke: `${timerPerUkeFrilansarbeid}`,
             },
         };

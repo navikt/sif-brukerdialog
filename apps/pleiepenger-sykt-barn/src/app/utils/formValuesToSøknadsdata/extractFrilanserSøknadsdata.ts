@@ -24,6 +24,7 @@ export const extractFrilanserSøknadsdata = (
     /** Har ingen inntekt som frilanser */
     if (!harInntektSomFrilanser) {
         return <FrilansSøknadsdataIngenInntekt>{
+            type: 'ingenInntekt',
             harInntektSomFrilanser: false,
         };
     }
@@ -35,6 +36,7 @@ export const extractFrilanserSøknadsdata = (
     /** Har kun honorararbeid og mister ingen inntekt  */
     if (!harFrilansarbeid && harHonorararbeid && !misterHonorar) {
         const søknadsdata: FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
+            type: 'kunHonorararbeidMisterIkkeHonorar',
             harInntektSomFrilanser: true,
             honorararbeid: {
                 misterHonorar: false,
@@ -49,12 +51,13 @@ export const extractFrilanserSøknadsdata = (
     };
 
     /** Kun honorararbeid - mister honorar */
-    if (!harFrilansarbeid && harHonorararbeid && misterHonorar && frilans.normalarbeidstidHonorararbeid) {
-        const normalarbeidstid = extractNormalarbeidstid(frilans.normalarbeidstidHonorararbeid);
+    if (!harFrilansarbeid && harHonorararbeid && misterHonorar && frilans.honorararbeid_normalarbeidstid) {
+        const normalarbeidstid = extractNormalarbeidstid(frilans.honorararbeid_normalarbeidstid);
         if (!normalarbeidstid) {
             throw 'Normalarbeidstid for honorararbeid er ikke gyldig';
         }
         const søknadsdata: FrilansSøknadsdataKunHonorararbeidMisterHonorar = {
+            type: 'kunHonorararbeidMisterHonorar',
             ...frilanserMedArbeidforhold,
             honorararbeid: {
                 misterHonorar: true,
@@ -63,13 +66,14 @@ export const extractFrilanserSøknadsdata = (
         };
         return søknadsdata;
     }
-    /** Kun frilanserarbeid */
+    /** Kun frilansrarbeid */
     if (harFrilansarbeid && !harHonorararbeid) {
-        const normalarbeidstid = extractNormalarbeidstid(frilans.normalarbeidstidFrilansarbeid);
+        const normalarbeidstid = extractNormalarbeidstid(frilans.frilansarbeid_normalarbeidstid);
         if (!normalarbeidstid) {
-            throw 'Normalarbeidstid for frilanserarbeid er ikke gyldig';
+            throw 'Normalarbeidstid for frilansarbeid er ikke gyldig';
         }
         const søknadsdata: FrilansSøknadsdataKunFrilansarbeid = {
+            type: 'kunFrilansarbeid',
             ...frilanserMedArbeidforhold,
             frilansarbeid: {
                 normalarbeidstid,
@@ -78,15 +82,16 @@ export const extractFrilanserSøknadsdata = (
         return søknadsdata;
     }
 
-    /** Frilanserarbeid og honorararbeid */
+    /** Frilansarbeid og honorararbeid */
     if (harFrilansarbeid && harHonorararbeid) {
-        const normalarbeidstidFrilanser = extractNormalarbeidstid(frilans.normalarbeidstidFrilansarbeid);
+        const normalarbeidstidFrilanser = extractNormalarbeidstid(frilans.frilansarbeid_normalarbeidstid);
         if (misterHonorar && !normalarbeidstidFrilanser) {
-            throw 'Mangler normalarbeidstid for frilanserarbeid';
+            throw 'Mangler normalarbeidstid for frilansarbeid';
         }
         /** Mister ikke honorar */
         if (misterHonorar === false) {
             const søknadsdata: FrilansSøknadsdataFrilansarbeidOgHonorararbeid = {
+                type: 'frilansarbeidOgHonorararbeid',
                 ...frilanserMedArbeidforhold,
                 honorararbeid: {
                     misterHonorar: false,
@@ -99,8 +104,8 @@ export const extractFrilanserSøknadsdata = (
         }
 
         /** Mister honorar */
-        const normalarbeidstidHonorararbeid = frilans.normalarbeidstidHonorararbeid
-            ? extractNormalarbeidstid(frilans.normalarbeidstidHonorararbeid)
+        const normalarbeidstidHonorararbeid = frilans.honorararbeid_normalarbeidstid
+            ? extractNormalarbeidstid(frilans.honorararbeid_normalarbeidstid)
             : undefined;
 
         if (!normalarbeidstidHonorararbeid) {
@@ -108,6 +113,7 @@ export const extractFrilanserSøknadsdata = (
         }
 
         const søknadsdata: FrilansSøknadsdataFrilansarbeidOgHonorararbeid = {
+            type: 'frilansarbeidOgHonorararbeid',
             ...frilanserMedArbeidforhold,
             honorararbeid: {
                 misterHonorar: true,

@@ -1,7 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { ISODate } from '@navikt/sif-common-utils/lib';
 import { ArbeiderIPeriodenSvar } from '../local-sif-common-pleiepenger';
-import { ArbeidIPeriodeFormValues } from './ArbeidIPeriodeFormValues';
 import { ArbeidsforholdFrilanserFormValues, NormalarbeidstidFormValues } from './ArbeidsforholdFormValues';
 
 export enum Frilanstype {
@@ -16,9 +15,11 @@ export enum FrilansFormField {
     startdato = 'frilans.startdato',
     sluttdato = 'frilans.sluttdato',
     erFortsattFrilanser = 'frilans.erFortsattFrilanser',
+    honorararbeid_normalarbeidstid = 'frilans.honorararbeid_normalarbeidstid.timerPerUke',
+    honorararbeid_arbeiderIPeriodenSvar = 'frilans.honorararbeid_arbeiderIPeriodenSvar',
+    frilansarbeid_normalarbeidstid = 'frilans.frilansarbeid_normalarbeidstid.timerPerUke',
+    frilansarbeid_arbeiderIPeriodenSvar = 'frilans.frilansarbeid_arbeiderIPeriodenSvar',
     arbeidsforhold = 'frilans.arbeidsforhold',
-    normalarbeidstidFrilansarbeid = 'normalarbeidstidFrilansarbeid',
-    normalarbeidstidHonorararbeid = 'normalarbeidstidHonorararbeid',
 }
 
 export interface FrilansFormData {
@@ -28,10 +29,9 @@ export interface FrilansFormData {
     startdato?: ISODate;
     sluttdato?: ISODate;
     erFortsattFrilanser?: YesOrNo;
-    normalarbeidstidFrilansarbeid?: NormalarbeidstidFormValues;
-    normalarbeidstidHonorararbeid?: NormalarbeidstidFormValues;
-    arbeidIPeriodeSvarFrilanserarbeid?: ArbeiderIPeriodenSvar;
-    arbeidIPeriodeSvarHonorararbeid?: ArbeiderIPeriodenSvar;
-    arbeidIPeriode?: ArbeidIPeriodeFormValues;
     arbeidsforhold?: ArbeidsforholdFrilanserFormValues;
+    honorararbeid_normalarbeidstid?: NormalarbeidstidFormValues;
+    honorararbeid_arbeiderIPeriodenSvar?: ArbeiderIPeriodenSvar;
+    frilansarbeid_normalarbeidstid?: NormalarbeidstidFormValues;
+    frilansarbeid_arbeiderIPeriodenSvar?: ArbeiderIPeriodenSvar;
 }

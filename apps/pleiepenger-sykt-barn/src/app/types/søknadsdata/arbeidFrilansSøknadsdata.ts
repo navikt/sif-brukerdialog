@@ -81,23 +81,28 @@ export type FrilanserMedInntektPart = {
 /** Frilanstyper */
 
 export type FrilansSøknadsdataIngenInntekt = {
+    type: 'ingenInntekt';
     harInntektSomFrilanser: false;
 };
 
 export type FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
+    type: 'kunHonorararbeidMisterIkkeHonorar';
     harInntektSomFrilanser: true;
     honorararbeid: HonorararbeidMisterIkkeHonorar;
 };
 
 export type FrilansSøknadsdataKunHonorararbeidMisterHonorar = FrilanserMedInntektPart & {
+    type: 'kunHonorararbeidMisterHonorar';
     honorararbeid: HonorararbeidMisterHonorar;
 };
 
 export type FrilansSøknadsdataKunFrilansarbeid = FrilanserMedInntektPart & {
+    type: 'kunFrilansarbeid';
     frilansarbeid: Frilansarbeid;
 };
 
 export type FrilansSøknadsdataFrilansarbeidOgHonorararbeid = FrilanserMedInntektPart & {
+    type: 'frilansarbeidOgHonorararbeid';
     frilansarbeid: Frilansarbeid;
     honorararbeid: HonorararbeidMisterIkkeHonorar | HonorararbeidMisterHonorar;
 };
