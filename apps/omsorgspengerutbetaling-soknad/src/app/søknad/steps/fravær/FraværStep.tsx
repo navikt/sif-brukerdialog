@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
@@ -16,7 +16,7 @@ import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/compone
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
@@ -31,6 +31,8 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import FraværStepInfo from './FraværStepInfo';
 import { Alert, Heading } from '@navikt/ds-react';
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
+import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
+import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 
 export enum FraværFormFields {
     harPerioderMedFravær = 'harPerioderMedFravær',
@@ -59,7 +61,7 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
 const FraværStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, tempFormData },
     } = useSøknadContext();
 
     const stepId = StepId.FRAVÆR;
@@ -68,6 +70,9 @@ const FraværStep = () => {
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const { invalidSteps } = useSøknadsdataStatus(stepId, getSøknadStepConfig(søknadsdata));
+    const hasInvalidSteps = invalidSteps.length > 0;
 
     const onValidSubmitHandler = (values: FraværFormValues) => {
         const fraværSøknadsdata = getFraværSøknadsdataFromFormValues(values);
@@ -118,6 +123,15 @@ const FraværStep = () => {
         },
         [setÅrstall]
     );
+
+    const { persistTempFormValues } = usePersistTempFormValues();
+
+    useEffect(() => {
+        if (tempFormData?.stepId === StepId.DINE_BARN) {
+            persistTempFormValues();
+        }
+    }, [persistTempFormValues, tempFormData]);
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -159,7 +173,8 @@ const FraværStep = () => {
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 onBack={goBack}
-                                runDelayedFormValidation={true}>
+                                runDelayedFormValidation={true}
+                                submitDisabled={isSubmitting || hasInvalidSteps}>
                                 <FormBlock>
                                     <FraværStepInfo.IntroVeileder />
                                 </FormBlock>
@@ -180,6 +195,7 @@ const FraværStep = () => {
                                                 name={FraværFormFields.harPerioderMedFravær}
                                                 legend={intlHelper(intl, 'step.fravaer.spm.harPerioderMedFravær')}
                                                 validate={getYesOrNoValidator()}
+                                                data-testid="harPerioderMedFravær"
                                             />
                                         </Block>
                                         {/* DAGER MED FULLT FRAVÆR*/}

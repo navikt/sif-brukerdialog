@@ -1,5 +1,6 @@
 import { DineBarnFormValues } from '../DineBarnStep';
 import {
+    cleanHarUtvidetRettFor,
     getDineBarnStepInitialValues,
     getDineBarnSøknadsdataFromFormValues,
     minstEtBarn12årIårellerYngre,
@@ -9,6 +10,8 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { AnnetBarn, BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import { RegistrertBarn } from '../../../../types/RegistrertBarn';
 import dayjs from 'dayjs';
+import { TempFormValues } from '../../../../types/SøknadContextState';
+import { StepId } from '../../../../types/StepId';
 
 const date13yearsAgo = dayjs().subtract(13, 'y').startOf('year').toDate();
 const date12yearsAgo = dayjs().subtract(12, 'y').startOf('year').toDate();
@@ -52,20 +55,25 @@ describe('dineBarnStepUtils', () => {
             expect(result).toEqual(expected);
         });
 
-        it('should return formValues when provided', () => {
+        it('should return tempFormData when provided', () => {
             const søknadsdata = {
                 dineBarn: undefined,
             };
 
-            const formValues: DineBarnFormValues = {
+            const tempFormData: Partial<DineBarnFormValues> = {
                 andreBarn: [],
                 harDekketTiFørsteDagerSelv: true,
                 harUtvidetRett: YesOrNo.YES,
                 harUtvidetRettFor: ['fnr1', 'fnr2'],
             };
 
-            const result = getDineBarnStepInitialValues(søknadsdata, formValues);
-            expect(result).toEqual(formValues);
+            const tempFormValues: TempFormValues = {
+                stepId: StepId.DINE_BARN,
+                values: tempFormData,
+            };
+
+            const result = getDineBarnStepInitialValues(søknadsdata, tempFormValues);
+            expect(result).toEqual(tempFormData);
         });
 
         it('should return values based on dineBarn type "minstEtt12årEllerYngre"', () => {
@@ -303,6 +311,87 @@ describe('dineBarnStepUtils', () => {
 
             const result = minstEtBarn12årIårellerYngre(registrertBarn, andreBarn);
             expect(result).toBeUndefined();
+        });
+    });
+
+    describe('cleanHarUtvidetRettFor', () => {
+        it('filters harUtvidetRettFor array based on andreBarn and registrerteBarn', () => {
+            const harUtvidetRettFor = ['12345678', '87654321', '98765432'];
+            const andreBarn = [
+                { fnr: '12345678', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+                { fnr: '23456789', navn: 'Jane', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+            ];
+            const registrerteBarn = [
+                { aktørId: '87654321', fornavn: 'Alice', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+                { aktørId: '76543210', fornavn: 'Bob', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+            ];
+            const expectedResult = ['12345678', '87654321'];
+
+            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
+
+            expect(result).toEqual(expectedResult);
+        });
+
+        it('returns an empty array if harUtvidetRettFor is empty', () => {
+            const harUtvidetRettFor = [];
+            const andreBarn = [
+                { fnr: '12345678', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+                { fnr: '23456789', navn: 'Jane', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+            ];
+            const registrerteBarn = [
+                { aktørId: '87654321', fornavn: 'Alice', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+                { aktørId: '76543210', fornavn: 'Bob', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+            ];
+            const expectedResult: string[] = [];
+
+            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
+
+            expect(result).toEqual(expectedResult);
+        });
+
+        it('returns an empty array if andreBarn and registrerteBarn are empty', () => {
+            const harUtvidetRettFor = ['12345678', '87654321', '98765432'];
+            const andreBarn: AnnetBarn[] = [];
+            const registrerteBarn: RegistrertBarn[] = [];
+            const expectedResult: string[] = [];
+
+            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
+
+            expect(result).toEqual(expectedResult);
+        });
+
+        it('returns an empty array when harUtvidetRettFor does not match andreBarn or registrerteBarn', () => {
+            const harUtvidetRettFor = ['12345678', '87654321', '98765432'];
+            const andreBarn = [
+                { fnr: '11111111', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+                { fnr: '22222222', navn: 'Jane', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+            ];
+            const registrerteBarn = [
+                { aktørId: '33333333', fornavn: 'Alice', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+                { aktørId: '44444444', fornavn: 'Bob', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+            ];
+
+            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
+
+            expect(result).toEqual([]);
+        });
+
+        it('returns the filtered array of harUtvidetRettFor that match andreBarn and registrerteBarn', () => {
+            const harUtvidetRettFor = ['12345678', '87654321', '98765432', '55555555', '66666666'];
+            const andreBarn = [
+                { fnr: '12345678', navn: 'John', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+                { fnr: '87654321', navn: 'Alice', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+                { fnr: '55555555', navn: 'Bob', fødselsdato: date13yearsAgo, type: BarnType.fosterbarn },
+            ];
+            const registrerteBarn = [
+                { aktørId: '98765432', fornavn: 'Jane', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+                { aktørId: '66666666', fornavn: 'Eve', etternavn: 'Doe', fødselsdato: date13yearsAgo },
+            ];
+            const expectedResult = ['12345678', '87654321', '98765432', '55555555', '66666666'];
+
+            const result = cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn);
+
+            expect(result).toEqual(expectedResult);
         });
     });
 });

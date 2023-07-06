@@ -46,13 +46,14 @@ export const isPersistedSøknadStateValid = (
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søker, søknadsdata, søknadRoute, søknadSendt, registrerteBarn }: SøknadContextState) => {
+    update: ({ søker, søknadsdata, søknadRoute, søknadSendt, registrerteBarn, tempFormData }: SøknadContextState) => {
         return persistSetup.update({
             søknadHashString: createHashString({ søker }),
             søknadsdata,
             søknadRoute,
             søknadSendt,
             registrerteBarn,
+            tempFormData,
             versjon: SØKNAD_VERSJON,
         });
     },

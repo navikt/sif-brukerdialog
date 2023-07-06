@@ -3,13 +3,15 @@ import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 import dayjs from 'dayjs';
-import { SøknadContextState } from '../../../types/SøknadContextState';
+import { SøknadContextState, TempFormValues } from '../../../types/SøknadContextState';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { DineBarnFormValues } from './DineBarnStep';
 import { DineBarnSøknadsdata } from '../../../types/søknadsdata/DineBarnSøknadsdata';
 import { FormattedMessage } from 'react-intl';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { dateToday } from '@navikt/sif-common-utils';
+import { StepId } from '../../../types/StepId';
+import './dineBarn.css';
 
 export const nYearsAgo = (years: number): Date => {
     return dayjs(dateToday).subtract(years, 'y').startOf('year').toDate();
@@ -61,11 +63,10 @@ export const getDineBarnSøknadsdataFromFormValues = (
     values: DineBarnFormValues,
     { registrerteBarn = [] }: Partial<SøknadContextState>
 ): DineBarnSøknadsdata | undefined => {
-    const { andreBarn = [] } = values;
+    const { andreBarn = [], harDekketTiFørsteDagerSelv, harUtvidetRett, harUtvidetRettFor } = values;
 
-    if (minstEtBarn12årIårellerYngre(registrerteBarn, andreBarn) === true) {
-        const { harDekketTiFørsteDagerSelv } = values;
-        if (harDekketTiFørsteDagerSelv !== true) {
+    if (minstEtBarn12årIårellerYngre(registrerteBarn, andreBarn)) {
+        if (!harDekketTiFørsteDagerSelv) {
             return undefined;
         }
         return {
@@ -74,26 +75,28 @@ export const getDineBarnSøknadsdataFromFormValues = (
             harDekketTiFørsteDagerSelv,
         };
     }
-    if (minstEtBarn12årIårellerYngre(registrerteBarn, andreBarn) === false) {
-        const { harUtvidetRett, harUtvidetRettFor } = values;
-        if (harUtvidetRett !== YesOrNo.YES || harUtvidetRettFor === undefined || harUtvidetRettFor.length === 0) {
-            return undefined;
-        }
-        return {
-            type: 'alleBarnEldre12år',
-            andreBarn,
-            harUtvidetRett,
-            harUtvidetRettFor,
-        };
+
+    const cleanedharUtvidetRettFor = harUtvidetRettFor
+        ? cleanHarUtvidetRettFor(harUtvidetRettFor, andreBarn, registrerteBarn)
+        : harUtvidetRettFor;
+    if (harUtvidetRett !== YesOrNo.YES || !cleanedharUtvidetRettFor || cleanedharUtvidetRettFor.length === 0) {
+        return undefined;
     }
-    return undefined;
+    return {
+        type: 'alleBarnEldre12år',
+        andreBarn,
+        harUtvidetRett,
+        harUtvidetRettFor: cleanedharUtvidetRettFor,
+    };
 };
 
 export const getDineBarnStepInitialValues = (
     søknadsdata: Søknadsdata,
+    tempFormValues?: TempFormValues,
     formValues?: DineBarnFormValues
 ): DineBarnFormValues => {
     if (formValues) {
+        // Trenges det?
         return formValues;
     }
 
@@ -103,6 +106,16 @@ export const getDineBarnStepInitialValues = (
         harUtvidetRett: YesOrNo.UNANSWERED,
         harUtvidetRettFor: [],
     };
+
+    if (tempFormValues && tempFormValues.stepId === StepId.DINE_BARN) {
+        const { values } = tempFormValues;
+        return {
+            andreBarn: values.andreBarn,
+            harDekketTiFørsteDagerSelv: values.harDekketTiFørsteDagerSelv,
+            harUtvidetRett: values.harUtvidetRett ? values.harUtvidetRett : YesOrNo.UNANSWERED,
+            harUtvidetRettFor: values.harUtvidetRettFor ? values.harUtvidetRettFor : [],
+        };
+    }
 
     const { dineBarn } = søknadsdata;
     if (dineBarn) {
@@ -123,4 +136,13 @@ export const getDineBarnStepInitialValues = (
         }
     }
     return defaultValues;
+};
+
+export const cleanHarUtvidetRettFor = (
+    harUtvidetRettFor: string[],
+    andreBarn: AnnetBarn[],
+    registrerteBarn: RegistrertBarn[]
+): string[] => {
+    const alleBarnFnr = [...andreBarn.map((b) => b.fnr), ...registrerteBarn.map((b) => b.aktørId)];
+    return harUtvidetRettFor.filter((fnr) => alleBarnFnr.includes(fnr));
 };

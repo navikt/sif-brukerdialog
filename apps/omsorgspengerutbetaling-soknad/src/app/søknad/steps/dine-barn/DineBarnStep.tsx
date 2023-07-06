@@ -10,6 +10,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import {
     barnItemLabelRenderer,
+    cleanHarUtvidetRettFor,
     getBarnOptions,
     getDineBarnStepInitialValues,
     getDineBarnSøknadsdataFromFormValues,
@@ -38,6 +39,8 @@ import {
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import { dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
+import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
+// import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
 
 export enum DineBarnFormFields {
     andreBarn = 'andreBarn',
@@ -63,7 +66,8 @@ const DineBarnStep = () => {
     const intl = useIntl();
 
     const {
-        state: { søknadsdata, søker, registrerteBarn },
+        state: { søknadsdata, søker, registrerteBarn, tempFormData },
+        dispatch,
     } = useSøknadContext();
 
     const stepId = StepId.DINE_BARN;
@@ -77,7 +81,10 @@ const DineBarnStep = () => {
         const DineBarnSøknadsdata = getDineBarnSøknadsdataFromFormValues(values, { registrerteBarn });
         if (DineBarnSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadDineBarn(DineBarnSøknadsdata)];
+            return [
+                actionsCreator.setSøknadDineBarn(DineBarnSøknadsdata),
+                actionsCreator.setSøknadTempFormData(undefined),
+            ];
         }
         return [];
     };
@@ -86,21 +93,41 @@ const DineBarnStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreSøknadState(state);
+            return lagreSøknadState({ ...state, tempFormData: undefined });
         }
     );
+
+    const { persistTempFormValues } = usePersistTempFormValues();
+
+    const setAndreBarnChanged = (values: Partial<DineBarnFormValues>) => {
+        dispatch(actionsCreator.setSøknadTempFormData({ stepId, values }));
+        persistTempFormValues({ stepId, values });
+    };
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getDineBarnStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={getDineBarnStepInitialValues(søknadsdata, tempFormData, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values: { andreBarn = [], harUtvidetRett, harUtvidetRettFor } }) => {
+                renderForm={({
+                    values: { andreBarn = [], harUtvidetRett, harUtvidetRettFor, harDekketTiFørsteDagerSelv },
+                }) => {
                     const barnOptions = getBarnOptions(registrerteBarn, andreBarn);
                     const andreBarnFnr = andreBarn.map((barn) => barn.fnr);
                     const kanIkkeFortsette =
                         minstEtBarn12årIårellerYngre(registrerteBarn, andreBarn) === false &&
                         harUtvidetRett === YesOrNo.NO;
                     const kanFortsette = (registrerteBarn.length > 0 || andreBarn.length > 0) && !kanIkkeFortsette;
+                    const oppdatereAndreBarn = (values: AnnetBarn[]) => {
+                        setAndreBarnChanged({
+                            andreBarn: values,
+                            harUtvidetRett,
+                            harUtvidetRettFor: harUtvidetRettFor
+                                ? cleanHarUtvidetRettFor(harUtvidetRettFor, values, registrerteBarn)
+                                : harUtvidetRettFor,
+                            harDekketTiFørsteDagerSelv,
+                        });
+                    };
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -171,7 +198,7 @@ const DineBarnStep = () => {
                                                 'step.dineBarn.formLeggTilBarn.aldersGrenseInfo'
                                             )}
                                             visBarnTypeValg={true}
-                                            // onAfterChange={() => setAndreBarnChanged(true)}
+                                            onAfterChange={(values) => oppdatereAndreBarn(values)}
                                         />
                                     </Block>
                                 </FormBlock>
@@ -195,6 +222,7 @@ const DineBarnStep = () => {
                                                           )
                                                 }
                                                 validate={getYesOrNoValidator()}
+                                                data-testid="harUtvidetRett"
                                             />
                                         </FormBlock>
                                         <FormBlock>
@@ -209,7 +237,16 @@ const DineBarnStep = () => {
                                                                 )}
                                                                 name={DineBarnFormFields.harUtvidetRettFor}
                                                                 checkboxes={barnOptions}
-                                                                validate={getListValidator({ required: true })}
+                                                                validate={(value) =>
+                                                                    getListValidator({ required: true })(
+                                                                        cleanHarUtvidetRettFor(
+                                                                            value,
+                                                                            andreBarn,
+                                                                            registrerteBarn
+                                                                        )
+                                                                    )
+                                                                }
+                                                                data-testid="harUtvidetRettFor"
                                                             />
                                                             {harUtvidetRettFor && harUtvidetRettFor.length > 0 && (
                                                                 <Block margin="l">
@@ -252,6 +289,7 @@ const DineBarnStep = () => {
                                                     label={intlHelper(intl, 'step.dineBarn.bekrefterDektTiDagerSelv')}
                                                     name={DineBarnFormFields.harDekketTiFørsteDagerSelv}
                                                     validate={getCheckedValidator()}
+                                                    data-testid="bekrefterDektTiDagerSelv"
                                                 />
                                             </ContentWithHeader>
                                         </FormBlock>

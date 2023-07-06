@@ -1,3 +1,4 @@
+import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
     DineBarnSøknadsdata,
@@ -16,6 +17,7 @@ export enum SøknadContextActionKeys {
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
     SET_SØKNAD_DINE_BARN = 'setSøknadDineBarn',
+    SET_SØKNAD_TEMP_FORM_DATA = 'setSøknadTempFormData',
     SET_SØKNAD_FRAVÆR = 'setSøknadFravær',
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_ARBEIDSSITUASJON = 'setSøknadArbeidssituasjon',
@@ -49,6 +51,11 @@ interface SetSøknadLagret {
 interface SetSøknadSendt {
     type: SøknadContextActionKeys.SET_SØKNAD_SENDT;
 }
+
+interface SetSøknadTempFormData {
+    type: SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_DATA;
+    payload: TempFormValues;
+}
 interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
     payload: SøknadRoutes;
@@ -57,6 +64,7 @@ interface SetSøknadDineBarn {
     type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN;
     payload: DineBarnSøknadsdata;
 }
+
 interface SetSøknadFravær {
     type: SøknadContextActionKeys.SET_SØKNAD_FRAVÆR;
     payload: FraværSøknadsdata;
@@ -111,10 +119,16 @@ const setSøknadSendt = (): SetSøknadSendt => ({
     type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
 });
 
+const setSøknadTempFormData = (payload: TempFormValues): SetSøknadTempFormData => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_DATA,
+    payload,
+});
+
 const setSøknadDineBarn = (payload: DineBarnSøknadsdata): SetSøknadDineBarn => ({
     type: SøknadContextActionKeys.SET_SØKNAD_DINE_BARN,
     payload,
 });
+
 const setSøknadFravær = (payload: FraværSøknadsdata): SetSøknadFravær => ({
     type: SøknadContextActionKeys.SET_SØKNAD_FRAVÆR,
     payload,
@@ -153,6 +167,7 @@ export type SøknadContextAction =
     | RequestLagreSøknad
     | SetSøknadLagret
     | SetSøknadSendt
+    | SetSøknadTempFormData
     | SetSøknadDineBarn
     | SetSøknadFravær
     | SetSøknadLegeerklæring
@@ -169,6 +184,7 @@ const actionsCreator = {
     fortsettSøknadSenere,
     requestLagreSøknad,
     setSøknadRoute,
+    setSøknadTempFormData,
     setSøknadDineBarn,
     setSøknadFravær,
     setSøknadLegeerklæring,
