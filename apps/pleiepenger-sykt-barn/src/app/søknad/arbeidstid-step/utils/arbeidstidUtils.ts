@@ -21,6 +21,11 @@ import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/Arbeidsf
 import { ArbeidSøknadsdata } from '../../../types/søknadsdata/ArbeidSøknadsdata';
 import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
+import {
+    ArbeidAnsattSøknadsdataPågående,
+    ArbeidAnsattSøknadsdataSluttetISøknadsperiode,
+    ArbeidsgivereSøknadsdata,
+} from '../../../types/søknadsdata/ArbeidAnsattSøknadsdata';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
@@ -158,6 +163,17 @@ export const getArbeidsdagerIUkeTekst = ({ from, to }: DateRange): string => {
     }
 };
 
+export const getAnsattArbeidsforholdISøknadsperiode = (
+    arbeidsgivere: ArbeidsgivereSøknadsdata
+): Array<ArbeidAnsattSøknadsdataPågående | ArbeidAnsattSøknadsdataSluttetISøknadsperiode> => {
+    const arbeidsforhold: Array<ArbeidAnsattSøknadsdataPågående | ArbeidAnsattSøknadsdataSluttetISøknadsperiode> = [];
+    arbeidsgivere.forEach((arbeidsgiver) => {
+        if (arbeidsgiver.erAnsattISøknadsperiode) {
+            arbeidsforhold.push(arbeidsgiver);
+        }
+    });
+    return arbeidsforhold;
+};
 // export const getAnsattArbeidsforholdIPerioden = (
 //     ansatt_arbeidsforhold: ArbeidsforholdFormValues[],
 //     arbeidsgivere?: ArbeidsgivereSøknadsdata

@@ -3,22 +3,20 @@ import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-// import { useFormikContext } from 'formik';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-// import { SøknadFormValues } from '../../types/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
-// import { getAnsattArbeidsforholdIPerioden } from './utils/arbeidstidUtils';
 import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
-import ArbeidstidFrilanser from './components/ArbeidstidFrilanser';
+import ArbeidstidFrilanser from './components/ArbeidstidFrilansarbeid';
 import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
+import { useFormikContext } from 'formik';
+import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { getAnsattArbeidsforholdISøknadsperiode } from './utils/arbeidstidUtils';
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
-    // const {
-    //     values: { ansatt_arbeidsforhold },
-    // } = useFormikContext<SøknadFormValues>();
+    const { values } = useFormikContext<SøknadFormValues>();
     // const { persistSoknad } = usePersistSoknad();
 
     const {
@@ -31,19 +29,11 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const { selvstendig, frilanser, arbeidsgivere } = arbeidSøknadsdata;
 
-    // const periodeSomSelvstendigISøknadsperiode =
-
     // const handleArbeidstidChanged = () => {
     //     persistSoknad({ stepID: StepID.ARBEIDSTID });
     // };
 
-    const ansattArbeidsforholdIPerioden = arbeidsgivere
-        ? Array.from(arbeidsgivere, (item, index) => {
-              return { index, arbeidAnsatt: item[1] };
-          }).filter(({ arbeidAnsatt }) => {
-              return arbeidAnsatt.erAnsattISøknadsperiode;
-          })
-        : [];
+    const aktiveArbeidsforhold = arbeidsgivere ? getAnsattArbeidsforholdISøknadsperiode(arbeidsgivere) : [];
 
     return (
         <SøknadFormStep stepId={StepID.ARBEIDSTID} onValidFormSubmit={onValidSubmit}>
@@ -61,10 +51,18 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
             </Block>
 
             {/* Ansatt-arbeidsforhold */}
-            {ansattArbeidsforholdIPerioden.length > 0 && (
+            {aktiveArbeidsforhold.length > 0 && (
                 <FormBlock>
-                    {ansattArbeidsforholdIPerioden.map(({ arbeidAnsatt, index }) => {
-                        return <ArbeidstidAnsatt key={index} index={index} arbeidAnsattSøknadsdata={arbeidAnsatt} />;
+                    {aktiveArbeidsforhold.map(({ arbeidsforhold, index }) => {
+                        return (
+                            <ArbeidstidAnsatt
+                                key={index}
+                                index={index}
+                                søknadsperiode={søknadsperiode}
+                                arbeidsforhold={values.ansatt_arbeidsforhold[index]}
+                                normalarbeidstid={arbeidsforhold.normalarbeidstid}
+                            />
+                        );
                     })}
                 </FormBlock>
             )}
@@ -72,7 +70,11 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
             {/* Frilanser */}
             {frilanser?.harInntektSomFrilanser === true && frilanser?.misterInntektSomFrilanserIPeriode && (
                 <FormBlock>
-                    <ArbeidstidFrilanser frilanser={frilanser} />
+                    <ArbeidstidFrilanser
+                        frilanser={frilanser}
+                        values={values.frilans}
+                        søknadsperiode={søknadsperiode}
+                    />
                 </FormBlock>
             )}
 

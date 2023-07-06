@@ -1,26 +1,30 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeIntlValues, ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
 import { SøknadFormField } from '../../../../types/SøknadFormValues';
 import SøknadFormComponents from '../../../SøknadFormComponents';
 import { getArbeidIPeriodeArbeiderIPeriodenValidator } from '../../validationArbeidIPeriodeSpørsmål';
 
 interface Props {
     fieldName: SøknadFormField;
-    hvor: string;
-    validationKey: string;
+    spørsmål: string;
+    validationIntlKey: string;
+    intlValues: ArbeidIPeriodeIntlValues;
 }
 
-const ArbeiderIPeriodenSpørsmål: React.FunctionComponent<Props> = ({ fieldName, validationKey, hvor }) => {
+const ArbeiderIPeriodenSpørsmål: React.FunctionComponent<Props> = ({
+    fieldName,
+    spørsmål: legend,
+    validationIntlKey,
+    intlValues,
+}) => {
     const intl = useIntl();
     return (
         <SøknadFormComponents.RadioGroup
             name={fieldName}
-            legend={intlHelper(intl, `arbeidIPeriode.arbeiderIPerioden.spm`, {
-                hvor,
-            })}
-            validate={getArbeidIPeriodeArbeiderIPeriodenValidator(validationKey, { hvor })}
+            legend={legend}
+            validate={getArbeidIPeriodeArbeiderIPeriodenValidator(validationIntlKey, intlValues)}
             radios={[
                 {
                     label: intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.svar.jobberIkke'),

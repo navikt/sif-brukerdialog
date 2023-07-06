@@ -13,18 +13,21 @@ const arbeidsgiver: Arbeidsgiver = {
 describe('getArbeidsforhorholdAvsluttetFørSøknadsperiode', () => {
     const arbeidsforhold: any = {};
     const pågående: ArbeidAnsattSøknadsdata = {
+        index: 0,
         arbeidsforhold,
         arbeidsgiver: { ...arbeidsgiver, id: '1' },
         erAnsattISøknadsperiode: true,
         type: 'pågående',
     };
     const avsluttetIPeriode: ArbeidAnsattSøknadsdata = {
+        index: 1,
         arbeidsforhold,
         arbeidsgiver: { ...arbeidsgiver, id: '2' },
         erAnsattISøknadsperiode: true,
         type: 'sluttetISøknadsperiode',
     };
     const avsluttetFørPeriode: ArbeidAnsattSøknadsdata = {
+        index: 2,
         arbeidsgiver: { ...arbeidsgiver, id: '3' },
         erAnsattISøknadsperiode: false,
         type: 'sluttetFørSøknadsperiode',

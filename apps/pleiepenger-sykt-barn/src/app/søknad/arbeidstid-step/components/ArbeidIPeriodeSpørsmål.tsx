@@ -11,7 +11,6 @@ import {
     ArbeidIPeriodeIntlValues,
     ArbeidsforholdType,
 } from '../../../local-sif-common-pleiepenger';
-import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { TimerEllerProsent } from '../../../types';
 import { ArbeidIPeriodeFormField, MisterHonorarerFraVervIPerioden } from '../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsforholdFormValues, ArbeidsforholdFrilanserFormValues } from '../../../types/ArbeidsforholdFormValues';
@@ -19,19 +18,16 @@ import { Frilanstype } from '../../../types/FrilansFormData';
 import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { søkerNoeFremtid } from '../../../utils/søknadsperiodeUtils';
 import SøknadFormComponents from '../../SøknadFormComponents';
-import { arbeidIPeriodeSpørsmålConfig } from '../utils/arbeidIPeriodeSpørsmålConfig';
+// import { arbeidIPeriodeSpørsmålConfig } from '../utils/arbeidIPeriodeSpørsmålConfig';
 import {
-    // getArbeidIPeriodeArbeiderIPeriodenValidator,
     getArbeidIPeriodeArbeiderIPeriodenMisterHonorararbeidValidator,
     getArbeidIPeriodeErLiktHverUkeValidator,
     getArbeidIPeriodeTimerEllerProsentValidator,
 } from '../validationArbeidIPeriodeSpørsmål';
 import ArbeidstidInput from './arbeidstid-uker-spørsmål/ArbeidstidInput';
 import ArbeidstidUkerSpørsmål from './arbeidstid-uker-spørsmål/ArbeidstidUkerSpørsmål';
-import InfoOmEndring from './InfoOmEndring';
 
 interface Props {
-    aktivitetType: 'arbeidstaker' | 'sn' | 'frilans';
     normalarbeidstid: NormalarbeidstidSøknadsdata;
     parentFieldName: string;
     arbeidsforhold: ArbeidsforholdFormValues | ArbeidsforholdFrilanserFormValues;
@@ -45,13 +41,13 @@ interface Props {
 }
 
 const ArbeidIPeriodeSpørsmål = ({
-    aktivitetType,
+    // aktivitetType,
     arbeidsforhold,
     parentFieldName,
-    arbeidsforholdType,
+    // arbeidsforholdType,
     arbeidsperiode,
     søknadsperiode,
-    arbeidsstedNavn,
+    // arbeidsstedNavn,
     frilansType,
     misterHonorarer,
     normalarbeidstid,
@@ -67,14 +63,12 @@ const ArbeidIPeriodeSpørsmål = ({
         }
     }, [arbeidstidChanged, onArbeidstidVariertChange]);
 
-    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
-        arbeidsforhold: {
-            type: arbeidsforholdType,
-            arbeidsstedNavn,
-            jobberNormaltTimer: normalarbeidstid.timerPerUkeISnitt,
-        },
-        periode: arbeidsperiode,
-    });
+    const intlValues = {} as any;
+    // getArbeidstidIPeriodeIntlValues(intl, {
+
+    //     jobberNormaltTimer: normalarbeidstid.timerPerUkeISnitt,
+    //     periode: arbeidsperiode,
+    // });
 
     const arbeidIPeriodeParentFieldName = `${parentFieldName}.arbeidIPeriode`;
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${arbeidIPeriodeParentFieldName}.${field}` as any;
@@ -82,10 +76,11 @@ const ArbeidIPeriodeSpørsmål = ({
     const { arbeidIPeriode } = arbeidsforhold;
     const { arbeiderIPerioden, timerEllerProsent, misterHonorarerFraVervIPerioden } = arbeidIPeriode || {};
 
-    const visibility = arbeidIPeriodeSpørsmålConfig.getVisbility({
-        formValues: arbeidIPeriode || {},
-        arbeidsperiode,
-    });
+    const visibility = {} as any;
+    //  arbeidIPeriodeSpørsmålConfig.getVisbility({
+    //     formValues: arbeidIPeriode || {},
+    //     arbeidsperiode,
+    // });
 
     const frilansRedusert =
         frilansType &&
@@ -199,9 +194,9 @@ const ArbeidIPeriodeSpørsmål = ({
                                 <FormattedMessage id="arbeidIPeriode.redusert.info.tekst" />
                             </p>
                         )}
-                        <Block margin="m">
+                        {/* <Block margin="m">
                             <InfoOmEndring aktivitetType={aktivitetType} />
-                        </Block>
+                        </Block> */}
 
                         {visibility.isIncluded(ArbeidIPeriodeFormField.erLiktHverUke) && (
                             <FormBlock>
@@ -215,8 +210,8 @@ const ArbeidIPeriodeSpørsmål = ({
                                         intlValues
                                     )}
                                     validate={getArbeidIPeriodeErLiktHverUkeValidator(
-                                        intlValues,
-                                        frilansRedusert || vervRedusert ? getFrilansVerv() : undefined
+                                        intlValues
+                                        // frilansRedusert || vervRedusert ? getFrilansVerv() : undefined
                                     )}
                                     data-testid="er-likt-hver-uke"
                                     labels={{
@@ -239,8 +234,8 @@ const ArbeidIPeriodeSpørsmål = ({
                                     )}
                                     radios={getTimerEllerProsentRadios(intl, intlValues)}
                                     validate={getArbeidIPeriodeTimerEllerProsentValidator(
-                                        intlValues,
-                                        frilansRedusert || vervRedusert ? getFrilansVerv() : undefined
+                                        intlValues
+                                        // frilansRedusert || vervRedusert ? getFrilansVerv() : undefined
                                     )}
                                 />
                             </FormBlock>

@@ -4,8 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { dateFormatter, dateRangeUtils, decimalDurationToDuration } from '@navikt/sif-common-utils/lib';
-import dayjs from 'dayjs';
+import { dateFormatter, decimalDurationToDuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidIPeriodeIntlValues } from '../../../../local-sif-common-pleiepenger';
 import { formatTimerOgMinutter } from '../../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { TimerEllerProsent } from '../../../../types';
@@ -29,14 +28,6 @@ interface Props {
     frilansVervString?: string;
     frilansVervValideringString?: string;
 }
-
-export const søkerKunHeleUker = (periode: DateRange): boolean => {
-    return (
-        dayjs(periode.from).isoWeekday() === 1 &&
-        dayjs(periode.to).isoWeekday() >= 5 &&
-        dateRangeUtils.getNumberOfDaysInDateRange(periode) >= 5
-    );
-};
 
 const ArbeidstidInput: React.FunctionComponent<Props> = ({
     arbeidsuke,

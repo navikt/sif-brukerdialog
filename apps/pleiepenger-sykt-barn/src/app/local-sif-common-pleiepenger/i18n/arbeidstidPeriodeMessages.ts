@@ -1,5 +1,5 @@
-import { IntlShape } from 'react-intl';
-import { typedIntlHelper } from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+// import { IntlShape } from 'react-intl';
+// import { typedIntlHelper } from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 const arbeidstidPeriodeFormFormMessages = {
     nb: {
@@ -66,12 +66,11 @@ const arbeidstidPeriodeFormFormMessages = {
 
 const arbeidIPeriodeIntlValuesMessages = {
     nb: {
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.harJobbet': 'har jobbet',
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe': 'skal jobbe',
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt': `hos {arbeidsstedNavn}`,
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser': 'som frilanser',
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN': 'som selvstendig næringsdrivende',
-        'arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden': `i perioden {fra} til {til}`,
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.arbeidstaker': `hos {arbeidsstedNavn}`,
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.frilansarbeid': 'som frilanser',
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.honorararbeid': 'med honorararbeid',
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.frilansOgHonorararbeid': 'som frilanser og med honorararbeid',
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.sn': 'som selvstendig næringsdrivende',
     },
 };
 
@@ -85,6 +84,6 @@ export const arbeidstidPeriodeMessages = {
     },
 };
 
-type ArbeidstidPeriodeMessagesType = keyof typeof arbeidstidPeriodeMessages.nb;
+// type ArbeidstidPeriodeMessagesType = keyof typeof arbeidstidPeriodeMessages.nb;
 
-export const getArbeidstidPeriodeIntl = (intl: IntlShape) => typedIntlHelper<ArbeidstidPeriodeMessagesType>(intl);
+// export const getArbeidstidPeriodeIntl = (intl: IntlShape) => typedIntlHelper<ArbeidstidPeriodeMessagesType>(intl);

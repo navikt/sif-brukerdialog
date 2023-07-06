@@ -2,9 +2,10 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import FormSection from '../../../components/form-section/FormSection';
-import { ArbeidIPeriodeFormField } from '../../../types/ArbeidIPeriodeFormValues';
-import { SelvstendigFormField } from '../../../types/SelvstendigFormData';
-import ArbeiderIPeriodenSpørsmål from './arbeider-i-perioden-spørsmål/ArbeiderIPeriodenSpørsmål';
+// import { ArbeidIPeriodeFormField } from '../../../types/ArbeidIPeriodeFormValues';
+// import { SelvstendigFormField } from '../../../types/SelvstendigFormData';
+// import ArbeiderIPeriodenSpørsmål from './spørsmål/ArbeiderIPeriodenSpørsmål';
+// import { RedusertArbeidAktivitetType } from './ArbeidRedusertPart';
 
 interface Props {
     todo?: string;
@@ -15,13 +16,13 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({}) => {
     return (
         <FormSection title={intlHelper(intl, 'arbeidIPeriode.SNLabel')}>
             <div data-testid="arbeidIPerioden_selvstendig">
-                <ArbeiderIPeriodenSpørsmål
+                {/* <ArbeiderIPeriodenSpørsmål
                     fieldName={
                         `${SelvstendigFormField.arbeidsforhold}.${ArbeidIPeriodeFormField.arbeiderIPerioden}` as any
                     }
-                    hvor={`som selvstendig`}
-                    validationKey="validation.arbeidIPeriode.selvstendig"
-                />
+                    aktivitetType={RedusertArbeidAktivitetType.SN}
+                    // validationKey="validation.arbeidIPeriode.selvstendig"
+                /> */}
 
                 {/* <ArbeidIPeriodeSpørsmål
             aktivitetType="sn"

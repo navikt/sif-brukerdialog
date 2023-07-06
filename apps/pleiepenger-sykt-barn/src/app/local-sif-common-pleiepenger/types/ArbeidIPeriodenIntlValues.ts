@@ -1,8 +1,7 @@
+/** Objekt som forenkler tekster som brukes i forbindelse med arbeid i en periode */
 export type ArbeidIPeriodeIntlValues = {
-    hvor: string;
-    skalEllerHarJobbet: string;
+    arbeidsgiverNavn?: string;
     timer: string;
     fra: string;
     til: string;
-    iPerioden: string;
 };

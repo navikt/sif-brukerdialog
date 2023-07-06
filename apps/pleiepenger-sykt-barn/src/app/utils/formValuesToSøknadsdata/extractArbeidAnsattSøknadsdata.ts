@@ -4,7 +4,8 @@ import { ArbeidAnsattSøknadsdata } from '../../types/søknadsdata/Søknadsdata'
 import { extractArbeidsforholdSøknadsdata } from './extractArbeidsforholdSøknadsdata';
 
 export const extractArbeidAnsattSøknadsdata = (
-    arbeidsforhold: ArbeidsforholdFormValues
+    arbeidsforhold: ArbeidsforholdFormValues,
+    index: number
 ): ArbeidAnsattSøknadsdata | undefined => {
     /** Bruker har ikke besvart denne informasjonen enda */
     if (arbeidsforhold.erAnsatt === undefined) {
@@ -15,6 +16,7 @@ export const extractArbeidAnsattSøknadsdata = (
 
     if (sluttetFørSøknadsperiode) {
         return {
+            index,
             type: 'sluttetFørSøknadsperiode',
             erAnsattISøknadsperiode: false,
             arbeidsgiver: arbeidsforhold.arbeidsgiver,
@@ -24,6 +26,7 @@ export const extractArbeidAnsattSøknadsdata = (
     if (arbeidsforholdSøknadsdata) {
         if (erAnsatt === false && sluttetFørSøknadsperiode === false) {
             return {
+                index,
                 type: 'sluttetISøknadsperiode',
                 erAnsattISøknadsperiode: true,
                 arbeidsgiver: arbeidsforhold.arbeidsgiver,
@@ -31,6 +34,7 @@ export const extractArbeidAnsattSøknadsdata = (
             };
         }
         return {
+            index,
             type: 'pågående',
             erAnsattISøknadsperiode: true,
             arbeidsgiver: arbeidsforhold.arbeidsgiver,

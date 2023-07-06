@@ -26,7 +26,7 @@ import {
 import { getPeriodeSomFrilanserInnenforPeriode } from '../../../utils/frilanserUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../../../utils/selvstendigUtils';
 import { getArbeidsukeKey } from '../components/arbeidstid-uker-spørsmål/ArbeidstidUkerSpørsmål';
-import { arbeidIPeriodeSpørsmålConfig } from './arbeidIPeriodeSpørsmålConfig';
+// import { arbeidIPeriodeSpørsmålConfig } from './arbeidIPeriodeSpørsmålConfig';
 import { getArbeidsukerIPerioden, skalSvarePåOmEnJobberLiktIPerioden } from './arbeidstidUtils';
 
 export const cleanupArbeidsuker = (
@@ -54,10 +54,11 @@ export const cleanupArbeidIPeriode = (
     arbeidIPerioden: ArbeidIPeriodeFormValues,
     normalarbeidstid: NormalarbeidstidSøknadsdata | undefined
 ): ArbeidIPeriodeFormValues => {
-    const config = arbeidIPeriodeSpørsmålConfig.getVisbility({
-        formValues: arbeidIPerioden,
-        arbeidsperiode,
-    });
+    const config = {} as any; // TODO
+    // arbeidIPeriodeSpørsmålConfig.getVisbility({
+    //     formValues: arbeidIPerioden,
+    //     arbeidsperiode,
+    // });
 
     const arbeid: ArbeidIPeriodeFormValues = {
         arbeiderIPerioden: arbeidIPerioden.arbeiderIPerioden,
@@ -96,10 +97,11 @@ export const cleanupArbeidIPeriodeFrilans = (
     arbeidIPerioden: ArbeidIPeriodeFormValues,
     normalarbeidstid: NormalarbeidstidSøknadsdata | undefined
 ): ArbeidIPeriodeFormValues => {
-    const config = arbeidIPeriodeSpørsmålConfig.getVisbility({
-        formValues: arbeidIPerioden,
-        arbeidsperiode,
-    });
+    const config = {} as any; // TODO
+    // arbeidIPeriodeSpørsmålConfig.getVisbility({
+    //     formValues: arbeidIPerioden,
+    //     arbeidsperiode,
+    // });
 
     const arbeid: ArbeidIPeriodeFormValues = {
         arbeiderIPerioden: arbeidIPerioden.arbeiderIPerioden,

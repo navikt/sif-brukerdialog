@@ -6,8 +6,8 @@ export const extractArbeidsgivereArbeidsforholdSøknadsdata = (
     ansatt_arbeidsforhold: ArbeidsforholdFormValues[] = []
 ): ArbeidsgivereSøknadsdata | undefined => {
     const arbeidsgivereSøknadsdataMap: ArbeidsgivereSøknadsdata = new Map();
-    ansatt_arbeidsforhold.forEach((ansattForhold) => {
-        const ansattArbeidsforhold = extractArbeidAnsattSøknadsdata(ansattForhold);
+    ansatt_arbeidsforhold.forEach((ansattForhold, index) => {
+        const ansattArbeidsforhold = extractArbeidAnsattSøknadsdata(ansattForhold, index);
         if (ansattArbeidsforhold) {
             arbeidsgivereSøknadsdataMap.set(ansattForhold.arbeidsgiver.id, ansattArbeidsforhold);
         }
