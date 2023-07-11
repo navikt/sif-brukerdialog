@@ -43,10 +43,14 @@ interface BarnApiData {
 }
 
 export interface DataBruktTilUtledningApiData {
-    soknadDialogCommitSha: string;
-    valgteEndringer: ValgteEndringer;
     ukjenteArbeidsforhold?: UkjentArbeidsforholdApiData[];
 }
+
+export interface DataBruktTilUtledningApiDataAnnetData {
+    valgteEndringer: ValgteEndringer;
+}
+
+export type DataBruktTilUtledningApiDataAnnetDataJsonString = string;
 
 interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
@@ -54,6 +58,9 @@ interface YtelseApiData {
     lovbestemtFerie?: LovbestemtFerieApiData;
     barn: BarnApiData;
     dataBruktTilUtledning: DataBruktTilUtledningApiData;
+    annetDataBruktTilUtledning: {
+        annetData: DataBruktTilUtledningApiDataAnnetDataJsonString;
+    };
 }
 
 interface UkjentArbeidsforholdApiDataBase {
