@@ -17,13 +17,7 @@ const FraværPerioderList = ({ fraværPerioder = [], onDelete, onEdit, useTrashc
 
     const renderFraværPeriodeLabel = (fraværPeriode: FraværPeriode): React.ReactNode => {
         const title = getDateTitleString(fraværPeriode);
-        return (
-            <FraværListItem
-                title={title}
-                årsak={fraværPeriode.årsak}
-                onEdit={onEdit ? () => onEdit(fraværPeriode) : undefined}
-            />
-        );
+        return <FraværListItem title={title} onEdit={onEdit ? () => onEdit(fraværPeriode) : undefined} />;
     };
 
     return (

@@ -1,4 +1,3 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 import dayjs from 'dayjs';
@@ -6,27 +5,19 @@ import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { isString } from 'formik';
 import { guid } from '@navikt/sif-common-utils';
-import { FraværDag, FraværDagFormValues, FraværPeriode, FraværPeriodeFormValues, FraværÅrsak } from './types';
+import { FraværDag, FraværDagFormValues, FraværPeriode, FraværPeriodeFormValues } from './types';
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
 export const isFraværDag = (fraværDag: Partial<FraværDag>): fraværDag is FraværDag => {
-    const isValidÅrsak = brukHjemmePgaKoronaDagForm(fraværDag.dato) ? fraværDag.årsak !== undefined : true;
     return (
-        fraværDag.dato !== undefined &&
-        fraværDag.timerArbeidsdag !== undefined &&
-        fraværDag.timerFravær !== undefined &&
-        isValidÅrsak
+        fraværDag.dato !== undefined && fraværDag.timerArbeidsdag !== undefined && fraværDag.timerFravær !== undefined
     );
 };
 
 export const isFraværPeriode = (fraværPeriode: Partial<FraværPeriode>): fraværPeriode is FraværPeriode => {
-    const isValidÅrsak = brukHjemmePgaKoronaPeriodeForm(fraværPeriode.fraOgMed, fraværPeriode.tilOgMed)
-        ? fraværPeriode.årsak !== undefined
-        : true;
-
-    return fraværPeriode.fraOgMed !== undefined && fraværPeriode.tilOgMed !== undefined && isValidÅrsak;
+    return fraværPeriode.fraOgMed !== undefined && fraværPeriode.tilOgMed !== undefined;
 };
 
 export const fraværDagToFraværDateRange = (fraværDag: FraværDag): DateRange => ({
@@ -110,16 +101,6 @@ export const toMaybeNumber = (timerArbeidsdag: string | undefined): number | und
     return undefined;
 };
 
-export const getHjemmePgaKoronaFormValueFromFraværÅrsak = (årsak?: FraværÅrsak): YesOrNo => {
-    if (årsak === undefined) {
-        return YesOrNo.UNANSWERED;
-    }
-    return årsak === FraværÅrsak.smittevernhensyn || årsak === FraværÅrsak.stengtSkoleBhg ? YesOrNo.YES : YesOrNo.NO;
-};
-
-export const getÅrsakFromFraværFormValues = (formValues: FraværDagFormValues | FraværPeriodeFormValues): FraværÅrsak =>
-    formValues.hjemmePgaKorona === YesOrNo.YES && formValues.årsak ? formValues.årsak : FraværÅrsak.ordinært;
-
 export const mapFormValuesToFraværDag = (
     formValues: FraværDagFormValues,
     id: string | undefined
@@ -129,9 +110,6 @@ export const mapFormValuesToFraværDag = (
         timerArbeidsdag: formValues.timerArbeidsdag,
         timerFravær: formValues.timerFravær,
         dato: ISOStringToDate(formValues.dato),
-        årsak: brukHjemmePgaKoronaDagForm(ISOStringToDate(formValues.dato))
-            ? getÅrsakFromFraværFormValues(formValues)
-            : undefined,
     };
 };
 
@@ -140,10 +118,6 @@ export const mapFraværDagToFormValues = (fraværDag: Partial<FraværDag>): Frav
         timerArbeidsdag: fraværDag.timerArbeidsdag,
         timerFravær: fraværDag.timerFravær,
         dato: fraværDag.dato ? dateToISOString(fraværDag.dato) : '',
-        hjemmePgaKorona: brukHjemmePgaKoronaDagForm(fraværDag.dato)
-            ? getHjemmePgaKoronaFormValueFromFraværÅrsak(fraværDag.årsak)
-            : YesOrNo.UNANSWERED,
-        årsak: brukHjemmePgaKoronaDagForm(fraværDag.dato) ? fraværDag.årsak : undefined,
     };
 };
 
@@ -151,16 +125,10 @@ export const mapFormValuesToFraværPeriode = (
     formValues: FraværPeriodeFormValues,
     id: string | undefined
 ): Partial<FraværPeriode> => {
-    const brukÅrsak = brukHjemmePgaKoronaPeriodeForm(
-        ISOStringToDate(formValues.fraOgMed),
-        ISOStringToDate(formValues.tilOgMed)
-    );
-
     return {
         id: id || guid(),
         fraOgMed: ISOStringToDate(formValues.fraOgMed),
         tilOgMed: ISOStringToDate(formValues.tilOgMed),
-        årsak: brukÅrsak ? getÅrsakFromFraværFormValues(formValues) : undefined,
     };
 };
 
@@ -168,24 +136,5 @@ export const mapFraværPeriodeToFormValues = (fraværPeriode: Partial<FraværPer
     return {
         fraOgMed: fraværPeriode.fraOgMed ? dateToISOString(fraværPeriode.fraOgMed) : '',
         tilOgMed: fraværPeriode.tilOgMed ? dateToISOString(fraværPeriode.tilOgMed) : '',
-        hjemmePgaKorona: getHjemmePgaKoronaFormValueFromFraværÅrsak(fraværPeriode.årsak),
-        årsak: fraværPeriode.årsak,
     };
-};
-
-export const brukHjemmePgaKoronaPeriodeForm = (fraOgMed?: Date, tilOgMed?: Date) => {
-    if (fraOgMed === undefined || tilOgMed === undefined) {
-        return false;
-    }
-    return (
-        dayjs(fraOgMed).isBefore(dayjs('01.01.2023'), 'year') && dayjs(tilOgMed).isBefore(dayjs('01.01.2023'), 'year')
-    );
-};
-
-export const brukHjemmePgaKoronaDagForm = (dag?: Date) => {
-    if (dag === undefined) {
-        return false;
-    }
-
-    return dayjs(dag).isBefore(dayjs('01.01.2023'), 'year');
 };
