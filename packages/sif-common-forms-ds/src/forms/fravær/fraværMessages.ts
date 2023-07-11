@@ -17,7 +17,9 @@ const fraværMessages = {
 
         'fravær.form.felles.ok': 'Ok',
         'fravær.form.felles.avbryt': 'Avbryt',
+
         'fravær.form.periode.tittel': 'Periode med fravær fra jobb',
+
         'fravær.form.periode.tidsrom': 'Velg tidsrom',
         'fravær.form.periode.fom': 'Fra og med',
         'fravær.form.periode.tom': 'Til og med',
