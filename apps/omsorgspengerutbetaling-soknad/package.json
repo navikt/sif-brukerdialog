@@ -67,7 +67,7 @@
         "postcss-loader": "7.3.3",
         "postcss-nesting": "11.3.0",
         "react-scripts": "^5.0.1",
-        "sass": "1.63.4",
+        "sass": "1.63.6",
         "sass-loader": "13.3.2",
         "source-map-loader": "^4.0.1",
         "start-server-and-test": "2.0.0",
