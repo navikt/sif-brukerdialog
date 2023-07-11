@@ -7,6 +7,7 @@ on:
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/app.omsorgspengerutbetaling-soknad.yml
+            - .github/workflows/test.omsorgspengerutbetaling-soknad.yml
 
 env:
     APP_NAME: 'omsorgspengerutbetaling-soknad'
@@ -29,3 +30,38 @@ jobs:
 
             - name: Run code tests
               run: yarn test --filter=omsorgspengerutbetaling-soknad
+
+    run-cypress-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
+
+            - name: Build and start e2e server
+              uses: cypress-io/github-action@v5.8.1
+              env:
+                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspengerutbetaling
+                  FRONTEND_API_PATH: http://localhost:8089/
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  APPSTATUS_PROJECT_ID: ryujtq87
+                  APPSTATUS_DATASET: staging
+              with:
+                  project: ./apps/omsorgspengerutbetaling-soknad/e2e
+                  build: yarn build-omsorgspengerutbetaling-soknad
+                  start: yarn turbo start-e2e-server --filter=build-omsorgspengerutbetaling-soknad
+                  wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/alive'
+                  wait-on-timeout: 60
+                  runTests: false
+
+            - name: Run cypress tests
+              run: yarn turbo cypress-run --filter=omsorgspengerutbetaling-soknad
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
