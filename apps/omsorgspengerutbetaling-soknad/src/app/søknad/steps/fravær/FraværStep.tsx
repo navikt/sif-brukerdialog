@@ -236,6 +236,7 @@ const FraværStep = () => {
                                                 name={FraværFormFields.harDagerMedDelvisFravær}
                                                 legend={intlHelper(intl, 'step.fravaer.spm.harDagerMedDelvisFravær')}
                                                 validate={getYesOrNoValidator()}
+                                                data-testid="harDagerMedDelvisFravær"
                                             />
                                         </FormBlock>
                                         {/* DAGER MED DELVIS FRAVÆR*/}
@@ -295,6 +296,7 @@ const FraværStep = () => {
                                                         'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm'
                                                     )}
                                                     validate={getYesOrNoValidator()}
+                                                    data-testid="perioder_harVærtIUtlandet"
                                                 />
                                             </Block>
 

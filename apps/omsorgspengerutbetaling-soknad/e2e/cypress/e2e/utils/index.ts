@@ -27,6 +27,10 @@ export const selectRadioByNameAndValue = (name, value) => {
     cy.get(`[name="${name}"][value="${value}"]`).parent().click();
 };
 
+export const selectRadioByValue = (value) => {
+    cy.get(`[value="${value}"]`).parent().click();
+};
+
 export const checkCheckbuttonByName = (name) => {
     cy.get(`[type="checkbox"][name="${name}"]`).click();
 };
@@ -70,4 +74,18 @@ export const getTestElementByType = (type) => {
 
 export const getElement = (type) => {
     return cy.get(`${type}`);
+};
+
+export const submitModal = () => {
+    return cy.get('*[class="navds-modal__content"]').within(() => {
+        getElement('button').contains('Neste').click();
+    });
+};
+
+export const getModal = () => {
+    return cy.get('*[class="navds-modal__content"]');
+};
+
+export const getRadioButtons = () => {
+    return cy.get('*[class="navds-radio-buttons"]');
 };

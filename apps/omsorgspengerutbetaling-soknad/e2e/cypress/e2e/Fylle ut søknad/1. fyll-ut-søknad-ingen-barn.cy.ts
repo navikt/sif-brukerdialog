@@ -1,15 +1,17 @@
 import { contextConfig } from '../contextConfig';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
 import { cyApiMockData } from '../data/cyApiMockData';
-
+import { fyllUtMedlemskapSteg } from '../utils/medlemskap';
+import { fyllUtLegeerklæringSteg } from '../utils/legeerklæring';
+import { kontrollerOppsummering } from '../utils/oppsummering';
 const {
     startSøknad,
-    // sendInnSøknad,
     fyllUtOmBarnMinstEttYngre13år,
     fyllUtFraværSteg,
-    // kontrollerKvittering,
-    // kontrollerOppsummering,
-    // lastOppLegeerklæring,
+    fyllerUtArbeidssituasjonSteg,
+    fyllerUtFraværFraSteg,
+    sendInnSøknad,
+    kontrollerKvittering,
 } = utfyllingUtils;
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
@@ -25,5 +27,12 @@ describe('Fylle ut søknad med registrert barn som yngre 13 år', () => {
         startSøknad();
         fyllUtOmBarnMinstEttYngre13år();
         fyllUtFraværSteg();
+        fyllUtLegeerklæringSteg('komplett');
+        fyllerUtArbeidssituasjonSteg();
+        fyllerUtFraværFraSteg();
+        fyllUtMedlemskapSteg('komplett');
+        kontrollerOppsummering('komplett');
+        sendInnSøknad();
+        kontrollerKvittering();
     });
 });

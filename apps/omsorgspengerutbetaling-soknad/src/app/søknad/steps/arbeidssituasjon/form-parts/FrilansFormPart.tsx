@@ -47,6 +47,7 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                     </ExpandableInfo>
                 }
                 validate={getYesOrNoValidator()}
+                data-testid="frilans_erFrilanser"
             />
             {erFrilanser && (
                 <FormBlock margin="l">
@@ -61,6 +62,7 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                                     required: true,
                                     max: dateToday,
                                 })}
+                                data-testid="frilans_startdato"
                             />
                         </FormBlock>
                         <FormBlock>
@@ -68,6 +70,7 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                                 name={ArbeidssituasjonFormFields.frilans_jobberFortsattSomFrilans}
                                 legend={intlHelper(intl, 'frilanser.jobberFortsatt.spm')}
                                 validate={getYesOrNoValidator()}
+                                data-testid="frilans_jobberFortsattSomFrilans"
                             />
                         </FormBlock>
                         {harSluttetSomFrilanser && (
@@ -83,6 +86,7 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                                         min: datepickerUtils.getDateFromDateString(frilans_startdato),
                                         max: dateToday,
                                     })}
+                                    data-testid="frilans_sluttdato"
                                 />
                             </FormBlock>
                         )}

@@ -49,6 +49,7 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                         </>
                     </ExpandableInfo>
                 }
+                data-testid="selvstendig_erSelvstendigNæringsdrivende"
             />
 
             {erSelvstendigNæringsdrivende && (
@@ -57,6 +58,7 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
                         name={ArbeidssituasjonFormFields.selvstendig_harFlereVirksomheter}
                         legend={intlHelper(intl, 'selvstendig.harFlereVirksomheter.spm')}
                         validate={getYesOrNoValidator()}
+                        data-testid="selvstendig_harFlereVirksomheter"
                     />
                 </FormBlock>
             )}
