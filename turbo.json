@@ -64,6 +64,13 @@
         "build-omsorgspengerutbetaling-soknad": {
             "outputs": [],
             "dependsOn": ["^build-package"]
+        },
+        "build-omsorgspengerutbetaling-arbeidstaker-soknad": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
         }
+
+
+        
     }
 }

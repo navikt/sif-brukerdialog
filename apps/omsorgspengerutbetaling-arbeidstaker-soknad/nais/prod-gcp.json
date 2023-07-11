@@ -1,0 +1,25 @@
+{
+    "app": "omsorgspengerutbetaling-arbeidstaker-soknad",
+    "cluster": "prod-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker"],
+    "externalHosts": ["www.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/health/isReady",
+    "env": {
+        "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/oauth2/logout",
+        "API_URL": "http://k9-brukerdialog-api",
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
+        "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api",
+        "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker",
+        "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/soknad",
+        "NYNORSK": "off",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "APPSTATUS_DATASET": "production",
+        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
+        "NPM_CONFIG_CACHE": "/tmp",
+        "USE_AMPLITUDE": "true"
+    }
+}
