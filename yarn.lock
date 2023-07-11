@@ -4531,6 +4531,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/aksel-icons@npm:^4.1.6":
+  version: 4.6.1
+  resolution: "@navikt/aksel-icons@npm:4.6.1"
+  checksum: 388a8f554b54e1b5753be9055b1e888f4912a13f3e83185e42bca7fa5b65605079c1d40fc834c03f80de6ae412e20c8333a59acf3bb046440d46c7528aba05ba
+  languageName: node
+  linkType: hard
+
 "@navikt/aksel-icons@npm:^4.1.7":
   version: 4.1.7
   resolution: "@navikt/aksel-icons@npm:4.1.7"
@@ -4569,6 +4576,13 @@ __metadata:
   version: 3.0.1
   resolution: "@navikt/ds-css@npm:3.0.1"
   checksum: d8f36550f6da8f6a869072fc60b10f6028e176fc0ff726bc1dac7cf97a2df8d68f4f945b90ed7f74cc31648d49bbd3beabd7d3f5b5be09cd518e9ec7e5d9445d
+  languageName: node
+  linkType: hard
+
+"@navikt/ds-css@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@navikt/ds-css@npm:4.1.6"
+  checksum: 567d5dd27370c40941faa36a567d2def1257d17015e1fd494783dd1bc0240c93694e47a9c62c6da3135ef02435d26ce651d3c1c2aacf2a738dc8b303ca05b6dd
   languageName: node
   linkType: hard
 
@@ -4635,6 +4649,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/ds-react@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@navikt/ds-react@npm:4.1.6"
+  dependencies:
+    "@floating-ui/react": 0.24.1
+    "@navikt/aksel-icons": ^4.1.6
+    "@radix-ui/react-tabs": 1.0.0
+    "@radix-ui/react-toggle-group": 1.0.0
+    clsx: ^1.2.1
+    date-fns: 2.29.3
+    react-day-picker: 8.3.4
+    react-modal: 3.15.1
+  peerDependencies:
+    "@types/react": ^17.0.30 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 170a595c34849c7ec639cb63830a1cebde2d12a642849283a11944c0d08c479edf5f3e88271b90765e8a448697ddf7c9673198ddd59a64b98fd524bccd6b7132
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-react@npm:4.1.7":
   version: 4.1.7
   resolution: "@navikt/ds-react@npm:4.1.7"
@@ -4654,6 +4690,13 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 7b453fdc377181f46bfa36a8cc2fd85a70aee2af859157dfb84a1c123ae3a1c4923bfb1ea52213d083db7670699e1712ea67cca575e2c89d32d58c85071d4bbf
+  languageName: node
+  linkType: hard
+
+"@navikt/ds-tailwind@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@navikt/ds-tailwind@npm:4.1.6"
+  checksum: bc6365268bc0d587c6a6413011847a499516d8740764d0a661ee7dc2591718c65ce43b3b2ad88016e42543acb74746193982073a0a97dd3d28c18a55037b48b4
   languageName: node
   linkType: hard
 
@@ -8787,6 +8830,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-dom@npm:18.2.5":
+  version: 18.2.5
+  resolution: "@types/react-dom@npm:18.2.5"
+  dependencies:
+    "@types/react": "*"
+  checksum: c48209f8c60cb9054f3deee5365bc9fd6dadd8f901b67f1612a334057b2671518fc5145f14aca63ff276a926ccb5358308a6cf58ec700178f382bb3ebde96d91
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:18.2.6":
   version: 18.2.6
   resolution: "@types/react-dom@npm:18.2.6"
@@ -8852,6 +8904,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 6a6c8feada1d6aa2d01a38c44ce09598d93688e97ed21511d5e34fd7fe748b760dd957a5ac0725f5643d8d7e1a0ade6478ebd4be96c9605c5d6816b17ad35d2d
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.2.12":
+  version: 18.2.12
+  resolution: "@types/react@npm:18.2.12"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: ad85a7eadaf1b35cfeee9f715b39311420ff46d46e0650377d918b3f888c2e47416037da4a765e1dccd3d1916abd54c105a3bee803c971ba56c955a7768ce976
   languageName: node
   linkType: hard
 
