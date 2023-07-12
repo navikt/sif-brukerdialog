@@ -60,7 +60,7 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                                 index={index}
                                 søknadsperiode={søknadsperiode}
                                 arbeidsforhold={values.ansatt_arbeidsforhold[index]}
-                                normalarbeidstid={arbeidsforhold.normalarbeidstid}
+                                normalarbeidstid={arbeidsforhold.normalarbeidstid.timerPerUkeISnitt}
                             />
                         );
                     })}
@@ -70,11 +70,7 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
             {/* Frilanser */}
             {frilanser?.harInntektSomFrilanser === true && frilanser?.misterInntektSomFrilanserIPeriode && (
                 <FormBlock>
-                    <ArbeidstidFrilanser
-                        frilanser={frilanser}
-                        values={values.frilans}
-                        søknadsperiode={søknadsperiode}
-                    />
+                    <ArbeidstidFrilanser frilanser={frilanser} søknadsperiode={søknadsperiode} />
                 </FormBlock>
             )}
 

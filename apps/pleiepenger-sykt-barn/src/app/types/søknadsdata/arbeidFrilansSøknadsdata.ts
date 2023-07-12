@@ -1,20 +1,17 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 import { ArbeidsforholdSøknadsdata } from './ArbeidsforholdSøknadsdata';
-
-interface Frilansarbeid {
-    normalarbeidstid?: NormalarbeidstidSøknadsdata;
-}
 
 type HonorararbeidMisterIkkeHonorar = {
     misterHonorar: false;
-    normalarbeidstid?: NormalarbeidstidSøknadsdata; // Påkrevd dersom bruker også har frilansarbeid. Da trenger vi dette for å regne ut redusert arbeidstid.
 };
 
 type HonorararbeidMisterHonorar = {
     misterHonorar: true;
-    normalarbeidstid: NormalarbeidstidSøknadsdata;
 };
+
+type ArbeidsforholdHonorararbeid =
+    | HonorararbeidMisterIkkeHonorar
+    | (HonorararbeidMisterHonorar & ArbeidsforholdSøknadsdata);
 
 type FrilanserAvsluttetIPeriodePart = {
     erFortsattFrilanser: false;
@@ -35,9 +32,9 @@ export type FrilanserMisterInntekt = {
     harInntektSomFrilanser: true;
     misterInntektSomFrilanserIPeriode: true;
     periodeinfo: FrilanserPeriodePart;
-    honorararbeid?: HonorararbeidMisterIkkeHonorar | HonorararbeidMisterHonorar;
-    frilansarbeid?: Frilansarbeid;
-    arbeidsforhold: ArbeidsforholdSøknadsdata; // Aggregert informasjon fra honorararbeid og frilansarbeid + egne spørsmål
+    arbeidsforholdFrilanserarbeid?: ArbeidsforholdSøknadsdata;
+    arbeidsforholdHonorararbeid?: ArbeidsforholdHonorararbeid;
+    // arbeidsforhold: ArbeidsforholdSøknadsdata; // Aggregert informasjon fra honorararbeid og frilansarbeid + egne spørsmål
 };
 
 /** Frilanstyper */
@@ -49,27 +46,27 @@ export type FrilansSøknadsdataIngenInntektSomFrilanser = {
 export type FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
     harInntektSomFrilanser: true;
     misterInntektSomFrilanserIPeriode: false;
-    honorararbeid: HonorararbeidMisterIkkeHonorar;
+    arbeidsforholdHonorararbeid: HonorararbeidMisterIkkeHonorar;
 };
 
 export type FrilansSøknadsdataKunHonorararbeidMisterHonorar = FrilanserMisterInntekt & {
-    honorararbeid: HonorararbeidMisterHonorar;
-    frilansarbeid: undefined;
+    arbeidsforholdFrilanserarbeid: undefined;
+    arbeidsforholdHonorararbeid: ArbeidsforholdSøknadsdata & HonorararbeidMisterHonorar;
 };
 
 export type FrilansSøknadsdataKunFrilansarbeid = FrilanserMisterInntekt & {
-    honorararbeid: undefined;
-    frilansarbeid: Frilansarbeid;
+    arbeidsforholdFrilanserarbeid: ArbeidsforholdSøknadsdata;
+    arbeidsforholdHonorararbeid: undefined;
 };
 
 export type FrilansSøknadsdataFrilansarbeidOgHonorararbeid = FrilanserMisterInntekt & {
-    frilansarbeid: Frilansarbeid;
-    honorararbeid: HonorararbeidMisterIkkeHonorar | HonorararbeidMisterHonorar;
+    arbeidsforholdFrilanserarbeid: ArbeidsforholdSøknadsdata;
+    arbeidsforholdHonorararbeid: ArbeidsforholdHonorararbeid;
 };
 
 export type FrilanserSøknadsdata =
     | FrilansSøknadsdataIngenInntektSomFrilanser
+    | FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar
     | FrilansSøknadsdataKunFrilansarbeid
     | FrilansSøknadsdataKunHonorararbeidMisterHonorar
-    | FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar
     | FrilansSøknadsdataFrilansarbeidOgHonorararbeid;

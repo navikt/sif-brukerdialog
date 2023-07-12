@@ -17,6 +17,7 @@ import FrilansStartdatoSpørsmål from './spørsmål/FrilansStartdatoSpørsmål'
 import HarHattInntektSomFrilanserSpørsmål from './spørsmål/HarHattInntektSomFrilanserSpørsmål';
 import MisterHonorarSpørsmål from './spørsmål/MisterHonorarSpørsmål';
 import { InfoArbeiderNormaltTimerFrilanser } from '../info/InfoArbeiderNormaltTimerIUken';
+import { ArbeidsforholdFormField } from '../../../../types/ArbeidsforholdFormValues';
 
 export const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormData, ValidationError>();
 
@@ -30,7 +31,8 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
     const { values } = useFormikContext<SøknadFormValues>();
     const {
         harHattInntektSomFrilanser,
-        arbeidsforhold,
+        arbeidsforholdFrilansarbeid,
+        arbeidsforholdHonorararbeid,
         misterHonorar,
         frilanstyper = [],
         erFortsattFrilanser,
@@ -146,9 +148,11 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                                 {visNormalarbeidstidFrilansarbeid && (
                                     <FormBlock>
                                         <FrilansNormalarbeidstidSpørsmål
-                                            fieldName={FrilansFormField.frilansarbeid_normalarbeidstid}
+                                            fieldName={
+                                                `${FrilansFormField.arbeidsforholdFrilansarbeid}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
+                                            }
                                             frilanstype={Frilanstype.FRILANSARBEID}
-                                            arbeidsforhold={arbeidsforhold || {}}
+                                            arbeidsforhold={arbeidsforholdFrilansarbeid || {}}
                                             erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
                                             frilanstyper={frilanstyper}
                                             misterHonorar={misterHonorar}
@@ -167,9 +171,11 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                                 {visNormalarbeidstidHonorararbeid && (
                                     <FormBlock>
                                         <FrilansNormalarbeidstidSpørsmål
-                                            fieldName={FrilansFormField.honorararbeid_normalarbeidstid}
+                                            fieldName={
+                                                `${FrilansFormField.arbeidsforholdHonorararbeid}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
+                                            }
                                             frilanstype={Frilanstype.HONORARARBEID}
-                                            arbeidsforhold={arbeidsforhold || {}}
+                                            arbeidsforhold={arbeidsforholdHonorararbeid || {}}
                                             erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
                                             frilanstyper={frilanstyper}
                                             misterHonorar={misterHonorar}

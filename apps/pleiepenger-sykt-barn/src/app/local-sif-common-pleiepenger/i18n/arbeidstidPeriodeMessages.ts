@@ -1,6 +1,3 @@
-// import { IntlShape } from 'react-intl';
-// import { typedIntlHelper } from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-
 const arbeidstidPeriodeFormFormMessages = {
     nb: {
         'arbeidstidPeriodeForm.tittel': `Periode med jobb - {arbeidsstedNavn}`,
@@ -66,6 +63,11 @@ const arbeidstidPeriodeFormFormMessages = {
 
 const arbeidIPeriodeIntlValuesMessages = {
     nb: {
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.harJobbet': 'har jobbet',
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe': 'skal jobbe',
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt': `hos {arbeidsstedNavn}`,
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser': `som frilanser`,
+        'arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN': 'som selvstendig næringsdrivende',
         'arbeidstidPeriode.arbeidIPeriodeIntlValues.arbeidstaker': `hos {arbeidsstedNavn}`,
         'arbeidstidPeriode.arbeidIPeriodeIntlValues.frilansarbeid': 'som frilanser',
         'arbeidstidPeriode.arbeidIPeriodeIntlValues.honorararbeid': 'med honorararbeid',
@@ -74,16 +76,28 @@ const arbeidIPeriodeIntlValuesMessages = {
     },
 };
 
+const arbeidIPeriodeSpørsmål = {
+    nb: {
+        'arbeidIPeriode.spørsmål.ARBEIDSTAKER.arbeiderIPerioden':
+            'I perioden du søker for, hvilken situasjon gjelder for deg hos {arbeidsgiverNavn}?',
+        'arbeidIPeriode.spørsmål.ARBEIDSTAKER.erLiktHverUke':
+            'Jobber du like mye hver uke hos {arbeidsgiverNavn} i perioden?',
+        'arbeidIPeriode.spørsmål.ARBEIDSTAKER.timerEllerProsent':
+            'Hvordan vil du oppgi hvor mye du jobber hos {arbeidsgiverNavn}?',
+        'arbeidIPeriode.spørsmål.ARBEIDSTAKER.snittTimerPerUke':
+            '"Hvor mange timer jobber du hver uke hos {arbeidsgiverNavn} i perioden?',
+        'arbeidIPeriode.spørsmål.ARBEIDSTAKER.prosentAvNormalt':
+            'Hvor mange prosent jobber du hos {arbeidsgiverNavn} i perioden?',
+    },
+};
+
 export const arbeidstidPeriodeMessages = {
     nb: {
         ...arbeidstidPeriodeFormFormMessages.nb,
         ...arbeidIPeriodeIntlValuesMessages.nb,
+        ...arbeidIPeriodeSpørsmål.nb,
         'arbeidstidPeriodeDialog.contentLabel': 'Registrer jobb for en periode',
         'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timer}}',
         'arbeidstidPeriode.timer.ikkeTall': `{timer} timer`,
     },
 };
-
-// type ArbeidstidPeriodeMessagesType = keyof typeof arbeidstidPeriodeMessages.nb;
-
-// export const getArbeidstidPeriodeIntl = (intl: IntlShape) => typedIntlHelper<ArbeidstidPeriodeMessagesType>(intl);

@@ -7,13 +7,13 @@ import ResponsivePanel from '../../../components/responsive-panel/ResponsivePane
 import { ArbeidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../types';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
-import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import {
     getArbeidIPeriodeErLiktHverUkeValidator,
     getArbeidIPeriodeTimerEllerProsentValidator,
 } from '../validationArbeidIPeriodeSpørsmål';
 import ArbeidstidInput from './arbeidstid-uker-spørsmål/ArbeidstidInput';
+import { getArbeidstidSpørsmål } from './arbeidIPeriodeTekstUtils';
 
 export enum RedusertArbeidAktivitetType {
     'ARBEIDSTAKER' = 'ARBEIDSTAKER',
@@ -27,7 +27,7 @@ interface Props {
     parentFieldName: string;
     arbeidIPeriodenValues?: ArbeidIPeriodeFormValues;
     søkerNoeFremtid: boolean;
-    normalarbeidstid: NormalarbeidstidSøknadsdata;
+    normalarbeidstid: number;
     intlValues: ArbeidIPeriodeIntlValues;
 }
 
@@ -40,8 +40,9 @@ const ArbeidRedusertPart = ({
     intlValues,
 }: Props) => {
     const intl = useIntl();
-    const arbeidIPeriodeParentFieldName = `${parentFieldName}.arbeidIPeriode`;
-    const getFieldName = (field: ArbeidIPeriodeFormField) => `${arbeidIPeriodeParentFieldName}.${field}` as any;
+    const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
+
+    const spørsmål = getArbeidstidSpørsmål(intl, aktivitetType, intlValues);
 
     return (
         <FormBlock margin="l">
@@ -61,7 +62,7 @@ const ArbeidRedusertPart = ({
                 <FormBlock>
                     <SøknadFormComponents.YesOrNoQuestion
                         name={getFieldName(ArbeidIPeriodeFormField.erLiktHverUke)}
-                        legend={intlHelper(intl, `arbeidIPeriode.erLiktHverUke.${aktivitetType}.spm`, intlValues)}
+                        legend={spørsmål.erLiktHverUke}
                         validate={getArbeidIPeriodeErLiktHverUkeValidator(intlValues)}
                         labels={{
                             yes: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.ja`),
@@ -75,11 +76,7 @@ const ArbeidRedusertPart = ({
                         <FormBlock>
                             <SøknadFormComponents.RadioGroup
                                 name={getFieldName(ArbeidIPeriodeFormField.timerEllerProsent)}
-                                legend={intlHelper(
-                                    intl,
-                                    `arbeidIPeriode.timerEllerProsent.${aktivitetType}.spm`,
-                                    intlValues
-                                )}
+                                legend={spørsmål.timerEllerProsent}
                                 radios={[
                                     {
                                         label: intlHelper(intl, `arbeidIPeriode.timerEllerProsent.prosent`),
@@ -98,7 +95,7 @@ const ArbeidRedusertPart = ({
                         {arbeidIPeriodenValues.timerEllerProsent !== undefined && (
                             <ArbeidstidInput
                                 arbeidIPeriode={arbeidIPeriodenValues}
-                                parentFieldName={arbeidIPeriodeParentFieldName}
+                                parentFieldName={parentFieldName}
                                 normalarbeidstid={normalarbeidstid}
                                 timerEllerProsent={arbeidIPeriodenValues.timerEllerProsent}
                                 intlValues={intlValues}

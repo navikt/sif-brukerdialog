@@ -11,9 +11,9 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 type ArbeidstidSpørsmål = {
     [ArbeidIPeriodeFormField.arbeiderIPerioden]: string;
     [ArbeidIPeriodeFormField.erLiktHverUke]: string;
-    // [ArbeidIPeriodeFormField.timerEllerProsent]: SpørsmålIntlKeys;
-    // [ArbeidIPeriodeFormField.snittTimerPerUke]: SpørsmålIntlKeys;
-    // [ArbeidIPeriodeFormField.prosentAvNormalt]: SpørsmålIntlKeys;
+    [ArbeidIPeriodeFormField.timerEllerProsent]: string;
+    [ArbeidIPeriodeFormField.snittTimerPerUke]: string;
+    [ArbeidIPeriodeFormField.prosentAvNormalt]: string;
     // [ArbeidIPeriodeFormField.arbeidsuker]: SpørsmålIntlKeys;
 };
 
@@ -30,7 +30,22 @@ export const getArbeidstidSpørsmål = (
         ),
         [ArbeidIPeriodeFormField.erLiktHverUke]: intlHelper(
             intl,
-            getSpørsmålIntlKey(ArbeidIPeriodeFormField.arbeiderIPerioden, aktivitetType),
+            getSpørsmålIntlKey(ArbeidIPeriodeFormField.erLiktHverUke, aktivitetType),
+            values
+        ),
+        [ArbeidIPeriodeFormField.timerEllerProsent]: intlHelper(
+            intl,
+            getSpørsmålIntlKey(ArbeidIPeriodeFormField.timerEllerProsent, aktivitetType),
+            values
+        ),
+        [ArbeidIPeriodeFormField.snittTimerPerUke]: intlHelper(
+            intl,
+            getSpørsmålIntlKey(ArbeidIPeriodeFormField.snittTimerPerUke, aktivitetType),
+            values
+        ),
+        [ArbeidIPeriodeFormField.prosentAvNormalt]: intlHelper(
+            intl,
+            getSpørsmålIntlKey(ArbeidIPeriodeFormField.prosentAvNormalt, aktivitetType),
             values
         ),
     };
@@ -42,8 +57,19 @@ export const getArbeidstidValidationIntlKey = (aktivitetType: RedusertArbeidAkti
             ArbeidIPeriodeFormField.arbeiderIPerioden,
             aktivitetType
         ),
-
         [ArbeidIPeriodeFormField.erLiktHverUke]: getValidationIntlKey(
+            ArbeidIPeriodeFormField.arbeiderIPerioden,
+            aktivitetType
+        ),
+        [ArbeidIPeriodeFormField.timerEllerProsent]: getValidationIntlKey(
+            ArbeidIPeriodeFormField.arbeiderIPerioden,
+            aktivitetType
+        ),
+        [ArbeidIPeriodeFormField.snittTimerPerUke]: getValidationIntlKey(
+            ArbeidIPeriodeFormField.arbeiderIPerioden,
+            aktivitetType
+        ),
+        [ArbeidIPeriodeFormField.prosentAvNormalt]: getValidationIntlKey(
             ArbeidIPeriodeFormField.arbeiderIPerioden,
             aktivitetType
         ),
@@ -51,10 +77,10 @@ export const getArbeidstidValidationIntlKey = (aktivitetType: RedusertArbeidAkti
 };
 
 const getSpørsmålIntlKey = (field: ArbeidIPeriodeFormField, aktivitetType: RedusertArbeidAktivitetType) =>
-    `arbeidIPeriode.spørsmål.${field}.${aktivitetType}`;
+    `arbeidIPeriode.spørsmål.${aktivitetType}.${field}`;
 
 const getValidationIntlKey = (field: ArbeidIPeriodeFormField, aktivitetType: RedusertArbeidAktivitetType) =>
-    `arbeidIPeriode.validation.${field}.${aktivitetType}`;
+    `arbeidIPeriode.validation.${aktivitetType}.${field}`;
 
 // const getArbeidstidSpørsmålIntlKeys = (
 //     field: ArbeidIPeriodeFormField,

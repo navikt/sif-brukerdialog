@@ -10,7 +10,6 @@ import { formatTimerOgMinutter } from '../../../../local-sif-common-pleiepenger/
 import { TimerEllerProsent } from '../../../../types';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../../types/ArbeidsukeInfo';
-import { NormalarbeidstidSøknadsdata } from '../../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import SøknadFormComponents from '../../../SøknadFormComponents';
 import {
     getArbeidIPeriodeProsentAvNormaltValidator,
@@ -20,7 +19,7 @@ import {
 interface Props {
     arbeidsuke?: ArbeidsukeInfo;
     parentFieldName: string;
-    normalarbeidstid: NormalarbeidstidSøknadsdata;
+    normalarbeidstid: number;
     timerEllerProsent: TimerEllerProsent;
     intlValues: ArbeidIPeriodeIntlValues;
     arbeidIPeriode: ArbeidIPeriodeFormValues;
@@ -46,10 +45,7 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
     const prosentFieldName: any = getFieldName(ArbeidIPeriodeFormField.prosentAvNormalt);
     const timerFieldName: any = getFieldName(ArbeidIPeriodeFormField.snittTimerPerUke);
 
-    const timerNormaltString = formatTimerOgMinutter(
-        intl,
-        decimalDurationToDuration(normalarbeidstid.timerPerUkeISnitt)
-    );
+    const timerNormaltString = formatTimerOgMinutter(intl, decimalDurationToDuration(normalarbeidstid));
 
     const formatPeriode = (periode: DateRange): string =>
         `${dateFormatter.compact(periode.from)} - ${dateFormatter.compact(periode.to)}`;
@@ -121,7 +117,7 @@ const ArbeidstidInput: React.FunctionComponent<Props> = ({
                     validate={getArbeidIPeriodeTimerPerUkeISnittValidator(
                         intl,
                         intlValues,
-                        normalarbeidstid.timerPerUkeISnitt,
+                        normalarbeidstid,
                         arbeidsuke,
                         frilans ? frilansVervValideringString : undefined
                     )}

@@ -8,7 +8,6 @@ import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleie
 import { ArbeidIPeriodeFormField } from '../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
 import { SøknadFormField } from '../../../types/SøknadFormValues';
-import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import { getPeriodeSomAnsattInnenforPeriode } from '../../../utils/ansattUtils';
 import { søkerNoeFremtid } from '../../../utils/søknadsperiodeUtils';
 import ArbeiderIPeriodenSpørsmål from './spørsmål/ArbeiderIPeriodenSpørsmål';
@@ -17,7 +16,7 @@ import { getArbeidstidSpørsmål } from './arbeidIPeriodeTekstUtils';
 
 interface Props {
     arbeidsforhold: ArbeidsforholdFormValues;
-    normalarbeidstid: NormalarbeidstidSøknadsdata;
+    normalarbeidstid: number;
     søknadsperiode: DateRange;
     index: number;
 }
@@ -35,7 +34,7 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
 
     const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
         periode,
-        jobberNormaltTimer: normalarbeidstid.timerPerUkeISnitt,
+        jobberNormaltTimer: normalarbeidstid,
         arbeidsgiverNavn: arbeidsgiver.navn,
     });
 
@@ -46,7 +45,6 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
                     fieldName={`${ansattParentFieldName}.${ArbeidIPeriodeFormField.arbeiderIPerioden}` as any}
                     intlValues={intlValues}
                     validationIntlKey={'todo'}
-                    // aktivitetType={RedusertArbeidAktivitetType.ARBEIDSTAKER}
                     spørsmål={
                         getArbeidstidSpørsmål(intl, RedusertArbeidAktivitetType.ARBEIDSTAKER, {
                             arbeidsgiverNavn: arbeidsgiver.navn,

@@ -10,7 +10,6 @@ import { formatTimerOgMinutter } from '../../../../local-sif-common-pleiepenger/
 import { TimerEllerProsent } from '../../../../types';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../../types/ArbeidsukeInfo';
-import { NormalarbeidstidSøknadsdata } from '../../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import SøknadFormComponents from '../../../SøknadFormComponents';
 import { ArbeidsukeFieldName } from '../../types/Arbeidsuke';
 import {
@@ -33,7 +32,7 @@ interface Props {
     periode: DateRange;
     søknadsperiode: DateRange;
     parentFieldName: string;
-    normalarbeidstid: NormalarbeidstidSøknadsdata;
+    normalarbeidstid: number;
     timerEllerProsent: TimerEllerProsent;
     arbeidIPeriode: ArbeidIPeriodeFormValues;
     intlValues: ArbeidIPeriodeIntlValues;
@@ -78,10 +77,7 @@ const ArbeidstidUkerSpørsmål: React.FunctionComponent<Props> = ({
     const arbeidsuker = getArbeidsukerIPerioden(periode);
     const intl = useIntl();
 
-    const timerNormaltString = formatTimerOgMinutter(
-        intl,
-        decimalDurationToDuration(normalarbeidstid.timerPerUkeISnitt)
-    );
+    const timerNormaltString = formatTimerOgMinutter(intl, decimalDurationToDuration(normalarbeidstid));
 
     return (
         <SøknadFormComponents.InputGroup

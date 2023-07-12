@@ -127,17 +127,24 @@ export const getAlleArbeidsforholdIPerioden = (arbeid?: ArbeidSøknadsdata): Arb
         }
     });
 
-    const frilans: ArbeidsforholdSøknadsdata[] =
-        arbeid.frilanser?.harInntektSomFrilanser &&
-        arbeid.frilanser.misterInntektSomFrilanserIPeriode &&
-        arbeid.frilanser.arbeidsforhold
-            ? [arbeid.frilanser.arbeidsforhold]
-            : [];
+    const frilansArbeidsforhold: ArbeidsforholdSøknadsdata[] = [];
+
+    if (arbeid.frilanser?.harInntektSomFrilanser && arbeid.frilanser.misterInntektSomFrilanserIPeriode) {
+        if (arbeid.frilanser.arbeidsforholdFrilanserarbeid) {
+            frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdFrilanserarbeid);
+        }
+        if (
+            arbeid.frilanser.arbeidsforholdHonorararbeid &&
+            arbeid.frilanser.arbeidsforholdHonorararbeid.misterHonorar
+        ) {
+            frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdHonorararbeid);
+        }
+    }
 
     const selvstendig: ArbeidsforholdSøknadsdata[] = arbeid.selvstendig?.erSN
         ? [arbeid.selvstendig.arbeidsforhold]
         : [];
-    return [...arbeidsgivere, ...frilans, ...selvstendig];
+    return [...arbeidsgivere, ...frilansArbeidsforhold, ...selvstendig];
 };
 
 export const getArbeidsukerIPerioden = (periode: DateRange): ArbeidsukeInfo[] => {

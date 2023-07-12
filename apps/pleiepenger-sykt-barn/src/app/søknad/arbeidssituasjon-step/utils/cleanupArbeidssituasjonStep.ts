@@ -49,17 +49,16 @@ export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, value
     const frilans: FrilansFormData = { ...values };
 
     if (erFrilanserISøknadsperiode(søknadsperiode, values) === false) {
-        frilans.arbeidsforhold = undefined;
+        frilans.arbeidsforholdFrilansarbeid = undefined;
+        frilans.arbeidsforholdHonorararbeid = undefined;
     }
 
     if (!harHonorararbeid) {
         frilans.misterHonorar = undefined;
-        frilans.honorararbeid_arbeiderIPeriodenSvar = undefined;
-        frilans.honorararbeid_normalarbeidstid = undefined;
+        frilans.arbeidsforholdHonorararbeid = undefined;
     }
     if (!harFrilansarbeid) {
-        frilans.frilansarbeid_arbeiderIPeriodenSvar = undefined;
-        frilans.frilansarbeid_normalarbeidstid = undefined;
+        frilans.arbeidsforholdFrilansarbeid = undefined;
     }
     if (values.erFortsattFrilanser === YesOrNo.YES) {
         values.sluttdato = undefined;
