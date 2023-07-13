@@ -1,5 +1,5 @@
 import { Arbeidsgiver } from '../Arbeidsgiver';
-import { ArbeidsforholdSøknadsdata } from './ArbeidsforholdSøknadsdata';
+import { ArbeidsforholdSøknadsdata } from './arbeidsforholdSøknadsdata';
 
 export type ArbeidsgivereSøknadsdata = Map<string, ArbeidAnsattSøknadsdata>;
 

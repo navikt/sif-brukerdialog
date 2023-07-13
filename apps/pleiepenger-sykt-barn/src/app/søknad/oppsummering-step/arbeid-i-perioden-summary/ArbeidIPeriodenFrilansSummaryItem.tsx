@@ -13,7 +13,7 @@
 // import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 // import { MisterHonorarerFraVervIPerioden } from '../../../types/ArbeidIPeriodeFormValues';
 // import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
-// import { ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/ArbeidIPeriodeApiData';
+// import { ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/arbeidIPeriodeApiData';
 // import { ArbeidIPeriodeFrilansApiData } from '../../../types/søknad-api-data/arbeidIPeriodeFrilansApiData';
 // import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 // // import { ArbeidIPeriodenFrilansSummaryItemType } from './ArbeidIPeriodenSummary';

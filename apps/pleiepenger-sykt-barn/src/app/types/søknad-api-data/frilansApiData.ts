@@ -1,6 +1,6 @@
 import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
 import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
-import { ArbeidsforholdApiData } from './ArbeidsforholdApiData';
+import { ArbeidsforholdApiData } from './arbeidsforholdApiData';
 
 /**
  * Frilansarbeid er litt annerledes enn andre arbeidsforhold og med vi ut mot bruker spør om både

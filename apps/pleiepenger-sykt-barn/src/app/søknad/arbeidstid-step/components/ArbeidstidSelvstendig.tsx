@@ -1,42 +1,62 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import FormSection from '../../../components/form-section/FormSection';
-// import { ArbeidIPeriodeFormField } from '../../../types/ArbeidIPeriodeFormValues';
-// import { SelvstendigFormField } from '../../../types/SelvstendigFormData';
-// import ArbeiderIPeriodenSpørsmål from './spørsmål/ArbeiderIPeriodenSpørsmål';
-// import { RedusertArbeidAktivitetType } from './ArbeidRedusertPart';
+import { FormattedMessage, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { DateRange } from '@navikt/sif-common-utils/lib';
+import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
+import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
+import { SelvstendigFormField } from '../../../types/SelvstendigFormData';
+import { ArbeidsaktivitetType } from '../ArbeidstidStep';
+import InfoOmEndring from './InfoOmEndring';
+import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 
 interface Props {
-    todo?: string;
+    arbeidIPeriode?: ArbeidIPeriodeFormValues;
+    normalarbeidstid: number;
+    /** Periode som selvstendig i søknadsperioden */
+    periode: DateRange;
+    søkerFremITid: boolean;
 }
 
-const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({}) => {
+const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
+    arbeidIPeriode,
+    periode,
+    normalarbeidstid,
+    søkerFremITid,
+}) => {
     const intl = useIntl();
-    return (
-        <FormSection title={intlHelper(intl, 'arbeidIPeriode.SNLabel')}>
-            <div data-testid="arbeidIPerioden_selvstendig">
-                {/* <ArbeiderIPeriodenSpørsmål
-                    fieldName={
-                        `${SelvstendigFormField.arbeidsforhold}.${ArbeidIPeriodeFormField.arbeiderIPerioden}` as any
-                    }
-                    aktivitetType={RedusertArbeidAktivitetType.SN}
-                    // validationKey="validation.arbeidIPeriode.selvstendig"
-                /> */}
 
-                {/* <ArbeidIPeriodeSpørsmål
-            aktivitetType="sn"
-            normalarbeidstid={arbeid.selvstendig.arbeidsforhold.normalarbeidstid}
-            arbeidsstedNavn="Selvstendig næringsdrivende"
-            arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
-            arbeidsforhold={selvstendig.arbeidsforhold}
-            arbeidsperiode={periodeSomSelvstendigISøknadsperiode}
-            søknadsperiode={søknadsperiode}
+    const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
+        periode: periode,
+        jobberNormaltTimer: normalarbeidstid,
+    });
+
+    return (
+        <ArbeidstidArbeidsaktivitet
+            periode={periode}
+            arbeidsaktivitetType={ArbeidsaktivitetType.SELVSTENDING}
+            arbeidIPeriode={arbeidIPeriode}
             parentFieldName={SelvstendigFormField.arbeidsforhold}
-            onArbeidstidVariertChange={handleArbeidstidChanged}
-        /> */}
-            </div>
-        </FormSection>
+            tittel="Selvstendig næringsdrivende"
+            intlValues={intlValues}
+            normalarbeidstid={normalarbeidstid}
+            info={
+                <>
+                    <Heading level="4" size="small">
+                        Hvor mye jobber du som selvstendig næringsdrivende i perioden?
+                    </Heading>
+
+                    {søkerFremITid && (
+                        <p>
+                            <FormattedMessage id="arbeidIPeriode.redusert.info.tekst" />
+                        </p>
+                    )}
+                    <Block margin="m">
+                        <InfoOmEndring arbeidsaktivitetType={ArbeidsaktivitetType.SELVSTENDING} />
+                    </Block>
+                </>
+            }
+        />
     );
 };
 

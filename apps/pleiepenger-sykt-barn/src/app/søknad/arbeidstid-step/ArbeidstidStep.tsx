@@ -9,11 +9,21 @@ import { StepID } from '../../types/StepID';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
 import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
-import ArbeidstidFrilanser from './components/ArbeidstidFrilansarbeid';
-import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
 import { useFormikContext } from 'formik';
 import { SøknadFormValues } from '../../types/SøknadFormValues';
 import { getAnsattArbeidsforholdISøknadsperiode } from './utils/arbeidstidUtils';
+import { søkerNoeFremtid } from '../../utils/søknadsperiodeUtils';
+import ArbeidstidFrilansarbeid from './components/ArbeidstidFrilansarbeid';
+import { erFrilanserSomMisterInntekt } from '../../types/søknadsdata/arbeidFrilansSøknadsdata';
+import ArbeidstidHonorararbeid from './components/ArbeidstidHonorararbeid';
+import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
+
+export enum ArbeidsaktivitetType {
+    'ANSATT' = 'ANSATT',
+    'SELVSTENDING' = 'SELVSTENDIG',
+    'HONORARARBEID' = 'HONORARARBEID',
+    'FRILANSARBEID' = 'FRILANSARBEID',
+}
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
@@ -33,6 +43,7 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     //     persistSoknad({ stepID: StepID.ARBEIDSTID });
     // };
 
+    const søkerFremITid = søkerNoeFremtid(søknadsperiode);
     const aktiveArbeidsforhold = arbeidsgivere ? getAnsattArbeidsforholdISøknadsperiode(arbeidsgivere) : [];
 
     return (
@@ -59,27 +70,52 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                                 key={index}
                                 index={index}
                                 søknadsperiode={søknadsperiode}
-                                arbeidsforhold={values.ansatt_arbeidsforhold[index]}
+                                arbeidIPeriode={values.ansatt_arbeidsforhold[index].arbeidIPeriode}
+                                arbeidsgiver={values.ansatt_arbeidsforhold[index].arbeidsgiver}
                                 normalarbeidstid={arbeidsforhold.normalarbeidstid.timerPerUkeISnitt}
+                                søkerFremITid={søkerFremITid}
                             />
                         );
                     })}
                 </FormBlock>
             )}
 
-            {/* Frilanser */}
-            {frilanser?.harInntektSomFrilanser === true && frilanser?.misterInntektSomFrilanserIPeriode && (
+            {erFrilanserSomMisterInntekt(frilanser) && frilanser.arbeidsforholdFrilanserarbeid && (
                 <FormBlock>
-                    <ArbeidstidFrilanser frilanser={frilanser} søknadsperiode={søknadsperiode} />
+                    <ArbeidstidFrilansarbeid
+                        periode={frilanser.periodeinfo.aktivPeriode}
+                        arbeidIPeriode={values.frilans.arbeidsforholdFrilansarbeid?.arbeidIPeriode}
+                        normalarbeidstid={frilanser.arbeidsforholdFrilanserarbeid.normalarbeidstid.timerPerUkeISnitt}
+                        søkerFremITid={søkerFremITid}
+                    />
                 </FormBlock>
             )}
 
-            {/* Selvstendig */}
-            {selvstendig?.erSN && selvstendig.erSelvstendigISøknadsperiode && (
-                <FormBlock>
-                    <ArbeidstidSelvstendig />
-                </FormBlock>
-            )}
+            {erFrilanserSomMisterInntekt(frilanser) &&
+                frilanser.arbeidsforholdHonorararbeid &&
+                frilanser.arbeidsforholdHonorararbeid.misterHonorar && (
+                    <FormBlock>
+                        <ArbeidstidHonorararbeid
+                            periode={frilanser.periodeinfo.aktivPeriode}
+                            arbeidIPeriode={values.frilans.arbeidsforholdHonorararbeid?.arbeidIPeriode}
+                            normalarbeidstid={frilanser.arbeidsforholdHonorararbeid.normalarbeidstid.timerPerUkeISnitt}
+                            søkerFremITid={søkerFremITid}
+                        />
+                    </FormBlock>
+                )}
+
+            {selvstendig?.erSN &&
+                selvstendig.erSelvstendigISøknadsperiode &&
+                selvstendig.periodeSomSelvstendigISøknadsperiode && (
+                    <FormBlock>
+                        <ArbeidstidSelvstendig
+                            periode={selvstendig.periodeSomSelvstendigISøknadsperiode}
+                            arbeidIPeriode={values.selvstendig.arbeidsforhold?.arbeidIPeriode}
+                            normalarbeidstid={selvstendig.arbeidsforhold.normalarbeidstid.timerPerUkeISnitt}
+                            søkerFremITid={søkerFremITid}
+                        />
+                    </FormBlock>
+                )}
         </SøknadFormStep>
     );
 };

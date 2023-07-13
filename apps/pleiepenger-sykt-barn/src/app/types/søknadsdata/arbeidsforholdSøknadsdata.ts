@@ -1,4 +1,4 @@
-import { ArbeidIPeriodeSøknadsdata } from './ArbeidIPeriodeSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from './arbeidIPeriodeSøknadsdata';
 import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 export interface ArbeidsforholdSøknadsdata {

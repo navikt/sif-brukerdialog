@@ -2,11 +2,11 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from '../../../../types/ArbeidsforholdFormValues';
 import { getArbeidsforholdIntlValues } from '../../utils/arbeidsforholdIntlValues';
-import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
-import { InfoArbeiderNormaltTimerAnsatt } from '../info/InfoArbeiderNormaltTimerIUken';
 import { getArbeiderNormaltTimerIUkenValidator } from '../../validation/arbeiderNormaltTimerIUkenValidator';
+import { InfoArbeiderNormaltTimerAnsatt } from '../info/InfoArbeiderNormaltTimerIUken';
 
 const AnsattFormComponents = getTypedFormComponents<
     ArbeidsforholdFormField,
@@ -24,7 +24,7 @@ const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbe
 
     const intlValues = getArbeidsforholdIntlValues(intl, {
         arbeidsforhold: {
-            arbeidsstedNavn: arbeidsforhold.arbeidsgiver.navn,
+            arbeidsgiverNavn: arbeidsforhold.arbeidsgiver.navn,
             type: ArbeidsforholdType.ANSATT,
         },
     });

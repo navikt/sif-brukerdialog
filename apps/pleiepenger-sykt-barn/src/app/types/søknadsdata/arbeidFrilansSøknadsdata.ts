@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeidsforholdSøknadsdata } from './ArbeidsforholdSøknadsdata';
+import { ArbeidsforholdSøknadsdata } from './arbeidsforholdSøknadsdata';
 
 type HonorararbeidMisterIkkeHonorar = {
     misterHonorar: false;
@@ -35,6 +35,10 @@ export type FrilanserMisterInntekt = {
     arbeidsforholdFrilanserarbeid?: ArbeidsforholdSøknadsdata;
     arbeidsforholdHonorararbeid?: ArbeidsforholdHonorararbeid;
     // arbeidsforhold: ArbeidsforholdSøknadsdata; // Aggregert informasjon fra honorararbeid og frilansarbeid + egne spørsmål
+};
+
+export const erFrilanserSomMisterInntekt = (frilanser: any): frilanser is FrilanserMisterInntekt => {
+    return frilanser.harInntektSomFrilanser && frilanser.misterInntektSomFrilanserIPeriode;
 };
 
 /** Frilanstyper */

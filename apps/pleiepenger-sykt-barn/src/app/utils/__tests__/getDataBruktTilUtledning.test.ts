@@ -1,6 +1,6 @@
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types';
-import { ArbeidAnsattSøknadsdata, ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidAnsattSøknadsdata';
+import { ArbeidAnsattSøknadsdata, ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/arbeidAnsattSøknadsdata';
 import { getArbeidsforhorholdAvsluttetFørSøknadsperiode } from '../getDataBruktTilUtledning';
 
 const arbeidsgiver: Arbeidsgiver = {

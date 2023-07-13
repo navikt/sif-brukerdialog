@@ -1,36 +1,35 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import FormSection from '../../../components/form-section/FormSection';
-import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
-import { ArbeidIPeriodeFormField } from '../../../types/ArbeidIPeriodeFormValues';
-import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
+import { Arbeidsgiver } from '../../../types';
+import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { SøknadFormField } from '../../../types/SøknadFormValues';
 import { getPeriodeSomAnsattInnenforPeriode } from '../../../utils/ansattUtils';
-import { søkerNoeFremtid } from '../../../utils/søknadsperiodeUtils';
-import ArbeiderIPeriodenSpørsmål from './spørsmål/ArbeiderIPeriodenSpørsmål';
-import ArbeidRedusertPart, { RedusertArbeidAktivitetType } from './ArbeidRedusertPart';
-import { getArbeidstidSpørsmål } from './arbeidIPeriodeTekstUtils';
+import { ArbeidsaktivitetType } from '../ArbeidstidStep';
+import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
+import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 
 interface Props {
-    arbeidsforhold: ArbeidsforholdFormValues;
+    arbeidIPeriode?: ArbeidIPeriodeFormValues;
+    arbeidsgiver: Arbeidsgiver;
     normalarbeidstid: number;
     søknadsperiode: DateRange;
     index: number;
+    søkerFremITid: boolean;
 }
 
 const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
-    arbeidsforhold,
+    arbeidIPeriode,
+    arbeidsgiver,
     søknadsperiode,
-    index,
     normalarbeidstid,
+    søkerFremITid,
+    index,
 }) => {
     const intl = useIntl();
-    const periode = getPeriodeSomAnsattInnenforPeriode(søknadsperiode, arbeidsforhold.arbeidsgiver);
-    const ansattParentFieldName = `${SøknadFormField.ansatt_arbeidsforhold}.${index}.arbeidIPeriode` as SøknadFormField;
-    const { arbeidsgiver } = arbeidsforhold;
+    const periode = getPeriodeSomAnsattInnenforPeriode(søknadsperiode, arbeidsgiver);
+    const ansattParentFieldName = `${SøknadFormField.ansatt_arbeidsforhold}.${index}` as SøknadFormField;
 
     const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
         periode,
@@ -39,44 +38,22 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
     });
 
     return (
-        <FormSection title={arbeidsgiver.navn} key={arbeidsgiver.id}>
-            <div>
-                <ArbeiderIPeriodenSpørsmål
-                    fieldName={`${ansattParentFieldName}.${ArbeidIPeriodeFormField.arbeiderIPerioden}` as any}
-                    intlValues={intlValues}
-                    validationIntlKey={'todo'}
-                    spørsmål={
-                        getArbeidstidSpørsmål(intl, RedusertArbeidAktivitetType.ARBEIDSTAKER, {
-                            arbeidsgiverNavn: arbeidsgiver.navn,
-                        }).arbeiderIPerioden
-                    }
+        <ArbeidstidArbeidsaktivitet
+            arbeidsaktivitetType={ArbeidsaktivitetType.ANSATT}
+            periode={periode}
+            tittel={arbeidsgiver.navn}
+            arbeidIPeriode={arbeidIPeriode}
+            parentFieldName={ansattParentFieldName}
+            intlValues={intlValues}
+            normalarbeidstid={normalarbeidstid}
+            info={
+                <ArbeidIPeriodeInfo
+                    tittel={`Delvis jobb hos ${arbeidsgiver.navn} i perioden`}
+                    arbeidsaktivitetType={ArbeidsaktivitetType.ANSATT}
+                    søkerFremITid={søkerFremITid}
                 />
-                {arbeidsforhold?.arbeidIPeriode?.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert && (
-                    <FormBlock>
-                        <ArbeidRedusertPart
-                            aktivitetType={RedusertArbeidAktivitetType.ARBEIDSTAKER}
-                            intlValues={intlValues}
-                            arbeidIPeriodenValues={arbeidsforhold.arbeidIPeriode}
-                            søkerNoeFremtid={søkerNoeFremtid(søknadsperiode)}
-                            parentFieldName={`${SøknadFormField.ansatt_arbeidsforhold}.${index}`}
-                            normalarbeidstid={normalarbeidstid}
-                        />
-                    </FormBlock>
-                )}
-
-                {/* <ArbeidIPeriodeSpørsmål
-            aktivitetType="arbeidstaker"
-            normalarbeidstid={arbeidsgiver.arbeidsforhold.normalarbeidstid}
-            arbeidsstedNavn={arbeidsforhold.arbeidsgiver.navn}
-            arbeidsforholdType={ArbeidsforholdType.ANSATT}
-            arbeidsforhold={arbeidsforhold}
-            arbeidsperiode={periode}
-            søknadsperiode={søknadsperiode}
-            parentFieldName={`${SøknadFormField.ansatt_arbeidsforhold}.${index}`}
-            onArbeidstidVariertChange={handleArbeidstidChanged}
-        /> */}
-            </div>
-        </FormSection>
+            }
+        />
     );
 };
 

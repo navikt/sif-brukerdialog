@@ -14,7 +14,7 @@ describe('getArbeidsforholdApiDataFromSøknadsdata', () => {
 //     ArbeidIPeriodeApiDataProsent,
 //     ArbeidIPeriodeApiDataTimerPerUke,
 //     ArbeidIPeriodeApiDataUlikeUkerTimer,
-// } from '../../../types/søknad-api-data/ArbeidIPeriodeApiData';
+// } from '../../../types/søknad-api-data/arbeidIPeriodeApiData';
 // import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 // import {
 //     getArbeidIPeriodeApiDataFromSøknadsdata,

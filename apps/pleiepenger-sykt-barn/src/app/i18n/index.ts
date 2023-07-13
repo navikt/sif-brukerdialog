@@ -11,6 +11,7 @@ import soknadIntlMessages from '@navikt/sif-common-soknad-ds/lib/i18n/soknadIntl
 import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
 import { velkommenPageMessages } from '../pages/welcoming-page/velkommenPageMessages';
 import omsorgstilbudMessages from './omsorgstilbudMessages';
+import { arbeidIPeriodeMessages } from '../søknad/arbeidstid-step/i18n/arbeidIPeriodeMessages';
 
 export const appBokmålstekster = require('./nb.json');
 
@@ -28,6 +29,7 @@ const bokmålstekster = {
     ...appBokmålstekster,
     ...velkommenPageMessages.nb,
     ...soknadIntlMessages.nb,
+    ...arbeidIPeriodeMessages.nb,
 };
 
 export const applicationIntlMessages: MessageFileFormat = {

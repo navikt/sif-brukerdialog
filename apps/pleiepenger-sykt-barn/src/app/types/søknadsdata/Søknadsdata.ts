@@ -1,6 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ArbeidSøknadsdata } from './ArbeidSøknadsdata';
+import { ArbeidSøknadsdata } from './arbeidSøknadsdata';
 import { BeredskapSøknadsdata } from './BeredskapSøknadsdata';
 import { FerieuttakIPeriodenSøknadsdata } from './FerieuttakIPeriodenSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemsskapSøknadsdata';
@@ -11,14 +11,14 @@ import { UtenlandsoppholdIPeriodenSøknadsdata } from './UtenlandsoppholdIPeriod
 import { StønadGodtgjørelseSøknadsdata } from './StønadGodtgjørelseSøknadsdata';
 
 export * from './OmBarnetSøknadsdata';
-export * from './ArbeidIPeriodeSøknadsdata';
-export * from './ArbeidAnsattSøknadsdata';
-export * from './ArbeidFrilansSøknadsdata';
-export * from './ArbeidSelvstendigSøknadsdata';
+export * from './arbeidIPeriodeSøknadsdata';
+export * from './arbeidAnsattSøknadsdata';
+export * from './arbeidFrilansSøknadsdata';
+export * from './arbeidSelvstendigSøknadsdata';
 export * from './OpptjeningUtlandSøknadsdata';
 export * from './UtenlandskNæringSøknadsdata';
-export * from './ArbeidSøknadsdata';
-export * from './ArbeidsforholdSøknadsdata';
+export * from './arbeidSøknadsdata';
+export * from './arbeidsforholdSøknadsdata';
 export * from './NormalarbeidstidSøknadsdata';
 export * from './MedlemsskapSøknadsdata';
 export * from './UtenlandsoppholdIPeriodenSøknadsdata';

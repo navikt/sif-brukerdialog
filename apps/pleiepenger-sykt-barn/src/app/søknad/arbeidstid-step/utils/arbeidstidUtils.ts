@@ -15,17 +15,17 @@ import { OpenDateRange } from '../../../types';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 // import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
-// import { ArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidAnsattSøknadsdata';
-import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
-import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/ArbeidsforholdSøknadsdata';
-import { ArbeidSøknadsdata } from '../../../types/søknadsdata/ArbeidSøknadsdata';
-import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
-import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 import {
     ArbeidAnsattSøknadsdataPågående,
     ArbeidAnsattSøknadsdataSluttetISøknadsperiode,
     ArbeidsgivereSøknadsdata,
-} from '../../../types/søknadsdata/ArbeidAnsattSøknadsdata';
+} from '../../../types/søknadsdata/arbeidAnsattSøknadsdata';
+// import { ArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidAnsattSøknadsdata';
+import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
+import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/arbeidsforholdSøknadsdata';
+import { ArbeidSøknadsdata } from '../../../types/søknadsdata/arbeidSøknadsdata';
+import { NormalarbeidstidSøknadsdata } from '../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
+import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
@@ -181,6 +181,7 @@ export const getAnsattArbeidsforholdISøknadsperiode = (
     });
     return arbeidsforhold;
 };
+
 // export const getAnsattArbeidsforholdIPerioden = (
 //     ansatt_arbeidsforhold: ArbeidsforholdFormValues[],
 //     arbeidsgivere?: ArbeidsgivereSøknadsdata

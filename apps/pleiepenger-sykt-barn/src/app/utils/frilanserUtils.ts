@@ -63,32 +63,23 @@ export const erFrilanserISøknadsperiode = (
 
 export const getPeriodeSomFrilanserInnenforPeriode = (
     periode: DateRange,
-    { startdato, sluttdato, erFortsattFrilanser }: FrilansFormData
+    startdato: Date,
+    sluttdato?: Date
 ): DateRange | undefined => {
-    const frilansStartdato = datepickerUtils.getDateFromDateString(startdato);
-    const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
+    // const frilansStartdato = datepickerUtils.getDateFromDateString(startdato);
+    // const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
 
-    if (frilansStartdato === undefined) {
+    if (startdato === undefined) {
         console.error('getPeriodeSomFrilanserInneforPeriode - Startdato ikke satt');
         return undefined;
     }
-    if (erFortsattFrilanser === YesOrNo.YES && sluttdato !== undefined) {
-        console.error('getPeriodeSomFrilanserInneforPeriode - Jobber fortsatt som frilanser, men sluttdato er satt');
-        return undefined;
-    }
-    if (erFortsattFrilanser === YesOrNo.NO && !frilansSluttdato) {
-        console.error('getPeriodeSomFrilanserInneforPeriode - Er ikke frilanser, men sluttdato er ikke satt');
+
+    if (erFrilanserITidsrom(periode, startdato, sluttdato) === false) {
         return undefined;
     }
 
-    if (erFrilanserITidsrom(periode, frilansStartdato, frilansSluttdato) === false) {
-        return undefined;
-    }
-
-    const fromDate: Date = dayjs.max([dayjs(periode.from), dayjs(frilansStartdato)]).toDate();
-    const toDate: Date = frilansSluttdato
-        ? dayjs.min([dayjs(periode.to), dayjs(frilansSluttdato)]).toDate()
-        : periode.to;
+    const fromDate: Date = dayjs.max([dayjs(periode.from), dayjs(startdato)]).toDate();
+    const toDate: Date = sluttdato ? dayjs.min([dayjs(periode.to), dayjs(sluttdato)]).toDate() : periode.to;
 
     return {
         from: fromDate,

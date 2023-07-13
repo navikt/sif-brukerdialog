@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
+import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { FrilansFormField } from '../../../types/FrilansFormData';
@@ -16,7 +18,7 @@ interface Props {
     søkerFremITid: boolean;
 }
 
-const ArbeidstidFrilansarbeid: React.FunctionComponent<Props> = ({
+const ArbeidstidHonorararbeid: React.FunctionComponent<Props> = ({
     arbeidIPeriode,
     periode,
     normalarbeidstid,
@@ -32,24 +34,34 @@ const ArbeidstidFrilansarbeid: React.FunctionComponent<Props> = ({
     return (
         <ArbeidstidArbeidsaktivitet
             periode={periode}
-            arbeidsaktivitetType={ArbeidsaktivitetType.FRILANSARBEID}
+            arbeidsaktivitetType={ArbeidsaktivitetType.HONORARARBEID}
             arbeidIPeriode={arbeidIPeriode}
-            parentFieldName={FrilansFormField.arbeidsforholdFrilansarbeid}
-            normalarbeidstid={normalarbeidstid}
+            parentFieldName={FrilansFormField.arbeidsforholdHonorararbeid}
             intlValues={intlValues}
-            tittel="Frilansarbeid"
+            tittel={'Arbeid for honorar'}
+            normalarbeidstid={normalarbeidstid}
             info={
                 <ArbeidIPeriodeInfo
                     søkerFremITid={søkerFremITid}
                     arbeidsaktivitetType={ArbeidsaktivitetType.FRILANSARBEID}
-                    tittel="Delvis jobb som frilanser i perioden">
+                    tittel="Hvor mye tid bruker du på det du får honorar for i perioden?">
                     <p>
-                        <FormattedMessage id="arbeidIPeriode.info.frilansarbeid.tekst.1" />
+                        <FormattedMessage id="arbeidIPeriode.info.honorararbeid.tekst.1" />
                     </p>
                 </ArbeidIPeriodeInfo>
             }
+            arbeiderIPeriodenAlternativer={[
+                {
+                    label: intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.honorararbeid.svar.jobberIkke'),
+                    value: ArbeiderIPeriodenSvar.heltFravær,
+                },
+                {
+                    label: intlHelper(intl, 'arbeidIPeriode.arbeiderIPerioden.honorararbeid.svar.jobberRedusert'),
+                    value: ArbeiderIPeriodenSvar.redusert,
+                },
+            ]}
         />
     );
 };
 
-export default ArbeidstidFrilansarbeid;
+export default ArbeidstidHonorararbeid;

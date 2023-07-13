@@ -9,7 +9,7 @@ describe('arbeidstidUtils', () => {
 // import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 // import { ArbeidIPeriodeType } from '../../../../types/ArbeidIPeriodeType';
 // import { ArbeidIPeriodeSøknadsdata } from '../../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
-// import { ArbeidsforholdSøknadsdata } from '../../../../types/søknadsdata/ArbeidsforholdSøknadsdata';
+// import { ArbeidsforholdSøknadsdata } from '../../../../types/søknadsdata/arbeidsforholdSøknadsdata';
 // import { NormalarbeidstidSøknadsdata } from '../../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 // import {
 //     ArbeidsperiodeIForholdTilSøknadsperiode,

@@ -10,10 +10,10 @@ import {
     ArbeidSelvstendigSøknadsdata,
     ArbeidsgivereSøknadsdata,
     ArbeidSøknadsdata,
+    erFrilanserSomMisterInntekt,
 } from '../../../types/søknadsdata/Søknadsdata';
-import { getPeriodeSomFrilanserInnenforPeriode } from '../../../utils/frilanserUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../../../utils/selvstendigUtils';
-import { getArbeidsukeKey } from '../components/arbeidstid-uker-spørsmål/ArbeidstidUkerSpørsmål';
+import { getArbeidsukeKey } from '../components/ArbeidstidEnkeltuker';
 import { getArbeidsukerIPerioden } from './arbeidstidUtils';
 
 export const cleanupArbeidsuker = (
@@ -197,7 +197,9 @@ export const cleanupArbeidstidStep = (
         ? cleanupArbeidstidAnsatt(søknadsperiode, values.ansatt_arbeidsforhold, arbeidSøknadsdata.arbeidsgivere)
         : values.ansatt_arbeidsforhold;
 
-    const periodeSomFrilanser = getPeriodeSomFrilanserInnenforPeriode(søknadsperiode, values.frilans);
+    const periodeSomFrilanser = erFrilanserSomMisterInntekt(arbeidSøknadsdata.frilanser)
+        ? arbeidSøknadsdata.frilanser.periodeinfo.aktivPeriode
+        : undefined;
 
     if (periodeSomFrilanser) {
         values.frilans.arbeidsforholdFrilansarbeid = values.frilans.arbeidsforholdFrilansarbeid

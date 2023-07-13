@@ -11,7 +11,7 @@ import {
     FrilansSøknadsdataKunFrilansarbeid,
     FrilansSøknadsdataKunHonorararbeidMisterHonorar,
     FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar,
-} from '../../types/søknadsdata/ArbeidFrilansSøknadsdata';
+} from '../../types/søknadsdata/arbeidFrilansSøknadsdata';
 import { getPeriodeSomFrilanserInnenforSøknadsperiode } from '../frilanserUtils';
 import { extractArbeidIPeriodeSøknadsdata } from './extractArbeidIPeriodeSøknadsdata';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';

@@ -7,7 +7,7 @@ import {
     FrilansSøknadsdataKunFrilansarbeid,
     FrilansSøknadsdataKunHonorararbeidMisterHonorar,
     FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar,
-} from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
+} from '../../../types/søknadsdata/arbeidFrilansSøknadsdata';
 import { extractFrilanserSøknadsdata } from '../extractFrilanserSøknadsdata';
 
 describe('extractFrilanserSøknadsdata', () => {
