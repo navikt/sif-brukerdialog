@@ -1,35 +1,36 @@
-import { AxiosResponse } from 'axios';
-import { ArbeidsgiverResponse } from '../../types/Arbeidsgiver';
+import { getNMonthsAgo } from '../../søknad/steps/situasjon/SituasjonStepUtils';
+import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import api, { ApiEndpoint } from '../api';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
-import { dateToISODate } from '@navikt/sif-common-utils/lib';
-import appSentryLogger from '../../utils/appSentryLogger';
-import { relocateToLoginPage } from '../../utils/navigationUtils';
+import { dateToISODate, dateToday } from '@navikt/sif-common-utils/lib';
 
-export const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<ArbeidsgiverResponse>> => {
-    try {
-        return api.get<ArbeidsgiverResponse>(ApiEndpoint.arbeidsgiver, `fra_og_med=${fom}&til_og_med=${tom}`);
-    } catch (error) {
-        return Promise.reject(`Invalid arbeidsgiver data`);
-    }
+type AAregArbeidsgiver = {
+    organisasjoner?: {
+        organisasjonsnummer: string;
+        navn: string;
+    }[];
 };
 
-export const getArbeidsgivere = async (
-    fromDate: Date,
-    toDate: Date,
-): Promise<AxiosResponse<ArbeidsgiverResponse> | null> => {
-    try {
-        const response: AxiosResponse<ArbeidsgiverResponse> = await getArbeidsgiver(
-            dateToISODate(fromDate),
-            dateToISODate(toDate),
-        );
-        return response;
-    } catch (error) {
-        if (isForbidden(error) || isUnauthorized(error)) {
-            relocateToLoginPage();
-        } else {
-            appSentryLogger.logApiError(error);
+const arbeidsgiverEndpoint = {
+    fetch: async (): Promise<Arbeidsgiver[]> => {
+        const threeMonthsAgo = getNMonthsAgo(3);
+        const today: Date = dateToday;
+        try {
+            const { data } = await api.get<AAregArbeidsgiver>(
+                ApiEndpoint.arbeidsgiver,
+                `fra_og_med=${dateToISODate(threeMonthsAgo)}&til_og_med=${dateToISODate(today)}`,
+            );
+            const aaArbeidsgivere: Arbeidsgiver[] = [];
+            (data.organisasjoner || []).forEach((a) => {
+                aaArbeidsgivere.push({
+                    organisasjonsnummer: a.organisasjonsnummer,
+                    navn: a.navn,
+                });
+            });
+            return Promise.resolve(aaArbeidsgivere);
+        } catch (error) {
+            return Promise.reject(error);
         }
-        return null;
-    }
+    },
 };
+
+export default arbeidsgiverEndpoint;

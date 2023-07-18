@@ -1,6 +1,4 @@
-// import { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-// import { AxiosResponse } from 'axios';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import {
     getTotalSizeOfAttachments,
@@ -19,21 +17,12 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import SøknadStep from '../../SøknadStep';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-//import appSentryLogger from '../../../utils/appSentryLogger';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-// import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-// import { dateToday } from '@navikt/sif-common-utils/lib';
 import { Office1 } from '@navikt/ds-icons';
 import { Alert } from '@navikt/ds-react';
-import {
-    /// getNMonthsAgo,
-    getSituasjonStepInitialValues,
-    getSituasjonSøknadsdataFromFormValues,
-} from './SituasjonStepUtils';
-// import { Arbeidsgiver, ArbeidsgiverResponse, isArbeidsgivere } from '../../../types/Arbeidsgiver';
-//import { getArbeidsgivere } from '../../../api/endpoints/arbeidsgiverEndpoint';
+import { getSituasjonStepInitialValues, getSituasjonSøknadsdataFromFormValues } from './SituasjonStepUtils';
 import {
     checkHarKlikketJaJaPåAlle,
     checkHarKlikketNeiElleJajaBlanding,
@@ -45,8 +34,6 @@ import ArbeidsforholdSituasjon from './form-parts/ArbeidsforholdSituasjon';
 import ArbeidsforholdUtbetalingsårsak from './form-parts/ArbeidsforholdUtbetalingsårsak';
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 import FormSection from '../../../components/form-section/FormSection';
-
-const arbeidsgivereMock = require('../../../../../api-mock/mock-data/arbeidsgiver.json');
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -72,7 +59,7 @@ const { FormikWrapper, Form } = getTypedFormComponents<SituasjonFormFields, Situ
 const SituasjonStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, arbeidsgivere },
     } = useSøknadContext();
 
     const stepId = StepId.SITUASJON;
@@ -99,8 +86,6 @@ const SituasjonStep = () => {
             return lagreSøknadState(state);
         },
     );
-
-    const arbeidsgivere = arbeidsgivereMock.organisasjoner;
 
     return (
         <SøknadStep stepId={stepId}>
