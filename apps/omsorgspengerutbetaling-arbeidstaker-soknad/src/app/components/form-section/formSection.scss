@@ -1,0 +1,26 @@
+.formSection {
+    margin-bottom: 3rem;
+
+    &__title {
+        display: flex;
+        width: 100%;
+        justify-items: stretch;
+    }
+
+    &__titleIcon {
+        margin-right: 0.5rem;
+        width: 1.5rem;
+
+        svg * {
+            width: 1.5rem;
+        }
+    }
+
+    &__content {
+        margin-top: 1rem;
+
+        &--indent {
+            margin-left: 2.5rem;
+        }
+    }
+}

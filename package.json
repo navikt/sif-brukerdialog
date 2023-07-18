@@ -22,7 +22,7 @@
         "esbuild": "0.18.4",
         "esbuild-jest": "0.5.0",
         "eslint": "8.43.0",
-        "eslint-plugin-prettier": "4.2.1",
+        "eslint-plugin-prettier": "5.0.0",
         "husky": "8.0.3",
         "jest-environment-jsdom": "29.5.0",
         "jsdom": "22.1.0",
