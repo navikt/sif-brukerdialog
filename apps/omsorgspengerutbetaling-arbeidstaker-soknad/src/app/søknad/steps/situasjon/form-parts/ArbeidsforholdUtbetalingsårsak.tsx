@@ -22,6 +22,7 @@ import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upl
 import { ValidateAttachmentsErrors, validateAttachments } from '../../../../utils/validateAttachments';
 import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import { relocateToLoginPage } from '../../../../utils/navigationUtils';
+import ArbeidsforholdAttachmentList from './ArbeidsforholdAttachmentList';
 
 const { RadioGroup, Textarea } = getTypedFormComponents<ArbeidsforholdFormFields, Arbeidsforhold, ValidationError>();
 
@@ -161,7 +162,14 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                             onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
                         />
                     </FormBlock>
-
+                    <div data-testid="legeerklæring-liste">
+                        <ArbeidsforholdAttachmentList
+                            wrapNoAttachmentsInBlock={true}
+                            dokumenter={attachments}
+                            fieldName={getFieldName(ArbeidsforholdFormFields.dokumenter)}
+                            includeDeletionFunctionality={true}
+                        />
+                    </div>
                     <Block margin={'l'}>
                         <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
                     </Block>

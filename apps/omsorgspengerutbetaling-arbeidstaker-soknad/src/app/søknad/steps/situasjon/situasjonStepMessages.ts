@@ -41,5 +41,6 @@ export const situasjonMessages: MessageFileFormat = {
         'step.situasjon.arbeidsforhold.ingen.info.text': 'Vi finner ingen registrerte arbeidsgivere.',
         'step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei':
             'Du må ha hatt fravær fra minst én arbeidsgiver for å gå videre i søknaden.',
+        'step.situasjon.vedleggsliste.ingenDokumenterLastetOpp': 'Ingen dokumenter er lastet opp',
     },
 };

@@ -1,7 +1,7 @@
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { SituasjonSøknadsdata, Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
@@ -12,6 +12,18 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
         return [];
     }
     return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
+};
+
+const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): string[] => {
+    const dokumenter: Attachment[] = [];
+
+    Object.values(situasjon).forEach((forhold) => {
+        if (forhold.type === 'harHattFraværUtenLønnKonfliktMedArbeidsgiver') {
+            dokumenter.push(...forhold.dokumenter);
+        }
+    });
+
+    return getVedleggApiData(dokumenter);
 };
 
 export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
@@ -31,6 +43,6 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(situasjon, fravær),
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravær),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
-        vedlegg: getVedleggApiData(legeerklæring?.vedlegg),
+        vedlegg: [...getVedleggApiData(legeerklæring?.vedlegg), ...getArbeidsforholdDokumenter(situasjon)],
     };
 };

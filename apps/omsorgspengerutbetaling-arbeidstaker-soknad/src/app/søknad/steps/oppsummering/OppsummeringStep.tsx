@@ -63,7 +63,8 @@ const OppsummeringStep = () => {
     }, [previousSøknadError, sendSøknadError]);
 
     const apiData = getApiDataFromSøknadsdata(søknadsdata);
-
+    // eslint-disable-next-line no-console
+    console.log('apiData: ', apiData);
     if (!apiData) {
         return (
             <ErrorPage
