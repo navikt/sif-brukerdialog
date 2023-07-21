@@ -112,7 +112,7 @@
         "react-scripts": "5.0.1",
         "regenerator-runtime": "0.13.11",
         "rimraf": "5.0.1",
-        "sass": "1.63.4",
+        "sass": "1.64.0",
         "sass-loader": "13.3.2",
         "source-map-loader": "4.0.1",
         "start-server-and-test": "2.0.0",
