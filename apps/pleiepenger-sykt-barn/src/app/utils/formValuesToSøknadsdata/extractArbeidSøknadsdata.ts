@@ -11,7 +11,7 @@ export const extractArbeidSøknadsdata = (
     values: SøknadFormValues,
     søknadsperiode: DateRange
 ): ArbeidSøknadsdata | undefined => {
-    const arbeidsgivere = extractArbeidsgivereArbeidsforholdSøknadsdata(values.ansatt_arbeidsforhold);
+    const arbeidsgivere = extractArbeidsgivereArbeidsforholdSøknadsdata(values.ansatt_arbeidsforhold, søknadsperiode);
     const frilanser = extractFrilanserSøknadsdata(values.frilans, søknadsperiode);
     const selvstendig = extractArbeidSelvstendigSøknadsdata(values.selvstendig, søknadsperiode);
     const opptjeningUtland = extractOpptjeningUtlandSøknadsdata(values);

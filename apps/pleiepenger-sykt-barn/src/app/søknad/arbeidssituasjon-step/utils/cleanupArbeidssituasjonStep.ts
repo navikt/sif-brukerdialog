@@ -60,35 +60,35 @@ export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, value
     if (!harFrilansarbeid) {
         frilans.arbeidsforholdFrilansarbeid = undefined;
     }
-    if (values.erFortsattFrilanser === YesOrNo.YES) {
-        values.sluttdato = undefined;
+    if (frilans.erFortsattFrilanser === YesOrNo.YES) {
+        delete frilans.sluttdato;
     }
 
     return frilans;
 };
 
-const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormData): SelvstendigFormData => {
+export const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormData): SelvstendigFormData => {
     const selvstendig: SelvstendigFormData = { ...values };
 
     if (selvstendig.harHattInntektSomSN === YesOrNo.NO) {
-        selvstendig.virksomhet = undefined;
-        selvstendig.harFlereVirksomheter = undefined;
-        selvstendig.arbeidsforhold = undefined;
+        delete selvstendig.harFlereVirksomheter;
+        delete selvstendig.virksomhet;
+        delete selvstendig.arbeidsforhold;
     }
     return selvstendig;
 };
 
-const cleanupStønadGodtgjørelse = (values: StønadGodtgjørelseFormData): StønadGodtgjørelseFormData => {
+export const cleanupStønadGodtgjørelse = (values: StønadGodtgjørelseFormData): StønadGodtgjørelseFormData => {
     const stønadGodtgjørelse: StønadGodtgjørelseFormData = { ...values };
     if (stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.NO) {
-        stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden = undefined;
+        stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden = undefined;
         stønadGodtgjørelse.starterUndeveis = undefined;
         stønadGodtgjørelse.startdato = undefined;
         stønadGodtgjørelse.slutterUnderveis = undefined;
         stønadGodtgjørelse.sluttdato = undefined;
     }
 
-    if (stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden === YesOrNo.YES) {
+    if (stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.YES) {
         stønadGodtgjørelse.starterUndeveis = undefined;
         stønadGodtgjørelse.startdato = undefined;
         stønadGodtgjørelse.slutterUnderveis = undefined;
@@ -117,6 +117,12 @@ export const cleanupArbeidssituasjonStep = (
     values.selvstendig = cleanupSelvstendigArbeidssituasjon(values.selvstendig);
     values.stønadGodtgjørelse = cleanupStønadGodtgjørelse(values.stønadGodtgjørelse);
 
+    if (values.harOpptjeningUtland === YesOrNo.NO) {
+        values.opptjeningUtland = [];
+    }
+    if (values.harUtenlandskNæring === YesOrNo.NO) {
+        values.utenlandskNæring = [];
+    }
     if (!visVernepliktSpørsmål(values)) {
         values.harVærtEllerErVernepliktig = undefined;
     }

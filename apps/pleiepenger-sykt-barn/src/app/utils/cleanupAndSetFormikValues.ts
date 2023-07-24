@@ -12,18 +12,18 @@ import { cleanupNattevåkOgBeredskapStep } from '../søknad/nattevåk-og-beredsk
 export const cleanupSøknadStepValues = (
     step: StepID,
     values: SøknadFormValues,
-    periode: DateRange
+    søknadsperiode: DateRange
 ): SøknadFormValues => {
     switch (step) {
         case StepID.TIDSROM:
-            return cleanupTidsromStep(values, periode);
+            return cleanupTidsromStep(values, søknadsperiode);
         case StepID.ARBEIDSSITUASJON:
-            return cleanupArbeidssituasjonStep(values, periode);
+            return cleanupArbeidssituasjonStep(values, søknadsperiode);
         case StepID.ARBEIDSTID:
             const søknadsdata = getSøknadsdataFromFormValues(values);
-            return søknadsdata.arbeid ? cleanupArbeidstidStep(values, søknadsdata.arbeid, periode) : values;
+            return søknadsdata.arbeid ? cleanupArbeidstidStep(values, søknadsdata.arbeid) : values;
         case StepID.OMSORGSTILBUD:
-            return cleanupOmsorgstilbudStep(values, periode);
+            return cleanupOmsorgstilbudStep(values, søknadsperiode);
         case StepID.NATTEVÅK_OG_BEREDSKAP:
             return cleanupNattevåkOgBeredskapStep(values);
         default:
@@ -37,11 +37,11 @@ export const cleanupAndSetFormikValues = async (
     setValues: (values: SøknadFormValues) => void
 ): Promise<SøknadFormValues> => {
     await Promise.resolve();
-    const periode = getSøknadsperiodeFromFormData(values);
-    if (!periode) {
+    const søknadsperiode = getSøknadsperiodeFromFormData(values);
+    if (!søknadsperiode) {
         return Promise.resolve(values);
     }
-    const cleanedValues = cleanupSøknadStepValues(step, values, periode);
+    const cleanedValues = cleanupSøknadStepValues(step, values, søknadsperiode);
     setValues(cleanedValues);
     return Promise.resolve(cleanedValues);
 };

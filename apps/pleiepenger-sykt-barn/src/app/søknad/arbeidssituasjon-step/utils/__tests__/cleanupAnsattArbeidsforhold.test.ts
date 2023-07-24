@@ -36,6 +36,7 @@ describe('cleanupAnsattArbeidsforhold', () => {
             expect(result.sluttetFørSøknadsperiode).toEqual(YesOrNo.YES);
             expect(result.normalarbeidstid).toBeUndefined();
             expect(result.arbeidIPeriode).toBeUndefined();
+            expect(result.arbeidsgiver).toBeDefined();
             expect(result.erAnsatt).toEqual(YesOrNo.NO);
         });
     });

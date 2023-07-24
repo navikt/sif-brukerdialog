@@ -1,20 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils';
-// import { ArbeidIPeriodeFrilansApiData } from '../../types/søknad-api-data/arbeidIPeriodeFrilansApiData';
-// import { ArbeidIPeriodeFrilansSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
-// import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import {
     ArbeidIPeriodeApiData,
+    ArbeidRedusertIPeriodeApiData,
     ArbeidsforholdApiData,
     ArbeidsukeTimerApiData,
 } from '../../types/søknad-api-data/SøknadApiData';
 import {
+    ArbeidIPeriodeRedusertArbeidSøknadsdata,
     ArbeidIPeriodeSøknadsdata,
     ArbeidsforholdSøknadsdata,
     ArbeidsukeTimerSøknadsdata,
 } from '../../types/søknadsdata/Søknadsdata';
 import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
-// import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 
 export const getArbeidsukerTimerApiData = (arbeidsuker: ArbeidsukeTimerSøknadsdata[]): ArbeidsukeTimerApiData[] => {
     return arbeidsuker.map(({ periode: { from, to }, timer }) => {
@@ -28,40 +27,45 @@ export const getArbeidsukerTimerApiData = (arbeidsuker: ArbeidsukeTimerSøknadsd
     });
 };
 
-export const getArbeidIPeriodeApiDataFromSøknadsdata = (_arbeid: ArbeidIPeriodeSøknadsdata): ArbeidIPeriodeApiData => {
-    return {} as any;
-    // TODO
-    // switch (arbeid.type) {
-    //     case ArbeidIPeriodeType.arbeiderIkke:
-    //         return {
-    //             type: ArbeidIPeriodeType.arbeiderIkke,
-    //             arbeiderIPerioden: ArbeiderIPeriodenSvar.heltFravær,
-    //         };
-    //     case ArbeidIPeriodeType.arbeiderVanlig:
-    //         return {
-    //             type: ArbeidIPeriodeType.arbeiderVanlig,
-    //             arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig,
-    //         };
+export const getArbeidIPeriodeApiDataFromSøknadsdata = (arbeid: ArbeidIPeriodeSøknadsdata): ArbeidIPeriodeApiData => {
+    switch (arbeid.type) {
+        case ArbeidIPeriodeType.arbeiderIkke:
+            return {
+                type: ArbeidIPeriodeType.arbeiderIkke,
+            };
+        case ArbeidIPeriodeType.arbeiderVanlig:
+            return {
+                type: ArbeidIPeriodeType.arbeiderVanlig,
+            };
 
-    //     case ArbeidIPeriodeType.arbeiderProsentAvNormalt:
-    //         return {
-    //             type: ArbeidIPeriodeType.arbeiderProsentAvNormalt,
-    //             arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
-    //             prosentAvNormalt: arbeid.prosentAvNormalt,
-    //         };
-    //     case ArbeidIPeriodeType.arbeiderTimerISnittPerUke:
-    //         return {
-    //             type: ArbeidIPeriodeType.arbeiderTimerISnittPerUke,
-    //             arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
-    //             timerPerUke: decimalDurationToISODuration(arbeid.timerISnittPerUke),
-    //         };
-    //     case ArbeidIPeriodeType.arbeiderUlikeUkerTimer:
-    //         return {
-    //             type: ArbeidIPeriodeType.arbeiderUlikeUkerTimer,
-    //             arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
-    //             arbeidsuker: getArbeidsukerTimerApiData(arbeid.arbeidsuker),
-    //         };
-    // }
+        case ArbeidIPeriodeType.arbeiderRedusert:
+            return {
+                type: ArbeidIPeriodeType.arbeiderRedusert,
+                redusertArbeid: getRedusertArbeidApiData(arbeid.redusertArbeid),
+            };
+    }
+};
+
+export const getRedusertArbeidApiData = (
+    arbeid: ArbeidIPeriodeRedusertArbeidSøknadsdata
+): ArbeidRedusertIPeriodeApiData => {
+    switch (arbeid.type) {
+        case RedusertArbeidstidType.prosentAvNormalt:
+            return {
+                type: RedusertArbeidstidType.prosentAvNormalt,
+                prosentAvNormalt: arbeid.prosentAvNormalt,
+            };
+        case RedusertArbeidstidType.timerISnittPerUke:
+            return {
+                type: RedusertArbeidstidType.timerISnittPerUke,
+                timerPerUke: `${arbeid.timerISnittPerUke}`,
+            };
+        case RedusertArbeidstidType.ulikeUkerTimer:
+            return {
+                type: RedusertArbeidstidType.ulikeUkerTimer,
+                arbeidsuker: getArbeidsukerTimerApiData(arbeid.arbeidsuker),
+            };
+    }
 };
 
 export const getArbeidsforholdApiDataFromSøknadsdata = (

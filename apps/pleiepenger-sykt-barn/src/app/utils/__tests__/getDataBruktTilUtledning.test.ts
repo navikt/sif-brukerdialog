@@ -1,4 +1,4 @@
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types';
 import { ArbeidAnsattSøknadsdata, ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/arbeidAnsattSøknadsdata';
 import { getArbeidsforhorholdAvsluttetFørSøknadsperiode } from '../getDataBruktTilUtledning';
@@ -10,6 +10,11 @@ const arbeidsgiver: Arbeidsgiver = {
     ansattFom: ISODateToDate('2021-01-01'),
 };
 
+const periodeSomAnsattISøknadsperiode: DateRange = {
+    from: ISODateToDate('2021-01-01'),
+    to: ISODateToDate('2023-01-01'),
+};
+
 describe('getArbeidsforhorholdAvsluttetFørSøknadsperiode', () => {
     const arbeidsforhold: any = {};
     const pågående: ArbeidAnsattSøknadsdata = {
@@ -17,6 +22,7 @@ describe('getArbeidsforhorholdAvsluttetFørSøknadsperiode', () => {
         arbeidsforhold,
         arbeidsgiver: { ...arbeidsgiver, id: '1' },
         erAnsattISøknadsperiode: true,
+        periodeSomAnsattISøknadsperiode,
         type: 'pågående',
     };
     const avsluttetIPeriode: ArbeidAnsattSøknadsdata = {
@@ -24,6 +30,7 @@ describe('getArbeidsforhorholdAvsluttetFørSøknadsperiode', () => {
         arbeidsforhold,
         arbeidsgiver: { ...arbeidsgiver, id: '2' },
         erAnsattISøknadsperiode: true,
+        periodeSomAnsattISøknadsperiode,
         type: 'sluttetISøknadsperiode',
     };
     const avsluttetFørPeriode: ArbeidAnsattSøknadsdata = {

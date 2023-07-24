@@ -63,17 +63,17 @@ const arbeidIPeriodeSpørsmål: MessageFileFormat = {
         'arbeidIPeriode.spørsmål.FRILANSARBEID.arbeidsuker':
             'Oppgi hvor mange timer du jobber som frilanser i hver enkeltuke i perioden?',
         'arbeidIPeriode.spørsmål.HONORARARBEID.arbeiderIPerioden':
-            'I perioden du søker for, hvilken situasjon gjelder for deg med honorararbeid?',
+            'I perioden du søker for, hva er din situasjon med honorar?',
         'arbeidIPeriode.spørsmål.HONORARARBEID.erLiktHverUke':
-            'Jobber du like mye hver uke med honorararbeid i perioden?',
+            'Bruker du like mange timer på det du får honorar for hver uke i perioden, eller varierer det fra uke til uke?',
         'arbeidIPeriode.spørsmål.HONORARARBEID.timerEllerProsent':
-            'Hvordan vil du oppgi hvor mye du jobber med honorararbeid i perioden?',
+            'Hvordan vil du oppgi hvor mye du bruker på det du får honorar for i perioden?',
         'arbeidIPeriode.spørsmål.HONORARARBEID.snittTimerPerUke':
-            'Hvor mange timer jobber du hver uke med honorararbeid i perioden?',
+            'Hvor mange timer bruker du hver uke på det du får honorar for i perioden?',
         'arbeidIPeriode.spørsmål.HONORARARBEID.prosentAvNormalt':
-            'Hvor mange prosent jobber du med honorararbeid i perioden?',
+            'Hvor mange prosent bruker du på det du får honorar for i perioden?',
         'arbeidIPeriode.spørsmål.HONORARARBEID.arbeidsuker':
-            'Oppgi hvor mange timer du jobber med honorararbeid i hver enkeltuke i perioden?',
+            'Oppgi hvor mange timer du bruker på det du får honorar for i perioden',
         'arbeidIPeriode.spørsmål.SELVSTENDIG.arbeiderIPerioden':
             'I perioden du søker for, hvilken situasjon gjelder for deg som selvstendig næringsdrivende?',
         'arbeidIPeriode.spørsmål.SELVSTENDIG.erLiktHverUke':

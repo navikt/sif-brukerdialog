@@ -63,15 +63,11 @@ export const erFrilanserISøknadsperiode = (
 
 export const getPeriodeSomFrilanserInnenforPeriode = (
     periode: DateRange,
-    startdato: Date,
-    sluttdato?: Date
+    startdato: Date | undefined,
+    sluttdato: Date | undefined
 ): DateRange | undefined => {
-    // const frilansStartdato = datepickerUtils.getDateFromDateString(startdato);
-    // const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
-
     if (startdato === undefined) {
-        console.error('getPeriodeSomFrilanserInneforPeriode - Startdato ikke satt');
-        return undefined;
+        throw 'getPeriodeSomFrilanserInnenforPeriode: startdato is undefined';
     }
 
     if (erFrilanserITidsrom(periode, startdato, sluttdato) === false) {

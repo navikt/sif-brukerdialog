@@ -1,131 +1,125 @@
-// import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-// import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-// import { FrilansFormData } from '../../../../types/FrilansFormData';
-// import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
+import { FrilansFormData, Frilanstype } from '../../../../types/FrilansFormData';
+import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 
-// const søknadsperiode = ISODateRangeToDateRange('2021-01-02/2022-01-01');
+const søknadsperiode = ISODateRangeToDateRange('2021-01-02/2022-01-01');
 
-// const frilanserSluttetIPeriodeValues: FrilansFormData = {
-//     harHattInntektSomFrilanser: YesOrNo.YES,
-//     arbeidsforhold: {
-//         normalarbeidstid: { timerPerUke: '10' },
-//         arbeidIPeriode: {
-//             arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig,
-//         },
-//     },
-//     startdato: '2021-02-02',
-// };
-
-/*const frilansoppdrag: Arbeidsgiver[] = [
-    {
-        type: ArbeidsgiverType.FRILANSOPPDRAG,
-        id: '123',
-        navn: 'Teest',
+const frilanserFullFormValues: FrilansFormData = {
+    harHattInntektSomFrilanser: YesOrNo.YES,
+    erFortsattFrilanser: YesOrNo.YES,
+    frilanstyper: [Frilanstype.FRILANSARBEID, Frilanstype.HONORARARBEID],
+    misterHonorar: YesOrNo.YES,
+    startdato: '2021-02-02',
+    sluttdato: '2022-02-01',
+    arbeidsforholdFrilansarbeid: {
+        normalarbeidstid: {
+            timerPerUke: '2',
+        },
     },
-];
-*/
+    arbeidsforholdHonorararbeid: {
+        normalarbeidstid: {
+            timerPerUke: '5',
+        },
+    },
+};
+
 describe('cleanupFrilansArbeidssituasjon', () => {
-    describe('når bruker har frilansoppdrag', () => {
-        it('TODO', () => {
-            expect(1).toBe(1);
+    it('har ikke hatt inntekt som frilanser', () => {
+        const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
+            ...frilanserFullFormValues,
+            harHattInntektSomFrilanser: YesOrNo.NO,
         });
-        /* it('beholder riktig informasjon når bruker har frilansoppdrag i søknadsperiode', () => {
-            const result = cleanupFrilansArbeidssituasjon(
-                søknadsperiode,
-                {
-                    ...frilanserSluttetIPeriodeValues,
-                    erFortsattFrilanser: YesOrNo.YES,
-                },
-                frilansoppdrag
-            );
-            expect(result.harHattInntektSomFrilanser).toBeUndefined();
-            expect(result.erFortsattFrilanser).toBeDefined();
-            expect(result.arbeidsforhold).toBeDefined();
-            expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-            expect(result.arbeidsforhold?.normalarbeidstid?.timerPerUke).toBeDefined();
-            expect(result.startdato).toBeDefined();
-            expect(result.sluttdato).toBeUndefined();
-        });
-        it('beholder riktig informasjon når bruker slutter som frilanser i søknadsperiode', () => {
-            const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
-                ...frilanserSluttetIPeriodeValues,
-                harHattInntektSomFrilanser: YesOrNo.YES,
-                erFortsattFrilanser: YesOrNo.NO,
-            });
-            expect(result.harHattInntektSomFrilanser).toBeUndefined();
-            expect(result.erFortsattFrilanser).toBeDefined();
-            expect(result.arbeidsforhold).toBeDefined();
-            expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-            expect(result.arbeidsforhold?.normalarbeidstid?.timerPerUke).toBeDefined();
-            expect(result.startdato).toBeDefined();
-            expect(result.sluttdato).toBeDefined();
-        });
-        it('beholder riktig informasjon når bruker sluttet før søknadsperiode', () => {
-            const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
-                ...frilanserSluttetIPeriodeValues,
-                harHattInntektSomFrilanser: YesOrNo.YES,
-                erFortsattFrilanser: YesOrNo.NO,
-                sluttdato: '2021-01-01',
-            });
-            expect(result.harHattInntektSomFrilanser).toBeUndefined();
-            expect(result.erFortsattFrilanser).toBeDefined();
-            expect(result.arbeidsforhold).toBeUndefined();
-            expect(result.startdato).toBeDefined();
-            expect(result.sluttdato).toBeDefined();
-        });*/
+        const { harHattInntektSomFrilanser, ...rest } = result;
+        expect(harHattInntektSomFrilanser).toEqual(YesOrNo.NO);
+        expect(rest).toEqual({});
     });
-    describe('når bruker ikke har frilansoppdrag', () => {
-        /*it('fjerner alle unødvendig data når bruker ikke er frilanser', () => {
-            const result = cleanupFrilansArbeidssituasjon(
-                søknadsperiode,
-                { ...frilanserSluttetIPeriodeValues, harHattInntektSomFrilanser: YesOrNo.NO },
-                
-            );
-            expect(result.harHattInntektSomFrilanser).toBeDefined();
-            expect(result.erFortsattFrilanser).toBeUndefined();
-            expect(result.arbeidsforhold).toBeUndefined();
-            expect(result.startdato).toBeUndefined();
-            expect(result.sluttdato).toBeUndefined();
-        });*/
-        // it('beholder riktig informasjon når bruker er frilanser i søknadsperiode', () => {
-        //     const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
-        //         ...frilanserSluttetIPeriodeValues,
-        //         harHattInntektSomFrilanser: YesOrNo.YES,
-        //     });
-        //     expect(result.harHattInntektSomFrilanser).toBeDefined();
-        //     expect(result.arbeidsforhold).toBeDefined();
-        //     expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-        //     expect(result.arbeidsforhold?.normalarbeidstid?.timerPerUke).toBeDefined();
-        //     expect(result.startdato).toBeDefined();
-        // });
-        /*
-        it('beholder riktig informasjon når bruker slutter som frilanser i søknadsperiode', () => {
+
+    describe('mottar honorar, jobber ikke som frilanser', () => {
+        it('mister ikke honorar', () => {
             const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
-                ...frilanserSluttetIPeriodeValues,
+                ...frilanserFullFormValues,
                 harHattInntektSomFrilanser: YesOrNo.YES,
-                erFortsattFrilanser: YesOrNo.NO,
+                frilanstyper: [Frilanstype.HONORARARBEID],
+                misterHonorar: YesOrNo.NO,
             });
-            expect(result.harHattInntektSomFrilanser).toBeDefined();
-            expect(result.erFortsattFrilanser).toBeDefined();
-            expect(result.arbeidsforhold).toBeDefined();
-            expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-            expect(result.arbeidsforhold?.normalarbeidstid?.timerPerUke).toBeDefined();
-            expect(result.startdato).toBeDefined();
-            expect(result.sluttdato).toBeDefined();
+            const { harHattInntektSomFrilanser, misterHonorar, frilanstyper, ...rest } = result;
+            expect(harHattInntektSomFrilanser).toEqual(YesOrNo.YES);
+            expect(misterHonorar).toEqual(YesOrNo.NO);
+            expect(frilanstyper).toEqual([Frilanstype.HONORARARBEID]);
+            expect(rest).toEqual({});
         });
-        /*
-        it('beholder riktig informasjon når bruker sluttet før søknadsperiode', () => {
+
+        it('mister honorar', () => {
             const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
-                ...frilanserSluttetIPeriodeValues,
+                ...frilanserFullFormValues,
+                harHattInntektSomFrilanser: YesOrNo.YES,
+                frilanstyper: [Frilanstype.HONORARARBEID],
+                misterHonorar: YesOrNo.YES,
+            });
+            const {
+                harHattInntektSomFrilanser,
+                misterHonorar,
+                frilanstyper,
+                arbeidsforholdHonorararbeid,
+                erFortsattFrilanser,
+                startdato,
+                ...rest
+            } = result;
+            expect(harHattInntektSomFrilanser).toEqual(YesOrNo.YES);
+            expect(misterHonorar).toEqual(YesOrNo.YES);
+            expect(erFortsattFrilanser).toBeTruthy();
+            expect(frilanstyper).toEqual([Frilanstype.HONORARARBEID]);
+            expect(startdato).toBeDefined();
+            expect(arbeidsforholdHonorararbeid).toBeDefined();
+            expect(rest).toEqual({});
+        });
+    });
+    describe('jobber som frilanser, mottar ikke honorar', () => {
+        it('jobber fortsatt som frilanser', () => {
+            const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
+                ...frilanserFullFormValues,
+                harHattInntektSomFrilanser: YesOrNo.YES,
+                frilanstyper: [Frilanstype.FRILANSARBEID],
+            });
+            const {
+                harHattInntektSomFrilanser,
+                frilanstyper,
+                startdato,
+                arbeidsforholdFrilansarbeid,
+                erFortsattFrilanser,
+                ...rest
+            } = result;
+            expect(harHattInntektSomFrilanser).toEqual(YesOrNo.YES);
+            expect(frilanstyper).toEqual([Frilanstype.FRILANSARBEID]);
+            expect(erFortsattFrilanser).toBeTruthy();
+            expect(startdato).toBeDefined();
+            expect(arbeidsforholdFrilansarbeid).toBeDefined();
+            expect(rest).toEqual({});
+        });
+        it('sluttet som frilanser i perioden', () => {
+            const result = cleanupFrilansArbeidssituasjon(søknadsperiode, {
+                ...frilanserFullFormValues,
                 harHattInntektSomFrilanser: YesOrNo.YES,
                 erFortsattFrilanser: YesOrNo.NO,
-                sluttdato: '2021-01-01',
+                frilanstyper: [Frilanstype.FRILANSARBEID],
             });
-            expect(result.harHattInntektSomFrilanser).toBeDefined();
-            expect(result.erFortsattFrilanser).toBeDefined();
-            expect(result.arbeidsforhold).toBeUndefined();
-            expect(result.startdato).toBeDefined();
-            expect(result.sluttdato).toBeDefined();
-        });*/
+            const {
+                harHattInntektSomFrilanser,
+                frilanstyper,
+                startdato,
+                arbeidsforholdFrilansarbeid,
+                erFortsattFrilanser,
+                sluttdato,
+                ...rest
+            } = result;
+            expect(harHattInntektSomFrilanser).toEqual(YesOrNo.YES);
+            expect(frilanstyper).toEqual([Frilanstype.FRILANSARBEID]);
+            expect(erFortsattFrilanser).toBeTruthy();
+            expect(startdato).toBeDefined();
+            expect(sluttdato).toBeDefined();
+            expect(arbeidsforholdFrilansarbeid).toBeDefined();
+            expect(rest).toEqual({});
+        });
     });
 });

@@ -7,7 +7,7 @@ export const extractStønadGodtgjørelseSøknadsdata = (
 ): StønadGodtgjørelseSøknadsdata | undefined => {
     const {
         mottarStønadGodtgjørelse,
-        mottarStønadGodtgjørelseIHelePeroden,
+        mottarStønadGodtgjørelseIHelePerioden,
         starterUndeveis,
         startdato,
         slutterUnderveis,
@@ -21,18 +21,18 @@ export const extractStønadGodtgjørelseSøknadsdata = (
     }
 
     if (mottarStønadGodtgjørelse === YesOrNo.YES) {
-        if (mottarStønadGodtgjørelseIHelePeroden === YesOrNo.YES) {
+        if (mottarStønadGodtgjørelseIHelePerioden === YesOrNo.YES) {
             return {
                 type: 'mottarIHelePeroden',
                 mottarStønadGodtgjørelse: YesOrNo.YES,
-                mottarStønadGodtgjørelseIHelePeroden: YesOrNo.YES,
+                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.YES,
             };
         }
-        if (mottarStønadGodtgjørelseIHelePeroden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
+        if (mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && starterUndeveis && slutterUnderveis) {
             return {
                 type: 'mottarIDelerAvPeroden',
                 mottarStønadGodtgjørelse: YesOrNo.YES,
-                mottarStønadGodtgjørelseIHelePeroden: YesOrNo.NO,
+                mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
                 starterUndeveis,
                 startdato: starterUndeveis === YesOrNo.YES ? startdato : undefined,
                 slutterUnderveis,

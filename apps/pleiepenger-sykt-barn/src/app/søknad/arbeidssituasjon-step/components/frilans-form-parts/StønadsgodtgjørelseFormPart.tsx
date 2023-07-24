@@ -53,10 +53,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                 <FormBlock>
                     <ResponsivePanel border={true}>
                         <StønadGodtgjørelseFormComponents.RadioGroup
-                            name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePeroden}
+                            name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePerioden}
                             legend={intlHelper(
                                 intl,
-                                'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden.spm'
+                                'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm'
                             )}
                             radios={[
                                 {
@@ -71,10 +71,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                 },
                             ]}
                             validate={getRequiredFieldValidator()}
-                            value={stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden}
+                            value={stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden}
                         />
 
-                        {stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePeroden === YesOrNo.NO && (
+                        {stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden === YesOrNo.NO && (
                             <>
                                 <FormBlock>
                                     <StønadGodtgjørelseFormComponents.RadioGroup

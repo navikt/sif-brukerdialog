@@ -26,7 +26,7 @@ interface ArbeiderReduserUlikeUkerTimer extends ArbeiderRedusertBase {
     arbeidsuker: ArbeidsukeTimerSøknadsdata[];
 }
 
-type ArbeidIPeriodeRedusertSøknadsdata =
+export type ArbeidIPeriodeRedusertArbeidSøknadsdata =
     | ArbeiderRedusertTimerISnittPerUke
     | ArbeiderRedusertProsentAvNormalt
     | ArbeiderReduserUlikeUkerTimer;
@@ -41,7 +41,7 @@ export interface ArbeidIPeriodeSøknadsdataJobberVanlig {
 
 export interface ArbeidIPeriodeSøknadsdataRedusert {
     type: ArbeidIPeriodeType.arbeiderRedusert;
-    redusertArbeid: ArbeidIPeriodeRedusertSøknadsdata;
+    redusertArbeid: ArbeidIPeriodeRedusertArbeidSøknadsdata;
 }
 
 export type ArbeidIPeriodeSøknadsdata =

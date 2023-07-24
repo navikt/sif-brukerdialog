@@ -9,28 +9,36 @@ export const extractArbeidSelvstendigSøknadsdata = (
     selvstendig: SelvstendigFormData | undefined,
     søknadsperiode: DateRange
 ): ArbeidSelvstendigSøknadsdata | undefined => {
+    if (!selvstendig || selvstendig.harHattInntektSomSN === YesOrNo.UNANSWERED) {
+        return undefined;
+    }
+
     if (!selvstendig || selvstendig.harHattInntektSomSN === YesOrNo.NO) {
         return {
             erSN: false,
         };
     }
 
-    const arbeidsforhold = selvstendig.arbeidsforhold
-        ? extractArbeidsforholdSøknadsdata(selvstendig.arbeidsforhold)
-        : undefined;
-
-    const virksomhet = selvstendig.virksomhet;
-
-    const periodeSomSelvstendigISøknadsperiode =
+    const aktivPeriode =
         selvstendig.harHattInntektSomSN === YesOrNo.YES && selvstendig.virksomhet !== undefined
             ? getPeriodeSomSelvstendigInnenforPeriode(søknadsperiode, selvstendig.virksomhet)
             : undefined;
 
+    if (!aktivPeriode) {
+        throw 'extractArbeidSelvstendigSøknadsdata: aktivPeriode is undefined';
+    }
+
+    const arbeidsforhold = selvstendig.arbeidsforhold
+        ? extractArbeidsforholdSøknadsdata(selvstendig.arbeidsforhold, aktivPeriode)
+        : undefined;
+
+    const virksomhet = selvstendig.virksomhet;
+
     if (arbeidsforhold && virksomhet && dayjs(virksomhet.fom).isBefore(søknadsperiode.to, 'day')) {
         return {
             erSN: true,
-            erSelvstendigISøknadsperiode: periodeSomSelvstendigISøknadsperiode !== undefined,
-            periodeSomSelvstendigISøknadsperiode,
+            erSelvstendigISøknadsperiode: aktivPeriode !== undefined,
+            periodeSomSelvstendigISøknadsperiode: aktivPeriode,
             arbeidsforhold,
             virksomhet,
             harFlereVirksomheter: selvstendig.harFlereVirksomheter === YesOrNo.YES,

@@ -1,11 +1,14 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidsforholdFormValues } from '../../types/ArbeidsforholdFormValues';
 import { ArbeidAnsattSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { getPeriodeSomAnsattInnenforPeriode } from '../ansattUtils';
 import { extractArbeidsforholdSøknadsdata } from './extractArbeidsforholdSøknadsdata';
 
 export const extractArbeidAnsattSøknadsdata = (
     arbeidsforhold: ArbeidsforholdFormValues,
-    index: number
+    index: number,
+    søknadsperiode: DateRange
 ): ArbeidAnsattSøknadsdata | undefined => {
     /** Bruker har ikke besvart denne informasjonen enda */
     if (arbeidsforhold.erAnsatt === undefined) {
@@ -22,7 +25,9 @@ export const extractArbeidAnsattSøknadsdata = (
             arbeidsgiver: arbeidsforhold.arbeidsgiver,
         };
     }
-    const arbeidsforholdSøknadsdata = extractArbeidsforholdSøknadsdata(arbeidsforhold);
+    const aktivPeriode = getPeriodeSomAnsattInnenforPeriode(søknadsperiode, arbeidsforhold.arbeidsgiver);
+    const arbeidsforholdSøknadsdata = extractArbeidsforholdSøknadsdata(arbeidsforhold, aktivPeriode);
+
     if (arbeidsforholdSøknadsdata) {
         if (erAnsatt === false && sluttetFørSøknadsperiode === false) {
             return {
@@ -31,6 +36,7 @@ export const extractArbeidAnsattSøknadsdata = (
                 erAnsattISøknadsperiode: true,
                 arbeidsgiver: arbeidsforhold.arbeidsgiver,
                 arbeidsforhold: arbeidsforholdSøknadsdata,
+                periodeSomAnsattISøknadsperiode: aktivPeriode,
             };
         }
         return {
@@ -39,6 +45,7 @@ export const extractArbeidAnsattSøknadsdata = (
             erAnsattISøknadsperiode: true,
             arbeidsgiver: arbeidsforhold.arbeidsgiver,
             arbeidsforhold: arbeidsforholdSøknadsdata,
+            periodeSomAnsattISøknadsperiode: aktivPeriode,
         };
     }
     return undefined;

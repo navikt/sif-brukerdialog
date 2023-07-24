@@ -9,13 +9,13 @@ export interface MottarIkkeStønadGodtgjørelse {
 export interface MottarStønadGodtgjørelseIHelePeroden {
     type: 'mottarIHelePeroden';
     mottarStønadGodtgjørelse: YesOrNo.YES;
-    mottarStønadGodtgjørelseIHelePeroden: YesOrNo.YES;
+    mottarStønadGodtgjørelseIHelePerioden: YesOrNo.YES;
 }
 
 export interface MottarStønadGodtgjørelseIDelerAvPeroden {
     type: 'mottarIDelerAvPeroden';
     mottarStønadGodtgjørelse: YesOrNo.YES;
-    mottarStønadGodtgjørelseIHelePeroden: YesOrNo.NO;
+    mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO;
     starterUndeveis: YesOrNo;
     startdato?: ISODate;
     slutterUnderveis: YesOrNo;

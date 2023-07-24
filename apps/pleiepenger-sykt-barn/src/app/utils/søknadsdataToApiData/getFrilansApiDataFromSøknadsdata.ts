@@ -1,70 +1,154 @@
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// // import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-// // import { dateToISODate } from '@navikt/sif-common-utils/lib';
-// // import { MisterHonorarerFraVervIPerioden } from '../../types/ArbeidIPeriodeFormValues';
-// // import { FrilansTyper } from '../../types/FrilansFormData';
-// import { FrilansApiData } from '../../types/søknad-api-data/SøknadApiData';
-// import { ArbeidFrilansSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
-// // import { getArbeidsforholdFrilansApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
-// // import { ArbeidIPeriodeFrilansSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
+import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
+import {
+    FrilansApiData,
+    FrilansApiDataFrilansarbeidOgHonorararbeid,
+    FrilansApiDataKunFrilansarbeid,
+    FrilansApiDataKunHonorararbeid,
+    FrilansarbeidApiData,
+    FrilanserPeriodeApiData,
+    HonorararbeidApiData,
+} from '../../types/søknad-api-data/frilansApiData';
+import {
+    ArbeidsforholdHonorararbeid,
+    FrilanserMisterInntekt,
+    FrilanserSøknadsdata,
+} from '../../types/søknadsdata/arbeidFrilansSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
+import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
+import ArbeidstidHonorararbeid from '../../søknad/arbeidstid-step/components/ArbeidstidHonorararbeid';
+import { ArbeidsforholdSøknadsdata } from '../../types/søknadsdata/arbeidsforholdSøknadsdata';
+import { ArbeidsforholdApiData } from '../../types/søknad-api-data/arbeidsforholdApiData';
 
-// export const getFrilansApiDataFromSøknadsdata = (
-//     arbeidFrilansSøknadsdata: ArbeidFrilansSøknadsdata | undefined
-// ): FrilansApiData => {
-//     return {} as FrilansApiData;
-//     // if (!arbeidFrilansSøknadsdata || arbeidFrilansSøknadsdata.type === 'erIkkeFrilanser') {
-//     //     return {
-//     //         type: 'ingenIntekt',
-//     //         harInntektSomFrilanser: false,
-//     //     };
-//     // }
-//     // const getMisterHonorarerIPerioden = (
-//     //     arbeidIPeriodeFrilans: ArbeidIPeriodeFrilansSøknadsdata
-//     // ): MisterHonorarerFraVervIPerioden | undefined => arbeidIPeriodeFrilans.misterHonorarerFraVervIPerioden;
+export const getFrilansApiDataFromSøknadsdata = (frilanser: FrilanserSøknadsdata | undefined): FrilansApiData => {
+    if (!frilanser) {
+        throw 'getFrilansApiDataFromSøknadsdata: frilanser is undefined';
+    }
+    if (!frilanser.harInntektSomFrilanser) {
+        return {
+            harInntektSomFrilanser: false,
+        };
+    }
 
-//     // switch (arbeidFrilansSøknadsdata.type) {
-//     //     case 'pågående':
-//     //         return {
-//     //             type: 'harArbeidsforhold',
-//     //             harInntektSomFrilanser: true,
-//     //             startdato: dateToISODate(arbeidFrilansSøknadsdata.startdato),
-//     //             jobberFortsattSomFrilans: true,
-//     //             frilanstyper: arbeidFrilansSøknadsdata.frilansType,
-//     //             misterHonorarer: arbeidFrilansSøknadsdata.misterHonorar
-//     //                 ? arbeidFrilansSøknadsdata.misterHonorar === YesOrNo.YES
-//     //                     ? true
-//     //                     : false
-//     //                 : undefined,
-//     //             misterHonorarerIPerioden: getMisterHonorarerIPerioden(
-//     //                 arbeidFrilansSøknadsdata.arbeidsforhold.arbeidISøknadsperiode as ArbeidIPeriodeFrilansSøknadsdata
-//     //             ),
-//     //             arbeidsforhold: getArbeidsforholdFrilansApiDataFromSøknadsdata(arbeidFrilansSøknadsdata.arbeidsforhold),
-//     //         };
-//     //     case 'sluttetISøknadsperiode':
-//     //         return {
-//     //             type: 'harArbeidsforholdSluttetISøknadsperiode',
-//     //             harInntektSomFrilanser: true,
-//     //             startdato: dateToISODate(arbeidFrilansSøknadsdata.startdato),
-//     //             jobberFortsattSomFrilans: false,
-//     //             sluttdato: dateToISODate(arbeidFrilansSøknadsdata.sluttdato),
-//     //             frilanstyper: arbeidFrilansSøknadsdata.frilansType,
-//     //             misterHonorarer: arbeidFrilansSøknadsdata.misterHonorar
-//     //                 ? arbeidFrilansSøknadsdata.misterHonorar === YesOrNo.YES
-//     //                     ? true
-//     //                     : false
-//     //                 : undefined,
-//     //             misterHonorarerIPerioden: getMisterHonorarerIPerioden(
-//     //                 arbeidFrilansSøknadsdata.arbeidsforhold.arbeidISøknadsperiode as ArbeidIPeriodeFrilansSøknadsdata
-//     //             ),
-//     //             arbeidsforhold: getArbeidsforholdFrilansApiDataFromSøknadsdata(arbeidFrilansSøknadsdata.arbeidsforhold),
-//     //         };
+    /** Kun honorar - mister ikke honorar */
+    if (!frilanser.misterInntektSomFrilanserIPeriode) {
+        const apiData: FrilansApiDataKunHonorararbeid = {
+            harInntektSomFrilanser: true,
+            honorararbeid: {
+                misterHonorar: false,
+            },
+        };
+        return apiData;
+    }
 
-//     //     case 'pågåendeKunHonorararbeid':
-//     //         return {
-//     //             type: 'harIkkeArbeidsforhold',
-//     //             harInntektSomFrilanser: true,
-//     //             frilanstyper: [FrilansTyper.HONORARARBEID],
-//     //             misterHonorarer: false,
-//     //         };
-//     // }
-// };
+    if (frilanser.misterInntektSomFrilanserIPeriode && frilanser.arbeidsforhold) {
+        const { arbeidsforholdHonorararbeid, arbeidsforholdFrilanserarbeid, arbeidsforhold } = frilanser;
+
+        /** Kun honorar - mister honorar */
+        if (
+            arbeidsforholdHonorararbeid &&
+            arbeidsforholdHonorararbeid.misterHonorar &&
+            arbeidsforholdHonorararbeid.arbeidISøknadsperiode &&
+            !arbeidsforholdFrilanserarbeid
+        ) {
+            const apiData: FrilansApiDataKunHonorararbeid = {
+                harInntektSomFrilanser: true,
+                ...getFrilanserPeriodeApiData(frilanser),
+                honorararbeid: getHonorararbeidApiData(arbeidsforholdHonorararbeid),
+                arbeidsforhold: getArbeidsforholdApiData(arbeidsforhold),
+            };
+            return apiData;
+        }
+        /** Kun frilansarbeid */
+        if (
+            arbeidsforholdFrilanserarbeid &&
+            arbeidsforholdFrilanserarbeid.arbeidISøknadsperiode &&
+            !ArbeidstidHonorararbeid
+        ) {
+            const apiData: FrilansApiDataKunFrilansarbeid = {
+                harInntektSomFrilanser: true,
+                ...getFrilanserPeriodeApiData(frilanser),
+                frilansarbeid: getFrilansarbeidApiData(arbeidsforholdFrilanserarbeid),
+                arbeidsforhold: getArbeidsforholdApiData(arbeidsforhold),
+            };
+            return apiData;
+        }
+        /** Frilansarbeid og honorararbeid */
+        if (
+            arbeidsforhold.arbeidISøknadsperiode &&
+            arbeidsforholdHonorararbeid &&
+            arbeidsforholdHonorararbeid.misterHonorar &&
+            arbeidsforholdHonorararbeid.arbeidISøknadsperiode &&
+            arbeidsforholdFrilanserarbeid &&
+            arbeidsforholdFrilanserarbeid.arbeidISøknadsperiode
+        ) {
+            const apiData: FrilansApiDataFrilansarbeidOgHonorararbeid = {
+                harInntektSomFrilanser: true,
+                ...getFrilanserPeriodeApiData(frilanser),
+                honorararbeid: getHonorararbeidApiData(arbeidsforholdHonorararbeid),
+                frilansarbeid: getFrilansarbeidApiData(arbeidsforholdFrilanserarbeid),
+                arbeidsforhold: getArbeidsforholdApiData(arbeidsforhold),
+            };
+            return apiData;
+        }
+    }
+
+    throw 'getFrilansApiDataFromSøknadsdata: undefined return';
+};
+
+const getArbeidsforholdApiData = (arbeidsforhold: ArbeidsforholdSøknadsdata): ArbeidsforholdApiData => {
+    return {
+        normalarbeidstid: {
+            timerPerUkeISnitt: `${arbeidsforhold.normalarbeidstid.timerPerUkeISnitt}`,
+        },
+        arbeidIPeriode: arbeidsforhold.arbeidISøknadsperiode
+            ? getArbeidIPeriodeApiDataFromSøknadsdata(arbeidsforhold.arbeidISøknadsperiode)
+            : undefined,
+    };
+};
+
+const getFrilanserPeriodeApiData = (frilanser: FrilanserMisterInntekt): FrilanserPeriodeApiData => {
+    return {
+        erFortsattFrilanser: frilanser.erFortsattFrilanser,
+        startdato: dateToISODate(frilanser.startdato),
+        sluttdato:
+            frilanser.erFortsattFrilanser && frilanser.sluttdato ? dateToISODate(frilanser.sluttdato) : undefined,
+    };
+};
+
+const getHonorararbeidApiData = (arbeidsforhold: ArbeidsforholdHonorararbeid): HonorararbeidApiData => {
+    if (arbeidsforhold.misterHonorar === false) {
+        return {
+            misterHonorar: false,
+        };
+    }
+    if (arbeidsforhold.arbeidISøknadsperiode === undefined) {
+        throw 'getHonorararbeidApiData: arbeidISøknadsperiode er undefined';
+    }
+    return {
+        misterHonorar: true,
+        arbeidIPeriodeSvar: getArbeidIPeriodeSvarFraArbeidISøknadsperiode(arbeidsforhold.arbeidISøknadsperiode),
+        timerNormalt: `${arbeidsforhold.normalarbeidstid.timerPerUkeISnitt}`,
+    };
+};
+const getFrilansarbeidApiData = (arbeidsforhold: ArbeidsforholdSøknadsdata): FrilansarbeidApiData => {
+    if (arbeidsforhold.arbeidISøknadsperiode === undefined) {
+        throw 'getHonorararbeidApiData: arbeidISøknadsperiode er undefined';
+    }
+    return {
+        arbeidIPeriodeSvar: getArbeidIPeriodeSvarFraArbeidISøknadsperiode(arbeidsforhold.arbeidISøknadsperiode),
+        timerNormalt: `${arbeidsforhold.normalarbeidstid.timerPerUkeISnitt}`,
+    };
+};
+
+const getArbeidIPeriodeSvarFraArbeidISøknadsperiode = (arbeid: ArbeidIPeriodeSøknadsdata): ArbeiderIPeriodenSvar => {
+    switch (arbeid.type) {
+        case ArbeidIPeriodeType.arbeiderIkke:
+            return ArbeiderIPeriodenSvar.heltFravær;
+        case ArbeidIPeriodeType.arbeiderRedusert:
+            return ArbeiderIPeriodenSvar.redusert;
+        case ArbeidIPeriodeType.arbeiderVanlig:
+            return ArbeiderIPeriodenSvar.somVanlig;
+    }
+};

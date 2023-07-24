@@ -14,7 +14,7 @@ import { getAttachmentsApiDataFromSøknadsdata } from './getAttachmentsApiDataFr
 import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata';
 import { getBeredskapApiDataFromSøknadsdata } from './getBeredskapApiDataFromSøknadsdata';
 import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
-// import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
+import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getNattevåkApiDataFromSøknadsdata } from './getNattevåkApiDataFromSøknadsdata';
 import { getOmsorgstilbudApiDataFromSøknadsdata } from './getOmsorgstibudApiDataFromSøknadsdata';
@@ -56,7 +56,7 @@ export const getApiDataFromSøknadsdata = (
                 ...getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata(sprak, søknadsdata.utenlandsoppholdIPerioden),
                 ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(søknadsdata.ferieuttakIPerioden),
                 arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(søknadsdata.arbeid?.arbeidsgivere),
-                frilans: {} as any, // TODO getFrilansApiDataFromSøknadsdata(søknadsdata.arbeid?.frilans),
+                frilans: getFrilansApiDataFromSøknadsdata(søknadsdata.arbeid?.frilanser),
                 ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsperiode, søknadsdata.stønadGodtgjørelse),
                 selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
                     søknadsdata.arbeid?.selvstendig,
