@@ -43,14 +43,14 @@ export const getFrilansApiDataFromSøknadsdata = (frilanser: FrilanserSøknadsda
     }
 
     if (frilanser.misterInntektSomFrilanserIPeriode && frilanser.arbeidsforhold) {
-        const { arbeidsforholdHonorararbeid, arbeidsforholdFrilanserarbeid, arbeidsforhold } = frilanser;
+        const { arbeidsforholdHonorararbeid, arbeidsforholdFrilansarbeid, arbeidsforhold } = frilanser;
 
         /** Kun honorar - mister honorar */
         if (
             arbeidsforholdHonorararbeid &&
             arbeidsforholdHonorararbeid.misterHonorar &&
             arbeidsforholdHonorararbeid.arbeidISøknadsperiode &&
-            !arbeidsforholdFrilanserarbeid
+            !arbeidsforholdFrilansarbeid
         ) {
             const apiData: FrilansApiDataKunHonorararbeid = {
                 harInntektSomFrilanser: true,
@@ -62,14 +62,14 @@ export const getFrilansApiDataFromSøknadsdata = (frilanser: FrilanserSøknadsda
         }
         /** Kun frilansarbeid */
         if (
-            arbeidsforholdFrilanserarbeid &&
-            arbeidsforholdFrilanserarbeid.arbeidISøknadsperiode &&
+            arbeidsforholdFrilansarbeid &&
+            arbeidsforholdFrilansarbeid.arbeidISøknadsperiode &&
             !ArbeidstidHonorararbeid
         ) {
             const apiData: FrilansApiDataKunFrilansarbeid = {
                 harInntektSomFrilanser: true,
                 ...getFrilanserPeriodeApiData(frilanser),
-                frilansarbeid: getFrilansarbeidApiData(arbeidsforholdFrilanserarbeid),
+                frilansarbeid: getFrilansarbeidApiData(arbeidsforholdFrilansarbeid),
                 arbeidsforhold: getArbeidsforholdApiData(arbeidsforhold),
             };
             return apiData;
@@ -80,14 +80,14 @@ export const getFrilansApiDataFromSøknadsdata = (frilanser: FrilanserSøknadsda
             arbeidsforholdHonorararbeid &&
             arbeidsforholdHonorararbeid.misterHonorar &&
             arbeidsforholdHonorararbeid.arbeidISøknadsperiode &&
-            arbeidsforholdFrilanserarbeid &&
-            arbeidsforholdFrilanserarbeid.arbeidISøknadsperiode
+            arbeidsforholdFrilansarbeid &&
+            arbeidsforholdFrilansarbeid.arbeidISøknadsperiode
         ) {
             const apiData: FrilansApiDataFrilansarbeidOgHonorararbeid = {
                 harInntektSomFrilanser: true,
                 ...getFrilanserPeriodeApiData(frilanser),
                 honorararbeid: getHonorararbeidApiData(arbeidsforholdHonorararbeid),
-                frilansarbeid: getFrilansarbeidApiData(arbeidsforholdFrilanserarbeid),
+                frilansarbeid: getFrilansarbeidApiData(arbeidsforholdFrilansarbeid),
                 arbeidsforhold: getArbeidsforholdApiData(arbeidsforhold),
             };
             return apiData;

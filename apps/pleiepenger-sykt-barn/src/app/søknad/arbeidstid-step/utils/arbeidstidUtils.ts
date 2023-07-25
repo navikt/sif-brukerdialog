@@ -82,8 +82,8 @@ export const getAlleArbeidsforholdIPerioden = (arbeid?: ArbeidSøknadsdata): Arb
     const frilansArbeidsforhold: ArbeidsforholdSøknadsdata[] = [];
 
     if (arbeid.frilanser?.harInntektSomFrilanser && arbeid.frilanser.misterInntektSomFrilanserIPeriode) {
-        if (arbeid.frilanser.arbeidsforholdFrilanserarbeid) {
-            frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdFrilanserarbeid);
+        if (arbeid.frilanser.arbeidsforholdFrilansarbeid) {
+            frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdFrilansarbeid);
         }
         if (
             arbeid.frilanser.arbeidsforholdHonorararbeid &&

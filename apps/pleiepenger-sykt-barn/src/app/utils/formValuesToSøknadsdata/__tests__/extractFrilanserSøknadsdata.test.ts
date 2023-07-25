@@ -95,10 +95,10 @@ describe('extractFrilanserSøknadsdata', () => {
         expect(result.misterInntektSomFrilanserIPeriode).toBeTruthy();
         expect(result.erFortsattFrilanser).toBeTruthy();
         expect(result.startdato).toEqual(ISODateToDate(startdatoISODate));
-        expect(dateRangeToISODateRange(result.arbeidsforholdFrilanserarbeid.aktivPeriode)).toEqual(
+        expect(dateRangeToISODateRange(result.arbeidsforholdFrilansarbeid.aktivPeriode)).toEqual(
             søknadsperiodeIsoDateRange
         );
-        expect(result.arbeidsforholdFrilanserarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(
+        expect(result.arbeidsforholdFrilansarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(
             timerPerUkeFrilansarbeid
         );
         expect(result.arbeidsforhold?.normalarbeidstid.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
@@ -128,7 +128,7 @@ describe('extractFrilanserSøknadsdata', () => {
         ) as FrilansSøknadsdataFrilansarbeidOgHonorararbeid;
 
         const {
-            arbeidsforholdFrilanserarbeid,
+            arbeidsforholdFrilansarbeid,
             harInntektSomFrilanser,
             misterInntektSomFrilanserIPeriode,
             arbeidsforholdHonorararbeid,
@@ -143,8 +143,8 @@ describe('extractFrilanserSøknadsdata', () => {
         expect(erFortsattFrilanser).toBeTruthy();
         expect(startdato).toEqual(ISODateToDate(startdatoISODate));
         expect(sluttdato).toBeUndefined();
-        expect(dateRangeToISODateRange(arbeidsforholdFrilanserarbeid.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
-        expect(arbeidsforholdFrilanserarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
+        expect(dateRangeToISODateRange(arbeidsforholdFrilansarbeid.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
+        expect(arbeidsforholdFrilansarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
         expect(arbeidsforholdHonorararbeid.misterHonorar).toBeTruthy();
         if (arbeidsforholdHonorararbeid.misterHonorar) {
             expect(arbeidsforholdHonorararbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeHonorararbeid);
@@ -174,7 +174,7 @@ describe('extractFrilanserSøknadsdata', () => {
         ) as FrilansSøknadsdataFrilansarbeidOgHonorararbeid;
 
         const {
-            arbeidsforholdFrilanserarbeid,
+            arbeidsforholdFrilansarbeid,
             arbeidsforholdHonorararbeid,
             harInntektSomFrilanser,
             erFortsattFrilanser,
@@ -189,11 +189,35 @@ describe('extractFrilanserSøknadsdata', () => {
         expect(erFortsattFrilanser).toBeTruthy();
         expect(startdato).toEqual(ISODateToDate(startdatoISODate));
         expect(sluttdato).toBeUndefined();
-        expect(dateRangeToISODateRange(arbeidsforholdFrilanserarbeid.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
-        expect(arbeidsforholdFrilanserarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
+        expect(dateRangeToISODateRange(arbeidsforholdFrilansarbeid.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
+        expect(arbeidsforholdFrilansarbeid.normalarbeidstid?.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
         expect(arbeidsforholdHonorararbeid.misterHonorar).toBeFalsy();
         expect(arbeidsforhold.normalarbeidstid.timerPerUkeISnitt).toEqual(timerPerUkeFrilansarbeid);
         expect(dateRangeToISODateRange(arbeidsforhold.aktivPeriode)).toEqual(søknadsperiodeIsoDateRange);
         expect(rest).toEqual({});
     });
+
+    // TODO
+    // describe('slå sammen frilansarbeid og honorararbeid', () => {
+    //     const normalarbeidstidFrilansarbeid: NormalarbeidstidSøknadsdata = {
+    //         timerPerUkeISnitt: 10,
+    //     };
+    //     const normalarbeidstidHonorararbeid: NormalarbeidstidSøknadsdata = {
+    //         timerPerUkeISnitt: 2,
+    //     };
+    //     const aktivPeriode = ISODateRangeToDateRange('2023-01-01/2023-02-01');
+
+    //     it('slår sammen riktig når en arbeider ikke for både frilansarbeid og honorararbeid', () => {
+    //         const arbeiderIkke: ArbeidIPeriodeSøknadsdata = {
+    //             type: ArbeidIPeriodeType.arbeiderIkke,
+    //         };
+    //         const result = getAggregertArbeidsforholdForFrilanser({
+    //             aktivPeriode,
+    //             honorararbeid: { normalarbeidstid: normalarbeidstidFrilansarbeid, arbeidISøknadsperiode: arbeiderIkke },
+    //             frilansarbeid: { normalarbeidstid: normalarbeidstidHonorararbeid, arbeidISøknadsperiode: arbeiderIkke },
+    //         });
+    //         expect(result.aktivPeriode).toEqual(aktivPeriode);
+    //         expect(result.normalarbeidstid.timerPerUkeISnitt).toEqual(12);
+    //     });
+    // });
 });

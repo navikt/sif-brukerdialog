@@ -24,13 +24,10 @@ export const extractArbeidSelvstendigSøknadsdata = (
             ? getPeriodeSomSelvstendigInnenforPeriode(søknadsperiode, selvstendig.virksomhet)
             : undefined;
 
-    if (!aktivPeriode) {
-        throw 'extractArbeidSelvstendigSøknadsdata: aktivPeriode is undefined';
-    }
-
-    const arbeidsforhold = selvstendig.arbeidsforhold
-        ? extractArbeidsforholdSøknadsdata(selvstendig.arbeidsforhold, aktivPeriode)
-        : undefined;
+    const arbeidsforhold =
+        selvstendig.arbeidsforhold && aktivPeriode
+            ? extractArbeidsforholdSøknadsdata(selvstendig.arbeidsforhold, aktivPeriode)
+            : undefined;
 
     const virksomhet = selvstendig.virksomhet;
 

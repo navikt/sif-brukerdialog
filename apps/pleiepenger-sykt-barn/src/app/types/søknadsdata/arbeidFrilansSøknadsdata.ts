@@ -19,7 +19,7 @@ export type FrilanserMisterInntekt = {
     erFortsattFrilanser: boolean;
     startdato: Date;
     sluttdato?: Date;
-    arbeidsforholdFrilanserarbeid?: ArbeidsforholdSøknadsdata;
+    arbeidsforholdFrilansarbeid?: ArbeidsforholdSøknadsdata;
     arbeidsforholdHonorararbeid?: ArbeidsforholdHonorararbeid;
     arbeidsforhold: ArbeidsforholdSøknadsdata; // Aggregert informasjon fra honorararbeid og frilansarbeid + egne spørsmål
 };
@@ -41,17 +41,17 @@ export type FrilansSøknadsdataKunHonorararbeidMisterIkkeHonorar = {
 };
 
 export type FrilansSøknadsdataKunHonorararbeidMisterHonorar = FrilanserMisterInntekt & {
-    arbeidsforholdFrilanserarbeid: undefined;
+    arbeidsforholdFrilansarbeid: undefined;
     arbeidsforholdHonorararbeid: ArbeidsforholdSøknadsdata & HonorararbeidMisterHonorar;
 };
 
 export type FrilansSøknadsdataKunFrilansarbeid = FrilanserMisterInntekt & {
-    arbeidsforholdFrilanserarbeid: ArbeidsforholdSøknadsdata;
+    arbeidsforholdFrilansarbeid: ArbeidsforholdSøknadsdata;
     arbeidsforholdHonorararbeid: undefined;
 };
 
 export type FrilansSøknadsdataFrilansarbeidOgHonorararbeid = FrilanserMisterInntekt & {
-    arbeidsforholdFrilanserarbeid: ArbeidsforholdSøknadsdata;
+    arbeidsforholdFrilansarbeid: ArbeidsforholdSøknadsdata;
     arbeidsforholdHonorararbeid: ArbeidsforholdHonorararbeid;
 };
 

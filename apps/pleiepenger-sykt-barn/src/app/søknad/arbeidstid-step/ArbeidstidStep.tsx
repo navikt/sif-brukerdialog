@@ -80,12 +80,12 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                 </FormBlock>
             )}
 
-            {erFrilanserSomMisterInntekt(frilanser) && frilanser.arbeidsforholdFrilanserarbeid && (
+            {erFrilanserSomMisterInntekt(frilanser) && frilanser.arbeidsforholdFrilansarbeid && (
                 <FormBlock>
                     <ArbeidstidFrilansarbeid
-                        periode={frilanser.arbeidsforholdFrilanserarbeid.aktivPeriode}
+                        periode={frilanser.arbeidsforholdFrilansarbeid.aktivPeriode}
                         arbeidIPeriode={values.frilans.arbeidsforholdFrilansarbeid?.arbeidIPeriode}
-                        normalarbeidstid={frilanser.arbeidsforholdFrilanserarbeid.normalarbeidstid.timerPerUkeISnitt}
+                        normalarbeidstid={frilanser.arbeidsforholdFrilansarbeid.normalarbeidstid.timerPerUkeISnitt}
                         søkerFremITid={søkerFremITid}
                     />
                 </FormBlock>
