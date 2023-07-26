@@ -9,6 +9,8 @@ import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
 import { OmsorgstilbudSøknadsdata } from './OmsorgstilbudSøknadsdata';
 import { UtenlandsoppholdIPeriodenSøknadsdata } from './UtenlandsoppholdIPeriodenSøknadsdata';
 import { StønadGodtgjørelseSøknadsdata } from './StønadGodtgjørelseSøknadsdata';
+import { ArbeidssituasjonSøknadsdata } from './ArbeidssituasjonSøknadsdata';
+import { ArbeidstidSøknadsdata } from './ArbeidstidSøknadsdata';
 
 export * from './OmBarnetSøknadsdata';
 export * from './arbeidIPeriodeSøknadsdata';
@@ -35,6 +37,8 @@ export interface Søknadsdata {
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenSøknadsdata;
     ferieuttakIPerioden?: FerieuttakIPeriodenSøknadsdata;
     arbeid?: ArbeidSøknadsdata;
+    arbeidssituasjon?: ArbeidssituasjonSøknadsdata;
+    arbeidstidIPerioden?: ArbeidstidSøknadsdata;
     harVærtEllerErVernepliktig?: boolean;
     omsorgstibud?: OmsorgstilbudSøknadsdata;
     nattevåk?: NattevåkSøknadsdata;

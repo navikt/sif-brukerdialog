@@ -3,12 +3,17 @@ import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
 import { cyApiMockData } from '../../cyApiMockData';
 import {
+    getElement,
     getTestElement,
     gåTilOppsummeringFraArbeidssituasjon,
+    selectCheckByNameAndValue,
     selectRadioNo,
+    selectRadioNoByName,
     selectRadioNyYesOrNo,
     selectRadioYes,
+    selectRadioYesByName,
     setInputValue,
+    setInputValueByName,
 } from '../../utils';
 
 dayjs.extend(isoWeek);
@@ -34,21 +39,22 @@ export const fyllUtArbeidssituasjonErIkkeFrilanser = () => {
 
 export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
-        selectRadioYes('er-frilanser');
+        selectRadioYesByName('frilans.harHattInntektSomFrilanser');
 
-        getTestElement('frilans-typer_frilansarbeid').click({ force: true });
-        getTestElement('frilans-typer_honorararbeid').click({ force: true });
+        cy.contains('Jeg jobber som frilanser').parent().click();
+        cy.contains('Jeg får honorar for verv').parent().click();
+        selectRadioYesByName('frilans.misterHonorar');
 
-        selectRadioNyYesOrNo('mister-honorar', true);
         const startdato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
         cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
 
-        selectRadioNyYesOrNo('er-fortsatt-frilanser', false);
+        selectRadioNoByName('frilans.erFortsattFrilanser');
 
         const sluttdato = dayjs().format('YYYY-MM-DD');
         cy.get('input[name="frilans.sluttdato"]').click().type(sluttdato).blur();
 
-        setInputValue('normalarbeidstid.timerPerUke', '20');
+        setInputValueByName('frilans.arbeidsforholdFrilansarbeid.normalarbeidstid.timerPerUke', '5');
+        setInputValueByName('frilans.arbeidsforholdHonorararbeid.normalarbeidstid.timerPerUke', '10');
     });
 };
 

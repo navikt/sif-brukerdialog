@@ -7,7 +7,7 @@ import {
     gåTilOppsummeringFraArbeidIPerioden,
     gåTilOppsummeringFraArbeidssituasjon,
     selectRadioByNameAndValue,
-    selectRadioNo,
+    selectRadioNoByName,
     selectRadioNyYesOrNo,
     selectRadioYes,
 } from '../../utils';
@@ -15,7 +15,7 @@ import { fyllUtArbeidstidJobberIkke } from '../arbeid-i-periode/arbeidIPeriode';
 
 export const fyllUtArbeidssituasjonErIkkeSelvstendig = () => {
     getTestElement('arbeidssituasjonSelvstendig').within(() => {
-        selectRadioNo('er-selvstendig');
+        selectRadioNoByName('selvstendig.harHattInntektSomSN');
     });
 };
 

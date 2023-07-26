@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
+import useEffectOnce from '../hooks/useEffectOnce';
+import { SøknadFormValues } from '../types/SøknadFormValues';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';
 import { SøknadsdataContextProvider } from './SøknadsdataContext';
 
 interface Props {
-    initialSøknadsdata: Søknadsdata;
+    initialValues: SøknadFormValues;
     children: React.ReactNode;
 }
 
-const SøknadsdataWrapper: React.FunctionComponent<Props> = ({ initialSøknadsdata, children }) => {
-    const [søknadsdata, setSøknadsdata] = useState<Søknadsdata>(initialSøknadsdata);
+const SøknadsdataWrapper: React.FunctionComponent<Props> = ({ initialValues, children }) => {
+    const [søknadsdata, setSøknadsdata] = useState<Søknadsdata>({});
+
+    useEffectOnce(() => {
+        setSøknadsdata(extractSøknadsdataFromFormValues(initialValues));
+    });
+
     return (
         <SøknadsdataContextProvider
             value={{

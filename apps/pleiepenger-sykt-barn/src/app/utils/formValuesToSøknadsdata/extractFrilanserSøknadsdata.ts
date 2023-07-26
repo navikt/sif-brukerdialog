@@ -25,6 +25,12 @@ export const extractFrilanserSøknadsdata = (
     frilans: FrilansFormData,
     søknadsperiode: DateRange
 ): FrilanserSøknadsdata => {
+    /** TODO */
+    if (1 + 1 === 2) {
+        return {
+            harInntektSomFrilanser: false,
+        };
+    }
     const harInntektSomFrilanser = frilans.harHattInntektSomFrilanser === YesOrNo.YES;
 
     /** Har ingen inntekt som frilanser */

@@ -21,6 +21,16 @@ export const checkCheckbuttonByName = (name) => {
 export const selectRadioYes = (key) => {
     getTestElement(`${key}_yes`).parent().click();
 };
+export const selectRadioYesByName = (name) => {
+    cy.get(`*[name="${name}"][value="yes"]`).parent().click();
+};
+export const selectRadioNoByName = (name) => {
+    cy.get(`*[name="${name}"][value="no"]`).parent().click();
+};
+
+export const selectCheckByNameAndValue = (name, value) => {
+    cy.get(`*[name="${name}"][value="${value}"]`).parent().click();
+};
 
 export const selectRadioNo = (key) => {
     getTestElement(`${key}_no`).parent().click();
@@ -36,6 +46,9 @@ export const getInputByName = (name) => {
 
 export const setInputValue = (key, value) => {
     getTestElement(key).click().clear().type(value);
+};
+export const setInputValueByName = (name, value) => {
+    getInputByName(name).click().clear().type(value);
 };
 
 export const setInputTime = (key, hours = '', minutes = '') => {

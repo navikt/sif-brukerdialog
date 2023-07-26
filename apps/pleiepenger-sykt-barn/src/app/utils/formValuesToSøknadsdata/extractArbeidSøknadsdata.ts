@@ -22,7 +22,7 @@ export const extractArbeidSøknadsdata = (
     }
     return {
         arbeidsgivere,
-        frilanser: frilanser,
+        frilanser,
         selvstendig,
         opptjeningUtland,
         utenlandskNæring,

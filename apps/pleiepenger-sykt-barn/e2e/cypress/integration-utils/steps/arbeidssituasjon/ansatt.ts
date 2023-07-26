@@ -1,6 +1,12 @@
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { mellomlagring } from '../../mocks/mellomlagring';
-import { getTestElement, gåTilOppsummeringFraArbeidssituasjon, selectRadioNyYesOrNo, setInputValue } from '../../utils';
+import {
+    getTestElement,
+    gåTilOppsummeringFraArbeidssituasjon,
+    selectRadioNyYesOrNo,
+    setInputValue,
+    setInputValueByName,
+} from '../../utils';
 
 import dayjs = require('dayjs');
 /** Formaterte verdier fra mock-data */
@@ -26,7 +32,7 @@ export const fyllUtArbeidssituasjonAnsatt = (
         }
 
         if (erAnsatt || sluttetFørSøknadsperiode === false) {
-            setInputValue('normalarbeidstid.timerPerUke', timerPerUke);
+            setInputValueByName('ansatt_arbeidsforhold.0.normalarbeidstid.timerPerUke', timerPerUke);
         }
     });
 };

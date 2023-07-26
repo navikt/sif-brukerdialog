@@ -3,7 +3,6 @@ import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 export interface SøknadsdataContextInterface {
     søknadsdata: Søknadsdata;
-
     setSøknadsdata: (søknadsdata: Søknadsdata) => void;
 }
 
