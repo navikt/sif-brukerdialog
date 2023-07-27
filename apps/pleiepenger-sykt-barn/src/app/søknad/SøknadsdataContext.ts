@@ -7,7 +7,7 @@ export interface SøknadsdataContextInterface {
 }
 
 export const SøknadsdataContext = createContext<SøknadsdataContextInterface>({
-    søknadsdata: {},
+    søknadsdata: { isInitialized: false },
     setSøknadsdata: () => null,
 });
 

@@ -154,6 +154,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
         const { contentLoadedRenderer } = this.props;
         const { isLoading, harIkkeTilgang, willRedirectToLoginPage, formValues, søkerdata, mellomlagringMetadata } =
             this.state;
+
         if (isLoading || willRedirectToLoginPage) {
             return <LoadingPage />;
         }

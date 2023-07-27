@@ -56,6 +56,7 @@ import {
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     values: SøknadFormValues;
@@ -98,12 +99,15 @@ const OppsummeringStep = ({ onApplicationSent, values }: Props) => {
     const intl = useIntl();
     const navigate = useNavigate();
 
-    const { søknadsdata } = useSøknadsdataContext();
-
     const søknadStepConfig = getSøknadStepConfig(values);
 
     const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAmplitudeInstance();
     const { logSenderInnSøknadMedIngenFravær } = useLogSøknadInfo();
+    const { søknadsdata } = useSøknadsdataContext();
+
+    if (!søknadsdata.isInitialized) {
+        return <LoadingPage />;
+    }
 
     const sendSoknad = async (apiValues: SøknadApiData, søkerdata: Søkerdata, harArbeidMenIngenFravær: boolean) => {
         if (sendingInProgress) {

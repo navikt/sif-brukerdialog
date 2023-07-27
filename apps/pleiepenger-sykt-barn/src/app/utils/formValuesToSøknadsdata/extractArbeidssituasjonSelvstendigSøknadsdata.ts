@@ -20,7 +20,7 @@ export const extractArbeidssituasjonSelvstendigSøknadsdata = (
         };
     }
 
-    const aktivPeriode =
+    const periodeSomSelvstendigISøknadsperiode =
         selvstendig.harHattInntektSomSN === YesOrNo.YES && selvstendig.virksomhet !== undefined
             ? getPeriodeSomSelvstendigInnenforPeriode(søknadsperiode, selvstendig.virksomhet)
             : undefined;
@@ -31,12 +31,10 @@ export const extractArbeidssituasjonSelvstendigSøknadsdata = (
     if (virksomhet && normalarbeidstid && dayjs(virksomhet.fom).isBefore(søknadsperiode.to, 'day')) {
         return {
             erSN: true,
-            erSelvstendigISøknadsperiode: aktivPeriode !== undefined,
-            periodeSomSelvstendigISøknadsperiode: aktivPeriode,
+            periodeSomSelvstendigISøknadsperiode,
             virksomhet,
             harFlereVirksomheter: selvstendig.harFlereVirksomheter === YesOrNo.YES,
             normalarbeidstid,
-            startdato: virksomhet.fom,
         };
     }
 

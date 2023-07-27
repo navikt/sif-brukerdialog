@@ -18,9 +18,5 @@ export const extractArbeidssituasjonSøknadsdata = (
         opptjeningUtland: extractOpptjeningUtlandSøknadsdata(formValues),
         utenlandskNæring: extractUtenlandskNæringSøknadsdata(formValues),
     };
-
-    // eslint-disable-next-line no-console
-    console.log(data);
-
     return data;
 };

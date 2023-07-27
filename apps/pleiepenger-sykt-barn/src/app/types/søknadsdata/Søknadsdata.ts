@@ -31,6 +31,7 @@ export * from './OmsorgstilbudSøknadsdata';
 export * from './StønadGodtgjørelseSøknadsdata';
 
 export interface Søknadsdata {
+    isInitialized: boolean;
     harForståttRettigheterOgPlikter?: boolean;
     søknadsperiode?: DateRange;
     barn?: OmBarnetSøknadsdata;

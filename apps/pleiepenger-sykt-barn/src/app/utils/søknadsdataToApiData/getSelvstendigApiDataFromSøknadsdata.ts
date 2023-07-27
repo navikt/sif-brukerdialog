@@ -1,27 +1,35 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
 import { SelvstendigApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getArbeidsforholdApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
+import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSelvstendigSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
+import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
 
 export const getSelvstendigApiDataFromSøknadsdata = (
-    arbeidSelvstendigSøknadsdata: ArbeidSelvstendigSøknadsdata | undefined,
+    arbeidssituasjon: ArbeidssituasjonSelvstendigSøknadsdata | undefined,
+    arbeidIPeriode: ArbeidIPeriodeSøknadsdata | undefined,
     locale: Locale = 'nb'
 ): SelvstendigApiData => {
-    if (!arbeidSelvstendigSøknadsdata) {
+    if (!arbeidssituasjon) {
+        throw 'getSelvstendigApiDataFromSøknadsdata: arbeidssituasjon is undefined';
+    }
+
+    if (arbeidssituasjon.erSN === false) {
         return { harInntektSomSelvstendig: false };
     }
-    switch (arbeidSelvstendigSøknadsdata.erSN) {
-        case false:
-            return {
-                harInntektSomSelvstendig: false,
-            };
-        case true:
-            const { arbeidsforhold, harFlereVirksomheter, virksomhet } = arbeidSelvstendigSøknadsdata;
-            return {
-                harInntektSomSelvstendig: true,
-                arbeidsforhold: getArbeidsforholdApiDataFromSøknadsdata(arbeidsforhold),
-                virksomhet: mapVirksomhetToVirksomhetApiData(locale, virksomhet, harFlereVirksomheter),
-            };
+
+    if (!arbeidIPeriode) {
+        throw 'getSelvstendigApiDataFromSøknadsdata: arbeidstid is undefined';
     }
+
+    const { harFlereVirksomheter, normalarbeidstid, virksomhet } = arbeidssituasjon;
+    return {
+        harInntektSomSelvstendig: true,
+        arbeidsforhold: {
+            normalarbeidstid: getNormalarbeidstidApiDataFromSøknadsdata(normalarbeidstid),
+            arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriode),
+        },
+        virksomhet: mapVirksomhetToVirksomhetApiData(locale, virksomhet, harFlereVirksomheter),
+    };
 };

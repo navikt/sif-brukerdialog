@@ -24,7 +24,5 @@ export const extractArbeidstidSøknadsdata = (values: SøknadFormValues): Arbeid
             ? extractArbeidIPeriodeSøknadsdata(values.selvstendig?.arbeidsforhold.arbeidIPeriode)
             : undefined,
     };
-    // eslint-disable-next-line no-console
-    console.log(data);
     return data;
 };

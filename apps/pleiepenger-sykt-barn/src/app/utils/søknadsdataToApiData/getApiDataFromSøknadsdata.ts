@@ -56,12 +56,17 @@ export const getApiDataFromSøknadsdata = (
                 ...getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata(sprak, søknadsdata.utenlandsoppholdIPerioden),
                 ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(søknadsdata.ferieuttakIPerioden),
                 arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(søknadsdata.arbeid?.arbeidsgivere),
-                frilans: getFrilansApiDataFromSøknadsdata(søknadsdata.arbeid?.frilanser),
-                ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsperiode, søknadsdata.stønadGodtgjørelse),
+                frilans: getFrilansApiDataFromSøknadsdata({
+                    arbeidssituasjon: søknadsdata?.arbeidssituasjon?.frilans,
+                    arbeidstidFrilansarbeid: søknadsdata.arbeidstidIPerioden?.frilansarbeid,
+                    arbeidstidHonorararbeid: søknadsdata.arbeidstidIPerioden?.honorararbeid,
+                }),
                 selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
-                    søknadsdata.arbeid?.selvstendig,
+                    søknadsdata.arbeidssituasjon?.selvstendig,
+                    søknadsdata.arbeidstidIPerioden?.selvstendig,
                     locale
                 ),
+                ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsperiode, søknadsdata.stønadGodtgjørelse),
                 opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(sprak, søknadsdata.arbeid?.opptjeningUtland),
                 utenlandskNæring: getUtenlandskNæringSøknadsdata(sprak, søknadsdata.arbeid?.utenlandskNæring),
                 harVærtEllerErVernepliktig: søknadsdata.harVærtEllerErVernepliktig,

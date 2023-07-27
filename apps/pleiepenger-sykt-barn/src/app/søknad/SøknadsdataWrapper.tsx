@@ -11,7 +11,7 @@ interface Props {
 }
 
 const SøknadsdataWrapper: React.FunctionComponent<Props> = ({ initialValues, children }) => {
-    const [søknadsdata, setSøknadsdata] = useState<Søknadsdata>({});
+    const [søknadsdata, setSøknadsdata] = useState<Søknadsdata>({ isInitialized: false });
 
     useEffectOnce(() => {
         setSøknadsdata(extractSøknadsdataFromFormValues(initialValues));

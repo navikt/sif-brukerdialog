@@ -17,9 +17,10 @@ export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): S�
     const harForståttRettigheterOgPlikter = values.harForståttRettigheterOgPlikter;
     const søknadsperiode = getSøknadsperiodeFromFormData(values);
     if (søknadsperiode === undefined) {
-        return {};
+        return { isInitialized: false };
     }
     const søknadsdata: Søknadsdata = {
+        isInitialized: true,
         harForståttRettigheterOgPlikter,
         søknadsperiode,
         barn: extractBarnSøknadsdata(values),
