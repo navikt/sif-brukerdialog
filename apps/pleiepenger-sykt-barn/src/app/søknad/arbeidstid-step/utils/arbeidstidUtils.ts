@@ -9,7 +9,7 @@ import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import {
     ArbeidAnsattSøknadsdataPågående,
     ArbeidAnsattSøknadsdataSluttetISøknadsperiode,
-    ArbeidsgivereSøknadsdata,
+    ArbeidsgivereSøknadsdata_depr,
 } from '../../../types/søknadsdata/arbeidAnsattSøknadsdata';
 import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/arbeidsforholdSøknadsdata';
@@ -123,7 +123,7 @@ export const getArbeidsdagerIUkeTekst = ({ from, to }: DateRange): string => {
 };
 
 export const getAnsattArbeidsforholdISøknadsperiode = (
-    arbeidsgivere: ArbeidsgivereSøknadsdata
+    arbeidsgivere: ArbeidsgivereSøknadsdata_depr
 ): Array<ArbeidAnsattSøknadsdataPågående | ArbeidAnsattSøknadsdataSluttetISøknadsperiode> => {
     const arbeidsforhold: Array<ArbeidAnsattSøknadsdataPågående | ArbeidAnsattSøknadsdataSluttetISøknadsperiode> = [];
     arbeidsgivere.forEach((arbeidsgiver) => {

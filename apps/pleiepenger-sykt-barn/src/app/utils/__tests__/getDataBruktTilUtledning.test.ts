@@ -1,6 +1,9 @@
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../types';
-import { ArbeidAnsattSøknadsdata, ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/arbeidAnsattSøknadsdata';
+import {
+    ArbeidAnsattSøknadsdata,
+    ArbeidsgivereSøknadsdata_depr,
+} from '../../types/søknadsdata/arbeidAnsattSøknadsdata';
 import { getArbeidsforhorholdAvsluttetFørSøknadsperiode } from '../getDataBruktTilUtledning';
 
 const arbeidsgiver: Arbeidsgiver = {
@@ -41,7 +44,7 @@ describe('getArbeidsforhorholdAvsluttetFørSøknadsperiode', () => {
     };
 
     it('returnerer alle arbeidsgivere hvor en sluttet før søknadsperioden', () => {
-        const data: ArbeidsgivereSøknadsdata = new Map();
+        const data: ArbeidsgivereSøknadsdata_depr = new Map();
         data.set('1', pågående);
         data.set('2', avsluttetFørPeriode);
         data.set('3', avsluttetIPeriode);
@@ -50,7 +53,7 @@ describe('getArbeidsforhorholdAvsluttetFørSøknadsperiode', () => {
         if (result) expect(result[0].orgnr).toEqual('2');
     });
     it('returnerer undefined dersom en ikke har arbeidsforhold som en sluttet i før søknadsperioden', () => {
-        const data: ArbeidsgivereSøknadsdata = new Map();
+        const data: ArbeidsgivereSøknadsdata_depr = new Map();
         data.set('1', pågående);
         data.set('3', avsluttetIPeriode);
         const result = getArbeidsforhorholdAvsluttetFørSøknadsperiode(data);

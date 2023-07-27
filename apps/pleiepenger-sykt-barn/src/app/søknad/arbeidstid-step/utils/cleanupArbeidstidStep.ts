@@ -7,7 +7,7 @@ import { ArbeidsforholdFormValues, ArbeidsforholdSelvstendigFormValues } from '.
 import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import {
     ArbeidSelvstendigSøknadsdata,
-    ArbeidsgivereSøknadsdata,
+    ArbeidsgivereSøknadsdata_depr,
     ArbeidSøknadsdata,
     erFrilanserSomMisterInntekt,
 } from '../../../types/søknadsdata/Søknadsdata';
@@ -68,7 +68,7 @@ export const cleanupArbeidIPeriode = (
 };
 
 export const cleanupArbeidstidAnsatt = (
-    arbeidsgivereSøknadsdata: ArbeidsgivereSøknadsdata,
+    arbeidsgivereSøknadsdata: ArbeidsgivereSøknadsdata_depr,
     arbeidsforholdAnsattFormValues: ArbeidsforholdFormValues[]
 ): ArbeidsforholdFormValues[] => {
     return arbeidsforholdAnsattFormValues.map((arbeidsforhold) => {

@@ -55,7 +55,10 @@ export const getApiDataFromSøknadsdata = (
                 tilOgMed: dateToISODate(søknadsperiode.to),
                 ...getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata(sprak, søknadsdata.utenlandsoppholdIPerioden),
                 ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(søknadsdata.ferieuttakIPerioden),
-                arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(søknadsdata.arbeid?.arbeidsgivere),
+                arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
+                    søknadsdata.arbeidssituasjon?.arbeidsgivere,
+                    søknadsdata.arbeidstidIPerioden
+                ),
                 frilans: getFrilansApiDataFromSøknadsdata({
                     arbeidssituasjon: søknadsdata?.arbeidssituasjon?.frilans,
                     arbeidstidFrilansarbeid: søknadsdata.arbeidstidIPerioden?.frilansarbeid,

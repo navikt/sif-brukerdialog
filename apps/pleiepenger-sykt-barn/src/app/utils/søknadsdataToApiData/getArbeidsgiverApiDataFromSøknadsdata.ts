@@ -1,19 +1,25 @@
 import { dateToISODate, ISODate } from '@navikt/sif-common-utils/lib';
 import { ArbeidsgiverApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { ArbeidAnsattSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getArbeidsforholdApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
+import {
+    ArbeidssituasjonAnsattSøknadsdata,
+    ArbeidssituasjonAnsattType,
+} from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
+import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
 
 export const dateToISODateOrUndefined = (date?: Date): ISODate | undefined => (date ? dateToISODate(date) : undefined);
 
 export const getArbeidsgiverApiDataFromSøknadsdata = (
-    ansattSøknadsdata: ArbeidAnsattSøknadsdata
+    arbeidssituasjon: ArbeidssituasjonAnsattSøknadsdata,
+    arbeidIPeriode?: ArbeidIPeriodeSøknadsdata
 ): ArbeidsgiverApiData => {
-    const { arbeidsgiver } = ansattSøknadsdata;
+    const { arbeidsgiver } = arbeidssituasjon;
 
-    if (ansattSøknadsdata.erAnsattISøknadsperiode) {
-        const { arbeidsgiver, arbeidsforhold } = ansattSøknadsdata;
+    if (arbeidssituasjon.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode) {
+        const { arbeidsgiver } = arbeidssituasjon;
         return {
-            erAnsatt: ansattSøknadsdata.type === 'sluttetISøknadsperiode' ? false : true,
+            erAnsatt: arbeidssituasjon.type === 'sluttetISøknadsperiode' ? false : true,
             type: arbeidsgiver.type,
             navn: arbeidsgiver.navn,
             offentligIdent: arbeidsgiver.offentligIdent,
@@ -21,7 +27,12 @@ export const getArbeidsgiverApiDataFromSøknadsdata = (
             ansattFom: dateToISODateOrUndefined(arbeidsgiver.ansattFom),
             ansattTom: dateToISODateOrUndefined(arbeidsgiver.ansattTom),
             sluttetFørSøknadsperiode: false,
-            arbeidsforhold: getArbeidsforholdApiDataFromSøknadsdata(arbeidsforhold),
+            arbeidsforhold: {
+                normalarbeidstid: getNormalarbeidstidApiDataFromSøknadsdata(arbeidssituasjon.normalarbeidstid),
+                arbeidIPeriode: arbeidIPeriode
+                    ? getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriode)
+                    : arbeidIPeriode,
+            },
         };
     }
     return {

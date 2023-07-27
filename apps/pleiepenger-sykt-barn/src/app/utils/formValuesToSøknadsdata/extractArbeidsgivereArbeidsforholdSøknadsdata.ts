@@ -1,13 +1,13 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidsforholdFormValues } from '../../types/ArbeidsforholdFormValues';
-import { ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { ArbeidsgivereSøknadsdata_depr } from '../../types/søknadsdata/Søknadsdata';
 import { extractArbeidAnsattSøknadsdata } from './extractArbeidAnsattSøknadsdata';
 
 export const extractArbeidsgivereArbeidsforholdSøknadsdata = (
     ansatt_arbeidsforhold: ArbeidsforholdFormValues[] = [],
     søknadsperiode: DateRange
-): ArbeidsgivereSøknadsdata | undefined => {
-    const arbeidsgivereSøknadsdataMap: ArbeidsgivereSøknadsdata = new Map();
+): ArbeidsgivereSøknadsdata_depr | undefined => {
+    const arbeidsgivereSøknadsdataMap: ArbeidsgivereSøknadsdata_depr = new Map();
     ansatt_arbeidsforhold.forEach((ansattForhold, index) => {
         const ansattArbeidsforhold = extractArbeidAnsattSøknadsdata(ansattForhold, index, søknadsperiode);
         if (ansattArbeidsforhold) {

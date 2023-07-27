@@ -2,7 +2,7 @@ import { DateRange } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver } from '../Arbeidsgiver';
 import { ArbeidsforholdSøknadsdata } from './arbeidsforholdSøknadsdata';
 
-export type ArbeidsgivereSøknadsdata = Map<string, ArbeidAnsattSøknadsdata>;
+export type ArbeidsgivereSøknadsdata_depr = Map<string, ArbeidAnsattSøknadsdata>;
 
 export interface ArbeidAnsattSøknadsdataSluttetFørSøknadsperiode {
     type: 'sluttetFørSøknadsperiode';

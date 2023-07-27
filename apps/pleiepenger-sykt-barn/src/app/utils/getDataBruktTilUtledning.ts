@@ -2,10 +2,10 @@ import {
     ArbeidsforholdAvsluttetFørSøknadsperiode,
     DataBruktTilUtledningAnnetData,
 } from '../types/søknad-api-data/SøknadApiData';
-import { ArbeidsgivereSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { ArbeidsgivereSøknadsdata_depr, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
-    arbeidsgivere?: ArbeidsgivereSøknadsdata
+    arbeidsgivere?: ArbeidsgivereSøknadsdata_depr
 ): ArbeidsforholdAvsluttetFørSøknadsperiode[] | undefined => {
     if (!arbeidsgivere) {
         return undefined;
