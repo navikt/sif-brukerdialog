@@ -7,6 +7,7 @@ import { purge } from '../api/api';
 import { SKJEMANAVN } from '../App';
 import BekreftDialog from '../components/bekreft-dialog/BekreftDialog';
 import RouteConfig from '../config/routeConfig';
+import useLogSøknadInfo from '../hooks/useLogSøknadInfo';
 import usePersistSoknad from '../hooks/usePersistSoknad';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
@@ -27,6 +28,8 @@ import { getNextStepRoute, isAvailable } from '../utils/routeUtils';
 import { getGyldigRedirectStepForMellomlagretSøknad } from '../utils/stepUtils';
 import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
 import ArbeidstidStep from './arbeidstid-step/ArbeidstidStep';
+import { harFraværFraJobb } from './arbeidstid-step/utils/arbeidstidUtils';
+import { getIngenFraværConfirmationDialog } from './confirmation-dialogs/ingenFraværConfirmation';
 // import { getAlleArbeidsforholdIPerioden, harFraværFraJobb } from './arbeidstid-step/utils/arbeidstidUtils';
 import LegeerklæringStep from './legeerklæring-step/LegeerklæringStep';
 import MedlemsskapStep from './medlemskap-step/MedlemsskapStep';
@@ -47,12 +50,12 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     const location = useLocation();
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const [kvitteringInfo, setKvitteringInfo] = React.useState<KvitteringInfo | undefined>(undefined);
-    // TODO _setConfirmationDialog
-    const [confirmationDialog, _setConfirmationDialog] = useState<ConfirmationDialog | undefined>(undefined);
+
+    const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialog | undefined>(undefined);
     const { values, setValues, resetForm } = useFormikContext<SøknadFormValues>();
     const { logHendelse, logSoknadStartet } = useAmplitudeInstance();
     const { setSøknadsdata } = useSøknadsdataContext();
-    // const { logBekreftIngenFraværFraJobb } = useLogSøknadInfo();
+    const { logBekreftIngenFraværFraJobb } = useLogSøknadInfo();
     const { persistSoknad } = usePersistSoknad();
     const { søknadsdata } = useSøknadsdataContext();
 
@@ -213,28 +216,23 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                     );
                                     const nySøknadsdata = extractSøknadsdataFromFormValues(cleanedValues);
                                     setSøknadsdata(nySøknadsdata);
-                                    // TODO
-                                    // if (
-                                    //     nySøknadsdata.arbeid &&
-                                    //     harFraværFraJobb(getAlleArbeidsforholdIPerioden(nySøknadsdata.arbeid)) === false
-                                    // ) {
-                                    //     setConfirmationDialog(
-                                    //         getIngenFraværConfirmationDialog({
-                                    //             onCancel: () => {
-                                    //                 logBekreftIngenFraværFraJobb(false);
-                                    //                 setConfirmationDialog(undefined);
-                                    //             },
-                                    //             onConfirm: () => {
-                                    //                 logBekreftIngenFraværFraJobb(true);
-                                    //                 setConfirmationDialog(undefined);
-                                    //                 navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
-                                    //             },
-                                    //         })
-                                    //     );
-                                    // } else {
-                                    //     navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
-                                    // }
-                                    navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
+                                    if (!harFraværFraJobb(nySøknadsdata.arbeidstidIPerioden)) {
+                                        setConfirmationDialog(
+                                            getIngenFraværConfirmationDialog({
+                                                onCancel: () => {
+                                                    logBekreftIngenFraværFraJobb(false);
+                                                    setConfirmationDialog(undefined);
+                                                },
+                                                onConfirm: () => {
+                                                    logBekreftIngenFraværFraJobb(true);
+                                                    setConfirmationDialog(undefined);
+                                                    navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
+                                                },
+                                            })
+                                        );
+                                    } else {
+                                        navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
+                                    }
                                 }}
                             />
                         }

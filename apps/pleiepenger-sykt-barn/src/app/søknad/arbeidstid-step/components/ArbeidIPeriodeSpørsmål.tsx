@@ -13,7 +13,7 @@ import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import { getArbeidstidSpørsmålstekst } from '../utils/arbeidIPeriodeTekstUtils';
-import { getArbeidsukerIPerioden } from '../utils/arbeidstidUtils';
+import { skalSvarePåOmEnJobberLiktIPerioden } from '../utils/arbeidstidUtils';
 import {
     getArbeidIPeriodeArbeiderIPeriodenValidator,
     getArbeidIPeriodeErLiktHverUkeValidator,
@@ -48,9 +48,8 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
 }) => {
     const intl = useIntl();
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
+    const visKunArbeidstidPerUke = skalSvarePåOmEnJobberLiktIPerioden(periode) === false;
 
-    const antallUkerIPeriode = getArbeidsukerIPerioden(periode).length;
-    const visKunArbeidstidPerUke = antallUkerIPeriode <= 3;
     const visArbeidstidPerUke =
         formValues?.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert &&
         (visKunArbeidstidPerUke || formValues?.erLiktHverUke === YesOrNo.NO);
