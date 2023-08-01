@@ -1,20 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { DateRange, YesOrNo, getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-// import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
-// import { TimerEllerProsent } from '../../types';
-import {
-    ArbeidIPeriodeFormValues,
-    ArbeidsukerFormValues,
-    // MisterHonorarerFraVervIPerioden,
-} from '../../types/ArbeidIPeriodeFormValues';
-// import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
-// import { ArbeidIPeriodeFrilansSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeFrilansSøknadsdata';
-import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
-import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { TimerEllerProsent } from '../../types';
+import { ArbeidIPeriodeFormValues, ArbeidsukerFormValues } from '../../types/ArbeidIPeriodeFormValues';
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
+import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const getMinDateRangeFromDateRanges = (dr1: DateRange, dr2: DateRange): DateRange => ({
     from: dateUtils.getLastOfTwoDates(dr1.from, dr2.from),

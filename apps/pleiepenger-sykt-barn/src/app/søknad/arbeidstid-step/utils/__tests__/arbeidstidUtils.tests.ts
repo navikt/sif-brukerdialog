@@ -1,66 +1,12 @@
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { ArbeidIPeriodeType } from '../../../../types/ArbeidIPeriodeType';
-import { RedusertArbeidstidType } from '../../../../types/RedusertArbeidstidType';
-import { ArbeidIPeriodeSøknadsdata } from '../../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
-import { ArbeidsforholdSøknadsdata } from '../../../../types/søknadsdata/arbeidsforholdSøknadsdata';
-import { NormalarbeidstidSøknadsdata } from '../../../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import {
     ArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsperiodeIForholdTilSøknadsperiode,
-    harFraværFraJobb,
     summerArbeidstimerIArbeidsuker,
 } from '../arbeidstidUtils';
 
-const aktivPeriode: DateRange = ISODateRangeToDateRange('2020-01-01/2023-01-01');
-
-const normalarbeidstid: NormalarbeidstidSøknadsdata = {
-    timerPerUkeISnitt: 20,
-};
-
-const arbeiderIkke: ArbeidIPeriodeSøknadsdata = {
-    type: ArbeidIPeriodeType.arbeiderIkke,
-};
-
-const arbeiderVanlig: ArbeidIPeriodeSøknadsdata = {
-    type: ArbeidIPeriodeType.arbeiderVanlig,
-};
-
-const arbeiderRedusert: ArbeidIPeriodeSøknadsdata = {
-    type: ArbeidIPeriodeType.arbeiderRedusert,
-    redusertArbeid: {
-        type: RedusertArbeidstidType.timerISnittPerUke,
-        timerISnittPerUke: 5,
-    },
-};
-
-const arbeidsforhold: ArbeidsforholdSøknadsdata[] = [
-    { normalarbeidstid, arbeidISøknadsperiode: arbeiderVanlig, aktivPeriode },
-];
-
 describe('arbeidstidUtils', () => {
-    describe('harFraværFraJobb', () => {
-        it('returnerer false når en kun jobber normalt', () => {
-            expect(harFraværFraJobb(arbeidsforhold)).toBeFalsy();
-        });
-        it('returnerer true når en har et arbeidsforhold hvor en jobber redusert', () => {
-            expect(
-                harFraværFraJobb([
-                    ...arbeidsforhold,
-                    { normalarbeidstid, arbeidISøknadsperiode: arbeiderRedusert, aktivPeriode },
-                ])
-            ).toBeTruthy();
-        });
-        it('returnerer true når en har et arbeidsforhold hvor en ikke jobber', () => {
-            expect(
-                harFraværFraJobb([
-                    ...arbeidsforhold,
-                    { normalarbeidstid, arbeidISøknadsperiode: arbeiderIkke, aktivPeriode },
-                ])
-            ).toBeTruthy();
-        });
-    });
-
     describe('summerArbeidstimerIArbeidsuker', () => {
         const periode = ISODateRangeToDateRange('2022-01-03/2022-01-09');
         it('returnerer 0 ved 0 timer', () => {

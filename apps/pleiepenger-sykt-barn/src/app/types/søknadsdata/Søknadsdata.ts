@@ -13,10 +13,8 @@ import { UtenlandsoppholdIPeriodenSøknadsdata } from './UtenlandsoppholdIPeriod
 
 export * from './OmBarnetSøknadsdata';
 export * from './arbeidIPeriodeSøknadsdata';
-export * from './arbeidAnsattSøknadsdata';
 export * from './OpptjeningUtlandSøknadsdata';
 export * from './UtenlandskNæringSøknadsdata';
-export * from './arbeidsforholdSøknadsdata';
 export * from './NormalarbeidstidSøknadsdata';
 export * from './MedlemsskapSøknadsdata';
 export * from './UtenlandsoppholdIPeriodenSøknadsdata';

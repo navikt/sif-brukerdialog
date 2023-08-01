@@ -13,7 +13,6 @@ export enum ArbeidIPeriodeFormField {
 
 export type ArbeidsukerFormValues = {
     [key: string]: {
-        [ArbeidIPeriodeFormField.prosentAvNormalt]?: string;
         [ArbeidIPeriodeFormField.snittTimerPerUke]?: string;
     };
 };

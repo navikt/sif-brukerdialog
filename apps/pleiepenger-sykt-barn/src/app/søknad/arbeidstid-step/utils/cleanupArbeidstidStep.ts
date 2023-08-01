@@ -19,9 +19,8 @@ export const cleanupArbeidsuker = (
     arbeidsukerIPerioden.forEach((periode) => {
         const key = getArbeidsukeKey(periode);
         if (arbeidsuker[key]) {
-            const { prosentAvNormalt, snittTimerPerUke } = arbeidsuker[key];
+            const { snittTimerPerUke } = arbeidsuker[key];
             cleanedArbeidsuker[key] = {
-                prosentAvNormalt: timerEllerProsent === TimerEllerProsent.PROSENT ? prosentAvNormalt : undefined,
                 snittTimerPerUke: timerEllerProsent === TimerEllerProsent.TIMER ? snittTimerPerUke : undefined,
             };
         }

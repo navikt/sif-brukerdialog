@@ -4,11 +4,11 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/types';
 import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils/lib';
 import { isEqual } from 'lodash';
+import { StepID } from '../types/StepID';
 import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';
 import { SøknadFormValues } from '../types/SøknadFormValues';
 import { søkerKunHelgedager } from '../utils/formDataUtils';
 import { getAttachmentsApiDataFromSøknadsdata } from '../utils/søknadsdataToApiData/getAttachmentsApiDataFromSøknadsdata';
-import { StepID } from '../types/StepID';
 
 export const apiVedleggIsInvalid = (apiVedlegg: string[], vedleggFormData: Attachment[]) => {
     const apiVedleggFromFormdata = vedleggFormData ? getAttachmentsApiDataFromSøknadsdata(vedleggFormData) : [];
@@ -142,20 +142,6 @@ export const validateApiValues = (
                 });
             }
         }
-
-        // TODO - trengs denne etter refactoring
-        // if (values.frilans.harInntektSomFrilanser === true) {
-        //     if (values.frilans.frilanstyper === undefined || values.frilans.frilanstyper.length === 0) {
-        //         errors.push({
-        //             skjemaelementId: 'arbeidssituasjon',
-        //             feilmelding: intlHelper(
-        //                 intl,
-        //                 'steg.oppsummering.validering.arbeidssituasjon.frylans.frilansTyperTomt'
-        //             ),
-        //             stepId: StepID.ARBEIDSSITUASJON,
-        //         });
-        //     }
-        // }
     } catch (e) {}
 
     return errors.length > 0 ? errors : undefined;

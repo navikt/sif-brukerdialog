@@ -1,4 +1,4 @@
-// /* eslint-disable @typescript-eslint/no-unused-vars */
+//
 // import React from 'react';
 // import { FormattedMessage, useIntl } from 'react-intl';
 // import { DateRange } from '@navikt/sif-common-formik-ds/lib';

@@ -2,16 +2,13 @@ import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-
 import {
     ArbeidIPeriodeApiData,
     ArbeidRedusertIPeriodeApiData,
-    ArbeidsforholdApiData,
     ArbeidsukeTimerApiData,
 } from '../../types/søknad-api-data/SøknadApiData';
 import {
     ArbeidIPeriodeRedusertArbeidSøknadsdata,
     ArbeidIPeriodeSøknadsdata,
-    ArbeidsforholdSøknadsdata,
     ArbeidsukeTimerSøknadsdata,
 } from '../../types/søknadsdata/Søknadsdata';
-import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 
@@ -68,17 +65,17 @@ export const getRedusertArbeidApiData = (
     }
 };
 
-export const getArbeidsforholdApiDataFromSøknadsdata = (
-    arbeidsforhold: ArbeidsforholdSøknadsdata
-): ArbeidsforholdApiData => {
-    const { normalarbeidstid, arbeidISøknadsperiode } = arbeidsforhold;
-    return {
-        normalarbeidstid: getNormalarbeidstidApiDataFromSøknadsdata(normalarbeidstid),
-        arbeidIPeriode: arbeidISøknadsperiode
-            ? getArbeidIPeriodeApiDataFromSøknadsdata(arbeidISøknadsperiode as ArbeidIPeriodeSøknadsdata)
-            : undefined,
-    };
-};
+// export const getArbeidsforholdApiDataFromSøknadsdata = (
+//     arbeidsforhold: ArbeidsforholdSøknadsdata
+// ): ArbeidsforholdApiData => {
+//     const { normalarbeidstid, arbeidISøknadsperiode } = arbeidsforhold;
+//     return {
+//         normalarbeidstid: getNormalarbeidstidApiDataFromSøknadsdata(normalarbeidstid),
+//         arbeidIPeriode: arbeidISøknadsperiode
+//             ? getArbeidIPeriodeApiDataFromSøknadsdata(arbeidISøknadsperiode as ArbeidIPeriodeSøknadsdata)
+//             : undefined,
+//     };
+// };
 
 // export const getArbeidsforholdFrilansApiDataFromSøknadsdata = (
 //     arbeidsforhold: ArbeidsforholdSøknadsdata

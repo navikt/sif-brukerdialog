@@ -1,39 +1,33 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
     ArbeidsforholdAvsluttetFørSøknadsperiode,
     DataBruktTilUtledningAnnetData,
 } from '../types/søknad-api-data/SøknadApiData';
-import { ArbeidsgivereSøknadsdata_depr, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { ArbeidssituasjonAnsattSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
-    arbeidsgivere?: ArbeidsgivereSøknadsdata_depr
+    ansattSøknadsdata?: ArbeidssituasjonAnsattSøknadsdata[]
 ): ArbeidsforholdAvsluttetFørSøknadsperiode[] | undefined => {
-    if (!arbeidsgivere) {
+    if (!ansattSøknadsdata || ansattSøknadsdata.length === 0) {
         return undefined;
     }
-
-    const arbeidsforhold: ArbeidsforholdAvsluttetFørSøknadsperiode[] = Array.from(arbeidsgivere.keys())
-        .filter((key) => {
-            const ansatt = arbeidsgivere.get(key);
-            return ansatt && ansatt.type === 'sluttetFørSøknadsperiode';
+    return ansattSøknadsdata
+        .filter((ansatt) => {
+            return ansatt.type === 'sluttetFørSøknadsperiode';
         })
-        .map((key) => {
+        .map((ansatt) => {
             return {
                 erAnsatt: false,
                 sluttetFørSøknadsdato: true,
-                orgnr: key,
+                orgnr: ansatt.arbeidsgiver.id,
             };
         });
-
-    return arbeidsforhold.length === 0 ? undefined : arbeidsforhold;
 };
 
-export const getDataBruktTilUtledning = (_søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
-    return {};
-    // TODO
-    // return {
-    //     arbeidsforholdAvsluttetFørSøknadsperiode: getArbeidsforhorholdAvsluttetFørSøknadsperiode(
-    //         søknadsdata.arbeid?.arbeidsgivere
-    //     ),
-    // };
+export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
+    return {
+        arbeidsforholdAvsluttetFørSøknadsperiode: getArbeidsforhorholdAvsluttetFørSøknadsperiode(
+            søknadsdata.arbeidssituasjon?.arbeidsgivere
+        ),
+    };
 };

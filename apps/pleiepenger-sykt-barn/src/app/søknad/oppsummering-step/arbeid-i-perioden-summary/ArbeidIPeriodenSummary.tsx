@@ -1,4 +1,4 @@
-// /* eslint-disable @typescript-eslint/no-unused-vars */
+//
 // import React from 'react';
 // import { IntlShape, useIntl } from 'react-intl';
 // import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
