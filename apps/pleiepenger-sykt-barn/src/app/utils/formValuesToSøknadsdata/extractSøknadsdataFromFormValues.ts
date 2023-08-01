@@ -3,7 +3,6 @@ import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getHarVærtEllerErVernepliktigFromFormData, getSøknadsperiodeFromFormData } from '../formDataUtils';
 import { extractArbeidssituasjonSøknadsdata } from './extractArbeidssituasjonSøknadsdata';
 import { extractArbeidstidSøknadsdata } from './extractArbeidstidSøknadsdata';
-import { extractArbeidSøknadsdata } from './extractArbeidSøknadsdata';
 import { extractBarnSøknadsdata } from './extractBarnSøknadsdata';
 import { extractBeredskapSøknadsdata } from './extractBeredskapSøknadsdata';
 import { extractFerieuttakIPeriodenSøknadsdata } from './extractFerieuttakIPeriodenSøknadsdata';
@@ -26,7 +25,6 @@ export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): S�
         barn: extractBarnSøknadsdata(values),
         utenlandsoppholdIPerioden: extractUtenlandsoppholdIPeriodenSøknadsdata(values),
         ferieuttakIPerioden: extractFerieuttakIPeriodenSøknadsdata(values),
-        arbeid: extractArbeidSøknadsdata(values, søknadsperiode),
         arbeidssituasjon: extractArbeidssituasjonSøknadsdata(søknadsperiode, values),
         arbeidstidIPerioden: extractArbeidstidSøknadsdata(values),
         stønadGodtgjørelse: extractStønadGodtgjørelseSøknadsdata(values.stønadGodtgjørelse),

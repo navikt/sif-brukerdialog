@@ -1,5 +1,6 @@
 describe('cleanupArbeidIPeriode', () => {
-    it('runs', () => {
+    // TODO
+    it('arbeid i periode for arbeidsgiver', () => {
         expect(1).toBe(1);
     });
 });

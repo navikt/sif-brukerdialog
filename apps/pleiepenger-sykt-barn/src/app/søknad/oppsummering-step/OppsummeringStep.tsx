@@ -36,11 +36,6 @@ import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
 import { navigateTo, relocateToLoginPage } from '../../utils/navigationUtils';
 import { getApiDataFromSøknadsdata } from '../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { validateApiValues } from '../../validation/apiValuesValidation';
-import {
-    getAlleArbeidsforholdIPerioden,
-    harArbeidIPerioden,
-    harFraværFraJobb,
-} from '../arbeidstid-step/utils/arbeidstidUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
@@ -155,9 +150,10 @@ const OppsummeringStep = ({ onApplicationSent, values }: Props) => {
                     return <div>Det oppstod en feil - søknadsdata mangler</div>;
                 }
 
-                const harArbeidMenIngenFravær: boolean =
-                    harArbeidIPerioden(søknadsdata.arbeid) &&
-                    !harFraværFraJobb(getAlleArbeidsforholdIPerioden(søknadsdata.arbeid));
+                const harArbeidMenIngenFravær = false;
+                // TODO
+                // harArbeidIPerioden(søknadsdata.arbeid) &&
+                // !harFraværFraJobb(getAlleArbeidsforholdIPerioden(søknadsdata.arbeid));
 
                 const {
                     søker: { fornavn, mellomnavn, etternavn, fødselsnummer },

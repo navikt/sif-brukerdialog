@@ -70,8 +70,11 @@ export const getApiDataFromSøknadsdata = (
                     locale
                 ),
                 ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsperiode, søknadsdata.stønadGodtgjørelse),
-                opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(sprak, søknadsdata.arbeid?.opptjeningUtland),
-                utenlandskNæring: getUtenlandskNæringSøknadsdata(sprak, søknadsdata.arbeid?.utenlandskNæring),
+                opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(
+                    sprak,
+                    søknadsdata.arbeidssituasjon?.opptjeningUtland
+                ),
+                utenlandskNæring: getUtenlandskNæringSøknadsdata(sprak, søknadsdata.arbeidssituasjon?.utenlandskNæring),
                 harVærtEllerErVernepliktig: søknadsdata.harVærtEllerErVernepliktig,
                 ...getOmsorgstilbudApiDataFromSøknadsdata(søknadsperiode, søknadsdata.omsorgstibud),
                 ...getNattevåkApiDataFromSøknadsdata(søknadsdata.nattevåk),

@@ -13,7 +13,7 @@ import {
 } from '../../../types/søknadsdata/arbeidAnsattSøknadsdata';
 import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidsforholdSøknadsdata } from '../../../types/søknadsdata/arbeidsforholdSøknadsdata';
-import { ArbeidSøknadsdata } from '../../../types/søknadsdata/arbeidSøknadsdata';
+// import { ArbeidSøknadsdata } from '../../../types/søknadsdata/arbeidSøknadsdata';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 
 export enum ArbeidsperiodeIForholdTilSøknadsperiode {
@@ -65,39 +65,39 @@ export const harFraværFraJobb = (arbeidsforhold: ArbeidsforholdSøknadsdata[]):
     });
 };
 
-export const harArbeidIPerioden = (arbeid?: ArbeidSøknadsdata): boolean =>
-    arbeid !== undefined && getAlleArbeidsforholdIPerioden(arbeid).length > 0;
+// export const harArbeidIPerioden = (arbeid?: any): boolean => true; // TODO
+// arbeid !== undefined && getAlleArbeidsforholdIPerioden(arbeid).length > 0;
 
-export const getAlleArbeidsforholdIPerioden = (arbeid?: ArbeidSøknadsdata): ArbeidsforholdSøknadsdata[] => {
-    if (arbeid === undefined) {
-        return [];
-    }
-    const arbeidsgivere: ArbeidsforholdSøknadsdata[] = [];
-    arbeid.arbeidsgivere?.forEach((a) => {
-        if (a.erAnsattISøknadsperiode) {
-            arbeidsgivere.push(a.arbeidsforhold);
-        }
-    });
+// export const getAlleArbeidsforholdIPerioden = (arbeid?: any): ArbeidsforholdSøknadsdata[] => {
+//     if (arbeid === undefined) {
+//         return [];
+//     }
+//     const arbeidsgivere: ArbeidsforholdSøknadsdata[] = [];
+//     arbeid.arbeidsgivere?.forEach((a) => {
+//         if (a.erAnsattISøknadsperiode) {
+//             arbeidsgivere.push(a.arbeidsforhold);
+//         }
+//     });
 
-    const frilansArbeidsforhold: ArbeidsforholdSøknadsdata[] = [];
+//     const frilansArbeidsforhold: ArbeidsforholdSøknadsdata[] = [];
 
-    if (arbeid.frilanser?.harInntektSomFrilanser && arbeid.frilanser.misterInntektSomFrilanserIPeriode) {
-        if (arbeid.frilanser.arbeidsforholdFrilansarbeid) {
-            frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdFrilansarbeid);
-        }
-        if (
-            arbeid.frilanser.arbeidsforholdHonorararbeid &&
-            arbeid.frilanser.arbeidsforholdHonorararbeid.misterHonorar
-        ) {
-            frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdHonorararbeid);
-        }
-    }
+//     if (arbeid.frilanser?.harInntektSomFrilanser && arbeid.frilanser.misterInntektSomFrilanserIPeriode) {
+//         if (arbeid.frilanser.arbeidsforholdFrilansarbeid) {
+//             frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdFrilansarbeid);
+//         }
+//         if (
+//             arbeid.frilanser.arbeidsforholdHonorararbeid &&
+//             arbeid.frilanser.arbeidsforholdHonorararbeid.misterHonorar
+//         ) {
+//             frilansArbeidsforhold.push(arbeid.frilanser.arbeidsforholdHonorararbeid);
+//         }
+//     }
 
-    const selvstendig: ArbeidsforholdSøknadsdata[] = arbeid.selvstendig?.erSN
-        ? [arbeid.selvstendig.arbeidsforhold]
-        : [];
-    return [...arbeidsgivere, ...frilansArbeidsforhold, ...selvstendig];
-};
+//     const selvstendig: ArbeidsforholdSøknadsdata[] = arbeid.selvstendig?.erSN
+//         ? [arbeid.selvstendig.arbeidsforhold]
+//         : [];
+//     return [...arbeidsgivere, ...frilansArbeidsforhold, ...selvstendig];
+// };
 
 export const getArbeidsukerIPerioden = (periode: DateRange): ArbeidsukeInfo[] => {
     return getWeeksInDateRange(periode)

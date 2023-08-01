@@ -21,7 +21,9 @@ export const cleanupSøknadStepValues = (
         case StepID.ARBEIDSSITUASJON:
             return cleanupArbeidssituasjonStep(values, søknadsperiode);
         case StepID.ARBEIDSTID:
-            return søknadsdata.arbeid ? cleanupArbeidstidStep(values, søknadsdata.arbeid) : values;
+            return søknadsdata.arbeidstidIPerioden
+                ? cleanupArbeidstidStep(values, søknadsdata.arbeidssituasjon)
+                : values;
         case StepID.OMSORGSTILBUD:
             return cleanupOmsorgstilbudStep(values, søknadsperiode);
         case StepID.NATTEVÅK_OG_BEREDSKAP:

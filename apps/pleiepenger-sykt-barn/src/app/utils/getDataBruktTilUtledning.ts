@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
     ArbeidsforholdAvsluttetFørSøknadsperiode,
     DataBruktTilUtledningAnnetData,
@@ -27,10 +28,12 @@ export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
     return arbeidsforhold.length === 0 ? undefined : arbeidsforhold;
 };
 
-export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
-    return {
-        arbeidsforholdAvsluttetFørSøknadsperiode: getArbeidsforhorholdAvsluttetFørSøknadsperiode(
-            søknadsdata.arbeid?.arbeidsgivere
-        ),
-    };
+export const getDataBruktTilUtledning = (_søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
+    return {};
+    // TODO
+    // return {
+    //     arbeidsforholdAvsluttetFørSøknadsperiode: getArbeidsforhorholdAvsluttetFørSøknadsperiode(
+    //         søknadsdata.arbeid?.arbeidsgivere
+    //     ),
+    // };
 };
