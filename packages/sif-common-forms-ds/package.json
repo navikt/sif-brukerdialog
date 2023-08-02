@@ -24,7 +24,7 @@
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-utils": "*",
-        "@storybook/addon-a11y": "7.0.22",
+        "@storybook/addon-a11y": "7.2.0",
         "@storybook/addon-actions": "7.0.22",
         "@storybook/addon-essentials": "7.0.22",
         "@storybook/addon-interactions": "7.0.22",
