@@ -94,7 +94,7 @@ const erIkkeFrilanser = () => {
         gåTilOppsummeringFraArbeidssituasjon();
 
         const el = getTestElement('arbeidssituasjon-frilanser');
-        el.should('contain', 'Er ikke frilanser eller får ikke honorari perioden det søkes for');
+        el.should('contain', 'Er ikke frilanser og får ikke honorari perioden det søkes for');
     });
 };
 

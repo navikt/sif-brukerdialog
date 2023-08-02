@@ -55,7 +55,7 @@ export const getRedusertArbeidApiData = (
         case RedusertArbeidstidType.timerISnittPerUke:
             return {
                 type: RedusertArbeidstidType.timerISnittPerUke,
-                timerPerUke: `${arbeid.timerISnittPerUke}`,
+                timerPerUke: decimalDurationToISODuration(arbeid.timerISnittPerUke),
             };
         case RedusertArbeidstidType.ulikeUkerTimer:
             return {

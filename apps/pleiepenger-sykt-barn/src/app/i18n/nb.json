@@ -648,11 +648,10 @@
     "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst": "Er ikke ansatt i perioden det søkes for",
 
     "oppsummering.arbeidssituasjon.frilanser.header": "Frilanser eller får honorar for styreverv/andre små verv",
-    "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Er ikke frilanser eller får ikke honorar for styreverv/andre små verv i perioden det søkes for",
+    "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Er ikke frilanser og får ikke honorar for styreverv/andre små verv i perioden det søkes for",
     "oppsummering.arbeidssituasjon.frilans.startet": "Startet {dato}",
     "oppsummering.arbeidssituasjon.frilans.fortsattFrilanser": "Er fortsatt frilanser",
     "oppsummering.arbeidssituasjon.frilans.FRILANSARBEID": "Jeg jobber som frilanser",
-    "oppsummering.arbeidssituasjon.frilans.OMSORGSSTØNAD": "Jeg mottar omsorgsstønad fra kommunen",
     "oppsummering.arbeidssituasjon.frilans.HONORARARBEID": "Jeg får honorar for  styreverv eller andre verv",
     "oppsummering.arbeidssituasjon.frilans.HONORARARBEID.misterIkkeHonorar": "Jeg mister ikke honorar for verv i søknadsperioden",
     "oppsummering.arbeidssituasjon.frilans.sluttet": "Sluttet {dato}",
@@ -675,11 +674,13 @@
     "oppsummering.arbeidIPeriode.jobbIPerioden": "Jobb i søknadsperioden",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.ja": "jobber",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.nei": "Jobber ikke i søknadsperioden",
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig": "Jobber som normalt, har ikke fravær på grunn av pleiepenger.",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar": "Mister alt av honorar",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig": "Jobber som normalt, har ikke fravær på grunn av pleiepenger",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig.honorar": "Mister ikke honorar på grunn av pleiepenger ",
 
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.REDUSERT": "Frilanser: Kombinerer delvis jobb med pleiepenger",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.HELT_FRAVÆR": "Frilanser: Jobber ikke i søknadsperioden",
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.SOM_VANLIG": "Frilanser: Jobber som normalt, har ikke fravær på grunn av pleiepenger.",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.SOM_VANLIG": "Frilanser: Jobber som normalt, har ikke fravær på grunn av pleiepenger",
 
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.verv.MISTER_ALLE_HONORARER": "Honorar for verv: Jeg mister alle honorar.",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.verv.MISTER_DELER_AV_HONORARER": "Honorar for verv: Jeg mister deler av honorar.",

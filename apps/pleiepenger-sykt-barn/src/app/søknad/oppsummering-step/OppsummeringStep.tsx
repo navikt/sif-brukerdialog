@@ -41,7 +41,6 @@ import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
 import { getSøknadStepConfig } from '../søknadStepConfig';
 import ApiValidationSummary from './api-validation-summary/ApiValidationSummary';
-// import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
@@ -52,6 +51,8 @@ import {
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
+import { harArbeidIPerioden, harFraværFraJobb } from '../arbeidstid-step/utils/arbeidstidUtils';
+import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 
 interface Props {
     values: SøknadFormValues;
@@ -86,7 +87,7 @@ export const isSifBadRequestErrorResponse = (error: any): error is SIFBadRequest
     );
 };
 
-const OppsummeringStep = ({ onApplicationSent, values }: Props) => {
+const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) => {
     const [sendingInProgress, setSendingInProgress] = useState<boolean>(false);
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
     const [innsendingFeiletInfo, setInnsendingFeiletInfo] = useState<string | undefined>();
@@ -150,10 +151,9 @@ const OppsummeringStep = ({ onApplicationSent, values }: Props) => {
                     return <div>Det oppstod en feil - søknadsdata mangler</div>;
                 }
 
-                const harArbeidMenIngenFravær = false;
-                // TODO
-                // harArbeidIPerioden(søknadsdata.arbeid) &&
-                // !harFraværFraJobb(getAlleArbeidsforholdIPerioden(søknadsdata.arbeid));
+                const harArbeidMenIngenFravær =
+                    harArbeidIPerioden(søknadsdata.arbeidssituasjon) &&
+                    !harFraværFraJobb(søknadsdata.arbeidstidIPerioden);
 
                 const {
                     søker: { fornavn, mellomnavn, etternavn, fødselsnummer },
@@ -317,11 +317,11 @@ const OppsummeringStep = ({ onApplicationSent, values }: Props) => {
                                 />
 
                                 {/* Arbeid i søknadsperiode */}
-                                {/* <ArbeidIPeriodenSummary
+                                <ArbeidIPeriodenSummary
                                     apiValues={apiValues}
                                     søknadsperiode={søknadsperiode}
                                     søknadsdato={søknadsdato}
-                                /> */}
+                                />
 
                                 {/* Omsorgstilbud */}
                                 <OmsorgstilbudSummary søknadsperiode={søknadsperiode} apiValues={apiValues} />

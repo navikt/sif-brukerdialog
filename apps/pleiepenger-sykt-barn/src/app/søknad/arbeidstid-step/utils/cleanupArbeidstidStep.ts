@@ -38,8 +38,9 @@ export const cleanupArbeidIPeriode = (
     const arbeid: ArbeidIPeriodeFormValues = {
         arbeiderIPerioden: formValues.arbeiderIPerioden,
     };
+
     if (arbeid.arbeiderIPerioden !== ArbeiderIPeriodenSvar.redusert) {
-        return arbeid;
+        return { arbeiderIPerioden: arbeid.arbeiderIPerioden };
     }
 
     arbeid.erLiktHverUke = formValues.erLiktHverUke;

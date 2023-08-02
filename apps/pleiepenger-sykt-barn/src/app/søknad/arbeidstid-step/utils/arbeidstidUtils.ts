@@ -9,6 +9,8 @@ import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
+import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 
 export enum ArbeidsperiodeIForholdTilSøknadsperiode {
     'starterIPerioden' = 'starterIPerioden',
@@ -71,6 +73,18 @@ export const getArbeidsdagerIUkeTekst = ({ from, to }: DateRange): string => {
         default:
             return `${fraDag} til ${tilDag}`;
     }
+};
+
+export const harArbeidIPerioden = (arbeidssituasjon?: ArbeidssituasjonSøknadsdata): boolean => {
+    if (!arbeidssituasjon) {
+        return false;
+    }
+    const erAnsattIPerioden = arbeidssituasjon.arbeidsgivere.some(
+        (a) => a.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode
+    );
+    const erFrilanserIPerioden = arbeidssituasjon.frilans?.harInntektSomFrilanser === true;
+    const erSelvstendigIPerioden = arbeidssituasjon.selvstendig?.erSN === true;
+    return erAnsattIPerioden || erFrilanserIPerioden || erSelvstendigIPerioden;
 };
 
 export const harFraværFraJobb = (arbeidstid: ArbeidstidSøknadsdata | undefined): boolean => {

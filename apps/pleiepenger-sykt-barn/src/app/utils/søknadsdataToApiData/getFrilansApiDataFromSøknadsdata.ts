@@ -1,8 +1,14 @@
-import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
-import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
-import { FrilansApiData } from '../../types/søknad-api-data/frilansApiData';
+import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils/lib';
+import {
+    FrilansApiData,
+    FrilansApiType,
+    FrilanserMedArbeidsforholdApiDataPart,
+} from '../../types/søknad-api-data/frilansApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
+import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
+import { ArbeidsforholdApiData } from '../../types/søknad-api-data/arbeidsforholdApiData';
+import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 
 export const getFrilansApiDataFromSøknadsdata = ({
     arbeidssituasjon,
@@ -19,14 +25,16 @@ export const getFrilansApiDataFromSøknadsdata = ({
 
     if (arbeidssituasjon.harInntektSomFrilanser === false) {
         return {
+            type: FrilansApiType.INGEN_INNTEKT_FROM_FRILANSER,
             harInntektSomFrilanser: false,
         };
     }
     const { misterInntektSomFrilanser, honorararbeid } = arbeidssituasjon;
 
-    /** Kun honorar */
+    /** Kun honorar - mister ikke honorar */
     if (misterInntektSomFrilanser === false && honorararbeid && honorararbeid.misterHonorar === false) {
         return {
+            type: FrilansApiType.KUN_HONORARARBEID_MISTER_IKKE_HONORAR,
             harInntektSomFrilanser: true,
             honorararbeid: {
                 misterHonorar: false,
@@ -35,7 +43,7 @@ export const getFrilansApiDataFromSøknadsdata = ({
     }
 
     if (misterInntektSomFrilanser === true) {
-        const { honorararbeid, frilansarbeid, erFortsattFrilanser } = arbeidssituasjon;
+        const { honorararbeid, frilansarbeid, erFortsattFrilanser, startdato, sluttdato } = arbeidssituasjon;
 
         if (honorararbeid?.misterHonorar && !arbeidstidHonorararbeid) {
             throw 'getFrilansApiDataFromSøknadsdata: mister honorar, men arbeidstidHonorararbeid is undefined';
@@ -47,12 +55,14 @@ export const getFrilansApiDataFromSøknadsdata = ({
                 throw 'getFrilansApiDataFromSøknadsdata: arbeidstidHonorararbeid is undefined';
             }
             return {
-                harInntektSomFrilanser: true,
-                erFortsattFrilanser,
+                type: FrilansApiType.KUN_HONORARARBEID_MISTER_HONORAR,
+                ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
                 honorararbeid: {
                     misterHonorar: true,
-                    timerNormalt: `${honorararbeid.normalarbeidstid.timerPerUkeISnitt}`,
-                    arbeidIPeriodeSvar: getArbeidIPeriodeSvarFraArbeidISøknadsperiode(arbeidstidHonorararbeid),
+                    arbeidsforhold: getFrilansArbeidsforholdApiData(
+                        honorararbeid.normalarbeidstid,
+                        arbeidstidHonorararbeid
+                    ),
                 },
             };
         }
@@ -63,11 +73,13 @@ export const getFrilansApiDataFromSøknadsdata = ({
                 throw 'getFrilansApiDataFromSøknadsdata: arbeidstidFrilansarbeid is undefined';
             }
             return {
-                harInntektSomFrilanser: true,
-                erFortsattFrilanser,
+                type: FrilansApiType.KUN_FRILANSARBEID,
+                ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
                 frilansarbeid: {
-                    timerNormalt: `${frilansarbeid.normalarbeidstid.timerPerUkeISnitt}`,
-                    arbeidIPeriodeSvar: getArbeidIPeriodeSvarFraArbeidISøknadsperiode(arbeidstidFrilansarbeid),
+                    arbeidsforhold: getFrilansArbeidsforholdApiData(
+                        frilansarbeid.normalarbeidstid,
+                        arbeidstidFrilansarbeid
+                    ),
                 },
             };
         }
@@ -77,19 +89,22 @@ export const getFrilansApiDataFromSøknadsdata = ({
                 throw 'getFrilansApiDataFromSøknadsdata: arbeidstidFrilansarbeid OR arbeidstidHonorararbeid is undefined';
             }
             return {
-                harInntektSomFrilanser: true,
-                erFortsattFrilanser,
+                type: FrilansApiType.FRILANSARBEID_OG_HONORARARBEID,
+                ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
                 frilansarbeid: {
-                    timerNormalt: `${frilansarbeid.normalarbeidstid.timerPerUkeISnitt}`,
-                    arbeidIPeriodeSvar: getArbeidIPeriodeSvarFraArbeidISøknadsperiode(arbeidstidFrilansarbeid),
+                    arbeidsforhold: getFrilansArbeidsforholdApiData(
+                        frilansarbeid.normalarbeidstid,
+                        arbeidstidFrilansarbeid
+                    ),
                 },
                 honorararbeid:
                     honorararbeid.misterHonorar && arbeidstidHonorararbeid
                         ? {
                               misterHonorar: true,
-                              timerNormalt: `${honorararbeid.normalarbeidstid.timerPerUkeISnitt}`,
-                              arbeidIPeriodeSvar:
-                                  getArbeidIPeriodeSvarFraArbeidISøknadsperiode(arbeidstidHonorararbeid),
+                              arbeidsforhold: getFrilansArbeidsforholdApiData(
+                                  honorararbeid.normalarbeidstid,
+                                  arbeidstidHonorararbeid
+                              ),
                           }
                         : {
                               misterHonorar: false,
@@ -101,13 +116,38 @@ export const getFrilansApiDataFromSøknadsdata = ({
     throw 'getFrilansApiDataFromSøknadsdata: undefined return';
 };
 
-const getArbeidIPeriodeSvarFraArbeidISøknadsperiode = (arbeid: ArbeidIPeriodeSøknadsdata): ArbeiderIPeriodenSvar => {
-    switch (arbeid.type) {
-        case ArbeidIPeriodeType.arbeiderIkke:
-            return ArbeiderIPeriodenSvar.heltFravær;
-        case ArbeidIPeriodeType.arbeiderRedusert:
-            return ArbeiderIPeriodenSvar.redusert;
-        case ArbeidIPeriodeType.arbeiderVanlig:
-            return ArbeiderIPeriodenSvar.somVanlig;
+const getFrilansArbeidsforholdApiData = (
+    normalarbeidstid: NormalarbeidstidSøknadsdata,
+    arbeidIPeriode: ArbeidIPeriodeSøknadsdata
+): ArbeidsforholdApiData => {
+    return {
+        normalarbeidstid: {
+            timerPerUkeISnitt: decimalDurationToISODuration(normalarbeidstid.timerPerUkeISnitt),
+        },
+        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriode),
+    };
+};
+
+const getFrilansFellesInfo = (
+    erFortsattFrilanser: boolean,
+    startdato: Date,
+    sluttdato?: Date
+): FrilanserMedArbeidsforholdApiDataPart => {
+    if (erFortsattFrilanser) {
+        return {
+            harInntektSomFrilanser: true,
+            erFortsattFrilanser: true,
+            startdato: dateToISODate(startdato),
+        };
+    }
+    if (sluttdato) {
+        return {
+            harInntektSomFrilanser: true,
+            erFortsattFrilanser: false,
+            startdato: dateToISODate(startdato),
+            sluttdato: sluttdato ? dateToISODate(sluttdato) : undefined,
+        };
+    } else {
+        throw 'getFrilansPeriodeInfo: sluttdato is undefined';
     }
 };

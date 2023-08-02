@@ -1,6 +1,6 @@
-import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
-import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
+import { ISODate } from '@navikt/sif-common-utils/lib';
 import { ArbeidsforholdApiData } from './arbeidsforholdApiData';
+// import { ArbeidsforholdApiData } from './arbeidsforholdApiData';
 
 /**
  * Frilansarbeid er litt annerledes enn andre arbeidsforhold og med vi ut mot bruker spør om både
@@ -17,75 +17,70 @@ import { ArbeidsforholdApiData } from './arbeidsforholdApiData';
  *   honorararbeid over. Dette brukes og sendes videre til K9.
  */
 
-export type FrilanserPeriodeApiData = {
+export enum FrilansApiType {
+    'INGEN_INNTEKT_FROM_FRILANSER' = 'INGEN_INNTEKT_FROM_FRILANSER',
+    'KUN_HONORARARBEID_MISTER_IKKE_HONORAR' = 'KUN_HONORARARBEID_MISTER_IKKE_HONORAR',
+    'KUN_FRILANSARBEID' = 'KUN_FRILANSARBEID',
+    'KUN_HONORARARBEID_MISTER_HONORAR' = 'KUN_HONORARARBEID_MISTER_HONORAR',
+    'FRILANSARBEID_OG_HONORARARBEID' = 'FRILANSARBEID_OG_HONORARARBEID',
+}
+
+export interface FrilansarbeidApiData {
+    // timerNormalt: ISODuration;
+    // arbeidIPeriodeSvar?: ArbeiderIPeriodenSvar;
+    arbeidsforhold: ArbeidsforholdApiData;
+}
+
+type HonorararbeidMisterIkkeHonorar = {
+    misterHonorar: false;
+    arbeidsforhold?: ArbeidsforholdApiData;
+    // timerNormalt?: ISODuration; // Påkrevd dersom bruker også har frilansarbeid. Da trenger vi dette for å regne ut redusert arbeidstid.
+};
+
+type HonorararbeidMisterHonorar = {
+    misterHonorar: true;
+    arbeidsforhold: ArbeidsforholdApiData;
+};
+
+export type HonorararbeidApiData = HonorararbeidMisterIkkeHonorar | HonorararbeidMisterHonorar;
+
+export type FrilanserMedArbeidsforholdApiDataPart = {
+    harInntektSomFrilanser: true;
     erFortsattFrilanser: boolean;
     startdato: ISODate;
     sluttdato?: ISODate;
 };
 
-export interface FrilansarbeidApiData {
-    timerNormalt: ISODuration;
-    arbeidIPeriodeSvar?: ArbeiderIPeriodenSvar;
-}
-
-type HonorararbeidMisterIkkeHonorar = {
-    misterHonorar: false;
-    timerNormalt?: ISODuration; // Påkrevd dersom bruker også har frilansarbeid. Da trenger vi dette for å regne ut redusert arbeidstid.
-};
-
-type HonorararbeidMisterHonorar = {
-    misterHonorar: true;
-    timerNormalt: ISODuration;
-    arbeidIPeriodeSvar: ArbeiderIPeriodenSvar;
-};
-
-type FrilanserAvsluttetIPeriodePart = FrilanserPeriodeApiData & {
-    harInntektSomFrilanser: true;
-    erFortsattFrilanser: false;
-    startdato: ISODate;
-    sluttdato: ISODate;
-    arbeidsforhold: ArbeidsforholdApiData /** Informasjon fra frilansarbeid og honorararbeid samles i arbeidsforhold, og sendes videre til k9sak */;
-};
-
-type FrilanserPågåendePart = {
-    harInntektSomFrilanser: true;
-    erFortsattFrilanser: true;
-};
-
-/** Ved kun honorar som ikke mister honorar */
-type FrilanserUtenPeriodeinfo = {
-    harInntektSomFrilanser: true;
-};
-
-export type HonorararbeidApiData = HonorararbeidMisterIkkeHonorar | HonorararbeidMisterHonorar;
-
-export type FrilanserMedArbeidsforholdApiDataPart =
-    | FrilanserUtenPeriodeinfo
-    | FrilanserAvsluttetIPeriodePart
-    | (FrilanserPågåendePart & {
-          startdato: ISODate;
-          arbeidsforhold: ArbeidsforholdApiData;
-      });
-
 export type FrilansApiDataIngenInntekt = {
+    type: FrilansApiType.INGEN_INNTEKT_FROM_FRILANSER;
     harInntektSomFrilanser: false;
 };
 
+export type FrilansApiDataKunHonorararbeidMisterIkkeHonorar = {
+    type: FrilansApiType.KUN_HONORARARBEID_MISTER_IKKE_HONORAR;
+    harInntektSomFrilanser: true;
+    honorararbeid: HonorararbeidMisterIkkeHonorar;
+};
+
 export type FrilansApiDataKunFrilansarbeid = FrilanserMedArbeidsforholdApiDataPart & {
+    type: FrilansApiType.KUN_FRILANSARBEID;
     frilansarbeid: FrilansarbeidApiData;
 };
 
 export type FrilansApiDataKunHonorararbeid = FrilanserMedArbeidsforholdApiDataPart & {
-    honorararbeid: HonorararbeidApiData;
+    type: FrilansApiType.KUN_HONORARARBEID_MISTER_HONORAR;
+    honorararbeid: HonorararbeidMisterHonorar;
 };
 
 export type FrilansApiDataFrilansarbeidOgHonorararbeid = FrilanserMedArbeidsforholdApiDataPart & {
+    type: FrilansApiType.FRILANSARBEID_OG_HONORARARBEID;
     frilansarbeid: FrilansarbeidApiData;
     honorararbeid: HonorararbeidApiData;
 };
 
 export type FrilansApiData =
     | FrilansApiDataIngenInntekt
+    | FrilansApiDataKunHonorararbeidMisterIkkeHonorar
     | FrilansApiDataKunFrilansarbeid
     | FrilansApiDataKunHonorararbeid
     | FrilansApiDataFrilansarbeidOgHonorararbeid;

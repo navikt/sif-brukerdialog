@@ -4,11 +4,11 @@ import { FormattedMessage } from 'react-intl';
 import { NormalarbeidstidApiData } from '../../../types/søknad-api-data/SøknadApiData';
 
 interface Props {
-    erAnsatt: boolean;
+    erAnsatt?: boolean;
     normalarbeidstidApiData: NormalarbeidstidApiData;
 }
 
-const NormalarbeidstidSummary: React.FunctionComponent<Props> = ({ erAnsatt, normalarbeidstidApiData }) => (
+const NormalarbeidstidSummary: React.FunctionComponent<Props> = ({ erAnsatt = true, normalarbeidstidApiData }) => (
     <FormattedMessage
         id={erAnsatt ? `oppsummering.arbeidssituasjon.tid` : `oppsummering.arbeidssituasjon.avsluttet.tid`}
         values={{
