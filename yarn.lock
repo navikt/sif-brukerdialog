@@ -4765,7 +4765,7 @@ __metadata:
     "@storybook/addon-interactions": 7.0.22
     "@storybook/addon-links": 7.0.22
     "@storybook/builder-webpack5": 7.0.22
-    "@storybook/node-logger": 7.0.22
+    "@storybook/node-logger": 7.2.0
     "@storybook/preset-create-react-app": 7.0.22
     "@storybook/react": 7.0.22
     "@storybook/react-webpack5": 7.0.22
@@ -5043,7 +5043,7 @@ __metadata:
     "@storybook/addon-links": 7.0.22
     "@storybook/builder-webpack5": 7.0.22
     "@storybook/manager-webpack5": 6.5.16
-    "@storybook/node-logger": 7.0.22
+    "@storybook/node-logger": 7.2.0
     "@storybook/preset-create-react-app": 7.0.22
     "@storybook/react": 7.0.22
     "@storybook/testing-library": 0.1.0
@@ -5185,7 +5185,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.22
     "@storybook/addon-interactions": 7.0.22
     "@storybook/addon-links": 7.0.22
-    "@storybook/node-logger": 7.0.22
+    "@storybook/node-logger": 7.2.0
     "@storybook/preset-create-react-app": 7.0.22
     "@storybook/react": 7.0.22
     "@storybook/react-webpack5": 7.0.22
@@ -5256,7 +5256,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.22
     "@storybook/addon-interactions": 7.0.22
     "@storybook/addon-links": 7.0.22
-    "@storybook/node-logger": 7.0.22
+    "@storybook/node-logger": 7.2.0
     "@storybook/preset-create-react-app": 7.0.22
     "@storybook/react": 7.0.22
     "@storybook/testing-library": 0.1.0
@@ -5316,7 +5316,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.22
     "@storybook/addon-interactions": 7.0.22
     "@storybook/addon-links": 7.0.22
-    "@storybook/node-logger": 7.0.22
+    "@storybook/node-logger": 7.2.0
     "@storybook/react": 7.0.22
     "@storybook/testing-library": 0.1.0
     "@testing-library/dom": 9.3.1
@@ -5401,7 +5401,7 @@ __metadata:
     "@storybook/addon-essentials": 7.0.22
     "@storybook/addon-interactions": 7.0.22
     "@storybook/addon-links": 7.0.22
-    "@storybook/node-logger": 7.0.22
+    "@storybook/node-logger": 7.2.0
     "@storybook/react": 7.0.22
     "@storybook/testing-library": 0.1.0
     "@testing-library/dom": 9.3.1
@@ -7426,6 +7426,13 @@ __metadata:
     npmlog: ^5.0.1
     pretty-hrtime: ^1.0.3
   checksum: 93ca73db32d0d3acf81c27c0509a20957f0481a7e11fe1f46afc74a68aea9282ee99a29069e712ecf4a470df25ad829928cf51700e155d43a198748da46009dd
+  languageName: node
+  linkType: hard
+
+"@storybook/node-logger@npm:7.2.0":
+  version: 7.2.0
+  resolution: "@storybook/node-logger@npm:7.2.0"
+  checksum: a8a2a110da9f7657888f8b3a7409623dad246a7707bcf8854741eda3ec064a2a0467f444ad3173497a484c35391d8ea5dd0ab67855fddbcbded6948f72feac89
   languageName: node
   linkType: hard
 
