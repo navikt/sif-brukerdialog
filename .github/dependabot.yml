@@ -8,6 +8,25 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+      babel:
+        patterns:
+          - "@babel*"
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint*"
+      storybook:
+        patterns:
+          - "@storybook/*"
+        exclude-patterns:
+          - "@storybook/storybook-deployer"
+          - "@storybook/testing-react"
+          - "@storybook/testing-library"
 
   - package-ecosystem: github-actions
     directory: "/"
@@ -17,8 +36,3 @@ updates:
       github:
         patterns:
           - "*"
-
-  - package-ecosystem: docker
-    directory: "/"
-    schedule:
-      interval: daily
