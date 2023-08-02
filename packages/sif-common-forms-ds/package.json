@@ -61,7 +61,7 @@
         "react-scripts": "5.0.1",
         "rimraf": "5.0.1",
         "storybook": "7.0.22",
-        "webpack": "5.87.0"
+        "webpack": "5.88.2"
     },
     "directories": {
         "lib": "lib"
