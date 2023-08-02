@@ -74,7 +74,7 @@
         "@mswjs/data": "0.13.0",
         "@navikt/ds-tailwind": "4.1.7",
         "@storybook/addon-actions": "7.0.22",
-        "@storybook/addon-essentials": "7.0.22",
+        "@storybook/addon-essentials": "7.2.0",
         "@storybook/addon-interactions": "7.0.22",
         "@storybook/addon-links": "7.0.22",
         "@storybook/builder-webpack5": "7.0.22",
