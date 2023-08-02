@@ -12418,7 +12418,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 5.60.0
     "@typescript-eslint/parser": 5.60.0
     eslint: 8.43.0
-    eslint-config-prettier: 8.8.0
+    eslint-config-prettier: 8.9.0
     eslint-plugin-jsx-a11y: 6.7.1
     eslint-plugin-prettier: 4.2.1
     eslint-plugin-react: 7.32.2
@@ -14606,7 +14606,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:8.8.0, eslint-config-prettier@npm:^8.3.0":
+"eslint-config-prettier@npm:8.9.0":
+  version: 8.9.0
+  resolution: "eslint-config-prettier@npm:8.9.0"
+  peerDependencies:
+    eslint: ">=7.0.0"
+  bin:
+    eslint-config-prettier: bin/cli.js
+  checksum: a675d0dabd76b700ef2d062b5ec6a634e105a8e8c070f95281fd2ccb614527fac60b4c758132058c50f0521fd19313f1f5be45ce9ebf081f2e5f77ae6eb7d8db
+  languageName: node
+  linkType: hard
+
+"eslint-config-prettier@npm:^8.3.0":
   version: 8.8.0
   resolution: "eslint-config-prettier@npm:8.8.0"
   peerDependencies:
