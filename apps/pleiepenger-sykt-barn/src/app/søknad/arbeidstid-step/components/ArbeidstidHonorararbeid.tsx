@@ -38,7 +38,7 @@ const ArbeidstidHonorararbeid: React.FunctionComponent<Props> = ({
             arbeidIPeriode={arbeidIPeriode}
             parentFieldName={FrilansFormField.arbeidsforholdHonorararbeid}
             intlValues={intlValues}
-            tittel={'Arbeid for honorar'}
+            tittel={'Jobb for honorar'}
             normalarbeidstid={normalarbeidstid}
             info={
                 <ArbeidIPeriodeInfo

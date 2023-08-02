@@ -10,8 +10,12 @@ export const selectRadioNyYesOrNo = (key, selectYes) => {
     getTestElement(`${key}_${selectYes ? 'yes' : 'no'}`).click({ force: true });
 };
 
-export const selectRadioByNameAndValue = (name, value) => {
+export const selectRadio = (name, value) => {
     cy.get(`[name="${name}"][value="${value}"]`).parent().click();
+};
+
+export const selectRadioByLabel = (text) => {
+    cy.get('label').contains(text).parent().click();
 };
 
 export const checkCheckbuttonByName = (name) => {
@@ -56,7 +60,7 @@ export const setInputTime = (key, hours = '', minutes = '') => {
     setInputValue(`${key}_minutes`, minutes);
 };
 
-export const selectRadio = (key) => {
+export const selectRadioByTestElement = (key) => {
     getTestElement(key).parent().click();
 };
 

@@ -6,7 +6,7 @@ import {
     getTestElement,
     gåTilOppsummeringFraArbeidIPerioden,
     gåTilOppsummeringFraArbeidssituasjon,
-    selectRadioByNameAndValue,
+    selectRadio,
     selectRadioNoByName,
     selectRadioNyYesOrNo,
     selectRadioYes,
@@ -35,13 +35,13 @@ const virksomhet = {
 
 const fyllUtVirksomhetDialog = () => {
     cy.get('.formikModalForm__modal').within(() => {
-        selectRadioByNameAndValue('næringstype', virksomhet.næringstype);
-        selectRadioByNameAndValue('registrertINorge', virksomhet.registrertINorge);
+        selectRadio('næringstype', virksomhet.næringstype);
+        selectRadio('registrertINorge', virksomhet.registrertINorge);
         getInputByName('navnPåVirksomheten').click().type(virksomhet.navn).blur();
         getInputByName('organisasjonsnummer').click().type(virksomhet.organisasjonsnummer).blur();
         getInputByName('fom').click().type(virksomhet.fraOgMed).blur();
         getInputByName('tom').click().type(virksomhet.tilOgMed).blur();
-        selectRadioByNameAndValue(
+        selectRadio(
             'hattVarigEndringAvNæringsinntektSiste4Kalenderår',
             virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår
         );
@@ -57,7 +57,7 @@ const fyllUtVirksomhetDialog = () => {
             .click()
             .type(virksomhet.varigEndringINæringsinntekt_forklaring)
             .blur();
-        selectRadioByNameAndValue('harRegnskapsfører', virksomhet.harRegnskapsfører);
+        selectRadio('harRegnskapsfører', virksomhet.harRegnskapsfører);
         getElement('button[type="submit"]').click();
     });
     getInputByName('selvstendig.arbeidsforhold.normalarbeidstid.timerPerUke').click().type('5').blur();

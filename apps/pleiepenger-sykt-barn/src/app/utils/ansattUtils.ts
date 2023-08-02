@@ -19,6 +19,12 @@ export const erAnsattISøknadsperiode = (arbeidsforhold: ArbeidsforholdFormValue
 };
 
 export const getPeriodeSomAnsattInnenforPeriode = (periode: DateRange, arbeidsgiver: Arbeidsgiver): DateRange => {
+    if (arbeidsgiver.ansattFom === undefined) {
+        return {
+            from: periode.from,
+            to: periode.to,
+        };
+    }
     return {
         from: dayjs.max([dayjs(periode.from), dayjs(arbeidsgiver.ansattFom)]).toDate(),
         to: periode.to,
