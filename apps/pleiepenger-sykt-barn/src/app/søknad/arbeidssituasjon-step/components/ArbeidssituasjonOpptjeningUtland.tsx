@@ -22,7 +22,6 @@ const ArbeidssituasjonOpptjeningUtland = () => {
                     legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
                     name={SøknadFormField.harOpptjeningUtland}
                     validate={getYesOrNoValidator()}
-                    data-testid="har-opptjeningUtland"
                 />
                 {values.harOpptjeningUtland === YesOrNo.YES && (
                     <FormBlock>
@@ -57,7 +56,6 @@ const ArbeidssituasjonOpptjeningUtland = () => {
                         legend={intlHelper(intl, 'steg.arbeidssituasjon.utenlandskNæring.spm')}
                         name={SøknadFormField.harUtenlandskNæring}
                         validate={getYesOrNoValidator()}
-                        data-testid="har-utenlandskNæring"
                     />
                     {values.harUtenlandskNæring === YesOrNo.YES && (
                         <FormBlock>

@@ -1,6 +1,5 @@
 import { TestType } from '../../types/TestTyper';
 import {
-    getElement,
     getInputByName,
     getTestElement,
     getTestElementByType,
@@ -19,22 +18,22 @@ const expectedOpptjeningDato = `${dato.format('D. MMM YYYY')} - ${dato.format('D
 
 const fyllUtArbeidssituasjonUtenOpptjeningUtland = () => {
     getTestElement('arbeidssituasjonOpptjeningUtland').within(() => {
-        selectRadioNo('har-opptjeningUtland');
+        selectRadioNo('harOpptjeningUtland');
     });
 };
 
 const fyllUtArbeidssituasjonMedOpptjeningUtland = () => {
     getTestElement('arbeidssituasjonOpptjeningUtland').within(() => {
-        selectRadioYes('har-opptjeningUtland');
+        selectRadioYes('harOpptjeningUtland');
     });
-    getElement('button').contains('Legg til jobb i et annet EØS-land').click();
+    cy.get('button').contains('Legg til jobb i et annet EØS-land').click();
     cy.get('[aria-label="Jobbet i et annet EØS-land"]').within(() => {
         getInputByName('fom').click().type(fraDatoTilDato).blur();
         getInputByName('tom').click().type(fraDatoTilDato).blur();
-        getElement('select').select(1);
+        cy.get('select').select(1);
         getTestElementByType('radio').eq(0).check({ force: true });
         getInputByName('navn').click().type(arbeidsgiverenAnnetEQS).blur();
-        getElement('button[type="submit"]').click();
+        cy.get('button[type="submit"]').click();
     });
 };
 

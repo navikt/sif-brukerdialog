@@ -1,6 +1,5 @@
 import { TestType } from '../../types/TestTyper';
 import {
-    getElement,
     getInputByName,
     getTestElement,
     getTestElementByType,
@@ -19,23 +18,23 @@ const expectedutenlandskNæringLand = 'Belgia';
 
 const fyllUtArbeidssituasjonUtenUtenlandskNæring = () => {
     getTestElement('arbeidssituasjonUtenlandskNæring').within(() => {
-        selectRadioNo('har-utenlandskNæring');
+        selectRadioNo('harUtenlandskNæring');
     });
 };
 
 const fyllUtArbeidssituasjonMedUtenlandskNæring = () => {
     getTestElement('arbeidssituasjonUtenlandskNæring').within(() => {
-        selectRadioYes('har-utenlandskNæring');
+        selectRadioYes('harUtenlandskNæring');
     });
-    getElement('button').contains('Legg til næringsvirksomhet i et annet EØS-land').click();
+    cy.get('button').contains('Legg til næringsvirksomhet i et annet EØS-land').click();
     cy.get('[aria-label="Virksomhet"]').within(() => {
         getTestElementByType('radio').eq(0).check({ force: true });
         getInputByName('navnPåVirksomheten').click().type(navnPåVirksomheten).blur();
-        getElement('select').select(1);
+        cy.get('select').select(1);
         getInputByName('identifikasjonsnummer').click().type(virksomhetensOrganisasjonsnummer).blur();
         getInputByName('fraOgMed').click().type(fraDatoTilDato).blur();
         getTestElementByType('checkbox').check({ force: true });
-        getElement('button[type="submit"]').click();
+        cy.get('button[type="submit"]').click();
     });
 };
 

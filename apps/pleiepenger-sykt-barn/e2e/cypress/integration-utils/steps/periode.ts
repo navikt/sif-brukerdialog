@@ -1,12 +1,12 @@
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
-import { selectRadioNyYesOrNo } from '../utils';
+import { selectRadioNo, selectRadioYes } from '../utils';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-const { getTestElement, getInputByName, clickFortsett, selectRadioYes, getElement } = require('../utils');
+const { getTestElement, getInputByName, clickFortsett } = require('../utils');
 
 const fraDato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
 const tilDato = dayjs().startOf('week').add(1, 'week').format('YYYY-MM-DD');
@@ -20,28 +20,26 @@ const expectedLand = 'Albania'; // Land #2 i listen
 export const fyllUtPeriode = () => {
     getInputByName('periodeFra').click().type(fraDato).blur();
     getInputByName('periodeTil').click().type(tilDato).blur();
-    selectRadioYes('er-iUtlandetIPerioden');
-
-    selectRadioYes('er-iUtlandetIPerioden');
-    getElement('button').contains('Legg til utenlandsopphold').click();
+    selectRadioYes('skalOppholdeSegIUtlandetIPerioden');
+    cy.get('button').contains('Legg til utenlandsopphold').click();
     getInputByName('fom').click().type(fraDato).blur();
     getInputByName('tom').click().type(tilDato).blur();
-    getElement('select').select(2); // Valg land #2 fra listen
+    cy.get('select').select(2); // Valg land #2 fra listen
     getInputByName('erBarnetInnlagt').eq(0).check({ force: true });
-    getElement('button').contains('Legg til periode barnet er innlagt').click();
+    cy.get('button').contains('Legg til periode barnet er innlagt').click();
     cy.get('[aria-label="Periode(r) barnet er innlagt"]').within(() => {
         getInputByName('fom').click().type(fraDato).blur();
         getInputByName('tom').click().type(tilDato).blur();
-        getElement('button').contains('Ok').click();
+        cy.get('button').contains('Ok').click();
     });
     getInputByName('årsak').eq(1).check({ force: true });
-    getElement('button').contains('Ok').click();
+    cy.get('button').contains('Ok').click();
 
-    selectRadioYes('er-ferieuttakIPerioden');
-    getElement('button').contains('Legg til ferie').click();
+    selectRadioYes('skalTaUtFerieIPerioden');
+    cy.get('button').contains('Legg til ferie').click();
     getInputByName('fom').click().type(fraDato).blur();
     getInputByName('tom').click().type(tilDato).blur();
-    getElement('button').contains('Ok').click();
+    cy.get('button').contains('Ok').click();
 
     clickFortsett();
 };
@@ -50,8 +48,8 @@ export const fyllUtPeriodeEnkelt = () => {
     getInputByName('periodeFra').click().type(fraDato).blur();
     getInputByName('periodeTil').click().type(tilDato).blur();
 
-    selectRadioNyYesOrNo('er-iUtlandetIPerioden', false);
-    selectRadioNyYesOrNo('er-ferieuttakIPerioden', false);
+    selectRadioNo('skalOppholdeSegIUtlandetIPerioden');
+    selectRadioNo('skalTaUtFerieIPerioden');
 
     clickFortsett();
 };
@@ -70,13 +68,13 @@ export const oppsummeringTestPeriode = () => {
     );
     getTestElement('oppsummering-utenlandsoppholdIPerioden').should((element) => expect('Ja').equal(element.text()));
     getTestElement('oppsummering-utenlandsoppholdIPerioden-list').within(() => {
-        getElement('li')
+        cy.get('li')
             .eq(0)
             .within(() => {
-                getElement('span')
+                cy.get('span')
                     .eq(0)
                     .should((element) => expect(expectedDateUtenlandsoppholdIPerioden).equal(element.text()));
-                getElement('span')
+                cy.get('span')
                     .eq(1)
                     .should((element) => expect(expectedLand).equal(element.text()));
             });
@@ -90,7 +88,7 @@ export const oppsummeringTestPeriode = () => {
     });
     getTestElement('oppsummering-ferieuttakIPerioden').should((element) => expect('Ja').equal(element.text()));
     getTestElement('oppsummering-ferieuttakIPerioden-list').within(() => {
-        getElement('li')
+        cy.get('li')
             .eq(0)
             .should((element) => expect(expectedDateFerie).equal(element.text()));
     });

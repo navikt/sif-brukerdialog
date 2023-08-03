@@ -1,14 +1,7 @@
 export const clickFortsett = () => {
-    getElement('button').contains('Neste').click();
-};
-export const clickSendInnSøknad = () => {
-    cy.get('button').contains('Send inn søknaden').click();
+    cy.get('button').contains('Neste').click();
 };
 export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
-
-export const selectRadioNyYesOrNo = (key, selectYes) => {
-    getTestElement(`${key}_${selectYes ? 'yes' : 'no'}`).click({ force: true });
-};
 
 export const selectRadio = (name, value) => {
     cy.get(`[name="${name}"][value="${value}"]`).parent().click();
@@ -18,30 +11,23 @@ export const selectRadioByLabel = (text) => {
     cy.get('label').contains(text).parent().click();
 };
 
-export const checkCheckbuttonByName = (name) => {
-    cy.get(`[type="checkbox"][name="${name}"]`).click();
-};
-
-export const selectRadioYes = (key) => {
-    getTestElement(`${key}_yes`).parent().click();
-};
-export const selectRadioYesByName = (name) => {
+export const selectRadioYes = (name) => {
     cy.get(`*[name="${name}"][value="yes"]`).parent().click();
 };
-export const selectRadioNoByName = (name) => {
+export const selectRadioNo = (name) => {
     cy.get(`*[name="${name}"][value="no"]`).parent().click();
 };
 
-export const selectCheckByNameAndValue = (name, value) => {
+export const selectCheckboxByNameAndValue = (name, value) => {
     cy.get(`*[name="${name}"][value="${value}"]`).parent().click();
-};
-
-export const selectRadioNo = (key) => {
-    getTestElement(`${key}_no`).parent().click();
 };
 
 export const getTestElement = (key) => {
     return cy.get(`[data-testid="${key}"]`);
+};
+
+export const getTestElementByType = (type) => {
+    return cy.get(`[type="${type}"]`);
 };
 
 export const getInputByName = (name) => {
@@ -58,22 +44,6 @@ export const setInputValueByName = (name, value) => {
 export const setInputTime = (key, hours = '', minutes = '') => {
     setInputValue(`${key}_hours`, hours);
     setInputValue(`${key}_minutes`, minutes);
-};
-
-export const selectRadioByTestElement = (key) => {
-    getTestElement(key).parent().click();
-};
-
-export const getTestElementByType = (type) => {
-    return cy.get(`[type="${type}"]`);
-};
-
-export const getElement = (type) => {
-    return cy.get(`${type}`);
-};
-
-export const containsElement = (key) => {
-    return cy.contains(`[data-testid="${key}"]`);
 };
 
 export const gåTilOppsummeringFraArbeidssituasjon = () => {

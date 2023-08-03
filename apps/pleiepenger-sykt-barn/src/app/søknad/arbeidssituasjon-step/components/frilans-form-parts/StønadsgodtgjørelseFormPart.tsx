@@ -36,7 +36,6 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
         <FormBlock>
             <StønadGodtgjørelseFormComponents.YesOrNoQuestion
                 name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelse}
-                data-testid="mottar-stønadGodtgjørelse"
                 legend={intlHelper(intl, 'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm')}
                 validate={getYesOrNoValidator()}
                 description={
@@ -62,12 +61,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                 {
                                     label: 'Ja',
                                     value: YesOrNo.YES,
-                                    'data-testid': 'mottar-stønadGodtgjørelse-i-hele-peroden_yes',
                                 },
                                 {
                                     label: 'Nei',
                                     value: YesOrNo.NO,
-                                    'data-testid': 'mottar-stønadGodtgjørelse-i-hele-peroden_no',
                                 },
                             ]}
                             validate={getRequiredFieldValidator()}
@@ -87,12 +84,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                             {
                                                 label: 'Ja',
                                                 value: YesOrNo.YES,
-                                                'data-testid': 'stønadGodtgjørelse-starter-undeveis_yes',
                                             },
                                             {
                                                 label: 'Nei',
                                                 value: YesOrNo.NO,
-                                                'data-testid': 'stønadGodtgjørelse-starter-undeveis_no',
                                             },
                                         ]}
                                         validate={getRequiredFieldValidator()}
@@ -130,12 +125,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                             {
                                                 label: 'Ja',
                                                 value: YesOrNo.YES,
-                                                'data-testid': 'stønadGodtgjørelse-slutter-undeveis_yes',
                                             },
                                             {
                                                 label: 'Nei',
                                                 value: YesOrNo.NO,
-                                                'data-testid': 'stønadGodtgjørelse-slutter-undeveis_no',
                                             },
                                         ]}
                                         validate={(value) => {

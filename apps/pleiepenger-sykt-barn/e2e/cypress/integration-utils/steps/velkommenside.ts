@@ -1,4 +1,4 @@
-import { getElement, getTestElement, getTestElementByType } from '../utils';
+import { getTestElement, getTestElementByType } from '../utils';
 
 export const fyllUtVelkommenSide = () => {
     it('Velkommenside', () => {
@@ -8,7 +8,7 @@ export const fyllUtVelkommenSide = () => {
             getTestElementByType('checkbox').click({ force: true });
         });
         getTestElement('welcomingPage-begynnsøknad').within(() => {
-            getElement('button').click();
+            cy.get('button').click();
         });
     });
 };

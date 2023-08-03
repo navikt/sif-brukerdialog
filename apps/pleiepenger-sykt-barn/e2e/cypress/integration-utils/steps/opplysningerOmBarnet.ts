@@ -1,7 +1,7 @@
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
-import { clickFortsett, getElement, getInputByName, getTestElement, getTestElementByType } from '../utils';
+import { clickFortsett, getInputByName, getTestElement, getTestElementByType } from '../utils';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
@@ -97,7 +97,7 @@ export const oppsummeringTestAnnetBarnUtenFnr = () => {
     );
 
     getTestElement('oppsummering-omBarn-fødselsattest').within(() => {
-        getElement('li')
+        cy.get('li')
             .eq(0)
             .should((element) => expect(fileName).equal(element.text()));
     });

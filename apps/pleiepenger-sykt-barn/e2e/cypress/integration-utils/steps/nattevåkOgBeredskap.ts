@@ -4,10 +4,10 @@ const nattevåkTilleggsinfo = 'Test nattevåk tilleggsinfo';
 const beredskapTilleggsinfo = 'Test beredskap tilleggsinfo';
 
 const fyllUtNattevåkOgBeredskapKomplett = () => {
-    selectRadioYes('nattevåk');
+    selectRadioYes('harNattevåk');
     getTestElement('nattevåk-tilleggsinfo').click().type(nattevåkTilleggsinfo).blur();
 
-    selectRadioYes('beredskap');
+    selectRadioYes('harBeredskap');
     getTestElement('beredskap-tilleggsinfo').click().type(beredskapTilleggsinfo).blur();
 
     clickFortsett();

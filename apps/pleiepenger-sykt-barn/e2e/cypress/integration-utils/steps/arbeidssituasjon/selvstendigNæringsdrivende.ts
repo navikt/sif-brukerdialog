@@ -1,20 +1,19 @@
 import dayjs = require('dayjs');
 import {
     clickFortsett,
-    getElement,
     getInputByName,
     getTestElement,
     gåTilOppsummeringFraArbeidIPerioden,
     gåTilOppsummeringFraArbeidssituasjon,
     selectRadio,
-    selectRadioNoByName,
-    selectRadioYesByName,
+    selectRadioNo,
+    selectRadioYes,
 } from '../../utils';
 import { fyllUtArbeidstidJobberIkke } from '../arbeid-i-periode/arbeidIPeriode';
 
 export const fyllUtArbeidssituasjonErIkkeSelvstendig = () => {
     getTestElement('arbeidssituasjonSelvstendig').within(() => {
-        selectRadioNoByName('selvstendig.harHattInntektSomSN');
+        selectRadioNo('selvstendig.harHattInntektSomSN');
     });
 };
 
@@ -57,16 +56,16 @@ const fyllUtVirksomhetDialog = () => {
             .type(virksomhet.varigEndringINæringsinntekt_forklaring)
             .blur();
         selectRadio('harRegnskapsfører', virksomhet.harRegnskapsfører);
-        getElement('button[type="submit"]').click();
+        cy.get('button[type="submit"]').click();
     });
     getInputByName('selvstendig.arbeidsforhold.normalarbeidstid.timerPerUke').click().type('5').blur();
 };
 
 export const fyllUtArbeidssituasjonErSelvstendig = () => {
     getTestElement('arbeidssituasjonSelvstendig').within(() => {
-        selectRadioYesByName('selvstendig.harHattInntektSomSN');
-        selectRadioYesByName('selvstendig.harFlereVirksomheter');
-        getElement('button').contains('Registrer virksomhet').click();
+        selectRadioYes('selvstendig.harHattInntektSomSN');
+        selectRadioYes('selvstendig.harFlereVirksomheter');
+        cy.get('button').contains('Registrer virksomhet').click();
     });
     fyllUtVirksomhetDialog();
 };

@@ -1,4 +1,4 @@
-import { clickFortsett, getTestElementByType, getTestElement, getElement } from '../utils';
+import { clickFortsett, getTestElement, getTestElementByType } from '../utils';
 
 const fileName = 'navlogopng.png';
 const ingenLegeerklæringText = 'Ingen legeerklæring er lastet opp';
@@ -19,7 +19,7 @@ const fyllUtLegeerklæringEnFil = () => {
 
 const oppsummeringTestLegeerklæringEnFil = () => {
     getTestElement('oppsummering-vedleggList').within(() => {
-        getElement('li')
+        cy.get('li')
             .eq(0)
             .should((element) => expect(fileName).equal(element.text()));
     });

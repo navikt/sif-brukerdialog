@@ -123,7 +123,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                             legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
                             name={SøknadFormField.skalOppholdeSegIUtlandetIPerioden}
                             validate={getYesOrNoValidator()}
-                            data-testid="er-iUtlandetIPerioden"
+                            // data-testid="er-iUtlandetIPerioden"
                         />
                     </Block>
                     {values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
@@ -161,7 +161,6 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                             legend={intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.spm')}
                             name={SøknadFormField.skalTaUtFerieIPerioden}
                             validate={getYesOrNoValidator()}
-                            data-testid="er-ferieuttakIPerioden"
                         />
                     </Block>
                     {values.skalTaUtFerieIPerioden === YesOrNo.YES && (

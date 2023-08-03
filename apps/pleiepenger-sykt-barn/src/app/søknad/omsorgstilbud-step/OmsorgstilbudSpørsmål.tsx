@@ -75,7 +75,6 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                             return undefined;
                         }}
                         labels={{ yes: 'Ja, i hele eller deler av perioden' }}
-                        data-testid="erIOmsorgstilbud-fortid"
                     />
                 </Block>
             )}
@@ -126,7 +125,6 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                 value: YesOrNoOrDoNotKnow.DO_NOT_KNOW,
                             },
                         ]}
-                        data-testid="erIOmsorgstilbud-fremtid"
                     />
                 </Block>
             )}
@@ -190,7 +188,6 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                           }
                                         : undefined;
                                 }}
-                                data-testid="omsorgstilbud-erLiktHverUke"
                             />
                         </FormBlock>
                     )}

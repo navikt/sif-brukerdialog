@@ -1,9 +1,9 @@
-import { getTestElement, clickFortsett, selectRadioYes, setInputTime, selectRadioNo } from '../utils';
+import { clickFortsett, getTestElement, selectRadioNo, selectRadioYes, setInputTime } from '../utils';
 
 export const fyllUtOmsorgstilbudFortidFremtid = () => {
-    selectRadioYes('erIOmsorgstilbud-fortid');
-    selectRadioYes('erIOmsorgstilbud-fremtid');
-    selectRadioYes('omsorgstilbud-erLiktHverUke');
+    selectRadioYes('omsorgstilbud.erIOmsorgstilbudFortid');
+    selectRadioYes('omsorgstilbud.erIOmsorgstilbudFremtid');
+    selectRadioYes('omsorgstilbud.erLiktHverUke');
 
     setInputTime('fasteDager__monday', '5', '0');
     setInputTime('fasteDager__tuesday', '2', '0');
@@ -14,8 +14,8 @@ export const fyllUtOmsorgstilbudFortidFremtid = () => {
 };
 
 export const fyllUtOmsorgstilbudFortidFremtidEnkelt = () => {
-    selectRadioNo('erIOmsorgstilbud-fortid');
-    selectRadioNo('erIOmsorgstilbud-fremtid');
+    selectRadioNo('omsorgstilbud.erIOmsorgstilbudFortid');
+    selectRadioNo('omsorgstilbud.erIOmsorgstilbudFremtid');
 
     clickFortsett();
 };

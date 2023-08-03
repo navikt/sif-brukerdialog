@@ -3,16 +3,10 @@ import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
 import { cyApiMockData } from '../../cyApiMockData';
 import {
-    getElement,
     getTestElement,
     gåTilOppsummeringFraArbeidssituasjon,
-    selectCheckByNameAndValue,
     selectRadioNo,
-    selectRadioNoByName,
-    selectRadioNyYesOrNo,
     selectRadioYes,
-    selectRadioYesByName,
-    setInputValue,
     setInputValueByName,
 } from '../../utils';
 
@@ -20,34 +14,31 @@ dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
 export const fyllUtArbeidssituasjonFrilanser = () => {
-    getTestElement('arbeidssituasjonFrilanser').within(($body) => {
-        if ($body.find('[data-testid=er-frilanser_yes]').length) {
-            selectRadioYes('er-frilanser');
-        }
-        selectRadioYes('er-fortsatt-frilanser');
-        selectRadioNoByName('frilans.misterHonorar');
+    getTestElement('arbeidssituasjonFrilanser').within(() => {
+        selectRadioYes('frilans.erFortsattFrilanser');
+        selectRadioNo('frilans.misterHonorar');
         setInputValueByName('frilans.arbeidsforholdFrilansarbeid.normalarbeidstid.timerPerUke', '5');
     });
 };
 
 export const fyllUtArbeidssituasjonErIkkeFrilanser = () => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
-        selectRadioNoByName('frilans.harHattInntektSomFrilanser');
+        selectRadioNo('frilans.harHattInntektSomFrilanser');
     });
 };
 
 export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
-        selectRadioYesByName('frilans.harHattInntektSomFrilanser');
+        selectRadioYes('frilans.harHattInntektSomFrilanser');
 
         cy.contains('Jeg jobber som frilanser').parent().click();
         cy.contains('Jeg får honorar for verv').parent().click();
-        selectRadioYesByName('frilans.misterHonorar');
+        selectRadioYes('frilans.misterHonorar');
 
         const startdato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
         cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
 
-        selectRadioNoByName('frilans.erFortsattFrilanser');
+        selectRadioNo('frilans.erFortsattFrilanser');
 
         const sluttdato = dayjs().format('YYYY-MM-DD');
         cy.get('input[name="frilans.sluttdato"]').click().type(sluttdato).blur();

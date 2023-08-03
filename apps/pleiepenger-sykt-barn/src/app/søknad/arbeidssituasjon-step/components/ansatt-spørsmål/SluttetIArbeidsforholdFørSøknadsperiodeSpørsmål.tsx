@@ -35,12 +35,10 @@ const SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål: React.FunctionCompone
                 {
                     label: 'Ja',
                     value: YesOrNo.YES,
-                    'data-testid': 'sluttet-før-søknadsperiode_yes',
                 },
                 {
                     label: 'Nei',
                     value: YesOrNo.NO,
-                    'data-testid': 'sluttet-før-søknadsperiode_no',
                 },
             ]}
             value={arbeidsforhold.sluttetFørSøknadsperiode}

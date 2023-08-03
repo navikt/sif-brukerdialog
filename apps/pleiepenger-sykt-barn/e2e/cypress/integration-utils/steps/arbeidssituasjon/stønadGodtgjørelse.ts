@@ -1,46 +1,34 @@
-import { getInputByName, getTestElement, selectRadioNo, selectRadioNyYesOrNo, selectRadioYes } from '../../utils';
-
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
 import { TestType } from '../../types/TestTyper';
+import { getInputByName, getTestElement, selectRadioNo, selectRadioYes } from '../../utils';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
 export const fyllUtArbeidssituasjonMottarIkkeStønadGodtgjørelse = () => {
-    getTestElement('arbeidssituasjonFrilanser').within(($body) => {
-        if ($body.find('[data-testid=mottar-stønadGodtgjørelse_no]').length) {
-            selectRadioNo('mottar-stønadGodtgjørelse');
-        }
+    getTestElement('arbeidssituasjonFrilanser').within(() => {
+        selectRadioNo('stønadGodtgjørelse.mottarStønadGodtgjørelse');
     });
 };
 
 export const fyllUtArbeidssituasjonMottarStønadGodtgjørelseIHelePerioden = () => {
-    getTestElement('arbeidssituasjonFrilanser').within(($body) => {
-        if ($body.find('[data-testid=mottar-stønadGodtgjørelse_yes]').length) {
-            selectRadioYes('mottar-stønadGodtgjørelse');
-        }
-
-        if ($body.find('[data-testid=mottar-stønadGodtgjørelse-i-hele-peroden_yes]').length) {
-            selectRadioNyYesOrNo('mottar-stønadGodtgjørelse-i-hele-peroden', true);
-        }
+    getTestElement('arbeidssituasjonFrilanser').within(() => {
+        selectRadioYes('stønadGodtgjørelse.mottarStønadGodtgjørelse');
     });
 };
 
 export const fyllUtArbeidssituasjonMottarStønadGodtgjørelseIkkeIHelePerioden = () => {
-    getTestElement('arbeidssituasjonFrilanser').within(($body) => {
-        if ($body.find('[data-testid=mottar-stønadGodtgjørelse_yes]').length) {
-            selectRadioYes('mottar-stønadGodtgjørelse');
-        }
+    getTestElement('arbeidssituasjonFrilanser').within(() => {
+        selectRadioYes('stønadGodtgjørelse.mottarStønadGodtgjørelse');
+        selectRadioNo('stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden');
 
-        selectRadioNyYesOrNo('mottar-stønadGodtgjørelse-i-hele-peroden', false);
-
-        selectRadioNyYesOrNo('stønadGodtgjørelse-starter-undeveis', true);
+        selectRadioYes('stønadGodtgjørelse.starterUndeveis');
         const startdato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
         getInputByName('stønadGodtgjørelse.startdato').click().type(startdato).blur();
 
-        selectRadioNyYesOrNo('stønadGodtgjørelse-slutter-undeveis', true);
+        selectRadioYes('stønadGodtgjørelse.slutterUnderveis');
         const sluttdato = dayjs().startOf('week').add(1, 'week').format('YYYY-MM-DD');
         getInputByName('stønadGodtgjørelse.sluttdato').click().type(sluttdato).blur();
     });

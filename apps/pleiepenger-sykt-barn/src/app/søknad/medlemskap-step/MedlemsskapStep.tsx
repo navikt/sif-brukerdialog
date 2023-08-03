@@ -50,7 +50,6 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
                         {intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
                     </ExpandableInfo>
                 }
-                data-testid="medlemsskap-annetLandSiste12"
             />
             {values.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                 <FormBlock margin="l">
@@ -81,7 +80,6 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
                             {intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
                         </ExpandableInfo>
                     }
-                    data-testid="medlemsskap-annetLandNeste12"
                 />
             </FormBlock>
             {values.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (

@@ -3,8 +3,7 @@ import { mellomlagring } from '../../mocks/mellomlagring';
 import {
     getTestElement,
     gåTilOppsummeringFraArbeidssituasjon,
-    selectRadioNyYesOrNo,
-    setInputValue,
+    selectRadioByLabel,
     setInputValueByName,
 } from '../../utils';
 
@@ -26,9 +25,15 @@ export const fyllUtArbeidssituasjonAnsatt = (
 ) => {
     const { erAnsatt, sluttetFørSøknadsperiode, timerPerUke } = values;
     getTestElement('arbeidssituasjonAnsatt').within(() => {
-        selectRadioNyYesOrNo('er-ansatt', erAnsatt);
+        cy.get('fieldset')
+            .eq(0)
+            .within(() => {
+                selectRadioByLabel(erAnsatt ? 'Ja' : 'Nei');
+            });
         if (!erAnsatt) {
-            selectRadioNyYesOrNo('sluttet-før-søknadsperiode', sluttetFørSøknadsperiode);
+            getTestElement('sluttet-før-søknadsperiode').within(() => {
+                selectRadioByLabel(sluttetFørSøknadsperiode ? 'Ja' : 'Nei');
+            });
         }
 
         if (erAnsatt || sluttetFørSøknadsperiode === false) {
@@ -76,7 +81,7 @@ const sluttetFørSøknadsperiodeTest = () => {
 export const testArbeidssituasjonAnsatt = () => {
     describe('Arbeidssituasjon ansatt', () => {
         ansattHeleSøknadsperiodeTest();
-        // ansattISøknadsperiodeTest();
-        // sluttetFørSøknadsperiodeTest();
+        ansattISøknadsperiodeTest();
+        sluttetFørSøknadsperiodeTest();
     });
 };
