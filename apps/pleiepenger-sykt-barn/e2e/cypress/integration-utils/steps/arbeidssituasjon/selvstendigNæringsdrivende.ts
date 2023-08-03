@@ -8,8 +8,7 @@ import {
     gåTilOppsummeringFraArbeidssituasjon,
     selectRadio,
     selectRadioNoByName,
-    selectRadioNyYesOrNo,
-    selectRadioYes,
+    selectRadioYesByName,
 } from '../../utils';
 import { fyllUtArbeidstidJobberIkke } from '../arbeid-i-periode/arbeidIPeriode';
 
@@ -65,8 +64,8 @@ const fyllUtVirksomhetDialog = () => {
 
 export const fyllUtArbeidssituasjonErSelvstendig = () => {
     getTestElement('arbeidssituasjonSelvstendig').within(() => {
-        selectRadioYes('er-selvstendig');
-        selectRadioNyYesOrNo('har-flere-virksomheter', true);
+        selectRadioYesByName('selvstendig.harHattInntektSomSN');
+        selectRadioYesByName('selvstendig.harFlereVirksomheter');
         getElement('button').contains('Registrer virksomhet').click();
     });
     fyllUtVirksomhetDialog();
@@ -85,9 +84,13 @@ const erSN = () => {
     it('Er selvstendig næringsdrivende', () => {
         fyllUtArbeidssituasjonErSelvstendig();
         clickFortsett();
-        getTestElement('arbeidIPerioden_selvstendig').within(() => {
-            fyllUtArbeidstidJobberIkke();
-        });
+        cy.get('h3')
+            .contains('Selvstendig næringsdrivende')
+            .parent()
+            .within(() => {
+                fyllUtArbeidstidJobberIkke();
+            });
+
         gåTilOppsummeringFraArbeidIPerioden();
 
         const el = getTestElement('arbeidssituasjon-sn');

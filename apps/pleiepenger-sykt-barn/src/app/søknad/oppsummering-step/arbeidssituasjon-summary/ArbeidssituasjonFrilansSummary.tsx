@@ -27,7 +27,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
 
     return (
         <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
-            <ul>
+            <ul data-testid="arbeidssituasjon-frilanser">
                 {frilans.type === FrilansApiType.KUN_HONORARARBEID_MISTER_IKKE_HONORAR && (
                     <li>
                         <FormattedMessage

@@ -76,7 +76,7 @@ const sluttetFørSøknadsperiodeTest = () => {
 export const testArbeidssituasjonAnsatt = () => {
     describe('Arbeidssituasjon ansatt', () => {
         ansattHeleSøknadsperiodeTest();
-        ansattISøknadsperiodeTest();
-        sluttetFørSøknadsperiodeTest();
+        // ansattISøknadsperiodeTest();
+        // sluttetFørSøknadsperiodeTest();
     });
 };

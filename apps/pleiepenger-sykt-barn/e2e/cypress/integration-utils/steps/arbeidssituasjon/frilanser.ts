@@ -25,15 +25,14 @@ export const fyllUtArbeidssituasjonFrilanser = () => {
             selectRadioYes('er-frilanser');
         }
         selectRadioYes('er-fortsatt-frilanser');
-        setInputValue('normalarbeidstid.timerPerUke', '5');
+        selectRadioNoByName('frilans.misterHonorar');
+        setInputValueByName('frilans.arbeidsforholdFrilansarbeid.normalarbeidstid.timerPerUke', '5');
     });
 };
 
 export const fyllUtArbeidssituasjonErIkkeFrilanser = () => {
-    getTestElement('arbeidssituasjonFrilanser').within(($body) => {
-        if ($body.find('[data-testid=er-frilanser_no]').length) {
-            selectRadioNo('er-frilanser');
-        }
+    getTestElement('arbeidssituasjonFrilanser').within(() => {
+        selectRadioNoByName('frilans.harHattInntektSomFrilanser');
     });
 };
 
@@ -94,7 +93,7 @@ const erIkkeFrilanser = () => {
         gåTilOppsummeringFraArbeidssituasjon();
 
         const el = getTestElement('arbeidssituasjon-frilanser');
-        el.should('contain', 'Er ikke frilanser og får ikke honorari perioden det søkes for');
+        el.should('contain', 'Er ikke frilanser og får ikke honorar i perioden det søkes for');
     });
 };
 
