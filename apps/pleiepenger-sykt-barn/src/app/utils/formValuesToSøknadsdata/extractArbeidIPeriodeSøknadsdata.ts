@@ -2,10 +2,10 @@ import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-c
 import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../types';
-import { ArbeidIPeriodeFormValues, ArbeidsukerFormValues } from '../../types/ArbeidIPeriodeFormValues';
-import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
-import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
-import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { ArbeidIPeriodeFormValues, ArbeidsukerFormValues } from '../../types/_ArbeidIPeriodeFormValues';
+import { ArbeidIPeriodeType } from '../../types/_ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../../types/_RedusertArbeidstidType';
+import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/_Søknadsdata';
 
 export const getMinDateRangeFromDateRanges = (dr1: DateRange, dr2: DateRange): DateRange => ({
     from: dateUtils.getLastOfTwoDates(dr1.from, dr2.from),

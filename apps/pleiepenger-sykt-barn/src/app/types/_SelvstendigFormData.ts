@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/lib';
-import { ArbeidsforholdSelvstendigFormValues } from './ArbeidsforholdFormValues';
+import { ArbeidsforholdSelvstendigFormValues } from './_ArbeidsforholdFormValues';
 
 export enum SelvstendigFormField {
     harHattInntektSomSN = 'selvstendig.harHattInntektSomSN',

@@ -8,7 +8,7 @@ import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/lib/form
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
-import { SøknadFormField, SøknadFormValues } from '../../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../../types/_SøknadFormValues';
 import SøknadFormComponents from '../../SøknadFormComponents';
 
 const ArbeidssituasjonOpptjeningUtland = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
-import { SøknadFormField, SøknadFormValues } from '../../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../../types/_SøknadFormValues';
 import ArbeidssituasjonAnsatt from './ArbeidssituasjonAnsatt';
 import ArbeidssituasjonArbeidsgivereIntro from './info/ArbeidssituasjonArbeidsgivereIntro';
 

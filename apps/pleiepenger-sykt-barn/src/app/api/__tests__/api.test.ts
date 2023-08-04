@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { axiosConfigPsb } from '../../config/axiosConfig';
-import { ResourceType } from '../../types/ResourceType';
+import { ResourceType } from '../../types/_ResourceType';
 import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 import {
     deleteFile,
@@ -12,7 +12,7 @@ import {
     sendApplication,
     uploadFile,
 } from '../api';
-import { StepID } from '../../types/StepID';
+import { StepID } from '../../types/_StepID';
 
 jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return { getEnvironmentVariable: () => 'mockedApiUrl', getEnvVariableOrDefault: () => 'mockedApiUrl' };

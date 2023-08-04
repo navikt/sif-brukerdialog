@@ -1,8 +1,8 @@
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
-import { SelvstendigApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSelvstendigSøknadsdata';
-import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { SelvstendigApiData } from '../../types/søknad-api-data/_SøknadApiData';
+import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/_ArbeidssituasjonSelvstendigSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/_Søknadsdata';
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
 import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
 

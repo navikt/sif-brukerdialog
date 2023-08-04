@@ -1,5 +1,5 @@
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { OmsorgstilbudApiData, OmsorgstilbudSvarApi } from '../../types/søknad-api-data/SøknadApiData';
+import { OmsorgstilbudApiData, OmsorgstilbudSvarApi } from '../../types/søknad-api-data/_SøknadApiData';
 import { apiVedleggIsInvalid, isOmsorgstilbudApiDataValid } from '../apiValuesValidation';
 
 jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {

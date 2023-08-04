@@ -6,13 +6,13 @@ import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-
 import { DateRange, ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ArbeidsgiverType } from '../../../types';
-import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
+import { ArbeidIPeriodeType } from '../../../types/_ArbeidIPeriodeType';
 import {
     ArbeidsforholdApiData,
     ArbeidsgiverApiData,
     FrilansApiType,
     SøknadApiData,
-} from '../../../types/søknad-api-data/SøknadApiData';
+} from '../../../types/søknad-api-data/_SøknadApiData';
 import ArbeidIPeriodeSummaryItem, { ArbeidIPeriodenSummaryItemType } from './ArbeidIPeriodenSummaryItem';
 
 interface Props {

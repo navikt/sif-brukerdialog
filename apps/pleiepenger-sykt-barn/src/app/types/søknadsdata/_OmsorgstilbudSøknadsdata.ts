@@ -1,5 +1,5 @@
 import { DateDurationMap, DurationWeekdays } from '@navikt/sif-common-utils/lib';
-import { YesOrNoOrDoNotKnow } from '../YesOrNoOrDoNotKnow';
+import { YesOrNoOrDoNotKnow } from '../_YesOrNoOrDoNotKnow';
 
 export interface ErIOmsorgstilbudFremtidUsikkerSøknadsdata {
     type: 'erIOmsorgstilbudFremtidUsikker';

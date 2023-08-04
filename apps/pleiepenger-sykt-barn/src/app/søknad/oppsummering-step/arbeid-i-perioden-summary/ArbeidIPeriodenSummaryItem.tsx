@@ -9,14 +9,14 @@ import {
     ISODurationToDuration,
 } from '@navikt/sif-common-utils/lib';
 import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
-import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
-import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
+import { ArbeidIPeriodeType } from '../../../types/_ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../../../types/_RedusertArbeidstidType';
 import {
     ArbeidIPeriodeApiData,
     ArbeidsforholdApiData,
     ArbeidsukeTimerApiData,
     NormalarbeidstidApiData,
-} from '../../../types/søknad-api-data/SøknadApiData';
+} from '../../../types/søknad-api-data/_SøknadApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 
 interface Props {

@@ -1,7 +1,7 @@
-import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../types/_SøknadFormValues';
 import * as stepValidations from '../../validation/stepValidations';
 import * as stepUtils from '../stepUtils';
-import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
+import { YesOrNoOrDoNotKnow } from '../../types/_YesOrNoOrDoNotKnow';
 
 jest.mock('./../../validation/stepValidations', () => {
     return {

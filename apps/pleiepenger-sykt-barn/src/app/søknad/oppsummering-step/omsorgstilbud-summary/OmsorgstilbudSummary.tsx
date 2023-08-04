@@ -10,7 +10,7 @@ import { DateRange, prettifyDateExtended } from '@navikt/sif-common-utils';
 import Sitat from '../../../components/sitat/Sitat';
 import TidEnkeltdager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidEnkeltdager';
 import TidFasteDager from '../../../local-sif-common-pleiepenger/components/dager-med-tid/TidFasteDager';
-import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
+import { SøknadApiData } from '../../../types/søknad-api-data/_SøknadApiData';
 import { søkerFortidOgFremtid, søkerKunFortid, søkerKunFremtid } from '../../../utils/søknadsperiodeUtils';
 
 interface Props {

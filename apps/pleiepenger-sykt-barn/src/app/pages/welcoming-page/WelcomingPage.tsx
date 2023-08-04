@@ -5,7 +5,7 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import { Søker } from '../../types';
-import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepCommonProps } from '../../types/_StepCommonProps';
 import OmSøknaden from './components/OmSøknaden';
 import VelkommenGuide from './components/VelkommenGuide';
 import SamtykkeForm from './SamtykkeForm';

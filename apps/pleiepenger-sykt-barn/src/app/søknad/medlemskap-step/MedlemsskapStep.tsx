@@ -10,12 +10,12 @@ import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/BostedUtlandListAndDialog';
 import { useFormikContext } from 'formik';
 import getLenker from '../../lenker';
-import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { StepID } from '../../types/_StepID';
+import { SøknadFormField, SøknadFormValues } from '../../types/_SøknadFormValues';
 import { getMedlemsskapDateRanges } from '../../utils/medlemsskapUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepCommonProps } from '../../types/_StepCommonProps';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 

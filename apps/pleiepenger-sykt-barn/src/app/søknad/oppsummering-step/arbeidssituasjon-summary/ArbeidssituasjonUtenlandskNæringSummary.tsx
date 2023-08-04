@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
-import { UtenlandskNæringApiData } from '../../../types/søknad-api-data/SøknadApiData';
+import { UtenlandskNæringApiData } from '../../../types/søknad-api-data/_SøknadApiData';
 
 interface Props {
     utenlandskNæring: UtenlandskNæringApiData[];

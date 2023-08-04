@@ -1,6 +1,6 @@
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
-import { FerieuttakIPeriodenApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { FerieuttakIPeriodenSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { FerieuttakIPeriodenApiData } from '../../types/søknad-api-data/_SøknadApiData';
+import { FerieuttakIPeriodenSøknadsdata } from '../../types/søknadsdata/_Søknadsdata';
 
 export const getFerieuttakIPeriodenApiDataFromSøknadsdata = (
     ferieuttakIPerioden?: FerieuttakIPeriodenSøknadsdata

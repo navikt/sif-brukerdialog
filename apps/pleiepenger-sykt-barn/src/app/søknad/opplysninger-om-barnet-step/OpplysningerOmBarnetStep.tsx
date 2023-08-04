@@ -6,10 +6,10 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { useFormikContext } from 'formik';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
-import { StepCommonProps } from '../../types/StepCommonProps';
-import { StepID } from '../../types/StepID';
-import { Søkerdata } from '../../types/Søkerdata';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { StepCommonProps } from '../../types/_StepCommonProps';
+import { StepID } from '../../types/_StepID';
+import { Søkerdata } from '../../types/_Søkerdata';
+import { SøknadFormField, SøknadFormValues } from '../../types/_SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';

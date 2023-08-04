@@ -1,10 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeidsforholdFormValues } from '../../types/ArbeidsforholdFormValues';
+import { ArbeidsforholdFormValues } from '../../types/_ArbeidsforholdFormValues';
 import {
     ArbeidssituasjonAnsattSøknadsdata,
     ArbeidssituasjonAnsattType,
-} from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
+} from '../../types/søknadsdata/_ArbeidssituasjonAnsattSøknadsdata';
 import { getPeriodeSomAnsattInnenforPeriode } from '../ansattUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 

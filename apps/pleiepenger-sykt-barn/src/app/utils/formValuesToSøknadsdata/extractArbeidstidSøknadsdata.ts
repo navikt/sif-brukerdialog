@@ -1,5 +1,5 @@
-import { SøknadFormValues } from '../../types/SøknadFormValues';
-import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
+import { SøknadFormValues } from '../../types/_SøknadFormValues';
+import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/_ArbeidstidSøknadsdata';
 import { extractArbeidIPeriodeSøknadsdata } from './extractArbeidIPeriodeSøknadsdata';
 
 export const extractArbeidstidSøknadsdata = (values: SøknadFormValues): ArbeidstidSøknadsdata | undefined => {

@@ -2,10 +2,10 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../types';
-import { ArbeidIPeriodeFormValues, ArbeidsukerFormValues } from '../../../types/ArbeidIPeriodeFormValues';
-import { SøknadFormValues } from '../../../types/SøknadFormValues';
-import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
-import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { ArbeidIPeriodeFormValues, ArbeidsukerFormValues } from '../../../types/_ArbeidIPeriodeFormValues';
+import { SøknadFormValues } from '../../../types/_SøknadFormValues';
+import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/_ArbeidssituasjonAnsattSøknadsdata';
+import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/_ArbeidssituasjonSøknadsdata';
 import { getArbeidsukeKey } from '../components/ArbeidstidEnkeltuker';
 import { getArbeidsukerIPerioden } from './arbeidstidUtils';
 

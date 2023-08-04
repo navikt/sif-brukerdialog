@@ -11,11 +11,11 @@ import { useFormikContext } from 'formik';
 import FormSection from '../../components/form-section/FormSection';
 import useEffectOnce from '../../hooks/useEffectOnce';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
-import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { StepID } from '../../types/_StepID';
+import { SøknadFormField, SøknadFormValues } from '../../types/_SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepCommonProps } from '../../types/_StepCommonProps';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { BodyLong } from '@navikt/ds-react';
 

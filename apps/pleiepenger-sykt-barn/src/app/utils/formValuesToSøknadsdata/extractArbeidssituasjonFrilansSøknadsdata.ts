@@ -1,13 +1,13 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { FrilansFormData, Frilanstype } from '../../types/FrilansFormData';
+import { FrilansFormData, Frilanstype } from '../../types/_FrilansFormData';
 import {
     ArbeidssituasjonFrilansSøknadsdata,
     FrilansHonorararbeidArbeidssituasjon,
-} from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
+} from '../../types/søknadsdata/_ArbeidssituasjonFrilansSøknadsdata';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../frilanserUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
-import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/NormalarbeidstidSøknadsdata';
+import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/_NormalarbeidstidSøknadsdata';
 import { isYesOrNoAnswered } from '../../validation/fieldValidations';
 
 export const extractArbeidssituasjonFrilansSøknadsdata = (

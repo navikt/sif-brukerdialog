@@ -1,6 +1,6 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeidIPeriodeType } from '../ArbeidIPeriodeType';
-import { RedusertArbeidstidType } from '../RedusertArbeidstidType';
+import { ArbeidIPeriodeType } from '../_ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../_RedusertArbeidstidType';
 
 export type ArbeidsukeTimerSøknadsdata = {
     periode: DateRange;

@@ -1,4 +1,4 @@
-import { ArbeidsgiverApiData } from './søknad-api-data/SøknadApiData';
+import { ArbeidsgiverApiData } from './søknad-api-data/_SøknadApiData';
 export interface KvitteringInfo {
     fom: Date;
     tom: Date;

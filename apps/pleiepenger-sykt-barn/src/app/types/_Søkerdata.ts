@@ -1,5 +1,5 @@
-import { Søker } from './';
-import { RegistrerteBarn } from './RegistrerteBarn';
+import { Søker } from '.';
+import { RegistrerteBarn } from './_RegistrerteBarn';
 
 export interface Søkerdata {
     søker: Søker;

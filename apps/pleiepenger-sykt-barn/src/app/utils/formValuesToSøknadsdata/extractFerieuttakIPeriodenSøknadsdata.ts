@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { SøknadFormValues } from '../../types/SøknadFormValues';
-import { FerieuttakIPeriodenSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { SøknadFormValues } from '../../types/_SøknadFormValues';
+import { FerieuttakIPeriodenSøknadsdata } from '../../types/søknadsdata/_Søknadsdata';
 
 export const extractFerieuttakIPeriodenSøknadsdata = ({
     skalTaUtFerieIPerioden,

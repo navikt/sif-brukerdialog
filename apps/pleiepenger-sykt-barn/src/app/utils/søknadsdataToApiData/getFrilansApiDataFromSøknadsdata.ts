@@ -3,12 +3,12 @@ import {
     FrilansApiData,
     FrilansApiType,
     FrilanserMedArbeidsforholdApiDataPart,
-} from '../../types/søknad-api-data/frilansApiData';
-import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
-import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
+} from '../../types/søknad-api-data/_FrilansApiData';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/_ArbeidIPeriodeSøknadsdata';
+import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/_ArbeidssituasjonFrilansSøknadsdata';
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
-import { ArbeidsforholdApiData } from '../../types/søknad-api-data/arbeidsforholdApiData';
-import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/NormalarbeidstidSøknadsdata';
+import { ArbeidsforholdApiData } from '../../types/søknad-api-data/_ArbeidsforholdApiData';
+import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/_NormalarbeidstidSøknadsdata';
 
 export const getFrilansApiDataFromSøknadsdata = ({
     arbeidssituasjon,

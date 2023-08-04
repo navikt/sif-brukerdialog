@@ -4,9 +4,9 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/types';
 import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } from '@navikt/sif-common-utils/lib';
 import { isEqual } from 'lodash';
-import { StepID } from '../types/StepID';
-import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { StepID } from '../types/_StepID';
+import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/_SøknadApiData';
+import { SøknadFormValues } from '../types/_SøknadFormValues';
 import { søkerKunHelgedager } from '../utils/formDataUtils';
 import { getAttachmentsApiDataFromSøknadsdata } from '../utils/søknadsdataToApiData/getAttachmentsApiDataFromSøknadsdata';
 

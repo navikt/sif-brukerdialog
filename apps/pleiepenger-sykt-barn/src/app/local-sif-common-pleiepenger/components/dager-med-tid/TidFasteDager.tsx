@@ -2,7 +2,7 @@ import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
-import { Time } from '../../../types/Time';
+import { Time } from '../../../types/_Time';
 
 interface TidFasteDagerType {
     mandag?: ISODuration;

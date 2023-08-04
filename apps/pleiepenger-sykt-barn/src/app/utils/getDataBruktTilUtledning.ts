@@ -1,9 +1,9 @@
 import {
     ArbeidsforholdAvsluttetFørSøknadsperiode,
     DataBruktTilUtledningAnnetData,
-} from '../types/søknad-api-data/SøknadApiData';
-import { ArbeidssituasjonAnsattSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+} from '../types/søknad-api-data/_SøknadApiData';
+import { ArbeidssituasjonAnsattSøknadsdata } from '../types/søknadsdata/_ArbeidssituasjonAnsattSøknadsdata';
+import { Søknadsdata } from '../types/søknadsdata/_Søknadsdata';
 
 export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
     ansattSøknadsdata?: ArbeidssituasjonAnsattSøknadsdata[]

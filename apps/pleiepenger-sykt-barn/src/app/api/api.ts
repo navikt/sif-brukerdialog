@@ -1,11 +1,11 @@
 import { storageParser } from '@navikt/sif-common-core-ds/lib/utils/persistence/storageParser';
 import axios, { AxiosResponse } from 'axios';
 import { axiosConfigPsb } from '../config/axiosConfig';
-import { ResourceType } from '../types/ResourceType';
-import { StepID } from '../types/StepID';
-import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../types/SøknadFormValues';
-import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadTempStorageData';
+import { ResourceType } from '../types/_ResourceType';
+import { StepID } from '../types/_StepID';
+import { SøknadApiData } from '../types/søknad-api-data/_SøknadApiData';
+import { SøknadFormValues } from '../types/_SøknadFormValues';
+import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/_SøknadTempStorageData';
 import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
 import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';
 

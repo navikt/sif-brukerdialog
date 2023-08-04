@@ -1,5 +1,5 @@
 import React from 'react';
-import { Søkerdata } from '../types/Søkerdata';
+import { Søkerdata } from '../types/_Søkerdata';
 
 export const SøkerdataContext = React.createContext<Søkerdata | undefined>(undefined);
 

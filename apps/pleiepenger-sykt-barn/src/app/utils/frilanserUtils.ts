@@ -4,7 +4,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
 import { Arbeidsgiver } from '../types';
-import { FrilansFormData, Frilanstype } from '../types/FrilansFormData';
+import { FrilansFormData, Frilanstype } from '../types/_FrilansFormData';
 import minMax from 'dayjs/plugin/minMax';
 
 dayjs.extend(minMax);

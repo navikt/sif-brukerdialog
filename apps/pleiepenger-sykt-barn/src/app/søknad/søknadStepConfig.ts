@@ -1,6 +1,6 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
-import { SøknadFormValues } from '../types/SøknadFormValues';
-import { StepID } from '../types/StepID';
+import { SøknadFormValues } from '../types/_SøknadFormValues';
+import { StepID } from '../types/_StepID';
 import { skalBrukerSvareArbeidstid, skalBrukerSvarePåBeredskapOgNattevåk } from '../utils/stepUtils';
 import { getSøknadsperiodeFromFormData } from '../utils/formDataUtils';
 

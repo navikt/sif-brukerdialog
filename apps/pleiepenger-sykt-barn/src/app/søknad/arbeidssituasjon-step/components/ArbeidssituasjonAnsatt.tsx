@@ -7,7 +7,7 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { DateRange } from '@navikt/sif-common-utils';
 import ArbeidsperiodeTekst from '../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
 import OfficeIconSvg from '../../../components/office-icon/OfficeIconSvg';
-import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
+import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from '../../../types/_ArbeidsforholdFormValues';
 import AnsattNormalarbeidstidSpørsmål from './ansatt-spørsmål/AnsattNormalarbeidstidSpørsmål';
 import ErAnsattIArbeidsforholdSpørsmål from './ansatt-spørsmål/ErAnsattIArbeidsforholdSpørsmål';
 import SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål from './ansatt-spørsmål/SluttetIArbeidsforholdFørSøknadsperiodeSpørsmål';

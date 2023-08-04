@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { Søknadsdata } from '../types/søknadsdata/_Søknadsdata';
 
 export interface SøknadsdataContextInterface {
     søknadsdata: Søknadsdata;

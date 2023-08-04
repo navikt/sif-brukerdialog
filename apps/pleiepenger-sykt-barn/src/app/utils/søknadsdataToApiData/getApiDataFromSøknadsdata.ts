@@ -5,8 +5,8 @@ import {
     DataBruktTilUtledningAnnetData,
     SøknadApiData,
     SøknadApiDataVersjon,
-} from '../../types/søknad-api-data/SøknadApiData';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+} from '../../types/søknad-api-data/_SøknadApiData';
+import { Søknadsdata } from '../../types/søknadsdata/_Søknadsdata';
 import appSentryLogger from '../appSentryLogger';
 import { getValidSpråk } from '../sprakUtils';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';

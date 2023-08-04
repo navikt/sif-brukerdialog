@@ -8,8 +8,8 @@ import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-comm
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../../components/responsive-panel/ResponsivePanel';
-import { StønadGodtgjørelseFormData, StønadGodtgjørelseFormField } from '../../../../types/StønadGodtgjørelseFormData';
-import { SøknadFormValues } from '../../../../types/SøknadFormValues';
+import { StønadGodtgjørelseFormData, StønadGodtgjørelseFormField } from '../../../../types/_StønadGodtgjørelseFormData';
+import { SøknadFormValues } from '../../../../types/_SøknadFormValues';
 import {
     AppFieldValidationErrors,
     getstønadGodtgjørelseSluttdatoValidator,

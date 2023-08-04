@@ -19,7 +19,7 @@ import { dateToday, prettifyDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../types';
-import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { initialValues, SøknadFormField, SøknadFormValues } from '../../types/_SøknadFormValues';
 import { validateNavn } from '../../validation/fieldValidations';
 import SøknadFormComponents from '../SøknadFormComponents';
 import FødselsattestPart from './FødselsattestPart';

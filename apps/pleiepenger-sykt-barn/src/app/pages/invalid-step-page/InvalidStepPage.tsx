@@ -9,7 +9,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import RouteConfig from '../../config/routeConfig';
-import { StepID } from '../../types/StepID';
+import { StepID } from '../../types/_StepID';
 
 interface Props {
     stepId: StepID;

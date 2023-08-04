@@ -1,4 +1,4 @@
-import { ConfirmationDialog } from '../../types/ConfirmationDialog';
+import { ConfirmationDialog } from '../../types/_ConfirmationDialog';
 import { Heading } from '@navikt/ds-react';
 
 type Props = Pick<ConfirmationDialog, 'onCancel' | 'onConfirm'>;

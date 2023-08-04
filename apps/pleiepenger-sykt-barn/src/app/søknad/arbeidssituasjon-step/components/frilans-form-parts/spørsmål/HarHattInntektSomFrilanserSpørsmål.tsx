@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { FrilansFormField } from '../../../../../types/FrilansFormData';
+import { FrilansFormField } from '../../../../../types/_FrilansFormData';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {

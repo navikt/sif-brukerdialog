@@ -1,10 +1,10 @@
 import { dateToISODate, ISODate } from '@navikt/sif-common-utils/lib';
-import { ArbeidsgiverApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { ArbeidsgiverApiData } from '../../types/søknad-api-data/_SøknadApiData';
 import {
     ArbeidssituasjonAnsattSøknadsdata,
     ArbeidssituasjonAnsattType,
-} from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
-import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
+} from '../../types/søknadsdata/_ArbeidssituasjonAnsattSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/_Søknadsdata';
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
 import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidstidApiDataFromSøknadsdata';
 

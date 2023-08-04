@@ -29,8 +29,8 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
-import { StønadGodtgjørelseFormData } from '../types/StønadGodtgjørelseFormData';
-import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
+import { StønadGodtgjørelseFormData } from '../types/_StønadGodtgjørelseFormData';
+import { YesOrNoOrDoNotKnow } from '../types/_YesOrNoOrDoNotKnow';
 import { dateRangesHasFromDateEqualPreviousRangeToDate } from '../utils/dateRangeUtils';
 
 dayjs.extend(minMax);

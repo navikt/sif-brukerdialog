@@ -4,8 +4,8 @@ import apiUtils from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { AxiosError } from 'axios';
 import { useFormikContext } from 'formik';
 import { persist } from '../api/api';
-import { StepID } from '../types/StepID';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { StepID } from '../types/_StepID';
+import { SøknadFormValues } from '../types/_SøknadFormValues';
 import { navigateToErrorPage, relocateToLoginPage } from '../utils/navigationUtils';
 
 interface PersistSoknadProps {
