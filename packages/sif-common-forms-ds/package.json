@@ -60,7 +60,7 @@
         "react-router-dom": "6.13.0",
         "react-scripts": "5.0.1",
         "rimraf": "5.0.1",
-        "storybook": "7.0.22",
+        "storybook": "7.2.1",
         "webpack": "5.87.0"
     },
     "directories": {
