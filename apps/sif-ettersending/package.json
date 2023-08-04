@@ -13,7 +13,7 @@
         "@navikt/ds-datepicker": "4.2.0",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "4.1.7",
-        "@navikt/ds-tailwind": "4.1.7",
+        "@navikt/ds-tailwind": "4.7.3",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
