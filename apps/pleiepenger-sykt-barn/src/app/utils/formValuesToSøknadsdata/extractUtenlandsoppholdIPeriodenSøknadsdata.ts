@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { SøknadFormValues } from '../../types/_SøknadFormValues';
-import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/_Søknadsdata';
+import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { UtenlandsoppholdIPeriodenSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const extractUtenlandsoppholdIPeriodenSøknadsdata = ({
     skalOppholdeSegIUtlandetIPerioden,

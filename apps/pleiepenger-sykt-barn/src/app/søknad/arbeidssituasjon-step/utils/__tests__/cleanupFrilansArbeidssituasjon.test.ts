@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-import { FrilansFormData, Frilanstype } from '../../../../types/_FrilansFormData';
+import { FrilansFormData, Frilanstype } from '../../../../types/FrilansFormData';
 import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 
 const søknadsperiode = ISODateRangeToDateRange('2021-01-02/2022-01-01');

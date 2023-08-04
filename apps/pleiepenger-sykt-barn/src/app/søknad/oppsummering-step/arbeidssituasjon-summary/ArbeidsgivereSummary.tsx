@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import { ArbeidsgiverApiData } from '../../../types/søknad-api-data/_SøknadApiData';
+import { ArbeidsgiverApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 
 interface Props {

@@ -9,7 +9,7 @@ import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import getLenker from '../../lenker';
-import { KvitteringInfo } from '../../types/_KvitteringInfo';
+import { KvitteringInfo } from '../../types/KvitteringInfo';
 import './confirmationPage.less';
 
 interface Props {

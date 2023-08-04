@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { NormalarbeidstidSøknadsdata } from './_NormalarbeidstidSøknadsdata';
+import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 type HarIkkeInntektSomFrilanser = {
     harInntektSomFrilanser: false;

@@ -1,6 +1,6 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { Arbeidsgiver } from '../_Arbeidsgiver';
-import { NormalarbeidstidSøknadsdata } from './_NormalarbeidstidSøknadsdata';
+import { Arbeidsgiver } from '../Arbeidsgiver';
+import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
 
 export enum ArbeidssituasjonAnsattType {
     'sluttetFørSøknadsperiode' = 'sluttetFørSøknadsperiode',

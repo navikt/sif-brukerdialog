@@ -13,13 +13,13 @@ import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import getLenker from '../../../lenker';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
-import { SelvstendigFormData, SelvstendigFormField } from '../../../types/_SelvstendigFormData';
-import { SøknadFormValues } from '../../../types/_SøknadFormValues';
+import { SelvstendigFormData, SelvstendigFormField } from '../../../types/SelvstendigFormData';
+import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import { getArbeidsforholdIntlValues } from '../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNormaltTimerIUkenValidator';
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
 import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
-import { ArbeidsforholdFormField } from '../../../types/_ArbeidsforholdFormValues';
+import { ArbeidsforholdFormField } from '../../../types/ArbeidsforholdFormValues';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormData, ValidationError>();
 

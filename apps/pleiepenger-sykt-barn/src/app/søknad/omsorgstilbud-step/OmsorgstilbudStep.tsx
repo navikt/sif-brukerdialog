@@ -3,11 +3,11 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { useFormikContext } from 'formik';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
-import { StepID } from '../../types/_StepID';
-import { SøknadFormValues } from '../../types/_SøknadFormValues';
+import { StepID } from '../../types/StepID';
+import { SøknadFormValues } from '../../types/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/_StepCommonProps';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import omsorgstilbudInfo from './info/OmsorgstilbudInfo';
 import OmsorgstilbudSpørsmål from './OmsorgstilbudSpørsmål';
 

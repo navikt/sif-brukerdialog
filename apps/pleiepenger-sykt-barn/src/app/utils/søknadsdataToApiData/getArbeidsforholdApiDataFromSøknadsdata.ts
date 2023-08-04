@@ -3,14 +3,14 @@ import {
     ArbeidIPeriodeApiData,
     ArbeidRedusertIPeriodeApiData,
     ArbeidsukeTimerApiData,
-} from '../../types/søknad-api-data/_SøknadApiData';
+} from '../../types/søknad-api-data/SøknadApiData';
 import {
     ArbeidIPeriodeRedusertArbeidSøknadsdata,
     ArbeidIPeriodeSøknadsdata,
     ArbeidsukeTimerSøknadsdata,
-} from '../../types/søknadsdata/_Søknadsdata';
-import { ArbeidIPeriodeType } from '../../types/_ArbeidIPeriodeType';
-import { RedusertArbeidstidType } from '../../types/_RedusertArbeidstidType';
+} from '../../types/søknadsdata/Søknadsdata';
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
+import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 
 export const getArbeidsukerTimerApiData = (arbeidsuker: ArbeidsukeTimerSøknadsdata[]): ArbeidsukeTimerApiData[] => {
     return arbeidsuker.map(({ periode: { from, to }, timer }) => {

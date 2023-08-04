@@ -2,7 +2,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
-import { SøknadFormValues } from '../types/_SøknadFormValues';
+import { SøknadFormValues } from '../types/SøknadFormValues';
 
 export const getSøknadsperiodeFromFormData = ({
     periodeFra,

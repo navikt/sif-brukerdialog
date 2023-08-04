@@ -1,8 +1,8 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { SelvstendigFormData } from '../../types/_SelvstendigFormData';
-import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/_ArbeidssituasjonSelvstendigSøknadsdata';
+import { SelvstendigFormData } from '../../types/SelvstendigFormData';
+import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSelvstendigSøknadsdata';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../selvstendigUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 

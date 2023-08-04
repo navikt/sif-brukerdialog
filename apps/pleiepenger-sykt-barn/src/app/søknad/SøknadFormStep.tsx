@@ -9,8 +9,8 @@ import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
 import usePersistSoknad from '../hooks/usePersistSoknad';
-import { StepID } from '../types/_StepID';
-import { SøknadFormValues } from '../types/_SøknadFormValues';
+import { StepID } from '../types/StepID';
+import { SøknadFormValues } from '../types/SøknadFormValues';
 import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
 import SøknadFormComponents from './SøknadFormComponents';
 import { getSøknadStepConfig } from './søknadStepConfig';

@@ -1,9 +1,9 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils';
-import { SøknadFormValues } from '../../../types/_SøknadFormValues';
+import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import { cleanupOmsorgstilbudStep } from '../omsorgstilbudStepUtils';
-import { YesOrNoOrDoNotKnow } from '../../../types/_YesOrNoOrDoNotKnow';
+import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
 
 const søknadsperiode: DateRange = {
     from: ISODateToDate('2021-06-02'),

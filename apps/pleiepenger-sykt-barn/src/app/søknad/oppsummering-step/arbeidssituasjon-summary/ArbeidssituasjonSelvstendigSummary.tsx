@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import VirksomhetSummary from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetSummary';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
-import { SelvstendigApiData } from '../../../types/søknad-api-data/_SøknadApiData';
+import { SelvstendigApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 
 interface Props {

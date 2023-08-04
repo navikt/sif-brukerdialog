@@ -1,10 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ArbeidsforholdFormValues } from '../../../types/_ArbeidsforholdFormValues';
-import { FrilansFormData, Frilanstype } from '../../../types/_FrilansFormData';
-import { SelvstendigFormData } from '../../../types/_SelvstendigFormData';
-import { StønadGodtgjørelseFormData } from '../../../types/_StønadGodtgjørelseFormData';
-import { SøknadFormValues } from '../../../types/_SøknadFormValues';
+import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
+import { FrilansFormData, Frilanstype } from '../../../types/FrilansFormData';
+import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
+import { StønadGodtgjørelseFormData } from '../../../types/StønadGodtgjørelseFormData';
+import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 

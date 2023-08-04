@@ -1,5 +1,5 @@
-import { SøknadFormValues } from '../../types/_SøknadFormValues';
-import { Søknadsdata } from '../../types/søknadsdata/_Søknadsdata';
+import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getHarVærtEllerErVernepliktigFromFormData, getSøknadsperiodeFromFormData } from '../formDataUtils';
 import { extractArbeidssituasjonSøknadsdata } from './extractArbeidssituasjonSøknadsdata';
 import { extractArbeidstidSøknadsdata } from './extractArbeidstidSøknadsdata';

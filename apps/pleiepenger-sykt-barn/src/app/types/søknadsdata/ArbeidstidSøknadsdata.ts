@@ -1,4 +1,4 @@
-import { ArbeidIPeriodeSøknadsdata } from './_ArbeidIPeriodeSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from './ArbeidIPeriodeSøknadsdata';
 
 export type ArbeidstidSøknadsdata = {
     arbeidsgivere: Map<string, ArbeidIPeriodeSøknadsdata>;

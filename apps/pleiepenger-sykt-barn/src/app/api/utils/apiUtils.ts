@@ -2,7 +2,7 @@ import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/env
 import { getGitShaRequestHeader } from '@navikt/sif-common-core-ds/lib/utils/gitShaHeaderUtils';
 import axios from 'axios';
 import { axiosConfigPsb } from '../../config/axiosConfig';
-import { ResourceType } from '../../types/_ResourceType';
+import { ResourceType } from '../../types/ResourceType';
 
 export const multipartConfig = { ...axiosConfigPsb, headers: { 'Content-Type': 'multipart/form-data' } };
 export const axiosJsonConfig = {

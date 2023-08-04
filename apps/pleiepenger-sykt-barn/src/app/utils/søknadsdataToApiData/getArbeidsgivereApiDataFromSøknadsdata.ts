@@ -1,6 +1,6 @@
-import { ArbeidsgiverApiData } from '../../types/søknad-api-data/_SøknadApiData';
-import { ArbeidssituasjonAnsattSøknadsdata } from '../../types/søknadsdata/_ArbeidssituasjonAnsattSøknadsdata';
-import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/_ArbeidstidSøknadsdata';
+import { ArbeidsgiverApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { ArbeidssituasjonAnsattSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
+import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { getArbeidsgiverApiDataFromSøknadsdata } from './getArbeidsgiverApiDataFromSøknadsdata';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (

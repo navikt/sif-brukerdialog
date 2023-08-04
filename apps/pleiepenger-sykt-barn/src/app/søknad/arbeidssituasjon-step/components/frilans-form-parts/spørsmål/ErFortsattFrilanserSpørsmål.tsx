@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { FrilansFormField } from '../../../../../types/_FrilansFormData';
+import { FrilansFormField } from '../../../../../types/FrilansFormData';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {

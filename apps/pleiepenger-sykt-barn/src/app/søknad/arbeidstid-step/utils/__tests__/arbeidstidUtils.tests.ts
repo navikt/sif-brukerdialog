@@ -7,10 +7,10 @@ import {
     harFraværFraJobb,
     summerArbeidstimerIArbeidsuker,
 } from '../arbeidstidUtils';
-import { ArbeidIPeriodeSøknadsdata } from '../../../../types/søknadsdata/_ArbeidIPeriodeSøknadsdata';
-import { RedusertArbeidstidType } from '../../../../types/_RedusertArbeidstidType';
-import { ArbeidIPeriodeType } from '../../../../types/_ArbeidIPeriodeType';
-import { ArbeidstidSøknadsdata } from '../../../../types/søknadsdata/_ArbeidstidSøknadsdata';
+import { ArbeidIPeriodeSøknadsdata } from '../../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
+import { RedusertArbeidstidType } from '../../../../types/RedusertArbeidstidType';
+import { ArbeidIPeriodeType } from '../../../../types/ArbeidIPeriodeType';
+import { ArbeidstidSøknadsdata } from '../../../../types/søknadsdata/ArbeidstidSøknadsdata';
 
 describe('arbeidstidUtils', () => {
     describe('harFraværFraJobb', () => {

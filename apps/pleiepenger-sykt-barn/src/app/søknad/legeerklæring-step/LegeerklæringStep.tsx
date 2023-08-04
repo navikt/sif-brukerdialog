@@ -18,12 +18,12 @@ import FormikFileUploader from '../../components/formik-file-uploader/FormikFile
 import LegeerklæringFileList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
 import getLenker from '../../lenker';
-import { StepID } from '../../types/_StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/_SøknadFormValues';
+import { StepID } from '../../types/StepID';
+import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../validation/fieldValidations';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/_StepCommonProps';
+import { StepCommonProps } from '../../types/StepCommonProps';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);

@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/_StønadGodtgjørelseSøknadsdata';
-import { StønadGodtgjørelseFormData } from '../../types/_StønadGodtgjørelseFormData';
+import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/StønadGodtgjørelseSøknadsdata';
+import { StønadGodtgjørelseFormData } from '../../types/StønadGodtgjørelseFormData';
 
 export const extractStønadGodtgjørelseSøknadsdata = (
     stønadGodtgjørelse: StønadGodtgjørelseFormData

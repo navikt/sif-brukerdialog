@@ -1,7 +1,7 @@
 import React from 'react';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { OpptjeningIUtlandetApiData } from '../../../types/søknad-api-data/_SøknadApiData';
+import { OpptjeningIUtlandetApiData } from '../../../types/søknad-api-data/SøknadApiData';
 
 const bem = bemUtils('opptjeningIUtlandetSummaryItem');
 

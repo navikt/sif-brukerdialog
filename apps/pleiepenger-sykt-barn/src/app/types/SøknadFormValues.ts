@@ -4,15 +4,15 @@ import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/typ
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
 import { DateDurationMap, DurationWeekdays } from '@navikt/sif-common-utils';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '.';
-import { ArbeidsforholdFormValues } from './_ArbeidsforholdFormValues';
-import { Arbeidsgiver } from './_Arbeidsgiver';
-import { FrilansFormData } from './_FrilansFormData';
-import { SelvstendigFormData } from './_SelvstendigFormData';
+import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';
+import { Arbeidsgiver } from './Arbeidsgiver';
+import { FrilansFormData } from './FrilansFormData';
+import { SelvstendigFormData } from './SelvstendigFormData';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring';
 import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
-import { StønadGodtgjørelseFormData } from './_StønadGodtgjørelseFormData';
-import { YesOrNoOrDoNotKnow } from './_YesOrNoOrDoNotKnow';
+import { StønadGodtgjørelseFormData } from './StønadGodtgjørelseFormData';
+import { YesOrNoOrDoNotKnow } from './YesOrNoOrDoNotKnow';
 
 export enum SøknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',

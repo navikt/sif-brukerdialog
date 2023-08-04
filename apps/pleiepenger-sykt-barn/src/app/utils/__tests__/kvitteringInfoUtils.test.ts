@@ -1,10 +1,10 @@
 import { decimalDurationToISODuration } from '@navikt/sif-common-utils/lib';
-import { ArbeidIPeriodeType } from '../../types/_ArbeidIPeriodeType';
-import { ArbeidsgiverType } from '../../types/_Arbeidsgiver';
-import { Søkerdata } from '../../types/_Søkerdata';
-import { ArbeidsgiverApiData } from '../../types/søknad-api-data/_SøknadApiData';
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
+import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
+import { Søkerdata } from '../../types/Søkerdata';
+import { ArbeidsgiverApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { getKvitteringInfoFromApiData, KvitteringApiData } from '../kvitteringUtils';
-import { RedusertArbeidstidType } from '../../types/_RedusertArbeidstidType';
+import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 
 const arbeidsgiverApiData: ArbeidsgiverApiData = {
     type: ArbeidsgiverType.ORGANISASJON,

@@ -6,7 +6,7 @@ import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionL
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
-import { StepID } from '../../../types/_StepID';
+import { StepID } from '../../../types/StepID';
 import { ApiValidationError } from '../../../validation/apiValuesValidation';
 
 interface Props {

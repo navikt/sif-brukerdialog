@@ -1,5 +1,5 @@
-import { SøknadApiData } from '../../types/søknad-api-data/_SøknadApiData';
-import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/_StønadGodtgjørelseSøknadsdata';
+import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/StønadGodtgjørelseSøknadsdata';
 import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { dateToISODate } from '@navikt/sif-common-utils';
 

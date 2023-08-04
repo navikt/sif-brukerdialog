@@ -4,13 +4,13 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { OpenDateRange } from '../../../types';
-import { ArbeidIPeriodeType } from '../../../types/_ArbeidIPeriodeType';
-import { ArbeidsukeInfo } from '../../../types/_ArbeidsukeInfo';
-import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/_ArbeidIPeriodeSøknadsdata';
-import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/_ArbeidstidSøknadsdata';
+import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
+import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
+import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
+import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
-import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/_ArbeidssituasjonSøknadsdata';
-import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/_ArbeidssituasjonAnsattSøknadsdata';
+import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 
 export enum ArbeidsperiodeIForholdTilSøknadsperiode {
     'starterIPerioden' = 'starterIPerioden',

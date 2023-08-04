@@ -1,4 +1,4 @@
-import { ArbeidsukeInfo, ArbeidsukeInfoÅrMap } from '../../../types/_ArbeidsukeInfo';
+import { ArbeidsukeInfo, ArbeidsukeInfoÅrMap } from '../../../types/ArbeidsukeInfo';
 
 export type ArbeidsukeFieldName = string; // YYYY_WW
 

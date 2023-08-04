@@ -1,6 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { BarnRelasjon } from '../_BarnRelasjon';
-import { ÅrsakManglerIdentitetsnummer } from '../_ÅrsakManglerIdentitetsnummer';
+import { BarnRelasjon } from '../BarnRelasjon';
+import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
 
 export interface OmBarnetRegistrerteSøknadsdata {
     type: 'registrerteBarn';

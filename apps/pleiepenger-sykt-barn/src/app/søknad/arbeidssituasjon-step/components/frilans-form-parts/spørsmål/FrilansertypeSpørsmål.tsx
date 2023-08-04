@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { FrilansFormField, Frilanstype } from '../../../../../types/_FrilansFormData';
+import { FrilansFormField, Frilanstype } from '../../../../../types/FrilansFormData';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 const FrilansertypeSpørsmål = () => {

@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { MedlemskapFormData } from '../../types/_SøknadFormValues';
-import { MedlemskapSøknadsdata } from '../../types/søknadsdata/_Søknadsdata';
+import { MedlemskapFormData } from '../../types/SøknadFormValues';
+import { MedlemskapSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const extractMedlemskapSøknadsdata = ({
     harBoddUtenforNorgeSiste12Mnd,

@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { SøknadFormValues } from '../../types/_SøknadFormValues';
+import { SøknadFormValues } from '../../types/SøknadFormValues';
 import { søkerKunFortid, søkerKunFremtid } from '../../utils/søknadsperiodeUtils';
 
 export const cleanupTidsromStep = (values: SøknadFormValues, søknadsperiode: DateRange): SøknadFormValues => {

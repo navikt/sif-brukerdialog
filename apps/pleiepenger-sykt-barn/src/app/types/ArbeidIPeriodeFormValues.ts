@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { ArbeiderIPeriodenSvar } from '../local-sif-common-pleiepenger';
-import { TimerEllerProsent } from './_TimerEllerProsent';
+import { TimerEllerProsent } from './TimerEllerProsent';
 
 export enum ArbeidIPeriodeFormField {
     arbeiderIPerioden = 'arbeiderIPerioden',

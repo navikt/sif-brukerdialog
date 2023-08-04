@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { SelvstendigFormData } from '../../../types/_SelvstendigFormData';
-import { ArbeidsforholdFormValues } from '../../../types/_ArbeidsforholdFormValues';
-import { FrilansFormData } from '../../../types/_FrilansFormData';
+import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
+import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
+import { FrilansFormData } from '../../../types/FrilansFormData';
 import { isYesOrNoAnswered } from '../../../validation/fieldValidations';
 
 export const visVernepliktSpørsmål = ({

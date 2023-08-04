@@ -4,7 +4,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { Frilanstype } from '../../../../types/_FrilansFormData';
+import { Frilanstype } from '../../../../types/FrilansFormData';
 
 export const InfoArbeiderNormaltTimerAnsatt = () => {
     const intl = useIntl();

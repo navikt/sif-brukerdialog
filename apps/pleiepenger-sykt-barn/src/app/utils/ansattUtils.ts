@@ -3,7 +3,7 @@ import { DateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { Arbeidsgiver } from '../types';
-import { ArbeidsforholdFormValues } from '../types/_ArbeidsforholdFormValues';
+import { ArbeidsforholdFormValues } from '../types/ArbeidsforholdFormValues';
 
 dayjs.extend(minMax);
 

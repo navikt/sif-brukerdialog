@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadStepsConfig, soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
-import { StepID } from '../types/_StepID';
+import { StepID } from '../types/StepID';
 
 interface Props {
     stepId: StepID;

@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { SelvstendigFormData } from '../../../../types/_SelvstendigFormData';
+import { SelvstendigFormData } from '../../../../types/SelvstendigFormData';
 import { cleanupSelvstendigArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 
 const virksomhet = {} as any;

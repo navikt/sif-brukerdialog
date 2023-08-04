@@ -17,9 +17,9 @@ import minMax from 'dayjs/plugin/minMax';
 import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
-import { StepCommonProps } from '../../types/_StepCommonProps';
-import { StepID } from '../../types/_StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/_SøknadFormValues';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
+import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
 import {
     validateFerieuttakIPerioden,

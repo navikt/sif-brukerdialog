@@ -1,7 +1,7 @@
 import RouteConfig from '../config/routeConfig';
 import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
-import { StepID } from '../types/_StepID';
-import { SøknadFormValues } from '../types/_SøknadFormValues';
+import { StepID } from '../types/StepID';
+import { SøknadFormValues } from '../types/SøknadFormValues';
 import {
     arbeidIPeriodeStepIsAvailable,
     arbeidssituasjonStepAvailable,

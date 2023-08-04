@@ -4,7 +4,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from '../../../../types/_ArbeidsforholdFormValues';
+import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from '../../../../types/ArbeidsforholdFormValues';
 
 const AnsattFormComponents = getTypedFormComponents<
     ArbeidsforholdFormField,

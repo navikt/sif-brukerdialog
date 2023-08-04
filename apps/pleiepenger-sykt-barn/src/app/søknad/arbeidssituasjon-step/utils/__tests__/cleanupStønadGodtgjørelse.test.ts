@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { StønadGodtgjørelseFormData } from '../../../../types/_StønadGodtgjørelseFormData';
+import { StønadGodtgjørelseFormData } from '../../../../types/StønadGodtgjørelseFormData';
 import { cleanupStønadGodtgjørelse } from '../cleanupArbeidssituasjonStep';
 
 const ISOStartdato = '2021-01-01';

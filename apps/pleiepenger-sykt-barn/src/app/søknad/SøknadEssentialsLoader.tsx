@@ -6,9 +6,9 @@ import { getBarn, getSøker, purge, rehydrate } from '../api/api';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
 import LoadingPage from '../pages/loading-page/LoadingPage';
-import { Søkerdata } from '../types/_Søkerdata';
-import { initialValues, SøknadFormField, SøknadFormValues } from '../types/_SøknadFormValues';
-import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } from '../types/_SøknadTempStorageData';
+import { Søkerdata } from '../types/Søkerdata';
+import { initialValues, SøknadFormField, SøknadFormValues } from '../types/SøknadFormValues';
+import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
 

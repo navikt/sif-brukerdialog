@@ -1,7 +1,7 @@
 import { ISODurationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { NormalarbeidstidApiData } from '../../../types/søknad-api-data/_SøknadApiData';
+import { NormalarbeidstidApiData } from '../../../types/søknad-api-data/SøknadApiData';
 
 interface Props {
     erAnsatt?: boolean;

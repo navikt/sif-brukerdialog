@@ -1,5 +1,5 @@
 import { ISODate } from '@navikt/sif-common-utils/lib';
-import { ArbeidsforholdApiData } from './_ArbeidsforholdApiData';
+import { ArbeidsforholdApiData } from './ArbeidsforholdApiData';
 // import { ArbeidsforholdApiData } from './arbeidsforholdApiData';
 
 /**

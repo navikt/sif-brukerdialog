@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useEffectOnce from '../hooks/useEffectOnce';
-import { SøknadFormValues } from '../types/_SøknadFormValues';
-import { Søknadsdata } from '../types/søknadsdata/_Søknadsdata';
+import { SøknadFormValues } from '../types/SøknadFormValues';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';
 import { SøknadsdataContextProvider } from './SøknadsdataContext';
 

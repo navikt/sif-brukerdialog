@@ -9,9 +9,9 @@ import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData
 import FormSection from '../../components/form-section/FormSection';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import useEffectOnce from '../../hooks/useEffectOnce';
-import { StepCommonProps } from '../../types/_StepCommonProps';
-import { StepID } from '../../types/_StepID';
-import { SøknadFormValues } from '../../types/_SøknadFormValues';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
+import { SøknadFormValues } from '../../types/SøknadFormValues';
 import SøknadFormStep from '../SøknadFormStep';
 import ArbeidssituasjonArbeidsgivere from './components/ArbeidssituasjonArbeidsgivere';
 import ArbeidssituasjonFrilans from './components/ArbeidssituasjonFrilans';

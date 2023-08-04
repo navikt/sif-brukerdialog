@@ -5,10 +5,10 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { useFormikContext } from 'formik';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
-import { StepCommonProps } from '../../types/_StepCommonProps';
-import { StepID } from '../../types/_StepID';
-import { SøknadFormValues } from '../../types/_SøknadFormValues';
-import { ArbeidssituasjonAnsattType } from '../../types/søknadsdata/_ArbeidssituasjonAnsattSøknadsdata';
+import { StepCommonProps } from '../../types/StepCommonProps';
+import { StepID } from '../../types/StepID';
+import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { ArbeidssituasjonAnsattType } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 import { søkerNoeFremtid } from '../../utils/søknadsperiodeUtils';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';

@@ -10,7 +10,7 @@ import {
     PeriodeApiData,
     isUtenlandsoppholdUtenforEØSApiData,
     UtenlandsoppholdIPeriodenApiData,
-} from '../../types/søknad-api-data/_SøknadApiData';
+} from '../../types/søknad-api-data/SøknadApiData';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 

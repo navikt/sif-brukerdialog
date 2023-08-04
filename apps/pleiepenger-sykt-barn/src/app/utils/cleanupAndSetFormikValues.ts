@@ -4,9 +4,9 @@ import { cleanupArbeidstidStep } from '../søknad/arbeidstid-step/utils/cleanupA
 import { cleanupNattevåkOgBeredskapStep } from '../søknad/nattevåk-og-beredskap-step/NattevåkOgBeredskapStep';
 import { cleanupOmsorgstilbudStep } from '../søknad/omsorgstilbud-step/omsorgstilbudStepUtils';
 import { cleanupTidsromStep } from '../søknad/tidsrom-step/cleanupTidsromStep';
-import { StepID } from '../types/_StepID';
-import { SøknadFormValues } from '../types/_SøknadFormValues';
-import { Søknadsdata } from '../types/søknadsdata/_Søknadsdata';
+import { StepID } from '../types/StepID';
+import { SøknadFormValues } from '../types/SøknadFormValues';
+import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadsperiodeFromFormData } from './formDataUtils';
 
 export const cleanupSøknadStepValues = (
