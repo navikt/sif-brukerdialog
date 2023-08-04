@@ -2,7 +2,7 @@ import { extractNormalarbeidstid } from '../extractNormalarbeidstidSøknadsdata'
 
 describe('extractNormalarbeidstid', () => {
     describe('ArbeidsforholdType.ANSATT', () => {
-        it.only('returnerer undefined dersom normalarbeidstid === undefined', () => {
+        it('returnerer undefined dersom normalarbeidstid === undefined', () => {
             expect(extractNormalarbeidstid(undefined)).toBeUndefined();
         });
 

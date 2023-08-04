@@ -43,26 +43,38 @@ export const fyllUtArbeidstidRedusertVarierendeTimer = () => {
     });
 };
 
+export const fyllUtArbeidIPeriodeAnsatt = () => {
+    cy.get('h3')
+        .contains('WHOA.BOA')
+        .parent()
+        .within(() => {
+            fyllUtArbeidstidRedusertVarierendeTimer();
+        });
+};
+
+export const fyllUtArbeidIPeriodeFrilansarbeid = () => {
+    cy.get('h3')
+        .contains('Jobb som frilanser')
+        .parent()
+        .within(() => {
+            fyllUtArbeidstidJobberIkke();
+        });
+};
+
+export const fyllUtArbeidIPeriodeHonorararbeid = () => {
+    cy.get('h3')
+        .contains('Jobb for honorar')
+        .parent()
+        .within(() => {
+            fyllUtArbeidstidMisterAltHonorar();
+        });
+};
+
 export const fyllUtArbeidIPeriodeSteg = () => {
     it('Steg 4: Arbeid i perioden', () => {
-        cy.get('h3')
-            .contains('WHOA.BOA')
-            .parent()
-            .within(() => {
-                fyllUtArbeidstidRedusertVarierendeTimer();
-            });
-        cy.get('h3')
-            .contains('Jobb som frilanser')
-            .parent()
-            .within(() => {
-                fyllUtArbeidstidRedusertProsent();
-            });
-        cy.get('h3')
-            .contains('Jobb for honorar')
-            .parent()
-            .within(() => {
-                fyllUtArbeidstidMisterAltHonorar();
-            });
+        fyllUtArbeidIPeriodeAnsatt();
+        fyllUtArbeidIPeriodeFrilansarbeid();
+        fyllUtArbeidIPeriodeHonorararbeid();
 
         clickFortsett();
     });

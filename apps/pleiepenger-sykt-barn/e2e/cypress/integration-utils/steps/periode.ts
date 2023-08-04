@@ -1,21 +1,27 @@
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
-import { selectRadioNo, selectRadioYes } from '../utils';
+import { getSøknadsdato, selectRadioNo, selectRadioYes } from '../utils';
+import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
 const { getTestElement, getInputByName, clickFortsett } = require('../utils');
 
-const fraDato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
-const tilDato = dayjs().startOf('week').add(1, 'week').format('YYYY-MM-DD');
+const fraDato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
+const tilDato = getSøknadsdato().startOf('week').add(1, 'week').format('YYYY-MM-DD');
 const expectedFomTomPeriode = `${dayjs(fraDato).format('D. MMMM YYYY')} - ${dayjs(tilDato).format('D. MMMM YYYY')}`;
 const expectedDateUtenlandsoppholdIPerioden = `${dayjs(fraDato).format('D. MMM YYYY')} - ${dayjs(tilDato).format(
     'D. MMM YYYY'
 )}`;
 const expectedDateFerie = `${dayjs(fraDato).format('D. MMM YYYY')} - ${dayjs(tilDato).format('D. MMM YYYY')}`;
 const expectedLand = 'Albania'; // Land #2 i listen
+
+export const cypressSøknadsperiode: DateRange = {
+    from: ISODateToDate(fraDato),
+    to: ISODateToDate(tilDato),
+};
 
 export const fyllUtPeriode = () => {
     getInputByName('periodeFra').click().type(fraDato).blur();

@@ -1,13 +1,13 @@
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
-import { clickFortsett, getInputByName, getTestElement, selectRadioNo, selectRadioYes } from '../utils';
+import { clickFortsett, getInputByName, getSøknadsdato, getTestElement, selectRadioNo, selectRadioYes } from '../utils';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-const fomTomMedlemskapSiste12 = dayjs().startOf('day').subtract(1, 'day').format('YYYY-MM-DD');
-const fomTomMedlemskapNeste12 = dayjs().startOf('day').add(1, 'day').format('YYYY-MM-DD');
+const fomTomMedlemskapSiste12 = getSøknadsdato().startOf('day').subtract(1, 'day').format('YYYY-MM-DD');
+const fomTomMedlemskapNeste12 = getSøknadsdato().startOf('day').add(1, 'day').format('YYYY-MM-DD');
 const expectedDateMedlemskapSiste12 = `${dayjs(fomTomMedlemskapSiste12).format('D. MMM YYYY')} - ${dayjs(
     fomTomMedlemskapSiste12
 ).format('D. MMM YYYY')}`;

@@ -652,7 +652,7 @@
     "oppsummering.arbeidssituasjon.frilans.startet": "Startet {dato}",
     "oppsummering.arbeidssituasjon.frilans.fortsattFrilanser": "Er fortsatt frilanser",
     "oppsummering.arbeidssituasjon.frilans.FRILANSARBEID": "Jeg jobber som frilanser",
-    "oppsummering.arbeidssituasjon.frilans.HONORARARBEID": "Jeg får honorar for  styreverv eller andre verv",
+    "oppsummering.arbeidssituasjon.frilans.HONORARARBEID": "Jeg får honorar for styreverv eller andre verv",
     "oppsummering.arbeidssituasjon.frilans.HONORARARBEID.misterIkkeHonorar": "Jeg mister ikke honorar for verv i søknadsperioden",
     "oppsummering.arbeidssituasjon.frilans.sluttet": "Sluttet {dato}",
     "oppsummering.arbeidssituasjon.frilans.frilansoppdrag": "Frilansoppdrag registrert i perioden:",

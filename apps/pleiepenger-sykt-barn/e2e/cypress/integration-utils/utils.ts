@@ -1,7 +1,14 @@
+import dayjs = require('dayjs');
+
+export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
+export const getSøknadsdato = () => dayjs(); //'2022-10-10');
+
 export const clickFortsett = () => {
     cy.get('button').contains('Neste').click();
 };
-export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
+export const clickTilbake = () => {
+    cy.get('button').contains('Forrige').click();
+};
 
 export const selectRadio = (name, value) => {
     cy.get(`[name="${name}"][value="${value}"]`).parent().click();

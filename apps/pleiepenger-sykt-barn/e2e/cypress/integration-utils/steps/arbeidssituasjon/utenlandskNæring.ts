@@ -1,6 +1,7 @@
 import { TestType } from '../../types/TestTyper';
 import {
     getInputByName,
+    getSøknadsdato,
     getTestElement,
     getTestElementByType,
     gåTilOppsummeringFraArbeidssituasjon,
@@ -8,9 +9,8 @@ import {
     selectRadioYes,
 } from '../../utils';
 
-import dayjs = require('dayjs');
 const navnPåVirksomheten = 'Fisk Virksomhet';
-const dato = dayjs().startOf('day').subtract(1, 'day');
+const dato = getSøknadsdato().startOf('day').subtract(1, 'day');
 const virksomhetensOrganisasjonsnummer = '999263550'; /** Navs orgnur */
 const fraDatoTilDato = dato.format('DD.MM.YYYY');
 const expectedNæringstype = 'Fisker';
