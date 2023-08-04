@@ -396,6 +396,9 @@ export const getNumberOfDaysInDateRange = (dateRange: DateRange, onlyWeekDays = 
  * @returns dateRange
  */
 export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange => {
+    if (dateRanges.length === 0) {
+        throw 'getDateRangeFromDateRanges: Cannot get date range from empty array';
+    }
     return {
         from: dayjs.min(dateRanges.map((range) => dayjs(range.from))).toDate(),
         to: dayjs.max(dateRanges.map((range) => dayjs(range.to))).toDate(),
