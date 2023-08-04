@@ -37,7 +37,6 @@ export interface IntlProviderProps {
 }
 
 const IntlProvider = ({ locale, onError, children }: IntlProviderProps) => {
-    // const messages = locale === 'nb' ? bokmålstekster : nynorsktekster;
     return (
         <Provider locale={locale} messages={bokmålstekster} onError={onError}>
             {children}

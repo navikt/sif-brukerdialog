@@ -7,7 +7,6 @@ interface Props {
 }
 
 const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
-    // const intl = useIntl();
     const {
         mottarStønadGodtgjørelse,
         _mottarStønadGodtgjørelseIHelePeroden: mottarStønadGodtgjørelseIHelePerioden,

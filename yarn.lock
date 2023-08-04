@@ -3302,21 +3302,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/appstatus-react-ds@npm:2.8.1":
-  version: 2.8.1
-  resolution: "@navikt/appstatus-react-ds@npm:2.8.1"
-  dependencies:
-    "@portabletext/react": 3.0.2
-    "@sanity/client": 5.4.2
-  peerDependencies:
-    "@navikt/ds-css": 3
-    "@navikt/ds-react": 3
-    sass: 1.x
-    sass-loader: 13.x
-  checksum: 32390f5eb1f40fc958b04aaeb38461d1b6228b77c6e56142b40912fd310d437845c5f73f50622dbdb4c77f09067fa2d9c15714e24c94f3e2a886bd177deb1cc2
-  languageName: node
-  linkType: hard
-
 "@navikt/ds-css@npm:3":
   version: 3.4.2
   resolution: "@navikt/ds-css@npm:3.4.2"
@@ -3861,7 +3846,7 @@ __metadata:
     "@babel/preset-env": 7.22.9
     "@babel/preset-react": 7.22.5
     "@formatjs/intl-pluralrules": 5.2.4
-    "@navikt/appstatus-react-ds": 2.8.1
+    "@navikt/appstatus-react-ds": "*"
     "@navikt/ds-css": 4.7.3
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
@@ -4534,18 +4519,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/react@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@portabletext/react@npm:3.0.2"
-  dependencies:
-    "@portabletext/toolkit": ^2.0.1
-    "@portabletext/types": ^2.0.2
-  peerDependencies:
-    react: ^17 || ^18
-  checksum: 17f831e9e7408fd885452191a361a80f214b1bd341f10e7fe3a6bac9f35453fcdadb178a66958a938332700c338ce399650bac0146b8bd4a10f1276642145a90
-  languageName: node
-  linkType: hard
-
 "@portabletext/react@npm:3.0.4":
   version: 3.0.4
   resolution: "@portabletext/react@npm:3.0.4"
@@ -4558,7 +4531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/toolkit@npm:^2.0.1, @portabletext/toolkit@npm:^2.0.4":
+"@portabletext/toolkit@npm:^2.0.4":
   version: 2.0.4
   resolution: "@portabletext/toolkit@npm:2.0.4"
   dependencies:
@@ -4567,7 +4540,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@portabletext/types@npm:^2.0.2, @portabletext/types@npm:^2.0.5":
+"@portabletext/types@npm:^2.0.5":
   version: 2.0.5
   resolution: "@portabletext/types@npm:2.0.5"
   checksum: 1cca85f63de261208687446f97ed5dfb954e063b76a2f8b104ac30982cf2cec4503a01b6fdf6918f5b44208ba46d8f0b6507c3badd798d2ecad7325031733881
@@ -5310,17 +5283,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:5.4.2":
-  version: 5.4.2
-  resolution: "@sanity/client@npm:5.4.2"
-  dependencies:
-    "@sanity/eventsource": 5
-    get-it: ^8.1
-    rxjs: 7
-  checksum: 289e83b7c12eb0789f59b546b68f12e5f36b67acd780d454b6d16cc9b9740940e6a899cf005bc93c143dde163cba8d671b8b9a73a4309d14ca07442093ea46ef
-  languageName: node
-  linkType: hard
-
 "@sanity/client@npm:6.4.0":
   version: 6.4.0
   resolution: "@sanity/client@npm:6.4.0"
@@ -5332,7 +5294,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/eventsource@npm:5, @sanity/eventsource@npm:^5.0.0":
+"@sanity/eventsource@npm:^5.0.0":
   version: 5.0.0
   resolution: "@sanity/eventsource@npm:5.0.0"
   dependencies:
@@ -15376,24 +15338,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-it@npm:^8.1":
-  version: 8.3.0
-  resolution: "get-it@npm:8.3.0"
-  dependencies:
-    debug: ^4.3.4
-    decompress-response: ^7.0.0
-    follow-redirects: ^1.15.2
-    into-stream: ^6.0.0
-    is-plain-object: ^5.0.0
-    is-retry-allowed: ^2.2.0
-    is-stream: ^2.0.1
-    parse-headers: ^2.0.5
-    progress-stream: ^2.0.0
-    tunnel-agent: ^0.6.0
-  checksum: 149d8177a2fb0e0f32f66a89100ec120c46f34ac6722dacf4a7d93ee3efb34ccbd0012c8796c420cca1c73f31dd28b1369f9fdc43cb4db61254e032e4fd2fc65
-  languageName: node
-  linkType: hard
-
 "get-it@npm:^8.3.0":
   version: 8.3.1
   resolution: "get-it@npm:8.3.1"
@@ -24167,7 +24111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:7, rxjs@npm:^7.0.0, rxjs@npm:^7.5.1, rxjs@npm:^7.5.5, rxjs@npm:^7.8.0":
+"rxjs@npm:^7.0.0, rxjs@npm:^7.5.1, rxjs@npm:^7.5.5, rxjs@npm:^7.8.0":
   version: 7.8.1
   resolution: "rxjs@npm:7.8.1"
   dependencies:

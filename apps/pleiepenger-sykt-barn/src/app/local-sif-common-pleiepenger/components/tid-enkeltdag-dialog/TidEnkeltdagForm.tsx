@@ -1,3 +1,4 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
@@ -24,7 +25,6 @@ import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import DurationText from '../duration-text/DurationText';
-// import { DurationText } from '../..';
 import {
     getDagerMedNyTid,
     getDateRangeWithinDateRange,
@@ -32,7 +32,6 @@ import {
     trimDateRangeToWeekdays,
 } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
-import { Heading } from '@navikt/ds-react';
 
 dayjs.extend(minMax);
 

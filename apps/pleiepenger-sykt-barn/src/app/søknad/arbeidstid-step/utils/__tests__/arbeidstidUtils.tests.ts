@@ -28,9 +28,6 @@ describe('arbeidstidUtils', () => {
             },
         };
 
-        // const arbeidsgivereEnArbeidsgiver: Map<string, ArbeidIPeriodeSøknadsdata> = new Map();
-        // arbeidsgivere.
-
         const arbeidsgivereArbeiderIkke: ArbeidstidSøknadsdata = {
             arbeidsgivere: new Map([['123', arbeiderIkke]]),
         };

@@ -30,7 +30,6 @@ import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
 import ArbeidstidStep from './arbeidstid-step/ArbeidstidStep';
 import { harFraværFraJobb } from './arbeidstid-step/utils/arbeidstidUtils';
 import { getIngenFraværConfirmationDialog } from './confirmation-dialogs/ingenFraværConfirmation';
-// import { getAlleArbeidsforholdIPerioden, harFraværFraJobb } from './arbeidstid-step/utils/arbeidstidUtils';
 import LegeerklæringStep from './legeerklæring-step/LegeerklæringStep';
 import MedlemsskapStep from './medlemskap-step/MedlemsskapStep';
 import NattevåkOgBeredskapStep from './nattevåk-og-beredskap-step/NattevåkOgBeredskapStep';

@@ -123,7 +123,6 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                             legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
                             name={SøknadFormField.skalOppholdeSegIUtlandetIPerioden}
                             validate={getYesOrNoValidator()}
-                            // data-testid="er-iUtlandetIPerioden"
                         />
                     </Block>
                     {values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (

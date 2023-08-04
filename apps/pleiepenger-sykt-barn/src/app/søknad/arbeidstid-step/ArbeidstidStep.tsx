@@ -26,7 +26,6 @@ export enum ArbeidsaktivitetType {
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
-    // const { persistSoknad } = usePersistSoknad();
 
     const {
         søknadsdata: { arbeidssituasjon, søknadsperiode },
@@ -37,10 +36,6 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     }
 
     const { frilans } = arbeidssituasjon;
-
-    // const handleArbeidstidChanged = () => {
-    //     persistSoknad({ stepID: StepID.ARBEIDSTID });
-    // };
 
     const søkerFremITid = søkerNoeFremtid(søknadsperiode);
 

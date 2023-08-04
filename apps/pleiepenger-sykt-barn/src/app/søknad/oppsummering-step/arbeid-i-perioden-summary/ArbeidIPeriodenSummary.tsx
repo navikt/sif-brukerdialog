@@ -21,11 +21,6 @@ interface Props {
     søknadsdato: Date;
 }
 
-// export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
-//     tittel: string;
-//     gjelderHonorararbeid: boolean;
-// }
-
 export interface ArbeidIPeriodenFrilansSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }

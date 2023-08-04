@@ -100,7 +100,6 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
-                        // validate={validateLegeerklæring}
                         onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
                     />
                 </Block>

@@ -26,7 +26,7 @@
     },
     "dependencies": {
         "@formatjs/intl-pluralrules": "5.2.4",
-        "@navikt/appstatus-react-ds": "2.8.1",
+        "@navikt/appstatus-react-ds": "*",
         "@navikt/ds-css": "4.7.3",
         "@navikt/ds-datepicker": "4.2.0",
         "@navikt/ds-icons": "3.4.3",

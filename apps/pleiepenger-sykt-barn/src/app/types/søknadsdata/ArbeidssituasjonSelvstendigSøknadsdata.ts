@@ -7,9 +7,7 @@ interface ArbeidsituasjonSelvstendigSøknadsdataErIkkeSN {
 }
 interface ArbeidsituasjonSelvstendigSøknadsdataErSN {
     erSN: true;
-    // erSelvstendigISøknadsperiode: boolean;
     periodeSomSelvstendigISøknadsperiode?: DateRange;
-    // startdato: Date;
     virksomhet: Virksomhet;
     harFlereVirksomheter: boolean;
     normalarbeidstid: NormalarbeidstidSøknadsdata;
