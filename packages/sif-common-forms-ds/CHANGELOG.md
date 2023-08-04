@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.2.0
+
+### Minor Changes
+
+-   cb62a74: Slettet korona i fravær
+
 ## 8.1.3
 
 ### Patch Changes
