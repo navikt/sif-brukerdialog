@@ -8,8 +8,12 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../lenker';
 import { useEffect } from 'react';
+import { Søker } from '../../types/Søker';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 interface Props {
+    søker: Søker | undefined;
+    søknadsdata: Søknadsdata | undefined;
     onUnmount: () => void;
 }
 const KvitteringPage = ({ onUnmount }: Props) => {
