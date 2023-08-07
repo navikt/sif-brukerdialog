@@ -1,5 +1,11 @@
 # config
 
+## 0.5.0
+
+### Minor Changes
+
+-   Pakkeoppdateringer
+
 ## 0.4.2
 
 ### Patch Changes
