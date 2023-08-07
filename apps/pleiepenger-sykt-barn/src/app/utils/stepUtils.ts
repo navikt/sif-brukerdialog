@@ -10,7 +10,7 @@ import {
     opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid,
 } from '../validation/stepValidations';
-import { erAnsattISøknadsperiode } from './ansattUtils';
+import { erAnsattISøknadsperiode } from './arbeidUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
 import { isAvailable } from './routeUtils';
 import { erSNISøknadsperiode } from './selvstendigUtils';

@@ -4,13 +4,9 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { OpenDateRange } from '../../../types';
-import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import { ArbeidsukerTimerSøknadsdata } from '../../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
-import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
-import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
-import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 
 export enum ArbeidsperiodeIForholdTilSøknadsperiode {
     'starterIPerioden' = 'starterIPerioden',
@@ -73,37 +69,4 @@ export const getArbeidsdagerIUkeTekst = ({ from, to }: DateRange): string => {
         default:
             return `${fraDag} til ${tilDag}`;
     }
-};
-
-export const harArbeidIPerioden = (arbeidssituasjon?: ArbeidssituasjonSøknadsdata): boolean => {
-    if (!arbeidssituasjon) {
-        return false;
-    }
-    const erAnsattIPerioden = arbeidssituasjon.arbeidsgivere.some(
-        (a) => a.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode
-    );
-    const erFrilanserIPerioden = arbeidssituasjon.frilans?.harInntektSomFrilanser === true;
-    const erSelvstendigIPerioden = arbeidssituasjon.selvstendig?.erSN === true;
-    return erAnsattIPerioden || erFrilanserIPerioden || erSelvstendigIPerioden;
-};
-
-export const harFraværFraJobb = (arbeidstid: ArbeidstidSøknadsdata | undefined): boolean => {
-    if (!arbeidstid) {
-        return false;
-    }
-
-    const harFraværSomAnsatt = Array.from(arbeidstid.arbeidsgivere).some((item) => {
-        return item[1].type !== ArbeidIPeriodeType.arbeiderVanlig;
-    });
-
-    const harFraværFraFrilansarbeid =
-        arbeidstid.frilansarbeid !== undefined && arbeidstid.frilansarbeid?.type !== ArbeidIPeriodeType.arbeiderVanlig;
-
-    const harFraværFraHonorararbeid =
-        arbeidstid.honorararbeid !== undefined && arbeidstid.honorararbeid?.type !== ArbeidIPeriodeType.arbeiderVanlig;
-
-    const harFraværSomSelvstendig =
-        arbeidstid.selvstendig !== undefined && arbeidstid.selvstendig?.type !== ArbeidIPeriodeType.arbeiderVanlig;
-
-    return harFraværSomAnsatt || harFraværFraFrilansarbeid || harFraværFraHonorararbeid || harFraværSomSelvstendig;
 };

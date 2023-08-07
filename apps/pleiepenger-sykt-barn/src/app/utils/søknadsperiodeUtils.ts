@@ -7,9 +7,6 @@ dayjs.extend(isSameOrAfter);
 export const søkerNoeFremtid = (søknadsperiode: DateRange): boolean => {
     return dayjs(søknadsperiode.to).isSameOrAfter(dayjs(), 'day');
 };
-export const søkerNoeFortid = (søknadsperiode: DateRange): boolean => {
-    return dayjs(søknadsperiode.from).isBefore(dayjs(), 'day');
-};
 
 export const søkerKunFremtid = (søknadsperiode: DateRange): boolean => {
     if (dayjs(søknadsperiode.from).isSame(dayjs(), 'day') || dayjs(søknadsperiode.from).isAfter(dayjs(), 'day')) {

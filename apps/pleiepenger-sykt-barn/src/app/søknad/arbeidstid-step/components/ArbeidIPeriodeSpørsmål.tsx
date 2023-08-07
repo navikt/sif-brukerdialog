@@ -13,7 +13,7 @@ import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import { getArbeidstidSpørsmålstekst } from '../utils/arbeidIPeriodeTekstUtils';
-import { skalSvarePåOmEnJobberLiktIPerioden } from '../utils/arbeidstidUtils';
+import { skalSvarePåOmEnJobberLiktIPerioden } from '../utils/arbeidstidStepUtils';
 import {
     getArbeidIPeriodeArbeiderIPeriodenValidator,
     getArbeidIPeriodeErLiktHverUkeValidator,

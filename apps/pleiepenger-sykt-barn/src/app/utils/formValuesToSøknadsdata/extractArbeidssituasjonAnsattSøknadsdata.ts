@@ -5,7 +5,7 @@ import {
     ArbeidssituasjonAnsattSøknadsdata,
     ArbeidssituasjonAnsattType,
 } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
-import { getPeriodeSomAnsattInnenforPeriode } from '../ansattUtils';
+import { getPeriodeSomAnsattInnenforPeriode } from '../arbeidUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonAnsattSøknadsdata = (

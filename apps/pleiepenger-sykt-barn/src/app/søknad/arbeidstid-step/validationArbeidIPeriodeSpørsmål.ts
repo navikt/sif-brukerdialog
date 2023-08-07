@@ -12,7 +12,7 @@ import { getArbeidstidFastProsentValidator } from '../../local-sif-common-pleiep
 import { ArbeidIPeriodeFormField } from '../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../types/ArbeidsukeInfo';
 import { ArbeidsaktivitetType } from './ArbeidstidStep';
-import { getArbeidsdagerIUkeTekst } from './utils/arbeidstidUtils';
+import { getArbeidsdagerIUkeTekst } from './utils/arbeidstidStepUtils';
 
 const getErrorIntlKey = (field: ArbeidIPeriodeFormField, aktivitetType: ArbeidsaktivitetType, errorKey: string) =>
     `arbeidIPeriode.validation.${aktivitetType}.${field}.${errorKey}`;

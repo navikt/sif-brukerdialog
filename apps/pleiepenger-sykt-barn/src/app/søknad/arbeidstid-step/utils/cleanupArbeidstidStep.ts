@@ -7,7 +7,7 @@ import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import { ArbeidssituasjonAnsattType } from '../../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { getArbeidsukeKey } from '../components/ArbeidstidEnkeltuker';
-import { getArbeidsukerIPerioden } from './arbeidstidUtils';
+import { getArbeidsukerIPerioden } from './arbeidstidStepUtils';
 
 export const cleanupArbeidsuker = (
     periode: DateRange,

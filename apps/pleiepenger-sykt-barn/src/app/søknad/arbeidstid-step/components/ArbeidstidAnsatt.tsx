@@ -5,7 +5,7 @@ import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleie
 import { Arbeidsgiver } from '../../../types';
 import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { SøknadFormField } from '../../../types/SøknadFormValues';
-import { getPeriodeSomAnsattInnenforPeriode } from '../../../utils/ansattUtils';
+import { getPeriodeSomAnsattInnenforPeriode } from '../../../utils/arbeidUtils';
 import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';

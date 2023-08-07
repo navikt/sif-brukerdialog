@@ -13,6 +13,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-section/SummarySection';
@@ -32,6 +33,7 @@ import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
 import appSentryLogger from '../../utils/appSentryLogger';
+import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
 import { navigateTo, relocateToLoginPage } from '../../utils/navigationUtils';
 import { getApiDataFromSøknadsdata } from '../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
@@ -41,6 +43,7 @@ import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
 import { getSøknadStepConfig } from '../søknadStepConfig';
 import ApiValidationSummary from './api-validation-summary/ApiValidationSummary';
+import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
@@ -50,9 +53,6 @@ import {
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
 import './oppsummeringStep.less';
-import { LoadingPage } from '@navikt/sif-common-soknad-ds';
-import { harArbeidIPerioden, harFraværFraJobb } from '../arbeidstid-step/utils/arbeidstidUtils';
-import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 
 interface Props {
     values: SøknadFormValues;

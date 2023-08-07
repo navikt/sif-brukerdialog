@@ -13,7 +13,7 @@ import {
     ArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsukerIPerioden,
-} from '../utils/arbeidstidUtils';
+} from '../utils/arbeidstidStepUtils';
 
 export const getArbeidsukeKey = (week: ArbeidsukeInfo): string => {
     return `${dateRangeToISODateRange(week.periode)}`;

@@ -48,6 +48,7 @@ export const erFrilanserISøknadsperiode = (
     }
     return false;
 };
+
 /**
  *
  * @param periode
@@ -83,26 +84,7 @@ export const getPeriodeSomFrilanserInnenforPeriode = (
     };
 };
 
-export const getPeriodeSomFrilanserInnenforSøknadsperiode = (
-    søknadsperiode: DateRange,
-    startdato: Date,
-    sluttdato?: Date
-): DateRange | undefined => {
-    if (erFrilanserITidsrom(søknadsperiode, startdato, sluttdato) === false) {
-        return undefined;
-    }
-    const fromDate: Date = dayjs.max([dayjs(søknadsperiode.from), dayjs(startdato)]).toDate();
-    const toDate: Date = sluttdato
-        ? dayjs.min([dayjs(søknadsperiode.to), dayjs(sluttdato)]).toDate()
-        : søknadsperiode.to;
-
-    return {
-        from: fromDate,
-        to: toDate,
-    };
-};
-
-export const kunHonorararbeidUtenNormalArbeidstid = (frilansType?: Frilanstype[], misterHonorar?: YesOrNo) =>
+const kunHonorararbeidUtenNormalArbeidstid = (frilansType?: Frilanstype[], misterHonorar?: YesOrNo) =>
     frilansType &&
     frilansType.length === 1 &&
     frilansType.some((type) => type === Frilanstype.HONORARARBEID) &&
