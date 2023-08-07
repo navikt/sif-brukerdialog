@@ -9,7 +9,7 @@
     "dependencies": {
         "@devexperts/remote-data-ts": "2.1.1",
         "@formatjs/intl-pluralrules": "5.2.4",
-        "@navikt/ds-css": "4.8.0",
+        "@navikt/ds-css": "4.9.0",
         "@navikt/ds-datepicker": "4.2.0",
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "4.8.0",
