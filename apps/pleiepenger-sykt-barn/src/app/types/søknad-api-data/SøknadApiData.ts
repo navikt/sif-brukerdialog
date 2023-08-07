@@ -5,13 +5,13 @@ import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/lib/forms/ut
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '..';
-import { ArbeidsgiverApiData } from './ArbeidsgiverApiData';
+import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
 import { FrilansApiData } from './FrilansApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
 import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
 
 export * from './ArbeidIPeriodeApiData';
-export * from './ArbeidsgiverApiData';
+export * from './ArbeidsgiverAnsattApiData';
 export * from './NormalarbeidstidApiData';
 export * from './ArbeidsforholdApiData';
 export * from './SelvstendigApiData';
@@ -161,7 +161,7 @@ export interface SøknadApiData {
     omsorgstilbud?: OmsorgstilbudApiData;
     nattevåk?: NattevåkApiData;
     beredskap?: BeredskapApiData;
-    arbeidsgivere: ArbeidsgiverApiData[];
+    arbeidsgivere: ArbeidsgiverAnsattApiData[];
     frilans: FrilansApiData;
     stønadGodtgjørelse: StønadGodtgjørelseApiData;
     selvstendigNæringsdrivende: SelvstendigApiData;

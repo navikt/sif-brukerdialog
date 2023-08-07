@@ -1,5 +1,5 @@
 import { dateToISODate, ISODate } from '@navikt/sif-common-utils/lib';
-import { ArbeidsgiverApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { ArbeidsgiverAnsattApiData } from '../../types/søknad-api-data/SøknadApiData';
 import {
     ArbeidssituasjonAnsattSøknadsdata,
     ArbeidssituasjonAnsattType,
@@ -13,14 +13,13 @@ export const dateToISODateOrUndefined = (date?: Date): ISODate | undefined => (d
 export const getArbeidsgiverApiDataFromSøknadsdata = (
     arbeidssituasjon: ArbeidssituasjonAnsattSøknadsdata,
     arbeidIPeriode?: ArbeidIPeriodeSøknadsdata
-): ArbeidsgiverApiData => {
+): ArbeidsgiverAnsattApiData => {
     const { arbeidsgiver } = arbeidssituasjon;
 
     if (arbeidssituasjon.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode) {
         const { arbeidsgiver } = arbeidssituasjon;
         return {
             erAnsatt: arbeidssituasjon.type === 'sluttetISøknadsperiode' ? false : true,
-            type: arbeidsgiver.type,
             navn: arbeidsgiver.navn,
             offentligIdent: arbeidsgiver.offentligIdent,
             organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
@@ -37,7 +36,6 @@ export const getArbeidsgiverApiDataFromSøknadsdata = (
     }
     return {
         erAnsatt: false,
-        type: arbeidsgiver.type,
         navn: arbeidsgiver.navn,
         offentligIdent: arbeidsgiver.offentligIdent,
         organisasjonsnummer: arbeidsgiver.organisasjonsnummer,

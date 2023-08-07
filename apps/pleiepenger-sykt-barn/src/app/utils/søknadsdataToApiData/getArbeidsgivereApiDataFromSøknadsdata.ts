@@ -1,4 +1,4 @@
-import { ArbeidsgiverApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { ArbeidsgiverAnsattApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { ArbeidssituasjonAnsattSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { getArbeidsgiverApiDataFromSøknadsdata } from './getArbeidsgiverApiDataFromSøknadsdata';
@@ -6,11 +6,11 @@ import { getArbeidsgiverApiDataFromSøknadsdata } from './getArbeidsgiverApiData
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     arbeidssituasjoner: ArbeidssituasjonAnsattSøknadsdata[] = [],
     arbeidstid: ArbeidstidSøknadsdata | undefined
-): ArbeidsgiverApiData[] => {
+): ArbeidsgiverAnsattApiData[] => {
     if (arbeidssituasjoner.length === 0) {
         return [];
     }
-    const arbeidsgivereApiData: ArbeidsgiverApiData[] = [];
+    const arbeidsgivereApiData: ArbeidsgiverAnsattApiData[] = [];
     arbeidssituasjoner.forEach((arbeidssituasjon) => {
         const arbeidIPeriode = arbeidstid?.arbeidsgivere.get(arbeidssituasjon.arbeidsgiver.id);
         arbeidsgivereApiData.push(getArbeidsgiverApiDataFromSøknadsdata(arbeidssituasjon, arbeidIPeriode));

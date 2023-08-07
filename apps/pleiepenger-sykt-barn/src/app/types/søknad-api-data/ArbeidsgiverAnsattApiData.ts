@@ -1,9 +1,7 @@
 import { ISODate } from '@navikt/sif-common-utils/lib';
-import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { ArbeidsforholdApiData } from './ArbeidsforholdApiData';
 
-export interface ArbeidsgiverApiData {
-    type: ArbeidsgiverType;
+export interface ArbeidsgiverAnsattApiData {
     navn: string;
     organisasjonsnummer?: string;
     offentligIdent?: string;

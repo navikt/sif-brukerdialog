@@ -1,13 +1,11 @@
 import { decimalDurationToISODuration } from '@navikt/sif-common-utils/lib';
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
-import { ArbeidsgiverType } from '../../types/Arbeidsgiver';
-import { Søkerdata } from '../../types/Søkerdata';
-import { ArbeidsgiverApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { getKvitteringInfoFromApiData, KvitteringApiData } from '../kvitteringUtils';
 import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
+import { Søkerdata } from '../../types/Søkerdata';
+import { ArbeidsgiverAnsattApiData } from '../../types/søknad-api-data/SøknadApiData';
+import { getKvitteringInfoFromApiData, KvitteringApiData } from '../kvitteringUtils';
 
-const arbeidsgiverApiData: ArbeidsgiverApiData = {
-    type: ArbeidsgiverType.ORGANISASJON,
+const arbeidsgiverApiData: ArbeidsgiverAnsattApiData = {
     navn: 'abc',
     organisasjonsnummer: '213',
     erAnsatt: true,
@@ -42,7 +40,7 @@ describe('kvitteringUtils', () => {
             expect(result).toBeUndefined();
         });
         it('returnerer undefined dersom søker kun har arbeidsgivere hvor en sluttet før søknadsperiode ', () => {
-            const arbeidsgiver: ArbeidsgiverApiData = {
+            const arbeidsgiver: ArbeidsgiverAnsattApiData = {
                 ...arbeidsgiverApiData,
                 erAnsatt: false,
                 sluttetFørSøknadsperiode: true,
@@ -51,13 +49,13 @@ describe('kvitteringUtils', () => {
             expect(result).toBeUndefined();
         });
         it('returnerer kun arbeidsgivere hvor søker ikke sluttet før søknadsperiode ', () => {
-            const arbeidsgiver1: ArbeidsgiverApiData = {
+            const arbeidsgiver1: ArbeidsgiverAnsattApiData = {
                 ...arbeidsgiverApiData,
                 organisasjonsnummer: '1',
                 erAnsatt: false,
                 sluttetFørSøknadsperiode: true,
             };
-            const arbeidsgiver2: ArbeidsgiverApiData = {
+            const arbeidsgiver2: ArbeidsgiverAnsattApiData = {
                 ...arbeidsgiverApiData,
                 organisasjonsnummer: '2',
                 erAnsatt: false,
@@ -75,7 +73,7 @@ describe('kvitteringUtils', () => {
                     },
                 },
             };
-            const arbeidsgiver3: ArbeidsgiverApiData = {
+            const arbeidsgiver3: ArbeidsgiverAnsattApiData = {
                 ...arbeidsgiverApiData,
                 organisasjonsnummer: '3',
                 erAnsatt: true,
@@ -92,7 +90,7 @@ describe('kvitteringUtils', () => {
                     },
                 },
             };
-            const arbeidsgiver4: ArbeidsgiverApiData = {
+            const arbeidsgiver4: ArbeidsgiverAnsattApiData = {
                 ...arbeidsgiverApiData,
                 organisasjonsnummer: '4',
                 erAnsatt: false,

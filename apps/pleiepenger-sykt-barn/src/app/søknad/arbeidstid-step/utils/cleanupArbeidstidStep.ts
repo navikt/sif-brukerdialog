@@ -9,11 +9,7 @@ import { ArbeidssituasjonSøknadsdata } from '../../../types/søknadsdata/Arbeid
 import { getArbeidsukeKey } from '../components/ArbeidstidEnkeltuker';
 import { getArbeidsukerIPerioden } from './arbeidstidStepUtils';
 
-export const cleanupArbeidsuker = (
-    periode: DateRange,
-    arbeidsuker: ArbeidsukerFormValues,
-    timerEllerProsent: TimerEllerProsent
-): ArbeidsukerFormValues => {
+export const cleanupArbeidsuker = (periode: DateRange, arbeidsuker: ArbeidsukerFormValues): ArbeidsukerFormValues => {
     const cleanedArbeidsuker: ArbeidsukerFormValues = {};
     const arbeidsukerIPerioden = getArbeidsukerIPerioden(periode);
     arbeidsukerIPerioden.forEach((periode) => {
@@ -21,7 +17,7 @@ export const cleanupArbeidsuker = (
         if (arbeidsuker[key]) {
             const { snittTimerPerUke } = arbeidsuker[key];
             cleanedArbeidsuker[key] = {
-                snittTimerPerUke: timerEllerProsent === TimerEllerProsent.TIMER ? snittTimerPerUke : undefined,
+                snittTimerPerUke,
             };
         }
     });
@@ -56,7 +52,7 @@ export const cleanupArbeidIPeriode = (
             prosentAvNormalt: undefined,
             snittTimerPerUke: undefined,
             arbeidsuker: formValues.arbeidsuker
-                ? cleanupArbeidsuker(arbeidsperiode, formValues.arbeidsuker, TimerEllerProsent.TIMER)
+                ? cleanupArbeidsuker(arbeidsperiode, formValues.arbeidsuker)
                 : undefined,
         };
     }
