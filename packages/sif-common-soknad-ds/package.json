@@ -24,7 +24,7 @@
         "@formatjs/intl-pluralrules": "5.2.4",
         "@navikt/appstatus-react-ds": "*",
         "@navikt/ds-css": "4.8.0",
-        "@navikt/ds-react": "4.8.0",
+        "@navikt/ds-react": "4.9.0",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
         "@navikt/sif-common-sentry": "*",
