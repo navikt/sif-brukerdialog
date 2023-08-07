@@ -1,18 +1,11 @@
 import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-section/SummarySection';
-import { DateRange, ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import { ArbeidsgiverType } from '../../../types';
+import { DateRange } from '@navikt/sif-common-utils';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
-import {
-    ArbeidsforholdApiData,
-    ArbeidsgiverApiData,
-    FrilansApiType,
-    SøknadApiData,
-} from '../../../types/søknad-api-data/SøknadApiData';
+import { ArbeidsforholdApiData, FrilansApiType, SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import ArbeidIPeriodeSummaryItem, { ArbeidIPeriodenSummaryItemType } from './ArbeidIPeriodenSummaryItem';
 
 interface Props {
@@ -25,42 +18,6 @@ export interface ArbeidIPeriodenFrilansSummaryItemType extends ArbeidsforholdApi
     tittel: string;
 }
 
-const getTittel = (intl: IntlShape, arbeidsgiver: ArbeidsgiverApiData, periode: DateRange) => {
-    switch (arbeidsgiver.type) {
-        case ArbeidsgiverType.ORGANISASJON:
-            return intlHelper(intl, 'arbeidsgiver.tittel', {
-                navn: arbeidsgiver.navn,
-                organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
-            });
-        case ArbeidsgiverType.PRIVATPERSON:
-            return arbeidsgiver.navn;
-        case ArbeidsgiverType.FRILANSOPPDRAG:
-            const startdato = arbeidsgiver.ansattFom && ISODateToDate(arbeidsgiver.ansattFom);
-            const sluttdato = arbeidsgiver.ansattTom && ISODateToDate(arbeidsgiver.ansattTom);
-
-            if (startdato || sluttdato) {
-                const intlValues = {
-                    hvor: arbeidsgiver.navn,
-                    startdato: startdato ? prettifyDateExtended(startdato) : undefined,
-                    sluttdato: sluttdato ? prettifyDateExtended(sluttdato) : undefined,
-                };
-                const visStartdato = startdato;
-                const visSluttdato = sluttdato && dayjs(sluttdato).isBefore(periode.to, 'day');
-
-                if (visStartdato && visSluttdato) {
-                    return intlHelper(intl, 'frilans.tittel.startOgSlutt', intlValues);
-                }
-                if (visStartdato) {
-                    return intlHelper(intl, 'frilans.tittel.start', intlValues);
-                }
-                if (visSluttdato) {
-                    return intlHelper(intl, 'frilans.tittel.slutt', intlValues);
-                }
-            }
-            return intlHelper(intl, 'frilans.tittel');
-    }
-};
-
 const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
     søknadsperiode,
@@ -72,7 +29,10 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
         if (arbeidsgiverApiData.arbeidsforhold) {
             summaryItem.push({
                 ...arbeidsgiverApiData.arbeidsforhold,
-                tittel: getTittel(intl, arbeidsgiverApiData, søknadsperiode),
+                tittel: intlHelper(intl, 'arbeidsgiver.tittel', {
+                    navn: arbeidsgiverApiData.navn,
+                    organisasjonsnummer: arbeidsgiverApiData.organisasjonsnummer,
+                }),
             });
         }
     });
@@ -120,9 +80,9 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
         <>
             {summaryItem.length > 0 && (
                 <SummarySection header={intlHelper(intl, 'oppsummering.arbeidIPeriode.jobbIPerioden.header')}>
-                    {summaryItem.map((arbeidsforhold) => (
-                        <SummaryBlock header={arbeidsforhold.tittel} key={arbeidsforhold.tittel}>
-                            <ArbeidIPeriodeSummaryItem periode={søknadsperiode} arbeidsforhold={arbeidsforhold} />
+                    {summaryItem.map((item) => (
+                        <SummaryBlock header={item.tittel} key={item.tittel}>
+                            <ArbeidIPeriodeSummaryItem periode={søknadsperiode} arbeidIPeriodeSummaryItem={item} />
                         </SummaryBlock>
                     ))}
                 </SummarySection>
