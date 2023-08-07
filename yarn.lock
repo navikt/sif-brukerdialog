@@ -4748,7 +4748,7 @@ __metadata:
     react-router-dom: 6.14.2
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.63.4
+    sass: 1.64.2
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -26008,19 +26008,6 @@ msw@latest:
     sass-embedded:
       optional: true
   checksum: 5d73a428588150f704016aa27397941bb9246cecd2ee083b573e95d969fc080ac6a16f2fe1cc64aca08f6e70da6f3c586ee68f0efc9f527fecc360e5f1c299ec
-  languageName: node
-  linkType: hard
-
-"sass@npm:1.63.4":
-  version: 1.63.4
-  resolution: "sass@npm:1.63.4"
-  dependencies:
-    chokidar: ">=3.0.0 <4.0.0"
-    immutable: ^4.0.0
-    source-map-js: ">=0.6.2 <2.0.0"
-  bin:
-    sass: sass.js
-  checksum: 12bde5beff85a7018157d90c8b9d5aec8b56832f89fcfeca146f10936eecf97e669d22fd41f812b3407ed259bbb114d69c9ecbfc7ee9b15308211fb910cdf5eb
   languageName: node
   linkType: hard
 
