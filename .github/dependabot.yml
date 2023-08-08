@@ -11,7 +11,7 @@ updates:
     groups:
       designsystemet:
         patterns:
-          - "@navikt/ds-"
+          - "@navikt/ds-*"
       react:
         patterns:
           - "react"
