@@ -33,12 +33,12 @@ export const erFrilanserISøknadsperiode = (
         erFortsattFrilanser,
         sluttdato,
         startdato,
-        frilanstyper,
+        frilanstype,
         misterHonorar,
     }: FrilansFormData
 ): boolean => {
     if (erFortsattFrilanser === YesOrNo.YES) {
-        return !kunHonorararbeidUtenNormalArbeidstid(frilanstyper, misterHonorar);
+        return !kunHonorararbeidUtenNormalArbeidstid(frilanstype, misterHonorar);
     }
     const frilansStartdato = datepickerUtils.getDateFromDateString(startdato);
     const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
@@ -84,8 +84,5 @@ export const getPeriodeSomFrilanserInnenforPeriode = (
     };
 };
 
-const kunHonorararbeidUtenNormalArbeidstid = (frilansType?: Frilanstype[], misterHonorar?: YesOrNo) =>
-    frilansType &&
-    frilansType.length === 1 &&
-    frilansType.some((type) => type === Frilanstype.HONORARARBEID) &&
-    misterHonorar === YesOrNo.NO;
+const kunHonorararbeidUtenNormalArbeidstid = (frilanstype?: Frilanstype, misterHonorar?: YesOrNo) =>
+    frilanstype && frilanstype === Frilanstype.HONORAR && misterHonorar === YesOrNo.NO;

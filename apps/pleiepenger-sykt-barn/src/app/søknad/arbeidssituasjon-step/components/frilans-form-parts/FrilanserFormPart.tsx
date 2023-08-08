@@ -2,13 +2,11 @@
 import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import dayjs from 'dayjs';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
 import ConditionalResponsivePanel from '../../../../components/conditional-responsive-panel/ConditionalResponsivePanel';
 import { FrilansFormData, FrilansFormField, Frilanstype } from '../../../../types/FrilansFormData';
 import { SøknadFormValues } from '../../../../types/SøknadFormValues';
-import { erFrilanserISøknadsperiode } from '../../../../utils/frilanserUtils';
 import ErFortsattFrilanserSpørsmål from './spørsmål/ErFortsattFrilanserSpørsmål';
 import FrilansertypeSpørsmål from './spørsmål/FrilansertypeSpørsmål';
 import FrilansNormalarbeidstidSpørsmål from './spørsmål/FrilansNormalarbeidstidSpørsmål';
@@ -18,6 +16,7 @@ import HarHattInntektSomFrilanserSpørsmål from './spørsmål/HarHattInntektSom
 import MisterHonorarSpørsmål from './spørsmål/MisterHonorarSpørsmål';
 import { InfoArbeiderNormaltTimerFrilanser } from '../info/InfoArbeiderNormaltTimerIUken';
 import { ArbeidsforholdFormField } from '../../../../types/ArbeidsforholdFormValues';
+import { Alert } from '@navikt/ds-react';
 
 export const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormData, ValidationError>();
 
@@ -31,75 +30,83 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
     const { values } = useFormikContext<SøknadFormValues>();
     const {
         harHattInntektSomFrilanser,
-        arbeidsforholdFrilansarbeid,
-        arbeidsforholdHonorararbeid,
         misterHonorar,
-        frilanstyper = [],
         erFortsattFrilanser,
-        startdato,
-        sluttdato,
+        // startdato,
+        // sluttdato,
+        frilanstype,
     } = values.frilans;
 
-    const erAktivFrilanserIPerioden = erFrilanserISøknadsperiode(søknadsperiode, values.frilans);
-    const harGyldigStartdato = startdato ? ISODateToDate(startdato) : undefined;
-    const harGyldigSluttdato = sluttdato ? ISODateToDate(sluttdato) : undefined;
+    // const erAktivFrilanserIPerioden = erFrilanserISøknadsperiode(søknadsperiode, values.frilans);
+    // const harGyldigStartdato = startdato ? ISODateToDate(startdato) : undefined;
+    // const harGyldigSluttdato = sluttdato ? ISODateToDate(sluttdato) : undefined;
 
-    const harBesvartSpørsmålOmFortsattFrilanser =
-        erFortsattFrilanser === YesOrNo.YES || erFortsattFrilanser === YesOrNo.NO;
+    // const harBesvartSpørsmålOmFortsattFrilanser =
+    //     erFortsattFrilanser === YesOrNo.YES || erFortsattFrilanser === YesOrNo.NO;
 
-    const sluttetFørSøknadsperiode =
-        erFortsattFrilanser === YesOrNo.NO &&
-        harGyldigSluttdato &&
-        dayjs(sluttdato).isBefore(søknadsperiode.from, 'day');
+    // const sluttetFørSøknadsperiode =
+    //     erFortsattFrilanser === YesOrNo.NO &&
+    //     harGyldigSluttdato &&
+    //     dayjs(sluttdato).isBefore(søknadsperiode.from, 'day');
 
-    const harFrilansarbeid = frilanstyper?.some((type) => type === Frilanstype.FRILANSARBEID);
-    const harHonorararbeid = frilanstyper?.some((type) => type === Frilanstype.HONORARARBEID);
+    // const harFrilansarbeid = frilanstyper?.some((type) => type === Frilanstype.FRILANSARBEID);
+    // const harHonorararbeid = frilanstyper?.some((type) => type === Frilanstype.HONORARARBEID);
 
-    const visSpørsmålOmArbeidsforhold =
-        harGyldigStartdato &&
-        harBesvartSpørsmålOmFortsattFrilanser &&
-        sluttetFørSøknadsperiode === false &&
-        erAktivFrilanserIPerioden;
+    // const visSpørsmålOmArbeidsforhold =
+    //     harGyldigStartdato &&
+    //     harBesvartSpørsmålOmFortsattFrilanser &&
+    //     sluttetFørSøknadsperiode === false &&
+    //     erAktivFrilanserIPerioden;
 
-    const visNormalarbeidstidFrilansarbeid = visSpørsmålOmArbeidsforhold && harFrilansarbeid;
-    const visNormalarbeidstidHonorararbeid =
-        visSpørsmålOmArbeidsforhold && harHonorararbeid && misterHonorar === YesOrNo.YES;
+    // const visNormalarbeidstidFrilansarbeid = visSpørsmålOmArbeidsforhold && harFrilansarbeid;
+    // const visNormalarbeidstidHonorararbeid =
+    //     visSpørsmålOmArbeidsforhold && harHonorararbeid && misterHonorar === YesOrNo.YES;
 
     const visNormalarbeidstidSpørsmål = () => {
-        if (!frilanstyper || frilanstyper.length === 0) {
-            return false;
+        switch (frilanstype) {
+            case Frilanstype.FRILANS:
+            case Frilanstype.FRILANS_HONORAR:
+                return true;
+            case Frilanstype.HONORAR:
+                return misterHonorar === YesOrNo.YES;
+            default:
+                return false;
         }
-        if (frilanstyper.length === 1 && harHonorararbeid && misterHonorar === YesOrNo.YES) {
-            return true;
-        }
-        if (!harHonorararbeid) {
-            return true;
-        } else if (harHonorararbeid && frilanstyper.length > 1 && misterHonorar !== undefined) {
-            return true;
-        }
-        return false;
+
+        // if (!frilanstyper || frilanstyper.length === 0) {
+        //     return false;
+        // }
+        // if (frilanstyper.length === 1 && harHonorararbeid && misterHonorar === YesOrNo.YES) {
+        //     return true;
+        // }
+        // if (!harHonorararbeid) {
+        //     return true;
+        // } else if (harHonorararbeid && frilanstyper.length > 1 && misterHonorar !== undefined) {
+        //     return true;
+        // }
+        // return false;
     };
 
-    const getFrilanstypeTekstKey = () => {
-        if (frilanstyper === undefined || frilanstyper.length === 0) {
-            return '';
-        }
-        const erFrilanser = frilanstyper.some((type) => type === Frilanstype.FRILANSARBEID);
-        const erVerv = frilanstyper.some((type) => type === Frilanstype.HONORARARBEID) && misterHonorar === YesOrNo.YES;
+    // const getFrilanstypeTekstKey = () => {
+    //     if (frilanstyper === undefined || frilanstyper.length === 0) {
+    //         return '';
+    //     }
+    //     const erFrilanser = frilanstyper.some((type) => type === Frilanstype.FRILANSARBEID);
+    //     const erVerv = frilanstyper.some((type) => type === Frilanstype.HONORARARBEID) && misterHonorar === YesOrNo.YES;
 
-        if (erFrilanser && !erVerv) {
-            return 'frilans';
-        }
-        if (erVerv && !erFrilanser) {
-            return 'verv';
-        }
-        if (erVerv && erFrilanser) {
-            return 'frilansVerv';
-        }
-        return '';
-    };
+    //     if (erFrilanser && !erVerv) {
+    //         return 'frilans';
+    //     }
+    //     if (erVerv && !erFrilanser) {
+    //         return 'verv';
+    //     }
+    //     if (erVerv && erFrilanser) {
+    //         return 'frilansVerv';
+    //     }
+    //     return '';
+    // };
 
-    const frilanstypeTekstKey = getFrilanstypeTekstKey();
+    // const frilanstypeTekstKey = `${frilanstype}`;
 
     return (
         <>
@@ -112,25 +119,43 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                         border={true}>
                         <FrilansertypeSpørsmål />
 
-                        {harHonorararbeid && (
+                        {values.frilans.frilanstype === Frilanstype.HONORAR && (
                             <FormBlock>
                                 <MisterHonorarSpørsmål misterHonorar={misterHonorar} />
                             </FormBlock>
                         )}
 
-                        {visNormalarbeidstidSpørsmål() && (
+                        {/* {frilanstype === TypeFrilanser.FRILANS && <>sdfsdf</>} */}
+                        {frilanstype === Frilanstype.FRILANS_HONORAR && (
+                            <FormBlock>
+                                <Alert variant="info">
+                                    Honorar for verv regnes som det samme som å jobbe som frilanser, og skal da tas med
+                                    når du svarer på spørsmålene nedenfor.
+                                </Alert>
+                            </FormBlock>
+                        )}
+                        {frilanstype === Frilanstype.HONORAR && misterHonorar === YesOrNo.YES && (
+                            <FormBlock>
+                                <Alert variant="info">
+                                    Når du mottar honorar for verv regnes du som frilanser, og når du mister honorar i
+                                    perioden, trenger vi å stille deg noen flere spørsmål om deg som frilanser.
+                                </Alert>
+                            </FormBlock>
+                        )}
+
+                        {frilanstype && visNormalarbeidstidSpørsmål() && (
                             <>
                                 <FormBlock>
                                     <FrilansStartdatoSpørsmål
                                         søknadsdato={søknadsdato}
                                         søknadsperiode={søknadsperiode}
-                                        frilansTypeTekst={frilanstypeTekstKey}
+                                        frilanstype={frilanstype}
                                         startdatoValue={values.frilans.startdato}
                                     />
                                 </FormBlock>
                                 <FormBlock>
                                     <ErFortsattFrilanserSpørsmål
-                                        frilansTypeTekst={frilanstypeTekstKey}
+                                        frilanstype={frilanstype}
                                         erFortsattFrilanserValue={values.frilans.erFortsattFrilanser}
                                     />
                                 </FormBlock>
@@ -139,58 +164,28 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                                         <FrilansSluttdatoSpørsmål
                                             søknadsdato={søknadsdato}
                                             søknadsperiode={søknadsperiode}
-                                            frilanstypeTekstKey={frilanstypeTekstKey}
+                                            frilanstype={frilanstype}
                                             startdatoValue={values.frilans.startdato}
                                             sluttdatoValue={values.frilans.sluttdato}
                                         />
                                     </FormBlock>
                                 )}
-                                {visNormalarbeidstidFrilansarbeid && (
-                                    <FormBlock>
-                                        <FrilansNormalarbeidstidSpørsmål
-                                            fieldName={
-                                                `${FrilansFormField.arbeidsforholdFrilansarbeid}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
-                                            }
-                                            frilanstype={Frilanstype.FRILANSARBEID}
-                                            arbeidsforhold={arbeidsforholdFrilansarbeid || {}}
-                                            erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
-                                            frilanstyper={frilanstyper}
-                                            misterHonorar={misterHonorar}
-                                            mottarStønadGodtgjørelse={
-                                                values.stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES
-                                            }
-                                            description={
-                                                <InfoArbeiderNormaltTimerFrilanser
-                                                    frilanstyper={frilanstyper}
-                                                    misterHonorar={misterHonorar}
-                                                />
-                                            }
-                                        />
-                                    </FormBlock>
-                                )}
-                                {visNormalarbeidstidHonorararbeid && (
-                                    <FormBlock>
-                                        <FrilansNormalarbeidstidSpørsmål
-                                            fieldName={
-                                                `${FrilansFormField.arbeidsforholdHonorararbeid}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
-                                            }
-                                            frilanstype={Frilanstype.HONORARARBEID}
-                                            arbeidsforhold={arbeidsforholdHonorararbeid || {}}
-                                            erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
-                                            frilanstyper={frilanstyper}
-                                            misterHonorar={misterHonorar}
-                                            mottarStønadGodtgjørelse={
-                                                values.stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES
-                                            }
-                                            description={
-                                                <InfoArbeiderNormaltTimerFrilanser
-                                                    frilanstyper={frilanstyper}
-                                                    misterHonorar={misterHonorar}
-                                                />
-                                            }
-                                        />
-                                    </FormBlock>
-                                )}
+
+                                <FormBlock>
+                                    <FrilansNormalarbeidstidSpørsmål
+                                        fieldName={
+                                            `${FrilansFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
+                                        }
+                                        frilanstype={frilanstype}
+                                        arbeidsforhold={values.frilans.arbeidsforhold || {}}
+                                        erAktivtArbeidsforhold={erFortsattFrilanser === YesOrNo.YES}
+                                        misterHonorar={misterHonorar}
+                                        mottarStønadGodtgjørelse={
+                                            values.stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES
+                                        }
+                                        description={<InfoArbeiderNormaltTimerFrilanser frilanstype={frilanstype} />}
+                                    />
+                                </FormBlock>
                             </>
                         )}
                     </ConditionalResponsivePanel>

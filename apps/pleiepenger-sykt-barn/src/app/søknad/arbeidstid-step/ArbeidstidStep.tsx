@@ -13,9 +13,8 @@ import { søkerNoeFremtid } from '../../utils/søknadsperiodeUtils';
 import SøknadFormStep from '../SøknadFormStep';
 import { useSøknadsdataContext } from '../SøknadsdataContext';
 import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
-import ArbeidstidFrilansarbeid from './components/ArbeidstidFrilansarbeid';
-import ArbeidstidHonorararbeid from './components/ArbeidstidHonorararbeid';
 import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
+import ArbeidstidFrilans from './components/ArbeidstidFrilans';
 
 export enum ArbeidsaktivitetType {
     'ANSATT' = 'ANSATT',
@@ -79,27 +78,12 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
             {frilans &&
                 frilans.harInntektSomFrilanser &&
                 frilans.misterInntektSomFrilanser &&
-                frilans.frilansarbeid && (
+                frilans.normalarbeidstid && (
                     <FormBlock>
-                        <ArbeidstidFrilansarbeid
+                        <ArbeidstidFrilans
                             periode={frilans.periodeSomFrilanserISøknadsperiode}
-                            arbeidIPeriode={values.frilans.arbeidsforholdFrilansarbeid?.arbeidIPeriode}
-                            normalarbeidstid={frilans.frilansarbeid.normalarbeidstid.timerPerUkeISnitt}
-                            søkerFremITid={søkerFremITid}
-                        />
-                    </FormBlock>
-                )}
-
-            {frilans &&
-                frilans.harInntektSomFrilanser &&
-                frilans.misterInntektSomFrilanser &&
-                frilans.honorararbeid &&
-                frilans.honorararbeid.misterHonorar && (
-                    <FormBlock>
-                        <ArbeidstidHonorararbeid
-                            periode={frilans.periodeSomFrilanserISøknadsperiode}
-                            arbeidIPeriode={values.frilans.arbeidsforholdHonorararbeid?.arbeidIPeriode}
-                            normalarbeidstid={frilans.honorararbeid.normalarbeidstid.timerPerUkeISnitt}
+                            arbeidIPeriode={values.frilans.arbeidsforhold?.arbeidIPeriode}
+                            normalarbeidstid={frilans.normalarbeidstid.timerPerUkeISnitt}
                             søkerFremITid={søkerFremITid}
                         />
                     </FormBlock>

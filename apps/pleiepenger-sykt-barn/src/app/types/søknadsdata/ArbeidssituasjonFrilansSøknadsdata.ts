@@ -1,39 +1,29 @@
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { NormalarbeidstidSøknadsdata } from './NormalarbeidstidSøknadsdata';
+import { Frilanstype } from '../FrilansFormData';
 
 type HarIkkeInntektSomFrilanser = {
     harInntektSomFrilanser: false;
 };
 
 type KunHonorarMisterIkkeHonorar = {
+    type: Frilanstype.HONORAR;
     harInntektSomFrilanser: true;
     misterInntektSomFrilanser: false;
-    honorararbeid: {
-        misterHonorar: false;
-    };
+    misterHonorar: false;
 };
 
 type HarInntektSomFrilanser = {
+    type: Frilanstype;
     harInntektSomFrilanser: true;
     misterInntektSomFrilanser: true;
     erFortsattFrilanser: boolean;
+    misterHonorar?: true;
     periodeSomFrilanserISøknadsperiode: DateRange;
     startdato: Date;
     sluttdato?: Date;
-    honorararbeid?: FrilansHonorararbeidArbeidssituasjon;
-    frilansarbeid?: {
-        normalarbeidstid: NormalarbeidstidSøknadsdata;
-    };
+    normalarbeidstid: NormalarbeidstidSøknadsdata;
 };
-
-export type FrilansHonorararbeidArbeidssituasjon =
-    | {
-          misterHonorar: true;
-          normalarbeidstid: NormalarbeidstidSøknadsdata;
-      }
-    | {
-          misterHonorar: false;
-      };
 
 export type ArbeidssituasjonFrilansSøknadsdata =
     | HarIkkeInntektSomFrilanser

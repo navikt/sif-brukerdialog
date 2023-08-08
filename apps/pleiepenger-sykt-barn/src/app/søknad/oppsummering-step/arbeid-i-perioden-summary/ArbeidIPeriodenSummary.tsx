@@ -4,8 +4,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-section/SummarySection';
 import { DateRange } from '@navikt/sif-common-utils';
-import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
-import { ArbeidsforholdApiData, FrilansApiType, SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
+import { ArbeidsforholdApiData, SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import ArbeidIPeriodeSummaryItem, { ArbeidIPeriodenSummaryItemType } from './ArbeidIPeriodenSummaryItem';
 
 interface Props {
@@ -37,36 +36,11 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
         }
     });
 
-    if (
-        frilans.type === FrilansApiType.KUN_FRILANSARBEID ||
-        frilans.type === FrilansApiType.FRILANSARBEID_OG_HONORARARBEID
-    ) {
+    if (frilans.harInntektSomFrilanser && frilans.misterInntektSomFrilanser) {
         summaryItem.push({
-            ...frilans.frilansarbeid.arbeidsforhold,
-            tittel: 'Frilanser',
+            ...frilans.arbeidsforhold,
+            tittel: intlHelper(intl, 'frilans.tittel'),
         });
-    }
-    if (
-        frilans.type === FrilansApiType.KUN_HONORARARBEID_MISTER_HONORAR ||
-        frilans.type === FrilansApiType.FRILANSARBEID_OG_HONORARARBEID
-    ) {
-        if (frilans.honorararbeid.misterHonorar) {
-            summaryItem.push({
-                ...frilans.honorararbeid.arbeidsforhold,
-                tittel: 'Honorar for styreverv/andre små verv',
-                gjelderHonorararbeid: true,
-            });
-        } else
-            summaryItem.push({
-                normalarbeidstid: {
-                    timerPerUkeISnitt: 'PT0H',
-                },
-                arbeidIPeriode: {
-                    type: ArbeidIPeriodeType.arbeiderVanlig,
-                },
-                tittel: 'Honorar for styreverv/andre små verv',
-                gjelderHonorararbeid: true,
-            });
     }
 
     if (selvstendigNæringsdrivende.harInntektSomSelvstendig && selvstendigNæringsdrivende.arbeidsforhold) {

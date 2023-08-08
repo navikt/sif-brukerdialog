@@ -930,9 +930,9 @@
     "validation.frilans.sluttdato.dateIsAfterMax": "Datoen for når du {frilanstyper} kan ikke være etter dagens dato.",
     "validation.frilans.sluttdato.dateIsBeforeMin": "Datoen for når du {frilanstyper} kan ikke være før datoen du startet.",
 
-    "validation.frilans.erFortsattFrilanser.frilans": "jobber som frilanser",
-    "validation.frilans.erFortsattFrilanser.verv": "får honorar fra verv",
-    "validation.frilans.erFortsattFrilanser.frilansVerv": "jobber som frilanser og får honorar fra verv",
+    "validation.frilans.erFortsattFrilanser.FRILANS": "jobber som frilanser",
+    "validation.frilans.erFortsattFrilanser.HONORAR": "får honorar fra verv",
+    "validation.frilans.erFortsattFrilanser.FRILANS_HONORAR": "jobber som frilanser og får honorar fra verv",
     "validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du fortsatt {frilanstyper}.",
 
     "validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du er selvstendig næringsdrivende i perioden du søker for.",

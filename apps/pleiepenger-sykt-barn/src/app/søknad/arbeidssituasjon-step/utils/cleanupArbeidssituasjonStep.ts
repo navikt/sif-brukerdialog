@@ -5,7 +5,6 @@ import { FrilansFormData, Frilanstype } from '../../../types/FrilansFormData';
 import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
 import { StønadGodtgjørelseFormData } from '../../../types/StønadGodtgjørelseFormData';
 import { SøknadFormValues } from '../../../types/SøknadFormValues';
-import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 
 export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormValues): ArbeidsforholdFormValues => {
@@ -25,22 +24,26 @@ export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormVa
     return cleanedArbeidsforhold;
 };
 
-export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, values: FrilansFormData): FrilansFormData => {
+export const cleanupFrilansArbeidssituasjon = (
+    _søknadsperiode: DateRange,
+    values: FrilansFormData
+): FrilansFormData => {
+    /** TODO */
     if (values.harHattInntektSomFrilanser === YesOrNo.NO) {
         return {
             harHattInntektSomFrilanser: YesOrNo.NO,
         };
     }
 
-    const harHonorararbeid = values.frilanstyper?.includes(Frilanstype.HONORARARBEID);
-    const harFrilansarbeid = values.frilanstyper?.includes(Frilanstype.FRILANSARBEID);
-    const misterHonorar = values.misterHonorar === YesOrNo.YES;
+    // const harHonorararbeid = values.frilanstyper?.includes(Frilanstype.HONORARARBEID);
+    // const harFrilansarbeid = values.frilanstyper?.includes(Frilanstype.FRILANSARBEID);
+    // const misterHonorar = values.misterHonorar === YesOrNo.YES;
 
     /** Kun honorararbeid og mister ikke honorar */
-    if (harHonorararbeid && !harFrilansarbeid && !misterHonorar) {
+    if (values.frilanstype === Frilanstype.HONORAR && values.misterHonorar !== YesOrNo.YES) {
         return {
-            frilanstyper: [Frilanstype.HONORARARBEID],
             harHattInntektSomFrilanser: YesOrNo.YES,
+            frilanstype: Frilanstype.HONORAR,
             misterHonorar: YesOrNo.NO,
         };
     }
@@ -48,18 +51,19 @@ export const cleanupFrilansArbeidssituasjon = (søknadsperiode: DateRange, value
     /** Fjern verdier som ikke gjelder gitt svar fra bruker */
     const frilans: FrilansFormData = { ...values };
 
-    if (erFrilanserISøknadsperiode(søknadsperiode, values) === false) {
-        frilans.arbeidsforholdFrilansarbeid = undefined;
-        frilans.arbeidsforholdHonorararbeid = undefined;
-    }
+    /** TODO */
+    // if (erFrilanserISøknadsperiode(søknadsperiode, values) === false) {
+    //     frilans.arbeidsforholdFrilansarbeid = undefined;
+    //     frilans.arbeidsforholdHonorararbeid = undefined;
+    // }
 
-    if (!harHonorararbeid) {
-        frilans.misterHonorar = undefined;
-        frilans.arbeidsforholdHonorararbeid = undefined;
-    }
-    if (!harFrilansarbeid) {
-        frilans.arbeidsforholdFrilansarbeid = undefined;
-    }
+    // if (!harHonorararbeid) {
+    //     frilans.misterHonorar = undefined;
+    //     frilans.arbeidsforholdHonorararbeid = undefined;
+    // }
+    // if (!harFrilansarbeid) {
+    //     frilans.arbeidsforholdFrilansarbeid = undefined;
+    // }
     if (frilans.erFortsattFrilanser === YesOrNo.YES) {
         delete frilans.sluttdato;
     }

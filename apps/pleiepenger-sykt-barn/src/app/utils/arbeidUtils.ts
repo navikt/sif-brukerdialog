@@ -58,16 +58,13 @@ export const harFraværFraJobb = (arbeidstid: ArbeidstidSøknadsdata | undefined
         return item[1].type !== ArbeidIPeriodeType.arbeiderVanlig;
     });
 
-    const harFraværFraFrilansarbeid =
-        arbeidstid.frilansarbeid !== undefined && arbeidstid.frilansarbeid?.type !== ArbeidIPeriodeType.arbeiderVanlig;
-
-    const harFraværFraHonorararbeid =
-        arbeidstid.honorararbeid !== undefined && arbeidstid.honorararbeid?.type !== ArbeidIPeriodeType.arbeiderVanlig;
+    const harFraværSomFrilanser =
+        arbeidstid.frilans !== undefined && arbeidstid.frilans?.type !== ArbeidIPeriodeType.arbeiderVanlig;
 
     const harFraværSomSelvstendig =
         arbeidstid.selvstendig !== undefined && arbeidstid.selvstendig?.type !== ArbeidIPeriodeType.arbeiderVanlig;
 
-    return harFraværSomAnsatt || harFraværFraFrilansarbeid || harFraværFraHonorararbeid || harFraværSomSelvstendig;
+    return harFraværSomAnsatt || harFraværSomFrilanser || harFraværSomSelvstendig;
 };
 
 export const getArbeidsdagerPeriode = ({ from, to }: DateRange): DateRange | undefined => {

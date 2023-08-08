@@ -1,14 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { FrilansFormData, Frilanstype } from '../../types/FrilansFormData';
-import {
-    ArbeidssituasjonFrilansSøknadsdata,
-    FrilansHonorararbeidArbeidssituasjon,
-} from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
+import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
+import { isYesOrNoAnswered } from '../../validation/fieldValidations';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../frilanserUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
-import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/NormalarbeidstidSøknadsdata';
-import { isYesOrNoAnswered } from '../../validation/fieldValidations';
 
 export const extractArbeidssituasjonFrilansSøknadsdata = (
     søknadsperiode: DateRange,
@@ -22,23 +18,14 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
             harInntektSomFrilanser: false,
         };
     }
-    const {
-        erFortsattFrilanser,
-        frilanstyper,
-        arbeidsforholdFrilansarbeid,
-        arbeidsforholdHonorararbeid,
-        misterHonorar,
-    } = formValues;
-    const harFrilansarbeid = frilanstyper?.includes(Frilanstype.FRILANSARBEID);
-    const harHonorararbeid = frilanstyper?.includes(Frilanstype.HONORARARBEID);
+    const { erFortsattFrilanser, frilanstype, arbeidsforhold, misterHonorar } = formValues;
 
-    if (!harFrilansarbeid && harHonorararbeid && misterHonorar === YesOrNo.NO) {
+    if (frilanstype === Frilanstype.HONORAR && misterHonorar === YesOrNo.NO) {
         return {
+            type: frilanstype,
             harInntektSomFrilanser: true,
             misterInntektSomFrilanser: false,
-            honorararbeid: {
-                misterHonorar: false,
-            },
+            misterHonorar: false,
         };
     }
 
@@ -53,51 +40,23 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
         startdato,
         sluttdato
     );
-    if (periodeSomFrilanserISøknadsperiode === undefined) {
+    if (periodeSomFrilanserISøknadsperiode === undefined || !frilanstype) {
         throw 'extractArbeidssituasjonFrilansSøknadsdata: periodeSomFrilanserISøknadsperiode === undefined';
     }
 
-    const normalarbeidstidFrilansarbeid = harFrilansarbeid
-        ? extractNormalarbeidstid(arbeidsforholdFrilansarbeid?.normalarbeidstid)
-        : undefined;
-
-    const normalarbeidstidHonorararbeid = harHonorararbeid
-        ? extractNormalarbeidstid(arbeidsforholdHonorararbeid?.normalarbeidstid)
-        : undefined;
-
+    const normalarbeidstid = extractNormalarbeidstid(arbeidsforhold?.normalarbeidstid);
+    if (!normalarbeidstid) {
+        throw '';
+    }
     return {
+        type: frilanstype,
         harInntektSomFrilanser: true,
         misterInntektSomFrilanser: true,
+        misterHonorar: misterHonorar === YesOrNo.YES ? true : undefined,
         erFortsattFrilanser: erFortsattFrilanser === YesOrNo.YES,
         startdato,
         sluttdato,
         periodeSomFrilanserISøknadsperiode,
-        frilansarbeid: normalarbeidstidFrilansarbeid
-            ? {
-                  normalarbeidstid: normalarbeidstidFrilansarbeid,
-              }
-            : undefined,
-        honorararbeid: harHonorararbeid ? getHonorararbeid(misterHonorar, normalarbeidstidHonorararbeid) : undefined,
-    };
-};
-
-const getHonorararbeid = (
-    misterHonorar?: YesOrNo,
-    normalarbeidstid?: NormalarbeidstidSøknadsdata
-): FrilansHonorararbeidArbeidssituasjon | undefined => {
-    if (!misterHonorar || !isYesOrNoAnswered(misterHonorar)) {
-        throw 'getHonorararbeid: misterHonorar is undefined or unanswered';
-    }
-    if (misterHonorar === YesOrNo.NO) {
-        return {
-            misterHonorar: false,
-        };
-    }
-    if (normalarbeidstid === undefined) {
-        throw 'getHonorararbeid: normalarbeidstid is undefined';
-    }
-    return {
-        misterHonorar: true,
         normalarbeidstid,
     };
 };

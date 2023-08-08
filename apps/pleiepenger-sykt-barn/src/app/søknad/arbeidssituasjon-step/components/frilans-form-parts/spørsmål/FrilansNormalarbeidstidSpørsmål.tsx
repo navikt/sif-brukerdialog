@@ -14,7 +14,6 @@ interface Props {
     arbeidsforhold: ArbeidsforholdFrilanserFormValues;
     erAktivtArbeidsforhold: boolean;
     frilanstype: Frilanstype;
-    frilanstyper: Frilanstype[];
     misterHonorar?: YesOrNo;
     mottarStønadGodtgjørelse?: boolean;
     inputTestId?: string;
@@ -46,7 +45,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     return (
         <FormComponents.NumberInput
             label={intlHelper(intl, `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.${frilanstype}.spm`, {
-                infoStønadGodtgjørelse: mottarStønadGodtgjørelse ? tekstStønadGodtgjørelse : '',
+                infoStønadGodtgjørelse: mottarStønadGodtgjørelse ? tekstStønadGodtgjørelse : 'asd',
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
                 bruker: erAktivtArbeidsforhold ? 'bruker' : 'brukte',
             })}

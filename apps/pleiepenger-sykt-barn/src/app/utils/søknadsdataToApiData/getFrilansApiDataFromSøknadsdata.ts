@@ -1,23 +1,19 @@
-import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils/lib';
-import {
-    FrilansApiData,
-    FrilansApiType,
-    FrilanserMedArbeidsforholdApiDataPart,
-} from '../../types/søknad-api-data/FrilansApiData';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FrilansApiData, FrilanserMedArbeidsforholdApiDataPart } from '../../types/søknad-api-data/FrilansApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
-import { ArbeidsforholdApiData } from '../../types/søknad-api-data/ArbeidsforholdApiData';
+import { Frilanstype } from '../../types/FrilansFormData';
+import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils/lib';
 import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/NormalarbeidstidSøknadsdata';
+import { ArbeidsforholdApiData } from '../../types/søknad-api-data/ArbeidsforholdApiData';
+import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidsforholdApiDataFromSøknadsdata';
 
 export const getFrilansApiDataFromSøknadsdata = ({
     arbeidssituasjon,
-    arbeidstidFrilansarbeid,
-    arbeidstidHonorararbeid,
+    arbeidstid,
 }: {
     arbeidssituasjon: ArbeidssituasjonFrilansSøknadsdata | undefined;
-    arbeidstidFrilansarbeid: ArbeidIPeriodeSøknadsdata | undefined;
-    arbeidstidHonorararbeid: ArbeidIPeriodeSøknadsdata | undefined;
+    arbeidstid: ArbeidIPeriodeSøknadsdata | undefined;
 }): FrilansApiData => {
     if (!arbeidssituasjon) {
         throw 'getFrilansApiDataFromSøknadsdata: arbeidssituasjon is undefined';
@@ -25,92 +21,32 @@ export const getFrilansApiDataFromSøknadsdata = ({
 
     if (arbeidssituasjon.harInntektSomFrilanser === false) {
         return {
-            type: FrilansApiType.INGEN_INNTEKT_FROM_FRILANSER,
             harInntektSomFrilanser: false,
         };
     }
-    const { misterInntektSomFrilanser, honorararbeid } = arbeidssituasjon;
+    const { misterInntektSomFrilanser, type } = arbeidssituasjon;
 
     /** Kun honorar - mister ikke honorar */
-    if (misterInntektSomFrilanser === false && honorararbeid && honorararbeid.misterHonorar === false) {
+    if (misterInntektSomFrilanser === false && type === Frilanstype.HONORAR) {
         return {
-            type: FrilansApiType.KUN_HONORARARBEID_MISTER_IKKE_HONORAR,
+            type: Frilanstype.HONORAR,
             harInntektSomFrilanser: true,
-            honorararbeid: {
-                misterHonorar: false,
-            },
+            misterInntektSomFrilanser: false,
+            misterHonorar: false,
         };
     }
 
-    if (misterInntektSomFrilanser === true) {
-        const { honorararbeid, frilansarbeid, erFortsattFrilanser, startdato, sluttdato } = arbeidssituasjon;
+    /** Har inntekt og har registrert arbeidstid */
+    if (misterInntektSomFrilanser === true && arbeidstid) {
+        const { type, erFortsattFrilanser, startdato, sluttdato, misterHonorar, normalarbeidstid } = arbeidssituasjon;
 
-        if (honorararbeid?.misterHonorar && !arbeidstidHonorararbeid) {
-            throw 'getFrilansApiDataFromSøknadsdata: mister honorar, men arbeidstidHonorararbeid is undefined';
-        }
-
-        /** Mottar kun honorar - mister honorar */
-        if (honorararbeid && honorararbeid.misterHonorar && !frilansarbeid) {
-            if (!arbeidstidHonorararbeid) {
-                throw 'getFrilansApiDataFromSøknadsdata: arbeidstidHonorararbeid is undefined';
-            }
-            return {
-                type: FrilansApiType.KUN_HONORARARBEID_MISTER_HONORAR,
-                ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
-                honorararbeid: {
-                    misterHonorar: true,
-                    arbeidsforhold: getFrilansArbeidsforholdApiData(
-                        honorararbeid.normalarbeidstid,
-                        arbeidstidHonorararbeid
-                    ),
-                },
-            };
-        }
-
-        /** Har kun frilansarbeid */
-        if (frilansarbeid && !honorararbeid) {
-            if (!arbeidstidFrilansarbeid) {
-                throw 'getFrilansApiDataFromSøknadsdata: arbeidstidFrilansarbeid is undefined';
-            }
-            return {
-                type: FrilansApiType.KUN_FRILANSARBEID,
-                ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
-                frilansarbeid: {
-                    arbeidsforhold: getFrilansArbeidsforholdApiData(
-                        frilansarbeid.normalarbeidstid,
-                        arbeidstidFrilansarbeid
-                    ),
-                },
-            };
-        }
-        /** Honorararbeid og frilansarbeid */
-        if (frilansarbeid && honorararbeid) {
-            if (!arbeidstidFrilansarbeid) {
-                throw 'getFrilansApiDataFromSøknadsdata: arbeidstidFrilansarbeid OR arbeidstidHonorararbeid is undefined';
-            }
-            return {
-                type: FrilansApiType.FRILANSARBEID_OG_HONORARARBEID,
-                ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
-                frilansarbeid: {
-                    arbeidsforhold: getFrilansArbeidsforholdApiData(
-                        frilansarbeid.normalarbeidstid,
-                        arbeidstidFrilansarbeid
-                    ),
-                },
-                honorararbeid:
-                    honorararbeid.misterHonorar && arbeidstidHonorararbeid
-                        ? {
-                              misterHonorar: true,
-                              arbeidsforhold: getFrilansArbeidsforholdApiData(
-                                  honorararbeid.normalarbeidstid,
-                                  arbeidstidHonorararbeid
-                              ),
-                          }
-                        : {
-                              misterHonorar: false,
-                          },
-            };
-        }
+        return {
+            type,
+            misterInntektSomFrilanser: true,
+            ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
+            misterHonorar,
+            arbeidsforhold: getFrilansArbeidsforholdApiData(normalarbeidstid, arbeidstid),
+        };
     }
 
     throw 'getFrilansApiDataFromSøknadsdata: undefined return';
@@ -132,7 +68,10 @@ const getFrilansFellesInfo = (
     erFortsattFrilanser: boolean,
     startdato: Date,
     sluttdato?: Date
-): FrilanserMedArbeidsforholdApiDataPart => {
+): Pick<
+    FrilanserMedArbeidsforholdApiDataPart,
+    'harInntektSomFrilanser' | 'erFortsattFrilanser' | 'startdato' | 'sluttdato'
+> => {
     if (erFortsattFrilanser) {
         return {
             harInntektSomFrilanser: true,

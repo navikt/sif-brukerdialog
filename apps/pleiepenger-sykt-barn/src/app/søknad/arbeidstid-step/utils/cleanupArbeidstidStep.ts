@@ -93,30 +93,29 @@ export const cleanupArbeidstidStep = (
         arbeidssituasjonSøknadsdata.frilans?.harInntektSomFrilanser &&
         arbeidssituasjonSøknadsdata.frilans.misterInntektSomFrilanser
     ) {
-        const { frilansarbeid, honorararbeid, periodeSomFrilanserISøknadsperiode } =
-            arbeidssituasjonSøknadsdata.frilans;
-
-        cleanedValues.frilans.arbeidsforholdFrilansarbeid =
-            cleanedValues.frilans.arbeidsforholdFrilansarbeid !== undefined && frilansarbeid
-                ? {
-                      ...cleanedValues.frilans.arbeidsforholdFrilansarbeid,
-                      arbeidIPeriode: cleanupArbeidIPeriode(
-                          periodeSomFrilanserISøknadsperiode,
-                          cleanedValues.frilans.arbeidsforholdFrilansarbeid.arbeidIPeriode
-                      ),
-                  }
-                : undefined;
-
-        cleanedValues.frilans.arbeidsforholdHonorararbeid =
-            cleanedValues.frilans.arbeidsforholdHonorararbeid !== undefined && honorararbeid
-                ? {
-                      ...cleanedValues.frilans.arbeidsforholdHonorararbeid,
-                      arbeidIPeriode: cleanupArbeidIPeriode(
-                          periodeSomFrilanserISøknadsperiode,
-                          cleanedValues.frilans.arbeidsforholdHonorararbeid.arbeidIPeriode
-                      ),
-                  }
-                : undefined;
+        /** TODO */
+        // const { frilansarbeid, honorararbeid, periodeSomFrilanserISøknadsperiode } =
+        //     arbeidssituasjonSøknadsdata.frilans;
+        // cleanedValues.frilans.arbeidsforholdFrilansarbeid =
+        //     cleanedValues.frilans.arbeidsforholdFrilansarbeid !== undefined && frilansarbeid
+        //         ? {
+        //               ...cleanedValues.frilans.arbeidsforholdFrilansarbeid,
+        //               arbeidIPeriode: cleanupArbeidIPeriode(
+        //                   periodeSomFrilanserISøknadsperiode,
+        //                   cleanedValues.frilans.arbeidsforholdFrilansarbeid.arbeidIPeriode
+        //               ),
+        //           }
+        //         : undefined;
+        // cleanedValues.frilans.arbeidsforholdHonorararbeid =
+        //     cleanedValues.frilans.arbeidsforholdHonorararbeid !== undefined && honorararbeid
+        //         ? {
+        //               ...cleanedValues.frilans.arbeidsforholdHonorararbeid,
+        //               arbeidIPeriode: cleanupArbeidIPeriode(
+        //                   periodeSomFrilanserISøknadsperiode,
+        //                   cleanedValues.frilans.arbeidsforholdHonorararbeid.arbeidIPeriode
+        //               ),
+        //           }
+        //         : undefined;
     }
 
     /** Selvstendig næringsdrivende */

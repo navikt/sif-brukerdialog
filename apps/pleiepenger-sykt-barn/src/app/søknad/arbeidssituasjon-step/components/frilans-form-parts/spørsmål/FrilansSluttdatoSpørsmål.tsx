@@ -12,7 +12,7 @@ interface Props {
     sluttdatoValue?: ISODate;
     søknadsperiode: DateRange;
     søknadsdato: Date;
-    frilanstypeTekstKey: string;
+    frilanstype: string;
 }
 
 const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
@@ -20,7 +20,7 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
     sluttdatoValue,
     søknadsperiode,
     søknadsdato,
-    frilanstypeTekstKey,
+    frilanstype: frilanstypeTekstKey,
 }) => {
     const intl = useIntl();
     return (

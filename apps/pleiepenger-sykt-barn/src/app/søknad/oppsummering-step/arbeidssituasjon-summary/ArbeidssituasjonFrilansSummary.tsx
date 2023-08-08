@@ -1,10 +1,11 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
-import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver } from '../../../types';
-import { FrilansApiData, FrilansApiType } from '../../../types/søknad-api-data/SøknadApiData';
+import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
+import { Frilanstype } from '../../../types/FrilansFormData';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
+import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils/lib';
 
 interface Props {
     frilans: FrilansApiData;
@@ -25,63 +26,57 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
         );
     }
 
+    if (frilans.type === Frilanstype.HONORAR && frilans.misterInntektSomFrilanser === false) {
+        return (
+            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
+                <ul data-testid="arbeidssituasjon-frilanser">
+                    <li>
+                        <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.HONORAR`} />
+                    </li>
+                    <li>
+                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                    </li>
+                </ul>
+            </SummaryBlock>
+        );
+    }
+
     return (
         <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
             <ul data-testid="arbeidssituasjon-frilanser">
-                {frilans.type === FrilansApiType.KUN_HONORARARBEID_MISTER_IKKE_HONORAR && (
+                <li>
+                    <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.${frilans.type}`} />
+                </li>
+
+                {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === false && (
+                    <li>
+                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
+                    </li>
+                )}
+                {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === true && (
+                    <li>
+                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar'} />
+                    </li>
+                )}
+                <li>
+                    <NormalarbeidstidSummary normalarbeidstidApiData={frilans.arbeidsforhold.normalarbeidstid} />
+                </li>
+                <li>
+                    <FormattedMessage
+                        id="oppsummering.arbeidssituasjon.frilans.startet"
+                        values={{ dato: dateFormatter.full(ISODateToDate(frilans.startdato)) }}
+                    />
+                </li>
+
+                {frilans.sluttdato && (
                     <li>
                         <FormattedMessage
-                            id={'oppsummering.arbeidssituasjon.frilans.HONORARARBEID.misterIkkeHonorar'}
+                            id="oppsummering.arbeidssituasjon.frilans.sluttet"
+                            values={{ dato: dateFormatter.full(ISODateToDate(frilans.sluttdato)) }}
                         />
                     </li>
                 )}
-                {(frilans.type === FrilansApiType.KUN_FRILANSARBEID ||
-                    frilans.type === FrilansApiType.FRILANSARBEID_OG_HONORARARBEID) && (
-                    <>
-                        <li>
-                            <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.FRILANSARBEID'} />.{' '}
-                            <NormalarbeidstidSummary
-                                normalarbeidstidApiData={frilans.frilansarbeid.arbeidsforhold.normalarbeidstid}
-                            />
-                            .
-                        </li>
-                    </>
-                )}
 
-                {(frilans.type === FrilansApiType.KUN_HONORARARBEID_MISTER_HONORAR ||
-                    frilans.type === FrilansApiType.FRILANSARBEID_OG_HONORARARBEID) && (
-                    <>
-                        <li>
-                            <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORARARBEID'} />.{' '}
-                            {frilans.honorararbeid.misterHonorar && (
-                                <NormalarbeidstidSummary
-                                    normalarbeidstidApiData={frilans.honorararbeid.arbeidsforhold.normalarbeidstid}
-                                />
-                            )}
-                        </li>
-                    </>
-                )}
-
-                {frilans.type !== FrilansApiType.KUN_HONORARARBEID_MISTER_IKKE_HONORAR && (
-                    <>
-                        {frilans.startdato && (
-                            <li>
-                                <FormattedMessage
-                                    id="oppsummering.arbeidssituasjon.frilans.startet"
-                                    values={{ dato: dateFormatter.full(ISODateToDate(frilans.startdato)) }}
-                                />
-                            </li>
-                        )}
-                        {frilans.sluttdato && (
-                            <li>
-                                <FormattedMessage
-                                    id="oppsummering.arbeidssituasjon.frilans.sluttet"
-                                    values={{ dato: dateFormatter.full(ISODateToDate(frilans.sluttdato)) }}
-                                />
-                            </li>
-                        )}
-                    </>
-                )}
                 {frilansoppdrag && frilansoppdrag.length > 0 && (
                     <li>
                         <FormattedMessage id="oppsummering.arbeidssituasjon.frilans.frilansoppdrag" />

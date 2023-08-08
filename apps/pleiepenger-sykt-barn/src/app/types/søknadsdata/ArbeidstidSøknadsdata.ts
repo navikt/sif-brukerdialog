@@ -2,7 +2,6 @@ import { ArbeidIPeriodeSøknadsdata } from './ArbeidIPeriodeSøknadsdata';
 
 export type ArbeidstidSøknadsdata = {
     arbeidsgivere: Map<string, ArbeidIPeriodeSøknadsdata>;
-    frilansarbeid?: ArbeidIPeriodeSøknadsdata;
-    honorararbeid?: ArbeidIPeriodeSøknadsdata;
+    frilans?: ArbeidIPeriodeSøknadsdata;
     selvstendig?: ArbeidIPeriodeSøknadsdata;
 };

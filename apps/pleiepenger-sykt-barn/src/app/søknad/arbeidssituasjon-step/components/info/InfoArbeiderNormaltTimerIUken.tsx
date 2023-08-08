@@ -2,7 +2,6 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { Frilanstype } from '../../../../types/FrilansFormData';
 
@@ -63,41 +62,32 @@ export const InfoArbeiderNormaltTimerAnsatt = () => {
 };
 
 interface PropsFrilans {
-    frilanstyper?: Frilanstype[];
-    misterHonorar?: YesOrNo;
+    frilanstype: Frilanstype;
 }
 
-export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFrilans> = ({
-    frilanstyper,
-    misterHonorar,
-}) => {
+export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFrilans> = ({ frilanstype }) => {
     const intl = useIntl();
-    if (frilanstyper === undefined) {
-        <></>;
-    }
     return (
         <>
-            <Block margin="l">
-                {frilanstyper && frilanstyper.some((type) => type === Frilanstype.FRILANSARBEID) && (
+            <Block margin="m">
+                {(frilanstype === Frilanstype.FRILANS || frilanstype === Frilanstype.FRILANS_HONORAR) && (
                     <ExpandableInfo
                         title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info.tittel')}>
                         <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info'} />
                     </ExpandableInfo>
                 )}
 
-                {frilanstyper &&
-                    frilanstyper.some((type) => type === Frilanstype.HONORARARBEID) &&
-                    misterHonorar === YesOrNo.YES && (
-                        <ExpandableInfo
-                            title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.tittel')}>
-                            <p>
-                                <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.1'} />
-                            </p>
-                            <p>
-                                <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.2'} />
-                            </p>
-                        </ExpandableInfo>
-                    )}
+                {(frilanstype === Frilanstype.FRILANS_HONORAR || frilanstype === Frilanstype.HONORAR) && (
+                    <ExpandableInfo
+                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.tittel')}>
+                        <p>
+                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.1'} />
+                        </p>
+                        <p>
+                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.2'} />
+                        </p>
+                    </ExpandableInfo>
+                )}
             </Block>
         </>
     );

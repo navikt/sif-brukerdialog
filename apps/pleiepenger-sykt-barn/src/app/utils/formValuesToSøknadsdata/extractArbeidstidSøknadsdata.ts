@@ -14,11 +14,8 @@ export const extractArbeidstidSøknadsdata = (values: SøknadFormValues): Arbeid
     }
     const data: ArbeidstidSøknadsdata = {
         arbeidsgivere,
-        frilansarbeid: values.frilans?.arbeidsforholdFrilansarbeid?.arbeidIPeriode
-            ? extractArbeidIPeriodeSøknadsdata(values.frilans?.arbeidsforholdFrilansarbeid?.arbeidIPeriode)
-            : undefined,
-        honorararbeid: values.frilans?.arbeidsforholdHonorararbeid?.arbeidIPeriode
-            ? extractArbeidIPeriodeSøknadsdata(values.frilans.arbeidsforholdHonorararbeid.arbeidIPeriode)
+        frilans: values.frilans?.arbeidsforhold?.arbeidIPeriode
+            ? extractArbeidIPeriodeSøknadsdata(values.frilans?.arbeidsforhold?.arbeidIPeriode)
             : undefined,
         selvstendig: values.selvstendig?.arbeidsforhold?.arbeidIPeriode
             ? extractArbeidIPeriodeSøknadsdata(values.selvstendig?.arbeidsforhold.arbeidIPeriode)

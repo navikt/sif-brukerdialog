@@ -61,8 +61,7 @@ export const getApiDataFromSøknadsdata = (
                 ),
                 frilans: getFrilansApiDataFromSøknadsdata({
                     arbeidssituasjon: søknadsdata?.arbeidssituasjon?.frilans,
-                    arbeidstidFrilansarbeid: søknadsdata.arbeidstidIPerioden?.frilansarbeid,
-                    arbeidstidHonorararbeid: søknadsdata.arbeidstidIPerioden?.honorararbeid,
+                    arbeidstid: søknadsdata.arbeidstidIPerioden?.frilans,
                 }),
                 selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
                     søknadsdata.arbeidssituasjon?.selvstendig,

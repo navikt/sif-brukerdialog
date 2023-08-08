@@ -8,12 +8,12 @@ import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {
     erFortsattFrilanserValue?: YesOrNo;
-    frilansTypeTekst: string;
+    frilanstype: string;
 }
 
 const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({
     erFortsattFrilanserValue,
-    frilansTypeTekst,
+    frilanstype: frilansTypeTekst,
 }) => {
     const intl = useIntl();
     return (

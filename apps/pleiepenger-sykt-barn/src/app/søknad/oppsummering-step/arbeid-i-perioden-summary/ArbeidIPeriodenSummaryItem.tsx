@@ -14,7 +14,7 @@ import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
 import {
     ArbeidsforholdApiData,
     ArbeidsukeTimerApiData,
-    NormalarbeidstidApiData,
+    // NormalarbeidstidApiData,
 } from '../../../types/søknad-api-data/SøknadApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 
@@ -72,11 +72,12 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
         case RedusertArbeidstidType.prosentAvNormalt:
             return (
                 <ul>
+                    <li>Kombinerer delvis jobb med pleiepenger</li>
                     <li>
                         {getArbeidProsentTekst(
                             redusertArbeid.prosentAvNormalt,
-                            arbeidIPeriodeSummaryItem.normalarbeidstid,
-                            timerNormaltNumber,
+                            // arbeidIPeriodeSummaryItem.normalarbeidstid,
+                            // timerNormaltNumber,
                             intl
                         )}
                     </li>
@@ -85,11 +86,13 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
         case RedusertArbeidstidType.timerISnittPerUke:
             return (
                 <ul>
+                    <li>Kombinerer delvis jobb med pleiepenger</li>
                     <li>
                         <FormattedMessage
                             id="oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke"
                             values={{
                                 timer: formatTimerOgMinutter(intl, ISODurationToDuration(redusertArbeid.timerPerUke)),
+                                timerNormalt: getTimerNormaltString(timerNormaltNumber, intl),
                             }}
                         />
                     </li>
@@ -97,19 +100,21 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
             );
         case RedusertArbeidstidType.ulikeUkerTimer:
             return (
-                <div>
-                    <p>
-                        <FormattedMessage
-                            id={
-                                redusertArbeid.arbeidsuker.length === 1
-                                    ? 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.enkeltuke.timer.tittel'
-                                    : 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel'
-                            }
-                            values={{ timerNormalt: getTimerNormaltString(timerNormaltNumber, intl) }}
-                        />
-                    </p>
-                    {getArbeiderUlikeUkerTimerSummary(redusertArbeid.arbeidsuker, intl)}
-                </div>
+                <ul>
+                    <li>Kombinerer delvis jobb med pleiepenger</li>
+                    <li>
+                        <p>
+                            <FormattedMessage
+                                id={
+                                    redusertArbeid.arbeidsuker.length === 1
+                                        ? 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.enkeltuke.timer.tittel'
+                                        : 'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel'
+                                }
+                            />
+                        </p>
+                        {getArbeiderUlikeUkerTimerSummary(redusertArbeid.arbeidsuker, intl)}
+                    </li>
+                </ul>
             );
     }
 };
@@ -119,18 +124,18 @@ const getTimerNormaltString = (timerNormaltNumber: number, intl: IntlShape) =>
 
 const getArbeidProsentTekst = (
     prosent: number,
-    normalarbeidstid: NormalarbeidstidApiData,
-    timerNormaltNumber: number,
+    // normalarbeidstid: NormalarbeidstidApiData,
+    // timerNormaltNumber: number,
     intl: IntlShape
 ) => {
-    const timer = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);
-    if (!timer) {
-        return undefined;
-    }
+    // const timer = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);
+    // if (!timer) {
+    //     return undefined;
+    // }
     return intlHelper(intl, 'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent', {
         prosent: Intl.NumberFormat().format(prosent),
-        timerNormalt: getTimerNormaltString(timerNormaltNumber, intl),
-        timerIPeriode: formatTimerOgMinutter(intl, decimalDurationToDuration((timerNormaltNumber / 100) * prosent)),
+        // timerNormalt: getTimerNormaltString(timerNormaltNumber, intl),
+        // timerIPeriode: formatTimerOgMinutter(intl, decimalDurationToDuration((timerNormaltNumber / 100) * prosent)),
     });
 };
 
