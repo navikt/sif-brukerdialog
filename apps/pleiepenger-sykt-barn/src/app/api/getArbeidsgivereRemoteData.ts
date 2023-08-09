@@ -41,17 +41,19 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (data: AAregArbeidsgiverRem
             ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
         });
     });
-    // Privat arbeidsgiver er ikke tatt i bruk, og returnerers ikke fra backend enda
-    // data.privatarbeidsgiver?.forEach((a) => {
-    //     arbeidsgivere.push({
-    //         type: ArbeidsgiverType.PRIVATPERSON,
-    //         id: a.offentligIdent,
-    //         offentligIdent: a.offentligIdent,
-    //         navn: a.navn,
-    //         ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
-    //         ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
-    //     });
-    // });
+    /*
+        Privat arbeidsgiver er ikke tatt i bruk, og returnerers ikke fra backend
+        data.privatarbeidsgiver?.forEach((a) => {
+            arbeidsgivere.push({
+                type: ArbeidsgiverType.PRIVATPERSON,
+                id: a.offentligIdent,
+                offentligIdent: a.offentligIdent,
+                navn: a.navn,
+                ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
+                ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
+            });
+        });
+    */
     data.frilansoppdrag?.forEach((a) => {
         arbeidsgivere.push({
             type: ArbeidsgiverType.FRILANSOPPDRAG,

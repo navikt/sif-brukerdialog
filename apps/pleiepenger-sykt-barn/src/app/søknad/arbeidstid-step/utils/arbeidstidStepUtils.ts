@@ -50,7 +50,7 @@ export const getArbeidsperiodeIForholdTilSøknadsperiode = (
 
 export const getArbeidsukerIPerioden = (periode: DateRange): ArbeidsukeInfo[] => {
     return getWeeksInDateRange(periode)
-        .filter((uke) => dayjs(uke.from).isoWeekday() <= 5) // Ikke ta med uker som starter lørdag eller søndag
+        .filter((uke) => dayjs(uke.from).isoWeekday() <= 5) /** Ikke ta med uker som starter lørdag eller søndag */
         .map(getArbeidsukeInfoIPeriode);
 };
 

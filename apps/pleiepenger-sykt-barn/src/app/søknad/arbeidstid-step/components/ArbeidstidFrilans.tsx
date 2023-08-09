@@ -8,14 +8,11 @@ import { FrilansFormField, Frilanstype } from '../../../types/FrilansFormData';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
 
-// import ArbeidstidHonorarInfo from './info/ArbeidstidHonorararbeidInfo';
-
 interface Props {
     frilanstype: Frilanstype;
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
     normalarbeidstid: number;
-    /** Periode som frilanser i søknadsperioden */
-    periode: DateRange;
+    periode: DateRange /** Periode som frilanser i søknadsperioden */;
     søkerFremITid: boolean;
 }
 
@@ -63,7 +60,6 @@ const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
                                 Nå trenger vi å vite hvor mange timer du jobber som frilanser i perioden du søker for.
                                 Det vil si hvor mange timer du bruker på arbeidet du får honorar for.
                             </p>
-                            {/* <ArbeidstidHonorarInfo /> */}
                         </>
                     )}
                 </ArbeidIPeriodeInfo>

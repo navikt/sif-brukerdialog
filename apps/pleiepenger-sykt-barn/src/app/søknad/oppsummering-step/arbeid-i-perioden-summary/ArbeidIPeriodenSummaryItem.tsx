@@ -69,14 +69,7 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
             return (
                 <ul>
                     <li>Kombinerer delvis jobb med pleiepenger</li>
-                    <li>
-                        {getArbeidProsentTekst(
-                            redusertArbeid.prosentAvNormalt,
-                            // arbeidIPeriodeSummaryItem.normalarbeidstid,
-                            // timerNormaltNumber,
-                            intl
-                        )}
-                    </li>
+                    <li>{getArbeidProsentTekst(redusertArbeid.prosentAvNormalt, intl)}</li>
                 </ul>
             );
         case RedusertArbeidstidType.timerISnittPerUke:
@@ -118,20 +111,9 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
 const getTimerNormaltString = (timerNormaltNumber: number, intl: IntlShape) =>
     formatTimerOgMinutter(intl, decimalDurationToDuration(timerNormaltNumber));
 
-const getArbeidProsentTekst = (
-    prosent: number,
-    // normalarbeidstid: NormalarbeidstidApiData,
-    // timerNormaltNumber: number,
-    intl: IntlShape
-) => {
-    // const timer = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);
-    // if (!timer) {
-    //     return undefined;
-    // }
+const getArbeidProsentTekst = (prosent: number, intl: IntlShape) => {
     return intlHelper(intl, 'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent', {
         prosent: Intl.NumberFormat().format(prosent),
-        // timerNormalt: getTimerNormaltString(timerNormaltNumber, intl),
-        // timerIPeriode: formatTimerOgMinutter(intl, decimalDurationToDuration((timerNormaltNumber / 100) * prosent)),
     });
 };
 

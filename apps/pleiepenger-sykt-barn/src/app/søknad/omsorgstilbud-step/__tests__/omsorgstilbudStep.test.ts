@@ -11,11 +11,11 @@ const søknadsperiode: DateRange = {
 };
 
 const enkeldagerFormData: DateDurationMap = {
-    '2021-06-01': { hours: '2', minutes: '30' }, // Outside range
-    '2021-06-02': { hours: '2', minutes: '30' }, // Within range
-    '2021-06-03': { hours: '2', minutes: '30' }, // Within range
-    '2021-06-04': { hours: '2', minutes: '30' }, // Within range
-    '2021-06-05': { hours: '2', minutes: '30' }, // Outside range
+    '2021-06-01': { hours: '2', minutes: '30' } /** Outside range */,
+    '2021-06-02': { hours: '2', minutes: '30' } /** Within range */,
+    '2021-06-03': { hours: '2', minutes: '30' } /** Within range */,
+    '2021-06-04': { hours: '2', minutes: '30' } /** Within range */,
+    '2021-06-05': { hours: '2', minutes: '30' } /** Outside range */,
 };
 
 const formValuesTemplate: Partial<SøknadFormValues> = {

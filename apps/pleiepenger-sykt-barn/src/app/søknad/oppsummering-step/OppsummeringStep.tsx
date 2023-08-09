@@ -137,7 +137,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
     };
 
     if (soknadSent) {
-        // User is redirected to confirmation page
+        /** User is redirected to confirmation page */
         return null;
     }
 
@@ -187,7 +187,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         onValidFormSubmit={() => {
                             if (apiValuesValidationErrors === undefined) {
                                 setTimeout(() => {
-                                    // La view oppdatere seg først
+                                    /** La view oppdatere seg først */
                                     sendSoknad(apiValues, søkerdata, harArbeidMenIngenFravær);
                                 });
                             } else {

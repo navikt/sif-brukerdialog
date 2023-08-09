@@ -10,7 +10,7 @@ export enum ArbeidssituasjonAnsattType {
 
 interface ArbeidssituasjonAnsatt {
     type: ArbeidssituasjonAnsattType;
-    index: number; // Index i arbeidsgiver-arrayet - skal skrives om
+    index: number /** Index i arbeidsgiver-arrayet - skal skrives om */;
     arbeidsgiver: Arbeidsgiver;
 }
 
