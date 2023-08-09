@@ -51,29 +51,16 @@ const arbeidIPeriodeSpørsmål: MessageFileFormat = {
             'Hvor mange prosent jobber du hos {arbeidsgiverNavn} i perioden?',
         'arbeidIPeriode.spørsmål.ANSATT.arbeidsuker':
             'Oppgi hvor mange timer du jobber hos {arbeidsgiverNavn} i hver enkeltuke i perioden?',
-        'arbeidIPeriode.spørsmål.FRILANSARBEID.arbeiderIPerioden':
+        'arbeidIPeriode.spørsmål.FRILANSER.arbeiderIPerioden':
             'I perioden du søker for, hvilken situasjon gjelder for deg som frilanser?',
-        'arbeidIPeriode.spørsmål.FRILANSARBEID.erLiktHverUke': 'Jobber du like mye hver uke som frilanser i perioden?',
-        'arbeidIPeriode.spørsmål.FRILANSARBEID.timerEllerProsent':
+        'arbeidIPeriode.spørsmål.FRILANSER.erLiktHverUke': 'Jobber du like mye hver uke som frilanser i perioden?',
+        'arbeidIPeriode.spørsmål.FRILANSER.timerEllerProsent':
             'Hvordan vil du oppgi hvor mye du jobber som frilanser i perioden?',
-        'arbeidIPeriode.spørsmål.FRILANSARBEID.snittTimerPerUke':
+        'arbeidIPeriode.spørsmål.FRILANSER.snittTimerPerUke':
             'Hvor mange timer jobber du hver uke som frilanser i perioden?',
-        'arbeidIPeriode.spørsmål.FRILANSARBEID.prosentAvNormalt':
-            'Hvor mange prosent jobber du som frilanser i perioden?',
-        'arbeidIPeriode.spørsmål.FRILANSARBEID.arbeidsuker':
+        'arbeidIPeriode.spørsmål.FRILANSER.prosentAvNormalt': 'Hvor mange prosent jobber du som frilanser i perioden?',
+        'arbeidIPeriode.spørsmål.FRILANSER.arbeidsuker':
             'Oppgi hvor mange timer du jobber som frilanser i hver enkeltuke i perioden?',
-        'arbeidIPeriode.spørsmål.HONORARARBEID.arbeiderIPerioden':
-            'I perioden du søker for, hva er din situasjon med honorar?',
-        'arbeidIPeriode.spørsmål.HONORARARBEID.erLiktHverUke':
-            'Bruker du like mange timer på det du får honorar for hver uke i perioden, eller varierer det fra uke til uke?',
-        'arbeidIPeriode.spørsmål.HONORARARBEID.timerEllerProsent':
-            'Hvordan vil du oppgi hvor mye du bruker på det du får honorar for i perioden?',
-        'arbeidIPeriode.spørsmål.HONORARARBEID.snittTimerPerUke':
-            'Hvor mange timer bruker du hver uke på det du får honorar for i perioden?',
-        'arbeidIPeriode.spørsmål.HONORARARBEID.prosentAvNormalt':
-            'Hvor mange prosent bruker du på det du får honorar for i perioden?',
-        'arbeidIPeriode.spørsmål.HONORARARBEID.arbeidsuker':
-            'Oppgi hvor mange timer du bruker på det du får honorar for i perioden',
         'arbeidIPeriode.spørsmål.SELVSTENDIG.arbeiderIPerioden':
             'I perioden du søker for, hvilken situasjon gjelder for deg som selvstendig næringsdrivende?',
         'arbeidIPeriode.spørsmål.SELVSTENDIG.erLiktHverUke':
@@ -96,8 +83,6 @@ export const arbeidIPeriodeSvarAlternativer: MessageFileFormat = {
         'arbeidIPeriode.arbeiderIPerioden.svar.jobberIkke': 'Jeg jobber ikke',
         'arbeidIPeriode.arbeiderIPerioden.svar.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
         'arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
-        'arbeidIPeriode.arbeiderIPerioden.honorararbeid.svar.jobberIkke': 'Jeg mister alt av honorar',
-        'arbeidIPeriode.arbeiderIPerioden.honorararbeid.svar.jobberRedusert': 'Jeg mister deler av honorar',
         'arbeidIPeriode.timerEllerProsent.timer': 'I timer',
         'arbeidIPeriode.timerEllerProsent.prosent': 'I prosent',
     },
@@ -112,9 +97,7 @@ export const arbeidIPeriodeMessages: MessageFileFormat = {
         'arbeidIPeriode.uke.ukedatoer': '{ukedatoer}',
         'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timer}}',
         'arbeidstidPeriode.timer.ikkeTall': `{timer} timer`,
-        'arbeidIPeriode.info.frilansarbeid.tekst.1':
+        'arbeidIPeriode.info.frilanser.tekst.1':
             'Nå trenger vi å vite hvor mange timer du jobber som frilanser i perioden du søker for.',
-        'arbeidIPeriode.info.honorararbeid.tekst.1':
-            'Nå trenger vi å vite hvor mange timer du bruker på det du får honorar for etter endringen.',
     },
 };

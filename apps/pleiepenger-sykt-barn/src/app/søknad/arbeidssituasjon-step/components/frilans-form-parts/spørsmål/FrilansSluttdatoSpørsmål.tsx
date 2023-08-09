@@ -20,13 +20,13 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
     sluttdatoValue,
     søknadsperiode,
     søknadsdato,
-    frilanstype: frilanstypeTekstKey,
+    frilanstype,
 }) => {
     const intl = useIntl();
     return (
         <ArbFriFormComponents.DatePicker
             name={FrilansFormField.sluttdato}
-            label={intlHelper(intl, `frilanser.nårSluttet.${frilanstypeTekstKey}.spm`)}
+            label={intlHelper(intl, `frilanser.sluttdato.${frilanstype}.spm`)}
             showYearSelector={true}
             minDate={datepickerUtils.getDateFromDateString(startdatoValue)}
             maxDate={søknadsdato}
@@ -42,7 +42,7 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
                     ? {
                           key: `${error}`,
                           values: {
-                              frilanstyper: intlHelper(intl, `validation.frilans.sluttdato.${frilanstypeTekstKey}`),
+                              frilanstype: intlHelper(intl, `validation.frilans.sluttdato.${frilanstype}`),
                           },
                       }
                     : undefined;

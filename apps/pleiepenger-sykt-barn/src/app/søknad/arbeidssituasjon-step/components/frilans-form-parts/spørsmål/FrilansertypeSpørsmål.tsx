@@ -15,11 +15,11 @@ const FrilansertypeSpørsmål = () => {
                 },
 
                 {
-                    label: 'Jeg jobber som frilanser og mottar honorar for verv',
+                    label: 'Jeg jobber som frilanser og får honorar for verv',
                     value: Frilanstype.FRILANS_HONORAR,
                 },
                 {
-                    label: 'Jeg mottar honorar for verv',
+                    label: 'Jeg får honorar for verv',
                     value: Frilanstype.HONORAR,
                 },
             ]}

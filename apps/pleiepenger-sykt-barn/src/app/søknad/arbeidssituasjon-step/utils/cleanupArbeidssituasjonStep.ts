@@ -36,7 +36,7 @@ export const cleanupFrilansArbeidssituasjon = (
         };
     }
 
-    /** Kun honorararbeid og mister ikke honorar */
+    /** Kun honorar og mister ikke honorar */
     if (values.frilanstype === Frilanstype.HONORAR && values.misterHonorar !== YesOrNo.YES) {
         return {
             harHattInntektSomFrilanser: YesOrNo.YES,

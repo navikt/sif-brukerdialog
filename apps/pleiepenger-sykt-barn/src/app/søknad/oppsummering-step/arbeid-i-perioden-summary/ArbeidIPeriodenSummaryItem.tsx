@@ -11,11 +11,7 @@ import {
 import { formatTimerOgMinutter } from '../../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { ArbeidIPeriodeType } from '../../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../../types/RedusertArbeidstidType';
-import {
-    ArbeidsforholdApiData,
-    ArbeidsukeTimerApiData,
-    // NormalarbeidstidApiData,
-} from '../../../types/søknad-api-data/SøknadApiData';
+import { ArbeidsforholdApiData, ArbeidsukeTimerApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { getArbeidsukeInfoIPeriode } from '../../../utils/arbeidsukeInfoUtils';
 
 interface Props {
@@ -25,13 +21,13 @@ interface Props {
 
 export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
-    gjelderHonorararbeid?: boolean;
+    gjelderHonorar?: boolean;
 }
 
 const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeriodeSummaryItem }) => {
     const intl = useIntl();
 
-    const { arbeidIPeriode, normalarbeidstid, gjelderHonorararbeid } = arbeidIPeriodeSummaryItem;
+    const { arbeidIPeriode, normalarbeidstid, gjelderHonorar } = arbeidIPeriodeSummaryItem;
     const timerNormaltNumber = ISODurationToDecimalDuration(normalarbeidstid.timerPerUkeISnitt);
 
     if (arbeidIPeriode === undefined || timerNormaltNumber === undefined) {
@@ -42,7 +38,7 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
         return (
             <ul>
                 <li>
-                    {gjelderHonorararbeid ? (
+                    {gjelderHonorar ? (
                         <FormattedMessage id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig.honorar`} />
                     ) : (
                         <FormattedMessage id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig`} />
@@ -56,7 +52,7 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
         return (
             <ul>
                 <li>
-                    {gjelderHonorararbeid ? (
+                    {gjelderHonorar ? (
                         <FormattedMessage id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar`} />
                     ) : (
                         <FormattedMessage id={`oppsummering.arbeidIPeriode.arbeiderIPerioden.nei`} />

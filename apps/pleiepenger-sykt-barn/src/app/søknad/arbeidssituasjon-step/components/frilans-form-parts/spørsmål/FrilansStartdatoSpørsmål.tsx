@@ -17,13 +17,13 @@ const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({
     startdatoValue,
     søknadsperiode,
     søknadsdato,
-    frilanstype: frilansTypeTekst,
+    frilanstype,
 }) => {
     const intl = useIntl();
     return (
         <ArbFriFormComponents.DatePicker
             name={FrilansFormField.startdato}
-            label={intlHelper(intl, `frilanser.nårStartet.${frilansTypeTekst}.spm`)}
+            label={intlHelper(intl, `frilanser.startdato.${frilanstype}.spm`)}
             showYearSelector={true}
             maxDate={søknadsdato}
             minDate={date99YearsFromNow}
@@ -34,7 +34,7 @@ const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({
                     ? {
                           key: `${error}`,
                           values: {
-                              frilanstyper: intlHelper(intl, `validation.frilans.startdato.${frilansTypeTekst}`),
+                              frilanstype: intlHelper(intl, `validation.frilans.startdato.${frilanstype}`),
                           },
                       }
                     : undefined;

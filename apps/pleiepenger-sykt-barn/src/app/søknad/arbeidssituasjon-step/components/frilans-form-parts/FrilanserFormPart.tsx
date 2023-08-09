@@ -54,13 +54,13 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                         <FrilansertypeSpørsmål />
 
                         {values.frilans.frilanstype === Frilanstype.HONORAR && (
-                            <FormBlock>
+                            <FormBlock margin="l">
                                 <MisterHonorarSpørsmål misterHonorar={misterHonorar} />
                             </FormBlock>
                         )}
 
                         {frilanstype === Frilanstype.FRILANS_HONORAR && (
-                            <FormBlock>
+                            <FormBlock margin="l">
                                 <Alert variant="info">
                                     Honorar for verv regnes som det samme som å jobbe som frilanser, og skal da tas med
                                     når du svarer på spørsmålene nedenfor.
@@ -68,10 +68,11 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                             </FormBlock>
                         )}
                         {frilanstype === Frilanstype.HONORAR && misterHonorar === YesOrNo.YES && (
-                            <FormBlock>
+                            <FormBlock margin="l">
                                 <Alert variant="info">
-                                    Når du mottar honorar for verv regnes du som frilanser, og når du mister honorar i
-                                    perioden, trenger vi å stille deg noen flere spørsmål om deg som frilanser.
+                                    Når du får honorar for verv regnes du som frilanser. Når du mister honorar i
+                                    perioden du søker for, trenger vi å stille deg noen flere spørsmål om deg som
+                                    frilanser.
                                 </Alert>
                             </FormBlock>
                         )}

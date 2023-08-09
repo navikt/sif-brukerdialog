@@ -13,24 +13,21 @@ interface Props {
 
 const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({
     erFortsattFrilanserValue,
-    frilanstype: frilansTypeTekst,
+    frilanstype: Frilanstype,
 }) => {
     const intl = useIntl();
     return (
         <ArbFriFormComponents.RadioGroup
             name={FrilansFormField.erFortsattFrilanser}
             data-testid="erFortsattFrilanser"
-            legend={intlHelper(intl, `frilanser.erFortsattFrilanser.${frilansTypeTekst}.spm`)}
+            legend={intlHelper(intl, `frilanser.erFortsattFrilanser.${Frilanstype}.spm`)}
             validate={(value) => {
                 const error = getYesOrNoValidator()(value);
                 return error
                     ? {
                           key: `${error}`,
                           values: {
-                              frilanstyper: intlHelper(
-                                  intl,
-                                  `validation.frilans.erFortsattFrilanser.${frilansTypeTekst}`
-                              ),
+                              frilanstype: intlHelper(intl, `validation.frilans.erFortsattFrilanser.${Frilanstype}`),
                           },
                       }
                     : undefined;

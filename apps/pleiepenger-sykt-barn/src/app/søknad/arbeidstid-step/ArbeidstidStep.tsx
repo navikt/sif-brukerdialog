@@ -74,6 +74,7 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                 frilans.normalarbeidstid && (
                     <FormBlock>
                         <ArbeidstidFrilans
+                            frilanstype={frilans.type}
                             periode={frilans.periodeSomFrilanserISøknadsperiode}
                             arbeidIPeriode={values.frilans.arbeidsforhold?.arbeidIPeriode}
                             normalarbeidstid={frilans.normalarbeidstid.timerPerUkeISnitt}

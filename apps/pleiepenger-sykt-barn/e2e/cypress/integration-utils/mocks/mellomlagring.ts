@@ -46,11 +46,11 @@ export const mellomlagring = {
         },
         frilans: {
             harHattInntektSomFrilanser: 'yes',
-            frilanstyper: ['FRILANSARBEID', 'HONORARARBEID'],
+            frilanstype: 'FRILANSER',
             misterHonorar: 'yes',
             startdato: '2022-10-01',
             erFortsattFrilanser: 'yes',
-            arbeidsforholdFrilansarbeid: {
+            arbeidsforhold: {
                 normalarbeidstid: {
                     timerPerUke: '5',
                 },
@@ -59,14 +59,6 @@ export const mellomlagring = {
                     erLiktHverUke: 'yes',
                     timerEllerProsent: 'prosent',
                     prosentAvNormalt: '20',
-                },
-            },
-            arbeidsforholdHonorararbeid: {
-                normalarbeidstid: {
-                    timerPerUke: '10',
-                },
-                arbeidIPeriode: {
-                    arbeiderIPerioden: 'HELT_FRAVÆR',
                 },
             },
         },

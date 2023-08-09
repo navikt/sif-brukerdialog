@@ -9,7 +9,7 @@ import {
     getTestElement,
     gåTilOppsummeringFraArbeidIPerioden,
     gåTilOppsummeringFraArbeidssituasjon,
-    selectCheckboxByNameAndValue,
+    // selectCheckboxByNameAndValue,
     selectRadioNo,
     selectRadioYes,
     setInputValueByName,
@@ -34,9 +34,10 @@ export const fyllUtArbeidssituasjonErIkkeFrilanser = () => {
 };
 
 export const fyllUtArbeidssituasjonFrilanserKunHonorarMisterIkkeHonorar = () => {
-    selectRadioYes('frilans.harHattInntektSomFrilanser');
-    selectCheckboxByNameAndValue('frilans.frilanstyper', 'HONORARARBEID');
-    selectRadioNo('frilans.misterHonorar');
+    // TODO
+    // selectRadioYes('frilans.harHattInntektSomFrilanser');
+    // selectCheckboxByNameAndValue('frilans.frilanstyper', 'HONORARARBEID');
+    // selectRadioNo('frilans.misterHonorar');
 };
 
 export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {

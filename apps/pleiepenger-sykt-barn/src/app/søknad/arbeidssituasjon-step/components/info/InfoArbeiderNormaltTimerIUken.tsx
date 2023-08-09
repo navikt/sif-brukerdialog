@@ -72,19 +72,19 @@ export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFri
             <Block margin="m">
                 {(frilanstype === Frilanstype.FRILANS || frilanstype === Frilanstype.FRILANS_HONORAR) && (
                     <ExpandableInfo
-                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info.tittel')}>
-                        <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.frilansarbeid.info'} />
+                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
+                        <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.frilans.info'} />
                     </ExpandableInfo>
                 )}
 
                 {(frilanstype === Frilanstype.FRILANS_HONORAR || frilanstype === Frilanstype.HONORAR) && (
                     <ExpandableInfo
-                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.tittel')}>
+                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.honorar.info.tittel')}>
                         <p>
-                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.1'} />
+                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorar.info.1'} />
                         </p>
                         <p>
-                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorararbeid.info.2'} />
+                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorar.info.2'} />
                         </p>
                     </ExpandableInfo>
                 )}

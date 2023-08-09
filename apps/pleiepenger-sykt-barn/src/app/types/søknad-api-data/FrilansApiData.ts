@@ -6,7 +6,7 @@ export type FrilansApiDataIngenInntekt = {
     harInntektSomFrilanser: false;
 };
 
-export type FrilansApiDataKunHonorararbeidMisterIkkeHonorar = {
+export type FrilansApiDataKunHonorarMisterIkkeHonorar = {
     type: Frilanstype.HONORAR;
     harInntektSomFrilanser: true;
     misterInntektSomFrilanser: false;
@@ -26,5 +26,5 @@ export type FrilanserMedArbeidsforholdApiDataPart = {
 
 export type FrilansApiData =
     | FrilansApiDataIngenInntekt
-    | FrilansApiDataKunHonorararbeidMisterIkkeHonorar
+    | FrilansApiDataKunHonorarMisterIkkeHonorar
     | FrilanserMedArbeidsforholdApiDataPart;
