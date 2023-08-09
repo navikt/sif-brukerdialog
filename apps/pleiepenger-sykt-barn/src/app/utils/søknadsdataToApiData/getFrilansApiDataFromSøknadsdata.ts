@@ -65,24 +65,24 @@ const getFrilansArbeidsforholdApiData = (
 };
 
 const getFrilansFellesInfo = (
-    erFortsattFrilanser: boolean,
+    jobberFortsattSomFrilans: boolean,
     startdato: Date,
     sluttdato?: Date
 ): Pick<
     FrilanserMedArbeidsforholdApiDataPart,
-    'harInntektSomFrilanser' | 'erFortsattFrilanser' | 'startdato' | 'sluttdato'
+    'harInntektSomFrilanser' | 'jobberFortsattSomFrilans' | 'startdato' | 'sluttdato'
 > => {
-    if (erFortsattFrilanser) {
+    if (jobberFortsattSomFrilans) {
         return {
             harInntektSomFrilanser: true,
-            erFortsattFrilanser: true,
+            jobberFortsattSomFrilans: true,
             startdato: dateToISODate(startdato),
         };
     }
     if (sluttdato) {
         return {
             harInntektSomFrilanser: true,
-            erFortsattFrilanser: false,
+            jobberFortsattSomFrilans: false,
             startdato: dateToISODate(startdato),
             sluttdato: sluttdato ? dateToISODate(sluttdato) : undefined,
         };
