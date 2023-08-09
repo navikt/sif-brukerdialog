@@ -6,6 +6,7 @@ import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
 import { StønadGodtgjørelseFormData } from '../../../types/StønadGodtgjørelseFormData';
 import { SøknadFormValues } from '../../../types/SøknadFormValues';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
+import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
 
 export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormValues): ArbeidsforholdFormValues => {
     const cleanedArbeidsforhold = { ...arbeidsforhold };
@@ -28,16 +29,12 @@ export const cleanupFrilansArbeidssituasjon = (
     _søknadsperiode: DateRange,
     values: FrilansFormData
 ): FrilansFormData => {
-    /** TODO */
+    /** Ikke frilanser */
     if (values.harHattInntektSomFrilanser === YesOrNo.NO) {
         return {
             harHattInntektSomFrilanser: YesOrNo.NO,
         };
     }
-
-    // const harHonorararbeid = values.frilanstyper?.includes(Frilanstype.HONORARARBEID);
-    // const harFrilansarbeid = values.frilanstyper?.includes(Frilanstype.FRILANSARBEID);
-    // const misterHonorar = values.misterHonorar === YesOrNo.YES;
 
     /** Kun honorararbeid og mister ikke honorar */
     if (values.frilanstype === Frilanstype.HONORAR && values.misterHonorar !== YesOrNo.YES) {
@@ -51,19 +48,12 @@ export const cleanupFrilansArbeidssituasjon = (
     /** Fjern verdier som ikke gjelder gitt svar fra bruker */
     const frilans: FrilansFormData = { ...values };
 
-    /** TODO */
-    // if (erFrilanserISøknadsperiode(søknadsperiode, values) === false) {
-    //     frilans.arbeidsforholdFrilansarbeid = undefined;
-    //     frilans.arbeidsforholdHonorararbeid = undefined;
-    // }
-
-    // if (!harHonorararbeid) {
-    //     frilans.misterHonorar = undefined;
-    //     frilans.arbeidsforholdHonorararbeid = undefined;
-    // }
-    // if (!harFrilansarbeid) {
-    //     frilans.arbeidsforholdFrilansarbeid = undefined;
-    // }
+    if (erFrilanserISøknadsperiode(_søknadsperiode, values) === false) {
+        frilans.arbeidsforhold = undefined;
+    }
+    if (frilans.frilanstype !== Frilanstype.HONORAR) {
+        delete frilans.misterHonorar;
+    }
     if (frilans.erFortsattFrilanser === YesOrNo.YES) {
         delete frilans.sluttdato;
     }

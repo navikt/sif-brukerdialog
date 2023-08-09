@@ -25,7 +25,7 @@ const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({
             name={FrilansFormField.startdato}
             label={intlHelper(intl, `frilanser.nårStartet.${frilansTypeTekst}.spm`)}
             showYearSelector={true}
-            maxDate={søknadsperiode.to}
+            maxDate={søknadsdato}
             minDate={date99YearsFromNow}
             dayPickerProps={{ defaultMonth: søknadsperiode.to }}
             validate={(value) => {

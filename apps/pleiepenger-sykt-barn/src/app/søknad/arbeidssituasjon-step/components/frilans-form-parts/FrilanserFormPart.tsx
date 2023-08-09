@@ -28,39 +28,7 @@ interface Props {
 
 const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsdato }) => {
     const { values } = useFormikContext<SøknadFormValues>();
-    const {
-        harHattInntektSomFrilanser,
-        misterHonorar,
-        erFortsattFrilanser,
-        // startdato,
-        // sluttdato,
-        frilanstype,
-    } = values.frilans;
-
-    // const erAktivFrilanserIPerioden = erFrilanserISøknadsperiode(søknadsperiode, values.frilans);
-    // const harGyldigStartdato = startdato ? ISODateToDate(startdato) : undefined;
-    // const harGyldigSluttdato = sluttdato ? ISODateToDate(sluttdato) : undefined;
-
-    // const harBesvartSpørsmålOmFortsattFrilanser =
-    //     erFortsattFrilanser === YesOrNo.YES || erFortsattFrilanser === YesOrNo.NO;
-
-    // const sluttetFørSøknadsperiode =
-    //     erFortsattFrilanser === YesOrNo.NO &&
-    //     harGyldigSluttdato &&
-    //     dayjs(sluttdato).isBefore(søknadsperiode.from, 'day');
-
-    // const harFrilansarbeid = frilanstyper?.some((type) => type === Frilanstype.FRILANSARBEID);
-    // const harHonorararbeid = frilanstyper?.some((type) => type === Frilanstype.HONORARARBEID);
-
-    // const visSpørsmålOmArbeidsforhold =
-    //     harGyldigStartdato &&
-    //     harBesvartSpørsmålOmFortsattFrilanser &&
-    //     sluttetFørSøknadsperiode === false &&
-    //     erAktivFrilanserIPerioden;
-
-    // const visNormalarbeidstidFrilansarbeid = visSpørsmålOmArbeidsforhold && harFrilansarbeid;
-    // const visNormalarbeidstidHonorararbeid =
-    //     visSpørsmålOmArbeidsforhold && harHonorararbeid && misterHonorar === YesOrNo.YES;
+    const { harHattInntektSomFrilanser, misterHonorar, erFortsattFrilanser, frilanstype } = values.frilans;
 
     const visNormalarbeidstidSpørsmål = () => {
         switch (frilanstype) {
@@ -72,41 +40,7 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
             default:
                 return false;
         }
-
-        // if (!frilanstyper || frilanstyper.length === 0) {
-        //     return false;
-        // }
-        // if (frilanstyper.length === 1 && harHonorararbeid && misterHonorar === YesOrNo.YES) {
-        //     return true;
-        // }
-        // if (!harHonorararbeid) {
-        //     return true;
-        // } else if (harHonorararbeid && frilanstyper.length > 1 && misterHonorar !== undefined) {
-        //     return true;
-        // }
-        // return false;
     };
-
-    // const getFrilanstypeTekstKey = () => {
-    //     if (frilanstyper === undefined || frilanstyper.length === 0) {
-    //         return '';
-    //     }
-    //     const erFrilanser = frilanstyper.some((type) => type === Frilanstype.FRILANSARBEID);
-    //     const erVerv = frilanstyper.some((type) => type === Frilanstype.HONORARARBEID) && misterHonorar === YesOrNo.YES;
-
-    //     if (erFrilanser && !erVerv) {
-    //         return 'frilans';
-    //     }
-    //     if (erVerv && !erFrilanser) {
-    //         return 'verv';
-    //     }
-    //     if (erVerv && erFrilanser) {
-    //         return 'frilansVerv';
-    //     }
-    //     return '';
-    // };
-
-    // const frilanstypeTekstKey = `${frilanstype}`;
 
     return (
         <>
@@ -125,7 +59,6 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                             </FormBlock>
                         )}
 
-                        {/* {frilanstype === TypeFrilanser.FRILANS && <>sdfsdf</>} */}
                         {frilanstype === Frilanstype.FRILANS_HONORAR && (
                             <FormBlock>
                                 <Alert variant="info">

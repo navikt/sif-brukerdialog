@@ -11,12 +11,19 @@ export const extractArbeidssituasjonSøknadsdata = (
     søknadsperiode: DateRange,
     formValues: SøknadFormValues
 ): ArbeidssituasjonSøknadsdata | undefined => {
-    const data: ArbeidssituasjonSøknadsdata = {
-        arbeidsgivere: extractArbeidssituasjonAnsattSøknadsdata(søknadsperiode, formValues.ansatt_arbeidsforhold),
-        frilans: extractArbeidssituasjonFrilansSøknadsdata(søknadsperiode, formValues.frilans),
-        selvstendig: extractArbeidssituasjonSelvstendigSøknadsdata(søknadsperiode, formValues.selvstendig),
-        opptjeningUtland: extractOpptjeningUtlandSøknadsdata(formValues),
-        utenlandskNæring: extractUtenlandskNæringSøknadsdata(formValues),
-    };
-    return data;
+    try {
+        const data: ArbeidssituasjonSøknadsdata = {
+            arbeidsgivere: extractArbeidssituasjonAnsattSøknadsdata(søknadsperiode, formValues.ansatt_arbeidsforhold),
+            frilans: extractArbeidssituasjonFrilansSøknadsdata(søknadsperiode, formValues.frilans),
+            selvstendig: extractArbeidssituasjonSelvstendigSøknadsdata(søknadsperiode, formValues.selvstendig),
+            opptjeningUtland: extractOpptjeningUtlandSøknadsdata(formValues),
+            utenlandskNæring: extractUtenlandskNæringSøknadsdata(formValues),
+        };
+
+        return data;
+    } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        return undefined;
+    }
 };
