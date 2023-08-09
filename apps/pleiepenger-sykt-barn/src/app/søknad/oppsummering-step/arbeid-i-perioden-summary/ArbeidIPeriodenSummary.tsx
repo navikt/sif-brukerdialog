@@ -36,7 +36,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
         }
     });
 
-    if (frilans.harInntektSomFrilanser && frilans.misterInntektSomFrilanser) {
+    if (frilans.harInntektSomFrilanser && frilans._misterInntektSomFrilanser) {
         summaryItem.push({
             ...frilans.arbeidsforhold,
             tittel: intlHelper(intl, 'frilans.tittel'),

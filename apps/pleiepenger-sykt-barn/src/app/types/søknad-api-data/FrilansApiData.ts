@@ -9,19 +9,19 @@ export type FrilansApiDataIngenInntekt = {
 export type FrilansApiDataKunHonorarMisterIkkeHonorar = {
     type: Frilanstype.HONORAR;
     harInntektSomFrilanser: true;
-    misterInntektSomFrilanser: false;
     misterHonorar: false;
+    _misterInntektSomFrilanser: false /** Brukes kun i søknadsdialog */;
 };
 
 export type FrilanserMedArbeidsforholdApiDataPart = {
     type: Frilanstype;
     harInntektSomFrilanser: true;
-    misterInntektSomFrilanser: true;
     misterHonorar?: boolean;
     erFortsattFrilanser: boolean;
     startdato: ISODate;
     sluttdato?: ISODate;
     arbeidsforhold: ArbeidsforholdApiData;
+    _misterInntektSomFrilanser: true /** Brukes kun i søknadsdialog */;
 };
 
 export type FrilansApiData =

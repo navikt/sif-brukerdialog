@@ -26,7 +26,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
         );
     }
 
-    if (frilans.type === Frilanstype.HONORAR && frilans.misterInntektSomFrilanser === false) {
+    if (frilans.type === Frilanstype.HONORAR && frilans._misterInntektSomFrilanser === false) {
         return (
             <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')}>
                 <ul data-testid="arbeidssituasjon-frilanser">
