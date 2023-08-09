@@ -45,7 +45,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     return (
         <FormComponents.NumberInput
             label={intlHelper(intl, `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.${frilanstype}.spm`, {
-                infoStønadGodtgjørelse: mottarStønadGodtgjørelse ? tekstStønadGodtgjørelse : 'asd',
+                infoStønadGodtgjørelse: mottarStønadGodtgjørelse ? tekstStønadGodtgjørelse : '',
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
                 bruker: erAktivtArbeidsforhold ? 'bruker' : 'brukte',
             })}

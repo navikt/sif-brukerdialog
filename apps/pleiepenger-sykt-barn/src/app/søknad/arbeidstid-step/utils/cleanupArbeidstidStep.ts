@@ -88,34 +88,17 @@ export const cleanupArbeidstidStep = (
         };
     });
 
+    const { frilans: arbeidssituasjonFrilans } = arbeidssituasjonSøknadsdata;
     /** Frilanser */
-    if (
-        arbeidssituasjonSøknadsdata.frilans?.harInntektSomFrilanser &&
-        arbeidssituasjonSøknadsdata.frilans.misterInntektSomFrilanser
-    ) {
-        /** TODO */
-        // const { frilansarbeid, honorararbeid, periodeSomFrilanserISøknadsperiode } =
-        //     arbeidssituasjonSøknadsdata.frilans;
-        // cleanedValues.frilans.arbeidsforholdFrilansarbeid =
-        //     cleanedValues.frilans.arbeidsforholdFrilansarbeid !== undefined && frilansarbeid
-        //         ? {
-        //               ...cleanedValues.frilans.arbeidsforholdFrilansarbeid,
-        //               arbeidIPeriode: cleanupArbeidIPeriode(
-        //                   periodeSomFrilanserISøknadsperiode,
-        //                   cleanedValues.frilans.arbeidsforholdFrilansarbeid.arbeidIPeriode
-        //               ),
-        //           }
-        //         : undefined;
-        // cleanedValues.frilans.arbeidsforholdHonorararbeid =
-        //     cleanedValues.frilans.arbeidsforholdHonorararbeid !== undefined && honorararbeid
-        //         ? {
-        //               ...cleanedValues.frilans.arbeidsforholdHonorararbeid,
-        //               arbeidIPeriode: cleanupArbeidIPeriode(
-        //                   periodeSomFrilanserISøknadsperiode,
-        //                   cleanedValues.frilans.arbeidsforholdHonorararbeid.arbeidIPeriode
-        //               ),
-        //           }
-        //         : undefined;
+    if (!arbeidssituasjonFrilans?.harInntektSomFrilanser || !arbeidssituasjonFrilans?.misterInntektSomFrilanser) {
+        delete cleanedValues.frilans.arbeidsforhold;
+    } else {
+        if (cleanedValues.frilans.arbeidsforhold) {
+            cleanedValues.frilans.arbeidsforhold.arbeidIPeriode = cleanupArbeidIPeriode(
+                arbeidssituasjonFrilans.periodeSomFrilanserISøknadsperiode,
+                cleanedValues.frilans.arbeidsforhold?.arbeidIPeriode
+            );
+        }
     }
 
     /** Selvstendig næringsdrivende */
