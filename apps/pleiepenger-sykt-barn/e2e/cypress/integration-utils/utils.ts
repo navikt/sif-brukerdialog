@@ -1,7 +1,12 @@
+import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import dayjs = require('dayjs');
 
 export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
 export const getSøknadsdato = () => dayjs(); //'2022-10-10');
+export const getSøknadsperiode = (): DateRange => ({
+    from: getSøknadsdato().startOf('week').subtract(3, 'weeks').toDate(),
+    to: getSøknadsdato().startOf('week').add(1, 'week').toDate(),
+});
 
 export const clickFortsett = () => {
     cy.get('button').contains('Neste').click();

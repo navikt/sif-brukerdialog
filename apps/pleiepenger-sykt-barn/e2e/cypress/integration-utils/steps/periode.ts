@@ -1,7 +1,7 @@
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
-import { getSøknadsdato, selectRadioNo, selectRadioYes } from '../utils';
+import { getSøknadsperiode, selectRadioNo, selectRadioYes } from '../utils';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 
 dayjs.extend(isoWeek);
@@ -9,8 +9,9 @@ dayjs.locale(locale);
 
 const { getTestElement, getInputByName, clickFortsett } = require('../utils');
 
-const fraDato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
-const tilDato = getSøknadsdato().startOf('week').add(1, 'week').format('YYYY-MM-DD');
+const søknadsperiode = getSøknadsperiode();
+const fraDato = dayjs(søknadsperiode.from).format('YYYY-MM-DD');
+const tilDato = dayjs(søknadsperiode.to).format('YYYY-MM-DD');
 const expectedFomTomPeriode = `${dayjs(fraDato).format('D. MMMM YYYY')} - ${dayjs(tilDato).format('D. MMMM YYYY')}`;
 const expectedDateUtenlandsoppholdIPerioden = `${dayjs(fraDato).format('D. MMM YYYY')} - ${dayjs(tilDato).format(
     'D. MMM YYYY'

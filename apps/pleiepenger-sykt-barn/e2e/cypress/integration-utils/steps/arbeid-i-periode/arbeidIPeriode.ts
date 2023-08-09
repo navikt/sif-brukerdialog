@@ -52,7 +52,7 @@ export const fyllUtArbeidIPeriodeAnsatt = () => {
         });
 };
 
-export const fyllUtArbeidIPeriodeFrilansarbeid = () => {
+export const fyllUtArbeidIPeriodeFrilanser = () => {
     cy.get('h3')
         .contains('Jobb som frilanser')
         .parent()
@@ -61,20 +61,10 @@ export const fyllUtArbeidIPeriodeFrilansarbeid = () => {
         });
 };
 
-export const fyllUtArbeidIPeriodeHonorararbeid = () => {
-    cy.get('h3')
-        .contains('Jobb for honorar')
-        .parent()
-        .within(() => {
-            fyllUtArbeidstidMisterAltHonorar();
-        });
-};
-
 export const fyllUtArbeidIPeriodeSteg = () => {
     it('Steg 4: Arbeid i perioden', () => {
         fyllUtArbeidIPeriodeAnsatt();
-        fyllUtArbeidIPeriodeFrilansarbeid();
-        fyllUtArbeidIPeriodeHonorararbeid();
+        fyllUtArbeidIPeriodeFrilanser();
 
         clickFortsett();
     });

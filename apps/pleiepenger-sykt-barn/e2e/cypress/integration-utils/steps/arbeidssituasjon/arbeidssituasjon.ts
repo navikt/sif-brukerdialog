@@ -1,7 +1,7 @@
 import { TestType } from '../../types/TestTyper';
 import { clickFortsett } from '../../utils';
 import { fyllUtArbeidssituasjonAnsatt } from './ansatt';
-import { fyllUtArbeidssituasjonErFrilanserOgFårHonorar } from './frilanser';
+import { fyllUtArbeidssituasjonErFrilanserOgMottarHonorar } from './frilanser';
 import { fyllUtArbeidssituasjonOpptjeningUtland } from './opptjeningUtland';
 import { fyllUtArbeidssituasjonErIkkeSelvstendig } from './selvstendigNæringsdrivende';
 import { fyllUtArbeidssituasjonStønadGodtgjørelse } from './stønadGodtgjørelse';
@@ -11,7 +11,7 @@ export const fyllUtArbeidssituasjonSteg = (testType: TestType = TestType.ENKEL) 
     it('Steg 3: Arbeidssituasjon', () => {
         fyllUtArbeidssituasjonAnsatt();
         fyllUtArbeidssituasjonStønadGodtgjørelse(testType);
-        fyllUtArbeidssituasjonErFrilanserOgFårHonorar();
+        fyllUtArbeidssituasjonErFrilanserOgMottarHonorar();
         fyllUtArbeidssituasjonErIkkeSelvstendig();
         fyllUtArbeidssituasjonUtenlandskNæring(testType);
         fyllUtArbeidssituasjonOpptjeningUtland(testType);

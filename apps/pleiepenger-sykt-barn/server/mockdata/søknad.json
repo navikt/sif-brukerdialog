@@ -17,6 +17,7 @@
             "fødselsnummer": "02869599258"
         },
         "frilans": {
+            "frilanstype": "FRILANSER_HONORAR",
             "startdato": "2016-11-08",
             "arbeidsforhold": {
                 "arbeidIPeriode": {

@@ -9,12 +9,12 @@ import {
     getTestElement,
     gåTilOppsummeringFraArbeidIPerioden,
     gåTilOppsummeringFraArbeidssituasjon,
-    // selectCheckboxByNameAndValue,
+    selectRadioByLabel,
     selectRadioNo,
     selectRadioYes,
     setInputValueByName,
 } from '../../utils';
-import { fyllUtArbeidIPeriodeFrilansarbeid } from '../arbeid-i-periode/arbeidIPeriode';
+import { fyllUtArbeidIPeriodeFrilanser } from '../arbeid-i-periode/arbeidIPeriode';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
@@ -22,8 +22,7 @@ dayjs.locale(locale);
 export const fyllUtArbeidssituasjonFrilanser = () => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
         selectRadioYes('frilans.erFortsattFrilanser');
-        selectRadioNo('frilans.misterHonorar');
-        setInputValueByName('frilans.arbeidsforholdFrilansarbeid.normalarbeidstid.timerPerUke', '5');
+        setInputValueByName('frilans.arbeidsforhold.normalarbeidstid.timerPerUke', '5');
     });
 };
 
@@ -34,19 +33,15 @@ export const fyllUtArbeidssituasjonErIkkeFrilanser = () => {
 };
 
 export const fyllUtArbeidssituasjonFrilanserKunHonorarMisterIkkeHonorar = () => {
-    // TODO
-    // selectRadioYes('frilans.harHattInntektSomFrilanser');
-    // selectCheckboxByNameAndValue('frilans.frilanstyper', 'HONORARARBEID');
-    // selectRadioNo('frilans.misterHonorar');
+    selectRadioYes('frilans.harHattInntektSomFrilanser');
+    selectRadioByLabel('Jeg får honorar for verv');
+    selectRadioNo('frilans.misterHonorar');
 };
 
-export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {
+export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = () => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
         selectRadioYes('frilans.harHattInntektSomFrilanser');
-
-        cy.contains('Jeg jobber som frilanser').parent().click();
-        cy.contains('Jeg får honorar for verv').parent().click();
-        selectRadioYes('frilans.misterHonorar');
+        selectRadioByLabel('Jeg jobber som frilanser og får honorar for verv');
 
         const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
         cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
@@ -56,27 +51,7 @@ export const fyllUtArbeidssituasjonErFrilanserOgFårHonorar = () => {
         const sluttdato = getSøknadsdato().format('YYYY-MM-DD');
         cy.get('input[name="frilans.sluttdato"]').click().type(sluttdato).blur();
 
-        setInputValueByName('frilans.arbeidsforholdFrilansarbeid.normalarbeidstid.timerPerUke', '5');
-        setInputValueByName('frilans.arbeidsforholdHonorararbeid.normalarbeidstid.timerPerUke', '10');
-    });
-};
-export const fyllUtArbeidssituasjonFrilansarbeidOgHonorarMisterIkkeHonorar = () => {
-    getTestElement('arbeidssituasjonFrilanser').within(() => {
-        selectRadioYes('frilans.harHattInntektSomFrilanser');
-
-        cy.contains('Jeg jobber som frilanser').parent().click();
-        cy.contains('Jeg får honorar for verv').parent().click();
-        selectRadioNo('frilans.misterHonorar');
-
-        const startdato = getSøknadsdato().startOf('week').subtract(10, 'years').format('YYYY-MM-DD');
-        cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
-
-        selectRadioNo('frilans.erFortsattFrilanser');
-
-        const sluttdato = getSøknadsdato().format('YYYY-MM-DD');
-        cy.get('input[name="frilans.sluttdato"]').click().type(sluttdato).blur();
-
-        setInputValueByName('frilans.arbeidsforholdFrilansarbeid.normalarbeidstid.timerPerUke', '5');
+        setInputValueByName('frilans.arbeidsforhold.normalarbeidstid.timerPerUke', '5');
     });
 };
 
@@ -107,6 +82,9 @@ const erFrilanserMedOppdrag = () => {
         el.should('contain', 'Jeg jobber som frilanser');
         el.should('contain', 'Startet 1. oktober 2022');
         el.should('contain', 'Jobber normalt 5 timer per uke');
+
+        el.should('contain', 'Frilansoppdrag registrert i perioden');
+        el.should('contain', 'Hurdal frilanssenter');
     });
 };
 
@@ -141,33 +119,20 @@ const erFrilanserKunHonorarMisterIkkeHonorar = () => {
     });
 };
 
-const erFrilanserFrilansarbeidOgHonorarMisterIkkeHonorar = () => {
-    it('er frilanser med frilansarbeid og honorar, mister ikke honorar', () => {
+const erFrilanserFrilansarbeidOgMottarHonorar = () => {
+    it('er frilanser med frilansarbeid og honorar', () => {
         cleanupFrilanser();
-        fyllUtArbeidssituasjonFrilansarbeidOgHonorarMisterIkkeHonorar();
+        fyllUtArbeidssituasjonErFrilanserOgMottarHonorar();
         clickFortsett();
-        fyllUtArbeidIPeriodeFrilansarbeid();
+        fyllUtArbeidIPeriodeFrilanser();
         gåTilOppsummeringFraArbeidIPerioden();
 
         /** Arbeidssituasjon */
         const el = getTestElement('arbeidssituasjon-frilanser');
-        el.should('contain', 'Jeg jobber som frilanser. Jobber normalt 5 timer per uke');
-        el.should('contain.text', 'Jeg får honorar for styreverv eller andre verv');
+        el.should('contain', 'Jeg jobber som frilanser og får honorar for styreverv eller andre verv');
+        el.should('contain.text', 'Jobber normalt 5 timer per uke');
         el.should('contain', 'Startet ');
         el.should('contain', 'Sluttet ');
-
-        /** Arbeid i perioden */
-        cy.get('h2')
-            .contains('Jobb i søknadsperioden')
-            .parent()
-            .within(() => {
-                cy.get('h3').contains('Frilanser').siblings().should('contain', 'Jobber ikke i søknadsperioden');
-
-                cy.get('h3')
-                    .contains('Honorar for styreverv/andre små verv')
-                    .siblings()
-                    .should('contain', 'Mister ikke honorar på grunn av pleiepenger');
-            });
     });
 };
 
@@ -177,6 +142,6 @@ export const testArbeidssituasjonFrilanser = () => {
         erFrilanserUtenOppdrag();
         erFrilanserMedOppdrag();
         erFrilanserKunHonorarMisterIkkeHonorar();
-        erFrilanserFrilansarbeidOgHonorarMisterIkkeHonorar();
+        erFrilanserFrilansarbeidOgMottarHonorar();
     });
 };
