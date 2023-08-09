@@ -6,12 +6,15 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/formik-radio-group/FormikRadioGroup';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
-import { ArbeiderIPeriodenSvar, ArbeidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger';
+import {
+    ArbeiderIPeriodenSvar,
+    ArbeidIPeriodeIntlValues,
+    ArbeidsforholdType,
+} from '../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../types';
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import SøknadFormComponents from '../../SøknadFormComponents';
-import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import { getArbeidstidSpørsmålstekst } from '../utils/arbeidIPeriodeTekstUtils';
 import { skalSvarePåOmEnJobberLiktIPerioden } from '../utils/arbeidstidStepUtils';
 import {
@@ -25,7 +28,7 @@ import {
 import ArbeidstidEnkeltuker from './ArbeidstidEnkeltuker';
 
 interface Props {
-    arbeidsaktivitetType: ArbeidsaktivitetType;
+    arbeidsforholdType: ArbeidsforholdType;
     periode: DateRange;
     parentFieldName: string;
     formValues?: ArbeidIPeriodeFormValues;
@@ -44,7 +47,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
     info,
 
     normalarbeidstid,
-    arbeidsaktivitetType,
+    arbeidsforholdType: arbeidsaktivitetType,
 }) => {
     const intl = useIntl();
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
@@ -171,7 +174,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             arbeidsuke
                                         )
                                     }
-                                    arbeidsaktivitetType={arbeidsaktivitetType}
+                                    arbeidsforholdType={arbeidsaktivitetType}
                                 />
                             </FormBlock>
                         )}

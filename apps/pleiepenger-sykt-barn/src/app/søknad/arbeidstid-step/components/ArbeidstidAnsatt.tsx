@@ -6,9 +6,9 @@ import { Arbeidsgiver } from '../../../types';
 import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { SøknadFormField } from '../../../types/SøknadFormValues';
 import { getPeriodeSomAnsattInnenforPeriode } from '../../../utils/arbeidUtils';
-import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
+import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 interface Props {
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
@@ -39,7 +39,7 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
 
     return (
         <ArbeidstidArbeidsaktivitet
-            arbeidsaktivitetType={ArbeidsaktivitetType.ANSATT}
+            arbeidsforholdType={ArbeidsforholdType.ANSATT}
             periode={periode}
             tittel={arbeidsgiver.navn}
             arbeidIPeriode={arbeidIPeriode}
@@ -49,7 +49,7 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
             info={
                 <ArbeidIPeriodeInfo
                     tittel={`Delvis jobb hos ${arbeidsgiver.navn} i perioden`}
-                    arbeidsaktivitetType={ArbeidsaktivitetType.ANSATT}
+                    arbeidsforholdType={ArbeidsforholdType.ANSATT}
                     søkerFremITid={søkerFremITid}
                 />
             }

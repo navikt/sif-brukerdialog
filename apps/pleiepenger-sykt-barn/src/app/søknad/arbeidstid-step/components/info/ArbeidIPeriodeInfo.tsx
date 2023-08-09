@@ -2,18 +2,18 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { ArbeidsaktivitetType } from '../../ArbeidstidStep';
 import InfoOmEndring from '../InfoOmEndring';
+import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 
 interface Props {
-    arbeidsaktivitetType: ArbeidsaktivitetType;
+    arbeidsforholdType: ArbeidsforholdType;
     søkerFremITid: boolean;
     tittel: string;
     children?: React.ReactNode;
 }
 
 const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
-    arbeidsaktivitetType,
+    arbeidsforholdType,
     søkerFremITid,
     tittel,
     children,
@@ -29,7 +29,7 @@ const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
             </p>
         )}
         <Block margin="m">
-            <InfoOmEndring arbeidsaktivitetType={arbeidsaktivitetType} />
+            <InfoOmEndring arbeidsforholdType={arbeidsforholdType} />
         </Block>
     </>
 );

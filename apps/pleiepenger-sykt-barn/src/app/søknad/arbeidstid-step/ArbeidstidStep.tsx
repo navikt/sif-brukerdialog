@@ -16,13 +16,6 @@ import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
 import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
 import ArbeidstidFrilans from './components/ArbeidstidFrilans';
 
-export enum ArbeidsaktivitetType {
-    'ANSATT' = 'ANSATT',
-    'SELVSTENDING' = 'SELVSTENDIG',
-    'HONORARARBEID' = 'HONORARARBEID',
-    'FRILANSARBEID' = 'FRILANSARBEID',
-}
-
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
 

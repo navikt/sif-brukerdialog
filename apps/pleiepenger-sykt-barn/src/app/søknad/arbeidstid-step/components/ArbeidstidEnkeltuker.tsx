@@ -7,13 +7,13 @@ import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils
 import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import SøknadFormComponents from '../../SøknadFormComponents';
-import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import { ArbeidsukeFieldName } from '../types/Arbeidsuke';
 import {
     ArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsperiodeIForholdTilSøknadsperiode,
     getArbeidsukerIPerioden,
 } from '../utils/arbeidstidStepUtils';
+import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 export const getArbeidsukeKey = (week: ArbeidsukeInfo): string => {
     return `${dateRangeToISODateRange(week.periode)}`;
@@ -23,7 +23,7 @@ const getArbeidsukeFieldName = (parentFieldName: string, week: ArbeidsukeInfo): 
     `${parentFieldName}.${getArbeidsukeKey(week)}`;
 
 interface Props {
-    arbeidsaktivitetType: ArbeidsaktivitetType;
+    arbeidsforholdType: ArbeidsforholdType;
     label: string;
     periode: DateRange;
     timerPerUkeValidator?: (uke: ArbeidsukeInfo) => (value: any) => ValidationResult<ValidationError>;

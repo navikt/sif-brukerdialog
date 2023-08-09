@@ -2,14 +2,13 @@ import React from 'react';
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/formik-radio-group/FormikRadioGroup';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import FormSection from '../../../components/form-section/FormSection';
-import { ArbeidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger';
+import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
-import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
 
 interface Props {
     tittel: string;
-    arbeidsaktivitetType: ArbeidsaktivitetType;
+    arbeidsforholdType: ArbeidsforholdType;
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
     periode: DateRange;
     normalarbeidstid: number;
@@ -21,7 +20,7 @@ interface Props {
 
 const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
     tittel,
-    arbeidsaktivitetType,
+    arbeidsforholdType,
     arbeidIPeriode,
     periode,
     normalarbeidstid,
@@ -34,7 +33,7 @@ const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
         <FormSection title={tittel}>
             <ArbeidIPeriodeSpørsmål
                 intlValues={intlValues}
-                arbeidsaktivitetType={arbeidsaktivitetType}
+                arbeidsforholdType={arbeidsforholdType}
                 periode={periode}
                 formValues={arbeidIPeriode}
                 parentFieldName={parentFieldName}

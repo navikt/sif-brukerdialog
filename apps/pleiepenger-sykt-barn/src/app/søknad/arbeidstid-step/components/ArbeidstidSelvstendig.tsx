@@ -3,12 +3,12 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-utils/lib';
+import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { SelvstendigFormField } from '../../../types/SelvstendigFormData';
-import { ArbeidsaktivitetType } from '../ArbeidstidStep';
-import InfoOmEndring from './InfoOmEndring';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
+import InfoOmEndring from './InfoOmEndring';
 
 interface Props {
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
@@ -34,7 +34,7 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
     return (
         <ArbeidstidArbeidsaktivitet
             periode={periode}
-            arbeidsaktivitetType={ArbeidsaktivitetType.SELVSTENDING}
+            arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
             arbeidIPeriode={arbeidIPeriode}
             parentFieldName={SelvstendigFormField.arbeidsforhold}
             tittel="Selvstendig næringsdrivende"
@@ -52,7 +52,7 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
                         </p>
                     )}
                     <Block margin="m">
-                        <InfoOmEndring arbeidsaktivitetType={ArbeidsaktivitetType.SELVSTENDING} />
+                        <InfoOmEndring arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG} />
                     </Block>
                 </>
             }

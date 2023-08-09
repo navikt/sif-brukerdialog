@@ -4,9 +4,9 @@ import { DateRange } from '@navikt/sif-common-utils/lib';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
 import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
 import { FrilansFormField } from '../../../types/FrilansFormData';
-import { ArbeidsaktivitetType } from '../ArbeidstidStep';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
+import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 interface Props {
     arbeidIPeriode?: ArbeidIPeriodeFormValues;
@@ -32,16 +32,16 @@ const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
     return (
         <ArbeidstidArbeidsaktivitet
             periode={periode}
-            arbeidsaktivitetType={ArbeidsaktivitetType.FRILANSARBEID}
+            arbeidsforholdType={ArbeidsforholdType.FRILANSER}
             arbeidIPeriode={arbeidIPeriode}
             parentFieldName={FrilansFormField.arbeidsforhold}
             normalarbeidstid={normalarbeidstid}
             intlValues={intlValues}
-            tittel="Jobb som frilanser"
+            tittel="Jobb som frilanser, oppdragstaker og honorarer"
             info={
                 <ArbeidIPeriodeInfo
                     søkerFremITid={søkerFremITid}
-                    arbeidsaktivitetType={ArbeidsaktivitetType.FRILANSARBEID}
+                    arbeidsforholdType={ArbeidsforholdType.FRILANSER}
                     tittel="Delvis jobb som frilanser i perioden">
                     <p>
                         <FormattedMessage id="arbeidIPeriode.info.frilansarbeid.tekst.1" />
