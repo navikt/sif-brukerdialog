@@ -21,7 +21,7 @@ export const extractArbeidssituasjonAnsattSøknadsdata = (
         } else {
             const normalarbeidstid = extractNormalarbeidstid(values.normalarbeidstid);
             if (!normalarbeidstid) {
-                throw 'extractArbeidssituasjonAnsattSøknadsdata: normalarbeidstid is undefined';
+                return;
             }
             arbeidssituasjoner.set(values.arbeidsgiver.id, {
                 type:

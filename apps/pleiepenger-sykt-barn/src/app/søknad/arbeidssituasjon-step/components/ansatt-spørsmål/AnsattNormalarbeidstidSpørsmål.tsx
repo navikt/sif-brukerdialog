@@ -35,13 +35,7 @@ const AnsattNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({ arbe
     const erAktivtArbeidsforhold = arbeidsforhold.erAnsatt === YesOrNo.YES;
     return (
         <AnsattFormComponents.NumberInput
-            label={intlHelper(
-                intl,
-                erAktivtArbeidsforhold
-                    ? `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.avsluttet.spm`
-                    : `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`,
-                intlValues
-            )}
+            label={intlHelper(intl, `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, intlValues)}
             name={fieldName}
             description={<InfoArbeiderNormaltTimerAnsatt />}
             width="xs"
