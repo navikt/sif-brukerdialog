@@ -9,6 +9,9 @@ updates:
       - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
     groups:
+      designsystemet:
+        patterns:
+          - "@navikt/ds-*"
       react:
         patterns:
           - "react"
@@ -17,6 +20,9 @@ updates:
       babel:
         patterns:
           - "@babel*"
+      sentry:
+        patterns:
+          - "@sentry*"
       typescript-eslint:
         patterns:
           - "@typescript-eslint*"
