@@ -3,6 +3,6 @@ import { ArbeidIPeriodeSøknadsdata } from './arbeidIPeriodeSøknadsdata';
 
 export interface ArbeidstidSøknadsdata {
     arbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata;
-    frilans: ArbeidIPeriodeSøknadsdata;
-    selvstendig: ArbeidIPeriodeSøknadsdata;
+    frilans?: ArbeidIPeriodeSøknadsdata;
+    selvstendig?: ArbeidIPeriodeSøknadsdata;
 }

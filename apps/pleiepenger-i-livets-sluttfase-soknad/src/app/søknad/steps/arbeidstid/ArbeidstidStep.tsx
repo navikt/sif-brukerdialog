@@ -18,7 +18,7 @@ import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { getArbeidstidStepInitialValues } from './arbeidstidStepUtils';
+import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { ArbeidsforholdType } from './form-parts/types';
 import { søkerKunHelgedager } from '../tidsrom/tidsromStepUtils';
@@ -101,7 +101,7 @@ const ArbeidstidStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
     const { tidsrom } = søknadsdata;
 
@@ -139,7 +139,7 @@ const ArbeidstidStep = () => {
                         selvstendigArbeidstid && periode
                             ? getPeriodeSomSelvstendigInnenforPeriode(
                                   periode,
-                                  søknadsdata.arbeidssituasjon?.selvstendig
+                                  søknadsdata.arbeidssituasjon?.selvstendig,
                               )
                             : undefined;
 
@@ -189,7 +189,7 @@ const ArbeidstidStep = () => {
                                                             parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
                                                             søkerKunHelgedager={søkerKunHelgedager(
                                                                 periode.from,
-                                                                periode.to
+                                                                periode.to,
                                                             )}
                                                             onArbeidstidVariertChange={handleArbeidstidChanged}
                                                             onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
