@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { getFraværStepInitialValues, getFraværSøknadsdataFromFormValues } from './fraværStepUtils';
+import {
+    getFraværStepInitialValues,
+    getFraværSøknadsdataFromFormValues,
+    getOrganisasjonsnummerKey,
+} from './fraværStepUtils';
 import { useCallback, useState } from 'react';
 import { FraværMap } from '../../../types/FraværTypes';
 import {
@@ -93,7 +97,7 @@ const FraværStep: React.FC = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        },
+        }
     );
 
     const { situasjon } = søknadsdata;
@@ -103,7 +107,7 @@ const FraværStep: React.FC = () => {
     }
 
     const arbeidsforholdliste = Object.values(situasjon).filter(
-        (forhold) => forhold.type !== 'harIkkeHattFravær' && forhold.type !== 'harHattFraværMedLønn',
+        (forhold) => forhold.type !== 'harIkkeHattFravær' && forhold.type !== 'harHattFraværMedLønn'
     );
 
     const fraværDagerFromSøknadsdata =
@@ -117,7 +121,7 @@ const FraværStep: React.FC = () => {
     const [årstall, setÅrstall] = useState<number | undefined>();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [gyldigTidsrom, setGyldigTidsrom] = useState<DateRange>(
-        getTidsromFromÅrstall(getÅrstallFromFravær(fraværDagerFromSøknadsdata, fraværPerioderFromSøknadsdata)),
+        getTidsromFromÅrstall(getÅrstallFromFravær(fraværDagerFromSøknadsdata, fraværPerioderFromSøknadsdata))
     );
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -126,7 +130,7 @@ const FraværStep: React.FC = () => {
             setÅrstall(årstall);
             setGyldigTidsrom(getTidsromFromÅrstall(årstall));
         },
-        [setÅrstall],
+        [setÅrstall]
     );
 
     return (
@@ -181,13 +185,22 @@ const FraværStep: React.FC = () => {
                                             return (
                                                 <FormBlock margin="xxl" key={forhold.organisasjonsnummer}>
                                                     <FormSection
-                                                        key={forhold.organisasjonsnummer}
                                                         titleTag="h2"
                                                         title={forhold.navn || forhold.organisasjonsnummer}
                                                         titleIcon={<Office1 />}>
                                                         <ArbeidsforholdFravær
-                                                            fravær={fravær[forhold.organisasjonsnummer]}
-                                                            parentFieldName={`${FraværStepFormFields.fravær}.${forhold.organisasjonsnummer}`}
+                                                            fravær={
+                                                                fravær[
+                                                                    getOrganisasjonsnummerKey(
+                                                                        forhold.organisasjonsnummer
+                                                                    )
+                                                                ]
+                                                            }
+                                                            parentFieldName={`${
+                                                                FraværStepFormFields.fravær
+                                                            }.${getOrganisasjonsnummerKey(
+                                                                forhold.organisasjonsnummer
+                                                            )}`}
                                                             minDateForFravær={minDateForFravær}
                                                             maxDateForFravær={maxDateForFravær}
                                                             årstall={årstall}
@@ -215,11 +228,11 @@ const FraværStep: React.FC = () => {
                                                 labels={{
                                                     addLabel: intlHelper(
                                                         intl,
-                                                        'step.fravær.værtIUtlandet.leggTilLabel',
+                                                        'step.fravær.værtIUtlandet.leggTilLabel'
                                                     ),
                                                     modalTitle: intlHelper(
                                                         intl,
-                                                        'step.fravær.værtIUtlandet.modalTittel',
+                                                        'step.fravær.værtIUtlandet.modalTittel'
                                                     ),
                                                 }}
                                                 validate={getListValidator({ required: true })}

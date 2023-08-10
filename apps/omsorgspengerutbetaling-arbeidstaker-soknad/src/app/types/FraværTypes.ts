@@ -16,7 +16,7 @@ export type Fravær = {
 };
 
 export type FraværMap = {
-    [organisasjonsnummer: string]: {
+    [organisasjonsnummerKey: string]: {
         harPerioderMedFravær: YesOrNo;
         fraværPerioder: FraværPeriode[];
         harDagerMedDelvisFravær: YesOrNo;

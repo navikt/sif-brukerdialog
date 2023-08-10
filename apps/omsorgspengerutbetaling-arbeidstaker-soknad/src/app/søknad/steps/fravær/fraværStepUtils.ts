@@ -99,7 +99,7 @@ const getDefaultFraværFrømSøknadsdata = (fravær?: FraværTypes): Fravær => 
 
 export const getFraværStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: FraværStepFormValues,
+    formValues?: FraværStepFormValues
 ): FraværStepFormValues => {
     const { situasjon, fravær } = søknadsdata;
 
@@ -107,13 +107,14 @@ export const getFraværStepInitialValues = (
         if (situasjon) {
             Object.entries(situasjon).forEach(([key, value]) => {
                 if (value.type !== 'harIkkeHattFravær' && value.type !== 'harHattFraværMedLønn') {
-                    const fraværEnkelt = formValues.fravær[key] || {
+                    const organisasjonsnummerKey = getOrganisasjonsnummerKey(key);
+                    const fraværEnkelt = formValues.fravær[organisasjonsnummerKey] || {
                         harPerioderMedFravær: YesOrNo.UNANSWERED,
                         fraværPerioder: [],
                         harDagerMedDelvisFravær: YesOrNo.UNANSWERED,
                         fraværDager: [],
                     };
-                    return { ...formValues, ...(formValues.fravær[key] = fraværEnkelt) };
+                    return { ...formValues, ...(formValues.fravær[organisasjonsnummerKey] = fraværEnkelt) };
                 }
             });
         }
@@ -129,9 +130,10 @@ export const getFraværStepInitialValues = (
     if (situasjon) {
         Object.entries(situasjon).forEach(([key, value]) => {
             if (value.type !== 'harIkkeHattFravær' && value.type !== 'harHattFraværMedLønn') {
-                const fraværEnkelt = fravær?.fravær[key];
+                const organisasjonsnummerKey = getOrganisasjonsnummerKey(key);
+                const fraværEnkelt = fravær?.fravær[organisasjonsnummerKey];
 
-                defaultFraværMap[key] = getDefaultFraværFrømSøknadsdata(fraværEnkelt);
+                defaultFraværMap[organisasjonsnummerKey] = getDefaultFraværFrømSøknadsdata(fraværEnkelt);
             }
         });
     }
@@ -140,4 +142,12 @@ export const getFraværStepInitialValues = (
         ...defaultUtenlandsoppholdValues,
         fravær: defaultFraværMap,
     };
+};
+
+export const getOrganisasjonsnummerKey = (organisasjonsnummer: string): string => {
+    return `key_${organisasjonsnummer}`;
+};
+
+export const getOrganisasjonsnummerFromKey = (organisasjonsnummerKey: string): string => {
+    return organisasjonsnummerKey.replace('key_', '');
 };

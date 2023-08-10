@@ -4,15 +4,17 @@ import { SituasjonSøknadsdata } from '../../types/søknadsdata/SituasjonSøknad
 import { Utbetalingsårsak } from '../../types/ArbeidsforholdTypes';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/lib/forms/fravær/types';
 import { dateToISODate, decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-utils/lib';
+import { getOrganisasjonsnummerFromKey } from '../../søknad/steps/fravær/fraværStepUtils';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     situasjon: SituasjonSøknadsdata,
-    fravær: FraværSøknadsdata,
+    fravær: FraværSøknadsdata
 ): ArbeidsgiverDetaljer[] => {
     const arbeidsgiverDetaljer: ArbeidsgiverDetaljer[] = [];
 
     Object.entries(fravær.fravær).forEach(([key, value]) => {
-        const arbeidsforhold = situasjon[key];
+        const organisasjonsnummer = getOrganisasjonsnummerFromKey(key);
+        const arbeidsforhold = situasjon[organisasjonsnummer];
 
         const { type } = value;
 
@@ -54,7 +56,7 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
 
 export const mapFraværTilUtbetalingsperiode = (
     fraværPerioder: FraværPeriode[],
-    fraværDager: FraværDag[],
+    fraværDager: FraværDag[]
 ): Utbetalingsperiode[] => {
     const periodeMappedTilUtbetalingsperiode: Utbetalingsperiode[] = fraværPerioder.map(
         (periode: FraværPeriode): Utbetalingsperiode => {
@@ -66,7 +68,7 @@ export const mapFraværTilUtbetalingsperiode = (
                 årsak: 'ORDINÆRT_FRAVÆR',
                 aktivitetFravær: [ApiAktivitet.ARBEIDSTAKER],
             };
-        },
+        }
     );
 
     const fraværDeleravDagMappedTilUtbetalingsperiode: Utbetalingsperiode[] = fraværDager.map(
@@ -80,7 +82,7 @@ export const mapFraværTilUtbetalingsperiode = (
                 aktivitetFravær: [ApiAktivitet.ARBEIDSTAKER],
             };
             return utbetalingsperiode;
-        },
+        }
     );
 
     return [...periodeMappedTilUtbetalingsperiode, ...fraværDeleravDagMappedTilUtbetalingsperiode];
