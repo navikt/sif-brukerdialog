@@ -5388,7 +5388,7 @@ __metadata:
   dependencies:
     "@sentry/browser": 7.61.1
     "@sentry/react": 7.61.1
-    "@sentry/types": 7.61.1
+    "@sentry/types": 7.62.0
     "@types/node": 20.4.8
     axios: 1.4.0
     config: "*"
@@ -6575,6 +6575,13 @@ __metadata:
   version: 7.61.1
   resolution: "@sentry/types@npm:7.61.1"
   checksum: 959f75ecfd15cac2f2d5d41d354e817ca7bb8a9e00c557f2fdb8c923273f04ec3fdecfd3bad3d12aebdef1a1ba4c0433d2f58d84dafa3d9ffc7d376f1201eee2
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.62.0":
+  version: 7.62.0
+  resolution: "@sentry/types@npm:7.62.0"
+  checksum: 8b702f99895a814709c6b2f4917a9b4a7224eea108eefc108088df0edf60a16ca37dcb44a078ef8dd4a52fadd5ed227818cd87467901c6496e467aea8d4e2035
   languageName: node
   linkType: hard
 
