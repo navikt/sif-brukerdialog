@@ -10,7 +10,7 @@ import {
 import { FormikFileInput, TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds';
 import { ArrayHelpers, connect, useFormikContext } from 'formik';
 import { uploadFile } from '../../api/api';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import apiUtils from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';

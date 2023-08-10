@@ -8,7 +8,7 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import getLenker from '../../lenker';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import InfoList from './components/info-list/InfoList';
 
 interface Props {

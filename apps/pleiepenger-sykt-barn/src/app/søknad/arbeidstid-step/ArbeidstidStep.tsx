@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik';
 import GeneralErrorPage from '../../pages/general-error-page/GeneralErrorPage';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidssituasjonAnsattType } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
 import { søkerNoeFremtid } from '../../utils/søknadsperiodeUtils';
 import SøknadFormStep from '../SøknadFormStep';

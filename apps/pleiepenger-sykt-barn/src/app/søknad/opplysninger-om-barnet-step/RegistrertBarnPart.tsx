@@ -5,7 +5,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { useFormikContext } from 'formik';
-import { SøknadFormField, initialValues, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, initialValues, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';

@@ -10,7 +10,7 @@ import { useFormikContext } from 'formik';
 import OmsorgstilbudMåned from '../../../local-sif-common-pleiepenger/components/omsorgstilbud-periode/OmsorgstilbudMåned';
 import SøknadsperioderMånedListe from '../../../local-sif-common-pleiepenger/components/søknadsperioder-måned-liste/SøknadsperioderMånedListe';
 import { TidEnkeltdagEndring } from '../../../local-sif-common-pleiepenger/components/tid-enkeltdag-dialog/TidEnkeltdagForm';
-import { SøknadFormField, SøknadFormValues } from '../../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { validateOmsorgstilbudEnkeltdagerIPeriode } from '../../../validation/fieldValidations';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { skalViseSpørsmålOmProsentEllerLiktHverUke } from '../omsorgstilbudStepUtils';

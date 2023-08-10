@@ -13,15 +13,15 @@ import { useFormikContext } from 'formik';
 import ResponsivePanel from '../../../components/responsive-panel/ResponsivePanel';
 import getLenker from '../../../lenker';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
-import { SelvstendigFormData, SelvstendigFormField } from '../../../types/SelvstendigFormData';
-import { SøknadFormValues } from '../../../types/SøknadFormValues';
+import { SelvstendigFormValues, SelvstendigFormField } from '../../../types/søknad-form-values/SelvstendigFormValues';
+import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { getArbeidsforholdIntlValues } from '../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../validation/arbeiderNormaltTimerIUkenValidator';
 import { getSelvstendigIPeriodeValidator } from '../validation/selvstendigIPeriodeValidator';
 import { InfoArbeiderNormaltTimerSN } from './info/InfoArbeiderNormaltTimerIUken';
-import { ArbeidsforholdFormField } from '../../../types/ArbeidsforholdFormValues';
+import { ArbeidsforholdFormField } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 
-const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormData, ValidationError>();
+const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormValues, ValidationError>();
 
 interface Props {
     søknadsperiode: DateRange;

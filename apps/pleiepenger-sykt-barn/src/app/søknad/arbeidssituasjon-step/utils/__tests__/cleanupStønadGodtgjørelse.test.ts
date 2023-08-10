@@ -1,11 +1,11 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { StønadGodtgjørelseFormData } from '../../../../types/StønadGodtgjørelseFormData';
+import { StønadGodtgjørelseFormValues } from '../../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { cleanupStønadGodtgjørelse } from '../cleanupArbeidssituasjonStep';
 
 const ISOStartdato = '2021-01-01';
 const ISOSluttdato = '2022-01-01';
 
-const formValues: StønadGodtgjørelseFormData = {
+const formValues: StønadGodtgjørelseFormValues = {
     mottarStønadGodtgjørelse: YesOrNo.YES,
     mottarStønadGodtgjørelseIHelePerioden: YesOrNo.NO,
     startdato: ISOStartdato,

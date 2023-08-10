@@ -3,7 +3,7 @@ import { FormikRadioProp } from '@navikt/sif-common-formik-ds/lib/components/for
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import FormSection from '../../../components/form-section/FormSection';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
-import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
+import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import ArbeidIPeriodeSpørsmål from './ArbeidIPeriodeSpørsmål';
 
 interface Props {

@@ -9,7 +9,7 @@ export enum SelvstendigFormField {
     arbeidsforhold = 'selvstendig.arbeidsforhold',
 }
 
-export interface SelvstendigFormData {
+export interface SelvstendigFormValues {
     harHattInntektSomSN?: YesOrNo;
     harFlereVirksomheter?: YesOrNo;
     virksomhet?: Virksomhet;

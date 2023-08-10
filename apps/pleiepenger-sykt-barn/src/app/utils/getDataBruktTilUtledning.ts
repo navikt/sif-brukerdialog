@@ -19,7 +19,8 @@ export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
             return {
                 erAnsatt: false,
                 sluttetFørSøknadsdato: true,
-                orgnr: ansatt.arbeidsgiver.id,
+                navn: ansatt.arbeidsgiver.navn,
+                orgnr: ansatt.arbeidsgiver.organisasjonsnummer,
             };
         });
 };

@@ -1,8 +1,8 @@
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { durationToDecimalDuration, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils';
-import { OmsorgstilbudFormValues } from '../types/SøknadFormValues';
-import { AppFieldValidationErrors } from './fieldValidations';
+import { OmsorgstilbudFormValues } from '../types/søknad-form-values/OmsorgtilbudFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
+import { AppFieldValidationErrors } from './fieldValidations';
 
 export const validateOmsorgstilbud = (omsorgstilbud: OmsorgstilbudFormValues): ValidationResult<ValidationError> => {
     if (

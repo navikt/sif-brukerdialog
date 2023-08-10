@@ -19,8 +19,8 @@ import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
-import { søkerKunHelgedager } from '../../utils/formDataUtils';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
+import { søkerKunHelgedager } from '../../utils/formValuesUtils';
 import {
     validateFerieuttakIPerioden,
     validateFradato,

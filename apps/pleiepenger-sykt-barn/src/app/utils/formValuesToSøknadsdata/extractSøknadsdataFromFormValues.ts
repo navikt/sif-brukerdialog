@@ -1,6 +1,6 @@
-import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getHarVærtEllerErVernepliktigFromFormData, getSøknadsperiodeFromFormData } from '../formDataUtils';
+import { getHarVærtEllerErVernepliktigFromFormValues, getSøknadsperiodeFromFormValues } from '../formValuesUtils';
 import { extractArbeidssituasjonSøknadsdata } from './extractArbeidssituasjonSøknadsdata';
 import { extractArbeidstidSøknadsdata } from './extractArbeidstidSøknadsdata';
 import { extractBarnSøknadsdata } from './extractBarnSøknadsdata';
@@ -14,7 +14,7 @@ import { extractUtenlandsoppholdIPeriodenSøknadsdata } from './extractUtenlands
 
 export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): Søknadsdata => {
     const harForståttRettigheterOgPlikter = values.harForståttRettigheterOgPlikter;
-    const søknadsperiode = getSøknadsperiodeFromFormData(values);
+    const søknadsperiode = getSøknadsperiodeFromFormValues(values);
     if (søknadsperiode === undefined) {
         return { isInitialized: false };
     }
@@ -28,7 +28,7 @@ export const extractSøknadsdataFromFormValues = (values: SøknadFormValues): S�
         arbeidssituasjon: extractArbeidssituasjonSøknadsdata(søknadsperiode, values),
         arbeidstidIPerioden: extractArbeidstidSøknadsdata(values),
         stønadGodtgjørelse: extractStønadGodtgjørelseSøknadsdata(values.stønadGodtgjørelse),
-        harVærtEllerErVernepliktig: getHarVærtEllerErVernepliktigFromFormData(values),
+        harVærtEllerErVernepliktig: getHarVærtEllerErVernepliktigFromFormValues(values),
         omsorgstibud: extractOmsorgstibudSøknadsdata(values.omsorgstilbud),
         nattevåk: extractNattevåkSøknadsdata(values),
         beredskap: extractBeredskapSøknadsdata(values),

@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { UtenlandskNæringSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const extractUtenlandskNæringSøknadsdata = ({

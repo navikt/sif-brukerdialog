@@ -1,4 +1,4 @@
-import { SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { extractArbeidIPeriodeSøknadsdata } from './extractArbeidIPeriodeSøknadsdata';
 

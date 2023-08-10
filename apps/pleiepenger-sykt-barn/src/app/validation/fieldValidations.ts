@@ -29,9 +29,8 @@ import {
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
-import { StønadGodtgjørelseFormData } from '../types/StønadGodtgjørelseFormData';
+import { StønadGodtgjørelseFormValues } from '../types/søknad-form-values/StønadGodtgjørelseFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
-import { dateRangesHasFromDateEqualPreviousRangeToDate } from '../utils/dateRangeUtils';
 
 dayjs.extend(minMax);
 dayjs.extend(isoWeek);
@@ -132,7 +131,7 @@ export const validateUtenlandsoppholdIPerioden = (
     if (dateRangesExceedsRange(dateRanges, periode)) {
         return AppFieldValidationErrors.utenlandsopphold_utenfor_periode;
     }
-    if (dateRangesHasFromDateEqualPreviousRangeToDate(dateRanges)) {
+    if (dateRangesCollide(dateRanges, false)) {
         return AppFieldValidationErrors.utenlandsopphold_overlapper_samme_start_slutt;
     }
     return undefined;
@@ -179,30 +178,30 @@ export const validateOmsorgstilbudEnkeltdagerIPeriode = (tidIOmsorgstilbud: Date
 };
 
 export const getstønadGodtgjørelseStartdatoValidator =
-    (formData: StønadGodtgjørelseFormData, søknadsperiode: DateRange) =>
+    (formValues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {
             return dateError;
         }
-        const startdato = datepickerUtils.getDateFromDateString(formData.startdato);
+        const startdato = datepickerUtils.getDateFromDateString(formValues.startdato);
 
-        if (startdato && formData.sluttdato && dayjs(startdato).isAfter(formData.sluttdato, 'day')) {
+        if (startdato && formValues.sluttdato && dayjs(startdato).isAfter(formValues.sluttdato, 'day')) {
             return 'startetEtterSluttDato';
         }
         return undefined;
     };
 
 export const getstønadGodtgjørelseSluttdatoValidator =
-    (formData: StønadGodtgjørelseFormData, søknadsperiode: DateRange) =>
+    (formVaues: StønadGodtgjørelseFormValues, søknadsperiode: DateRange) =>
     (value: string): ValidationResult<ValidationError> => {
         const dateError = getDateValidator({ required: true, min: søknadsperiode.from, max: søknadsperiode.to })(value);
         if (dateError) {
             return dateError;
         }
-        const sluttdato = datepickerUtils.getDateFromDateString(formData.sluttdato);
+        const sluttdato = datepickerUtils.getDateFromDateString(formVaues.sluttdato);
 
-        if (sluttdato && formData.startdato && dayjs(sluttdato).isBefore(formData.startdato, 'day')) {
+        if (sluttdato && formVaues.startdato && dayjs(sluttdato).isBefore(formVaues.startdato, 'day')) {
             return 'sluttetFørStartDato';
         }
         return undefined;

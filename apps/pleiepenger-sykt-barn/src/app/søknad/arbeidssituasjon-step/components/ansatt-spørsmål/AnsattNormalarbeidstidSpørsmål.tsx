@@ -3,7 +3,10 @@ import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
-import { ArbeidsforholdFormField, ArbeidsforholdFormValues } from '../../../../types/ArbeidsforholdFormValues';
+import {
+    ArbeidsforholdFormField,
+    ArbeidsforholdFormValues,
+} from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { getArbeidsforholdIntlValues } from '../../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../../validation/arbeiderNormaltTimerIUkenValidator';
 import { InfoArbeiderNormaltTimerAnsatt } from '../info/InfoArbeiderNormaltTimerIUken';

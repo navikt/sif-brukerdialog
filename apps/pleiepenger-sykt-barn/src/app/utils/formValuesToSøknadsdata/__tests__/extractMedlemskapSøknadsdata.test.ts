@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { MedlemskapFormData } from '../../../types/SøknadFormValues';
+import { MedlemskapFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import { extractMedlemskapSøknadsdata } from '../extractMedlemskapSøknadsdata';
 
@@ -10,7 +10,7 @@ const mockUtenlandsopphold: Utenlandsopphold = {
     id: '12334',
 };
 
-const formData: MedlemskapFormData = {
+const formValues: MedlemskapFormValues = {
     harBoddUtenforNorgeSiste12Mnd: YesOrNo.YES,
     utenlandsoppholdSiste12Mnd: [mockUtenlandsopphold],
     skalBoUtenforNorgeNeste12Mnd: YesOrNo.YES,
@@ -20,7 +20,7 @@ const formData: MedlemskapFormData = {
 describe('extractMedlemskapSøknadsdata', () => {
     describe('Har bodd og skal bo i utlandet', () => {
         it('returnerer harBoddSkalBo dersom bruker har bodd og skal bo i utlandet', () => {
-            const result = extractMedlemskapSøknadsdata(formData);
+            const result = extractMedlemskapSøknadsdata(formValues);
             expect(result).toBeDefined();
             expect(result?.type).toEqual('harBoddSkalBo');
         });
@@ -29,7 +29,7 @@ describe('extractMedlemskapSøknadsdata', () => {
     describe('Har bodd i utlandet', () => {
         it('returnerer harBodd dersom bruker har bodd i utlandet', () => {
             const result = extractMedlemskapSøknadsdata({
-                ...formData,
+                ...formValues,
                 skalBoUtenforNorgeNeste12Mnd: YesOrNo.NO,
                 utenlandsoppholdNeste12Mnd: [],
             });
@@ -41,7 +41,7 @@ describe('extractMedlemskapSøknadsdata', () => {
     describe('Skal bo i utlandet', () => {
         it('returnerer skalBo dersom bruker skal bo i utlandet', () => {
             const result = extractMedlemskapSøknadsdata({
-                ...formData,
+                ...formValues,
                 harBoddUtenforNorgeSiste12Mnd: YesOrNo.NO,
                 utenlandsoppholdSiste12Mnd: [],
             });
@@ -53,7 +53,7 @@ describe('extractMedlemskapSøknadsdata', () => {
     describe('Har ikke bodd og skal ikke bo i utlandet', () => {
         it('returnerer harIkkeBoddSkalIkkeBo dersom bruker har ikke bodd og skal ikke bo i utlandet', () => {
             const result = extractMedlemskapSøknadsdata({
-                ...formData,
+                ...formValues,
                 harBoddUtenforNorgeSiste12Mnd: YesOrNo.NO,
                 utenlandsoppholdSiste12Mnd: [],
                 skalBoUtenforNorgeNeste12Mnd: YesOrNo.NO,

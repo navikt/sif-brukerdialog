@@ -1,5 +1,5 @@
 import { ISODate } from '@navikt/sif-common-utils/lib';
-import { Frilanstype } from '../FrilansFormData';
+import { Frilanstype } from '../søknad-form-values/FrilansFormValues';
 import { ArbeidsforholdApiData } from './ArbeidsforholdApiData';
 
 export type FrilansApiDataIngenInntekt = {

@@ -2,9 +2,10 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { OmsorgstilbudFormValues, SøknadFormValues } from '../../types/SøknadFormValues';
-import { skalBrukerSvarePåBeredskapOgNattevåk } from '../../utils/stepUtils';
+import { OmsorgstilbudFormValues } from '../../types/søknad-form-values/OmsorgtilbudFormValues';
+import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
+import { skalBrukerSvarePåBeredskapOgNattevåk } from '../../utils/stepUtils';
 
 export const MIN_ANTALL_DAGER_FOR_FAST_PLAN_I_OMSORGSTILBUD = 6;
 

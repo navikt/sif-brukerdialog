@@ -1,5 +1,5 @@
 import { StepID } from './StepID';
-import { SøknadFormValues } from './SøknadFormValues';
+import { SøknadFormValues } from './søknad-form-values/SøknadFormValues';
 
 export const MELLOMLAGRING_VERSION = '13.5.0';
 

@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils';
-import { SøknadFormValues } from '../../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { cleanupOmsorgstilbudStep } from '../omsorgstilbudStepUtils';
 import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
 
@@ -10,7 +10,7 @@ const søknadsperiode: DateRange = {
     to: ISODateToDate('2021-06-04'),
 };
 
-const enkeldagerFormData: DateDurationMap = {
+const enkeldagerFormValues: DateDurationMap = {
     '2021-06-01': { hours: '2', minutes: '30' } /** Outside range */,
     '2021-06-02': { hours: '2', minutes: '30' } /** Within range */,
     '2021-06-03': { hours: '2', minutes: '30' } /** Within range */,
@@ -22,7 +22,7 @@ const formValuesTemplate: Partial<SøknadFormValues> = {
     omsorgstilbud: {
         erIOmsorgstilbudFortid: YesOrNoOrDoNotKnow.YES,
         erLiktHverUke: YesOrNo.NO,
-        enkeltdager: enkeldagerFormData,
+        enkeltdager: enkeldagerFormValues,
     },
 };
 

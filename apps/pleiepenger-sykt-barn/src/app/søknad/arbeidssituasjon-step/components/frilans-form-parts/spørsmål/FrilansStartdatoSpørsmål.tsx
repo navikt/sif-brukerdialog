@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { date99YearsFromNow, DateRange, ISODate } from '@navikt/sif-common-utils/lib';
-import { FrilansFormField, Frilanstype } from '../../../../../types/FrilansFormData';
+import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getFrilanserStartdatoValidator } from '../../../validation/frilansStartdatoValidator';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 

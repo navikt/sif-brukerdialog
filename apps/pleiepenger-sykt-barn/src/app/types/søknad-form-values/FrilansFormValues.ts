@@ -18,7 +18,7 @@ export enum Frilanstype {
     'FRILANS_HONORAR' = 'FRILANS_HONORAR',
     'HONORAR' = 'HONORAR',
 }
-export interface FrilansFormData {
+export interface FrilansFormValues {
     harHattInntektSomFrilanser?: YesOrNo;
     frilanstype?: Frilanstype;
     misterHonorar?: YesOrNo;

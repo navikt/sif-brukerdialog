@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeidsforholdFormValues } from '../../types/ArbeidsforholdFormValues';
+import { ArbeidsforholdFormValues } from '../../types/søknad-form-values/ArbeidsforholdFormValues';
 import {
     ArbeidssituasjonAnsattSøknadsdata,
     ArbeidssituasjonAnsattType,

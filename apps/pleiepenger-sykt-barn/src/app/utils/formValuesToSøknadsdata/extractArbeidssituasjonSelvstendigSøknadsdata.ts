@@ -1,14 +1,14 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { SelvstendigFormData } from '../../types/SelvstendigFormData';
+import { SelvstendigFormValues } from '../../types/søknad-form-values/SelvstendigFormValues';
 import { ArbeidssituasjonSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSelvstendigSøknadsdata';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../selvstendigUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonSelvstendigSøknadsdata = (
     søknadsperiode: DateRange,
-    selvstendig: SelvstendigFormData
+    selvstendig: SelvstendigFormValues
 ): ArbeidssituasjonSelvstendigSøknadsdata | undefined => {
     if (!selvstendig || selvstendig.harHattInntektSomSN === YesOrNo.UNANSWERED) {
         return undefined;

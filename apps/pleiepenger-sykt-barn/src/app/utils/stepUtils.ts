@@ -1,6 +1,6 @@
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { StepID } from '../types/StepID';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../types/YesOrNoOrDoNotKnow';
 import {
     arbeidssituasjonStepIsValid,
@@ -16,56 +16,56 @@ import { isAvailable } from './routeUtils';
 import { erSNISøknadsperiode } from './selvstendigUtils';
 import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 
-export const opplysningerOmBarnetStepAvailable = (formData: SøknadFormValues) => {
-    return welcomingPageIsValid(formData);
+export const opplysningerOmBarnetStepAvailable = (formValues: SøknadFormValues) => {
+    return welcomingPageIsValid(formValues);
 };
 
-export const opplysningerOmTidsromStepAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData);
+export const opplysningerOmTidsromStepAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) && opplysningerOmBarnetStepIsValid(formValues);
 
-export const arbeidssituasjonStepAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData);
+export const arbeidssituasjonStepAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) &&
+    opplysningerOmBarnetStepIsValid(formValues) &&
+    opplysningerOmTidsromStepIsValid(formValues);
 
-export const arbeidIPeriodeStepIsAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
+export const arbeidIPeriodeStepIsAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) &&
+    opplysningerOmBarnetStepIsValid(formValues) &&
+    opplysningerOmTidsromStepIsValid(formValues) &&
     arbeidssituasjonStepIsValid();
 
-export const omsorgstilbudStepAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
+export const omsorgstilbudStepAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) &&
+    opplysningerOmBarnetStepIsValid(formValues) &&
+    opplysningerOmTidsromStepIsValid(formValues) &&
     arbeidssituasjonStepIsValid();
 
-export const nattevåkOgBeredskapStepAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
+export const nattevåkOgBeredskapStepAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) &&
+    opplysningerOmBarnetStepIsValid(formValues) &&
+    opplysningerOmTidsromStepIsValid(formValues) &&
     arbeidssituasjonStepIsValid() &&
-    omsorgstilbudStepAvailable(formData);
+    omsorgstilbudStepAvailable(formValues);
 
-export const medlemskapStepAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
+export const medlemskapStepAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) &&
+    opplysningerOmBarnetStepIsValid(formValues) &&
+    opplysningerOmTidsromStepIsValid(formValues) &&
     arbeidssituasjonStepIsValid();
 
-export const legeerklæringStepAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
+export const legeerklæringStepAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) &&
+    opplysningerOmBarnetStepIsValid(formValues) &&
+    opplysningerOmTidsromStepIsValid(formValues) &&
     arbeidssituasjonStepIsValid() &&
-    medlemskapStepIsValid(formData);
+    medlemskapStepIsValid(formValues);
 
-export const oppsummeringStepAvailable = (formData: SøknadFormValues) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
+export const oppsummeringStepAvailable = (formValues: SøknadFormValues) =>
+    welcomingPageIsValid(formValues) &&
+    opplysningerOmBarnetStepIsValid(formValues) &&
+    opplysningerOmTidsromStepIsValid(formValues) &&
     arbeidssituasjonStepIsValid() &&
-    medlemskapStepIsValid(formData) &&
+    medlemskapStepIsValid(formValues) &&
     legeerklæringStepIsValid();
 
 export const skalBrukerSvarePåBeredskapOgNattevåk = (formValues?: SøknadFormValues): boolean => {

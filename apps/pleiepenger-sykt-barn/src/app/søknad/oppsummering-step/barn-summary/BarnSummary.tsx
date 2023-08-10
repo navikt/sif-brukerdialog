@@ -5,7 +5,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { BarnRelasjon, RegistrerteBarn, ÅrsakManglerIdentitetsnummer } from '../../../types';
 import { SøknadApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import UploadedDocumentsList from '../../../components/fødselsattest-file-list/UploadedDocumentsList';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad-ds/lib/components/summary-section/SummarySection';

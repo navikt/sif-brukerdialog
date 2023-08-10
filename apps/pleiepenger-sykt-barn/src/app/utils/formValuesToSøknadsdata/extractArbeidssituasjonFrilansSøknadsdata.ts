@@ -1,6 +1,6 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { FrilansFormData, Frilanstype } from '../../types/FrilansFormData';
+import { FrilansFormValues, Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
 import { isYesOrNoAnswered } from '../../validation/fieldValidations';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../frilanserUtils';
@@ -8,7 +8,7 @@ import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonFrilansSøknadsdata = (
     søknadsperiode: DateRange,
-    formValues: FrilansFormData
+    formValues: FrilansFormValues
 ): ArbeidssituasjonFrilansSøknadsdata | undefined => {
     if (formValues === undefined || !isYesOrNoAnswered(formValues.harHattInntektSomFrilanser)) {
         return undefined;

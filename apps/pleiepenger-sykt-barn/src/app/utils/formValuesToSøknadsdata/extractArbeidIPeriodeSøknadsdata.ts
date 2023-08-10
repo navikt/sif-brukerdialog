@@ -2,7 +2,10 @@ import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-c
 import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../types';
-import { ArbeidIPeriodeFormValues, ArbeidsukerFormValues } from '../../types/ArbeidIPeriodeFormValues';
+import {
+    ArbeidIPeriodeFormValues,
+    ArbeidsukerFormValues,
+} from '../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';

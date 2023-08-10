@@ -6,13 +6,13 @@ import { durationToDecimalDuration, ISODurationToDuration, summarizeDurations } 
 import { isEqual } from 'lodash';
 import { StepID } from '../types/StepID';
 import { OmsorgstilbudApiData, SøknadApiData, TimerFasteDagerApiData } from '../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../types/SøknadFormValues';
-import { søkerKunHelgedager } from '../utils/formDataUtils';
+import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
+import { søkerKunHelgedager } from '../utils/formValuesUtils';
 import { getAttachmentsApiDataFromSøknadsdata } from '../utils/søknadsdataToApiData/getAttachmentsApiDataFromSøknadsdata';
 
-export const apiVedleggIsInvalid = (apiVedlegg: string[], vedleggFormData: Attachment[]) => {
-    const apiVedleggFromFormdata = vedleggFormData ? getAttachmentsApiDataFromSøknadsdata(vedleggFormData) : [];
-    return !isEqual(apiVedleggFromFormdata.sort(), apiVedlegg.sort());
+export const apiVedleggIsInvalid = (apiVedlegg: string[], vedlegg: Attachment[]) => {
+    const apiVedleggFromSøknadsdata = vedlegg ? getAttachmentsApiDataFromSøknadsdata(vedlegg) : [];
+    return !isEqual(apiVedleggFromSøknadsdata.sort(), apiVedlegg.sort());
 };
 export interface ApiValidationError {
     stepId: StepID;

@@ -1,11 +1,11 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { SelvstendigFormData } from '../../../../types/SelvstendigFormData';
+import { SelvstendigFormValues } from '../../../../types/søknad-form-values/SelvstendigFormValues';
 import { cleanupSelvstendigArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 
 const virksomhet = {} as any;
 const arbeidsforhold = {} as any;
 
-const formValues: SelvstendigFormData = {
+const formValues: SelvstendigFormValues = {
     harHattInntektSomSN: YesOrNo.YES,
     harFlereVirksomheter: YesOrNo.NO,
     virksomhet,

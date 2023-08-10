@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ArbeidIPeriodeFormField } from '../../../types/ArbeidIPeriodeFormValues';
+import { ArbeidIPeriodeFormField } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 
 type ArbeidstidSpørsmål = {

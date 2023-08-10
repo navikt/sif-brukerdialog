@@ -5,7 +5,7 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
-import { SøknadFormValues } from '../../../types/SøknadFormValues';
+import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { harFrilansoppdrag } from '../../../utils/frilanserUtils';
 import FrilanserFormPart from './frilans-form-parts/FrilanserFormPart';
 import StønadsgodtgjørelseFormPart from './frilans-form-parts/StønadsgodtgjørelseFormPart';

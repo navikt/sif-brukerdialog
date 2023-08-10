@@ -1,11 +1,11 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { FrilansFormData, Frilanstype } from '../../../../types/FrilansFormData';
+import { FrilansFormValues, Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
 import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 
 const søknadsperiode = ISODateRangeToDateRange('2021-01-02/2022-01-01');
 
-const frilanserFullFormValues: FrilansFormData = {
+const frilanserFullFormValues: FrilansFormValues = {
     harHattInntektSomFrilanser: YesOrNo.YES,
     erFortsattFrilanser: YesOrNo.YES,
     frilanstype: Frilanstype.FRILANS_HONORAR,
@@ -19,7 +19,7 @@ const frilanserFullFormValues: FrilansFormData = {
     },
 };
 
-const checkValuesAvsluttetFrilanser = (result: FrilansFormData, forventetFrilanstype: Frilanstype) => {
+const checkValuesAvsluttetFrilanser = (result: FrilansFormValues, forventetFrilanstype: Frilanstype) => {
     const {
         arbeidsforhold,
         erFortsattFrilanser,
@@ -39,7 +39,7 @@ const checkValuesAvsluttetFrilanser = (result: FrilansFormData, forventetFrilans
     expect(sluttdato).toEqual('2022-02-01');
     expect(rest).toEqual({});
 };
-const checkValuesFortsattFrilanser = (result: FrilansFormData, forventetFrilanstype: Frilanstype) => {
+const checkValuesFortsattFrilanser = (result: FrilansFormValues, forventetFrilanstype: Frilanstype) => {
     const {
         arbeidsforhold,
         erFortsattFrilanser,

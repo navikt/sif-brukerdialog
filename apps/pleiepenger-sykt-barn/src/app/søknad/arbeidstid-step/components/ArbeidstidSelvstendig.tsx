@@ -5,8 +5,8 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
-import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
-import { SelvstendigFormField } from '../../../types/SelvstendigFormData';
+import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
+import { SelvstendigFormField } from '../../../types/søknad-form-values/SelvstendigFormValues';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import InfoOmEndring from './InfoOmEndring';
 

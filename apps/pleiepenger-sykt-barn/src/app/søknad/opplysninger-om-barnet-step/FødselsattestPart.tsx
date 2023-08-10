@@ -18,7 +18,7 @@ import FormikFileUploader from '../../components/formik-file-uploader/FormikFile
 import UploadedDocumentsList from '../../components/fødselsattest-file-list/UploadedDocumentsList';
 import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 
 interface Props {

@@ -19,7 +19,7 @@ import LegeerklæringFileList from '../../components/legeerklæring-file-list/Le
 import usePersistSoknad from '../../hooks/usePersistSoknad';
 import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../validation/fieldValidations';
 import SøknadFormStep from '../SøknadFormStep';

@@ -31,7 +31,7 @@ import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
 import { StepID } from '../../types/StepID';
 import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import appSentryLogger from '../../utils/appSentryLogger';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';

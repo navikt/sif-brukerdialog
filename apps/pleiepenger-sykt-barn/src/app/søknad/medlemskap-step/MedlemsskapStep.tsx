@@ -11,7 +11,7 @@ import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/bos
 import { useFormikContext } from 'formik';
 import getLenker from '../../lenker';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { getMedlemsskapDateRanges } from '../../utils/medlemsskapUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';

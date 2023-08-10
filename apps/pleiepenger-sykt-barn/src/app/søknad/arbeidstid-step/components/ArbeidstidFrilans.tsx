@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '../../../local-sif-common-pleiepenger/utils';
-import { ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
-import { FrilansFormField, Frilanstype } from '../../../types/FrilansFormData';
+import { ArbeidIPeriodeFormValues } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
+import { FrilansFormField, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
 

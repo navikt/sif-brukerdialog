@@ -4,7 +4,7 @@ import { axiosConfigPsb } from '../config/axiosConfig';
 import { ResourceType } from '../types/ResourceType';
 import { StepID } from '../types/StepID';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
 import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';

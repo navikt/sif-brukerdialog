@@ -1,5 +1,5 @@
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { FrilansFormField, Frilanstype } from '../../../../../types/FrilansFormData';
+import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 const FrilansertypeSpørsmål = () => {

@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { OmsorgstilbudFormValues } from '../../types/SøknadFormValues';
+import { OmsorgstilbudFormValues } from '../../types/søknad-form-values/OmsorgtilbudFormValues';
 import { OmsorgstilbudSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
 

@@ -35,10 +35,10 @@ describe('apiVedleggIsInvalid', () => {
         const undefinedString: any = undefined;
         expect(apiVedleggIsInvalid([undefinedString], [])).toBeTruthy();
     });
-    it('should return error if vedlegg[] in apiData is empty but in formData is not empty', () => {
+    it('should return error if vedlegg[] in apiData is empty but in formValues is not empty', () => {
         expect(apiVedleggIsInvalid([], files)).toBeTruthy();
     });
-    it('should return error if vedlegg[] in apiData is not empty but in formData is empty', () => {
+    it('should return error if vedlegg[] in apiData is not empty but in formValues is empty', () => {
         expect(
             apiVedleggIsInvalid(
                 ['http://localhost:8080/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG'],
@@ -46,7 +46,7 @@ describe('apiVedleggIsInvalid', () => {
             )
         ).toBeTruthy();
     });
-    it('should return error if vedlegg[] in apiData is not the same as in formData', () => {
+    it('should return error if vedlegg[] in apiData is not the same as in formValues', () => {
         expect(
             apiVedleggIsInvalid(
                 [
@@ -61,7 +61,7 @@ describe('apiVedleggIsInvalid', () => {
     it('should not return error if vedlegg[] is empty', () => {
         expect(apiVedleggIsInvalid([], [])).toBeFalsy();
     });
-    it('should not return error if vedlegg[] in apiData is the same as in formData', () => {
+    it('should not return error if vedlegg[] in apiData is the same as in formValues', () => {
         expect(
             apiVedleggIsInvalid(
                 ['http://localhost:8080/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG'],

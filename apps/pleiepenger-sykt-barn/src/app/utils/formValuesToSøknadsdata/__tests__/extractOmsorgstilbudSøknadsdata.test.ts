@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { OmsorgstilbudFormValues } from '../../../types/SøknadFormValues';
-import { extractOmsorgstibudSøknadsdata } from '../extractOmsorgstibudSøknadsdata';
+import { OmsorgstilbudFormValues } from '../../../types/søknad-form-values/OmsorgtilbudFormValues';
 import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
+import { extractOmsorgstibudSøknadsdata } from '../extractOmsorgstibudSøknadsdata';
 
 const omsorgstilbud: OmsorgstilbudFormValues = {
     erIOmsorgstilbudFortid: YesOrNoOrDoNotKnow.YES,

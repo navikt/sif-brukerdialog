@@ -17,11 +17,11 @@ import { KvitteringInfo } from '../types/KvitteringInfo';
 import { StepID } from '../types/StepID';
 import { Søkerdata } from '../types/Søkerdata';
 import { SøknadApiData } from '../types/søknad-api-data/SøknadApiData';
-import { initialValues, SøknadFormValues } from '../types/SøknadFormValues';
+import { initialValues, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MellomlagringMetadata } from '../types/SøknadTempStorageData';
 import { harFraværFraJobb } from '../utils/arbeidUtils';
 import { cleanupAndSetFormikValues } from '../utils/cleanupAndSetFormikValues';
-import { getSøknadsperiodeFromFormData } from '../utils/formDataUtils';
+import { getSøknadsperiodeFromFormValues } from '../utils/formValuesUtils';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
 import { navigateTo, relocateToSoknad } from '../utils/navigationUtils';
@@ -122,7 +122,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
         });
     };
 
-    const søknadsperiode = values ? getSøknadsperiodeFromFormData(values) : undefined;
+    const søknadsperiode = values ? getSøknadsperiodeFromFormValues(values) : undefined;
     const søknadsdato = dateToday;
 
     return (

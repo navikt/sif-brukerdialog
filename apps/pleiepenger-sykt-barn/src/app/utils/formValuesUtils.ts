@@ -2,9 +2,9 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 
-export const getSøknadsperiodeFromFormData = ({
+export const getSøknadsperiodeFromFormValues = ({
     periodeFra,
     periodeTil,
 }: Partial<SøknadFormValues>): DateRange | undefined => {
@@ -19,7 +19,7 @@ export const getSøknadsperiodeFromFormData = ({
     return undefined;
 };
 
-export const getHarVærtEllerErVernepliktigFromFormData = ({
+export const getHarVærtEllerErVernepliktigFromFormValues = ({
     harVærtEllerErVernepliktig,
 }: Partial<SøknadFormValues>): boolean | undefined =>
     harVærtEllerErVernepliktig ? harVærtEllerErVernepliktig === YesOrNo.YES : undefined;

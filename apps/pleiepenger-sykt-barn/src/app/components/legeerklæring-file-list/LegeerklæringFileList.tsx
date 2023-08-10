@@ -10,7 +10,7 @@ import {
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
 import { connect, useFormikContext } from 'formik';
 import { deleteFile } from '../../api/api';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 
 interface LegeerklæringAttachmentListProps {
     includeDeletionFunctionality: boolean;

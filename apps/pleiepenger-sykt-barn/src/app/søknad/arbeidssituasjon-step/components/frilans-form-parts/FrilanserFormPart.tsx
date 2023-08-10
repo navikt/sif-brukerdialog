@@ -5,8 +5,12 @@ import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-co
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
 import ConditionalResponsivePanel from '../../../../components/conditional-responsive-panel/ConditionalResponsivePanel';
-import { FrilansFormData, FrilansFormField, Frilanstype } from '../../../../types/FrilansFormData';
-import { SøknadFormValues } from '../../../../types/SøknadFormValues';
+import {
+    FrilansFormValues,
+    FrilansFormField,
+    Frilanstype,
+} from '../../../../types/søknad-form-values/FrilansFormValues';
+import { SøknadFormValues } from '../../../../types/søknad-form-values/SøknadFormValues';
 import ErFortsattFrilanserSpørsmål from './spørsmål/ErFortsattFrilanserSpørsmål';
 import FrilansertypeSpørsmål from './spørsmål/FrilansertypeSpørsmål';
 import FrilansNormalarbeidstidSpørsmål from './spørsmål/FrilansNormalarbeidstidSpørsmål';
@@ -15,10 +19,10 @@ import FrilansStartdatoSpørsmål from './spørsmål/FrilansStartdatoSpørsmål'
 import HarHattInntektSomFrilanserSpørsmål from './spørsmål/HarHattInntektSomFrilanserSpørsmål';
 import MisterHonorarSpørsmål from './spørsmål/MisterHonorarSpørsmål';
 import { InfoArbeiderNormaltTimerFrilanser } from '../info/InfoArbeiderNormaltTimerIUken';
-import { ArbeidsforholdFormField } from '../../../../types/ArbeidsforholdFormValues';
+import { ArbeidsforholdFormField } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { Alert } from '@navikt/ds-react';
 
-export const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormData, ValidationError>();
+export const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormValues, ValidationError>();
 
 interface Props {
     søknadsperiode: DateRange;

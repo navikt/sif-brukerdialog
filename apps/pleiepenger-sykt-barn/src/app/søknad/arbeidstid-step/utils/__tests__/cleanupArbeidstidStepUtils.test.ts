@@ -1,5 +1,8 @@
 import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeidIPeriodeFormValues, ArbeidsukerFormValues } from '../../../../types/ArbeidIPeriodeFormValues';
+import {
+    ArbeidIPeriodeFormValues,
+    ArbeidsukerFormValues,
+} from '../../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { cleanupArbeidIPeriode, cleanupArbeidsuker } from '../cleanupArbeidstidStep';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';

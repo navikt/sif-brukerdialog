@@ -1,8 +1,8 @@
 import { extractBarnSøknadsdata } from '../extractBarnSøknadsdata';
-import { OmBarnetFormData } from '../../../types/SøknadFormValues';
+import { OmBarnetFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../../../types';
 
-const formData: OmBarnetFormData = {
+const formValues: OmBarnetFormValues = {
     barnetsNavn: '',
     barnetsFødselsnummer: '',
     barnetSøknadenGjelder: '1',
@@ -13,7 +13,7 @@ const formData: OmBarnetFormData = {
 describe('extractBarnetSøknadsdata', () => {
     describe('Barn fra Api', () => {
         it('returnerer registrerteBarn dersom bruker valgte registrerete barnet', () => {
-            const result = extractBarnSøknadsdata(formData);
+            const result = extractBarnSøknadsdata(formValues);
             expect(result).toBeDefined();
             expect(result?.type).toEqual('registrerteBarn');
         });
@@ -22,7 +22,7 @@ describe('extractBarnetSøknadsdata', () => {
     describe('Annet Barn med fnr', () => {
         it('returnerer annetBarn dersom bruker la til barn med fnr', () => {
             const result = extractBarnSøknadsdata({
-                ...formData,
+                ...formValues,
                 barnetSøknadenGjelder: '',
                 barnetsNavn: 'Test Testen',
                 barnetsFødselsnummer: '12345678911',
@@ -36,7 +36,7 @@ describe('extractBarnetSøknadsdata', () => {
     describe('Annet Barn uten fnr', () => {
         it('returnerer annetBarnUtenFnr dersom bruker la til barn uten fnr', () => {
             const result = extractBarnSøknadsdata({
-                ...formData,
+                ...formValues,
                 barnetSøknadenGjelder: '',
                 barnetsNavn: 'Test Testen',
                 barnetHarIkkeFnr: true,
@@ -54,7 +54,7 @@ describe('extractBarnetSøknadsdata', () => {
     describe('Tomt barnet i søknadsdata', () => {
         it('returnerer undefined med tomt barnet', () => {
             const result = extractBarnSøknadsdata({
-                ...formData,
+                ...formValues,
                 barnetSøknadenGjelder: '',
                 barnetsNavn: 'Test Testen',
                 barnetHarIkkeFnr: true,

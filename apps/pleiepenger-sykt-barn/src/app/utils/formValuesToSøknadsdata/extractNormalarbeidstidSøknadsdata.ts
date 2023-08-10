@@ -1,5 +1,5 @@
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik-ds/lib';
-import { NormalarbeidstidFormValues } from '../../types/ArbeidsforholdFormValues';
+import { NormalarbeidstidFormValues } from '../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const ExtractNormalarbeidstidFailed = 'ExtractNormalarbeidstid failed';

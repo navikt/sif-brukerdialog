@@ -9,7 +9,7 @@ import { dateRangeUtils, decimalDurationToDuration } from '@navikt/sif-common-ut
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../local-sif-common-pleiepenger';
 import { formatTimerOgMinutter } from '../../local-sif-common-pleiepenger/components/timer-og-minutter/TimerOgMinutter';
 import { getArbeidstidFastProsentValidator } from '../../local-sif-common-pleiepenger/utils/arbeidstidValidation';
-import { ArbeidIPeriodeFormField } from '../../types/ArbeidIPeriodeFormValues';
+import { ArbeidIPeriodeFormField } from '../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../types/ArbeidsukeInfo';
 import { getArbeidsdagerIUkeTekst } from './utils/arbeidstidStepUtils';
 

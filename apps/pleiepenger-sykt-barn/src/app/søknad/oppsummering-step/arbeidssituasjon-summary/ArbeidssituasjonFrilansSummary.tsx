@@ -3,7 +3,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import { Arbeidsgiver } from '../../../types';
 import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
-import { Frilanstype } from '../../../types/FrilansFormData';
+import { Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils/lib';
 

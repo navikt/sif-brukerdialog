@@ -1,18 +1,17 @@
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/types';
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
-import { DateDurationMap, DurationWeekdays } from '@navikt/sif-common-utils';
-import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '.';
-import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';
-import { Arbeidsgiver } from './Arbeidsgiver';
-import { FrilansFormData } from './FrilansFormData';
-import { SelvstendigFormData } from './SelvstendigFormData';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring';
-import { BostedUtland } from '@navikt/sif-common-forms-ds/lib';
-import { StønadGodtgjørelseFormData } from './StønadGodtgjørelseFormData';
-import { YesOrNoOrDoNotKnow } from './YesOrNoOrDoNotKnow';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
+import { BarnRelasjon, ÅrsakManglerIdentitetsnummer } from '../';
+import { Arbeidsgiver } from '../Arbeidsgiver';
+import { ArbeidsforholdFormValues } from './ArbeidsforholdFormValues';
+import { FrilansFormValues } from './FrilansFormValues';
+import { OmsorgstilbudFormValues } from './OmsorgtilbudFormValues';
+import { SelvstendigFormValues } from './SelvstendigFormValues';
+import { StønadGodtgjørelseFormValues } from './StønadGodtgjørelseFormValues';
 
 export enum SøknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -63,14 +62,6 @@ export enum SøknadFormField {
     utenlandskNæring = 'utenlandskNæring',
 }
 
-export interface OmsorgstilbudFormValues {
-    erIOmsorgstilbudFortid?: YesOrNoOrDoNotKnow;
-    erIOmsorgstilbudFremtid?: YesOrNoOrDoNotKnow;
-    erLiktHverUke?: YesOrNo;
-    fasteDager?: DurationWeekdays;
-    enkeltdager?: DateDurationMap;
-}
-
 export interface SøknadFormValues {
     [SøknadFormField.harForståttRettigheterOgPlikter]: boolean;
     [SøknadFormField.harBekreftetOpplysninger]: boolean;
@@ -103,10 +94,10 @@ export interface SøknadFormValues {
     [SøknadFormField.harBeredskap]: YesOrNo;
     [SøknadFormField.harBeredskap_ekstrainfo]?: string;
     [SøknadFormField.harVærtEllerErVernepliktig]?: YesOrNo;
-    [SøknadFormField.frilans]: FrilansFormData;
-    [SøknadFormField.selvstendig]: SelvstendigFormData;
+    [SøknadFormField.frilans]: FrilansFormValues;
+    [SøknadFormField.selvstendig]: SelvstendigFormValues;
     [SøknadFormField.ansatt_arbeidsforhold]: ArbeidsforholdFormValues[];
-    [SøknadFormField.stønadGodtgjørelse]: StønadGodtgjørelseFormData;
+    [SøknadFormField.stønadGodtgjørelse]: StønadGodtgjørelseFormValues;
     [SøknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SøknadFormField.harOpptjeningUtland]: YesOrNo;
     [SøknadFormField.opptjeningUtland]: OpptjeningUtland[];
@@ -156,7 +147,7 @@ export const initialValues: SøknadFormValues = {
     [SøknadFormField.utenlandskNæring]: [],
 };
 
-export type MedlemskapFormData = Pick<
+export type MedlemskapFormValues = Pick<
     SøknadFormValues,
     | SøknadFormField.harBoddUtenforNorgeSiste12Mnd
     | SøknadFormField.utenlandsoppholdSiste12Mnd
@@ -164,7 +155,7 @@ export type MedlemskapFormData = Pick<
     | SøknadFormField.utenlandsoppholdNeste12Mnd
 >;
 
-export type OmBarnetFormData = Pick<
+export type OmBarnetFormValues = Pick<
     SøknadFormValues,
     | SøknadFormField.barnetSøknadenGjelder
     | SøknadFormField.barnetsNavn

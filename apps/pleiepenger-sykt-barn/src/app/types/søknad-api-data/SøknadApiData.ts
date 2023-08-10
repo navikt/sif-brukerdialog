@@ -134,7 +134,8 @@ export interface BeredskapApiData {
 export interface ArbeidsforholdAvsluttetFørSøknadsperiode {
     erAnsatt: false;
     sluttetFørSøknadsdato: true;
-    orgnr: string;
+    navn?: string;
+    orgnr?: string;
 }
 
 export interface DataBruktTilUtledningAnnetData {

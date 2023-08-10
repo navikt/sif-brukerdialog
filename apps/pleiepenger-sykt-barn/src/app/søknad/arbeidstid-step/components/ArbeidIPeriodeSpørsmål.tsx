@@ -12,7 +12,10 @@ import {
     ArbeidsforholdType,
 } from '../../../local-sif-common-pleiepenger';
 import { TimerEllerProsent } from '../../../types';
-import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
+import {
+    ArbeidIPeriodeFormField,
+    ArbeidIPeriodeFormValues,
+} from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { getArbeidstidSpørsmålstekst } from '../utils/arbeidIPeriodeTekstUtils';

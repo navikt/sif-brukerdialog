@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { Frilanstype } from '../../../../types/FrilansFormData';
+import { Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
 
 export const InfoArbeiderNormaltTimerAnsatt = () => {
     const intl = useIntl();

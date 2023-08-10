@@ -7,7 +7,7 @@ import { SøkerdataContextProvider } from '../context/SøkerdataContext';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
 import LoadingPage from '../pages/loading-page/LoadingPage';
 import { Søkerdata } from '../types/Søkerdata';
-import { initialValues, SøknadFormField, SøknadFormValues } from '../types/SøknadFormValues';
+import { initialValues, SøknadFormField, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MELLOMLAGRING_VERSION, MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';

@@ -4,7 +4,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
 import { Arbeidsgiver } from '../types';
-import { FrilansFormData, Frilanstype } from '../types/FrilansFormData';
+import { FrilansFormValues, Frilanstype } from '../types/søknad-form-values/FrilansFormValues';
 import minMax from 'dayjs/plugin/minMax';
 
 dayjs.extend(minMax);
@@ -35,7 +35,7 @@ export const erFrilanserISøknadsperiode = (
         startdato,
         frilanstype,
         misterHonorar,
-    }: FrilansFormData
+    }: FrilansFormValues
 ): boolean => {
     if (erFortsattFrilanser === YesOrNo.YES) {
         return !kunHonorUtenNormalArbeidstid(frilanstype, misterHonorar);

@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core-ds/lib/utils/listUtils';
 import { deleteFile } from '../../api/api';
-import { SøknadFormValues, SøknadFormField } from '../../types/SøknadFormValues';
+import { SøknadFormValues, SøknadFormField } from '../../types/søknad-form-values/SøknadFormValues';
 
 interface Props {
     includeDeletionFunctionality: boolean;

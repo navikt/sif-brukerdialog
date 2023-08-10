@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { MedlemskapFormData } from '../../types/SøknadFormValues';
+import { MedlemskapFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { MedlemskapSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const extractMedlemskapSøknadsdata = ({
@@ -7,7 +7,7 @@ export const extractMedlemskapSøknadsdata = ({
     utenlandsoppholdSiste12Mnd,
     skalBoUtenforNorgeNeste12Mnd,
     utenlandsoppholdNeste12Mnd,
-}: MedlemskapFormData): MedlemskapSøknadsdata | undefined => {
+}: MedlemskapFormValues): MedlemskapSøknadsdata | undefined => {
     if (harBoddUtenforNorgeSiste12Mnd === YesOrNo.NO && skalBoUtenforNorgeNeste12Mnd === YesOrNo.NO) {
         return {
             type: 'harIkkeBoddSkalIkkeBo',

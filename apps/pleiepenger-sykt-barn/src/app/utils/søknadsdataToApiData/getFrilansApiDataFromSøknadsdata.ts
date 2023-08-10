@@ -2,7 +2,7 @@
 import { FrilansApiData, FrilanserMedArbeidsforholdApiDataPart } from '../../types/søknad-api-data/FrilansApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
-import { Frilanstype } from '../../types/FrilansFormData';
+import { Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';
 import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils/lib';
 import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/NormalarbeidstidSøknadsdata';
 import { ArbeidsforholdApiData } from '../../types/søknad-api-data/ArbeidsforholdApiData';

@@ -1,10 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ArbeidsforholdFormValues } from '../../../types/ArbeidsforholdFormValues';
-import { FrilansFormData, Frilanstype } from '../../../types/FrilansFormData';
-import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
-import { StønadGodtgjørelseFormData } from '../../../types/StønadGodtgjørelseFormData';
-import { SøknadFormValues } from '../../../types/SøknadFormValues';
+import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
+import { FrilansFormValues, Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
+import { SelvstendigFormValues } from '../../../types/søknad-form-values/SelvstendigFormValues';
+import { StønadGodtgjørelseFormValues } from '../../../types/søknad-form-values/StønadGodtgjørelseFormValues';
+import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import { visVernepliktSpørsmål } from './visVernepliktSpørsmål';
 import { erFrilanserISøknadsperiode } from '../../../utils/frilanserUtils';
 
@@ -27,8 +27,8 @@ export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormVa
 
 export const cleanupFrilansArbeidssituasjon = (
     _søknadsperiode: DateRange,
-    values: FrilansFormData
-): FrilansFormData => {
+    values: FrilansFormValues
+): FrilansFormValues => {
     /** Ikke frilanser */
     if (values.harHattInntektSomFrilanser === YesOrNo.NO) {
         return {
@@ -46,7 +46,7 @@ export const cleanupFrilansArbeidssituasjon = (
     }
 
     /** Fjern verdier som ikke gjelder gitt svar fra bruker */
-    const frilans: FrilansFormData = { ...values };
+    const frilans: FrilansFormValues = { ...values };
 
     if (erFrilanserISøknadsperiode(_søknadsperiode, values) === false) {
         frilans.arbeidsforhold = undefined;
@@ -61,8 +61,8 @@ export const cleanupFrilansArbeidssituasjon = (
     return frilans;
 };
 
-export const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormData): SelvstendigFormData => {
-    const selvstendig: SelvstendigFormData = { ...values };
+export const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormValues): SelvstendigFormValues => {
+    const selvstendig: SelvstendigFormValues = { ...values };
 
     if (selvstendig.harHattInntektSomSN === YesOrNo.NO) {
         delete selvstendig.harFlereVirksomheter;
@@ -72,8 +72,8 @@ export const cleanupSelvstendigArbeidssituasjon = (values: SelvstendigFormData):
     return selvstendig;
 };
 
-export const cleanupStønadGodtgjørelse = (values: StønadGodtgjørelseFormData): StønadGodtgjørelseFormData => {
-    const stønadGodtgjørelse: StønadGodtgjørelseFormData = { ...values };
+export const cleanupStønadGodtgjørelse = (values: StønadGodtgjørelseFormValues): StønadGodtgjørelseFormValues => {
+    const stønadGodtgjørelse: StønadGodtgjørelseFormValues = { ...values };
     if (stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.NO) {
         stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden = undefined;
         stønadGodtgjørelse.starterUndeveis = undefined;

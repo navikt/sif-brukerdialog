@@ -5,9 +5,9 @@ import { cleanupNattevåkOgBeredskapStep } from '../søknad/nattevåk-og-beredsk
 import { cleanupOmsorgstilbudStep } from '../søknad/omsorgstilbud-step/omsorgstilbudStepUtils';
 import { cleanupTidsromStep } from '../søknad/tidsrom-step/cleanupTidsromStep';
 import { StepID } from '../types/StepID';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
-import { getSøknadsperiodeFromFormData } from './formDataUtils';
+import { getSøknadsperiodeFromFormValues } from './formValuesUtils';
 
 export const cleanupSøknadStepValues = (
     step: StepID,
@@ -40,7 +40,7 @@ export const cleanupAndSetFormikValues = async (
     setValues: (values: SøknadFormValues) => void
 ): Promise<SøknadFormValues> => {
     await Promise.resolve();
-    const søknadsperiode = getSøknadsperiodeFromFormData(values);
+    const søknadsperiode = getSøknadsperiodeFromFormValues(values);
     if (!søknadsperiode) {
         return Promise.resolve(values);
     }

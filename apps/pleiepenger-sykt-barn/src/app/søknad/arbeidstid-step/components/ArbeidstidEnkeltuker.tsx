@@ -4,7 +4,10 @@ import { FormattedMessage, IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import { dateFormatter, dateRangeToISODateRange } from '@navikt/sif-common-utils/lib';
-import { ArbeidIPeriodeFormField, ArbeidIPeriodeFormValues } from '../../../types/ArbeidIPeriodeFormValues';
+import {
+    ArbeidIPeriodeFormField,
+    ArbeidIPeriodeFormValues,
+} from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import SøknadFormComponents from '../../SøknadFormComponents';
 import { ArbeidsukeFieldName } from '../types/Arbeidsuke';

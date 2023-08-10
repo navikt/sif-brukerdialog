@@ -5,7 +5,7 @@ import { AxiosError } from 'axios';
 import { useFormikContext } from 'formik';
 import { persist } from '../api/api';
 import { StepID } from '../types/StepID';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { navigateToErrorPage, relocateToLoginPage } from '../utils/navigationUtils';
 
 interface PersistSoknadProps {

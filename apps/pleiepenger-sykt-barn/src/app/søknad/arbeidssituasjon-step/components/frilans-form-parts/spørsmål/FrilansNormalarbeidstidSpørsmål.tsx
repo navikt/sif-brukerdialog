@@ -4,8 +4,8 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { ArbeidsforholdType } from '../../../../../local-sif-common-pleiepenger';
-import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/ArbeidsforholdFormValues';
-import { FrilansFormField, Frilanstype } from '../../../../../types/FrilansFormData';
+import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/søknad-form-values/ArbeidsforholdFormValues';
+import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getArbeidsforholdIntlValues } from '../../../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../../../validation/arbeiderNormaltTimerIUkenValidator';
 

@@ -1,7 +1,7 @@
 import RouteConfig from '../config/routeConfig';
 import { getSøknadStepConfig } from '../søknad/søknadStepConfig';
 import { StepID } from '../types/StepID';
-import { SøknadFormValues } from '../types/SøknadFormValues';
+import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import {
     arbeidIPeriodeStepIsAvailable,
     arbeidssituasjonStepAvailable,
@@ -14,8 +14,8 @@ import {
     oppsummeringStepAvailable,
 } from './stepUtils';
 
-export const getNextStepRoute = (stepId: StepID, formData?: SøknadFormValues): string | undefined => {
-    return getSøknadStepConfig(formData)[stepId].nextStep || undefined;
+export const getNextStepRoute = (stepId: StepID, formValues?: SøknadFormValues): string | undefined => {
+    return getSøknadStepConfig(formValues)[stepId].nextStep || undefined;
 };
 
 export const isAvailable = (path: StepID | RouteConfig, values: SøknadFormValues, søknadHasBeenSent?: boolean) => {

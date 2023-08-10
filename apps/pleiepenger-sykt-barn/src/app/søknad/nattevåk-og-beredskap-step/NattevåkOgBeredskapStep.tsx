@@ -12,7 +12,7 @@ import FormSection from '../../components/form-section/FormSection';
 import useEffectOnce from '../../hooks/useEffectOnce';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
 import { StepID } from '../../types/StepID';
-import { SøknadFormField, SøknadFormValues } from '../../types/SøknadFormValues';
+import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
 import { StepCommonProps } from '../../types/StepCommonProps';

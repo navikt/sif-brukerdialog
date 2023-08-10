@@ -1,6 +1,6 @@
 import { DateRange } from '@navikt/sif-common-utils';
 import { Virksomhet } from '@navikt/sif-common-forms-ds/lib';
-import { SelvstendigFormData } from '../types/SelvstendigFormData';
+import { SelvstendigFormValues } from '../types/søknad-form-values/SelvstendigFormValues';
 import dayjs from 'dayjs';
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 
@@ -46,7 +46,7 @@ export const erSNITidsrom = (tidsrom: DateRange, snStartdato: Date, snSluttdato?
 
 export const erSNISøknadsperiode = (
     søknadsperiode: DateRange,
-    { harHattInntektSomSN, virksomhet }: SelvstendigFormData
+    { harHattInntektSomSN, virksomhet }: SelvstendigFormValues
 ): boolean => {
     if (harHattInntektSomSN !== YesOrNo.YES) {
         return false;

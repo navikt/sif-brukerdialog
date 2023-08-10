@@ -3,7 +3,7 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { SøknadFormField } from '../../../types/SøknadFormValues';
+import { SøknadFormField } from '../../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../../SøknadFormComponents';
 
 const ArbeidssituasjonVerneplikt = () => {
