@@ -1,13 +1,13 @@
 import { ArbeidsgiverAnsattApiData } from '../../types/søknad-api-data/SøknadApiData';
-import { ArbeidssituasjonAnsattSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
+import { ArbeidssituasjonArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { ArbeidstidSøknadsdata } from '../../types/søknadsdata/ArbeidstidSøknadsdata';
 import { getArbeidsgiverApiDataFromSøknadsdata } from './getArbeidsgiverApiDataFromSøknadsdata';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
-    arbeidssituasjoner: ArbeidssituasjonAnsattSøknadsdata[] = [],
+    arbeidssituasjoner: ArbeidssituasjonArbeidsgivereSøknadsdata | undefined,
     arbeidstid: ArbeidstidSøknadsdata | undefined
 ): ArbeidsgiverAnsattApiData[] => {
-    if (arbeidssituasjoner.length === 0) {
+    if (!arbeidssituasjoner || arbeidssituasjoner.size === 0) {
         return [];
     }
     const arbeidsgivereApiData: ArbeidsgiverAnsattApiData[] = [];

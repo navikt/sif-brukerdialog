@@ -73,8 +73,8 @@ export const cleanupArbeidstidStep = (
 
     /** Ansatt */
     cleanedValues.ansatt_arbeidsforhold = cleanedValues.ansatt_arbeidsforhold.map((arbeidsforholdFormValues) => {
-        const arbeidssituasjon = arbeidssituasjonSøknadsdata.arbeidsgivere.find(
-            (a) => a.arbeidsgiver.id === arbeidsforholdFormValues.arbeidsgiver.id
+        const arbeidssituasjon = arbeidssituasjonSøknadsdata.arbeidsgivere.get(
+            arbeidsforholdFormValues.arbeidsgiver.id
         );
         if (!arbeidssituasjon) {
             return arbeidsforholdFormValues;

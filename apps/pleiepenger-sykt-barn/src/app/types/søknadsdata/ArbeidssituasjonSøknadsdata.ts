@@ -4,8 +4,10 @@ import { ArbeidssituasjonSelvstendigSøknadsdata } from './ArbeidssituasjonSelvs
 import { OpptjeningUtlandSøknadsdata } from './OpptjeningUtlandSøknadsdata';
 import { UtenlandskNæringSøknadsdata } from './UtenlandskNæringSøknadsdata';
 
+export type ArbeidssituasjonArbeidsgivereSøknadsdata = Map<string, ArbeidssituasjonAnsattSøknadsdata>;
+
 export type ArbeidssituasjonSøknadsdata = {
-    arbeidsgivere: ArbeidssituasjonAnsattSøknadsdata[];
+    arbeidsgivere: ArbeidssituasjonArbeidsgivereSøknadsdata;
     frilans?: ArbeidssituasjonFrilansSøknadsdata;
     selvstendig?: ArbeidssituasjonSelvstendigSøknadsdata;
     opptjeningUtland?: OpptjeningUtlandSøknadsdata;

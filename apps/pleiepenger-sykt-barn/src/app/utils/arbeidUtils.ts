@@ -41,7 +41,7 @@ export const harArbeidIPerioden = (arbeidssituasjon?: ArbeidssituasjonSøknadsda
     if (!arbeidssituasjon) {
         return false;
     }
-    const erAnsattIPerioden = arbeidssituasjon.arbeidsgivere.some(
+    const erAnsattIPerioden = Array.from(arbeidssituasjon.arbeidsgivere, (a) => a[1]).some(
         (a) => a.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode
     );
     const erFrilanserIPerioden = arbeidssituasjon.frilans?.harInntektSomFrilanser === true;

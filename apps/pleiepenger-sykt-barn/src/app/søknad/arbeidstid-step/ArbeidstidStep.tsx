@@ -31,6 +31,8 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const søkerFremITid = søkerNoeFremtid(søknadsperiode);
 
+    const arbeidsgivere = arbeidssituasjon ? Array.from(arbeidssituasjon.arbeidsgivere, (a) => a[1]) : [];
+
     return (
         <SøknadFormStep stepId={StepID.ARBEIDSTID} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="m">
@@ -46,9 +48,9 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                 </SifGuidePanel>
             </Block>
 
-            {arbeidssituasjon.arbeidsgivere.length > 0 && (
+            {arbeidsgivere.length > 0 && (
                 <FormBlock>
-                    {arbeidssituasjon.arbeidsgivere.map((ansatt) => {
+                    {arbeidsgivere.map((ansatt) => {
                         if (ansatt.type === ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode) {
                             return null;
                         }

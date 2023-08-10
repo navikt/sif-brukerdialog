@@ -2,27 +2,27 @@ import {
     ArbeidsforholdAvsluttetFørSøknadsperiode,
     DataBruktTilUtledningAnnetData,
 } from '../types/søknad-api-data/SøknadApiData';
-import { ArbeidssituasjonAnsattSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonAnsattSøknadsdata';
+import { ArbeidssituasjonArbeidsgivereSøknadsdata } from '../types/søknadsdata/ArbeidssituasjonSøknadsdata';
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
-    ansattSøknadsdata?: ArbeidssituasjonAnsattSøknadsdata[]
+    ansattSøknadsdata?: ArbeidssituasjonArbeidsgivereSøknadsdata
 ): ArbeidsforholdAvsluttetFørSøknadsperiode[] | undefined => {
-    if (!ansattSøknadsdata || ansattSøknadsdata.length === 0) {
+    if (!ansattSøknadsdata || ansattSøknadsdata.size === 0) {
         return undefined;
     }
-    return ansattSøknadsdata
-        .filter((ansatt) => {
-            return ansatt.type === 'sluttetFørSøknadsperiode';
-        })
-        .map((ansatt) => {
-            return {
+    const avsluttetFørSøknadsperiode: ArbeidsforholdAvsluttetFørSøknadsperiode[] = [];
+    ansattSøknadsdata.forEach((ansatt) => {
+        if (ansatt.type !== 'sluttetFørSøknadsperiode') {
+            avsluttetFørSøknadsperiode.push({
                 erAnsatt: false,
                 sluttetFørSøknadsdato: true,
                 navn: ansatt.arbeidsgiver.navn,
                 orgnr: ansatt.arbeidsgiver.organisasjonsnummer,
-            };
-        });
+            });
+        }
+    });
+    return avsluttetFørSøknadsperiode;
 };
 
 export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
