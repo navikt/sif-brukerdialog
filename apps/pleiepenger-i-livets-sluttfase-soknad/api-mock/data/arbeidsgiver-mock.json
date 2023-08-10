@@ -1,0 +1,28 @@
+{
+    "organisasjoner": [
+        {
+            "navn": "Arbeids- og velferdsetaten",
+            "organisasjonsnummer": "123451234",
+            "ansattFom": "2019-09-25",
+            "ansattTom": null
+        },
+        {
+            "navn": "Telenor",
+            "organisasjonsnummer": "09435628",
+            "ansattFom": "01.06.2021",
+            "ansattTom": "01.07.2021"
+        },
+        {
+            "navn": "Arbeids- og sosialdepartementet",
+            "organisasjonsnummer": "123451235",
+            "ansattFom": "01.06.2018",
+            "ansattTom": "01.11.2021"
+        },
+        {
+            "navn": "Tele2",
+            "organisasjonsnummer": "676789999",
+            "ansattFom": "01.06.2018",
+            "ansattTom": null
+        }
+    ]
+}
