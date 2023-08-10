@@ -2,18 +2,18 @@
     "license": "MIT",
     "main": "index.js",
     "name": "config",
-    "version": "0.4.2",
+    "version": "0.5.0",
     "private": true,
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "5.60.0",
-        "@typescript-eslint/parser": "5.60.0",
-        "eslint": "8.43.0",
+        "@typescript-eslint/eslint-plugin": "6.2.1",
+        "@typescript-eslint/parser": "6.2.1",
+        "eslint": "8.46.0",
         "eslint-config-prettier": "8.8.0",
         "eslint-plugin-jsx-a11y": "6.7.1",
-        "eslint-plugin-prettier": "5.0.0",
-        "eslint-plugin-react": "7.32.2",
-        "eslint-plugin-storybook": "0.6.12",
-        "postcss": "8.4.24"
+        "eslint-plugin-prettier": "4.2.1",
+        "eslint-plugin-react": "7.33.1",
+        "eslint-plugin-storybook": "0.6.13",
+        "postcss": "8.4.27"
     },
     "publishConfig": {
         "access": "public"
