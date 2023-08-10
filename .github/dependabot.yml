@@ -20,6 +20,9 @@ updates:
       babel:
         patterns:
           - "@babel*"
+      sentry:
+        patterns:
+          - "@sentry*"
       typescript-eslint:
         patterns:
           - "@typescript-eslint*"
