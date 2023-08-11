@@ -70,9 +70,7 @@ interface SIFBadRequestErrorResponse {
             title: string;
             status: number;
             detail: string;
-            invalid_parameters: Array<{
-                reason: string;
-            }>;
+            invalid_parameters: Array<string>;
         };
     };
 }
@@ -123,7 +121,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         } catch (error: any) {
             if (isSifBadRequestErrorResponse(error)) {
                 setSendingInProgress(false);
-                setInnsendingFeiletInfo(error.response.data.invalid_parameters[0].reason);
+                setInnsendingFeiletInfo(error.response.data.invalid_parameters[0]);
                 appSentryLogger.logApiError(error as any);
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
@@ -393,23 +391,25 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                             />
                         </Block>
 
-                        {innsendingFeiletInfo && (
-                            <FormBlock>
-                                <Alert variant="error">
-                                    <p>Oops, der oppstod det en feil.</p>
-                                    <p>
-                                        Du kan se om du får opp en feilmelding dersom du klikker gjennom søknaden fra
-                                        første til siste steg, bare pass på å bruke Fortsett knappen i siden, ikke frem
-                                        og tilbake i nettleseren.
-                                    </p>
-                                    <Block>
-                                        <ExpandableInfo title="Vis mer informasjon om feilen">
-                                            <p>{innsendingFeiletInfo}</p>
-                                        </ExpandableInfo>
-                                    </Block>
-                                </Alert>
-                            </FormBlock>
-                        )}
+                        <div aria-live="polite">
+                            {innsendingFeiletInfo && (
+                                <FormBlock>
+                                    <Alert variant="error">
+                                        <p style={{ marginTop: '.2em' }}>Oops, der oppstod det en feil.</p>
+                                        <p>
+                                            Du kan se om du får opp en feilmelding dersom du klikker gjennom søknaden
+                                            fra første til siste steg ved å bruke Neste-knappen nederst på hver side,
+                                            ikke bruk frem og tilbake i nettleseren.
+                                        </p>
+                                        <Block>
+                                            <ExpandableInfo title="Vis mer informasjon om feilen (teknisk)">
+                                                <p>{innsendingFeiletInfo}</p>
+                                            </ExpandableInfo>
+                                        </Block>
+                                    </Alert>
+                                </FormBlock>
+                            )}
+                        </div>
                     </SøknadFormStep>
                 );
             }}
