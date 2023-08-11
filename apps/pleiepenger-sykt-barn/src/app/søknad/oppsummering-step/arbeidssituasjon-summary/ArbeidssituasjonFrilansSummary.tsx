@@ -48,12 +48,12 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                     <FormattedMessage id={`oppsummering.arbeidssituasjon.frilans.${frilans.type}`} />
                 </li>
 
-                {frilans.type === Frilanstype.HONORAR && frilans.misterHonorarer === false && (
+                {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === false && (
                     <li>
                         <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar'} />
                     </li>
                 )}
-                {frilans.type === Frilanstype.HONORAR && frilans.misterHonorarer === true && (
+                {frilans.type === Frilanstype.HONORAR && frilans.misterHonorar === true && (
                     <li>
                         <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar'} />
                     </li>
