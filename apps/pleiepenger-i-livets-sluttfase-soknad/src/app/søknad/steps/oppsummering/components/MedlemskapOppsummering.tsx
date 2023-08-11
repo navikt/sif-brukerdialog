@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
-import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiDataslett';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
 import JaNeiSvar from '@navikt/sif-common-soknad-ds/lib/components/summary-answers/JaNeiSvar';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';

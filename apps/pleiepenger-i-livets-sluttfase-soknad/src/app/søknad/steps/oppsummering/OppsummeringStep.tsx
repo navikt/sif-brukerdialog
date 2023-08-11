@@ -43,7 +43,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata, søker, registrerteBarn },
+        state: { søknadsdata, søker },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;

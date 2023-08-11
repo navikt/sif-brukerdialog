@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import flatten from 'lodash/flatten';
 import uniq from 'lodash/uniq';
 import { ApiAktivitet } from '../../../../types/AktivitetFravær';
-import { UtbetalingsperiodeApi } from '../../../../types/søknadApiData/SøknadApiData';
+import { UtbetalingsperiodeApi } from '../../../../types/søknadApiData/SøknadApiDataslett';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { timeText } from '@navikt/sif-common-forms-ds/lib';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
@@ -48,7 +48,7 @@ export const toMaybeUtbetalingsperiodeDag = (p: UtbetalingsperiodeApi): Utbetali
 };
 
 export const outNull = (
-    maybeUtbetalingsperiodeDag: UtbetalingsperiodeDag | null
+    maybeUtbetalingsperiodeDag: UtbetalingsperiodeDag | null,
 ): maybeUtbetalingsperiodeDag is UtbetalingsperiodeDag => maybeUtbetalingsperiodeDag !== null;
 
 const getFraværAktivitetString = (aktivitetFravær: ApiAktivitet[], intl: IntlShape) => {
@@ -71,19 +71,19 @@ const renderEnkeltdagElement = (date: Date): JSX.Element => (
 const renderFraværAktivitetElement = (
     aktivitet: ApiAktivitet[],
     visAktivitet: boolean,
-    intl: IntlShape
+    intl: IntlShape,
 ): JSX.Element | null => (visAktivitet ? <div>{getFraværAktivitetString(aktivitet, intl)}</div> : null);
 
 export const renderUtbetalingsperiodeDag = (
     dag: UtbetalingsperiodeDag,
     visAktivitet: boolean,
-    intl: IntlShape
+    intl: IntlShape,
 ): JSX.Element => {
     const antallTimerSkulleJobbet = `${timeToDecimalTime(dag.antallTimerPlanlagt)} ${timeText(
-        `${timeToDecimalTime(dag.antallTimerPlanlagt)}`
+        `${timeToDecimalTime(dag.antallTimerPlanlagt)}`,
     )}`;
     const antallTimerBorteFraJobb = `${timeToDecimalTime(dag.antallTimerBorte)} ${timeText(
-        `${timeToDecimalTime(dag.antallTimerBorte)}`
+        `${timeToDecimalTime(dag.antallTimerBorte)}`,
     )}`;
     return (
         <div style={{ marginBottom: '.5rem' }}>
@@ -97,7 +97,7 @@ export const renderUtbetalingsperiodeDag = (
 const renderUtbetalingsperiode = (
     periode: UtbetalingsperiodeApi,
     visAktivitet: boolean,
-    intl: IntlShape
+    intl: IntlShape,
 ): JSX.Element => {
     const fom = ISODateToDate(periode.fraOgMed);
     const tom = ISODateToDate(periode.tilOgMed);
@@ -125,7 +125,7 @@ const harFlereFraværAktiviteter = (perioder: UtbetalingsperiodeApi[]) => {
 
 const UtbetalingsperioderOppsummering: React.FunctionComponent<Props> = ({ utbetalingsperioder = [] }) => {
     const perioder: UtbetalingsperiodeApi[] = utbetalingsperioder.filter(
-        (p) => p.tilOgMed !== undefined && p.antallTimerBorte === null
+        (p) => p.tilOgMed !== undefined && p.antallTimerBorte === null,
     );
     const intl = useIntl();
     const dager: UtbetalingsperiodeDag[] = utbetalingsperioder.map(toMaybeUtbetalingsperiodeDag).filter(outNull);

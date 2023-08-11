@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiData';
+import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiDataslett';
 import { SummaryBlock, SummaryList } from '@navikt/sif-common-soknad-ds';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';

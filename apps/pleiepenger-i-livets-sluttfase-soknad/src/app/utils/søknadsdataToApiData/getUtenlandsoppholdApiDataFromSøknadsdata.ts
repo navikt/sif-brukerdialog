@@ -1,11 +1,11 @@
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
-import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiData';
+import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiDataslett';
 import { FraværSøknadsdata } from '../../types/søknadsdata/TidsromSøknadsdata';
 import { mapBostedUtlandToApiData } from './getMedlemskapApiDataFromSøknadsdata';
 
 export const getUtenlansoppholdApiDataFromSøknadsdata = (
     locale: string,
-    fraværSøknadsdata?: FraværSøknadsdata
+    fraværSøknadsdata?: FraværSøknadsdata,
 ): UtenlandsoppholdApiData[] => {
     if (fraværSøknadsdata === undefined) {
         throw Error('fraværSøknadsdata i getUtenlansoppholdApiDataFromSøknadsdata undefined');
