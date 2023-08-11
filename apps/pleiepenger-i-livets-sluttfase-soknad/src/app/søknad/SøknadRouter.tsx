@@ -79,7 +79,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.LEGEERKLÆRING]} element={<LegeerklæringStep />} />
             <Route path={SøknadStepRoutePath[StepId.TIDSROM]} element={<TidsromStep />} />
             <Route path={SøknadStepRoutePath[StepId.ARBEIDSSITUASJON]} element={<ArbeidssituasjonStep />} />
-            <Route path={SøknadStepRoutePath[StepId.ARBEIDSTID]} element={<ArbeidstidStepStep />} />
+            <Route path={SøknadStepRoutePath[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
             <Route path={SøknadStepRoutePath[StepId.MEDLEMSKAP]} element={<MedlemskapStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
             <Route

@@ -1,24 +1,29 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
 import { StepId } from '../types/StepId';
-import { ArbeidSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
 //TODO
-export const includeFraværFraStep = (arbeidssituasjon?: ArbeidSøknadsdata): boolean => {
+export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknadsdata): boolean => {
     if (!arbeidssituasjon) {
         return false;
     }
 
-    const { frilans, selvstendig } = arbeidssituasjon;
+    const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
 
-    if (!frilans || !selvstendig) {
-        return false;
-    }
+    const erFrilanserISøknadsperiode =
+        frilans && (frilans.type === 'pågående' || frilans.type === 'sluttetISøknadsperiode');
 
-    const erFrilanser = frilans.type === 'pågående' || frilans.type === 'sluttetISøknadsperiode';
-    const erSelvstendigNæringsdrivende = selvstendig.type === 'erSN';
+    const erSelvstendigISøknadsperiode = selvstendig && selvstendig.type === 'erSN';
 
-    return erFrilanser && erSelvstendigNæringsdrivende;
+    const erAnsattISøknadsperiode =
+        (arbeidsgivere &&
+            Array.from(arbeidsgivere.values()).some((value) => {
+                return value.type === 'pågående' || value.type === 'sluttetISøknadsperiode';
+            })) ||
+        false;
+
+    return erFrilanserISøknadsperiode || erSelvstendigISøknadsperiode || erAnsattISøknadsperiode;
 };
 
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
@@ -27,7 +32,6 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
         StepId.LEGEERKLÆRING,
         StepId.TIDSROM,
         StepId.ARBEIDSSITUASJON,
-        //TODO
         ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon) ? [StepId.ARBEIDSTID] : []),
         StepId.MEDLEMSKAP,
         StepId.OPPSUMMERING,
