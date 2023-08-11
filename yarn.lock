@@ -4581,7 +4581,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     rimraf: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
   peerDependencies:
     "@navikt/ds-css": 3
     "@navikt/ds-react": 3
@@ -4748,7 +4748,7 @@ __metadata:
     react-router-dom: 6.14.2
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -4866,7 +4866,7 @@ __metadata:
     react-scripts: 5.0.1
     regenerator-runtime: 0.14.0
     rimraf: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -5028,7 +5028,7 @@ __metadata:
     react-intl: 6.4.4
     react-router-dom: 6.14.2
     react-scripts: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -5112,7 +5112,7 @@ __metadata:
     react-intl: 6.4.4
     react-router-dom: 6.14.2
     react-scripts: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -5243,7 +5243,7 @@ __metadata:
     react-responsive: 9.0.2
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     sass-loader: 13.3.2
     storybook: 7.2.1
     storybook-addon-sass-postcss: 0.1.3
@@ -5308,7 +5308,7 @@ __metadata:
     react-responsive: 9.0.2
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     storybook: 7.2.1
     storybook-formik: 2.4.2
     uuid: 9.0.0
@@ -5457,7 +5457,7 @@ __metadata:
     react-router-dom: 6.14.2
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     sass-loader: 13.3.2
     storybook: 7.2.1
     uuid: 9.0.0
@@ -5571,7 +5571,7 @@ __metadata:
     react-intl: 6.4.4
     react-router-dom: 6.14.2
     react-scripts: 5.0.1
-    sass: 1.64.2
+    sass: 1.65.1
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -26018,16 +26018,16 @@ msw@latest:
   languageName: node
   linkType: hard
 
-"sass@npm:1.64.2":
-  version: 1.64.2
-  resolution: "sass@npm:1.64.2"
+"sass@npm:1.65.1":
+  version: 1.65.1
+  resolution: "sass@npm:1.65.1"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 43a5c9b9b3b6ba27feb5c45eba90edc437b15a30fd443f5d2623bbd59fe4a922f2a6a9990296c6a6c2b5bce7f401922c5049357415f50b745952c2d478bc5526
+  checksum: 33e325fc80cd07489992e0814cd4929496f87493ffe78c423c2dbafa5746a574e6f3bde20c2a3e4ea47b16ee3d6bc5afcf1d36b405227b829d6c4c9ddcc7f8e2
   languageName: node
   linkType: hard
 
