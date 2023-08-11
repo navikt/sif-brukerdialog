@@ -167,6 +167,21 @@ const startExpressServer = () => {
         res.sendStatus(200);
     });
 
+    server.post('/pleiepenger-sykt-barn/innsending-feil-parametre', (req, res) => {
+        res.status(400).send({
+            type: '/problem-details/invalid-request-parameters',
+            title: 'invalid-request-parameters',
+            status: 400,
+            detail: 'Requesten inneholder ugyldige paramtere.',
+            instance: 'about:blank',
+            invalid_parameters: [
+                'frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR',
+                'frilans.startdato kan ikke være null dersom frilans.type er HONORAR',
+                'frilans.jobberFortsattSomFrilans kan ikke være null dersom frilans.type er HONORAR',
+            ],
+        });
+    });
+
     server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
             const body = readFileSync(MELLOMLAGRING_JSON);
