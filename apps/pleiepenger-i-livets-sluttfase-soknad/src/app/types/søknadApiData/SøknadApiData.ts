@@ -116,6 +116,7 @@ export enum FlereSokereApiData {
 }
 
 export interface SøknadApiData {
+    id: string;
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     pleietrengende: PleietrengendeApi;
