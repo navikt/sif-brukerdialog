@@ -32,7 +32,7 @@ export const getFrilansApiDataFromSøknadsdata = ({
             type: Frilanstype.HONORAR,
             harInntektSomFrilanser: true,
             _misterInntektSomFrilanser: false,
-            misterHonorar: false,
+            misterHonorarer: false,
         };
     }
 
@@ -44,7 +44,7 @@ export const getFrilansApiDataFromSøknadsdata = ({
             type,
             _misterInntektSomFrilanser: true,
             ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
-            misterHonorar,
+            misterHonorarer: misterHonorar,
             arbeidsforhold: getFrilansArbeidsforholdApiData(normalarbeidstid, arbeidstid),
         };
     }
