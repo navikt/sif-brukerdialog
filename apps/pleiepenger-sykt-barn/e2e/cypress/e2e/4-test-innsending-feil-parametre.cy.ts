@@ -3,7 +3,7 @@ import { contextConfig, gotoStep } from '../integration-utils/contextConfig';
 import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 import { getSøknadsperiode } from '../integration-utils/utils';
 
-const getMellomlagring = () => {
+export const getMellomlagring = () => {
     const søknadsperiode = getSøknadsperiode();
     mellomlagring.formValues.periodeFra = dayjs(søknadsperiode.from).format('YYYY-MM-DD');
     mellomlagring.formValues.periodeTil = dayjs(søknadsperiode.to).format('YYYY-MM-DD');
@@ -26,13 +26,18 @@ const invalidParamaterResponse = {
     },
 };
 describe('Send inn søknad med feil parametre', () => {
-    contextConfig({ mellomlagring: getMellomlagring(), innsendingResponse: invalidParamaterResponse });
+    contextConfig({ mellomlagring, innsendingResponse: invalidParamaterResponse });
+
+    it('Går til startsiden', () => {
+        cy.visit('/');
+        cy.wait(['@getBarn', '@getSøker']);
+    });
 
     it('Vise feilmelding når det returneres 400 fra backend', () => {
         gotoStep('oppsummering');
+        cy.wait(1000);
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
-        cy.wait('@postInnsending');
         expect(cy.contains('Oops, der oppstod det en feil')).exist;
         cy.contains('Vis mer informasjon om feilen (teknisk)').click();
         cy.contains('frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR').should('exist');
