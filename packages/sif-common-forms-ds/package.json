@@ -43,7 +43,7 @@
         "axios": "1.4.0",
         "config": "*",
         "copyfiles": "2.4.1",
-        "dayjs": "1.11.8",
+        "dayjs": "1.11.9",
         "flat": "5.0.2",
         "formik": "2.4.3",
         "gh-pages": "5.0.0",

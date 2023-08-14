@@ -48,7 +48,7 @@
         "@types/react-modal": "3.16.0",
         "axios": "1.4.0",
         "copyfiles": "2.4.1",
-        "dayjs": "1.11.8",
+        "dayjs": "1.11.9",
         "formik": "2.4.3",
         "gh-pages": "5.0.0",
         "intl": "1.2.5",
