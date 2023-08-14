@@ -1,16 +1,21 @@
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
-import { SøknadApiData, YesNoSpørsmålOgSvar } from '../../types/søknadApiData/SøknadApiDataslett';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
-import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
-import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
-import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
-import { getUtbetalingsperioderApiDataFromSøknadsdata } from './getUtbetalingsperioderApiDataFromSøknadsdata';
+import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { DateRange } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
+import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
+import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { IntlShape } from 'react-intl';
+import { getPleietrengendeApiDataFromSøknadsdata } from './getPleietrengendeApiDataFromSøknadsdata';
+import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
+import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
+import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
+import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
+import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -19,53 +24,72 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     return vedlegg.filter(attachmentIsUploadedAndIsValidFileFormat).map(({ url }) => getAttachmentURLBackend(url));
 };
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata, intl: IntlShape): SøknadApiData | undefined => {
-    const { id, arbeidssituasjon, medlemskap, legeerklæring } = søknadsdata;
-    //TODO
-    if (!id || !medlemskap || !legeerklæring || !arbeidssituasjon) {
+export const getFlereSokereApiData = (flereSokereSvar: YesOrNoDontKnow): FlereSokereApiData => {
+    switch (flereSokereSvar) {
+        case YesOrNoDontKnow.YES:
+            return FlereSokereApiData.JA;
+        case YesOrNoDontKnow.NO:
+            return FlereSokereApiData.NEI;
+        default:
+            return FlereSokereApiData.USIKKER;
+    }
+};
+
+export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
+    const { id, opplysningerOmPleietrengende, legeerklæring, tidsrom, arbeidssituasjon, arbeidstid, medlemskap } =
+        søknadsdata;
+
+    if (!id || !opplysningerOmPleietrengende || !legeerklæring || !tidsrom || !arbeidssituasjon || !medlemskap) {
         return undefined;
     }
-    const { frilans, selvstendig } = arbeidssituasjon;
+
+    const periodeFra = datepickerUtils.getDateFromDateString(tidsrom.periodeFra);
+    const periodeTil = datepickerUtils.getDateFromDateString(tidsrom.periodeTil);
+
+    const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
 
     if (frilans === undefined || selvstendig === undefined) {
         return undefined;
     }
 
+    if (!periodeFra || !periodeTil) {
+        return undefined;
+    }
+
+    const søknadsperiode: DateRange = {
+        from: periodeFra,
+        to: periodeTil,
+    };
+
     const språk = 'nb';
-
-    const yesOrNoQuestions: YesNoSpørsmålOgSvar[] = [];
-
-    if (frilans.type === 'pågående' || frilans.type === 'sluttetISøknadsperiode') {
-        yesOrNoQuestions.push({
-            spørsmål: intlHelper(intl, 'frilanser.erFrilanser.spm'),
-            svar: frilans.erFrilanser,
-        });
-    }
-    if (selvstendig.type === 'erSN') {
-        yesOrNoQuestions.push({
-            spørsmål: intlHelper(intl, 'selvstendig.erDuSelvstendigNæringsdrivende.spm'),
-            svar: selvstendig.erSelvstendigNæringsdrivende,
-        });
-    }
-
-    const harDekketTiFørsteDagerSelv =
-        dineBarn.type === 'minstEtt12årEllerYngre' && dineBarn.harDekketTiFørsteDagerSelv === true;
 
     return {
         id,
         språk,
-        bekreftelser: {
-            harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
-            harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
-        },
-        spørsmål: yesOrNoQuestions,
-        barn: getDineBarnApiDataFromSøknadsdata(dineBarn, registrerteBarn),
-        harDekketTiFørsteDagerSelv,
-        opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravaer),
-        frilans: getFrilansApiDataFromSøknadsdata(frilans),
-        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(selvstendig),
-        utbetalingsperioder: getUtbetalingsperioderApiDataFromSøknadsdata(søknadsdata),
-        vedlegg: getVedleggApiData(legeerklæring?.vedlegg),
-        bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
+        harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
+        pleietrengende: getPleietrengendeApiDataFromSøknadsdata(opplysningerOmPleietrengende),
+        opplastetIdVedleggUrls:
+            opplysningerOmPleietrengende.type === 'pleietrengendeUtenFnr'
+                ? getVedleggApiData(opplysningerOmPleietrengende.pleietrengendeId)
+                : [],
+        vedleggUrls: getVedleggApiData(legeerklæring.vedlegg),
+        pleierDuDenSykeHjemme: true,
+        flereSokere: getFlereSokereApiData(tidsrom.flereSokere),
+        fraOgMed: dateToISODate(periodeFra),
+        tilOgMed: dateToISODate(periodeTil),
+        ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(tidsrom),
+        utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, tidsrom),
+        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(søknadsperiode, arbeidsgivere, arbeidstid?.arbeidsgivere),
+        frilans: getFrilansApiDataFromSøknadsdata(søknadsperiode, frilans, arbeidstid?.frilans),
+        selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
+            søknadsperiode,
+            selvstendig,
+            arbeidstid?.selvstendig,
+        ),
+        opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
+        utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),
+        harVærtEllerErVernepliktig: arbeidssituasjon.vernepliktig?.type === 'harVærtEllerErVernepliktigYes',
+        medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
+        harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
     };
 };

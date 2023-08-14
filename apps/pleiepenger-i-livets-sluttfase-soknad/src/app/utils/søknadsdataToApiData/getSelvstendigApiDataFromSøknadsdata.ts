@@ -6,10 +6,15 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 
 export const getSelvstendigApiDataFromSøknadsdata = (
-    selvstendig: ArbeidSelvstendigSøknadsdata,
-    arbeidIperiode: ArbeidIPeriodeSøknadsdata,
     søknadsperiode: DateRange,
+    selvstendig?: ArbeidSelvstendigSøknadsdata,
+    arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): SelvstendigNæringsdrivendeApiData | undefined => {
+    // TODO check this
+    if (!selvstendig || !arbeidIperiode) {
+        return undefined;
+    }
+
     switch (selvstendig.type) {
         case 'erIkkeSN':
             return undefined;

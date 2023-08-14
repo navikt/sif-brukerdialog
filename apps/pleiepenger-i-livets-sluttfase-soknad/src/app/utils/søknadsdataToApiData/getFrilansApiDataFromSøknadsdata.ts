@@ -5,10 +5,13 @@ import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeri
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 
 export const getFrilansApiDataFromSøknadsdata = (
-    frilans: ArbeidFrilansSøknadsdata,
-    arbeidIperiode: ArbeidIPeriodeSøknadsdata,
     søknadsperiode: DateRange,
+    frilans?: ArbeidFrilansSøknadsdata,
+    arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): FrilansApiData | undefined => {
+    if (!frilans) {
+        return undefined;
+    }
     switch (frilans.type) {
         case 'erIkkeFrilanser':
             return undefined;

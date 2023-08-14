@@ -6,9 +6,9 @@ import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '
 
 export interface PleietrengendeApi {
     navn: string;
-    norskIdentitetsnummer: string | null;
-    årsakManglerIdentitetsnummer: ÅrsakManglerIdentitetsnummer | null;
-    fødselsdato: string | null;
+    norskIdentitetsnummer?: string;
+    årsakManglerIdentitetsnummer?: ÅrsakManglerIdentitetsnummer;
+    fødselsdato?: string;
 }
 
 export interface TidEnkeltdagApiData {
@@ -100,6 +100,11 @@ export interface FerieuttakIPeriodenApiData {
     ferieuttak: PeriodeApiData[];
 }
 
+export interface UtenlandsoppholdIPeriodenApi {
+    skalOppholdeSegIUtlandetIPerioden: boolean;
+    opphold: UtenlandsoppholdIPeriodenApiData[];
+}
+
 export interface UtenlandskNæringApi {
     næringstype: UtenlandskNæringstype;
     navnPåVirksomheten: string;
@@ -117,17 +122,14 @@ export enum FlereSokereApiData {
 
 export interface SøknadApiData {
     id: string;
-    språk: Locale;
+    språk: string;
     harForståttRettigheterOgPlikter: boolean;
     pleietrengende: PleietrengendeApi;
     fraOgMed: ISODate;
     tilOgMed: ISODate;
     pleierDuDenSykeHjemme: boolean;
     flereSokere: FlereSokereApiData;
-    utenlandsoppholdIPerioden?: {
-        skalOppholdeSegIUtlandetIPerioden: boolean;
-        opphold: UtenlandsoppholdIPeriodenApiData[];
-    };
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApi;
     ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;

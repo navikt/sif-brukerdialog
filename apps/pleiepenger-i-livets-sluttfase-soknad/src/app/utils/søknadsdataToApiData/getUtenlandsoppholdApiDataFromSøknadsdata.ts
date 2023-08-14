@@ -1,24 +1,41 @@
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/types';
-import { UtenlandsoppholdApiData } from '../../types/søknadApiData/SøknadApiDataslett';
-import { FraværSøknadsdata } from '../../types/søknadsdata/TidsromSøknadsdata';
-import { mapBostedUtlandToApiData } from './getMedlemskapApiDataFromSøknadsdata';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import {
+    UtenlandsoppholdIPeriodenApi,
+    UtenlandsoppholdIPeriodenApiData,
+} from '../../types/søknadApiData/SøknadApiData';
+import { TidsromSøknadsdata } from '../../types/søknadsdata/TidsromSøknadsdata';
+import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { getCountryName } from '@navikt/sif-common-formik-ds/lib';
 
 export const getUtenlansoppholdApiDataFromSøknadsdata = (
     locale: string,
-    fraværSøknadsdata?: FraværSøknadsdata,
-): UtenlandsoppholdApiData[] => {
-    if (fraværSøknadsdata === undefined) {
-        throw Error('fraværSøknadsdata i getUtenlansoppholdApiDataFromSøknadsdata undefined');
-    }
-    const { perioder_harVærtIUtlandet, perioder_utenlandsopphold } = fraværSøknadsdata;
+    tidsrom: TidsromSøknadsdata,
+): UtenlandsoppholdIPeriodenApi => {
+    if (tidsrom.type === 'tidsromKunMedUtenlandsopphold' || tidsrom.type === 'tidsromMedUtenlandsoppholdMedFerie') {
+        const { skalOppholdeSegIUtlandetIPerioden, utenlandsoppholdIPerioden } = tidsrom;
 
-    if (perioder_harVærtIUtlandet === true && perioder_utenlandsopphold.length === 0) {
-        throw Error('perioder_utenlandsopphold i getUtenlansoppholdApiDataFromSøknadsdata tomt');
+        return {
+            skalOppholdeSegIUtlandetIPerioden,
+            opphold: utenlandsoppholdIPerioden.map((o) => getUtenlandsoppholdIPeriodenApiData(o, locale)),
+        };
     }
 
-    return perioder_harVærtIUtlandet === true
-        ? perioder_utenlandsopphold.map((utenlandsopphold: Utenlandsopphold) => {
-              return mapBostedUtlandToApiData(utenlandsopphold, locale);
-          })
-        : [];
+    return {
+        skalOppholdeSegIUtlandetIPerioden: false,
+        opphold: [],
+    };
+};
+
+export const getUtenlandsoppholdIPeriodenApiData = (
+    opphold: Utenlandsopphold,
+    locale: string,
+): UtenlandsoppholdIPeriodenApiData => {
+    const apiData: UtenlandsoppholdIPeriodenApiData = {
+        landnavn: getCountryName(opphold.landkode, locale),
+        landkode: opphold.landkode,
+        fraOgMed: dateToISODate(opphold.fom),
+        tilOgMed: dateToISODate(opphold.tom),
+    };
+
+    return apiData;
 };
