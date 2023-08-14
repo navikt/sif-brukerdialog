@@ -9,6 +9,7 @@ const getUrlForStep = (step?) => {
 };
 interface ConfigProps {
     mellomlagring?: any;
+    innsendingResponse?: any;
 }
 
 export const gotoStep = (step: string) => {
@@ -22,7 +23,7 @@ export const gotoArbeidssituasjonStep = () => {
 };
 
 export const contextConfig = (props?: ConfigProps) => {
-    const { mellomlagring } = props || {};
+    const { mellomlagring, innsendingResponse = {} } = props || {};
 
     beforeEach('intercept api-kall', () => {
         cy.intercept(`DELETE`, `/mellomlagring/PLEIEPENGER_SYKT_BARN*`, mellomlagring || {}).as('deleteMellomlagring');
@@ -32,7 +33,7 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept('GET', `/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
         cy.intercept('GET', `/oppslag/barn*`, cyApiMockData.barnMock).as('getBarn');
         cy.intercept(`GET`, `/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgivereMock).as('getArbeidsgivere');
-        cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, {}).as('postInnsending');
+        cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, innsendingResponse).as('postInnsending');
         cy.intercept('*.api.sanity.io', {});
     });
 };

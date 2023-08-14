@@ -11,31 +11,28 @@ const getMellomlagring = () => {
 };
 
 const invalidParamaterResponse = {
-    type: '/problem-details/invalid-request-parameters',
-    title: 'invalid-request-parameters',
-    status: 400,
-    detail: 'Requesten inneholder ugyldige paramtere.',
-    instance: 'about:blank',
-    invalid_parameters: [
-        'frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR',
-        'frilans.startdato kan ikke være null dersom frilans.type er HONORAR',
-        'frilans.jobberFortsattSomFrilans kan ikke være null dersom frilans.type er HONORAR',
-    ],
+    statusCode: 400,
+    body: {
+        type: '/problem-details/invalid-request-parameters',
+        title: 'invalid-request-parameters',
+        status: 400,
+        detail: 'Requesten inneholder ugyldige paramtere.',
+        instance: 'about:blank',
+        invalid_parameters: [
+            'frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR',
+            'frilans.startdato kan ikke være null dersom frilans.type er HONORAR',
+            'frilans.jobberFortsattSomFrilans kan ikke være null dersom frilans.type er HONORAR',
+        ],
+    },
 };
-
 describe('Send inn søknad med feil parametre', () => {
-    contextConfig({ mellomlagring: getMellomlagring() });
-    beforeEach(() => {
-        gotoStep('oppsummering');
-        cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, {
-            statusCode: 400,
-            body: invalidParamaterResponse,
-        }).as('postInnsending');
-    });
+    contextConfig({ mellomlagring: getMellomlagring(), innsendingResponse: invalidParamaterResponse });
 
     it('Vise feilmelding når det returneres 400 fra backend', () => {
+        gotoStep('oppsummering');
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
+        cy.wait('@postInnsending');
         expect(cy.contains('Oops, der oppstod det en feil')).exist;
         cy.contains('Vis mer informasjon om feilen (teknisk)').click();
         cy.contains('frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR').should('exist');
