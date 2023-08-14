@@ -1,5 +1,5 @@
 import { contextConfig, gotoStep } from '../integration-utils/contextConfig';
-import { getMellomlagringForArbeidssituasjonerTest } from './2-test-arbeidssituasjoner.cy';
+import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 
 const invalidParamaterResponse = {
     type: '/problem-details/invalid-request-parameters',
@@ -15,8 +15,7 @@ const invalidParamaterResponse = {
 };
 
 describe('Send inn søknad med feil parametre', () => {
-    const datojustertMellomlagring = getMellomlagringForArbeidssituasjonerTest();
-    contextConfig({ mellomlagring: datojustertMellomlagring });
+    contextConfig({ mellomlagring });
 
     it.only('Vise feilmelding når det returneres 400 fra backend', () => {
         cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, {
@@ -29,5 +28,7 @@ describe('Send inn søknad med feil parametre', () => {
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
         expect(cy.contains('Oops, der oppstod det en feil')).exist;
+        cy.contains('Vis mer informasjon om feilen (teknisk)').click();
+        cy.contains('frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR').should('exist');
     });
 });
