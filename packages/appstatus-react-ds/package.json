@@ -12,13 +12,13 @@
     },
     "dependencies": {
         "@portabletext/react": "3.0.4",
-        "@sanity/client": "6.4.0"
+        "@sanity/client": "6.4.6"
     },
     "devDependencies": {
         "@navikt/ds-css": "4.11.0",
         "@navikt/ds-react": "4.11.0",
-        "@types/node": "20.4.8",
-        "@types/react": "18.2.18",
+        "@types/node": "20.5.0",
+        "@types/react": "18.2.20",
         "@types/react-dom": "18.2.7",
         "config": "*",
         "copyfiles": "2.4.1",
