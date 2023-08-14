@@ -1,5 +1,14 @@
+import dayjs = require('dayjs');
 import { contextConfig, gotoStep } from '../integration-utils/contextConfig';
 import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
+import { getSøknadsperiode } from '../integration-utils/utils';
+
+const getMellomlagring = () => {
+    const søknadsperiode = getSøknadsperiode();
+    mellomlagring.formValues.periodeFra = dayjs(søknadsperiode.from).format('YYYY-MM-DD');
+    mellomlagring.formValues.periodeTil = dayjs(søknadsperiode.to).format('YYYY-MM-DD');
+    return mellomlagring;
+};
 
 const invalidParamaterResponse = {
     type: '/problem-details/invalid-request-parameters',
@@ -15,16 +24,16 @@ const invalidParamaterResponse = {
 };
 
 describe('Send inn søknad med feil parametre', () => {
-    contextConfig({ mellomlagring });
-
-    it.only('Vise feilmelding når det returneres 400 fra backend', () => {
+    contextConfig({ mellomlagring: getMellomlagring() });
+    beforeEach(() => {
+        gotoStep('oppsummering');
         cy.intercept('POST', `/pleiepenger-sykt-barn/innsending`, {
             statusCode: 400,
             body: invalidParamaterResponse,
         }).as('postInnsending');
+    });
 
-        gotoStep('oppsummering');
-
+    it('Vise feilmelding når det returneres 400 fra backend', () => {
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
         expect(cy.contains('Oops, der oppstod det en feil')).exist;
