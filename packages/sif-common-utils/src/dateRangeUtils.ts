@@ -400,8 +400,8 @@ export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange =
         throw 'getDateRangeFromDateRanges: Cannot get date range from empty array';
     }
     return {
-        from: dayjs.min(dateRanges.map((range) => dayjs(range.from))).toDate(),
-        to: dayjs.max(dateRanges.map((range) => dayjs(range.to))).toDate(),
+        from: dayjs.min(dateRanges.map((range) => dayjs(range.from)))!.toDate(),
+        to: dayjs.max(dateRanges.map((range) => dayjs(range.to)))!.toDate(),
     };
 };
 /**

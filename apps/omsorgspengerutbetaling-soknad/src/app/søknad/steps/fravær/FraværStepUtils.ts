@@ -23,7 +23,7 @@ const getÅrstallFromFravær = (
         case 1:
             return dayjs(dager[0]).get('year');
         default:
-            return dayjs.min(dager.map((d) => dayjs(d))).get('year');
+            return dayjs.min(dager.map((d) => dayjs(d)))!.get('year');
     }
 };
 
@@ -35,7 +35,7 @@ const getTidsromFromÅrstall = (årstall?: number): DateRange => {
     const sisteDagIÅret = dayjs(`${årstall}-12-31`).toDate();
     return {
         from: førsteDagIÅret,
-        to: dayjs.min([dayjs(sisteDagIÅret), dayjs(dateToday)]).toDate(),
+        to: dayjs.min([dayjs(sisteDagIÅret), dayjs(dateToday)])!.toDate(),
     };
 };
 
@@ -47,13 +47,13 @@ const getPeriodeBoundaries = (
     let max: Dayjs | undefined;
 
     perioderMedFravær.forEach((p) => {
-        min = min ? dayjs.min(dayjs(p.fraOgMed), min) : dayjs(p.fraOgMed);
-        max = max ? dayjs.max(dayjs(p.tilOgMed), max) : dayjs(p.tilOgMed);
+        min = min ? dayjs.min(dayjs(p.fraOgMed), min)! : dayjs(p.fraOgMed);
+        max = max ? dayjs.max(dayjs(p.tilOgMed), max)! : dayjs(p.tilOgMed);
     });
 
     dagerMedFravær.forEach((d) => {
-        min = min ? dayjs.min(dayjs(d.dato), min) : dayjs(d.dato);
-        max = max ? dayjs.max(dayjs(d.dato), max) : dayjs(d.dato);
+        min = min ? dayjs.min(dayjs(d.dato), min)! : dayjs(d.dato);
+        max = max ? dayjs.max(dayjs(d.dato), max)! : dayjs(d.dato);
     });
 
     return {
