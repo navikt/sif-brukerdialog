@@ -90,7 +90,7 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                               .max(
                                   dayjs(date3YearsAgo).endOf('day'),
                                   dayjs(barnetSøknadenGjelder?.fødselsdato).endOf('day')
-                              )
+                              )!
                               .toDate()
                         : date3YearsAgo
                 }

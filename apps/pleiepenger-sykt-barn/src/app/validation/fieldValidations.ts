@@ -88,7 +88,7 @@ export const validateFradato = (
 ): ValidationResult<ValidationError> => {
     const tilDato = datepickerUtils.getDateFromDateString(tilDatoString);
     const minDate = eldsteBarnFodselsdato
-        ? dayjs.max(dayjs(date3YearsAgo).endOf('day'), dayjs(eldsteBarnFodselsdato).endOf('day')).toDate()
+        ? dayjs.max(dayjs(date3YearsAgo).endOf('day'), dayjs(eldsteBarnFodselsdato).endOf('day'))!.toDate()
         : date3YearsAgo;
 
     const error = getDateRangeValidator({

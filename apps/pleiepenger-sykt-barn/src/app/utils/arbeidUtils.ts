@@ -32,7 +32,7 @@ export const getPeriodeSomAnsattInnenforPeriode = (periode: DateRange, arbeidsgi
         };
     }
     return {
-        from: dayjs.max([dayjs(periode.from), dayjs(arbeidsgiver.ansattFom)]).toDate(),
+        from: dayjs.max([dayjs(periode.from), dayjs(arbeidsgiver.ansattFom)])!.toDate(),
         to: periode.to,
     };
 };

@@ -29,7 +29,7 @@ export const getPeriodeSomSelvstendigInnenforPeriode = (
         return undefined;
     }
     return {
-        from: dayjs.max([dayjs(periode.from), dayjs(virksomhet.fom)]).toDate(),
+        from: dayjs.max([dayjs(periode.from), dayjs(virksomhet.fom)])!.toDate(),
         to: periode.to,
     };
 };
