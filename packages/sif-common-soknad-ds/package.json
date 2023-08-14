@@ -50,7 +50,7 @@
         "copyfiles": "2.4.1",
         "dayjs": "1.11.9",
         "formik": "2.4.3",
-        "gh-pages": "5.0.0",
+        "gh-pages": "6.0.0",
         "intl": "1.2.5",
         "io-ts-types": "0.5.19",
         "monocle-ts": "2.3.13",
