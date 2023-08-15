@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { ErrorPage, SummarySection } from '@navikt/sif-common-soknad-ds/lib';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds/lib';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
@@ -20,12 +20,8 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
-import DineBarnOppsummering from './components/DineBarnOppsummering';
+import PleietrengendePersonSummary from './components/PleietrengendePersonSummary';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
-import FrilansOppsummering from './components/FrilansOppsummering';
-import SelvstendigOppsummering from './components/SelvstendigOppsummering';
-import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
-import UtbetalingsperioderOppsummering from './components/UtbetalingsperioderOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -64,7 +60,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata, registrerteBarn, intl);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata);
 
     if (!apiData) {
         return (
@@ -86,6 +82,11 @@ const OppsummeringStep = () => {
         );
     }
 
+    const pleietrengendeId =
+        søknadsdata.opplysningerOmPleietrengende?.type === 'pleietrengendeUtenFnr'
+            ? søknadsdata.opplysningerOmPleietrengende.pleietrengendeId
+            : [];
+
     return (
         <SøknadStep stepId={StepId.OPPSUMMERING}>
             <FormikWrapper
@@ -94,11 +95,8 @@ const OppsummeringStep = () => {
                     apiData
                         ? sendSøknad({
                               ...apiData,
-                              bekreftelser: {
-                                  harForståttRettigheterOgPlikter: apiData.bekreftelser.harForståttRettigheterOgPlikter,
-                                  harBekreftetOpplysninger:
-                                      values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                              },
+                              harBekreftetOpplysninger:
+                                  values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
                           })
                         : undefined;
                 }}
@@ -114,21 +112,11 @@ const OppsummeringStep = () => {
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
-                                <DineBarnOppsummering
-                                    barn={apiData.barn}
-                                    harDekketTiFørsteDagerSelv={apiData.harDekketTiFørsteDagerSelv}
+                                <PleietrengendePersonSummary
+                                    pleietrengende={apiData.pleietrengende}
+                                    pleietrengendeId={pleietrengendeId}
                                 />
-                                <SummarySection header={intlHelper(intl, 'step.oppsummering.utbetalinger.header')}>
-                                    <UtbetalingsperioderOppsummering
-                                        utbetalingsperioder={apiData.utbetalingsperioder}
-                                    />
-                                    <UtenlandsoppholdISøkeperiodeOppsummering utenlandsopphold={apiData.opphold} />
-                                </SummarySection>
-
-                                <FrilansOppsummering frilans={apiData.frilans} />
-                                <SelvstendigOppsummering virksomhet={apiData.selvstendigNæringsdrivende} />
-                                <MedlemskapOppsummering bosteder={apiData.bosteder} />
-
+                                <MedlemskapOppsummering medlemskap={apiData.medlemskap} />
                                 <LegeerklæringOppsummering
                                     apiData={apiData}
                                     legeerklæringSøknadsdata={søknadsdata.legeerklæring}

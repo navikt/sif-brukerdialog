@@ -1,8 +1,8 @@
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
-import Modal from 'nav-frontend-modal';
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 import './styles/tidEnkeltdagDialog.less';
+import { Modal } from '@navikt/ds-react';
 
 export interface TidEnkeltdagDialogProps {
     isOpen?: boolean;
@@ -20,9 +20,9 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
     }
     return isOpen ? (
         <Modal
-            isOpen={isOpen}
-            contentLabel={`${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`}
-            onRequestClose={formProps.onCancel}
+            open={isOpen}
+            aria-label={`${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`}
+            onClose={formProps.onCancel}
             shouldCloseOnOverlayClick={false}
             className="tidEnkeltdagDialog">
             <TidEnkeltdagForm {...formProps} />

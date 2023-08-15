@@ -1,12 +1,12 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import groupBy from 'lodash.groupby';
-import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import DagerMedTidListe from '../../common/dager-med-tid-liste/DagerMedTidListe';
 import { ArbeidstidEnkeltdagApiData, DagMedTid } from '../../types';
+import { groupBy } from 'lodash';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { Accordion } from '@navikt/ds-react';
 
 export interface ArbeidstidEnkeltdagerOppsummeringProps {
     dager: ArbeidstidEnkeltdagApiData[];
@@ -38,16 +38,24 @@ const ArbeidstidEnkeltdagerOppsummering: React.FunctionComponent<ArbeidstidEnkel
                     return ingenDagerRegistrertMelding;
                 }
                 return (
-                    <Box margin="m" key={key}>
-                        <EkspanderbartPanel
-                            tittel={
-                                <span style={{ textTransform: 'capitalize', fontSize: '1rem' }}>
-                                    {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
-                                </span>
-                            }>
-                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} visNormaltid={visNormaltid} />
-                        </EkspanderbartPanel>
-                    </Box>
+                    <Block margin="m" key={key}>
+                        <Accordion>
+                            <Accordion.Item>
+                                <Accordion.Header>
+                                    <span style={{ textTransform: 'capitalize', fontSize: '1rem' }}>
+                                        {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
+                                    </span>
+                                </Accordion.Header>
+                                <Accordion.Content>
+                                    <DagerMedTidListe
+                                        dagerMedTid={dagerMedTid}
+                                        viseUke={true}
+                                        visNormaltid={visNormaltid}
+                                    />
+                                </Accordion.Content>
+                            </Accordion.Item>
+                        </Accordion>
+                    </Block>
                 );
             })}
         </>

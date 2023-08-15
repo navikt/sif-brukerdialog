@@ -1,6 +1,6 @@
-import { getNumberValidator } from '@navikt/sif-common-formik/lib/validation';
-import getTimeValidator from '@navikt/sif-common-formik/lib/validation/getTimeValidator';
-import { IntlErrorObject } from '@navikt/sif-common-formik/lib/validation/types';
+import { IntlErrorObject } from '@navikt/sif-common-formik-ds/lib';
+import { getNumberValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getTimeValidator from '@navikt/sif-common-formik-ds/lib/validation/getTimeValidator';
 import {
     durationToDecimalDuration,
     DurationWeekdays,

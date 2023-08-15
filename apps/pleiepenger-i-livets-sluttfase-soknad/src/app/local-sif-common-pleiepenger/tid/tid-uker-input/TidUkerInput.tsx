@@ -1,8 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { DateRange } from '@navikt/sif-common-formik';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import { DateRange } from '@navikt/sif-common-formik-ds';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils/lib';
 import { Daginfo, TidPerDagValidator, Ukeinfo } from '../../types';
 import TidUkeInput from '../tid-uke-input/TidUkeInput';
@@ -14,7 +13,6 @@ const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${
 interface Props {
     fieldName: string;
     periode: DateRange;
-    brukPanel?: boolean;
     opprinneligTid?: DateDurationMap;
     utilgjengeligeDatoer?: Date[];
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
@@ -26,7 +24,6 @@ const bem = bemUtils('tidUkerInput');
 export const TidUkerInput: React.FunctionComponent<Props> = ({
     fieldName,
     periode,
-    brukPanel,
     opprinneligTid,
     utilgjengeligeDatoer,
     ukeTittelRenderer,
@@ -61,7 +58,7 @@ export const TidUkerInput: React.FunctionComponent<Props> = ({
                 );
                 return (
                     <div key={uke.ukenummer} className={bem.element('ukeWrapper')}>
-                        {brukPanel ? <ResponsivePanel>{content}</ResponsivePanel> : content}
+                        {content}
                     </div>
                 );
             })}

@@ -1,9 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikInputGroup, FormikTimeInput, TestProps } from '@navikt/sif-common-formik';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+
 import {
     dateFormatter,
     decimalDurationToDuration,
@@ -15,11 +13,13 @@ import {
     summarizeDurationInDurationWeekdays,
     Weekday,
 } from '@navikt/sif-common-utils';
-import { Normaltekst } from 'nav-frontend-typografi';
 import LabelInputInfoLayout from '../../common/label-input-info-layout/LabelInputInfoLayout';
 import TimerOgMinutter, { formatTimerOgMinutter } from '../../common/timer-og-minutter/TimerOgMinutter';
 import { Daginfo, Ukeinfo } from '../../types';
 import './arbeidstidUkeInput.less';
+import { Heading } from '@navikt/ds-react';
+import { FormikInputGroup, FormikTimeInput, TestProps, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 export type ArbeidstidUkeInputEnkeltdagValidator = (dato: Date) => (value: Duration) => ValidationError | undefined;
 
@@ -123,9 +123,9 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     return (
         <div className={bem.block}>
             {visUkeTittel && (
-                <Normaltekst tag="h3" className={bem.element('tittel')}>
+                <Heading level="3" size="small" className={bem.element('tittel')}>
                     {getUkeTittel(ukeinfo)}
-                </Normaltekst>
+                </Heading>
             )}
             <div className={bem.element('uke__ukedager')}>
                 {dager.map((dag) => {
@@ -182,12 +182,12 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                 })}
             </div>
             {1 + 1 === 3 && timerNormaltPerUke !== undefined && timerRegistrertIUke !== undefined && (
-                <Box margin="s" padBottom="s">
+                <Block margin="s" padBottom="s">
                     <ArbeidOgFraværOppsummering
                         timerNormaltPerUke={timerNormaltPerUke}
                         timerRegistrertIUke={timerRegistrertIUke}
                     />
-                </Box>
+                </Block>
             )}
         </div>
     );

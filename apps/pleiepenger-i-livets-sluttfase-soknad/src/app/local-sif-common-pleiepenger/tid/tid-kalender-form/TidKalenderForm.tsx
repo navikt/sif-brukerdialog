@@ -1,20 +1,15 @@
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import Knapperad from '@navikt/sif-common-core/lib/components/knapperad/Knapperad';
-import { DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import { getTypedFormComponents, InputTime } from '@navikt/sif-common-formik/lib';
-import getFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { DateDurationMap, ensureDuration, getValidDurations, ISODate } from '@navikt/sif-common-utils';
+import { DateDurationMap, DateRange, ensureDuration, getValidDurations, ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-import Knapp from 'nav-frontend-knapper';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { TidPerDagValidator } from '../../types';
 import TidUkerInput from '../tid-uker-input/TidUkerInput';
+import { InputTime, ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { Button, Heading } from '@navikt/ds-react';
+import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
@@ -64,7 +59,7 @@ const TidKalenderForm = ({ periode, tid, tittel, intro, tidPerDagValidator, onSu
     };
 
     return (
-        <Normaltekst tag="div">
+        <div>
             <Form.FormikWrapper
                 initialValues={{ tid: mapDatoTidToFormDatoTid(tid) }}
                 onSubmit={onFormikSubmit}
@@ -77,29 +72,30 @@ const TidKalenderForm = ({ periode, tid, tittel, intro, tidPerDagValidator, onSu
                             includeButtons={false}
                             formFooter={
                                 <FormBlock margin="l">
-                                    <Knapperad align="left">
-                                        <Knapp htmlType="submit" type="hoved">
+                                    <div>
+                                        <Button type="submit" variant="primary">
                                             <FormattedMessage id="tidKalenderForm.ok.label" />
-                                        </Knapp>
-                                        <Knapp htmlType="button" type="standard" onClick={onCancel}>
+                                        </Button>
+                                        <Button type="button" variant="secondary" onClick={onCancel}>
                                             <FormattedMessage id="tidKalenderForm.avbryt.label" />
-                                        </Knapp>
-                                    </Knapperad>
+                                        </Button>
+                                    </div>
                                 </FormBlock>
                             }>
-                            <Systemtittel tag="h1">{tittel}</Systemtittel>
-                            {intro ? <Box margin="l">{intro}</Box> : undefined}
+                            <Heading level="1" size="medium">
+                                {tittel}
+                            </Heading>
+                            {intro ? <Block margin="l">{intro}</Block> : undefined}
                             <TidUkerInput
                                 fieldName={FormField.tid}
                                 periode={periode}
-                                brukPanel={false}
                                 tidPerDagValidator={tidPerDagValidator}
                             />
                         </Form.Form>
                     );
                 }}
             />
-        </Normaltekst>
+        </div>
     );
 };
 

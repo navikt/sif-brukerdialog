@@ -4,9 +4,9 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SummarySection } from '@navikt/sif-common-soknad-ds';
-import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiDataslett';
 import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/LegeerklæringSøknadsdata';
 import { getAttachmentURLBackend } from '../../../../utils/attachmentUtilsAuthToken';
+import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
     apiData: SøknadApiData;
@@ -17,7 +17,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
     const intl = useIntl();
     const legeerklæringer = legeerklæringSøknadsdata
         ? legeerklæringSøknadsdata.vedlegg.filter(
-              (v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)),
+              (v) => v.url && apiData.vedleggUrls.includes(getAttachmentURLBackend(v.url))
           )
         : [];
 

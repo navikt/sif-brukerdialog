@@ -2,7 +2,7 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 import { StepId } from '../../types/StepId';
-import { SøknadApiData } from '../../types/søknadApiData/SøknadApiDataslett';
+import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 
 export enum API_DATA_VALIDATION_ERROR {
     'undefined' = 'undefined',
@@ -25,7 +25,7 @@ interface ApiDataValidationError {
 /** Ikke tatt i bruk enda */
 export const validateApiData = (
     apiData: SøknadApiData | undefined,
-    intl: IntlShape,
+    intl: IntlShape
 ): undefined | ApiDataValidationError => {
     if (!apiData) {
         return {

@@ -1,13 +1,13 @@
-import { DateRange } from '@navikt/sif-common-formik/lib';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
-import { ArbeidIPeriodeIntlValues } from '@navikt/sif-common-pleiepenger/lib';
 import {
     DateDurationMap,
+    DateRange,
     durationToDecimalDuration,
     getDurationsInDateRange,
     getValidDurations,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils/lib';
+import { ArbeidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 
 export const validateArbeidsTidEnkeltdager = (
     tidMedArbeid: DateDurationMap,

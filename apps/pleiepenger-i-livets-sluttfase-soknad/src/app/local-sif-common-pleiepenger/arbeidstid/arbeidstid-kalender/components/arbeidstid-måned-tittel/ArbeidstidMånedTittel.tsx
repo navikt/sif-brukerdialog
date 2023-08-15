@@ -1,26 +1,26 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Heading, BodyShort } from '@navikt/ds-react';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props {
-    headingLevel: number;
     måned: DateRange;
     antallDagerMedTid: number;
 }
 
-const ArbeidstidMånedTittel: React.FunctionComponent<Props> = ({ headingLevel, måned, antallDagerMedTid }) => {
+const ArbeidstidMånedTittel: React.FunctionComponent<Props> = ({ måned, antallDagerMedTid }) => {
     const intl = useIntl();
+
     return (
-        <Element tag={`h${headingLevel}`}>
+        <Heading level={'2'} size="small">
             <span className="m-caps">
                 {intlHelper(intl, 'arbeidstidMånedTittel.ukeOgÅr', {
                     ukeOgÅr: dayjs(måned.from).format('MMMM YYYY'),
                 })}
             </span>
-            <Normaltekst tag="div">
+            <BodyShort>
                 {antallDagerMedTid === 0 ? (
                     <FormattedMessage id="arbeidstidMånedTittel.iPeriodePanel.info.ingenDager" />
                 ) : (
@@ -29,8 +29,8 @@ const ArbeidstidMånedTittel: React.FunctionComponent<Props> = ({ headingLevel, 
                         values={{ dager: antallDagerMedTid }}
                     />
                 )}
-            </Normaltekst>
-        </Element>
+            </BodyShort>
+        </Heading>
     );
 };
 

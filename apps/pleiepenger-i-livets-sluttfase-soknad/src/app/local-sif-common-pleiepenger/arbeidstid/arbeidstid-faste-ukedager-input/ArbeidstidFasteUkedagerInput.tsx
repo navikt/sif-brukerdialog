@@ -1,12 +1,17 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikInputGroup, FormikTimeInput, TestProps } from '@navikt/sif-common-formik';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { Weekday } from '@navikt/sif-common-utils';
 import { LabelInputInfoLayout } from '../../common';
 import { getTidFasteUkerdagerInputMessages } from '../../tid/tid-faste-ukedager-input/tidFasteUkerdagerInputMessages';
 import './arbeidstidFasteUkedagerInput.less';
+import {
+    FormikInputGroup,
+    FormikTimeInput,
+    TestProps,
+    ValidationError,
+    ValidationResult,
+} from '@navikt/sif-common-formik-ds/lib';
 
 export interface ArbeidstidUkeTekster {
     dag: React.ReactNode;

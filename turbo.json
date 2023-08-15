@@ -64,6 +64,11 @@
         "build-omsorgspengerutbetaling-soknad": {
             "outputs": [],
             "dependsOn": ["^build-package"]
+        },
+        "build-pleiepenger-i-livets-sluttfase-soknad": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
         }
+
     }
 }

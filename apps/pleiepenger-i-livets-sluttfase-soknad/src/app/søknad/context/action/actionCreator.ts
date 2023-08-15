@@ -2,7 +2,7 @@ import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
     OpplysningerOmPleietrengendeSøknadsdata,
     LegeerklæringSøknadsdata,
-    TidsromSøknadsdata
+    TidsromSøknadsdata,
     ArbeidssituasjonSøknadsdata,
     ArbeidstidSøknadsdata,
     MedlemskapSøknadsdata,

@@ -1,15 +1,12 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik/lib';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+
 import {
     DateDurationMap,
     dateFormatter,
+    DateRange,
     Duration,
     durationsAreEqual,
     ensureDuration,
@@ -22,7 +19,6 @@ import {
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { InputDateString } from 'nav-datovelger/lib/types';
-import { Undertittel } from 'nav-frontend-typografi';
 import { DurationText } from '../..';
 import {
     getDagerMedNyTid,
@@ -31,8 +27,12 @@ import {
     trimDateRangeToWeekdays,
 } from './utils/tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
-import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { getTypedFormComponents, InputTime, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { Heading } from '@navikt/ds-react';
 
 dayjs.extend(minMax);
 
@@ -156,9 +156,12 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
 
     return (
         <div>
-            <Undertittel tag="h1" className="dialogFormTitle">
-                <span className="m-caps">{dagNavn}</span> {dateFormatter.full(dato)}
-            </Undertittel>
+            <div className="dialogFormTitle">
+                <Heading level="1" size="medium">
+                    <span className="m-caps">{dagNavn}</span> {dateFormatter.full(dato)}
+                </Heading>
+            </div>
+
             <FormBlock margin="l">
                 <FormComponents.FormikWrapper
                     enableReinitialize={true}
@@ -196,8 +199,8 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                     </FormBlock>
                                 )}
                                 {skalGjentas === true && (
-                                    <Box margin="l">
-                                        <ResponsivePanel>
+                                    <Block margin="l">
+                                        <>
                                             {/* <div style={{ paddingLeft: '1.5rem' }}> */}
 
                                             <FormComponents.RadioGroup
@@ -273,9 +276,6 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                         disableWeekend={true}
                                                                         fullScreenOnMobile={true}
                                                                         fullscreenOverlay={true}
-                                                                        dayPickerProps={{
-                                                                            initialMonth: dato,
-                                                                        }}
                                                                         name={FormFields.stopDato}
                                                                     />
                                                                 </FormBlock>
@@ -284,8 +284,8 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                     )}
                                                 </>
                                             )}
-                                        </ResponsivePanel>
-                                    </Box>
+                                        </>
+                                    </Block>
                                 )}
                             </FormComponents.Form>
                         );

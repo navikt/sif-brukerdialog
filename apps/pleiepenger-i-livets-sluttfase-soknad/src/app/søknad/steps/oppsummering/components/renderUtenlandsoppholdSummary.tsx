@@ -1,9 +1,9 @@
 import React from 'react';
 import { ISODateToDate, prettifyDateExtended } from '@navikt/sif-common-utils';
-import { UtenlandsoppholdApiData } from '../../../../types/søknadApiData/SøknadApiDataslett';
+import { BostedUtlandApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import './utenlandsoppholdSummaryItem.css';
 
-export const renderUtenlandsoppholdIPeriodenSummary = (opphold: UtenlandsoppholdApiData): React.ReactNode => {
+export const renderUtenlandsoppholdIPeriodenSummary = (opphold: BostedUtlandApiData): React.ReactNode => {
     return (
         <div className={'utenlandsoppholdSummaryItem'}>
             <span className={'utenlandsoppholdSummaryItem__dates'}>

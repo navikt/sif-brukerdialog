@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import { prettifyDateExtended } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import { Element } from 'nav-frontend-typografi';
-import { Arbeidsgiver } from '../../../../types';
+import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
+import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { Ingress } from '@navikt/ds-react';
 
 interface Props {
     frilansoppdrag: Arbeidsgiver[];
@@ -30,7 +30,7 @@ const renderTidsrom = ({ ansattFom, ansattTom }: Arbeidsgiver) => {
     return null;
 };
 
-const FrilansoppdragListe: React.FunctionComponent<Props> = ({ frilansoppdrag, kompakt }) =>
+const FrilansoppdragListe: React.FC<Props> = ({ frilansoppdrag, kompakt }) =>
     kompakt ? (
         <ul style={{ margin: 0, padding: '0 0 0 1rem' }}>
             {frilansoppdrag.map((oppdrag) => (
@@ -41,13 +41,13 @@ const FrilansoppdragListe: React.FunctionComponent<Props> = ({ frilansoppdrag, k
         <ul style={{ margin: 0, padding: '1rem 0 0 1rem' }}>
             {frilansoppdrag.map((oppdrag) => (
                 <li key={oppdrag.id}>
-                    <Element tag="h3">{oppdrag.navn}</Element>
-                    <Box padBottom="l">
+                    <Ingress>{oppdrag.navn}</Ingress>
+                    <Block padBottom="l">
                         <FormattedMessage
                             id="frilansoppdragListe.oppdrag"
                             values={{ tidsrom: renderTidsrom(oppdrag) }}
                         />
-                    </Box>
+                    </Block>
                 </li>
             ))}
         </ul>

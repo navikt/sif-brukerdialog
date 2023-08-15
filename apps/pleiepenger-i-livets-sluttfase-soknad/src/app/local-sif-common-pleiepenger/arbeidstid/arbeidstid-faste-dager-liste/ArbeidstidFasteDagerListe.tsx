@@ -1,9 +1,8 @@
 import React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import { Time } from '@navikt/sif-common-core/lib/types/Time';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { ISODurationToDuration } from '@navikt/sif-common-utils';
+import { ISODurationToDuration, Time } from '@navikt/sif-common-utils';
 import { ArbeidstimerApiData, ArbeidstimerFasteDagerApiData } from '../../types';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 export interface ArbeidstidFasteDagerOppsummeringProps {
     fasteDager?: ArbeidstimerFasteDagerApiData;

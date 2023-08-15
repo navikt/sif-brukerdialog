@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateRange, dateToISOString } from '@navikt/sif-common-formik/lib';
+import { DateRange, dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 import { Weekday } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
@@ -72,7 +72,7 @@ const getForegåendeDagerIUke = (dag: Daginfo): Daginfo[] => {
     const dager = getEmptyElements(dag.ukedag - 1);
     if (dager && dager.length > 0) {
         const firstDayOfWeek = dayjs(dag.dato).subtract(dag.ukedag - 1, 'days');
-        return dager.map((c, idx) => {
+        return dager.map((_c, idx) => {
             const date = firstDayOfWeek.add(idx, 'days').toDate();
             return getDagInfo(date);
         });

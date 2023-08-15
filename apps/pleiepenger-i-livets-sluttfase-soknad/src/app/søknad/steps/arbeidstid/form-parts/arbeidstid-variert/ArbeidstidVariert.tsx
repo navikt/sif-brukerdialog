@@ -126,11 +126,7 @@ const ArbeidstidVariert: React.FC<Props> = ({
                             <FormattedMessage id="arbeidstidVariert.månedsliste.tittel" />
                         </Heading>
                         <Block margin="l">
-                            <SøknadsperioderMånedListe
-                                periode={periode}
-                                årstallHeadingLevel={3}
-                                månedContentRenderer={månedContentRenderer}
-                            />
+                            <SøknadsperioderMånedListe periode={periode} månedContentRenderer={månedContentRenderer} />
                         </Block>
                     </FormBlock>
                 </>
@@ -142,11 +138,7 @@ const ArbeidstidVariert: React.FC<Props> = ({
                     <p>
                         <FormattedMessage id="arbeidstidVariert.kortPeriode.info" values={intlValues} />
                     </p>
-                    <SøknadsperioderMånedListe
-                        periode={periode}
-                        årstallHeadingLevel={3}
-                        månedContentRenderer={månedContentRenderer}
-                    />
+                    <SøknadsperioderMånedListe periode={periode} månedContentRenderer={månedContentRenderer} />
                 </>
             )}
         </FormikInputGroup>

@@ -1,12 +1,12 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikTimeInput } from '@navikt/sif-common-formik';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils';
-import { Undertittel } from 'nav-frontend-typografi';
 import { TidPerDagValidator } from '../..';
 import { Daginfo, Ukeinfo } from '../../types';
 import { tidUkerInputUtils } from '../tid-uker-input/tidUkerUtils';
+import { FormikTimeInput } from '@navikt/sif-common-formik-ds/lib';
+import { Heading } from '@navikt/ds-react';
+import { FormattedMessage } from 'react-intl';
 
 type DagLabelRenderer = (dag: Daginfo) => React.ReactNode;
 
@@ -50,16 +50,16 @@ const TidUkeInput: React.FunctionComponent<Props> = ({
     ukeTittelRenderer,
     isWide,
 }) => {
-    const { dager } = ukeinfo;
+    const { dager, ukenummer, år } = ukeinfo;
 
     return (
         <div className={bem.element('uke')}>
             {ukeTittelRenderer ? (
                 ukeTittelRenderer(ukeinfo)
             ) : (
-                <Undertittel tag="h2">
-                    <FormattedMessage id="ukeÅr" values={{ ...ukeinfo }} />
-                </Undertittel>
+                <Heading level="2" size="small">
+                    <FormattedMessage id="ukeÅr" values={{ ukenummer, år }} />
+                </Heading>
             )}
 
             <div className={bem.element('uke__ukedager', isWide && visSomListe !== true ? 'grid' : 'liste')}>

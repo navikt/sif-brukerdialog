@@ -1,14 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik';
-import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
-import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import {
+    DateRange,
     dateToISODate,
     DurationWeekdays,
     ensureCompleteDurationWeekdays,
@@ -16,12 +9,19 @@ import {
     Weekday,
 } from '@navikt/sif-common-utils';
 import { InputDateString } from 'nav-datovelger/lib/types';
-import { Undertittel } from 'nav-frontend-typografi';
 import { TidFasteUkedagerInput } from '../../../../tid';
 import { ArbeiderIPeriodenSvar, ArbeidIPeriodeIntlValues } from '../../../../types';
 import { getArbeidstidPeriodeIntl } from '../../i18n/arbeidstidPeriodeMessages';
 import { ArbeidstidPeriodeData } from '../../types';
 import { getArbeidstimerFastDagValidator, validateFasteArbeidstimerIUke } from './arbeidstidPeriodeFormValidation';
+import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { Heading } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 export interface ArbeidstidPeriodeFormProps {
     arbeidsstedNavn: string;
@@ -108,10 +108,10 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
 
     return (
         <div>
-            <Undertittel tag="h1" className="dialogFormTitle">
+            <Heading level="1" size="large" className="dialogFormTitle">
                 {tekst?.tittel || arbIntl.intlText('arbeidstidPeriodeForm.tittel', { arbeidsstedNavn })}
-            </Undertittel>
-            {tekst?.introduksjon ? <Box margin="l">{tekst.introduksjon}</Box> : undefined}
+            </Heading>
+            {tekst?.introduksjon ? <Block margin="l">{tekst.introduksjon}</Block> : undefined}
             <FormBlock margin="xl">
                 <FormComponents.FormikWrapper
                     initialValues={initialFormValues}
@@ -145,6 +145,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
                                         <FormComponents.DateIntervalPicker
+                                            legend=""
                                             fromDatepickerProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.fraOgMed.label'),
                                                 'data-testid': 'fra-dato',
@@ -153,9 +154,6 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 fullScreenOnMobile: true,
                                                 fullscreenOverlay: true,
                                                 disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
-                                                dayPickerProps: {
-                                                    initialMonth: periode.from,
-                                                },
                                                 disabled: heleSøknadsperioden === true,
                                                 minDate: periode.from,
                                                 maxDate: to || periode.to,
@@ -179,9 +177,6 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 minDate: from || periode.from,
                                                 maxDate: periode.to,
                                                 disabled: heleSøknadsperioden === true,
-                                                dayPickerProps: {
-                                                    initialMonth: from || periode.from,
-                                                },
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: false,
@@ -192,20 +187,20 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 }).validateToDate,
                                             }}
                                         />
-                                        <Box>
+                                        <Block>
                                             <FormComponents.Checkbox
                                                 label={intlHelper(intl, 'arbeidstidPeriodeForm.velgHelePerioden')}
                                                 name={FormFields.heleSøknadsperioden}
                                                 afterOnChange={handleHeleSøknadsperiodenChange}
                                             />
-                                        </Box>
+                                        </Block>
                                     </FormBlock>
                                 </div>
 
                                 {((fom && tom) || visAlleSpørsmål) && (
                                     <>
                                         <FormBlock>
-                                            <FormComponents.RadioPanelGroup
+                                            <FormComponents.RadioGroup
                                                 name={FormFields.arbeiderHvordan}
                                                 legend={intlHelper(
                                                     intl,

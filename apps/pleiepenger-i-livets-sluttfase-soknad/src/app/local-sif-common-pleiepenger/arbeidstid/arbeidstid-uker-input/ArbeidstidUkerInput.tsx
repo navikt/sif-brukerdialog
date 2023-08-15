@@ -1,9 +1,5 @@
 import React from 'react';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { DateRange, TestProps } from '@navikt/sif-common-formik';
-import { DurationWeekdays, InputDateDurationMap, isDateInDates, Weekday } from '@navikt/sif-common-utils/lib';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { tidUkerInputUtils } from '../../tid/tid-uker-input/tidUkerUtils';
 import { Daginfo, Ukeinfo } from '../../types';
 import ArbeidstidUkeInput, {
@@ -12,6 +8,10 @@ import ArbeidstidUkeInput, {
     getUkeTittel,
 } from '../arbeidstid-uke-input/ArbeidstidUkeInput';
 import './arbeidstidUkerInput.less';
+import { DateRange, TestProps } from '@navikt/sif-common-formik-ds/lib';
+import { DurationWeekdays, InputDateDurationMap, Weekday, isDateInDates } from '@navikt/sif-common-utils/lib';
+import { Accordion } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
 
@@ -84,9 +84,14 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
                 if (useExpandablePanel) {
                     return (
                         <div key={uke.ukenummer} className={bem.element('ukeWrapper', 'expandable')}>
-                            <Ekspanderbartpanel tittel={getUkeTittel(uke)}>
-                                <Box margin="m">{renderUke(uke, false)}</Box>
-                            </Ekspanderbartpanel>
+                            <Accordion>
+                                <Accordion.Item>
+                                    <Accordion.Header>{getUkeTittel(uke)}</Accordion.Header>
+                                    <Accordion.Content>
+                                        <Block margin="m">{renderUke(uke, false)}</Block>
+                                    </Accordion.Content>
+                                </Accordion.Item>
+                            </Accordion>
                         </div>
                     );
                 } else {

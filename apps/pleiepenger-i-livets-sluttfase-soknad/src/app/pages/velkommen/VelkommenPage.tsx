@@ -24,7 +24,7 @@ const VelkommenPage = () => {
     const startSøknad = async () => {
         await logSoknadStartet(SKJEMANAVN);
         dispatch(actionsCreator.startSøknad());
-        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.DINE_BARN));
+        dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OPPLYSNINGER_OM_PLEIETRENGENDE));
     };
     return (
         <Page title={intlHelper(intl, 'page.velkommen.sidetittel')}>

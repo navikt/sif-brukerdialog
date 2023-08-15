@@ -3,7 +3,7 @@ import { OpplysningerOmPleietrengendeFormValues } from '../søknad/steps/opplysn
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { TidsromFormValues } from '../søknad/steps/tidsrom/TidsromStep';
 import { ArbeidssituasjonFormValues } from '../søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
-import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/FraværFraStep';
+import { ArbeidstidFormValues } from '../søknad/steps/arbeidstid/ArbeidstidStep';
 import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep';
 import { OppsummeringFormValues } from '../søknad/steps/oppsummering/OppsummeringStep';
 import { StepId } from './StepId';

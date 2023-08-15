@@ -1,12 +1,10 @@
 import React from 'react';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import { DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import { FormikInputGroup } from '@navikt/sif-common-formik/lib';
-import { ValidationError, ValidationFunction } from '@navikt/sif-common-formik/lib/validation/types';
-import { getMonthsInDateRange } from '@navikt/sif-common-utils';
+import { DateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { Undertittel } from 'nav-frontend-typografi';
+import { FormikInputGroup, ValidationError, ValidationFunction } from '@navikt/sif-common-formik-ds/lib';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
     periode: DateRange;
@@ -16,7 +14,6 @@ interface Props {
         description?: React.ReactNode;
         validate?: ValidationFunction<ValidationError>;
     };
-    årstallHeadingLevel?: number;
     årstallHeaderRenderer?: (årstall: number) => React.ReactNode;
     månedContentRenderer: (måned: DateRange, søknadsperioderIMåned: DateRange[], index: number) => React.ReactNode;
 }
@@ -24,7 +21,6 @@ interface Props {
 const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
     periode,
     fieldset,
-    årstallHeadingLevel = 2,
     årstallHeaderRenderer,
     månedContentRenderer,
 }) => {
@@ -42,11 +38,11 @@ const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
         return (
             <FormBlock margin="none" paddingBottom="m" key={dayjs(måned.from).format('MM.YYYY')}>
                 {årstallHeaderRenderer && visÅrstallHeading(index) && (
-                    <Box margin="l" padBottom="m">
-                        <Undertittel tag={`h${årstallHeadingLevel}`} className={'yearHeader'}>
+                    <Block margin="l" padBottom="m">
+                        <Heading level={'3'} size="small" className={'yearHeader'}>
                             {årstallHeaderRenderer(måned.from.getFullYear())}:
-                        </Undertittel>
-                    </Box>
+                        </Heading>
+                    </Block>
                 )}
                 {månedContentRenderer(måned, måneder, index)}
             </FormBlock>
@@ -58,7 +54,6 @@ const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
             name={`${fieldset.inputGroupFieldName}` as any}
             legend={fieldset.legend}
             description={fieldset.description}
-            tag="div"
             validate={fieldset.validate}>
             {måneder.map(renderMåned)}
         </FormikInputGroup>

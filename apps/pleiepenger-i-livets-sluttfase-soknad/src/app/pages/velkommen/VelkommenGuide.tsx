@@ -25,7 +25,7 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
         </p>
         <p>
             <FormattedMessage id="page.velkommen.guide.tekst.2.1" />
-            <Link href={getLenker().inntektsmelding}>
+            <Link href={getLenker().skatteetaten}>
                 <FormattedMessage id="page.velkommen.guide.tekst.2.2" />
             </Link>
             <FormattedMessage id="page.velkommen.guide.tekst.2.3" />

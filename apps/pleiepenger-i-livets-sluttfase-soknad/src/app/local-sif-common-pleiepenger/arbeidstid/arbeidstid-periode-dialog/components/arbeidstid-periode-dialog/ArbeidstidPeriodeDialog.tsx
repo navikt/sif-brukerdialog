@@ -1,11 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Modal from 'nav-frontend-modal';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { getArbeidstidPeriodeIntl } from '../../i18n/arbeidstidPeriodeMessages';
 import ArbeidstidPeriodeForm, { ArbeidstidPeriodeFormProps } from '../arbeidstid-periode-form/ArbeidstidPeriodeForm';
+import { Modal } from '@navikt/ds-react';
 import './arbeidstidPeriodeDialog.less';
-
 interface Props {
     isOpen: boolean;
     formProps: ArbeidstidPeriodeFormProps;
@@ -15,14 +13,14 @@ const ArbeidstidPeriodeDialog: React.FunctionComponent<Props> = ({ isOpen, formP
     const { intlText } = getArbeidstidPeriodeIntl(useIntl());
     return isOpen ? (
         <Modal
-            isOpen={isOpen}
-            contentLabel={intlText('arbeidstidPeriodeDialog.contentLabel')}
-            onRequestClose={formProps.onCancel}
+            open={isOpen}
+            aria-label={intlText('arbeidstidPeriodeDialog.contentLabel')}
+            onClose={formProps.onCancel}
             shouldCloseOnOverlayClick={false}
             className="arbeidstidPeriodeDialog">
-            <Normaltekst tag="div">
+            <div>
                 <ArbeidstidPeriodeForm {...formProps} />
-            </Normaltekst>
+            </div>
         </Modal>
     ) : null;
 };

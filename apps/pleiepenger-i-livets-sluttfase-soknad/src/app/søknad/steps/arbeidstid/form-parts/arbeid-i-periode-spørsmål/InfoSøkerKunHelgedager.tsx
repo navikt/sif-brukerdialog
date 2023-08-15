@@ -1,9 +1,9 @@
+import { Alert } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import AlertStripe from 'nav-frontend-alertstriper';
 
 const InfoSøkerKunHelgedager: React.FunctionComponent = () => (
-    <AlertStripe type="advarsel">
+    <Alert variant="warning">
         <p>
             <FormattedMessage id="arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1" />
         </p>
@@ -13,7 +13,7 @@ const InfoSøkerKunHelgedager: React.FunctionComponent = () => (
         <p>
             <FormattedMessage id="arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.3" />
         </p>
-    </AlertStripe>
+    </Alert>
 );
 
 export default InfoSøkerKunHelgedager;

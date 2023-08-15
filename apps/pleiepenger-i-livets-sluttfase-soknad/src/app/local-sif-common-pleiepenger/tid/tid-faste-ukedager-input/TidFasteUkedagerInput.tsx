@@ -1,12 +1,10 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik/lib';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
 import { Weekday } from '@navikt/sif-common-utils/lib';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import './tidFasteUkedagerInput.less';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { FormikTimeInput, TestProps, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 
 interface OwnProps {
     name: string;
@@ -49,7 +47,7 @@ const TidFasteUkedagerInput = ({
     };
     const hasHiddenDays = disabledDays !== undefined && disabledDays.length > 0 && hideDisabledDays;
     return (
-        <Box margin="l">
+        <Block margin="l">
             <div className={bem.classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
                 {renderWeekdayTimeInput(Weekday.monday, txt.Mandager, txt.mandag)}
                 {renderWeekdayTimeInput(Weekday.tuesday, txt.Tirsdager, txt.tirsdag)}
@@ -57,7 +55,7 @@ const TidFasteUkedagerInput = ({
                 {renderWeekdayTimeInput(Weekday.thursday, txt.Torsdager, txt.torsdag)}
                 {renderWeekdayTimeInput(Weekday.friday, txt.Fredager, txt.fredag)}
             </div>
-        </Box>
+        </Block>
     );
 };
 

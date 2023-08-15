@@ -1,4 +1,4 @@
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { Duration, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export * from './Daginfo';
