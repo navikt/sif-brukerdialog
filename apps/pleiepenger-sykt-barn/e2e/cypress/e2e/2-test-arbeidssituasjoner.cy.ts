@@ -1,3 +1,4 @@
+import 'cypress-axe';
 import { contextConfig, gotoArbeidssituasjonStep } from '../integration-utils/contextConfig';
 import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 import { testArbeidssituasjonAnsatt } from '../integration-utils/steps/arbeidssituasjon/ansatt';
@@ -6,6 +7,7 @@ import { testArbeidssituasjonOpptjeningUtland } from '../integration-utils/steps
 import { testArbeidssituasjonSN } from '../integration-utils/steps/arbeidssituasjon/selvstendigNæringsdrivende';
 import { testArbeidssituasjonUtenlandskNæring } from '../integration-utils/steps/arbeidssituasjon/utenlandskNæring';
 import { getSøknadsperiode } from '../integration-utils/utils';
+
 import dayjs = require('dayjs');
 
 export const getMellomlagringForArbeidssituasjonerTest = () => {

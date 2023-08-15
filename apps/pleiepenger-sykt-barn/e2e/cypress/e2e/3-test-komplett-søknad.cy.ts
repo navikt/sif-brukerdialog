@@ -1,3 +1,4 @@
+import 'cypress-axe';
 import { contextConfig } from '../integration-utils/contextConfig';
 import { fyllUtKomplettSøknad } from '../integration-utils/fyll-ut-søknad';
 import { kvittering } from '../integration-utils/steps/kvittering';

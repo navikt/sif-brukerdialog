@@ -70,9 +70,9 @@ export const gåTilOppsummeringFraArbeidssituasjon = () => {
     cy.wait(100);
     clickFortsett();
     cy.wait(100);
-    clickFortsett(false);
-    cy.wait(100);
     clickFortsett();
+    cy.wait(100);
+    clickFortsett(false);
 };
 
 export const gåTilOppsummeringFraArbeidIPerioden = () => {
@@ -81,7 +81,7 @@ export const gåTilOppsummeringFraArbeidIPerioden = () => {
     cy.wait(100);
     clickFortsett();
     cy.wait(100);
-    clickFortsett(false);
-    cy.wait(100);
     clickFortsett();
+    cy.wait(100);
+    clickFortsett(false);
 };

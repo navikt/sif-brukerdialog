@@ -1,4 +1,3 @@
-import dayjs = require('dayjs');
 import {
     clickFortsett,
     getInputByName,
@@ -84,7 +83,7 @@ const erSN = () => {
     it('Er selvstendig næringsdrivende', () => {
         fyllUtArbeidssituasjonErSelvstendig();
         clickFortsett();
-        cy.get('h3')
+        cy.get('h2')
             .contains('Selvstendig næringsdrivende')
             .parent()
             .within(() => {
