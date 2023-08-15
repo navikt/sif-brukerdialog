@@ -14,7 +14,7 @@ const fyllUtLegeerklæringEnFil = () => {
                 encoding: 'utf8',
             })
         );
-    clickFortsett();
+    clickFortsett(false);
 };
 
 const oppsummeringTestLegeerklæringEnFil = () => {
@@ -36,7 +36,7 @@ export const fyllUtLegeerklæringSteg = (testType?) => {
                 fyllUtLegeerklæringEnFil();
                 break;
             default:
-                clickFortsett();
+                clickFortsett(false);
                 break;
         }
     });

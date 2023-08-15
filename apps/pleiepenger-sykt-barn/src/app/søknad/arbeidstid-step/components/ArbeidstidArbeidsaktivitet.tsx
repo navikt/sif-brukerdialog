@@ -30,7 +30,7 @@ const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
     arbeiderIPeriodenAlternativer,
 }) => {
     return (
-        <FormSection title={tittel}>
+        <FormSection title={tittel} titleLevel="2">
             <ArbeidIPeriodeSpørsmål
                 intlValues={intlValues}
                 arbeidsforholdType={arbeidsforholdType}

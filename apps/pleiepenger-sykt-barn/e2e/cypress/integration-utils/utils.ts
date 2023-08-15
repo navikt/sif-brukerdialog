@@ -8,7 +8,11 @@ export const getSøknadsperiode = (): DateRange => ({
     to: getSøknadsdato().startOf('week').add(1, 'week').toDate(),
 });
 
-export const clickFortsett = () => {
+export const clickFortsett = (checkA11y = true) => {
+    if (checkA11y) {
+        cy.injectAxe();
+        cy.checkA11y();
+    }
     cy.get('button').contains('Neste').click();
 };
 export const clickTilbake = () => {
@@ -66,7 +70,7 @@ export const gåTilOppsummeringFraArbeidssituasjon = () => {
     cy.wait(100);
     clickFortsett();
     cy.wait(100);
-    clickFortsett();
+    clickFortsett(false);
     cy.wait(100);
     clickFortsett();
 };
@@ -77,7 +81,7 @@ export const gåTilOppsummeringFraArbeidIPerioden = () => {
     cy.wait(100);
     clickFortsett();
     cy.wait(100);
-    clickFortsett();
+    clickFortsett(false);
     cy.wait(100);
     clickFortsett();
 };

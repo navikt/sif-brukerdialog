@@ -44,7 +44,7 @@ export const fyllUtArbeidstidRedusertVarierendeTimer = () => {
 };
 
 export const fyllUtArbeidIPeriodeAnsatt = () => {
-    cy.get('h3')
+    cy.get('h2')
         .contains('WHOA.BOA')
         .parent()
         .within(() => {
@@ -53,7 +53,7 @@ export const fyllUtArbeidIPeriodeAnsatt = () => {
 };
 
 export const fyllUtArbeidIPeriodeFrilanser = () => {
-    cy.get('h3')
+    cy.get('h2')
         .contains('Jobb som frilanser')
         .parent()
         .within(() => {

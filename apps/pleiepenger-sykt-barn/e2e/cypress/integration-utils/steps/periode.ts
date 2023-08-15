@@ -1,8 +1,8 @@
+import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
 import { getSøknadsperiode, selectRadioNo, selectRadioYes } from '../utils';
-import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);

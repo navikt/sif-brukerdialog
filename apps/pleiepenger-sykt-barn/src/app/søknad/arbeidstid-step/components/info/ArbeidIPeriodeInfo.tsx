@@ -19,7 +19,7 @@ const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
     children,
 }) => (
     <>
-        <Heading level="4" size="small">
+        <Heading level="3" size="small">
             {tittel}
         </Heading>
         {children}

@@ -7,6 +7,7 @@ import { oppsummeringTestOmDeg } from '../integration-utils/steps/omDegOppsummer
 import { oppsummeringTestOmsorgstilbudSteg } from '../integration-utils/steps/omsorgstilbud';
 import { oppsummeringTestOmBarn } from '../integration-utils/steps/opplysningerOmBarnet';
 import { oppsummeringTestPeriodeSteg } from '../integration-utils/steps/periode';
+import 'cypress-axe';
 
 describe('Kan jeg klikke meg enkelt gjennom en hele søknad', () => {
     context('med utmocket, tom mellomlagring', () => {

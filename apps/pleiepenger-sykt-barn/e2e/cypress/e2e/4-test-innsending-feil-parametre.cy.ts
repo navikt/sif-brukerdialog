@@ -2,6 +2,7 @@ import dayjs = require('dayjs');
 import { contextConfig, gotoStep } from '../integration-utils/contextConfig';
 import { mellomlagring } from '../integration-utils/mocks/mellomlagring';
 import { getSøknadsperiode } from '../integration-utils/utils';
+import 'cypress-axe';
 
 export const getMellomlagring = () => {
     const søknadsperiode = getSøknadsperiode();
@@ -36,10 +37,12 @@ describe('Send inn søknad med feil parametre', () => {
     it('Vise feilmelding når det returneres 400 fra backend', () => {
         gotoStep('oppsummering');
         cy.wait(1000);
+        cy.injectAxe();
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
         expect(cy.contains('Oops, der oppstod det en feil')).exist;
         cy.contains('Vis mer informasjon om feilen (teknisk)').click();
         cy.contains('frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR').should('exist');
+        cy.checkA11y();
     });
 });

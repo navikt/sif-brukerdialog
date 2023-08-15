@@ -64,24 +64,26 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                         <ArbeidssituasjonStepVeileder />
                     </Block>
 
-                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.tittel')}>
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.tittel')} titleLevel="2">
                         <ArbeidssituasjonArbeidsgivere søknadsperiode={søknadsperiode} />
                     </FormSection>
 
-                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.frilanser.tittel')}>
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.frilanser.tittel')} titleLevel="2">
                         <ArbeidssituasjonFrilans søknadsperiode={søknadsperiode} søknadsdato={søknadsdato} />
                     </FormSection>
 
-                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.sn.tittel')}>
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.sn.tittel')} titleLevel="2">
                         <ArbeidssituasjonSN søknadsperiode={søknadsperiode} />
                     </FormSection>
 
-                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.tittel')}>
+                    <FormSection
+                        title={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.tittel')}
+                        titleLevel="2">
                         <ArbeidssituasjonOpptjeningUtland />
                     </FormSection>
 
                     {visVernepliktSpørsmål(values) && (
-                        <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.tittel')}>
+                        <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.tittel')} titleLevel="2">
                             <ArbeidssituasjonVerneplikt />
                         </FormSection>
                     )}
