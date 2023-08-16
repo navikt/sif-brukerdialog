@@ -28,6 +28,7 @@ export const contextConfig = (props?: ConfigProps) => {
         });
         cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
         cy.intercept('GET', `${API}/oppslag/barn*`, props?.barn || cyApiMockData.barnMock).as('getBarn');
+        cy.intercept('*amplitude.nav.no', {});
         cy.intercept('*.api.sanity.io', {});
     });
 
