@@ -20,7 +20,7 @@ interface BarnOgDeltBostedProps {
 const startSøknad = () => {
     it('Starter søknad', () => {
         cy.wait(['@getSøker', '@getBarn']);
-        cy.wait(200);
+        cy.get('h1').contains('Hei PRESENTABEL', { timeout: 10000 }).should('be.visible');
         cy.injectAxe();
         cy.checkA11y();
         getTestElement('bekreft-label').click();
