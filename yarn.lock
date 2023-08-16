@@ -5551,6 +5551,7 @@ __metadata:
     "@types/react": 18.2.20
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
+    axe-core: 4.7.2
     axios: 1.4.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -5559,6 +5560,7 @@ __metadata:
     cookie-parser: 1.4.6
     css-loader: 6.8.1
     cypress: 12.17.3
+    cypress-axe: 1.4.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.9
     dotenv: 16.3.1
