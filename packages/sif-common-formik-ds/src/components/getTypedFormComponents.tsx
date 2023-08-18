@@ -21,6 +21,7 @@ import FormikTimeInput, { FormikTimeInputProps } from './formik-time-input/Formi
 import FormikYesOrNoQuestion, { FormikYesOrNoQuestionProps } from './formik-yes-or-no-question/FormikYesOrNoQuestion';
 import TypedFormikForm, { TypedFormikFormProps } from './typed-formik-form/TypedFormikForm';
 import TypedFormikWrapper, { TypedFormikWrapperProps } from './typed-formik-wrapper/TypedFormikWrapper';
+import FormikFileDropInput, { FormikFileDropInputProps } from './formik-file-drop-input/FormikFileDropInput';
 
 export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
     Checkbox: (props: FormikCheckboxProps<FieldName, ErrorType>) => JSX.Element;
@@ -31,6 +32,7 @@ export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
     DateIntervalPicker: (props: DateIntervalPickerProps<FieldName, ErrorType>) => JSX.Element;
     DateRangePicker: (props: FormikDateRangePickerProps<FieldName, ErrorType>) => JSX.Element;
     FileInput: (props: FormikFileInputProps<FieldName>) => JSX.Element;
+    FileDropInput: (props: FormikFileDropInputProps<FieldName>) => JSX.Element;
     Form: (props: TypedFormikFormProps<FormValues, ErrorType>) => JSX.Element;
     FormikWrapper: (props: TypedFormikWrapperProps<FormValues>) => JSX.Element;
     TextField: (props: FormikTextFieldProps<FieldName, ErrorType>) => JSX.Element;
@@ -69,6 +71,9 @@ export function getTypedFormComponents<FieldName, FormValues, ErrorType = string
         ),
         DateRangePicker: (props: FormikDateRangePickerProps<FieldName, ErrorType>) => (
             <FormikDateRangePicker<FieldName, ErrorType> {...props} />
+        ),
+        FileDropInput: (props: FormikFileDropInputProps<FieldName>) => (
+            <FormikFileDropInput<FieldName, ErrorType> {...props} />
         ),
         FileInput: (props: FormikFileInputProps<FieldName>) => <FormikFileInput<FieldName, ErrorType> {...props} />,
         Form: (props: TypedFormikFormProps<FormValues, ErrorType>) => <TypedFormikForm {...props} />,
