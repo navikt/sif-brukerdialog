@@ -5,7 +5,7 @@ import { ArrayHelpers, Field, FieldArray, FieldProps } from 'formik';
 import { FormError, TypedFormInputValidationProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
-import FileInput from './file-drop-input/FileDropInput';
+import FileDropInput from './file-drop-input/FileDropInput';
 
 interface OwnProps<FieldName> {
     name: FieldName;
@@ -46,7 +46,7 @@ function FormikFileDropInput<FieldName, ErrorType>({
                 <Field validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
                     {({ field, form }: FieldProps) => {
                         return (
-                            <FileInput
+                            <FileDropInput
                                 id={field.name}
                                 name={field.name}
                                 legend={legend}
