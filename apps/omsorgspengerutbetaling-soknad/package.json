@@ -7,10 +7,10 @@
     "version": "1.1.0",
     "private": true,
     "dependencies": {
-        "@navikt/ds-css": "4.11.2",
+        "@navikt/ds-css": "4.12.1",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "4.11.2",
-        "@navikt/ds-tailwind": "4.11.2",
+        "@navikt/ds-react": "4.12.1",
+        "@navikt/ds-tailwind": "4.12.1",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
