@@ -12,6 +12,8 @@ interface OwnProps<FieldName> {
     legend: string;
     description?: React.ReactNode;
     buttonLabel: string;
+    acceptLabel?: string;
+    rejectLabel?: string;
     accept?: Accept;
     multiple?: boolean;
     error?: FormError;
@@ -26,6 +28,8 @@ function FormikFileDropInput<FieldName, ErrorType>({
     legend,
     description,
     buttonLabel,
+    acceptLabel,
+    rejectLabel,
     accept,
     multiple = true,
     validate,
@@ -48,6 +52,8 @@ function FormikFileDropInput<FieldName, ErrorType>({
                                 legend={legend}
                                 description={description}
                                 buttonLabel={buttonLabel}
+                                acceptLabel={acceptLabel}
+                                rejectLabel={rejectLabel}
                                 onClick={onClick}
                                 onFilesSelect={(files) => onFilesSelect(files, arrayHelpers)}
                                 multiple={multiple}
