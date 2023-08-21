@@ -1,5 +1,12 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.2.1
+
+### Patch Changes
+
+-   Updated dependencies [6669d48c]
+    -   @navikt/sif-common-formik-ds@0.25.0
+
 ## 10.2.0
 
 ### Minor Changes
