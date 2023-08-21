@@ -6,8 +6,7 @@ import dayjs from 'dayjs';
 import { guid } from '@navikt/sif-common-utils';
 import { Næringstype, Virksomhet, VirksomhetFormValues } from './types';
 
-export const harFiskerNæringstype = (næringstyper: Næringstype[]): boolean =>
-    næringstyper.find((n) => n === Næringstype.FISKE) !== undefined;
+export const harFiskerNæringstype = (næringstype: Næringstype): boolean => næringstype === Næringstype.FISKE;
 
 export const erFiskerNæringstype = (næringstype?: Næringstype): boolean =>
     næringstype ? næringstype === Næringstype.FISKE : false;
