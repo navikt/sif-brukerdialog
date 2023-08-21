@@ -1,6 +1,6 @@
 # @navikt/sif-common-forms-ds
 
-## 9.0.0
+## 8.4.0
 
 ### Minor Changes
 
@@ -8,7 +8,7 @@
 
 ### Patch Changes
 
--   @navikt/sif-common-core-ds@10.0.0
+-   @navikt/sif-common-core-ds@9.3.1
 
 ## 8.3.0
 
