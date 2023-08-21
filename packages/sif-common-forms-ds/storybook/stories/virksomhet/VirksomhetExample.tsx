@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import flat from 'flat';
@@ -77,7 +77,7 @@ const VirksomhetExample = () => {
                                 <VirksomhetInfoAndDialog<FormField>
                                     name={FormField.virksomhet}
                                     harFlereVirksomheter={harFlereVirksomheter}
-                                    validate={getListValidator({ required: true })}
+                                    validate={getRequiredFieldValidator()}
                                     labels={{
                                         addLabel: harFlereVirksomheter ? 'Registrer virksomhet' : 'Legg til',
                                         deleteLabel: 'Fjern',

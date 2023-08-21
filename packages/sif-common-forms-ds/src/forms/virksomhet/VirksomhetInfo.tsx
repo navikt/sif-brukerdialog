@@ -9,8 +9,8 @@ import JaNeiSvar from '../../components/summary/JaNeiSvar';
 import Sitat from '../../components/summary/Sitat';
 import SummaryBlock from '../../components/summary/SummaryBlock';
 import TallSvar from '../../components/summary/TallSvar';
-import { VirksomhetApiData } from './types';
-import { erVirksomhetRegnetSomNyoppstartet, harFiskerNæringstype } from './virksomhetUtils';
+import { Næringstype, VirksomhetApiData } from './types';
+import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
@@ -20,11 +20,10 @@ interface Props {
 
 const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
-    const næringstyper = virksomhet.næringstyper
-        .map((næring) => intlHelper(intl, `sifForms.virksomhet.næringstype_${næring}`))
-        .join(', ');
+    const næringstype = intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
+
     const fiskerinfo =
-        harFiskerNæringstype(virksomhet.næringstyper) && virksomhet.fiskerErPåBladB !== undefined
+        virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
             ? {
                   erPåBladB: virksomhet.fiskerErPåBladB !== undefined && virksomhet.fiskerErPåBladB === true,
               }
@@ -41,7 +40,7 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape)
 
     return (
         <SummaryBlock header={virksomhet.navnPåVirksomheten} margin="none">
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstyper}. </IntlLabelValue>
+            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
             {fiskerinfo && (
                 <div>
                     {fiskerinfo.erPåBladB === false ? (

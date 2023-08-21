@@ -78,7 +78,7 @@ export const isVirksomhet = (virksomhet: Partial<Virksomhet>): virksomhet is Vir
 };
 
 export interface VirksomhetApiData {
-    næringstyper: Næringstype[];
+    næringstype: Næringstype;
     fiskerErPåBladB?: boolean;
     fraOgMed: ISODate;
     tilOgMed?: ISODate | null;
