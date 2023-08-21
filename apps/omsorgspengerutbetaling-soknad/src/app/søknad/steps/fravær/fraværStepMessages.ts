@@ -37,7 +37,7 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravaer.måVelgeSituasjon': 'Du må velge én av situasjonene over.',
         'step.fravaer.utenlandsopphold.tittel': 'Utenlandsopphold i dagene med fravær',
         'step.fravaer.utenlandsopphold.addLabel': 'Legg til utenlandsopphold',
-        'step.fravaer.utenlandsopphold.modalTitle': 'Utenlandsopphold siste 12 måneder',
+        'step.fravaer.utenlandsopphold.modalTitle': 'Utenlandsopphold',
 
         'fravær.antallTimer': 'Antall timer',
         'fravær.time': 'time',
