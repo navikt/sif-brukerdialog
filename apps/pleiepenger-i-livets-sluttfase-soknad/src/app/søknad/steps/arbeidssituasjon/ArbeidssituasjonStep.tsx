@@ -1,4 +1,4 @@
-import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/types';
@@ -35,7 +35,10 @@ import {
     getArbeidssituasjonSøknadsdataFromFormValues,
     visVernepliktSpørsmål,
 } from './arbeidssituasjonStepUtils';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useState } from 'react';
+import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -67,11 +70,36 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
     ValidationError
 >();
 
+interface LoadState {
+    isLoading: boolean;
+    isLoaded: boolean;
+}
+
 const ArbeidssituasjonStep = () => {
     const intl = useIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
+    const [arbeidsgivereIPerioden, setArbeidsgivereIPerioden] = useState<Arbeidsgiver[]>([]);
+    const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
+
+    const { isLoading, isLoaded } = loadState;
+
+    const søknadsperiode = søknadsdata.tidsrom?.søknadsperiode;
+
+    useEffectOnce(() => {
+        const fetchData = async () => {
+            if (søknadsperiode) {
+                const arbeidsgivere = await arbeidsgivereEndpoint.fetch(søknadsperiode);
+                setArbeidsgivereIPerioden(arbeidsgivere);
+                setLoadState({ isLoading: false, isLoaded: true });
+            }
+        };
+        if (søknadsperiode && !isLoaded && !isLoading) {
+            setLoadState({ isLoading: true, isLoaded: false });
+            fetchData();
+        }
+    });
 
     const stepId = StepId.ARBEIDSSITUASJON;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
@@ -81,11 +109,7 @@ const ArbeidssituasjonStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: ArbeidssituasjonFormValues) => {
-        const arbeidssituasjonSøknadsdata = getArbeidssituasjonSøknadsdataFromFormValues(
-            values,
-            søknadsperiode,
-            frilansoppdrag
-        );
+        const arbeidssituasjonSøknadsdata = getArbeidssituasjonSøknadsdataFromFormValues(values, søknadsperiode);
         if (arbeidssituasjonSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadArbeidssituasjon(arbeidssituasjonSøknadsdata)];
@@ -100,24 +124,19 @@ const ArbeidssituasjonStep = () => {
             return lagreSøknadState(state);
         }
     );
-    const periodeFra = datepickerUtils.getDateFromDateString(søknadsdata.tidsrom?.periodeFra);
-    const periodeTil = datepickerUtils.getDateFromDateString(søknadsdata.tidsrom?.periodeTil);
 
-    if (!periodeFra || !periodeTil) {
-        // TODO
-        return undefined;
+    if (isLoading || !isLoaded) {
+        return <LoadingSpinner type="XS" title="Henter arbeidsforhold" />;
     }
 
-    const søknadsperiode: DateRange = { from: periodeFra, to: periodeTil };
-    const søknadsdato = dateToday;
-
-    // TODO getArbeidsgivere
-    const arbeidsgivere: Arbeidsgiver[] = [];
-    const frilansoppdrag: Arbeidsgiver[] = [];
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getArbeidssituasjonStepInitialValues(søknadsdata, arbeidsgivere, stepFormValues[stepId])}
+                initialValues={getArbeidssituasjonStepInitialValues(
+                    søknadsdata,
+                    arbeidsgivereIPerioden,
+                    stepFormValues[stepId]
+                )}
                 onSubmit={handleSubmit}
                 renderForm={({
                     values: {
@@ -130,10 +149,10 @@ const ArbeidssituasjonStep = () => {
                     },
                 }) => {
                     //TODO Fiks
-                    if (!ansatt_arbeidsforhold || !frilans || !selvstendig) {
+                    if (!søknadsperiode || !ansatt_arbeidsforhold || !frilans || !selvstendig) {
                         return undefined;
                     }
-
+                    console.log(frilansoppdrag);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -166,7 +185,7 @@ const ArbeidssituasjonStep = () => {
                                         formValues={frilans}
                                         frilansoppdrag={frilansoppdrag || []}
                                         søknadsperiode={søknadsperiode}
-                                        søknadsdato={søknadsdato}
+                                        søknadsdato={dateToday}
                                         urlSkatteetaten={getLenker(intl.locale).skatteetaten}
                                     />
                                 </FormBlock>

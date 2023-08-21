@@ -73,12 +73,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             onBack={goBack}>
             <Block padBottom="xl">
                 <SifGuidePanel>
-                    <p style={{ marginTop: 0 }}>
-                        <FormattedMessage id={'steg.legeerklæring.counsellorpanel.1'} />
-                    </p>
-                    <p>
-                        <FormattedMessage id={'steg.legeerklæring.counsellorpanel.2'} />
-                    </p>
+                    <FormattedMessage id={'step.legeerklæring.counsellorPanel.info'} />
                 </SifGuidePanel>
             </Block>
             <Block margin={'l'}>
@@ -89,7 +84,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     <FormikFileUploader
                         attachments={legeerklæringAttachments}
                         name={LegeerklæringFormFields.vedlegg}
-                        buttonLabel={intlHelper(intl, 'steg.legeerklæring.vedlegg.knappLabel')}
+                        buttonLabel={intlHelper(intl, 'step.legeerklæring.vedlegg.knappLabel')}
                         apiEndpoint={ApiEndpoint.vedlegg}
                         onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                         onFileInputClick={() => {

@@ -50,48 +50,22 @@ const readFileSync = (path) => {
 
 const existsSync = (path) => fs.existsSync(path);
 
-const mockPath = `${__dirname}/data`;
-
-const søkerFileName = `søker-mock.json`;
-const arbeidsgivereFileName = `arbeidsgiver-mock.json`;
-const frilansoppdragFileName = `frilansoppdrag-mock.json`;
-
-const readMockFile = (file, responseObject) => {
-    const filePath = `${mockPath}/${file}`;
-    if (existsSync(filePath)) {
-        const body = readFileSync(filePath);
-        responseObject.send(JSON.parse(body));
-    } else {
-        responseObject.send({});
-    }
-};
-
-const getArbeidsgivereMock = (from) => {
-    return JSON.parse(readFileSync(arbeidsgivereFileName)).filter((organisasjon) => {
-        const sluttDato = organisasjon.ansattTom ? dayjs(organisasjon.ansattTom, 'DD.MM.YYYY') : dayjs();
-        const fraDato = dayjs(from, 'YYYY-MM-DD');
-        return sluttDato.isSameOrAfter(fraDato);
-    });
-};
-
-const getFrilansOppdragMock = () => {
-    return JSON.parse(readFileSync(frilansoppdragFileName));
-};
+const søkerMock = require('./data/søker-mock.json');
+const arbeidsgivereMock = require('./data/arbeidsgiver-mock.json');
+const frilansoppdragMock = require('./data/frilansoppdrag-mock.json');
 
 const startExpressServer = () => {
     const port = process.env.PORT || 8099;
 
     server.get('/oppslag/soker', (req, res) => {
         setTimeout(() => {
-            readMockFile(søkerFileName, res);
+            res.send(søkerMock);
         }, 250);
     });
 
     server.get('/oppslag/arbeidsgiver', (req, res) => {
         setTimeout(() => {
-            const arbeidsgivere = getArbeidsgivereMock(req.query.fra_og_med);
-            const frilansoppdrag = getFrilansOppdragMock();
-            res.send({ arbeidsgivere, frilansoppdrag, privatarbeidsgiver: [] });
+            res.send({ ...arbeidsgivereMock, ...frilansoppdragMock, privatarbeidsgiver: [] });
         }, 250);
     });
 

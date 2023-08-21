@@ -2,7 +2,6 @@ import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-cor
 import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
 import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
 import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
@@ -43,8 +42,8 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         return undefined;
     }
 
-    const periodeFra = datepickerUtils.getDateFromDateString(tidsrom.periodeFra);
-    const periodeTil = datepickerUtils.getDateFromDateString(tidsrom.periodeTil);
+    const periodeFra = tidsrom.søknadsperiode.from;
+    const periodeTil = tidsrom.søknadsperiode.to;
 
     const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
 
@@ -84,7 +83,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
             søknadsperiode,
             selvstendig,
-            arbeidstid?.selvstendig,
+            arbeidstid?.selvstendig
         ),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
         utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),

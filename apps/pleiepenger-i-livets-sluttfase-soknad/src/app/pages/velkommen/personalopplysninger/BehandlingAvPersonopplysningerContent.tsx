@@ -37,18 +37,17 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     <li>
                         <FormattedMessage id="personopplysninger.4.5" />
                     </li>
-                    <li>
-                        <FormattedMessage id="personopplysninger.4.6" />
-                    </li>
                 </InfoList>
             </Block>
-
-            <Block>
+            <p>
                 <FormattedMessage id="personopplysninger.5.1" />
+            </p>
+            <Block>
+                <FormattedMessage id="personopplysninger.6.1" />
                 <Link href={getLenker().personvern} target="_blank">
-                    <FormattedMessage id="personopplysninger.5.2" />
+                    <FormattedMessage id="personopplysninger.6.2" />
                 </Link>
-                <FormattedMessage id="personopplysninger.5.3" />
+                <FormattedMessage id="personopplysninger.6.3" />
             </Block>
         </Block>
     );

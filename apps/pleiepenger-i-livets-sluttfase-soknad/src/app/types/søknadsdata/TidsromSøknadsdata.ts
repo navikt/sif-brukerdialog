@@ -1,9 +1,9 @@
 import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import { YesOrNoDontKnow } from '../YesOrNoDontKnow';
+import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 
 interface BaseTidsrom {
-    periodeFra: string;
-    periodeTil: string;
+    søknadsperiode: DateRange;
     flereSokere: YesOrNoDontKnow;
 }
 

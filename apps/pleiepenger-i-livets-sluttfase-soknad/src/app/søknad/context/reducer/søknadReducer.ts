@@ -78,6 +78,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON:
+                console.log('action: ', action);
                 return {
                     ...state,
                     søknadsdata: {

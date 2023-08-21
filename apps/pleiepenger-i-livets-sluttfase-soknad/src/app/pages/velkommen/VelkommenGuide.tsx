@@ -1,7 +1,6 @@
-import { GuidePanel, Heading, Ingress, Link } from '@navikt/ds-react';
+import { GuidePanel, Heading, Ingress } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import getLenker from '../../lenker';
 
 interface Props {
     navn: string;
@@ -17,18 +16,10 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
         </Ingress>
 
         <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.1.1" />
-            <strong>
-                <FormattedMessage id="page.velkommen.guide.tekst.1.2" />
-            </strong>
-            <FormattedMessage id="page.velkommen.guide.tekst.1.3" />
+            <FormattedMessage id="page.velkommen.guide.tekst.1" />
         </p>
         <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.2.1" />
-            <Link href={getLenker().skatteetaten}>
-                <FormattedMessage id="page.velkommen.guide.tekst.2.2" />
-            </Link>
-            <FormattedMessage id="page.velkommen.guide.tekst.2.3" />
+            <FormattedMessage id="page.velkommen.guide.tekst.2" />
         </p>
     </GuidePanel>
 );

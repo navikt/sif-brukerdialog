@@ -174,7 +174,7 @@ const ansattArbeidsforholdDefaultValues = (
                 arbeidsgiver.organisasjonsnummer
             );
 
-            ansattArbeidsforholdDefaultValues.push({ arbeidsgiver, ...{ arbeidsgiverSøknadsdata } });
+            ansattArbeidsforholdDefaultValues.push({ arbeidsgiver, ...arbeidsgiverSøknadsdata });
         }
     });
 
@@ -269,12 +269,17 @@ const getUtenlandskNæringFormData = (utenlandskNæring?: UtenlandskNæringSøkn
 
 export const getArbeidssituasjonSøknadsdataFromFormValues = (
     values: ArbeidssituasjonFormValues,
-    søknadsperiode: DateRange,
-    frilansoppdrag: Arbeidsgiver[]
+    søknadsperiode?: DateRange
 ): ArbeidssituasjonSøknadsdata | undefined => {
-    const frilans = getFrilansSøknadsdataFromFormValues(values.frilans, frilansoppdrag, søknadsperiode);
-    const selvstendig = getSelvstendigSøknadsdataFromFormValues(values.selvstendig, søknadsperiode);
+    if (!søknadsperiode) {
+        // TODO trow error
+        return undefined;
+    }
+    console.log('values: ', values);
     const arbeidAnsattSøknadsdata = getArbeidsgiverSøknadsdataFromFormData(values.ansatt_arbeidsforhold);
+    const frilans = getFrilansSøknadsdataFromFormValues(values.frilans, values.frilansoppdrag, søknadsperiode);
+    const selvstendig = getSelvstendigSøknadsdataFromFormValues(values.selvstendig, søknadsperiode);
+
     const vernepliktig = getVernepliktigSøknadsdata(values);
     const opptjeningUtland = getOpptjeningUtlandSøknadsdata(values);
     const utenlandskNæring = getUtenlandskNæringSøknadsdata(values);
@@ -338,7 +343,12 @@ export const getFrilansSøknadsdataFromFormValues = (
         };
     }
 
-    if (harHattInntektSomFrilanser === YesOrNo.YES && jobberNormaltTimer && startdato) {
+    if (
+        ((harHattInntektSomFrilanser === YesOrNo.UNANSWERED && brukerHarFrilansOppdrag) ||
+            harHattInntektSomFrilanser === YesOrNo.YES) &&
+        jobberNormaltTimer &&
+        startdato
+    ) {
         return {
             type: 'pågående',
             erFrilanser: true,
@@ -349,7 +359,8 @@ export const getFrilansSøknadsdataFromFormValues = (
     }
     if (
         brukerHarFrilansISøknadsPeriode &&
-        harHattInntektSomFrilanser === YesOrNo.NO &&
+        ((harHattInntektSomFrilanser === YesOrNo.UNANSWERED && brukerHarFrilansOppdrag) ||
+            harHattInntektSomFrilanser === YesOrNo.NO) &&
         startdato &&
         sluttdato &&
         jobberNormaltTimer &&
@@ -367,7 +378,8 @@ export const getFrilansSøknadsdataFromFormValues = (
 
     if (
         !brukerHarFrilansISøknadsPeriode &&
-        harHattInntektSomFrilanser === YesOrNo.NO &&
+        ((harHattInntektSomFrilanser === YesOrNo.UNANSWERED && brukerHarFrilansOppdrag) ||
+            harHattInntektSomFrilanser === YesOrNo.NO) &&
         startdato &&
         sluttdato &&
         jobberFortsattSomFrilans === YesOrNo.NO &&
@@ -441,7 +453,8 @@ export const getArbeidsgiverSøknadsdataFromFormData = (
         }
     });
 
-    return undefined;
+    console.log('arbeidsgivereSøknadsdata: ', arbeidsgivereSøknadsdata);
+    return arbeidsgivereSøknadsdata;
 };
 
 export const getArbeidAnsattSøknadsdata = (ansatt: AnsattFormData): ArbeidAnsattSøknadsdata | undefined => {

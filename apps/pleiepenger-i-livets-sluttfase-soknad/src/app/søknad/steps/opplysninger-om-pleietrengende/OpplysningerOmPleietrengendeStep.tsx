@@ -113,12 +113,14 @@ const OpplysningerOmPleietrengendeStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info" />
+                                    <p>
+                                        <FormattedMessage id="step.opplysningerOmPleietrengende.counsellorPanel.info" />
+                                    </p>
                                 </SifGuidePanel>
                                 <FormBlock>
                                     <TextField
                                         name={OpplysningerOmPleietrengendeFormFields.navn}
-                                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
+                                        label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.navn')}
                                         validate={getStringValidator({ required: true, maxLength: 50 })}
                                         style={{ maxWidth: '20rem' }}
                                     />
@@ -126,7 +128,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                     <FormBlock>
                                         <TextField
                                             name={OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer}
-                                            label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fnr')}
+                                            label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.fnr')}
                                             validate={
                                                 harIkkeFnr
                                                     ? undefined
@@ -147,7 +149,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             <Checkbox
                                                 label={intlHelper(
                                                     intl,
-                                                    'step.opplysninger-om-pleietrengende.fnr.harIkkeFnr'
+                                                    'step.opplysningerOmPleietrengende.fnr.harIkkeFnr'
                                                 )}
                                                 name={OpplysningerOmPleietrengendeFormFields.harIkkeFnr}
                                                 afterOnChange={(newValue) => {
@@ -179,7 +181,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     name={OpplysningerOmPleietrengendeFormFields.fødselsdato}
                                                     label={intlHelper(
                                                         intl,
-                                                        'step.opplysninger-om-pleietrengende.fødselsdato'
+                                                        'step.opplysningerOmPleietrengende.fødselsdato'
                                                     )}
                                                     validate={(value) => {
                                                         const dateError = getDateValidator({
@@ -197,7 +199,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                 <RadioGroup
                                                     legend={intlHelper(
                                                         intl,
-                                                        'step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.spm'
+                                                        'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm'
                                                     )}
                                                     name={
                                                         OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer
@@ -205,7 +207,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak) => ({
                                                         label: intlHelper(
                                                             intl,
-                                                            `step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.${årsak}`
+                                                            `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`
                                                         ),
                                                         value: årsak,
                                                     }))}
@@ -213,10 +215,10 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             </FormBlock>
                                             <FormBlock margin="m">
                                                 <Heading level="2" size="medium">
-                                                    <FormattedMessage id="step.opplysninger-om-pleietrengende.id.tittel" />
+                                                    <FormattedMessage id="step.opplysningerOmPleietrengende.id.tittel" />
                                                 </Heading>
                                                 <Block padBottom="l">
-                                                    <FormattedMessage id="step.opplysninger-om-pleietrengende.id.info" />
+                                                    <FormattedMessage id="step.opplysningerOmPleietrengende.id.info" />
                                                 </Block>
                                                 <IdPart />
                                             </FormBlock>

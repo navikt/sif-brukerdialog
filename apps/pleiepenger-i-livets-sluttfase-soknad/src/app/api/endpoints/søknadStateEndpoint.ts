@@ -47,6 +47,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: ({ søker, søknadsdata, søknadRoute, søknadSendt }: SøknadContextState) => {
+        console.log('søknadsdata: ', søknadsdata);
         return persistSetup.update({
             søknadHashString: createHashString({ søker }),
             søknadsdata,

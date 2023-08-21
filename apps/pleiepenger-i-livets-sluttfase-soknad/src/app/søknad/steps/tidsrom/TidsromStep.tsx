@@ -232,16 +232,32 @@ const TidsromStep = () => {
                                                                     )}
                                                                 </ExpandableInfo>
                                                             }
-                                                            radios={Object.keys(YesOrNoDontKnow).map((svar) => {
-                                                                return {
+                                                            radios={[
+                                                                {
                                                                     label: intlHelper(
                                                                         intl,
-                                                                        `step.tidsrom.yesOrNoDontKnow.${svar}`
+                                                                        `step.tidsrom.flereSokere.ja`
                                                                     ),
-                                                                    value: YesOrNoDontKnow[svar],
-                                                                    'data-testid': `steg.tidsrom.flereSokere.spm-${YesOrNoDontKnow[svar]}`,
-                                                                };
-                                                            })}
+                                                                    value: YesOrNoDontKnow.YES,
+                                                                    'data-testid': `steg.tidsrom.flereSokere.spm-ja`,
+                                                                },
+                                                                {
+                                                                    label: intlHelper(
+                                                                        intl,
+                                                                        `step.tidsrom.flereSokere.nei`
+                                                                    ),
+                                                                    value: YesOrNoDontKnow.NO,
+                                                                    'data-testid': `steg.tidsrom.flereSokere.spm-nei`,
+                                                                },
+                                                                {
+                                                                    label: intlHelper(
+                                                                        intl,
+                                                                        `step.tidsrom.flereSokere.usikker`
+                                                                    ),
+                                                                    value: YesOrNoDontKnow.DO_NOT_KNOW,
+                                                                    'data-testid': `steg.tidsrom.flereSokere.spm-usikker`,
+                                                                },
+                                                            ]}
                                                         />
                                                     </Block>
                                                     <Block margin="xl">

@@ -16,6 +16,7 @@ import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upl
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { validateAll } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import IdPartAttachmentList from './IdPartAttachmentList';
 
 //TODO VALIDATE  alleDokumenterISøknaden: Attachment[];
 const IdPart = () => {
@@ -52,7 +53,7 @@ const IdPart = () => {
             <FormikFileUploader
                 attachments={values.pleietrengendeId}
                 name={OpplysningerOmPleietrengendeFormFields.pleietrengendeId}
-                buttonLabel={intlHelper(intl, 'step.opplysninger-om-pleietrengende.id.uploadButtonLabel')}
+                buttonLabel={intlHelper(intl, 'step.opplysningerOmPleietrengende.id.uploadButtonLabel')}
                 apiEndpoint={ApiEndpoint.vedlegg}
                 onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                 onFileInputClick={() => {
@@ -60,7 +61,6 @@ const IdPart = () => {
                 }}
                 validate={(attachments: Attachment[] = []) => {
                     return validateAll<ValidateAttachmentsErrors | ValidationError>([
-                        // () => validateAttachments([...attachments, ...andreVedlegg]),
                         () => validateAttachments([...attachments]),
                     ]);
                 }}
@@ -69,6 +69,9 @@ const IdPart = () => {
             <Block margin={'l'}>
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
+            <div data-testid="idAttachment-liste">
+                <IdPartAttachmentList wrapNoAttachmentsInBlock={true} includeDeletionFunctionality={true} />
+            </div>
         </>
     );
 };

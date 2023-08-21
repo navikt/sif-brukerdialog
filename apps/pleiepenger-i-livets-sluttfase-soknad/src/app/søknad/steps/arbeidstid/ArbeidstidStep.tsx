@@ -14,7 +14,6 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -101,12 +100,12 @@ const ArbeidstidStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        },
+        }
     );
     const { tidsrom } = søknadsdata;
 
-    const periodeFra = datepickerUtils.getDateFromDateString(tidsrom?.periodeFra);
-    const periodeTil = datepickerUtils.getDateFromDateString(tidsrom?.periodeTil);
+    const periodeFra = tidsrom?.søknadsperiode.from;
+    const periodeTil = tidsrom?.søknadsperiode.to;
 
     if (!periodeFra || !periodeTil) {
         // TODO
@@ -118,7 +117,7 @@ const ArbeidstidStep = () => {
     const handleArbeidstidChanged = () => {
         // TODO;
     };
-
+    console.log(søknadsdata);
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -139,7 +138,7 @@ const ArbeidstidStep = () => {
                         selvstendigArbeidstid && periode
                             ? getPeriodeSomSelvstendigInnenforPeriode(
                                   periode,
-                                  søknadsdata.arbeidssituasjon?.selvstendig,
+                                  søknadsdata.arbeidssituasjon?.selvstendig
                               )
                             : undefined;
 
@@ -189,7 +188,7 @@ const ArbeidstidStep = () => {
                                                             parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
                                                             søkerKunHelgedager={søkerKunHelgedager(
                                                                 periode.from,
-                                                                periode.to,
+                                                                periode.to
                                                             )}
                                                             onArbeidstidVariertChange={handleArbeidstidChanged}
                                                             onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}

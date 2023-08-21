@@ -60,8 +60,7 @@ const getStepSøknadsdataFromStepFormValues = (
 
             return getArbeidssituasjonSøknadsdataFromFormValues(
                 formValues as ArbeidssituasjonFormValues,
-                søknadsperiode,
-                [] // TODO Vil gi feil
+                søknadsperiode
             );
         case StepId.ARBEIDSTID:
             return getArbeidstidSøknadsdataFromFormValues(formValues as ArbeidstidFormValues);
