@@ -1,5 +1,12 @@
 # @navikt/sif-common-core-ds
 
+## 10.0.0
+
+### Patch Changes
+
+-   Updated dependencies [6669d48c]
+    -   @navikt/sif-common-formik-ds@0.25.0
+
 ## 9.2.0
 
 ### Minor Changes

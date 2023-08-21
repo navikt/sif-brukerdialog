@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.25.0
+
+### Minor Changes
+
+-   6669d48c: Legge til ny komponent for filopplasting med drag and drop - FormikFileDropInput
+
 ## 0.24.0
 
 ### Minor Changes
