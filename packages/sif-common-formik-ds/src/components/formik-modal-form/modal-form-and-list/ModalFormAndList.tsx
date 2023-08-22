@@ -97,26 +97,28 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
 
     return (
         <>
-            {createPortal(
-                <Modal
-                    open={modalState.isVisible}
-                    onClose={resetModal}
-                    className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
-                    aria-label={labels.modalTitle}
-                    header={{
-                        heading: labels.modalTitle,
-                    }}>
-                    <Modal.Body>
-                        {formRenderer({
-                            onSubmit: handleOnSubmit,
-                            onCancel: resetModal,
-                            item: modalState.selectedItem,
-                            allItems: items,
-                        })}
-                    </Modal.Body>
-                </Modal>,
-                document.body
-            )}
+            {modalState.isVisible
+                ? createPortal(
+                      <Modal
+                          open={modalState.isVisible}
+                          onClose={resetModal}
+                          className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
+                          aria-label={labels.modalTitle}
+                          header={{
+                              heading: labels.modalTitle,
+                          }}>
+                          <Modal.Body>
+                              {formRenderer({
+                                  onSubmit: handleOnSubmit,
+                                  onCancel: resetModal,
+                                  item: modalState.selectedItem,
+                                  allItems: items,
+                              })}
+                          </Modal.Body>
+                      </Modal>,
+                      document.body
+                  )
+                : null}
             <SkjemagruppeQuestion legend={labels.listTitle} error={error}>
                 {items.length > 0 && (
                     <div className="modalFormAndList__listWrapper">

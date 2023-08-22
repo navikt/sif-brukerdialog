@@ -117,25 +117,27 @@ function ModalFormAndInfo<DataType>({
 
     return (
         <>
-            {createPortal(
-                <Modal
-                    open={modalState.isVisible}
-                    className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
-                    onClose={resetModal}
-                    aria-label={labels.modalTitle}
-                    header={{
-                        heading: labels.modalTitle,
-                    }}>
-                    <Modal.Body>
-                        {formRenderer({
-                            onSubmit: handleOnSubmit,
-                            onCancel: resetModal,
-                            data: modalState.data,
-                        })}
-                    </Modal.Body>
-                </Modal>,
-                document.body
-            )}
+            {modalState.isVisible
+                ? createPortal(
+                      <Modal
+                          open={modalState.isVisible}
+                          className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
+                          onClose={resetModal}
+                          aria-label={labels.modalTitle}
+                          header={{
+                              heading: labels.modalTitle,
+                          }}>
+                          <Modal.Body>
+                              {formRenderer({
+                                  onSubmit: handleOnSubmit,
+                                  onCancel: resetModal,
+                                  data: modalState.data,
+                              })}
+                          </Modal.Body>
+                      </Modal>,
+                      document.body
+                  )
+                : null}
             {wrapInfoInFieldset === true ? (
                 <SkjemagruppeQuestion error={error} legend={labels.infoTitle}>
                     {content}

@@ -11,22 +11,26 @@ interface Props {
 }
 
 const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open = false, onClose }) => {
-    return createPortal(
-        <Modal
-            open={open}
-            onClose={onClose}
-            className="lovbestemtFerieModal"
-            aria-label="Lovbestemt ferie"
-            header={{
-                heading: title,
-                closeButton: true,
-            }}>
-            <Modal.Body>
-                <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>{children}</div>
-            </Modal.Body>
-        </Modal>,
-        document.body
-    );
+    return open
+        ? createPortal(
+              <Modal
+                  open={open}
+                  onClose={onClose}
+                  className="lovbestemtFerieModal"
+                  aria-label="Lovbestemt ferie"
+                  header={{
+                      heading: title,
+                      closeButton: true,
+                  }}>
+                  <Modal.Body>
+                      <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
+                          {children}
+                      </div>
+                  </Modal.Body>
+              </Modal>,
+              document.body
+          )
+        : null;
 };
 
 export default LovbestemtFerieModal;

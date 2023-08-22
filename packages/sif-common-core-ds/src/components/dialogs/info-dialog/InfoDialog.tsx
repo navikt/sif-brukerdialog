@@ -15,29 +15,31 @@ interface OwnProps {
 type Props = OwnProps & ModalProps;
 
 const InfoDialog = ({ children, okButton, title, ...props }: Props) =>
-    createPortal(
-        <Modal
-            className={`infoDialog ${props.className}`}
-            {...props}
-            header={{
-                heading: title,
-                label: props['aria-label'],
-            }}>
-            <Modal.Body className="sif--modal__content" title={props['aria-label']}>
-                <BodyLong as="div" className="infoDialog__content">
-                    {children}
-                </BodyLong>
+    props.open
+        ? createPortal(
+              <Modal
+                  className={`infoDialog ${props.className}`}
+                  {...props}
+                  header={{
+                      heading: title,
+                      label: props['aria-label'],
+                  }}>
+                  <Modal.Body className="sif--modal__content" title={props['aria-label']}>
+                      <BodyLong as="div" className="infoDialog__content">
+                          {children}
+                      </BodyLong>
 
-                {okButton && (
-                    <ButtonRow align="left">
-                        <Button variant="primary" onClick={() => props.onClose}>
-                            {okButton.label}
-                        </Button>
-                    </ButtonRow>
-                )}
-            </Modal.Body>
-        </Modal>,
-        document.body
-    );
+                      {okButton && (
+                          <ButtonRow align="left">
+                              <Button variant="primary" onClick={() => props.onClose}>
+                                  {okButton.label}
+                              </Button>
+                          </ButtonRow>
+                      )}
+                  </Modal.Body>
+              </Modal>,
+              document.body
+          )
+        : null;
 
 export default InfoDialog;
