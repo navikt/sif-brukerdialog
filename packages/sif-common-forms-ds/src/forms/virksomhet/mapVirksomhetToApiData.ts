@@ -7,14 +7,14 @@ export const mapVirksomhetToVirksomhetApiData = (
     locale: string,
     virksomhet: Virksomhet,
     harFlereVirksomheter?: boolean,
-    harBesvartFiskerPåBladB?: boolean
+    harBesvartFiskerPåBladB?: boolean,
 ): VirksomhetApiData => {
     const registrertINorge = virksomhet.registrertINorge === YesOrNo.YES;
     const harRegnskapsfører = virksomhet.harRegnskapsfører === YesOrNo.YES;
     const erNyoppstartet = erVirksomhetRegnetSomNyoppstartet(virksomhet.fom);
 
     const data: VirksomhetApiData = {
-        næringstyper: [virksomhet.næringstype],
+        næringstype: virksomhet.næringstype,
         navnPåVirksomheten: virksomhet.navnPåVirksomheten,
         registrertINorge,
         ...(registrertINorge

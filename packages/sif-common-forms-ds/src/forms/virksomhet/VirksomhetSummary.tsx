@@ -28,13 +28,10 @@ const getFiskerNæringTekst = (intl: IntlShape, erPåBladB: boolean) => {
 export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
 
-    const næringstyper = virksomhet.næringstyper
-        .map((næring) =>
-            næring === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
-                ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
-                : intlHelper(intl, `sifForms.virksomhet.næringstype_${næring}`)
-        )
-        .join(', ');
+    const næringstype =
+        virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
+            ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
+            : intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
 
     const tidsinfo = virksomhet.tilOgMed
         ? intlHelper(intl, 'sifForms.virksomhet.summary.tidsinfo.avsluttet', {
@@ -50,7 +47,7 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Int
             <IntlLabelValue labelKey="sifForms.virksomhet.summary.navn">
                 {virksomhet.navnPåVirksomheten}.
             </IntlLabelValue>
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstyper}. </IntlLabelValue>
+            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
             <div>
                 <FormattedMessage id="sifForms.virksomhet.summary.registrertILand" values={{ land }} />
                 {virksomhet.registrertINorge && (
@@ -80,7 +77,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                         intl,
                         harFlereVirksomheter
                             ? 'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm'
-                            : 'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm'
+                            : 'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm',
                     )}>
                     <FormattedMessage id="sifForms.virksomhet.summary.næringsinntekst" />
                     {` `}
@@ -99,7 +96,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                                 id="sifForms.virksomhet.summary.yrkesaktiv.jaStartetDato"
                                 values={{
                                     dato: prettifyApiDate(
-                                        virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato
+                                        virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
                                     ),
                                 }}
                             />

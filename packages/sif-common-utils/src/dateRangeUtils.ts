@@ -262,7 +262,7 @@ export const includeWeekendIfDateRangeEndsOnFridayOrLater = (dateRange: DateRang
 export const dateRangeIsAdjacentToDateRange = (
     dateRange1: DateRange,
     dateRange2: DateRange,
-    ignoreWeekends = false
+    ignoreWeekends = false,
 ): boolean => {
     if (dayjs(dateRange1.to).isSameOrAfter(dateRange2.from, 'day')) {
         return false;
@@ -397,8 +397,8 @@ export const getNumberOfDaysInDateRange = (dateRange: DateRange, onlyWeekDays = 
  */
 export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange => {
     return {
-        from: dayjs.min(dateRanges.map((range) => dayjs(range.from))).toDate(),
-        to: dayjs.max(dateRanges.map((range) => dayjs(range.to))).toDate(),
+        from: dayjs.min(dateRanges.map((range) => dayjs(range.from)))!.toDate(),
+        to: dayjs.max(dateRanges.map((range) => dayjs(range.to)))!.toDate(),
     };
 };
 /**
@@ -506,7 +506,7 @@ export const getDatesInMonthOutsideDateRange = (month: Date, dateRange: DateRang
             ...getDatesInDateRange({
                 from: monthDateRange.from,
                 to: dayjs(dateRange.from).subtract(1, 'day').toDate(),
-            })
+            }),
         );
     }
     if (dayjs(dateRange.to).isBefore(monthDateRange.to, 'day')) {
@@ -514,7 +514,7 @@ export const getDatesInMonthOutsideDateRange = (month: Date, dateRange: DateRang
             ...getDatesInDateRange({
                 from: dayjs(dateRange.to).add(1, 'day').toDate(),
                 to: monthDateRange.to,
-            })
+            }),
         );
     }
 
@@ -633,7 +633,7 @@ export const limitDateRangeToDateRange = <Type extends DateRange>(dateRange: Typ
 export const getDateRangesWithinDateRange = <Type extends DateRange>(
     dateRanges: Type[],
     limitDateRange: DateRange,
-    adjustToLimit = true
+    adjustToLimit = true,
 ): Type[] => {
     return dateRanges
         .filter((dr) => dateRangesCollide([dr, limitDateRange]))

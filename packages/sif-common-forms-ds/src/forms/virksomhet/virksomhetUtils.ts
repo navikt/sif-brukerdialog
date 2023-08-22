@@ -6,8 +6,7 @@ import dayjs from 'dayjs';
 import { guid } from '@navikt/sif-common-utils';
 import { Næringstype, Virksomhet, VirksomhetFormValues } from './types';
 
-export const harFiskerNæringstype = (næringstyper: Næringstype[]): boolean =>
-    næringstyper.find((n) => n === Næringstype.FISKE) !== undefined;
+export const harFiskerNæringstype = (næringstype: Næringstype): boolean => næringstype === Næringstype.FISKE;
 
 export const erFiskerNæringstype = (næringstype?: Næringstype): boolean =>
     næringstype ? næringstype === Næringstype.FISKE : false;
@@ -61,11 +60,11 @@ export const cleanupVirksomhetFormValues = (formValues: VirksomhetFormValues): V
 
 export const mapFormValuesToVirksomhet = (
     formValues: VirksomhetFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<Virksomhet> => {
     const næringsinntekt = getNumberFromStringInput(formValues.næringsinntekt);
     const inntektEtterVarigEndring = getNumberFromStringInput(
-        formValues.varigEndringINæringsinntekt_inntektEtterEndring
+        formValues.varigEndringINæringsinntekt_inntektEtterEndring,
     );
 
     return {

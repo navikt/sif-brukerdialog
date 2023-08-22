@@ -12,7 +12,7 @@ dayjs.extend(minMax);
 
 const getÅrstallFromFravær = (
     dagerMedDelvisFravær: FraværDag[],
-    perioderMedFravær: FraværPeriode[]
+    perioderMedFravær: FraværPeriode[],
 ): number | undefined => {
     const førsteDag = dagerMedDelvisFravær.length > 0 ? dagerMedDelvisFravær[0].dato : undefined;
     const førsteDagIPeriode = perioderMedFravær.length > 0 ? perioderMedFravær[0].fraOgMed : undefined;
@@ -23,7 +23,7 @@ const getÅrstallFromFravær = (
         case 1:
             return dayjs(dager[0]).get('year');
         default:
-            return dayjs.min(dager.map((d) => dayjs(d))).get('year');
+            return dayjs.min(dager.map((d) => dayjs(d)))!.get('year');
     }
 };
 
@@ -35,25 +35,25 @@ const getTidsromFromÅrstall = (årstall?: number): DateRange => {
     const sisteDagIÅret = dayjs(`${årstall}-12-31`).toDate();
     return {
         from: førsteDagIÅret,
-        to: dayjs.min([dayjs(sisteDagIÅret), dayjs(dateToday)]).toDate(),
+        to: dayjs.min([dayjs(sisteDagIÅret), dayjs(dateToday)])!.toDate(),
     };
 };
 
 const getPeriodeBoundaries = (
     perioderMedFravær: FraværPeriode[],
-    dagerMedFravær: FraværDag[]
+    dagerMedFravær: FraværDag[],
 ): { min?: Date; max?: Date } => {
     let min: Dayjs | undefined;
     let max: Dayjs | undefined;
 
     perioderMedFravær.forEach((p) => {
-        min = min ? dayjs.min(dayjs(p.fraOgMed), min) : dayjs(p.fraOgMed);
-        max = max ? dayjs.max(dayjs(p.tilOgMed), max) : dayjs(p.tilOgMed);
+        min = min ? dayjs.min(dayjs(p.fraOgMed), min)! : dayjs(p.fraOgMed);
+        max = max ? dayjs.max(dayjs(p.tilOgMed), max)! : dayjs(p.tilOgMed);
     });
 
     dagerMedFravær.forEach((d) => {
-        min = min ? dayjs.min(dayjs(d.dato), min) : dayjs(d.dato);
-        max = max ? dayjs.max(dayjs(d.dato), max) : dayjs(d.dato);
+        min = min ? dayjs.min(dayjs(d.dato), min)! : dayjs(d.dato);
+        max = max ? dayjs.max(dayjs(d.dato), max)! : dayjs(d.dato);
     });
 
     return {
@@ -70,7 +70,7 @@ const fraværStepUtils = {
 
 export const getFraværStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: FraværFormValues
+    formValues?: FraværFormValues,
 ): FraværFormValues => {
     if (formValues) {
         return formValues;

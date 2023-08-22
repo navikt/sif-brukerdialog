@@ -12,22 +12,22 @@
     },
     "dependencies": {
         "@portabletext/react": "3.0.4",
-        "@sanity/client": "6.4.0"
+        "@sanity/client": "6.4.6"
     },
     "devDependencies": {
-        "@navikt/ds-css": "4.9.0",
-        "@navikt/ds-react": "4.9.0",
-        "@types/node": "20.4.8",
-        "@types/react": "18.2.18",
+        "@navikt/ds-css": "4.11.2",
+        "@navikt/ds-react": "4.11.2",
+        "@types/node": "20.5.0",
+        "@types/react": "18.2.20",
         "@types/react-dom": "18.2.7",
         "config": "*",
         "copyfiles": "2.4.1",
-        "postcss": "8.4.27",
+        "postcss": "8.4.28",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.1",
-        "sass": "1.64.2"
+        "sass": "1.65.1"
     },
     "directories": {
         "lib": "lib"

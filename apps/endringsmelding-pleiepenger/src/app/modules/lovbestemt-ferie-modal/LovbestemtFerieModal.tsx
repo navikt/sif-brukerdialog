@@ -16,7 +16,12 @@ const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open 
         Modal.setAppElement('#app');
     });
     return (
-        <Modal open={open} onClose={onClose} className="lovbestemtFerieModal" closeButton={false}>
+        <Modal
+            open={open}
+            onClose={onClose}
+            className="lovbestemtFerieModal"
+            closeButton={false}
+            aria-label="Lovbestemt ferie">
             <Button
                 className="navds-modal__button"
                 size="small"

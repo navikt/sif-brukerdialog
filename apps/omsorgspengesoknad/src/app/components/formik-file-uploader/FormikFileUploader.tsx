@@ -10,7 +10,6 @@ interface Props extends TypedFormInputValidationProps<any, ValidationError> {
     legend?: string;
     buttonLabel: string;
     apiEndpoint: ApiEndpoint;
-
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;

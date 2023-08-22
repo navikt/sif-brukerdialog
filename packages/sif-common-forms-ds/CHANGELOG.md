@@ -1,5 +1,15 @@
 # @navikt/sif-common-forms-ds
 
+## 8.4.0
+
+### Minor Changes
+
+-   68bf3131: Endret næringstyper (Array) til næringstype (ikke array) i Virksomhet
+
+### Patch Changes
+
+-   @navikt/sif-common-core-ds@9.3.1
+
 ## 8.3.0
 
 ### Minor Changes
