@@ -1,5 +1,4 @@
-import { Button, Heading, Modal, Radio, RadioGroup } from '@navikt/ds-react';
-import ModalContent from '@navikt/ds-react/esm/modal/ModalContent';
+import { Button, Modal, Radio, RadioGroup } from '@navikt/ds-react';
 import React, { useState } from 'react';
 import { useSøknadContext } from '@hooks';
 import { Settings } from '@navikt/ds-icons';
@@ -42,11 +41,13 @@ const DevFooter: React.FunctionComponent = () => {
                     {scenario.name}
                 </Button>
             </div>
-            <Modal open={showModal} onClose={() => setShowModal(false)}>
-                <ModalContent>
-                    <Heading level="1" size="medium" style={{ paddingRight: '3rem', minWidth: '14rem' }}>
-                        Velg scenario som skal brukes
-                    </Heading>
+            <Modal
+                open={showModal}
+                onClose={() => setShowModal(false)}
+                header={{
+                    heading: 'Velg scenario som skal brukes',
+                }}>
+                <Modal.Body>
                     <FormBlock>
                         <RadioGroup
                             value={scenario.value}
@@ -89,7 +90,7 @@ const DevFooter: React.FunctionComponent = () => {
                             Velg
                         </Button>
                     </FormBlock>
-                </ModalContent>
+                </Modal.Body>
             </Modal>
         </>
     );

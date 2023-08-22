@@ -1,7 +1,7 @@
-import { BodyLong, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
+import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import intlHelper from '../../../utils/intlUtils';
 import ButtonRow from '../../../atoms/button-row/ButtonRow';
+import intlHelper from '../../../utils/intlUtils';
 import './confirmationDialog.scss';
 
 export interface Props extends Omit<ModalProps, 'onClose'> {
@@ -16,19 +16,16 @@ const ConfirmationDialog = (props: Props) => {
     const intl = useIntl();
     const { title, onCancel, onConfirm: onOk, cancelLabel, okLabel, children, ...modalProps } = props;
     return (
-        <Modal {...modalProps} closeButton={false} onClose={onCancel}>
+        <Modal
+            {...modalProps}
+            onClose={onCancel}
+            open={props.open}
+            header={{
+                closeButton: false,
+                heading: title,
+            }}>
             {props.open && (
-                <Modal.Content className="confirmationDialog">
-                    <div
-                        style={{
-                            marginTop: 'var(--a-spacing-1)',
-                            paddingBottom: 'var(--a-spacing-2)',
-                        }}>
-                        <Heading size="medium" level="1">
-                            {title}
-                        </Heading>
-                    </div>
-
+                <Modal.Body className="confirmationDialog">
                     <BodyLong as="div" className="confirmationDialog__content">
                         {children}
                     </BodyLong>
@@ -41,7 +38,7 @@ const ConfirmationDialog = (props: Props) => {
                             {cancelLabel || intlHelper(intl, 'komponent.ConfirmationDialog.avbrytLabel')}
                         </Button>
                     </ButtonRow>
-                </Modal.Content>
+                </Modal.Body>
             )}
         </Modal>
     );
