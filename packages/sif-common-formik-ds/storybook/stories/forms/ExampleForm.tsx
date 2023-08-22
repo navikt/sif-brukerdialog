@@ -2,7 +2,6 @@
 import { Heading, Panel } from '@navikt/ds-react';
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import { ISODateString } from '@navikt/ds-datepicker/lib/types';
 import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
 import { getTypedFormComponents } from '../../../src/components/getTypedFormComponents';
 import { YesOrNo } from '../../../src/types';
@@ -12,8 +11,8 @@ import { ValidationError } from '../../../src/validation/types';
 import FormBlock from '../../components/form-block/FormBlock';
 import { mockAnimalOptions, MockAnimals } from '../../mock-data';
 import ExampleListAndDialog from './ExampleListAndDialog';
-import '@navikt/ds-datepicker/lib/index.css';
 import { Accept } from 'react-dropzone';
+import { ISODateString } from '../../../src/components/formik-datepicker/dateFormatUtils';
 
 enum Fields {
     checked = 'checked',
@@ -72,7 +71,12 @@ const ExampleForm: React.FunctionComponent = () => {
                             onCancel={() => console.log('cancel')}
                             formErrorHandler={getIntlFormErrorHandler(intl)}>
                             <FormBlock>
-                                <Form.DatePicker name={Fields.date} label="Choose a date" />
+                                <Form.DatePicker
+                                    name={Fields.date}
+                                    label="Choose a date"
+                                    fromDate={undefined}
+                                    toDate={undefined}
+                                />
                             </FormBlock>
                             <FormBlock>
                                 <Form.Checkbox

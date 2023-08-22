@@ -286,7 +286,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                             <Block margin="xl">
                                 <Form.DateRangePicker
                                     legend={getText('sifForms.virksomhet.startdato', { navnPåVirksomheten })}
-                                    showYearSelector={true}
+                                    dropdownCaption={true}
                                     maxDate={dateToday}
                                     fromInputProps={{
                                         label: getText('sifForms.virksomhet.kalender_fom'),
@@ -309,7 +309,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                     toInputProps={{
                                         label: getText('sifForms.virksomhet.kalender_tom'),
                                         name: VirksomhetFormField.tom,
-                                        disabled: values.erPågående === true,
+                                        // disabled: values.erPågående === true,
                                         validate:
                                             values.erPågående === true
                                                 ? undefined
@@ -458,7 +458,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 <Form.DatePicker
                                                     name={VirksomhetFormField.blittYrkesaktivDato}
                                                     label={getText('sifForms.virksomhet.har_blitt_yrkesaktiv_dato')}
-                                                    showYearSelector={true}
+                                                    dropdownCaption={true}
                                                     minDate={date3YearsAgo}
                                                     maxDate={dateToday}
                                                     validate={getDateValidator({

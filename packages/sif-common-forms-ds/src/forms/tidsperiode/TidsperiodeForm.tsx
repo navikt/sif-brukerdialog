@@ -99,7 +99,6 @@ const TidsperiodeForm = ({
                         <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'tidsperiodeForm')}>
                             <Form.DateRangePicker
                                 legend={inlineLabels.intervalTitle}
-                                fullscreenOverlay={true}
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 disabledDateRanges={disabledDateRanges}

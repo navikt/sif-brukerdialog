@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import minMax from 'dayjs/plugin/minMax';
 import { DateRange } from '../../types';
-import { DatepickerLimitiations } from '../formik-datepicker/FormikDatepicker';
+import { DatepickerLimitations } from '../formik-datepicker/FormikDatepicker';
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(minMax);
@@ -172,8 +172,8 @@ export const getMinDateForRangeEnd = ({
 };
 
 interface DateRangePickerLimitations {
-    fromDateLimitations: DatepickerLimitiations;
-    toDateLimitations: DatepickerLimitiations;
+    fromDateLimitations: DatepickerLimitations;
+    toDateLimitations: DatepickerLimitations;
 }
 
 export const getDateRangePickerLimitations = (props: {
@@ -188,7 +188,7 @@ export const getDateRangePickerLimitations = (props: {
     /** Other date ranges which become disabled in the datepicker */
     dateRanges?: DateRange[];
     /** Disallow selection of saturday and sunday */
-    disableWeekend?: boolean;
+    disableWeekends?: boolean;
     /** Allow one dateRange to start on the same date another ends */
     allowRangesToStartAndStopOnSameDate?: boolean;
 }): DateRangePickerLimitations => {
@@ -197,13 +197,13 @@ export const getDateRangePickerLimitations = (props: {
             minDate: getMinDateForRangeStart(props),
             maxDate: getMaxDateForRangeStart(props),
             disabledDateRanges: props.dateRanges,
-            disableWeekend: props.disableWeekend,
+            disableWeekends: props.disableWeekends,
         },
         toDateLimitations: {
             minDate: getMinDateForRangeEnd(props),
             maxDate: getMaxDateForRangeEnd(props),
             disabledDateRanges: props.dateRanges,
-            disableWeekend: props.disableWeekend,
+            disableWeekends: props.disableWeekends,
         },
     };
 };

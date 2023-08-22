@@ -1,12 +1,11 @@
+import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
+/* eslint-disable no-console */
 import React from 'react';
 import { useFormikContext } from 'formik';
-import { UseFastFieldProps } from '../../types';
+import { TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
+import { InputDateStringToISODateString } from '../formik-datepicker/dateFormatUtils';
 import { ISOStringToDate } from '../formik-datepicker/datepickerUtils';
-import FormikDatepicker, {
-    DatePickerBaseProps,
-    DatepickerLimitiations,
-    DatePickerPresentationProps,
-} from '../formik-datepicker/FormikDatepicker';
+import FormikDatepicker, { DatePickerBaseProps, DatepickerLimitations } from '../formik-datepicker/FormikDatepicker';
 import FormikInputGroup from '../formik-input-group/FormikInputGroup';
 import { getDateRangePickerLimitations } from './dateRangePickerUtils';
 import './dateRangePicker.scss';
@@ -14,9 +13,6 @@ import './dateRangePicker.scss';
 interface OwnProps<FieldName, ErrorType> {
     legend: string;
     description?: React.ReactNode;
-    showYearSelector?: boolean;
-    fullscreenOverlay?: boolean;
-    fullScreenOnMobile?: boolean;
     locale?: string;
     allowRangesToStartAndStopOnSameDate?: boolean;
     fromInputProps: DatePickerBaseProps<FieldName, ErrorType>;
@@ -24,9 +20,10 @@ interface OwnProps<FieldName, ErrorType> {
 }
 
 export type FormikDateRangePickerProps<FieldName, ErrorType> = OwnProps<FieldName, ErrorType> &
-    DatePickerPresentationProps &
-    DatepickerLimitiations &
-    UseFastFieldProps;
+    TypedFormInputValidationProps<FieldName, ErrorType> &
+    DatepickerLimitations &
+    UseFastFieldProps &
+    Pick<DatePickerDefaultProps, 'dropdownCaption'>;
 
 function FormikDateRangePicker<FieldName, ErrorType>({
     legend,
@@ -35,36 +32,44 @@ function FormikDateRangePicker<FieldName, ErrorType>({
     description,
     minDate,
     maxDate,
-    disableWeekend,
+    disableWeekends,
     disabledDateRanges,
-    showYearSelector,
-    fullScreenOnMobile,
-    fullscreenOverlay,
     allowRangesToStartAndStopOnSameDate,
     useFastField,
+    dropdownCaption,
+    validate,
     locale,
 }: FormikDateRangePickerProps<FieldName, ErrorType>) {
     const { values } = useFormikContext<any>();
-    const fromDate = ISOStringToDate(values[fromInputProps.name]);
-    const toDate = ISOStringToDate(values[toInputProps.name]);
+
+    const fromDate = ISOStringToDate(InputDateStringToISODateString(values[fromInputProps.name]));
+    const toDate = ISOStringToDate(InputDateStringToISODateString(values[toInputProps.name]));
+
     const { fromDateLimitations, toDateLimitations } = getDateRangePickerLimitations({
         fromDate,
         toDate,
         minDate,
         maxDate,
         dateRanges: disabledDateRanges,
-        disableWeekend,
+        disableWeekends,
         allowRangesToStartAndStopOnSameDate,
     });
+
     const name = `${fromInputProps.name}_${toInputProps.name}` as any;
+
     return (
-        <FormikInputGroup name={name} legend={legend} description={description} className="dateRangePicker">
+        <FormikInputGroup
+            name={name}
+            legend={legend}
+            description={description}
+            className="dateRangePicker"
+            validate={validate ? (value: any) => validate(value, name) : undefined}>
             <div className="dateRangePicker__flexContainer">
                 <div className="dateRangePicker__from">
                     <FormikDatepicker<FieldName, ErrorType>
                         {...fromInputProps}
-                        {...{ fullscreenOverlay, fullScreenOnMobile, showYearSelector }}
                         {...fromDateLimitations}
+                        dropdownCaption={dropdownCaption}
                         locale={locale as any}
                         useFastField={useFastField}
                     />
@@ -72,8 +77,8 @@ function FormikDateRangePicker<FieldName, ErrorType>({
                 <div className="dateRangePicker__to">
                     <FormikDatepicker<FieldName, ErrorType>
                         {...toInputProps}
-                        {...{ fullscreenOverlay, fullScreenOnMobile, showYearSelector }}
                         {...toDateLimitations}
+                        dropdownCaption={dropdownCaption}
                         locale={locale as any}
                         useFastField={useFastField}
                     />

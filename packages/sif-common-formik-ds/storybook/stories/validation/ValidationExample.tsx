@@ -255,7 +255,7 @@ const error = getDateValidator(options)(value);
                                         label={
                                             'Når startet du i arbeidslivet? Dersom dette var en lørdag eller søndag, velg påfølgende mandag.'
                                         }
-                                        showYearSelector={true}
+                                        dropdownCaption={true}
                                         validate={getDateValidator({
                                             required: true,
                                             min: new Date(2015, 0, 1),

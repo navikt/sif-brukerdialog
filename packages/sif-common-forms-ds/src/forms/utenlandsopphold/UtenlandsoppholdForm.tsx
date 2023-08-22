@@ -131,7 +131,6 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                         formErrorHandler={getFormErrorHandler(intl, 'utenlandsoppholdForm')}>
                         <Form.DateRangePicker
                             legend={intlHelper(intl, 'utenlandsopphold.form.tidsperiode.spm')}
-                            fullscreenOverlay={true}
                             disabledDateRanges={registrerteTidsperioder}
                             minDate={minDate}
                             maxDate={maxDate}

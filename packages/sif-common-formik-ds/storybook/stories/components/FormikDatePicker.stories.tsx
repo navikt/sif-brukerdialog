@@ -19,7 +19,13 @@ const defaultProps: FormikDatepickerProps<any, any> = {
     name: 'date',
     label: 'ABc',
     description: 'Some description',
-    error: 'Dette er en feil',
+    dropdownCaption: true,
+    fromDate: new Date(2020, 1, 1),
+    toDate: new Date(2030, 1, 10),
+    disabledDaysOfWeek: {
+        dayOfWeek: [2],
+    },
+    disabledDateRanges: [{ from: new Date(2021, 1, 1), to: new Date(2021, 1, 10) }],
 };
 Default.args = {
     ...defaultProps,

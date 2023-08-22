@@ -97,7 +97,6 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                     <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'bostedUtlandForm')}>
                         <Form.DateRangePicker
                             legend={intlHelper(intl, 'bostedUtland.form.tidsperiode.spm')}
-                            fullscreenOverlay={true}
                             minDate={minDate}
                             maxDate={maxDate}
                             allowRangesToStartAndStopOnSameDate={false}

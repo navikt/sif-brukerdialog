@@ -1,31 +1,57 @@
 import dayjs from 'dayjs';
-import { DatepickerLimitations, DatepickerDateRange, isISODateString } from '@navikt/ds-datepicker';
-import { DatepickerLimitiations } from './FormikDatepicker';
+import { DatepickerLimitations } from './FormikDatepicker';
+import { Matcher } from 'react-day-picker';
+import { ISODateString, ISO_DATE_STRING_FORMAT } from './dateFormatUtils';
 
 const isoStringFormat = 'YYYY-MM-DD';
 
 export const dateToISOString = (date?: Date) => (date ? dayjs(date).format(isoStringFormat) : '');
 export const ISOStringToDate = (dateString = ''): Date | undefined => getDateFromDateString(dateString);
 
-const parseDateLimitations = ({
-    minDate,
-    maxDate,
-    disabledDateRanges = [],
-    disableWeekend,
-    disabledDaysOfWeek,
-}: DatepickerLimitiations): DatepickerLimitations => {
-    const invalidDateRanges: DatepickerDateRange[] = disabledDateRanges.map((d) => ({
-        from: dateToISOString(d.from),
-        to: dateToISOString(d.to),
-    }));
-    return {
-        minDate: minDate ? dateToISOString(minDate) : undefined,
-        maxDate: maxDate ? dateToISOString(maxDate) : undefined,
-        weekendsNotSelectable: disableWeekend,
-        invalidDateRanges,
-        disabledDaysOfWeek: disabledDaysOfWeek ? { dayOfWeek: disabledDaysOfWeek } : undefined,
+export const getDisabledDates = (limitations: DatepickerLimitations): Matcher[] => {
+    const invalidDates: Matcher[] = [];
+    if (limitations.disabledDateRanges) {
+        limitations.disabledDateRanges.forEach(({ from, to }) => {
+            if (from && to) {
+                invalidDates.push({
+                    from,
+                    to,
+                });
+            }
+        });
+    }
+    const minDate = limitations.minDate;
+    const maxDate = limitations.maxDate;
+
+    const disabledWeekdays: Matcher = {
+        dayOfWeek: [
+            ...(limitations.disableWeekends ? [0, 6] : []),
+            ...(limitations.disabledDaysOfWeek?.dayOfWeek || []),
+        ],
     };
+    return [
+        ...invalidDates,
+        ...(maxDate ? [{ after: dayjs(maxDate, ISO_DATE_STRING_FORMAT).toDate() } as Matcher] : []),
+        ...(minDate ? [{ before: dayjs(minDate, ISO_DATE_STRING_FORMAT).toDate() } as Matcher] : []),
+        ...[disabledWeekdays],
+    ];
 };
+
+// const parseDateLimitations = ({
+//     fromDate,
+//     toDate,
+//     disabledDateRanges = [],
+//     disableWeekend,
+//     disabledDaysOfWeek,
+// }: DatepickerLimitations): DatepickerLimitations => {
+//     return {
+//         fromDate,
+//         toDate,
+//         disableWeekend,
+//         disabledDateRanges,
+//         disabledDaysOfWeek: disabledDaysOfWeek ? { dayOfWeek: disabledDaysOfWeek } : undefined,
+//     };
+// };
 
 const getDateStringFromValue = (value?: Date | string): string | undefined => {
     let date;
@@ -57,10 +83,20 @@ const isValidFormattedDateString = (dateString = ''): boolean => {
     return /\d{1,2}.\d{1,2}.(\d{2}|\d{4})$/.test(dateString);
 };
 
+export const isISODateString = (value: any): value is ISODateString => {
+    if (value && typeof value === 'string') {
+        const reg = /^\d{4}-\d{2}-\d{2}$/;
+        const match: RegExpMatchArray | null = value.match(reg);
+        return match !== null;
+    } else {
+        return false;
+    }
+};
+
 const datepickerUtils = {
     getDateStringFromValue,
     getDateFromDateString,
-    parseDateLimitations,
+    getDisabledDates,
     isValidFormattedDateString,
 };
 

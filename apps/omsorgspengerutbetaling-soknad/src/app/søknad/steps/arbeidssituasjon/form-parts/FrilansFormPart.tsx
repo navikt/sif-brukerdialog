@@ -56,7 +56,7 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                             <DatePicker
                                 name={ArbeidssituasjonFormFields.frilans_startdato}
                                 label={intlHelper(intl, 'frilanser.nårStartet.spm')}
-                                showYearSelector={true}
+                                dropdownCaption={true}
                                 maxDate={dateToday}
                                 validate={getDateValidator({
                                     required: true,
@@ -78,7 +78,7 @@ const FrilansFormPart: React.FC<Props> = ({ values }) => {
                                 <DatePicker
                                     name={ArbeidssituasjonFormFields.frilans_sluttdato}
                                     label={intlHelper(intl, 'frilanser.nårSluttet.spm')}
-                                    showYearSelector={true}
+                                    dropdownCaption={true}
                                     minDate={datepickerUtils.getDateFromDateString(frilans_startdato)}
                                     maxDate={dateToday}
                                     validate={getDateValidator({
