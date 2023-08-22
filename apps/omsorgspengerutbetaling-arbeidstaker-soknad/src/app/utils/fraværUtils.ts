@@ -21,7 +21,7 @@ export const getÅrstallFromFravær = (
         case 1:
             return dayjs(dager[0]).get('year');
         default:
-            return dayjs.min(dager.map((d) => dayjs(d))).get('year');
+            return dayjs.min(dager.map((d) => dayjs(d)))?.get('year');
     }
 };
 export const getTidsromFromÅrstall = (årstall?: number): DateRange => {
@@ -30,9 +30,13 @@ export const getTidsromFromÅrstall = (årstall?: number): DateRange => {
     }
     const førsteDagIÅret = dayjs(`${årstall}-01-01`).toDate();
     const sisteDagIÅret = dayjs(`${årstall}-12-31`).toDate();
+
+    const minimumDate = dayjs.min([dayjs(sisteDagIÅret), dayjs(dateToday)]);
+    const toDate = minimumDate?.isValid() ? minimumDate.toDate() : sisteDagIÅret;
+
     return {
         from: førsteDagIÅret,
-        to: dayjs.min([dayjs(sisteDagIÅret), dayjs(dateToday)]).toDate(),
+        to: toDate,
     };
 };
 

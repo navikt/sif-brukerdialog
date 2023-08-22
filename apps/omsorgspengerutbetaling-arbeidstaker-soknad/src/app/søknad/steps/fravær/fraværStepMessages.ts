@@ -22,6 +22,6 @@ export const fraværStepMessages: MessageFileFormat = {
         'step.fravær.utenlandsopphold.tittel': 'Utenlandsopphold i dagene med fravær',
         'step.fravær.værtIUtlandet.spm': 'Har du vært i utlandet noen av dagene du søker omsorgspenger for?',
         'step.fravær.værtIUtlandet.leggTilLabel': 'Legg til nytt utenlandsopphold',
-        'step.fravær.værtIUtlandet.modalTittel': 'Utenlandsopphold siste 12 måneder',
+        'step.fravær.værtIUtlandet.modalTittel': 'Utenlandsopphold',
     },
 };
