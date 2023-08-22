@@ -1,26 +1,9 @@
-$wrapWidth: 576px;
-
 .dateRangePicker {
     margin-bottom: 1rem;
-    &__from {
-        margin-right: 1rem;
-        max-width: 50%;
-        @media (max-width: $wrapWidth) {
-            margin-right: 0;
-            margin-bottom: 1rem;
-            max-width: initial;
-        }
-    }
-    &__to {
-        max-width: 50%;
-        @media (max-width: $wrapWidth) {
-            max-width: initial;
-        }
-    }
     &__flexContainer {
         display: flex;
-        @media (max-width: $wrapWidth) {
-            display: block;
-        }
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
     }
 }

@@ -2,6 +2,7 @@ import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/Dat
 import React from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { FastField, Field, FieldProps } from 'formik';
+import { v4 } from 'uuid';
 import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import DateInputAndPicker from './date-input-and-picker/DateInputAndPicker';
@@ -23,9 +24,7 @@ export interface DatePickerBaseProps<FieldName, ErrorType>
     error?: FormError;
     onChange?: (date: string) => void;
     defaultMonth?: Date;
-    /** Not in use */
     inputDisabled?: boolean;
-    fullscreenOverlay?: boolean;
 }
 
 interface OwnProps<FieldName, ErrorType> extends DatePickerBaseProps<FieldName, ErrorType> {
@@ -65,6 +64,7 @@ function FormikDatepicker<FieldName, ErrorType>({
 
                 return (
                     <DateInputAndPicker
+                        inputId={`${restProps.id || v4()}_input`}
                         name={name as any}
                         disableWeekends={true}
                         onChange={handleOnChange}

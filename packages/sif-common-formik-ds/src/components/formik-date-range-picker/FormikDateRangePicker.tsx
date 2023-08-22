@@ -65,24 +65,20 @@ function FormikDateRangePicker<FieldName, ErrorType>({
             className="dateRangePicker"
             validate={validate ? (value: any) => validate(value, name) : undefined}>
             <div className="dateRangePicker__flexContainer">
-                <div className="dateRangePicker__from">
-                    <FormikDatepicker<FieldName, ErrorType>
-                        {...fromInputProps}
-                        {...fromDateLimitations}
-                        dropdownCaption={dropdownCaption}
-                        locale={locale as any}
-                        useFastField={useFastField}
-                    />
-                </div>
-                <div className="dateRangePicker__to">
-                    <FormikDatepicker<FieldName, ErrorType>
-                        {...toInputProps}
-                        {...toDateLimitations}
-                        dropdownCaption={dropdownCaption}
-                        locale={locale as any}
-                        useFastField={useFastField}
-                    />
-                </div>
+                <FormikDatepicker<FieldName, ErrorType>
+                    {...fromInputProps}
+                    {...fromDateLimitations}
+                    dropdownCaption={dropdownCaption}
+                    locale={locale as any}
+                    useFastField={useFastField}
+                />
+                <FormikDatepicker<FieldName, ErrorType>
+                    {...toInputProps}
+                    {...toDateLimitations}
+                    dropdownCaption={dropdownCaption}
+                    locale={locale as any}
+                    useFastField={useFastField}
+                />
             </div>
         </FormikInputGroup>
     );
