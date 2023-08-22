@@ -3,6 +3,7 @@ import React from 'react';
 import ButtonRow from '../../../atoms/button-row/ButtonRow';
 import '../dialogs.scss';
 import './infoDialog.scss';
+import { createPortal } from 'react-dom';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -13,28 +14,30 @@ interface OwnProps {
 }
 type Props = OwnProps & ModalProps;
 
-const InfoDialog = ({ children, okButton, title, ...props }: Props) => (
-    <Modal
-        className={`infoDialog ${props.className}`}
-        {...props}
-        header={{
-            heading: title,
-            label: props['aria-label'],
-        }}>
-        <Modal.Body className="sif--modal__content" title={props['aria-label']}>
-            <BodyLong as="div" className="infoDialog__content">
-                {children}
-            </BodyLong>
+const InfoDialog = ({ children, okButton, title, ...props }: Props) =>
+    createPortal(
+        <Modal
+            className={`infoDialog ${props.className}`}
+            {...props}
+            header={{
+                heading: title,
+                label: props['aria-label'],
+            }}>
+            <Modal.Body className="sif--modal__content" title={props['aria-label']}>
+                <BodyLong as="div" className="infoDialog__content">
+                    {children}
+                </BodyLong>
 
-            {okButton && (
-                <ButtonRow align="left">
-                    <Button variant="primary" onClick={() => props.onClose}>
-                        {okButton.label}
-                    </Button>
-                </ButtonRow>
-            )}
-        </Modal.Body>
-    </Modal>
-);
+                {okButton && (
+                    <ButtonRow align="left">
+                        <Button variant="primary" onClick={() => props.onClose}>
+                            {okButton.label}
+                        </Button>
+                    </ButtonRow>
+                )}
+            </Modal.Body>
+        </Modal>,
+        document.body
+    );
 
 export default InfoDialog;

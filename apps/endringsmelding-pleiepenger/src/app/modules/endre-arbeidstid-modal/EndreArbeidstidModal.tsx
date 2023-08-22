@@ -1,6 +1,7 @@
 import { Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import './endreArbeidstidModal.css';
+import { createPortal } from 'react-dom';
 
 interface Props {
     title: string;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const EndreArbeidstidModal: FunctionComponent<Props> = ({ children, title, isVisible = false, onClose }) => {
-    return (
+    return createPortal(
         <Modal
             open={isVisible}
             onClose={onClose}
@@ -22,7 +23,8 @@ const EndreArbeidstidModal: FunctionComponent<Props> = ({ children, title, isVis
             <Modal.Body>
                 <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>{children}</div>
             </Modal.Body>
-        </Modal>
+        </Modal>,
+        document.body
     );
 };
 

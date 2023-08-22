@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import ButtonRow from '../../../atoms/button-row/ButtonRow';
 import intlHelper from '../../../utils/intlUtils';
 import './confirmationDialog.scss';
+import { createPortal } from 'react-dom';
 
 export interface Props extends Omit<ModalProps, 'onClose'> {
     title: string;
@@ -15,7 +16,7 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
 const ConfirmationDialog = (props: Props) => {
     const intl = useIntl();
     const { title, onCancel, onConfirm: onOk, cancelLabel, okLabel, children, ...modalProps } = props;
-    return (
+    return createPortal(
         <Modal
             {...modalProps}
             onClose={onCancel}
@@ -40,7 +41,8 @@ const ConfirmationDialog = (props: Props) => {
                     </ButtonRow>
                 </Modal.Body>
             )}
-        </Modal>
+        </Modal>,
+        document.body
     );
 };
 export default ConfirmationDialog;

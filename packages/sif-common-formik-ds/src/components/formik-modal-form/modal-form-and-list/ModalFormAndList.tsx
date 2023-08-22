@@ -7,6 +7,7 @@ import ConfirmationDialog from '../../helpers/confirmation-dialog/ConfirmationDi
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndListLabels, ModalFormAndListListItemBase } from '../types';
 import './modalFormAndList.scss';
+import { createPortal } from 'react-dom';
 
 type ModalFormRenderer<ItemType> = (props: {
     item?: ItemType;
@@ -96,23 +97,26 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
 
     return (
         <>
-            <Modal
-                open={modalState.isVisible}
-                onClose={resetModal}
-                className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
-                aria-label={labels.modalTitle}
-                header={{
-                    heading: labels.modalTitle,
-                }}>
-                <Modal.Body>
-                    {formRenderer({
-                        onSubmit: handleOnSubmit,
-                        onCancel: resetModal,
-                        item: modalState.selectedItem,
-                        allItems: items,
-                    })}
-                </Modal.Body>
-            </Modal>
+            {createPortal(
+                <Modal
+                    open={modalState.isVisible}
+                    onClose={resetModal}
+                    className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
+                    aria-label={labels.modalTitle}
+                    header={{
+                        heading: labels.modalTitle,
+                    }}>
+                    <Modal.Body>
+                        {formRenderer({
+                            onSubmit: handleOnSubmit,
+                            onCancel: resetModal,
+                            item: modalState.selectedItem,
+                            allItems: items,
+                        })}
+                    </Modal.Body>
+                </Modal>,
+                document.body
+            )}
             <SkjemagruppeQuestion legend={labels.listTitle} error={error}>
                 {items.length > 0 && (
                     <div className="modalFormAndList__listWrapper">

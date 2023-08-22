@@ -1,4 +1,5 @@
 import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
+import { createPortal } from 'react-dom';
 import ButtonRow from '../button-row/ButtonRow';
 import './confirmationDialog.scss';
 
@@ -12,7 +13,7 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
 
 const ConfirmationDialog = (props: Props) => {
     const { title, onCancel, onConfirm: onOk, cancelLabel, okLabel, children, ...modalProps } = props;
-    return (
+    return createPortal(
         <Modal
             {...modalProps}
             onClose={onCancel}
@@ -37,7 +38,8 @@ const ConfirmationDialog = (props: Props) => {
                     )}
                 </ButtonRow>
             </Modal.Body>
-        </Modal>
+        </Modal>,
+        document.body
     );
 };
 export default ConfirmationDialog;

@@ -1,5 +1,6 @@
 import { Button, Modal, Panel } from '@navikt/ds-react';
 import React from 'react';
+import { createPortal } from 'react-dom';
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';
@@ -116,22 +117,25 @@ function ModalFormAndInfo<DataType>({
 
     return (
         <>
-            <Modal
-                open={modalState.isVisible}
-                className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
-                onClose={resetModal}
-                aria-label={labels.modalTitle}
-                header={{
-                    heading: labels.modalTitle,
-                }}>
-                <Modal.Body>
-                    {formRenderer({
-                        onSubmit: handleOnSubmit,
-                        onCancel: resetModal,
-                        data: modalState.data,
-                    })}
-                </Modal.Body>
-            </Modal>
+            {createPortal(
+                <Modal
+                    open={modalState.isVisible}
+                    className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
+                    onClose={resetModal}
+                    aria-label={labels.modalTitle}
+                    header={{
+                        heading: labels.modalTitle,
+                    }}>
+                    <Modal.Body>
+                        {formRenderer({
+                            onSubmit: handleOnSubmit,
+                            onCancel: resetModal,
+                            data: modalState.data,
+                        })}
+                    </Modal.Body>
+                </Modal>,
+                document.body
+            )}
             {wrapInfoInFieldset === true ? (
                 <SkjemagruppeQuestion error={error} legend={labels.infoTitle}>
                     {content}
