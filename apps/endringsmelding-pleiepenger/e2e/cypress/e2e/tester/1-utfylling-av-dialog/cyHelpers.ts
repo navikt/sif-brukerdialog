@@ -10,7 +10,7 @@ const flereUker = [46, 47];
 const getAktivitet = () => getTestElement('aktivitet_a_947064649');
 const getPeriode = () => getTestElement('dateRangeAccordion_0');
 const getUkeRow = (ukenummer) => cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`);
-const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal').first();
+const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal');
 
 const captureScreenshot = () => {
     // cy.screenshot({ capture: 'fullPage' });
