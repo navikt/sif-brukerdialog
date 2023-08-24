@@ -1,5 +1,23 @@
 # @navikt/sif-common-formik-ds
 
+## 0.3.0
+
+### Minor Changes
+
+-   41d0a03c: Oppdatere til versjon 5 av designsystemet aksel. Breaking change på grunn av props som er endret på komponenter som bruker modal dialog.
+
+    # Props som er fjernet
+
+    -   shouldCloseOnOverlayClick. Denne finnes ikke lenger i Aksel Modal. Dette gjelder:
+        -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndInfo.tsx
+        -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndList.tsx
+
+## 0.25.0
+
+### Minor Changes
+
+-   6669d48c: Legge til ny komponent for filopplasting med drag and drop - FormikFileDropInput
+
 ## 0.24.0
 
 ### Minor Changes

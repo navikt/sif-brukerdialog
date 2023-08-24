@@ -1,4 +1,4 @@
-export const submitSkjema = () => getTestElement('typedFormikForm-submitButton').click();
+export const submitSkjema = () => getTestElement('typedFormikForm-submitButton').should('have.length', 1).click();
 export const clickSendInnSøknad = () => cy.get('button[aria-label="Send inn søknaden"]').click();
 export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
 
@@ -77,13 +77,13 @@ export const getElement = (type) => {
 };
 
 export const submitModal = () => {
-    return cy.get('*[class="navds-modal__content"]').within(() => {
+    return cy.get('*[class="navds-modal__body"]').within(() => {
         getElement('button').contains('Neste').click();
     });
 };
 
 export const getModal = () => {
-    return cy.get('*[class="navds-modal__content"]');
+    return cy.get('*[class="navds-modal__body"]');
 };
 
 export const getRadioButtons = () => {

@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.11.0",
+    "version": "2.12.0",
     "bugs": {
         "url": "https://github.com/navikt/appstatus-react-ds/issues"
     },
@@ -15,8 +15,8 @@
         "@sanity/client": "6.4.6"
     },
     "devDependencies": {
-        "@navikt/ds-css": "4.11.2",
-        "@navikt/ds-react": "4.11.2",
+        "@navikt/ds-css": "5.0.3",
+        "@navikt/ds-react": "5.0.3",
         "@types/node": "20.5.0",
         "@types/react": "18.2.20",
         "@types/react-dom": "18.2.7",
@@ -37,8 +37,8 @@
         "/lib"
     ],
     "peerDependencies": {
-        "@navikt/ds-css": "3",
-        "@navikt/ds-react": "3",
+        "@navikt/ds-css": "5",
+        "@navikt/ds-react": "5",
         "sass": "1.x",
         "sass-loader": "13.x"
     },

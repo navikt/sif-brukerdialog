@@ -14,7 +14,7 @@ export const mapVirksomhetToVirksomhetApiData = (
     const erNyoppstartet = erVirksomhetRegnetSomNyoppstartet(virksomhet.fom);
 
     const data: VirksomhetApiData = {
-        næringstyper: [virksomhet.næringstype],
+        næringstype: virksomhet.næringstype,
         navnPåVirksomheten: virksomhet.navnPåVirksomheten,
         registrertINorge,
         ...(registrertINorge

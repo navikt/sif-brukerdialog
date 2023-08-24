@@ -1,5 +1,6 @@
-import { Button, Heading, Modal, ModalProps, Panel } from '@navikt/ds-react';
+import { Button, Modal, Panel } from '@navikt/ds-react';
 import React from 'react';
+import { createPortal } from 'react-dom';
 import bemUtils from '../../../utils/bemUtils';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndInfoLabels } from '../types';
@@ -17,7 +18,7 @@ type InfoRenderer<DataType> = (props: {
     onDelete: (data: DataType) => void;
 }) => React.ReactNode;
 
-export interface ModalFormAndInfoProps<DataType> extends Pick<ModalProps, 'shouldCloseOnOverlayClick'> {
+export interface ModalFormAndInfoProps<DataType> {
     labels: ModalFormAndInfoLabels;
     infoRenderer: InfoRenderer<DataType>;
     formRenderer: ModalFormRenderer<DataType>;
@@ -35,9 +36,7 @@ interface PrivateProps<DataType> {
     error?: React.ReactNode | boolean;
 }
 
-type Props<DataType> = ModalFormAndInfoProps<DataType> &
-    PrivateProps<DataType> &
-    Pick<ModalProps, 'shouldCloseOnOverlayClick'>;
+type Props<DataType> = ModalFormAndInfoProps<DataType> & PrivateProps<DataType>;
 
 const bem = bemUtils('formikModalForm').child('modal');
 
@@ -50,7 +49,6 @@ function ModalFormAndInfo<DataType>({
     renderDeleteButton = true,
     dialogClassName,
     wrapInfoInPanel = true,
-    shouldCloseOnOverlayClick = false,
     wrapInfoInFieldset = true,
     infoRenderer,
     formRenderer,
@@ -119,26 +117,27 @@ function ModalFormAndInfo<DataType>({
 
     return (
         <>
-            <Modal
-                open={modalState.isVisible}
-                shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-                className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
-                onClose={resetModal}
-                aria-label={labels.modalTitle}>
-                <Modal.Content>
-                    <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
-                        <Heading spacing={true} size="medium" level="1">
-                            {labels.modalTitle}
-                        </Heading>
-                    </div>
-
-                    {formRenderer({
-                        onSubmit: handleOnSubmit,
-                        onCancel: resetModal,
-                        data: modalState.data,
-                    })}
-                </Modal.Content>
-            </Modal>
+            {modalState.isVisible
+                ? createPortal(
+                      <Modal
+                          open={modalState.isVisible}
+                          className={bem.classNames(bem.block, bem.modifier(dialogWidth), dialogClassName)}
+                          onClose={resetModal}
+                          aria-label={labels.modalTitle}
+                          header={{
+                              heading: labels.modalTitle,
+                          }}>
+                          <Modal.Body>
+                              {formRenderer({
+                                  onSubmit: handleOnSubmit,
+                                  onCancel: resetModal,
+                                  data: modalState.data,
+                              })}
+                          </Modal.Body>
+                      </Modal>,
+                      document.body
+                  )
+                : null}
             {wrapInfoInFieldset === true ? (
                 <SkjemagruppeQuestion error={error} legend={labels.infoTitle}>
                     {content}
