@@ -1,7 +1,7 @@
 import { Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
-import './lovbestemtFerieModal.css';
 import { createPortal } from 'react-dom';
+import './lovbestemtFerieModal.css';
 
 interface Props {
     title: string;

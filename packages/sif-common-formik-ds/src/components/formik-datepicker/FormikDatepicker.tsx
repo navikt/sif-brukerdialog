@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
 import React from 'react';
 import { DayOfWeek } from 'react-day-picker';
@@ -6,7 +7,8 @@ import { v4 } from 'uuid';
 import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
 import DateInputAndPicker from './date-input-and-picker/DateInputAndPicker';
-import { ISODateStringToInputDateString } from './dateFormatUtils';
+import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
+import { ISODateString } from './dateFormatUtils';
 
 export type DatepickerLimitations = {
     minDate?: Date;
@@ -22,7 +24,7 @@ export interface DatePickerBaseProps<FieldName, ErrorType>
     name: FieldName;
     label: string;
     error?: FormError;
-    onChange?: (date: string) => void;
+    onChange?: (date: ISODateString) => void;
     defaultMonth?: Date;
     inputDisabled?: boolean;
 }
@@ -39,6 +41,7 @@ export type FormikDatepickerProps<FieldName, ErrorType> = OwnProps<FieldName, Er
 
 function FormikDatepicker<FieldName, ErrorType>({
     name,
+    error,
     onChange,
     validate,
     useFastField,
@@ -46,19 +49,18 @@ function FormikDatepicker<FieldName, ErrorType>({
 }: FormikDatepickerProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
     const FieldComponent = useFastField ? FastField : Field;
-
     return (
         <FieldComponent validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
             {({ field, form }: FieldProps<string>) => {
-                const handleOnChange = (dateString: string = '') => {
-                    if (dateString !== field.value) {
-                        form.setFieldValue(field.name, ISODateStringToInputDateString(dateString));
+                const handleOnChange = (dateString = '') => {
+                    if (field.value !== dateString) {
+                        form.setFieldValue(field.name, dateString);
                         if (onChange) {
                             onChange(dateString);
                         }
-                    }
-                    if (context) {
-                        context.onAfterFieldValueSet();
+                        if (context) {
+                            context.onAfterFieldValueSet();
+                        }
                     }
                 };
 
@@ -69,6 +71,7 @@ function FormikDatepicker<FieldName, ErrorType>({
                         disableWeekends={true}
                         onChange={handleOnChange}
                         value={field.value}
+                        error={getErrorPropForFormikInput({ field, form, context, error })}
                         {...restProps}
                     />
                 );

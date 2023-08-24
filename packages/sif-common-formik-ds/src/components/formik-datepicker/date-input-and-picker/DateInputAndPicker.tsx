@@ -2,7 +2,12 @@ import { DatePicker, useDatepicker } from '@navikt/ds-react';
 import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
 import React from 'react';
 import { FormError } from '../../../types';
-import { dateToISODateString } from '../dateFormatUtils';
+import {
+    ISODateString,
+    ISODateStringToUTCDate,
+    InputDateStringToISODateString,
+    dateToISODateString,
+} from '../dateFormatUtils';
 import datepickerUtils from '../datepickerUtils';
 import { DatepickerLimitations } from '../FormikDatepicker';
 
@@ -15,7 +20,7 @@ type Props = Omit<DatePickerDefaultProps, 'onChange' | 'fromDate' | 'toDate'> &
         inputDisabled?: boolean;
         description?: React.ReactNode;
         value?: string;
-        onChange: (date: string) => void;
+        onChange: (date: ISODateString | string) => void;
     };
 
 const DateInputAndPicker: React.FunctionComponent<Props> = ({
@@ -46,13 +51,14 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         disabled: disabledDates,
         fromDate: restProps.minDate,
         toDate: restProps.maxDate,
+        defaultSelected: ISODateStringToUTCDate(value),
         ...restProps,
     });
 
     const onSelect = (date?: Date) => {
-        const dateString = date ? dateToISODateString(date) : '';
-        if (dateString !== value) {
-            onChange(dateString);
+        const isoDateString = date ? dateToISODateString(date) : '';
+        if (isoDateString !== value) {
+            onChange(isoDateString);
         }
     };
 
@@ -69,7 +75,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
                     if (inputProps.onChange) {
                         inputProps.onChange(evt);
                     }
-                    onChange(evt.target.value);
+                    onChange(InputDateStringToISODateString(evt.target.value.trim()));
                 }}
                 error={error}
             />

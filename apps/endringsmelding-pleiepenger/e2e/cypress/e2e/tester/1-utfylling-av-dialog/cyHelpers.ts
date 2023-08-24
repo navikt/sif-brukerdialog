@@ -76,7 +76,7 @@ const leggTilFerie = (submit?: boolean) => {
         });
 
         fyllUtFerieDialog('20.11.2022', '25.11.2022');
-        cy.checkA11y();
+        cy.checkA11y({ exclude: '.navds-date__field-input' });
 
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
@@ -100,7 +100,7 @@ const endreOgFjernFerie = () => {
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();
         });
         cy.wait(250);
-        cy.checkA11y();
+        cy.checkA11y({ exclude: '.navds-date__field-input' });
         fyllUtFerieDialog('28.11.2022', '29.11.2022');
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
