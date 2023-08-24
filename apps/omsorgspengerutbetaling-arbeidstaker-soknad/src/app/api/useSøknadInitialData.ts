@@ -11,9 +11,6 @@ import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { Arbeidsgiver } from '../types/Arbeidsgiver';
-import arbeidsgiverEndpoint from './endpoints/arbeidsgiverEndpoint';
-
 export type SøknadInitialData = SøknadContextState;
 
 type SøknadInitialSuccess = {
@@ -46,7 +43,6 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 
 const getSøknadInitialData = async (
     søker: Søker,
-    arbeidsgivere: Arbeidsgiver[],
     lagretSøknadState: SøknadStatePersistence,
 ): Promise<SøknadInitialData> => {
     const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
@@ -58,7 +54,6 @@ const getSøknadInitialData = async (
     return Promise.resolve({
         versjon: SØKNAD_VERSJON,
         søker,
-        arbeidsgivere,
         søknadsdata: {},
         ...lagretSøknadStateToUse,
     });
@@ -70,11 +65,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
     const fetch = async () => {
         try {
             const søker = await søkerEndpoint.fetch();
-            const arbeidsgivere = await arbeidsgiverEndpoint.fetch();
             const lagretSøknadState = await søknadStateEndpoint.fetch();
             setInitialData({
                 status: RequestStatus.success,
-                data: await getSøknadInitialData(søker, arbeidsgivere, lagretSøknadState),
+                data: await getSøknadInitialData(søker, lagretSøknadState),
             });
         } catch (error: any) {
             if (isUnauthorized(error)) {

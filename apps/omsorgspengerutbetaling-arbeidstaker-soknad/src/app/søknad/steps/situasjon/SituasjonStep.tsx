@@ -34,6 +34,11 @@ import ArbeidsforholdSituasjon from './form-parts/ArbeidsforholdSituasjon';
 import ArbeidsforholdUtbetalingsårsak from './form-parts/ArbeidsforholdUtbetalingsårsak';
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 import FormSection from '../../../components/form-section/FormSection';
+import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
+import { useState } from 'react';
+import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import arbeidsgivereEndpoint from '../../../api/endpoints/arbeidsgivereEndpoint';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 
 export enum ArbeidsforholdFormFields {
     navn = 'navn',
@@ -54,13 +59,35 @@ export interface SituasjonFormValues {
     [SituasjonFormFields.arbeidsforhold]: Arbeidsforhold[];
 }
 
+interface LoadState {
+    isLoading: boolean;
+    isLoaded: boolean;
+}
+
 const { FormikWrapper, Form } = getTypedFormComponents<SituasjonFormFields, SituasjonFormValues, ValidationError>();
 
 const SituasjonStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata, arbeidsgivere },
+        state: { søknadsdata },
     } = useSøknadContext();
+
+    const [arbeidsgivere, setArbeidsgivere] = useState<Arbeidsgiver[]>([]);
+    const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
+
+    const { isLoading, isLoaded } = loadState;
+
+    useEffectOnce(() => {
+        const fetchData = async () => {
+            const arbeidsgivere = await arbeidsgivereEndpoint.fetch();
+            setArbeidsgivere(arbeidsgivere);
+            setLoadState({ isLoading: false, isLoaded: true });
+        };
+        if (!isLoaded && !isLoading) {
+            setLoadState({ isLoading: true, isLoaded: false });
+            fetchData();
+        }
+    });
 
     const stepId = StepId.SITUASJON;
     const step = getSøknadStepConfigForStep(stepId);
@@ -86,6 +113,10 @@ const SituasjonStep = () => {
             return lagreSøknadState(state);
         },
     );
+
+    if (isLoading || !isLoaded) {
+        return <LoadingSpinner type="XS" title="Henter arbeidsforhold" />;
+    }
 
     return (
         <SøknadStep stepId={stepId}>

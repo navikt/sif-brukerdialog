@@ -10,7 +10,7 @@ type AAregArbeidsgiver = {
     }[];
 };
 
-const arbeidsgiverEndpoint = {
+const arbeidsgivereEndpoint = {
     fetch: async (): Promise<Arbeidsgiver[]> => {
         const threeMonthsAgo = getNMonthsAgo(3);
         const today: Date = dateToday;
@@ -33,4 +33,4 @@ const arbeidsgiverEndpoint = {
     },
 };
 
-export default arbeidsgiverEndpoint;
+export default arbeidsgivereEndpoint;
