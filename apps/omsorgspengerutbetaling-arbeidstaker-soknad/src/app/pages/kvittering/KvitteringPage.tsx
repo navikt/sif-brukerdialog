@@ -1,4 +1,4 @@
-import { Heading, Link } from '@navikt/ds-react';
+import { Alert, Button, Heading, Panel } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
@@ -6,17 +6,17 @@ import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/atoms/checkmark-icon/C
 import Checklist from '@navikt/sif-common-core-ds/lib/components/lists/checklist/Checklist';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import getLenker from '../../lenker';
 import { useEffect } from 'react';
 import { Søker } from '../../types/Søker';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-
+import { ArbeidsgiverDetaljer } from '../../types/søknadApiData/SøknadApiData';
+import TilArbeidsgiverDokumentListe from './components/TilArbeidsgiverDokumentListe';
+import './kvitteringPage.css';
 interface Props {
     søker: Søker | undefined;
-    søknadsdata: Søknadsdata | undefined;
+    kvitteringInfo?: ArbeidsgiverDetaljer[];
     onUnmount: () => void;
 }
-const KvitteringPage = ({ onUnmount }: Props) => {
+const KvitteringPage = ({ søker, kvitteringInfo, onUnmount }: Props) => {
     const intl = useIntl();
 
     useEffect(() => {
@@ -24,42 +24,83 @@ const KvitteringPage = ({ onUnmount }: Props) => {
             onUnmount();
         };
     });
-
+    // eslint-disable-next-line no-console
+    console.log('kvitteringInfo: ', kvitteringInfo);
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
     return (
-        <Page title={intlHelper(intl, 'page.kvittering.sidetittel')}>
+        <Page title={intlHelper(intl, 'page.confirmation.sidetittel')}>
             <div data-testid="kvittering-page">
                 <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <CheckmarkIcon />
                 </div>
 
-                <Heading level="1" size="large">
-                    <FormattedMessage id="page.kvittering.tittel" />
-                </Heading>
-                <Block margin="xl">
-                    <Heading size="medium" level="2">
-                        <FormattedMessage id="page.kvittering.info.tittel" />
+                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                    <Heading level="1" size="large">
+                        <FormattedMessage id="page.confirmation.tittel" />
                     </Heading>
+                </div>
+
+                <Block margin="xl">
+                    <div className={'infopanelInfoForsvinner'}>
+                        <Block padBottom="m">
+                            <Heading level="2" size="medium">
+                                <FormattedMessage id="page.confirmation.undertittel" />
+                            </Heading>
+                        </Block>
+
+                        <Panel border={true} className={'luftOver'}>
+                            <Alert variant="warning" inline={true}>
+                                <FormattedMessage id="page.conformation.alert.infoForsvinner" />
+
+                                <Block margin="l">
+                                    <FormattedMessage id="page.conformation.alert.infoPrint" />
+                                </Block>
+                            </Alert>
+                        </Panel>
+                    </div>
                     <Checklist>
                         <li>
-                            <FormattedMessage id="page.kvittering.info.1" />
+                            <strong>
+                                <FormattedMessage id="page.conformation.alert.info.1.1" />
+                            </strong>
+                            <p>
+                                <FormattedMessage id="page.conformation.alert.info.1.2" />
+                            </p>
                         </li>
                         <li>
-                            <FormattedMessage id="page.kvittering.info.2" />
+                            <FormattedMessage id="page.conformation.alert.info.2" />
                         </li>
                         <li>
-                            <p>
-                                <FormattedMessage id="page.kvittering.info.3.1" />
-                            </p>
-                            <p>
-                                <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                                    <FormattedMessage id="page.kvittering.info.3.2" />
-                                </Link>
-                            </p>
+                            <FormattedMessage id="page.conformation.alert.info.3" />
+                        </li>
+                        <li>
+                            <FormattedMessage id="page.conformation.alert.info.4" />
                         </li>
                     </Checklist>
                 </Block>
+
+                <div role="presentation" aria-hidden="true" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                    <Block margin="xl" padBottom={'xl'}>
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={(): boolean => {
+                                window.print();
+                                return false;
+                            }}>
+                            <FormattedMessage id="page.conformation.skrivUtKnapp" />
+                        </Button>
+                    </Block>
+                </div>
+                <Block padBottom={'xl'}>
+                    <div className={'kviteringsBlokk'}>
+                        <FormattedMessage id="page.conformation.skrivUt.info" />
+                    </div>
+                </Block>
+                {søker && kvitteringInfo && (
+                    <TilArbeidsgiverDokumentListe søker={søker} arbeidsgivere={kvitteringInfo} />
+                )}
             </div>
         </Page>
     );

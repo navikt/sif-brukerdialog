@@ -6,6 +6,7 @@ import {
     FraværSøknadsdata,
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
+import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
@@ -21,6 +22,7 @@ export enum SøknadContextActionKeys {
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
     SET_SØKNAD_SENDT = 'setSøknadSendt',
+    SET_SØKNAD_KVITTERING_INFO = 'setSøknadKvitteringInfo',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
 }
 
@@ -72,6 +74,11 @@ interface SetSøknadMedlemskap {
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
     payload: OppsummeringFormValues;
+}
+
+interface SetSøknadKvitteringInfo {
+    type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO;
+    payload: ArbeidsgiverDetaljer[];
 }
 
 const resetSøknad = (): ResetSøknad => ({
@@ -127,6 +134,12 @@ const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): Se
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER,
     payload,
 });
+
+const setSøknadKvitteringInfo = (payload: ArbeidsgiverDetaljer[]): SetSøknadKvitteringInfo => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO,
+    payload,
+});
+
 const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE,
     payload,
@@ -145,6 +158,7 @@ export type SøknadContextAction =
     | SetSøknadLegeerklæring
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
+    | SetSøknadKvitteringInfo
     | SetSøknadRoute;
 
 const actionsCreator = {
@@ -159,6 +173,7 @@ const actionsCreator = {
     setSøknadLegeerklæring,
     setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,
+    setSøknadKvitteringInfo,
     setSøknadLagret,
     setSøknadSendt,
 };

@@ -7,7 +7,7 @@ import { SKJEMANAVN } from '../App';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
-import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
+import { ArbeidsgiverDetaljer, SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 
 export const useSendSøknad = () => {
@@ -23,17 +23,18 @@ export const useSendSøknad = () => {
         setIsSubmitting(true);
         søknadEndpoint
             .send(apiData)
-            .then(onSøknadSendSuccess)
+            .then(() => onSøknadSendSuccess(apiData.arbeidsgivere))
             .catch((error) => {
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });
     };
 
-    const onSøknadSendSuccess = async () => {
+    const onSøknadSendSuccess = async (arbeidsgivere: ArbeidsgiverDetaljer[]) => {
         await logSoknadSent(SKJEMANAVN);
         slettMellomlagring();
         setIsSubmitting(false);
+        dispatch(actionsCreator.setSøknadKvitteringInfo(arbeidsgivere));
         dispatch(actionsCreator.setSøknadSendt());
         navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };

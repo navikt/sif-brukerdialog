@@ -21,7 +21,7 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadSendt, søknadsdata, søker, søknadRoute: stateSøknadRoute },
+        state: { søknadSendt, søknadsdata, søker, kvitteringInfo, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -80,7 +80,7 @@ const SøknadRouter = () => {
                 element={
                     <KvitteringPage
                         søker={søker}
-                        søknadsdata={søknadsdata}
+                        kvitteringInfo={kvitteringInfo}
                         onUnmount={() => setShouldResetSøknad(true)}
                     />
                 }
