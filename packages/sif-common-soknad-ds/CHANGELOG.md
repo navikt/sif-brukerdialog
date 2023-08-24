@@ -1,5 +1,18 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.3.0
+
+### Minor Changes
+
+-   026fc373: Oppdatere til versjon 5 av designsystemet aksel
+
+### Patch Changes
+
+-   Updated dependencies [41d0a03c]
+-   Updated dependencies [026fc373]
+    -   @navikt/sif-common-formik-ds@0.3.0
+    -   @navikt/appstatus-react-ds@2.12.0
+
 ## 10.2.1
 
 ### Patch Changes

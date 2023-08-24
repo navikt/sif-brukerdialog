@@ -1,4 +1,3 @@
-import { Modal } from '@navikt/ds-react';
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { allCommonMessages } from '../../src/i18n/allCommonMessages';
@@ -13,9 +12,6 @@ export interface IntlProviderProps {
 
 const StoryWrapper = ({ children }: IntlProviderProps) => {
     React.useEffect(() => {
-        if (Modal.setAppElement) {
-            Modal.setAppElement('#story-wrapper');
-        }
         window.document.body.className = window.document.body.className + ' sif-ds-theme';
     });
 

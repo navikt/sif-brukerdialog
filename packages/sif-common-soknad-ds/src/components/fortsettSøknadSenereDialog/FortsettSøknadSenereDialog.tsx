@@ -16,7 +16,6 @@ const FortsettSøknadSenereDialog = (props: Props) => {
             open={synlig}
             okLabel={intlHelper(intl, 'fortsettSøknadSenereDialog.avbrytSøknadLabel')}
             cancelLabel={intlHelper(intl, 'fortsettSøknadSenereDialog.fortsettSøknadLabel')}
-            closeButton={false}
             title={intlHelper(intl, 'fortsettSøknadSenereDialog.tittel')}
             onConfirm={onFortsettSøknadSenere}
             onCancel={onFortsettSøknad}>
