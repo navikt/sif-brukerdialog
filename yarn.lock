@@ -3970,7 +3970,7 @@ __metadata:
     "@storybook/builder-webpack5": 7.3.1
     "@storybook/manager-webpack5": 6.5.16
     "@testing-library/dom": 9.3.1
-    "@testing-library/jest-dom": 6.0.0
+    "@testing-library/jest-dom": 6.1.1
     "@testing-library/react": 14.0.0
     "@testing-library/react-hooks": 8.0.1
     "@testing-library/user-event": 14.4.3
@@ -4267,7 +4267,7 @@ __metadata:
     "@storybook/react": 7.3.1
     "@storybook/testing-library": 0.2.0
     "@testing-library/dom": 9.3.1
-    "@testing-library/jest-dom": 6.0.0
+    "@testing-library/jest-dom": 6.1.1
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.4.3
     "@types/jest": 29.5.3
@@ -7377,9 +7377,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:6.0.0":
-  version: 6.0.0
-  resolution: "@testing-library/jest-dom@npm:6.0.0"
+"@testing-library/jest-dom@npm:6.1.1":
+  version: 6.1.1
+  resolution: "@testing-library/jest-dom@npm:6.1.1"
   dependencies:
     "@adobe/css-tools": ^4.0.1
     "@babel/runtime": ^7.9.2
@@ -7403,7 +7403,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 9b978e993f084553f8e39215b08f6e09e84a4c78e578db35d361bb4259aed84418f1b17ce52f23ead4d81cc7cad5ae5b18a6596d6d531a6d2252be66409e7167
+  checksum: 1255f8c0c296fcec385cda7f818f1027f3c416e4c8b6d778d45a188aa4a483891baecf709cea6cda8fc4a0440b251a6e5bdaa7924bcea94a58c3052f1b16cc8a
   languageName: node
   linkType: hard
 
