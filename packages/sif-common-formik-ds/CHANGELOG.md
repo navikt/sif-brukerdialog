@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.4.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
 ## 0.3.0
 
 ### Minor Changes
