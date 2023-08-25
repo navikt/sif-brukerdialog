@@ -24,7 +24,6 @@ function FormikModalFormAndList<FieldName, ItemType extends {}, ErrorType>({
     sortFunc,
     onAfterChange,
     dialogWidth,
-    shouldCloseOnOverlayClick,
     error,
     maxItems,
     useFastField,
@@ -43,7 +42,6 @@ function FormikModalFormAndList<FieldName, ItemType extends {}, ErrorType>({
                         error={error || (context ? context.getAndRenderFieldErrorMessage(field, form) : undefined)}
                         maxItems={maxItems}
                         dialogWidth={dialogWidth}
-                        shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
                         confirmDelete={confirmDelete}
                         onChange={(values) => {
                             const updatedValues = sortFunc ? values.sort(sortFunc) : values;
