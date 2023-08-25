@@ -8,26 +8,22 @@ import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {
     erFortsattFrilanserValue?: YesOrNo;
-    frilanstype: string;
 }
 
-const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({
-    erFortsattFrilanserValue,
-    frilanstype: Frilanstype,
-}) => {
+const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({ erFortsattFrilanserValue }) => {
     const intl = useIntl();
     return (
         <ArbFriFormComponents.RadioGroup
             name={FrilansFormField.erFortsattFrilanser}
             data-testid="erFortsattFrilanser"
-            legend={intlHelper(intl, `frilanser.erFortsattFrilanser.${Frilanstype}.spm`)}
+            legend={intlHelper(intl, `frilanser.erFortsattFrilanser.spm`)}
             validate={(value) => {
                 const error = getYesOrNoValidator()(value);
                 return error
                     ? {
                           key: `${error}`,
                           values: {
-                              frilanstype: intlHelper(intl, `validation.frilans.erFortsattFrilanser.${Frilanstype}`),
+                              frilanstype: intlHelper(intl, `validation.frilans.erFortsattFrilanser`),
                           },
                       }
                     : undefined;

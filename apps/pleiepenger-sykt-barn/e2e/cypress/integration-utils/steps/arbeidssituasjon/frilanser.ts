@@ -34,14 +34,14 @@ export const fyllUtArbeidssituasjonErIkkeFrilanser = () => {
 
 export const fyllUtArbeidssituasjonFrilanserKunHonorarMisterIkkeHonorar = () => {
     selectRadioYes('frilans.harHattInntektSomFrilanser');
-    selectRadioByLabel('Jeg får honorar for verv');
+    selectRadioByLabel('Jeg mottar honorar');
     selectRadioNo('frilans.misterHonorar');
 };
 
 export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = () => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
         selectRadioYes('frilans.harHattInntektSomFrilanser');
-        selectRadioByLabel('Jeg jobber som frilanser og får honorar for verv');
+        selectRadioByLabel('Jeg jobber både som frilanser og mottar honorar');
 
         const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
         cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();

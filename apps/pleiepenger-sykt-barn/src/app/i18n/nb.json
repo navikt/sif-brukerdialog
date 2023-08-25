@@ -539,10 +539,7 @@
     "arbeidsforhold.erAnsatt.spm": "Stemmer det at du er ansatt hos {navn} i perioden du søker for?",
     "arbeidsforhold.sluttetFørSøknadsperiode.spm": "Sluttet du hos {navn} før {fraDato}?",
     "arbeidsforhold.avsluttet.info": "Sluttdato var innenfor perioden du søker om pleiepenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}",
-    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm": "Hvor mange timer jobber du normalt per uke {hvor}?",
-    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.FRILANS.spm": "Oppgi hvor mange timer du normalt {jobber} som frilanser. {infoStønadGodtgjørelse} Du må oppgi tiden i et snitt per uke:",
-    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.FRILANS_HONORAR.spm": "Oppgi hvor mange timer du normalt {jobber} som frilanser og normalt bruker på det du får honorar for. { infoStønadGodtgjørelse } Du må oppgi tiden i et snitt per uke:",
-    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.HONORAR.spm": "Oppgi hvor mange timer du normalt {bruker} på det du får honorar for. {infoStønadGodtgjørelse} Du må oppgi tiden i et snitt per uke:",
+    "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm": "Hvor mange timer jobber du {hvor}? Oppgi tiden i et snitt per uke:?",
     "arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse": "Du skal ikke inkludere timer for omsorgsstønad/fosterhjemgodtgjørelse.",
     "arbeidsforhold.utledet": "timer i uka",
 
@@ -714,24 +711,19 @@
     "selvstendig.list.leggTilLabel": "Legg til næringsvirksomhet",
     "selvstendig.dialog.tittel": "Næringsvirksomhet",
 
-    "frilanser.harDuHattInntekt.spm": "Jobber du som frilanser eller får du honorar for verv?",
+    "frilanser.harDuHattInntekt.spm": "Jobber du som frilanser eller mottar du honorar?",
     "frilanser.harDuHattInntekt.hvaBetyr.spm": "Hva betyr dette?",
-    "frilanser.harDuHattInntekt.hvaBetyr.info.1": "Hvis du jobber som frilanser eller mottar frilansinntekt, skal dette med i vurderingen av hvor mye pleiepenger du kan få. Dette er fordi du skal få kompensert for et eventuelt tap av denne inntekten.",
+    "frilanser.harDuHattInntekt.hvaBetyr.info.1": "Du skal svare ja på dette spørsmålet hvis du jobber som frilanser og/eller mottar honorar for utført oppdrag. Du kan få kompensert et eventuelt tap av denne inntekten.",
+    "frilanser.harDuHattInntekt.hvaBetyr.info.2": "Et honorar kan for eksempel være en utbetaling i forbindelse med et styreverv, eller som trener for et idrettslag. Honorar blir også ofte brukt av frie yrker som forfattere, fotografer og kunstnere. Mottaker av honorar er ikke fast ansatt, med vanlige faste lønnsvilkår.",
 
     "frilanser.harDuAndreFrilansoppdrag.spm": "Har du andre frilansoppdrag du har fravær fra i perioden du søker for?",
-    "frilanser.startdato.FRILANS.spm": "Når startet du å jobbe som frilanser?",
-    "frilanser.startdato.FRILANS_HONORAR.spm": "Når begynte du å jobbe som frilanser/startet å få honorar. Det er datoen for det første du begynte med som vi er ute etter her:",
-    "frilanser.startdato.HONORAR.spm": "Når startet du å få honorar?",
+    "frilanser.startdato.spm": "Når startet du å jobbe som frilanser?",
 
-    "frilanser.erFortsattFrilanser.FRILANS.spm": "Jobber du fortsatt som frilanser?",
-    "frilanser.erFortsattFrilanser.FRILANS_HONORAR.spm": "Jobber du fortsatt som frilanser og får honorar fra verv?",
-    "frilanser.erFortsattFrilanser.HONORAR.spm": "Får du fortsatt honorar fra verv?",
+    "frilanser.erFortsattFrilanser.spm": "Jobber du fortsatt som frilanser?",
     "frilanser.ingenFrilans.info": "Hvis det ikke stemmer at du skal være registrert med frilansoppdrag i AA-registeret må du be de som har gjort registreringen om å oppdatere informasjonen. Du kan likevel fortsette å fylle ut og sende inn søknaden.",
 
-    "frilanser.sluttdato.FRILANS.spm": "Når sluttet du å jobbe som frilanser?",
-    "frilanser.sluttdato.FRILANS_HONORAR.spm": "Oppgi fra når du sluttet å jobbe som frilanser/sluttet å få honorar:",
-    "frilanser.sluttdato.HONORAR.spm": "Når sluttet du å få honorar?",
-
+    "frilanser.sluttdato.spm": "Når sluttet du å jobbe som frilanser?",
+    "frilanser.sluttdato.info": "Hvis du ikke lenger jobber som frilanser, må du oppgi når du sluttet. Hvis du fortsatt jobber som frilanser, kan du la feltet stå tomt.",
     "snF.ArbeidsforholdDetaljer.hvaBetyr.spm": "Hva betyr dette?",
     "snF.ArbeidsforholdDetaljer.hvaBetyr.frilanser.info": "Hvis du jobber som frilanser flere steder skal du her svare samlet for alle oppdragene. Hvis du f.eks. skal jobbe i en av to frilansforhold skal du her svare \"Ja, men jeg skal jobbe mindre enn normalt\".",
     "snF.ArbeidsforholdDetaljer.hvaBetyr.SN.info": "Hvis du jobber som selvstendig i flere virksomheter skal du her svare samlet for alle virksomhetene dine. Hvis du f.eks. skal jobbe i en av to virksomheter skal du her svare \"Ja, men jeg skal jobbe mindre enn normalt\".",
@@ -741,7 +733,7 @@
     "frilanser.misterHonorar.tittle": "Mister du honorar fordi du må pleie barnet?",
     "frilanser.misterHonorar.description.tittel": "Hva betyr dette?",
     "frilanser.misterHonorar.description": "Du kan ha rett til å få kompensert tap av honorar hvis du skal pleie et sykt barn. Om du beholder alle honorar og verv i perioden du pleier barnet er det helt i orden, du får bare ikke kompensert noe ettersom du jo ikke mister noe.",
-    "frilanser.misterHonorar.nei.info": "Det er helt i orden at du beholder verv og får honorar mens du har pleiepenger.",
+
     "frilanser.hjelpetekst.spm": "Hva betyr det å være frilanser?",
     "frilanser.hjelpetekst.1": "Du er frilanser når du mottar lønn for enkeltstående oppdrag uten å være fast eller midlertidig ansatt hos den du utfører oppdraget for. Hvis du er usikker på om du er frilanser må du sjekke om oppdragene dine er registrert som frilansoppdrag på skatteetaten sine nettsider.",
 
@@ -824,18 +816,14 @@
     "validation.frilans.frilanstype.notChecked": "Du må velge hva som er din situasjon som frilanser.",
     "validation.frilans.misterHonorar.yesOrNoIsUnanswered": "Du må svare ja eller nei på om mister du honorar for verv i perioden du søker for.",
 
-    "validation.frilans.startdato.FRILANS": "begynte å jobbe som frilanser",
-    "validation.frilans.startdato.HONORAR": "startet å få honorar",
-    "validation.frilans.startdato.FRILANS_HONORAR": "begynte å jobbe som frilanser/startet å få honorar",
+    "validation.frilans.startdato": "begynte å jobbe som frilanser",
 
     "validation.frilans.startdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilanstype}. Skriv inn eller velg dato fra kalenderen.",
     "validation.frilans.startdato.dateHasInvalidFormat": "Du må oppgi datoen for når du {frilanstype} i et gyldig format. Gyldig format er dd.mm.åååå.",
     "validation.frilans.startdato.dateIsAfterMax": "Datoen for når du {frilanstype} kan ikke være etter dagens dato.",
     "validation.frilans.startdato.startetEtterSøknadsperiode": "Du har oppgitt at du startet {frilanstype} etter perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
 
-    "validation.frilans.sluttdato.FRILANS": "sluttet å jobbe som frilanser",
-    "validation.frilans.sluttdato.HONORAR": "sluttet å få honorar",
-    "validation.frilans.sluttdato.FRILANS_HONORAR": "sluttet å jobbe som frilanser/sluttet å få honorar",
+    "validation.frilans.sluttdato": "sluttet å jobbe som frilanser",
 
     "validation.frilans.sluttdato.sluttetFørSøknadsperiode": "Du har oppgitt at du {frilanstype} før perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
     "validation.frilans.sluttdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilanstype}. Skriv inn eller velg dato fra kalenderen.",
@@ -843,9 +831,7 @@
     "validation.frilans.sluttdato.dateIsAfterMax": "Datoen for når du {frilanstype} kan ikke være etter dagens dato.",
     "validation.frilans.sluttdato.dateIsBeforeMin": "Datoen for når du {frilanstype} kan ikke være før datoen du startet.",
 
-    "validation.frilans.erFortsattFrilanser.FRILANS": "jobber som frilanser",
-    "validation.frilans.erFortsattFrilanser.HONORAR": "får honorar fra verv",
-    "validation.frilans.erFortsattFrilanser.FRILANS_HONORAR": "jobber som frilanser og får honorar fra verv",
+    "validation.frilans.erFortsattFrilanser": "jobber som frilanser",
     "validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du fortsatt {frilanstype}.",
 
     "validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du er selvstendig næringsdrivende i perioden du søker for.",

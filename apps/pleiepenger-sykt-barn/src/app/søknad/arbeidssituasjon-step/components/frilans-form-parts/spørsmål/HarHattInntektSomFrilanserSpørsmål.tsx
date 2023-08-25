@@ -30,6 +30,9 @@ const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({ 
                                 <p>
                                     <FormattedMessage id="frilanser.harDuHattInntekt.hvaBetyr.info.1" />
                                 </p>
+                                <p>
+                                    <FormattedMessage id="frilanser.harDuHattInntekt.hvaBetyr.info.2" />
+                                </p>
                             </>
                         )}
                         {!søkerHarFrilansoppdrag && (

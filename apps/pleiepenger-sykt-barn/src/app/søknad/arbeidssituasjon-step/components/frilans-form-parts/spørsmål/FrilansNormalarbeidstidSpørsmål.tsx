@@ -8,6 +8,7 @@ import { ArbeidsforholdFrilanserFormValues } from '../../../../../types/søknad-
 import { FrilansFormField, Frilanstype } from '../../../../../types/søknad-form-values/FrilansFormValues';
 import { getArbeidsforholdIntlValues } from '../../../utils/arbeidsforholdIntlValues';
 import { getArbeiderNormaltTimerIUkenValidator } from '../../../validation/arbeiderNormaltTimerIUkenValidator';
+import { InfoArbeiderNormaltTimerFrilanser } from '../../info/InfoArbeiderNormaltTimerIUken';
 
 interface Props {
     fieldName: FrilansFormField;
@@ -17,7 +18,6 @@ interface Props {
     misterHonorar?: YesOrNo;
     mottarStønadGodtgjørelse?: boolean;
     inputTestId?: string;
-    description: React.ReactNode;
 }
 
 const FormComponents = getTypedFormComponents<FrilansFormField, ArbeidsforholdFrilanserFormValues, ValidationError>();
@@ -29,7 +29,6 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     arbeidsforhold,
     mottarStønadGodtgjørelse,
     inputTestId,
-    description,
 }) => {
     const intl = useIntl();
     const intlValues = getArbeidsforholdIntlValues(intl, {
@@ -44,14 +43,15 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
     );
     return (
         <FormComponents.NumberInput
-            label={intlHelper(intl, `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.${frilanstype}.spm`, {
+            label={intlHelper(intl, `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`, {
                 infoStønadGodtgjørelse: mottarStønadGodtgjørelse ? tekstStønadGodtgjørelse : '',
+                hvor: 'som frilanser',
                 jobber: erAktivtArbeidsforhold ? 'jobber' : 'jobbet',
                 bruker: erAktivtArbeidsforhold ? 'bruker' : 'brukte',
             })}
             data-testid={inputTestId}
             name={fieldName}
-            description={description}
+            description={<InfoArbeiderNormaltTimerFrilanser frilanstype={frilanstype} />}
             width="xs"
             validate={getArbeiderNormaltTimerIUkenValidator({
                 ...intlValues,
