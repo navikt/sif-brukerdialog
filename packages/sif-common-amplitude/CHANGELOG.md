@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.20.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
 ## 2.19.0
 
 ### Minor Changes
