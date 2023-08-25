@@ -43,6 +43,7 @@ const DevFooter: React.FunctionComponent = () => {
             </div>
             <Modal
                 open={showModal}
+                portal={true}
                 onClose={() => setShowModal(false)}
                 header={{
                     heading: 'Velg scenario som skal brukes',

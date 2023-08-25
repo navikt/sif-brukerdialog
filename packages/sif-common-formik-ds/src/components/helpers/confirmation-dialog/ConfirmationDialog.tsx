@@ -16,6 +16,7 @@ const ConfirmationDialog: React.FunctionComponent<Props> = (props: Props) => {
     return props.open ? (
         <Modal
             {...modalProps}
+            portal={true}
             onClose={onCancel}
             open={props.open}
             header={{

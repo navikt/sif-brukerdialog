@@ -98,6 +98,7 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
         <>
             {modalState.isVisible ? (
                 <Modal
+                    portal={true}
                     open={modalState.isVisible}
                     onClose={resetModal}
                     className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
