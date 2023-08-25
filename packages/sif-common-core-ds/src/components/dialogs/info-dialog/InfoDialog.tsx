@@ -3,7 +3,6 @@ import React from 'react';
 import ButtonRow from '../../../atoms/button-row/ButtonRow';
 import '../dialogs.scss';
 import './infoDialog.scss';
-import { createPortal } from 'react-dom';
 
 interface OwnProps {
     children: React.ReactNode;
@@ -15,31 +14,29 @@ interface OwnProps {
 type Props = OwnProps & ModalProps;
 
 const InfoDialog: React.FunctionComponent<Props> = ({ children, okButton, title, ...props }: Props) =>
-    props.open
-        ? createPortal(
-              <Modal
-                  className={`infoDialog ${props.className}`}
-                  {...props}
-                  header={{
-                      heading: title,
-                      label: props['aria-label'],
-                  }}>
-                  <Modal.Body className="sif--modal__content" title={props['aria-label']}>
-                      <BodyLong as="div" className="infoDialog__content">
-                          {children}
-                      </BodyLong>
+    props.open ? (
+        <Modal
+            className={`infoDialog ${props.className}`}
+            portal={true}
+            {...props}
+            header={{
+                heading: title,
+                label: props['aria-label'],
+            }}>
+            <Modal.Body className="sif--modal__content" title={props['aria-label']}>
+                <BodyLong as="div" className="infoDialog__content">
+                    {children}
+                </BodyLong>
 
-                      {okButton && (
-                          <ButtonRow align="left">
-                              <Button variant="primary" onClick={() => props.onClose}>
-                                  {okButton.label}
-                              </Button>
-                          </ButtonRow>
-                      )}
-                  </Modal.Body>
-              </Modal>,
-              document.body
-          )
-        : null;
+                {okButton && (
+                    <ButtonRow align="left">
+                        <Button variant="primary" onClick={() => props.onClose}>
+                            {okButton.label}
+                        </Button>
+                    </ButtonRow>
+                )}
+            </Modal.Body>
+        </Modal>
+    ) : null;
 
 export default InfoDialog;
