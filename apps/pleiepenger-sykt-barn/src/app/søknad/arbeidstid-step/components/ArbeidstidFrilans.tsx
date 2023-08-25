@@ -38,7 +38,7 @@ const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
             parentFieldName={FrilansFormField.arbeidsforhold}
             normalarbeidstid={normalarbeidstid}
             intlValues={intlValues}
-            tittel="Jobb som frilanser, oppdragstaker og honorarer"
+            tittel="Frilans og oppdrag som regnes som frilansoppdrag"
             info={
                 <ArbeidIPeriodeInfo
                     søkerFremITid={søkerFremITid}

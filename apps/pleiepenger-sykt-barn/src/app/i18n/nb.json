@@ -287,16 +287,16 @@
     "steg.arbeidssituasjon.intro": "Vi har funnet disse arbeidsforholdene registrert på deg.",
     "steg.arbeidssituasjon.info.tittel": "Mangler det et arbeidsforhold her?",
 
-    "steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm": "Mottar du omsorgsstønad eller fosterhjemsgodtgjørelse?",
+    "steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm": "Mottar du fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen?",
     "steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description.tittel": "Hva betyr dette?",
-    "steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description": "Vi må vite om du mottar omsorgsstønad eller fosterhjemsgodtgjørelse fordi det regnes som et frilansoppdrag. Det betyr at vi må se på om dette må inn i beregningen av pleiepengene dine.",
-    "steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm": "Mottar du stønad/godtgjørelse i hele perioden du søker for?",
-    "steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm": "Starter du å motta stønad/godtgjørelse underveis i perioden du søker for?",
+    "steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description": "Fosterhjemsgodtgjørelse og omsorgsstønad regnes som et frilansinntekt, og kan påvirke hvor mye du får i pleiepenger. ",
+    "steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm": "Mottar du denne stønaden eller godtgjørelsen gjennom hele perioden du søker om?",
+    "steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm": "Starter stønaden eller godtgjørelsen underveis i pleiepengeperioden din?",
     "steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.startdato": "Startdato:",
-    "steg.arbeidssituasjon.stønadGodtgjørelse.slutterUndeveis.spm": "Slutter du å motta stønad/godtgjørelse underveis i perioden du søker for?",
+    "steg.arbeidssituasjon.stønadGodtgjørelse.slutterUndeveis.spm": "Stopper stønaden eller godtgjørelsen underveis i pleiepengeperioden din?",
     "steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato": "Sluttdato:",
 
-    "steg.arbeidssituasjon.frilanser.tittel": "Frilanser, oppdragstaker og honorarer",
+    "steg.arbeidssituasjon.frilanser.tittel": "Frilans og oppdrag som regnes som frilansoppdrag",
 
     "frilansoppdragInfo.tittel": "Du har {antall,  plural, one {frilansoppdrag} other {frilansoppdragene}} registrert på deg i AA-registeret.",
     "frilansoppdragInfo.tittel.1": "Hvis du har omsorgsstønad, fosterhjemsgodtgjørelse, er dette også registrert som frilansoppdrag. Det samme gjelder hvis du har et verv som du får honorar for.",

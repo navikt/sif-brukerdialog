@@ -20,7 +20,7 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
         return (
             <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'}>
                 <ul>
-                    <li>Jeg mottar ikke omsorgsstønad eller fosterhjemsgodtgjørelse</li>
+                    <li>Jeg mottar ikke fosterhjemgodtgjørelse, eller omsorgsstønad fra kommunen</li>
                 </ul>
             </SummaryBlock>
         );
@@ -30,9 +30,9 @@ const StønadGodtgjørelseSummary = ({ stønadGodtgjørelse }: Props) => {
         <SummaryBlock header={'Omsorgsstønad eller fosterhjemsgodtgjørelse'}>
             <ul>
                 {mottarStønadGodtgjørelseIHelePerioden ? (
-                    <li>{'Jeg mottar stønad/godtgjørelse i hele perioden jeg søker for'}</li>
+                    <li>Jeg mottar stønad eller godtgjørelsen gjennom hele perioden jeg søker om</li>
                 ) : (
-                    <li>{'Jeg mottar stønad/godtgjørelse i deler av perioden jeg søker for'}</li>
+                    <li>Jeg mottar stønad eller godtgjørelsen i deler av perioden jeg søker om</li>
                 )}
                 {mottarStønadGodtgjørelseIHelePerioden === false && _starterUndeveis && startdato && (
                     <li>{`Startet ${dateFormatter.full(ISODateToDate(startdato))}`}</li>
