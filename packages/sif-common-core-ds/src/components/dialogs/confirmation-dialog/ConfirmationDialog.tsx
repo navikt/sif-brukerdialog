@@ -13,7 +13,7 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
     cancelLabel?: string;
 }
 
-const ConfirmationDialog = (props: Props) => {
+const ConfirmationDialog: React.FunctionComponent<Props> = (props: Props) => {
     const intl = useIntl();
     const { title, onCancel, onConfirm: onOk, cancelLabel, okLabel, children, ...modalProps } = props;
     return props.open
