@@ -15,7 +15,6 @@ function ExampleListAndDialog<FieldName>({ name, labels, validate }: Props<Field
             dialogWidth="wide"
             labels={labels}
             validate={validate ? (value) => validate(value, name) : undefined}
-            shouldCloseOnOverlayClick={false}
             maxItems={3}
             formRenderer={() => <>This is the form</>}
             listRenderer={() => <Fieldset legend={'Add some items'}>This is the list</Fieldset>}
