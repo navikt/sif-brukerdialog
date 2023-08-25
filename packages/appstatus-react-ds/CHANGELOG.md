@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.13.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
 ## 2.12.0
 
 ### Minor Changes

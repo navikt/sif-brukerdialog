@@ -1,7 +1,6 @@
 import { Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 import './endreArbeidstidModal.css';
-import { createPortal } from 'react-dom';
 
 interface Props {
     title: string;
@@ -11,25 +10,21 @@ interface Props {
 }
 
 const EndreArbeidstidModal: FunctionComponent<Props> = ({ children, title, isVisible = false, onClose }) => {
-    return isVisible
-        ? createPortal(
-              <Modal
-                  open={isVisible}
-                  onClose={onClose}
-                  className="endreArbeidstidModal"
-                  aria-label="Endre arbeidstid dialog"
-                  header={{
-                      heading: title,
-                  }}>
-                  <Modal.Body>
-                      <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
-                          {children}
-                      </div>
-                  </Modal.Body>
-              </Modal>,
-              document.body
-          )
-        : null;
+    return isVisible ? (
+        <Modal
+            portal={true}
+            open={isVisible}
+            onClose={onClose}
+            className="endreArbeidstidModal"
+            aria-label="Endre arbeidstid dialog"
+            header={{
+                heading: title,
+            }}>
+            <Modal.Body>
+                <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>{children}</div>
+            </Modal.Body>
+        </Modal>
+    ) : null;
 };
 
 export default EndreArbeidstidModal;
