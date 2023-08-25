@@ -1,4 +1,3 @@
-import { Modal } from '@navikt/ds-react';
 import { createRoot } from 'react-dom/client';
 import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude/lib';
@@ -18,7 +17,6 @@ import './app.less';
 export const APPLICATION_KEY = 'pleiepengesoknad';
 export const SKJEMANAVN = 'Søknad om pleiepenger';
 
-Modal.setAppElement('#app');
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
 const ensureBaseNameForReactRouter = (routerBaseUrl: string) => {

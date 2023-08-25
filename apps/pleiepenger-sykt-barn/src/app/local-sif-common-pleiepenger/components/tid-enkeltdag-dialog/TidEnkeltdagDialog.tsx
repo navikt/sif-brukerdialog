@@ -1,9 +1,9 @@
-import { Heading, Modal } from '@navikt/ds-react';
-import ModalContent from '@navikt/ds-react/esm/modal/ModalContent';
+import { Modal } from '@navikt/ds-react';
 import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 import './styles/tidEnkeltdagDialog.less';
+import { createPortal } from 'react-dom';
 
 export interface TidEnkeltdagDialogProps {
     open?: boolean;
@@ -19,20 +19,23 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
     if (!open) {
         return null;
     }
-    return open ? (
-        <Modal
-            open={open}
-            onClose={formProps.onCancel}
-            shouldCloseOnOverlayClick={false}
-            className="tidEnkeltdagDialog">
-            <ModalContent>
-                <Heading level="1" size="medium" style={{ paddingRight: '3rem', minWidth: '14rem' }}>
-                    {`${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`}
-                </Heading>
-                <TidEnkeltdagForm {...formProps} />
-            </ModalContent>
-        </Modal>
-    ) : null;
+    return open
+        ? createPortal(
+              <Modal
+                  open={open}
+                  onClose={formProps.onCancel}
+                  className="tidEnkeltdagDialog"
+                  header={{
+                      heading: `${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`,
+                      closeButton: true,
+                  }}>
+                  <Modal.Body>
+                      <TidEnkeltdagForm {...formProps} />
+                  </Modal.Body>
+              </Modal>,
+              document.body
+          )
+        : null;
 };
 
 export default TidEnkeltdagDialog;

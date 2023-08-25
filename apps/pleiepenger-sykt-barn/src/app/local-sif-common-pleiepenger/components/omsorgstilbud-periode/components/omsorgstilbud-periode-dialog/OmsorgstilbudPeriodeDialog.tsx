@@ -1,11 +1,12 @@
-import { Heading, Modal } from '@navikt/ds-react';
-import ModalContent from '@navikt/ds-react/esm/modal/ModalContent';
+import { Modal } from '@navikt/ds-react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import OmsorgstilbudPeriodeForm, {
     OmsorgstilbudPeriodeFormProps,
 } from '../omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 import './omsorgstilbudPeriodeDialog.less';
+import { createPortal } from 'react-dom';
 
 interface Props {
     isOpen: boolean;
@@ -13,20 +14,24 @@ interface Props {
 }
 
 const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ formProps, isOpen }) => {
-    return isOpen ? (
-        <Modal
-            open={isOpen}
-            onClose={formProps.onCancel}
-            shouldCloseOnOverlayClick={false}
-            className="omsorgstilbudPeriodeDialog">
-            <ModalContent>
-                <Heading level="1" size="medium" style={{ paddingRight: '3rem', minWidth: '14rem' }}>
-                    <FormattedMessage id="omsorgstilbudPeriodeDialog.contentLabel" />
-                </Heading>
-                <OmsorgstilbudPeriodeForm {...formProps} />
-            </ModalContent>
-        </Modal>
-    ) : null;
+    const intl = useIntl();
+    return isOpen
+        ? createPortal(
+              <Modal
+                  open={isOpen}
+                  onClose={formProps.onCancel}
+                  className="omsorgstilbudPeriodeDialog"
+                  header={{
+                      heading: intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel'),
+                      closeButton: true,
+                  }}>
+                  <Modal.Body>
+                      <OmsorgstilbudPeriodeForm {...formProps} />
+                  </Modal.Body>
+              </Modal>,
+              document.body
+          )
+        : null;
 };
 
 export default OmsorgstilbudPeriodeDialog;
