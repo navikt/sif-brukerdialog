@@ -101,6 +101,12 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     kvitteringInfo: action.payload,
                 };
 
+            case SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_VALUES:
+                return {
+                    ...state,
+                    tempFormValues: action.payload,
+                };
+
             case SøknadContextActionKeys.SET_SØKNAD_SENDT:
                 return {
                     ...state,

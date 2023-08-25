@@ -53,7 +53,7 @@ const getForholdSøknadsdata = (forhold: Arbeidsforhold): ArbeidforholdSøknadsd
                 case Utbetalingsårsak.nyoppstartetHosArbeidsgiver:
                     if (!årsakNyoppstartet) {
                         appSentryLogger.logError(
-                            'getForholdSøknadsdata: Utbetalingsårsak.nyoppstartetHosArbeidsgiver, årsakNyoppstartet === undefined '
+                            'getForholdSøknadsdata: Utbetalingsårsak.nyoppstartetHosArbeidsgiver, årsakNyoppstartet === undefined ',
                         );
                         return undefined;
                     }
@@ -70,7 +70,7 @@ const getForholdSøknadsdata = (forhold: Arbeidsforhold): ArbeidforholdSøknadsd
                 case Utbetalingsårsak.konfliktMedArbeidsgiver:
                     if (!konfliktForklaring) {
                         appSentryLogger.logError(
-                            'getForholdSøknadsdata: Utbetalingsårsak.konfliktMedArbeidsgiver, konfliktForklaring === undefined '
+                            'getForholdSøknadsdata: Utbetalingsårsak.konfliktMedArbeidsgiver, konfliktForklaring === undefined ',
                         );
                         return undefined;
                     }
@@ -90,13 +90,13 @@ const getForholdSøknadsdata = (forhold: Arbeidsforhold): ArbeidforholdSøknadsd
 };
 
 export const getSituasjonSøknadsdataFromFormValues = (
-    values: SituasjonFormValues
+    values: SituasjonFormValues,
 ): SituasjonSøknadsdata | undefined => {
     const { arbeidsforhold } = values;
 
     if (!arbeidsforhold || arbeidsforhold.length === 0) {
         appSentryLogger.logError(
-            'getSituasjonSøknadsdataFromFormValues: !arbeidsforhold || arbeidsforhold.length === 0'
+            'getSituasjonSøknadsdataFromFormValues: !arbeidsforhold || arbeidsforhold.length === 0',
         );
         return undefined;
     }
@@ -170,7 +170,7 @@ const getDefaultForhold = (forhold?: ArbeidforholdSøknadsdata) => {
 
 export const getSituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ): SituasjonFormValues => {
     const { situasjon } = søknadsdata;
 

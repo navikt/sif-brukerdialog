@@ -7,6 +7,7 @@ import {
 } from '../../../types/søknadsdata/Søknadsdata';
 import { OppsummeringFormValues } from '../../steps/oppsummering/OppsummeringStep';
 import { ArbeidsgiverDetaljer } from '../../../types/søknadApiData/SøknadApiData';
+import { TempFormValues } from '../../../types/SøknadContextState';
 
 export enum SøknadContextActionKeys {
     RESET_SØKNAD = 'resetSøknad',
@@ -19,6 +20,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_MEDLEMSKAP = 'setSøknadMedlemskap',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
+    SET_SØKNAD_TEMP_FORM_VALUES = 'setSøknadTempFormValues',
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
     SET_SØKNAD_SENDT = 'setSøknadSendt',
@@ -74,6 +76,11 @@ interface SetSøknadMedlemskap {
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
     payload: OppsummeringFormValues;
+}
+
+interface SetSøknadTempFormValues {
+    type: SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_VALUES;
+    payload: TempFormValues;
 }
 
 interface SetSøknadKvitteringInfo {
@@ -140,6 +147,11 @@ const setSøknadKvitteringInfo = (payload: ArbeidsgiverDetaljer[]): SetSøknadKv
     payload,
 });
 
+const setSøknadTempFormValues = (payload: TempFormValues): SetSøknadTempFormValues => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_VALUES,
+    payload,
+});
+
 const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE,
     payload,
@@ -158,6 +170,7 @@ export type SøknadContextAction =
     | SetSøknadLegeerklæring
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
+    | SetSøknadTempFormValues
     | SetSøknadKvitteringInfo
     | SetSøknadRoute;
 
@@ -174,6 +187,7 @@ const actionsCreator = {
     setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,
     setSøknadKvitteringInfo,
+    setSøknadTempFormValues,
     setSøknadLagret,
     setSøknadSendt,
 };
