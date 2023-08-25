@@ -14,7 +14,7 @@ interface OwnProps {
 }
 type Props = OwnProps & ModalProps;
 
-const InfoDialog = ({ children, okButton, title, ...props }: Props) =>
+const InfoDialog: React.FunctionComponent<Props> = ({ children, okButton, title, ...props }: Props) =>
     props.open
         ? createPortal(
               <Modal
