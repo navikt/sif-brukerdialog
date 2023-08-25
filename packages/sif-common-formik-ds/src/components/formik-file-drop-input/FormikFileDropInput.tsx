@@ -1,43 +1,42 @@
 import { TextFieldProps } from '@navikt/ds-react';
 import React from 'react';
+import { Accept } from 'react-dropzone';
 import { ArrayHelpers, Field, FieldArray, FieldProps } from 'formik';
 import { FormError, TypedFormInputValidationProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
-import FileInput from './file-input/FileInput';
-
-/**
- * Denne er deprecated.
- * Bruk heller FileDropInput - denne ligger er fortsatt
- * her pga. bakoverkompabilitet på accept prop.
- * */
+import FileDropInput from './file-drop-input/FileDropInput';
 
 interface OwnProps<FieldName> {
     name: FieldName;
     legend: string;
     description?: React.ReactNode;
     buttonLabel: string;
-    accept: string;
+    acceptLabel?: string;
+    rejectLabel?: string;
+    accept?: Accept;
     multiple?: boolean;
     error?: FormError;
     onFilesSelect: (files: File[], arrayHelpers: ArrayHelpers) => void;
     onClick?: () => void;
 }
 
-export type FormikFileInputProps<FieldName> = OwnProps<FieldName> & Omit<TextFieldProps, 'label'>;
+export type FormikFileDropInputProps<FieldName> = OwnProps<FieldName> & Omit<TextFieldProps, 'label' | 'accept'>;
 
-function FormikFileInput<FieldName, ErrorType>({
+function FormikFileDropInput<FieldName, ErrorType>({
     name,
     legend,
     description,
     buttonLabel,
+    acceptLabel,
+    rejectLabel,
     accept,
     multiple = true,
     validate,
     onFilesSelect,
     error,
     onClick,
-}: FormikFileInputProps<FieldName> & TypedFormInputValidationProps<FieldName, ErrorType>) {
+}: FormikFileDropInputProps<FieldName> & TypedFormInputValidationProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
 
     return (
@@ -47,12 +46,14 @@ function FormikFileInput<FieldName, ErrorType>({
                 <Field validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
                     {({ field, form }: FieldProps) => {
                         return (
-                            <FileInput
+                            <FileDropInput
                                 id={field.name}
                                 name={field.name}
                                 legend={legend}
                                 description={description}
                                 buttonLabel={buttonLabel}
+                                acceptLabel={acceptLabel}
+                                rejectLabel={rejectLabel}
                                 onClick={onClick}
                                 onFilesSelect={(files) => onFilesSelect(files, arrayHelpers)}
                                 multiple={multiple}
@@ -67,4 +68,4 @@ function FormikFileInput<FieldName, ErrorType>({
     );
 }
 
-export default FormikFileInput;
+export default FormikFileDropInput;

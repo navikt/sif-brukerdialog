@@ -1,8 +1,9 @@
-import { BodyLong, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
+import { BodyLong, Button, Modal, ModalProps } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import intlHelper from '../../../utils/intlUtils';
 import ButtonRow from '../../../atoms/button-row/ButtonRow';
+import intlHelper from '../../../utils/intlUtils';
 import './confirmationDialog.scss';
+import { createPortal } from 'react-dom';
 
 export interface Props extends Omit<ModalProps, 'onClose'> {
     title: string;
@@ -15,35 +16,38 @@ export interface Props extends Omit<ModalProps, 'onClose'> {
 const ConfirmationDialog = (props: Props) => {
     const intl = useIntl();
     const { title, onCancel, onConfirm: onOk, cancelLabel, okLabel, children, ...modalProps } = props;
-    return (
-        <Modal {...modalProps} closeButton={false} onClose={onCancel}>
-            {props.open && (
-                <Modal.Content className="confirmationDialog">
-                    <div
-                        style={{
-                            marginTop: 'var(--a-spacing-1)',
-                            paddingBottom: 'var(--a-spacing-2)',
-                        }}>
-                        <Heading size="medium" level="1">
-                            {title}
-                        </Heading>
-                    </div>
+    return props.open
+        ? createPortal(
+              <Modal
+                  {...modalProps}
+                  onClose={onCancel}
+                  open={props.open}
+                  header={{
+                      closeButton: false,
+                      heading: title,
+                  }}>
+                  {props.open && (
+                      <Modal.Body className="confirmationDialog">
+                          <BodyLong as="div" className="confirmationDialog__content">
+                              {children}
+                          </BodyLong>
 
-                    <BodyLong as="div" className="confirmationDialog__content">
-                        {children}
-                    </BodyLong>
-
-                    <ButtonRow align="left">
-                        <Button variant="primary" onClick={() => onOk()} className="ConfirmationDialog__bekreftKnapp">
-                            {okLabel || intlHelper(intl, 'komponent.ConfirmationDialog.bekreftLabel')}
-                        </Button>
-                        <Button variant="tertiary" onClick={onCancel} className="ConfirmationDialog__avbrytKnapp">
-                            {cancelLabel || intlHelper(intl, 'komponent.ConfirmationDialog.avbrytLabel')}
-                        </Button>
-                    </ButtonRow>
-                </Modal.Content>
-            )}
-        </Modal>
-    );
+                          <ButtonRow align="left">
+                              <Button
+                                  variant="primary"
+                                  onClick={() => onOk()}
+                                  className="ConfirmationDialog__bekreftKnapp">
+                                  {okLabel || intlHelper(intl, 'komponent.ConfirmationDialog.bekreftLabel')}
+                              </Button>
+                              <Button variant="tertiary" onClick={onCancel} className="ConfirmationDialog__avbrytKnapp">
+                                  {cancelLabel || intlHelper(intl, 'komponent.ConfirmationDialog.avbrytLabel')}
+                              </Button>
+                          </ButtonRow>
+                      </Modal.Body>
+                  )}
+              </Modal>,
+              document.body
+          )
+        : null;
 };
 export default ConfirmationDialog;

@@ -1,5 +1,26 @@
 # @navikt/sif-common-forms-ds
 
+## 8.5.0
+
+### Minor Changes
+
+-   026fc373: Oppdatere til versjon 5 av designsystemet aksel
+
+### Patch Changes
+
+-   Updated dependencies [026fc373]
+    -   @navikt/sif-common-core-ds@9.3.0
+
+## 8.4.0
+
+### Minor Changes
+
+-   68bf3131: Endret næringstyper (Array) til næringstype (ikke array) i Virksomhet
+
+### Patch Changes
+
+-   @navikt/sif-common-core-ds@9.3.1
+
 ## 8.3.0
 
 ### Minor Changes

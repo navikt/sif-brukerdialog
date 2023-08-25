@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { Alert, Button, Heading, Modal, ModalProps } from '@navikt/ds-react';
+import { Alert, Button, Modal } from '@navikt/ds-react';
 import React, { useState } from 'react';
-
 import { v4 as uuid } from 'uuid';
 import bemUtils from '../../../utils/bemUtils';
 import ConfirmationDialog from '../../helpers/confirmation-dialog/ConfirmationDialog';
 import SkjemagruppeQuestion from '../../helpers/skjemagruppe-question/SkjemagruppeQuestion';
 import { FormikModalFormWidths, ModalFormAndListLabels, ModalFormAndListListItemBase } from '../types';
 import './modalFormAndList.scss';
+import { createPortal } from 'react-dom';
 
 type ModalFormRenderer<ItemType> = (props: {
     item?: ItemType;
@@ -29,8 +29,7 @@ export type ModalFormAndListConfirmDeleteProps<ItemType> = {
     contentRenderer: (item: ItemType) => React.ReactNode;
 };
 
-export interface ModalFormAndListProps<ItemType extends ModalFormAndListListItemBase>
-    extends Pick<ModalProps, 'shouldCloseOnOverlayClick'> {
+export interface ModalFormAndListProps<ItemType extends ModalFormAndListListItemBase> {
     labels: ModalFormAndListLabels;
     maxItems?: number;
     listRenderer: ListRenderer<ItemType>;
@@ -57,7 +56,6 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
     dialogWidth = 'narrow',
     maxItems,
     confirmDelete,
-    shouldCloseOnOverlayClick = false,
     onChange,
 }: Props<ItemType>) {
     const [modalState, setModalState] = React.useState<{ isVisible: boolean; selectedItem?: ItemType }>({
@@ -99,26 +97,28 @@ function ModalFormAndList<ItemType extends ModalFormAndListListItemBase>({
 
     return (
         <>
-            <Modal
-                open={modalState.isVisible}
-                onClose={resetModal}
-                className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
-                shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-                aria-label={labels.modalTitle}>
-                <Modal.Content>
-                    <div style={{ marginTop: 'var(--a-spacing-1)', paddingBottom: 'var(--a-spacing-2)' }}>
-                        <Heading spacing={true} size="medium" level="1">
-                            {labels.modalTitle}
-                        </Heading>
-                    </div>
-                    {formRenderer({
-                        onSubmit: handleOnSubmit,
-                        onCancel: resetModal,
-                        item: modalState.selectedItem,
-                        allItems: items,
-                    })}
-                </Modal.Content>
-            </Modal>
+            {modalState.isVisible
+                ? createPortal(
+                      <Modal
+                          open={modalState.isVisible}
+                          onClose={resetModal}
+                          className={bem.classNames(bem.block, bem.modifier(dialogWidth))}
+                          aria-label={labels.modalTitle}
+                          header={{
+                              heading: labels.modalTitle,
+                          }}>
+                          <Modal.Body>
+                              {formRenderer({
+                                  onSubmit: handleOnSubmit,
+                                  onCancel: resetModal,
+                                  item: modalState.selectedItem,
+                                  allItems: items,
+                              })}
+                          </Modal.Body>
+                      </Modal>,
+                      document.body
+                  )
+                : null}
             <SkjemagruppeQuestion legend={labels.listTitle} error={error}>
                 {items.length > 0 && (
                     <div className="modalFormAndList__listWrapper">

@@ -11,8 +11,8 @@ import JaNeiSvar from '../../components/summary/JaNeiSvar';
 import Sitat from '../../components/summary/Sitat';
 import SummaryBlock from '../../components/summary/SummaryBlock';
 import TallSvar from '../../components/summary/TallSvar';
-import { VirksomhetApiData } from './types';
-import { erVirksomhetRegnetSomNyoppstartet, harFiskerNæringstype } from './virksomhetUtils';
+import { Næringstype, VirksomhetApiData } from './types';
+import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -20,9 +20,10 @@ interface Props {
 
 const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
-    const næringstype = virksomhet.næringstype;
+    const næringstype = intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
+
     const fiskerinfo =
-        harFiskerNæringstype(virksomhet.næringstype) && virksomhet.fiskerErPåBladB !== undefined
+        virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
             ? {
                   erPåBladB: virksomhet.fiskerErPåBladB !== undefined && virksomhet.fiskerErPåBladB === true,
               }

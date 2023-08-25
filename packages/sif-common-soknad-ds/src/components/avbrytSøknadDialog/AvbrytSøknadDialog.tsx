@@ -16,7 +16,6 @@ const AvbrytSøknadDialog = (props: Props) => {
             open={synlig}
             okLabel={intlHelper(intl, 'avbrytSøknadDialog.avbrytSøknadLabel')}
             cancelLabel={intlHelper(intl, 'avbrytSøknadDialog.fortsettSøknadLabel')}
-            closeButton={false}
             onConfirm={onAvbrytSøknad}
             onCancel={onFortsettSøknad}
             title={intlHelper(intl, 'avbrytSøknadDialog.tittel')}>
