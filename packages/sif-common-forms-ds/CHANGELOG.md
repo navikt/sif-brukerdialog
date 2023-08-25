@@ -1,5 +1,16 @@
 # @navikt/sif-common-forms-ds
 
+## 8.6.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [c976be57]
+    -   @navikt/sif-common-core-ds@9.4.0
+
 ## 8.5.0
 
 ### Minor Changes
