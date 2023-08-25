@@ -54,7 +54,7 @@ export const fyllUtArbeidIPeriodeAnsatt = () => {
 
 export const fyllUtArbeidIPeriodeFrilanser = () => {
     cy.get('h2')
-        .contains('Jobb som frilanser')
+        .contains('Frilans og oppdrag som regnes som frilansoppdrag')
         .parent()
         .within(() => {
             fyllUtArbeidstidJobberIkke();

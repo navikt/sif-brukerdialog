@@ -16,9 +16,8 @@ const ArbeidssituasjonArbeidsgivere: React.FunctionComponent<Props> = ({ søknad
     } = useFormikContext<SøknadFormValues>();
     return (
         <>
-            <FormBlock>
-                <ArbeidssituasjonArbeidsgivereIntro antallArbeidsforhold={ansatt_arbeidsforhold.length} />
-            </FormBlock>
+            <ArbeidssituasjonArbeidsgivereIntro antallArbeidsforhold={ansatt_arbeidsforhold.length} />
+
             {ansatt_arbeidsforhold.map((forhold, index) => (
                 <FormBlock key={forhold.arbeidsgiver.id}>
                     <ArbeidssituasjonAnsatt

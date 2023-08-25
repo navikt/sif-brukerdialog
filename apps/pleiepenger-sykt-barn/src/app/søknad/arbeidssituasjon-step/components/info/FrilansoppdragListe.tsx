@@ -12,7 +12,12 @@ interface Props {
 
 const FrilansoppdragListe: React.FunctionComponent<Props> = ({ frilansoppdrag }) => (
     <ArbeidssituasjonPanel title="Frilansoppdrag registrert på deg:" titleIcon={<FrilansIconSvg />}>
-        <ul style={{ margin: 0, padding: '0 0 0 1rem' }}>
+        <p style={{ marginTop: '-.5rem' }}>
+            Dette er informasjon hentet fra AA-registeret, og kan være frilansoppdrag, honorar du mottar,
+            fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen.
+        </p>
+
+        <ul style={{ margin: '1rem 0 0 0 ', padding: '0 0 0 1rem' }}>
             {frilansoppdrag.map((oppdrag) => (
                 <li key={oppdrag.id}>
                     <Heading level="4" size="xsmall">

@@ -9,7 +9,6 @@ interface Props {
 
 const FrilansoppdragInfo: React.FunctionComponent<Props> = ({ frilansoppdrag }) => (
     <Block padBottom="m">
-        I AA-registeret er det registrert at du har oppdrag som frilanser.
         {/* <FormattedMessage id="frilansoppdragInfo.tittel" values={{ antall: frilansoppdrag.length }} />
         <Block margin="l">
             <FormattedMessage id="frilansoppdragInfo.tittel.1" />
