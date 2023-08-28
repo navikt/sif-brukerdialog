@@ -75,9 +75,9 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                         {frilanstype === Frilanstype.HONORAR && misterHonorar === YesOrNo.YES && (
                             <FormBlock margin="l">
                                 <Alert variant="info">
-                                    Videre i søknaden bruker vi begrepet &quot;frilanser&quot; også om honorar. Når du
-                                    senere skal svare på hvor mye du jobber, skal du oppgi tiden du bruker på det du
-                                    mottar honorar for. [TODO: skal vi si også noe om start/sluttdato]
+                                    Når du mottar honorar regnes du som frilanser, og vi kaller deg som frilanser også
+                                    videre i søknaden. Ettersom du mister honorar i perioden du søker om, trenger vi å
+                                    stille noen flere spørsmål om deg som frilanser.
                                 </Alert>
                             </FormBlock>
                         )}
