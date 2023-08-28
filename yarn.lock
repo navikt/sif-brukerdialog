@@ -3694,7 +3694,6 @@ __metadata:
     cypress: 12.17.4
     dayjs: 1.11.9
     dotenv: 16.3.1
-    eslint: 8.48.0
     express: 4.18.2
     formik: 2.4.3
     helmet: 7.0.0
@@ -4191,7 +4190,7 @@ __metadata:
     esbuild: 0.19.2
     esbuild-jest: 0.5.0
     eslint: 8.48.0
-    eslint-plugin-prettier: 4.2.1
+    eslint-plugin-prettier: 5.0.0
     husky: 8.0.3
     jest-environment-jsdom: 29.6.4
     jsdom: 22.1.0
@@ -14261,21 +14260,6 @@ __metadata:
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
   checksum: f166dd5fe7257c7b891c6692e6a3ede6f237a14043ae3d97581daf318fc5833ddc6b4871aa34ab7656187430170500f6d806895747ea17ecdf8231a666c3c2fd
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-prettier@npm:4.2.1":
-  version: 4.2.1
-  resolution: "eslint-plugin-prettier@npm:4.2.1"
-  dependencies:
-    prettier-linter-helpers: ^1.0.0
-  peerDependencies:
-    eslint: ">=7.28.0"
-    prettier: ">=2.0.0"
-  peerDependenciesMeta:
-    eslint-config-prettier:
-      optional: true
-  checksum: b9e839d2334ad8ec7a5589c5cb0f219bded260839a857d7a486997f9870e95106aa59b8756ff3f37202085ebab658de382b0267cae44c3a7f0eb0bcc03a4f6d6
   languageName: node
   linkType: hard
 
