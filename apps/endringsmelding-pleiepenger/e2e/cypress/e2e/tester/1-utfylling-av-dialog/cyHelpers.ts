@@ -208,7 +208,7 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
         getAktivitet().within(() => {
             getPeriode().within(() => {
                 getTestElement('endre-flere-uker-cb').click();
-                cy.wait(300);
+                cy.wait(500);
                 const rows = uker.map((uke) => getUkeRow(uke));
                 rows.forEach((row) => {
                     row.within(() => {
@@ -226,7 +226,7 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
                 cy.get('[data-testid=endre-flere-uker-button]').click();
             });
         });
-        cy.wait(300);
+        cy.wait(500);
         cy.checkA11y();
         getArbeidstimerModal().within(() => {
             getTestElement('timer-verdi').type('5');
