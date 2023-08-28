@@ -15,6 +15,7 @@ interface Props {
     parentFieldName: string;
     intlValues: ArbeidIPeriodeIntlValues;
     info?: React.ReactNode;
+    arbeiderIPeriodenDescription?: React.ReactNode;
     arbeiderIPeriodenAlternativer?: FormikRadioProp[];
 }
 
@@ -27,6 +28,7 @@ const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
     parentFieldName,
     intlValues,
     info,
+    arbeiderIPeriodenDescription,
     arbeiderIPeriodenAlternativer,
 }) => {
     return (
@@ -40,6 +42,7 @@ const ArbeidstidArbeidsaktivitet: React.FunctionComponent<Props> = ({
                 normalarbeidstid={normalarbeidstid}
                 arbeiderIPeriodenAlternativer={arbeiderIPeriodenAlternativer}
                 info={info}
+                arbeiderIPeriodenDescription={arbeiderIPeriodenDescription}
             />
         </FormSection>
     );

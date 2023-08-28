@@ -25,6 +25,10 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
 
     return (
         <div data-testid="arbeidssituasjonFrilanser">
+            <p>
+                I tillegg til å jobbe som frilanser, er det andre oppdrag som regnes som frilansoppdrag. Les mer om
+                hvilke frilansoppdrag som må oppgis i denne søknaden:
+            </p>
             <ExpandableInfo title="Om frilans, honorar, fosterhjemsgodtgjørelse og omsorgsstønad">
                 <p>
                     Du er frilanser når du mottar lønn som en vanlig ansatt, <strong>uten</strong> å være ansatt hos den

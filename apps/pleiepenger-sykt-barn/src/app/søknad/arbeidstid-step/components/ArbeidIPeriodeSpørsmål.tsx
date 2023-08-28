@@ -39,6 +39,7 @@ interface Props {
     intlValues: ArbeidIPeriodeIntlValues;
     normalarbeidstid: number;
     info?: React.ReactNode;
+    arbeiderIPeriodenDescription?: React.ReactNode;
 }
 
 const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
@@ -48,9 +49,9 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
     arbeiderIPeriodenAlternativer,
     intlValues,
     info,
-
     normalarbeidstid,
-    arbeidsforholdType: arbeidsaktivitetType,
+    arbeidsforholdType,
+    arbeiderIPeriodenDescription,
 }) => {
     const intl = useIntl();
     const getFieldName = (field: ArbeidIPeriodeFormField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
@@ -60,13 +61,14 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
         formValues?.arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert &&
         (visKunArbeidstidPerUke || formValues?.erLiktHverUke === YesOrNo.NO);
 
-    const spørsmål = getArbeidstidSpørsmålstekst(intl, arbeidsaktivitetType, intlValues);
+    const spørsmål = getArbeidstidSpørsmålstekst(intl, arbeidsforholdType, intlValues);
     return (
         <>
             <SøknadFormComponents.RadioGroup
                 name={getFieldName(ArbeidIPeriodeFormField.arbeiderIPerioden)}
                 legend={spørsmål.arbeiderIPerioden}
-                validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsaktivitetType, intlValues)}
+                validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsforholdType, intlValues)}
+                description={arbeiderIPeriodenDescription}
                 radios={
                     arbeiderIPeriodenAlternativer || [
                         {
@@ -93,7 +95,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                 <SøknadFormComponents.YesOrNoQuestion
                                     name={getFieldName(ArbeidIPeriodeFormField.erLiktHverUke)}
                                     legend={spørsmål.erLiktHverUke}
-                                    validate={getArbeidIPeriodeErLiktHverUkeValidator(arbeidsaktivitetType, intlValues)}
+                                    validate={getArbeidIPeriodeErLiktHverUkeValidator(arbeidsforholdType, intlValues)}
                                     labels={{
                                         yes: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.ja`),
                                         no: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.nei`),
@@ -120,7 +122,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             },
                                         ]}
                                         validate={getArbeidIPeriodeTimerEllerProsentValidator(
-                                            arbeidsaktivitetType,
+                                            arbeidsforholdType,
                                             intlValues
                                         )}
                                     />
@@ -133,7 +135,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             label={spørsmål.prosentAvNormalt}
                                             data-testid="prosent-verdi"
                                             validate={getArbeidIPeriodeProsentAvNormaltValidator(
-                                                arbeidsaktivitetType,
+                                                arbeidsforholdType,
                                                 intlValues
                                             )}
                                             width="xs"
@@ -148,7 +150,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             name={getFieldName(ArbeidIPeriodeFormField.snittTimerPerUke)}
                                             label={spørsmål.snittTimerPerUke}
                                             validate={getArbeidIPeriodeSnittTimerPerUkeValidator(
-                                                arbeidsaktivitetType,
+                                                arbeidsforholdType,
                                                 intl,
                                                 intlValues,
                                                 normalarbeidstid
@@ -170,14 +172,14 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                     arbeidIPeriode={formValues}
                                     timerPerUkeValidator={(arbeidsuke: ArbeidsukeInfo) =>
                                         getArbeidIPeriodeSnittTimerEnArbeidsukeValidator(
-                                            arbeidsaktivitetType,
+                                            arbeidsforholdType,
                                             intl,
                                             intlValues,
                                             normalarbeidstid,
                                             arbeidsuke
                                         )
                                     }
-                                    arbeidsforholdType={arbeidsaktivitetType}
+                                    arbeidsforholdType={arbeidsforholdType}
                                 />
                             </FormBlock>
                         )}

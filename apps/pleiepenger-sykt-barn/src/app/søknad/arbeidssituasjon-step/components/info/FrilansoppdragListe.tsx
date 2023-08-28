@@ -13,8 +13,8 @@ interface Props {
 const FrilansoppdragListe: React.FunctionComponent<Props> = ({ frilansoppdrag }) => (
     <ArbeidssituasjonPanel title="Frilansoppdrag registrert på deg:" titleIcon={<FrilansIconSvg />}>
         <p style={{ marginTop: '-.5rem' }}>
-            Dette er informasjon hentet fra AA-registeret, og kan være frilansoppdrag, honorar du mottar,
-            fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen.
+            Dette er informasjon hentet fra AA-registeret. Det kan være jobb som frilanser, eller andre oppdrag som
+            regnes som frilansoppdrag: honorar, fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen.
         </p>
 
         <ul style={{ margin: '1rem 0 0 0 ', padding: '0 0 0 1rem' }}>

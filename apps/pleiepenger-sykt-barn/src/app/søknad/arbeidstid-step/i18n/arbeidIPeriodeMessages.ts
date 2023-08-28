@@ -40,7 +40,7 @@ const arbeidIPeriodeValideringMessages: MessageFileFormat = {
 const arbeidIPeriodeSpørsmål: MessageFileFormat = {
     nb: {
         'arbeidIPeriode.spørsmål.ANSATT.arbeiderIPerioden':
-            'I perioden du søker for, hvilken situasjon gjelder for deg hos {arbeidsgiverNavn}?',
+            'Hvilken situasjon gjelder for deg hos (arbeidsgiverNavn) i søknadsperioden?',
         'arbeidIPeriode.spørsmål.ANSATT.erLiktHverUke':
             'Jobber du like mye hver uke hos {arbeidsgiverNavn} i perioden?',
         'arbeidIPeriode.spørsmål.ANSATT.timerEllerProsent':
@@ -52,7 +52,7 @@ const arbeidIPeriodeSpørsmål: MessageFileFormat = {
         'arbeidIPeriode.spørsmål.ANSATT.arbeidsuker':
             'Oppgi hvor mange timer du jobber hos {arbeidsgiverNavn} i hver enkeltuke i perioden?',
         'arbeidIPeriode.spørsmål.FRILANSER.arbeiderIPerioden':
-            'I perioden du søker for, hvilken situasjon gjelder for deg som frilanser?',
+            'Hvilken situasjon gjelder for deg som frilanser i søknadsperioden?',
         'arbeidIPeriode.spørsmål.FRILANSER.erLiktHverUke': 'Jobber du like mye hver uke som frilanser i perioden?',
         'arbeidIPeriode.spørsmål.FRILANSER.timerEllerProsent':
             'Hvordan vil du oppgi hvor mye du jobber som frilanser i perioden?',
@@ -62,7 +62,7 @@ const arbeidIPeriodeSpørsmål: MessageFileFormat = {
         'arbeidIPeriode.spørsmål.FRILANSER.arbeidsuker':
             'Oppgi hvor mange timer du jobber som frilanser i hver enkeltuke i perioden?',
         'arbeidIPeriode.spørsmål.SELVSTENDIG.arbeiderIPerioden':
-            'I perioden du søker for, hvilken situasjon gjelder for deg som selvstendig næringsdrivende?',
+            'Hvilken situasjon gjelder for deg som selvstendig næringsdrivende i søknadsperioden?',
         'arbeidIPeriode.spørsmål.SELVSTENDIG.erLiktHverUke':
             'Jobber du like mye hver uke som selvstendig næringsdrivende i perioden?',
         'arbeidIPeriode.spørsmål.SELVSTENDIG.timerEllerProsent':
@@ -93,6 +93,8 @@ export const arbeidIPeriodeMessages: MessageFileFormat = {
         ...arbeidIPeriodeSpørsmål.nb,
         ...arbeidIPeriodeValideringMessages.nb,
         ...arbeidIPeriodeSvarAlternativer.nb,
+        'arbeidIPeriode.arbeiderIPerioden.description':
+            'Husk at du også skal ta med eventuell jobb som du mottar honorar for.',
         'arbeidIPeriode.uke.ukenummer': 'Uke {ukenummer}',
         'arbeidIPeriode.uke.ukedatoer': '{ukedatoer}',
         'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timer}}',
