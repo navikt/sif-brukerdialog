@@ -70,24 +70,30 @@ export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFri
     return (
         <>
             <Block margin="m">
-                {(frilanstype === Frilanstype.FRILANS || frilanstype === Frilanstype.FRILANS_HONORAR) && (
-                    <ExpandableInfo
-                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
-                        <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.frilans.info'} />
-                    </ExpandableInfo>
-                )}
-
-                {(frilanstype === Frilanstype.FRILANS_HONORAR || frilanstype === Frilanstype.HONORAR) && (
-                    <ExpandableInfo
-                        title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.honorar.info.tittel')}>
-                        <p>
-                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorar.info.1'} />
-                        </p>
-                        <p>
-                            <FormattedMessage id={'arbeidsforhold.frilanser.normalTimer.honorar.info.2'} />
-                        </p>
-                    </ExpandableInfo>
-                )}
+                <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
+                    <p>
+                        <FormattedMessage id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.1`} />
+                    </p>
+                    <p>
+                        <FormattedMessage id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.2`} />
+                    </p>
+                    {frilanstype === Frilanstype.FRILANS_HONORAR && (
+                        <>
+                            <p>
+                                <strong>
+                                    <FormattedMessage
+                                        id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.3`}
+                                    />
+                                </strong>
+                            </p>
+                            <p>
+                                <FormattedMessage
+                                    id={`arbeidsforhold.frilanser.normalTimer.frilans.${frilanstype}.info.4`}
+                                />
+                            </p>
+                        </>
+                    )}
+                </ExpandableInfo>
             </Block>
         </>
     );

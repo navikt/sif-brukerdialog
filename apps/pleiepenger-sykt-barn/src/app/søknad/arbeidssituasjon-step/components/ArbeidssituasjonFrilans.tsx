@@ -25,17 +25,17 @@ const ArbeidssituasjonFrilans = ({ søknadsperiode, søknadsdato }: Props) => {
 
     return (
         <div data-testid="arbeidssituasjonFrilanser">
-            <ExpandableInfo title="Frilans, honorar, fosterhjemsgodtgjørelse og omsorgsstønad">
+            <ExpandableInfo title="Om frilans, honorar, fosterhjemsgodtgjørelse og omsorgsstønad">
                 <p>
                     Du er frilanser når du mottar lønn som en vanlig ansatt, <strong>uten</strong> å være ansatt hos den
                     du utfører arbeidet for. Som frilanser betaler du skatt på samme måte som en arbeidstaker, og
-                    leverer skattemelding som arbeidstaker
+                    leverer skattemelding som arbeidstaker.
                 </p>
                 <p>
                     Du regnes også som frilanser når du mottar <strong>honorar</strong> for et utført oppdrag. Det kan
                     for eksempel være utbetalt honorar i forbindelse med et styreverv i borettslaget, eller som trener
                     for et håndball-lag. Honorar blir også ofte brukt av frie yrker som forfattere, fotografer og
-                    kunstnere. Mottaker av honorar er ikke fast ansatt, med vanlige faste lønnsvilkår.
+                    kunstnere.
                 </p>
                 <p>
                     I tillegg er <strong>fosterhjemsgodtgjørelse</strong> og <strong>omsorgsstønad</strong> fra kommunen
