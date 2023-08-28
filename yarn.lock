@@ -3701,7 +3701,7 @@ __metadata:
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
     autoprefixer: 10.4.15
-    axios: 1.4.0
+    axios: 1.5.0
     babel-polyfill: 6.26.0
     case-sensitive-paths-webpack-plugin: 2.4.0
     compression: 1.7.4
@@ -3795,7 +3795,7 @@ __metadata:
     "@types/react-modal": 3.16.0
     "@types/react-router-dom": 5.3.3
     axe-core: 4.7.2
-    axios: 1.4.0
+    axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     case-sensitive-paths-webpack-plugin: 2.4.0
@@ -3914,7 +3914,7 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
-    axios: 1.4.0
+    axios: 1.5.0
     babel-polyfill: 6.26.0
     case-sensitive-paths-webpack-plugin: 2.4.0
     compression: 1.7.4
@@ -3983,7 +3983,7 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
-    axios: 1.4.0
+    axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     case-sensitive-paths-webpack-plugin: 2.4.0
@@ -4068,7 +4068,7 @@ __metadata:
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
     axe-core: 4.7.2
-    axios: 1.4.0
+    axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     case-sensitive-paths-webpack-plugin: 2.4.0
@@ -4211,7 +4211,7 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-collapse": 5.0.1
     "@types/react-dom": 18.2.7
-    axios: 1.4.0
+    axios: 1.5.0
     browser-image-compression: 2.0.2
     classnames: 2.3.2
     config: "*"
@@ -4344,7 +4344,7 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-responsive": 8.0.5
-    axios: 1.4.0
+    axios: 1.5.0
     config: "*"
     copyfiles: 2.4.1
     date-fns: 2.30.0
@@ -4382,7 +4382,7 @@ __metadata:
     "@sentry/react": 7.64.0
     "@sentry/types": 7.64.0
     "@types/node": 20.5.6
-    axios: 1.4.0
+    axios: 1.5.0
     config: "*"
     copyfiles: 2.4.1
     gh-pages: 6.0.0
@@ -4430,7 +4430,7 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-modal": 3.16.0
-    axios: 1.4.0
+    axios: 1.5.0
     copyfiles: 2.4.1
     date-fns: 2.30.0
     dayjs: 1.11.9
@@ -4523,7 +4523,7 @@ __metadata:
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.2
     axe-core: 4.7.2
-    axios: 1.4.0
+    axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     case-sensitive-paths-webpack-plugin: 2.4.0
@@ -10126,14 +10126,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.4.0":
-  version: 1.4.0
-  resolution: "axios@npm:1.4.0"
+"axios@npm:1.5.0":
+  version: 1.5.0
+  resolution: "axios@npm:1.5.0"
   dependencies:
     follow-redirects: ^1.15.0
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: 7fb6a4313bae7f45e89d62c70a800913c303df653f19eafec88e56cea2e3821066b8409bc68be1930ecca80e861c52aa787659df0ffec6ad4d451c7816b9386b
+  checksum: e7405a5dbbea97760d0e6cd58fecba311b0401ddb4a8efbc4108f5537da9b3f278bde566deb777935a960beec4fa18e7b8353881f2f465e4f2c0e949fead35be
   languageName: node
   linkType: hard
 
