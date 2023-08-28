@@ -15,7 +15,7 @@ export const fyllUtArbeidstidMisterAltHonorar = () => {
 };
 
 export const fyllUtArbeidstidJobberSomVanlig = () => {
-    selectRadioByLabel('Jeg jobber som normalt, og har ikke fravær');
+    selectRadioByLabel('Jeg jobber som normalt, og har ikke fravær på grunn av pleiepenger');
 };
 
 export const fyllUtArbeidstidRedusertTimer = () => {

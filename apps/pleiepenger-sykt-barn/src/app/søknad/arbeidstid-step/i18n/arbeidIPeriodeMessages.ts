@@ -82,7 +82,8 @@ export const arbeidIPeriodeSvarAlternativer: MessageFileFormat = {
         'arbeidIPeriode.erLiktHverUke.nei': 'Nei, det varierer',
         'arbeidIPeriode.arbeiderIPerioden.svar.jobberIkke': 'Jeg jobber ikke',
         'arbeidIPeriode.arbeiderIPerioden.svar.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
-        'arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
+        'arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig':
+            'Jeg jobber som normalt, og har ikke fravær på grunn av pleiepenger',
         'arbeidIPeriode.timerEllerProsent.timer': 'I timer',
         'arbeidIPeriode.timerEllerProsent.prosent': 'I prosent',
     },
