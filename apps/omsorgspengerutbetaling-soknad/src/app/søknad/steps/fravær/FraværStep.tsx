@@ -137,7 +137,15 @@ const FraværStep = () => {
             <FormikWrapper
                 initialValues={getFraværStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values }) => {
+                renderForm={({
+                    values: {
+                        harPerioderMedFravær,
+                        harDagerMedDelvisFravær,
+                        perioder_harVærtIUtlandet,
+                        fraværDager = [],
+                        fraværPerioder = [],
+                    },
+                }) => {
                     const førsteOgSisteDagMedFravær = fraværStepUtils.getPeriodeBoundaries(fraværPerioder, fraværDager);
 
                     const kanIkkeFortsette =
