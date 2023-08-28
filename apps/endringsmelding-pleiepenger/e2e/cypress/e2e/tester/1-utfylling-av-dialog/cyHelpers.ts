@@ -229,12 +229,17 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
         cy.wait(500);
         cy.checkA11y();
         getArbeidstimerModal().within(() => {
-            getTestElement('timer-verdi').type('5');
+            getTestElement('timer-verdi').type('1.5');
             cy.checkA11y();
             captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
-        captureScreenshot();
+    });
+    it('kontrollerer endringer i tabell', () => {
+        getAktivitet().within(() => {
+            cy.get(`[data-testid="uke_46"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+            cy.get(`[data-testid="uke_47"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+        });
     });
 };
 
