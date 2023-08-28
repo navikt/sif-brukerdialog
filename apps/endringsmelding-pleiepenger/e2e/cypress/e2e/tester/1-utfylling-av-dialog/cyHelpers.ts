@@ -285,6 +285,9 @@ const fortsettTilOppsummering = () => {
 };
 
 const kontrollerOppsummering = () => {
+    it('er på oppsummeringssiden', () => {
+        cy.get('h1').contains('Oppsummering').should('exist');
+    });
     it('viser riktig informasjon i oppsummering', () => {
         getUkeRow(enkeltuke).within(() => {
             expect(cy.get('[data-testid=timer-faktisk]').contains('10 t. 30 m.'));
@@ -355,8 +358,8 @@ export const cyHelpers = {
     leggTilOgFjernFerie,
     leggTilFerie,
     endreOgFjernFerie,
-    endreEnkeltuke: endreArbeidEnkeltuke,
-    endreFlereUker: endreArbeidFlereUker,
+    endreArbeidEnkeltuke,
+    endreArbeidFlereUker,
     fyllUtArbeidstidUkjentArbeidsforhold,
     fortsettTilOppsummering,
     kontrollerOppsummering,
