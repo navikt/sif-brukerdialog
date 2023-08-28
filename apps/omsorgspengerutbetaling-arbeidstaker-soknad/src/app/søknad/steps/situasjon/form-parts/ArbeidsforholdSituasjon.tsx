@@ -37,6 +37,7 @@ const ArbeidsforholdSituasjon: React.FC<Props> = ({ arbeidsforhold, parentFieldN
                               }
                             : undefined;
                     }}
+                    data-testid="arbeidsforhold-harHattFravær"
                 />
             </FormBlock>
             {arbeidsforhold[ArbeidsforholdFormFields.harHattFraværHosArbeidsgiver] === YesOrNo.YES && (
@@ -56,6 +57,7 @@ const ArbeidsforholdSituasjon: React.FC<Props> = ({ arbeidsforhold, parentFieldN
                                   }
                                 : undefined;
                         }}
+                        data-testid="arbeidsforhold-harArbeidsgiverUtbetaltDegLønnForOmsorgsdagene"
                     />
                 </FormBlock>
             )}

@@ -75,6 +75,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 'step.situasjon.arbeidsforhold.utbetalingsårsak.nyoppstartetHosArbeidsgiver',
                             ),
                             value: Utbetalingsårsak.nyoppstartetHosArbeidsgiver,
+                            'data-testid': 'arbeidsforhold-utbetalingsårsak-nyoppstartetHosArbeidsgiver',
                         },
                         {
                             label: intlHelper(
@@ -82,6 +83,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 'step.situasjon.arbeidsforhold.utbetalingsårsak.arbeidsgiverKonkurs',
                             ),
                             value: Utbetalingsårsak.arbeidsgiverKonkurs,
+                            'data-testid': 'arbeidsforhold-utbetalingsårsak-arbeidsgiverKonkurs',
                         },
                         {
                             label: intlHelper(
@@ -89,6 +91,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 'step.situasjon.arbeidsforhold.utbetalingsårsak.konfliktMedArbeidsgiver',
                             ),
                             value: Utbetalingsårsak.konfliktMedArbeidsgiver,
+                            'data-testid': 'arbeidsforhold-utbetalingsårsak-konfliktMedArbeidsgiver',
                         },
                     ]}
                     legend={intlHelper(intl, 'step.situasjon.arbeidsforhold.utbetalingsårsak.spm')}
@@ -140,6 +143,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                 intl,
                                 'step.situasjon.arbeidsforhold.utbetalingsårsak.konfliktMedArbeidsgiver.forklaring',
                             )}
+                            data-testid="konfliktMedArbeidsgiver-forklaring"
                         />
                     </FormBlock>
 
@@ -190,6 +194,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                         'step.situasjon.arbeidsforhold.årsakMinde4Uker.jobbetHosAnnenArbeidsgiver',
                                     ),
                                     value: ÅrsakNyoppstartet.jobbetHosAnnenArbeidsgiver,
+                                    'data-testid': 'nyoppstartetHosArbeidsgiver-jobbetHosAnnenArbeidsgiver',
                                 },
                                 {
                                     label: intlHelper(
@@ -197,6 +202,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                         'step.situasjon.arbeidsforhold.årsakMinde4Uker.varFrilanser',
                                     ),
                                     value: ÅrsakNyoppstartet.varFrilanser,
+                                    'data-testid': 'nyoppstartetHosArbeidsgiver-varFrilanser',
                                 },
                                 {
                                     label: intlHelper(
@@ -204,6 +210,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                         'step.situasjon.arbeidsforhold.årsakMinde4Uker.varSelvstendige',
                                     ),
                                     value: ÅrsakNyoppstartet.varSelvstendige,
+                                    'data-testid': 'nyoppstartetHosArbeidsgiver-varSelvstendige',
                                 },
                                 {
                                     label: intlHelper(
@@ -211,6 +218,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                         'step.situasjon.arbeidsforhold.årsakMinde4Uker.søkteAndreUtbetalinger',
                                     ),
                                     value: ÅrsakNyoppstartet.søkteAndreUtbetalinger,
+                                    'data-testid': 'nyoppstartetHosArbeidsgiver-søkteAndreUtbetalinger',
                                 },
                                 {
                                     label: intlHelper(
@@ -218,6 +226,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                         'step.situasjon.arbeidsforhold.årsakMinde4Uker.arbeidIUtlandet',
                                     ),
                                     value: ÅrsakNyoppstartet.arbeidIUtlandet,
+                                    'data-testid': 'nyoppstartetHosArbeidsgiver-arbeidIUtlandet',
                                 },
                                 {
                                     label: intlHelper(
@@ -225,10 +234,12 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName }: Pr
                                         'step.situasjon.arbeidsforhold.årsakMinde4Uker.utøvdeVerneplikt',
                                     ),
                                     value: ÅrsakNyoppstartet.utøvdeVerneplikt,
+                                    'data-testid': 'nyoppstartetHosArbeidsgiver-utøvdeVerneplikt',
                                 },
                                 {
                                     label: intlHelper(intl, 'step.situasjon.arbeidsforhold.årsakMinde4Uker.annet'),
                                     value: ÅrsakNyoppstartet.annet,
+                                    'data-testid': 'nyoppstartetHosArbeidsgiver-annet',
                                 },
                             ]}
                             legend={intlHelper(intl, 'step.situasjon.arbeidsforhold.årsakMinde4Uker.spm')}

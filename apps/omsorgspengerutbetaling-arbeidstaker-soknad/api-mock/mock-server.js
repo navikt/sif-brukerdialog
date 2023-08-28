@@ -5,7 +5,6 @@ const os = require('os');
 const fs = require('fs');
 const busboyCons = require('busboy');
 
-const barnMock = require('./mock-data/barn.json');
 const søkerMock = require('./mock-data/soker.json');
 const arbeidsgivereMock = require('./mock-data/arbeidsgiver.json');
 
@@ -58,12 +57,6 @@ const startServer = () => {
 
     server.get('/oppslag/soker', (req, res) => {
         res.send(søkerMock);
-    });
-
-    server.get('/oppslag/barn', (req, res) => {
-        setTimeout(() => {
-            res.send(barnMock);
-        }, 200);
     });
 
     server.get('/oppslag/arbeidsgiver', (req, res) => {
