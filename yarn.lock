@@ -2616,7 +2616,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:8.48.0, @eslint/js@npm:^8.47.0":
+"@eslint/js@npm:8.48.0":
   version: 8.48.0
   resolution: "@eslint/js@npm:8.48.0"
   checksum: b2755f9c0ee810c886eba3c50dcacb184ba5a5cd1cbc01988ee506ad7340653cae0bd55f1d95c64b56dfc6d25c2caa7825335ffd2c50165bae9996fe0f396851
@@ -3388,7 +3388,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^5.1.0, @navikt/aksel-icons@npm:^5.2.0":
+"@navikt/aksel-icons@npm:^5.2.1":
   version: 5.2.1
   resolution: "@navikt/aksel-icons@npm:5.2.1"
   checksum: d240d90f14b757d30324a81f08a7df08806369f9ef24de486ddb6a6da64e58880a6c002b13a6e6abf4528020848c94eb32474150922093c40c225d2780b17224
@@ -3399,8 +3399,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
   dependencies:
-    "@navikt/ds-css": 5.2.0
-    "@navikt/ds-react": 5.2.0
+    "@navikt/ds-css": 5.2.1
+    "@navikt/ds-react": 5.2.1
     "@portabletext/react": 3.0.7
     "@sanity/client": 6.4.9
     "@types/node": 20.5.6
@@ -3429,17 +3429,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-css@npm:5.1.0":
-  version: 5.1.0
-  resolution: "@navikt/ds-css@npm:5.1.0"
-  checksum: 40e87df210b55e80fc0ddee89787384de867afbdd6212d8f6f0742193edf93278609157b4dda80a4b2011fad36a74652e4856bba6ccf05c048f69a872c3f4de5
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-css@npm:5.2.0":
-  version: 5.2.0
-  resolution: "@navikt/ds-css@npm:5.2.0"
-  checksum: ef67cc3d1fa8775a1a2deb44b1cfcf9632880fec460a6129b07f561ce4d7fbeb21ca7c26f6329a9dc14279d1a568b6e3eb80d50cee3287e9bc5cc48448ac02ae
+"@navikt/ds-css@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@navikt/ds-css@npm:5.2.1"
+  checksum: 5c243b97350ccc1075afc812877f67dbb350992429e602415d810b6dd2ddc417f868fc88c19de69d872749aca76de1813c42baceca83cd8e041ff2a21d4b198e
   languageName: node
   linkType: hard
 
@@ -3499,12 +3492,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-react@npm:5.1.0":
-  version: 5.1.0
-  resolution: "@navikt/ds-react@npm:5.1.0"
+"@navikt/ds-react@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@navikt/ds-react@npm:5.2.1"
   dependencies:
     "@floating-ui/react": 0.24.1
-    "@navikt/aksel-icons": ^5.1.0
+    "@navikt/aksel-icons": ^5.2.1
     "@radix-ui/react-tabs": 1.0.0
     "@radix-ui/react-toggle-group": 1.0.0
     clsx: ^1.2.1
@@ -3516,35 +3509,14 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 65c95b0edb35de2b9c79db1d8bd6d82be0e98125999ab6ea3e4f989c5a4c39bc50c516a624d47951ae3ddb3c4e60bca14b928d63978d44f579b9d1988bdc02db
+  checksum: 722c3ad7b460d40ae3325884741df1fce40d5f05f0973bdf0677b6231560fd5e7b03d206ccc30b5ca591cfd0ba94ae536cfdd8194bf85fc639a2b69cf51c9781
   languageName: node
   linkType: hard
 
-"@navikt/ds-react@npm:5.2.0":
-  version: 5.2.0
-  resolution: "@navikt/ds-react@npm:5.2.0"
-  dependencies:
-    "@floating-ui/react": 0.24.1
-    "@navikt/aksel-icons": ^5.2.0
-    "@radix-ui/react-tabs": 1.0.0
-    "@radix-ui/react-toggle-group": 1.0.0
-    clsx: ^1.2.1
-    date-fns: 2.29.3
-    react-day-picker: 8.3.4
-  peerDependencies:
-    "@types/react": ^17.0.30 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 1946838fe350b937485866778b5f195646c96532a84147e8123f3d26e82bf8aa72537523fcf6043ae33291de4183d90269fd1dcc8e83f748112cf655be1f6cdc
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-tailwind@npm:5.2.0":
-  version: 5.2.0
-  resolution: "@navikt/ds-tailwind@npm:5.2.0"
-  checksum: 1621445e759051f1c8b6960691b4a640663cb0ca46e14a531a16f229a399232339d20edf9d6a5a6f28d52e16e9e975911af81535371d5893419377009e73d3ca
+"@navikt/ds-tailwind@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@navikt/ds-tailwind@npm:5.2.1"
+  checksum: 4baec45e4060c277e0d6924c09bc3d5639fc44861cfa03058c6383663342fa11c79ad80e6d5bc89568e2fb03ca37aac77a0920d31a22da413dad3c449f515cab
   languageName: node
   linkType: hard
 
@@ -3557,9 +3529,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.22.11
     "@babel/preset-env": 7.22.10
     "@babel/preset-react": 7.22.5
-    "@navikt/ds-css": 5.2.0
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-css": 5.2.1
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -3632,10 +3604,10 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.4
     "@mswjs/data": 0.13.0
-    "@navikt/ds-css": 5.2.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/fnrvalidator": 1.3.0
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
@@ -3771,9 +3743,9 @@ __metadata:
     "@babel/plugin-transform-modules-commonjs": 7.22.11
     "@babel/preset-env": 7.22.10
     "@babel/preset-react": 7.22.5
-    "@navikt/ds-css": 5.2.0
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-css": 5.2.1
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -3837,10 +3809,10 @@ __metadata:
     "@babel/preset-env": 7.22.10
     "@babel/preset-react": 7.22.5
     "@babel/preset-typescript": 7.22.11
-    "@navikt/ds-css": 5.2.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -3912,10 +3884,10 @@ __metadata:
     "@babel/preset-env": 7.22.10
     "@babel/preset-react": 7.22.5
     "@babel/preset-typescript": 7.22.11
-    "@navikt/ds-css": 5.2.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -3998,10 +3970,10 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@formatjs/intl-pluralrules": 5.2.4
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 5.1.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.1.0
+    "@navikt/ds-react": 5.2.1
     "@navikt/fnrvalidator": 1.3.0
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
@@ -4023,7 +3995,7 @@ __metadata:
     ajv: 8.12.0
     amplitude-js: 8.21.9
     axe-core: 4.7.2
-    axios: 1.4.0
+    axios: 1.5.0
     axios-mock-adapter: 1.21.5
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -4037,7 +4009,7 @@ __metadata:
     cypress-file-upload: 5.0.8
     dayjs: 1.11.9
     dotenv: 16.3.1
-    eslint: 8.47.0
+    eslint: 8.48.0
     eslint-config-prettier: 8.8.0
     eslint-plugin-jsx-a11y: 6.7.1
     eslint-plugin-prettier: 4.2.1
@@ -4090,7 +4062,7 @@ __metadata:
   resolution: "@navikt/sif-brukerdialog@workspace:."
   dependencies:
     "@changesets/cli": 2.26.2
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-tailwind": 5.2.1
     "@storybook/builder-webpack5": 7.3.2
     "@storybook/manager-webpack5": 6.5.16
     "@testing-library/dom": 9.3.1
@@ -4157,11 +4129,11 @@ __metadata:
     "@babel/preset-typescript": 7.22.11
     "@formatjs/intl-pluralrules": 5.2.4
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 5.2.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/fnrvalidator": 1.3.0
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-utils": "*"
@@ -4231,10 +4203,10 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@babel/preset-typescript": 7.22.11
     "@formatjs/intl-pluralrules": 5.2.4
-    "@navikt/ds-css": 5.2.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.2.0
+    "@navikt/ds-react": 5.2.1
     "@navikt/fnrvalidator": 1.3.0
     "@storybook/addon-a11y": 7.3.2
     "@storybook/addon-actions": 7.3.2
@@ -4292,8 +4264,8 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@babel/preset-typescript": 7.22.11
     "@formatjs/intl-pluralrules": 5.2.4
-    "@navikt/ds-css": 5.2.0
-    "@navikt/ds-react": 5.2.0
+    "@navikt/ds-css": 5.2.1
+    "@navikt/ds-react": 5.2.1
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
     "@navikt/sif-common-utils": "*"
@@ -4375,8 +4347,8 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.4
     "@navikt/appstatus-react-ds": "*"
-    "@navikt/ds-css": 5.2.0
-    "@navikt/ds-react": 5.2.0
+    "@navikt/ds-css": 5.2.1
+    "@navikt/ds-react": 5.2.1
     "@navikt/nav-dekoratoren-moduler": 1.6.9
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -4472,11 +4444,11 @@ __metadata:
     "@babel/preset-react": 7.22.5
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.4
-    "@navikt/ds-css": 5.2.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/nav-dekoratoren-moduler": 1.6.9
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
@@ -10122,17 +10094,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.4.0":
-  version: 1.4.0
-  resolution: "axios@npm:1.4.0"
-  dependencies:
-    follow-redirects: ^1.15.0
-    form-data: ^4.0.0
-    proxy-from-env: ^1.1.0
-  checksum: 7fb6a4313bae7f45e89d62c70a800913c303df653f19eafec88e56cea2e3821066b8409bc68be1930ecca80e861c52aa787659df0ffec6ad4d451c7816b9386b
-  languageName: node
-  linkType: hard
-
 "axios@npm:1.5.0":
   version: 1.5.0
   resolution: "axios@npm:1.5.0"
@@ -14333,53 +14294,6 @@ __metadata:
     eslint: ^7.0.0 || ^8.0.0
     webpack: ^5.0.0
   checksum: 095034c35e773fdb21ec7e597ae1f8a6899679c290db29d8568ca94619e8c7f4971f0f9edccc8a965322ab8af9286c87205985a38f4fdcf17654aee7cd8bb7b5
-  languageName: node
-  linkType: hard
-
-"eslint@npm:8.47.0":
-  version: 8.47.0
-  resolution: "eslint@npm:8.47.0"
-  dependencies:
-    "@eslint-community/eslint-utils": ^4.2.0
-    "@eslint-community/regexpp": ^4.6.1
-    "@eslint/eslintrc": ^2.1.2
-    "@eslint/js": ^8.47.0
-    "@humanwhocodes/config-array": ^0.11.10
-    "@humanwhocodes/module-importer": ^1.0.1
-    "@nodelib/fs.walk": ^1.2.8
-    ajv: ^6.12.4
-    chalk: ^4.0.0
-    cross-spawn: ^7.0.2
-    debug: ^4.3.2
-    doctrine: ^3.0.0
-    escape-string-regexp: ^4.0.0
-    eslint-scope: ^7.2.2
-    eslint-visitor-keys: ^3.4.3
-    espree: ^9.6.1
-    esquery: ^1.4.2
-    esutils: ^2.0.2
-    fast-deep-equal: ^3.1.3
-    file-entry-cache: ^6.0.1
-    find-up: ^5.0.0
-    glob-parent: ^6.0.2
-    globals: ^13.19.0
-    graphemer: ^1.4.0
-    ignore: ^5.2.0
-    imurmurhash: ^0.1.4
-    is-glob: ^4.0.0
-    is-path-inside: ^3.0.3
-    js-yaml: ^4.1.0
-    json-stable-stringify-without-jsonify: ^1.0.1
-    levn: ^0.4.1
-    lodash.merge: ^4.6.2
-    minimatch: ^3.1.2
-    natural-compare: ^1.4.0
-    optionator: ^0.9.3
-    strip-ansi: ^6.0.1
-    text-table: ^0.2.0
-  bin:
-    eslint: bin/eslint.js
-  checksum: 1988617f703eadc5c7540468d54dc8e5171cf2bb9483f6172799cd1ff54a9a5e4470f003784e8cef92687eaa14de37172732787040e67817581a20bcb9c15970
   languageName: node
   linkType: hard
 
