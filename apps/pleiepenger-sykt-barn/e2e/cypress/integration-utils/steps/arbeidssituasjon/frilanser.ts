@@ -67,7 +67,7 @@ const erFrilanserUtenOppdrag = () => {
         gåTilOppsummeringFraArbeidssituasjon();
 
         const el = getTestElement('arbeidssituasjon-frilanser');
-        el.should('contain', 'Jeg jobber som frilanser');
+        el.should('contain', 'Jobber som frilanser');
         el.should('contain', 'Startet 1. oktober 2022');
         el.should('contain', 'Jobber normalt 5 timer per uke');
     });
@@ -79,7 +79,7 @@ const erFrilanserMedOppdrag = () => {
         gåTilOppsummeringFraArbeidssituasjon();
 
         const el = getTestElement('arbeidssituasjon-frilanser');
-        el.should('contain', 'Jeg jobber som frilanser');
+        el.should('contain', 'Jobber som frilanser');
         el.should('contain', 'Startet 1. oktober 2022');
         el.should('contain', 'Jobber normalt 5 timer per uke');
 
@@ -112,10 +112,7 @@ const erFrilanserKunHonorarMisterIkkeHonorar = () => {
         cleanupFrilanser();
         fyllUtArbeidssituasjonFrilanserKunHonorarMisterIkkeHonorar();
         gåTilOppsummeringFraArbeidssituasjon();
-        getTestElement('arbeidssituasjon-frilanser').should(
-            'contain',
-            'Jeg mister ikke honorar for verv i søknadsperioden'
-        );
+        getTestElement('arbeidssituasjon-frilanser').should('contain', 'Jeg mister ikke honorar i søknadsperioden');
     });
 };
 
@@ -129,7 +126,7 @@ const erFrilanserFrilansarbeidOgMottarHonorar = () => {
 
         /** Arbeidssituasjon */
         const el = getTestElement('arbeidssituasjon-frilanser');
-        el.should('contain', 'Jeg jobber som frilanser og får honorar for styreverv eller andre verv');
+        el.should('contain', 'Jobber som frilanser og mottar honorar');
         el.should('contain.text', 'Jobber normalt 5 timer per uke');
         el.should('contain', 'Startet ');
         el.should('contain', 'Sluttet ');

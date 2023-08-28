@@ -110,7 +110,7 @@
     "barnRelasjon.ANNET": "Annet",
 
     "arbeidsgiver.tittel": "{navn} (organisasjonsnummer {organisasjonsnummer})",
-    "frilans.tittel": "Frilanser eller får honorar for styreverv/andre små verv",
+    "frilans.tittel": "Frilans og oppdrag som regnes som frilansoppdrag",
     "selvstendigNæringsdrivende.tittel": "Selvstendig næringsdrivende",
 
     "avbrytSøknadDialog.avbrytSøknadLabel": "Ja, avbryt søknad",
@@ -642,15 +642,15 @@
     "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header": "Arbeidsgivere",
     "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst": "Er ikke ansatt i perioden det søkes for",
 
-    "oppsummering.arbeidssituasjon.frilanser.header": "Frilanser eller får honorar for styreverv/andre små verv",
+    "oppsummering.arbeidssituasjon.frilanser.header": "Frilans og oppdrag som regnes som frilansoppdrag",
     "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Er ikke frilanser og får ikke honorar i perioden det søkes for",
     "oppsummering.arbeidssituasjon.frilans.startet": "Startet {dato}",
     "oppsummering.arbeidssituasjon.frilans.fortsattFrilanser": "Er fortsatt frilanser",
-    "oppsummering.arbeidssituasjon.frilans.FRILANS": "Jeg jobber som frilanser",
-    "oppsummering.arbeidssituasjon.frilans.FRILANS_HONORAR": "Jeg jobber som frilanser og får honorar for styreverv eller andre verv",
-    "oppsummering.arbeidssituasjon.frilans.HONORAR": "Jeg får honorar for styreverv eller andre verv",
-    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar": "Jeg mister ikke honorar for verv i søknadsperioden",
-    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar": "Jeg mister honorar for verv i søknadsperioden",
+    "oppsummering.arbeidssituasjon.frilans.FRILANS": "Jobber som frilanser",
+    "oppsummering.arbeidssituasjon.frilans.FRILANS_HONORAR": "Jobber som frilanser og mottar honorar",
+    "oppsummering.arbeidssituasjon.frilans.HONORAR": "Jeg mottar honorar",
+    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar": "Jeg mister ikke honorar i søknadsperioden",
+    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar": "Jeg mister honorar søknadsperioden",
     "oppsummering.arbeidssituasjon.frilans.sluttet": "Sluttet {dato}",
     "oppsummering.arbeidssituasjon.frilans.frilansoppdrag": "Frilansoppdrag registrert i perioden:",
 
@@ -820,9 +820,9 @@
     "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooSmall": "Antall timer du normalt {jobber} per uke {hvor} kan ikke være mindre enn {min}.",
     "validation.arbeidsforhold.arbeiderNormaltTimerPerUke.numberIsTooLarge": "Antall timer du normalt {jobber} per uke {hvor} kan ikke være mer enn {max}.",
 
-    "validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du jobber som frilanser, eller om du får honorar for verv.",
+    "validation.frilans.harHattInntektSomFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du jobber som frilanser, eller om du mottar honorar.",
     "validation.frilans.frilanstype.notChecked": "Du må velge hva som er din situasjon som frilanser.",
-    "validation.frilans.misterHonorar.yesOrNoIsUnanswered": "Du må svare ja eller nei på om mister du honorar for verv i perioden du søker for.",
+    "validation.frilans.misterHonorar.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du mister honorar i perioden du søker for.",
 
     "validation.frilans.startdato": "begynte å jobbe som frilanser",
 
