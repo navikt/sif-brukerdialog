@@ -43,17 +43,9 @@ const virksomhet = {
 
 const startSøknad = () => {
     it('Starter søknad', () => {
-        cy.wait(['@getSøker', '@getBarn']);
+        cy.wait(['@getSøker']);
         getTestElement('bekreft-label').click();
         getTestElement('typedFormikForm-submitButton').click();
-        cy.wait('@putMellomlagring');
-    });
-};
-
-const fyllUtOmBarnMinstEttYngre13år = () => {
-    it('Fyller ut om barnet med minst yngre 13 år', () => {
-        getTestElement('bekrefterDektTiDagerSelv').click();
-        submitSkjema();
         cy.wait('@putMellomlagring');
     });
 };
@@ -95,7 +87,7 @@ const fyllUtVirksomhetDialog = () => {
     getInputByName('tom').click().type(virksomhet.tilOgMed).blur();
     selectRadioByNameAndValue(
         'hattVarigEndringAvNæringsinntektSiste4Kalenderår',
-        virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår,
+        virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår
     );
     getInputByName('varigEndringINæringsinntekt_dato').click().type(virksomhet.varigEndringINæringsinntekt_dato).blur();
     getInputByName('varigEndringINæringsinntekt_inntektEtterEndring')
@@ -156,7 +148,7 @@ const lastOppLegeerklæring = () => {
                     fileName,
                     mimeType: 'image/png',
                     encoding: 'utf8',
-                }),
+                })
             );
         cy.wait(200);
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
@@ -180,7 +172,6 @@ const kontrollerKvittering = () => {
 
 export const utfyllingUtils = {
     startSøknad,
-    fyllUtOmBarnMinstEttYngre13år,
     fyllUtFraværSteg,
     lastOppLegeerklæring,
     fyllerUtArbeidssituasjonSteg,

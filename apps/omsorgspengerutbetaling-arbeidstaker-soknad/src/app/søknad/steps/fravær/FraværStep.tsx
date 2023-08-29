@@ -97,7 +97,7 @@ const FraværStep: React.FC = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        },
+        }
     );
 
     const { situasjon } = søknadsdata;
@@ -107,7 +107,7 @@ const FraværStep: React.FC = () => {
     }
 
     const arbeidsforholdliste = Object.values(situasjon).filter(
-        (forhold) => forhold.type !== 'harIkkeHattFravær' && forhold.type !== 'harHattFraværMedLønn',
+        (forhold) => forhold.type !== 'harIkkeHattFravær' && forhold.type !== 'harHattFraværMedLønn'
     );
 
     const fraværDagerFromSøknadsdata =
@@ -121,7 +121,7 @@ const FraværStep: React.FC = () => {
     const [årstall, setÅrstall] = useState<number | undefined>();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [gyldigTidsrom, setGyldigTidsrom] = useState<DateRange>(
-        getTidsromFromÅrstall(getÅrstallFromFravær(fraværDagerFromSøknadsdata, fraværPerioderFromSøknadsdata)),
+        getTidsromFromÅrstall(getÅrstallFromFravær(fraværDagerFromSøknadsdata, fraværPerioderFromSøknadsdata))
     );
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -130,7 +130,7 @@ const FraværStep: React.FC = () => {
             setÅrstall(årstall);
             setGyldigTidsrom(getTidsromFromÅrstall(årstall));
         },
-        [setÅrstall],
+        [setÅrstall]
     );
 
     return (
@@ -183,7 +183,10 @@ const FraværStep: React.FC = () => {
                                     <FormBlock>
                                         {arbeidsforholdliste.map((forhold: ArbeidforholdSøknadsdata) => {
                                             return (
-                                                <FormBlock margin="xxl" key={forhold.organisasjonsnummer}>
+                                                <FormBlock
+                                                    margin="xxl"
+                                                    key={forhold.organisasjonsnummer}
+                                                    data-testid="arbeidsforhold-liste">
                                                     <FormSection
                                                         titleTag="h2"
                                                         title={forhold.navn || forhold.organisasjonsnummer}
@@ -192,14 +195,14 @@ const FraværStep: React.FC = () => {
                                                             fravær={
                                                                 fravær[
                                                                     getOrganisasjonsnummerKey(
-                                                                        forhold.organisasjonsnummer,
+                                                                        forhold.organisasjonsnummer
                                                                     )
                                                                 ]
                                                             }
                                                             parentFieldName={`${
                                                                 FraværStepFormFields.fravær
                                                             }.${getOrganisasjonsnummerKey(
-                                                                forhold.organisasjonsnummer,
+                                                                forhold.organisasjonsnummer
                                                             )}`}
                                                             minDateForFravær={minDateForFravær}
                                                             maxDateForFravær={maxDateForFravær}
@@ -217,6 +220,7 @@ const FraværStep: React.FC = () => {
                                         name={FraværStepFormFields.perioderHarVærtIUtlandet}
                                         legend={intlHelper(intl, 'step.fravær.værtIUtlandet.spm')}
                                         validate={getYesOrNoValidator()}
+                                        data-testid="utenlandsopphold"
                                     />
 
                                     {values.perioderHarVærtIUtlandet === YesOrNo.YES && (
@@ -228,11 +232,11 @@ const FraværStep: React.FC = () => {
                                                 labels={{
                                                     addLabel: intlHelper(
                                                         intl,
-                                                        'step.fravær.værtIUtlandet.leggTilLabel',
+                                                        'step.fravær.værtIUtlandet.leggTilLabel'
                                                     ),
                                                     modalTitle: intlHelper(
                                                         intl,
-                                                        'step.fravær.værtIUtlandet.modalTittel',
+                                                        'step.fravær.værtIUtlandet.modalTittel'
                                                     ),
                                                 }}
                                                 validate={getListValidator({ required: true })}

@@ -76,11 +76,7 @@ export const getElement = (type) => {
     return cy.get(`${type}`);
 };
 
-export const submitModal = () => {
-    return cy.get('*[class="navds-modal__body"]').within(() => {
-        getElement('button').contains('Neste').click();
-    });
-};
+export const submitModal = () => getTestElement('typedFormikForm-submitButton').click({ force: true });
 
 export const getModal = () => {
     return cy.get('*[class="navds-modal__body"]');

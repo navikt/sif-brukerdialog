@@ -111,7 +111,7 @@ const SituasjonStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        },
+        }
     );
 
     if (isLoading || !isLoaded) {
@@ -164,7 +164,10 @@ const SituasjonStep = () => {
                                     <FormBlock margin="xxl">
                                         <div className="arbeidsforhold-liste">
                                             {arbeidsforhold.map((forhold, index) => (
-                                                <Block padBottom="l" key={forhold.organisasjonsnummer}>
+                                                <Block
+                                                    padBottom="l"
+                                                    key={forhold.organisasjonsnummer}
+                                                    data-testid="arbeidsforhold-liste">
                                                     <FormSection
                                                         titleTag="h2"
                                                         title={forhold.navn || forhold.organisasjonsnummer}

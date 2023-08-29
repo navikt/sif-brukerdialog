@@ -75,6 +75,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         }
                         return error;
                     }}
+                    data-testid="harPerioderMedFravær"
                 />
             </FormBlock>
 
@@ -124,6 +125,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
                         }
                         return error;
                     }}
+                    data-testid="harDagerMedDelvisFravær"
                 />
             </FormBlock>
 

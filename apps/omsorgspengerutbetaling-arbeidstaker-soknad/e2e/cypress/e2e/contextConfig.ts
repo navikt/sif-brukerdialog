@@ -20,7 +20,7 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(
             `GET`,
             `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`,
-            mellomlagring || { noData: 1 },
+            mellomlagring || { noData: 1 }
         );
         cy.intercept(`DELETE`, `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, mellomlagring || {});
         cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, {}).as('putMellomlagring');
@@ -31,11 +31,7 @@ export const contextConfig = (props?: ConfigProps) => {
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
         cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
-        cy.intercept(
-            'GET',
-            `${API}/oppslag/arbeidsgiver*`,
-            { barn: props?.arbeidsgiver } || cyApiMockData.arbeidsgiverMock,
-        ).as('getArbeidsgiver');
+        cy.intercept('GET', `${API}/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgiverMock).as('getArbeidsgiver');
         cy.intercept('*.api.sanity.io', {});
     });
 
