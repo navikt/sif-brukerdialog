@@ -10,7 +10,6 @@ import {
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
-import { Feature, isFeatureEnabled } from './featureToggleUtils';
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
@@ -58,11 +57,6 @@ export const tilgangskontroll = (
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode);
     }
 
-    /** Bruker har registrert arbeidsaktivitet i sak på arbeidsgiver som ikke er registrert i AAreg */
-    if (harArbeidsaktivitetUtenArbeidsgiver(sak.ytelse.arbeidstid.arbeidstakerList, arbeidsgivere)) {
-        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
-    }
-
     /** Bruker er SN */
     if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
@@ -71,10 +65,8 @@ export const tilgangskontroll = (
     /**
      * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
      */
-    if (isFeatureEnabled(Feature.UKJENT_ARBEIDSFOHOLD) === false) {
-        if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
-            ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
-        }
+    if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
     }
 
     if (ingenTilgangÅrsak.length > 0) {

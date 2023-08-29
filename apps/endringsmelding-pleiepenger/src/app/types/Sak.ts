@@ -10,6 +10,8 @@ export interface Sak {
     harUkjentArbeidsforhold: boolean;
     /** Alle arbeidsgivere som ikke finnes i sak, men som finnes i Aa-reg */
     ukjenteArbeidsgivere: Arbeidsgiver[];
+    /** Alle aktiviteter som ikke har arbeidsgiver i AA-reg */
+    arbeidsaktivitetMedUkjentArbeidsgiver: ArbeidsaktivitetUkjentArbeidsgiver[];
     /** Alle arbeidsaktiviteter i sak. Arbeidsgivere flates ut og legges sammen med evt. frilans og selvstendig */
     arbeidsaktiviteter: Arbeidsaktiviteter;
     /** Ferie i søknadsperiodene */
@@ -81,6 +83,9 @@ export interface ArbeidsaktivitetArbeidstaker extends ArbeidsaktivitetBase {
     type: ArbeidsaktivitetType.arbeidstaker;
     arbeidsgiver: Arbeidsgiver;
     erUkjentArbeidsforhold: boolean;
+}
+export interface ArbeidsaktivitetUkjentArbeidsgiver {
+    organisasjonsnummer: string;
 }
 export interface ArbeidsaktivitetFrilanser extends ArbeidsaktivitetBase {
     type: ArbeidsaktivitetType.frilanser;
