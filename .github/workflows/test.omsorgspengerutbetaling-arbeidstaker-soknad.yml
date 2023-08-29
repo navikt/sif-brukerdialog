@@ -53,7 +53,7 @@ jobs:
                   APPSTATUS_PROJECT_ID: ryujtq87
                   APPSTATUS_DATASET: staging
               with:
-                  project: ./apps/omsorgspengerutbetaling-arbeidstaker/e2e
+                  project: ./apps/omsorgspengerutbetaling-arbeidstaker-soknad/e2e
                   build: yarn build-omsorgspengerutbetaling-soknad
                   start: yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-arbeidstaker-soknad
                   wait-on: 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/alive'
