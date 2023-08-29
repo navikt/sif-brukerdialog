@@ -7,7 +7,7 @@ RUN yarn global add turbo
 
 WORKDIR /app
 
-ENV SCOPE=@navikt/omsorgspengesoknad
+ENV SCOPE=@navikt/omsorgspengerutbetaling-arbeidstaker-soknad
 
 FROM base AS pruner
 COPY . .
