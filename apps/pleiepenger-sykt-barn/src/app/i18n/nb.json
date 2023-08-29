@@ -611,7 +611,6 @@
     "arbeidsforhold.arbeidsforholdIntlValues.somAnsatt": "hos {arbeidsgiverNavn}",
     "arbeidsforhold.arbeidsforholdIntlValues.somFrilanser": "som frilanser",
     "arbeidsforhold.arbeidsforholdIntlValues.somSN": "som selvstendig næringsdrivende",
-    "arbeidsforhold.arbeidsforholdIntlValues.arbeidstaker": "hos {arbeidsgiverNavn}",
 
     "arbeidIPeriode.StepInfo.1": "Her skal du svare på om du jobber noe i perioden du søker om. Altså om du kombinerer pleiepenger med delvis jobb.",
     "arbeidIPeriode.StepInfo.2": "Pleiepengene graderes mot den tiden du jobber. Det vil si at hvis du for eksempel i søknadsperioden jobber 30 prosent, kan du ha rett til opptil 70 prosent pleiepenger.",
@@ -640,24 +639,24 @@
     "oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode": "Sluttet etter {periodeFra}",
 
     "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header": "Arbeidsgivere",
-    "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst": "Er ikke ansatt i perioden det søkes for",
+    "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst": "Er ikke ansatt i søknadsperioden",
 
     "oppsummering.arbeidssituasjon.frilanser.header": "Frilans og oppdrag som regnes som frilansoppdrag",
-    "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Er ikke frilanser og får ikke honorar i perioden det søkes for",
+    "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Er ikke frilanser og får ikke honorar i søknadsperioden",
     "oppsummering.arbeidssituasjon.frilans.startet": "Startet {dato}",
     "oppsummering.arbeidssituasjon.frilans.fortsattFrilanser": "Er fortsatt frilanser",
     "oppsummering.arbeidssituasjon.frilans.FRILANS": "Jobber som frilanser",
     "oppsummering.arbeidssituasjon.frilans.FRILANS_HONORAR": "Jobber som frilanser og mottar honorar",
-    "oppsummering.arbeidssituasjon.frilans.HONORAR": "Jeg mottar honorar",
-    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar": "Jeg mister ikke honorar i søknadsperioden",
-    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar": "Jeg mister honorar søknadsperioden",
+    "oppsummering.arbeidssituasjon.frilans.HONORAR": "Mottar honorar",
+    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterIkkeHonorar": "Mister ikke honorar i søknadsperioden",
+    "oppsummering.arbeidssituasjon.frilans.HONORAR.misterHonorar": "Mister honorar i søknadsperioden",
     "oppsummering.arbeidssituasjon.frilans.sluttet": "Sluttet {dato}",
-    "oppsummering.arbeidssituasjon.frilans.frilansoppdrag": "Frilansoppdrag registrert i perioden:",
+    "oppsummering.arbeidssituasjon.frilans.frilansoppdrag": "Frilansoppdrag registrert i søknadsperioden:",
 
     "oppsummering.arbeidssituasjon.selvstendig.header": "Selvstendig næringsdrivende",
-    "oppsummering.arbeidssituasjon.selvstendig.erIkkeSN": "Er ikke selvstendig næringsdrivende i perioden det søkes for",
+    "oppsummering.arbeidssituasjon.selvstendig.erIkkeSN": "Er ikke selvstendig næringsdrivende i søknadsperioden",
 
-    "oppsummering.arbeidssituasjon.selvstendig.erSn": "Er selvstendig næringsdrivende i perioden",
+    "oppsummering.arbeidssituasjon.selvstendig.erSn": "Er selvstendig næringsdrivende",
     "oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter": "Har flere virksomheter",
     "oppsummering.arbeidssituasjon.selvstendig.enVirksomhet": "Har 1 virksomhet",
 
@@ -672,8 +671,9 @@
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.ja": "jobber",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.nei": "Jobber ikke i søknadsperioden",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.nei.honorar": "Mister alt av honorar",
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig": "Jobber som normalt, har ikke fravær på grunn av pleiepenger",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig": "Jobber som normalt, har ikke fravær på grunn av pleiepenger i søknadsperioden",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.somVanlig.honorar": "Mister ikke honorar på grunn av pleiepenger ",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert": "Kombinerer delvis jobb med pleiepenger i søknadsperioden",
 
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.REDUSERT": "Frilanser: Kombinerer delvis jobb med pleiepenger",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.HELT_FRAVÆR": "Frilanser: Jobber ikke i søknadsperioden",
@@ -682,12 +682,10 @@
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.liktHverUke": "Jobber likt hver uke i søknadsperioden",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent": "Jobber {prosent} prosent av normalt",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent_full": "Jobber {prosent} prosent av normalt {timerNormalt} timer i hele uken (tilsvarer {timerIPeriode} i uken)",
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke": "Jobber {timer} per uke i søknadsperioden",
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel": "Jobber ulikt antall timer i ukene i perioden:",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke": "Jobber {timer} per uke",
+    "oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel": "Jobber ulikt antall timer i ukene i søknadsperioden:",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.enkeltuke.timer.tittel": "Jobber:",
     "oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.uke": "Uke {ukenummer}: {timer}",
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.prosent.tittel": "Jobber prosent av normalt for dagene i søknadsperioden:",
-    "oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.prosent.uke": "Uke {ukenummer}: {prosent} prosent",
 
     "timerPerUke": "{timer, plural, one {# time} other {# timer}} per uke",
 

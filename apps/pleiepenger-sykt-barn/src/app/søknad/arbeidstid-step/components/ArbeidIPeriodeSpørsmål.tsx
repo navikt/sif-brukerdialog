@@ -67,7 +67,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
             <SøknadFormComponents.RadioGroup
                 name={getFieldName(ArbeidIPeriodeFormField.arbeiderIPerioden)}
                 legend={spørsmål.arbeiderIPerioden}
-                validate={getArbeidIPeriodeArbeiderIPeriodenValidator(arbeidsforholdType, intlValues)}
+                validate={getArbeidIPeriodeArbeiderIPeriodenValidator(intlValues)}
                 description={arbeiderIPeriodenDescription}
                 radios={
                     arbeiderIPeriodenAlternativer || [
@@ -95,7 +95,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                 <SøknadFormComponents.YesOrNoQuestion
                                     name={getFieldName(ArbeidIPeriodeFormField.erLiktHverUke)}
                                     legend={spørsmål.erLiktHverUke}
-                                    validate={getArbeidIPeriodeErLiktHverUkeValidator(arbeidsforholdType, intlValues)}
+                                    validate={getArbeidIPeriodeErLiktHverUkeValidator(intlValues)}
                                     labels={{
                                         yes: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.ja`),
                                         no: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.nei`),
@@ -121,10 +121,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                                 'data-testid': TimerEllerProsent.TIMER,
                                             },
                                         ]}
-                                        validate={getArbeidIPeriodeTimerEllerProsentValidator(
-                                            arbeidsforholdType,
-                                            intlValues
-                                        )}
+                                        validate={getArbeidIPeriodeTimerEllerProsentValidator(intlValues)}
                                     />
                                 </FormBlock>
                                 {formValues.timerEllerProsent === TimerEllerProsent.PROSENT && (
@@ -134,10 +131,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             name={getFieldName(ArbeidIPeriodeFormField.prosentAvNormalt)}
                                             label={spørsmål.prosentAvNormalt}
                                             data-testid="prosent-verdi"
-                                            validate={getArbeidIPeriodeProsentAvNormaltValidator(
-                                                arbeidsforholdType,
-                                                intlValues
-                                            )}
+                                            validate={getArbeidIPeriodeProsentAvNormaltValidator(intlValues)}
                                             width="xs"
                                             maxLength={4}
                                         />
@@ -150,7 +144,6 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             name={getFieldName(ArbeidIPeriodeFormField.snittTimerPerUke)}
                                             label={spørsmål.snittTimerPerUke}
                                             validate={getArbeidIPeriodeSnittTimerPerUkeValidator(
-                                                arbeidsforholdType,
                                                 intl,
                                                 intlValues,
                                                 normalarbeidstid
@@ -172,7 +165,6 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                     arbeidIPeriode={formValues}
                                     timerPerUkeValidator={(arbeidsuke: ArbeidsukeInfo) =>
                                         getArbeidIPeriodeSnittTimerEnArbeidsukeValidator(
-                                            arbeidsforholdType,
                                             intl,
                                             intlValues,
                                             normalarbeidstid,

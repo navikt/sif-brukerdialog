@@ -35,6 +35,7 @@ const ArbeidstidAnsatt: React.FunctionComponent<Props> = ({
         periode,
         jobberNormaltTimer: normalarbeidstid,
         arbeidsgiverNavn: arbeidsgiver.navn,
+        arbeidsforholdType: ArbeidsforholdType.ANSATT,
     });
 
     return (

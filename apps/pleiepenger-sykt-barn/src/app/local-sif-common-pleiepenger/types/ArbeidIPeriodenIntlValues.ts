@@ -4,4 +4,5 @@ export type ArbeidIPeriodeIntlValues = {
     timer: string;
     fra: string;
     til: string;
+    hvor: string /** hos ArbeidsgiverNavn/som frilanser/som selvstendig næringsdrivende} */;
 };

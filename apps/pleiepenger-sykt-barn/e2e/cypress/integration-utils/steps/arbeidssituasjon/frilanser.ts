@@ -83,7 +83,7 @@ const erFrilanserMedOppdrag = () => {
         el.should('contain', 'Startet 1. oktober 2022');
         el.should('contain', 'Jobber normalt 5 timer per uke');
 
-        el.should('contain', 'Frilansoppdrag registrert i perioden');
+        el.should('contain', 'Frilansoppdrag registrert i søknadsperioden');
         el.should('contain', 'Hurdal frilanssenter');
     });
 };
@@ -95,7 +95,7 @@ const erIkkeFrilanser = () => {
 
         getTestElement('arbeidssituasjon-frilanser').should(
             'contain',
-            'Er ikke frilanser og får ikke honorar i perioden det søkes for'
+            'Er ikke frilanser og får ikke honorar i søknadsperioden'
         );
     });
 };
@@ -112,7 +112,7 @@ const erFrilanserKunHonorarMisterIkkeHonorar = () => {
         cleanupFrilanser();
         fyllUtArbeidssituasjonFrilanserKunHonorarMisterIkkeHonorar();
         gåTilOppsummeringFraArbeidssituasjon();
-        getTestElement('arbeidssituasjon-frilanser').should('contain', 'Jeg mister ikke honorar i søknadsperioden');
+        getTestElement('arbeidssituasjon-frilanser').should('contain', 'Mister ikke honorar i søknadsperioden');
     });
 };
 

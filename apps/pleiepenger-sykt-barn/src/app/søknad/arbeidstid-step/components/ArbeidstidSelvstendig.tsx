@@ -29,6 +29,7 @@ const ArbeidstidSelvstendig: React.FunctionComponent<Props> = ({
     const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
         periode: periode,
         jobberNormaltTimer: normalarbeidstid,
+        arbeidsforholdType: ArbeidsforholdType.SELVSTENDIG,
     });
 
     return (

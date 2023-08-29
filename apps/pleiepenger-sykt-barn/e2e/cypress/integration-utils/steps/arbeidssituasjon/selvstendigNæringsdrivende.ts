@@ -75,7 +75,7 @@ const erIkkeSN = () => {
         fyllUtArbeidssituasjonErIkkeSelvstendig();
         gåTilOppsummeringFraArbeidssituasjon();
         const el = getTestElement('arbeidssituasjon-sn');
-        el.should('contain', 'Er ikke selvstendig næringsdrivende i perioden det søkes for');
+        el.should('contain', 'Er ikke selvstendig næringsdrivende i søknadsperioden');
     });
 };
 
@@ -93,7 +93,7 @@ const erSN = () => {
         gåTilOppsummeringFraArbeidIPerioden();
 
         const el = getTestElement('arbeidssituasjon-sn');
-        el.should('contain', 'Er selvstendig næringsdrivende i perioden');
+        el.should('contain', 'Er selvstendig næringsdrivende');
         el.should('contain', 'Har flere virksomheter');
         el.should('contain', 'Jobber normalt 5 timer per uke');
         el.should('contain', `Navn: ${virksomhet.navn}`);

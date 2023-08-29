@@ -8,6 +8,7 @@ import { FrilansFormField, Frilanstype } from '../../../types/søknad-form-value
 import ArbeidstidArbeidsaktivitet from './ArbeidstidArbeidsaktivitet';
 import ArbeidIPeriodeInfo from './info/ArbeidIPeriodeInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { BodyLong } from '@navikt/ds-react';
 
 interface Props {
     frilanstype: Frilanstype;
@@ -29,6 +30,7 @@ const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
     const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
         periode: periode,
         jobberNormaltTimer: normalarbeidstid,
+        arbeidsforholdType: ArbeidsforholdType.FRILANSER,
     });
 
     return (
@@ -50,24 +52,26 @@ const ArbeidstidFrilans: React.FunctionComponent<Props> = ({
                     søkerFremITid={søkerFremITid}
                     arbeidsforholdType={ArbeidsforholdType.FRILANSER}
                     tittel="Delvis jobb som frilanser i perioden">
-                    {frilanstype === Frilanstype.FRILANS && (
-                        <p>Nå må vi å vite hvor mange timer du jobber som frilanser i perioden du søker for.</p>
-                    )}
-                    {frilanstype === Frilanstype.FRILANS_HONORAR && (
-                        <p>
-                            Nå må vi vite hvor mange timer du jobber som frilanser i perioden du søker for. Du skal
-                            altså legge sammen tiden du jobber som frilanser, med tiden du bruker på det du mottar
-                            honorar for. Du skal oppgi denne tiden samlet.
-                        </p>
-                    )}
-                    {frilanstype === Frilanstype.HONORAR && (
-                        <>
+                    <BodyLong as="div">
+                        {frilanstype === Frilanstype.FRILANS && (
+                            <p>Nå må vi å vite hvor mange timer du jobber som frilanser i perioden du søker for.</p>
+                        )}
+                        {frilanstype === Frilanstype.FRILANS_HONORAR && (
                             <p>
-                                Nå må vi å vite hvor mange timer du jobber som frilanser i perioden du søker for. Det
-                                vil si hvor mange timer du bruker på arbeidet du får honorar for.
+                                Nå må vi vite hvor mange timer du jobber som frilanser i perioden du søker for. Du skal
+                                altså legge sammen tiden du jobber som frilanser, med tiden du bruker på det du mottar
+                                honorar for. Du skal oppgi denne tiden samlet.
                             </p>
-                        </>
-                    )}
+                        )}
+                        {frilanstype === Frilanstype.HONORAR && (
+                            <>
+                                <p>
+                                    Nå må vi å vite hvor mange timer du jobber som frilanser i perioden du søker for.
+                                    Det vil si hvor mange timer du bruker på arbeidet du får honorar for.
+                                </p>
+                            </>
+                        )}
+                    </BodyLong>
                 </ArbeidIPeriodeInfo>
             }
         />

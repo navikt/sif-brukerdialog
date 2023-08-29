@@ -68,14 +68,18 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
         case RedusertArbeidstidType.prosentAvNormalt:
             return (
                 <ul>
-                    <li>Kombinerer delvis jobb med pleiepenger</li>
+                    <li>
+                        <FormattedMessage id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
+                    </li>
                     <li>{getArbeidProsentTekst(redusertArbeid.prosentAvNormalt, intl)}</li>
                 </ul>
             );
         case RedusertArbeidstidType.timerISnittPerUke:
             return (
                 <ul>
-                    <li>Kombinerer delvis jobb med pleiepenger</li>
+                    <li>
+                        <FormattedMessage id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
+                    </li>
                     <li>
                         <FormattedMessage
                             id="oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke"
@@ -90,7 +94,9 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
         case RedusertArbeidstidType.ulikeUkerTimer:
             return (
                 <ul>
-                    <li>Kombinerer delvis jobb med pleiepenger</li>
+                    <li>
+                        <FormattedMessage id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
+                    </li>
                     <li>
                         <p>
                             <FormattedMessage
