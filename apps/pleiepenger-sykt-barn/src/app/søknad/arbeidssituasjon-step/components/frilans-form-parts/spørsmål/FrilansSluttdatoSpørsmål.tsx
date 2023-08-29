@@ -39,9 +39,6 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
                 return error
                     ? {
                           key: `${error}`,
-                          values: {
-                              frilanstype: intlHelper(intl, `validation.frilans.sluttdato`),
-                          },
                       }
                     : undefined;
             }}

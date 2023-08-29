@@ -38,13 +38,19 @@ export const fyllUtArbeidssituasjonFrilanserKunHonorarMisterIkkeHonorar = () => 
     selectRadioNo('frilans.misterHonorar');
 };
 
-export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = () => {
+export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = (startetFørOpptjeningsperiode = true) => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
         selectRadioYes('frilans.harHattInntektSomFrilanser');
         selectRadioByLabel('Jeg jobber både som frilanser og mottar honorar');
 
-        const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
-        cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
+        if (startetFørOpptjeningsperiode) {
+            selectRadioYes('frilans.startetFørOpptjeningsperiode');
+        } else {
+            selectRadioNo('frilans.startetFørOpptjeningsperiode');
+
+            const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
+            cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
+        }
 
         selectRadioNo('frilans.erFortsattFrilanser');
 
@@ -68,7 +74,7 @@ const erFrilanserUtenOppdrag = () => {
 
         const el = getTestElement('arbeidssituasjon-frilanser');
         el.should('contain', 'Jobber som frilanser');
-        el.should('contain', 'Startet 1. oktober 2022');
+        el.should('contain', 'Startet som frilanser før');
         el.should('contain', 'Jobber normalt 5 timer per uke');
     });
 };
@@ -80,7 +86,7 @@ const erFrilanserMedOppdrag = () => {
 
         const el = getTestElement('arbeidssituasjon-frilanser');
         el.should('contain', 'Jobber som frilanser');
-        el.should('contain', 'Startet 1. oktober 2022');
+        el.should('contain', 'Startet som frilanser før');
         el.should('contain', 'Jobber normalt 5 timer per uke');
 
         el.should('contain', 'Frilansoppdrag registrert i søknadsperioden');
@@ -128,7 +134,24 @@ const erFrilanserFrilansarbeidOgMottarHonorar = () => {
         const el = getTestElement('arbeidssituasjon-frilanser');
         el.should('contain', 'Jobber som frilanser og mottar honorar');
         el.should('contain.text', 'Jobber normalt 5 timer per uke');
-        el.should('contain', 'Startet ');
+        el.should('contain', 'Startet som frilanser før ');
+        el.should('contain', 'Sluttet ');
+    });
+};
+
+const erFrilanserFrilansarbeidOgMottarHonorarStartetIOpptjeningsperiode = () => {
+    it('er frilanser med frilansarbeid og honorar - startet i opptjeningsperioden', () => {
+        cleanupFrilanser();
+        fyllUtArbeidssituasjonErFrilanserOgMottarHonorar(false);
+        clickFortsett();
+        fyllUtArbeidIPeriodeFrilanser();
+        gåTilOppsummeringFraArbeidIPerioden();
+
+        /** Arbeidssituasjon */
+        const el = getTestElement('arbeidssituasjon-frilanser');
+        el.should('contain', 'Jobber som frilanser og mottar honorar');
+        el.should('contain.text', 'Jobber normalt 5 timer per uke');
+        el.should('contain', 'Startet som frilanser ');
         el.should('contain', 'Sluttet ');
     });
 };
@@ -140,5 +163,6 @@ export const testArbeidssituasjonFrilanser = () => {
         erFrilanserMedOppdrag();
         erFrilanserKunHonorarMisterIkkeHonorar();
         erFrilanserFrilansarbeidOgMottarHonorar();
+        erFrilanserFrilansarbeidOgMottarHonorarStartetIOpptjeningsperiode();
     });
 };

@@ -22,9 +22,6 @@ const ErFortsattFrilanserSpørsmål: React.FunctionComponent<Props> = ({ erForts
                 return error
                     ? {
                           key: `${error}`,
-                          values: {
-                              frilanstype: intlHelper(intl, `validation.frilans.erFortsattFrilanser`),
-                          },
                       }
                     : undefined;
             }}

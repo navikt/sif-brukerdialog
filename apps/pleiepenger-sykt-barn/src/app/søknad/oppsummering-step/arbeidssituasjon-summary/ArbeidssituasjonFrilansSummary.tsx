@@ -1,18 +1,20 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
+import { dateFormatter, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Arbeidsgiver } from '../../../types';
 import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
+import { getOpptjeningsperiodeStartDato } from '../../../utils/søknadsperiodeUtils';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
-import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils/lib';
 
 interface Props {
     frilans: FrilansApiData;
     frilansoppdrag: Arbeidsgiver[];
+    søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
+const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperiode }: Props) => {
     const intl = useIntl();
     if (frilans.harInntektSomFrilanser === false) {
         return (
@@ -61,12 +63,23 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                 <li>
                     <NormalarbeidstidSummary normalarbeidstidApiData={frilans.arbeidsforhold.normalarbeidstid} />
                 </li>
-                <li>
-                    <FormattedMessage
-                        id="oppsummering.arbeidssituasjon.frilans.startet"
-                        values={{ dato: dateFormatter.full(ISODateToDate(frilans.startdato)) }}
-                    />
-                </li>
+                {frilans.startetFørOpptjeningsperiode ? (
+                    <li>
+                        <FormattedMessage
+                            id="oppsummering.arbeidssituasjon.frilans.startetFørOpptjeningsperiode"
+                            values={{
+                                opptjeningStartdato: dateFormatter.full(getOpptjeningsperiodeStartDato(søknadsperiode)),
+                            }}
+                        />
+                    </li>
+                ) : (
+                    <li>
+                        <FormattedMessage
+                            id="oppsummering.arbeidssituasjon.frilans.startet"
+                            values={{ dato: dateFormatter.full(ISODateToDate(frilans.startdato)) }}
+                        />
+                    </li>
+                )}
 
                 {frilans.sluttdato && (
                     <li>

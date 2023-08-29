@@ -7,9 +7,9 @@ import dayjs from 'dayjs';
 
 /** TODO: avklare hvilket tidsrom en faktisk kan oppgi her og i sluttdato - innenfor dagens dato, eller periode? */
 export const getFrilanserStartdatoValidator =
-    (startdato: ISODate | undefined, søknadsperiode: DateRange, søknadsdato: Date) =>
+    (startdato: ISODate | undefined, søknadsperiode: DateRange, max: Date, min: Date) =>
     (value: string): ValidationResult<ValidationError> => {
-        const dateError = getDateValidator({ required: true, max: søknadsdato })(value);
+        const dateError = getDateValidator({ required: true, max, min })(value);
         if (dateError) {
             return dateError;
         }

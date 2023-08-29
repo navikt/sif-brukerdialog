@@ -31,3 +31,11 @@ export const søkerFortidOgFremtid = (søknadsperiode: DateRange): boolean => {
     }
     return false;
 };
+
+export const getOpptjeningsperiodeStartDato = (søknadsperiode: DateRange): Date => {
+    return dayjs(søknadsperiode.from).subtract(28, 'days').toDate();
+};
+
+export const getFørsteDagFørOpptjeningsperiode = (søknadsperiode: DateRange): Date => {
+    return dayjs(getOpptjeningsperiodeStartDato(søknadsperiode)).subtract(1, 'days').toDate();
+};

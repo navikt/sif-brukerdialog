@@ -38,12 +38,20 @@ export const getFrilansApiDataFromSøknadsdata = ({
 
     /** Har inntekt og har registrert arbeidstid */
     if (misterInntektSomFrilanser === true && arbeidstid) {
-        const { type, erFortsattFrilanser, startdato, sluttdato, misterHonorar, normalarbeidstid } = arbeidssituasjon;
+        const {
+            type,
+            erFortsattFrilanser,
+            startdato,
+            sluttdato,
+            misterHonorar,
+            normalarbeidstid,
+            startetFørOpptjeningsperiode,
+        } = arbeidssituasjon;
 
         return {
             type,
             _misterInntektSomFrilanser: true,
-            ...getFrilansFellesInfo(erFortsattFrilanser, startdato, sluttdato),
+            ...getFrilansFellesInfo(erFortsattFrilanser, startetFørOpptjeningsperiode, startdato, sluttdato),
             misterHonorar,
             arbeidsforhold: getFrilansArbeidsforholdApiData(normalarbeidstid, arbeidstid),
         };
@@ -66,16 +74,18 @@ const getFrilansArbeidsforholdApiData = (
 
 const getFrilansFellesInfo = (
     jobberFortsattSomFrilans: boolean,
+    startetFørOpptjeningsperiode: boolean,
     startdato: Date,
     sluttdato?: Date
 ): Pick<
     FrilanserMedArbeidsforholdApiDataPart,
-    'harInntektSomFrilanser' | 'jobberFortsattSomFrilans' | 'startdato' | 'sluttdato'
+    'harInntektSomFrilanser' | 'jobberFortsattSomFrilans' | 'startdato' | 'sluttdato' | 'startetFørOpptjeningsperiode'
 > => {
     if (jobberFortsattSomFrilans) {
         return {
             harInntektSomFrilanser: true,
             jobberFortsattSomFrilans: true,
+            startetFørOpptjeningsperiode,
             startdato: dateToISODate(startdato),
         };
     }
@@ -83,6 +93,7 @@ const getFrilansFellesInfo = (
         return {
             harInntektSomFrilanser: true,
             jobberFortsattSomFrilans: false,
+            startetFørOpptjeningsperiode,
             startdato: dateToISODate(startdato),
             sluttdato: sluttdato ? dateToISODate(sluttdato) : undefined,
         };

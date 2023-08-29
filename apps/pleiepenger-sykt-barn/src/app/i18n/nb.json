@@ -643,7 +643,8 @@
 
     "oppsummering.arbeidssituasjon.frilanser.header": "Frilans og oppdrag som regnes som frilansoppdrag",
     "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Er ikke frilanser og får ikke honorar i søknadsperioden",
-    "oppsummering.arbeidssituasjon.frilans.startet": "Startet {dato}",
+    "oppsummering.arbeidssituasjon.frilans.startetFørOpptjeningsperiode": "Startet som frilanser før {opptjeningStartdato}",
+    "oppsummering.arbeidssituasjon.frilans.startet": "Startet som frilanser {dato}",
     "oppsummering.arbeidssituasjon.frilans.fortsattFrilanser": "Er fortsatt frilanser",
     "oppsummering.arbeidssituasjon.frilans.FRILANS": "Jobber som frilanser",
     "oppsummering.arbeidssituasjon.frilans.FRILANS_HONORAR": "Jobber som frilanser og mottar honorar",
@@ -723,6 +724,7 @@
     "frilanser.harDuHattInntekt.hvaBetyr.info.2": "Et honorar kan for eksempel være en utbetaling i forbindelse med et styreverv, eller som trener for et idrettslag. Honorar blir også ofte brukt av frie yrker som forfattere, fotografer og kunstnere.",
 
     "frilanser.harDuAndreFrilansoppdrag.spm": "Har du andre frilansoppdrag du har fravær fra i perioden du søker for?",
+    "frilanser.startetFørOpptjeningsperiode.spm": "Startet du som frilanser før {dato}?",
     "frilanser.startdato.spm": "Når startet du å jobbe som frilanser?",
 
     "frilanser.erFortsattFrilanser.spm": "Jobber du fortsatt som frilanser?",
@@ -822,23 +824,19 @@
     "validation.frilans.frilanstype.notChecked": "Du må velge hva som er din situasjon som frilanser.",
     "validation.frilans.misterHonorar.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du mister honorar i perioden du søker for.",
 
-    "validation.frilans.startdato": "begynte å jobbe som frilanser",
+    "validation.frilans.startdato.dateHasNoValue": "Du må oppgi hvilken dato du startet å jobbe som frilanser. Skriv inn eller velg dato fra kalenderen.",
+    "validation.frilans.startdato.dateHasInvalidFormat": "Du må oppgi datoen for når du startet å jobbe som frilanser i et gyldig format. Gyldig format er dd.mm.åååå.",
+    "validation.frilans.startdato.dateIsAfterMax": "Datoen for når du startet å jobbe som frilanser kan ikke være etter dagens dato.",
+    "validation.frilans.startdato.dateIsBeforeMin": "Datoen for når du startet å jobbe som frilanser kan ikke være før {minDato}. Dersom du startet før dette, må du svare ja på at du startet før denne datoen.",
+    "validation.frilans.startdato.startetEtterSøknadsperiode": "Du har oppgitt at du startet startet å jobbe som frilanser etter perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
 
-    "validation.frilans.startdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilanstype}. Skriv inn eller velg dato fra kalenderen.",
-    "validation.frilans.startdato.dateHasInvalidFormat": "Du må oppgi datoen for når du {frilanstype} i et gyldig format. Gyldig format er dd.mm.åååå.",
-    "validation.frilans.startdato.dateIsAfterMax": "Datoen for når du {frilanstype} kan ikke være etter dagens dato.",
-    "validation.frilans.startdato.startetEtterSøknadsperiode": "Du har oppgitt at du startet {frilanstype} etter perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
+    "validation.frilans.sluttdato.sluttetFørSøknadsperiode": "Du har oppgitt at du sluttet å jobbe som frilanser før perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
+    "validation.frilans.sluttdato.dateHasNoValue": "Du må oppgi hvilken dato du sluttet å jobbe som frilanser. Skriv inn eller velg dato fra kalenderen.",
+    "validation.frilans.sluttdato.dateHasInvalidFormat": "Du må oppgi datoen for når du sluttet å jobbe som frilanser i et gyldig format. Gyldig format er dd.mm.åååå.",
+    "validation.frilans.sluttdato.dateIsAfterMax": "Datoen for når du sluttet å jobbe som frilanser kan ikke være etter dagens dato.",
+    "validation.frilans.sluttdato.dateIsBeforeMin": "Datoen for når du sluttet å jobbe som frilanser kan ikke være før datoen du startet.",
 
-    "validation.frilans.sluttdato": "sluttet å jobbe som frilanser",
-
-    "validation.frilans.sluttdato.sluttetFørSøknadsperiode": "Du har oppgitt at du {frilanstype} før perioden du søker for. Dersom dette stemmer, kan du svare \"Nei\" på spørsmålet om du var frilanser i perioden du søker for.",
-    "validation.frilans.sluttdato.dateHasNoValue": "Du må oppgi hvilken dato du {frilanstype}. Skriv inn eller velg dato fra kalenderen.",
-    "validation.frilans.sluttdato.dateHasInvalidFormat": "Du må oppgi datoen for når du {frilanstype} i et gyldig format. Gyldig format er dd.mm.åååå.",
-    "validation.frilans.sluttdato.dateIsAfterMax": "Datoen for når du {frilanstype} kan ikke være etter dagens dato.",
-    "validation.frilans.sluttdato.dateIsBeforeMin": "Datoen for når du {frilanstype} kan ikke være før datoen du startet.",
-
-    "validation.frilans.erFortsattFrilanser": "jobber som frilanser",
-    "validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du fortsatt {frilanstype}.",
+    "validation.frilans.erFortsattFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du fortsatt jobber som frilanser.",
 
     "validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du er selvstendig næringsdrivende i perioden du søker for.",
     "validation.selvstendig.harFlereVirksomheter.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.",

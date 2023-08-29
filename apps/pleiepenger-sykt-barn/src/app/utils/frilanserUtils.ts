@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { DateRange } from '@navikt/sif-common-utils';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { DateRange, ISODateToDate, isISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import minMax from 'dayjs/plugin/minMax';
 import { Arbeidsgiver } from '../types';
 import { FrilansFormValues, Frilanstype } from '../types/søknad-form-values/FrilansFormValues';
-import minMax from 'dayjs/plugin/minMax';
+import { getFørsteDagFørOpptjeningsperiode } from './søknadsperiodeUtils';
 
 dayjs.extend(minMax);
 
@@ -35,6 +36,7 @@ export const erFrilanserISøknadsperiode = (
         startdato,
         frilanstype,
         misterHonorar,
+        startetFørOpptjeningsperiode,
     }: FrilansFormValues
 ): boolean => {
     if (erFortsattFrilanser === YesOrNo.YES) {
@@ -43,8 +45,15 @@ export const erFrilanserISøknadsperiode = (
     const frilansStartdato = datepickerUtils.getDateFromDateString(startdato);
     const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
 
-    if (frilansStartdato && harSvartErFrilanserEllerHarFrilansoppdrag(harHattInntektSomFrilanser)) {
-        return erFrilanserITidsrom(søknadsperiode, frilansStartdato, frilansSluttdato);
+    if (
+        (startetFørOpptjeningsperiode || frilansStartdato) &&
+        harSvartErFrilanserEllerHarFrilansoppdrag(harHattInntektSomFrilanser)
+    ) {
+        return erFrilanserITidsrom(
+            søknadsperiode,
+            frilansStartdato || getFørsteDagFørOpptjeningsperiode(søknadsperiode),
+            frilansSluttdato
+        );
     }
     return false;
 };
@@ -86,3 +95,14 @@ export const getPeriodeSomFrilanserInnenforPeriode = (
 
 const kunHonorUtenNormalArbeidstid = (frilanstype?: Frilanstype, misterHonorar?: YesOrNo) =>
     frilanstype && frilanstype === Frilanstype.HONORAR && misterHonorar === YesOrNo.NO;
+
+export const getStartdatoSomFrilanser = (
+    søknadsperiode: DateRange,
+    startetFørOpptjeningsperiode: boolean,
+    startdato: string | undefined
+): Date | undefined => {
+    if (startetFørOpptjeningsperiode) {
+        return getFørsteDagFørOpptjeningsperiode(søknadsperiode);
+    }
+    return startdato && isISODate(startdato) ? ISODateToDate(startdato) : undefined;
+};

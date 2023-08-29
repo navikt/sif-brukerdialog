@@ -48,8 +48,12 @@ export const cleanupFrilansArbeidssituasjon = (
     /** Fjern verdier som ikke gjelder gitt svar fra bruker */
     const frilans: FrilansFormValues = { ...values };
 
+    if (frilans.startetFørOpptjeningsperiode === YesOrNo.YES) {
+        delete frilans.startdato;
+    }
+
     if (erFrilanserISøknadsperiode(_søknadsperiode, values) === false) {
-        frilans.arbeidsforhold = undefined;
+        delete frilans.arbeidsforhold;
     }
     if (frilans.frilanstype !== Frilanstype.HONORAR) {
         delete frilans.misterHonorar;

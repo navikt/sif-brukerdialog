@@ -18,6 +18,7 @@ export type FrilanserMedArbeidsforholdApiDataPart = {
     harInntektSomFrilanser: true;
     misterHonorar?: boolean;
     jobberFortsattSomFrilans: boolean;
+    startetFørOpptjeningsperiode: boolean;
     startdato: ISODate;
     sluttdato?: ISODate;
     arbeidsforhold: ArbeidsforholdApiData;

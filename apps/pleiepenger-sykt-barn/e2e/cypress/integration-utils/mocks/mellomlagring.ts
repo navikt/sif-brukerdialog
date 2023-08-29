@@ -49,6 +49,7 @@ export const mellomlagring = {
             frilanstype: 'FRILANS',
             startdato: '2022-10-01',
             erFortsattFrilanser: 'yes',
+            startetFørOpptjeningsperiode: 'yes',
             arbeidsforhold: {
                 normalarbeidstid: {
                     timerPerUke: '5',

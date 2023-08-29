@@ -20,6 +20,7 @@ import FrilansSluttdatoSpørsmål from './spørsmål/FrilansSluttdatoSpørsmål'
 import FrilansStartdatoSpørsmål from './spørsmål/FrilansStartdatoSpørsmål';
 import HarHattInntektSomFrilanserSpørsmål from './spørsmål/HarHattInntektSomFrilanserSpørsmål';
 import MisterHonorarSpørsmål from './spørsmål/MisterHonorarSpørsmål';
+import FrilansStartetFørOpptjeningsperiodeSpørsmål from './spørsmål/FrilansStartetFørOpptjeningsperiodeSpørsmål';
 
 export const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormValues, ValidationError>();
 
@@ -85,12 +86,16 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                         {frilanstype && visNormalarbeidstidSpørsmål() && (
                             <>
                                 <FormBlock>
-                                    <FrilansStartdatoSpørsmål
-                                        søknadsdato={søknadsdato}
-                                        søknadsperiode={søknadsperiode}
-                                        startdatoValue={values.frilans.startdato}
-                                    />
+                                    <FrilansStartetFørOpptjeningsperiodeSpørsmål søknadsperiode={søknadsperiode} />
                                 </FormBlock>
+                                {values.frilans.startetFørOpptjeningsperiode === YesOrNo.NO && (
+                                    <FormBlock>
+                                        <FrilansStartdatoSpørsmål
+                                            søknadsperiode={søknadsperiode}
+                                            startdatoValue={values.frilans.startdato}
+                                        />
+                                    </FormBlock>
+                                )}
                                 <FormBlock>
                                     <ErFortsattFrilanserSpørsmål
                                         erFortsattFrilanserValue={values.frilans.erFortsattFrilanser}

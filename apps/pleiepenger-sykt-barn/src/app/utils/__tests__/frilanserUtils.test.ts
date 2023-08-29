@@ -1,20 +1,14 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { ISODateRangeToDateRange, ISODateToDate, dateToISODate } from '@navikt/sif-common-utils/lib';
 //import { Arbeidsgiver, ArbeidsgiverType } from '../../types';
 import {
     harSvartErFrilanserEllerHarFrilansoppdrag,
     erFrilanserITidsrom,
     erFrilanserISøknadsperiode,
+    getStartdatoSomFrilanser,
 } from '../frilanserUtils';
 
 const periode = ISODateRangeToDateRange('2021-01-05/2021-01-10');
-
-/*const frilansoppdragIPeriode: Arbeidsgiver = {
-    id: '123',
-    navn: 'Frilansoppdrag',
-    type: ArbeidsgiverType.FRILANSOPPDRAG,
-    ansattFom: ISODateToDate('2021-01-01'),
-};*/
 
 describe('frilanserUtils', () => {
     describe('harSvartErFrilanserEllerHarFrilansoppdrag', () => {
@@ -22,11 +16,6 @@ describe('frilanserUtils', () => {
             const result = harSvartErFrilanserEllerHarFrilansoppdrag(YesOrNo.YES);
             expect(result).toBeTruthy();
         });
-        /*
-        it('returnerer true dersom bruker har registrert frilansoppdrag', () => {
-            const result = harSvartErFrilanserEllerHarFrilansoppdrag(undefined, [frilansoppdragIPeriode]);
-            expect(result).toBeTruthy();
-        });*/
         it('returnerer false fersom bruker har har svart nei på om en er frilanser', () => {
             const result = harSvartErFrilanserEllerHarFrilansoppdrag(YesOrNo.NO);
             expect(result).toBeFalsy();
@@ -52,6 +41,28 @@ describe('frilanserUtils', () => {
         it('returnerer false dersom startdato er etter tidsrom', () => {
             const frilansStartdato: Date = ISODateToDate('2021-01-11');
             expect(erFrilanserITidsrom(periode, frilansStartdato)).toBeFalsy();
+        });
+    });
+    describe('getStartdatoSomFrilanser', () => {
+        const søknadsperiode = ISODateRangeToDateRange('2023-07-30/2023-10-31');
+
+        it('returnerer første dato før opptjeningsperiode dersom bruker sier en startet før opptjeningsperiode', () => {
+            const result = getStartdatoSomFrilanser(søknadsperiode, true, '');
+            expect(result).toBeDefined();
+            if (result) {
+                expect(dateToISODate(result)).toEqual('2023-07-01');
+            }
+        });
+        it('returnerer oppgitt startdato som frilanser, dersom bruker sier en startet i opptjeningsperiode', () => {
+            const result = getStartdatoSomFrilanser(søknadsperiode, false, '2023-07-30');
+            expect(result).toBeDefined();
+            if (result) {
+                expect(dateToISODate(result)).toEqual('2023-07-30');
+            }
+        });
+        it('returnerer undefined dersom bruker sier en startet i opptjeningsperiode men har ikke oppgitt gyldig dato', () => {
+            const result = getStartdatoSomFrilanser(søknadsperiode, false, 'abc');
+            expect(result).toBeUndefined();
         });
     });
     describe('erFrilanserISøknadsperiode', () => {

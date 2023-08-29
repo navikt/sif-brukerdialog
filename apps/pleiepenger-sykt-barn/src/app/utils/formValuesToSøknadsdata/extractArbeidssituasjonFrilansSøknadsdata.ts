@@ -3,7 +3,7 @@ import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { FrilansFormValues, Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';
 import { ArbeidssituasjonFrilansSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonFrilansSøknadsdata';
 import { isYesOrNoAnswered } from '../../validation/fieldValidations';
-import { getPeriodeSomFrilanserInnenforPeriode } from '../frilanserUtils';
+import { getPeriodeSomFrilanserInnenforPeriode, getStartdatoSomFrilanser } from '../frilanserUtils';
 import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonFrilansSøknadsdata = (
@@ -29,8 +29,10 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
         };
     }
 
-    const startdato = formValues.startdato ? ISODateToDate(formValues.startdato) : undefined;
+    const startetFørOpptjeningsperiode = formValues.startetFørOpptjeningsperiode === YesOrNo.YES;
+    const startdato = getStartdatoSomFrilanser(søknadsperiode, startetFørOpptjeningsperiode, formValues.startdato);
     const sluttdato = formValues.sluttdato ? ISODateToDate(formValues.sluttdato) : undefined;
+
     if (!startdato || (!erFortsattFrilanser && !sluttdato)) {
         throw 'extractArbeidssituasjonFrilansSøknadsdata: ugyldig start eller sluttdato';
     }
@@ -46,7 +48,7 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
 
     const normalarbeidstid = extractNormalarbeidstid(arbeidsforhold?.normalarbeidstid);
     if (!normalarbeidstid) {
-        throw '';
+        throw 'extractArbeidssituasjonFrilansSøknadsdata: normalarbeidstid is undefined';
     }
     return {
         type: frilanstype,
@@ -54,6 +56,7 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
         misterInntektSomFrilanser: true,
         misterHonorar: misterHonorar === YesOrNo.YES ? true : undefined,
         erFortsattFrilanser: erFortsattFrilanser === YesOrNo.YES,
+        startetFørOpptjeningsperiode,
         startdato,
         sluttdato,
         periodeSomFrilanserISøknadsperiode,
