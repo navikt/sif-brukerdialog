@@ -13,10 +13,12 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
     } = useSøknadContext();
 
     const antallUkjente = sak.arbeidsaktivitetMedUkjentArbeidsgiver.length;
+
     if (antallUkjente === 0) {
         return null;
     }
 
+    const antallKjente = getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter).length;
     const flertall = antallUkjente > 1;
 
     return (
@@ -26,11 +28,17 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
                     Ukjent arbeidsforhold
                 </Heading>
                 <>
-                    Det er registrert informasjon om {flertall ? 'flere' : 'ett'} arbeidsforhold i saken din som vi ikke
-                    finner i AA-registeret. Du kan ikke endre arbeidstid for{' '}
-                    {flertall ? 'disse arbeidsforholdene' : 'dette arbeidsforholdet'}.
-                    {getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter).length > 0 && (
-                        <> Du kan fortsatt endre arbeidstid i andre arbeidsforhold nedenfor.</>
+                    Det er {flertall ? 'flere' : 'ett'} arbeidsforhold i saken din som ikke er registrert på deg i
+                    AA-registeret. Du kan ikke endre arbeidstid for{' '}
+                    {flertall ? 'disse arbeidsforholdene' : 'dette arbeidsforholdet'}
+                    {antallKjente === 0 ? (
+                        '.'
+                    ) : (
+                        <>
+                            , men du kan fortsatt endre{' '}
+                            {antallKjente === 1 ? 'ditt andre arbeidsforhold' : 'de andre arbeidsforholdene dine'}{' '}
+                            nedenfor.
+                        </>
                     )}
                 </>
                 <ExpandableInfo title="Hvilke arbeidsforhold gjelder det?">
