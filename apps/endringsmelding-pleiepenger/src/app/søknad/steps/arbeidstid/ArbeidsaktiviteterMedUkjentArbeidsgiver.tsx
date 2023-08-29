@@ -2,6 +2,8 @@ import React from 'react';
 import { useSøknadContext } from '../../../hooks';
 import { Alert, Heading } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import { getAktiviteterSomSkalEndres } from './arbeidstidStepUtils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 interface Props {}
 
@@ -9,46 +11,45 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
     const {
         state: { sak },
     } = useSøknadContext();
-    if (sak.arbeidsaktivitetMedUkjentArbeidsgiver.length === 0) {
+
+    const antallUkjente = sak.arbeidsaktivitetMedUkjentArbeidsgiver.length;
+    if (antallUkjente === 0) {
         return null;
     }
 
-    const antallUkjente = sak.arbeidsaktivitetMedUkjentArbeidsgiver.length;
-    const getTittel = () => {
-        return antallUkjente === 1
-            ? `Ukjent arbeidsforhold - orgnr. ${sak.arbeidsaktivitetMedUkjentArbeidsgiver[0].organisasjonsnummer}`
-            : `${antallUkjente} ukjente arbeidsforhold`;
-    };
+    const flertall = antallUkjente > 1;
+
     return (
         <FormBlock>
             <Alert variant="info">
-                <Heading level="3" size="medium">
-                    {getTittel()}
+                <Heading level="3" size="small">
+                    Ukjent arbeidsforhold
                 </Heading>
-                {antallUkjente === 1 ? (
-                    <p>
-                        Det er registrert informasjon om et arbeidsforhold i saken din på en arbeidsgiver vi ikke finner
-                        registrert på deg i AA-registeret.
-                    </p>
-                ) : (
-                    <>
-                        <p>
-                            Det er registrert informasjon om arbeidsforhold i saken din hvor vi ikke finner
-                            arbeidsforholdet registrert i AA-registeret:
-                        </p>
-                        <ul>
-                            {sak.arbeidsaktivitetMedUkjentArbeidsgiver.map((a) => (
-                                <li key={a.organisasjonsnummer}>{a.organisasjonsnummer}</li>
-                            ))}
-                        </ul>
-                    </>
-                )}
-                <p>Dette kan være fordi:</p>
-                <ul>
-                    <li>En mulig årsak</li>
-                    <li>En annen mulig årsak</li>
-                </ul>
-                <p>Hva skal bruker gjøre ...?</p>
+                <>
+                    Det er registrert informasjon om {flertall ? 'flere' : 'ett'} arbeidsforhold i saken din som vi ikke
+                    finner i AA-registeret. Du kan ikke endre arbeidstid for{' '}
+                    {flertall ? 'disse arbeidsforholdene' : 'dette arbeidsforholdet'}.
+                    {getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter).length > 0 && (
+                        <> Du kan fortsatt endre arbeidstid i andre arbeidsforhold nedenfor.</>
+                    )}
+                </>
+                <ExpandableInfo title="Hvilke arbeidsforhold gjelder det?">
+                    <p>Arbeidsforhold du ikke kan endre er (organisasjonsnummer):</p>
+                    <ul>
+                        {sak.arbeidsaktivitetMedUkjentArbeidsgiver.map((a) => (
+                            <li key={a.organisasjonsnummer}>{a.organisasjonsnummer}</li>
+                        ))}
+                    </ul>
+                </ExpandableInfo>
+                <ExpandableInfo title="Hva betyr dette, og trenger jeg å gjøre noe?">
+                    <p>Nå vi ikke finner arbeidsforholdet i AA-registrert så kan dette ha flere årsaker:</p>
+                    <ul>
+                        <li>En</li>
+                        <li>To</li>
+                        <li>Tre</li>
+                    </ul>
+                    <p>Du bør ...</p>
+                </ExpandableInfo>
             </Alert>
         </FormBlock>
     );

@@ -18,6 +18,7 @@ export const useStartSøknad = () => {
             erArbeidstaker: sak.arbeidsaktiviteter.arbeidstakerAktiviteter.length > 0,
             erFrilanser: sak.arbeidsaktiviteter.frilanser !== undefined,
             arbeidsgivereIkkeISak: sak.ukjenteArbeidsgivere.length,
+            arbeidsgivereIkkeIAAreg: sak.arbeidsaktivitetMedUkjentArbeidsgiver.length,
         });
         dispatch(actionsCreator.startSøknad(sak, hvaSkalEndres));
     };
