@@ -28,11 +28,11 @@ describe('tilgangskontroll', () => {
     const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-01/2023-03-01');
 
     it('stopper ved ingen sak', () => {
-        const result = tilgangskontroll([], [], tillattEndringsperiode);
+        const result = tilgangskontroll([], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
     it('stopper hvis bruker har flere enn én sak', () => {
-        const result = tilgangskontroll([true, false] as any, [], tillattEndringsperiode);
+        const result = tilgangskontroll([true, false] as any, tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
 });

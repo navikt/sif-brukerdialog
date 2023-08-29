@@ -28,7 +28,7 @@ export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 
 export const tilgangskontroll = (
     saker: K9Sak[],
-    arbeidsgivere: Arbeidsgiver[],
+    // arbeidsgivere: Arbeidsgiver[],
     tillattEndringsperiode: DateRange
 ): TilgangKontrollResultat => {
     /** Har ingen saker */
@@ -62,12 +62,12 @@ export const tilgangskontroll = (
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
     }
 
-    /**
-     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
-     */
-    if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
-        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
-    }
+    // /**
+    //  * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
+    //  */
+    // if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
+    //     ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
+    // }
 
     if (ingenTilgangÅrsak.length > 0) {
         return {

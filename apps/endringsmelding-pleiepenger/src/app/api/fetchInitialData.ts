@@ -66,7 +66,7 @@ export const fetchInitialData = async (
             })
             .then((result) => {
                 arbeidsgivere = result;
-                return kontrollerTilgang(k9saker, arbeidsgivere, tillattEndringsperiode);
+                return kontrollerTilgang(k9saker, tillattEndringsperiode);
             })
             .then(() => hentOgKontrollerLagretSøknadState(søker, k9saker))
             .then((lagretSøknadState) => {
@@ -135,12 +135,8 @@ const kontrollerSaker = (
     return Promise.resolve({ k9saker, dateRangeAlleSaker });
 };
 
-const kontrollerTilgang = async (
-    k9saker: K9Sak[],
-    arbeidsgivere: Arbeidsgiver[],
-    tillattEndringsperiode: DateRange
-): Promise<boolean> => {
-    const resultat = tilgangskontroll(k9saker, arbeidsgivere, tillattEndringsperiode);
+const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateRange): Promise<boolean> => {
+    const resultat = tilgangskontroll(k9saker, tillattEndringsperiode);
     if (resultat.kanBrukeSøknad) {
         return Promise.resolve(true);
     }
