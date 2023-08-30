@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.39.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
 ## 3.38.0
 
 ### Minor Changes

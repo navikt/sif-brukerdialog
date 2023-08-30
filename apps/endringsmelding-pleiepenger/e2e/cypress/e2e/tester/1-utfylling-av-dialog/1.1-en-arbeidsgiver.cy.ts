@@ -16,8 +16,8 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
 
     cyHelpers.startSøknad({ endreArbeidstid: true, endreLovbestemtFerie: true });
     cyHelpers.leggTilOgFjernFerie();
-    cyHelpers.endreEnkeltuke();
-    cyHelpers.endreFlereUker();
+    cyHelpers.endreArbeidEnkeltuke();
+    cyHelpers.endreArbeidFlereUker();
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummering();
     cyHelpers.bekreftOpplysningerOgSendInn();

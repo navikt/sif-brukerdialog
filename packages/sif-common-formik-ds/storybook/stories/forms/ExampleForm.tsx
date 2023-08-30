@@ -1,18 +1,19 @@
 /* eslint-disable no-console */
 import { Heading, Panel } from '@navikt/ds-react';
 import * as React from 'react';
-import '@navikt/ds-datepicker/lib/index.css';
+import { useIntl } from 'react-intl';
 import { ISODateString } from '@navikt/ds-datepicker/lib/types';
+import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
 import { getTypedFormComponents } from '../../../src/components/getTypedFormComponents';
 import { YesOrNo } from '../../../src/types';
-import { ValidationError } from '../../../src/validation/types';
-import { mockAnimalOptions, MockAnimals } from '../../mock-data';
 import { getCheckedValidator, getRequiredFieldValidator } from '../../../src/validation';
-import FormikValidationErrorSummary from '../../../src/components/formik-validation-error-summary/FormikValidationErrorSummary';
 import getIntlFormErrorHandler from '../../../src/validation/intlFormErrorHandler';
-import { useIntl } from 'react-intl';
-import ExampleListAndDialog from './ExampleListAndDialog';
+import { ValidationError } from '../../../src/validation/types';
 import FormBlock from '../../components/form-block/FormBlock';
+import { mockAnimalOptions, MockAnimals } from '../../mock-data';
+import ExampleListAndDialog from './ExampleListAndDialog';
+import '@navikt/ds-datepicker/lib/index.css';
+import { Accept } from 'react-dropzone';
 
 enum Fields {
     checked = 'checked',
@@ -53,6 +54,10 @@ const Form = getTypedFormComponents<Fields, FieldValues, ValidationError>();
 
 const ExampleForm: React.FunctionComponent = () => {
     const intl = useIntl();
+    const accept: Accept = {
+        'image/png': ['.png'],
+        'text/html': ['.html', '.htm'],
+    };
     return (
         <Panel border={true} style={{ margin: '1rem' }}>
             <Heading size="medium">Example form</Heading>
@@ -105,7 +110,17 @@ const ExampleForm: React.FunctionComponent = () => {
                                     name={Fields.attachments}
                                     buttonLabel="Choose picture"
                                     onFilesSelect={(evt) => console.log(evt)}
-                                    accept={'.png'}
+                                    accept={'.pdf'}
+                                    description="Dette er en liten tekst som trengs her"
+                                />
+                            </FormBlock>
+                            <FormBlock>
+                                <Form.FileDropInput
+                                    legend="Velg filer"
+                                    name={Fields.attachments}
+                                    buttonLabel="Choose picture"
+                                    onFilesSelect={(evt) => console.log(evt)}
+                                    accept={accept}
                                     description="Dette er en liten tekst som trengs her"
                                 />
                             </FormBlock>

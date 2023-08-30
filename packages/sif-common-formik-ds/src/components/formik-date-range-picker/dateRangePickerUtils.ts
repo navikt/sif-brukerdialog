@@ -30,18 +30,18 @@ export const getRangesEndingBeforeDate = (date: Date, dateRanges: DateRange[] = 
 
 export const findClosestDateAfterDate = (fromDate: Date, dates: Date[]): Date | undefined => {
     const dayjss = dates.map((d) => dayjs(d)).filter((m) => m.isAfter(fromDate, 'day'));
-    return dayjss.length > 0 ? dayjs.min(dayjss).toDate() : undefined;
+    return dayjss.length > 0 ? dayjs.min(dayjss)!.toDate() : undefined;
 };
 
 export const findClosestDateBeforeDate = (fromDate: Date, dates: Date[]): Date | undefined => {
     const dayjss = dates.map((d) => dayjs(d)).filter((m) => m.isBefore(fromDate, 'day'));
-    const maxDate = dayjss.length > 0 ? dayjs.max(dayjss).toDate() : undefined;
+    const maxDate = dayjss.length > 0 ? dayjs.max(dayjss)!.toDate() : undefined;
     return maxDate;
 };
 
 export const findClosestDateBeforeOrEqualDate = (fromDate: Date, dates: Date[]): Date | undefined => {
     const dayjss = dates.map((d) => dayjs(d)).filter((m) => m.isSameOrBefore(fromDate, 'day'));
-    const maxDate = dayjss.length > 0 ? dayjs.max(dayjss).toDate() : undefined;
+    const maxDate = dayjss.length > 0 ? dayjs.max(dayjss)!.toDate() : undefined;
     return maxDate;
 };
 

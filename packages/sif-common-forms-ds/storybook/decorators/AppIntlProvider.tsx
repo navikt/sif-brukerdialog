@@ -1,4 +1,3 @@
-import { Modal } from '@navikt/ds-react';
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import '@formatjs/intl-pluralrules//locale-data/en';
@@ -23,9 +22,6 @@ const AppIntlProvider = ({ locale, onError, children }: IntlProviderProps) => {
     const messages = locale === 'nb' ? appMessages.nb : appMessages.nn;
     dayjs.locale(locale === 'nb' ? 'nb' : 'nn');
     React.useEffect(() => {
-        if (Modal.setAppElement) {
-            Modal.setAppElement('#dialog-wrapper');
-        }
         window.document.body.className = window.document.body.className + ' sif-ds-theme';
     });
 

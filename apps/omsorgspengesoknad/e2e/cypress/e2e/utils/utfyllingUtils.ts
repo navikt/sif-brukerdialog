@@ -1,3 +1,4 @@
+import 'cypress-axe';
 import {
     checkCheckbuttonByName,
     getInputByName,
@@ -19,6 +20,9 @@ interface BarnOgDeltBostedProps {
 const startSøknad = () => {
     it('Starter søknad', () => {
         cy.wait(['@getSøker', '@getBarn']);
+        cy.get('h1').contains('Hei PRESENTABEL', { timeout: 10000 }).should('be.visible');
+        cy.injectAxe();
+        cy.checkA11y();
         getTestElement('bekreft-label').click();
         getTestElement('typedFormikForm-submitButton').click();
         cy.wait('@putMellomlagring');
@@ -27,15 +31,18 @@ const startSøknad = () => {
 
 const fyllUtOmBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet', () => {
+        cy.injectAxe();
         getTestElement('barn-2811762539343').click();
         selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
+        cy.checkA11y();
         submitSkjema();
     });
 };
 
 const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet - annet barn', () => {
+        cy.injectAxe();
         if (props.harRegistrertBarn) {
             checkCheckbuttonByName('søknadenGjelderEtAnnetBarn');
         }
@@ -44,6 +51,7 @@ const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
         getInputByName('søkersRelasjonTilBarnet').select('mor');
         selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
+        cy.checkA11y();
         submitSkjema();
     });
 };
@@ -85,6 +93,7 @@ const lastOppSamværsavtale = () => {
 
 const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
     it('har riktig oppsummering - enkel', () => {
+        cy.injectAxe();
         const oppsummering = getTestElement('oppsummering');
         oppsummering.should('contain', cyApiMockData.søkerMock.fornavn);
         oppsummering.should('contain', cyApiMockData.søkerMock.fødselsnummer);
@@ -96,19 +105,24 @@ const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
         if (props.deltBosted === false) {
             getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);
         }
+        cy.checkA11y();
     });
 };
 const sendInnSøknad = () => {
     it('Sender inn søknad', () => {
+        cy.injectAxe();
         getTestElement('bekreft-label').click();
+        cy.checkA11y();
         getTestElement('typedFormikForm-submitButton').click();
         cy.wait('@innsending');
     });
 };
 const kontrollerKvittering = () => {
     it('Inneholder søknad mottatt tekst', () => {
+        cy.injectAxe();
         const el = getTestElement('kvittering-page');
         el.should('contain', 'Vi har mottatt søknad om ekstra omsorgsdager');
+        cy.checkA11y();
     });
 };
 

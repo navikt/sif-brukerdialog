@@ -28,13 +28,10 @@ const getFiskerNæringTekst = (intl: IntlShape, erPåBladB: boolean) => {
 export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
 
-    const næringstyper = virksomhet.næringstyper
-        .map((næring) =>
-            næring === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
-                ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
-                : intlHelper(intl, `sifForms.virksomhet.næringstype_${næring}`)
-        )
-        .join(', ');
+    const næringstype =
+        virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
+            ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
+            : intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
 
     const tidsinfo = virksomhet.tilOgMed
         ? intlHelper(intl, 'sifForms.virksomhet.summary.tidsinfo.avsluttet', {
@@ -50,7 +47,7 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Int
             <IntlLabelValue labelKey="sifForms.virksomhet.summary.navn">
                 {virksomhet.navnPåVirksomheten}.
             </IntlLabelValue>
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstyper}. </IntlLabelValue>
+            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
             <div>
                 <FormattedMessage id="sifForms.virksomhet.summary.registrertILand" values={{ land }} />
                 {virksomhet.registrertINorge && (

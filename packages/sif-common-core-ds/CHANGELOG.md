@@ -1,5 +1,38 @@
 # @navikt/sif-common-core-ds
 
+## 9.4.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [c976be57]
+    -   @navikt/sif-common-formik-ds@0.4.0
+    -   @navikt/appstatus-react-ds@2.13.0
+    -   @navikt/sif-common-utils@3.39.0
+
+## 9.3.0
+
+### Minor Changes
+
+-   026fc373: Oppdatere til versjon 5 av designsystemet aksel
+
+### Patch Changes
+
+-   Updated dependencies [41d0a03c]
+-   Updated dependencies [026fc373]
+    -   @navikt/sif-common-formik-ds@0.3.0
+    -   @navikt/appstatus-react-ds@2.12.0
+
+## 9.2.1
+
+### Patch Changes
+
+-   Updated dependencies [6669d48c]
+    -   @navikt/sif-common-formik-ds@0.25.0
+
 ## 9.2.0
 
 ### Minor Changes
