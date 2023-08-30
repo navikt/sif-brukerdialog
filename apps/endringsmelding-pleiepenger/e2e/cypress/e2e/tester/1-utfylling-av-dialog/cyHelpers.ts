@@ -208,7 +208,7 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
         getAktivitet().within(() => {
             getPeriode().within(() => {
                 getTestElement('endre-flere-uker-cb').click();
-                cy.wait(300);
+                cy.wait(500);
                 const rows = uker.map((uke) => getUkeRow(uke));
                 rows.forEach((row) => {
                     row.within(() => {
@@ -226,15 +226,20 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
                 cy.get('[data-testid=endre-flere-uker-button]').click();
             });
         });
-        cy.wait(300);
+        cy.wait(500);
         cy.checkA11y();
         getArbeidstimerModal().within(() => {
-            getTestElement('timer-verdi').type('5');
+            getTestElement('timer-verdi').type('1.5');
             cy.checkA11y();
             captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
-        captureScreenshot();
+    });
+    it('kontrollerer endringer i tabell', () => {
+        getAktivitet().within(() => {
+            cy.get(`[data-testid="uke_46"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+            cy.get(`[data-testid="uke_47"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+        });
     });
 };
 
@@ -285,6 +290,9 @@ const fortsettTilOppsummering = () => {
 };
 
 const kontrollerOppsummering = () => {
+    it('er på oppsummeringssiden', () => {
+        cy.get('h1').contains('Oppsummering').should('exist');
+    });
     it('viser riktig informasjon i oppsummering', () => {
         getUkeRow(enkeltuke).within(() => {
             expect(cy.get('[data-testid=timer-faktisk]').contains('10 t. 30 m.'));
@@ -355,8 +363,8 @@ export const cyHelpers = {
     leggTilOgFjernFerie,
     leggTilFerie,
     endreOgFjernFerie,
-    endreEnkeltuke: endreArbeidEnkeltuke,
-    endreFlereUker: endreArbeidFlereUker,
+    endreArbeidEnkeltuke,
+    endreArbeidFlereUker,
     fyllUtArbeidstidUkjentArbeidsforhold,
     fortsettTilOppsummering,
     kontrollerOppsummering,
