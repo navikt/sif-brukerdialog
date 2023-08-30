@@ -20,7 +20,7 @@ import {
     navigateToKvitteringPage,
     navigateToLoginPage,
     navigateToWelcomePage,
-    relocateToNavFrontpage,
+    relocateToMineSider,
 } from '../utils/navigationUtils';
 import { getApplicationPageRoute } from '../utils/routeUtils';
 import { initialSendSoknadState, SendSoknadStatus, SoknadContextProvider } from './SoknadContext';
@@ -124,7 +124,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         try {
             await soknadTempStorage.update(sId, values, stepID, { søker }, søknadstype);
             await logHendelse(ApplikasjonHendelse.fortsettSenere);
-            relocateToNavFrontpage();
+            relocateToMineSider();
         } catch (error) {
             if (isUserLoggedOut(error)) {
                 logUserLoggedOut('Ved continueSoknadLater');
