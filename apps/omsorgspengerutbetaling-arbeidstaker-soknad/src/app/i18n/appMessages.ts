@@ -40,6 +40,12 @@ export const appMessages: MessageFileFormat = {
         'timeInput.hours': 'Timer',
         'timeInput.minutes': 'Minutter',
 
+        'initialLoadError.pageTitle': 'Det oppstod en feil',
+        'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
+
+        'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+        'resetMellomlagring.startPåNytt': 'Start på nytt',
+
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
         'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
