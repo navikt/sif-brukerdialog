@@ -1,4 +1,4 @@
-import { DateRange, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
 import { Arbeidsgiver, K9Sak, K9SakArbeidstaker } from '@types';
 
 export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefined => {
@@ -17,4 +17,9 @@ export const finnesArbeidsgiverIK9Sak = (
     return arbeidsgivereISak.some(
         ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
     );
+};
+
+export const getSisteSøknadsperiodeIK9Sak = (sak: K9Sak): DateRange => {
+    const perioder = sak.ytelse.søknadsperioder.sort(dateRangeUtils.sortDateRangeByToDate);
+    return perioder[perioder.length - 1];
 };

@@ -26,11 +26,7 @@ type TilgangTillatt = {
 
 export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 
-export const tilgangskontroll = (
-    saker: K9Sak[],
-    // arbeidsgivere: Arbeidsgiver[],
-    tillattEndringsperiode: DateRange
-): TilgangKontrollResultat => {
+export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRange): TilgangKontrollResultat => {
     /** Har ingen saker */
     if (saker.length === 0) {
         return {
@@ -40,12 +36,12 @@ export const tilgangskontroll = (
     }
 
     /** Har flere saker */
-    if (saker.length > 1) {
-        return {
-            kanBrukeSøknad: false,
-            årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
-        };
-    }
+    // if (saker.length > 1) {
+    //     return {
+    //         kanBrukeSøknad: false,
+    //         årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
+    //     };
+    // }
 
     /** Bruker har bare én sak */
 
