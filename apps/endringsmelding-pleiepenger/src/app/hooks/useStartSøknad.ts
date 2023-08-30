@@ -7,7 +7,7 @@ import actionsCreator from '../søknad/context/action/actionCreator';
 export const useStartSøknad = () => {
     const { logSoknadStartet, logInfo } = useAmplitudeInstance();
     const {
-        state: { sak },
+        state: { sak, antallSakerFørEndringsperiode },
         dispatch,
     } = useSøknadContext();
 
@@ -19,6 +19,7 @@ export const useStartSøknad = () => {
             erFrilanser: sak.arbeidsaktiviteter.frilanser !== undefined,
             arbeidsgivereIkkeISak: sak.arbeidsgivereIkkeISak.length,
             arbeidsgivereIkkeIAAreg: sak.arbeidsaktivitetMedUkjentArbeidsgiver.length,
+            antallSakerFørEndringsperiode,
         });
         dispatch(actionsCreator.startSøknad(sak, hvaSkalEndres));
     };

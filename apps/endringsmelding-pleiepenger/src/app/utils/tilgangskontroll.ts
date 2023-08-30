@@ -36,15 +36,14 @@ export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRan
     }
 
     /** Har flere saker */
-    // if (saker.length > 1) {
-    //     return {
-    //         kanBrukeSøknad: false,
-    //         årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
-    //     };
-    // }
+    if (saker.length > 1) {
+        return {
+            kanBrukeSøknad: false,
+            årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
+        };
+    }
 
     /** Bruker har bare én sak */
-
     const sak = saker[0];
     const ingenTilgangÅrsak: IngenTilgangÅrsak[] = [];
 
@@ -57,13 +56,6 @@ export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRan
     if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
     }
-
-    // /**
-    //  * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
-    //  */
-    // if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
-    //     ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
-    // }
 
     if (ingenTilgangÅrsak.length > 0) {
         return {

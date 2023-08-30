@@ -27,6 +27,11 @@ export const scenarioer: Scenario[] = [
         harTilgang: true,
     },
     {
+        name: 'Arbeidsgiver som ikke er i sak',
+        value: 'arbeidsgiver-ikke-i-sak',
+        harTilgang: true,
+    },
+    {
         name: 'Debug',
         value: 'debug',
         harTilgang: true,
@@ -44,11 +49,6 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Ingen sak',
         value: 'ingen-sak',
-        harTilgang: false,
-    },
-    {
-        name: 'Arbeidsgiver som ikke er i sak',
-        value: 'arbeidsgiver-ikke-i-sak',
         harTilgang: false,
     },
     {
