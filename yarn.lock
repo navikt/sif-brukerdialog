@@ -3558,6 +3558,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/aksel-icons@npm:^5.2.1":
+  version: 5.2.1
+  resolution: "@navikt/aksel-icons@npm:5.2.1"
+  checksum: d240d90f14b757d30324a81f08a7df08806369f9ef24de486ddb6a6da64e58880a6c002b13a6e6abf4528020848c94eb32474150922093c40c225d2780b17224
+  languageName: node
+  linkType: hard
+
 "@navikt/appstatus-react-ds@*, @navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds":
   version: 0.0.0-use.local
   resolution: "@navikt/appstatus-react-ds@workspace:packages/appstatus-react-ds"
@@ -3596,6 +3603,13 @@ __metadata:
   version: 5.2.0
   resolution: "@navikt/ds-css@npm:5.2.0"
   checksum: ef67cc3d1fa8775a1a2deb44b1cfcf9632880fec460a6129b07f561ce4d7fbeb21ca7c26f6329a9dc14279d1a568b6e3eb80d50cee3287e9bc5cc48448ac02ae
+  languageName: node
+  linkType: hard
+
+"@navikt/ds-css@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@navikt/ds-css@npm:5.2.1"
+  checksum: 5c243b97350ccc1075afc812877f67dbb350992429e602415d810b6dd2ddc417f868fc88c19de69d872749aca76de1813c42baceca83cd8e041ff2a21d4b198e
   languageName: node
   linkType: hard
 
@@ -3676,10 +3690,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/ds-react@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@navikt/ds-react@npm:5.2.1"
+  dependencies:
+    "@floating-ui/react": 0.24.1
+    "@navikt/aksel-icons": ^5.2.1
+    "@radix-ui/react-tabs": 1.0.0
+    "@radix-ui/react-toggle-group": 1.0.0
+    clsx: ^1.2.1
+    date-fns: 2.29.3
+    react-day-picker: 8.3.4
+  peerDependencies:
+    "@types/react": ^17.0.30 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 722c3ad7b460d40ae3325884741df1fce40d5f05f0973bdf0677b6231560fd5e7b03d206ccc30b5ca591cfd0ba94ae536cfdd8194bf85fc639a2b69cf51c9781
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-tailwind@npm:5.2.0":
   version: 5.2.0
   resolution: "@navikt/ds-tailwind@npm:5.2.0"
   checksum: 1621445e759051f1c8b6960691b4a640663cb0ca46e14a531a16f229a399232339d20edf9d6a5a6f28d52e16e9e975911af81535371d5893419377009e73d3ca
+  languageName: node
+  linkType: hard
+
+"@navikt/ds-tailwind@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@navikt/ds-tailwind@npm:5.2.1"
+  checksum: 4baec45e4060c277e0d6924c09bc3d5639fc44861cfa03058c6383663342fa11c79ad80e6d5bc89568e2fb03ca37aac77a0920d31a22da413dad3c449f515cab
   languageName: node
   linkType: hard
 
@@ -3767,10 +3809,10 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.4
     "@mswjs/data": 0.13.0
-    "@navikt/ds-css": 5.2.0
+    "@navikt/ds-css": 5.2.1
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.2.0
-    "@navikt/ds-tailwind": 5.2.0
+    "@navikt/ds-react": 5.2.1
+    "@navikt/ds-tailwind": 5.2.1
     "@navikt/fnrvalidator": 1.3.0
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
@@ -3841,12 +3883,12 @@ __metadata:
     lodash: 4.17.21
     mini-css-extract-plugin: 2.7.6
     monocle-ts: 2.3.13
-    msw: 1.2.4
+    msw: 1.2.5
     mustache-express: 1.3.2
     newtype-ts: 0.3.5
     object-hash: 3.0.0
     openid-client: 5.4.3
-    postcss: 8.4.28
+    postcss: 8.4.29
     postcss-import: 15.1.0
     postcss-loader: 7.3.3
     prettier: 2.8.8
@@ -20310,9 +20352,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:1.2.4":
-  version: 1.2.4
-  resolution: "msw@npm:1.2.4"
+"msw@npm:1.2.5":
+  version: 1.2.5
+  resolution: "msw@npm:1.2.5"
   dependencies:
     "@mswjs/cookies": ^0.2.2
     "@mswjs/interceptors": ^0.17.5
@@ -20340,7 +20382,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: ff32efd2e89b6e4e0b646362907658c2b37756a92d46a294171e0ef5c4488217f87381b7740a6c9e5d7ed9c490ce33474f56f5dba8524340233cd89f1de0b0e1
+  checksum: 652c44a100cba0382d6cdf4c2a4dfb90edd9665c7d06bc10f15bd96fe458c6a6f4943c2dec3f1a9d5efef0f7d59ae805ebdf289b52991956d95601e5f42fb8b1
   languageName: node
   linkType: hard
 
@@ -22771,6 +22813,17 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: f605c24a36f7e400bad379735fbfc893ccb8d293ad6d419bb824db77cdcb69f43d614ef35f9f7091f32ca588d130ec60dbcf53b366e6bf88a8a64bbeb3c05f6d
+  languageName: node
+  linkType: hard
+
+"postcss@npm:8.4.29":
+  version: 8.4.29
+  resolution: "postcss@npm:8.4.29"
+  dependencies:
+    nanoid: ^3.3.6
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: dd6daa25e781db9ae5b651d9b7bfde0ec6e60e86a37da69a18eb4773d5ddd51e28fc4ff054fbdc04636a31462e6bf09a1e50986f69ac52b10d46b7457cd36d12
   languageName: node
   linkType: hard
 
