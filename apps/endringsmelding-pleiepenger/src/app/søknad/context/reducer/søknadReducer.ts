@@ -19,7 +19,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
         case SøknadContextActionKeys.START_SØKNAD:
             const { sak, valgtHvaSkalEndres } = action.payload;
             const valgteEndringer = getValgteEndringer(valgtHvaSkalEndres);
-            const søknadSteps = getSøknadSteps(valgteEndringer, sak.harUkjentArbeidsforhold);
+            const søknadSteps = getSøknadSteps(valgteEndringer, sak.harArbeidsgivereIkkeISak);
             return {
                 ...state,
                 søknadsdata: {
@@ -99,7 +99,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 };
                 const søknadSteps = getSøknadSteps(
                     state.valgteEndringer,
-                    state.sak.harUkjentArbeidsforhold,
+                    state.sak.harArbeidsgivereIkkeISak,
                     state.søknadsdata
                 );
 

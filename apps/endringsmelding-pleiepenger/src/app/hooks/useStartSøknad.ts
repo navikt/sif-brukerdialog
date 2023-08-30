@@ -17,7 +17,7 @@ export const useStartSøknad = () => {
             antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
             erArbeidstaker: sak.arbeidsaktiviteter.arbeidstakerAktiviteter.length > 0,
             erFrilanser: sak.arbeidsaktiviteter.frilanser !== undefined,
-            arbeidsgivereIkkeISak: sak.ukjenteArbeidsgivere.length,
+            arbeidsgivereIkkeISak: sak.arbeidsgivereIkkeISak.length,
             arbeidsgivereIkkeIAAreg: sak.arbeidsaktivitetMedUkjentArbeidsgiver.length,
         });
         dispatch(actionsCreator.startSøknad(sak, hvaSkalEndres));

@@ -5,7 +5,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ArbeidsaktivitetType, ArbeiderIPeriodenSvar, ArbeidstidEndringMap, SøknadContextState } from '@types';
-import { getArbeidsaktiviteterForUkjenteArbeidsgivere } from '@utils';
+import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -99,9 +99,9 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
             renderForm={({ setValues, values, validateForm }) => {
                 const aktiviteterValuesMap = values.arbeidsaktivitet || {};
                 const arbeidsaktiviteter = [
-                    ...getArbeidsaktiviteterForUkjenteArbeidsgivere(
+                    ...getArbeidsaktiviteterForUkjenteArbeidsforhold(
                         sak.søknadsperioder,
-                        sak.ukjenteArbeidsgivere,
+                        sak.arbeidsgivereIkkeISak,
                         aktiviteterValuesMap,
                         søknadsdata.ukjentArbeidsforhold
                     ),

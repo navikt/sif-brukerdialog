@@ -77,7 +77,7 @@ export const getSakFromK9Sak = (
         erArbeidsgiverInnenforSøknadsperioder(a, k9sak.ytelse.søknadsperioder)
     );
 
-    const ukjenteArbeidsgivere = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
+    const arbeidsgivereIkkeISak = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
         return !finnesArbeidsgiverIK9Sak(arbeidsgiver, k9sak.ytelse.arbeidstid.arbeidstakerList || []);
     });
 
@@ -112,8 +112,8 @@ export const getSakFromK9Sak = (
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
         },
-        ukjenteArbeidsgivere,
-        harUkjentArbeidsforhold: ukjenteArbeidsgivere.length > 0,
+        arbeidsgivereIkkeISak,
+        harArbeidsgivereIkkeISak: arbeidsgivereIkkeISak.length > 0,
         søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
         samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,

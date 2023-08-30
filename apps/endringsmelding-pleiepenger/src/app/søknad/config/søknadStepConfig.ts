@@ -10,12 +10,12 @@ const erAnsattIUkjentArbeidsforhold = (arbeidsforhold: Arbeidsforhold[] = []): b
 
 export const getSøknadSteps = (
     valgteEndringer: ValgteEndringer,
-    harUkjentArbeidsforhold: boolean,
+    harArbeidsgivereIkkeISak: boolean,
     søknadsdata?: Søknadsdata
 ): StepId[] => {
     const steps: StepId[] = [];
 
-    if (harUkjentArbeidsforhold) {
+    if (harArbeidsgivereIkkeISak) {
         steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
 

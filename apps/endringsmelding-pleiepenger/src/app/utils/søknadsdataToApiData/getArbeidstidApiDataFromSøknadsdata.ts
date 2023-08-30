@@ -98,7 +98,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     søknadsperioder: DateRange[],
     arbeidsaktivitetEndring: ArbeidstidArbeidsaktivitetMap,
     arbeidsaktiviteter: Arbeidsaktiviteter,
-    ukjenteArbeidsgivere: Arbeidsgiver[],
+    arbeidsgivereIkkeISak: Arbeidsgiver[],
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidsaktivitetEndring[ArbeidsaktivitetType.frilanser]?.endringer;
@@ -128,7 +128,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 
     /** Ukjente arbeidsgivere */
     if (ukjentArbeidsforhold) {
-        ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
+        arbeidsgivereIkkeISak.forEach((arbeidsgiver) => {
             const endring = arbeidsaktivitetEndring[arbeidsgiver.key];
             if (!endring) {
                 return;

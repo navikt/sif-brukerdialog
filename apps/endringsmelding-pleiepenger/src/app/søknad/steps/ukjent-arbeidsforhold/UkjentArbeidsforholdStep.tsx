@@ -36,7 +36,7 @@ const UkjentArbeidsforholdStep = () => {
                     stepId={stepId}
                     goBack={goBack}
                     arbeidsgivere={arbeidsgivere}
-                    ukjenteArbeidsgivere={sak.ukjenteArbeidsgivere}
+                    arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
                     ukjentArbeidsforholdSøknadsdata={søknadsdata.ukjentArbeidsforhold}
                 />
             </Block>

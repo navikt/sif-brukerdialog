@@ -7,9 +7,9 @@ export interface Sak {
     /** Barn i sak */
     barn: K9SakBarn;
     /** Settes til true hvis det finnes en arbeidsgiver som ikke har arbeidstid i sak */
-    harUkjentArbeidsforhold: boolean;
+    harArbeidsgivereIkkeISak: boolean;
     /** Alle arbeidsgivere som ikke finnes i sak, men som finnes i Aa-reg */
-    ukjenteArbeidsgivere: Arbeidsgiver[];
+    arbeidsgivereIkkeISak: Arbeidsgiver[];
     /** Alle aktiviteter som ikke har arbeidsgiver i AA-reg */
     arbeidsaktivitetMedUkjentArbeidsgiver: ArbeidsaktivitetUkjentArbeidsgiver[];
     /** Alle arbeidsaktiviteter i sak. Arbeidsgivere flates ut og legges sammen med evt. frilans og selvstendig */
