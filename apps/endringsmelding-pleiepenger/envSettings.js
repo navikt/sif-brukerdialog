@@ -14,6 +14,7 @@ const envSettings = (MSW) => {
         INNSYN_URL: '${process.env.INNSYN_URL}',
         DOMAIN_URL: '${process.env.DOMAIN_URL}',
         LOGIN_URL: '${process.env.LOGIN_URL}',
+        MINSIDE_URL: '${process.env.MINSIDE_URL}',
         MELLOMLAGRING: '${process.env.MELLOMLAGRING}',
         MSW: '${MSW || process.env.MSW}',
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',

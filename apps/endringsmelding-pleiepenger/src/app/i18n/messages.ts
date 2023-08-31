@@ -32,7 +32,8 @@ export const defaultMessages: MessageFileFormat = {
 
         'fortsettSøknadSenereDialog.avbrytSøknadLabel': 'Ja, fortsett senere',
         'fortsettSøknadSenereDialog.fortsettSøknadLabel': 'Nei',
-        'fortsettSøknadSenereDialog.intro': 'Vi lagrer meldingen om endring for deg i 72 timer.',
+        'fortsettSøknadSenereDialog.intro':
+            'Vi lagrer utkastet til meldingen om endring for deg i 72 timer. Du vil finne dette utkastet igjen på Min side.',
         'fortsettSøknadSenereDialog.spørsmål': 'Vil du avslutte nå og fortsette senere?',
         'fortsettSøknadSenereDialog.tittel': 'Avslutt og fortsett senere',
     },
