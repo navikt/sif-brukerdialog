@@ -57,30 +57,30 @@ const VelkommenPage = () => {
                                     Du kan melde fra om endringer i pleiepenger for <strong>{barnetsNavn}</strong> i
                                     tidsrommet {samletSøknadsperiodeTekst}.
                                 </p>
-                                <Block margin="xl">
-                                    <CheckboxGroup
-                                        name={VelkommenFormFields.hvaSkalEndres}
-                                        legend={
-                                            <Heading level={'2'} size="small">
-                                                Hva ønsker du å endre?
-                                            </Heading>
-                                        }
-                                        validate={getListValidator({ minItems: 1 })}
-                                        checkboxes={[
-                                            {
-                                                'data-testid': 'endreLovbestemtFerie',
-                                                label: 'Ferie',
-                                                value: EndringType.lovbestemtFerie,
-                                            },
-                                            {
-                                                'data-testid': 'endreArbeidstid',
-                                                label: 'Jobb',
-                                                value: EndringType.arbeidstid,
-                                            },
-                                        ]}
-                                    />
-                                </Block>
                             </Ingress>
+                            <Block margin="xl">
+                                <CheckboxGroup
+                                    name={VelkommenFormFields.hvaSkalEndres}
+                                    legend={
+                                        <Heading level={'2'} size="small">
+                                            Hva ønsker du å endre?
+                                        </Heading>
+                                    }
+                                    validate={getListValidator({ minItems: 1 })}
+                                    checkboxes={[
+                                        {
+                                            'data-testid': 'endreLovbestemtFerie',
+                                            label: 'Ferie',
+                                            value: EndringType.lovbestemtFerie,
+                                        },
+                                        {
+                                            'data-testid': 'endreArbeidstid',
+                                            label: 'Jobb',
+                                            value: EndringType.arbeidstid,
+                                        },
+                                    ]}
+                                />
+                            </Block>
                             <OmSøknaden />
                         </SifGuidePanel>
                         <FormBlock>
