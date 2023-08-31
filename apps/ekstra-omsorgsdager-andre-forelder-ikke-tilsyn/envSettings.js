@@ -8,6 +8,7 @@ const envSettings = () => {
          FRONTEND_API_PATH: '${process.env.FRONTEND_API_PATH}',
          PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
          LOGIN_URL: '${process.env.LOGIN_URL}',
+         MINSIDE_URL: '${process.env.MINSIDE_URL}',
          APPSTATUS_PROJECT_ID: '${process.env.APPSTATUS_PROJECT_ID}',
          APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
          USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
