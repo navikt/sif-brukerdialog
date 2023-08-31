@@ -6,7 +6,6 @@ import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { Arbeidsgiver } from '../types';
 import { FrilansFormValues, Frilanstype } from '../types/søknad-form-values/FrilansFormValues';
-import { getFørsteDagFørOpptjeningsperiode } from './søknadsperiodeUtils';
 
 dayjs.extend(minMax);
 
@@ -51,7 +50,7 @@ export const erFrilanserISøknadsperiode = (
     ) {
         return erFrilanserITidsrom(
             søknadsperiode,
-            frilansStartdato || getFørsteDagFørOpptjeningsperiode(søknadsperiode),
+            frilansStartdato || getFørsteDagFørStartdatoForNySomFrilanser(søknadsperiode),
             frilansSluttdato
         );
     }
@@ -102,7 +101,16 @@ export const getStartdatoSomFrilanser = (
     startdato: string | undefined
 ): Date | undefined => {
     if (startetFørOpptjeningsperiode) {
-        return getFørsteDagFørOpptjeningsperiode(søknadsperiode);
+        return getFørsteDagFørStartdatoForNySomFrilanser(søknadsperiode);
     }
     return startdato && isISODate(startdato) ? ISODateToDate(startdato) : undefined;
+};
+
+/**  */
+export const getStartdatoForNySomFrilanser = (søknadsperiode: DateRange): Date => {
+    return dayjs(søknadsperiode.from).startOf('month').subtract(3, 'months').toDate();
+};
+
+export const getFørsteDagFørStartdatoForNySomFrilanser = (søknadsperiode: DateRange): Date => {
+    return dayjs(getStartdatoForNySomFrilanser(søknadsperiode)).subtract(1, 'days').toDate();
 };

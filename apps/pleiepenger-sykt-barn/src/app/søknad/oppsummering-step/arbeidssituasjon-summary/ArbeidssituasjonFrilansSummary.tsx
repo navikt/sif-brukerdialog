@@ -5,7 +5,7 @@ import { dateFormatter, DateRange, ISODateToDate } from '@navikt/sif-common-util
 import { Arbeidsgiver } from '../../../types';
 import { FrilansApiData } from '../../../types/søknad-api-data/SøknadApiData';
 import { Frilanstype } from '../../../types/søknad-form-values/FrilansFormValues';
-import { getOpptjeningsperiodeStartDato } from '../../../utils/søknadsperiodeUtils';
+import { getStartdatoForNySomFrilanser } from '../../../utils/frilanserUtils';
 import NormalarbeidstidSummary from './NormalarbeidstidSummary';
 
 interface Props {
@@ -68,7 +68,7 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                         <FormattedMessage
                             id="oppsummering.arbeidssituasjon.frilans.startetFørOpptjeningsperiode"
                             values={{
-                                opptjeningStartdato: dateFormatter.full(getOpptjeningsperiodeStartDato(søknadsperiode)),
+                                opptjeningStartdato: dateFormatter.full(getStartdatoForNySomFrilanser(søknadsperiode)),
                             }}
                         />
                     </li>

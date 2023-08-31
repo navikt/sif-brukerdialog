@@ -4,7 +4,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils/lib';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
-import { getOpptjeningsperiodeStartDato } from '../../../../../utils/søknadsperiodeUtils';
+import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 
 const FrilansStartetFørOpptjeningsperiodeSpørsmål: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
     const intl = useIntl();
-    const opptjeningsperiodeStartDato = getOpptjeningsperiodeStartDato(søknadsperiode);
+    const opptjeningsperiodeStartDato = getStartdatoForNySomFrilanser(søknadsperiode);
 
     return (
         <ArbFriFormComponents.YesOrNoQuestion

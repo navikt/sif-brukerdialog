@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { DateRange, ISODate, dateFormatter } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, DateRange, ISODate } from '@navikt/sif-common-utils/lib';
 import { FrilansFormField } from '../../../../../types/søknad-form-values/FrilansFormValues';
-import { getOpptjeningsperiodeStartDato } from '../../../../../utils/søknadsperiodeUtils';
+import { getStartdatoForNySomFrilanser } from '../../../../../utils/frilanserUtils';
 import { getFrilanserStartdatoValidator } from '../../../validation/frilansStartdatoValidator';
 import { ArbFriFormComponents } from '../FrilanserFormPart';
 
@@ -14,7 +14,7 @@ interface Props {
 
 const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoValue, søknadsperiode }) => {
     const intl = useIntl();
-    const minDato = getOpptjeningsperiodeStartDato(søknadsperiode);
+    const minDato = getStartdatoForNySomFrilanser(søknadsperiode);
 
     return (
         <ArbFriFormComponents.DatePicker
