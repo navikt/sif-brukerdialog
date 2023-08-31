@@ -8,14 +8,14 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
-    arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata,
+    arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata
 ): ArbeidsgiverApiData[] | undefined => {
     if (!arbeidsgivere) {
         return undefined;
     }
     const arbeidsgiverApiData: ArbeidsgiverApiData[] = [];
 
-    arbeidsgivere.forEach((value, key) => {
+    Object.entries(arbeidsgivere).map(([key, value]) => {
         const arbeidsgiverInfo: Omit<ArbeidsgiverApiData, 'erAnsatt' | 'sluttetFørSøknadsperiode' | 'arbeidsforhold'> =
             {
                 type: value.arbeidsgiver.type,
@@ -26,8 +26,8 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 ansattTom: value.arbeidsgiver.ansattTom ? dateToISODate(value.arbeidsgiver.ansattTom) : undefined,
             };
         const arbeidIPeriodeSøknadsdata =
-            arbeidstidArbeidsgivere && arbeidstidArbeidsgivere.has(key)
-                ? arbeidstidArbeidsgivere.get(key)?.arbeidIPeriode
+            arbeidstidArbeidsgivere && arbeidstidArbeidsgivere.hasOwnProperty(key)
+                ? arbeidstidArbeidsgivere[key].arbeidIPeriode
                 : undefined;
 
         if (arbeidIPeriodeSøknadsdata && (value.type === 'pågående' || value.type === 'sluttetISøknadsperiode')) {

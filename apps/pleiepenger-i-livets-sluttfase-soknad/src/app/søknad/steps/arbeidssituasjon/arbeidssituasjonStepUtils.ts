@@ -189,7 +189,8 @@ const getArbeidsgiverFormDataFromSøknadsData = (
         erAnsatt: YesOrNo.UNANSWERED,
     };
 
-    const arbeidsgiverSøknadsdata = arbeidsgivere?.get(organisasjonsnummer || '');
+    const keyOrgNummer = organisasjonsnummer || '';
+    const arbeidsgiverSøknadsdata = arbeidsgivere ? arbeidsgivere[keyOrgNummer] : undefined;
 
     if (arbeidsgiverSøknadsdata) {
         switch (arbeidsgiverSøknadsdata?.type) {
@@ -275,7 +276,7 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
         // TODO trow error
         return undefined;
     }
-    console.log('values: ', values);
+
     const arbeidAnsattSøknadsdata = getArbeidsgiverSøknadsdataFromFormData(values.ansatt_arbeidsforhold);
     const frilans = getFrilansSøknadsdataFromFormValues(values.frilans, values.frilansoppdrag, søknadsperiode);
     const selvstendig = getSelvstendigSøknadsdataFromFormValues(values.selvstendig, søknadsperiode);
@@ -444,16 +445,15 @@ export const getArbeidsgiverSøknadsdataFromFormData = (
         return undefined;
     }
 
-    const arbeidsgivereSøknadsdata: ArbeidsgivereSøknadsdata = new Map();
+    const arbeidsgivereSøknadsdata: ArbeidsgivereSøknadsdata = {};
 
     ansattFormData.forEach((ansatt) => {
         const arbeidAnsattSøknadsdata = getArbeidAnsattSøknadsdata(ansatt);
         if (arbeidAnsattSøknadsdata) {
-            arbeidsgivereSøknadsdata.set(ansatt.arbeidsgiver.id, arbeidAnsattSøknadsdata);
+            arbeidsgivereSøknadsdata[ansatt.arbeidsgiver.id] = arbeidAnsattSøknadsdata;
         }
     });
 
-    console.log('arbeidsgivereSøknadsdata: ', arbeidsgivereSøknadsdata);
     return arbeidsgivereSøknadsdata;
 };
 

@@ -18,7 +18,10 @@ export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknad
 
     const erAnsattISøknadsperiode =
         (arbeidsgivere &&
-            Array.from(arbeidsgivere.values()).some((value) => {
+            Object.entries(arbeidsgivere).some(([key, value]) => {
+                // eslint-disable-next-line no-console
+                //TODO slett console.log
+                console.log(key);
                 return value.type === 'pågående' || value.type === 'sluttetISøknadsperiode';
             })) ||
         false;

@@ -111,12 +111,17 @@ const startExpressServer = () => {
     server.post('/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
+
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
     server.put('/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        if (body.søknadsdata.arbeidssituasjon) {
+            console.log(body.søknadsdata.arbeidssituasjon.arbeidsgivere);
+        }
+
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });

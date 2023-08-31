@@ -1,6 +1,8 @@
 import { Arbeidsgiver } from '../Arbeidsgiver';
 
-export type ArbeidsgivereSøknadsdata = Map<string, ArbeidAnsattSøknadsdata>;
+export type ArbeidsgivereSøknadsdata = {
+    [organisasjonsnummer: string]: ArbeidAnsattSøknadsdata;
+};
 
 export interface ArbeidAnsattSøknadsdataSluttetFørSøknadsperiode {
     type: 'sluttetFørSøknadsperiode';

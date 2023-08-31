@@ -88,6 +88,7 @@ const ArbeidstidStep = () => {
 
     const onValidSubmitHandler = (values: ArbeidstidFormValues) => {
         const arbeidstidSøknadsdata = getArbeidstidSøknadsdataFromFormValues(values);
+
         if (arbeidstidSøknadsdata) {
             clearStepFormValues(stepId);
             return [actionsCreator.setSøknadArbeidstid(arbeidstidSøknadsdata)];
@@ -117,7 +118,7 @@ const ArbeidstidStep = () => {
     const handleArbeidstidChanged = () => {
         // TODO;
     };
-    console.log(søknadsdata);
+
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
@@ -213,7 +214,7 @@ const ArbeidstidStep = () => {
                                                 arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
                                                 jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
                                                 periode={periodeSomFrilanserISøknadsperiode}
-                                                parentFieldName={FrilansArbeidstidFormFields.arbeidIPeriode}
+                                                parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
                                                 søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                 onArbeidstidVariertChange={handleArbeidstidChanged}
                                                 onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
@@ -233,7 +234,7 @@ const ArbeidstidStep = () => {
                                                 jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                 arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
                                                 periode={periodeSomSelvstendigISøknadsperiode}
-                                                parentFieldName={SelvstendigArbeidstidFormFields.arbeidIPeriode}
+                                                parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
                                                 søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                 onArbeidstidVariertChange={handleArbeidstidChanged}
                                                 onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}

@@ -38,8 +38,6 @@ export const getArbeidstidStepInitialValues = (
         selvstendigArbeidssituasjonSøknadsdata
     );
 
-    console.log('arbeidsgivereDefaultValues: ', arbeidsgivereDefaultValues);
-
     return {
         ansattArbeidstid: arbeidsgivereDefaultValues,
         frilansArbeidstid: frilansDefaultValues,
@@ -53,25 +51,25 @@ export const getAnsattArbeidstidFormData = (
 ): AnsattArbeidstid[] | undefined => {
     if (arbeidsgivereArbeidssituasjonSøknadsdata) {
         const ansattArbeidstid: AnsattArbeidstid[] = [];
-        console.log('arbeidsgivereArbeidssituasjonSøknadsdata: ', arbeidsgivereArbeidssituasjonSøknadsdata);
-        arbeidsgivereArbeidssituasjonSøknadsdata.forEach((values, keys) => {
-            console.log('value i foreach value.erAnsattISøknadsperiode', values.erAnsattISøknadsperiode);
-            if (values.erAnsattISøknadsperiode) {
+
+        Object.entries(arbeidsgivereArbeidssituasjonSøknadsdata).map(([key, value]) => {
+            if (value.erAnsattISøknadsperiode) {
                 const arbeidIPeriode =
-                    arbeidsgivereArbeidstidSøknadsdata && arbeidsgivereArbeidstidSøknadsdata?.has(keys)
+                    arbeidsgivereArbeidstidSøknadsdata && arbeidsgivereArbeidstidSøknadsdata.hasOwnProperty(key)
                         ? getArbeidIPeriodeFormDataFromSøknadsdata(
-                              arbeidsgivereArbeidstidSøknadsdata.get(keys)?.arbeidIPeriode
+                              arbeidsgivereArbeidstidSøknadsdata[key]?.arbeidIPeriode
                           )
                         : undefined;
 
                 ansattArbeidstid.push({
-                    organisasjonsnummer: keys,
-                    navn: values.arbeidsgiver.navn,
-                    jobberNormaltTimer: values.jobberNormaltTimer,
+                    organisasjonsnummer: key,
+                    navn: value.arbeidsgiver.navn,
+                    jobberNormaltTimer: value.jobberNormaltTimer,
                     arbeidIPeriode,
                 });
             }
         });
+        return ansattArbeidstid;
     }
 
     return undefined;
@@ -164,16 +162,17 @@ export const getArbeidstidArbeidsgivereSøknadsdata = (
     ansattArbeidstid?: AnsattArbeidstid[]
 ): ArbeidstidArbeidsgivereSøknadsdata | undefined => {
     if (ansattArbeidstid) {
-        const arbeidsgivereSøknadsdata: ArbeidstidArbeidsgivereSøknadsdata = new Map();
+        const arbeidsgivereSøknadsdata: ArbeidstidArbeidsgivereSøknadsdata = {};
         ansattArbeidstid.map((arbeidsgiver) => {
             const arbeidIPeriode = getArbeidIPeriodeSøknadsdata(arbeidsgiver.arbeidIPeriode);
             if (arbeidIPeriode) {
-                arbeidsgivereSøknadsdata.set(arbeidsgiver.organisasjonsnummer, {
+                arbeidsgivereSøknadsdata[arbeidsgiver.organisasjonsnummer] = {
                     navn: arbeidsgiver.navn,
                     arbeidIPeriode,
-                });
+                };
             }
         });
+        return arbeidsgivereSøknadsdata;
     }
 
     return undefined;

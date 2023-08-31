@@ -152,7 +152,7 @@ const ArbeidssituasjonStep = () => {
                     if (!søknadsperiode || !ansatt_arbeidsforhold || !frilans || !selvstendig) {
                         return undefined;
                     }
-                    console.log(frilansoppdrag);
+
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
