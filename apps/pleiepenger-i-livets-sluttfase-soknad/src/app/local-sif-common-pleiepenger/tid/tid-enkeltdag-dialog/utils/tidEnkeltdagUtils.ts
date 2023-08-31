@@ -79,8 +79,8 @@ export const getGjentagelseEnkeltdagFraFormValues = (
 
 export const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {
     return {
-        from: dayjs.max(dayjs(range.from), dayjs(limitRange.from)).toDate(),
-        to: dayjs.min(dayjs(range.to), dayjs(limitRange.to)).toDate(),
+        from: dayjs.max(dayjs(range.from), dayjs(limitRange.from))!.toDate(),
+        to: dayjs.min(dayjs(range.to), dayjs(limitRange.to))!.toDate(),
     };
 };
 export const trimDateRangeToWeekdays = (range: DateRange): DateRange => {

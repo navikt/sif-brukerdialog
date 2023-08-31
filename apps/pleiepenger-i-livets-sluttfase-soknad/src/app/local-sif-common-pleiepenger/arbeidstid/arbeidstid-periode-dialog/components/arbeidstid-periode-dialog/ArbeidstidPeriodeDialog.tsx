@@ -14,9 +14,9 @@ const ArbeidstidPeriodeDialog: React.FunctionComponent<Props> = ({ isOpen, formP
     return isOpen ? (
         <Modal
             open={isOpen}
+            portal={true}
             aria-label={intlText('arbeidstidPeriodeDialog.contentLabel')}
             onClose={formProps.onCancel}
-            shouldCloseOnOverlayClick={false}
             className="arbeidstidPeriodeDialog">
             <div>
                 <ArbeidstidPeriodeForm {...formProps} />

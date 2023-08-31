@@ -92,9 +92,9 @@ export const getPeriodeSomFrilanserInnenforPeriode = (
             return undefined;
         }
 
-        const fromDate: Date = dayjs.max([dayjs(periode.from), dayjs(frilansStartdato)]).toDate();
+        const fromDate: Date = dayjs.max([dayjs(periode.from), dayjs(frilansStartdato)])!.toDate();
         const toDate: Date = frilansSluttdato
-            ? dayjs.min([dayjs(periode.to), dayjs(frilansSluttdato)]).toDate()
+            ? dayjs.min([dayjs(periode.to), dayjs(frilansSluttdato)])!.toDate()
             : periode.to;
 
         return {

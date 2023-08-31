@@ -20,10 +20,10 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
     }
     return isOpen ? (
         <Modal
+            portal={true}
             open={isOpen}
             aria-label={`${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`}
             onClose={formProps.onCancel}
-            shouldCloseOnOverlayClick={false}
             className="tidEnkeltdagDialog">
             <TidEnkeltdagForm {...formProps} />
         </Modal>
