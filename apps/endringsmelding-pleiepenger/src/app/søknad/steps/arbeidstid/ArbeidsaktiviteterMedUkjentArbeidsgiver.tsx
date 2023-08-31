@@ -33,23 +33,34 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
                     ))}
                 </ul>
                 <p>
-                    Du har ett arbeidsforhold i din pleiepengeperiode som er registrert som avsluttet av arbeidsgiver i
+                    Du har arbeidsforhold i din pleiepengeperiode som er registrert som avsluttet av arbeidsgiver i{' '}
                     <AAregisteret />. Dette kan være hvis du har sluttet i en jobb, byttet avdeling eller lignende.
                 </p>
                 {antallSomKanEndres === 0 ? (
                     <p>Du kan ikke lenger endre arbeidstid for dette arbeidsforholdet.</p>
                 ) : (
                     <p>
-                        Du kan ikke lenger endre arbeidstid for dette arbeidsforholdet, men du kan fortsatt melde inn
-                        endringer for andre arbeidsforhold under.
+                        Du kan ikke lenger endre arbeidstid for{' '}
+                        {antallUkjente === 1 ? 'dette arbeidsforholdet' : 'disse arbeidsforholdene'}, men du kan
+                        fortsatt melde inn endringer for andre arbeidsforhold under.
                     </p>
                 )}
 
                 <ExpandableInfo title="Dette er feil, hva kan jeg gjøre">
                     <p>
-                        Jobber du fremdeles i arbeidsforholdet og det er feil at arbeidsforholdet er avsluttet, må du be
-                        arbeidsgiveren din om å rette dette i Aa-registret. Dette gjør de enten via eget lønns- og
-                        personalsystem, eller via Altinn.
+                        {antallUkjente === 1 ? (
+                            <>
+                                Jobber du fremdeles i arbeidsforholdet og det er feil at arbeidsforholdet er avsluttet,
+                                må du be arbeidsgiveren din om å rette dette i <AAregisteret />. Dette gjør de enten via
+                                eget lønns- og personalsystem, eller via Altinn.
+                            </>
+                        ) : (
+                            <>
+                                Jobber du fremdeles i noen av arbeidsforholdene og det er feil at arbeidsforholdene er
+                                avsluttet, må du be arbeidsgiverene dine om å rette dette i <AAregisteret />. Dette gjør
+                                de enten via eget lønns- og personalsystem, eller via Altinn.
+                            </>
+                        )}
                     </p>
                 </ExpandableInfo>
             </Alert>
