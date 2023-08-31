@@ -11,15 +11,14 @@ interface Props {
     søknadsperiode: DateRange;
 }
 
-const FrilansStartetFørOpptjeningsperiodeSpørsmål: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
+const FrilansStartetFørSisteTreHeleMånederSpørsmål: React.FunctionComponent<Props> = ({ søknadsperiode }) => {
     const intl = useIntl();
-    const opptjeningsperiodeStartDato = getStartdatoForNySomFrilanser(søknadsperiode);
 
     return (
         <ArbFriFormComponents.YesOrNoQuestion
-            name={FrilansFormField.startetFørOpptjeningsperiode}
-            legend={intlHelper(intl, `frilanser.startetFørOpptjeningsperiode.spm`, {
-                dato: dateFormatter.dateShortMonthYear(opptjeningsperiodeStartDato),
+            name={FrilansFormField.startetFørSisteTreHeleMåneder}
+            legend={intlHelper(intl, `frilanser.startetFørSisteTreHeleMåneder.spm`, {
+                dato: dateFormatter.dateShortMonthYear(getStartdatoForNySomFrilanser(søknadsperiode)),
             })}
             validate={(value) => {
                 const error = getYesOrNoValidator()(value);
@@ -27,7 +26,7 @@ const FrilansStartetFørOpptjeningsperiodeSpørsmål: React.FunctionComponent<Pr
                     ? {
                           key: `${error}`,
                           values: {
-                              frilanstype: intlHelper(intl, `validation.frilans.startetFørOpptjeningsperiode`),
+                              frilanstype: intlHelper(intl, `validation.frilans.startetFørSisteTreHeleMåneder`),
                           },
                       }
                     : undefined;
@@ -36,4 +35,4 @@ const FrilansStartetFørOpptjeningsperiodeSpørsmål: React.FunctionComponent<Pr
     );
 };
 
-export default FrilansStartetFørOpptjeningsperiodeSpørsmål;
+export default FrilansStartetFørSisteTreHeleMånederSpørsmål;

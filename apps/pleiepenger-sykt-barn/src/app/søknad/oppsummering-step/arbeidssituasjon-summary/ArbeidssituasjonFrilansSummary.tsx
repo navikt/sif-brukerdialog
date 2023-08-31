@@ -63,10 +63,10 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                 <li>
                     <NormalarbeidstidSummary normalarbeidstidApiData={frilans.arbeidsforhold.normalarbeidstid} />
                 </li>
-                {frilans.startetFørOpptjeningsperiode ? (
+                {frilans.startetFørSisteTreHeleMåneder ? (
                     <li>
                         <FormattedMessage
-                            id="oppsummering.arbeidssituasjon.frilans.startetFørOpptjeningsperiode"
+                            id="oppsummering.arbeidssituasjon.frilans.startetFørSisteTreHeleMåneder"
                             values={{
                                 opptjeningStartdato: dateFormatter.full(getStartdatoForNySomFrilanser(søknadsperiode)),
                             }}

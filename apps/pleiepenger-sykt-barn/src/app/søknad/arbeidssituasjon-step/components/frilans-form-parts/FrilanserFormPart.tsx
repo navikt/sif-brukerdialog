@@ -20,7 +20,7 @@ import FrilansSluttdatoSpørsmål from './spørsmål/FrilansSluttdatoSpørsmål'
 import FrilansStartdatoSpørsmål from './spørsmål/FrilansStartdatoSpørsmål';
 import HarHattInntektSomFrilanserSpørsmål from './spørsmål/HarHattInntektSomFrilanserSpørsmål';
 import MisterHonorarSpørsmål from './spørsmål/MisterHonorarSpørsmål';
-import FrilansStartetFørOpptjeningsperiodeSpørsmål from './spørsmål/FrilansStartetFørOpptjeningsperiodeSpørsmål';
+import FrilansStartetFørSisteTreHeleMånederSpørsmål from './spørsmål/FrilansStartetFørSisteTreHeleMånederSpørsmål';
 
 export const ArbFriFormComponents = getTypedFormComponents<FrilansFormField, FrilansFormValues, ValidationError>();
 
@@ -86,9 +86,9 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
                         {frilanstype && visNormalarbeidstidSpørsmål() && (
                             <>
                                 <FormBlock>
-                                    <FrilansStartetFørOpptjeningsperiodeSpørsmål søknadsperiode={søknadsperiode} />
+                                    <FrilansStartetFørSisteTreHeleMånederSpørsmål søknadsperiode={søknadsperiode} />
                                 </FormBlock>
-                                {values.frilans.startetFørOpptjeningsperiode === YesOrNo.NO && (
+                                {values.frilans.startetFørSisteTreHeleMåneder === YesOrNo.NO && (
                                     <FormBlock>
                                         <FrilansStartdatoSpørsmål
                                             søknadsperiode={søknadsperiode}

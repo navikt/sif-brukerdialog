@@ -20,7 +20,7 @@ type HarInntektSomFrilanser = {
     erFortsattFrilanser: boolean;
     misterHonorar?: true;
     periodeSomFrilanserISøknadsperiode: DateRange;
-    startetFørOpptjeningsperiode: boolean;
+    startetFørSisteTreHeleMåneder: boolean;
     startdato: Date;
     sluttdato?: Date;
     normalarbeidstid: NormalarbeidstidSøknadsdata;

@@ -7,7 +7,7 @@ export enum FrilansFormField {
     frilanstype = 'frilans.frilanstype',
     frilanstyper = 'frilans.frilanstyper',
     misterHonorar = 'frilans.misterHonorar',
-    startetFørOpptjeningsperiode = 'frilans.startetFørOpptjeningsperiode',
+    startetFørSisteTreHeleMåneder = 'frilans.startetFørSisteTreHeleMåneder',
     startdato = 'frilans.startdato',
     sluttdato = 'frilans.sluttdato',
     erFortsattFrilanser = 'frilans.erFortsattFrilanser',
@@ -23,7 +23,7 @@ export interface FrilansFormValues {
     harHattInntektSomFrilanser?: YesOrNo;
     frilanstype?: Frilanstype;
     misterHonorar?: YesOrNo;
-    startetFørOpptjeningsperiode?: YesOrNo;
+    startetFørSisteTreHeleMåneder?: YesOrNo;
     startdato?: ISODate;
     sluttdato?: ISODate;
     erFortsattFrilanser?: YesOrNo;

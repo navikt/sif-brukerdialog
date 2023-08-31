@@ -38,15 +38,15 @@ export const fyllUtArbeidssituasjonFrilanserKunHonorarMisterIkkeHonorar = () => 
     selectRadioNo('frilans.misterHonorar');
 };
 
-export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = (startetFørOpptjeningsperiode = true) => {
+export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = (startetFørSisteTreHeleMåneder = true) => {
     getTestElement('arbeidssituasjonFrilanser').within(() => {
         selectRadioYes('frilans.harHattInntektSomFrilanser');
         selectRadioByLabel('Jeg jobber både som frilanser og mottar honorar');
 
-        if (startetFørOpptjeningsperiode) {
-            selectRadioYes('frilans.startetFørOpptjeningsperiode');
+        if (startetFørSisteTreHeleMåneder) {
+            selectRadioYes('frilans.startetFørSisteTreHeleMåneder');
         } else {
-            selectRadioNo('frilans.startetFørOpptjeningsperiode');
+            selectRadioNo('frilans.startetFørSisteTreHeleMåneder');
 
             const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
             cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
@@ -139,8 +139,8 @@ const erFrilanserFrilansarbeidOgMottarHonorar = () => {
     });
 };
 
-const erFrilanserFrilansarbeidOgMottarHonorarStartetIOpptjeningsperiode = () => {
-    it('er frilanser med frilansarbeid og honorar - startet i opptjeningsperioden', () => {
+const erFrilanserFrilansarbeidOgMottarHonorarStartetInnenforSisteTreHeleMåneder = () => {
+    it('er frilanser med frilansarbeid og honorar - startet innenfor siste tre hele måneder', () => {
         cleanupFrilanser();
         fyllUtArbeidssituasjonErFrilanserOgMottarHonorar(false);
         clickFortsett();
@@ -163,6 +163,6 @@ export const testArbeidssituasjonFrilanser = () => {
         erFrilanserMedOppdrag();
         erFrilanserKunHonorarMisterIkkeHonorar();
         erFrilanserFrilansarbeidOgMottarHonorar();
-        erFrilanserFrilansarbeidOgMottarHonorarStartetIOpptjeningsperiode();
+        erFrilanserFrilansarbeidOgMottarHonorarStartetInnenforSisteTreHeleMåneder();
     });
 };

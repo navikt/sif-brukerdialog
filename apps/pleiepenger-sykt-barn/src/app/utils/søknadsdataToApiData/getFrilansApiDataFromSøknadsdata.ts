@@ -45,13 +45,13 @@ export const getFrilansApiDataFromSøknadsdata = ({
             sluttdato,
             misterHonorar,
             normalarbeidstid,
-            startetFørOpptjeningsperiode,
+            startetFørSisteTreHeleMåneder,
         } = arbeidssituasjon;
 
         return {
             type,
             _misterInntektSomFrilanser: true,
-            ...getFrilansFellesInfo(erFortsattFrilanser, startetFørOpptjeningsperiode, startdato, sluttdato),
+            ...getFrilansFellesInfo(erFortsattFrilanser, startetFørSisteTreHeleMåneder, startdato, sluttdato),
             misterHonorar,
             arbeidsforhold: getFrilansArbeidsforholdApiData(normalarbeidstid, arbeidstid),
         };
@@ -74,18 +74,18 @@ const getFrilansArbeidsforholdApiData = (
 
 const getFrilansFellesInfo = (
     jobberFortsattSomFrilans: boolean,
-    startetFørOpptjeningsperiode: boolean,
+    startetFørSisteTreHeleMåneder: boolean,
     startdato: Date,
     sluttdato?: Date
 ): Pick<
     FrilanserMedArbeidsforholdApiDataPart,
-    'harInntektSomFrilanser' | 'jobberFortsattSomFrilans' | 'startdato' | 'sluttdato' | 'startetFørOpptjeningsperiode'
+    'harInntektSomFrilanser' | 'jobberFortsattSomFrilans' | 'startdato' | 'sluttdato' | 'startetFørSisteTreHeleMåneder'
 > => {
     if (jobberFortsattSomFrilans) {
         return {
             harInntektSomFrilanser: true,
             jobberFortsattSomFrilans: true,
-            startetFørOpptjeningsperiode,
+            startetFørSisteTreHeleMåneder: startetFørSisteTreHeleMåneder,
             startdato: dateToISODate(startdato),
         };
     }
@@ -93,7 +93,7 @@ const getFrilansFellesInfo = (
         return {
             harInntektSomFrilanser: true,
             jobberFortsattSomFrilans: false,
-            startetFørOpptjeningsperiode,
+            startetFørSisteTreHeleMåneder: startetFørSisteTreHeleMåneder,
             startdato: dateToISODate(startdato),
             sluttdato: sluttdato ? dateToISODate(sluttdato) : undefined,
         };

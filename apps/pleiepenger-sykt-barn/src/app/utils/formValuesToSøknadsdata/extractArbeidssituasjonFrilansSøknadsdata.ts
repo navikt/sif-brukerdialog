@@ -29,8 +29,8 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
         };
     }
 
-    const startetFørOpptjeningsperiode = formValues.startetFørOpptjeningsperiode === YesOrNo.YES;
-    const startdato = getStartdatoSomFrilanser(søknadsperiode, startetFørOpptjeningsperiode, formValues.startdato);
+    const startetFørSisteTreHeleMåneder = formValues.startetFørSisteTreHeleMåneder === YesOrNo.YES;
+    const startdato = getStartdatoSomFrilanser(søknadsperiode, startetFørSisteTreHeleMåneder, formValues.startdato);
     const sluttdato = formValues.sluttdato ? ISODateToDate(formValues.sluttdato) : undefined;
 
     if (!startdato || (!erFortsattFrilanser && !sluttdato)) {
@@ -56,7 +56,7 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
         misterInntektSomFrilanser: true,
         misterHonorar: misterHonorar === YesOrNo.YES ? true : undefined,
         erFortsattFrilanser: erFortsattFrilanser === YesOrNo.YES,
-        startetFørOpptjeningsperiode,
+        startetFørSisteTreHeleMåneder,
         startdato,
         sluttdato,
         periodeSomFrilanserISøknadsperiode,

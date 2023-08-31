@@ -47,21 +47,21 @@ describe('frilanserUtils', () => {
     describe('getStartdatoSomFrilanser', () => {
         const søknadsperiode = ISODateRangeToDateRange('2023-07-30/2023-10-31');
 
-        it('returnerer første dato før opptjeningsperiode dersom bruker sier en startet før opptjeningsperiode', () => {
+        it('returnerer første dato før nySomFrilanserPeriode dersom bruker sier en startet før nySomFrilanserPeriode', () => {
             const result = getStartdatoSomFrilanser(søknadsperiode, true, '');
             expect(result).toBeDefined();
             if (result) {
                 expect(dateToISODate(result)).toEqual('2023-03-31');
             }
         });
-        it('returnerer oppgitt startdato som frilanser, dersom bruker sier en startet i opptjeningsperiode', () => {
+        it('returnerer oppgitt startdato som frilanser, dersom bruker sier en startet i nySomFrilanserPeriode', () => {
             const result = getStartdatoSomFrilanser(søknadsperiode, false, '2023-07-30');
             expect(result).toBeDefined();
             if (result) {
                 expect(dateToISODate(result)).toEqual('2023-07-30');
             }
         });
-        it('returnerer undefined dersom bruker sier en startet i opptjeningsperiode men har ikke oppgitt gyldig dato', () => {
+        it('returnerer undefined dersom bruker sier en startet i nySomFrilanserPeriode men har ikke oppgitt gyldig dato', () => {
             const result = getStartdatoSomFrilanser(søknadsperiode, false, 'abc');
             expect(result).toBeUndefined();
         });

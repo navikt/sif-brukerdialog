@@ -35,7 +35,7 @@ export const erFrilanserISøknadsperiode = (
         startdato,
         frilanstype,
         misterHonorar,
-        startetFørOpptjeningsperiode,
+        startetFørSisteTreHeleMåneder,
     }: FrilansFormValues
 ): boolean => {
     if (erFortsattFrilanser === YesOrNo.YES) {
@@ -45,7 +45,7 @@ export const erFrilanserISøknadsperiode = (
     const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
 
     if (
-        (startetFørOpptjeningsperiode || frilansStartdato) &&
+        (startetFørSisteTreHeleMåneder || frilansStartdato) &&
         harSvartErFrilanserEllerHarFrilansoppdrag(harHattInntektSomFrilanser)
     ) {
         return erFrilanserITidsrom(
@@ -97,16 +97,20 @@ const kunHonorUtenNormalArbeidstid = (frilanstype?: Frilanstype, misterHonorar?:
 
 export const getStartdatoSomFrilanser = (
     søknadsperiode: DateRange,
-    startetFørOpptjeningsperiode: boolean,
+    startetFørSisteTreHeleMåneder: boolean,
     startdato: string | undefined
 ): Date | undefined => {
-    if (startetFørOpptjeningsperiode) {
+    if (startetFørSisteTreHeleMåneder) {
         return getFørsteDagFørStartdatoForNySomFrilanser(søknadsperiode);
     }
     return startdato && isISODate(startdato) ? ISODateToDate(startdato) : undefined;
 };
 
-/**  */
+/**
+ * nySomFrilanserPeriode = 3 hele måneder før søknadsperiodens startdato. Dvs. dersom
+ * søknadsperiode starter 31. august, blir nySomFrilanserPeriodes startdato 1. mai.
+
+ */
 export const getStartdatoForNySomFrilanser = (søknadsperiode: DateRange): Date => {
     return dayjs(søknadsperiode.from).startOf('month').subtract(3, 'months').toDate();
 };
