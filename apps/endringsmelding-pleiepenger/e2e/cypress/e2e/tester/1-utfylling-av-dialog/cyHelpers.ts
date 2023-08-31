@@ -16,6 +16,10 @@ const captureScreenshot = () => {
     // cy.screenshot({ capture: 'fullPage' });
 };
 
+const setTestDate = () => {
+    cy.clock(cyHelpers.date.getTime(), ['Date']);
+};
+
 const startSøknad = ({
     endreArbeidstid,
     endreLovbestemtFerie,
@@ -358,6 +362,7 @@ const bekreftOpplysningerOgSendInn = () => {
 export const cyHelpers = {
     startUrl,
     date,
+    setTestDate,
     startSøknad,
     fyllUtUkjentArbeidsforhold,
     leggTilOgFjernFerie,

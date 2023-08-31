@@ -31,7 +31,7 @@ describe('Ukjent arbeidsgiver - jobber ikke', () => {
     });
 
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
     });
 
@@ -51,7 +51,7 @@ describe('Ukjent arbeidsgiver - jobber vanlig', () => {
     });
 
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
     });
 
@@ -71,7 +71,7 @@ describe('Ukjent arbeidsgiver - redusert', () => {
     });
 
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
     });
 

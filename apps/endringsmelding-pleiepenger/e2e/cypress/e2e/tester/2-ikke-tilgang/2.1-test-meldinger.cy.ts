@@ -10,7 +10,7 @@ const startUrl = 'http://localhost:8080';
 
 describe('Bruker har ikke tilgang til løsningen', () => {
     beforeEach(() => {
-        cy.clock(cyHelpers.date.getTime(), ['Date']);
+        cyHelpers.setTestDate();
     });
     describe('Ugyldig k9format på sak', () => {
         contextConfig({ saker: [ugyldigK9FormatSakMock], arbeidsgivere: enArbeidsgiverMock });
