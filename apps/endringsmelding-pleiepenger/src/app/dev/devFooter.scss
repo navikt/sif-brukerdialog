@@ -1,0 +1,10 @@
+.scenario-modal {
+    width: 100%;
+    .scenarioes {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+            width: 50%;
+        }
+    }
+}

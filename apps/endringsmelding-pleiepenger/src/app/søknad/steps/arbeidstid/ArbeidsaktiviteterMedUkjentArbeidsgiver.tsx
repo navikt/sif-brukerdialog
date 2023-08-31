@@ -25,7 +25,7 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
         <FormBlock>
             <Alert variant="info">
                 <Heading level="3" size="small">
-                    Ukjent arbeidsforhold
+                    Avsluttet arbeidsforhold
                 </Heading>
                 <>
                     Det er {flertall ? 'flere' : 'ett'} arbeidsforhold i saken din som ikke er registrert på deg i

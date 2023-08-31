@@ -32,6 +32,12 @@ export const scenarioer: Scenario[] = [
         harTilgang: true,
     },
     {
+        name: 'Flere saker, kun én aktiv',
+        value: 'flere-saker-kun-en-aktiv',
+        harTilgang: true,
+    },
+
+    {
         name: 'Debug',
         value: 'debug',
         harTilgang: true,
