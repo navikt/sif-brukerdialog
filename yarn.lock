@@ -3714,7 +3714,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     css-loader: 6.8.1
-    cypress: 13.0.0
+    cypress: 13.1.0
     dayjs: 1.11.9
     dotenv: 16.3.1
     eslint: 8.48.0
@@ -3811,7 +3811,7 @@ __metadata:
     constate: 3.3.2
     cookie-parser: 1.4.6
     css-loader: 6.8.1
-    cypress: 13.0.0
+    cypress: 13.1.0
     cypress-axe: 1.4.0
     cypress-file-upload: 5.0.8
     date-fns: 2.30.0
@@ -3927,7 +3927,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     css-loader: 6.8.1
-    cypress: 13.0.0
+    cypress: 13.1.0
     dayjs: 1.11.9
     dotenv: 16.3.1
     express: 4.18.2
@@ -3997,7 +3997,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     css-loader: 6.8.1
-    cypress: 13.0.0
+    cypress: 13.1.0
     cypress-file-upload: 5.0.8
     dotenv: 16.3.1
     express: 4.18.2
@@ -4082,7 +4082,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     css-loader: 6.8.1
-    cypress: 13.0.0
+    cypress: 13.1.0
     cypress-axe: 1.4.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.9
@@ -4538,7 +4538,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     css-loader: 6.8.1
-    cypress: 13.0.0
+    cypress: 13.1.0
     cypress-axe: 1.4.0
     cypress-file-upload: 5.0.8
     date-fns: 2.30.0
@@ -12536,9 +12536,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:13.0.0":
-  version: 13.0.0
-  resolution: "cypress@npm:13.0.0"
+"cypress@npm:13.1.0":
+  version: 13.1.0
+  resolution: "cypress@npm:13.1.0"
   dependencies:
     "@cypress/request": ^3.0.0
     "@cypress/xvfb": ^1.2.4
@@ -12585,7 +12585,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 223dddfd85dbde5e3a915e87b6cb176b99a9e5bcc24baa40cd5b9ca4a93315a95cf53c5c6ac3a6984f59be55ffc8b58b93a713c0ddcb63a5f4996229cce70329
+  checksum: 238057b288f54401ad3fa8693c31ec08eef2d98a7fc93ce7f60bc009fcae18539e84be4c1cd41526816603f642f63444a7adce9d914b1338a53c0bf756bdb762
   languageName: node
   linkType: hard
 
