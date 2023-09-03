@@ -84,6 +84,9 @@ const ArbeidssituasjonFrilans = ({
 
     return (
         <>
+            <Heading level="2" size="large">
+                <FormattedMessage id="steg.arbeidssituasjon.frilanser.tittel" />
+            </Heading>
             {søkerHarFrilansoppdrag && <FrilansoppdragInfo frilansoppdrag={frilansoppdrag} />}
             {søkerHarFrilansoppdrag === false && (
                 <Block margin="l">
