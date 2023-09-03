@@ -3,12 +3,11 @@ import { StepId } from '../types/StepId';
 import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
-//TODO
 export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknadsdata): boolean => {
     if (!arbeidssituasjon) {
         return false;
     }
-
+    console.log('arbeidssituasjon: ', arbeidssituasjon);
     const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
 
     const erFrilanserISøknadsperiode =

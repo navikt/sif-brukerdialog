@@ -120,7 +120,7 @@ const getFrilansDafaultValues = (frilans?: ArbeidFrilansSøknadsdata): FrilansFo
             case 'sluttetISøknadsperiode':
                 return {
                     harHattInntektSomFrilanser: YesOrNo.YES,
-                    jobberFortsattSomFrilans: YesOrNo.YES,
+                    jobberFortsattSomFrilans: YesOrNo.NO,
                     startdato: frilans.startdato,
                     sluttdato: frilans.sluttdato,
                     jobberNormaltTimer: frilans.jobberNormaltTimer,
@@ -333,11 +333,12 @@ export const getFrilansSøknadsdataFromFormValues = (
 ): ArbeidFrilansSøknadsdata | undefined => {
     const { harHattInntektSomFrilanser, jobberFortsattSomFrilans, startdato, sluttdato, jobberNormaltTimer } =
         frilansFormdata;
+    const erFrilanser = harHattInntektSomFrilanser === YesOrNo.YES;
 
     const brukerHarFrilansOppdrag = harFrilansoppdrag(frilansoppdrag);
     const brukerHarFrilansISøknadsPeriode = erFrilanserISøknadsperiode(søknadsperiode, frilansFormdata, frilansoppdrag);
 
-    if (harHattInntektSomFrilanser === YesOrNo.NO && !brukerHarFrilansOppdrag) {
+    if (!erFrilanser && !brukerHarFrilansOppdrag) {
         return {
             type: 'erIkkeFrilanser',
             erFrilanser: false,
@@ -345,46 +346,11 @@ export const getFrilansSøknadsdataFromFormValues = (
     }
 
     if (
-        ((harHattInntektSomFrilanser === YesOrNo.UNANSWERED && brukerHarFrilansOppdrag) ||
-            harHattInntektSomFrilanser === YesOrNo.YES) &&
-        jobberNormaltTimer &&
-        startdato
-    ) {
-        return {
-            type: 'pågående',
-            erFrilanser: true,
-            jobberFortsattSomFrilans: true,
-            startdato,
-            jobberNormaltTimer,
-        };
-    }
-    if (
-        brukerHarFrilansISøknadsPeriode &&
-        ((harHattInntektSomFrilanser === YesOrNo.UNANSWERED && brukerHarFrilansOppdrag) ||
-            harHattInntektSomFrilanser === YesOrNo.NO) &&
-        startdato &&
-        sluttdato &&
-        jobberNormaltTimer &&
-        jobberFortsattSomFrilans === YesOrNo.NO
-    ) {
-        return {
-            type: 'sluttetISøknadsperiode',
-            erFrilanser: true,
-            jobberFortsattSomFrilans: false,
-            startdato,
-            sluttdato,
-            jobberNormaltTimer,
-        };
-    }
-
-    if (
         !brukerHarFrilansISøknadsPeriode &&
-        ((harHattInntektSomFrilanser === YesOrNo.UNANSWERED && brukerHarFrilansOppdrag) ||
-            harHattInntektSomFrilanser === YesOrNo.NO) &&
-        startdato &&
-        sluttdato &&
+        brukerHarFrilansOppdrag &&
         jobberFortsattSomFrilans === YesOrNo.NO &&
-        !jobberNormaltTimer
+        startdato &&
+        sluttdato
     ) {
         return {
             type: 'sluttetFørSøknadsperiode',
@@ -394,6 +360,28 @@ export const getFrilansSøknadsdataFromFormValues = (
             sluttdato,
         };
     }
+
+    if (brukerHarFrilansISøknadsPeriode && jobberNormaltTimer && startdato) {
+        if (jobberFortsattSomFrilans === YesOrNo.NO && sluttdato) {
+            return {
+                type: 'sluttetISøknadsperiode',
+                erFrilanser: true,
+                jobberFortsattSomFrilans: false,
+                startdato,
+                sluttdato,
+                jobberNormaltTimer,
+            };
+        }
+
+        return {
+            type: 'pågående',
+            erFrilanser: true,
+            jobberFortsattSomFrilans: true,
+            startdato,
+            jobberNormaltTimer,
+        };
+    }
+
     return undefined;
 };
 

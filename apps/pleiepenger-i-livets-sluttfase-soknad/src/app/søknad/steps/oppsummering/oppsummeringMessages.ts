@@ -118,9 +118,8 @@ export const oppsummeringMessages: MessageFileFormat = {
         'step.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',
         'step.oppsummering.fravær.aktivitet.2': 'Fravær som {aktivitet1} og {aktivitet2}.',
 
-        'step.oppsummering.dokumenter.header': 'Vedlegg',
-        'step.oppsummering.dokumenter.ingenVedlegg': 'Ingen vedlegg er lastet opp',
         'steg.oppsummering.bekreftelseFraLege.header': 'Legeerklæring',
+        'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lastet opp',
 
         'step.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
 
