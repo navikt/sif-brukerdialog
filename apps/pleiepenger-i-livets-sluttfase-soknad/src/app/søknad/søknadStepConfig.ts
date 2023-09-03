@@ -16,16 +16,9 @@ export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknad
 
     const erSelvstendigISøknadsperiode = selvstendig && selvstendig.type === 'erSN';
 
-    const erAnsattISøknadsperiode =
-        (arbeidsgivere &&
-            Object.entries(arbeidsgivere).some(([key, value]) => {
-                // eslint-disable-next-line no-console
-                //TODO slett console.log
-                console.log(key);
-                return value.type === 'pågående' || value.type === 'sluttetISøknadsperiode';
-            })) ||
-        false;
-
+    const erAnsattISøknadsperiode = Object.values(arbeidsgivere || {}).some(
+        (value) => value.type === 'pågående' || value.type === 'sluttetISøknadsperiode'
+    );
     return erFrilanserISøknadsperiode || erSelvstendigISøknadsperiode || erAnsattISøknadsperiode;
 };
 
