@@ -19,12 +19,14 @@ export const isYesOrNoAnswered = (answer?: YesOrNo) => {
 };
 
 export const visVernepliktSpørsmål = (
+    søknadsperiode: DateRange,
     ansatt_arbeidsforhold: AnsattFormData[],
     frilans: FrilansFormData,
-    selvstendig: SelvstendigFormData
+    selvstendig: SelvstendigFormData,
+    frilansoppdrag?: Arbeidsgiver[]
 ): boolean => {
-    const { harHattInntektSomFrilanser } = frilans || {};
-    //TODO Sjekk det
+    const harFrilansoppdrag = (frilansoppdrag || []).length > 0;
+
     /** Selvstendig næringsdrivende */
     if (
         isYesOrNoAnswered(selvstendig.harHattInntektSomSN) === false ||
@@ -34,12 +36,10 @@ export const visVernepliktSpørsmål = (
     }
     /** Frilanser */
     if (
-        isYesOrNoAnswered(frilans?.harHattInntektSomFrilanser) === false ||
-        frilans?.harHattInntektSomFrilanser === YesOrNo.YES
+        (isYesOrNoAnswered(frilans?.harHattInntektSomFrilanser) === false && !harFrilansoppdrag) ||
+        (frilans?.harHattInntektSomFrilanser === YesOrNo.YES &&
+            erFrilanserISøknadsperiode(søknadsperiode, frilans, frilansoppdrag))
     ) {
-        return false;
-    }
-    if (harHattInntektSomFrilanser !== YesOrNo.NO) {
         return false;
     }
 
@@ -281,7 +281,15 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
     const frilans = getFrilansSøknadsdataFromFormValues(values.frilans, values.frilansoppdrag, søknadsperiode);
     const selvstendig = getSelvstendigSøknadsdataFromFormValues(values.selvstendig, søknadsperiode);
 
-    const vernepliktig = getVernepliktigSøknadsdata(values);
+    const vernepliktig = visVernepliktSpørsmål(
+        søknadsperiode,
+        values.ansatt_arbeidsforhold,
+        values.frilans,
+        values.selvstendig,
+        values.frilansoppdrag
+    )
+        ? getVernepliktigSøknadsdata(values)
+        : undefined;
     const opptjeningUtland = getOpptjeningUtlandSøknadsdata(values);
     const utenlandskNæring = getUtenlandskNæringSøknadsdata(values);
 

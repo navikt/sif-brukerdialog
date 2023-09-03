@@ -151,7 +151,6 @@ const ArbeidssituasjonStep = () => {
                         harUtenlandskNæring,
                     },
                 }) => {
-                    //TODO Fiks
                     if (!søknadsperiode || !ansatt_arbeidsforhold || !frilans || !selvstendig) {
                         return undefined;
                     }
@@ -262,7 +261,13 @@ const ArbeidssituasjonStep = () => {
                                         )}
                                     </FormBlock>
                                 </FormBlock>
-                                {visVernepliktSpørsmål(ansatt_arbeidsforhold, frilans, selvstendig) && (
+                                {visVernepliktSpørsmål(
+                                    søknadsperiode,
+                                    ansatt_arbeidsforhold,
+                                    frilans,
+                                    selvstendig,
+                                    frilansoppdrag
+                                ) && (
                                     <FormBlock>
                                         <Heading level="2" size="large">
                                             <FormattedMessage id="steg.arbeidssituasjon.verneplikt.tittel" />

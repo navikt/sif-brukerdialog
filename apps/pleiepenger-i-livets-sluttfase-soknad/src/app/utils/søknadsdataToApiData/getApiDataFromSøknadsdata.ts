@@ -87,7 +87,9 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         ),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
         utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),
-        harVærtEllerErVernepliktig: arbeidssituasjon.vernepliktig?.type === 'harVærtEllerErVernepliktigYes',
+        harVærtEllerErVernepliktig: arbeidssituasjon.vernepliktig
+            ? arbeidssituasjon.vernepliktig.type === 'harVærtEllerErVernepliktigYes'
+            : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
     };

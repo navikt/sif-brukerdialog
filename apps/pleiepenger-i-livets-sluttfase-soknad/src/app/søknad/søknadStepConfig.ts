@@ -7,7 +7,7 @@ export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknad
     if (!arbeidssituasjon) {
         return false;
     }
-    console.log('arbeidssituasjon: ', arbeidssituasjon);
+
     const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
 
     const erFrilanserISøknadsperiode =
