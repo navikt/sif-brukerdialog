@@ -1,3 +1,4 @@
+import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
     OpplysningerOmPleietrengendeSøknadsdata,
@@ -19,6 +20,7 @@ export enum SøknadContextActionKeys {
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_TIDSROM = 'setSøknadTidsrom',
     SET_SØKNAD_ARBEIDSSITUASJON = 'setSøknadArbeidssituasjon',
+    SET_SØKNAD_FRILANSOPPDRAG = 'setSøknadFrilansoppdrag',
     SET_SØKNAD_ARBEIDSTID = 'setSøknadArbeidstid',
     SET_SØKNAD_MEDLEMSKAP = 'setSøknadMedlemskap',
     SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER = 'setSøknadHarBekreftetOpplysninger',
@@ -73,6 +75,12 @@ interface SetSøknadArbeidssituasjon {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON;
     payload: ArbeidssituasjonSøknadsdata;
 }
+
+interface SetSøknadFrilansoppdrag {
+    type: SøknadContextActionKeys.SET_SØKNAD_FRILANSOPPDRAG;
+    payload: Arbeidsgiver[];
+}
+
 interface SetSøknadArbeidstid {
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID;
     payload: ArbeidstidSøknadsdata;
@@ -135,6 +143,12 @@ const setSøknadArbeidssituasjon = (payload: ArbeidssituasjonSøknadsdata): SetS
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSSITUASJON,
     payload,
 });
+
+const setSøknadFrilansoppdrag = (payload: Arbeidsgiver[]): SetSøknadFrilansoppdrag => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_FRILANSOPPDRAG,
+    payload,
+});
+
 const setSøknadArbeidstid = (payload: ArbeidstidSøknadsdata): SetSøknadArbeidstid => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID,
     payload,
@@ -164,6 +178,7 @@ export type SøknadContextAction =
     | SetSøknadLegeerklæring
     | SetSøknadTidsrom
     | SetSøknadArbeidssituasjon
+    | SetSøknadFrilansoppdrag
     | SetSøknadArbeidstid
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
@@ -180,6 +195,7 @@ const actionsCreator = {
     setSøknadLegeerklæring,
     setSøknadTidsrom,
     setSøknadArbeidssituasjon,
+    setSøknadFrilansoppdrag,
     setSøknadArbeidstid,
     setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,

@@ -22,6 +22,10 @@ import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import PleietrengendePersonSummary from './components/PleietrengendePersonSummary';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
+import TidsromOppsummering from './components/TidsromOppsummering';
+import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -39,7 +43,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata, søker },
+        state: { søknadsdata, søker, frilansoppdrag },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -115,6 +119,23 @@ const OppsummeringStep = () => {
                                 <PleietrengendePersonSummary
                                     pleietrengende={apiData.pleietrengende}
                                     pleietrengendeId={pleietrengendeId}
+                                />
+                                <TidsromOppsummering apiData={apiData} />
+
+                                <ArbeidssituasjonSummary
+                                    apiData={apiData}
+                                    søknadsperiode={{
+                                        from: ISODateToDate(apiData.fraOgMed),
+                                        to: ISODateToDate(apiData.tilOgMed),
+                                    }}
+                                    frilansoppdrag={frilansoppdrag}
+                                />
+                                <ArbeidIPeriodenSummary
+                                    apiValues={apiData}
+                                    søknadsperiode={{
+                                        from: ISODateToDate(apiData.fraOgMed),
+                                        to: ISODateToDate(apiData.tilOgMed),
+                                    }}
                                 />
                                 <MedlemskapOppsummering medlemskap={apiData.medlemskap} />
                                 <LegeerklæringOppsummering

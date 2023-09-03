@@ -10,6 +10,7 @@ export const oppsummeringMessages: MessageFileFormat = {
             'Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.',
 
         'step.oppsummering.søker.header': 'Om deg',
+        'step.oppsummering.søker.fnr': 'Fødselsnummer: {fødselsnummer}',
         'step.oppsummering.pleietrengende.header': 'Om personen du pleier',
         'steg.oppsummering.pleietrengende.harIkkeFnr':
             'Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer: {årsak}',

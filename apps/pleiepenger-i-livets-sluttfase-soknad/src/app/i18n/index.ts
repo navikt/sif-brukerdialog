@@ -15,6 +15,11 @@ import virksomhetMessages from '@navikt/sif-common-forms-ds/lib/forms/virksomhet
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummeringMessages';
+import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring/utenlandskNæringMessages';
+import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
+import opptjeningUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/opptjeningUtlandMessages';
+import ferieuttakMessages from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/ferieuttakMessages';
+import arbeidstidMessages from '../søknad/steps/arbeidstid/form-parts/arbeidstid-variert/arbeidstidVariertMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -26,12 +31,17 @@ const bokmålstekster = {
     ...tidsromMessages.nb,
     ...utenlandsoppholdMessages.nb,
     ...arbeidssituasjonMessages.nb,
+    ...arbeidstidMessages.nb,
+    ...opptjeningUtlandMessages.nb,
+    ...utenlandskNæringMessages.nb,
+    ...ferieuttakMessages.nb,
     ...bostedUtlandMessages.nb,
     ...virksomhetMessages.nb,
     ...medlemskapMessages.nb,
     ...oppsummeringMessages.nb,
     ...kvitteringMessages.nb,
     ...validateApiDataMessages.nb,
+    ...sifCommonPleiepengerMessages.nb,
     ...appMessages.nb,
 };
 

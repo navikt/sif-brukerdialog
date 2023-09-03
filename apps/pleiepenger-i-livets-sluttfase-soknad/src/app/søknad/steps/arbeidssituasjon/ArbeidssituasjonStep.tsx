@@ -112,7 +112,10 @@ const ArbeidssituasjonStep = () => {
         const arbeidssituasjonSøknadsdata = getArbeidssituasjonSøknadsdataFromFormValues(values, søknadsperiode);
         if (arbeidssituasjonSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadArbeidssituasjon(arbeidssituasjonSøknadsdata)];
+            return [
+                actionsCreator.setSøknadArbeidssituasjon(arbeidssituasjonSøknadsdata),
+                actionsCreator.setSøknadFrilansoppdrag(values.frilansoppdrag),
+            ];
         }
         return [];
     };
