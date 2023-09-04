@@ -6,7 +6,7 @@ export const fortsettSøknadSenereDialogMessages: MessageFileFormat = {
         'fortsettSøknadSenereDialog.intro':
             'Vi lagrer utkastet ditt for deg i 72 timer. Du finner den igjen på Min side.',
         'fortsettSøknadSenereDialog.spørsmål': 'Vil du avslutte nå og fortsette senere?',
-        'fortsettSøknadSenereDialog.tittel': 'Ja, avslutt og fortsett senere',
+        'fortsettSøknadSenereDialog.tittel': 'Avslutt og fortsett senere',
         'fortsettSøknadSenereDialog.fortsettSøknadLabel': 'Nei',
     },
 };
