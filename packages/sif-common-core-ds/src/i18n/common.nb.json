@@ -25,7 +25,6 @@
     "dager": "{dager, plural, one {# dag} other {# dager}}",
 
     "vedleggsliste.fjernKnapp": "Fjern",
-
     "ariaStepInfo": "Steg {currentStep} av {steps}",
 
     "dataRangeValidation.form.validation.required": "Feltet er påkrevd",
