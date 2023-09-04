@@ -99,7 +99,7 @@ const endreOgFjernFerie = () => {
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();
         });
-        cy.wait(250);
+        cy.wait(500);
         cy.checkA11y();
         fyllUtFerieDialog('28.11.2022', '29.11.2022');
         getTestElement('dateRangeAccordion_0').within(() => {
@@ -145,21 +145,21 @@ const endreOgFjernFerie = () => {
 
 const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
-        cy.wait(250);
         cy.injectAxe();
+        cy.wait(400);
         getAktivitet().within(() => {
             cy.get('[data-testid=dateRangeAccordion_0]').click();
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
-            cy.wait(250);
+            cy.wait(400);
             cy.checkA11y();
             captureScreenshot();
         });
     });
     it('kontrollerer verdi før endring', () => {
-        cy.wait(250);
+        cy.wait(400);
         cy.injectAxe();
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
@@ -171,13 +171,13 @@ const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
         });
     });
     it('åpner dialog for uke', () => {
-        cy.wait(250);
+        cy.wait(400);
         cy.injectAxe();
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
                 cy.get('[data-testid=endre-button]').click();
             });
-            cy.wait(250);
+            cy.wait(400);
             cy.checkA11y();
             captureScreenshot();
         });
@@ -265,7 +265,7 @@ const fyllUtArbeidstidUkjentArbeidsforhold = (
                             cy.get('[data-testid=endre-button]').click();
                         });
                 });
-                cy.wait(250);
+                cy.wait(400);
                 getArbeidstimerModal().within(() => {
                     getTestElement('toggle-timer').click();
                     getTestElement('timer-verdi').type(uke.tid);
