@@ -3841,7 +3841,7 @@ __metadata:
     lodash: 4.17.21
     mini-css-extract-plugin: 2.7.6
     monocle-ts: 2.3.13
-    msw: 1.2.4
+    msw: 1.3.0
     mustache-express: 1.3.2
     newtype-ts: 0.3.5
     object-hash: 3.0.0
@@ -8412,7 +8412,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/set-cookie-parser@npm:^2.4.0":
+"@types/set-cookie-parser@npm:^2.4.0, @types/set-cookie-parser@npm:^2.4.3":
   version: 2.4.3
   resolution: "@types/set-cookie-parser@npm:2.4.3"
   dependencies:
@@ -16330,6 +16330,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"headers-polyfill@npm:^3.2.0":
+  version: 3.2.1
+  resolution: "headers-polyfill@npm:3.2.1"
+  dependencies:
+    "@types/set-cookie-parser": ^2.4.3
+    set-cookie-parser: ^2.6.0
+  checksum: e66d56ce34821909ce28e51356650233912b2205d00b8494c9c57b4a30d4f07d558afb5f7f6f7fedc9b9c14caf25c9e06afaf8fa60585c36801e17417f901c6b
+  languageName: node
+  linkType: hard
+
 "helmet@npm:7.0.0":
   version: 7.0.0
   resolution: "helmet@npm:7.0.0"
@@ -20310,9 +20320,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:1.2.4":
-  version: 1.2.4
-  resolution: "msw@npm:1.2.4"
+"msw@npm:1.3.0":
+  version: 1.3.0
+  resolution: "msw@npm:1.3.0"
   dependencies:
     "@mswjs/cookies": ^0.2.2
     "@mswjs/interceptors": ^0.17.5
@@ -20323,7 +20333,7 @@ __metadata:
     chokidar: ^3.4.2
     cookie: ^0.4.2
     graphql: ^15.0.0 || ^16.0.0
-    headers-polyfill: ^3.1.2
+    headers-polyfill: ^3.2.0
     inquirer: ^8.2.0
     is-node-process: ^1.2.0
     js-levenshtein: ^1.1.6
@@ -20334,13 +20344,13 @@ __metadata:
     type-fest: ^2.19.0
     yargs: ^17.3.1
   peerDependencies:
-    typescript: ">= 4.4.x <= 5.1.x"
+    typescript: ">= 4.4.x <= 5.2.x"
   peerDependenciesMeta:
     typescript:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: ff32efd2e89b6e4e0b646362907658c2b37756a92d46a294171e0ef5c4488217f87381b7740a6c9e5d7ed9c490ce33474f56f5dba8524340233cd89f1de0b0e1
+  checksum: 5ec31d58b0b8841906427738b3f20efd93c45673022f1f8f2221e2880bf76d8ce85902a4f2656727bdcd6d3124d06bb61ff7827a3f9b218ceba6a09d3f6508be
   languageName: node
   linkType: hard
 
@@ -24960,7 +24970,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"set-cookie-parser@npm:^2.4.6":
+"set-cookie-parser@npm:^2.4.6, set-cookie-parser@npm:^2.6.0":
   version: 2.6.0
   resolution: "set-cookie-parser@npm:2.6.0"
   checksum: bf11ebc594c53d84588f1b4c04f1b8ce14e0498b1c011b3d76b5c6d5aac481bbc3f7c5260ec4ce99bdc1d9aed19f9fc315e73166a36ca74d0f12349a73f6bdc9
