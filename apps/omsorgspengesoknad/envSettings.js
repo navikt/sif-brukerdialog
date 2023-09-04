@@ -10,6 +10,7 @@ const envSettings = () => {
          FRONTEND_VEDLEGG_URL:'${process.env.FRONTEND_VEDLEGG_URL}',
          PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
          LOGIN_URL: '${process.env.LOGIN_URL}',
+         MINSIDE_URL: '${process.env.MINSIDE_URL}',
          NYNORSK: '${process.env.NYNORSK}',
          APPSTATUS_PROJECT_ID: '${process.env.APPSTATUS_PROJECT_ID}',
          APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
