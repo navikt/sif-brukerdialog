@@ -14,7 +14,7 @@ const envSettings = () => {
         NYNORSK: '${process.env.NYNORSK}',
         INNSYN_PP: '${process.env.INNSYN_PP}',
         DITT_NAV_URL: '${process.env.DITT_NAV_URL}',
-        MINE_SIDER_URL: '${process.env.MINE_SIDER_URL}',
+        MIN_SIDE_URL: '${process.env.MIN_SIDE_URL}',
         APPSTATUS_PROJECT_ID: '${process.env.APPSTATUS_PROJECT_ID}',
         APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
