@@ -7,7 +7,7 @@ import { getEnkeltdagerIPeriodeApiData } from './tidsbrukApiUtils';
 
 export const getArbeidIPeriodeApiDataFromSøknadsdata = (
     arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata,
-    periode: DateRange,
+    periode: DateRange
 ): ArbeidIPeriodeApiData => {
     switch (arbeidIPeriodeSøknadsdata.type) {
         case ArbeidIPeriodeType.arbeiderIkke:

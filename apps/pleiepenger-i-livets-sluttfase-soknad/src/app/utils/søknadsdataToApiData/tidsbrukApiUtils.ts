@@ -4,7 +4,7 @@ import {
     dateToday,
     durationToISODuration,
     DurationWeekdays,
-    isDateInsideDateRange,
+    isDateInDateRange,
     isDateWeekDay,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
@@ -32,13 +32,13 @@ const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiDat
 
 export const getEnkeltdagerIPeriodeApiData = (
     enkeltdager: DateDurationMap,
-    periode: DateRange,
+    periode: DateRange
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
 
     Object.keys(enkeltdager).forEach((dag) => {
         const dato = ISOStringToDate(dag);
-        if (dato && isDateInsideDateRange(dato, periode) && isDateWeekDay(dato)) {
+        if (dato && isDateInDateRange(dato, periode) && isDateWeekDay(dato)) {
             if (durationUtils.durationIsZero(enkeltdager[dag])) {
                 return;
             }
@@ -54,7 +54,7 @@ export const getEnkeltdagerIPeriodeApiData = (
 
 export const fjernTidUtenforPeriodeOgHelgedager = (
     periode: Partial<DateRange>,
-    tidEnkeltdag?: TidEnkeltdagApiData[],
+    tidEnkeltdag?: TidEnkeltdagApiData[]
 ): TidEnkeltdagApiData[] | undefined => {
     const { from, to } = periode;
     dateToday;
