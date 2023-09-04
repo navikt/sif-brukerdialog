@@ -83,14 +83,14 @@ const TidspunktForAleneomsorgStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const annetBarn = søknadsdata.omOmsorgenForBarn?.annetBarn || [];
     const harAleneomsorgFor = søknadsdata.omOmsorgenForBarn?.harAleneomsorgFor || [];
 
     const registrertBarnMedAleneOmsorg = registrertBarn.filter((barnet) =>
-        (harAleneomsorgFor || []).includes(barnet.aktørId)
+        (harAleneomsorgFor || []).includes(barnet.aktørId),
     );
 
     const annetBarnMedAleneOmsorg = annetBarn
@@ -108,7 +108,7 @@ const TidspunktForAleneomsorgStep = () => {
                 initialValues={getTidspunktForAleneomsorgStepInitialValues(
                     søknadsdata,
                     barnMedAleneomsorg,
-                    stepFormValues[stepId]
+                    stepFormValues[stepId],
                 )}
                 onSubmit={handleSubmit}
                 renderForm={({ values: { aleneomsorgTidspunkt } }) => {

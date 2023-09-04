@@ -28,7 +28,7 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
             return getOmAnnenForelderSøknadsdataFromFormValues(formValues as OmAnnenForelderFormValues);
         case StepId.ANNEN_FORELDER_SITUASJON:
             return getAnnenForelderenSituasjonSøknadsdataFromFormValues(
-                formValues as AnnenForelderenSituasjonFormValues
+                formValues as AnnenForelderenSituasjonFormValues,
             );
         case StepId.OM_BARNA:
             return getOmBarnaSøknadsdataFromFormValues(formValues as OmBarnaFormValues);
@@ -39,7 +39,7 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
 export const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
-    søknadsdata: Søknadsdata
+    søknadsdata: Søknadsdata,
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];

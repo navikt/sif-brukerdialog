@@ -107,7 +107,7 @@
         "start-express": "node ./server.js",
         "start-no-decorator": "node ./src/build/scripts/start-dev-no-decorator.js",
         "test": "react-scripts test --watchAll=false --env=jsdom",
-        "lint": "eslint ./src --ext js,ts,tsx"
+        "lint": "eslint ./src --ext ts,tsx"
     },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"

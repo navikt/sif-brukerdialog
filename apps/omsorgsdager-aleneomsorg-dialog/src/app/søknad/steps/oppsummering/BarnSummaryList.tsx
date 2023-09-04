@@ -12,7 +12,7 @@ const tidspunktRenderer = (
     intl: IntlShape,
     navn: string,
     tidspunktForAleneomsorg: TidspunktForAleneomsorg,
-    dato?: string
+    dato?: string,
 ): React.ReactNode => {
     return (
         <>
@@ -25,7 +25,7 @@ const tidspunktRenderer = (
                         <span>
                             {intlHelper(
                                 intl,
-                                'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg.tidligere'
+                                'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg.tidligere',
                             )}
                         </span>
                     </>
@@ -36,7 +36,7 @@ const tidspunktRenderer = (
                             {intlHelper(
                                 intl,
                                 'step.oppsummering.omOmsorgenForBarn.harOmsorgFor.tidspunktForAleneomsorg',
-                                { dato: prettifyDateExtended(ISODateToDate(dato)) }
+                                { dato: prettifyDateExtended(ISODateToDate(dato)) },
                             )}
                         </span>
                     </>
