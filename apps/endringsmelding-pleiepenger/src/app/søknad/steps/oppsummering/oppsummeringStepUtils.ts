@@ -48,7 +48,7 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
         _opprinneligNormaltPerDag,
         _endretProsent,
     }: ArbeidstidPeriodeApiData,
-    isoDateRange: ISODateRange
+    isoDateRange: ISODateRange,
 ): ArbeidstidUkerItem => {
     const periode = ISODateRangeToDateRange(isoDateRange);
     const antallDagerMedArbeidstid = getDatesInDateRange(periode).length;
@@ -64,19 +64,19 @@ const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
         opprinnelig: {
             normalt: getTimerPerUkeFraTimerPerDag(
                 ISODurationToDuration(_opprinneligNormaltPerDag),
-                antallDagerMedArbeidstid
+                antallDagerMedArbeidstid,
             ),
             faktisk: _opprinneligFaktiskPerDag
                 ? getTimerPerUkeFraTimerPerDag(
                       ISODurationToDuration(_opprinneligFaktiskPerDag),
-                      antallDagerMedArbeidstid
+                      antallDagerMedArbeidstid,
                   )
                 : undefined,
         },
         endret: {
             faktisk: getTimerPerUkeFraTimerPerDag(
                 ISODurationToDuration(faktiskArbeidTimerPerDag),
-                antallDagerMedArbeidstid
+                antallDagerMedArbeidstid,
             ),
             endretProsent: _endretProsent,
         },

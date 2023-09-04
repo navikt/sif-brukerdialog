@@ -44,7 +44,7 @@ const getAlleArbeidsukerIPerioder = (perioder: PeriodeMedArbeidstid[]): Arbeidsu
 
 const getEndretArbeidstid = (
     endringUkeMap: ArbeidstidEndringMap,
-    arbeidsaktivitet: Arbeidsaktivitet
+    arbeidsaktivitet: Arbeidsaktivitet,
 ): ArbeidstidPeriodeApiDataMap => {
     const perioderMedEndretArbeidstid: ArbeidstidPeriodeApiDataMap = {};
 
@@ -61,7 +61,7 @@ const getEndretArbeidstid = (
         const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
             arbeidsuke.normalt.uke,
             endring,
-            antallDagerMedArbeidstid
+            antallDagerMedArbeidstid,
         );
 
         /** Splitt opp hvis det er enkeltdager i uken */
@@ -84,7 +84,7 @@ const getEndretArbeidstid = (
 
 const getArbeidsaktivitetArbeidstidInfo = (
     aktivitet: Arbeidsaktivitet,
-    aktivitetEndring?: ArbeidstidEndringMap
+    aktivitetEndring?: ArbeidstidEndringMap,
 ): ArbeidstidInfo | undefined => {
     if (aktivitetEndring && aktivitet && Object.keys(aktivitetEndring).length > 0) {
         return {
@@ -99,7 +99,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
     arbeidsaktivitetEndring: ArbeidstidArbeidsaktivitetMap,
     arbeidsaktiviteter: Arbeidsaktiviteter,
     ukjenteArbeidsgivere: Arbeidsgiver[],
-    ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
+    ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata,
 ): ArbeidstidApiData => {
     const frilansAktivitetEndring = arbeidsaktivitetEndring[ArbeidsaktivitetType.frilanser]?.endringer;
     const selvstendigNæringsdrivendeAktivitetEndring =
@@ -135,7 +135,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             }
             const { arbeiderIPerioden } = endring;
             const arbeidsforhold = ukjentArbeidsforhold.arbeidsforhold.find(
-                (a) => a.arbeidsgiverKey === arbeidsgiver.key
+                (a) => a.arbeidsgiverKey === arbeidsgiver.key,
             );
             if (!arbeidsforhold || !arbeiderIPerioden) {
                 throw 'Ukjent arbeidsgiver mangler informasjon om arbeidstid';
@@ -147,7 +147,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
             const arbeidsaktivitet = getArbeidsaktivitetForUkjentArbeidsforhold(
                 søknadsperioder,
                 arbeidsgiver,
-                arbeidsforhold
+                arbeidsforhold,
             );
 
             const arbeidsuker = getArbeidsukerIArbeidsaktivitet(arbeidsaktivitet);
@@ -161,12 +161,12 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 const faktiskArbeidTimerPerDag = getFaktiskArbeidTimerPerDagForUkjentArbeidsforhold(
                     arbeiderIPerioden,
                     arbeidsuke,
-                    ukeEndring
+                    ukeEndring,
                 );
 
                 const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(
                     arbeidsuke.normalt.uke,
-                    arbeidsuke.antallDagerMedArbeidstid
+                    arbeidsuke.antallDagerMedArbeidstid,
                 );
 
                 /** Splitt opp hvis det er enkeltdager i uken */
@@ -206,7 +206,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
         selvstendigNæringsdrivendeArbeidstidInfo: arbeidsaktiviteter.selvstendigNæringsdrivende
             ? getArbeidsaktivitetArbeidstidInfo(
                   arbeidsaktiviteter.selvstendigNæringsdrivende,
-                  selvstendigNæringsdrivendeAktivitetEndring
+                  selvstendigNæringsdrivendeAktivitetEndring,
               )
             : undefined,
     };
@@ -215,7 +215,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
 export const getFaktiskArbeidTimerPerDagForUkjentArbeidsforhold = (
     arbeiderIPerioden: ArbeiderIPeriodenSvar,
     arbeidsuke: Pick<Arbeidsuke, 'normalt' | 'antallDagerMedArbeidstid'>,
-    endring?: ArbeidstidEndring
+    endring?: ArbeidstidEndring,
 ): Duration => {
     if (!endring && arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) {
         throw 'Faktisk arbeidstid mangler for redusert arbeidsforhold';
@@ -224,7 +224,7 @@ export const getFaktiskArbeidTimerPerDagForUkjentArbeidsforhold = (
         return beregnEndretFaktiskArbeidstidPerDag(
             arbeidsuke.normalt.uke,
             endring,
-            arbeidsuke.antallDagerMedArbeidstid
+            arbeidsuke.antallDagerMedArbeidstid,
         );
     }
     return arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær

@@ -11,7 +11,7 @@ const erAnsattIUkjentArbeidsforhold = (arbeidsforhold: Arbeidsforhold[] = []): b
 export const getSøknadSteps = (
     valgteEndringer: ValgteEndringer,
     harUkjentArbeidsforhold: boolean,
-    søknadsdata?: Søknadsdata
+    søknadsdata?: Søknadsdata,
 ): StepId[] => {
     const steps: StepId[] = [];
 
@@ -39,5 +39,5 @@ export const getSøknadSteps = (
 
 export const getSøknadStepConfig = (søknadSteps: StepId[]): SoknadStepsConfig<StepId> =>
     soknadStepUtils.getStepsConfig(søknadSteps, SoknadApplicationType.MELDING, (stepId: StepId) =>
-        getSøknadStepRoute(stepId)
+        getSøknadStepRoute(stepId),
     );

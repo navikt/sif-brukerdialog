@@ -20,7 +20,7 @@ const UploadedDocumentsList = ({ includeDeletionFunctionality, onFileDeleted }: 
     const { values, setFieldValue } = useFormikContext<SoknadFormData>();
 
     const dokumenter: Attachment[] = values.dokumenter.filter(({ file }: Attachment) =>
-        fileExtensionIsValid(file.name)
+        fileExtensionIsValid(file.name),
     );
 
     if (!containsAnyUploadedAttachments(dokumenter)) {
@@ -39,15 +39,15 @@ const UploadedDocumentsList = ({ includeDeletionFunctionality, onFileDeleted }: 
                             () => {
                                 setFieldValue(
                                     SoknadFormField.dokumenter,
-                                    removeElementFromArray(attachment, dokumenter)
+                                    removeElementFromArray(attachment, dokumenter),
                                 );
                             },
                             () => {
                                 setFieldValue(
                                     SoknadFormField.dokumenter,
-                                    removeElementFromArray(attachment, dokumenter)
+                                    removeElementFromArray(attachment, dokumenter),
                                 );
-                            }
+                            },
                         );
                         if (onFileDeleted) {
                             onFileDeleted();

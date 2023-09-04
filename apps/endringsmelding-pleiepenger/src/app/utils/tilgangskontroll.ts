@@ -30,7 +30,7 @@ export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 export const tilgangskontroll = (
     saker: K9Sak[],
     arbeidsgivere: Arbeidsgiver[],
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): TilgangKontrollResultat => {
     /** Har ingen saker */
     if (saker.length === 0) {
@@ -113,7 +113,7 @@ const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
 
 const harArbeidsgiverUtenArbeidsaktivitet = (
     arbeidsgivere: Arbeidsgiver[],
-    k9SakArbeidstaker: K9SakArbeidstaker[] = []
+    k9SakArbeidstaker: K9SakArbeidstaker[] = [],
 ): boolean => {
     return arbeidsgivere.some((arbeidsgiver) => {
         return finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
@@ -122,11 +122,11 @@ const harArbeidsgiverUtenArbeidsaktivitet = (
 
 const harArbeidsaktivitetUtenArbeidsgiver = (
     arbeidsaktiviteter: K9SakArbeidstaker[] = [],
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ) => {
     return arbeidsaktiviteter.some(
         ({ organisasjonsnummer }) =>
-            arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === organisasjonsnummer) === false
+            arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === organisasjonsnummer) === false,
     );
 };
 
@@ -137,7 +137,7 @@ const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
 
 const harSøknadsperiodeInnenforTillattEndringsperiode = (
     samletSøknadsperiode: DateRange | undefined,
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): boolean => {
     return samletSøknadsperiode
         ? dayjs(samletSøknadsperiode.to).isSameOrAfter(tillattEndringsperiode.from, 'day')

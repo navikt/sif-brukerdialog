@@ -27,7 +27,7 @@ interface SoknadTemporaryStorage
         formData: Partial<SoknadFormData>,
         lastStepID: StepID,
         søkerInfo: UserHashInfo,
-        søknadstype: ApplicationType
+        søknadstype: ApplicationType,
     ) => Promise<AxiosResponse>;
     create: (søknadstype: ApplicationType) => Promise<AxiosResponse>;
     purge: (søknadstype: ApplicationType) => Promise<AxiosResponse>;
@@ -53,7 +53,7 @@ const persistSetup = (søknadstype: ApplicationType) =>
 
 export const isStorageDataValid = (
     data: SoknadTempStorageData,
-    userHashInfo: UserHashInfo
+    userHashInfo: UserHashInfo,
 ): SoknadTempStorageData | undefined => {
     if (
         data?.metadata?.version === STORAGE_VERSION &&
@@ -74,7 +74,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
         formData: SoknadFormData,
         lastStepID: StepID,
         userHashInfo: UserHashInfo,
-        søknadstype: ApplicationType
+        søknadstype: ApplicationType,
     ) => {
         return persistSetup(søknadstype).update({
             formData,

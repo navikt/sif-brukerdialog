@@ -31,8 +31,8 @@ describe('beregnUtils', () => {
                 beregnEndretArbeidstidForUke(
                     { type: TimerEllerProsent.PROSENT, prosent: 20 },
                     { hours: '7', minutes: '30' },
-                    5
-                )
+                    5,
+                ),
             ).toEqual(expectedResult);
         });
         it('regner ut riktig når endringen er 50 % av 10 timer', () => {
@@ -44,8 +44,8 @@ describe('beregnUtils', () => {
                 beregnEndretArbeidstidForUke(
                     { type: TimerEllerProsent.PROSENT, prosent: 50 },
                     { hours: '10', minutes: '0' },
-                    5
-                )
+                    5,
+                ),
             ).toEqual(expectedResult);
         });
         it('setter timer riktig når endring er oppgitt i timer', () => {
@@ -57,8 +57,8 @@ describe('beregnUtils', () => {
                 beregnEndretArbeidstidForUke(
                     { type: TimerEllerProsent.TIMER, timer: 5.5 },
                     { hours: '10', minutes: '30' },
-                    5
-                )
+                    5,
+                ),
             ).toEqual(expectedResult);
         });
         it('regner hele timer for 4 timer faktisk', () => {
@@ -70,8 +70,8 @@ describe('beregnUtils', () => {
                 beregnEndretArbeidstidForUke(
                     { type: TimerEllerProsent.TIMER, timer: 4 },
                     { hours: '18', minutes: '0' },
-                    3
-                )
+                    3,
+                ),
             ).toEqual(expectedResult);
         });
     });
@@ -82,7 +82,7 @@ describe('beregnUtils', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.PROSENT, prosent: 50 },
-                5
+                5,
             );
             const expectedResult: Duration = decimalDurationToDuration(7.5 / 2);
             expect(result).toEqual(expectedResult);
@@ -91,7 +91,7 @@ describe('beregnUtils', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.PROSENT, prosent: 20 },
-                5
+                5,
             );
             const expectedResult: Duration = decimalDurationToDuration(7.5 / 5);
             expect(result).toEqual(expectedResult);
@@ -100,7 +100,7 @@ describe('beregnUtils', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.PROSENT, prosent: 0 },
-                5
+                5,
             );
             const expectedResult: Duration = decimalDurationToDuration(0);
             expect(result).toEqual(expectedResult);
@@ -109,7 +109,7 @@ describe('beregnUtils', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.PROSENT, prosent: 100 },
-                5
+                5,
             );
             const expectedResult: Duration = decimalDurationToDuration(7.5);
             expect(result).toEqual(expectedResult);
@@ -118,7 +118,7 @@ describe('beregnUtils', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.TIMER, timer: 20 },
-                5
+                5,
             );
             const expectedResult: Duration = decimalDurationToDuration(4);
             expect(result).toEqual(expectedResult);
@@ -127,7 +127,7 @@ describe('beregnUtils', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.TIMER, timer: 0 },
-                5
+                5,
             );
             const expectedResult: Duration = decimalDurationToDuration(0);
             expect(result).toEqual(expectedResult);
@@ -136,7 +136,7 @@ describe('beregnUtils', () => {
             const result = beregnEndretFaktiskArbeidstidPerDag(
                 normalarbeidstidUke,
                 { type: TimerEllerProsent.TIMER, timer: 37.5 },
-                5
+                5,
             );
             const expectedResult: Duration = decimalDurationToDuration(7.5);
             expect(result).toEqual(expectedResult);
