@@ -16,3 +16,4 @@ export const relocateToWelcomePage = () => relocateTo(getSøknadRouteURL(Søknad
 export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('LOGIN_URL'));
 export const relocateToNoAccessPage = (): void => relocateTo(getSøknadRouteURL(SøknadRoutes.IKKE_TILGANG));
 export const relocateToDinePleiepenger = (): void => relocateTo(getEnvironmentVariable('INNSYN_URL'));
+export const relocateToMinSide = (): void => relocateTo(getEnvironmentVariable('MINSIDE_URL'));

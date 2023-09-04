@@ -22,18 +22,5 @@ export const defaultMessages: MessageFileFormat = {
 
         'steg.footer.avbryt': 'Avbryt og slett melding om endring',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
-
-        'avbrytSøknadDialog.fortsettSøknadLabel': 'Nei',
-        'avbrytSøknadDialog.intro':
-            'Det du har fylt ut i skjemaet blir slettet, og du kommer tilbake til velkomstsiden.',
-        'avbrytSøknadDialog.spørsmål': 'Ønsker du å slette melding om endring?',
-        'avbrytSøknadDialog.tittel': 'Avbryt og slett melding om endring',
-        'avbrytSøknadDialog.avbrytSøknadLabel': 'Ja, avslutt og slett',
-
-        'fortsettSøknadSenereDialog.avbrytSøknadLabel': 'Ja, fortsett senere',
-        'fortsettSøknadSenereDialog.fortsettSøknadLabel': 'Nei',
-        'fortsettSøknadSenereDialog.intro': 'Vi lagrer meldingen om endring for deg i 72 timer.',
-        'fortsettSøknadSenereDialog.spørsmål': 'Vil du avslutte nå og fortsette senere?',
-        'fortsettSøknadSenereDialog.tittel': 'Avslutt og fortsett senere',
     },
 };
