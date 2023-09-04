@@ -4,10 +4,14 @@ import { enSakSN } from '../../data/enSakSN';
 import { flereSakerMock } from '../../data/flereSakerMock';
 import { ugyldigK9FormatSakMock } from '../../data/ugyldigK9FormatSakMock';
 import { getTestElement } from '../../utils';
+import { cyHelpers } from '../1-utfylling-av-dialog/cyHelpers';
 
 const startUrl = 'http://localhost:8080';
 
 describe('Bruker har ikke tilgang til løsningen', () => {
+    beforeEach(() => {
+        cy.clock(cyHelpers.date.getTime(), ['Date']);
+    });
     describe('Ugyldig k9format på sak', () => {
         contextConfig({ saker: [ugyldigK9FormatSakMock], arbeidsgivere: enArbeidsgiverMock });
         it('Viser riktig melding når bruker sak med ukjent format', () => {
