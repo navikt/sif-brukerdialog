@@ -33,17 +33,5 @@
     "dataRangeValidation.form.validation.dateBeforeMinDate": "Første gyldige dato er {fom}",
     "dataRangeValidation.form.validation.dateAfterMaxDate": "Siste gyldige dato er {tom}",
     "dataRangeValidation.form.validation.fromDateAfterToDate": "Fra-dato må være lik eller før til-dato",
-    "dataRangeValidation.form.validation.toDateBeforeFromDate": "Til-dato må være lik eller etter fra-dato",
-
-    "avbrytSøknadDialog.fortsettSøknadLabel": "Nei",
-    "avbrytSøknadDialog.intro": "Det du har fylt ut i søknaden blir slettet, og du kommer tilbake til velkomstsiden.",
-    "avbrytSøknadDialog.spørsmål": "Ønsker du å slette søknaden?",
-    "avbrytSøknadDialog.tittel": "Avbryt og slett søknad",
-    "avbrytSøknadDialog.avbrytSøknadLabel": "Ja, slett søknad",
-
-    "fortsettSøknadSenereDialog.avbrytSøknadLabel": "Ja, fortsett senere",
-    "fortsettSøknadSenereDialog.fortsettSøknadLabel": "Nei",
-    "fortsettSøknadSenereDialog.intro": "Vi lagrer søknaden din for deg i 72 timer.",
-    "fortsettSøknadSenereDialog.spørsmål": "Vil du avslutte nå og fortsette senere?",
-    "fortsettSøknadSenereDialog.tittel": "Avslutt og fortsett senere"
+    "dataRangeValidation.form.validation.toDateBeforeFromDate": "Til-dato må være lik eller etter fra-dato"
 }
