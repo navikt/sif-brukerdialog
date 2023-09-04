@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 import {
@@ -83,8 +82,6 @@ export interface TidEnkeltdagFormValues {
 }
 
 const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues, ValidationError>();
-
-const bem = bemUtils('tidEnkeltdagForm');
 
 const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     dato,
@@ -202,49 +199,50 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                     <Block margin="l">
                                         <>
                                             {/* <div style={{ paddingLeft: '1.5rem' }}> */}
+                                            <div className="tidEnkeltdagForm__gjentagelseOptions">
+                                                <FormComponents.RadioGroup
+                                                    legend={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.info')}
+                                                    className={'skjemaelement'}
+                                                    name={FormFields.gjentagelse}
+                                                    validate={getRequiredFieldValidator()}
+                                                    radios={[
+                                                        {
+                                                            label: renderGjentagelseRadioLabel(
+                                                                ukeErHel ? 'helUke' : 'delAvUke',
+                                                                {
+                                                                    fra: ukePeriodeStartTxt,
+                                                                    til: ukePeriodeSluttTxt,
+                                                                },
+                                                                { ukeNavn }
+                                                            ),
+                                                            value: GjentagelseType.heleUken,
+                                                        },
+                                                        {
+                                                            label: renderGjentagelseRadioLabel(
+                                                                månedErHel ? 'helMåned' : 'delAvMåned',
+                                                                {
+                                                                    fra: månedPeriodeStartTxt,
+                                                                    til: månedPeriodeSluttTxt,
+                                                                },
+                                                                { månedNavn }
+                                                            ),
+                                                            value: GjentagelseType.heleMåneden,
+                                                        },
+                                                        {
+                                                            label: renderGjentagelseRadioLabel(
+                                                                'dagerFremover',
+                                                                {
+                                                                    fra: valgtDatoTxt,
+                                                                    til: sluttDatoTxt,
+                                                                },
+                                                                { dagerNavn }
+                                                            ),
 
-                                            <FormComponents.RadioGroup
-                                                legend={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.info')}
-                                                className={bem.element('gjentagelseOptions')}
-                                                name={FormFields.gjentagelse}
-                                                validate={getRequiredFieldValidator()}
-                                                radios={[
-                                                    {
-                                                        label: renderGjentagelseRadioLabel(
-                                                            ukeErHel ? 'helUke' : 'delAvUke',
-                                                            {
-                                                                fra: ukePeriodeStartTxt,
-                                                                til: ukePeriodeSluttTxt,
-                                                            },
-                                                            { ukeNavn }
-                                                        ),
-                                                        value: GjentagelseType.heleUken,
-                                                    },
-                                                    {
-                                                        label: renderGjentagelseRadioLabel(
-                                                            månedErHel ? 'helMåned' : 'delAvMåned',
-                                                            {
-                                                                fra: månedPeriodeStartTxt,
-                                                                til: månedPeriodeSluttTxt,
-                                                            },
-                                                            { månedNavn }
-                                                        ),
-                                                        value: GjentagelseType.heleMåneden,
-                                                    },
-                                                    {
-                                                        label: renderGjentagelseRadioLabel(
-                                                            'dagerFremover',
-                                                            {
-                                                                fra: valgtDatoTxt,
-                                                                til: sluttDatoTxt,
-                                                            },
-                                                            { dagerNavn }
-                                                        ),
-
-                                                        value: GjentagelseType.hverUke,
-                                                    },
-                                                ]}
-                                            />
+                                                            value: GjentagelseType.hverUke,
+                                                        },
+                                                    ]}
+                                                />
+                                            </div>
                                             {visStoppGjentagelse && (
                                                 <>
                                                     {(gjentagelse === GjentagelseType.hverUke ||
