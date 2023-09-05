@@ -8,12 +8,14 @@ import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../lenker';
 import { useEffect } from 'react';
+import { KvitteringInfo } from '../../types/KvitteringInfo';
 
 interface Props {
+    kvitteringInfo?: KvitteringInfo;
     onUnmount: () => void;
 }
 
-const KvitteringPage = ({ onUnmount }: Props) => {
+const KvitteringPage = ({ kvitteringInfo, onUnmount }: Props) => {
     const intl = useIntl();
 
     useEffect(() => {
@@ -39,21 +41,23 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                         <FormattedMessage id="page.kvittering.info.tittel" />
                     </Heading>
                     <Checklist>
+                        {kvitteringInfo?.arbeidsgivere && (
+                            <li>
+                                <FormattedMessage
+                                    id={'page.kvittering.list.item.1'}
+                                    values={{ antall: kvitteringInfo.arbeidsgivere.length }}
+                                />
+                            </li>
+                        )}
+
                         <li>
-                            <FormattedMessage id="page.kvittering.info.1" />
+                            <FormattedMessage id="page.kvittering.list.item.2" />
                         </li>
                         <li>
-                            <FormattedMessage id="page.kvittering.info.2" />
-                        </li>
-                        <li>
-                            <p>
-                                <FormattedMessage id="page.kvittering.info.3.1" />
-                            </p>
-                            <p>
-                                <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                                    <FormattedMessage id="page.kvittering.info.3.2" />
-                                </Link>
-                            </p>
+                            <FormattedMessage id="page.kvittering.list.item.3" />{' '}
+                            <Link href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
+                                <FormattedMessage id="page.kvittering.list.item.3.lenke" />
+                            </Link>
                         </li>
                     </Checklist>
                 </Block>

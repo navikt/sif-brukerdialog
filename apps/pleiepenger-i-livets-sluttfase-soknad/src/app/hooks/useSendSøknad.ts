@@ -9,6 +9,9 @@ import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
+import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
+import { Søker } from '../types/Søker';
+import { KvitteringInfo } from '../types/KvitteringInfo';
 
 export const useSendSøknad = () => {
     const { dispatch } = useSøknadContext();
@@ -19,21 +22,28 @@ export const useSendSøknad = () => {
 
     const { logSoknadSent } = useAmplitudeInstance();
 
-    const sendSøknad = (apiData: SøknadApiData) => {
+    const sendSøknad = (apiData: SøknadApiData, søker: Søker) => {
         setIsSubmitting(true);
         søknadEndpoint
             .send(apiData)
-            .then(onSøknadSendSuccess)
+            .then(() => {
+                const kvitteringInfo = getKvitteringInfoFromApiData(apiData, søker);
+                onSøknadSendSuccess(kvitteringInfo);
+            })
             .catch((error) => {
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });
     };
 
-    const onSøknadSendSuccess = async () => {
+    const onSøknadSendSuccess = async (kvitteringInfo?: KvitteringInfo) => {
         await logSoknadSent(SKJEMANAVN);
         slettMellomlagring();
         setIsSubmitting(false);
+        if (kvitteringInfo) {
+            dispatch(actionsCreator.setSøknadKvitteringInfo(kvitteringInfo));
+        }
+
         dispatch(actionsCreator.setSøknadSendt());
         navigateTo(SøknadRoutes.SØKNAD_SENDT);
     };

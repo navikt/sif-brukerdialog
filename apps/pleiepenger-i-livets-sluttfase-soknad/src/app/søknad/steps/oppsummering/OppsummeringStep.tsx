@@ -97,11 +97,14 @@ const OppsummeringStep = () => {
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={(values) => {
                     apiData
-                        ? sendSøknad({
-                              ...apiData,
-                              harBekreftetOpplysninger:
-                                  values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                          })
+                        ? sendSøknad(
+                              {
+                                  ...apiData,
+                                  harBekreftetOpplysninger:
+                                      values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                              },
+                              søker
+                          )
                         : undefined;
                 }}
                 renderForm={() => {

@@ -18,16 +18,6 @@ export const appMessages: MessageFileFormat = {
         'dagerMedTid.uke': 'Uke {uke}',
         'dagerMedTid.ingenDagerRegistrert': 'Ingen dager registrert',
 
-        'page.confirmation.sidetittel': 'Vi har mottatt søknaden din',
-        'page.confirmation.tittel': 'Vi har mottatt søknad om pleiepenger i livets sluttfase',
-        'page.confirmation.info.tittel': 'Hva skjer videre nå?',
-        'page.confirmation.list.item.1':
-            'Du må be {antall, plural, one {arbeidsgiver} other {arbeidsgiverne}} om å sende inntektsmelding så snart som mulig hvis du søker for første gang eller det er mer enn 4 uker siden sist du hadde pleiepenger.',
-        'page.confirmation.list.item.2':
-            'Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi kontakter deg hvis vi trenger flere opplysninger.',
-        'page.confirmation.list.item.3': 'Når søknaden er ferdig behandlet får du et svar fra oss på «Min side». ',
-        'page.confirmation.list.item.3.lenke': 'Du kan sjekke saksbehandlingstiden her.',
-
         'page.generalErrorPage.sidetittel': 'Feil',
         'page.generalErrorPage.tittel': 'Noe gikk galt...',
         'page.generalErrorPage.tekst': 'Beklager, her har det dessverre skjedd en feil.',
