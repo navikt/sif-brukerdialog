@@ -70,6 +70,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                                   }
                                 : undefined;
                         }}
+                        data-testid="erAnsatt.spm"
                     />
                 </Block>
             </FormBlock>
@@ -100,6 +101,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                                               }
                                             : undefined;
                                     }}
+                                    data-testid="ansatt.sluttetFørSøknadsperiode.spm"
                                 />
                             </FormBlock>
                         </Block>
@@ -120,6 +122,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                                 description={<InfoJobberNormaltTimerAnsatt />}
                                 validate={getJobberNormaltTimerValidator(intlValues)}
                                 value={arbeidsforhold ? arbeidsforhold.jobberNormaltTimer || '' : ''}
+                                data-testid="ansatt.jobberNormaltTimer"
                             />
                         </>
                     )}

@@ -207,6 +207,7 @@ const ArbeidssituasjonStep = () => {
                                         legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
                                         name={ArbeidssituasjonFormFields.harOpptjeningUtland}
                                         validate={getYesOrNoValidator()}
+                                        data-testid="opptjeningUtland.spm"
                                     />
                                     {harOpptjeningUtland === YesOrNo.YES && (
                                         <FormBlock>
@@ -228,6 +229,7 @@ const ArbeidssituasjonStep = () => {
                                             legend={intlHelper(intl, 'steg.arbeidssituasjon.utenlandskNæring.spm')}
                                             name={ArbeidssituasjonFormFields.harUtenlandskNæring}
                                             validate={getYesOrNoValidator()}
+                                            data-testid="utenlandskNæring.spm"
                                         />
                                         {harUtenlandskNæring === YesOrNo.YES && (
                                             <FormBlock>
@@ -286,6 +288,7 @@ const ArbeidssituasjonStep = () => {
                                                         <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
                                                     </ExpandableInfo>
                                                 }
+                                                data-testid="harVærtEllerErVernepliktig"
                                             />
                                         </Block>
                                     </FormBlock>

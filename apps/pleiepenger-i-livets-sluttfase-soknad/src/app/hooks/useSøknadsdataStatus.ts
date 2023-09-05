@@ -22,8 +22,7 @@ import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep
 import { getMedlemskapSøknadsdataFromFormValues } from '../søknad/steps/medlemskap/medlemskapStepUtils';
 import { getTidsromSøknadsdataFromFormValues } from '../søknad/steps/tidsrom/tidsromStepUtils';
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { SøknadContextState } from '../types/SøknadContextState';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
@@ -31,8 +30,8 @@ const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConf
 
 const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
-    stepFormValues: StepFormValues
-    // state: SøknadContextState
+    stepFormValues: StepFormValues,
+    state: SøknadContextState
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -49,14 +48,7 @@ const getStepSøknadsdataFromStepFormValues = (
         case StepId.TIDSROM:
             return getTidsromSøknadsdataFromFormValues(formValues as TidsromFormValues);
         case StepId.ARBEIDSSITUASJON:
-            const periodeFra = datepickerUtils.getDateFromDateString((formValues as TidsromFormValues).periodeFra);
-            const periodeTil = datepickerUtils.getDateFromDateString((formValues as TidsromFormValues).periodeTil);
-
-            if (!periodeFra || !periodeTil) {
-                return undefined;
-            }
-
-            const søknadsperiode: DateRange = { from: periodeFra, to: periodeTil };
+            const søknadsperiode = state.søknadsdata.tidsrom?.søknadsperiode;
 
             return getArbeidssituasjonSøknadsdataFromFormValues(
                 formValues as ArbeidssituasjonFormValues,
@@ -73,12 +65,13 @@ const getStepSøknadsdataFromStepFormValues = (
 export const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
-    søknadsdata: Søknadsdata
-    // state: SøknadContextState
+    søknadsdata: Søknadsdata,
+    state: SøknadContextState
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];
-        const tempSøknadsdata = getStepSøknadsdataFromStepFormValues(step, stepFormValues);
+        const tempSøknadsdata = getStepSøknadsdataFromStepFormValues(step, stepFormValues, state);
+
         if (!stepSøknadsdata || !isEqual(tempSøknadsdata, stepSøknadsdata)) {
             return false;
         }
@@ -99,7 +92,7 @@ export const useSøknadsdataStatus = (stepId: StepId, stepConfig: SoknadStepsCon
         const precedingSteps = getPrecedingSteps(currentStep.index, stepConfig);
 
         precedingSteps.forEach((step) => {
-            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata) === false) {
+            if (isStepFormValuesAndStepSøknadsdataValid(step, stepFormValues, søknadsdata, state) === false) {
                 invalidSteps.push(step);
             }
         });

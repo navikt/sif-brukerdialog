@@ -106,6 +106,7 @@ const ArbeidssituasjonFrilans = ({
                                 </ExpandableInfo>
                             )
                         }
+                        data-testid="harHattInntektSomFrilanser"
                     />
                 </Block>
             )}
@@ -125,12 +126,14 @@ const ArbeidssituasjonFrilans = ({
                         showYearSelector={true}
                         maxDate={søknadsdato}
                         validate={getFrilanserStartdatoValidator(formValues, søknadsperiode, søknadsdato)}
+                        data-testid="frilanser.nårStartet"
                     />
                     <FormBlock>
                         <YesOrNoQuestion
                             name={FrilansFormFields.jobberFortsattSomFrilans}
                             legend={intlHelper(intl, 'frilanser.jobberFortsatt.spm')}
                             validate={getYesOrNoValidator()}
+                            data-testid="jobberFortsattSomFrilans"
                         />
                     </FormBlock>
                     {jobberFortsattSomFrilans === YesOrNo.NO && (
@@ -147,6 +150,7 @@ const ArbeidssituasjonFrilans = ({
                                     søknadsdato,
                                     søkerHarFrilansoppdrag
                                 )}
+                                data-testid="frilanser.nårSluttet"
                             />
                         </FormBlock>
                     )}
@@ -164,6 +168,7 @@ const ArbeidssituasjonFrilans = ({
                                     description={<InfoJobberNormaltTimerFrilanser />}
                                     validate={getJobberNormaltTimerValidator(intlValues)}
                                     value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
+                                    data-testid="frilanser.jobberNormaltTimer"
                                 />
                             </FormBlock>
                         </>

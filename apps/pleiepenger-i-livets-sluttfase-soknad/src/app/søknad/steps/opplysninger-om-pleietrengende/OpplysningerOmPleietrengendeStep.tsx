@@ -123,6 +123,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                         label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.navn')}
                                         validate={getStringValidator({ required: true, maxLength: 50 })}
                                         style={{ maxWidth: '20rem' }}
+                                        data-testid="opplysningerOmPleietrengende.spm.navn"
                                     />
 
                                     <FormBlock>
@@ -144,6 +145,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             minLength={11}
                                             style={{ maxWidth: '20rem' }}
                                             disabled={harIkkeFnr}
+                                            data-testid="opplysningerOmPleietrengende.spm.fnr"
                                         />
                                         <Block margin="m">
                                             <Checkbox
@@ -171,6 +173,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                         );
                                                     }
                                                 }}
+                                                data-testid="opplysningerOmPleietrengende.fnr.harIkkeFnr"
                                             />
                                         </Block>
                                     </FormBlock>
@@ -193,6 +196,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     }}
                                                     maxDate={dateToday}
                                                     showYearSelector={true}
+                                                    data-testid="opplysningerOmPleietrengende.fødselsdato"
                                                 />
                                             </FormBlock>
                                             <FormBlock margin="l">
@@ -210,6 +214,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                             `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`
                                                         ),
                                                         value: årsak,
+                                                        'data-testid': `årsakManglerIdentitetsnummer.${årsak}`,
                                                     }))}
                                                     validate={getRequiredFieldValidator()}></RadioGroup>
                                             </FormBlock>

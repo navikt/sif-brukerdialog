@@ -24,7 +24,7 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
             case 'pleietrengendeMedFnr':
                 return {
                     navn: opplysningerOmPleietrengende.navn,
-                    fnr: opplysningerOmPleietrengende.norskIdentitetsnummer,
+                    norskIdentitetsnummer: opplysningerOmPleietrengende.norskIdentitetsnummer,
                     harIkkeFnr: false,
                 };
             case 'pleietrengendeUtenFnr':

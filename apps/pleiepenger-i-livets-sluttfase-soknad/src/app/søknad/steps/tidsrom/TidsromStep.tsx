@@ -204,6 +204,7 @@ const TidsromStep = () => {
                                                             />
                                                         </ExpandableInfo>
                                                     }
+                                                    data-testid="pleierDuDenSykeHjemme.spm"
                                                 />
                                             </Block>
                                             {pleierDuDenSykeHjemme === YesOrNo.NO && (
@@ -239,7 +240,7 @@ const TidsromStep = () => {
                                                                         `step.tidsrom.flereSokere.ja`
                                                                     ),
                                                                     value: YesOrNoDontKnow.YES,
-                                                                    'data-testid': `steg.tidsrom.flereSokere.spm-ja`,
+                                                                    'data-testid': `steg.tidsrom.flereSokere.spm_yes`,
                                                                 },
                                                                 {
                                                                     label: intlHelper(
@@ -247,7 +248,7 @@ const TidsromStep = () => {
                                                                         `step.tidsrom.flereSokere.nei`
                                                                     ),
                                                                     value: YesOrNoDontKnow.NO,
-                                                                    'data-testid': `steg.tidsrom.flereSokere.spm-nei`,
+                                                                    'data-testid': `steg.tidsrom.flereSokere.spm_no`,
                                                                 },
                                                                 {
                                                                     label: intlHelper(
@@ -255,7 +256,7 @@ const TidsromStep = () => {
                                                                         `step.tidsrom.flereSokere.usikker`
                                                                     ),
                                                                     value: YesOrNoDontKnow.DO_NOT_KNOW,
-                                                                    'data-testid': `steg.tidsrom.flereSokere.spm-usikker`,
+                                                                    'data-testid': `steg.tidsrom.flereSokere.spm_usikker`,
                                                                 },
                                                             ]}
                                                         />
@@ -268,6 +269,7 @@ const TidsromStep = () => {
                                                             )}
                                                             name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
                                                             validate={getYesOrNoValidator()}
+                                                            data-testid="iUtlandetIPerioden.spm"
                                                         />
                                                     </Block>
                                                     {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
@@ -310,6 +312,7 @@ const TidsromStep = () => {
                                                             )}
                                                             name={TidsromFormFields.skalTaUtFerieIPerioden}
                                                             validate={getYesOrNoValidator()}
+                                                            data-testid="ferieuttakIPerioden.spm"
                                                         />
                                                     </Block>
                                                     {skalTaUtFerieIPerioden === YesOrNo.YES && (
