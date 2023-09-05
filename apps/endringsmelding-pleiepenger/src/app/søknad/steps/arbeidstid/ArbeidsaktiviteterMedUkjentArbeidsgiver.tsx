@@ -46,7 +46,7 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver: React.FunctionComponent<Props> = 
                     </p>
                 )}
 
-                <ExpandableInfo title="Dette er feil, hva kan jeg gjøre">
+                <ExpandableInfo title="Dette er feil, hva kan jeg gjøre?">
                     <p>
                         {antallUkjente === 1 ? (
                             <>
