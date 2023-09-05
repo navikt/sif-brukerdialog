@@ -99,8 +99,8 @@ const endreOgFjernFerie = () => {
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();
         });
-        cy.wait(250);
-        cy.checkA11y({ exclude: '.navds-date__field-input' });
+        cy.wait(500);
+        cy.checkA11y();
         fyllUtFerieDialog('28.11.2022', '29.11.2022');
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
@@ -145,21 +145,21 @@ const endreOgFjernFerie = () => {
 
 const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
-        cy.wait(250);
         cy.injectAxe();
+        cy.wait(400);
         getAktivitet().within(() => {
             cy.get('[data-testid=dateRangeAccordion_0]').click();
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
-            cy.wait(250);
+            cy.wait(400);
             cy.checkA11y();
             captureScreenshot();
         });
     });
     it('kontrollerer verdi før endring', () => {
-        cy.wait(250);
+        cy.wait(400);
         cy.injectAxe();
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
@@ -171,13 +171,13 @@ const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
         });
     });
     it('åpner dialog for uke', () => {
-        cy.wait(250);
+        cy.wait(400);
         cy.injectAxe();
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
                 cy.get('[data-testid=endre-button]').click();
             });
-            cy.wait(250);
+            cy.wait(400);
             cy.checkA11y();
             captureScreenshot();
         });
@@ -208,7 +208,7 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
         getAktivitet().within(() => {
             getPeriode().within(() => {
                 getTestElement('endre-flere-uker-cb').click();
-                cy.wait(300);
+                cy.wait(500);
                 const rows = uker.map((uke) => getUkeRow(uke));
                 rows.forEach((row) => {
                     row.within(() => {
@@ -226,15 +226,20 @@ const endreArbeidFlereUker = (uker: number[] = flereUker) => {
                 cy.get('[data-testid=endre-flere-uker-button]').click();
             });
         });
-        cy.wait(300);
+        cy.wait(500);
         cy.checkA11y();
         getArbeidstimerModal().within(() => {
-            getTestElement('timer-verdi').type('5');
+            getTestElement('timer-verdi').type('1.5');
             cy.checkA11y();
             captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
-        captureScreenshot();
+    });
+    it('kontrollerer endringer i tabell', () => {
+        getAktivitet().within(() => {
+            cy.get(`[data-testid="uke_46"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+            cy.get(`[data-testid="uke_47"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+        });
     });
 };
 
@@ -260,7 +265,7 @@ const fyllUtArbeidstidUkjentArbeidsforhold = (
                             cy.get('[data-testid=endre-button]').click();
                         });
                 });
-                cy.wait(250);
+                cy.wait(400);
                 getArbeidstimerModal().within(() => {
                     getTestElement('toggle-timer').click();
                     getTestElement('timer-verdi').type(uke.tid);
@@ -285,6 +290,9 @@ const fortsettTilOppsummering = () => {
 };
 
 const kontrollerOppsummering = () => {
+    it('er på oppsummeringssiden', () => {
+        cy.get('h1').contains('Oppsummering').should('exist');
+    });
     it('viser riktig informasjon i oppsummering', () => {
         getUkeRow(enkeltuke).within(() => {
             expect(cy.get('[data-testid=timer-faktisk]').contains('10 t. 30 m.'));
@@ -355,8 +363,8 @@ export const cyHelpers = {
     leggTilOgFjernFerie,
     leggTilFerie,
     endreOgFjernFerie,
-    endreEnkeltuke: endreArbeidEnkeltuke,
-    endreFlereUker: endreArbeidFlereUker,
+    endreArbeidEnkeltuke,
+    endreArbeidFlereUker,
     fyllUtArbeidstidUkjentArbeidsforhold,
     fortsettTilOppsummering,
     kontrollerOppsummering,

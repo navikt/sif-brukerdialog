@@ -5,6 +5,7 @@ import actionsCreator from '../søknad/context/action/actionCreator';
 import { useMellomlagring } from './useMellomlagring';
 import { SøknadRoutes } from '../types/SøknadRoutes';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
+import { relocateToMinSide } from '../utils/navigationUtils';
 
 const useAvbrytEllerFortsettSenere = () => {
     const navigate = useNavigate();
@@ -22,8 +23,8 @@ const useAvbrytEllerFortsettSenere = () => {
     const fortsettSøknadSenere = useCallback(() => {
         clearAllSteps();
         dispatch(actionsCreator.fortsettSøknadSenere());
-        navigate('/');
-    }, [navigate, clearAllSteps, dispatch]);
+        relocateToMinSide();
+    }, [clearAllSteps, dispatch]);
 
     return { avbrytSøknad, fortsettSøknadSenere };
 };
