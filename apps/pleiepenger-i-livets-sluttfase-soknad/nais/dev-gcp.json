@@ -21,6 +21,7 @@
         "USE_AMPLITUDE": "false",
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "NPM_CONFIG_CACHE": "/tmp",
-        "APP_VERSION": "dev"
+        "APP_VERSION": "dev",
+        "MINSIDE_URL": "https://www.intern.dev.nav.no/minside"
     }
 }
