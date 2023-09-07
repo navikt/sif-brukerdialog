@@ -1,5 +1,4 @@
 ---
-'@navikt/sif-common-soknad-ds': major
 '@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn': minor
 '@navikt/omsorgsdager-aleneomsorg-dialog': minor
 '@navikt/endringsmelding-pleiepenger': minor
