@@ -2,9 +2,11 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const velkommenPageMessages: MessageFileFormat = {
     nb: {
-        'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
+        'page.velkommen.sidetittel':
+            'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'page.velkommen.guide.tittel': 'Hei {navn}',
-        'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager.',
+        'page.velkommen.guide.ingress':
+            'Velkommen til søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning.',
         'page.velkommen.guide.tekst.1':
             'Denne søknaden bruker du for å søke om ekstra omsorgsdager når du har barn med kronisk sykdom, funksjonshemming eller langvarig sykdom. Det er bare foreldre/fosterforeldre som barnet bor fast hos, som kan få ekstra omsorgsdager.',
         'page.velkommen.guide.tekst.2':

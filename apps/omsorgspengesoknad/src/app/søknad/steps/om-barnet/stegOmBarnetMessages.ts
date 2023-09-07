@@ -7,8 +7,6 @@ export const omBarnetMessages: MessageFileFormat = {
         'relasjonTilBarnet.adoptivforelder': 'Adoptivforelder',
         'relasjonTilBarnet.fosterforelder': 'Fosterforelder',
 
-        'steg.omBarnet.pageTitle': 'Omsorgspengesøknad - opplysninger om barnet',
-        'steg.omBarnet.stepTitle': 'Barn',
         'steg.omBarnet.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',
         'steg.omBarnet.hvilketBarn.registrerteBarn': 'Barn registrert på deg:',
         'steg.omBarnet.hvilketBarn.info': 'Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.',
