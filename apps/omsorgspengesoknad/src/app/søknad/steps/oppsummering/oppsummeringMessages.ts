@@ -14,7 +14,7 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.barnet.søkersRelasjonTilBarnet': 'Din relasjon til barnet: {relasjon}',
         'steg.oppsummering.barnet.sammeAdresse.header': 'Er du folkeregistrert på samme adresse som barnet?',
         'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header':
-            'Har barnet kronisk sykdom, funksjonshemming eller langvarig sykdom?',
+            'Har barnet kronisk sykdom, funksjonshemning eller langvarig sykdom?',
         'steg.oppsummering.vedlegg.header': 'Vedlegg',
         'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
         'steg.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
