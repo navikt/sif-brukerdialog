@@ -38,7 +38,7 @@ const VelkommenPage = () => {
     useLogSidevisning(SIFCommonPageKey.velkommen);
 
     return (
-        <Page title="Velkommen">
+        <Page title="Endringsmelding pleiepenger sykt barn">
             <FormikWrapper
                 initialValues={{ harForståttRettigheterOgPlikter: false, hvaSkalEndres: [] }}
                 onSubmit={(values) => startSøknad(values.hvaSkalEndres)}
