@@ -6,14 +6,8 @@ export const appMessages: MessageFileFormat = {
         'application.bannerTitle': 'Søknad om ekstra omsorgsdager ved aleneomsorg',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
-        'step.omOmsorgenForBarn.pageTitle': 'Om aleneomsorg for barn - Søknad om ekstra omsorgsdager ved aleneomsorg',
         'step.omOmsorgenForBarn.stepTitle': 'Om aleneomsorg for barn',
-
-        'step.tidspunktForAleneomsorg.pageTitle':
-            'Tidspunkt for aleneomsorg - Søknad om ekstra omsorgsdager ved aleneomsorg',
         'step.tidspunktForAleneomsorg.stepTitle': 'Tidspunkt for aleneomsorg',
-
-        'step.oppsummering.pageTitle': 'Oppsummering - Søknad om ekstra omsorgsdager ved aleneomsorg',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
         'steg.footer.avbryt': 'Avbryt og slett søknad',

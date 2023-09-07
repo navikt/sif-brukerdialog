@@ -28,13 +28,12 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, stepConfig, child
 
     useLogSidevisning(stepId);
 
-    const { pageTitleIntlKey, index } = stepConfig[stepId];
+    const { index } = stepConfig[stepId];
 
     return (
         <Step
             activeStepId={stepId}
-            pageTitle={intlHelper(intl, pageTitleIntlKey)}
-            bannerTitle={intlHelper(intl, 'application.bannerTitle')}
+            appTitle={intlHelper(intl, 'application.bannerTitle')}
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>

@@ -24,7 +24,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
 
-    const { pageTitleIntlKey, index } = stepConfig[stepId];
+    const { index } = stepConfig[stepId];
 
     const steps = soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl);
     const isDevMode = getEnvironmentVariable('APP_VERSION') === 'dev';
@@ -32,8 +32,7 @@ const SøknadStep: React.FunctionComponent<Props> = ({ stepId, children }) => {
     return (
         <Step
             activeStepId={stepId}
-            pageTitle={intlHelper(intl, pageTitleIntlKey)}
-            bannerTitle={intlHelper(intl, 'application.bannerTitle')}
+            applicationTitle={intlHelper(intl, 'application.title')}
             steps={steps}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>

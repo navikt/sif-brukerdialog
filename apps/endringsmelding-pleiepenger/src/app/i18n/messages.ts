@@ -3,7 +3,6 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 export const defaultMessages: MessageFileFormat = {
     nb: {
         'application.title': 'Endringsmelding pleiepenger sykt barn',
-        'application.bannerTitle': 'Endringsmelding pleiepenger sykt barn',
 
         'step.ukjentArbeidsforhold.pageTitle': 'Nytt arbeidsforhold',
         'step.ukjentArbeidsforhold.stepTitle': 'Nytt arbeidsforhold',

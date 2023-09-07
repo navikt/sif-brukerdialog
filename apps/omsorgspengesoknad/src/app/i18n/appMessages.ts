@@ -4,24 +4,11 @@ export const appMessages: MessageFileFormat = {
     nb: {
         'application.title':
             'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
-        'application.bannerTitle':
-            'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
-        'step.omBarnet.pageTitle':
-            'Barn - Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'step.omBarnet.stepTitle': 'Barn',
-
-        'step.deltBosted.pageTitle':
-            'Delt bosted - Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'step.deltBosted.stepTitle': 'Delt bosted',
-
-        'step.legeerklaering.pageTitle':
-            'Legeerklæring - Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'step.legeerklaering.stepTitle': 'Legeerklæring',
-
-        'step.oppsummering.pageTitle':
-            'Oppsummering - Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
         'steg.footer.avbryt': 'Avbryt og slett søknad',

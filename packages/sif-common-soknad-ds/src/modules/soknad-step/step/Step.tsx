@@ -13,8 +13,7 @@ import './step.scss';
 const bem = bemHelper('step');
 
 interface Props {
-    pageTitle: string;
-    bannerTitle?: string;
+    applicationTitle: string;
     steps: ProgressStep[];
     activeStepId: string;
     children: React.ReactNode;
@@ -26,8 +25,7 @@ interface Props {
 }
 
 function Step({
-    bannerTitle,
-    pageTitle,
+    applicationTitle,
     steps,
     activeStepId,
     onCancel,
@@ -40,6 +38,9 @@ function Step({
     const navigate = useNavigate();
     const sectionRef = useRef<HTMLDivElement>(null);
 
+    const stepTitle = steps[currentStepIndex].label;
+    const pageTitle = `${stepTitle} - ${applicationTitle}`;
+
     const handleOnStepSelect = (step: ProgressStep) => {
         if (step.href) {
             navigate(step.href);
@@ -51,7 +52,7 @@ function Step({
             title={pageTitle}
             topContentRenderer={() => (
                 <>
-                    {bannerTitle && <SoknadHeader title={bannerTitle} level="2" />}
+                    <SoknadHeader title={applicationTitle} level="2" />
                     {validationSummary}
                 </>
             )}>
