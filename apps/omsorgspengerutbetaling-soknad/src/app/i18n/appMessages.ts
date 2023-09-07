@@ -111,7 +111,7 @@ export const appMessages: MessageFileFormat = {
         'resetMellomlagring.startPåNytt': 'Start på nytt',
 
         'validation.harUtvidetRett.yesOrNoIsUnanswered':
-            'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemming eller ikke.',
+            'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemning eller ikke.',
         'validation.harUtvidetRettFor.listIsEmpty':
             'Du må velge barn du har søkt om eller fått ekstra omsorgsdager for.',
         'validation.harDekketTiFørsteDagerSelv.notChecked':
