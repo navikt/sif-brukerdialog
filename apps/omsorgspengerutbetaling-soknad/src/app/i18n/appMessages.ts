@@ -28,8 +28,6 @@ export const appMessages: MessageFileFormat = {
         Fredag: 'Fredag',
 
         'application.title': 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
-        'application.bannerTitle':
-            'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
 
         'page.loadingPage.tekst': 'Laster ...',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
