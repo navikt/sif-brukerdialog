@@ -39,7 +39,7 @@ axios.interceptors.response.use(
             });
         }
         return Promise.reject(error);
-    }
+    },
 );
 
 const api = {
@@ -57,7 +57,7 @@ const api = {
         post: <DataType = any, ResponseType = any>(
             endpoint: ApiEndpointPsb,
             data: DataType,
-            headers?: RawAxiosRequestHeaders
+            headers?: RawAxiosRequestHeaders,
         ) => {
             return axios.post<ResponseType>(endpoint, data, {
                 ...axiosConfigPsb,

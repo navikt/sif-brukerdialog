@@ -5,7 +5,7 @@ import { getFeriedagerIPeriode } from './ferieUtils';
 
 export const getLovbestemtFerieSøknadsdataForPeriode = (
     ferieSøknad: LovbestemtFerieSøknadsdata,
-    periode: DateRange
+    periode: DateRange,
 ): LovbestemtFerieSøknadsdata => {
     const feriedager: FeriedagMap = getFeriedagerIPeriode(ferieSøknad.feriedager, periode);
     return {
@@ -47,21 +47,21 @@ export const getFeriedagerMeta = (feriedager: FeriedagMap): FeriedagerMeta => {
             ...periode,
             skalHaFerie: true,
             liggerISak: false,
-        })
+        }),
     );
     const ferieperioderFjernet = perioderFjernet.map(
         (periode): LovbestemtFeriePeriode => ({
             ...periode,
             skalHaFerie: false,
             liggerISak: true,
-        })
+        }),
     );
     const ferieperioderUendret = perioderUendret.map(
         (periode): LovbestemtFeriePeriode => ({
             ...periode,
             skalHaFerie: true,
             liggerISak: true,
-        })
+        }),
     );
 
     return {

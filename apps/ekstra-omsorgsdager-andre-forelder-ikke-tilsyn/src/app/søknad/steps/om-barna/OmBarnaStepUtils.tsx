@@ -9,7 +9,7 @@ import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 
 export const getOmBarnaStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: OmBarnaFormValues
+    formValues?: OmBarnaFormValues,
 ): OmBarnaFormValues => {
     if (formValues) {
         return formValues;

@@ -6,7 +6,7 @@ export type AnnenForelderToApiData = Pick<SøknadApiData, 'annenForelder'>;
 
 export const getApiDataAnnenForelderFromSøknadsdata = (
     omAnnenForelder: OmAnnenForelderSøknadsdata,
-    annenForelderenSituasjon: AnnenForelderenSituasjonSøknadsdata
+    annenForelderenSituasjon: AnnenForelderenSituasjonSøknadsdata,
 ): AnnenForelderToApiData => {
     const fellesInfo = {
         navn: omAnnenForelder.annenForelderNavn,

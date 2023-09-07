@@ -45,14 +45,14 @@ const DeltBostedStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const syncVedleggState = (vedlegg: Attachment[] = []) => {
         dispatch(
             actionsCreator.setSøknadDeltBosted({
                 vedlegg: getUploadedAttachments(vedlegg),
-            })
+            }),
         );
         dispatch(actionsCreator.requestLagreSøknad());
     };

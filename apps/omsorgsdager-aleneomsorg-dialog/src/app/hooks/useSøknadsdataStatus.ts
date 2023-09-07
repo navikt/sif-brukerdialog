@@ -20,7 +20,7 @@ const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConf
 const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
     stepFormValues: StepFormValues,
-    registrertBarn: RegistrertBarn[]
+    registrertBarn: RegistrertBarn[],
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -30,7 +30,7 @@ const getStepSøknadsdataFromStepFormValues = (
         case StepId.OM_OMSORGEN_FOR_BARN:
             return getOmOmsorgenForBarnSøknadsdataFromFormValues(
                 formValues as OmOmsorgenForBarnFormValues,
-                registrertBarn
+                registrertBarn,
             );
         case StepId.TIDSPUNKT_FOR_ALENEOMSORG:
             return getTidspunktForAleneomsorgSøknadsdataFromFormValues(formValues as TidspunktForAleneomsorgFormValues);
@@ -42,7 +42,7 @@ export const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
     søknadsdata: Søknadsdata,
-    registrertBarn: RegistrertBarn[]
+    registrertBarn: RegistrertBarn[],
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];

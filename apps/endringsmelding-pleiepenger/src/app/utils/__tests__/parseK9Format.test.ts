@@ -28,7 +28,7 @@ describe('parseK9Format', () => {
                             jobberNormaltTimerPerDag: ingenDuration,
                         },
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('returnerer true hvis minst én periode har normalarbeidstid', () => {
@@ -44,7 +44,7 @@ describe('parseK9Format', () => {
                             jobberNormaltTimerPerDag: normalt,
                         },
                     },
-                })
+                }),
             ).toBeTruthy();
         });
     });

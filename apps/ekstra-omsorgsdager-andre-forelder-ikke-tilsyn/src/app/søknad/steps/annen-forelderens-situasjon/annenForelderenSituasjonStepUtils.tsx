@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 
 export const getAnnenForelderenSituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: AnnenForelderenSituasjonFormValues
+    formValues?: AnnenForelderenSituasjonFormValues,
 ): AnnenForelderenSituasjonFormValues => {
     if (formValues) {
         return formValues;
@@ -70,7 +70,7 @@ export const getAnnenForelderenSituasjonStepInitialValues = (
 };
 
 export const getAnnenForelderenSituasjonSøknadsdataFromFormValues = (
-    values: AnnenForelderenSituasjonFormValues
+    values: AnnenForelderenSituasjonFormValues,
 ): AnnenForelderenSituasjonSøknadsdata | undefined => {
     const {
         annenForelderSituasjon,

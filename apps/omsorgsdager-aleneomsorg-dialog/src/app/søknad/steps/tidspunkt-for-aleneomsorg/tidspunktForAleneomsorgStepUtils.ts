@@ -18,7 +18,7 @@ export interface BarnMedAleneomsorg {
 export const getTidspunktForAleneomsorgStepInitialValues = (
     søknadsdata: Søknadsdata,
     barnMedAleneomsorg: BarnMedAleneomsorg[],
-    formValues?: TidspunktForAleneomsorgFormValues
+    formValues?: TidspunktForAleneomsorgFormValues,
 ): TidspunktForAleneomsorgFormValues => {
     if (formValues) {
         Object.keys(formValues.aleneomsorgTidspunkt).map((key) => {
@@ -40,7 +40,7 @@ export const getTidspunktForAleneomsorgStepInitialValues = (
 };
 
 export const getTidspunktForAleneomsorgSøknadsdataFromFormValues = (
-    values?: TidspunktForAleneomsorgFormValues
+    values?: TidspunktForAleneomsorgFormValues,
 ): TidspunktForAleneomsorgSøknadsdata | undefined => {
     if (!values || !values.aleneomsorgTidspunkt) {
         return undefined;

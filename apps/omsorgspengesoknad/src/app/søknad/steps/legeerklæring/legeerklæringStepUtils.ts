@@ -4,7 +4,7 @@ import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 export const getLegeerklæringStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: LegeerklæringFormValues
+    formValues?: LegeerklæringFormValues,
 ): LegeerklæringFormValues => {
     if (formValues) {
         return formValues;
@@ -16,7 +16,7 @@ export const getLegeerklæringStepInitialValues = (
 };
 
 export const getLegeerklæringSøknadsdataFromFormValues = (
-    values: LegeerklæringFormValues
+    values: LegeerklæringFormValues,
 ): LegeerklæringSøknadsdata => {
     return {
         vedlegg: getUploadedAttachments(values[LegeerklæringFormFields.vedlegg] || []),

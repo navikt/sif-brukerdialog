@@ -18,7 +18,7 @@ import { getFeriedagerMeta } from './lovbestemtFerieUtils';
 
 export const getFeriedagerIUke = (feriedager: Date[], uke: DateRange, inkluderHelg: boolean): Date[] => {
     const ukedager = getDatesInDateRange(uke).filter((dagIUke) =>
-        feriedager.some((dagIFerie) => dayjs(dagIUke).isSame(dagIFerie), 'day')
+        feriedager.some((dagIFerie) => dayjs(dagIUke).isSame(dagIFerie), 'day'),
     );
     if (inkluderHelg === false) {
         return ukedager.filter(isDateWeekDay);
@@ -51,7 +51,7 @@ export const getFeriedagerIUkeTekst = (dager: Date[]) => {
 export const getFeriedagerMapFromPerioder = (
     perioder: DateRange[],
     skalHaFerie: boolean,
-    liggerISak: boolean
+    liggerISak: boolean,
 ): FeriedagMap => {
     const feriedager: FeriedagMap = {};
     perioder.sort(sortDateRange).forEach((periode) => {

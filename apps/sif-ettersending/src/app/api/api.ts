@@ -27,7 +27,7 @@ const api = {
     post: <DataType = any, ResponseType = any>(
         endpoint: ApiEndpoint,
         data: DataType,
-        headers?: RawAxiosRequestHeaders
+        headers?: RawAxiosRequestHeaders,
     ) => {
         return axios.post<ResponseType>(endpoint, data, {
             ...axiosJsonConfig,

@@ -56,7 +56,7 @@ const SoknadRouter = ({ søker, søknadstype, soknadId, onKvitteringUnmount }: P
                                               route: soknadStepsConfig[lastAvailableStep].route,
                                               title: soknadStepUtils.getStepTexts(
                                                   intl,
-                                                  soknadStepsConfig[lastAvailableStep]
+                                                  soknadStepsConfig[lastAvailableStep],
                                               ).stepTitle,
                                           }
                                         : undefined;

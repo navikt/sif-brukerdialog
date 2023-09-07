@@ -51,7 +51,7 @@ export const getSakOgArbeidsgivereDebugInfo = (
     k9sak: K9Sak,
     sak: Sak,
     arbeidsgivere: Arbeidsgiver[],
-    endringsperiode: DateRange
+    endringsperiode: DateRange,
 ) => {
     return {
         k9sak: maskK9Sak(k9sak),
