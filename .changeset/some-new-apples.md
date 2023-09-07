@@ -1,5 +1,5 @@
 ---
-'@navikt/sif-common-soknad-ds': major
+'@navikt/sif-common-soknad-ds': minor
 ---
 
 ## Standardisere hvordan pageTitle settes i Step
