@@ -2,7 +2,7 @@ import { ArbeidstakerApiData } from '@types';
 
 export const harEndretArbeidstidForArbeidsgiverIApiData = (
     arbeidsgiverId: string,
-    endringer?: ArbeidstakerApiData[]
+    endringer?: ArbeidstakerApiData[],
 ): boolean => {
     const arbeidsgiverEndring = endringer ? endringer.find((a) => a.organisasjonsnummer === arbeidsgiverId) : undefined;
     if (arbeidsgiverEndring) {

@@ -27,7 +27,7 @@ import søknadStateEndpoint, {
 } from './endpoints/søknadStateEndpoint';
 
 export const fetchInitialData = async (
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): Promise<{
     søker: Søker;
     k9saker: K9Sak[];
@@ -55,11 +55,13 @@ export const fetchInitialData = async (
                 k9saker = result.k9saker;
                 const periodeForArbeidsgiveroppslag = getPeriodeForArbeidsgiverOppslag(
                     result.dateRangeAlleSaker,
-                    tillattEndringsperiode
+                    tillattEndringsperiode,
                 );
                 if (!periodeForArbeidsgiveroppslag) {
                     return Promise.reject(
-                        getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode])
+                        getKanIkkeBrukeSøknadRejection([
+                            IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
+                        ]),
                     );
                 }
                 return arbeidsgivereEndpoint.fetch(periodeForArbeidsgiveroppslag);
@@ -98,7 +100,7 @@ export const fetchInitialData = async (
 
 const getKanIkkeBrukeSøknadRejection = (
     årsak: IngenTilgangÅrsak[],
-    ingenTilgangMeta?: IngenTilgangMeta
+    ingenTilgangMeta?: IngenTilgangMeta,
 ): Pick<SøknadInitialIkkeTilgang, 'årsak' | 'kanBrukeSøknad' | 'status' | 'ingenTilgangMeta'> => {
     return {
         status: RequestStatus.success,
@@ -110,7 +112,7 @@ const getKanIkkeBrukeSøknadRejection = (
 
 const kontrollerSaker = (
     k9sakerResult: K9SakResult[],
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): Promise<{ k9saker: K9Sak[]; dateRangeAlleSaker: DateRange }> => {
     if (k9sakerResult.length === 0) {
         return Promise.reject(getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.harIngenSak]));
@@ -128,7 +130,7 @@ const kontrollerSaker = (
     }
     if (dateRangeUtils.dateRangesCollide([dateRangeAlleSaker, tillattEndringsperiode]) === false) {
         return Promise.reject(
-            getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode])
+            getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode]),
         );
     }
 
@@ -147,7 +149,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
                 JSON.stringify({
                     årsak: resultat.årsak,
                     sak: maskK9Sak(k9saker[0]),
-                })
+                }),
             );
         }
         if (k9saker.length > 1) {
@@ -155,7 +157,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
                 'IkkeTilgangSakInfo',
                 JSON.stringify({
                     årsak: resultat.årsak,
-                })
+                }),
             );
         }
     }
@@ -164,7 +166,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
 
 const hentOgKontrollerLagretSøknadState = async (
     søker: Søker,
-    k9saker: K9Sak[]
+    k9saker: K9Sak[],
 ): Promise<SøknadStatePersistence | undefined> => {
     const lagretSøknadState = await søknadStateEndpoint.fetch();
 
@@ -177,7 +179,7 @@ const hentOgKontrollerLagretSøknadState = async (
             søker,
             barnAktørId: lagretSøknadState.barnAktørId,
         },
-        k9saker
+        k9saker,
     );
     if (!isValid) {
         await søknadStateEndpoint.purge();

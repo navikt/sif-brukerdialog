@@ -16,7 +16,7 @@ describe('apiDataUtils', () => {
                         organisasjonsnummer: '456',
                         organisasjonsnavn: '123',
                     },
-                ])
+                ]),
             ).toBeFalsy();
         });
         it('returnerer true hvis endringer er defined, og endringer finnes for arbeidsgiver', () => {
@@ -36,7 +36,7 @@ describe('apiDataUtils', () => {
                         organisasjonsnummer: '123',
                         organisasjonsnavn: '123',
                     },
-                ])
+                ]),
             ).toBeTruthy();
         });
     });

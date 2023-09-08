@@ -18,7 +18,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
@@ -36,7 +36,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
@@ -45,7 +45,7 @@ jobs:
                   cache: 'yarn'
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.1.0
+              uses: cypress-io/github-action@v6.5.0
               env:
                   API_URL: http://localhost:8089/
                   FRONTEND_API_PATH: http://localhost:8089/

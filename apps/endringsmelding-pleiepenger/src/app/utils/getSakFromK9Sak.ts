@@ -63,18 +63,18 @@ interface _PeriodisertK9FormatArbeidstidPerioder {
 export const getSakFromK9Sak = (
     k9sak: K9Sak,
     alleArbeidsgivere: Arbeidsgiver[],
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): Sak => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } =
         k9sak.ytelse.arbeidstid;
 
     const søknadsperioderInneforTillattEndringsperiode = dateRangeUtils.getDateRangesWithinDateRange(
         k9sak.ytelse.søknadsperioder,
-        tillattEndringsperiode
+        tillattEndringsperiode,
     );
 
     const arbeidsgivereISøknadsperioder = alleArbeidsgivere.filter((a) =>
-        erArbeidsgiverInnenforSøknadsperioder(a, k9sak.ytelse.søknadsperioder)
+        erArbeidsgiverInnenforSøknadsperioder(a, k9sak.ytelse.søknadsperioder),
     );
 
     const arbeidsgivereIkkeISak = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
@@ -94,13 +94,13 @@ export const getSakFromK9Sak = (
     }));
 
     const arbeidstakerAktiviteter = arbeidstakerAktiviteterMedArbeidsgiver.map((arbeidstaker) =>
-        getArbeidsaktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode)
+        getArbeidsaktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode),
     );
 
     const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
     const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
         selvstendigNæringsdrivendeArbeidstidInfo,
-        tillattEndringsperiode
+        tillattEndringsperiode,
     );
     const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
         arbeidstakerAktiviteter,
@@ -135,20 +135,20 @@ export const getSakFromK9Sak = (
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */
 export const getArbeidsaktiviteterMedKjentArbeidsgiver = (
     k9SakArbeidstakere: K9SakArbeidstaker[],
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ) => {
     return k9SakArbeidstakere.filter((a) =>
-        arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer)
+        arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer),
     );
 };
 
 /** Henter utk9SakArbeidstakere hvor arbeidsgiver IKKE er funnet i AA-reg */
 export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
     k9SakArbeidstakere: K9SakArbeidstaker[],
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ) => {
     return k9SakArbeidstakere.filter(
-        (a) => arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer) === false
+        (a) => arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer) === false,
     );
 };
 
@@ -160,7 +160,7 @@ export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
  */
 const getEndringsperiodeForArbeidsgiver = (
     tillattEndringsperiode: DateRange,
-    arbeidsgiver: Arbeidsgiver
+    arbeidsgiver: Arbeidsgiver,
 ): DateRange => {
     return {
         ...tillattEndringsperiode,
@@ -176,7 +176,7 @@ const getEndringsperiodeForArbeidsgiver = (
  */
 const trimArbeidstidTilTillattEndringsperiode = (
     arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): K9SakArbeidstidPeriodeMap => {
     const perioder: K9SakArbeidstidPeriodeMap = {};
     Object.keys(arbeidstidPeriodeMap).forEach((key) => {
@@ -203,7 +203,7 @@ const trimArbeidstidTilTillattEndringsperiode = (
  */
 const getArbeidstidPerioderIDateRange = (
     dateRange: DateRange,
-    arbeidstidPerioder: K9SakArbeidstidPeriodeMap
+    arbeidstidPerioder: K9SakArbeidstidPeriodeMap,
 ): K9SakArbeidstidPeriodeMap => {
     const arbeidstidPeriodeIPeriode: K9SakArbeidstidPeriodeMap = {};
     Object.keys(arbeidstidPerioder)
@@ -220,7 +220,7 @@ const getArbeidstidPerioderIDateRange = (
  * @returns PeriodisertK9FormatArbeidstidPerioder
  */
 const grupperArbeidstidPerioder = (
-    arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap
+    arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
 ): _PeriodisertK9FormatArbeidstidPerioder[] => {
     const dateRanges = getDateRangesFromISODateRangeMap(arbeidstidPeriodeMap);
     const grupperteDateRanges = joinAdjacentDateRanges(dateRanges, true);
@@ -252,7 +252,7 @@ const getArbeidsukerMapFromArbeidsuker = (arbeidsuker: Arbeidsuke[]): Arbeidsuke
  * @returns
  */
 const getArbeidstidEnkeltdagMapFromPerioder = (
-    arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap
+    arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
 ): ArbeidstidEnkeltdagMap => {
     const enkeltdager: ArbeidstidEnkeltdagMap = {};
     Object.keys(arbeidstidPeriodeMap).forEach((isoDateRange) => {
@@ -269,7 +269,7 @@ const getArbeidstidEnkeltdagMapFromPerioder = (
 
 const fjernArbeidstidEnkeltdagerUtenforPeriode = (
     periode: DateRange,
-    arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap
+    arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap,
 ): ArbeidstidEnkeltdagMap => {
     const enkeltdagerMap: ArbeidstidEnkeltdagMap = {};
     getDatesInDateRange(periode)
@@ -290,7 +290,7 @@ const fjernArbeidstidEnkeltdagerUtenforPeriode = (
  */
 const getArbeidsukeFromEnkeltdagerIUken = (
     periode: DateRange,
-    arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap
+    arbeidstidEnkeltdager: ArbeidstidEnkeltdagMap,
 ): Arbeidsuke => {
     const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(periode, arbeidstidEnkeltdager);
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
@@ -393,7 +393,7 @@ const getArbeidsukerFromEnkeltdager = (enkeltdager: ArbeidstidEnkeltdagMap): Arb
  */
 const getPerioderMedArbeidstid = (
     arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): PeriodeMedArbeidstid[] => {
     const perioder = trimArbeidstidTilTillattEndringsperiode(arbeidstidPeriodeMap, tillattEndringsperiode);
 
@@ -413,14 +413,14 @@ const getPerioderMedArbeidstid = (
  */
 const harPerioderFørEndringsperiode = (
     arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): boolean => {
     return Object.keys(arbeidstidPeriodeMap)
         .map(ISODateRangeToDateRange)
         .some(
             ({ to, from }) =>
                 dayjs(to).isBefore(tillattEndringsperiode.from, 'day') ||
-                dayjs(from).isBefore(tillattEndringsperiode.from, 'day')
+                dayjs(from).isBefore(tillattEndringsperiode.from, 'day'),
         );
 };
 
@@ -429,14 +429,14 @@ const harPerioderFørEndringsperiode = (
  */
 const harPerioderEtterEndringsperiode = (
     arbeidstidPeriodeMap: K9SakArbeidstidPeriodeMap,
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): boolean => {
     return Object.keys(arbeidstidPeriodeMap)
         .map(ISODateRangeToDateRange)
         .some(
             ({ to, from }) =>
                 dayjs(to).isAfter(tillattEndringsperiode.to, 'day') ||
-                dayjs(from).isAfter(tillattEndringsperiode.to, 'day')
+                dayjs(from).isAfter(tillattEndringsperiode.to, 'day'),
         );
 };
 
@@ -448,7 +448,7 @@ const harPerioderEtterEndringsperiode = (
  */
 const getArbeidsaktivitetPerioderPart = (
     arbeidstidPerioder: K9SakArbeidstidPeriodeMap,
-    endringsperiode: DateRange
+    endringsperiode: DateRange,
 ): Pick<
     Arbeidsaktivitet,
     'perioderMedArbeidstid' | 'harPerioderEtterTillattEndringsperiode' | 'harPerioderFørTillattEndringsperiode'
@@ -470,7 +470,7 @@ const getArbeidsaktivitetPerioderPart = (
 const getArbeidsaktivitetArbeidstaker = (
     arbeidstaker: K9SakArbeidstaker,
     arbeidsgivere: Arbeidsgiver[],
-    endringsperiode: DateRange
+    endringsperiode: DateRange,
 ): ArbeidsaktivitetArbeidstaker => {
     const {
         arbeidstidInfo: { perioder },
@@ -504,7 +504,7 @@ const getArbeidsaktivitetArbeidstaker = (
  */
 const getArbeidsaktivitetFrilanser = (
     frilanserArbeidstidInfo: K9SakArbeidstidInfo | undefined,
-    endringsperiode: DateRange
+    endringsperiode: DateRange,
 ): ArbeidsaktivitetFrilanser | undefined => {
     return frilanserArbeidstidInfo !== undefined
         ? {
@@ -524,7 +524,7 @@ const getArbeidsaktivitetFrilanser = (
  */
 const getArbeidsaktivitetSelvstendigNæringsdrivende = (
     selvstendigNæringsdrivendeArbeidstidInfo: K9SakArbeidstidInfo | undefined,
-    endringsperiode: DateRange
+    endringsperiode: DateRange,
 ): ArbeidsaktivitetSelvstendigNæringsdrivende | undefined => {
     return selvstendigNæringsdrivendeArbeidstidInfo
         ? {

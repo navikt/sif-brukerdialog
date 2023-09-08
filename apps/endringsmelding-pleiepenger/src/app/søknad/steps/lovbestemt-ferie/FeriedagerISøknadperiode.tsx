@@ -30,7 +30,7 @@ const FeriedagerISøknadsperiode: React.FunctionComponent<Props> = ({ alleFeried
         const periode = visFerieModal ? visFerieModal.periode : undefined;
         return periode
             ? perioder.filter(
-                  (p) => dateRangeToISODateRange(p) !== dateRangeToISODateRange(periode) && p.skalHaFerie === true
+                  (p) => dateRangeToISODateRange(p) !== dateRangeToISODateRange(periode) && p.skalHaFerie === true,
               )
             : perioder;
     };

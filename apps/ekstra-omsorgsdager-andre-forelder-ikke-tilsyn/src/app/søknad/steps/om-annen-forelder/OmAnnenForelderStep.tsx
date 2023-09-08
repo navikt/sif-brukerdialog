@@ -64,7 +64,7 @@ const OmAnnenForelderStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     return (

@@ -68,7 +68,7 @@ const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtF
 export const getSøknadApiDataMetadata = (
     apiData: SøknadApiData,
     søknadsdata: Søknadsdata,
-    valgteEndringer: ValgteEndringer
+    valgteEndringer: ValgteEndringer,
 ): SøknadApiDataMetadata => {
     const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
 
@@ -88,7 +88,7 @@ export const getLovbestemtFerieOppsummeringInfo = (lovbestemtFerie: LovbestemtFe
                 ...ISODateRangeToDateRange(isoDateRange),
                 skalHaFerie: lovbestemtFerie.perioder[isoDateRange].skalHaFerie,
             };
-        }
+        },
     );
     const perioderLagtTil = perioder.filter((p) => p.skalHaFerie === true);
     const perioderFjernet = perioder.filter((p) => p.skalHaFerie === false);

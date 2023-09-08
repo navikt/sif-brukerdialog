@@ -75,7 +75,7 @@ const OmBarnetStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const harIkkeBarn = registrerteBarn.length === 0;
@@ -123,7 +123,7 @@ const OmBarnetStep = () => {
                                                 name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
                                                 legend={intlHelper(
                                                     intl,
-                                                    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende'
+                                                    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende',
                                                 )}
                                                 data-testid="kroniskEllerFunksjonshemming"
                                                 validate={getYesOrNoValidator()}

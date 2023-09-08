@@ -18,7 +18,7 @@ const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConf
 const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
     stepFormValues: StepFormValues,
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -39,7 +39,7 @@ const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
     søknadsdata: Søknadsdata,
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];
@@ -54,7 +54,7 @@ const isStepFormValuesAndStepSøknadsdataValid = (
 export const useSøknadsdataStatus = (
     stepId: StepId,
     stepConfig: SoknadStepsConfig<StepId>,
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ) => {
     const [invalidSteps, setInvalidSteps] = useState<StepId[]>([]);
 

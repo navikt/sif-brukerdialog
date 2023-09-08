@@ -4,7 +4,7 @@ export const velkommenPageMessages: MessageFileFormat = {
     nb: {
         'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
         'page.velkommen.guide.tittel': 'Hei {navn}',
-        'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager.',
+        'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager ved aleneomsorg.',
         'page.velkommen.guide.tekst.1':
             'Her søker du om ekstra omsorgsdager når du er alene om omsorgen for barn. I disse tilfellene får du doblet antall omsorgsdager. Doblingen gjelder så lenge du er alene om omsorgen, og så lenge retten din til å bruke omsorgsdager gjelder. Du trenger altså ikke søke på nytt ved nytt kalenderår.',
         'page.velkommen.guide.tekst.2':

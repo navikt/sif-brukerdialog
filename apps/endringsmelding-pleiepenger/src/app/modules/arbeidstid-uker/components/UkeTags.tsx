@@ -24,14 +24,14 @@ const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, er
                     : dagerMedFerie?.length === 1
                     ? 'Feriedag'
                     : 'Feriedager'}
-            </FerieTag>
+            </FerieTag>,
         );
     }
     if (dagerMedFjernetFerie?.length > 0) {
         tags.push(
             <FerieTag type="fjernet" size="small">
                 Ferie fjernet
-            </FerieTag>
+            </FerieTag>,
         );
     }
 

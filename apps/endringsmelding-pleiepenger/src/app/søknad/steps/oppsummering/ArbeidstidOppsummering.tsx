@@ -59,7 +59,7 @@ const ArbeidstidOppsummering: React.FunctionComponent<Props> = ({ arbeidstid, ar
                     <>
                         <ArbeidstidUker
                             listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
-                                selvstendigNæringsdrivendeArbeidstidInfo.perioder
+                                selvstendigNæringsdrivendeArbeidstidInfo.perioder,
                             )}
                             arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                         />

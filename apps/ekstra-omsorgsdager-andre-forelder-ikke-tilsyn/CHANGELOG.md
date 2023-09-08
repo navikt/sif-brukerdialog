@@ -1,5 +1,17 @@
 # @navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
+## 1.16.0
+
+### Minor Changes
+
+-   ad5092d1: Sette document.title basert på søknadsnavn og stegnavn
+-   4cde9eca: Redirect til min side ved Fortsett senere
+
+### Patch Changes
+
+-   Updated dependencies [ad5092d1]
+    -   @navikt/sif-common-soknad-ds@10.5.0
+
 ## 1.15.0
 
 ### Minor Changes
