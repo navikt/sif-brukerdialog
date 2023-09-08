@@ -2,8 +2,6 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const deltBostedMessages: MessageFileFormat = {
     nb: {
-        'steg.deltBosted.pageTitle': 'Omsorgspengesøknad - avtale om delt bosted',
-        'steg.deltBosted.stepTitle': 'Avtale om delt bosted',
         'steg.deltBosted.stepIndicatorLabel': 'Last opp din avtale om delt bosted',
         'steg.deltBosted.nextButtonLabel': 'Fortsett',
         'steg.deltBosted.helperTextPanel.1':
