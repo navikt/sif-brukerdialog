@@ -4371,7 +4371,7 @@ __metadata:
     "@types/react-dom": 18.2.7
     "@types/react-modal": 3.16.0
     "@types/react-router-dom": 5.3.3
-    axe-core: 4.7.2
+    axe-core: 4.8.0
     axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -4644,7 +4644,7 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
-    axe-core: 4.7.2
+    axe-core: 4.8.0
     axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -5099,7 +5099,7 @@ __metadata:
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.3
-    axe-core: 4.7.2
+    axe-core: 4.8.0
     axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -10668,7 +10668,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.7.2, axe-core@npm:^4.2.0, axe-core@npm:^4.6.2":
+"axe-core@npm:4.8.0":
+  version: 4.8.0
+  resolution: "axe-core@npm:4.8.0"
+  checksum: c3796c7568d15e865ce08d4745318305d0620530e72870c92d984ba0f6fdf16f24fce3df7d30a63ac79fadc27c331d9d6c875ce8cb818b106e095618e099df9b
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.2.0, axe-core@npm:^4.6.2":
   version: 4.7.2
   resolution: "axe-core@npm:4.7.2"
   checksum: 5d86fa0f45213b0e54cbb5d713ce885c4a8fe3a72b92dd915a47aa396d6fd149c4a87fec53aa978511f6d941402256cfeb26f2db35129e370f25a453c688655a
