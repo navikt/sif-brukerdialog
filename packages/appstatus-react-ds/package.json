@@ -12,7 +12,7 @@
     },
     "dependencies": {
         "@portabletext/react": "3.0.7",
-        "@sanity/client": "6.4.9"
+        "@sanity/client": "6.4.11"
     },
     "devDependencies": {
         "@navikt/ds-css": "5.4.0",
