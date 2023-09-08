@@ -131,8 +131,8 @@ const TidsromStep = () => {
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 submitDisabled={
-                                    (søkerKunHelgedager(periodeFra, periodeTil) &&
-                                        pleierDuDenSykeHjemme !== YesOrNo.NO) ||
+                                    søkerKunHelgedager(periodeFra, periodeTil) ||
+                                    pleierDuDenSykeHjemme === YesOrNo.NO ||
                                     isSubmitting
                                 }
                                 onBack={goBack}
