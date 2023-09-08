@@ -72,7 +72,7 @@ const LovbestemtFerieStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const oppdaterSøknadState = (values: LovbestemtFerieFormValues) => {
@@ -145,7 +145,7 @@ const LovbestemtFerieStep = () => {
                                                         onChange={(feriedager) => {
                                                             setFieldValue(
                                                                 LovbestemtFerieFormFields.feriedager,
-                                                                feriedager
+                                                                feriedager,
                                                             );
                                                         }}>
                                                         Registrert ferie
@@ -156,7 +156,7 @@ const LovbestemtFerieStep = () => {
                                                         onChange={(feriedager) => {
                                                             setFieldValue(
                                                                 LovbestemtFerieFormFields.feriedager,
-                                                                feriedager
+                                                                feriedager,
                                                             );
                                                         }}
                                                     />

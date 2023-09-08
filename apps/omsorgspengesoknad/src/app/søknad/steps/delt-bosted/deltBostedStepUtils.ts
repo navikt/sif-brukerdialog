@@ -4,7 +4,7 @@ import { DeltBostedFormFields, DeltBostedFormValues } from './DeltBostedForm';
 
 export const getDeltBostedStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: DeltBostedFormValues
+    formValues?: DeltBostedFormValues,
 ): DeltBostedFormValues => {
     if (formValues) {
         return formValues;
@@ -16,7 +16,7 @@ export const getDeltBostedStepInitialValues = (
 };
 
 export const getDeltBostedSøknadsdataFromFormValues = (
-    values: DeltBostedFormValues
+    values: DeltBostedFormValues,
 ): DeltBostedSøknadsdata | undefined => {
     const vedlegg = getUploadedAttachments(values[DeltBostedFormFields.samværsavtale]);
     if (vedlegg.length === 0) {

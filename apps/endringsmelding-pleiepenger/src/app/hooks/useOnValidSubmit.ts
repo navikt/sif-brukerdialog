@@ -11,7 +11,7 @@ import actionsCreator, { SøknadContextAction } from '../søknad/context/action/
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
     stepId: StepId,
-    postSubmit?: (state: SøknadContextState) => Promise<any>
+    postSubmit?: (state: SøknadContextState) => Promise<any>,
 ) => {
     const { dispatch, state } = useSøknadContext();
     const navigate = useNavigate();

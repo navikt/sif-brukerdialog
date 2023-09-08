@@ -63,14 +63,14 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const onArbeidstidAktivitetChange = (
         arbeidsaktivitetKey: string,
         arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
-        setValues: (values: ArbeidstidFormValues) => void
+        setValues: (values: ArbeidstidFormValues) => void,
     ) => {
         const currentAktivitetValues = (values.arbeidsaktivitet || {})[arbeidsaktivitetKey];
         const newValues: ArbeidstidFormValues = {
@@ -103,7 +103,7 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                         sak.søknadsperioder,
                         sak.arbeidsgivereIkkeISak,
                         aktiviteterValuesMap,
-                        søknadsdata.ukjentArbeidsforhold
+                        søknadsdata.ukjentArbeidsforhold,
                     ),
                     ...getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter),
                 ];
@@ -127,7 +127,7 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                                                 arbeidsaktivitet.key,
                                                 arbeidstidEndringer,
                                                 values,
-                                                setValues
+                                                setValues,
                                             );
                                             setTimeout(() => {
                                                 validateForm();

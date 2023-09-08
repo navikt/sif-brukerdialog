@@ -2,17 +2,11 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const appMessages: MessageFileFormat = {
     nb: {
-        'application.title': 'Søknad om ekstra omsorgsdager ved aleneomsorg for barn',
-        'application.bannerTitle': 'Søknad om ekstra omsorgsdager ved aleneomsorg for barn',
+        'application.title': 'Søknad om ekstra omsorgsdager ved aleneomsorg',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
-        'step.omOmsorgenForBarn.pageTitle': 'Om aleneomsorg for barn',
         'step.omOmsorgenForBarn.stepTitle': 'Om aleneomsorg for barn',
-
-        'step.tidspunktForAleneomsorg.pageTitle': 'Tidspunkt for aleneomsorg',
         'step.tidspunktForAleneomsorg.stepTitle': 'Tidspunkt for aleneomsorg',
-
-        'step.oppsummering.pageTitle': 'Oppsummering',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
         'steg.footer.avbryt': 'Avbryt og slett søknad',

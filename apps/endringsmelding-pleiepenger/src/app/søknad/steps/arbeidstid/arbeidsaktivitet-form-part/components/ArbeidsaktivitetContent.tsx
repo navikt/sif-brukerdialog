@@ -68,7 +68,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                 listItems={arbeidsaktivitetUtils.getArbeidstidUkerItemFromArbeidsuker(
                     periode.arbeidsuker,
                     endringer,
-                    lovbestemtFerie
+                    lovbestemtFerie,
                 )}
                 visEndringSomOpprinnelig={erNyArbeidsgiver}
                 triggerResetValgCounter={resetUkerTabellCounter}
@@ -128,7 +128,7 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                 validate={getUkjentArbeidsaktivitetArbeidstidValidator(
                                     arbeidsaktivitet,
                                     endringer,
-                                    arbeiderIPerioden
+                                    arbeiderIPerioden,
                                 )}>
                                 {perioder.length === 1 ? (
                                     renderArbeidstidUker(perioder[0])
@@ -180,8 +180,8 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
                                     ...endringer,
                                     ...nyeEndringer,
                                 },
-                                arbeidsaktivitet
-                            )
+                                arbeidsaktivitet,
+                            ),
                         );
                         setResetUkerTabellCounter(resetUkerTabellCounter + 1);
                     }}

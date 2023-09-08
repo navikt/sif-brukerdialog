@@ -39,7 +39,7 @@ const SøknadRouter = () => {
     const { routeError, redirectToSøknadRoute } = useEnsureCorrectSøknadRoute(
         søknadRoute,
         SøknadRoutes.VELKOMMEN,
-        søknadSteps.map((step) => getSøknadStepRoute(step))
+        søknadSteps.map((step) => getSøknadStepRoute(step)),
     );
 
     usePersistSøknadState();

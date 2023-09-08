@@ -8,7 +8,7 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     sak: Sak,
     valgteEndringer: ValgteEndringer,
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ): SøknadApiData | undefined => {
     const { id, arbeidstid, lovbestemtFerie, ukjentArbeidsforhold } = søknadsdata;
 
@@ -33,13 +33,13 @@ export const getApiDataFromSøknadsdata = (
                       arbeidstid.arbeidsaktivitet,
                       sak.arbeidsaktiviteter,
                       sak.arbeidsgivereIkkeISak,
-                      ukjentArbeidsforhold
+                      ukjentArbeidsforhold,
                   )
                 : undefined,
             dataBruktTilUtledning: getDataBruktTilUtledningApiData(
                 søknadsdata.ukjentArbeidsforhold,
                 søknadsdata.arbeidstid,
-                arbeidsgivere
+                arbeidsgivere,
             ),
             annetDataBruktTilUtledning: {
                 annetData: JSON.stringify(getDataBruktTilUtledningAnnetDataApiData(valgteEndringer)),

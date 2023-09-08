@@ -1,5 +1,17 @@
 # @navikt/omsorgsdager-aleneomsorg-dialog
 
+## 2.9.0
+
+### Minor Changes
+
+-   ad5092d1: Sette document.title basert på søknadsnavn og stegnavn
+-   4cde9eca: Redirect til min side ved fortsett senere
+
+### Patch Changes
+
+-   Updated dependencies [ad5092d1]
+    -   @navikt/sif-common-soknad-ds@10.5.0
+
 ## 2.8.0
 
 ### Minor Changes

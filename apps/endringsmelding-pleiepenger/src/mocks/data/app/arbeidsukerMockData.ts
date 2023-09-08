@@ -13,11 +13,11 @@ import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '@types';
 const getMockArbeidsuke = (
     isoDateRange: ISODateRange,
     normaltPerDag: Duration = { hours: '7', minutes: '30' },
-    faktiskPerDag: Duration = { hours: '2', minutes: '0' }
+    faktiskPerDag: Duration = { hours: '2', minutes: '0' },
 ): Arbeidsuke => {
     const antallDagerMedArbeidstid = dateRangeUtils.getNumberOfDaysInDateRange(
         ISODateRangeToDateRange(isoDateRange),
-        true
+        true,
     );
     const periode = ISODateRangeToDateRange(isoDateRange);
     const dagerSøktFor = getDatesInDateRange(periode, true).map((d) => dateToISODate(d)); // Alle dager i perioden

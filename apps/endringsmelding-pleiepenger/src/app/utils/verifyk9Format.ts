@@ -90,7 +90,7 @@ const verifyK9FormatArbeidstidPerioder = (perioder: any): perioder is K9FormatAr
 
 const verifyK9FormatArbeidstidInfo = (
     arbeidstidInfo: any,
-    allowUndefinedPerioder = true
+    allowUndefinedPerioder = true,
 ): arbeidstidInfo is K9FormatArbeidstidInfo => {
     const info = arbeidstidInfo as K9FormatArbeidstidInfo;
     if (

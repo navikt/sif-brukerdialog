@@ -11,7 +11,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: OmBarnetFormValues
+    formValues?: OmBarnetFormValues,
 ): OmBarnetFormValues => {
     if (formValues) {
         return formValues;
@@ -58,7 +58,7 @@ export const getOmBarnetStepInitialValues = (
 
 export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
-    { registrerteBarn = [] }: Partial<SøknadContextState>
+    { registrerteBarn = [] }: Partial<SøknadContextState>,
 ): OmBarnetSøknadsdata | undefined => {
     const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
     const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
