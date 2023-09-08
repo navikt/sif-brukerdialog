@@ -92,7 +92,7 @@ const setSøknadOmOmsorgenForBarn = (payload: OmOmsorgenForBarnSøknadsdata): Se
 });
 
 const setSøknadTidspunktForAleneomsorg = (
-    payload: TidspunktForAleneomsorgSøknadsdata
+    payload: TidspunktForAleneomsorgSøknadsdata,
 ): SetSøknadTidspunktForAleneomsorg => ({
     type: SøknadContextActionKeys.SET_SØKNAD_TIDSPUNKT_FOR_ALENEOMSORG,
     payload,

@@ -27,7 +27,7 @@ import { beregnSnittTimerPerDag } from './beregnUtils';
 export const getSøknadsperioderForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
     ansattFom: Date | undefined,
-    ansattTom: Date | undefined
+    ansattTom: Date | undefined,
 ): DateRange[] => {
     const alleSøknadsperioder: DateRange = getDateRangeFromDateRanges(søknadsperioder);
     const ansettelsesperiode = {
@@ -41,12 +41,12 @@ export const getPerioderMedArbeidstidForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
     { ansattFom, ansattTom }: Arbeidsgiver,
     normalarbeidstidPerUke: Duration,
-    faktiskArbeidstidPerUke: Duration | undefined
+    faktiskArbeidstidPerUke: Duration | undefined,
 ): PeriodeMedArbeidstid[] => {
     const søknadsperioderForArbeidsforhold = getSøknadsperioderForUkjentArbeidsforhold(
         søknadsperioder,
         ansattFom,
-        ansattTom
+        ansattTom,
     );
     const perioderMedArbeidstid: PeriodeMedArbeidstid[] = [];
 
@@ -74,7 +74,7 @@ export const getPerioderMedArbeidstidForUkjentArbeidsforhold = (
 
 export const getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold = (
     arbeidsforhold: ArbeidsforholdAktivt,
-    arbeiderIPerioden?: ArbeiderIPeriodenSvar
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar,
 ): Duration | undefined => {
     switch (arbeiderIPerioden) {
         case ArbeiderIPeriodenSvar.heltFravær:
@@ -91,7 +91,7 @@ export const getArbeidsaktivitetForUkjentArbeidsforhold = (
     søknadsperioder: DateRange[],
     arbeidsgiver: Arbeidsgiver,
     arbeidsforhold: ArbeidsforholdAktivt,
-    arbeiderIPerioden?: ArbeiderIPeriodenSvar
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar,
 ): Arbeidsaktivitet => {
     const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold(arbeidsforhold, arbeiderIPerioden);
 
@@ -107,7 +107,7 @@ export const getArbeidsaktivitetForUkjentArbeidsforhold = (
             søknadsperioder,
             arbeidsgiver,
             arbeidsforhold.normalarbeidstid.timerPerUke,
-            faktiskArbeidstid
+            faktiskArbeidstid,
         ),
     };
     return aktivitet;
@@ -117,7 +117,7 @@ export const getArbeidsaktiviteterForUkjenteArbeidsgivere = (
     søknadsperioder: DateRange[],
     ukjenteArbeidsgivere: Arbeidsgiver[],
     arbeidsaktivitetFormValues: ArbeidsaktivitetFormValuesMap,
-    ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata
+    ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata,
 ): Arbeidsaktivitet[] => {
     const aktiviteter: Arbeidsaktivitet[] = [];
     ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
@@ -130,7 +130,12 @@ export const getArbeidsaktiviteterForUkjenteArbeidsgivere = (
         }
         const arbeiderIPerioden = arbeidsaktivitetFormValues[arbeidsgiver.key]?.arbeiderIPerioden;
         aktiviteter.push(
-            getArbeidsaktivitetForUkjentArbeidsforhold(søknadsperioder, arbeidsgiver, arbeidsforhold, arbeiderIPerioden)
+            getArbeidsaktivitetForUkjentArbeidsforhold(
+                søknadsperioder,
+                arbeidsgiver,
+                arbeidsforhold,
+                arbeiderIPerioden,
+            ),
         );
     });
     return aktiviteter;

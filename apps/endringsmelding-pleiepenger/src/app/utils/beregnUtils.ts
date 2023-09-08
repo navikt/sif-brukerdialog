@@ -4,18 +4,18 @@ import { ArbeidstidEndring, TimerEllerProsent } from '@types';
 export const beregnEndretArbeidstidForUke = (
     endring: ArbeidstidEndring,
     normaltidPerUke: Duration,
-    antallDagerMedArbeidstid: number
+    antallDagerMedArbeidstid: number,
 ): Duration => {
     return getTimerPerUkeFraTimerPerDag(
         beregnEndretFaktiskArbeidstidPerDag(normaltidPerUke, endring, antallDagerMedArbeidstid),
-        antallDagerMedArbeidstid
+        antallDagerMedArbeidstid,
     );
 };
 
 export const beregnEndretFaktiskArbeidstidPerDag = (
     normalArbeidstidIPeriode: Duration,
     endring: ArbeidstidEndring,
-    antallDager: number
+    antallDager: number,
 ): Duration => {
     if (endring.type === TimerEllerProsent.TIMER) {
         return beregnSnittTimerPerDag(decimalDurationToDuration(endring.timer), antallDager);

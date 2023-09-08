@@ -31,7 +31,7 @@ export const isSøknadsdataStepValid = (step: StepId, søknadsdata: Søknadsdata
 const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
     stepFormValues: StepFormValues,
-    state: SøknadContextState
+    state: SøknadContextState,
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -52,7 +52,7 @@ export const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
     søknadsdata: Søknadsdata,
-    state: SøknadContextState
+    state: SøknadContextState,
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];

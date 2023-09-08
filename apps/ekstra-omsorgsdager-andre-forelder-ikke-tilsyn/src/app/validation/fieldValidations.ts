@@ -8,7 +8,7 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/
 export const validateFraDato = (
     fraDatoString?: string,
     tilDato?: Date,
-    annenForelderSituasjon?: string
+    annenForelderSituasjon?: string,
 ): ValidationResult<ValidationError> => {
     if (tilDato) {
         const error = getDateRangeValidator({
@@ -24,7 +24,7 @@ export const validateFraDato = (
 export const validateTildato = (
     tilDatoString?: string,
     fraDato?: Date,
-    annenForelderSituasjon?: string
+    annenForelderSituasjon?: string,
 ): ValidationResult<ValidationError> => {
     const error = getDateRangeValidator({
         required: true,

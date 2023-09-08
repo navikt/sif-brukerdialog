@@ -6,7 +6,7 @@ import { ProgressStep } from '@navikt/sif-common-core-ds/lib/components/progress
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds/lib';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { Step, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
+import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import { ApplicationType } from '../types/ApplicationType';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { useSoknadContext } from './SoknadContext';
@@ -37,7 +37,6 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     children,
     showButtonSpinner,
     includeValidationSummary = true,
-    pageTitle,
     showNotAllQuestionsAnsweredMessage,
     buttonDisabled,
     submitButtonLabel,
@@ -49,7 +48,6 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
     const stepConfig = soknadStepsConfig[id];
     const navigate = useNavigate();
 
-    const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
     const applicationTitle = intlHelper(intl, `application.title.${søknadstype}`);
 
     useLogSidevisning(id);
@@ -66,9 +64,8 @@ const SoknadFormStep: React.FunctionComponent<Props> = ({
 
     return (
         <Step
-            bannerTitle={applicationTitle}
+            applicationTitle={applicationTitle}
             cancelOrContinueLaterAriaLabel={intlHelper(intl, 'application.cancelOrContinueLaterLabel')}
-            pageTitle={pageTitle || texts.pageTitle}
             steps={steps}
             activeStepId={id}
             onCancel={resetSoknad}

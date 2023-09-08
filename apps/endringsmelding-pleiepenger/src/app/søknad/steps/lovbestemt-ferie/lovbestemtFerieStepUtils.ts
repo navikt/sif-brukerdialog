@@ -4,7 +4,7 @@ import { LovbestemtFerieFormValues } from './LovbestemtFerieStep';
 
 export const getLovbestemtFerieStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: LovbestemtFerieFormValues
+    formValues?: LovbestemtFerieFormValues,
 ): LovbestemtFerieFormValues => {
     if (formValues) {
         return formValues;
@@ -20,7 +20,7 @@ export const getLovbestemtFerieStepInitialValues = (
 };
 
 export const getLovbestemtFerieSøknadsdataFromFormValues = (
-    values: LovbestemtFerieFormValues
+    values: LovbestemtFerieFormValues,
 ): LovbestemtFerieSøknadsdata => {
     const feriedager = sortFeriedagMap(values.feriedager);
     return {

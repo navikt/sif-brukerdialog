@@ -82,14 +82,14 @@ describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
     it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
         const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver3],
-            [arbeidstaker1, arbeidstaker2]
+            [arbeidstaker1, arbeidstaker2],
         );
         expect(result).toBeTruthy();
     });
     it('returnerer false hvis alle arbeidsgivere har arbeidsaktivitet i sak', () => {
         const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver1, arbeidsgiver2],
-            [arbeidstaker1, arbeidstaker2]
+            [arbeidstaker1, arbeidstaker2],
         );
         expect(result).toBeFalsy();
     });
@@ -98,14 +98,14 @@ describe('harArbeidstakerISakUtenArbeidsforhold', () => {
     it('returnerer true hvis har har arbeidsaktivitet i sak med ikke tilhørende arbeidsgiver', () => {
         const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
-            [arbeidsgiver3]
+            [arbeidsgiver3],
         );
         expect(result).toBeTruthy();
     });
     it('returnerer false hvis alle arbeidsaktiviteter i sak har tilhørende arbeidsgiver', () => {
         const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
-            [arbeidsgiver1, arbeidsgiver2]
+            [arbeidsgiver1, arbeidsgiver2],
         );
         expect(result).toBeFalsy();
     });
@@ -119,7 +119,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     it('returnerer true hvis søknadsperioder er innenfor tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeInnenfor,
-            tillatEndringsperiode
+            tillatEndringsperiode,
         );
         expect(result).toBeTruthy();
     });
@@ -127,7 +127,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     it('returnerer false hvis søknadsperioder er før tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeUtenfor,
-            tillatEndringsperiode
+            tillatEndringsperiode,
         );
         expect(result).toBeFalsy();
     });

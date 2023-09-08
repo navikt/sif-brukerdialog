@@ -10,7 +10,7 @@ webpackConfig.plugins.push(
         template: `${__dirname}/../../../heroku/index.html`,
         inject: 'body',
         hash: true,
-    })
+    }),
 );
 webpackConfig.output = {
     path: path.resolve(__dirname, './../../../heroku/dist'),

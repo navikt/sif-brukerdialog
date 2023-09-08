@@ -66,7 +66,7 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
                 {
                     søker,
                 },
-                søknadstype
+                søknadstype,
             );
         }
         ref.current = {

@@ -4,7 +4,7 @@ export enum SKJEMANAVN {
     pleiepenger = 'Ettersending pleiepenger barn',
     pleiepengerLivetsSluttfase = 'Ettersending pleiepenger livets sluttfase',
     omsorgspenger = 'Ettersending omsorgspenger',
-    OMP_UTV_KS = 'Ettersending omsorgspenger utvidet rett - kronisk syke eller funksjonshemming',
+    OMP_UTV_KS = 'Ettersending omsorgspenger utvidet rett - kronisk syke eller funksjonshemning',
     OMP_UT_SNF = 'Ettersending omsorgspenger utbetaling SNF ytelse',
     OMP_UT_ARBEIDSTAKER = 'Ettersending omsorgspenger utbetaling arbeidstaker ytelse',
     OMP_UTV_MA = 'Ettersending omsorgspenger utvidet rett - midlertidig alene',

@@ -49,7 +49,7 @@ const persistedSøknadRouteIsAvailable = (søknadState: SøknadStatePersistence)
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo,
-    k9saker: K9Sak[]
+    k9saker: K9Sak[],
 ): boolean => {
     return (
         søknadState.versjon === APP_VERSJON &&
@@ -68,7 +68,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     purge: persistSetup.purge,
     update: (
         { søknadsdata, søknadRoute, barnAktørId, valgteEndringer, harUkjentArbeidsforhold, søknadSteps },
-        søker
+        søker,
     ) => {
         return persistSetup.update({
             versjon: APP_VERSJON,

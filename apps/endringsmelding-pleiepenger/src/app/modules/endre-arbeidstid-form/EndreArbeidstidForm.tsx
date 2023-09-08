@@ -182,7 +182,7 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                     dispatch(
                                         actionsCreator.setInputPreferanser({
                                             timerEllerProsent: value as TimerEllerProsent,
-                                        })
+                                        }),
                                     );
                                     setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
                                 }}>
@@ -232,7 +232,7 @@ const EndreArbeidstidForm: React.FunctionComponent<EndreArbeidstidFormProps> = (
                                                 arbeidsuker.length === 1
                                                     ? `endreArbeidstid.timerAvNormalt.spm`
                                                     : `endreArbeidstid.timerAvNormalt.flereUker.spm`,
-                                                intlValues
+                                                intlValues,
                                             )}
                                             data-testid="timer-verdi"
                                             width="xs"

@@ -45,14 +45,14 @@ const LegeerklæringStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const syncVedleggState = (vedlegg: Attachment[] = []) => {
         dispatch(
             actionsCreator.setSøknadLegeerklæring({
                 vedlegg: getUploadedAttachments(vedlegg),
-            })
+            }),
         );
         dispatch(actionsCreator.requestLagreSøknad());
     };

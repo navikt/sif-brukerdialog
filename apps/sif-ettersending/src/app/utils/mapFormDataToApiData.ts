@@ -40,7 +40,7 @@ export const mapFormDataToApiData = (
     soknadId: string,
     { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, beskrivelse, dokumenter, søknadstype }: SoknadFormData,
     søknadstypeFraURL: ApplicationType,
-    intl: IntlShape
+    intl: IntlShape,
 ): SoknadApiData => {
     const apiData: SoknadApiData = {
         id: soknadId,

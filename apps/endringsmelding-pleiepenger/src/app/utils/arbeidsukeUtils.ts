@@ -65,7 +65,7 @@ export const getDagerFraEnkeltdagMap = (arbeidstidEnkeltdager: ArbeidstidEnkeltd
  */
 export const getArbeidsukeFromEnkeltdagerIUken = (
     uke: DateRange,
-    arbeidstidEnkeltdagerIUken: ArbeidstidEnkeltdagMap
+    arbeidstidEnkeltdagerIUken: ArbeidstidEnkeltdagMap,
 ): Arbeidsuke => {
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
     const antallDagerMedArbeidstid = dagerSøktFor.length;

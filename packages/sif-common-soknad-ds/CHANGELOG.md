@@ -1,5 +1,21 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.5.0
+
+### Minor Changes
+
+-   ad5092d1: ## Standardisere hvordan pageTitle settes i Step
+    Fjerne egen intl-key for pageTitle på de ulike stegene, og gå over til at denne genereres ut fra tittel på applikasjonen og tittel på steget. Formatet er da "_StegTittel - ApplikasjonTittel_"
+
+    **Fjernet prop fra Step.tsx er:**
+
+    -   bannerTitle
+    -   stepTitle
+
+    **Ny prop:**
+
+    -   applicationTitle
+
 ## 10.4.0
 
 ### Minor Changes

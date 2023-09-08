@@ -16,6 +16,6 @@ export const lagreSøknadState = (state: SøknadContextState) => {
                 updatedTimestamp: new Date().toISOString(),
             },
         },
-        søker
+        søker,
     );
 };

@@ -1,5 +1,18 @@
 # @navikt/omsorgspengesoknad
 
+## 1.18.0
+
+### Minor Changes
+
+-   ad5092d1: Sette document.title basert på søknadsnavn og stegnavn
+-   4cde9eca: Redirect til Min side ved fortsett senere
+
+### Patch Changes
+
+-   5f655843: Ersatte ordet funksjonshemming med funksjonshemning
+-   Updated dependencies [ad5092d1]
+    -   @navikt/sif-common-soknad-ds@10.5.0
+
 ## 1.17.0
 
 ### Minor Changes
