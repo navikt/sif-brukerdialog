@@ -14,7 +14,7 @@ const DevBranchInfo = () => {
         }
     };
     const devBranchName = getEnvironmentVariable('GITHUB_REF_NAME');
-    if (devBranchName) {
+    if (devBranchName && devBranchName !== 'undefined') {
         return (
             <Tag
                 role="presentation"
