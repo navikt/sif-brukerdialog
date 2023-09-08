@@ -5,7 +5,7 @@ import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/Søknadsd
 export const ExtractNormalarbeidstidFailed = 'ExtractNormalarbeidstid failed';
 
 export const extractNormalarbeidstid = (
-    normalarbeidstid: NormalarbeidstidFormValues | undefined
+    normalarbeidstid: NormalarbeidstidFormValues | undefined,
 ): NormalarbeidstidSøknadsdata | undefined => {
     if (!normalarbeidstid) {
         return undefined;

@@ -84,7 +84,7 @@ export interface UtenlandsoppholdUtenforEøsIPeriodenApiData extends Utenlandsop
 }
 
 export function isUtenlandsoppholdUtenforEØSApiData(
-    opphold: UtenlandsoppholdIPeriodenApiData
+    opphold: UtenlandsoppholdIPeriodenApiData,
 ): opphold is UtenlandsoppholdUtenforEøsIPeriodenApiData {
     return Object.keys(opphold).includes('erBarnetInnlagt');
 }

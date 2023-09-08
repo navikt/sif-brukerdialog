@@ -18,7 +18,7 @@ const OmsorgstilbudEnkeltdagDialog: React.FunctionComponent<Props> = ({ open: is
         return intlHelper(
             intl,
             erHistorisk ? 'omsorgstilbudEnkeltdagForm.tid.spm.historisk' : 'omsorgstilbudEnkeltdagForm.tid.spm',
-            { dato: dateFormatter.dayDateMonthYear(dato) }
+            { dato: dateFormatter.dayDateMonthYear(dato) },
         );
     };
     return (

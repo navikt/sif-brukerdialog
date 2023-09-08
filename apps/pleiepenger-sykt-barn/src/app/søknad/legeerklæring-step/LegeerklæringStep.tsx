@@ -52,7 +52,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                             type,
                             size,
                         };
-                    })
+                    }),
                 );
             }
             setFilesThatDidntGetUploaded(files);

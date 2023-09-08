@@ -66,7 +66,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                             <ExpandableInfo
                                 title={intlHelper(
                                     intl,
-                                    'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel'
+                                    'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel',
                                 )}>
                                 <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
                             </ExpandableInfo>
@@ -88,7 +88,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                     <ExpandableInfo
                                         title={intlHelper(
                                             intl,
-                                            'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning.tittel'
+                                            'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning.tittel',
                                         )}>
                                         <FormattedMessage
                                             id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning'}
@@ -113,7 +113,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                             <ExpandableInfo
                                 title={intlHelper(
                                     intl,
-                                    'steg.nattevåkOgBeredskap.beredskap.spm.description.flereBarn.tittel'
+                                    'steg.nattevåkOgBeredskap.beredskap.spm.description.flereBarn.tittel',
                                 )}>
                                 <FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.spm.description.flereBarn'} />
                             </ExpandableInfo>
@@ -134,7 +134,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                     <ExpandableInfo
                                         title={intlHelper(
                                             intl,
-                                            'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning.tittel'
+                                            'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning.tittel',
                                         )}>
                                         <FormattedMessage
                                             id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning'}

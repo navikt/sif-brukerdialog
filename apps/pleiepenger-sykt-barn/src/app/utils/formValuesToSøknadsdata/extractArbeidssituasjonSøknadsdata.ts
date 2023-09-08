@@ -9,7 +9,7 @@ import { extractUtenlandskNæringSøknadsdata } from './extractUtenlandskNæring
 
 export const extractArbeidssituasjonSøknadsdata = (
     søknadsperiode: DateRange,
-    formValues: SøknadFormValues
+    formValues: SøknadFormValues,
 ): ArbeidssituasjonSøknadsdata | undefined => {
     try {
         const data: ArbeidssituasjonSøknadsdata = {

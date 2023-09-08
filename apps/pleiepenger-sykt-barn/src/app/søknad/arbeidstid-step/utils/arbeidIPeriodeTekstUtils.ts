@@ -15,38 +15,38 @@ type ArbeidstidSpørsmål = {
 export const getArbeidstidSpørsmålstekst = (
     intl: IntlShape,
     arbeidsforholdType: ArbeidsforholdType,
-    values?: ArbeidIPeriodeIntlValues
+    values?: ArbeidIPeriodeIntlValues,
 ): ArbeidstidSpørsmål => {
     return {
         [ArbeidIPeriodeFormField.arbeiderIPerioden]: intlHelper(
             intl,
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.arbeiderIPerioden, arbeidsforholdType),
-            values
+            values,
         ),
         [ArbeidIPeriodeFormField.erLiktHverUke]: intlHelper(
             intl,
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.erLiktHverUke, arbeidsforholdType),
-            values
+            values,
         ),
         [ArbeidIPeriodeFormField.timerEllerProsent]: intlHelper(
             intl,
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.timerEllerProsent, arbeidsforholdType),
-            values
+            values,
         ),
         [ArbeidIPeriodeFormField.snittTimerPerUke]: intlHelper(
             intl,
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.snittTimerPerUke, arbeidsforholdType),
-            values
+            values,
         ),
         [ArbeidIPeriodeFormField.prosentAvNormalt]: intlHelper(
             intl,
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.prosentAvNormalt, arbeidsforholdType),
-            values
+            values,
         ),
         [ArbeidIPeriodeFormField.arbeidsuker]: intlHelper(
             intl,
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.arbeidsuker, arbeidsforholdType),
-            values
+            values,
         ),
     };
 };

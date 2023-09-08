@@ -27,7 +27,7 @@ export const cleanupAnsattArbeidsforhold = (arbeidsforhold: ArbeidsforholdFormVa
 
 export const cleanupFrilansArbeidssituasjon = (
     _søknadsperiode: DateRange,
-    values: FrilansFormValues
+    values: FrilansFormValues,
 ): FrilansFormValues => {
     /** Ikke frilanser */
     if (values.harHattInntektSomFrilanser === YesOrNo.NO) {
@@ -106,7 +106,7 @@ export const cleanupStønadGodtgjørelse = (values: StønadGodtgjørelseFormValu
 
 export const cleanupArbeidssituasjonStep = (
     formValues: SøknadFormValues,
-    søknadsperiode: DateRange
+    søknadsperiode: DateRange,
 ): SøknadFormValues => {
     const values: SøknadFormValues = { ...formValues };
 

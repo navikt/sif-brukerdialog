@@ -42,8 +42,8 @@ describe('apiVedleggIsInvalid', () => {
         expect(
             apiVedleggIsInvalid(
                 ['http://localhost:8080/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG'],
-                []
-            )
+                [],
+            ),
         ).toBeTruthy();
     });
     it('should return error if vedlegg[] in apiData is not the same as in formValues', () => {
@@ -53,8 +53,8 @@ describe('apiVedleggIsInvalid', () => {
                     'http://localhost:8080/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.123456',
                     'http://localhost:8080/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.123ff456',
                 ],
-                files
-            )
+                files,
+            ),
         ).toBeTruthy();
     });
 
@@ -65,8 +65,8 @@ describe('apiVedleggIsInvalid', () => {
         expect(
             apiVedleggIsInvalid(
                 ['http://localhost:8080/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG'],
-                files
-            )
+                files,
+            ),
         ).toBeFalsy();
     });
 });

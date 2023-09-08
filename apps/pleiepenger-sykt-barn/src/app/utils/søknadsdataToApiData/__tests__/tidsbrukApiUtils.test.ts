@@ -51,7 +51,7 @@ describe('tidsbrukApiUtils', () => {
                     '2021-02-04': { hours: '1', minutes: '0' },
                     '2021-02-06': { hours: '1', minutes: '0' },
                 },
-                periode
+                periode,
             );
             expect(result.length).toEqual(4);
             expect(result[0].dato).toEqual('2021-02-02');

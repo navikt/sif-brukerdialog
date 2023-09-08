@@ -7,7 +7,7 @@ export const getOmsorgstilbudFastDagValidator = () =>
     getTimeValidator({ max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } });
 
 export const validateOmsorgstilbudFasteDager = (
-    fasteDager: DurationWeekdays | undefined
+    fasteDager: DurationWeekdays | undefined,
 ): ValidationResult<ValidationError> => {
     let error;
     const timer = fasteDager ? summarizeDurationInDurationWeekdays(fasteDager) : 0;

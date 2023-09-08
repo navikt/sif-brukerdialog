@@ -39,15 +39,15 @@ const UploadedDocumentsList: React.FC<Props> = ({ includeDeletionFunctionality }
                             () => {
                                 setFieldValue(
                                     SøknadFormField.fødselsattest,
-                                    removeElementFromArray(attachment, dokumenter)
+                                    removeElementFromArray(attachment, dokumenter),
                                 );
                             },
                             () => {
                                 setFieldValue(
                                     SøknadFormField.fødselsattest,
-                                    removeElementFromArray(attachment, dokumenter)
+                                    removeElementFromArray(attachment, dokumenter),
                                 );
-                            }
+                            },
                         );
                 }}
             />

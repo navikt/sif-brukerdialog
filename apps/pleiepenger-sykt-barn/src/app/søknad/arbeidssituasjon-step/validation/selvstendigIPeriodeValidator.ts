@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 
 export const getSelvstendigIPeriodeValidator = (
     søknadsperiode: DateRange,
-    virksomhet?: Virksomhet
+    virksomhet?: Virksomhet,
 ): ValidationResult<ValidationError> => {
     if (!virksomhet) {
         return undefined;

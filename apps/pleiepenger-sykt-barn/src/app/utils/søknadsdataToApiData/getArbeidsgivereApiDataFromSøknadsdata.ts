@@ -5,7 +5,7 @@ import { getArbeidsgiverApiDataFromSøknadsdata } from './getArbeidsgiverApiData
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     arbeidssituasjoner: ArbeidssituasjonArbeidsgivereSøknadsdata | undefined,
-    arbeidstid: ArbeidstidSøknadsdata | undefined
+    arbeidstid: ArbeidstidSøknadsdata | undefined,
 ): ArbeidsgiverAnsattApiData[] => {
     if (!arbeidssituasjoner || arbeidssituasjoner.size === 0) {
         return [];

@@ -8,7 +8,7 @@ import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonAnsattSøknadsdata = (
     søknadsperiode: DateRange,
-    alleAnsattArbeidsforhold: ArbeidsforholdFormValues[]
+    alleAnsattArbeidsforhold: ArbeidsforholdFormValues[],
 ): ArbeidssituasjonArbeidsgivereSøknadsdata => {
     const arbeidssituasjoner: ArbeidssituasjonArbeidsgivereSøknadsdata = new Map();
     alleAnsattArbeidsforhold.forEach((values, index) => {
@@ -33,7 +33,7 @@ export const extractArbeidssituasjonAnsattSøknadsdata = (
                 arbeidsgiver: values.arbeidsgiver,
                 periodeSomAnsattISøknadsperiode: getPeriodeSomAnsattInnenforPeriode(
                     søknadsperiode,
-                    values.arbeidsgiver
+                    values.arbeidsgiver,
                 ),
             });
         }

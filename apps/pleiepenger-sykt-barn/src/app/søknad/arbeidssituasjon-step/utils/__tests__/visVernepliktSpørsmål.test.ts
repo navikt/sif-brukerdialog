@@ -40,7 +40,7 @@ describe('visVernepliktSpørsmål', () => {
                     selvstendig: {
                         harHattInntektSomSN: YesOrNo.NO,
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('søker er ikke ansatt, men har ikke svart på sluttdato', () => {
@@ -56,7 +56,7 @@ describe('visVernepliktSpørsmål', () => {
                     selvstendig: {
                         harHattInntektSomSN: YesOrNo.NO,
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('søker er ikke ansatt, men sluttet i perioden', () => {
@@ -73,7 +73,7 @@ describe('visVernepliktSpørsmål', () => {
                     selvstendig: {
                         harHattInntektSomSN: YesOrNo.NO,
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('søker er ikke ansatt, men sluttet i perioden', () => {
@@ -90,7 +90,7 @@ describe('visVernepliktSpørsmål', () => {
                     selvstendig: {
                         harHattInntektSomSN: YesOrNo.NO,
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('søker har ikke ansettesesforhold men er frilanser eller sn', () => {
@@ -101,7 +101,7 @@ describe('visVernepliktSpørsmål', () => {
                     selvstendig: {
                         harHattInntektSomSN: YesOrNo.NO,
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('søker er frilanser', () => {
@@ -112,7 +112,7 @@ describe('visVernepliktSpørsmål', () => {
                     selvstendig: {
                         harHattInntektSomSN: YesOrNo.UNANSWERED,
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('søker er selvstendig næringsdrivende', () => {
@@ -123,7 +123,7 @@ describe('visVernepliktSpørsmål', () => {
                     selvstendig: {
                         harHattInntektSomSN: YesOrNo.YES,
                     },
-                })
+                }),
             ).toBeFalsy();
         });
     });
@@ -138,7 +138,7 @@ describe('visVernepliktSpørsmål', () => {
                     frilans: {
                         harHattInntektSomFrilanser: YesOrNo.NO,
                     },
-                })
+                }),
             ).toBeTruthy();
         });
         it('søker er ikke frilanser, er ikke selvstendig næringsdrivende, og har sluttet før søknadsperioden', () => {
@@ -155,7 +155,7 @@ describe('visVernepliktSpørsmål', () => {
                         harHattInntektSomSN: YesOrNo.NO,
                     },
                     frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
-                })
+                }),
             ).toBeTruthy();
         });
     });

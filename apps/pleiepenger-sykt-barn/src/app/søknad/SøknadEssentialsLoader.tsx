@@ -89,7 +89,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
     async handleSøkerdataFetchSuccess(
         mellomlagringResponse: AxiosResponse,
         søkerResponse: AxiosResponse,
-        barnResponse?: AxiosResponse
+        barnResponse?: AxiosResponse,
     ) {
         const registrerteBarn = barnResponse ? barnResponse.data.barn : undefined;
         const mellomlagring = await this.getValidMellomlagring(mellomlagringResponse?.data);
@@ -116,7 +116,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
         formValues: SøknadFormValues,
         søkerdata: Søkerdata,
         mellomlagringMetadata?: MellomlagringMetadata,
-        callback?: () => void
+        callback?: () => void,
     ) {
         this.setState(
             {
@@ -124,7 +124,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
                 søkerdata: søkerdata || this.state.søkerdata,
                 mellomlagringMetadata: mellomlagringMetadata || this.state.mellomlagringMetadata,
             },
-            callback
+            callback,
         );
     }
 

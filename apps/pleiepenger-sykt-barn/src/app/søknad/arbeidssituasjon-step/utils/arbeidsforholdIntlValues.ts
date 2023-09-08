@@ -18,7 +18,7 @@ export const getArbeidsforholdIntlValues = (
             | {
                   type: ArbeidsforholdType.FRILANSER | ArbeidsforholdType.SELVSTENDIG;
               };
-    }
+    },
 ): ArbeidsforholdIntlValues => {
     const getHvorTekst = () => {
         switch (info.arbeidsforhold.type) {

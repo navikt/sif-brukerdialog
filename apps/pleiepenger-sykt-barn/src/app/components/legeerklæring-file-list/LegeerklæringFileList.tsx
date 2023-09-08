@@ -22,7 +22,7 @@ type Props = LegeerklæringAttachmentListProps;
 const LegeerklæringAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionFunctionality }: Props) => {
     const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
     const legeerklæring: Attachment[] = values[SøknadFormField.legeerklæring].filter(({ file }: Attachment) =>
-        fileExtensionIsValid(file.name)
+        fileExtensionIsValid(file.name),
     );
 
     if (!containsAnyUploadedAttachments(legeerklæring)) {

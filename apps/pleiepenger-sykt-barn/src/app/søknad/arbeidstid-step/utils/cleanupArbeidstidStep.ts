@@ -29,7 +29,7 @@ export const cleanupArbeidsuker = (periode: DateRange, arbeidsuker: ArbeidsukerF
 
 export const cleanupArbeidIPeriode = (
     arbeidsperiode: DateRange,
-    formValues?: ArbeidIPeriodeFormValues
+    formValues?: ArbeidIPeriodeFormValues,
 ): ArbeidIPeriodeFormValues | undefined => {
     if (!formValues) {
         return undefined;
@@ -63,7 +63,7 @@ export const cleanupArbeidIPeriode = (
 
 export const cleanupArbeidstidStep = (
     formValues: SøknadFormValues,
-    arbeidssituasjonSøknadsdata?: ArbeidssituasjonSøknadsdata
+    arbeidssituasjonSøknadsdata?: ArbeidssituasjonSøknadsdata,
 ): SøknadFormValues => {
     const cleanedValues: SøknadFormValues = { ...formValues };
 
@@ -74,7 +74,7 @@ export const cleanupArbeidstidStep = (
     /** Ansatt */
     cleanedValues.ansatt_arbeidsforhold = cleanedValues.ansatt_arbeidsforhold.map((arbeidsforholdFormValues) => {
         const arbeidssituasjon = arbeidssituasjonSøknadsdata.arbeidsgivere.get(
-            arbeidsforholdFormValues.arbeidsgiver.id
+            arbeidsforholdFormValues.arbeidsgiver.id,
         );
         if (!arbeidssituasjon) {
             return arbeidsforholdFormValues;
@@ -86,7 +86,7 @@ export const cleanupArbeidstidStep = (
                     ? undefined
                     : cleanupArbeidIPeriode(
                           arbeidssituasjon.periodeSomAnsattISøknadsperiode,
-                          arbeidsforholdFormValues.arbeidIPeriode
+                          arbeidsforholdFormValues.arbeidIPeriode,
                       ),
         };
     });
@@ -99,7 +99,7 @@ export const cleanupArbeidstidStep = (
         if (cleanedValues.frilans.arbeidsforhold) {
             cleanedValues.frilans.arbeidsforhold.arbeidIPeriode = cleanupArbeidIPeriode(
                 arbeidssituasjonFrilans.periodeSomFrilanserISøknadsperiode,
-                cleanedValues.frilans.arbeidsforhold?.arbeidIPeriode
+                cleanedValues.frilans.arbeidsforhold?.arbeidIPeriode,
             );
         }
     }
@@ -114,7 +114,7 @@ export const cleanupArbeidstidStep = (
             ...arbeidsforhold,
             arbeidIPeriode: cleanupArbeidIPeriode(
                 arbeidssituasjonSøknadsdata.selvstendig.periodeSomSelvstendigISøknadsperiode,
-                arbeidsforhold?.arbeidIPeriode
+                arbeidsforhold?.arbeidIPeriode,
             ),
         };
     }

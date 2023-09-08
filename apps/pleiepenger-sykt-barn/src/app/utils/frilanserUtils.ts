@@ -36,7 +36,7 @@ export const erFrilanserISøknadsperiode = (
         frilanstype,
         misterHonorar,
         startetFørSisteTreHeleMåneder,
-    }: FrilansFormValues
+    }: FrilansFormValues,
 ): boolean => {
     if (erFortsattFrilanser === YesOrNo.YES) {
         return !kunHonorUtenNormalArbeidstid(frilanstype, misterHonorar);
@@ -51,7 +51,7 @@ export const erFrilanserISøknadsperiode = (
         return erFrilanserITidsrom(
             søknadsperiode,
             frilansStartdato || getFørsteDagFørStartdatoForNySomFrilanser(søknadsperiode),
-            frilansSluttdato
+            frilansSluttdato,
         );
     }
     return false;
@@ -73,7 +73,7 @@ export const erFrilanserISøknadsperiode = (
 export const getPeriodeSomFrilanserInnenforPeriode = (
     periode: DateRange,
     startdato: Date | undefined,
-    sluttdato: Date | undefined
+    sluttdato: Date | undefined,
 ): DateRange | undefined => {
     if (startdato === undefined) {
         throw 'getPeriodeSomFrilanserInnenforPeriode: startdato is undefined';
@@ -98,7 +98,7 @@ const kunHonorUtenNormalArbeidstid = (frilanstype?: Frilanstype, misterHonorar?:
 export const getStartdatoSomFrilanser = (
     søknadsperiode: DateRange,
     startetFørSisteTreHeleMåneder: boolean,
-    startdato: string | undefined
+    startdato: string | undefined,
 ): Date | undefined => {
     if (startetFørSisteTreHeleMåneder) {
         return getFørsteDagFørStartdatoForNySomFrilanser(søknadsperiode);

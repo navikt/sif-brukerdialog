@@ -24,7 +24,7 @@ export type UtenlandsoppholdIPerioden = Pick<SøknadApiData, 'utenlandsoppholdIP
 
 export const mapUtenlandsoppholdIPeriodenApiData = (
     opphold: Utenlandsopphold,
-    locale: string
+    locale: string,
 ): UtenlandsoppholdIPeriodenApiData => {
     const erUtenforEØS: boolean = countryIsMemberOfEøsOrEfta(opphold.landkode) === false;
     const apiData: UtenlandsoppholdIPeriodenApiData = {
@@ -52,7 +52,7 @@ export const mapUtenlandsoppholdIPeriodenApiData = (
 
 export const getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata = (
     locale: Locale,
-    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenSøknadsdata
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenSøknadsdata,
 ): UtenlandsoppholdIPerioden => {
     if (utenlandsoppholdIPerioden === undefined) {
         throw Error('utenlandsoppholdIPeriodenSøknadsdata undefined');

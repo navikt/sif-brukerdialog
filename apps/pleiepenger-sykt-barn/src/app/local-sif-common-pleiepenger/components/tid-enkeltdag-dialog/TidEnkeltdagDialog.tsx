@@ -33,7 +33,7 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
                       <TidEnkeltdagForm {...formProps} />
                   </Modal.Body>
               </Modal>,
-              document.body
+              document.body,
           )
         : null;
 };

@@ -4,7 +4,7 @@ import { OmsorgstilbudSøknadsdata } from '../../types/søknadsdata/Søknadsdata
 import { YesOrNoOrDoNotKnow } from '../../types/YesOrNoOrDoNotKnow';
 
 export const extractOmsorgstibudSøknadsdata = (
-    omsorgstilbud?: OmsorgstilbudFormValues
+    omsorgstilbud?: OmsorgstilbudFormValues,
 ): OmsorgstilbudSøknadsdata | undefined => {
     if (
         !omsorgstilbud ||

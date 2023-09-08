@@ -84,7 +84,7 @@ export const validateFødselsnummer = (value: string): ValidationResult<Validati
 export const validateFradato = (
     fraDatoString?: string,
     tilDatoString?: string,
-    eldsteBarnFodselsdato?: Date
+    eldsteBarnFodselsdato?: Date,
 ): ValidationResult<ValidationError> => {
     const tilDato = datepickerUtils.getDateFromDateString(tilDatoString);
     const minDate = eldsteBarnFodselsdato
@@ -119,7 +119,7 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
 
 export const validateUtenlandsoppholdIPerioden = (
     periode: DateRange,
-    utenlandsopphold: Utenlandsopphold[]
+    utenlandsopphold: Utenlandsopphold[],
 ): ValidationResult<ValidationError> => {
     if (utenlandsopphold.length === 0) {
         return AppFieldValidationErrors.utenlandsopphold_ikke_registrert;
@@ -139,7 +139,7 @@ export const validateUtenlandsoppholdIPerioden = (
 
 export const validateFerieuttakIPerioden = (
     periode: DateRange,
-    ferieuttak: Ferieuttak[]
+    ferieuttak: Ferieuttak[],
 ): ValidationResult<ValidationError> => {
     if (ferieuttak.length === 0) {
         return AppFieldValidationErrors.ferieuttak_ikke_registrert;

@@ -33,7 +33,7 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
                     søknadsperiode,
                     søknadsdato,
                     startdatoValue,
-                    sluttdatoValue
+                    sluttdatoValue,
                 )(value);
 
                 return error

@@ -60,7 +60,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                             intl,
                             periodeFortidFremtid
                                 ? 'steg.omsorgstilbud.erIOmsorgstilbudFortid.spm'
-                                : 'steg.omsorgstilbud.erIOmsorgstilbudKunFortid.spm'
+                                : 'steg.omsorgstilbud.erIOmsorgstilbudKunFortid.spm',
                         )}
                         validate={(value) => {
                             const error = getYesOrNoValidator()(value);
@@ -95,7 +95,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                             intl,
                             periodeFortidFremtid
                                 ? 'steg.omsorgstilbud.erIOmsorgstilbudFremtid.spm'
-                                : 'steg.omsorgstilbud.erIOmsorgstilbudKunFremtid.spm'
+                                : 'steg.omsorgstilbud.erIOmsorgstilbudKunFremtid.spm',
                         )}
                         validate={(value) => {
                             const error = value === undefined ? 'yesOrNoIsUnanswered' : undefined;
@@ -200,7 +200,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                         intl,
                                         periodeFremtid
                                             ? 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud.kunFremtid'
-                                            : 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud'
+                                            : 'steg.omsorgstilbud.hvorMyeTidIOmsorgstilbud',
                                     )}
                                     description={omsorgstilbudInfo.hvorMye}
                                     validate={() => validateOmsorgstilbud(omsorgstilbud)}
@@ -237,7 +237,7 @@ const OmsorgstilbudSpørsmål = ({ periode, omsorgstilbud, onOmsorgstilbudChange
                                         intl,
                                         periodeFremtid
                                             ? 'steg.omsorgstilbud.hvormyetittel.kunFremtid'
-                                            : 'steg.omsorgstilbud.hvormyetittel'
+                                            : 'steg.omsorgstilbud.hvormyetittel',
                                     )}
                                     formFieldName={SøknadFormField.omsorgstilbud__enkeltdager}
                                     periode={riktigSøknadsperiode}

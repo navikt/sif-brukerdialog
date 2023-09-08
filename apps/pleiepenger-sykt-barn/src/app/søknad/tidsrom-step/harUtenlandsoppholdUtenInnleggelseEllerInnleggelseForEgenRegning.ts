@@ -7,11 +7,11 @@ const erOppholdMedInnlagtBarnForEgenRegning = (opphold: Utenlandsopphold): boole
 const erOppholdUtenInnlagtBarn = (opphold: Utenlandsopphold): boolean => opphold.erBarnetInnlagt === YesOrNo.NO;
 
 const harUtenlandsoppholdUtenInnleggelseEllerInnleggeleForEgenRegning = (
-    utenlandsopphold: Utenlandsopphold[]
+    utenlandsopphold: Utenlandsopphold[],
 ): boolean => {
     return (
         utenlandsopphold.filter(
-            (opphold) => erOppholdMedInnlagtBarnForEgenRegning(opphold) || erOppholdUtenInnlagtBarn(opphold)
+            (opphold) => erOppholdMedInnlagtBarnForEgenRegning(opphold) || erOppholdUtenInnlagtBarn(opphold),
         ).length > 0
     );
 };

@@ -40,7 +40,7 @@ export const cleanupOmsorgstilbudStep = (values: SøknadFormValues, søknadsperi
                 cleanedValues.omsorgstilbud.fasteDager = undefined;
                 cleanedValues.omsorgstilbud.enkeltdager = getDurationsInDateRange(
                     cleanedValues.omsorgstilbud.enkeltdager || {},
-                    getPeriode(søknadsperiode, cleanedValues.omsorgstilbud)
+                    getPeriode(søknadsperiode, cleanedValues.omsorgstilbud),
                 );
             }
         }
@@ -86,7 +86,7 @@ export const visLiktHverUke = (
     periodeFortidFremtid: boolean,
     periodeFortid: boolean,
     periodeFremtid: boolean,
-    omsorgstilbud?: OmsorgstilbudFormValues
+    omsorgstilbud?: OmsorgstilbudFormValues,
 ): boolean => {
     if (!omsorgstilbud) {
         return false;

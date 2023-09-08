@@ -98,7 +98,7 @@ describe('kvitteringUtils', () => {
             };
             const result = getKvitteringInfoFromApiData(
                 { ...apiData, arbeidsgivere: [arbeidsgiver1, arbeidsgiver2, arbeidsgiver3, arbeidsgiver4] },
-                søkerinfo
+                søkerinfo,
             );
             expect(result).toBeDefined();
             if (result) {

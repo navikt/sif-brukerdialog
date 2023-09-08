@@ -89,7 +89,7 @@ const ArbeidstidEnkeltuker: React.FunctionComponent<Props> = ({
                                             id="arbeidIPeriode.uke.ukedatoer"
                                             values={{
                                                 ukedatoer: `${dateFormatter.compact(
-                                                    arbeidsuke.periode.from
+                                                    arbeidsuke.periode.from,
                                                 )} - ${dateFormatter.compact(arbeidsuke.periode.to)}`,
                                             }}
                                         />

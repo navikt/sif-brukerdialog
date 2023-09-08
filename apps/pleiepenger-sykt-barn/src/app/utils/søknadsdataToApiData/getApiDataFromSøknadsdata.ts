@@ -29,7 +29,7 @@ export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     harBekreftetOpplysninger: boolean,
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetData,
-    locale: Locale = 'nb'
+    locale: Locale = 'nb',
 ): SøknadApiData | undefined => {
     const { søknadsperiode, harForståttRettigheterOgPlikter } = søknadsdata;
 
@@ -57,7 +57,7 @@ export const getApiDataFromSøknadsdata = (
                 ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(søknadsdata.ferieuttakIPerioden),
                 arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
                     søknadsdata.arbeidssituasjon?.arbeidsgivere,
-                    søknadsdata.arbeidstidIPerioden
+                    søknadsdata.arbeidstidIPerioden,
                 ),
                 frilans: getFrilansApiDataFromSøknadsdata({
                     arbeidssituasjon: søknadsdata?.arbeidssituasjon?.frilans,
@@ -66,12 +66,12 @@ export const getApiDataFromSøknadsdata = (
                 selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
                     søknadsdata.arbeidssituasjon?.selvstendig,
                     søknadsdata.arbeidstidIPerioden?.selvstendig,
-                    locale
+                    locale,
                 ),
                 ...getStønadGodtgjørelseApiDataFromSøknadsdata(søknadsperiode, søknadsdata.stønadGodtgjørelse),
                 opptjeningIUtlandet: getOpptjeningIUtlandetSøknadsdata(
                     sprak,
-                    søknadsdata.arbeidssituasjon?.opptjeningUtland
+                    søknadsdata.arbeidssituasjon?.opptjeningUtland,
                 ),
                 utenlandskNæring: getUtenlandskNæringSøknadsdata(sprak, søknadsdata.arbeidssituasjon?.utenlandskNæring),
                 harVærtEllerErVernepliktig: søknadsdata.harVærtEllerErVernepliktig,

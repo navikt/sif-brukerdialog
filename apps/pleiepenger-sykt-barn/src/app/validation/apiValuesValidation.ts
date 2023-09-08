@@ -64,7 +64,7 @@ export const isOmsorgstilbudApiDataValid = (omsorgstilbud: OmsorgstilbudApiData)
 export const validateApiValues = (
     values: SøknadApiData,
     formValues: SøknadFormValues,
-    intl: IntlShape
+    intl: IntlShape,
 ): ApiValidationError[] | undefined => {
     const errors: ApiValidationError[] = [];
     try {

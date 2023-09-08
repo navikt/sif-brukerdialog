@@ -41,7 +41,7 @@ describe('arbeidstidStepUtils', () => {
                 to: fredag,
             };
             expect(getArbeidsperiodeIForholdTilSøknadsperiode(arbeidsperiode, søknadsperiode)).toEqual(
-                ArbeidsperiodeIForholdTilSøknadsperiode.starterIPerioden
+                ArbeidsperiodeIForholdTilSøknadsperiode.starterIPerioden,
             );
         });
         it('returnerer slutterIPerioden når arbeidsperiode slutter i søknadsperioden', () => {
@@ -54,7 +54,7 @@ describe('arbeidstidStepUtils', () => {
                 to: fredag,
             };
             expect(getArbeidsperiodeIForholdTilSøknadsperiode(arbeidsperiode, søknadsperiode)).toEqual(
-                ArbeidsperiodeIForholdTilSøknadsperiode.slutterIPerioden
+                ArbeidsperiodeIForholdTilSøknadsperiode.slutterIPerioden,
             );
         });
         it('returnerer starterOgSlutterIPerioden når arbeidsperiode starter og slutter i søknadsperioden', () => {
@@ -67,7 +67,7 @@ describe('arbeidstidStepUtils', () => {
                 to: fredag,
             };
             expect(getArbeidsperiodeIForholdTilSøknadsperiode(arbeidsperiode, søknadsperiode)).toEqual(
-                ArbeidsperiodeIForholdTilSøknadsperiode.starterOgSlutterIPerioden
+                ArbeidsperiodeIForholdTilSøknadsperiode.starterOgSlutterIPerioden,
             );
         });
         it('returnerer gjelderHelePerioden når arbeidsperiode starter og slutter samme dager som søknadsperioden', () => {
@@ -80,7 +80,7 @@ describe('arbeidstidStepUtils', () => {
                 to: fredag,
             };
             expect(getArbeidsperiodeIForholdTilSøknadsperiode(arbeidsperiode, søknadsperiode)).toEqual(
-                ArbeidsperiodeIForholdTilSøknadsperiode.gjelderHelePerioden
+                ArbeidsperiodeIForholdTilSøknadsperiode.gjelderHelePerioden,
             );
         });
     });

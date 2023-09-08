@@ -72,8 +72,7 @@ const SøknadFormStep = (props: Props) => {
     return (
         <SøknadStep
             activeStepId={stepId}
-            bannerTitle={intlHelper(intl, 'application.title')}
-            pageTitle={texts.pageTitle}
+            applicationTitle={intlHelper(intl, 'application.title')}
             onCancel={handleAvbrytSøknad}
             onContinueLater={handleAvsluttOgFortsettSenere}
             steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>

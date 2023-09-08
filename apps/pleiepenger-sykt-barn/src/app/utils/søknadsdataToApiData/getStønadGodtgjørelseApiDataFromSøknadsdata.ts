@@ -7,7 +7,7 @@ type StønadGodtgjørelseApiData = Pick<SøknadApiData, 'stønadGodtgjørelse'>;
 
 export const getStønadGodtgjørelseApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
-    stønadGodtgjørelse?: StønadGodtgjørelseSøknadsdata
+    stønadGodtgjørelse?: StønadGodtgjørelseSøknadsdata,
 ): StønadGodtgjørelseApiData => {
     if (stønadGodtgjørelse === undefined) {
         throw Error('stønadGodtgjørelse undefined');

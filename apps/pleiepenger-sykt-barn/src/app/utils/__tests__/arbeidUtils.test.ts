@@ -35,12 +35,12 @@ describe('arbeidUtils', () => {
                 expect(
                     harFraværFraJobb({
                         ...arbeidsgivereArbeiderIkke,
-                    })
+                    }),
                 ).toBeTruthy();
                 expect(
                     harFraværFraJobb({
                         ...arbeidsgivereArbeiderRedusert,
-                    })
+                    }),
                 ).toBeTruthy();
             });
             it('returnerer true når en er ansatt flere steder og har fravær ett sted', () => {
@@ -50,7 +50,7 @@ describe('arbeidUtils', () => {
                 expect(
                     harFraværFraJobb({
                         arbeidsgivere,
-                    })
+                    }),
                 ).toBeTruthy();
             });
             it('returnerer false når en jobber som vanlig hos alle', () => {
@@ -60,7 +60,7 @@ describe('arbeidUtils', () => {
                 expect(
                     harFraværFraJobb({
                         arbeidsgivere,
-                    })
+                    }),
                 ).toBeFalsy();
             });
         });
@@ -70,13 +70,13 @@ describe('arbeidUtils', () => {
                     harFraværFraJobb({
                         arbeidsgivere: new Map(),
                         frilans: arbeiderIkke,
-                    })
+                    }),
                 ).toBeTruthy();
                 expect(
                     harFraværFraJobb({
                         arbeidsgivere: new Map(),
                         frilans: arbeiderRedusert,
-                    })
+                    }),
                 ).toBeTruthy();
             });
             it('returnerer false når en jobber som vanlig', () => {
@@ -84,7 +84,7 @@ describe('arbeidUtils', () => {
                     harFraværFraJobb({
                         arbeidsgivere: new Map(),
                         frilans: arbeiderVanlig,
-                    })
+                    }),
                 ).toBeFalsy();
             });
         });
@@ -95,13 +95,13 @@ describe('arbeidUtils', () => {
                     harFraværFraJobb({
                         arbeidsgivere: new Map(),
                         selvstendig: arbeiderIkke,
-                    })
+                    }),
                 ).toBeTruthy();
                 expect(
                     harFraværFraJobb({
                         arbeidsgivere: new Map(),
                         selvstendig: arbeiderRedusert,
-                    })
+                    }),
                 ).toBeTruthy();
             });
             it('returnerer false når en jobber som vanlig', () => {
@@ -109,7 +109,7 @@ describe('arbeidUtils', () => {
                     harFraværFraJobb({
                         arbeidsgivere: new Map(),
                         selvstendig: arbeiderVanlig,
-                    })
+                    }),
                 ).toBeFalsy();
             });
         });
@@ -120,7 +120,7 @@ describe('arbeidUtils', () => {
                         ...arbeidsgivereArbeiderIkke,
                         frilans: arbeiderVanlig,
                         selvstendig: arbeiderVanlig,
-                    })
+                    }),
                 ).toBeTruthy();
             });
             it('returnerer false dersom en jobber som vanlig alle steder', () => {
@@ -129,7 +129,7 @@ describe('arbeidUtils', () => {
                         ...arbeidsgivereArbeiderVanlig,
                         frilans: arbeiderVanlig,
                         selvstendig: arbeiderVanlig,
-                    })
+                    }),
                 ).toBeFalsy();
             });
         });

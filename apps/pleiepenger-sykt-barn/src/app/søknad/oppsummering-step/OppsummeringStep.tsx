@@ -164,7 +164,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                     søknadsdata,
                     harBekreftetOpplysninger,
                     getDataBruktTilUtledning(søknadsdata),
-                    intl.locale as Locale
+                    intl.locale as Locale,
                 );
                 if (apiValues === undefined) {
                     return <div>Det oppstod en feil - api-data mangler</div>;
@@ -253,7 +253,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                             <SummaryBlock
                                                 header={intlHelper(
                                                     intl,
-                                                    'steg.oppsummering.utenlandsoppholdIPerioden.header'
+                                                    'steg.oppsummering.utenlandsoppholdIPerioden.header',
                                                 )}>
                                                 <div data-testid="oppsummering-utenlandsoppholdIPerioden">
                                                     <FormattedMessage
@@ -285,7 +285,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                             <SummaryBlock
                                                 header={intlHelper(
                                                     intl,
-                                                    'steg.oppsummering.ferieuttakIPerioden.header'
+                                                    'steg.oppsummering.ferieuttakIPerioden.header',
                                                 )}>
                                                 <div data-testid="oppsummering-ferieuttakIPerioden">
                                                     <FormattedMessage

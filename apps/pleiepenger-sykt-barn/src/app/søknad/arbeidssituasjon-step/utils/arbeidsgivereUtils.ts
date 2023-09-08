@@ -21,7 +21,7 @@ const erFrilansoppdrag = (a: Arbeidsgiver) => a.type === ArbeidsgiverType.FRILAN
  */
 export const syncAnsattArbeidsforhold = (
     arbeidsgivere: Arbeidsgiver[],
-    arbeidsforhold: ArbeidsforholdFormValues[] = []
+    arbeidsforhold: ArbeidsforholdFormValues[] = [],
 ): Array<ArbeidsforholdFormValues> => {
     const syncedArbeidsforhold: ArbeidsforholdFormValues[] = [];
     arbeidsgivere.forEach((arbeidsgiver) => {
@@ -29,7 +29,7 @@ export const syncAnsattArbeidsforhold = (
         if (!arbeidsgiver.navn) {
             appSentryLogger.logError(
                 'Get arbeidsgiver: Manglende navn på organisasjon',
-                `${JSON.stringify(arbeidsgiver)}`
+                `${JSON.stringify(arbeidsgiver)}`,
             );
         }
         syncedArbeidsforhold.push({
@@ -49,11 +49,11 @@ export const syncAnsattArbeidsforhold = (
  */
 export const oppdaterSøknadMedArbeidsgivere = (
     arbeidsgivere: Arbeidsgiver[],
-    { values, setFieldValue }: FormikProps<SøknadFormValues>
+    { values, setFieldValue }: FormikProps<SøknadFormValues>,
 ) => {
     const ansattArbeidsforhold = syncAnsattArbeidsforhold(
         arbeidsgivere.filter(erOrganisasjonElerPrivatArbeidsgiver),
-        values.ansatt_arbeidsforhold
+        values.ansatt_arbeidsforhold,
     );
     setFieldValue(SøknadFormField.ansatt_arbeidsforhold, ansattArbeidsforhold);
 

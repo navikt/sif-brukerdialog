@@ -80,7 +80,7 @@ describe('frilanserUtils', () => {
                 erFrilanserISøknadsperiode(periode, {
                     startdato: '2021-01-01',
                     harHattInntektSomFrilanser: YesOrNo.NO,
-                })
+                }),
             ).toBeFalsy();
         });
         /*

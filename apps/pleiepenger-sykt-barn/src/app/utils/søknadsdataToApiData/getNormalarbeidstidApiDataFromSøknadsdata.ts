@@ -3,7 +3,7 @@ import { NormalarbeidstidApiData } from '../../types/søknad-api-data/SøknadApi
 import { NormalarbeidstidSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const getNormalarbeidstidApiDataFromSøknadsdata = (
-    normalarbeidstid: NormalarbeidstidSøknadsdata
+    normalarbeidstid: NormalarbeidstidSøknadsdata,
 ): NormalarbeidstidApiData => {
     return {
         timerPerUkeISnitt: decimalDurationToISODuration(normalarbeidstid.timerPerUkeISnitt),

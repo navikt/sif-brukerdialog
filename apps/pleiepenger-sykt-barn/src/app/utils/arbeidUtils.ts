@@ -42,7 +42,7 @@ export const harArbeidIPerioden = (arbeidssituasjon?: ArbeidssituasjonSøknadsda
         return false;
     }
     const erAnsattIPerioden = Array.from(arbeidssituasjon.arbeidsgivere, (a) => a[1]).some(
-        (a) => a.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode
+        (a) => a.type !== ArbeidssituasjonAnsattType.sluttetFørSøknadsperiode,
     );
     const erFrilanserIPerioden = arbeidssituasjon.frilans?.harInntektSomFrilanser === true;
     const erSelvstendigIPerioden = arbeidssituasjon.selvstendig?.erSN === true;

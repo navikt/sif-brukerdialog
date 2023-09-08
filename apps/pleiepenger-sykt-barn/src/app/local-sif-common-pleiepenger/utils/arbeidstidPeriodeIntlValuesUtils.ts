@@ -11,7 +11,7 @@ export const getArbeidstidIPeriodeIntlValues = (
         periode: DateRange;
         jobberNormaltTimer: number;
         arbeidsgiverNavn?: string;
-    }
+    },
 ): ArbeidIPeriodeIntlValues => {
     const getHvorTekst = () => {
         switch (info.arbeidsforholdType) {

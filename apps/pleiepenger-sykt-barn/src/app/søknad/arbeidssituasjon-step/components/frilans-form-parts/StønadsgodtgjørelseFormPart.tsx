@@ -45,7 +45,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                     <ExpandableInfo
                         title={intlHelper(
                             intl,
-                            'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description.tittel'
+                            'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description.tittel',
                         )}>
                         <FormattedMessage id="steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelse.spm.description" />
                     </ExpandableInfo>
@@ -58,7 +58,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                             name={StønadGodtgjørelseFormField.mottarStønadGodtgjørelseIHelePerioden}
                             legend={intlHelper(
                                 intl,
-                                'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm'
+                                'steg.arbeidssituasjon.stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden.spm',
                             )}
                             radios={[
                                 {
@@ -81,7 +81,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                         name={StønadGodtgjørelseFormField.starterUndeveis}
                                         legend={intlHelper(
                                             intl,
-                                            'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm'
+                                            'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.spm',
                                         )}
                                         radios={[
                                             {
@@ -102,7 +102,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 name={StønadGodtgjørelseFormField.startdato}
                                                 label={intlHelper(
                                                     intl,
-                                                    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.startdato'
+                                                    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.startdato',
                                                 )}
                                                 showYearSelector={true}
                                                 minDate={søknadsperiode.from}
@@ -111,7 +111,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 data-testid="stønadGodtgjørelse-startdato"
                                                 validate={getstønadGodtgjørelseStartdatoValidator(
                                                     stønadGodtgjørelse,
-                                                    søknadsperiode
+                                                    søknadsperiode,
                                                 )}
                                             />
                                         </FormBlock>
@@ -122,7 +122,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                         name={StønadGodtgjørelseFormField.slutterUnderveis}
                                         legend={intlHelper(
                                             intl,
-                                            'steg.arbeidssituasjon.stønadGodtgjørelse.slutterUndeveis.spm'
+                                            'steg.arbeidssituasjon.stønadGodtgjørelse.slutterUndeveis.spm',
                                         )}
                                         radios={[
                                             {
@@ -153,7 +153,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 name={StønadGodtgjørelseFormField.sluttdato}
                                                 label={intlHelper(
                                                     intl,
-                                                    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato'
+                                                    'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato',
                                                 )}
                                                 showYearSelector={true}
                                                 minDate={søknadsperiode.from}
@@ -162,7 +162,7 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                 data-testid="stønadGodtgjørelse-sluttdato"
                                                 validate={getstønadGodtgjørelseSluttdatoValidator(
                                                     stønadGodtgjørelse,
-                                                    søknadsperiode
+                                                    søknadsperiode,
                                                 )}
                                             />
                                         </FormBlock>

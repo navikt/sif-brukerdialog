@@ -40,7 +40,7 @@ export const getSøker = () => axios.get(ResourceType.SØKER, axiosJsonConfig);
 export const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregArbeidsgiverRemoteData>> => {
     return axios.get(
         `${ResourceType.ARBEIDSGIVER}?fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`,
-        axiosJsonConfig
+        axiosJsonConfig,
     );
 };
 

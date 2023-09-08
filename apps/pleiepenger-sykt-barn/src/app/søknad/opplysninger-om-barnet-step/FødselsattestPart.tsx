@@ -45,7 +45,7 @@ const FødselsattestPart: React.FC<Props> = ({ attachments }) => {
                             type,
                             size,
                         };
-                    })
+                    }),
                 );
             }
             setFilesThatDidntGetUploaded(files);

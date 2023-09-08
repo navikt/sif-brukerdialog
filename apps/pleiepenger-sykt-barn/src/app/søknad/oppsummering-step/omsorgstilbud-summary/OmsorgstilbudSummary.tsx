@@ -46,7 +46,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                                     intl,
                                     søkerFortidOgFremtid(søknadsperiode)
                                         ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
-                                        : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid'
+                                        : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
                                 )}>
                                 <div data-testid="oppsummering-omsorgstilbud-svarFremtid">
                                     <FormattedMessage id={`steg.oppsummering.omsorgstilbud.fremtid.svar.NEI`} />
@@ -70,7 +70,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                             intl,
                             søkerFortidOgFremtid(søknadsperiode)
                                 ? 'steg.oppsummering.omsorgstilbud.fremtid.spm'
-                                : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid'
+                                : 'steg.oppsummering.omsorgstilbud.fremtid.spm.kunFremtid',
                         )}>
                         <div data-testid="oppsummering-omsorgstilbud-svarFremtid">
                             <FormattedMessage
@@ -85,7 +85,7 @@ const OmsorgstilbudSummary: React.FC<Props> = ({
                             intl,
                             søkerKunFortid(søknadsperiode)
                                 ? 'steg.oppsummering.omsorgstilbud.fast.header.fortid'
-                                : 'steg.oppsummering.omsorgstilbud.fast.header'
+                                : 'steg.oppsummering.omsorgstilbud.fast.header',
                         )}>
                         <TidFasteDager fasteDager={omsorgstilbud.ukedager} />
                     </SummaryBlock>

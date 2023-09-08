@@ -12,7 +12,7 @@ export const dateToISODateOrUndefined = (date?: Date): ISODate | undefined => (d
 
 export const getArbeidsgiverApiDataFromSøknadsdata = (
     arbeidssituasjon: ArbeidssituasjonAnsattSøknadsdata,
-    arbeidIPeriode?: ArbeidIPeriodeSøknadsdata
+    arbeidIPeriode?: ArbeidIPeriodeSøknadsdata,
 ): ArbeidsgiverAnsattApiData => {
     const { arbeidsgiver } = arbeidssituasjon;
 

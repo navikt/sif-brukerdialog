@@ -28,7 +28,7 @@ describe('apiUtils', () => {
     describe('getApiUrlByResourceType', () => {
         it('should return correct URL for ResourceType.ARBEIDSGIVER', () => {
             expect(getApiUrlByResourceType(ResourceType.ARBEIDSGIVER)).toEqual(
-                `${mockedApiUrl}/${ResourceType.ARBEIDSGIVER}`
+                `${mockedApiUrl}/${ResourceType.ARBEIDSGIVER}`,
             );
         });
 
@@ -38,7 +38,7 @@ describe('apiUtils', () => {
 
         it('should return correct URL for ResourceType.SEND_SØKNAD', () => {
             expect(getApiUrlByResourceType(ResourceType.SEND_SØKNAD)).toEqual(
-                `${mockedApiUrl}/${ResourceType.SEND_SØKNAD}`
+                `${mockedApiUrl}/${ResourceType.SEND_SØKNAD}`,
             );
         });
 

@@ -5,7 +5,7 @@ import { dateToISODate } from '@navikt/sif-common-utils';
 
 export const getUtenlandskNæringSøknadsdata = (
     locale: string,
-    utenlandskNæring?: UtenlandskNæringSøknadsdata
+    utenlandskNæring?: UtenlandskNæringSøknadsdata,
 ): UtenlandskNæringApiData[] => {
     if (utenlandskNæring?.type === 'harUtenlandskNæring') {
         const apiData: UtenlandskNæringApiData[] = utenlandskNæring.utenlandskNæring.map((næring) => ({

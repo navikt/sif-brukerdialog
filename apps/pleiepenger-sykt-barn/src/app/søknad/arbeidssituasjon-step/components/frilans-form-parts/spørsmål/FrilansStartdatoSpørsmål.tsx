@@ -29,7 +29,7 @@ const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoV
                     startdatoValue,
                     søknadsperiode,
                     søknadsperiode.to,
-                    minDato
+                    minDato,
                 )(value);
                 return error
                     ? {

@@ -6,7 +6,7 @@ import { ArbeidssituasjonArbeidsgivereSøknadsdata } from '../types/søknadsdata
 import { Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
-    ansattSøknadsdata?: ArbeidssituasjonArbeidsgivereSøknadsdata
+    ansattSøknadsdata?: ArbeidssituasjonArbeidsgivereSøknadsdata,
 ): ArbeidsforholdAvsluttetFørSøknadsperiode[] | undefined => {
     if (!ansattSøknadsdata || ansattSøknadsdata.size === 0) {
         return undefined;
@@ -28,7 +28,7 @@ export const getArbeidsforhorholdAvsluttetFørSøknadsperiode = (
 export const getDataBruktTilUtledning = (søknadsdata: Søknadsdata): DataBruktTilUtledningAnnetData => {
     return {
         arbeidsforholdAvsluttetFørSøknadsperiode: getArbeidsforhorholdAvsluttetFørSøknadsperiode(
-            søknadsdata.arbeidssituasjon?.arbeidsgivere
+            søknadsdata.arbeidssituasjon?.arbeidsgivere,
         ),
     };
 };

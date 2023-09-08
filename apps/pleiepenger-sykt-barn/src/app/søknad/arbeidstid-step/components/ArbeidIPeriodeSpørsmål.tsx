@@ -146,7 +146,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             validate={getArbeidIPeriodeSnittTimerPerUkeValidator(
                                                 intl,
                                                 intlValues,
-                                                normalarbeidstid
+                                                normalarbeidstid,
                                             )}
                                             data-testid="timer-verdi"
                                             width="xs"
@@ -168,7 +168,7 @@ const ArbeidIPeriodeSpørsmål: React.FunctionComponent<Props> = ({
                                             intl,
                                             intlValues,
                                             normalarbeidstid,
-                                            arbeidsuke
+                                            arbeidsuke,
                                         )
                                     }
                                     arbeidsforholdType={arbeidsforholdType}

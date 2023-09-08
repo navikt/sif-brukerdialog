@@ -9,7 +9,7 @@ import { getNormalarbeidstidApiDataFromSøknadsdata } from './getNormalarbeidsti
 export const getSelvstendigApiDataFromSøknadsdata = (
     arbeidssituasjon: ArbeidssituasjonSelvstendigSøknadsdata | undefined,
     arbeidIPeriode: ArbeidIPeriodeSøknadsdata | undefined,
-    locale: Locale = 'nb'
+    locale: Locale = 'nb',
 ): SelvstendigApiData => {
     if (!arbeidssituasjon) {
         throw 'getSelvstendigApiDataFromSøknadsdata: arbeidssituasjon is undefined';

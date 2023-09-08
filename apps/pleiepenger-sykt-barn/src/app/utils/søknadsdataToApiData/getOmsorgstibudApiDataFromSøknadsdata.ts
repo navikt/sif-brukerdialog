@@ -8,7 +8,7 @@ export type OmsorgstilbudApiData = Pick<SøknadApiData, 'omsorgstilbud'>;
 
 export const getOmsorgstilbudApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
-    omsorgstilbud?: OmsorgstilbudSøknadsdata
+    omsorgstilbud?: OmsorgstilbudSøknadsdata,
 ): OmsorgstilbudApiData | undefined => {
     const getOmsorgstilbudSvarApi = (erIOmsorgstilbud?: YesOrNoOrDoNotKnow): OmsorgstilbudSvarApi | undefined => {
         switch (erIOmsorgstilbud) {

@@ -5,7 +5,7 @@ import { dateToISODate } from '@navikt/sif-common-utils';
 
 export const getOpptjeningIUtlandetSøknadsdata = (
     locale: string,
-    opptjeningUtland?: OpptjeningUtlandSøknadsdata
+    opptjeningUtland?: OpptjeningUtlandSøknadsdata,
 ): OpptjeningIUtlandetApiData[] => {
     if (opptjeningUtland?.type === 'harOpptjeningUtland') {
         const apiData: OpptjeningIUtlandetApiData[] = opptjeningUtland.opptjeningUtland.map((opptjening) => ({

@@ -8,7 +8,7 @@ import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonSelvstendigSøknadsdata = (
     søknadsperiode: DateRange,
-    selvstendig: SelvstendigFormValues
+    selvstendig: SelvstendigFormValues,
 ): ArbeidssituasjonSelvstendigSøknadsdata | undefined => {
     if (!selvstendig || selvstendig.harHattInntektSomSN === YesOrNo.UNANSWERED) {
         return undefined;

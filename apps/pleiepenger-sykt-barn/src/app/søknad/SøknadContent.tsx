@@ -65,7 +65,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
             await logHendelse(ApplikasjonHendelse.starterMedMellomlagring, { step });
             navigateTo(step, navigate);
         },
-        [logHendelse, navigate]
+        [logHendelse, navigate],
     );
 
     const isOnWelcomPage = location.pathname === RouteConfig.WELCOMING_PAGE_ROUTE;
@@ -169,7 +169,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         StepID.TIDSROM,
                                         values,
                                         søknadsdata,
-                                        setValues
+                                        setValues,
                                     );
                                     setSøknadsdata(extractSøknadsdataFromFormValues(cleanedValues));
                                     navigateToNextStepFrom(StepID.TIDSROM, cleanedValues);
@@ -189,7 +189,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         StepID.ARBEIDSSITUASJON,
                                         values,
                                         søknadsdata,
-                                        setValues
+                                        setValues,
                                     );
                                     setSøknadsdata(extractSøknadsdataFromFormValues(cleanedValues));
                                     navigateToNextStepFrom(StepID.ARBEIDSSITUASJON, cleanedValues);
@@ -211,7 +211,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         StepID.ARBEIDSTID,
                                         values,
                                         søknadsdata,
-                                        setValues
+                                        setValues,
                                     );
                                     const nySøknadsdata = extractSøknadsdataFromFormValues(cleanedValues);
                                     setSøknadsdata(nySøknadsdata);
@@ -227,7 +227,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                                     setConfirmationDialog(undefined);
                                                     navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
                                                 },
-                                            })
+                                            }),
                                         );
                                     } else {
                                         navigateToNextStepFrom(StepID.ARBEIDSTID, cleanedValues);
@@ -248,7 +248,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         StepID.OMSORGSTILBUD,
                                         values,
                                         søknadsdata,
-                                        setValues
+                                        setValues,
                                     );
                                     setSøknadsdata(extractSøknadsdataFromFormValues(cleanedValues));
                                     navigateToNextStepFrom(StepID.OMSORGSTILBUD, cleanedValues);
@@ -269,7 +269,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
                                         StepID.OMSORGSTILBUD,
                                         values,
                                         søknadsdata,
-                                        setValues
+                                        setValues,
                                     );
                                     setSøknadsdata(extractSøknadsdataFromFormValues(cleanedValues));
                                     navigateToNextStepFrom(StepID.NATTEVÅK_OG_BEREDSKAP, cleanedValues);

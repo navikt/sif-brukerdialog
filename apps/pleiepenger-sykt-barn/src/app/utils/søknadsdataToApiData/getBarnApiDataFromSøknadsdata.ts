@@ -11,7 +11,7 @@ export type BarnApiData = Pick<
 
 export const getBarnApiDataFromSøknadsdata = (
     registrerteBarn: RegistrerteBarn[],
-    omBarnetSøknadsdata?: OmBarnetSøknadsdata
+    omBarnetSøknadsdata?: OmBarnetSøknadsdata,
 ): BarnApiData => {
     if (omBarnetSøknadsdata === undefined) {
         throw Error('omBarnetSøknadsdata undefined');
@@ -20,7 +20,7 @@ export const getBarnApiDataFromSøknadsdata = (
     switch (omBarnetSøknadsdata?.type) {
         case 'registrerteBarn':
             const barnChosenFromList = registrerteBarn.find(
-                (currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.aktørId
+                (currentBarn) => currentBarn.aktørId === omBarnetSøknadsdata.aktørId,
             );
 
             if (barnChosenFromList === undefined) {

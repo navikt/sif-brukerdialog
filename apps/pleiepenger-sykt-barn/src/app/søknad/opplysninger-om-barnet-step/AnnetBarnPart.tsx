@@ -80,7 +80,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                 resetFieldValues(
                                     [SøknadFormField.årsakManglerIdentitetsnummer, SøknadFormField.barnetsFødselsdato],
                                     setFieldValue,
-                                    initialValues
+                                    initialValues,
                                 );
                             }
                         }}

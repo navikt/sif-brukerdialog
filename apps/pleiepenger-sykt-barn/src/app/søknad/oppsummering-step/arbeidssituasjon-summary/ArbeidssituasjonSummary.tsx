@@ -62,7 +62,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
                                     intl,
                                     harVærtEllerErVernepliktig
                                         ? 'verneplikt.summary.harVærtVernepliktig'
-                                        : 'verneplikt.summary.harIkkeVærtVernepliktig'
+                                        : 'verneplikt.summary.harIkkeVærtVernepliktig',
                                 )}
                             </li>
                         </ul>

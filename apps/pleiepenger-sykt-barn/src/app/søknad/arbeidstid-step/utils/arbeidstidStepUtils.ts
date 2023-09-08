@@ -32,7 +32,7 @@ export const skalSvarePåOmEnJobberLiktIPerioden = (periode?: DateRange) =>
 
 export const getArbeidsperiodeIForholdTilSøknadsperiode = (
     periode: OpenDateRange,
-    søknadsperiode: DateRange
+    søknadsperiode: DateRange,
 ): ArbeidsperiodeIForholdTilSøknadsperiode => {
     if (
         dateRangeUtils.isDateInsideDateRange(periode.from, søknadsperiode) &&

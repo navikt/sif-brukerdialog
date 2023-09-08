@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 export const useElementDimensions = (
     ref: React.RefObject<HTMLElement>,
     listenToResize: boolean,
-    debounceTimeout?: number
+    debounceTimeout?: number,
 ) => {
     const [screenWidth, setScreenWidth] = useState<number>();
     const [dimensions, setDimensions] = useState<DOMRect>();

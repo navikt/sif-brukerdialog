@@ -17,7 +17,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
 
 export const getPeriodeSomSelvstendigInnenforPeriode = (
     periode: DateRange,
-    virksomhet?: Virksomhet
+    virksomhet?: Virksomhet,
 ): DateRange | undefined => {
     if (virksomhet === undefined || dayjs(virksomhet.fom).isAfter(periode.to, 'day')) {
         return undefined;
@@ -46,7 +46,7 @@ export const erSNITidsrom = (tidsrom: DateRange, snStartdato: Date, snSluttdato?
 
 export const erSNISøknadsperiode = (
     søknadsperiode: DateRange,
-    { harHattInntektSomSN, virksomhet }: SelvstendigFormValues
+    { harHattInntektSomSN, virksomhet }: SelvstendigFormValues,
 ): boolean => {
     if (harHattInntektSomSN !== YesOrNo.YES) {
         return false;

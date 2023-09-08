@@ -44,7 +44,7 @@ export const visVernepliktSpørsmål = ({
 
         return (
             ansatt_arbeidsforhold.some(
-                (a) => a.erAnsatt === YesOrNo.NO && a.sluttetFørSøknadsperiode !== YesOrNo.YES
+                (a) => a.erAnsatt === YesOrNo.NO && a.sluttetFørSøknadsperiode !== YesOrNo.YES,
             ) === false
         );
     }

@@ -13,7 +13,7 @@ export const cleanupSøknadStepValues = (
     step: StepID,
     values: SøknadFormValues,
     søknadsperiode: DateRange,
-    søknadsdata: Søknadsdata
+    søknadsdata: Søknadsdata,
 ): SøknadFormValues => {
     switch (step) {
         case StepID.TIDSROM:
@@ -37,7 +37,7 @@ export const cleanupAndSetFormikValues = async (
     step: StepID,
     values: SøknadFormValues,
     søknadsdata: Søknadsdata,
-    setValues: (values: SøknadFormValues) => void
+    setValues: (values: SøknadFormValues) => void,
 ): Promise<SøknadFormValues> => {
     await Promise.resolve();
     const søknadsperiode = getSøknadsperiodeFromFormValues(values);

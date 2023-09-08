@@ -3,7 +3,7 @@ import { StønadGodtgjørelseSøknadsdata } from '../../types/søknadsdata/Støn
 import { StønadGodtgjørelseFormValues } from '../../types/søknad-form-values/StønadGodtgjørelseFormValues';
 
 export const extractStønadGodtgjørelseSøknadsdata = (
-    stønadGodtgjørelse: StønadGodtgjørelseFormValues
+    stønadGodtgjørelse: StønadGodtgjørelseFormValues,
 ): StønadGodtgjørelseSøknadsdata | undefined => {
     const {
         mottarStønadGodtgjørelse,

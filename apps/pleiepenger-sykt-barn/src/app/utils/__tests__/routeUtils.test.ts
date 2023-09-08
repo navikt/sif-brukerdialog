@@ -71,7 +71,7 @@ describe('routeUtils', () => {
                     ...formValues,
                     [SøknadFormField.harBekreftetOpplysninger]: true,
                 },
-                true
+                true,
             );
             expect(result).toBe(true);
         });
@@ -83,7 +83,7 @@ describe('routeUtils', () => {
                     ...formValues,
                     [SøknadFormField.harBekreftetOpplysninger]: false,
                 },
-                false
+                false,
             );
             expect(result).toBe(false);
         });

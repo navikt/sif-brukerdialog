@@ -109,14 +109,14 @@ export const getArbeidIPeriodeSnittTimerEnArbeidsukeValidator =
         if (arbeidsuke.arbeidsdagerPeriode !== undefined) {
             const maksTimerIPeriode = getMaksArbeidstimerIPeriode(arbeidsuke.arbeidsdagerPeriode);
             const forMangeTimerUtFraDagerError = getNumberValidator({ required: true, min, max: maksTimerIPeriode })(
-                value
+                value,
             );
 
             if (forMangeTimerUtFraDagerError && forMangeTimerUtFraDagerError === ValidateNumberError.numberIsTooLarge) {
                 return {
                     key: getSnittTimerEnArbeidsukeErrorIntlKey(
                         ArbeidIPeriodeFormField.snittTimerPerUke,
-                        'flereTimerEnnTilgjengeligIUke'
+                        'flereTimerEnnTilgjengeligIUke',
                     ),
                     values: {
                         ...intlValues,

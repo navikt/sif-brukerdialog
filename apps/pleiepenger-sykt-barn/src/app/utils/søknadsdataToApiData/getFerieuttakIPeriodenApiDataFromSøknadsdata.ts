@@ -3,7 +3,7 @@ import { FerieuttakIPeriodenApiData } from '../../types/søknad-api-data/Søknad
 import { FerieuttakIPeriodenSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
 
 export const getFerieuttakIPeriodenApiDataFromSøknadsdata = (
-    ferieuttakIPerioden?: FerieuttakIPeriodenSøknadsdata
+    ferieuttakIPerioden?: FerieuttakIPeriodenSøknadsdata,
 ): FerieuttakIPeriodenApiData => {
     if (ferieuttakIPerioden === undefined) {
         throw Error('ferieuttakIPeriodenSøknadsdata undefined');

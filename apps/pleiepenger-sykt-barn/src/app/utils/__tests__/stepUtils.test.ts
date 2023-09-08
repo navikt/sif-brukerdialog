@@ -32,7 +32,7 @@ describe('stepUtils', () => {
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formValues);
             expect(returnValue).toEqual(
                 stepValidations.welcomingPageIsValid({} as any) &&
-                    stepValidations.opplysningerOmBarnetStepIsValid({} as any)
+                    stepValidations.opplysningerOmBarnetStepIsValid({} as any),
             );
         });
     });
@@ -46,7 +46,7 @@ describe('stepUtils', () => {
             expect(returnValue).toEqual(
                 stepValidations.welcomingPageIsValid({} as any) &&
                     stepValidations.opplysningerOmBarnetStepIsValid({} as any) &&
-                    stepValidations.opplysningerOmTidsromStepIsValid({} as any)
+                    stepValidations.opplysningerOmTidsromStepIsValid({} as any),
             );
         });
     });
@@ -62,7 +62,7 @@ describe('stepUtils', () => {
                 stepValidations.welcomingPageIsValid({} as any) &&
                     stepValidations.opplysningerOmBarnetStepIsValid({} as any) &&
                     stepValidations.opplysningerOmTidsromStepIsValid({} as any) &&
-                    stepValidations.arbeidssituasjonStepIsValid()
+                    stepValidations.arbeidssituasjonStepIsValid(),
             );
         });
     });
@@ -80,7 +80,7 @@ describe('stepUtils', () => {
                     stepValidations.opplysningerOmBarnetStepIsValid({} as any) &&
                     stepValidations.opplysningerOmTidsromStepIsValid({} as any) &&
                     stepValidations.arbeidssituasjonStepIsValid() &&
-                    stepValidations.medlemskapStepIsValid({} as any)
+                    stepValidations.medlemskapStepIsValid({} as any),
             );
         });
     });
@@ -100,7 +100,7 @@ describe('stepUtils', () => {
                     stepValidations.opplysningerOmTidsromStepIsValid({} as any) &&
                     stepValidations.arbeidssituasjonStepIsValid() &&
                     stepValidations.medlemskapStepIsValid({} as any) &&
-                    stepValidations.legeerklæringStepIsValid()
+                    stepValidations.legeerklæringStepIsValid(),
             );
         });
     });

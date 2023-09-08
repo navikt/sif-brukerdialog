@@ -112,11 +112,11 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     const valgtDatoTxt = dateFormatter.dayDateMonthYear(dato);
 
     const ukePeriode: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getWeekDateRange(dato, true), periode)
+        getDateRangeWithinDateRange(getWeekDateRange(dato, true), periode),
     );
     const ukeErHel = dayjs(ukePeriode.from).isoWeekday() === 1 && dayjs(ukePeriode.to).isoWeekday() === 5;
     const månedPeriode: DateRange = trimDateRangeToWeekdays(
-        getDateRangeWithinDateRange(getMonthDateRange(dato, true), periode)
+        getDateRangeWithinDateRange(getMonthDateRange(dato, true), periode),
     );
     const månedErHel =
         dayjs(periode.from).isBefore(månedPeriode.from, 'month') && dayjs(periode.to).isAfter(månedPeriode.to, 'month');
@@ -137,7 +137,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     const renderGjentagelseRadioLabel = (
         key: string,
         periode?: { fra: string; til: string },
-        values?: any
+        values?: any,
     ): JSX.Element => (
         <>
             <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
@@ -213,7 +213,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                 fra: ukePeriodeStartTxt,
                                                                 til: ukePeriodeSluttTxt,
                                                             },
-                                                            { ukeNavn }
+                                                            { ukeNavn },
                                                         ),
                                                         value: GjentagelseType.heleUken,
                                                     },
@@ -224,7 +224,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                 fra: månedPeriodeStartTxt,
                                                                 til: månedPeriodeSluttTxt,
                                                             },
-                                                            { månedNavn }
+                                                            { månedNavn },
                                                         ),
                                                         value: GjentagelseType.heleMåneden,
                                                     },
@@ -235,7 +235,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                 fra: valgtDatoTxt,
                                                                 til: sluttDatoTxt,
                                                             },
-                                                            { dagerNavn }
+                                                            { dagerNavn },
                                                         ),
 
                                                         value: GjentagelseType.hverUke,
@@ -251,7 +251,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                 <FormComponents.Checkbox
                                                                     label={intlHelper(
                                                                         intl,
-                                                                        'tidEnkeltdagForm.stoppGjentagelse.label'
+                                                                        'tidEnkeltdagForm.stoppGjentagelse.label',
                                                                     )}
                                                                     name={FormFields.stoppGjentagelse}
                                                                 />
@@ -261,7 +261,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                     <FormComponents.DatePicker
                                                                         label={intlHelper(
                                                                             intl,
-                                                                            'tidEnkeltdagForm.stopDato.label'
+                                                                            'tidEnkeltdagForm.stopDato.label',
                                                                         )}
                                                                         minDate={dato}
                                                                         maxDate={periode.to}

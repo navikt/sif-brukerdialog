@@ -39,7 +39,7 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
 
     const tekstStønadGodtgjørelse = intlHelper(
         intl,
-        'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse'
+        'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoStønadGodtgjørelse',
     );
     return (
         <FormComponents.NumberInput

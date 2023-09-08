@@ -53,7 +53,7 @@ const BekreftDialog = (props: Props) => {
                       </Knapperad>
                   </Modal.Body>
               </Modal>,
-              document.body
+              document.body,
           )
         : null;
 };

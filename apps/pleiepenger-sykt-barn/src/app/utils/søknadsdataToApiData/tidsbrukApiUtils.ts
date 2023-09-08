@@ -30,7 +30,7 @@ const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiDat
 
 export const getEnkeltdagerIPeriodeApiData = (
     enkeltdager: DateDurationMap,
-    periode: DateRange
+    periode: DateRange,
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
 

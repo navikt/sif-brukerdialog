@@ -29,7 +29,7 @@ const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ formProps, isOpen }) => {
                       <OmsorgstilbudPeriodeForm {...formProps} />
                   </Modal.Body>
               </Modal>,
-              document.body
+              document.body,
           )
         : null;
 };

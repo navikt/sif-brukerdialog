@@ -62,7 +62,7 @@ export const getFrilansApiDataFromSøknadsdata = ({
 
 const getFrilansArbeidsforholdApiData = (
     normalarbeidstid: NormalarbeidstidSøknadsdata,
-    arbeidIPeriode: ArbeidIPeriodeSøknadsdata
+    arbeidIPeriode: ArbeidIPeriodeSøknadsdata,
 ): ArbeidsforholdApiData => {
     return {
         normalarbeidstid: {
@@ -76,7 +76,7 @@ const getFrilansFellesInfo = (
     jobberFortsattSomFrilans: boolean,
     startetFørSisteTreHeleMåneder: boolean,
     startdato: Date,
-    sluttdato?: Date
+    sluttdato?: Date,
 ): Pick<
     FrilanserMedArbeidsforholdApiDataPart,
     'harInntektSomFrilanser' | 'jobberFortsattSomFrilans' | 'startdato' | 'sluttdato' | 'startetFørSisteTreHeleMåneder'

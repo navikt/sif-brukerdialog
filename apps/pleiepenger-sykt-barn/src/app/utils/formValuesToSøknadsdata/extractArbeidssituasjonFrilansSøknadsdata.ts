@@ -8,7 +8,7 @@ import { extractNormalarbeidstid } from './extractNormalarbeidstidSøknadsdata';
 
 export const extractArbeidssituasjonFrilansSøknadsdata = (
     søknadsperiode: DateRange,
-    formValues: FrilansFormValues
+    formValues: FrilansFormValues,
 ): ArbeidssituasjonFrilansSøknadsdata | undefined => {
     if (formValues === undefined || !isYesOrNoAnswered(formValues.harHattInntektSomFrilanser)) {
         return undefined;
@@ -40,7 +40,7 @@ export const extractArbeidssituasjonFrilansSøknadsdata = (
     const periodeSomFrilanserISøknadsperiode = getPeriodeSomFrilanserInnenforPeriode(
         søknadsperiode,
         startdato,
-        sluttdato
+        sluttdato,
     );
     if (periodeSomFrilanserISøknadsperiode === undefined || !frilanstype) {
         throw 'extractArbeidssituasjonFrilansSøknadsdata: periodeSomFrilanserISøknadsperiode === undefined';

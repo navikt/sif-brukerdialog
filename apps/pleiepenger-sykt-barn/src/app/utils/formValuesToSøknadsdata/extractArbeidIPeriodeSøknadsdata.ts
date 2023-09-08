@@ -29,7 +29,7 @@ export const extractArbeidsukerTimerSøknadsdata = (arbeidsuker: ArbeidsukerForm
 };
 
 export const extractArbeidIPeriodeSøknadsdata = (
-    formValues: ArbeidIPeriodeFormValues
+    formValues: ArbeidIPeriodeFormValues,
 ): ArbeidIPeriodeSøknadsdata | undefined => {
     const { arbeiderIPerioden, prosentAvNormalt, snittTimerPerUke, timerEllerProsent, erLiktHverUke, arbeidsuker } =
         formValues;

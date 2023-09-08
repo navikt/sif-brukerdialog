@@ -14,7 +14,7 @@ const mapBostedUtlandToApi = (opphold: BostedUtland, locale: string): BostedUtla
 
 export const getMedlemskapApiDataFromSøknadsdata = (
     locale: Locale,
-    medlemskapSøknadsdata?: MedlemskapSøknadsdata
+    medlemskapSøknadsdata?: MedlemskapSøknadsdata,
 ): MedlemskapApiData => {
     if (medlemskapSøknadsdata === undefined) {
         throw Error('medlemskapSøknadsdata undefined');
@@ -32,12 +32,12 @@ export const getMedlemskapApiDataFromSøknadsdata = (
             return {
                 harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
                 utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApi(o, locale),
                 ),
 
                 skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApi(o, locale),
                 ),
             };
 
@@ -45,7 +45,7 @@ export const getMedlemskapApiDataFromSøknadsdata = (
             return {
                 harBoddIUtlandetSiste12Mnd: medlemskapSøknadsdata.harBoddUtenforNorgeSiste12Mnd,
                 utenlandsoppholdSiste12Mnd: medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApi(o, locale),
                 ),
                 skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 utenlandsoppholdNeste12Mnd: [],
@@ -56,7 +56,7 @@ export const getMedlemskapApiDataFromSøknadsdata = (
                 utenlandsoppholdSiste12Mnd: [],
                 skalBoIUtlandetNeste12Mnd: medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 utenlandsoppholdNeste12Mnd: medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd.map((o) =>
-                    mapBostedUtlandToApi(o, locale)
+                    mapBostedUtlandToApi(o, locale),
                 ),
             };
     }

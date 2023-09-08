@@ -34,15 +34,15 @@ const ArbeidssituasjonOpptjeningUtland = () => {
                                 labels={{
                                     addLabel: intlHelper(
                                         intl,
-                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.addLabel'
+                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.addLabel',
                                     ),
                                     listTitle: intlHelper(
                                         intl,
-                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.listTitle'
+                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.listTitle',
                                     ),
                                     modalTitle: intlHelper(
                                         intl,
-                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.modalTitle'
+                                        'steg.arbeidssituasjon.opptjeningUtland.listAndDialog.modalTitle',
                                     ),
                                 }}
                             />

@@ -81,7 +81,7 @@ const RegistrertBarnPart = ({ søkersBarn }: Props) => {
                                     SøknadFormField.relasjonTilBarnet,
                                 ],
                                 setFieldValue,
-                                initialValues
+                                initialValues,
                             );
                         }
                     }}

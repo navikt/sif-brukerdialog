@@ -123,7 +123,7 @@ const ArbeidssituasjonSN = ({ søknadsperiode }: Props) => {
                                     label={intlHelper(
                                         intl,
                                         `arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm`,
-                                        intlValues
+                                        intlValues,
                                     )}
                                     name={
                                         `${SelvstendigFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
