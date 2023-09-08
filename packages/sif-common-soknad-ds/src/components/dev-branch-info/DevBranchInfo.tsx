@@ -13,7 +13,7 @@ const DevBranchInfo = () => {
             tagRef.current.remove();
         }
     };
-    const devBranchName = getEnvironmentVariable('GITHUB_REF');
+    const devBranchName = getEnvironmentVariable('GITHUB_REF_NAME');
     if (devBranchName) {
         return (
             <Tag
