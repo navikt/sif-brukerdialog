@@ -16,6 +16,7 @@ on:
 
 env:
     IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
+    GITHUB_REF: ${{ github.ref }}
     GITHUB_USERNAME: x-access-token
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -60,3 +61,4 @@ jobs:
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+                  GITHUB_REF: ${{ github.ref }}

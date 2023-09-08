@@ -17,6 +17,7 @@ const envSettings = () => {
          USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
          APP_VERSION: '${process.env.APP_VERSION}',
          IMAGE: '${process.env.IMAGE}',
+         GITHUB_REF: '${process.env.GITHUB_REF}',
      };`
         .trim()
         .replace(/ /g, '');
