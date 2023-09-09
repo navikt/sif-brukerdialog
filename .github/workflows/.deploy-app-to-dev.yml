@@ -60,6 +60,6 @@ jobs:
                   CLUSTER: dev-gcp
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
+                  VAR: GITHUB_REF_NAME=${{ github.ref_name }}
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-                  GITHUB_REF_NAME: ${{ github.ref_name }}
 
