@@ -21,6 +21,7 @@ const envSettings = (MSW) => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         UKJENT_ARBEIDSFOHOLD: '${process.env.UKJENT_ARBEIDSFOHOLD}',
         IMAGE: '${process.env.IMAGE}',
+        GITHUB_REF_NAME: '${process.env.GITHUB_REF_NAME}',
     };`
         .trim()
         .replace(/ /g, '');

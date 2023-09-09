@@ -15,6 +15,7 @@ const envSettings = () => {
          APPSTATUS_DATASET: '${process.env.APPSTATUS_DATASET}',
          SKIP_ORGNUM_VALIDATION: '${process.env.SKIP_ORGNUM_VALIDATION}',
          IMAGE: '${process.env.IMAGE}',
+         GITHUB_REF_NAME: '${process.env.GITHUB_REF_NAME}',
      };`
         .trim()
         .replace(/ /g, '');

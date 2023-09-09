@@ -20,6 +20,7 @@ const envSettings = () => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         LIVETS_SLUTTFASE: '${process.env.LIVETS_SLUTTFASE}',
         IMAGE: '${process.env.IMAGE}',
+        GITHUB_REF_NAME: '${process.env.GITHUB_REF_NAME}',
      };`
         .trim()
         .replace(/ /g, '');
