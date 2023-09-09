@@ -54,7 +54,6 @@ jobs:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger
                   MSW: off
-                  APP_VERSION: dev
                   FRONTEND_API_PATH: http://localhost:8099/
                   FRONTEND_VEDLEGG_URL: http://localhost:8099/api
                   FRONTEND_INNSYN_API_PATH: http://localhost:8099/api
