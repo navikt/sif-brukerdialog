@@ -4,7 +4,9 @@ import { useRef } from 'react';
 
 const DevBranchInfo = () => {
     const tagRef = useRef<HTMLDivElement>(null);
-    if (getEnvironmentVariable('APP_VERSION') === 'production') {
+    const devBranchName = getEnvironmentVariable('GITHUB_REF_NAME');
+
+    if (!devBranchName || devBranchName === 'undefined' || getEnvironmentVariable('APP_VERSION') !== 'dev') {
         return null;
     }
 
@@ -13,29 +15,26 @@ const DevBranchInfo = () => {
             tagRef.current.remove();
         }
     };
-    const devBranchName = getEnvironmentVariable('GITHUB_REF_NAME');
-    if (devBranchName && devBranchName !== 'undefined') {
-        return (
-            <Tag
-                role="presentation"
-                aria-hidden={true}
-                ref={tagRef}
-                onClick={deleteTag}
-                variant="info"
-                size="small"
-                title="Klikk for å fjerne denne taggen. Den vises kun i dev-modus."
-                style={{
-                    cursor: 'pointer',
-                    position: 'fixed',
-                    bottom: 0,
-                    left: 0,
-                    margin: '.25rem',
-                }}>
-                Github-branch: {devBranchName}
-            </Tag>
-        );
-    }
-    return null;
+
+    return (
+        <Tag
+            role="presentation"
+            aria-hidden={true}
+            ref={tagRef}
+            onClick={deleteTag}
+            variant="info"
+            size="small"
+            title="Klikk for å fjerne denne taggen. Den vises kun i dev-modus."
+            style={{
+                cursor: 'pointer',
+                position: 'fixed',
+                bottom: 0,
+                left: 0,
+                margin: '.25rem',
+            }}>
+            Github-branch: {devBranchName}
+        </Tag>
+    );
 };
 
 export default DevBranchInfo;
