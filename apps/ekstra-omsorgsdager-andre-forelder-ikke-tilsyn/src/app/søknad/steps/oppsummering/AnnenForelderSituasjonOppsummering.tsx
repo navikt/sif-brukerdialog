@@ -39,7 +39,7 @@ const AnnenForelderSituasjonOppsummering = ({ annenForelder }: Props) => {
                 <SummaryBlock header={intlHelper(intl, 'step.oppsummering.annenForelderensSituasjon.periode.header')}>
                     {renderPeriodeAnnenForelderenKanIkkeHaTilsyn(
                         annenForelder.periodeFraOgMed,
-                        annenForelder.periodeTilOgMed
+                        annenForelder.periodeTilOgMed,
                     )}
                 </SummaryBlock>
             )}

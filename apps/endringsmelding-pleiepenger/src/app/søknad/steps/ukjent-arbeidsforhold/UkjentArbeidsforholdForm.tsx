@@ -89,12 +89,12 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
     const initialValues: UkjentArbeidsforholdFormValues = getUkjentArbeidsforholdStepInitialValues(
         ukjentArbeidsforholdSøknadsdata,
         stepFormValues?.ukjentArbeidsforhold,
-        ukjenteArbeidsgivere
+        ukjenteArbeidsgivere,
     );
 
     return (

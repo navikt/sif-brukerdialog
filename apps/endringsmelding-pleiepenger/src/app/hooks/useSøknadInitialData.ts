@@ -49,7 +49,7 @@ const prepInitialData = (
         arbeidsgivere: Arbeidsgiver[];
         lagretSøknadState?: SøknadStatePersistence;
     },
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): SøknadInitialData => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
 
@@ -67,8 +67,8 @@ const prepInitialData = (
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
                     JSON.stringify(
-                        getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode)
-                    )
+                        getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode),
+                    ),
                 );
             }
             return sak;

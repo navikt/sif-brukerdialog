@@ -77,7 +77,6 @@
     "step.sendButtonAriaLabel": "Send inn",
 
     "step.beskrivelse.stepTitle": "Ettersendelse av dokumentasjon",
-    "step.beskrivelse.pageTitle": "Ettersendelse av dokumentasjon",
     "step.beskrivelse.stepIndicatorLabel": "Ettersendelse av dokumentasjon",
     "step.beskrivelse.nextButtonLabel": "Fortsett",
     "step.beskrivelse.hvaSendes.spm": "Hva skal du ettersende?",
@@ -88,7 +87,6 @@
     "step.beskrivelse.intro.2.1": "kontakt med oss",
 
     "step.omsorgspenger_type.stepTitle": "Hva skal du ettersende til?",
-    "step.omsorgspenger_type.pageTitle": "Omsorgspenger type",
     "step.omsorgspenger_type.stepIndicatorLabel": "Omsorgspenger type",
     "step.omsorgspenger_type.nextButtonLabel": "Fortsett",
     "step.omsorgspenger_type.radio.label.ekstraomsorgsdager": "Søknad om ekstra omsorgsdager ved kronisk sykt eller funksjonshemmet barn",
@@ -98,7 +96,6 @@
     "step.omsorgspenger_type.radio.label.deling": "Melding om deling av omsorgsdager",
     "step.omsorgspenger_type.søknadstype.spm": "Velg hva denne ettersendingen gjelder",
 
-    "step.dokumenter.pageTitle": "Last opp dokumenter",
     "step.dokumenter.stepTitle": "Nå skal du laste opp dokumentene dine",
     "step.dokumenter.stepIndicatorLabel": "Last opp dokumenter",
     "step.dokumenter.nextButtonLabel": "Fortsett",

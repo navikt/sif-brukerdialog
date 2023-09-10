@@ -92,7 +92,7 @@ const OppsummeringStep = () => {
                     <SummarySection header="Nytt arbeidsforhold">
                         {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjenteArbeidsforhold.find(
-                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
                             );
 
                             if (!arbeidsforhold) {
@@ -124,7 +124,7 @@ const OppsummeringStep = () => {
                                                 <div data-testid={getTestKey('timerPerUke')}>
                                                     <DurationText
                                                         duration={ISODurationToDuration(
-                                                            arbeidsforhold.normalarbeidstid.timerPerUke
+                                                            arbeidsforhold.normalarbeidstid.timerPerUke,
                                                         )}
                                                     />
                                                 </div>

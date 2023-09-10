@@ -4,7 +4,8 @@ export const velkommenPageMessages: MessageFileFormat = {
     nb: {
         'page.velkommen.sidetittel': 'Søknad om ekstra omsorgsdager',
         'page.velkommen.guide.tittel': 'Hei {navn}',
-        'page.velkommen.guide.ingress': 'Velkommen til søknad om ekstra omsorgsdager.',
+        'page.velkommen.guide.ingress':
+            'Velkommen til søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn.',
         'page.velkommen.guide.tekst.1':
             'Denne søknaden er for deg som skal søke om ekstra omsorgsdager fordi den andre forelderen ikke kan ha tilsyn med barn i en periode som varer i minst 6 måneder. Dette er i situasjoner hvor den andre forelderen for eksempel',
         'page.velkommen.guide.tekst.1.1': 'er fysisk eller psykisk syk',

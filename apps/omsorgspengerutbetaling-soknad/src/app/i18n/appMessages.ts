@@ -28,8 +28,6 @@ export const appMessages: MessageFileFormat = {
         Fredag: 'Fredag',
 
         'application.title': 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
-        'application.bannerTitle':
-            'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
 
         'page.loadingPage.tekst': 'Laster ...',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
@@ -63,14 +61,11 @@ export const appMessages: MessageFileFormat = {
         'steg.footer.avbryt': 'Avbryt og slett søknad',
         'steg.footer.fortsettSenere': 'Avslutt og fortsett senere',
 
-        'step.dineBarn.pageTitle': 'Om barn',
         'step.dineBarn.stepTitle': 'Om barn',
         'step.dineBarn.stepIndicatorLabel': 'Om barn',
 
-        'step.fravaer.pageTitle': 'Dager du søker om utbetaling for - Søknad om utbetaling av omsorgspenger',
         'step.fravaer.stepTitle': 'Dager du søker om utbetaling for',
 
-        'step.legeerklæring.pageTitle': 'Legeerklæring',
         'step.legeerklæring.stepTitle': 'Last opp legeerklæring',
 
         'step.legeerklæring.counsellorpanel.1':
@@ -92,16 +87,12 @@ export const appMessages: MessageFileFormat = {
             'Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ',
         'dokumenter.advarsel.totalstørrelse.2': 'ettersende flere dokumenter.',
 
-        'step.arbeidssituasjon.pageTitle': 'Arbeidssituasjon - Søknad om utbetaling av omsorgspenger',
         'step.arbeidssituasjon.stepTitle': 'Arbeidssituasjon',
 
-        'step.fravaerFra.pageTitle': 'Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser',
         'step.fravaerFra.stepTitle': 'Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser',
 
-        'step.medlemskap.pageTitle': 'Medlemskap i folketrygden - Søknad om utbetaling av omsorgspenger',
         'step.medlemskap.stepTitle': 'Medlemskap i folketrygden',
 
-        'step.oppsummering.pageTitle': 'Oppsummering - Søknad om utbetaling av omsorgspenger',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
         'initialLoadError.pageTitle': 'Det oppstod en feil',
@@ -111,7 +102,7 @@ export const appMessages: MessageFileFormat = {
         'resetMellomlagring.startPåNytt': 'Start på nytt',
 
         'validation.harUtvidetRett.yesOrNoIsUnanswered':
-            'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemming eller ikke.',
+            'Du må svare at du har fått ekstra omsorgsdager for barn fordi barnet har kronisk sykdom eller funksjonshemning eller ikke.',
         'validation.harUtvidetRettFor.listIsEmpty':
             'Du må velge barn du har søkt om eller fått ekstra omsorgsdager for.',
         'validation.harDekketTiFørsteDagerSelv.notChecked':

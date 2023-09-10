@@ -24,7 +24,7 @@ const mapRegistrertToApiBarn = (registrertBarn: RegistrertBarn): ApiBarn => {
 
 export const getOmBarnaApiDataFromSøknadsdata = (
     omBarna: OmBarnaSøknadsdata,
-    registrertBarn: RegistrertBarn[]
+    registrertBarn: RegistrertBarn[],
 ): OmBarnaToApiData => {
     const { andreBarn } = omBarna;
 

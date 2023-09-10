@@ -4,7 +4,7 @@ import { OmAnnenForelderFormValues } from './OmAnnenForelderStep';
 
 export const getOmAnnenForelderStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: OmAnnenForelderFormValues
+    formValues?: OmAnnenForelderFormValues,
 ): OmAnnenForelderFormValues => {
     if (formValues) {
         return formValues;
@@ -29,7 +29,7 @@ export const getOmAnnenForelderStepInitialValues = (
 };
 
 export const getOmAnnenForelderSøknadsdataFromFormValues = (
-    values: OmAnnenForelderFormValues
+    values: OmAnnenForelderFormValues,
 ): OmAnnenForelderSøknadsdata | undefined => {
     const { annenForelderNavn, annenForelderFnr } = values;
     return {

@@ -39,7 +39,7 @@ const ArbeidstidUker: React.FunctionComponent<Props> = ({
 }) => {
     const { visibleItems, hasMoreItems, showMoreItems, showAllItems } = usePagination<ArbeidstidUkerItem>(
         listItems,
-        10
+        10,
     );
 
     const selectableList = useSelectableList<ArbeidstidUkerItem>({ items: listItems, onEditItems: onEndreUker });

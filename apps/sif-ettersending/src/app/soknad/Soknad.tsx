@@ -200,7 +200,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                             {
                                                 søker,
                                             },
-                                            søknadstype
+                                            søknadstype,
                                         );
                                     } catch (error) {
                                         if (isUserLoggedOut(error)) {

@@ -8,18 +8,19 @@
     "ingresses": ["https://omsorgspengerutbetaling-soknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
     "env": {
-        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
-        "API_URL": "http://k9-brukerdialog-api",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
-        "FRONTEND_VEDLEGG_URL": "https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/api",
-        "FRONTEND_API_PATH": "/api",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
-        "LOGIN_URL": "https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/soknad",
-        "NYNORSK": "off",
-        "APPSTATUS_PROJECT_ID": "ryujtq87",
-        "APPSTATUS_DATASET": "staging",
-        "SKIP_ORGNUM_VALIDATION": "true",
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
-        "NPM_CONFIG_CACHE": "/tmp"
+        "API_URL": "http://k9-brukerdialog-api",
+        "APP_VERSION": "dev",
+        "APPSTATUS_DATASET": "staging",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
+        "FRONTEND_API_PATH": "/api",
+        "FRONTEND_VEDLEGG_URL": "https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/api",
+        "LOGIN_URL": "https://omsorgspengerutbetaling-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/soknad",
+        "NPM_CONFIG_CACHE": "/tmp",
+        "NYNORSK": "off",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
+        "SKIP_ORGNUM_VALIDATION": "true",
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }
 }

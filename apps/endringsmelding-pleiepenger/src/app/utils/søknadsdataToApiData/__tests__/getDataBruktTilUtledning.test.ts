@@ -77,7 +77,7 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
         const result = mapArbeidsforholdToArbeidsforholdApiData(
             { arbeidsgiverKey: '123', erAnsatt: false },
             arbeidsgiver,
-            undefined
+            undefined,
         );
         expect(result.erAnsatt).toBeFalsy();
         expect(result.organisasjonsnummer).toEqual('123');
@@ -93,7 +93,7 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             const result = mapArbeidsforholdToArbeidsforholdApiData(
                 arbeidsforhold,
                 arbeidsgiver,
-                ArbeiderIPeriodenSvar.somVanlig
+                ArbeiderIPeriodenSvar.somVanlig,
             );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
@@ -106,7 +106,7 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             const result = mapArbeidsforholdToArbeidsforholdApiData(
                 arbeidsforhold,
                 arbeidsgiver,
-                ArbeiderIPeriodenSvar.heltFravær
+                ArbeiderIPeriodenSvar.heltFravær,
             );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
@@ -119,7 +119,7 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             const result = mapArbeidsforholdToArbeidsforholdApiData(
                 arbeidsforhold,
                 arbeidsgiver,
-                ArbeiderIPeriodenSvar.redusert
+                ArbeiderIPeriodenSvar.redusert,
             );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();

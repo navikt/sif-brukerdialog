@@ -23,7 +23,7 @@ const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold):
 
 const ukjentArbeidsgiverFormValuesToSøknadsdata = (
     formValues: UkjentArbeidsgiverFormValues,
-    arbeidsgiver?: Arbeidsgiver
+    arbeidsgiver?: Arbeidsgiver,
 ): Arbeidsforhold | undefined => {
     if (!arbeidsgiver) {
         return undefined;
@@ -52,7 +52,7 @@ const ukjentArbeidsgiverFormValuesToSøknadsdata = (
 export const getUkjentArbeidsforholdStepInitialValues = (
     ukjentArbeidsforholdSøknadsdata: UkjentArbeidsforholdSøknadsdata | undefined,
     formValues: UkjentArbeidsforholdFormValues | undefined,
-    ukjenteArbeidsgivere: Arbeidsgiver[]
+    ukjenteArbeidsgivere: Arbeidsgiver[],
 ): UkjentArbeidsforholdFormValues => {
     if (formValues) {
         return formValues;
@@ -77,7 +77,7 @@ export const getUkjentArbeidsforholdStepInitialValues = (
 
 export const getUkjentArbeidsforholdSøknadsdataFromFormValues = (
     values: UkjentArbeidsforholdFormValues,
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ): UkjentArbeidsforholdSøknadsdata => {
     const arbeidsforhold: Arbeidsforhold[] = [];
     Object.keys(values.arbeidsforhold).forEach((key) => {

@@ -55,5 +55,5 @@ root.render(
                 />
             </SoknadApplication>
         </AmplitudeProvider>
-    </SifAppWrapper>
+    </SifAppWrapper>,
 );

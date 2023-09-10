@@ -98,7 +98,7 @@ const setSøknadOmAnnenForelder = (payload: OmAnnenForelderSøknadsdata): SetSø
 });
 
 const setSøknadAnnenForelderenSituasjon = (
-    payload: AnnenForelderenSituasjonSøknadsdata
+    payload: AnnenForelderenSituasjonSøknadsdata,
 ): SetSøknadAnnenForelderenSituasjon => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ANNEN_FORELDEREN_SITUASJON,
     payload,
