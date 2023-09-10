@@ -63,7 +63,7 @@ const OmBarnaStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     return (

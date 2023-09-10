@@ -4,7 +4,6 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SoknadApplicationType, SoknadStepsConfig, StepConfig } from './soknadStepTypes';
 
 interface StepTexts {
-    pageTitle: string;
     stepTitle: string;
     nextButtonLabel: string;
     previousButtonLabel?: string;
@@ -13,7 +12,6 @@ interface StepTexts {
 
 const getStepTexts = <Step>(intl: IntlShape, stepConfig: StepConfig<Step>): StepTexts => {
     return {
-        pageTitle: intlHelper(intl, stepConfig.pageTitleIntlKey),
         stepTitle: intlHelper(intl, stepConfig.stepTitleIntlKey),
         nextButtonLabel: intlHelper(intl, stepConfig.nextButtonLabelIntlKey),
         previousStepTitle: stepConfig.previousStepTitleIntlKey
@@ -35,7 +33,7 @@ const getStepRoute = <STEPS>(stepId: STEPS, applicationType: SoknadApplicationTy
 const getStepsConfig = <STEPS extends string>(
     steps: STEPS[],
     applicationType: SoknadApplicationType,
-    routeCreator?: (step: STEPS) => string
+    routeCreator?: (step: STEPS) => string,
 ): SoknadStepsConfig<STEPS> => {
     const numSteps = steps.length;
     const config: SoknadStepsConfig<STEPS> = {};
@@ -45,7 +43,6 @@ const getStepsConfig = <STEPS extends string>(
         const prevStepId = idx > 0 ? steps[idx - 1] : undefined;
         config[stepId] = {
             id: stepId,
-            pageTitleIntlKey: `step.${stepId}.pageTitle`,
             stepTitleIntlKey: `step.${stepId}.stepTitle`,
             nextButtonLabelIntlKey: `step.${stepId}.nextButtonLabel`,
             route: routeCreator ? routeCreator(stepId) : getStepRoute(stepId, applicationType),
@@ -74,7 +71,7 @@ const getStepsConfig = <STEPS extends string>(
 function getProgressStepsFromConfig<Steps>(
     stepsConfig: SoknadStepsConfig<Steps>,
     currentStepIndex: number,
-    intl: IntlShape
+    intl: IntlShape,
 ): ProgressStep[] {
     return Object.keys(stepsConfig).map((key) => {
         const stepConfig = stepsConfig[key];

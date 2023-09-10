@@ -8,7 +8,6 @@ export interface StepConfig<STEPS> {
     previousStep?: STEPS;
     previousStepRoute?: string;
     previousStepTitleIntlKey?: string;
-    pageTitleIntlKey: string;
     stepTitleIntlKey: string;
     nextButtonLabelIntlKey: string;
     previousButtonLabelIntlKey: string;

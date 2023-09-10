@@ -12,9 +12,9 @@ export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefi
 
 export const finnesArbeidsgiverIK9Sak = (
     arbeidsgiver: Arbeidsgiver,
-    arbeidsgivereISak: K9SakArbeidstaker[]
+    arbeidsgivereISak: K9SakArbeidstaker[],
 ): boolean => {
     return arbeidsgivereISak.some(
-        ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+        ({ organisasjonsnummer }) => organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
     );
 };

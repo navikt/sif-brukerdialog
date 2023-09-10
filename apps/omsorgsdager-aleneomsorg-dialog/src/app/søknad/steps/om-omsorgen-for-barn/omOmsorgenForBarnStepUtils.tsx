@@ -9,7 +9,7 @@ import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn';
 
 export const getOmOmsorgenForBarnStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: OmOmsorgenForBarnFormValues
+    formValues?: OmOmsorgenForBarnFormValues,
 ): OmOmsorgenForBarnFormValues => {
     if (formValues) {
         return formValues;
@@ -37,7 +37,7 @@ export const getOmOmsorgenForBarnStepInitialValues = (
 
 export const getOmOmsorgenForBarnSøknadsdataFromFormValues = (
     values: OmOmsorgenForBarnFormValues,
-    registrertBarn: RegistrertBarn[]
+    registrertBarn: RegistrertBarn[],
 ): OmOmsorgenForBarnSøknadsdata | undefined => {
     const { annetBarn = [], harAleneomsorgFor = [], avtaleOmDeltBosted, harAvtaleOmDeltBostedFor } = values;
 

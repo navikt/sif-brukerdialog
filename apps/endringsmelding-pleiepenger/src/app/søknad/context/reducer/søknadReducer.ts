@@ -100,7 +100,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 const søknadSteps = getSøknadSteps(
                     state.valgteEndringer,
                     state.sak.harUkjentArbeidsforhold,
-                    state.søknadsdata
+                    state.søknadsdata,
                 );
 
                 return {

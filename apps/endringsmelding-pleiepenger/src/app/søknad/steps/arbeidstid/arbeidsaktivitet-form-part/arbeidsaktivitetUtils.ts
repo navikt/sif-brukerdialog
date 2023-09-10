@@ -29,7 +29,7 @@ const arbeidsukeToArbeidstidUkerItem = (
     arbeidsuke: Arbeidsuke,
     endring: ArbeidstidEndring | undefined,
     dagerMedFerie: Date[] | undefined = [],
-    dagerMedFjernetFerie: Date[] | undefined = []
+    dagerMedFjernetFerie: Date[] | undefined = [],
 ): ArbeidstidUkerItem => {
     const erKortUke = erKortArbeidsuke(arbeidsuke.periode);
     return {
@@ -56,9 +56,9 @@ const arbeidsukeToArbeidstidUkerItem = (
                       beregnEndretFaktiskArbeidstidPerDag(
                           arbeidsuke.normalt.uke,
                           endring,
-                          arbeidsuke.antallDagerMedArbeidstid
+                          arbeidsuke.antallDagerMedArbeidstid,
                       ),
-                      arbeidsuke.antallDagerMedArbeidstid
+                      arbeidsuke.antallDagerMedArbeidstid,
                   ),
                   endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
               }
@@ -69,7 +69,7 @@ const arbeidsukeToArbeidstidUkerItem = (
 const getArbeidstidUkerItemFromArbeidsuker = (
     arbeidsuker: ArbeidsukeMap,
     endringer: ArbeidstidEndringMap = {},
-    lovbestemtFerie?: LovbestemtFerieSøknadsdata
+    lovbestemtFerie?: LovbestemtFerieSøknadsdata,
 ): ArbeidstidUkerItem[] => {
     const items: ArbeidstidUkerItem[] = [];
     Object.keys(arbeidsuker).map((key) => {
@@ -84,8 +84,8 @@ const getArbeidstidUkerItemFromArbeidsuker = (
                 arbeidsuke,
                 endring,
                 ferieIPerioden?.feriedagerMeta.datoerMedFerie,
-                ferieIPerioden?.feriedagerMeta.datoerFjernet
-            )
+                ferieIPerioden?.feriedagerMeta.datoerFjernet,
+            ),
         );
     });
     return items;
@@ -93,11 +93,11 @@ const getArbeidstidUkerItemFromArbeidsuker = (
 
 export const getEndringerForArbeidsukeForm = (
     arbeidsukerForEndring: Arbeidsuke[],
-    endringerMap: ArbeidstidEndringMap
+    endringerMap: ArbeidstidEndringMap,
 ): ArbeidstidEndring | undefined => {
     const endringer = uniqBy(
         arbeidsukerForEndring.map((uke) => endringerMap[uke.isoDateRange]),
-        (e) => JSON.stringify(e)
+        (e) => JSON.stringify(e),
     );
     return endringer.length === 1 ? endringer[0] : undefined;
 };

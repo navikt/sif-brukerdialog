@@ -9,7 +9,7 @@ webpackConfig.plugins.push(
         template: `${__dirname}/../../app/index.html`,
         inject: 'body',
         hash: true,
-    })
+    }),
 );
 
 module.exports = webpackConfig;

@@ -25,7 +25,7 @@ const VedleggOppsummering: React.FunctionComponent<Props> = ({
     const intl = useIntl();
     const legeerklæringer = legeerklæringSøknadsdata
         ? legeerklæringSøknadsdata.vedlegg.filter(
-              (v) => v.url && apiData.legeerklæring.includes(getAttachmentURLBackend(v.url))
+              (v) => v.url && apiData.legeerklæring.includes(getAttachmentURLBackend(v.url)),
           )
         : [];
 

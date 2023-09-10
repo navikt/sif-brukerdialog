@@ -17,7 +17,7 @@ import './app.css';
 import Søknad from './søknad/Søknad';
 
 export const APPLICATION_KEY = 'omsorgsdager-aleneomsorg-dialog';
-export const SKJEMANAVN = 'Søknad om ekstra omsorgsdager ved aleneomsorg for barn';
+export const SKJEMANAVN = 'Søknad om ekstra omsorgsdager ved aleneomsorg';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -33,7 +33,7 @@ const App = () => (
                 applicationKey={APPLICATION_KEY}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om ekstra omsorgsdager ved aleneomsorg for barn"
+                    appName="Søknad om ekstra omsorgsdager ved aleneomsorg"
                     intlMessages={applicationIntlMessages}
                     sentryKey={APPLICATION_KEY}
                     appStatus={{

@@ -82,7 +82,7 @@ const OmOmsorgenForBarnStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     return (
@@ -123,7 +123,7 @@ const OmOmsorgenForBarnStep = () => {
                         if (ettBarn) {
                             setFieldValue(
                                 OmOmsorgenForBarnFormFields.harAvtaleOmDeltBostedFor,
-                                newValue === YesOrNo.YES ? harAleneomsorgFor : []
+                                newValue === YesOrNo.YES ? harAleneomsorgFor : [],
                             );
                         }
                         if (flereBarn) {
@@ -191,15 +191,15 @@ const OmOmsorgenForBarnStep = () => {
                                             labels={{
                                                 addLabel: intlHelper(
                                                     intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.addLabel'
+                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.addLabel',
                                                 ),
                                                 listTitle: intlHelper(
                                                     intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.listTitle'
+                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.listTitle',
                                                 ),
                                                 modalTitle: intlHelper(
                                                     intl,
-                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle'
+                                                    'step.omOmsorgenForBarn.annetBarnListAndDialog.modalTitle',
                                                 ),
                                             }}
                                             maxDate={dateToday}
@@ -207,7 +207,7 @@ const OmOmsorgenForBarnStep = () => {
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...annetBarnFnr]}
                                             aldersGrenseText={intlHelper(
                                                 intl,
-                                                'step.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo'
+                                                'step.omOmsorgenForBarn.formLeggTilBarn.aldersGrenseInfo',
                                             )}
                                             visBarnTypeValg={true}
                                             // onAfterChange={() => setAnnetBarnChanged(true)}
@@ -225,7 +225,7 @@ const OmOmsorgenForBarnStep = () => {
                                                 <CheckboxGroup
                                                     legend={intlHelper(
                                                         intl,
-                                                        'step.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg'
+                                                        'step.omOmsorgenForBarn.form.spm.hvilkeAvBarnaAleneomsorg',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.harAleneomsorgFor}
                                                     checkboxes={getBarnOptions(registrertBarn, annetBarn)}
@@ -244,7 +244,7 @@ const OmOmsorgenForBarnStep = () => {
                                                         intl,
                                                         flereBarn
                                                             ? 'step.omOmsorgenForBarn.deltBosted.flereBarn.spm'
-                                                            : 'step.omOmsorgenForBarn.deltBosted.spm'
+                                                            : 'step.omOmsorgenForBarn.deltBosted.spm',
                                                     )}
                                                     name={OmOmsorgenForBarnFormFields.avtaleOmDeltBosted}
                                                     validate={getYesOrNoValidator()}
@@ -255,7 +255,7 @@ const OmOmsorgenForBarnStep = () => {
                                                         <ExpandableInfo
                                                             title={intlHelper(
                                                                 intl,
-                                                                'step.omOmsorgenForBarn.deltBosted.description.tittel'
+                                                                'step.omOmsorgenForBarn.deltBosted.description.tittel',
                                                             )}>
                                                             <FormattedMessage id="step.omOmsorgenForBarn.deltBosted.description" />
                                                         </ExpandableInfo>
