@@ -91,7 +91,7 @@ const OpplysningerOmPleietrengendeStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState({ ...state });
-        }
+        },
     );
 
     return (
@@ -151,7 +151,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             <Checkbox
                                                 label={intlHelper(
                                                     intl,
-                                                    'step.opplysningerOmPleietrengende.fnr.harIkkeFnr'
+                                                    'step.opplysningerOmPleietrengende.fnr.harIkkeFnr',
                                                 )}
                                                 name={OpplysningerOmPleietrengendeFormFields.harIkkeFnr}
                                                 afterOnChange={(newValue) => {
@@ -159,7 +159,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                         resetFieldValue(
                                                             OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer,
                                                             setFieldValue,
-                                                            opplysningerOmPleietrengendeDefaultValues
+                                                            opplysningerOmPleietrengendeDefaultValues,
                                                         );
                                                     } else {
                                                         resetFieldValues(
@@ -169,7 +169,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                                 OpplysningerOmPleietrengendeFormFields.fødselsdato,
                                                             ],
                                                             setFieldValue,
-                                                            opplysningerOmPleietrengendeDefaultValues
+                                                            opplysningerOmPleietrengendeDefaultValues,
                                                         );
                                                     }
                                                 }}
@@ -184,7 +184,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     name={OpplysningerOmPleietrengendeFormFields.fødselsdato}
                                                     label={intlHelper(
                                                         intl,
-                                                        'step.opplysningerOmPleietrengende.fødselsdato'
+                                                        'step.opplysningerOmPleietrengende.fødselsdato',
                                                     )}
                                                     validate={(value) => {
                                                         const dateError = getDateValidator({
@@ -203,7 +203,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                 <RadioGroup
                                                     legend={intlHelper(
                                                         intl,
-                                                        'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm'
+                                                        'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm',
                                                     )}
                                                     name={
                                                         OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer
@@ -211,18 +211,18 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak) => ({
                                                         label: intlHelper(
                                                             intl,
-                                                            `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`
+                                                            `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`,
                                                         ),
                                                         value: årsak,
                                                         'data-testid': `årsakManglerIdentitetsnummer.${årsak}`,
                                                     }))}
                                                     validate={getRequiredFieldValidator()}></RadioGroup>
                                             </FormBlock>
-                                            <FormBlock margin="m">
+                                            <FormBlock margin="l">
                                                 <Heading level="2" size="medium">
                                                     <FormattedMessage id="step.opplysningerOmPleietrengende.id.tittel" />
                                                 </Heading>
-                                                <Block padBottom="l">
+                                                <Block>
                                                     <FormattedMessage id="step.opplysningerOmPleietrengende.id.info" />
                                                 </Block>
                                                 <IdPart />
