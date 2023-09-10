@@ -91,7 +91,7 @@ const TidsromStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState({ ...state });
-        }
+        },
     );
 
     return (
@@ -197,7 +197,7 @@ const TidsromStep = () => {
                                                         <ExpandableInfo
                                                             title={intlHelper(
                                                                 intl,
-                                                                'steg.tidsrom.pleierDuDenSykeHjemme.info.tittel'
+                                                                'steg.tidsrom.pleierDuDenSykeHjemme.info.tittel',
                                                             )}>
                                                             <FormattedMessage
                                                                 id={'steg.tidsrom.pleierDuDenSykeHjemme.info'}
@@ -225,11 +225,11 @@ const TidsromStep = () => {
                                                                 <ExpandableInfo
                                                                     title={intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.flereSokere.spm.description.tittle'
+                                                                        'steg.tidsrom.flereSokere.spm.description.tittle',
                                                                     )}>
                                                                     {intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.flereSokere.spm.description'
+                                                                        'steg.tidsrom.flereSokere.spm.description',
                                                                     )}
                                                                 </ExpandableInfo>
                                                             }
@@ -237,7 +237,7 @@ const TidsromStep = () => {
                                                                 {
                                                                     label: intlHelper(
                                                                         intl,
-                                                                        `step.tidsrom.flereSokere.ja`
+                                                                        `step.tidsrom.flereSokere.ja`,
                                                                     ),
                                                                     value: YesOrNoDontKnow.YES,
                                                                     'data-testid': `steg.tidsrom.flereSokere.spm_yes`,
@@ -245,7 +245,7 @@ const TidsromStep = () => {
                                                                 {
                                                                     label: intlHelper(
                                                                         intl,
-                                                                        `step.tidsrom.flereSokere.nei`
+                                                                        `step.tidsrom.flereSokere.nei`,
                                                                     ),
                                                                     value: YesOrNoDontKnow.NO,
                                                                     'data-testid': `steg.tidsrom.flereSokere.spm_no`,
@@ -253,7 +253,7 @@ const TidsromStep = () => {
                                                                 {
                                                                     label: intlHelper(
                                                                         intl,
-                                                                        `step.tidsrom.flereSokere.usikker`
+                                                                        `step.tidsrom.flereSokere.usikker`,
                                                                     ),
                                                                     value: YesOrNoDontKnow.DO_NOT_KNOW,
                                                                     'data-testid': `steg.tidsrom.flereSokere.spm_usikker`,
@@ -265,7 +265,7 @@ const TidsromStep = () => {
                                                         <YesOrNoQuestion
                                                             legend={intlHelper(
                                                                 intl,
-                                                                'steg.tidsrom.iUtlandetIPerioden.spm'
+                                                                'steg.tidsrom.iUtlandetIPerioden.spm',
                                                             )}
                                                             name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
                                                             validate={getYesOrNoValidator()}
@@ -281,15 +281,15 @@ const TidsromStep = () => {
                                                                 labels={{
                                                                     modalTitle: intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.iUtlandetIPerioden.modalTitle'
+                                                                        'steg.tidsrom.iUtlandetIPerioden.modalTitle',
                                                                     ),
                                                                     listTitle: intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.iUtlandetIPerioden.listTitle'
+                                                                        'steg.tidsrom.iUtlandetIPerioden.listTitle',
                                                                     ),
                                                                     addLabel: intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.iUtlandetIPerioden.addLabel'
+                                                                        'steg.tidsrom.iUtlandetIPerioden.addLabel',
                                                                     ),
                                                                 }}
                                                                 validate={
@@ -297,7 +297,7 @@ const TidsromStep = () => {
                                                                         ? (opphold: Utenlandsopphold[]) =>
                                                                               validateUtenlandsoppholdIPerioden(
                                                                                   periode,
-                                                                                  opphold
+                                                                                  opphold,
                                                                               )
                                                                         : undefined
                                                                 }
@@ -308,7 +308,7 @@ const TidsromStep = () => {
                                                         <YesOrNoQuestion
                                                             legend={intlHelper(
                                                                 intl,
-                                                                'steg.tidsrom.ferieuttakIPerioden.spm'
+                                                                'steg.tidsrom.ferieuttakIPerioden.spm',
                                                             )}
                                                             name={TidsromFormFields.skalTaUtFerieIPerioden}
                                                             validate={getYesOrNoValidator()}
@@ -324,15 +324,15 @@ const TidsromStep = () => {
                                                                 labels={{
                                                                     modalTitle: intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.ferieuttakIPerioden.modalTitle'
+                                                                        'steg.tidsrom.ferieuttakIPerioden.modalTitle',
                                                                     ),
                                                                     listTitle: intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.ferieuttakIPerioden.listTitle'
+                                                                        'steg.tidsrom.ferieuttakIPerioden.listTitle',
                                                                     ),
                                                                     addLabel: intlHelper(
                                                                         intl,
-                                                                        'steg.tidsrom.ferieuttakIPerioden.addLabel'
+                                                                        'steg.tidsrom.ferieuttakIPerioden.addLabel',
                                                                     ),
                                                                 }}
                                                                 validate={
@@ -340,7 +340,7 @@ const TidsromStep = () => {
                                                                         ? (ferie: Ferieuttak[]) =>
                                                                               validateFerieuttakIPerioden(
                                                                                   periode,
-                                                                                  ferie
+                                                                                  ferie,
                                                                               )
                                                                         : undefined
                                                                 }

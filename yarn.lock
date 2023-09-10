@@ -4701,10 +4701,10 @@ __metadata:
     "@babel/preset-env": 7.22.15
     "@babel/preset-react": 7.22.15
     "@babel/preset-typescript": 7.22.15
-    "@navikt/ds-css": 5.3.1
+    "@navikt/ds-css": 5.4.0
     "@navikt/ds-icons": 3.4.3
-    "@navikt/ds-react": 5.3.1
-    "@navikt/ds-tailwind": 5.3.1
+    "@navikt/ds-react": 5.4.0
+    "@navikt/ds-tailwind": 5.4.0
     "@navikt/sif-common-amplitude": "*"
     "@navikt/sif-common-core-ds": "*"
     "@navikt/sif-common-formik-ds": "*"
@@ -4714,7 +4714,7 @@ __metadata:
     "@navikt/sif-common-utils": "*"
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.4
-    "@types/object-hash": 3.0.3
+    "@types/object-hash": 3.0.4
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
@@ -4725,7 +4725,7 @@ __metadata:
     compression: 1.7.4
     cookie-parser: 1.4.6
     css-loader: 6.8.1
-    cypress: 13.0.0
+    cypress: 13.1.0
     cypress-file-upload: 5.0.8
     dayjs: 1.11.9
     dotenv: 16.3.1
@@ -4736,14 +4736,14 @@ __metadata:
     html-webpack-harddisk-plugin: 2.0.0
     html-webpack-plugin: 5.5.3
     http-proxy-middleware: 2.0.6
-    jose: 4.14.4
+    jose: 4.14.6
     jsdom: 22.1.0
     lodash: 4.17.21
     mini-css-extract-plugin: 2.7.6
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.4.3
-    postcss: 8.4.28
+    postcss: 8.4.29
     postcss-loader: 7.3.3
     promise: 8.3.0
     react: 18.2.0
@@ -8844,13 +8844,6 @@ __metadata:
   version: 4.1.4
   resolution: "@types/npmlog@npm:4.1.4"
   checksum: 740f7431ccfc0e127aa8d162fe05c6ce8aa71290be020d179b2824806d19bd2c706c7e0c9a3c9963cefcdf2ceacb1dec6988c394c3694451387759dafe0aa927
-  languageName: node
-  linkType: hard
-
-"@types/object-hash@npm:3.0.3":
-  version: 3.0.3
-  resolution: "@types/object-hash@npm:3.0.3"
-  checksum: 210624b9d1c690e6166ae9728fd2f514acfc718c1f7ac687dadaa3ecb19a7b145d518a555031307cda14ba715e5e22bd80da57a4089111d000e4a27d50b4e555
   languageName: node
   linkType: hard
 
@@ -13213,59 +13206,6 @@ __metadata:
   peerDependencies:
     cypress: ">3.0.0"
   checksum: 9c70ca7e0bb137d0ec0b8d38987219ce15b26ac3a40e3ed4e78e6ad4690392eab905586848eec6ad8edd42ee480e68ccc63007b2ebd0a02f4b3eca116ff017e3
-  languageName: node
-  linkType: hard
-
-"cypress@npm:13.0.0":
-  version: 13.0.0
-  resolution: "cypress@npm:13.0.0"
-  dependencies:
-    "@cypress/request": ^3.0.0
-    "@cypress/xvfb": ^1.2.4
-    "@types/node": ^16.18.39
-    "@types/sinonjs__fake-timers": 8.1.1
-    "@types/sizzle": ^2.3.2
-    arch: ^2.2.0
-    blob-util: ^2.0.2
-    bluebird: ^3.7.2
-    buffer: ^5.6.0
-    cachedir: ^2.3.0
-    chalk: ^4.1.0
-    check-more-types: ^2.24.0
-    cli-cursor: ^3.1.0
-    cli-table3: ~0.6.1
-    commander: ^6.2.1
-    common-tags: ^1.8.0
-    dayjs: ^1.10.4
-    debug: ^4.3.4
-    enquirer: ^2.3.6
-    eventemitter2: 6.4.7
-    execa: 4.1.0
-    executable: ^4.1.1
-    extract-zip: 2.0.1
-    figures: ^3.2.0
-    fs-extra: ^9.1.0
-    getos: ^3.2.1
-    is-ci: ^3.0.0
-    is-installed-globally: ~0.4.0
-    lazy-ass: ^1.6.0
-    listr2: ^3.8.3
-    lodash: ^4.17.21
-    log-symbols: ^4.0.0
-    minimist: ^1.2.8
-    ospath: ^1.2.2
-    pretty-bytes: ^5.6.0
-    process: ^0.11.10
-    proxy-from-env: 1.0.0
-    request-progress: ^3.0.0
-    semver: ^7.5.3
-    supports-color: ^8.1.1
-    tmp: ~0.2.1
-    untildify: ^4.0.0
-    yauzl: ^2.10.0
-  bin:
-    cypress: bin/cypress
-  checksum: 223dddfd85dbde5e3a915e87b6cb176b99a9e5bcc24baa40cd5b9ca4a93315a95cf53c5c6ac3a6984f59be55ffc8b58b93a713c0ddcb63a5f4996229cce70329
   languageName: node
   linkType: hard
 
@@ -19517,7 +19457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:4.14.6":
+"jose@npm:4.14.6, jose@npm:^4.14.4":
   version: 4.14.6
   resolution: "jose@npm:4.14.6"
   checksum: eae81a234e7bf1446b1bd80722b3462b014e3835b155c3a7799c1c5043163a53a0dc28d347004151b031e6b7b863403aabf8814d9cc217ce21f8c2f3ebd4b335
@@ -23561,17 +23501,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.28, postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
-  version: 8.4.28
-  resolution: "postcss@npm:8.4.28"
-  dependencies:
-    nanoid: ^3.3.6
-    picocolors: ^1.0.0
-    source-map-js: ^1.0.2
-  checksum: f605c24a36f7e400bad379735fbfc893ccb8d293ad6d419bb824db77cdcb69f43d614ef35f9f7091f32ca588d130ec60dbcf53b366e6bf88a8a64bbeb3c05f6d
-  languageName: node
-  linkType: hard
-
 "postcss@npm:8.4.29":
   version: 8.4.29
   resolution: "postcss@npm:8.4.29"
@@ -23590,6 +23519,17 @@ __metadata:
     picocolors: ^0.2.1
     source-map: ^0.6.1
   checksum: 4ac793f506c23259189064bdc921260d869a115a82b5e713973c5af8e94fbb5721a5cc3e1e26840500d7e1f1fa42a209747c5b1a151918a9bc11f0d7ed9048e3
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
+  version: 8.4.28
+  resolution: "postcss@npm:8.4.28"
+  dependencies:
+    nanoid: ^3.3.6
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: f605c24a36f7e400bad379735fbfc893ccb8d293ad6d419bb824db77cdcb69f43d614ef35f9f7091f32ca588d130ec60dbcf53b366e6bf88a8a64bbeb3c05f6d
   languageName: node
   linkType: hard
 

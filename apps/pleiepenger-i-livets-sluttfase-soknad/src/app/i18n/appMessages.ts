@@ -3,7 +3,7 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 export const appMessages: MessageFileFormat = {
     nb: {
         'application.bannerTitle': 'Søknad om pleiepenger i livets sluttfase',
-
+        'application.title': 'Søknad om pleiepenger i livets sluttfase',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor.',
 
         'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
