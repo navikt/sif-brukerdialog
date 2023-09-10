@@ -4510,6 +4510,80 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/omsorgspengerutbetaling-arbeidstaker-soknad@workspace:apps/omsorgspengerutbetaling-arbeidstaker-soknad":
+  version: 0.0.0-use.local
+  resolution: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad@workspace:apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+  dependencies:
+    "@babel/core": 7.22.15
+    "@babel/preset-env": 7.22.15
+    "@babel/preset-react": 7.22.15
+    "@babel/preset-typescript": 7.22.15
+    "@navikt/ds-css": 5.4.0
+    "@navikt/ds-icons": 3.4.3
+    "@navikt/ds-react": 5.4.0
+    "@navikt/ds-tailwind": 5.4.0
+    "@navikt/sif-common-amplitude": "*"
+    "@navikt/sif-common-core-ds": "*"
+    "@navikt/sif-common-formik-ds": "*"
+    "@navikt/sif-common-forms-ds": "*"
+    "@navikt/sif-common-sentry": "*"
+    "@navikt/sif-common-soknad-ds": "*"
+    "@navikt/sif-common-utils": "*"
+    "@testing-library/react": 14.0.0
+    "@types/jest": 29.5.4
+    "@types/object-hash": 3.0.4
+    "@types/react": 18.2.21
+    "@types/react-dom": 18.2.7
+    "@types/react-router-dom": 5.3.3
+    axios: 1.5.0
+    babel-polyfill: 6.26.0
+    busboy: 1.6.0
+    case-sensitive-paths-webpack-plugin: 2.4.0
+    compression: 1.7.4
+    cookie-parser: 1.4.6
+    css-loader: 6.8.1
+    cypress: 13.1.0
+    cypress-file-upload: 5.0.8
+    dayjs: 1.11.9
+    express: 4.18.2
+    formik: 2.4.3
+    helmet: 7.0.0
+    history: 5.3.0
+    html-webpack-harddisk-plugin: 2.0.0
+    html-webpack-plugin: 5.5.3
+    http-proxy-middleware: 2.0.6
+    jose: 4.14.6
+    jsdom: 22.1.0
+    mini-css-extract-plugin: 2.7.6
+    mustache-express: 1.3.2
+    npm-run-all: ^4.1.5
+    object-hash: 3.0.0
+    openid-client: 5.4.3
+    postcss: 8.4.29
+    postcss-loader: 7.3.3
+    postcss-nesting: 11.3.0
+    promise: 8.3.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-fast-compare: 3.2.2
+    react-intl: 6.4.4
+    react-router-dom: 6.15.0
+    react-scripts: 5.0.1
+    sass: 1.66.1
+    sass-loader: 13.3.2
+    source-map-loader: 4.0.1
+    start-server-and-test: 2.0.0
+    style-loader: 3.3.3
+    tailwindcss: 3.3.3
+    ts-loader: 9.4.4
+    typescript: 5.2.2
+    ulid: ^2.3.0
+    uuid: ^9.0.0
+    webpack: 5.88.2
+    webpack-dev-server: 4.15.1
+  languageName: unknown
+  linkType: soft
+
 "@navikt/omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad":
   version: 0.0.0-use.local
   resolution: "@navikt/omsorgspengerutbetaling-soknad@workspace:apps/omsorgspengerutbetaling-soknad"
@@ -27539,13 +27613,6 @@ __metadata:
   linkType: hard
 
 "tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.4.0, tslib@npm:^2.4.1 || ^1.9.3, tslib@npm:^2.5.0, tslib@npm:^2.6.0":
-  version: 2.6.2
-  resolution: "tslib@npm:2.6.2"
-  checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.5.0, tslib@npm:^2.6.0":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad
