@@ -278,6 +278,7 @@ const TidsromStep = () => {
                                                                 name={TidsromFormFields.utenlandsoppholdIPerioden}
                                                                 minDate={periode.from}
                                                                 maxDate={periode.to}
+                                                                //excludeInnlagtQuestion={true}
                                                                 labels={{
                                                                     modalTitle: intlHelper(
                                                                         intl,
