@@ -16,6 +16,7 @@ const envSettings = () => {
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
         APP_VERSION: '${process.env.APP_VERSION}',
         IMAGE: '${process.env.IMAGE}',
+        MINSIDE_URL: '${process.env.MINSIDE_URL}',
      };`
         .trim()
         .replace(/ /g, '');
