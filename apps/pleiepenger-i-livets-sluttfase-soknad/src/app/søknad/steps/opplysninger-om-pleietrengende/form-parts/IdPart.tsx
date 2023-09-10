@@ -47,7 +47,7 @@ const IdPart = () => {
 
     return (
         <>
-            <Block margin={'l'} padBottom="m">
+            <Block margin="l" padBottom="l">
                 <PictureScanningGuide />
             </Block>
             <FormikFileUploader

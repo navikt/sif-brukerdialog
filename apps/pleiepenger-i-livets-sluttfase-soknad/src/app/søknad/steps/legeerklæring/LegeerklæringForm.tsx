@@ -76,7 +76,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     <FormattedMessage id={'step.legeerklæring.counsellorPanel.info'} />
                 </SifGuidePanel>
             </Block>
-            <Block margin={'l'}>
+            <Block margin="l" padBottom="l">
                 <PictureScanningGuide />
             </Block>
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
