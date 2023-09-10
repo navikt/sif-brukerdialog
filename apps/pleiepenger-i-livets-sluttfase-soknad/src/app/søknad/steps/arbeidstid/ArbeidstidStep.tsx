@@ -25,6 +25,7 @@ import { Heading } from '@navikt/ds-react';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonFrilansUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -101,7 +102,7 @@ const ArbeidstidStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
     const { tidsrom } = søknadsdata;
 
@@ -139,7 +140,7 @@ const ArbeidstidStep = () => {
                         selvstendigArbeidstid && periode
                             ? getPeriodeSomSelvstendigInnenforPeriode(
                                   periode,
-                                  søknadsdata.arbeidssituasjon?.selvstendig
+                                  søknadsdata.arbeidssituasjon?.selvstendig,
                               )
                             : undefined;
 
@@ -180,23 +181,25 @@ const ArbeidstidStep = () => {
                                                         <Heading level="2" size="large">
                                                             {arbeidsforhold.navn}
                                                         </Heading>
-                                                        <ArbeidIPeriodeSpørsmål
-                                                            arbeidsstedNavn={arbeidsforhold.navn}
-                                                            arbeidsforholdType={ArbeidsforholdType.ANSATT}
-                                                            arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
-                                                            jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
-                                                            periode={periode}
-                                                            parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
-                                                            søkerKunHelgedager={søkerKunHelgedager(
-                                                                periode.from,
-                                                                periode.to
-                                                            )}
-                                                            onArbeidstidVariertChange={handleArbeidstidChanged}
-                                                            onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                            onArbeidstidEnkeltdagRegistrert={
-                                                                logArbeidEnkeltdagRegistrert
-                                                            }
-                                                        />
+                                                        <Block>
+                                                            <ArbeidIPeriodeSpørsmål
+                                                                arbeidsstedNavn={arbeidsforhold.navn}
+                                                                arbeidsforholdType={ArbeidsforholdType.ANSATT}
+                                                                arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
+                                                                jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
+                                                                periode={periode}
+                                                                parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
+                                                                søkerKunHelgedager={søkerKunHelgedager(
+                                                                    periode.from,
+                                                                    periode.to,
+                                                                )}
+                                                                onArbeidstidVariertChange={handleArbeidstidChanged}
+                                                                onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                                onArbeidstidEnkeltdagRegistrert={
+                                                                    logArbeidEnkeltdagRegistrert
+                                                                }
+                                                            />
+                                                        </Block>
                                                     </FormBlock>
                                                 );
                                             })}
@@ -208,18 +211,20 @@ const ArbeidstidStep = () => {
                                             <Heading level="2" size="large">
                                                 <FormattedMessage id="arbeidIPeriode.FrilansLabel" />
                                             </Heading>
-                                            <ArbeidIPeriodeSpørsmål
-                                                arbeidsstedNavn="Frilansoppdrag"
-                                                arbeidsforholdType={ArbeidsforholdType.FRILANSER}
-                                                arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
-                                                jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
-                                                periode={periodeSomFrilanserISøknadsperiode}
-                                                parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
-                                                søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
-                                                onArbeidstidVariertChange={handleArbeidstidChanged}
-                                                onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                            />
+                                            <Block>
+                                                <ArbeidIPeriodeSpørsmål
+                                                    arbeidsstedNavn="Frilansoppdrag"
+                                                    arbeidsforholdType={ArbeidsforholdType.FRILANSER}
+                                                    arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
+                                                    jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
+                                                    periode={periodeSomFrilanserISøknadsperiode}
+                                                    parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
+                                                    søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
+                                                    onArbeidstidVariertChange={handleArbeidstidChanged}
+                                                    onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                    onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                />
+                                            </Block>
                                         </FormBlock>
                                     )}
 
@@ -228,18 +233,20 @@ const ArbeidstidStep = () => {
                                             <Heading level="2" size="large">
                                                 <FormattedMessage id="arbeidIPeriode.SNLabel" />
                                             </Heading>
-                                            <ArbeidIPeriodeSpørsmål
-                                                arbeidsstedNavn="Selvstendig næringsdrivende"
-                                                arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
-                                                jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
-                                                arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
-                                                periode={periodeSomSelvstendigISøknadsperiode}
-                                                parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
-                                                søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
-                                                onArbeidstidVariertChange={handleArbeidstidChanged}
-                                                onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                                onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                                            />
+                                            <Block>
+                                                <ArbeidIPeriodeSpørsmål
+                                                    arbeidsstedNavn="Selvstendig næringsdrivende"
+                                                    arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
+                                                    jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
+                                                    arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
+                                                    periode={periodeSomSelvstendigISøknadsperiode}
+                                                    parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
+                                                    søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
+                                                    onArbeidstidVariertChange={handleArbeidstidChanged}
+                                                    onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                                                    onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                />
+                                            </Block>
                                         </FormBlock>
                                     )}
                                 </FormBlock>
