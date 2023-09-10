@@ -8,6 +8,7 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/lib/utils/yesOrNoUtils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import dayjs from 'dayjs';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
@@ -112,4 +113,24 @@ export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): 
         ),
         disabled,
     };
+};
+export const barnet18årOgKanFortsette = (
+    dateToday: Date,
+    registrertBarn: RegistrertBarn[],
+    barnetSøknadenGjelder?: string,
+): boolean => {
+    if (!barnetSøknadenGjelder) {
+        true;
+    }
+    const barn = registrertBarn.find((b) => b.aktørId === barnetSøknadenGjelder);
+
+    if (!barn) {
+        //feil
+        return true;
+    }
+    const fødselsdato = dayjs(barn.fødselsdato);
+    const dato18år = fødselsdato.add(18, 'year');
+    const cutoffDate = dato18år.add(1, 'year').set('month', 3).set('date', 1);
+
+    return dayjs(dateToday).isBefore(cutoffDate) || dayjs(dateToday).isSame(cutoffDate, 'day');
 };

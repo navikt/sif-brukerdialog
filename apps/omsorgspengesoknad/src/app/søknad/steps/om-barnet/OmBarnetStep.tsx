@@ -20,7 +20,12 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import AnnetBarnpart from './form-parts/AnnetBarnPart';
 import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
-import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
+import {
+    barnet18årOgKanFortsette,
+    getOmBarnetStepInitialValues,
+    getOmBarnetSøknadsdataFromFormValues,
+} from './omBarnetStepUtils';
+import { dateToday } from '@navikt/sif-common-utils/lib';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
@@ -88,6 +93,10 @@ const OmBarnetStep = () => {
                 renderForm={({
                     values: { barnetSøknadenGjelder, søknadenGjelderEtAnnetBarn, kroniskEllerFunksjonshemming },
                 }) => {
+                    const kanFortsette =
+                        søknadenGjelderEtAnnetBarn || harIkkeBarn || !barnetSøknadenGjelder
+                            ? true
+                            : barnet18årOgKanFortsette(dateToday, registrerteBarn, barnetSøknadenGjelder);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -96,12 +105,22 @@ const OmBarnetStep = () => {
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 onBack={goBack}
-                                runDelayedFormValidation={true}>
+                                runDelayedFormValidation={true}
+                                submitDisabled={!kanFortsette}>
                                 {harIkkeBarn === false && (
-                                    <VelgRegistrertBarn
-                                        registrerteBarn={registrerteBarn}
-                                        søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                                    />
+                                    <>
+                                        <VelgRegistrertBarn
+                                            registrerteBarn={registrerteBarn}
+                                            søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
+                                        />
+                                        {!kanFortsette && (
+                                            <FormBlock margin="l">
+                                                <Alert variant="warning">
+                                                    {intlHelper(intl, 'steg.omBarnet.alert.barnet18ÅrKanIkkeFortsette')}
+                                                </Alert>
+                                            </FormBlock>
+                                        )}
+                                    </>
                                 )}
                                 {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
                                     <FormBlock>
