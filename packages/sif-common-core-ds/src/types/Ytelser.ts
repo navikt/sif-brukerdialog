@@ -2,8 +2,10 @@ export type YtelseKeyMap = {
     [key: string]: {
         /** Brukes i ettersending */
         ettersendelseYtelseApiKey: string;
+        /** Internt navn på ytelse */
         navn: string;
-        titler?: {
+        /** Tittel brukt i applikasjoner */
+        applikasjonstittel?: {
             nb: string;
             nn?: string;
         };
@@ -13,30 +15,51 @@ export type YtelseKeyMap = {
 export const Ytelser: YtelseKeyMap = {
     pleiepengerForSyktBarn: {
         ettersendelseYtelseApiKey: 'PLEIEPENGER_SYKT_BARN',
-        navn: 'Søknad om pleiepenger for sykt barn',
+        navn: 'Pleiepenger for sykt barn',
+        applikasjonstittel: {
+            nb: 'Søknad om pleiepenger for sykt barn',
+        },
     },
     pleiepengerLivetsSluttfase: {
         ettersendelseYtelseApiKey: 'PLEIEPENGER_LIVETS_SLUTTFASE',
-        navn: 'Søknad om pleiepenger i livets sluttfase',
+        navn: 'Pleiepenger i livets sluttfase',
+        applikasjonstittel: {
+            nb: 'Søknad om pleiepenger i livets sluttfase',
+        },
     },
     omsorgsdagerKroniskSyk: {
         ettersendelseYtelseApiKey: 'OMP_UTV_KS',
-        navn: 'Søknad om pleiepenger for sykt barn',
+        navn: 'Ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
+        applikasjonstittel: {
+            nb: 'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
+        },
     },
     omsorgsdagerAleneomsorg: {
         ettersendelseYtelseApiKey: 'OMP_ALENEOMSORG',
-        navn: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
+        navn: 'Ekstra omsorgsdager ved aleneomsorg',
+        applikasjonstittel: {
+            nb: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
+        },
     },
     omsorgsdagerAnnenForelderIkkeTilsyn: {
         ettersendelseYtelseApiKey: 'OMP_UTV_MA',
-        navn: 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+        navn: 'Ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+        applikasjonstittel: {
+            nb: 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+        },
     },
     omsorgspengerutbetalingSNFri: {
         ettersendelseYtelseApiKey: 'OMP_UT_SNF',
-        navn: 'Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
+        navn: 'Utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
+        applikasjonstittel: {
+            nb: 'Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
+        },
     },
     omsorgspengerutbetalingArbeidstaker: {
         ettersendelseYtelseApiKey: 'OMP_UT_ARBEIDSTAKER',
-        navn: 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
+        navn: 'Utbetaling av omsorgspenger for arbeidstaker',
+        applikasjonstittel: {
+            nb: 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
+        },
     },
 };
