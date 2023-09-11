@@ -18,10 +18,11 @@ env:
     IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.app-name }}-mono:${{ github.sha }}
     GITHUB_USERNAME: x-access-token
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    GITHUB_REF_NAME: ${{ github.ref_name }}
 
 jobs:
     deploy-to-dev:
-        name: Deploy ${{ inputs.app-name }} to dev
+        name: Deploy ${{ inputs.app-name }} to dev (${{github.ref_name}})
         runs-on: ubuntu-latest
         permissions:
             packages: write
@@ -59,4 +60,6 @@ jobs:
                   CLUSTER: dev-gcp
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
+                  VAR: GITHUB_REF_NAME=${{ github.ref_name }}
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+
