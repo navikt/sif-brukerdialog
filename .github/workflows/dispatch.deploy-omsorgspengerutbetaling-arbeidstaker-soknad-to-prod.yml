@@ -1,0 +1,26 @@
+name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to prod
+run-name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to prod
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**/*'
+    workflow_dispatch:
+
+jobs:
+    run-tests:
+        uses: ./.github/workflows/test.omsorgspengerutbetaling-arbeidstaker-soknad.yml
+
+    deploy-to-prod:
+        name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to prod
+        needs: [run-tests]
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+        permissions:
+            packages: write
+        secrets:
+            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+        with:
+            app-name: 'omsorgspengerutbetaling-arbeidstaker-soknad'
+            working-directory: 'apps/omsorgspengerutbetaling-arbeidstaker-soknad'
