@@ -8,7 +8,6 @@ import {
     getPendingAttachmentFromFile,
     isFileObject,
     mapFileToPersistedFile,
-    VALID_EXTENSIONS,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
 import { ArrayHelpers, useFormikContext } from 'formik';
@@ -17,8 +16,8 @@ import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { ApiEndpoint } from '../../types/ApiEndpoint';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import { FileDropAcceptImagesAndPdf as FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds';
 import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
-
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
@@ -121,10 +120,10 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     }
 
     return (
-        <SoknadFormComponents.FileInput
+        <SoknadFormComponents.FileDropInput
             name={name}
             legend="Dokumenter"
-            accept={VALID_EXTENSIONS.join(', ')}
+            accept={FileDropAcceptImagesAndPdf}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
                 const attachments = files.map((file) => addPendingAttachmentToFieldArray(file, push));
                 await uploadAttachments([...(values as any)[name], ...attachments], replace);

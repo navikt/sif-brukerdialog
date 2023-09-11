@@ -45,7 +45,7 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
             ${bem.modifierConditional('dragAccept', isDragAccept) || ''}
             ${bem.modifierConditional('dragReject', isDragReject) || ''}
             ${bem.modifierConditional('focused', isFocused) || ''}`,
-        [isDragActive, isDragAccept, isDragReject, error, isFocused]
+        [isDragActive, isDragAccept, isDragReject, error, isFocused],
     );
 
     const getLabel = () => {
@@ -62,7 +62,7 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
         <SkjemagruppeQuestion error={error} legend={legend} description={description}>
             <div {...getRootProps({ className })}>
                 <div className={bem.element('icon')}>
-                    <UploadIcon />
+                    <UploadIcon role="presentation" />
                 </div>
                 <BodyShort as="div" className={bem.element('label')}>
                     {getLabel()}
