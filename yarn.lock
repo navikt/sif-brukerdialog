@@ -4136,7 +4136,7 @@ __metadata:
     "@navikt/ds-react": 5.4.0
     "@portabletext/react": 3.0.7
     "@sanity/client": 6.4.9
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     config: "*"
@@ -4739,7 +4739,7 @@ __metadata:
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
     "@types/amplitude-js": 8.16.2
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     "@types/react": 18.2.21
     amplitude-js: 8.21.9
     config: "*"
@@ -4784,7 +4784,7 @@ __metadata:
     "@storybook/react-webpack5": 7.4.0
     "@storybook/testing-library": 0.2.0
     "@types/jest": 29.5.4
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-collapse": 5.0.1
     "@types/react-dom": 18.2.7
@@ -4854,7 +4854,7 @@ __metadata:
     "@storybook/react": 7.4.0
     "@storybook/testing-library": 0.2.0
     "@types/jest": 29.5.4
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/uuid": 9.0.3
@@ -4917,7 +4917,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.4.3
     "@types/jest": 29.5.4
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-responsive": 8.0.5
@@ -4958,7 +4958,7 @@ __metadata:
     "@sentry/browser": 7.68.0
     "@sentry/react": 7.68.0
     "@sentry/types": 7.68.0
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     axios: 1.5.0
     config: "*"
     copyfiles: 2.4.1
@@ -5003,7 +5003,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.4.3
     "@types/jest": 29.5.4
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-modal": 3.16.0
@@ -5052,7 +5052,7 @@ __metadata:
     "@babel/preset-env": 7.22.15
     "@babel/preset-react": 7.22.15
     "@types/jest": 29.5.4
-    "@types/node": 20.5.9
+    "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/uuid": 9.0.3
@@ -8739,10 +8739,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.5.9":
-  version: 20.5.9
-  resolution: "@types/node@npm:20.5.9"
-  checksum: 717490e94131722144878b4ca1a963ede1673bb8f2ef78c2f5b50b918df6dc9b35e7f8283e5c2a7a9f137730f7c08dc6228e53d4494a94c9ee16881e6ce6caed
+"@types/node@npm:20.6.0":
+  version: 20.6.0
+  resolution: "@types/node@npm:20.6.0"
+  checksum: 52611801af5cf151c6fac1963aa4a8a8ca2e388a9e9ed82b01b70bca762088ded5b32cc789c5564220d5d7dccba2b8dd34446a3d4fc74736805e1f2cf262e29d
   languageName: node
   linkType: hard
 
