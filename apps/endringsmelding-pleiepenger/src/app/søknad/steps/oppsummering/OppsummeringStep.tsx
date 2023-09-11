@@ -72,9 +72,7 @@ const OppsummeringStep = () => {
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
 
-    const harIngenEndringer =
-        (valgteEndringer.arbeidstid && arbeidstidErEndret === false) ||
-        (valgteEndringer.lovbestemtFerie && lovbestemtFerieErEndret === false);
+    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
