@@ -3,12 +3,12 @@ import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitud
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ApplicationType } from '../../types/ApplicationType';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
+import { Søknadstype } from '../../types/Søknadstype';
 
 interface Props {
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
 }
 
 const IkkeTilgangPage = ({ søknadstype }: Props) => {

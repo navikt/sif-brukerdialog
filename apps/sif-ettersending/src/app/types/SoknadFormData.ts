@@ -1,11 +1,11 @@
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { ApplicationType } from './ApplicationType';
+import { YtelseKey } from '@navikt/sif-common-core-ds/lib/types/Ytelser';
 
 export enum SoknadFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
     beskrivelse = 'beskrivelse',
-    søknadstype = 'søknadstype',
+    ytelse = 'ytelse',
     dokumenter = 'dokumenter',
 }
 
@@ -13,7 +13,7 @@ export interface SoknadFormData {
     [SoknadFormField.harForståttRettigheterOgPlikter]: boolean;
     [SoknadFormField.harBekreftetOpplysninger]: boolean;
     [SoknadFormField.beskrivelse]?: string;
-    [SoknadFormField.søknadstype]?: ApplicationType;
+    [SoknadFormField.ytelse]?: YtelseKey;
     [SoknadFormField.dokumenter]: Attachment[];
 }
 

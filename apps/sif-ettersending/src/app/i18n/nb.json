@@ -25,27 +25,14 @@
 
     "søknadstype.pleiepenger": "pleiepengesøknad",
     "søknadstype.omsorgspenger": "omsorgspengesøknad",
-    "søknadstype.pleiepenger-livets-sluttfase": "pleiepenger i livets sluttfase",
+    "søknadstype.pleiepenger-i-livets-sluttfase": "pleiepenger i livets sluttfase",
 
     "banner.intro": "Ettersendelse av dokumentasjon",
-    "banner.pleiepenger": "Ettersendelse av dokumentasjon til søknad om pleiepenger",
-    "banner.pleiepenger-livets-sluttfase": "Ettersendelse av dokumentasjon til søknad om pleiepenger livets sluttfase",
-    "banner.omsorgspenger": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "banner.ekstraomsorgsdager": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "banner.utbetaling": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "banner.utbetalingarbeidstaker": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "banner.regnetsomalene": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "banner.deling": "Ettersendelse av dokumentasjon for omsorgspenger",
 
     "application.title": "Ettersendelse av dokumentasjon",
-    "application.title.pleiepenger": "Ettersendelse av dokumentasjon til søknad om pleiepenger",
-    "application.title.pleiepenger-livets-sluttfase": "Ettersendelse av dokumentasjon til søknad om pleiepenger livets sluttfase",
+    "application.title.pleiepenger-for-sykt-barn": "Ettersendelse av dokumentasjon til søknad om pleiepenger for sykt barn",
+    "application.title.pleiepenger-i-livets-sluttfase": "Ettersendelse av dokumentasjon til søknad om pleiepenger i livets sluttfase",
     "application.title.omsorgspenger": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "application.title.ekstraomsorgsdager": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "application.title.utbetaling": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "application.title.utbetalingarbeidstaker": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "application.title.regnetsomalene": "Ettersendelse av dokumentasjon for omsorgspenger",
-    "application.title.deling": "Ettersendelse av dokumentasjon for omsorgspenger",
 
     "modal.personopplysninger.dialogtittel": "Om behandling av personopplysninger",
     "modal.personopplysninger.1": "Slik behandler NAV personopplysningene dine",
@@ -89,11 +76,6 @@
     "step.omsorgspenger_type.stepTitle": "Hva skal du ettersende til?",
     "step.omsorgspenger_type.stepIndicatorLabel": "Omsorgspenger type",
     "step.omsorgspenger_type.nextButtonLabel": "Fortsett",
-    "step.omsorgspenger_type.radio.label.ekstraomsorgsdager": "Søknad om ekstra omsorgsdager ved kronisk sykt eller funksjonshemmet barn",
-    "step.omsorgspenger_type.radio.label.utbetaling": "Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere",
-    "step.omsorgspenger_type.radio.label.utbetalingarbeidstaker": "Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler",
-    "step.omsorgspenger_type.radio.label.regnetsomalene": "Søknad om å bli regnet som at du er alene om omsorgen for barn",
-    "step.omsorgspenger_type.radio.label.deling": "Melding om deling av omsorgsdager",
     "step.omsorgspenger_type.søknadstype.spm": "Velg hva denne ettersendingen gjelder",
 
     "step.dokumenter.stepTitle": "Nå skal du laste opp dokumentene dine",
@@ -118,13 +100,6 @@
     "steg.oppsummering.fødselsnummer": "Fødselsnummer",
 
     "steg.oppsummering.typeSøknad.tittel": "Hva skal du ettersende til?",
-    "steg.oppsummering.typeSøknad.type.PLEIEPENGER_SYKT_BARN": "Søknad om pleiepenger",
-    "steg.oppsummering.typeSøknad.type.PLEIEPENGER_LIVETS_SLUTTFASE": "Søknad om pleiepenger livets sluttfase",
-    "steg.oppsummering.typeSøknad.type.OMP_UTV_KS": "Søknad om ekstra omsorgsdager ved kronisk sykt eller funksjonshemmet barn",
-    "steg.oppsummering.typeSøknad.type.OMP_UT_SNF": "Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere",
-    "steg.oppsummering.typeSøknad.type.OMP_UT_ARBEIDSTAKER": "Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler",
-    "steg.oppsummering.typeSøknad.type.OMP_UTV_MA": "Søknad om å bli regnet som at du er alene om omsorgen for barn",
-    "steg.oppsummering.typeSøknad.type.OMP_DELE_DAGER": "Melding om deling av omsorgsdager",
 
     "step.oppsummering.sendMelding.feilmelding.førsteGang": "Det oppstod en feil under innsending. Vennligst prøv på nytt.",
     "step.oppsummering.sendMelding.feilmelding.andreGang": "Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.",
@@ -133,9 +108,9 @@
     "vedleggsliste.ingenVedleggLastetOpp": "Ingen dokumenter er lastet opp",
 
     "page.intro.hvilkenTypeSøknad": "Hva gjelder denne ettersendelsen?",
-    "page.intro.type.pleiepenger": "Pleiepenger barn",
-    "page.intro.type.omsorgspenger": "Omsorgspenger",
+    "page.intro.type.pleiepenger": "Pleiepenger for sykt barn",
     "page.intro.type.pleiepenger_livets_sluttfase": "Pleiepenger i livets sluttfase",
+    "page.intro.type.omsorgspenger": "Omsorgspenger",
     "page.intro.gåVidere": "Gå videre",
     "page.intro.søknadstype.noValue": "Du må velge hva denne ettersendelsen gjelder",
 

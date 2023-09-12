@@ -5,9 +5,9 @@ import { useFormikContext } from 'formik';
 import { APPLICATION_SENDT_PAGE } from '../config/routeConfig';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
-import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
 import { SoknadFormData } from '../types/SoknadFormData';
+import { Søknadstype } from '../types/Søknadstype';
 import { getAvailableSteps } from '../utils/routeUtils';
 import BeskrivelseStep from './beskrivelse-step/BeskrivelseStep';
 import DokumenterStep from './dokumenter-step/DokumenterStep';
@@ -18,7 +18,7 @@ import ValgOmsTypeStep from './valgOmsType-step/ValgOmsTypeStep';
 
 interface Props {
     søker: Person;
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
     soknadId?: string;
     onKvitteringUnmount?: () => void;
 }

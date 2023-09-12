@@ -4,19 +4,20 @@ import { cyApiMockData } from '../data/cyApiMockData';
 import { getElement, getTestElement, getTestElementByType, submitSkjema } from '../utils';
 
 const fileName = 'navlogopng.png';
-const velgYtelseUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/pleiepenger/melding';
+const velgSøknadstypeUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
+const startUrl =
+    'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/pleiepenger-for-sykt-barn/melding';
 
-const velgYtelse = () => {
-    it('Velg ytelse', () => {
-        cy.visit(velgYtelseUrl);
+const velgSøknadstype = () => {
+    it('Velg søknadstype', () => {
+        cy.visit(velgSøknadstypeUrl);
         cy.injectAxe();
         cy.wait(500);
         cy.get('[type="radio"]').first().check();
         cy.checkA11y();
         getTestElement('typedFormikForm-submitButton').click({ force: true });
         const el = getElement('h2').first();
-        el.should('contain', 'Ettersendelse av dokumentasjon til søknad om pleiepenger');
+        el.should('contain', 'Ettersendelse av dokumentasjon til søknad om pleiepenger for sykt barn');
         cy.wait(500);
         cy.injectAxe();
         cy.checkA11y();
@@ -51,7 +52,7 @@ const lastOppDokument = () => {
                     fileName,
                     mimeType: 'image/png', //getMimeType(fileName),
                     encoding: 'utf8',
-                })
+                }),
             );
         cy.wait(2000);
         submitSkjema();
@@ -82,9 +83,9 @@ const kontrollerKvittering = () => {
     });
 };
 
-describe('Velger ytelse', () => {
+describe('Velger søknadstype', () => {
     contextConfig();
-    velgYtelse();
+    velgSøknadstype();
 });
 
 describe('Fylle ut skjema med vedlegg', () => {

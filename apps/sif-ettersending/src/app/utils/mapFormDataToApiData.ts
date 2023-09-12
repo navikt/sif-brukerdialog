@@ -1,29 +1,28 @@
 import { IntlShape } from 'react-intl';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import { YtelseKey, Ytelser } from '@navikt/sif-common-core-ds/lib/types/Ytelser';
 import { getLocaleForApi } from '@navikt/sif-common-core-ds/lib/utils/localeUtils';
-import { ApplicationType } from '../types/ApplicationType';
 import { SoknadApiData, YtelseTypeApi } from '../types/SoknadApiData';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
 
-const getSøknadstypeApi = (søknadstype: ApplicationType): YtelseTypeApi => {
-    switch (søknadstype) {
-        case ApplicationType.pleiepengerBarn:
+const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
+    switch (ytelse) {
+        case YtelseKey.pleiepengerSyktBarn:
             return YtelseTypeApi.PLEIEPENGER_SYKT_BARN;
-        case ApplicationType.pleiepengerLivetsSluttfase:
+        case YtelseKey.pleiepengerLivetsSlutt:
             return YtelseTypeApi.PLEIEPENGER_LIVETS_SLUTTFASE;
-        case ApplicationType.ekstraomsorgsdager:
+        case YtelseKey.omsorgsdagerKroniskSyk:
             return YtelseTypeApi.OMP_UTV_KS;
-        case ApplicationType.utbetaling:
+        case YtelseKey.omsorgspengerutbetalingSNFri:
             return YtelseTypeApi.OMP_UT_SNF;
-        case ApplicationType.utbetalingarbeidstaker:
+        case YtelseKey.omsorgspengerutbetalingArbeidstaker:
             return YtelseTypeApi.OMP_UT_ARBEIDSTAKER;
-        case ApplicationType.regnetsomalene:
+        case YtelseKey.omsorgsdagerAleneomsorg:
+            return YtelseTypeApi.OMP_ALENEOMSORG;
+        case YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn:
             return YtelseTypeApi.OMP_UTV_MA;
-        case ApplicationType.deling:
-            return YtelseTypeApi.OMP_DELE_DAGER;
     }
-    return YtelseTypeApi.ukjent;
 };
 
 const getVedleggUrlFromAttachments = (attachments: Attachment[]): string[] => {
@@ -38,18 +37,21 @@ const getVedleggUrlFromAttachments = (attachments: Attachment[]): string[] => {
 
 export const mapFormDataToApiData = (
     soknadId: string,
-    { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, beskrivelse, dokumenter, søknadstype }: SoknadFormData,
-    søknadstypeFraURL: ApplicationType,
+    { harBekreftetOpplysninger, harForståttRettigheterOgPlikter, beskrivelse, dokumenter, ytelse }: SoknadFormData,
     intl: IntlShape,
 ): SoknadApiData => {
+    if (!ytelse) {
+        throw new Error('ytelse mangler');
+    }
     const apiData: SoknadApiData = {
         id: soknadId,
         språk: getLocaleForApi(intl.locale),
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
-        søknadstype: søknadstype ? getSøknadstypeApi(søknadstype) : getSøknadstypeApi(søknadstypeFraURL),
+        søknadstype: getYtelseTypeApiKey(ytelse),
         beskrivelse,
         vedlegg: getVedleggUrlFromAttachments(dokumenter),
+        ytelseTittel: Ytelser[ytelse].søknadstittel.nb,
     };
     return apiData;
 };
