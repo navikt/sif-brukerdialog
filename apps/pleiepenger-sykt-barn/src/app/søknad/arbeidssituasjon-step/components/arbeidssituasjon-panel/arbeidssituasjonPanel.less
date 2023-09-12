@@ -1,0 +1,47 @@
+@mobileBreakPoint: 1071px;
+
+.arbeidssituasjonPanel {
+    margin-top: 1rem;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        @media screen and (max-width: @mobileBreakPoint) {
+            &__icon {
+                display: none;
+            }
+        }
+        &__icon {
+            width: 1.5rem;
+            svg * {
+                width: 1.5rem;
+            }
+        }
+        &__text {
+            @media screen and (max-width: @mobileBreakPoint) {
+                margin-left: 0rem;
+            }
+            margin-left: 1rem;
+            flex: 2 1 100%;
+        }
+        &__button {
+            margin-left: 0rem;
+        }
+    }
+
+    &__description {
+        @media screen and (max-width: @mobileBreakPoint) {
+            margin-left: 0rem;
+        }
+        margin-left: 2.4rem;
+    }
+    &__content {
+        @media screen and (max-width: @mobileBreakPoint) {
+            margin-left: 0rem;
+            margin-right: 0rem;
+        }
+        margin-left: 2.4rem;
+        margin-right: 1rem;
+        margin-top: 1.5rem;
+    }
+}
