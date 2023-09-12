@@ -64,7 +64,7 @@ export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = (startetFørSist
 const erFrilanserUtenOppdrag = () => {
     beforeEach('er frilanser uten oppdrag', () => {
         cy.intercept(`/oppslag/arbeidsgiver**`, { ...cyApiMockData.arbeidsgivereMock, frilansoppdrag: [] }).as(
-            'getArbeidsgivere'
+            'getArbeidsgivere',
         );
     });
 
@@ -101,7 +101,7 @@ const erIkkeFrilanser = () => {
 
         getTestElement('arbeidssituasjon-frilanser').should(
             'contain',
-            'Er ikke frilanser og får ikke honorar i søknadsperioden'
+            'Er ikke frilanser og får ikke honorar i søknadsperioden',
         );
     });
 };
