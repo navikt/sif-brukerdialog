@@ -1,6 +1,7 @@
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsdata';
+import { dateToISODate } from '@navikt/sif-common-utils/lib';
 
 export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdata): OmBarnetApiData => {
     const fellesInfo: Pick<OmBarnetSøknadsdata, 'kroniskEllerFunksjonshemming' | 'sammeAdresse'> = {
@@ -17,6 +18,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                     aktørId,
                     navn: formatName(fornavn, etternavn, mellomnavn),
                     norskIdentifikator: null,
+                    fødselsdato: dateToISODate(omBarnet.registrertBarn.fødselsdato),
                 },
             };
         case 'annetBarn':

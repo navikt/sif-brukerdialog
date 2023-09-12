@@ -102,11 +102,8 @@ const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
         if (props.harRegistrertBarn === false) {
             oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fødselsnummer);
             oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fornavn);
-            oppsummering.should(
-                'contain',
-                dateFormatter.full(ISODateToDate(cyApiMockData.barnMock.barn[0].fødselsdato)),
-            );
         }
+        oppsummering.should('contain', dateFormatter.full(ISODateToDate(cyApiMockData.barnMock.barn[0].fødselsdato)));
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
         if (props.deltBosted === false) {
             getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);
