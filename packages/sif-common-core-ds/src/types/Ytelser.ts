@@ -1,20 +1,17 @@
 type YtelserMap = {
     [key: string]: {
-        /** Brukes ved ettersending av dokumenter */
-        ettersendelseYtelseApiKey: string;
         /** Internt navn på ytelse */
         navn: string;
         /** Tittel brukt i applikasjoner */
-        applikasjonstittel?: {
+        søknadstittel: {
             nb: string;
-            nn?: string;
         };
     };
 };
 
 export enum YtelseKey {
-    'pleiepengerForSyktBarn' = 'pleiepengerForSyktBarn',
-    'pleiepengerLivetsSluttfase' = 'pleiepengerLivetsSluttfase',
+    'pleiepengerSyktBarn' = 'pleiepengerSyktBarn',
+    'pleiepengerLivetsSlutt' = 'pleiepengerLivetsSlutt',
     'omsorgsdagerKroniskSyk' = 'omsorgsdagerKroniskSyk',
     'omsorgsdagerAleneomsorg' = 'omsorgsdagerAleneomsorg',
     'omsorgsdagerAnnenForelderIkkeTilsyn' = 'omsorgsdagerAnnenForelderIkkeTilsyn',
@@ -23,52 +20,45 @@ export enum YtelseKey {
 }
 
 export const Ytelser: YtelserMap = {
-    [YtelseKey.pleiepengerForSyktBarn]: {
-        ettersendelseYtelseApiKey: 'PLEIEPENGER_SYKT_BARN',
+    [YtelseKey.pleiepengerSyktBarn]: {
         navn: 'Pleiepenger for sykt barn',
-        applikasjonstittel: {
+        søknadstittel: {
             nb: 'Søknad om pleiepenger for sykt barn',
         },
     },
-    [YtelseKey.pleiepengerLivetsSluttfase]: {
-        ettersendelseYtelseApiKey: 'PLEIEPENGER_LIVETS_SLUTTFASE',
+    [YtelseKey.pleiepengerLivetsSlutt]: {
         navn: 'Pleiepenger i livets sluttfase',
-        applikasjonstittel: {
+        søknadstittel: {
             nb: 'Søknad om pleiepenger i livets sluttfase',
         },
     },
     [YtelseKey.omsorgsdagerKroniskSyk]: {
-        ettersendelseYtelseApiKey: 'OMP_UTV_KS',
         navn: 'Ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
-        applikasjonstittel: {
+        søknadstittel: {
             nb: 'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         },
     },
     [YtelseKey.omsorgsdagerAleneomsorg]: {
-        ettersendelseYtelseApiKey: 'OMP_ALENEOMSORG',
         navn: 'Ekstra omsorgsdager ved aleneomsorg',
-        applikasjonstittel: {
+        søknadstittel: {
             nb: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
         },
     },
     [YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn]: {
-        ettersendelseYtelseApiKey: 'OMP_UTV_MA',
         navn: 'Ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
-        applikasjonstittel: {
+        søknadstittel: {
             nb: 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
         },
     },
     [YtelseKey.omsorgspengerutbetalingSNFri]: {
-        ettersendelseYtelseApiKey: 'OMP_UT_SNF',
         navn: 'Utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
-        applikasjonstittel: {
+        søknadstittel: {
             nb: 'Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
         },
     },
     [YtelseKey.omsorgspengerutbetalingArbeidstaker]: {
-        ettersendelseYtelseApiKey: 'OMP_UT_ARBEIDSTAKER',
         navn: 'Utbetaling av omsorgspenger for arbeidstaker',
-        applikasjonstittel: {
+        søknadstittel: {
             nb: 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
         },
     },
