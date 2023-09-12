@@ -3,6 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
+    getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
@@ -11,8 +12,14 @@ import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnetKeys } from '../../../../types/SøkersRelasjonTilBarnet';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { dateToday } from '@navikt/sif-common-utils/lib';
+import { isBarnOver18år } from '../omBarnetStepUtils';
 
-const { TextField, Select } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
+const { TextField, DatePicker, Select } = getTypedFormComponents<
+    OmBarnetFormFields,
+    OmBarnetFormValues,
+    ValidationError
+>();
 
 const AnnetBarnpart = () => {
     const {
@@ -43,6 +50,31 @@ const AnnetBarnpart = () => {
                         const error = getStringValidator({ required: true, maxLength: 50 })(value);
                         return error ? { key: error, values: { maks: 50 } } : undefined;
                     }}
+                />
+            </FormBlock>
+            <FormBlock>
+                <DatePicker
+                    name={OmBarnetFormFields.barnetsFødselsdato}
+                    label={intlHelper(intl, 'step.omBarnet.fødselsdato')}
+                    validate={(value) => {
+                        const dateError = getDateValidator({
+                            required: true,
+                            max: dateToday,
+                        })(value);
+                        if (dateError) {
+                            return dateError;
+                        }
+
+                        if (isBarnOver18år(value)) {
+                            return {
+                                key: 'barnOver18år',
+                            };
+                        }
+                        return undefined;
+                    }}
+                    maxDate={dateToday}
+                    showYearSelector={true}
+                    data-testid="barnetsFødselsdato"
                 />
             </FormBlock>
             <FormBlock>

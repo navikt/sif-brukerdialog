@@ -23,6 +23,7 @@ export const getOmBarnetStepInitialValues = (
         søknadenGjelderEtAnnetBarn: undefined,
         barnetsFødselsnummer: '',
         barnetsNavn: '',
+        barnetsFødselsdato: '',
         søkersRelasjonTilBarnet: undefined,
         sammeAdresse: YesOrNo.UNANSWERED,
         kroniskEllerFunksjonshemming: YesOrNo.UNANSWERED,
@@ -48,6 +49,7 @@ export const getOmBarnetStepInitialValues = (
                     søknadenGjelderEtAnnetBarn: true,
                     barnetsFødselsnummer: omBarnet.barnetsFødselsnummer,
                     barnetsNavn: omBarnet.barnetsNavn,
+                    barnetsFødselsdato: omBarnet.barnetsFødselsdato,
                     søkersRelasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
                     sammeAdresse,
                     kroniskEllerFunksjonshemming,
@@ -72,6 +74,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
             type: 'annetBarn',
             søknadenGjelderEtAnnetBarn: true,
             barnetsFødselsnummer: values.barnetsFødselsnummer,
+            barnetsFødselsdato: values.barnetsFødselsdato,
             barnetsNavn: values.barnetsNavn,
             søkersRelasjonTilBarnet: values.søkersRelasjonTilBarnet,
             sammeAdresse,
@@ -114,23 +117,12 @@ export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): 
         disabled,
     };
 };
-export const barnet18årOgKanFortsette = (
-    dateToday: Date,
-    registrertBarn: RegistrertBarn[],
-    barnetSøknadenGjelder?: string,
-): boolean => {
-    if (!barnetSøknadenGjelder) {
-        true;
-    }
-    const barn = registrertBarn.find((b) => b.aktørId === barnetSøknadenGjelder);
 
-    if (!barn) {
-        //feil
-        return true;
-    }
-    const fødselsdato = dayjs(barn.fødselsdato);
-    const dato18år = fødselsdato.add(18, 'year');
-    const cutoffDate = dato18år.add(1, 'year').set('month', 3).set('date', 1);
+export const isBarnOver18år = (fødselsdato: Date | string): boolean => {
+    const dato18år = dayjs(fødselsdato).add(18, 'year');
 
-    return dayjs(dateToday).isBefore(cutoffDate) || dayjs(dateToday).isSame(cutoffDate, 'day');
+    // Siden det kan gis ekstra dager opp til 3 måneder tilbake i tid fra søknadsdato brukes det 1. april året etter det kalenderåret barnet fylte 18 år som frist.
+    const frist = dato18år.add(1, 'year').set('month', 3).set('date', 1);
+
+    return dayjs().isSame(frist) || dayjs().isAfter(frist);
 };

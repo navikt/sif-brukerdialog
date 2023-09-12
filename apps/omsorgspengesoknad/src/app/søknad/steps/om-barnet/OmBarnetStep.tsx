@@ -20,18 +20,14 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import AnnetBarnpart from './form-parts/AnnetBarnPart';
 import VelgRegistrertBarn from './form-parts/VelgRegistrertBarn';
-import {
-    barnet18årOgKanFortsette,
-    getOmBarnetStepInitialValues,
-    getOmBarnetSøknadsdataFromFormValues,
-} from './omBarnetStepUtils';
-import { dateToday } from '@navikt/sif-common-utils/lib';
+import { getOmBarnetStepInitialValues, getOmBarnetSøknadsdataFromFormValues } from './omBarnetStepUtils';
 
 export enum OmBarnetFormFields {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
     søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
     barnetsNavn = 'barnetsNavn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
+    barnetsFødselsdato = 'barnetsFødselsdato',
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
     sammeAdresse = 'sammeAdresse',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
@@ -42,6 +38,7 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
     [OmBarnetFormFields.barnetsNavn]: string;
     [OmBarnetFormFields.barnetsFødselsnummer]: string;
+    [OmBarnetFormFields.barnetsFødselsdato]: string;
     [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
     [OmBarnetFormFields.sammeAdresse]?: YesOrNo;
     [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
@@ -93,10 +90,6 @@ const OmBarnetStep = () => {
                 renderForm={({
                     values: { barnetSøknadenGjelder, søknadenGjelderEtAnnetBarn, kroniskEllerFunksjonshemming },
                 }) => {
-                    const kanFortsette =
-                        søknadenGjelderEtAnnetBarn || harIkkeBarn || !barnetSøknadenGjelder
-                            ? true
-                            : barnet18årOgKanFortsette(dateToday, registrerteBarn, barnetSøknadenGjelder);
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -105,21 +98,13 @@ const OmBarnetStep = () => {
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 onBack={goBack}
-                                runDelayedFormValidation={true}
-                                submitDisabled={!kanFortsette}>
+                                runDelayedFormValidation={true}>
                                 {harIkkeBarn === false && (
                                     <>
                                         <VelgRegistrertBarn
                                             registrerteBarn={registrerteBarn}
                                             søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
                                         />
-                                        {!kanFortsette && (
-                                            <FormBlock margin="l">
-                                                <Alert variant="warning">
-                                                    {intlHelper(intl, 'steg.omBarnet.alert.barnet18ÅrKanIkkeFortsette')}
-                                                </Alert>
-                                            </FormBlock>
-                                        )}
                                     </>
                                 )}
                                 {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (

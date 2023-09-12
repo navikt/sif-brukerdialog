@@ -5,7 +5,7 @@ import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { SummarySection } from '@navikt/sif-common-soknad-ds';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
 
@@ -86,6 +86,16 @@ const getAnnetBarnInfo = (apiData: OmBarnetApiData, intl: IntlShape) => {
                     <FormattedMessage id="steg.oppsummering.barnet.navn" values={{ navn: apiData.barn.navn }} />
                 </div>
             ) : null}
+            {apiData.barn.fødselsdato && (
+                <div>
+                    <FormattedMessage
+                        id="steg.oppsummering.barnet.fødselsdato"
+                        values={{
+                            dato: dateFormatter.full(ISODateToDate(apiData.barn.fødselsdato)),
+                        }}
+                    />
+                </div>
+            )}
             <div>
                 <FormattedMessage
                     id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"

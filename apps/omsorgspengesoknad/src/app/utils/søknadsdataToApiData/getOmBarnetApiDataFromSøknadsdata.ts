@@ -26,6 +26,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdat
                     aktørId: null,
                     navn: omBarnet.barnetsNavn,
                     norskIdentifikator: omBarnet.barnetsFødselsnummer,
+                    fødselsdato: omBarnet.barnetsFødselsdato,
                 },
                 relasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
             };
