@@ -100,12 +100,10 @@ const OmBarnetStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 {harIkkeBarn === false && (
-                                    <>
-                                        <VelgRegistrertBarn
-                                            registrerteBarn={registrerteBarn}
-                                            søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
-                                        />
-                                    </>
+                                    <VelgRegistrertBarn
+                                        registrerteBarn={registrerteBarn}
+                                        søknadenGjelderEtAnnetBarn={søknadenGjelderEtAnnetBarn}
+                                    />
                                 )}
                                 {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
                                     <FormBlock>
