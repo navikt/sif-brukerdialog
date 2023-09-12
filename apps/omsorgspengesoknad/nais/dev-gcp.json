@@ -10,7 +10,7 @@
     "env": {
         "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "http://k9-brukerdialog-api",
-        "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
+        "APP_VERSION": "dev",
         "APPSTATUS_DATASET": "staging",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengesoknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
@@ -21,6 +21,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
-        "USE_AMPLITUDE": "true"
+        "USE_AMPLITUDE": "true",
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
     }
 }

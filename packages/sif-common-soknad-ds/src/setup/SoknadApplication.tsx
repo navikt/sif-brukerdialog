@@ -21,6 +21,7 @@ import 'dayjs/locale/nn';
 import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector';
 import ErrorPage from '../pages/ErrorPage';
 import SoknadErrorMessages from '../components/soknad-error-messages/SoknadErrorMessages';
+import DevBranchInfo from '../components/dev-branch-info/DevBranchInfo';
 
 interface AppStatus {
     applicationKey: string;
@@ -75,18 +76,21 @@ const SoknadApplication = ({
     return (
         <IntlProvider locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()} messages={localeMessages}>
             <BrowserRouter basename={publicPath}>
-                {isValidAppStatus(appStatus) ? (
-                    <AppStatusWrapper
-                        applicationKey={appStatus.applicationKey}
-                        sanityConfig={appStatus.sanityConfig}
-                        contentRenderer={() => <>{children}</>}
-                        unavailableContentRenderer={() => (
-                            <ErrorPage contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />} />
-                        )}
-                    />
-                ) : (
-                    children
-                )}
+                <>
+                    {isValidAppStatus(appStatus) ? (
+                        <AppStatusWrapper
+                            applicationKey={appStatus.applicationKey}
+                            sanityConfig={appStatus.sanityConfig}
+                            contentRenderer={() => <>{children}</>}
+                            unavailableContentRenderer={() => (
+                                <ErrorPage contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />} />
+                            )}
+                        />
+                    ) : (
+                        children
+                    )}
+                    <DevBranchInfo />
+                </>
             </BrowserRouter>
         </IntlProvider>
     );
