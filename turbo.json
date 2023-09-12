@@ -45,6 +45,10 @@
             "outputs": [],
             "dependsOn": ["^build-package"]
         },
+        "build-pleiepenger-sykt-barn": {
+            "outputs": [],
+            "dependsOn": ["^build-package"]
+        },
         "build-sif-ettersending": {
             "outputs": [],
             "dependsOn": ["^build-package"]

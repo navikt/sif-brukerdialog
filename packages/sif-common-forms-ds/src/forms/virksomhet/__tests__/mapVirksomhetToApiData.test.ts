@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { dateToISODate, jsonSort } from '@navikt/sif-common-utils';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import dayjs from 'dayjs';
-
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { dateToISODate, jsonSort } from '@navikt/sif-common-utils/lib';
 import { mapVirksomhetToVirksomhetApiData } from '../mapVirksomhetToApiData';
 import { Næringstype, Virksomhet, VirksomhetApiData } from '../types';
 import { erVirksomhetRegnetSomNyoppstartet } from '../virksomhetUtils';
+import dayjs from 'dayjs';
 
 const fom = new Date();
 const tom = new Date();

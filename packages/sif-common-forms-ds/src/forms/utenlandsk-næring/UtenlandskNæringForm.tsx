@@ -16,7 +16,7 @@ import {
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { dateToday, prettifyDate } from '@navikt/sif-common-utils/lib';
+import { date99YearsFromNow, dateToday, prettifyDate } from '@navikt/sif-common-utils/lib';
 import { handleDateRangeValidationError } from '../../utils';
 import { UtenlandskNæring, UtenlandskNæringFormValues, UtenlandskNæringstype } from './types';
 import {
@@ -187,6 +187,7 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                 legend={getText('sifForms.utenlandskNæringForm.startdato', { navnPåVirksomheten })}
                                 showYearSelector={true}
                                 maxDate={dateToday}
+                                minDate={date99YearsFromNow}
                                 fromInputProps={{
                                     label: getText('sifForms.utenlandskNæringForm.kalender_fom'),
                                     name: UtenlandskNæringFormField.fraOgMed,

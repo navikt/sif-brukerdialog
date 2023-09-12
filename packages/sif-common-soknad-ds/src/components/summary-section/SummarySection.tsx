@@ -1,4 +1,4 @@
-import { Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import React from 'react';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import './summarySection.scss';
@@ -38,7 +38,7 @@ const SummarySection = ({ header, headerTag = 'h2', children }: Props) => {
             <Heading level={level} size={size} className={bem.element('header')}>
                 {header}
             </Heading>
-            {children}
+            <BodyLong as="div">{children}</BodyLong>
         </div>
     );
 };
