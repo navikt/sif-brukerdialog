@@ -8,6 +8,7 @@ import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
+import './devFooter.scss';
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
@@ -46,10 +47,12 @@ const DevFooter: React.FunctionComponent = () => {
                 portal={true}
                 onClose={() => setShowModal(false)}
                 header={{
-                    heading: 'Velg scenario som skal brukes',
-                }}>
+                    heading: 'Velg scenario',
+                }}
+                className="scenario-modal"
+                style={{ width: '100%' }}>
                 <Modal.Body>
-                    <FormBlock>
+                    <div className="scenarioes">
                         <RadioGroup
                             value={scenario.value}
                             legend="Scenario hvor bruker har tilgang"
@@ -62,8 +65,6 @@ const DevFooter: React.FunctionComponent = () => {
                                     </Radio>
                                 ))}
                         </RadioGroup>
-                    </FormBlock>
-                    <FormBlock>
                         <RadioGroup
                             value={scenario.value}
                             legend="Scenario hvor bruker stoppes"
@@ -76,7 +77,7 @@ const DevFooter: React.FunctionComponent = () => {
                                     </Radio>
                                 ))}
                         </RadioGroup>
-                    </FormBlock>
+                    </div>
                     <FormBlock>
                         <Button
                             type="button"

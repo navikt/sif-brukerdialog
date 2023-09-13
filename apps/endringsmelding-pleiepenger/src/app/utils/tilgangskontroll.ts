@@ -10,7 +10,6 @@ import {
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
-import { Feature, isFeatureEnabled } from './featureToggleUtils';
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
@@ -27,11 +26,7 @@ type TilgangTillatt = {
 
 export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 
-export const tilgangskontroll = (
-    saker: K9Sak[],
-    arbeidsgivere: Arbeidsgiver[],
-    tillattEndringsperiode: DateRange,
-): TilgangKontrollResultat => {
+export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRange): TilgangKontrollResultat => {
     /** Har ingen saker */
     if (saker.length === 0) {
         return {
@@ -49,7 +44,6 @@ export const tilgangskontroll = (
     }
 
     /** Bruker har bare én sak */
-
     const sak = saker[0];
     const ingenTilgangÅrsak: IngenTilgangÅrsak[] = [];
 
@@ -58,23 +52,9 @@ export const tilgangskontroll = (
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode);
     }
 
-    /** Bruker har registrert arbeidsaktivitet i sak på arbeidsgiver som ikke er registrert i AAreg */
-    if (harArbeidsaktivitetUtenArbeidsgiver(sak.ytelse.arbeidstid.arbeidstakerList, arbeidsgivere)) {
-        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
-    }
-
     /** Bruker er SN */
     if (harArbeidstidSomSelvstendigNæringsdrivende(sak)) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
-    }
-
-    /**
-     * Bruker har arbeidsgiver i aareg som ikke har informasjon i sak = ukjent arbeidsforhold
-     */
-    if (isFeatureEnabled(Feature.UKJENT_ARBEIDSFOHOLD) === false) {
-        if (harArbeidsgiverUtenArbeidsaktivitet(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
-            ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
-        }
     }
 
     if (ingenTilgangÅrsak.length > 0) {
@@ -120,16 +100,6 @@ const harArbeidsgiverUtenArbeidsaktivitet = (
     });
 };
 
-const harArbeidsaktivitetUtenArbeidsgiver = (
-    arbeidsaktiviteter: K9SakArbeidstaker[] = [],
-    arbeidsgivere: Arbeidsgiver[],
-) => {
-    return arbeidsaktiviteter.some(
-        ({ organisasjonsnummer }) =>
-            arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === organisasjonsnummer) === false,
-    );
-};
-
 const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
     const { selvstendigNæringsdrivendeArbeidstidInfo: sn } = sak.ytelse.arbeidstid;
     return sn !== undefined && sn.perioder && Object.keys(sn.perioder).length > 0;
@@ -147,6 +117,5 @@ const harSøknadsperiodeInnenforTillattEndringsperiode = (
 export const tilgangskontrollUtils = {
     getIngenTilgangMeta,
     harArbeidsgiverUtenArbeidsaktivitet,
-    harArbeidsaktivitetUtenArbeidsgiver,
     harSøknadsperiodeInnenforTillattEndringsperiode,
 };

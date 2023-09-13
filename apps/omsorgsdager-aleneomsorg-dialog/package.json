@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/omsorgsdager-aleneomsorg-dialog",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "2.9.0",
+    "version": "2.10.0",
     "private": true,
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
@@ -73,7 +73,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.8.1",
-        "cypress": "13.1.0",
+        "cypress": "13.2.0",
         "dotenv": "16.3.1",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.3",

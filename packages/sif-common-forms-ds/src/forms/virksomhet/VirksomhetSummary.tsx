@@ -77,7 +77,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                         intl,
                         harFlereVirksomheter
                             ? 'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm'
-                            : 'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm'
+                            : 'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm',
                     )}>
                     <FormattedMessage id="sifForms.virksomhet.summary.næringsinntekst" />
                     {` `}
@@ -96,7 +96,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                                 id="sifForms.virksomhet.summary.yrkesaktiv.jaStartetDato"
                                 values={{
                                     dato: prettifyApiDate(
-                                        virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato
+                                        virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
                                     ),
                                 }}
                             />

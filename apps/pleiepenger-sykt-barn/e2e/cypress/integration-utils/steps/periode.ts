@@ -14,7 +14,7 @@ const fraDato = dayjs(søknadsperiode.from).format('YYYY-MM-DD');
 const tilDato = dayjs(søknadsperiode.to).format('YYYY-MM-DD');
 const expectedFomTomPeriode = `${dayjs(fraDato).format('D. MMMM YYYY')} - ${dayjs(tilDato).format('D. MMMM YYYY')}`;
 const expectedDateUtenlandsoppholdIPerioden = `${dayjs(fraDato).format('D. MMM YYYY')} - ${dayjs(tilDato).format(
-    'D. MMM YYYY'
+    'D. MMM YYYY',
 )}`;
 const expectedDateFerie = `${dayjs(fraDato).format('D. MMM YYYY')} - ${dayjs(tilDato).format('D. MMM YYYY')}`;
 const expectedLand = 'Albania'; // Land #2 i listen
@@ -63,7 +63,7 @@ export const fyllUtPeriodeEnkelt = () => {
 
 export const oppsummeringTestPeriodeEnkelt = () => {
     getTestElement('oppsummering-tidsrom-fomtom').should((element) =>
-        expect(expectedFomTomPeriode).equal(element.text())
+        expect(expectedFomTomPeriode).equal(element.text()),
     );
     getTestElement('oppsummering-utenlandsoppholdIPerioden').should((element) => expect('Nei').equal(element.text()));
     getTestElement('oppsummering-ferieuttakIPerioden').should((element) => expect('Nei').equal(element.text()));
@@ -71,7 +71,7 @@ export const oppsummeringTestPeriodeEnkelt = () => {
 
 export const oppsummeringTestPeriode = () => {
     getTestElement('oppsummering-tidsrom-fomtom').should((element) =>
-        expect(expectedFomTomPeriode).equal(element.text())
+        expect(expectedFomTomPeriode).equal(element.text()),
     );
     getTestElement('oppsummering-utenlandsoppholdIPerioden').should((element) => expect('Ja').equal(element.text()));
     getTestElement('oppsummering-utenlandsoppholdIPerioden-list').within(() => {

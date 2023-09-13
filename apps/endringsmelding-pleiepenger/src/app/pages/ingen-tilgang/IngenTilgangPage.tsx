@@ -9,6 +9,7 @@ import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
 import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
+import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
 
 export interface IngenTilgangPageProps {
     søker: Søker;
@@ -60,20 +61,6 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        case IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver:
-            return (
-                <BodyLong as="div" data-testid="ukjentArbeidsforhold">
-                    <p>
-                        Du kan ikke bruke denne tjenesten. Dette er fordi vi ikke finner informasjon om et
-                        arbeidsforhold som er i saken din. Du må derfor sende en ny søknad, slik at saken og
-                        utbetalingene dine blir riktige.
-                    </p>
-                    <p>
-                        Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}
-                        <SkrivTilOssLink />.
-                    </p>
-                </BodyLong>
-            );
         case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
             return (
                 <BodyLong as="div" data-testid="erSN">
@@ -104,9 +91,9 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">
                     <p>
-                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn 6 måneder
-                        siden. Du kan melde fra om endring i tjenesten <SkrivTilOssLink />, eller sende oss en ny
-                        søknad.
+                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn{' '}
+                        {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten{' '}
+                        <SkrivTilOssLink />, eller sende oss en ny søknad.
                     </p>
                     <p>
                         Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}

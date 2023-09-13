@@ -336,7 +336,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                       return handleDateRangeValidationError(
                                                           error,
                                                           undefined,
-                                                          dateToday
+                                                          dateToday,
                                                       );
                                                   },
                                     }}
@@ -361,12 +361,12 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                             <>
                                                 <Heading level="3" size="small">
                                                     {getText(
-                                                        'sifForms.virksomhet.nyoppstartet.næringsinntektFlere.header'
+                                                        'sifForms.virksomhet.nyoppstartet.næringsinntektFlere.header',
                                                     )}
                                                 </Heading>
                                                 <p>
                                                     {getText(
-                                                        'sifForms.virksomhet.nyoppstartet.næringsinntektFlere.info'
+                                                        'sifForms.virksomhet.nyoppstartet.næringsinntektFlere.info',
                                                     )}
                                                 </p>
                                             </>
@@ -374,12 +374,12 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                             <>
                                                 <Heading level="3" size="small">
                                                     {getText(
-                                                        'sifForms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.header'
+                                                        'sifForms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.header',
                                                     )}
                                                 </Heading>
                                                 <p>
                                                     {getText(
-                                                        'sifForms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.info'
+                                                        'sifForms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.info',
                                                     )}
                                                 </p>
                                             </>
@@ -396,7 +396,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 label={
                                                     harFlereVirksomheter
                                                         ? getText(
-                                                              'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm'
+                                                              'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm',
                                                           )
                                                         : getText('sifForms.virksomhet.næringsinntekt.enVirksomhet.spm')
                                                 }
@@ -424,21 +424,21 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                     <>
                                                         {harFlereVirksomheter
                                                             ? getText(
-                                                                  'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm.description'
+                                                                  'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm.description',
                                                               )
                                                             : getText(
-                                                                  'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm.description'
+                                                                  'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm.description',
                                                               )}
                                                         <ExpandableInfo
                                                             title={getText(
-                                                                'sifForms.virksomhet.hvaErNæringsresultat.title'
+                                                                'sifForms.virksomhet.hvaErNæringsresultat.title',
                                                             )}>
                                                             {harFlereVirksomheter
                                                                 ? getText(
-                                                                      'sifForms.virksomhet.hvaErNæringsresultat.flereVirksomheter.text'
+                                                                      'sifForms.virksomhet.hvaErNæringsresultat.flereVirksomheter.text',
                                                                   )
                                                                 : getText(
-                                                                      'sifForms.virksomhet.hvaErNæringsresultat.enVirksomhet.text'
+                                                                      'sifForms.virksomhet.hvaErNæringsresultat.enVirksomhet.text',
                                                                   )}
                                                         </ExpandableInfo>
                                                     </>
@@ -455,7 +455,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 description={
                                                     <ExpandableInfo
                                                         title={getText(
-                                                            'sifForms.virksomhet.har_blitt_yrkesaktiv_info_title'
+                                                            'sifForms.virksomhet.har_blitt_yrkesaktiv_info_title',
                                                         )}>
                                                         {getText('sifForms.virksomhet.har_blitt_yrkesaktiv_info')}
                                                     </ExpandableInfo>
@@ -622,7 +622,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                         <Form.TextField
                                                             name={VirksomhetFormField.regnskapsfører_telefon}
                                                             label={getText(
-                                                                'sifForms.virksomhet.regnskapsfører_telefon'
+                                                                'sifForms.virksomhet.regnskapsfører_telefon',
                                                             )}
                                                             validate={(value) => {
                                                                 const error = getStringValidator({

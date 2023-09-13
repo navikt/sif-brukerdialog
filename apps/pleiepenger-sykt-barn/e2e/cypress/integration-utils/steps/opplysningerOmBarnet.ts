@@ -52,7 +52,7 @@ export const fyllUtAnnetBarnUtenFnr = () => {
                     fileName,
                     mimeType: 'image/png', //getMimeType(fileName),
                     encoding: 'utf8',
-                })
+                }),
             );
         clickFortsett();
     });
@@ -60,40 +60,40 @@ export const fyllUtAnnetBarnUtenFnr = () => {
 
 export const oppsummeringTestRegistrertBarn = () => {
     getTestElement('oppsummering-barnets-navn-registert').should((element) =>
-        expect(`Navn: ${barnetsNavnRegistrert}`).equal(element.text())
+        expect(`Navn: ${barnetsNavnRegistrert}`).equal(element.text()),
     );
     getTestElement('oppsummering-barnets-fødselsdato-registrert').should((element) =>
-        expect(`Fødselsdato: ${barnetsFødselsdatoOppsummering}`).equal(element.text())
+        expect(`Fødselsdato: ${barnetsFødselsdatoOppsummering}`).equal(element.text()),
     );
 };
 
 export const oppsummeringTestAnnetBarnMedFnr = () => {
     getTestElement('oppsummering-barnets-navn').should((element) =>
-        expect(`Navn: ${barnetsNavn}`).equal(element.text())
+        expect(`Navn: ${barnetsNavn}`).equal(element.text()),
     );
     getTestElement('oppsummering-barnets-fødselsnummer').should((element) =>
-        expect(`Fødselsnummer: ${barnetsFødselsnummer}`).equal(element.text())
+        expect(`Fødselsnummer: ${barnetsFødselsnummer}`).equal(element.text()),
     );
 
     getTestElement('oppsummering-barn-relasjon').should((element) =>
-        expect(`Du er ${expectedRelasjonTilBarn} til barnet`).equal(element.text())
+        expect(`Du er ${expectedRelasjonTilBarn} til barnet`).equal(element.text()),
     );
 };
 
 export const oppsummeringTestAnnetBarnUtenFnr = () => {
     getTestElement('oppsummering-barnets-fødselsdato').should((element) =>
-        expect(`Fødselsdato: ${barnetsFødselsdato}`).equal(element.text())
+        expect(`Fødselsdato: ${barnetsFødselsdato}`).equal(element.text()),
     );
     getTestElement('oppsummering-barnets-navn').should((element) =>
-        expect(`Navn: ${barnetsNavn}`).equal(element.text())
+        expect(`Navn: ${barnetsNavn}`).equal(element.text()),
     );
 
     getTestElement('oppsummering-årsakManglerIdentitetsnummer').should((element) =>
-        expect(årsakManglerIdentitetsnummer).equal(element.text())
+        expect(årsakManglerIdentitetsnummer).equal(element.text()),
     );
 
     getTestElement('oppsummering-barn-relasjon-annet-beskrivelse').should((element) =>
-        expect(relasjonAnnetBeskrivelse).equal(element.text())
+        expect(relasjonAnnetBeskrivelse).equal(element.text()),
     );
 
     getTestElement('oppsummering-omBarn-fødselsattest').within(() => {

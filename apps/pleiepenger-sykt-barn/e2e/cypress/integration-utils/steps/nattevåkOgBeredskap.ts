@@ -16,12 +16,12 @@ const fyllUtNattevåkOgBeredskapKomplett = () => {
 const oppsummeringTestNattevåkOgBeredskapKomplett = () => {
     getTestElement('oppsummering-nattevåk').should((element) => expect('Ja').equal(element.text()));
     getTestElement('oppsummering-nattevåk-tilleggsinformasjon').should((element) =>
-        expect(nattevåkTilleggsinfo).equal(element.text())
+        expect(nattevåkTilleggsinfo).equal(element.text()),
     );
 
     getTestElement('oppsummering-beredskap').should((element) => expect('Ja').equal(element.text()));
     getTestElement('oppsummering-beredskap-tilleggsinformasjon').should((element) =>
-        expect(beredskapTilleggsinfo).equal(element.text())
+        expect(beredskapTilleggsinfo).equal(element.text()),
     );
 };
 

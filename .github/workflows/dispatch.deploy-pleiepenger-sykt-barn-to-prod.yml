@@ -1,5 +1,5 @@
-name: Deploy pleiepenger-sykt-barn
-run-name: Deploy pleiepenger-sykt-barn
+name: Deploy pleiepenger-sykt-barn to prod
+run-name: Deploy pleiepenger-sykt-barn to prod
 
 on:
     push:
@@ -15,7 +15,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
@@ -30,7 +30,7 @@ jobs:
               run: yarn test --filter=pleiepenger-sykt-barn
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v5.8.3
+              uses: cypress-io/github-action@v6.5.0
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
@@ -47,12 +47,14 @@ jobs:
             - name: Run cypress tests
               run: yarn turbo cypress-run --filter=pleiepenger-sykt-barn
 
-    # deploy-to-prod:
-    #     name: Deploy pleiepenger-sykt-barn
-    #     needs: [run-tests]
-    #     uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
-    #     secrets:
-    #         NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-    #     with:
-    #         app-name: 'pleiepenger-sykt-barn'
-    #         working-directory: 'apps/pleiepenger-sykt-barn'
+    deploy-to-prod:
+        name: Deploy pleiepenger-sykt-barn to prod
+        needs: [run-tests]
+        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-prod.yml@main
+        permissions:
+          packages: write
+        secrets:
+            NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+        with:
+            app-name: 'pleiepenger-sykt-barn'
+            working-directory: 'apps/pleiepenger-sykt-barn'

@@ -2,7 +2,6 @@ import { contextConfig } from '../../contextConfig';
 import { enSakEnArbeidsgiverEnPeriodeMock } from '../../data/enSakEnArbeidsgiverEnPeriodeMock';
 import { enSakEnArbeidsgiverMock } from '../../data/enSakEnArbeidsgiverMock';
 import { flereArbeidsgivereMock } from '../../data/flereArbeidsgivereMock';
-import { submitSkjema } from '../../utils';
 import { cyHelpers } from './cyHelpers';
 
 const settings = `
@@ -21,7 +20,6 @@ window.appSettings={
     MSW:'off',
     PUBLIC_PATH:'/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
     USE_AMPLITUDE:'true',
-    UKJENT_ARBEIDSFOHOLD:'true',
     IMAGE:'ghcr.io/navikt/sif-brukerdialog/endringsmelding-pleiepenger-mono:825c85c3ef8c5a7ac4906dd4443620715a40a68a',
 };`;
 
@@ -33,7 +31,7 @@ describe('Ukjent arbeidsgiver - jobber ikke', () => {
     });
 
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
     });
 
@@ -53,7 +51,7 @@ describe('Ukjent arbeidsgiver - jobber vanlig', () => {
     });
 
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
     });
 
@@ -73,7 +71,7 @@ describe('Ukjent arbeidsgiver - redusert', () => {
     });
 
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
     });
 
