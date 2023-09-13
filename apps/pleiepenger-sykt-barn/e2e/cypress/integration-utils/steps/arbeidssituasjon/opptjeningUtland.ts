@@ -65,7 +65,7 @@ export const testArbeidssituasjonOpptjeningUtland = () => {
             el.should('contain', expectedOpptjeningDato);
             el.should(
                 'contain',
-                `Jobbet i ${expectedOpptjeningLand} som ${expectedOpptjeningType} hos ${arbeidsgiverenAnnetEQS}`
+                `Jobbet i ${expectedOpptjeningLand} som ${expectedOpptjeningType} hos ${arbeidsgiverenAnnetEQS}`,
             );
         });
     });

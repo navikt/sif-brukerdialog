@@ -12,7 +12,7 @@ const fyllUtLegeerklæringEnFil = () => {
                 fileName,
                 mimeType: 'image/png', //getMimeType(fileName),
                 encoding: 'utf8',
-            })
+            }),
         );
     clickFortsett(false);
 };

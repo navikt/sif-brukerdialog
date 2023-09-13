@@ -9,10 +9,10 @@ dayjs.locale(locale);
 const fomTomMedlemskapSiste12 = getSøknadsdato().startOf('day').subtract(1, 'day').format('YYYY-MM-DD');
 const fomTomMedlemskapNeste12 = getSøknadsdato().startOf('day').add(1, 'day').format('YYYY-MM-DD');
 const expectedDateMedlemskapSiste12 = `${dayjs(fomTomMedlemskapSiste12).format('D. MMM YYYY')} - ${dayjs(
-    fomTomMedlemskapSiste12
+    fomTomMedlemskapSiste12,
 ).format('D. MMM YYYY')}`;
 const expectedDateMedlemskapNeste12 = `${dayjs(fomTomMedlemskapNeste12).format('D. MMM YYYY')} - ${dayjs(
-    fomTomMedlemskapNeste12
+    fomTomMedlemskapNeste12,
 ).format('D. MMM YYYY')}`;
 const expectedLand = 'Albania'; // Land #2 i listen
 

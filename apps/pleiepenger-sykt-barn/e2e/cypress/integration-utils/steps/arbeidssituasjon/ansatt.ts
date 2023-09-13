@@ -15,7 +15,7 @@ export const fyllUtArbeidssituasjonAnsatt = (
     values: ArbeidssituasjonAnsattValues = {
         erAnsatt: true,
         timerPerUke: '30',
-    }
+    },
 ) => {
     const { erAnsatt, sluttetFørSøknadsperiode, timerPerUke } = values;
     getTestElement('arbeidssituasjonAnsatt').within(() => {

@@ -22,7 +22,7 @@ export const fyllUtOmsorgstilbudFortidFremtidEnkelt = () => {
 
 export const oppsummeringTestOmsorgstilbudFortidFremtid = () => {
     getTestElement('oppsummering-omsorgstilbud-svarFortid').should((element) =>
-        expect('Ja, i hele eller deler av perioden').equal(element.text())
+        expect('Ja, i hele eller deler av perioden').equal(element.text()),
     );
 };
 
