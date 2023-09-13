@@ -1,5 +1,6 @@
 import { Alert, BodyShort } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
+import { FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds/lib';
 import prettyBytes from 'pretty-bytes';
 import { fileSizeIsValid } from '../../utils/attachmentUtils';
 
@@ -7,10 +8,15 @@ interface Props {
     filesThatDidntGetUploaded: File[];
 }
 
-const FileUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
+const FileDropUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
     if (filesThatDidntGetUploaded.length === 0) {
         return null;
     }
+
+    const isValidType = (type: string) => {
+        const validTypes = Object.keys(FileDropAcceptImagesAndPdf);
+        return validTypes.includes(type);
+    };
 
     return (
         <Alert variant="warning">
@@ -18,9 +24,14 @@ const FileUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
             <ul>
                 {filesThatDidntGetUploaded.map(({ name, size, type }) => {
                     return (
-                        <li key={name}>
+                        <li key={name} style={{ marginBottom: '.5rem' }}>
                             {name}
-                            {type}
+                            {isValidType(type) === false && (
+                                <BodyShort size="small">
+                                    Fila må være av type JPG/JPEG, PNG eller PDF, men har typen <code>{type}</code>.
+                                </BodyShort>
+                            )}
+
                             {size && !fileSizeIsValid(size) && (
                                 <BodyShort size="small">
                                     Fila er for stor ({prettyBytes(size)}). Maks filstørrelse er {prettyBytes(10000000)}
@@ -35,4 +46,4 @@ const FileUploadErrors = ({ filesThatDidntGetUploaded }: Props) => {
     );
 };
 
-export default FileUploadErrors;
+export default FileDropUploadErrors;
