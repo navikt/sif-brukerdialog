@@ -126,3 +126,13 @@ export const isBarnOver18år = (fødselsdato: Date | string): boolean => {
 
     return dayjs().isSame(frist) || dayjs().isAfter(frist);
 };
+
+export const getMinDatoForBarnetsFødselsdato = (): Date => {
+    // April 1 dette år
+    const today = dayjs();
+    const frist = dayjs(today).set('month', 3).set('date', 1);
+
+    return today.isBefore(frist)
+        ? today.subtract(19, 'year').startOf('year').toDate()
+        : today.subtract(18, 'year').startOf('year').toDate();
+};
