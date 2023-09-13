@@ -1,4 +1,5 @@
 name: test.omsorgspengerutbetaling-soknad
+
 on:
     push:
         paths:
