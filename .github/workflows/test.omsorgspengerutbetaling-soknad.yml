@@ -1,4 +1,5 @@
 name: test.omsorgspengerutbetaling-soknad
+
 on:
     push:
         paths:
@@ -7,6 +8,7 @@ on:
             - 'packages/**/*'
             - .github/workflows/app.omsorgspengerutbetaling-soknad.yml
             - .github/workflows/test.omsorgspengerutbetaling-soknad.yml
+    workflow_call:
 
 env:
     APP_NAME: 'omsorgspengerutbetaling-soknad'

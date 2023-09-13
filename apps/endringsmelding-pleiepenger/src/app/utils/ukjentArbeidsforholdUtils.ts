@@ -113,14 +113,14 @@ export const getArbeidsaktivitetForUkjentArbeidsforhold = (
     return aktivitet;
 };
 
-export const getArbeidsaktiviteterForUkjenteArbeidsgivere = (
+export const getArbeidsaktiviteterForUkjenteArbeidsforhold = (
     søknadsperioder: DateRange[],
-    ukjenteArbeidsgivere: Arbeidsgiver[],
+    arbeidsgivereIkkeISak: Arbeidsgiver[],
     arbeidsaktivitetFormValues: ArbeidsaktivitetFormValuesMap,
     ukjentArbeidsforhold?: UkjentArbeidsforholdSøknadsdata,
 ): Arbeidsaktivitet[] => {
     const aktiviteter: Arbeidsaktivitet[] = [];
-    ukjenteArbeidsgivere.forEach((arbeidsgiver) => {
+    arbeidsgivereIkkeISak.forEach((arbeidsgiver) => {
         const arbeidsforhold = ukjentArbeidsforhold?.arbeidsforhold.find((s) => s.arbeidsgiverKey === arbeidsgiver.key);
         if (!arbeidsforhold) {
             throw 'UkjentArbeidsforholdinfo mangler for arbeidsgiver';

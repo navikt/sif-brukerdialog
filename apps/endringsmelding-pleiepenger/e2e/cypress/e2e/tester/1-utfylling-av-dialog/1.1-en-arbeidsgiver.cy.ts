@@ -9,8 +9,10 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
         saker: enSakEnArbeidsgiverMock,
     });
 
+    beforeEach(() => {
+        cyHelpers.setTestDate();
+    });
     before(() => {
-        cy.clock(cyHelpers.date);
         cy.clearLocalStorage();
     });
 

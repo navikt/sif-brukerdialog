@@ -16,6 +16,10 @@ const captureScreenshot = () => {
     // cy.screenshot({ capture: 'fullPage' });
 };
 
+const setTestDate = () => {
+    cy.clock(cyHelpers.date.getTime(), ['Date']);
+};
+
 const startSøknad = ({
     endreArbeidstid,
     endreLovbestemtFerie,
@@ -82,7 +86,7 @@ const leggTilFerie = (submit?: boolean) => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
-                'søndag 20.11.2022 - fredag 25.11.2022'
+                'søndag 20.11.2022 - fredag 25.11.2022',
             );
         });
         cy.checkA11y();
@@ -106,7 +110,7 @@ const endreOgFjernFerie = () => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
-                'mandag 28.11.2022 - tirsdag 29.11.2022'
+                'mandag 28.11.2022 - tirsdag 29.11.2022',
             );
             cy.checkA11y();
         });
@@ -116,7 +120,7 @@ const endreOgFjernFerie = () => {
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__fjernKnapp').click();
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             const angreKnapp = cy.get(
-                '.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]'
+                '.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]',
             );
             angreKnapp.should('exist');
         });
@@ -251,7 +255,7 @@ interface UkeMedArbeidstid {
 const fyllUtArbeidstidUkjentArbeidsforhold = (
     orgnummer: string,
     arbeiderIPeriodenSvar: 'HELT_FRAVÆR' | 'SOM_VANLIG' | 'REDUSERT',
-    uker?: UkeMedArbeidstid[]
+    uker?: UkeMedArbeidstid[],
 ) => {
     if (arbeiderIPeriodenSvar === 'REDUSERT' && uker) {
         it('legger til arbeidstid for enkeltuker', () => {
@@ -358,6 +362,7 @@ const bekreftOpplysningerOgSendInn = () => {
 export const cyHelpers = {
     startUrl,
     date,
+    setTestDate,
     startSøknad,
     fyllUtUkjentArbeidsforhold,
     leggTilOgFjernFerie,

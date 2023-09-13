@@ -7,6 +7,7 @@ import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
 import ArbeidstidForm from './ArbeidstidForm';
+import ArbeidsaktiviteterMedUkjentArbeidsgiver from './ArbeidsaktiviteterMedUkjentArbeidsgiver';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
@@ -43,6 +44,7 @@ const ArbeidstidStep = () => {
                     </Alert>
                 </Block>
             )}
+            <ArbeidsaktiviteterMedUkjentArbeidsgiver />
             <ArbeidstidForm goBack={goBack} />
         </SøknadStep>
     );

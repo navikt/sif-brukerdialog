@@ -20,8 +20,8 @@ const envSettings = (MSW) => {
         MINSIDE_URL: '${process.env.MINSIDE_URL}',
         MSW: '${MSW || process.env.MSW}',
         PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
-        UKJENT_ARBEIDSFOHOLD: '${process.env.UKJENT_ARBEIDSFOHOLD}',
         USE_AMPLITUDE: '${process.env.USE_AMPLITUDE}',
+        IMAGE: '${process.env.IMAGE}',
     };`
         .trim()
         .replace(/ /g, '');
