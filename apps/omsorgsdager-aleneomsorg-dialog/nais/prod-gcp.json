@@ -8,16 +8,17 @@
     "externalHosts": ["www.nav.no"],
     "cluster": "prod-gcp",
     "env": {
-        "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/logout",
+        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
         "API_URL": "http://k9-brukerdialog-api",
+        "APP_VERSION": "prod",
+        "APPSTATUS_DATASET": "production",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/logout",
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/api",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad",
         "MINSIDE_URL": "https://www.nav.no/minside",
-        "APPSTATUS_PROJECT_ID": "ryujtq87",
-        "APPSTATUS_DATASET": "production",
-        "USE_AMPLITUDE": "true",
-        "API_TOKENX_AUDIENCE": "prod-gcp:dusseldorf:k9-brukerdialog-api",
-        "NPM_CONFIG_CACHE": "/tmp"
+        "NPM_CONFIG_CACHE": "/tmp",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
+        "USE_AMPLITUDE": "true"
     }
 }

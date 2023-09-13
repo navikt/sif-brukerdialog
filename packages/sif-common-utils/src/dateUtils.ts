@@ -17,6 +17,7 @@ export const date3YearsAgo = dayjs().subtract(3, 'year').startOf('day').toDate()
 export const date4YearsAgo = dayjs().subtract(4, 'year').startOf('day').toDate();
 export const date4WeeksAgo = dayjs().subtract(4, 'week').startOf('day').toDate();
 export const date1YearFromNow = dayjs().add(1, 'year').endOf('day').toDate();
+export const date99YearsFromNow = dayjs().subtract(99, 'year').startOf('day').toDate();
 
 export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODateFormat);
 

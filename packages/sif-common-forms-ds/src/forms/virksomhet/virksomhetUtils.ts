@@ -1,9 +1,7 @@
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { date4YearsAgo } from '@navikt/sif-common-utils';
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISOString, ISOStringToDate, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getNumberFromStringInput } from '@navikt/sif-common-formik-ds/lib/validation/validationUtils';
+import { date4YearsAgo, guid } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { guid } from '@navikt/sif-common-utils';
 import { Næringstype, Virksomhet, VirksomhetFormValues } from './types';
 
 export const harFiskerNæringstype = (næringstype: Næringstype): boolean => næringstype === Næringstype.FISKE;
@@ -60,11 +58,11 @@ export const cleanupVirksomhetFormValues = (formValues: VirksomhetFormValues): V
 
 export const mapFormValuesToVirksomhet = (
     formValues: VirksomhetFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<Virksomhet> => {
     const næringsinntekt = getNumberFromStringInput(formValues.næringsinntekt);
     const inntektEtterVarigEndring = getNumberFromStringInput(
-        formValues.varigEndringINæringsinntekt_inntektEtterEndring
+        formValues.varigEndringINæringsinntekt_inntektEtterEndring,
     );
 
     return {
