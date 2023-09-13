@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import { ISODate } from '@navikt/sif-common-utils';
+import { ISODate } from '@navikt/sif-common-utils/lib';
 
 export enum Næringstype {
     'FISKE' = 'FISKE',

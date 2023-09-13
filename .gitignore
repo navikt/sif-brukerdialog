@@ -9,6 +9,7 @@ dist-ssr
 .env
 .cache
 .turbo
+.vscode
 storybook-static
 coverage
 
