@@ -32,7 +32,7 @@ export const getApiDataFromSøknadsdata = (
                       sak.søknadsperioder,
                       arbeidstid.arbeidsaktivitet,
                       sak.arbeidsaktiviteter,
-                      sak.ukjenteArbeidsgivere,
+                      sak.arbeidsgivereIkkeISak,
                       ukjentArbeidsforhold,
                   )
                 : undefined,

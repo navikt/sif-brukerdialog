@@ -17,6 +17,7 @@
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api",
         "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/soknad",
+        "MINSIDE_URL": "https://www.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
         "NYNORSK": "off",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",

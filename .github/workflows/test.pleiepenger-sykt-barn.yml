@@ -1,0 +1,65 @@
+name: test.pleiepenger-sykt-barn
+
+on:
+    push:
+        branches-ignore:
+            - 'main'
+        paths:
+            - 'apps/pleiepenger-sykt-barn/**/*'
+            - 'nais-config/**/*'
+            - 'packages/**/*'
+            - '.github/workflows/test.pleiepenger-sykt-barn.yml'
+
+env:
+    APP_NAME: 'pleiepenger-sykt-barn'
+
+jobs:
+    run-script-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
+
+            - name: Install dependencies (yarn)
+              run: yarn
+
+            - name: Run code tests
+              run: yarn test --filter=pleiepenger-sykt-barn
+    run-cypress-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'yarn'
+
+            - name: Build and start e2e server
+              uses: cypress-io/github-action@v6.5.0
+              env:
+                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/pleiepenger
+                  FRONTEND_API_PATH: http://localhost:8082/
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+              with:
+                  project: ./apps/pleiepenger-sykt-barn/e2e
+                  build: yarn build-pleiepenger-sykt-barn
+                  start: yarn turbo start-e2e-server --filter=pleiepenger-sykt-barn
+                  wait-on: 'http://localhost:8080'
+                  wait-on-timeout: 60
+                  runTests: false
+
+            - name: Run cypress tests
+              run: yarn turbo cypress-run --filter=pleiepenger-sykt-barn
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

@@ -1,12 +1,12 @@
 [
     {
         "barn": {
-            "fødselsdato": "2017-03-02",
-            "fornavn": "Nora",
+            "fødselsdato": "2016-03-02",
+            "fornavn": "Kari",
             "mellomnavn": null,
             "etternavn": "Nordmann",
-            "aktørId": "2559652436222",
-            "identitetsnummer": "03831799742"
+            "aktørId": "2559652436212",
+            "identitetsnummer": "02031699742"
         },
         "søknad": {
             "søknadId": "generert",
@@ -16,7 +16,7 @@
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
                 "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
-                "søknadsperiode": ["2022-12-01/2023-01-31", "2023-02-14/2023-03-16"],
+                "søknadsperiode": ["2022-12-01/2023-01-31", "2023-02-14/2023-08-16"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],
                 "opptjeningAktivitet": {},
@@ -112,7 +112,7 @@
             "ytelse": {
                 "type": "PLEIEPENGER_SYKT_BARN",
                 "barn": { "norskIdentitetsnummer": "00000000000", "fødselsdato": null },
-                "søknadsperiode": ["2022-12-01/2023-01-31", "2023-02-14/2023-03-16"],
+                "søknadsperiode": ["2022-12-01/2023-01-31", "2023-02-14/2023-08-16"],
                 "endringsperiode": [],
                 "trekkKravPerioder": [],
                 "opptjeningAktivitet": {},

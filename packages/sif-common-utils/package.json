@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-utils",
     "types": "lib/index.d.js",
-    "version": "3.39.0",
+    "version": "3.40.0",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-utils/issues"
     },
@@ -17,7 +17,7 @@
         "uuid": "9.0.0"
     },
     "devDependencies": {
-        "@babel/core": "7.22.15",
+        "@babel/core": "7.22.17",
         "@babel/preset-env": "7.22.15",
         "@babel/preset-react": "7.22.15",
         "@types/jest": "29.5.4",

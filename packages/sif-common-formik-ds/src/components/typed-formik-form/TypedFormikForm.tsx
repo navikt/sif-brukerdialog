@@ -16,6 +16,7 @@ export interface TypedFormikFormProps<FormValues, ErrorType> {
     cancelButtonLabel?: string;
     backButtonLabel?: string;
     id?: string;
+    showSubmitButton?: boolean;
     cancelButtonType?: CancelButtonTypes;
     runDelayedFormValidation?: boolean;
     formErrorHandler?: CustomFormErrorHandler<ErrorType>;
@@ -60,6 +61,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     backButtonLabel,
     id,
     includeButtons = true,
+    showSubmitButton = true,
     runDelayedFormValidation,
     cancelButtonType,
     formErrorHandler,
@@ -113,7 +115,7 @@ function TypedFormikForm<FormValues, ErrorType>({
         }
     }
 
-    const runCleanup = async (evt: React.FormEvent<HTMLFormElement>) => {
+    const runCleanup = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.stopPropagation();
         evt.preventDefault();
         formik.setValues(cleanup ? cleanup(formik.values) : formik.values);
@@ -122,6 +124,7 @@ function TypedFormikForm<FormValues, ErrorType>({
     const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         if (cleanup !== undefined) {
             runCleanup(evt);
+            // La values oppdatere seg før en kaller handleSubmit
             setTimeout(() => {
                 handleSubmit(evt);
             });
@@ -184,21 +187,22 @@ function TypedFormikForm<FormValues, ErrorType>({
                                     {backButtonLabel || 'Forrige'}
                                 </Button>
                             )}
-
-                            <Button
-                                variant="primary"
-                                type="submit"
-                                loading={submitPending}
-                                disabled={submitDisabled}
-                                data-testid="typedFormikForm-submitButton"
-                                iconPosition="right"
-                                icon={
-                                    showButtonArrows ? (
-                                        <Next aria-hidden className="typedFormikForm__buttonLabel__icon" />
-                                    ) : undefined
-                                }>
-                                {submitButtonLabel || 'Neste'}
-                            </Button>
+                            {showSubmitButton && (
+                                <Button
+                                    variant="primary"
+                                    type="submit"
+                                    loading={submitPending}
+                                    disabled={submitDisabled}
+                                    data-testid="typedFormikForm-submitButton"
+                                    iconPosition="right"
+                                    icon={
+                                        showButtonArrows ? (
+                                            <Next aria-hidden className="typedFormikForm__buttonLabel__icon" />
+                                        ) : undefined
+                                    }>
+                                    {submitButtonLabel || 'Neste'}
+                                </Button>
+                            )}
 
                             {onCancel && (
                                 <Button

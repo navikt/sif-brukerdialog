@@ -3,7 +3,7 @@
     "description": "Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
     "license": "MIT",
     "name": "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-    "version": "1.16.0",
+    "version": "1.17.0",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "private": true,
     "scripts": {
@@ -28,9 +28,9 @@
         "start-e2e-server": "node ./server-e2e.js"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.4.0",
-        "@navikt/ds-react": "5.4.0",
-        "@navikt/ds-tailwind": "5.4.0",
+        "@navikt/ds-css": "5.4.1",
+        "@navikt/ds-react": "5.4.1",
+        "@navikt/ds-tailwind": "5.4.1",
         "@navikt/sif-common-amplitude": "*",
         "@navikt/sif-common-core-ds": "*",
         "@navikt/sif-common-formik-ds": "*",
@@ -45,7 +45,7 @@
         "dotenv": "16.3.1",
         "eslint": "8.49.0",
         "express": "4.18.2",
-        "formik": "2.4.3",
+        "formik": "2.4.4",
         "helmet": "7.0.0",
         "history": "5.3.0",
         "http-proxy-middleware": "2.0.6",
@@ -58,11 +58,11 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "6.4.4",
+        "react-intl": "6.4.6",
         "react-router-dom": "6.15.0"
     },
     "devDependencies": {
-        "@babel/core": "7.22.15",
+        "@babel/core": "7.22.17",
         "@babel/plugin-proposal-object-rest-spread": "7.20.7",
         "@babel/plugin-transform-modules-commonjs": "7.22.15",
         "@babel/preset-env": "7.22.15",
@@ -76,7 +76,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.8.1",
-        "cypress": "13.1.0",
+        "cypress": "13.2.0",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.3",
         "jsdom": "22.1.0",

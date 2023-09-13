@@ -1,8 +1,10 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
-import { ISODateToDate } from '@navikt/sif-common-utils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
 import JaNeiSvar from '../../components/summary/JaNeiSvar';
@@ -11,8 +13,6 @@ import SummaryBlock from '../../components/summary/SummaryBlock';
 import TallSvar from '../../components/summary/TallSvar';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface Props {
     virksomhet: VirksomhetApiData;

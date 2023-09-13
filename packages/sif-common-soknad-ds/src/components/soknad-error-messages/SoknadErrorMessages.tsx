@@ -103,9 +103,11 @@ const UnknownRoute = ({ onReset }: { onReset?: () => void }) => (
         <p>
             <FormattedMessage id="common.soknadErrorMessages.unknownRoute.reset" />
         </p>
-        <Button type="button" onClick={onReset} variant="secondary" size="small">
-            <FormattedMessage id="common.soknadErrorMessages.unknownRoute.reset.buttonLabel" />
-        </Button>
+        {onReset && (
+            <Button type="button" onClick={onReset} variant="secondary" size="small">
+                <FormattedMessage id="common.soknadErrorMessages.unknownRoute.reset.buttonLabel" />
+            </Button>
+        )}
     </SoknadErrorMessage>
 );
 
