@@ -53,22 +53,6 @@ describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
         expect(result).toBeFalsy();
     });
 });
-describe('harArbeidstakerISakUtenArbeidsforhold', () => {
-    it('returnerer true hvis har har arbeidsaktivitet i sak med ikke tilhørende arbeidsgiver', () => {
-        const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
-            [arbeidstaker1, arbeidstaker2],
-            [arbeidsgiver3],
-        );
-        expect(result).toBeTruthy();
-    });
-    it('returnerer false hvis alle arbeidsaktiviteter i sak har tilhørende arbeidsgiver', () => {
-        const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
-            [arbeidstaker1, arbeidstaker2],
-            [arbeidsgiver1, arbeidsgiver2],
-        );
-        expect(result).toBeFalsy();
-    });
-});
 
 describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     const tillatEndringsperiode = ISODateRangeToDateRange('2022-01-02/2022-02-01');
