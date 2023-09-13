@@ -100,16 +100,6 @@ const harArbeidsgiverUtenArbeidsaktivitet = (
     });
 };
 
-const harArbeidsaktivitetUtenArbeidsgiver = (
-    arbeidsaktiviteter: K9SakArbeidstaker[] = [],
-    arbeidsgivere: Arbeidsgiver[],
-) => {
-    return arbeidsaktiviteter.some(
-        ({ organisasjonsnummer }) =>
-            arbeidsgivere.some((aISak) => aISak.organisasjonsnummer === organisasjonsnummer) === false,
-    );
-};
-
 const harArbeidstidSomSelvstendigNæringsdrivende = (sak: K9Sak) => {
     const { selvstendigNæringsdrivendeArbeidstidInfo: sn } = sak.ytelse.arbeidstid;
     return sn !== undefined && sn.perioder && Object.keys(sn.perioder).length > 0;
@@ -127,6 +117,5 @@ const harSøknadsperiodeInnenforTillattEndringsperiode = (
 export const tilgangskontrollUtils = {
     getIngenTilgangMeta,
     harArbeidsgiverUtenArbeidsaktivitet,
-    harArbeidsaktivitetUtenArbeidsgiver,
     harSøknadsperiodeInnenforTillattEndringsperiode,
 };
