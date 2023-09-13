@@ -11,7 +11,6 @@ interface Props {
 const SummaryBlock = ({ header, level, children }: Props) => (
     <Block margin="l" padBottom="m">
         <ContentWithHeader header={header} level={level}>
-            {' '}
             {children}
         </ContentWithHeader>
     </Block>

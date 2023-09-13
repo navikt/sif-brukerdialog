@@ -1,0 +1,170 @@
+{
+    "søknadId": "8f968f00-6ecc-4e78-a5ab-11ff175db3bb",
+    "søknadstype": "PP_SYKT_BARN",
+    "status": "MOTTATT",
+    "søknad": {
+        "barn": {
+            "navn": "ALFABETISK FAGOTT",
+            "aktørId": "2811762539343",
+            "fødselsdato": "2019-06-08",
+            "fødselsnummer": "08861999573"
+        },
+        "språk": "nb",
+        "søker": {
+            "fornavn": "PRESENTABEL",
+            "aktørId": "2320509955297",
+            "etternavn": "HOFTE",
+            "fødselsnummer": "02869599258"
+        },
+        "frilans": {
+            "frilanstype": "FRILANSER_HONORAR",
+            "startdato": "2016-11-08",
+            "arbeidsforhold": {
+                "arbeidIPeriode": {
+                    "type": "ARBEIDER_ULIKE_UKER_TIMER",
+                    "arbeidsuker": [
+                        { "timer": "PT2H", "periode": { "fraOgMed": "2022-11-01", "tilOgMed": "2022-11-06" } },
+                        { "timer": "PT2H", "periode": { "fraOgMed": "2022-11-07", "tilOgMed": "2022-11-13" } },
+                        { "timer": "PT5H", "periode": { "fraOgMed": "2022-11-14", "tilOgMed": "2022-11-19" } }
+                    ],
+                    "arbeiderIPerioden": "REDUSERT"
+                },
+                "normalarbeidstid": { "timerPerUkeISnitt": "PT5H" }
+            },
+            "harInntektSomFrilanser": true,
+            "jobberFortsattSomFrilans": true
+        },
+        "mottatt": "2022-11-08T07:00:06.249453556Z",
+        "fraOgMed": "2022-11-01",
+        "tilOgMed": "2022-11-19",
+        "søknadId": "8f968f00-6ecc-4e78-a5ab-11ff175db3bb",
+        "dokumentId": [
+            [
+                "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiI1ZDExZjE5Yy1mZTY5LTRkOWYtYTY5Ni00M2YxNDY0M2QzYjgifQ",
+                "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiI4MGIxOWZhNS1mZDUzLTQ0MmItYWJmYy05ZTE4NTA3ZDBlODYifQ"
+            ]
+        ],
+        "medlemskap": {
+            "skalBoIUtlandetNeste12Mnd": true,
+            "harBoddIUtlandetSiste12Mnd": false,
+            "utenlandsoppholdNeste12Mnd": [
+                {
+                    "fraOgMed": "2022-11-23",
+                    "landkode": "ASM",
+                    "landnavn": "Amerikansk Samoa",
+                    "tilOgMed": "2022-12-23"
+                }
+            ],
+            "utenlandsoppholdSiste12Mnd": []
+        },
+        "arbeidsgivere": [
+            {
+                "navn": "SJOKKERENDE ELEKTRIKER",
+                "erAnsatt": true,
+                "arbeidsforhold": {
+                    "arbeidIPeriode": {
+                        "type": "ARBEIDER_PROSENT_AV_NORMALT",
+                        "prosentAvNormalt": 50,
+                        "arbeiderIPerioden": "REDUSERT"
+                    },
+                    "normalarbeidstid": { "timerPerUkeISnitt": "PT20H" }
+                },
+                "organisasjonsnummer": "947064649",
+                "sluttetFørSøknadsperiode": false
+            }
+        ],
+        "k9FormatSøknad": {
+            "språk": "nb",
+            "søker": { "norskIdentitetsnummer": "02869599258" },
+            "ytelse": {
+                "barn": { "norskIdentitetsnummer": "08861999573" },
+                "type": "PLEIEPENGER_SYKT_BARN",
+                "uttak": { "perioder": { "2022-11-01/2022-11-19": { "timerPleieAvBarnetPerDag": "PT7H30M" } } },
+                "omsorg": {},
+                "bosteder": {
+                    "perioder": { "2022-11-23/2022-12-23": { "land": "ASM" } },
+                    "perioderSomSkalSlettes": {}
+                },
+                "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                "arbeidstid": {
+                    "arbeidstakerList": [
+                        {
+                            "arbeidstidInfo": {
+                                "perioder": {
+                                    "2022-11-01/2022-11-19": {
+                                        "faktiskArbeidTimerPerDag": "PT2H",
+                                        "jobberNormaltTimerPerDag": "PT4H"
+                                    }
+                                }
+                            },
+                            "organisasjonsnummer": "947064649"
+                        }
+                    ],
+                    "frilanserArbeidstidInfo": {
+                        "perioder": {
+                            "2022-11-01/2022-11-04": {
+                                "faktiskArbeidTimerPerDag": "PT30M",
+                                "jobberNormaltTimerPerDag": "PT1H"
+                            },
+                            "2022-11-07/2022-11-11": {
+                                "faktiskArbeidTimerPerDag": "PT24M",
+                                "jobberNormaltTimerPerDag": "PT1H"
+                            },
+                            "2022-11-14/2022-11-18": {
+                                "faktiskArbeidTimerPerDag": "PT1H",
+                                "jobberNormaltTimerPerDag": "PT1H"
+                            }
+                        }
+                    }
+                },
+                "tilsynsordning": {
+                    "perioder": { "2022-11-01/2022-11-19": { "etablertTilsynTimerPerDag": "PT0S" } }
+                },
+                "endringsperiode": [],
+                "lovbestemtFerie": { "perioder": {} },
+                "søknadsperiode": ["2022-11-01/2022-11-19"],
+                "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                "trekkKravPerioder": [],
+                "opptjeningAktivitet": { "frilanser": { "startdato": "2016-11-08" } },
+                "dataBruktTilUtledning": {
+                    "harBekreftetOpplysninger": true,
+                    "harForståttRettigheterOgPlikter": true
+                }
+            },
+            "versjon": "1.0.0",
+            "søknadId": "8f968f00-6ecc-4e78-a5ab-11ff175db3bb",
+            "mottattDato": "2022-11-08T07:00:06.249Z",
+            "journalposter": [],
+            "begrunnelseForInnsending": {}
+        },
+        "utenlandskNæring": [],
+        "ferieuttakIPerioden": { "ferieuttak": [], "skalTaUtFerieIPerioden": false },
+        "opptjeningIUtlandet": [],
+        "harBekreftetOpplysninger": true,
+        "utenlandsoppholdIPerioden": { "opphold": [], "skalOppholdeSegIUtlandetIPerioden": false },
+        "selvstendigNæringsdrivende": { "harInntektSomSelvstendig": false },
+        "harForstattRettigheterOgPlikter": true
+    },
+    "saksId": null,
+    "journalpostId": "573802547",
+    "dokumenter": [
+        {
+            "journalpostId": "573802547",
+            "dokumentInfoId": "599105571",
+            "sakId": null,
+            "tittel": "Søknad om pleiepenger",
+            "filtype": "PDF",
+            "harTilgang": true,
+            "url": "https://sif-innsyn-api.dev.nav.no/dokument/573802547/599105571/ARKIV",
+            "relevanteDatoer": [
+                { "dato": "2022-11-08T08:00:10", "datotype": "DATO_OPPRETTET" },
+                { "dato": "2022-11-08T08:00:10", "datotype": "DATO_DOKUMENT" },
+                { "dato": "2022-11-08T08:00:06", "datotype": "DATO_REGISTRERT" }
+            ]
+        }
+    ],
+    "opprettet": "2022-11-08T07:00:06.249Z",
+    "endret": "2022-11-08T07:00:10",
+    "behandlingsdato": null
+}

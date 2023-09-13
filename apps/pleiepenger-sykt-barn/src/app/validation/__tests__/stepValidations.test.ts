@@ -1,0 +1,139 @@
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import dayjs from 'dayjs';
+import { SøknadFormValues, SøknadFormField } from '../../types/søknad-form-values/SøknadFormValues';
+import * as fieldValidations from '../fieldValidations';
+import {
+    arbeidssituasjonStepIsValid,
+    legeerklæringStepIsValid,
+    medlemskapStepIsValid,
+    opplysningerOmBarnetStepIsValid,
+    opplysningerOmTidsromStepIsValid,
+    welcomingPageIsValid,
+} from '../stepValidations';
+
+import Mock = jest.Mock;
+
+jest.mock('./../fieldValidations', () => {
+    return {
+        validateNavn: jest.fn(() => undefined),
+        validateFødselsnummer: jest.fn(() => undefined),
+        validateValgtBarn: jest.fn(() => undefined),
+    };
+});
+
+jest.mock('@navikt/sif-common-formik-ds/lib/validation', () => ({
+    getDateValidator: () => () => undefined,
+    getFødselsnummerValidator: () => () => undefined,
+    getStringValidator: () => () => undefined,
+}));
+
+jest.mock('./../../utils/featureToggleUtils', () => {
+    return { isFeatureEnabled: () => false, Feature: {} };
+});
+
+const formValues: Partial<SøknadFormValues> = {};
+
+describe('stepValidation tests', () => {
+    describe('welcomingPageIsValid', () => {
+        it(`should be valid if ${SøknadFormField.harForståttRettigheterOgPlikter} is true`, () => {
+            formValues[SøknadFormField.harForståttRettigheterOgPlikter] = true;
+            expect(welcomingPageIsValid(formValues as SøknadFormValues)).toBe(true);
+        });
+
+        it(`should be invalid if ${SøknadFormField.harForståttRettigheterOgPlikter} is undefined or false`, () => {
+            formValues[SøknadFormField.harForståttRettigheterOgPlikter] = undefined;
+            expect(welcomingPageIsValid(formValues as SøknadFormValues)).toBe(false);
+            formValues[SøknadFormField.harForståttRettigheterOgPlikter] = false;
+            expect(welcomingPageIsValid(formValues as SøknadFormValues)).toBe(false);
+        });
+    });
+
+    describe('opplysningerOmBarnetStepIsValid', () => {
+        describe(`opplysningerOmBarnetStep test`, () => {
+            beforeEach(() => {
+                jest.resetAllMocks();
+            });
+
+            it('should be valid if barnetsNavn, barnetsFødselsnummer and are all valid', () => {
+                expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(true);
+            });
+
+            it(`should be invalid if ${SøknadFormField.barnetsNavn} is invalid`, () => {
+                (fieldValidations.validateNavn as Mock).mockReturnValue('some error message');
+                expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            });
+
+            it(`should be invalid if ${SøknadFormField.barnetsFødselsnummer} is invalid`, () => {
+                (fieldValidations.validateFødselsnummer as Mock).mockReturnValue('some error message');
+                expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            });
+        });
+    });
+
+    describe('opplysningerOmTidsromStepIsValid', () => {
+        const fromDate = dayjs().toISOString();
+        const toDate = dayjs().toISOString();
+        it(`should be valid if both ${SøknadFormField.periodeFra} and ${SøknadFormField.periodeTil} are defined`, () => {
+            formValues[SøknadFormField.periodeFra] = fromDate;
+            formValues[SøknadFormField.periodeTil] = toDate;
+            expect(opplysningerOmTidsromStepIsValid(formValues as SøknadFormValues)).toBe(true);
+        });
+
+        it(`should be invalid if ${SøknadFormField.periodeFra} is undefined`, () => {
+            formValues[SøknadFormField.periodeFra] = undefined;
+            formValues[SøknadFormField.periodeTil] = toDate;
+            expect(opplysningerOmTidsromStepIsValid(formValues as SøknadFormValues)).toBe(false);
+        });
+
+        it(`should be invalid if ${SøknadFormField.periodeTil} is undefined`, () => {
+            formValues[SøknadFormField.periodeFra] = fromDate;
+            formValues[SøknadFormField.periodeTil] = undefined;
+            expect(opplysningerOmTidsromStepIsValid(formValues as SøknadFormValues)).toBe(false);
+        });
+    });
+
+    describe('opplysningerOmTidsromStepIsValid', () => {
+        it('should always be valid', () => {
+            expect(arbeidssituasjonStepIsValid()).toBe(true);
+        });
+    });
+
+    describe('medlemskapStepIsValid', () => {
+        it('should be valid if both harBoddUtenforNorgeSiste12Mnd and skalBoUtenforNorgeNeste12Mnd are either answered with YES or NO', () => {
+            formValues[SøknadFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
+            formValues[SøknadFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(true);
+            formValues[SøknadFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
+            formValues[SøknadFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(true);
+            formValues[SøknadFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
+            formValues[SøknadFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(true);
+            formValues[SøknadFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
+            formValues[SøknadFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(true);
+        });
+
+        it(`should be invalid if ${SøknadFormField.harBoddUtenforNorgeSiste12Mnd} is UNANSWERED`, () => {
+            formValues[SøknadFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.UNANSWERED;
+            formValues[SøknadFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            formValues[SøknadFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(false);
+        });
+
+        it(`should be invalid if ${SøknadFormField.skalBoUtenforNorgeNeste12Mnd} is UNANSWERED`, () => {
+            formValues[SøknadFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.UNANSWERED;
+            formValues[SøknadFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(false);
+            formValues[SøknadFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
+            expect(medlemskapStepIsValid(formValues as SøknadFormValues)).toBe(false);
+        });
+    });
+
+    describe('legeerklæringStepIsValid', () => {
+        it('should always be valid', () => {
+            expect(legeerklæringStepIsValid()).toBe(true);
+        });
+    });
+});
