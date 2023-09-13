@@ -1,23 +1,26 @@
 import React from 'react';
+import { FileRejection } from 'react-dropzone';
 import { Attachment, PersistedFile } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import {
     attachmentShouldBeProcessed,
     attachmentShouldBeUploaded,
     attachmentUploadHasFailed,
+    getAttachmentFromFile,
     getPendingAttachmentFromFile,
     isFileObject,
     mapFileToPersistedFile,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
+import { FileDropAcceptImagesAndPdf as FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { ArrayHelpers, useFormikContext } from 'formik';
 import api from '../../api/api';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { ApiEndpoint } from '../../types/ApiEndpoint';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { FileDropAcceptImagesAndPdf as FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds';
 import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
+
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
@@ -27,6 +30,7 @@ interface FormikFileUploader extends TypedFormInputValidationProps<SoknadFormFie
     buttonLabel: string;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onFileInputClick?: () => void;
+    // onRejectFiles: (fileRejections: FileRejection[]) => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
 }
@@ -38,6 +42,7 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     onFilesUploaded,
     onFileInputClick,
     onErrorUploadingAttachments,
+    // onRejectFiles,
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
 }) => {
@@ -59,10 +64,18 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
         }
     }
 
-    async function uploadAttachments(allAttachments: Attachment[], replaceFn: FieldArrayReplaceFn) {
+    async function uploadAttachments(
+        allAttachments: Attachment[],
+        fileRejections: FileRejection[],
+        replaceFn: FieldArrayReplaceFn,
+    ) {
         const attachmentsToProcess = findAttachmentsToProcess(allAttachments);
         const attachmentsToUpload = findAttachmentsToUpload(attachmentsToProcess);
-        const attachmentsNotToUpload = attachmentsToProcess.filter((el) => !attachmentsToUpload.includes(el));
+
+        const attachmentsNotToUpload = [
+            ...attachmentsToProcess.filter((el) => !attachmentsToUpload.includes(el)),
+            ...fileRejections.map((f) => getAttachmentFromFile(f.file)),
+        ];
 
         for (const attachment of attachmentsToUpload) {
             await uploadAttachment(attachment);
@@ -124,9 +137,9 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
             name={name}
             legend="Dokumenter"
             accept={FileDropAcceptImagesAndPdf}
-            onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
+            onFilesSelect={async (files: File[], rejectedFiles: FileRejection[], { push, replace }: ArrayHelpers) => {
                 const attachments = files.map((file) => addPendingAttachmentToFieldArray(file, push));
-                await uploadAttachments([...(values as any)[name], ...attachments], replace);
+                await uploadAttachments([...(values as any)[name], ...attachments], rejectedFiles, replace);
             }}
             onClick={onFileInputClick}
             {...otherProps}
