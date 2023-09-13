@@ -1,0 +1,193 @@
+{
+    "søknadId": "863d6bd3-b939-47aa-9653-cbfc7cc11367",
+    "søknadstype": "PP_SYKT_BARN",
+    "status": "MOTTATT",
+    "søknad": {
+        "barn": {
+            "navn": "ALFABETISK FAGOTT",
+            "aktørId": "2811762539343",
+            "fødselsdato": "2019-06-08",
+            "fødselsnummer": "08861999573"
+        },
+        "språk": "nb",
+        "søker": {
+            "fornavn": "PRESENTABEL",
+            "aktørId": "2320509955297",
+            "etternavn": "HOFTE",
+            "fødselsnummer": "02869599258"
+        },
+        "frilans": {
+            "startdato": "2016-09-07",
+            "arbeidsforhold": {
+                "arbeidIPeriode": {
+                    "type": "ARBEIDER_PROSENT_AV_NORMALT",
+                    "prosentAvNormalt": 10,
+                    "arbeiderIPerioden": "REDUSERT"
+                },
+                "normalarbeidstid": { "erLiktHverUke": false, "timerPerUkeISnitt": "PT20H" }
+            },
+            "harInntektSomFrilanser": true,
+            "jobberFortsattSomFrilans": true
+        },
+        "mottatt": "2022-09-02T08:20:45.437124664Z",
+        "fraOgMed": "2022-08-01",
+        "tilOgMed": "2022-09-30",
+        "beredskap": { "beredskap": true, "tilleggsinformasjon": "Beskrivelse av beredskap" },
+        "nattevåk": { "harNattevåk": true, "tilleggsinformasjon": "Beskrivelse av nattevåk" },
+        "søknadId": "863d6bd3-b939-47aa-9653-cbfc7cc11367",
+        "dokumentId": [
+            [
+                "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiI0NzE4Y2NjYi02ZmQ0LTQxOTgtYTU5NS0xMzUyYWMzMDZjOTQifQ",
+                "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiIwMjRmNDM3MC1mMGY3LTRkNmItYWUwZS01YmI0YmZjZDNhZGQifQ"
+            ],
+            [
+                "eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdGkiOiIzMjhkZDllNi1hNzVmLTQ2ZWUtOGZiNi05MzNhODYwZjA4MDMifQ"
+            ]
+        ],
+        "medlemskap": {
+            "skalBoIUtlandetNeste12Mnd": true,
+            "harBoddIUtlandetSiste12Mnd": true,
+            "utenlandsoppholdNeste12Mnd": [
+                {
+                    "fraOgMed": "2022-09-02",
+                    "landkode": "ASM",
+                    "landnavn": "Amerikansk Samoa",
+                    "tilOgMed": "2022-11-19"
+                }
+            ],
+            "utenlandsoppholdSiste12Mnd": [
+                { "fraOgMed": "2022-06-13", "landkode": "ALB", "landnavn": "Albania", "tilOgMed": "2022-09-01" }
+            ]
+        },
+        "arbeidsgivere": [
+            {
+                "navn": "SJOKKERENDE ELEKTRIKER",
+                "erAnsatt": true,
+                "arbeidsforhold": {
+                    "arbeidIPeriode": {
+                        "type": "ARBEIDER_PROSENT_AV_NORMALT",
+                        "prosentAvNormalt": 10,
+                        "arbeiderIPerioden": "REDUSERT"
+                    },
+                    "normalarbeidstid": { "erLiktHverUke": false, "timerPerUkeISnitt": "PT20H" }
+                },
+                "organisasjonsnummer": "947064649",
+                "sluttetFørSøknadsperiode": false
+            }
+        ],
+        "omsorgstilbud": {
+            "ukedager": {
+                "fredag": "PT1H5M",
+                "mandag": "PT5H1M",
+                "onsdag": "PT3H3M",
+                "tirsdag": "PT4H3M",
+                "torsdag": "PT2H4M"
+            },
+            "erLiktHverUke": true
+        },
+        "utenlandskNæring": [
+            {
+                "land": { "landkode": "IRL", "landnavn": "Irland" },
+                "fraOgMed": "2022-09-01",
+                "næringstype": "ANNEN",
+                "navnPåVirksomheten": "NæringAnnetEØSLand",
+                "organisasjonsnummer": "123123123"
+            }
+        ],
+        "ferieuttakIPerioden": {
+            "ferieuttak": [{ "fraOgMed": "2022-09-12", "tilOgMed": "2022-09-24" }],
+            "skalTaUtFerieIPerioden": true
+        },
+        "opptjeningIUtlandet": [
+            {
+                "land": { "landkode": "BEL", "landnavn": "Belgia" },
+                "navn": "FreeBelgia",
+                "fraOgMed": "2022-09-13",
+                "tilOgMed": "2022-09-23",
+                "opptjeningType": "FRILANSER"
+            },
+            {
+                "land": { "landkode": "BGR", "landnavn": "Bulgaria" },
+                "navn": "BulgArbeidsgiverNavn",
+                "fraOgMed": "2022-09-14",
+                "tilOgMed": "2022-09-15",
+                "opptjeningType": "ANSATT"
+            }
+        ],
+        "harBekreftetOpplysninger": true,
+        "utenlandsoppholdIPerioden": {
+            "opphold": [
+                {
+                    "årsak": "BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING",
+                    "fraOgMed": "2022-09-12",
+                    "landkode": "ALB",
+                    "landnavn": "Albania",
+                    "tilOgMed": "2022-09-30",
+                    "erUtenforEøs": true,
+                    "erBarnetInnlagt": true,
+                    "perioderBarnetErInnlagt": [{ "fraOgMed": "2022-09-13", "tilOgMed": "2022-09-23" }]
+                }
+            ],
+            "skalOppholdeSegIUtlandetIPerioden": true
+        },
+        "selvstendigNæringsdrivende": {
+            "virksomhet": {
+                "fraOgMed": "2009-09-02",
+                "næringstype": "JORDBRUK_SKOGBRUK",
+                "varigEndring": { "dato": "2022-09-01", "forklaring": "WhoaWhoa", "inntektEtterEndring": 123 },
+                "fiskerErPåBladB": false,
+                "registrertINorge": false,
+                "navnPåVirksomheten": "ABC",
+                "registrertIUtlandet": { "landkode": "ASM", "landnavn": "Amerikansk Samoa" },
+                "harFlereAktiveVirksomheter": true
+            },
+            "arbeidsforhold": {
+                "arbeidIPeriode": {
+                    "type": "ARBEIDER_TIMER_I_SNITT_PER_UKE",
+                    "timerPerUke": "PT5H",
+                    "arbeiderIPerioden": "REDUSERT"
+                },
+                "normalarbeidstid": { "erLiktHverUke": false, "timerPerUkeISnitt": "PT10H" }
+            },
+            "harInntektSomSelvstendig": true
+        },
+        "harForstattRettigheterOgPlikter": true
+    },
+    "saksId": null,
+    "journalpostId": "573777622",
+    "dokumenter": [
+        {
+            "journalpostId": "573777622",
+            "dokumentInfoId": "599039030",
+            "sakId": "1DNM1SM",
+            "tittel": "Søknad om pleiepenger",
+            "filtype": "PDF",
+            "harTilgang": true,
+            "url": "https://sif-innsyn-api.dev.nav.no/dokument/573777622/599039030/ARKIV",
+            "relevanteDatoer": [
+                { "dato": "2022-09-02T10:20:56", "datotype": "DATO_OPPRETTET" },
+                { "dato": "2022-09-02T10:20:56", "datotype": "DATO_DOKUMENT" },
+                { "dato": "2022-09-02T10:21:02", "datotype": "DATO_JOURNALFOERT" },
+                { "dato": "2022-09-02T10:20:45", "datotype": "DATO_REGISTRERT" }
+            ]
+        },
+        {
+            "journalpostId": "573777622",
+            "dokumentInfoId": "599039031",
+            "sakId": "1DNM1SM",
+            "tittel": "IMG_1075 (1).JPG",
+            "filtype": "PDF",
+            "harTilgang": true,
+            "url": "https://sif-innsyn-api.dev.nav.no/dokument/573777622/599039031/ARKIV",
+            "relevanteDatoer": [
+                { "dato": "2022-09-02T10:20:56", "datotype": "DATO_OPPRETTET" },
+                { "dato": "2022-09-02T10:20:56", "datotype": "DATO_DOKUMENT" },
+                { "dato": "2022-09-02T10:21:02", "datotype": "DATO_JOURNALFOERT" },
+                { "dato": "2022-09-02T10:20:45", "datotype": "DATO_REGISTRERT" }
+            ]
+        }
+    ],
+    "opprettet": "2022-09-02T08:20:45.437Z",
+    "endret": "2022-09-02T08:20:58",
+    "behandlingsdato": null
+}

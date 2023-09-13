@@ -1,5 +1,13 @@
 # @navikt/sif-common-formik-ds
 
+## 0.5.0
+
+### Minor Changes
+
+-   96810cd6: Fjerne checked prop fra checkbox i checkboxgroup
+    Legge til showSubmitButton prop i TypedFormikForm
+-   96810cd6: Pakkeoppdateringer
+
 ## 0.4.0
 
 ### Minor Changes

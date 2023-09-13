@@ -77,15 +77,26 @@ export const getSakFromK9Sak = (
         erArbeidsgiverInnenforSøknadsperioder(a, k9sak.ytelse.søknadsperioder),
     );
 
-    const ukjenteArbeidsgivere = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
+    const arbeidsgivereIkkeISak = arbeidsgivereISøknadsperioder.filter((arbeidsgiver) => {
         return !finnesArbeidsgiverIK9Sak(arbeidsgiver, k9sak.ytelse.arbeidstid.arbeidstakerList || []);
     });
 
-    const arbeidstakerAktiviteter = arbeidstakerList
-        ? arbeidstakerList.map((arbeidstaker) =>
-              getArbeidsaktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode),
-          )
+    const arbeidstakerAktiviteterMedArbeidsgiver = arbeidstakerList
+        ? getArbeidsaktiviteterMedKjentArbeidsgiver(arbeidstakerList, arbeidsgivereISøknadsperioder)
         : [];
+
+    const arbeidsaktivitetMedUkjentArbeidsgiver = (
+        arbeidstakerList
+            ? getArbeidsaktiviteterMedUkjentArbeidsgiver(arbeidstakerList, arbeidsgivereISøknadsperioder)
+            : []
+    ).map((a) => ({
+        organisasjonsnummer: a.organisasjonsnummer,
+    }));
+
+    const arbeidstakerAktiviteter = arbeidstakerAktiviteterMedArbeidsgiver.map((arbeidstaker) =>
+        getArbeidsaktivitetArbeidstaker(arbeidstaker, arbeidsgivereISøknadsperioder, tillattEndringsperiode),
+    );
+
     const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
     const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
         selvstendigNæringsdrivendeArbeidstidInfo,
@@ -101,11 +112,12 @@ export const getSakFromK9Sak = (
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
         },
-        ukjenteArbeidsgivere: ukjenteArbeidsgivere,
-        harUkjentArbeidsforhold: ukjenteArbeidsgivere.length > 0,
+        arbeidsgivereIkkeISak,
+        harArbeidsgivereIkkeISak: arbeidsgivereIkkeISak.length > 0,
         søknadsperioder: søknadsperioderInneforTillattEndringsperiode,
         samletSøknadsperiode: dateRangeUtils.getDateRangeFromDateRanges(søknadsperioderInneforTillattEndringsperiode),
         barn: k9sak.barn,
+        arbeidsaktivitetMedUkjentArbeidsgiver,
         arbeidsaktiviteter: {
             arbeidstakerAktiviteter,
             frilanser,
@@ -118,6 +130,26 @@ export const getSakFromK9Sak = (
             aktiviteterSomKanEndres,
         },
     };
+};
+
+/** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */
+export const getArbeidsaktiviteterMedKjentArbeidsgiver = (
+    k9SakArbeidstakere: K9SakArbeidstaker[],
+    arbeidsgivere: Arbeidsgiver[],
+) => {
+    return k9SakArbeidstakere.filter((a) =>
+        arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer),
+    );
+};
+
+/** Henter utk9SakArbeidstakere hvor arbeidsgiver IKKE er funnet i AA-reg */
+export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
+    k9SakArbeidstakere: K9SakArbeidstaker[],
+    arbeidsgivere: Arbeidsgiver[],
+) => {
+    return k9SakArbeidstakere.filter(
+        (a) => arbeidsgivere.some((arbg) => arbg.organisasjonsnummer === a.organisasjonsnummer) === false,
+    );
 };
 
 /**

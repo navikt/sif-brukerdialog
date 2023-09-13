@@ -1,6 +1,13 @@
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@types';
-import { appSentryLogger, maskString, parseK9Format } from '@utils';
+import {
+    appSentryLogger,
+    getEndringsdato,
+    getTillattEndringsperiode,
+    isK9SakErInnenforGyldigEndringsperiode,
+    maskString,
+    parseK9Format,
+} from '@utils';
 import api from '../api';
 import { ApiEndpointInnsyn } from './';
 import { verifyK9Format } from '../../utils/verifyk9Format';
@@ -27,17 +34,21 @@ const maskK9FormatSak = (sak: K9Format) => {
 };
 
 const sakerEndpoint = {
-    fetch: async (): Promise<K9SakResult[]> => {
+    fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
+        const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
-            const k9saker: K9SakResult[] = [];
+            const k9Saker: K9SakResult[] = [];
+            const eldreSaker: K9SakResult[] = [];
             data.forEach((sak) => {
                 try {
                     const erGyldig = verifyK9Format(sak);
                     if (erGyldig) {
                         const parsedSak = parseK9Format(sak);
-                        if (parsedSak.ytelse.søknadsperioder.length > 0) {
-                            k9saker.push(parsedSak);
+                        if (isK9SakErInnenforGyldigEndringsperiode(parsedSak, endringsperiode)) {
+                            k9Saker.push(parsedSak);
+                        } else {
+                            eldreSaker.push(parsedSak);
                         }
                         if (getEnvironmentVariable('DEBUG') === 'true') {
                             appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
@@ -51,7 +62,7 @@ const sakerEndpoint = {
                         const ugyldigSak: UgyldigK9SakFormat = {
                             erUgyldigK9SakFormat: true,
                         };
-                        k9saker.push(ugyldigSak);
+                        k9Saker.push(ugyldigSak);
                         appSentryLogger.logError('ugyldigK9Format', JSON.stringify(error));
                         appSentryLogger.logInfo('debug.k9format.ikkeGyldig', JSON.stringify(maskK9FormatSak(sak)));
                     } else {
@@ -59,7 +70,7 @@ const sakerEndpoint = {
                     }
                 }
             });
-            return Promise.resolve(k9saker);
+            return Promise.resolve({ k9Saker, eldreSaker });
         } catch (error) {
             return Promise.reject(error);
         }

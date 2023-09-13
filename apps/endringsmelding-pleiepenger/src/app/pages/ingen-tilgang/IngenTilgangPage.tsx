@@ -9,6 +9,7 @@ import { IngenTilgangÅrsak, Søker } from '@types';
 import DevFooter from '../../dev/DevFooter';
 import { SkrivTilOssLink } from '../../lenker';
 import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
+import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
 
 export interface IngenTilgangPageProps {
     søker: Søker;
@@ -104,9 +105,9 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             return (
                 <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">
                     <p>
-                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn 6 måneder
-                        siden. Du kan melde fra om endring i tjenesten <SkrivTilOssLink />, eller sende oss en ny
-                        søknad.
+                        Du kan ikke bruke denne tjenesten fordi siste søknadsperiode gikk ut for mer enn enn{' '}
+                        {ANTALL_MÅNEDER_TILLATT_FOR_ENDRING} måneder siden. Du kan melde fra om endring i tjenesten{' '}
+                        <SkrivTilOssLink />, eller sende oss en ny søknad.
                     </p>
                     <p>
                         Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss{' '}

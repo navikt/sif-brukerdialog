@@ -4,12 +4,11 @@ import {
     ModalFormAndInfoLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { mapVirksomhetToVirksomhetApiData } from './mapVirksomhetToApiData';
 import { Virksomhet } from './types';
 import VirksomhetForm from './VirksomhetForm';
 import VirksomhetSummary from './VirksomhetSummary';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;
@@ -28,14 +27,11 @@ function VirksomhetInfoAndDialog<FieldNames>({
     onAfterChange,
 }: Props<FieldNames>) {
     const intl = useIntl();
-    const formTitle = harFlereVirksomheter
-        ? intlHelper(intl, 'sifForms.virksomhet.form_title.flere')
-        : intlHelper(intl, 'sifForms.virksomhet.form_title');
     return (
         <FormikModalFormAndInfo<FieldNames, Virksomhet, ValidationError>
             name={name}
             validate={validate}
-            labels={{ ...labels, modalTitle: formTitle }}
+            labels={labels}
             dialogWidth="narrow"
             renderEditButtons={true}
             formRenderer={({ onSubmit, onCancel, data }) => (

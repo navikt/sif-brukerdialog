@@ -32,17 +32,17 @@ export enum UkjentArbeidsgiverFormField {
     timerPerUke = 'timerPerUke',
 }
 
-export interface UkjentArbeidsgiverFormValues {
+export interface UkjentArbeidsforholdArbeidsgiverFormValues {
     [UkjentArbeidsgiverFormField.erAnsatt]?: YesOrNo;
     [UkjentArbeidsgiverFormField.timerPerUke]?: string;
 }
 
-export interface UkjentArbeidsgiverMap {
-    [arbeidsgiverKey: string]: UkjentArbeidsgiverFormValues;
+export interface UkjentArbeidsforholdArbeidsgiverMap {
+    [arbeidsgiverKey: string]: UkjentArbeidsforholdArbeidsgiverFormValues;
 }
 
 export interface UkjentArbeidsforholdFormValues {
-    [UkjentArbeidsforholdFormFields.arbeidsforhold]: UkjentArbeidsgiverMap;
+    [UkjentArbeidsforholdFormFields.arbeidsforhold]: UkjentArbeidsforholdArbeidsgiverMap;
 }
 
 enum UkjentArbeidsforholdFormFields {
@@ -59,7 +59,7 @@ const { FormikWrapper, Form } = getTypedFormComponents<
 
 interface Props {
     arbeidsgivere: Arbeidsgiver[];
-    ukjenteArbeidsgivere: Arbeidsgiver[];
+    arbeidsgivereIkkeISak: Arbeidsgiver[];
     ukjentArbeidsforholdSøknadsdata?: UkjentArbeidsforholdSøknadsdata;
     stepId: StepId;
     goBack?: () => void;
@@ -69,7 +69,7 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
     stepId,
     goBack,
     arbeidsgivere,
-    ukjenteArbeidsgivere,
+    arbeidsgivereIkkeISak,
     ukjentArbeidsforholdSøknadsdata,
 }) => {
     const intl = useIntl();
@@ -94,7 +94,7 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
     const initialValues: UkjentArbeidsforholdFormValues = getUkjentArbeidsforholdStepInitialValues(
         ukjentArbeidsforholdSøknadsdata,
         stepFormValues?.ukjentArbeidsforhold,
-        ukjenteArbeidsgivere,
+        arbeidsgivereIkkeISak,
     );
 
     return (
@@ -111,7 +111,7 @@ const UkjentArbeidsforholdForm: React.FunctionComponent<Props> = ({
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            {ukjenteArbeidsgivere.map((arbeidsgiver) => {
+                            {arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                                 const arbeidsgiverFieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${arbeidsgiver.key}`;
                                 const arbeidsgiverValues = (values.arbeidsforhold || {})[arbeidsgiver.key];
                                 return (

@@ -1,0 +1,70 @@
+@mobile-breakpoint: 576px;
+
+.knapperad {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: -1rem;
+    &__knapp {
+        margin-bottom: 1rem;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .knapperad__knapp + .knapperad__knapp {
+        padding-left: 1rem;
+    }
+    &--left {
+        justify-content: left;
+    }
+    &--stretch {
+        display: flex;
+        justify-items: stretch;
+        .knapperad__knapp {
+            flex: 1 1 0;
+            button {
+                width: 100%;
+            }
+            &:first-child {
+                margin-right: 1rem;
+            }
+        }
+        @media (max-width: @mobile-breakpoint) {
+            .knapperad__knapp {
+                &:first-child {
+                    margin-right: 0;
+                }
+                &:last-child {
+                    padding-left: 0;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+    &--mobile-50-50 {
+        @media (max-width: @mobile-breakpoint) {
+            .knapperad__knapp + .knapperad__knapp {
+                padding: 0;
+            }
+            .knapperad__knapp {
+                padding: 0;
+                width: 50%;
+                &:first-child {
+                    padding-right: 0.25rem;
+                }
+                &:last-child {
+                    padding-left: 0.25rem;
+                }
+                > .knapp {
+                    height: 100%;
+                    white-space: normal;
+                    width: 100%;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+            }
+        }
+    }
+}
