@@ -5,6 +5,7 @@
     "name": "@navikt/pleiepenger-sykt-barn",
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "3.0.0",
+    "private": true,
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
         "build": "npm-run-all build-app",
