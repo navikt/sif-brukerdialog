@@ -96,7 +96,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                         id="sifForms.virksomhet.summary.yrkesaktiv.jaStartetDato"
                                         values={{
                                             dato: prettifyApiDate(
-                                                virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato
+                                                virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
                                             ),
                                         }}
                                     />
@@ -119,14 +119,14 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                     <SummaryBlock
                                         header={intlHelper(
                                             intl,
-                                            'sifForms.virksomhet.summary.varigEndring.næringsinntekt'
+                                            'sifForms.virksomhet.summary.varigEndring.næringsinntekt',
                                         )}>
                                         <TallSvar verdi={virksomhet.varigEndring.inntektEtterEndring} />
                                     </SummaryBlock>
                                     <SummaryBlock
                                         header={intlHelper(
                                             intl,
-                                            'sifForms.virksomhet.summary.varigEndring.beskrivelse'
+                                            'sifForms.virksomhet.summary.varigEndring.beskrivelse',
                                         )}>
                                         <Sitat>
                                             <TextareaSummary text={virksomhet.varigEndring.forklaring} />

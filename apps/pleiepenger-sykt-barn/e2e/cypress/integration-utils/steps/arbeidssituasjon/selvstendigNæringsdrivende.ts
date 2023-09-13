@@ -41,7 +41,7 @@ const fyllUtVirksomhetDialog = () => {
         getInputByName('tom').click().type(virksomhet.tilOgMed).blur();
         selectRadio(
             'hattVarigEndringAvNæringsinntektSiste4Kalenderår',
-            virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår
+            virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår,
         );
         getInputByName('varigEndringINæringsinntekt_dato')
             .click()

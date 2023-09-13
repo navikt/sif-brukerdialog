@@ -68,7 +68,7 @@ export const testArbeidssituasjonUtenlandskNæring = () => {
             el.should('contain', `Næringstype: ${expectedNæringstype}`);
             el.should(
                 'contain',
-                `Registrert i ${expectedutenlandskNæringLand} (organisasjonsnummer ${virksomhetensOrganisasjonsnummer}).`
+                `Registrert i ${expectedutenlandskNæringLand} (organisasjonsnummer ${virksomhetensOrganisasjonsnummer}).`,
             );
             el.should('contain', `Startet ${fraDatoTilDato} (pågående).`);
         });

@@ -128,25 +128,25 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                 {
                                     value: UtenlandskNæringstype.FISKE,
                                     label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.FISKE}`
+                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.FISKE}`,
                                     ),
                                 },
                                 {
                                     value: UtenlandskNæringstype.JORDBRUK_SKOGBRUK,
                                     label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.JORDBRUK_SKOGBRUK}`
+                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.JORDBRUK_SKOGBRUK}`,
                                     ),
                                 },
                                 {
                                     value: UtenlandskNæringstype.DAGMAMMA,
                                     label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.DAGMAMMA}`
+                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.DAGMAMMA}`,
                                     ),
                                 },
                                 {
                                     value: UtenlandskNæringstype.ANNEN,
                                     label: getText(
-                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.ANNEN}`
+                                        `sifForms.utenlandskNæringForm.næringstype_${UtenlandskNæringstype.ANNEN}`,
                                     ),
                                 },
                             ]}

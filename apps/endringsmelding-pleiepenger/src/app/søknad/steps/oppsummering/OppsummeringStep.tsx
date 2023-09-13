@@ -87,10 +87,10 @@ const OppsummeringStep = () => {
                 </Ingress>
             </SifGuidePanel>
 
-            {sak.harUkjentArbeidsforhold && ukjenteArbeidsforhold && (
+            {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                 <Block margin="xxl">
                     <SummarySection header="Nytt arbeidsforhold">
-                        {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
+                        {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjenteArbeidsforhold.find(
                                 (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
                             );
@@ -145,7 +145,7 @@ const OppsummeringStep = () => {
                             <>
                                 <ArbeidstidOppsummering
                                     arbeidstid={arbeidstid}
-                                    arbeidsgivere={[...arbeidsgivere, ...sak.ukjenteArbeidsgivere]}
+                                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
                                 />
                                 {!harGyldigArbeidstid && (
                                     <Block margin="none" padBottom="l">

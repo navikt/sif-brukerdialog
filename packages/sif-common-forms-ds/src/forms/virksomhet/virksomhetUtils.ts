@@ -58,11 +58,11 @@ export const cleanupVirksomhetFormValues = (formValues: VirksomhetFormValues): V
 
 export const mapFormValuesToVirksomhet = (
     formValues: VirksomhetFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<Virksomhet> => {
     const næringsinntekt = getNumberFromStringInput(formValues.næringsinntekt);
     const inntektEtterVarigEndring = getNumberFromStringInput(
-        formValues.varigEndringINæringsinntekt_inntektEtterEndring
+        formValues.varigEndringINæringsinntekt_inntektEtterEndring,
     );
 
     return {
