@@ -1,5 +1,20 @@
 # @navikt/sif-common-core-ds
 
+## 9.5.0
+
+### Minor Changes
+
+-   96810cd6: Pakkeoppdateringer
+
+### Patch Changes
+
+-   96810cd6: Oppdatere layout
+-   Updated dependencies [96810cd6]
+-   Updated dependencies [96810cd6]
+    -   @navikt/sif-common-formik-ds@0.5.0
+    -   @navikt/appstatus-react-ds@2.14.0
+    -   @navikt/sif-common-utils@3.40.0
+
 ## 9.4.0
 
 ### Minor Changes
