@@ -14,6 +14,7 @@ export const omBarnetMessages: MessageFileFormat = {
         'steg.omBarnet.gjelderAnnetBarn': 'Søknaden gjelder et annet barn',
         'steg.omBarnet.fnr.spm': 'Barnets fødselsnummer/D-nummer',
         'step.omBarnet.fødselsdato': 'Barnets fødselsdato',
+        'step.omBarnet.fødselsdato.info': 'Barn må være født etter {minFødselsdato}',
         'steg.omBarnet.navn': 'Barnets navn',
         'steg.omBarnet.relasjon': 'Min relasjon til barnet',
         'steg.omBarnet.veileder.samværsavtale': 'Senere i søknaden laster du opp avtale om delt bosted for barnet.',

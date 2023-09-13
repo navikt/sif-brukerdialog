@@ -12,7 +12,7 @@ import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnetKeys } from '../../../../types/SøkersRelasjonTilBarnet';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import { dateToday } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
 
 const { TextField, DatePicker, Select } = getTypedFormComponents<
@@ -76,6 +76,9 @@ const AnnetBarnpart = () => {
                     minDate={minDatoForBarnetsFødselsdato}
                     maxDate={dateToday}
                     showYearSelector={true}
+                    description={intlHelper(intl, 'step.omBarnet.fødselsdato.info', {
+                        minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
+                    })}
                     data-testid="barnetsFødselsdato"
                 />
             </FormBlock>
