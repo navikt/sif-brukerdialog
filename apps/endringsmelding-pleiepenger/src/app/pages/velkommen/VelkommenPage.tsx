@@ -81,7 +81,6 @@ const VelkommenPage = () => {
                                     ]}
                                 />
                             </Block>
-
                             <OmSøknaden />
                         </SifGuidePanel>
                         <FormBlock>

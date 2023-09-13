@@ -86,7 +86,7 @@ const VelgSakPage = () => {
                                                         {formatName(
                                                             sak.barn.fornavn,
                                                             sak.barn.etternavn,
-                                                            sak.barn.mellomnavn
+                                                            sak.barn.mellomnavn,
                                                         )}
                                                         - ({dateFormatter.dayDateMonthYear(sak.barn.fødselsdato)})
                                                     </Heading>
