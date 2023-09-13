@@ -15,3 +15,4 @@ export const relocateToWelcomePage = () => {
 };
 export const relocateToNoAccessPage = (): void => relocateTo(getSøknadRouteURL(SøknadRoutes.IKKE_TILGANG));
 export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable('LOGIN_URL'));
+export const relocateToMinSide = () => relocateTo(getEnvironmentVariable('MINSIDE_URL'));
