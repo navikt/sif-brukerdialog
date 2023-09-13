@@ -11,7 +11,7 @@ import {
     isFileObject,
     mapFileToPersistedFile,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { FileDropAcceptImagesAndPdf as FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds';
+import { FileDropAcceptImagesAndPdf } from '@navikt/sif-common-formik-ds';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik-ds/lib';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { ArrayHelpers, useFormikContext } from 'formik';
@@ -30,7 +30,6 @@ interface FormikFileUploader extends TypedFormInputValidationProps<SoknadFormFie
     buttonLabel: string;
     onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onFileInputClick?: () => void;
-    // onRejectFiles: (fileRejections: FileRejection[]) => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
 }
@@ -42,7 +41,6 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     onFilesUploaded,
     onFileInputClick,
     onErrorUploadingAttachments,
-    // onRejectFiles,
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
 }) => {
