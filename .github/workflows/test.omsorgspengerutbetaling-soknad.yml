@@ -2,6 +2,8 @@ name: test.omsorgspengerutbetaling-soknad
 
 on:
     push:
+        branches-ignore:
+            - 'main'
         paths:
             - 'apps/omsorgspengerutbetaling-soknad/**/*'
             - 'nais-config/**/*'
