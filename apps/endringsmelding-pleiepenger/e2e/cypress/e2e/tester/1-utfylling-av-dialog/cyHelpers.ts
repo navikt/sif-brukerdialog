@@ -10,13 +10,11 @@ const flereUker = [46, 47];
 const getAktivitet = () => getTestElement('aktivitet_a_947064649');
 const getPeriode = () => getTestElement('dateRangeAccordion_0');
 const getUkeRow = (ukenummer) => {
-    cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`).should('be.visible');
-    cy.wait(250);
+    cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`).should('be.visible').wait(200);
     return cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`);
 };
 const getArbeidstimerModal = () => {
-    cy.get('.endreArbeidstidModal').should('be.visible');
-    cy.wait(250);
+    cy.get('.endreArbeidstidModal').should('be.visible').wait(200);
     return cy.get('.endreArbeidstidModal');
 };
 
@@ -160,6 +158,7 @@ const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
+            cy.checkA11y();
         });
     });
     it('kontrollerer verdi før endring', () => {
