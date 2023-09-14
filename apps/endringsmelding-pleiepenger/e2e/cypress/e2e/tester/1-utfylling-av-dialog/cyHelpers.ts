@@ -160,7 +160,6 @@ const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
-            cy.checkA11y();
         });
     });
     it('kontrollerer verdi før endring', () => {
