@@ -3413,7 +3413,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     rimraf: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
   peerDependencies:
     "@navikt/ds-css": 5
     "@navikt/ds-react": 5
@@ -3579,7 +3579,7 @@ __metadata:
     react-router-dom: 6.15.0
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -3699,7 +3699,7 @@ __metadata:
     react-scripts: 5.0.1
     regenerator-runtime: 0.14.0
     rimraf: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -3861,7 +3861,7 @@ __metadata:
     react-intl: 6.4.6
     react-router-dom: 6.15.0
     react-scripts: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -3947,7 +3947,7 @@ __metadata:
     react-intl: 6.4.6
     react-router-dom: 6.15.0
     react-scripts: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -4044,7 +4044,7 @@ __metadata:
     react-responsive: 9.0.2
     react-router-dom: 6.15.0
     react-scripts: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -4175,7 +4175,7 @@ __metadata:
     react-responsive: 9.0.2
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     storybook: 7.4.1
     storybook-addon-sass-postcss: 0.1.3
@@ -4241,7 +4241,7 @@ __metadata:
     react-responsive: 9.0.2
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     storybook: 7.4.1
     storybook-formik: 2.4.2
     uuid: 9.0.0
@@ -4390,7 +4390,7 @@ __metadata:
     react-router-dom: 6.15.0
     react-scripts: 5.0.1
     rimraf: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     storybook: 7.4.1
     uuid: 9.0.0
@@ -4506,7 +4506,7 @@ __metadata:
     react-intl: 6.4.6
     react-router-dom: 6.15.0
     react-scripts: 5.0.1
-    sass: 1.66.1
+    sass: 1.67.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
     start-server-and-test: 2.0.0
@@ -24776,7 +24776,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.66.1, sass@npm:^1.43.4":
+"sass@npm:1.67.0":
+  version: 1.67.0
+  resolution: "sass@npm:1.67.0"
+  dependencies:
+    chokidar: ">=3.0.0 <4.0.0"
+    immutable: ^4.0.0
+    source-map-js: ">=0.6.2 <2.0.0"
+  bin:
+    sass: sass.js
+  checksum: 9e7566e8b7386cf265dddcdb266a023fb5759c5a8f48a11da199c8bf419e5f08f4ff6404d85d6bf5eac01e1f7c7061fdb6b7b65cbfda164e59b0a06b72ac8567
+  languageName: node
+  linkType: hard
+
+"sass@npm:^1.43.4":
   version: 1.66.1
   resolution: "sass@npm:1.66.1"
   dependencies:
