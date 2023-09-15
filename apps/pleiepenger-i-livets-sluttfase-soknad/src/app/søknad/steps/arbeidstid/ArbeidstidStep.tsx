@@ -26,6 +26,11 @@ import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { useState } from 'react';
+import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
+import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
+import { getIngenFraværConfirmationDialog } from '../confirmation-dialogs/ingenFraværConfirmation';
+import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -77,8 +82,9 @@ const ArbeidstidStep = () => {
     const {
         state: { søknadsdata },
     } = useSøknadContext();
-
-    const { logArbeidPeriodeRegistrert, logArbeidEnkeltdagRegistrert } = useLogSøknadInfo();
+    const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialogType | undefined>(undefined);
+    const { logArbeidPeriodeRegistrert, logArbeidEnkeltdagRegistrert, logBekreftIngenFraværFraJobb } =
+        useLogSøknadInfo();
 
     const stepId = StepId.ARBEIDSTID;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
@@ -86,6 +92,31 @@ const ArbeidstidStep = () => {
     const { goBack } = useStepNavigation(step);
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+
+    const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
+        const { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } = values;
+        return new Promise((resolve) => {
+            if (harFraværIPerioden(frilansArbeidstid, selvstendigArbeidstid, ansattArbeidstid) === false) {
+                setTimeout(() => {
+                    setConfirmationDialog(
+                        getIngenFraværConfirmationDialog({
+                            onCancel: () => {
+                                logBekreftIngenFraværFraJobb(false);
+                                setConfirmationDialog(undefined);
+                            },
+                            onConfirm: () => {
+                                logBekreftIngenFraværFraJobb(true);
+                                setConfirmationDialog(undefined);
+                                resolve(true);
+                            },
+                        }),
+                    );
+                });
+            } else {
+                resolve(true);
+            }
+        });
+    };
 
     const onValidSubmitHandler = (values: ArbeidstidFormValues) => {
         const arbeidstidSøknadsdata = getArbeidstidSøknadsdataFromFormValues(values);
@@ -124,7 +155,11 @@ const ArbeidstidStep = () => {
         <SøknadStep stepId={stepId}>
             <FormikWrapper
                 initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues[stepId])}
-                onSubmit={handleSubmit}
+                onSubmit={async (values) => {
+                    if (await onBeforeValidSubmit(values)) {
+                        handleSubmit(values);
+                    }
+                }}
                 renderForm={({ values: { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } }) => {
                     if (!ansattArbeidstid && !frilansArbeidstid && !selvstendigArbeidstid) {
                         return undefined;
@@ -153,6 +188,17 @@ const ArbeidstidStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
+                                {confirmationDialog && (
+                                    <ConfirmationDialog
+                                        open={confirmationDialog !== undefined}
+                                        okLabel={confirmationDialog.okLabel}
+                                        cancelLabel={confirmationDialog.cancelLabel}
+                                        onConfirm={confirmationDialog.onConfirm}
+                                        onCancel={confirmationDialog.onCancel}
+                                        title={confirmationDialog.title}>
+                                        {confirmationDialog.content}
+                                    </ConfirmationDialog>
+                                )}
                                 <FormBlock>
                                     <SifGuidePanel>
                                         <p>
