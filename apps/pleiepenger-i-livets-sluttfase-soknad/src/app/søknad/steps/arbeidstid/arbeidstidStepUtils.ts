@@ -10,11 +10,13 @@ import { ArbeidIPeriode, JobberIPeriodeSvar } from './ArbeidstidTypes';
 
 export const getArbeidstidStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: ArbeidstidFormValues
+    //formValues?: ArbeidstidFormValues,
 ): ArbeidstidFormValues => {
-    if (formValues) {
+    /*if (formValues) {
+        // Trenger vi det her? det viser ikke arbeidsforhold hvis bruker går tilbake og endrer noe 
+        console.log('formValues');
         return formValues;
-    }
+    }*/
 
     const arbeidsgivereArbeidstidSøknadsdata = søknadsdata.arbeidstid?.arbeidsgivere;
     const frilansArbeidstidSøknadsdata = søknadsdata.arbeidstid?.frilans;
@@ -26,16 +28,16 @@ export const getArbeidstidStepInitialValues = (
 
     const arbeidsgivereDefaultValues = getAnsattArbeidstidFormData(
         arbeidsgivereArbeidssituasjonSøknadsdata,
-        arbeidsgivereArbeidstidSøknadsdata
+        arbeidsgivereArbeidstidSøknadsdata,
     );
     const frilansDefaultValues = getArbeidstidFrilansFormData(
         frilansArbeidstidSøknadsdata,
-        frilansArbeidssituasjonSøknadsdata
+        frilansArbeidssituasjonSøknadsdata,
     );
 
     const selvstendivDefaultValues = getArbeidstidSelvstendigFormData(
         selvstendigArbeidstidSøknadsdata,
-        selvstendigArbeidssituasjonSøknadsdata
+        selvstendigArbeidssituasjonSøknadsdata,
     );
 
     return {
@@ -47,7 +49,7 @@ export const getArbeidstidStepInitialValues = (
 
 export const getAnsattArbeidstidFormData = (
     arbeidsgivereArbeidssituasjonSøknadsdata?: ArbeidsgivereSøknadsdata,
-    arbeidsgivereArbeidstidSøknadsdata?: ArbeidstidArbeidsgivereSøknadsdata
+    arbeidsgivereArbeidstidSøknadsdata?: ArbeidstidArbeidsgivereSøknadsdata,
 ): AnsattArbeidstid[] | undefined => {
     if (arbeidsgivereArbeidssituasjonSøknadsdata) {
         const ansattArbeidstid: AnsattArbeidstid[] = [];
@@ -57,7 +59,7 @@ export const getAnsattArbeidstidFormData = (
                 const arbeidIPeriode =
                     arbeidsgivereArbeidstidSøknadsdata && arbeidsgivereArbeidstidSøknadsdata.hasOwnProperty(key)
                         ? getArbeidIPeriodeFormDataFromSøknadsdata(
-                              arbeidsgivereArbeidstidSøknadsdata[key]?.arbeidIPeriode
+                              arbeidsgivereArbeidstidSøknadsdata[key]?.arbeidIPeriode,
                           )
                         : undefined;
 
@@ -77,7 +79,7 @@ export const getAnsattArbeidstidFormData = (
 
 const getArbeidstidFrilansFormData = (
     frilansArbeidstidSøknadsdata?: ArbeidIPeriodeSøknadsdata,
-    frilansArbeidssituasjonSøknadsdata?: ArbeidFrilansSøknadsdata
+    frilansArbeidssituasjonSøknadsdata?: ArbeidFrilansSøknadsdata,
 ): FrilansSNArbeidstid | undefined => {
     if (!frilansArbeidssituasjonSøknadsdata) {
         return undefined;
@@ -101,7 +103,7 @@ const getArbeidstidFrilansFormData = (
 
 const getArbeidstidSelvstendigFormData = (
     selvstendigArbeidstidSøknadsdata?: ArbeidIPeriodeSøknadsdata,
-    selvstendigArbeidssituasjonSøknadsdata?: ArbeidSelvstendigSøknadsdata
+    selvstendigArbeidssituasjonSøknadsdata?: ArbeidSelvstendigSøknadsdata,
 ): FrilansSNArbeidstid | undefined => {
     if (!selvstendigArbeidssituasjonSøknadsdata) {
         return undefined;
@@ -121,7 +123,7 @@ const getArbeidstidSelvstendigFormData = (
 };
 
 const getArbeidIPeriodeFormDataFromSøknadsdata = (
-    arbeidIPeriodeSøknadsdata?: ArbeidIPeriodeSøknadsdata
+    arbeidIPeriodeSøknadsdata?: ArbeidIPeriodeSøknadsdata,
 ): ArbeidIPeriode | undefined => {
     if (!arbeidIPeriodeSøknadsdata) {
         return undefined;
@@ -145,7 +147,7 @@ const getArbeidIPeriodeFormDataFromSøknadsdata = (
 };
 
 export const getArbeidstidSøknadsdataFromFormValues = (
-    arbeidstidFormValues: ArbeidstidFormValues
+    arbeidstidFormValues: ArbeidstidFormValues,
 ): ArbeidstidSøknadsdata | undefined => {
     const arbeidsgivere = getArbeidstidArbeidsgivereSøknadsdata(arbeidstidFormValues.ansattArbeidstid);
     const frilans = getArbeidIPeriodeSøknadsdata(arbeidstidFormValues.frilansArbeidstid?.arbeidIPeriode);
@@ -159,7 +161,7 @@ export const getArbeidstidSøknadsdataFromFormValues = (
 };
 
 export const getArbeidstidArbeidsgivereSøknadsdata = (
-    ansattArbeidstid?: AnsattArbeidstid[]
+    ansattArbeidstid?: AnsattArbeidstid[],
 ): ArbeidstidArbeidsgivereSøknadsdata | undefined => {
     if (ansattArbeidstid) {
         const arbeidsgivereSøknadsdata: ArbeidstidArbeidsgivereSøknadsdata = {};
@@ -179,7 +181,7 @@ export const getArbeidstidArbeidsgivereSøknadsdata = (
 };
 
 export const getArbeidIPeriodeSøknadsdata = (
-    arbeidIPeriode?: ArbeidIPeriode
+    arbeidIPeriode?: ArbeidIPeriode,
 ): ArbeidIPeriodeSøknadsdata | undefined => {
     if (!arbeidIPeriode) {
         return undefined;

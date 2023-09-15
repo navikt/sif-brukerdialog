@@ -91,7 +91,7 @@ const ArbeidstidStep = () => {
 
     const { goBack } = useStepNavigation(step);
 
-    const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
+    const { clearStepFormValues } = useStepFormValuesContext();
 
     const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
         const { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } = values;
@@ -154,7 +154,7 @@ const ArbeidstidStep = () => {
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getArbeidstidStepInitialValues(søknadsdata, stepFormValues[stepId])}
+                initialValues={getArbeidstidStepInitialValues(søknadsdata)}
                 onSubmit={async (values) => {
                     if (await onBeforeValidSubmit(values)) {
                         handleSubmit(values);
