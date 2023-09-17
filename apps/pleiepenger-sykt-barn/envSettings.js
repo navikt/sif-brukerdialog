@@ -5,6 +5,7 @@ const envSettings = () => {
     const appSettings = `
     window.appSettings = {
         API_URL: '${process.env.API_URL}',
+        APP_VERSION: '${process.env.APP_VERSION}',
         VEDLEGG_API_URL: '${process.env.VEDLEGG_API_URL}',
         API_URL_INNSYN: '${process.env.API_URL_INNSYN}',
         FRONTEND_INNSYN_API_PATH: '${process.env.FRONTEND_INNSYN_API_PATH}',
