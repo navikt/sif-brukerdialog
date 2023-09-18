@@ -3680,7 +3680,7 @@ __metadata:
     detect-browser: 5.3.0
     dotenv: 16.3.1
     express: 4.18.2
-    flat: 5.0.2
+    flat: 6.0.0
     formik: 2.4.4
     fp-ts: 2.16.1
     fs-extra: 11.1.1
@@ -4314,7 +4314,7 @@ __metadata:
     copyfiles: 2.4.1
     date-fns: 2.30.0
     dayjs: 1.11.9
-    flat: 5.0.2
+    flat: 6.0.0
     formik: 2.4.4
     gh-pages: 6.0.0
     history: 5.3.0
@@ -15238,12 +15238,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flat@npm:5.0.2":
-  version: 5.0.2
-  resolution: "flat@npm:5.0.2"
+"flat@npm:6.0.0":
+  version: 6.0.0
+  resolution: "flat@npm:6.0.0"
   bin:
     flat: cli.js
-  checksum: 12a1536ac746db74881316a181499a78ef953632ddd28050b7a3a43c62ef5462e3357c8c29d76072bb635f147f7a9a1f0c02efef6b4be28f8db62ceb3d5c7f5d
+  checksum: 5351e7cf20b27e4aa7943b0c1223f1d08b484a9419a7dcb4026cbbfe8cc735161f1996d20c49b35d3099549bd0e10e3edd33c33da3a52b521d039103db751ebc
   languageName: node
   linkType: hard
 
