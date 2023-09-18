@@ -18,6 +18,7 @@ import { StepCommonProps } from '../../types/StepCommonProps';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { BodyLong } from '@navikt/ds-react';
 import InfoList from '../../pages/welcoming-page/components/info-list/InfoList';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };
@@ -51,14 +52,15 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                     <BodyLong>
                         <FormattedMessage id={'steg.nattevåkOgBeredskap.veileder'} />
                     </BodyLong>
-                    <Block padBottom="m">
-                        <strong>
-                            <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel" />
-                        </strong>
+                    <Block>
+                        <ExpandableInfo
+                            title={intlHelper(
+                                intl,
+                                'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel',
+                            )}>
+                            <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
+                        </ExpandableInfo>
                     </Block>
-                    <BodyLong>
-                        <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
-                    </BodyLong>
                 </SifGuidePanel>
             </Block>
             <FormSection title="Nattevåk" titleLevel="2">
