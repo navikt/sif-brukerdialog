@@ -68,23 +68,34 @@ export const getCountryName = (alphaCode: string, locale: string): string => {
     if (alphaCode === 'XXK') {
         alphaCode = 'XKX';
     }
-    return countries.getName(alphaCode, getLocaleKey(locale));
+    const name = countries.getName(alphaCode, getLocaleKey(locale));
+    if (!name) {
+        throw `countryUtils: getAlpha3Code:  ${alphaCode}`;
+    }
+    return name;
 };
 
 export const getAlpha3Code = (alpha2Code: string) => {
-    const countryAlpha3Code = countries.alpha2ToAlpha3(alpha2Code).toUpperCase();
+    const countryAlpha3Code = countries.alpha2ToAlpha3(alpha2Code);
+    if (!countryAlpha3Code) {
+        throw `countryUtils: getAlpha3Code:  ${alpha2Code}`;
+    }
 
     // i18n-iso-countries 7.5.0 bruker 'XKX' 'alpha3Code' for Kosovo. 'XXK' kode brukes i NAV.
     // Endrer i18n-iso-countries sin landkode til landkode som brukes i NAV for å sende riktig kode videre.
-    return countryAlpha3Code === 'XKX' ? 'XXK' : countryAlpha3Code;
+    return countryAlpha3Code === 'XKX' ? 'XXK' : countryAlpha3Code.toUpperCase();
 };
 
 export const countryIsMemberOfEøsOrEfta = (isoCode: string) => {
-    let isoCodeToUse = isoCode.toUpperCase();
+    let isoCodeToUse: string | undefined = isoCode.toUpperCase();
     if (isoCodeToUse === 'XXK') {
         isoCodeToUse = 'XKX';
     }
     isoCodeToUse = isoCodeToUse.length === 2 ? isoCodeToUse : countries.alpha3ToAlpha2(isoCodeToUse);
+    if (!isoCodeToUse) {
+        throw `countryUtils: countryIsMemberOfEøsOrEfta:  ${isoCodeToUse}`;
+    }
+
     return filteredListEØSCountries(isoCodeToUse.toUpperCase(), true) === true;
 };
 
