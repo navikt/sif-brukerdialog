@@ -8,10 +8,11 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
-    arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata
+    arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata,
 ): ArbeidsgiverApiData[] | undefined => {
     if (!arbeidsgivere) {
-        return undefined;
+        // Api sjekker at feltet kan ikke være null
+        return [];
     }
     const arbeidsgiverApiData: ArbeidsgiverApiData[] = [];
 
