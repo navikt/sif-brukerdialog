@@ -70,7 +70,7 @@ export const getCountryName = (alphaCode: string, locale: string): string => {
     }
     const name = countries.getName(alphaCode, getLocaleKey(locale));
     if (!name) {
-        throw `countryUtils: getAlpha3Code:  ${alphaCode}`;
+        throw `countryUtils: getCountryName:  ${alphaCode}`;
     }
     return name;
 };
