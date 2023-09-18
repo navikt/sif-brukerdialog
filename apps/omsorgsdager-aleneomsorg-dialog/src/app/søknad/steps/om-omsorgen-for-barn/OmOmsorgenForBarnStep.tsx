@@ -149,14 +149,6 @@ const OmOmsorgenForBarnStep = () => {
                                     <p>
                                         <FormattedMessage id="step.omOmsorgenForBarn.stepIntro.2" />
                                     </p>
-                                    <ul>
-                                        <li>
-                                            <FormattedMessage id="step.omOmsorgenForBarn.stepIntro.2.list.item.1" />
-                                        </li>
-                                        <li>
-                                            <FormattedMessage id="step.omOmsorgenForBarn.stepIntro.2.list.item.2" />
-                                        </li>
-                                    </ul>
                                 </SifGuidePanel>
                                 <Block margin="xxl">
                                     <Heading level="2" size="medium">

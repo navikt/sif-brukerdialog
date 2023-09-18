@@ -27,22 +27,19 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             <FormattedMessage id="page.velkommen.guide.tekst.3" />
         </p>
         <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.4" />
-        </p>
-        <p>
             <strong>
-                <FormattedMessage id="page.velkommen.guide.tekst.5" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4" />
             </strong>
         </p>
         <InfoList>
             <li>
-                <FormattedMessage id="page.velkommen.guide.tekst.5.1" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4.1" />
             </li>
             <li>
-                <FormattedMessage id="page.velkommen.guide.tekst.5.2" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4.2" />
             </li>
             <li>
-                <FormattedMessage id="page.velkommen.guide.tekst.5.3" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4.3" />
             </li>
         </InfoList>
     </GuidePanel>
