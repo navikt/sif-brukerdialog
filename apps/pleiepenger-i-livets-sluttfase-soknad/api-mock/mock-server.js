@@ -13,7 +13,7 @@ server.use(
         contentSecurityPolicy: false,
         crossOriginEmbedderPolicy: false,
         crossOriginResourcePolicy: false,
-    })
+    }),
 );
 
 server.use((req, res, next) => {
@@ -67,7 +67,7 @@ const startExpressServer = () => {
         setTimeout(() => {
             // res.send({ ...arbeidsgivereMock, ...frilansoppdragMock, privatarbeidsgiver: [] });
             res.send({ ...arbeidsgivereMock, frilansoppdrag: [], privatarbeidsgiver: [] });
-        }, 250);
+        }, 2000);
     });
 
     /** --- Send søknad ---------- */

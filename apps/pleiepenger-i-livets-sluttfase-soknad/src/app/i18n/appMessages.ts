@@ -9,6 +9,12 @@ export const appMessages: MessageFileFormat = {
         'fileUploadErrors.part1': 'Det har dessverre skjedd en feil under opplasting av følgende vedlegg:',
         'vedleggsliste.fjernKnapp': 'Fjern vedlegg',
 
+        'initialLoadError.pageTitle': 'Det oppstod en feil',
+        'initialLoadError.text.1': 'Det oppstod en feil under oppstarten av søknaden. Vennligst prøv igjen senere.',
+
+        'resetMellomlagring.text.1': 'Dersom feilen vedvarer, kan du prøve å starte på nytt med et tom skjema.',
+        'resetMellomlagring.startPåNytt': 'Start på nytt',
+
         hvaBetyrDette: 'Hva betyr dette?',
         fødselsnummer: 'Fødselsnummer:',
         apiVerdierMangler: 'Api verdier mangler',

@@ -125,11 +125,11 @@ const ArbeidssituasjonStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     if (isLoading || !isLoaded) {
-        return <LoadingSpinner type="XS" title="Henter arbeidsforhold" />;
+        return <LoadingSpinner size="3xlarge" style="block" />;
     }
 
     return (
@@ -138,7 +138,7 @@ const ArbeidssituasjonStep = () => {
                 initialValues={getArbeidssituasjonStepInitialValues(
                     søknadsdata,
                     arbeidsgivereIPerioden,
-                    stepFormValues[stepId]
+                    stepFormValues[stepId],
                 )}
                 onSubmit={handleSubmit}
                 renderForm={({
@@ -239,23 +239,23 @@ const ArbeidssituasjonStep = () => {
                                                     labels={{
                                                         addLabel: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp'
+                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp',
                                                         ),
                                                         deleteLabel: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp'
+                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp',
                                                         ),
                                                         editLabel: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp'
+                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp',
                                                         ),
                                                         infoTitle: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel'
+                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel',
                                                         ),
                                                         modalTitle: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel'
+                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel',
                                                         ),
                                                     }}
                                                 />
@@ -268,7 +268,7 @@ const ArbeidssituasjonStep = () => {
                                     ansatt_arbeidsforhold,
                                     frilans,
                                     selvstendig,
-                                    frilansoppdrag
+                                    frilansoppdrag,
                                 ) && (
                                     <FormBlock>
                                         <Heading level="2" size="large">
@@ -283,7 +283,7 @@ const ArbeidssituasjonStep = () => {
                                                     <ExpandableInfo
                                                         title={intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.verneplikt.info.tittel'
+                                                            'steg.arbeidssituasjon.verneplikt.info.tittel',
                                                         )}>
                                                         <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
                                                     </ExpandableInfo>
