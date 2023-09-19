@@ -3,10 +3,11 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import FileDropUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileDropUploadErrors';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
@@ -15,15 +16,14 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
+import { ApplicationType } from '../../types/ApplicationType';
+import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';
-import { ApplicationType } from '../../types/ApplicationType';
 import { StepID } from '../soknadStepsConfig';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import SøknadTempStorage from '../soknadTempStorage';
-import { Person } from '../../types/Person';
 
 interface Props {
     søknadstype: ApplicationType;
@@ -124,7 +124,7 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
             )}
 
             <Block margin="m">
-                <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+                <FileDropUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
             <Block margin="l">
                 <UploadedDocumentsList

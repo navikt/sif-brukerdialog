@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
@@ -18,6 +17,8 @@ import SøknadFormStep from '../SøknadFormStep';
 import { StepCommonProps } from '../../types/StepCommonProps';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import { BodyLong } from '@navikt/ds-react';
+import InfoList from '../../pages/welcoming-page/components/info-list/InfoList';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };
@@ -51,9 +52,18 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                     <BodyLong>
                         <FormattedMessage id={'steg.nattevåkOgBeredskap.veileder'} />
                     </BodyLong>
+                    <Block>
+                        <ExpandableInfo
+                            title={intlHelper(
+                                intl,
+                                'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel',
+                            )}>
+                            <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
+                        </ExpandableInfo>
+                    </Block>
                 </SifGuidePanel>
             </Block>
-            <FormSection title="Nattevåk">
+            <FormSection title="Nattevåk" titleLevel="2">
                 <BodyLong>
                     <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.veileder'} />
                 </BodyLong>
@@ -62,15 +72,6 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                     <SøknadFormComponents.YesOrNoQuestion
                         legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.nattevåk.spm')}
                         name={SøknadFormField.harNattevåk}
-                        description={
-                            <ExpandableInfo
-                                title={intlHelper(
-                                    intl,
-                                    'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel',
-                                )}>
-                                <FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn'} />
-                            </ExpandableInfo>
-                        }
                         validate={getYesOrNoValidator()}
                         data-testid="nattevåk"
                     />
@@ -82,26 +83,33 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                             <SøknadFormComponents.Textarea
                                 name={SøknadFormField.harNattevåk_ekstrainfo}
                                 label={<FormattedMessage id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm'} />}
+                                description={
+                                    <Block>
+                                        <BodyLong as="div">
+                                            <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel" />
+                                            <InfoList>
+                                                <li>
+                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.1" />
+                                                </li>
+                                                <li>
+                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2" />
+                                                </li>
+                                                <li>
+                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3" />
+                                                </li>
+                                            </InfoList>
+                                        </BodyLong>
+                                    </Block>
+                                }
                                 validate={getStringValidator({ required: true, maxLength: 1000 })}
                                 maxLength={1000}
-                                description={
-                                    <ExpandableInfo
-                                        title={intlHelper(
-                                            intl,
-                                            'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning.tittel',
-                                        )}>
-                                        <FormattedMessage
-                                            id={'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.veiledning'}
-                                        />
-                                    </ExpandableInfo>
-                                }
                                 data-testid="nattevåk-tilleggsinfo"
                             />
                         </ResponsivePanel>
                     </FormBlock>
                 )}
             </FormSection>
-            <FormSection title="Beredskap">
+            <FormSection title="Beredskap" titleLevel="2">
                 <BodyLong>
                     <FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.veileder'} />
                 </BodyLong>
@@ -109,15 +117,6 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                     <SøknadFormComponents.YesOrNoQuestion
                         legend={intlHelper(intl, 'steg.nattevåkOgBeredskap.beredskap.spm')}
                         name={SøknadFormField.harBeredskap}
-                        description={
-                            <ExpandableInfo
-                                title={intlHelper(
-                                    intl,
-                                    'steg.nattevåkOgBeredskap.beredskap.spm.description.flereBarn.tittel',
-                                )}>
-                                <FormattedMessage id={'steg.nattevåkOgBeredskap.beredskap.spm.description.flereBarn'} />
-                            </ExpandableInfo>
-                        }
                         validate={getYesOrNoValidator()}
                         data-testid="beredskap"
                     />
@@ -131,15 +130,22 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                 maxLength={1000}
                                 validate={getStringValidator({ required: true, maxLength: 1000 })}
                                 description={
-                                    <ExpandableInfo
-                                        title={intlHelper(
-                                            intl,
-                                            'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning.tittel',
-                                        )}>
-                                        <FormattedMessage
-                                            id={'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.veiledning'}
-                                        />
-                                    </ExpandableInfo>
+                                    <Block>
+                                        <BodyLong as="div">
+                                            <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel" />
+                                            <InfoList>
+                                                <li>
+                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.1" />
+                                                </li>
+                                                <li>
+                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.2" />
+                                                </li>
+                                                <li>
+                                                    <FormattedMessage id="steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.3" />
+                                                </li>
+                                            </InfoList>
+                                        </BodyLong>
+                                    </Block>
                                 }
                                 data-testid="beredskap-tilleggsinfo"
                             />

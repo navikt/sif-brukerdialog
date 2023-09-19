@@ -1,6 +1,6 @@
 import { TextFieldProps } from '@navikt/ds-react';
 import React from 'react';
-import { Accept } from 'react-dropzone';
+import { Accept, FileRejection } from 'react-dropzone';
 import { ArrayHelpers, Field, FieldArray, FieldProps } from 'formik';
 import { FormError, TypedFormInputValidationProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
@@ -17,7 +17,7 @@ interface OwnProps<FieldName> {
     accept?: Accept;
     multiple?: boolean;
     error?: FormError;
-    onFilesSelect: (files: File[], arrayHelpers: ArrayHelpers) => void;
+    onFilesSelect: (files: File[], rejectedFiles: FileRejection[], arrayHelpers: ArrayHelpers) => void;
     onClick?: () => void;
 }
 
@@ -55,7 +55,9 @@ function FormikFileDropInput<FieldName, ErrorType>({
                                 acceptLabel={acceptLabel}
                                 rejectLabel={rejectLabel}
                                 onClick={onClick}
-                                onFilesSelect={(files) => onFilesSelect(files, arrayHelpers)}
+                                onFilesSelect={(files, rejectedFiled) =>
+                                    onFilesSelect(files, rejectedFiled, arrayHelpers)
+                                }
                                 multiple={multiple}
                                 accept={accept}
                                 error={getErrorPropForFormikInput({ field, form, context, error })}
