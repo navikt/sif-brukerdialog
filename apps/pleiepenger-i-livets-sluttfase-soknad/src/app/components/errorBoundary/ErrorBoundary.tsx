@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component<any, State> {
             return (
                 <Page
                     title={'Det oppstod en feil'}
-                    topContentRenderer={() => <SoknadHeader title="Søknad om omsorgspengesoknad" />}>
+                    topContentRenderer={() => <SoknadHeader title="Søknad om pleiepenger i livets sluttfase" />}>
                     <Block margin="xxxl">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">

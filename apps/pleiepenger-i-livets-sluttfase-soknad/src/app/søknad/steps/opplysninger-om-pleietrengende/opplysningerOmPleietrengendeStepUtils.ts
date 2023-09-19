@@ -11,7 +11,7 @@ export const opplysningerOmPleietrengendeDefaultValues: OpplysningerOmPleietreng
 
 export const getOpplysningerOmPleietrengendeStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: OpplysningerOmPleietrengendeFormValues
+    formValues?: OpplysningerOmPleietrengendeFormValues,
 ) => {
     if (formValues) {
         return formValues;
@@ -26,6 +26,7 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
                     navn: opplysningerOmPleietrengende.navn,
                     norskIdentitetsnummer: opplysningerOmPleietrengende.norskIdentitetsnummer,
                     harIkkeFnr: false,
+                    pleietrengendeId: [],
                 };
             case 'pleietrengendeUtenFnr':
                 return {
@@ -42,7 +43,7 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
 };
 
 export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
-    formValues: OpplysningerOmPleietrengendeFormValues
+    formValues: OpplysningerOmPleietrengendeFormValues,
 ): OpplysningerOmPleietrengendeSøknadsdata | undefined => {
     const { navn, norskIdentitetsnummer, harIkkeFnr, fødselsdato, årsakManglerIdentitetsnummer, pleietrengendeId } =
         formValues;
