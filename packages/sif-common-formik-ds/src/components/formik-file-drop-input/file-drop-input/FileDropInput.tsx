@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import React, { useMemo } from 'react';
-import { Accept, useDropzone } from 'react-dropzone';
+import { Accept, FileRejection, useDropzone } from 'react-dropzone';
 import { UploadIcon } from '@navikt/aksel-icons';
 import { FormError } from '../../../types';
 import bemUtils from '../../../utils/bemUtils';
@@ -18,7 +18,7 @@ interface Props {
     multiple?: boolean;
     accept?: Accept;
     error?: FormError;
-    onFilesSelect: (files: File[]) => void;
+    onFilesSelect: (acceptedFiles: File[], rejectedFiles: FileRejection[]) => void;
     onClick?: () => void;
 }
 
@@ -28,8 +28,8 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
     const { id, name, buttonLabel, error, description, multiple, legend, rejectLabel, acceptLabel, accept } = props;
     const inputId = `${id}-input`;
 
-    const onDrop = (files: File[]) => {
-        props.onFilesSelect(files);
+    const onDrop = (acceptedFiles: File[], rejectedFiles: FileRejection[]) => {
+        props.onFilesSelect(acceptedFiles, rejectedFiles);
     };
 
     const { getRootProps, getInputProps, isFocused, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -62,11 +62,12 @@ const FileDropInput: React.FunctionComponent<Props> = (props) => {
         <SkjemagruppeQuestion error={error} legend={legend} description={description}>
             <div {...getRootProps({ className })}>
                 <div className={bem.element('icon')}>
-                    <UploadIcon />
+                    <UploadIcon role="presentation" />
                 </div>
                 <BodyShort as="div" className={bem.element('label')}>
                     {getLabel()}
                 </BodyShort>
+
                 <input id={inputId} name={name} {...getInputProps()} />
             </div>
         </SkjemagruppeQuestion>

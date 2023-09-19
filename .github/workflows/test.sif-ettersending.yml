@@ -2,6 +2,8 @@
 name: test.ettersending
 on:
     push:
+        branches-ignore:
+            - 'main'
         paths:
             - 'apps/sif-ettersending/**/*'
             - 'nais-config/**/*'

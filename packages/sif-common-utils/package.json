@@ -14,17 +14,17 @@
         "dayjs": "1.11.9",
         "iso8601-duration": "2.1.1",
         "lodash": "4.17.21",
-        "uuid": "9.0.0"
+        "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@babel/core": "7.22.17",
-        "@babel/preset-env": "7.22.15",
+        "@babel/core": "7.22.20",
+        "@babel/preset-env": "7.22.20",
         "@babel/preset-react": "7.22.15",
-        "@types/jest": "29.5.4",
-        "@types/node": "20.6.0",
+        "@types/jest": "29.5.5",
+        "@types/node": "20.6.2",
         "@types/react": "18.2.21",
         "@types/react-dom": "18.2.7",
-        "@types/uuid": "9.0.3",
+        "@types/uuid": "9.0.4",
         "config": "*",
         "eslint-config-custom": "*",
         "npm-run-all": "4.1.5",

@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.20.1
+
+### Patch Changes
+
+-   b7a0832d: Fjerne kode som ikke lenger er i bruk. Utdatert pga vi ikke lenger sperrer bruker som har arbeidsgiver i sak som ikke er i aa-reg.
+
 ## 2.20.0
 
 ### Minor Changes
