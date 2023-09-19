@@ -83,7 +83,7 @@ export const getFraværSøknadsdataFromFormValues = (values: FraværStepFormValu
 
 const getDefaultFraværFrømSøknadsdata = (fravær?: FraværTypes): Fravær => {
     const harPerioderMedFravær = fravær?.harPerioderMedFravær || YesOrNo.UNANSWERED;
-    const harDagerMedDelvisFravær = fravær?.harPerioderMedFravær || YesOrNo.UNANSWERED;
+    const harDagerMedDelvisFravær = fravær?.harDagerMedDelvisFravær || YesOrNo.UNANSWERED;
     const fraværPerioder =
         fravær?.type === 'harKunFulltFravær' || fravær?.type === 'harFulltOgDelvisFravær' ? fravær.fraværPerioder : [];
     const fraværDager =
@@ -99,7 +99,7 @@ const getDefaultFraværFrømSøknadsdata = (fravær?: FraværTypes): Fravær => 
 
 export const getFraværStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: FraværStepFormValues
+    formValues?: FraværStepFormValues,
 ): FraværStepFormValues => {
     const { situasjon, fravær } = søknadsdata;
 
