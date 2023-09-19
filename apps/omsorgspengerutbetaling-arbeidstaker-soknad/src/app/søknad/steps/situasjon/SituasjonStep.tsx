@@ -111,11 +111,11 @@ const SituasjonStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     if (isLoading || !isLoaded) {
-        return <LoadingSpinner type="XS" title="Henter arbeidsforhold" />;
+        return <LoadingSpinner size="3xlarge" style="block" title="Henter arbeidsforhold" />;
     }
 
     return (
