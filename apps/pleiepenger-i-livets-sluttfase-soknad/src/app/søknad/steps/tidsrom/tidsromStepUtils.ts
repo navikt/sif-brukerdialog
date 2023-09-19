@@ -2,7 +2,12 @@ import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/s
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import { date3YearsAgo, dateRangesCollide, dateRangesExceedsRange } from '@navikt/sif-common-utils/lib';
+import {
+    date1YearFromNow,
+    date3YearsAgo,
+    dateRangesCollide,
+    dateRangesExceedsRange,
+} from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { AppFieldValidationErrors } from '../../../utils/fieldValidation';
@@ -12,6 +17,10 @@ import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 
 dayjs.extend(isoWeek);
+
+export const getMaxDato = (fraDato?: string | Date): Date => {
+    return fraDato ? dayjs(fraDato).endOf('day').add(1, 'year').toDate() : date1YearFromNow;
+};
 
 export const søkerKunHelgedager = (fom?: string | Date, tom?: string | Date): boolean => {
     if (fom && tom) {
@@ -44,7 +53,7 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
     return getDateRangeValidator({
         required: true,
         min: date3YearsAgo,
-        max: fraDatoString ? dayjs(fraDatoString).endOf('day').add(1, 'year').toDate() : undefined,
+        max: getMaxDato(fraDatoString),
         fromDate: datepickerUtils.getDateFromDateString(fraDatoString),
         onlyWeekdays: false,
     }).validateToDate(tilDatoString);
@@ -52,7 +61,7 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
 
 export const validateUtenlandsoppholdIPerioden = (
     periode: DateRange,
-    utenlandsopphold: Utenlandsopphold[]
+    utenlandsopphold: Utenlandsopphold[],
 ): ValidationResult<ValidationError> => {
     if (utenlandsopphold.length === 0) {
         return AppFieldValidationErrors.utenlandsopphold_ikke_registrert;
@@ -73,7 +82,7 @@ export const validateUtenlandsoppholdIPerioden = (
 
 export const validateFerieuttakIPerioden = (
     periode: DateRange,
-    ferieuttak: Ferieuttak[]
+    ferieuttak: Ferieuttak[],
 ): ValidationResult<ValidationError> => {
     if (ferieuttak.length === 0) {
         return AppFieldValidationErrors.ferieuttak_ikke_registrert;
@@ -166,7 +175,7 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
 
 export const getTidsromStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: TidsromFormValues
+    formValues?: TidsromFormValues,
 ): TidsromFormValues => {
     if (formValues) {
         return formValues;

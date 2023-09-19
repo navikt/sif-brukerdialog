@@ -12,7 +12,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import SøknadStep from '../../SøknadStep';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
+import { date1YearAgo, date1YearFromNow, date3YearsAgo } from '@navikt/sif-common-utils/lib';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -20,6 +20,7 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import {
+    getMaxDato,
     getTidsromStepInitialValues,
     getTidsromSøknadsdataFromFormValues,
     søkerKunHelgedager,
@@ -178,6 +179,8 @@ const TidsromStep = () => {
                                             name: TidsromFormFields.periodeTil,
                                         }}
                                         disableWeekend={false}
+                                        minDate={date3YearsAgo}
+                                        maxDate={getMaxDato(periodeFraDate)}
                                     />
                                     {søkerKunHelgedager(periodeFra, periodeTil) && (
                                         <Block padBottom="xl">
