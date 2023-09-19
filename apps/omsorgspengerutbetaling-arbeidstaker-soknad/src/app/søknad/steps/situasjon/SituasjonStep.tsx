@@ -165,7 +165,6 @@ const SituasjonStep = () => {
                                         <div className="arbeidsforhold-liste">
                                             {arbeidsforhold.map((forhold, index) => (
                                                 <Block
-                                                    padBottom="l"
                                                     key={forhold.organisasjonsnummer}
                                                     data-testid="arbeidsforhold-liste">
                                                     <FormSection
@@ -199,7 +198,7 @@ const SituasjonStep = () => {
                                 )}
 
                                 {arbeidsforhold.length > 0 && harKlikketNeiPåAlle && (
-                                    <FormBlock paddingBottom={'xl'}>
+                                    <FormBlock paddingBottom={'l'}>
                                         <Alert variant={'warning'}>
                                             <FormattedMessage
                                                 id={'step.situasjon.arbeidsforhold.ingenGjeldende.info.text.nei'}

@@ -92,9 +92,8 @@ const TilArbeidsgiverDokument: React.FC<Props> = ({ arbeidsgiverDetaljer, søker
 
                 <Panel border={true} className={'luftOver'}>
                     <Alert variant="warning" inline={true}>
-                        <Block padBottom={'l'}>
-                            <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.alert.1" />
-                        </Block>
+                        <FormattedMessage id="page.conformation.tilArbeidsgiverDokument.alert.1" />
+
                         <Block padBottom={'l'}>
                             <b>
                                 <FormattedMessage

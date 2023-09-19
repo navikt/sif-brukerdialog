@@ -21,7 +21,7 @@ const { YesOrNoQuestion } = getTypedFormComponents<FraværStepFormFields, Fravæ
 
 export const minimumHarPeriodeEllerDelerAvDagYes = (
     harPerioder: YesOrNo,
-    harDelerAvDag: YesOrNo
+    harDelerAvDag: YesOrNo,
 ): ValidationResult<ValidationError> => {
     if (harPerioder === YesOrNo.NO && harDelerAvDag === YesOrNo.NO) {
         return { key: AppFieldValidationErrors.periode_ingenDagerEllerPerioder, keepKeyUnaltered: true };
@@ -81,30 +81,28 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
 
             {/* DAGER MED FULLT FRAVÆR*/}
             {harPerioderMedFravær === YesOrNo.YES && (
-                <>
-                    <FormBlock>
-                        <FraværPerioderListAndDialog
-                            name={getFieldName(FraværFormFields.fraværPerioder)}
-                            periodeDescription={tidsromBegrensningInfo}
-                            minDate={minDateForFravær}
-                            maxDate={maxDateForFravær}
-                            validate={getFraværPerioderValidator({ fraværDager, årstall })}
-                            labels={{
-                                addLabel: intlHelper(intl, 'step.fravær.heledager.perioderModal.label'),
-                                modalTitle: intlHelper(intl, 'step.fravær.heledager.perioderModal.title'),
-                            }}
-                            dateRangesToDisable={[
-                                ...fraværPerioder.map(fraværPeriodeToDateRange),
-                                ...fraværDager.map(fraværDagToFraværDateRange),
-                            ]}
-                            begrensTilSammeÅrAlertStripeTekst={intlHelper(
-                                intl,
-                                'step.fravær.heledager.perioderModal.begrensTilSammeÅrAlertStripeTekst'
-                            )}
-                            helgedagerIkkeTillat={true}
-                        />
-                    </FormBlock>
-                </>
+                <FormBlock margin={'m'}>
+                    <FraværPerioderListAndDialog
+                        name={getFieldName(FraværFormFields.fraværPerioder)}
+                        periodeDescription={tidsromBegrensningInfo}
+                        minDate={minDateForFravær}
+                        maxDate={maxDateForFravær}
+                        validate={getFraværPerioderValidator({ fraværDager, årstall })}
+                        labels={{
+                            addLabel: intlHelper(intl, 'step.fravær.heledager.perioderModal.label'),
+                            modalTitle: intlHelper(intl, 'step.fravær.heledager.perioderModal.title'),
+                        }}
+                        dateRangesToDisable={[
+                            ...fraværPerioder.map(fraværPeriodeToDateRange),
+                            ...fraværDager.map(fraværDagToFraværDateRange),
+                        ]}
+                        begrensTilSammeÅrAlertStripeTekst={intlHelper(
+                            intl,
+                            'step.fravær.heledager.perioderModal.begrensTilSammeÅrAlertStripeTekst',
+                        )}
+                        helgedagerIkkeTillat={true}
+                    />
+                </FormBlock>
             )}
             <FormBlock>
                 <YesOrNoQuestion
@@ -132,7 +130,7 @@ const ArbeidsforholdFravær: React.FC<Props> = ({
             {/* DAGER MED DELVIS FRAVÆR*/}
             {harDagerMedDelvisFravær === YesOrNo.YES && (
                 <>
-                    <FormBlock>
+                    <FormBlock margin={'m'}>
                         <FraværDagerListAndDialog
                             name={getFieldName(FraværFormFields.fraværDager)}
                             dagDescription={tidsromBegrensningInfo}
