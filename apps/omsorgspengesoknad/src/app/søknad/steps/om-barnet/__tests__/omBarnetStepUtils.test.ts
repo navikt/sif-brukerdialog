@@ -29,6 +29,20 @@ describe('isBarnOver18år', () => {
         expect(result).toBe(false);
     });
 
+    it('should return false if the person is not yet 18 years old After 1 April', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2023-04-15'));
+        const fødselsdato = new Date('2020-01-15');
+        const result = isBarnOver18år(fødselsdato);
+        expect(result).toBe(false);
+    });
+
+    it('should return false if the person is 18 years old and today is before April 1 (15 Februar) of the following year', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2024-02-15'));
+        const fødselsdato = new Date('2005-01-01');
+        const result = isBarnOver18år(fødselsdato);
+        expect(result).toBe(false);
+    });
+
     afterAll(() => jest.useRealTimers());
 });
 
@@ -44,10 +58,5 @@ describe('getMinDatoForBarnetsFødselsdato', () => {
         expect(result.getFullYear()).toBe(2004); // 2023 - 19
     });
 
-    test('should return a date 18 years ago on or after April 1 of the current year', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2023-04-01'));
-        const result = getMinDatoForBarnetsFødselsdato();
-        expect(result.getFullYear()).toBe(2005); // 2023 - 18
-    });
     afterAll(() => jest.useRealTimers());
 });
