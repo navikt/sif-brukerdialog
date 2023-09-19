@@ -50,6 +50,13 @@ const startSøknad = () => {
     });
 };
 
+const fyllUtOmBarn = () => {
+    it('Fyller ut om barnet med minst yngre 13 år', () => {
+        submitSkjema();
+        cy.wait('@putMellomlagring');
+    });
+};
+
 const fyllUtFraværSteg = () => {
     it('Fyller ut Fravær steg', () => {
         selectRadioYesOrNo('harPerioderMedFravær', true);
@@ -87,7 +94,7 @@ const fyllUtVirksomhetDialog = () => {
     getInputByName('tom').click().type(virksomhet.tilOgMed).blur();
     selectRadioByNameAndValue(
         'hattVarigEndringAvNæringsinntektSiste4Kalenderår',
-        virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår
+        virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår,
     );
     getInputByName('varigEndringINæringsinntekt_dato').click().type(virksomhet.varigEndringINæringsinntekt_dato).blur();
     getInputByName('varigEndringINæringsinntekt_inntektEtterEndring')
@@ -148,7 +155,7 @@ const lastOppLegeerklæring = () => {
                     fileName,
                     mimeType: 'image/png',
                     encoding: 'utf8',
-                })
+                }),
             );
         cy.wait(200);
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
@@ -172,6 +179,7 @@ const kontrollerKvittering = () => {
 
 export const utfyllingUtils = {
     startSøknad,
+    fyllUtOmBarn,
     fyllUtFraværSteg,
     lastOppLegeerklæring,
     fyllerUtArbeidssituasjonSteg,

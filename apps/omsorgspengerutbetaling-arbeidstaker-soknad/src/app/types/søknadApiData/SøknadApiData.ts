@@ -1,6 +1,7 @@
 import { ISODate } from '@navikt/sif-common-utils/lib';
 import { Utbetalingsårsak, ÅrsakNyoppstartet } from '../ArbeidsforholdTypes';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
+import { BarnType } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
 
 export type ISO8601Duration = string;
 
@@ -25,6 +26,18 @@ export interface ArbeidsgiverDetaljer {
     perioder: Utbetalingsperiode[];
 }
 
+export enum RegistrertBarnTypeApi {
+    'fraOppslag' = 'FRA_OPPSLAG',
+}
+
+export interface ApiBarn {
+    identitetsnummer?: string;
+    aktørId?: string;
+    fødselsdato: ISODate;
+    navn: string;
+    type: RegistrertBarnTypeApi | BarnType;
+}
+
 export enum ApiAktivitet {
     ARBEIDSTAKER = 'ARBEIDSTAKER',
 }
@@ -46,7 +59,7 @@ export interface SøknadApiData {
         harBekreftetOpplysninger: boolean;
         harForståttRettigheterOgPlikter: boolean;
     };
-
+    barn: ApiBarn[]; // Dine barn
     bosteder: UtenlandsoppholdApiData[]; // medlemskap-siden
     opphold: Opphold[]; // hvis ja på har oppholdt seg i utlandet
     arbeidsgivere: ArbeidsgiverDetaljer[];

@@ -20,10 +20,10 @@ import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
-
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import ArbeidsforholdSummaryView from './components/ArbeidsforholdSummaryView';
 import UtenlandsoppholdISøkeperiodeOppsummering from './components/UtenlandsoppholdISøkeperiodeOppsummering';
+import DineBarnOppsummering from './components/DineBarnOppsummering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -41,7 +41,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata, søker },
+        state: { søknadsdata, søker, registrerteBarn },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -62,7 +62,7 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
-    const apiData = getApiDataFromSøknadsdata(søknadsdata);
+    const apiData = getApiDataFromSøknadsdata(søknadsdata, registrerteBarn);
 
     if (!apiData) {
         return (
@@ -113,7 +113,7 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 {/* Om deg */}
                                 <OmSøkerOppsummering søker={søker} />
-
+                                <DineBarnOppsummering barn={apiData.barn} />
                                 {/* Fravær fra arbeid */}
                                 <SummarySection header={intlHelper(intl, 'step.oppsummering.arbeidsforhold.titel')}>
                                     <ArbeidsforholdSummaryView

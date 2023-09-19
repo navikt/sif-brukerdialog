@@ -13,6 +13,7 @@ import { oppsummeringMessages } from '../søknad/steps/oppsummering/oppsummering
 import { kvitteringMessages } from '../pages/kvittering/kvitteringMesssages';
 import { situasjonMessages } from '../søknad/steps/situasjon/situasjonStepMessages';
 import bostedUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/bostedUtlandMessages';
+import { dineBarnMessages } from '../søknad/steps/dine-barn/dineBarnMessages';
 // import { validateApiDataMessages } from '../utils/søknadsdataToApiData/validateApiData';
 
 const bokmålstekster = {
@@ -20,6 +21,8 @@ const bokmålstekster = {
     ...soknadIntlMessages.nb,
     ...personalOpplysningerMessages.nb,
     ...velkommenPageMessages.nb,
+    ...dineBarnMessages.nb,
+    ...dineBarnMessages.nb,
     ...situasjonMessages.nb,
     ...fraværStepMessages.nb,
     ...bostedUtlandMessages.nb,

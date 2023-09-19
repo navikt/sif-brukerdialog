@@ -5,6 +5,7 @@ import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigation
 
 export enum ApiEndpoint {
     'soker' = 'oppslag/soker',
+    'barn' = 'oppslag/barn',
     'arbeidsgiver' = 'oppslag/arbeidsgiver',
     'send_søknad' = 'omsorgspenger-utbetaling-arbeidstaker/innsending',
     'vedlegg' = 'vedlegg',
@@ -47,7 +48,7 @@ const api = {
     post: <DataType = any, ResponseType = any>(
         endpoint: ApiEndpoint,
         data: DataType,
-        headers?: RawAxiosRequestHeaders
+        headers?: RawAxiosRequestHeaders,
     ) => {
         return axios.post<ResponseType>(endpoint, data, {
             ...axiosConfig,

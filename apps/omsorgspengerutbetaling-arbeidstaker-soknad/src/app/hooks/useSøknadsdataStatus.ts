@@ -15,6 +15,8 @@ import { MedlemskapFormValues } from '../søknad/steps/medlemskap/MedlemskapStep
 import { getMedlemskapSøknadsdataFromFormValues } from '../søknad/steps/medlemskap/medlemskapStepUtils';
 import { getFraværSøknadsdataFromFormValues } from '../søknad/steps/fravær/fraværStepUtils';
 import { FraværStepFormValues } from '../søknad/steps/fravær/FraværStep';
+import { getDineBarnSøknadsdataFromFormValues } from '../søknad/steps/dine-barn/dineBarnStepUtils';
+import { DineBarnFormValues } from '../søknad/steps/dine-barn/DineBarnStep';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
     return Object.keys(stepConfig).filter((_key, idx) => idx < currentStepIndex) as StepId[];
@@ -26,6 +28,8 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
         return undefined;
     }
     switch (step) {
+        case StepId.DINE_BARN:
+            return getDineBarnSøknadsdataFromFormValues(formValues as DineBarnFormValues);
         case StepId.SITUASJON:
             return getSituasjonSøknadsdataFromFormValues(formValues as SituasjonFormValues);
         case StepId.FRAVÆR:

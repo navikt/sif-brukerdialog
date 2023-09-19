@@ -1,0 +1,7 @@
+.dineBarn {
+    display: flex;
+}
+.dineBarn__navn {
+    display: block;
+    padding-left: 1rem;
+}

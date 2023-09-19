@@ -1,4 +1,5 @@
 import { contextConfig } from '../contextConfig';
+import { cyApiMockData } from '../data/cyApiMockData';
 import { fyllUtFraværSteg } from '../utils/fravær';
 import { fyllUtLegeerklæringSteg } from '../utils/legeerklæring';
 import { fyllUtMedlemskapSteg } from '../utils/medlemskap';
@@ -12,12 +13,14 @@ const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/soknad/velkommen';
 
 describe('Fylle ut søknad komplett', () => {
-    contextConfig();
+    const barn = cyApiMockData.barnMock.barn[4];
+    contextConfig({ barn: [barn] });
     describe('Komplett søknad', () => {
         before(() => {
             cy.visit(startUrl);
         });
         startSøknad();
+        utfyllingUtils.fyllUtOmBarn();
         fyllUtSituasjonSteg();
         fyllUtFraværSteg();
         fyllUtLegeerklæringSteg('komplett');

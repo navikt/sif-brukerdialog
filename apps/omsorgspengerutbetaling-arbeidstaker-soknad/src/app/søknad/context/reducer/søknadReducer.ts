@@ -2,6 +2,7 @@ import { guid } from '@navikt/sif-common-utils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -14,7 +15,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         harForståttRettigheterOgPlikter: true,
                     },
                 },
-                søknadRoute: SøknadRoutes.SITUASJON,
+                søknadRoute: SøknadRoutes.DINE_BARN,
                 børMellomlagres: true,
             };
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
@@ -41,6 +42,18 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 return {
                     ...state,
                     børMellomlagres: false,
+                };
+            case SøknadContextActionKeys.SET_SØKNAD_DINE_BARN:
+                const søknadsdata: Søknadsdata = {
+                    ...state.søknadsdata,
+                    dineBarn: {
+                        ...action.payload,
+                    },
+                };
+
+                return {
+                    ...state,
+                    søknadsdata,
                 };
 
             case SøknadContextActionKeys.SET_SØKNAD_SITUASJON:

@@ -6,6 +6,8 @@ import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
+import { getDineBarnApiDataFromSøknadsdata } from './getDineBarnApiDataFromSøknadsdata';
+import { RegistrertBarn } from '../../types/RegistrertBarn';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -26,9 +28,12 @@ const getArbeidsforholdDokumenter = (situasjon: SituasjonSøknadsdata): string[]
     return getVedleggApiData(dokumenter);
 };
 
-export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadApiData | undefined => {
-    const { id, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
-    if (!id || !situasjon || !fravær || !medlemskap || !legeerklæring) {
+export const getApiDataFromSøknadsdata = (
+    søknadsdata: Søknadsdata,
+    registrerteBarn: RegistrertBarn[],
+): SøknadApiData | undefined => {
+    const { id, dineBarn, situasjon, fravær, legeerklæring, medlemskap } = søknadsdata;
+    if (!id || !dineBarn || !situasjon || !fravær || !medlemskap || !legeerklæring) {
         return undefined;
     }
     const språk = 'nb';
@@ -40,6 +45,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
             harForståttRettigheterOgPlikter: søknadsdata.velkommen?.harForståttRettigheterOgPlikter === true,
             harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
         },
+        barn: getDineBarnApiDataFromSøknadsdata(dineBarn, registrerteBarn),
         arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(situasjon, fravær),
         opphold: getUtenlansoppholdApiDataFromSøknadsdata(språk, fravær),
         bosteder: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),

@@ -3,7 +3,14 @@ import { StepId } from '../types/StepId';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
 const getSøknadSteps = (): StepId[] => {
-    return [StepId.SITUASJON, StepId.FRAVÆR, StepId.LEGEERKLÆRING, StepId.MEDLEMSKAP, StepId.OPPSUMMERING];
+    return [
+        StepId.DINE_BARN,
+        StepId.SITUASJON,
+        StepId.FRAVÆR,
+        StepId.LEGEERKLÆRING,
+        StepId.MEDLEMSKAP,
+        StepId.OPPSUMMERING,
+    ];
 };
 
 export const getSøknadStepConfig = (): SoknadStepsConfig<StepId> =>
