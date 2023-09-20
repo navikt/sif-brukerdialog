@@ -33,6 +33,7 @@ interface Props {
 const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsdato }) => {
     const { values } = useFormikContext<SøknadFormValues>();
     const { harHattInntektSomFrilanser, misterHonorar, erFortsattFrilanser, frilanstype } = values.frilans;
+    const { stønadGodtgjørelse } = values;
 
     const visNormalarbeidstidSpørsmål = () => {
         switch (frilanstype) {
@@ -48,7 +49,10 @@ const FrilanserFormPart: React.FunctionComponent<Props> = ({ søknadsperiode, s�
 
     return (
         <>
-            <HarHattInntektSomFrilanserSpørsmål søkerHarFrilansoppdrag={søkerHarFrilansoppdrag} />
+            <HarHattInntektSomFrilanserSpørsmål
+                søkerHarFrilansoppdrag={søkerHarFrilansoppdrag}
+                søkerMottarOmsorgsstønad={stønadGodtgjørelse.mottarStønadGodtgjørelse === YesOrNo.YES}
+            />
 
             {harHattInntektSomFrilanser === YesOrNo.YES && (
                 <FormBlock margin="l">

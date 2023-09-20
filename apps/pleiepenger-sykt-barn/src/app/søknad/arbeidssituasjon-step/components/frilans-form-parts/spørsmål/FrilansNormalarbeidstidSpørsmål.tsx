@@ -51,7 +51,12 @@ const FrilansNormalarbeidstidSpørsmål: React.FunctionComponent<Props> = ({
             })}
             data-testid={inputTestId}
             name={fieldName}
-            description={<InfoArbeiderNormaltTimerFrilanser frilanstype={frilanstype} />}
+            description={
+                <InfoArbeiderNormaltTimerFrilanser
+                    frilanstype={frilanstype}
+                    mottarOmsorgsstønadFosterhjemsgodtgjørelse={mottarStønadGodtgjørelse}
+                />
+            }
             width="xs"
             validate={getArbeiderNormaltTimerIUkenValidator({
                 ...intlValues,
