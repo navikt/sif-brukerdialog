@@ -1,6 +1,17 @@
 # @navikt/sif-common-core-ds
 
-## 10.0.0
+## 9.6.0
+
+### Minor Changes
+
+-   61eee34c: Bytte til å bruke react-dropzone komponet for filopplasting. Enkel porting av eksisterende komponent til ny.
+
+### Patch Changes
+
+-   Updated dependencies [61eee34c]
+    -   @navikt/sif-common-formik-ds@0.6.0
+
+## 9.5.0
 
 ### Minor Changes
 
