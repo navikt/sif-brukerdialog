@@ -76,7 +76,7 @@ export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFri
         <>
             {mottarOmsorgsstønadFosterhjemsgodtgjørelse && (
                 <BodyShort spacing={false}>
-                    Du skal ikke inkludere timer for fosterhjemsgodtgjørelse og omsorgsstønad.
+                    <FormattedMessage id="arbeidsforhold.frilanser.normalTimer.frilans.omsorgsstønad" />
                 </BodyShort>
             )}
             <Block margin="m">
