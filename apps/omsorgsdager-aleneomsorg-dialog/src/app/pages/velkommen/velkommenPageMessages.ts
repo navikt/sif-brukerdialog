@@ -8,7 +8,7 @@ export const velkommenPageMessages: MessageFileFormat = {
         'page.velkommen.guide.tekst.1':
             'Her søker du om ekstra omsorgsdager når du er alene om omsorgen for barn. I disse tilfellene får du doblet antall omsorgsdager. Doblingen gjelder så lenge du er alene om omsorgen, og så lenge retten din til å bruke omsorgsdager gjelder. Du trenger altså ikke søke på nytt ved nytt kalenderår.',
         'page.velkommen.guide.tekst.2':
-            'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Det kan for eksempel være på grunn av samlivsbrudd, at du er blitt enke/enkemann eller at du har aleneomsorg for et donorbarn. Hvis dere vanligvis bor sammen, men den andre forelderen ikke kan ha tilsyn med barnet, skal du ikke bruke denne søknaden. Da skal du bruke',
+            'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Det kan for eksempel være på grunn av samlivsbrudd, at du er blitt enke/enkemann eller at du har aleneomsorg for et donorbarn. Hvis dere vanligvis bor sammen, men den andre forelderen ikke kan ha tilsyn med barnet, skal du bruke ',
         'page.velkommen.guide.tekst.2.lenketekst':
             'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
         'page.velkommen.guide.tekst.3':

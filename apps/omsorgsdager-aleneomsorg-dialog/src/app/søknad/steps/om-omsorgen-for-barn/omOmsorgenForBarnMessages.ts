@@ -2,10 +2,6 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const omOmsorgenForBarnMessages: MessageFileFormat = {
     nb: {
-        'step.omOmsorgenForBarn.stepIntro.1':
-            'Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor med den andre forelderen. Det kan for eksempel være på grunn av samlivsbrudd, at du er blitt enke/enkemann, eller at du er alene med et donorbarn.',
-        'step.omOmsorgenForBarn.stepIntro.2': 'Du er ikke alene om omsorgen hvis dere har avtale om delt fast bosted.',
-
         'step.omOmsorgenForBarn.dineBarn.seksjonsTittel': 'Dine barn',
 
         'step.omOmsorgenForBarn.info.spm.andreBarn': 'Har du barn som ikke er registrert her?',

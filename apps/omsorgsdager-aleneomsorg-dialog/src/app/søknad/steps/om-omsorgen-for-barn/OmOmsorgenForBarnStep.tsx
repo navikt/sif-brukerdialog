@@ -22,7 +22,6 @@ import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import SøknadStep from '../../SøknadStep';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { RegistrertBarn } from '../../../types/RegistrertBarn';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { Alert, Heading } from '@navikt/ds-react';
@@ -142,14 +141,6 @@ const OmOmsorgenForBarnStep = () => {
                                 submitDisabled={kanIkkeFortsette || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <SifGuidePanel>
-                                    <p>
-                                        <FormattedMessage id="step.omOmsorgenForBarn.stepIntro.1" />
-                                    </p>
-                                    <p>
-                                        <FormattedMessage id="step.omOmsorgenForBarn.stepIntro.2" />
-                                    </p>
-                                </SifGuidePanel>
                                 <Block margin="xxl">
                                     <Heading level="2" size="medium">
                                         <FormattedMessage id="step.omOmsorgenForBarn.dineBarn.seksjonsTittel" />
