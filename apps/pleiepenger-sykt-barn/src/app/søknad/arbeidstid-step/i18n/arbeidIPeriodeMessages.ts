@@ -39,7 +39,7 @@ const arbeidIPeriodeValideringMessages: MessageFileFormat = {
 const arbeidIPeriodeSpørsmål: MessageFileFormat = {
     nb: {
         'arbeidIPeriode.spørsmål.ANSATT.arbeiderIPerioden':
-            'Hvilken situasjon gjelder for deg hos (arbeidsgiverNavn) i søknadsperioden?',
+            'Hvilken situasjon gjelder for deg hos {hvor} i søknadsperioden?',
         'arbeidIPeriode.spørsmål.ANSATT.erLiktHverUke': 'Jobber du like mye hver uke {hvor} i perioden?',
         'arbeidIPeriode.spørsmål.ANSATT.timerEllerProsent':
             'Hvordan vil du oppgi hvor mye du jobber {hvor} i perioden?',
