@@ -10,6 +10,7 @@ const envSettings = () => {
          APPSTATUS_PROJECT_ID: '${process.env.APPSTATUS_PROJECT_ID}',
          FRONTEND_API_PATH: '${process.env.FRONTEND_API_PATH}',
          GITHUB_REF_NAME: '${process.env.GITHUB_REF_NAME}',
+         OMS_IKKE_TILSYN_URL: '${process.env.OMS_IKKE_TILSYN_URL}',
          IMAGE: '${process.env.IMAGE}',
          LOGIN_URL: '${process.env.LOGIN_URL}',
          MINSIDE_URL: '${process.env.MINSIDE_URL}',
