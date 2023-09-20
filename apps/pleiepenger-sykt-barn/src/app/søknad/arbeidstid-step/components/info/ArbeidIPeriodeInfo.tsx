@@ -8,6 +8,7 @@ import { ArbeidsforholdType } from '../../../../local-sif-common-pleiepenger';
 interface Props {
     arbeidsforholdType: ArbeidsforholdType;
     søkerFremITid: boolean;
+    mottarOmsorgsstønad?: boolean;
     tittel: string;
     children?: React.ReactNode;
 }
@@ -15,6 +16,7 @@ interface Props {
 const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
     arbeidsforholdType,
     søkerFremITid,
+    mottarOmsorgsstønad,
     tittel,
     children,
 }) => (
@@ -23,6 +25,7 @@ const ArbeidIPeriodeInfo: React.FunctionComponent<Props> = ({
             {tittel}
         </Heading>
         {children}
+        {mottarOmsorgsstønad && <p>Du skal ikke inkludere tid for fosterhjemsgodtgjørelse og omsorgsstønad.</p>}
         {søkerFremITid && (
             <p>
                 <FormattedMessage id="arbeidIPeriode.redusert.info.tekst" />
