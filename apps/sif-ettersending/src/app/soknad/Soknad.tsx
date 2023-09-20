@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { v4 as uuid } from 'uuid';
 import { sendSoknad } from '../api/sendSoknad';

@@ -22,10 +22,10 @@ const webpackConfig = {
         rules: [
             {
                 test: /\.(ts|tsx)$/,
-                include: [
-                    path.resolve(__dirname, './../../app'),
-                    path.resolve(__dirname, './../../sif-common-core-ds'),
-                ],
+                // include: [
+                //     path.resolve(__dirname, './../../app'),
+                //     path.resolve(__dirname, './../../sif-common-core-ds'),
+                // ],
                 loader: require.resolve('ts-loader'),
             },
             {

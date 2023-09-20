@@ -5,7 +5,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';

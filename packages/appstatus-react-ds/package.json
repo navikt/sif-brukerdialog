@@ -11,6 +11,7 @@
         "url": "https://github.com/navikt/appstatus-react-ds/issues"
     },
     "dependencies": {
+        "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "3.0.7",
         "@sanity/client": "6.4.12"
     },
@@ -20,7 +21,7 @@
         "@types/node": "20.6.2",
         "@types/react": "18.2.21",
         "@types/react-dom": "18.2.7",
-        "config": "*",
+        "config": "workspace:*",
         "copyfiles": "2.4.1",
         "postcss": "8.4.29",
         "prop-types": "15.8.1",

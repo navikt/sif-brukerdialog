@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { SanityConfig, SanityError, Status, TeamStatus } from '../types';
 import { SanityStatusMessage } from '../types/sanityObjects';
 import { getMessage, sanityConfigIsValid } from '../utils';
 import { getAppSanityClient } from '../utils/sanityClient';
-import { usePrevious } from './usePrevious';
 
 const getTeamStatusQuery = (key: string): string => {
     return `*[_type == 'team' && key == "${key}"]{
