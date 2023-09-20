@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.0
+
+### Minor Changes
+
+-   61eee34c: Bytte til å bruke react-dropzone komponet for filopplasting. Enkel porting av eksisterende komponent til ny.
+
 ## 0.5.0
 
 ### Minor Changes
