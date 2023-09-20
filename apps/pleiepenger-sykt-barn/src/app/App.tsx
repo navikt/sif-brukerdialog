@@ -3,6 +3,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude/lib';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-common-appregister';
 import { SoknadApplication, SoknadApplicationCommonRoutes } from '@navikt/sif-common-soknad-ds';
 import DevBranchInfo from '@navikt/sif-common-soknad-ds/lib/components/dev-branch-info/DevBranchInfo';
 import RouteConfig from './config/routeConfig';
@@ -14,9 +15,6 @@ import { relocateToSoknad } from './utils/navigationUtils';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.less';
-
-export const APPLICATION_KEY = 'pleiepengesoknad';
-export const SKJEMANAVN = 'Søknad om pleiepenger';
 
 const publicPath = getEnvironmentVariable('PUBLIC_PATH');
 
@@ -33,13 +31,13 @@ const App = () => {
 
     return (
         <SifAppWrapper>
-            <AmplitudeProvider applicationKey={APPLICATION_KEY}>
+            <AmplitudeProvider applicationKey={PleiepengerSyktBarnApp.key}>
                 <SoknadApplication
-                    appName={SKJEMANAVN}
+                    appName={PleiepengerSyktBarnApp.skjemanavn}
                     intlMessages={applicationIntlMessages}
-                    sentryKey={APPLICATION_KEY}
+                    sentryKey={PleiepengerSyktBarnApp.key}
                     appStatus={{
-                        applicationKey: APPLICATION_KEY,
+                        applicationKey: PleiepengerSyktBarnApp.key,
                         sanityConfig: {
                             projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
                             dataset: getEnvironmentVariable('APPSTATUS_DATASET'),

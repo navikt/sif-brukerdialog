@@ -3,6 +3,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-common-appregister';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -10,14 +11,11 @@ import {
 } from '@navikt/sif-common-soknad-ds';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { applicationIntlMessages } from './i18n';
+import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
-import Søknad from './søknad/Søknad';
-
-export const APPLICATION_KEY = 'omsorgsdager-aleneomsorg-dialog';
-export const SKJEMANAVN = 'Søknad om ekstra omsorgsdager ved aleneomsorg';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -30,14 +28,14 @@ const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>
             <AmplitudeProvider
-                applicationKey={APPLICATION_KEY}
+                applicationKey={OmsorgsdagerAleneomsorgApp.key}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om ekstra omsorgsdager ved aleneomsorg"
+                    appName={OmsorgsdagerAleneomsorgApp.skjemanavn}
                     intlMessages={applicationIntlMessages}
-                    sentryKey={APPLICATION_KEY}
+                    sentryKey={OmsorgsdagerAleneomsorgApp.key}
                     appStatus={{
-                        applicationKey: APPLICATION_KEY,
+                        applicationKey: OmsorgsdagerAleneomsorgApp.key,
                         sanityConfig: {
                             projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
                             dataset: getEnvironmentVariable('APPSTATUS_DATASET'),

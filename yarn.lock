@@ -3736,6 +3736,7 @@ __metadata:
     "@navikt/ds-react": 5.5.0
     "@navikt/ds-tailwind": 5.5.0
     "@navikt/sif-common-amplitude": "workspace:*"
+    "@navikt/sif-common-appregister": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-hooks": "workspace:*"
@@ -3952,6 +3953,7 @@ __metadata:
     "@navikt/ds-react": 5.5.0
     "@navikt/ds-tailwind": 5.5.0
     "@navikt/sif-common-amplitude": "workspace:*"
+    "@navikt/sif-common-appregister": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
@@ -4020,6 +4022,7 @@ __metadata:
     "@navikt/ds-react": 5.5.0
     "@navikt/ds-tailwind": 5.5.0
     "@navikt/sif-common-amplitude": "workspace:*"
+    "@navikt/sif-common-appregister": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
@@ -4096,6 +4099,7 @@ __metadata:
     "@navikt/ds-react": 5.5.0
     "@navikt/ds-tailwind": 5.5.0
     "@navikt/sif-common-amplitude": "workspace:*"
+    "@navikt/sif-common-appregister": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
@@ -4184,6 +4188,7 @@ __metadata:
     "@navikt/ds-react": 5.5.0
     "@navikt/fnrvalidator": 1.3.0
     "@navikt/sif-common-amplitude": "workspace:*"
+    "@navikt/sif-common-appregister": "workspace:*"
     "@navikt/sif-common-core-ds": "workspace:*"
     "@navikt/sif-common-formik-ds": "workspace:*"
     "@navikt/sif-common-forms-ds": "workspace:*"
@@ -4325,6 +4330,16 @@ __metadata:
     amplitude-js: 8.x
     constate: 3.3.x
     react: 18.x
+  languageName: unknown
+  linkType: soft
+
+"@navikt/sif-common-appregister@workspace:*, @navikt/sif-common-appregister@workspace:packages/sif-common-appregister":
+  version: 0.0.0-use.local
+  resolution: "@navikt/sif-common-appregister@workspace:packages/sif-common-appregister"
+  dependencies:
+    copyfiles: 2.4.1
+    npm-run-all: 4.1.5
+    react-scripts: 5.0.1
   languageName: unknown
   linkType: soft
 

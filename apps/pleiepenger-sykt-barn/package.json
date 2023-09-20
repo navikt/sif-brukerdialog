@@ -34,6 +34,7 @@
         "@navikt/ds-react": "5.5.0",
         "@navikt/fnrvalidator": "1.3.0",
         "@navikt/sif-common-amplitude": "workspace:*",
+        "@navikt/sif-common-appregister": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
