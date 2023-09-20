@@ -4,6 +4,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
+import { BodyShort } from '@navikt/ds-react';
 
 export const InfoArbeiderNormaltTimerAnsatt = () => {
     const intl = useIntl();
@@ -63,12 +64,21 @@ export const InfoArbeiderNormaltTimerAnsatt = () => {
 
 interface PropsFrilans {
     frilanstype: Frilanstype;
+    mottarOmsorgsstønadFosterhjemsgodtgjørelse?: boolean;
 }
 
-export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFrilans> = ({ frilanstype }) => {
+export const InfoArbeiderNormaltTimerFrilanser: React.FunctionComponent<PropsFrilans> = ({
+    frilanstype,
+    mottarOmsorgsstønadFosterhjemsgodtgjørelse,
+}) => {
     const intl = useIntl();
     return (
         <>
+            {mottarOmsorgsstønadFosterhjemsgodtgjørelse && (
+                <BodyShort spacing={false}>
+                    Du skal ikke inkludere timer for fosterhjemsgodtgjørelse og omsorgsstønad.
+                </BodyShort>
+            )}
             <Block margin="m">
                 <ExpandableInfo title={intlHelper(intl, 'arbeidsforhold.frilanser.normalTimer.frilans.info.tittel')}>
                     <p>
