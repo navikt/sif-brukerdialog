@@ -10,9 +10,13 @@ import { ArbFriFormComponents } from '../FrilanserFormPart';
 
 interface Props {
     søkerHarFrilansoppdrag: boolean;
+    søkerMottarOmsorgsstønad: boolean;
 }
 
-const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({ søkerHarFrilansoppdrag }) => {
+const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({
+    søkerHarFrilansoppdrag,
+    søkerMottarOmsorgsstønad,
+}) => {
     const intl = useIntl();
     return (
         <ArbFriFormComponents.YesOrNoQuestion
@@ -21,9 +25,11 @@ const HarHattInntektSomFrilanserSpørsmål: React.FunctionComponent<Props> = ({ 
             validate={getYesOrNoValidator()}
             description={
                 <>
-                    <BodyShort spacing={false}>
-                        <FormattedMessage id="frilanser.harDuHattInntekt.omsorgsstønad" />
-                    </BodyShort>
+                    {søkerMottarOmsorgsstønad && (
+                        <BodyShort spacing={false}>
+                            <FormattedMessage id="frilanser.harDuHattInntekt.omsorgsstønad" />
+                        </BodyShort>
+                    )}
                     <Block margin="m">
                         <ExpandableInfo
                             title={
