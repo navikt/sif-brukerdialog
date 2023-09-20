@@ -3,6 +3,7 @@
     "main": "src/index.ts",
     "types": "src/index.ts",
     "version": "0.0.1",
+    "private": true,
     "dependencies": {
         "react": "18.2.0",
         "typescript": "latest"
