@@ -1,5 +1,4 @@
 {
-    "license": "MIT",
     "main": "index.js",
     "name": "config",
     "version": "0.6.0",
@@ -14,9 +13,6 @@
         "eslint-plugin-react": "7.33.2",
         "eslint-plugin-storybook": "0.6.13",
         "postcss": "8.4.29"
-    },
-    "publishConfig": {
-        "access": "public"
     },
     "files": [
         "eslint.js",

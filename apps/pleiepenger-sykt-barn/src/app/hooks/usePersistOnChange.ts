@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useHasChanged } from '@navikt/sif-common-hooks';
 import { StepID } from '../types/StepID';
-import { useHasChanged } from './useHasChanged';
 import usePersistSoknad from './usePersistSoknad';
 
 const DELAY_MS = 5000;

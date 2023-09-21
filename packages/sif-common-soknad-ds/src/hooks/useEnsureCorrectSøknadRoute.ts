@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
+import { usePrevious } from '@navikt/sif-common-hooks';
 
 const isRouteAvailable = (route: string, availableRoutes: string[], welcomeRoute: string): boolean => {
     return route === welcomeRoute || availableRoutes.some((r) => r === route);
@@ -14,7 +14,7 @@ export enum EnsureCorrectSøknadRouteErrorType {
 export const useEnsureCorrectSøknadRoute = (
     søknadRoute: string | undefined,
     welcomeRoute: string,
-    availableRoutes: string[]
+    availableRoutes: string[],
 ) => {
     const { pathname } = useLocation();
     const [isFirstRender, setIsFirstRender] = useState(true);

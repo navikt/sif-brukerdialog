@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { dateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';
-import { SKJEMANAVN } from '../App';
 import BekreftDialog from '../components/bekreft-dialog/BekreftDialog';
 import RouteConfig from '../config/routeConfig';
 import useLogSøknadInfo from '../hooks/useLogSøknadInfo';
@@ -21,8 +21,8 @@ import { initialValues, SøknadFormValues } from '../types/søknad-form-values/S
 import { MellomlagringMetadata } from '../types/SøknadTempStorageData';
 import { harFraværFraJobb } from '../utils/arbeidUtils';
 import { cleanupAndSetFormikValues } from '../utils/cleanupAndSetFormikValues';
-import { getSøknadsperiodeFromFormValues } from '../utils/formValuesUtils';
 import { extractSøknadsdataFromFormValues } from '../utils/formValuesToSøknadsdata/extractSøknadsdataFromFormValues';
+import { getSøknadsperiodeFromFormValues } from '../utils/formValuesUtils';
 import { getKvitteringInfoFromApiData } from '../utils/kvitteringUtils';
 import { navigateTo, relocateToSoknad } from '../utils/navigationUtils';
 import { getNextStepRoute, isAvailable } from '../utils/routeUtils';
@@ -109,7 +109,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     };
 
     const startSoknad = async () => {
-        await logSoknadStartet(SKJEMANAVN);
+        await logSoknadStartet(PleiepengerSyktBarnApp.navn);
         await purge();
 
         const initialFormValues = undefined;

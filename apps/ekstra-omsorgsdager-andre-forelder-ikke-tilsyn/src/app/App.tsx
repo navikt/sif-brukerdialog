@@ -3,6 +3,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
@@ -16,9 +17,6 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
 
-export const APPLICATION_KEY = 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn';
-export const SKJEMANAVN = 'Søknad om ekstra omsorgsdager';
-
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
@@ -30,14 +28,14 @@ const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>
             <AmplitudeProvider
-                applicationKey={APPLICATION_KEY}
+                applicationKey={OmsorgsdagerAnnenForelderIkkeTilsynApp.key}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om å bli regnet som midertidig alene for omsorgen"
+                    appName={OmsorgsdagerAnnenForelderIkkeTilsynApp.navn}
                     intlMessages={applicationIntlMessages}
-                    sentryKey={APPLICATION_KEY}
+                    sentryKey={OmsorgsdagerAnnenForelderIkkeTilsynApp.key}
                     appStatus={{
-                        applicationKey: APPLICATION_KEY,
+                        applicationKey: OmsorgsdagerAnnenForelderIkkeTilsynApp.key,
                         sanityConfig: {
                             projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
                             dataset: getEnvironmentVariable('APPSTATUS_DATASET'),

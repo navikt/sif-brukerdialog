@@ -1,15 +1,11 @@
 {
     "author": "@navikt",
     "description": "Fellesskjema for sykdom i familien",
-    "homepage": "https://navikt.github.io/sif-brukerdialog",
-    "license": "ISC",
     "main": "lib/index.js",
     "name": "@navikt/sif-common-forms-ds",
     "types": "lib/index.d.js",
     "version": "8.8.0",
-    "bugs": {
-        "url": "https://github.com/navikt/sif-brukerdialog/issues"
-    },
+    "private": true,
     "dependencies": {
         "date-fns": "2.30.0"
     },
@@ -21,9 +17,9 @@
         "@formatjs/intl-pluralrules": "5.2.6",
         "@navikt/ds-css": "5.5.0",
         "@navikt/ds-react": "5.5.0",
-        "@navikt/sif-common-core-ds": "*",
-        "@navikt/sif-common-formik-ds": "*",
-        "@navikt/sif-common-utils": "*",
+        "@navikt/sif-common-core-ds": "workspace:*",
+        "@navikt/sif-common-formik-ds": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
         "@storybook/addon-a11y": "7.4.2",
         "@storybook/addon-actions": "7.4.2",
         "@storybook/addon-essentials": "7.4.2",
@@ -41,7 +37,7 @@
         "@types/react-dom": "18.2.7",
         "@types/react-responsive": "8.0.5",
         "axios": "1.5.0",
-        "config": "*",
+        "config": "workspace:*",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.9",
         "flat": "6.0.0",
@@ -63,26 +59,10 @@
         "storybook": "7.4.2",
         "webpack": "5.88.2"
     },
-    "directories": {
-        "lib": "lib"
-    },
-    "files": [
-        "package.json",
-        "/lib"
-    ],
     "jest": {
         "transformIgnorePatterns": [
             "node_modules/(?!(@navikt)).*\\.js$"
         ]
-    },
-    "peerDependencies": {
-        "@navikt/ds-css": "5",
-        "@navikt/ds-react": "5",
-        "@navikt/sif-common-core-ds": "*"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/navikt/sif-brukerdialog.git"
     },
     "watch": {
         "copy-files": {
