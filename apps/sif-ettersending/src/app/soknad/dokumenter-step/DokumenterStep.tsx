@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
+import FileDropUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileDropUploadErrors';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
@@ -124,7 +124,7 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
             )}
 
             <Block margin="m">
-                <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+                <FileDropUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
             <Block margin="l">
                 <UploadedDocumentsList

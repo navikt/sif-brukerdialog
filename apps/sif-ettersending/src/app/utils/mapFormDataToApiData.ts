@@ -18,8 +18,8 @@ const getYtelseTypeApiKey = (ytelse: YtelseKey): YtelseTypeApi => {
             return YtelseTypeApi.OMP_UT_SNF;
         case YtelseKey.omsorgspengerutbetalingArbeidstaker:
             return YtelseTypeApi.OMP_UT_ARBEIDSTAKER;
-        case YtelseKey.omsorgsdagerAleneomsorg:
-            return YtelseTypeApi.OMP_ALENEOMSORG;
+        // case YtelseKey.omsorgsdagerAleneomsorg:
+        //     return YtelseTypeApi.OMP_ALENEOMSORG;
         case YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn:
             return YtelseTypeApi.OMP_UTV_MA;
     }

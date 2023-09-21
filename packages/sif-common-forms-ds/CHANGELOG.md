@@ -1,6 +1,13 @@
 # @navikt/sif-common-forms-ds
 
-## 9.0.0
+## 8.8.0
+
+### Patch Changes
+
+-   Updated dependencies [61eee34c]
+    -   @navikt/sif-common-core-ds@9.6.0
+
+## 8.7.0
 
 ### Minor Changes
 

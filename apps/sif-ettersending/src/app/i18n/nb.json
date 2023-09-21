@@ -76,7 +76,7 @@
     "step.omsorgspenger_type.stepTitle": "Hva skal du ettersende til?",
     "step.omsorgspenger_type.stepIndicatorLabel": "Omsorgspenger type",
     "step.omsorgspenger_type.nextButtonLabel": "Fortsett",
-    "step.omsorgspenger_type.søknadstype.spm": "Velg hva denne ettersendingen gjelder",
+    "step.omsorgspenger_type.søknadstype.spm": "Hva gjelder denne ettersendelsen?",
 
     "step.dokumenter.stepTitle": "Nå skal du laste opp dokumentene dine",
     "step.dokumenter.stepIndicatorLabel": "Last opp dokumenter",
@@ -121,10 +121,10 @@
     "page.generalErrorPage.tittel": "Noe gikk galt...",
     "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil.",
 
-    "page.unavailable.info.1": "Den digitale søknaden for ettersending av dokumenter er dessverre ikke tilgjengelig på grunn av teknisk vedlikehold.",
+    "page.unavailable.info.1": "Ettersendelse av dokumenter digitalt er dessverre ikke tilgjengelig på grunn av teknisk vedlikehold.",
     "page.unavailable.info.2": "Vi beklager.",
 
-    "page.confirmation.sidetittel": "Vi har mottatt ettersendelse av dokumentasjon fra deg",
+    "page.confirmation.sidetittel": "Vi har mottatt ettersendingen av dokumenter",
     "page.confirmation.tittel": "Vi har mottatt ettersendingen av dokumenter",
     "page.confirmation.undertittel": "Hva skjer videre nå?",
     "page.confirmation.check.1.pp": "Dokumentene du har sendt finner du på",
@@ -141,7 +141,7 @@
     "validation.beskrivelse.stringHasNoValue": "Beskriv ettersendelsen",
     "validation.beskrivelse.stringIsTooLong": "Beskrivelsen kan ikke inneholde mer enn {maks} tegn",
     "validation.beskrivelse.stringIsTooShort": "Beskrivelsen må inneholde minst {min} tegn",
-    "validation.søknadstype.noValue": "Du må velge hva denne ettersendingen gjelder",
+    "validation.ytelse.noValue": "Du må velge hva denne ettersendelsen gjelder",
     "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte opplysningene",
     "fileUploadErrors.part1": "Det har dessverre skjedd en feil under opplasting av følgende vedlegg:",
 

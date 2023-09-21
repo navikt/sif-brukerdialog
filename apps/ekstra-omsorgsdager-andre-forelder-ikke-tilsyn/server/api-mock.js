@@ -15,7 +15,7 @@ server.use(
         contentSecurityPolicy: false,
         crossOriginEmbedderPolicy: false,
         crossOriginResourcePolicy: false,
-    })
+    }),
 );
 
 server.use((req, res, next) => {
@@ -60,7 +60,7 @@ const startExpressServer = () => {
     server.get('/oppslag/soker', (req, res) => {
         setTimeout(() => {
             res.send(søkerMock);
-        }, 200);
+        }, 401);
     });
 
     server.get('/oppslag/barn', (req, res) => {

@@ -1,4 +1,4 @@
-export const submitSkjema = () => getTestElement('typedFormikForm-submitButton').click();
+export const submitSkjema = () => getTestElement('typedFormikForm-submitButton').should('be.enabled').click();
 export const clickSendInnSøknad = () => cy.get('button[aria-label="Send inn søknaden"]').click();
 export const PUBLIC_PATH = '/familie/sykdom-i-familien/soknad/pleiepenger';
 

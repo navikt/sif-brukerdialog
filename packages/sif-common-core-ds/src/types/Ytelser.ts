@@ -13,7 +13,7 @@ export enum YtelseKey {
     'pleiepengerSyktBarn' = 'pleiepengerSyktBarn',
     'pleiepengerLivetsSlutt' = 'pleiepengerLivetsSlutt',
     'omsorgsdagerKroniskSyk' = 'omsorgsdagerKroniskSyk',
-    'omsorgsdagerAleneomsorg' = 'omsorgsdagerAleneomsorg',
+    // 'omsorgsdagerAleneomsorg' = 'omsorgsdagerAleneomsorg',
     'omsorgsdagerAnnenForelderIkkeTilsyn' = 'omsorgsdagerAnnenForelderIkkeTilsyn',
     'omsorgspengerutbetalingSNFri' = 'omsorgspengerutbetalingSNFri',
     'omsorgspengerutbetalingArbeidstaker' = 'omsorgspengerutbetalingArbeidstaker',
@@ -38,12 +38,12 @@ export const Ytelser: YtelserMap = {
             nb: 'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         },
     },
-    [YtelseKey.omsorgsdagerAleneomsorg]: {
-        navn: 'Ekstra omsorgsdager ved aleneomsorg',
-        søknadstittel: {
-            nb: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
-        },
-    },
+    // [YtelseKey.omsorgsdagerAleneomsorg]: {
+    //     navn: 'Ekstra omsorgsdager ved aleneomsorg',
+    //     søknadstittel: {
+    //         nb: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
+    //     },
+    // },
     [YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn]: {
         navn: 'Ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
         søknadstittel: {

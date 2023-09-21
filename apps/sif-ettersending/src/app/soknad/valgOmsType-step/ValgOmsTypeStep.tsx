@@ -35,7 +35,7 @@ const ValgOmsTypeStep: React.FC<Props> = ({ søknadstype }) => {
                         getYtelseRadio(YtelseKey.omsorgsdagerKroniskSyk),
                         getYtelseRadio(YtelseKey.omsorgspengerutbetalingSNFri),
                         getYtelseRadio(YtelseKey.omsorgspengerutbetalingArbeidstaker),
-                        getYtelseRadio(YtelseKey.omsorgsdagerAleneomsorg),
+                        // getYtelseRadio(YtelseKey.omsorgsdagerAleneomsorg), Midlertidig tatt bort frem til backend støtter denne
                         getYtelseRadio(YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn),
                     ]}
                 />

@@ -15,12 +15,13 @@ import { useSøknadsdataContext } from '../SøknadsdataContext';
 import ArbeidstidAnsatt from './components/ArbeidstidAnsatt';
 import ArbeidstidSelvstendig from './components/ArbeidstidSelvstendig';
 import ArbeidstidFrilans from './components/ArbeidstidFrilans';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 
 const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
     const { values } = useFormikContext<SøknadFormValues>();
 
     const {
-        søknadsdata: { arbeidssituasjon, søknadsperiode },
+        søknadsdata: { arbeidssituasjon, søknadsperiode, stønadGodtgjørelse },
     } = useSøknadsdataContext();
 
     if (!arbeidssituasjon || !søknadsperiode) {
@@ -81,6 +82,7 @@ const ArbeidstidStep = ({ onValidSubmit }: StepCommonProps) => {
                             arbeidIPeriode={values.frilans.arbeidsforhold?.arbeidIPeriode}
                             normalarbeidstid={frilans.normalarbeidstid.timerPerUkeISnitt}
                             søkerFremITid={søkerFremITid}
+                            mottarOmsorgsstønad={stønadGodtgjørelse?.mottarStønadGodtgjørelse === YesOrNo.YES}
                         />
                     </FormBlock>
                 )}
