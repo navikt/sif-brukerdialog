@@ -1,4 +1,5 @@
 import 'cypress-axe';
+import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 import {
     checkCheckbuttonByName,
     getInputByName,
@@ -48,6 +49,7 @@ const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
         }
         setInputByNameValue('barnetsFødselsnummer', cyApiMockData.barnMock.barn[0].fødselsnummer);
         setInputByNameValue('barnetsNavn', cyApiMockData.barnMock.barn[0].fornavn);
+        setInputByNameValue('barnetsFødselsdato', cyApiMockData.barnMock.barn[0].fødselsdato);
         getInputByName('søkersRelasjonTilBarnet').select('mor');
         selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
@@ -66,7 +68,7 @@ const lastOppLegeerklæring = () => {
                     fileName,
                     mimeType: 'image/png',
                     encoding: 'utf8',
-                })
+                }),
             );
         cy.wait(200);
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
@@ -83,7 +85,7 @@ const lastOppSamværsavtale = () => {
                     fileName,
                     mimeType: 'image/png',
                     encoding: 'utf8',
-                })
+                }),
             );
         cy.wait(200);
         getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);
@@ -101,6 +103,7 @@ const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
             oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fødselsnummer);
             oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fornavn);
         }
+        oppsummering.should('contain', dateFormatter.full(ISODateToDate(cyApiMockData.barnMock.barn[0].fødselsdato)));
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
         if (props.deltBosted === false) {
             getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);

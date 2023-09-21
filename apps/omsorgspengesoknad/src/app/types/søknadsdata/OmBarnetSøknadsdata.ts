@@ -12,6 +12,7 @@ interface OmBarnetSøknadsdata_annetBarn {
     type: 'annetBarn';
     søknadenGjelderEtAnnetBarn: true;
     barnetsFødselsnummer: string;
+    barnetsFødselsdato: string;
     barnetsNavn: string;
     søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet;
     sammeAdresse: boolean;
