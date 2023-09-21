@@ -111,7 +111,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         setSendingInProgress(true);
         try {
             await sendApplication(apiValues);
-            await logSoknadSent(PleiepengerSyktBarnApp.skjemanavn);
+            await logSoknadSent(PleiepengerSyktBarnApp.navn);
             if (harArbeidMenIngenFravær) {
                 await logSenderInnSøknadMedIngenFravær();
             }
@@ -127,7 +127,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
             } else {
-                await logSoknadFailed(PleiepengerSyktBarnApp.skjemanavn);
+                await logSoknadFailed(PleiepengerSyktBarnApp.navn);
                 appSentryLogger.logApiError(error);
                 navigateTo(routeConfig.ERROR_PAGE_ROUTE, navigate);
             }

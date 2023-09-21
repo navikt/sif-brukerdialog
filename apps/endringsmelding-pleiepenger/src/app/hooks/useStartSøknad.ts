@@ -12,7 +12,7 @@ export const useStartSøknad = () => {
     } = useSøknadContext();
 
     const startSøknad = (hvaSkalEndres: EndringType[] = [EndringType.arbeidstid]) => {
-        logSoknadStartet(EndringsmeldingPsbApp.skjemanavn);
+        logSoknadStartet(EndringsmeldingPsbApp.navn);
         logInfo({
             antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
             erArbeidstaker: sak.arbeidsaktiviteter.arbeidstakerAktiviteter.length > 0,

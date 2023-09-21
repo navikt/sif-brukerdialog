@@ -33,7 +33,7 @@ const App = () => {
         <SifAppWrapper>
             <AmplitudeProvider applicationKey={PleiepengerSyktBarnApp.key}>
                 <SoknadApplication
-                    appName={PleiepengerSyktBarnApp.skjemanavn}
+                    appName={PleiepengerSyktBarnApp.navn}
                     intlMessages={applicationIntlMessages}
                     sentryKey={PleiepengerSyktBarnApp.key}
                     appStatus={{

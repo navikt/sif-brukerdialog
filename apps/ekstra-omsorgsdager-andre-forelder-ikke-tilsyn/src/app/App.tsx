@@ -31,7 +31,7 @@ const App = () => (
                 applicationKey={OmsorgsdagerAnnenForelderIkkeTilsynApp.key}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Søknad om å bli regnet som midertidig alene for omsorgen"
+                    appName={OmsorgsdagerAnnenForelderIkkeTilsynApp.navn}
                     intlMessages={applicationIntlMessages}
                     sentryKey={OmsorgsdagerAnnenForelderIkkeTilsynApp.key}
                     appStatus={{

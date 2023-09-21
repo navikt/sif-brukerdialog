@@ -22,7 +22,7 @@ const VelkommenPage = () => {
     const { logSoknadStartet } = useAmplitudeInstance();
 
     const startSøknad = async () => {
-        await logSoknadStartet(OmsorgsdagerAnnenForelderIkkeTilsynApp.skjemanavn);
+        await logSoknadStartet(OmsorgsdagerAnnenForelderIkkeTilsynApp.navn);
         dispatch(actionsCreator.startSøknad());
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_ANNEN_FORELDER));
     };

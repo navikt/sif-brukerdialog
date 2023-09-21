@@ -33,14 +33,14 @@ export const useSendSøknad = () => {
                 if (isAxiosError(error)) {
                     appSentryLogger.logError('Innsending feilet', error.message);
                 }
-                logSoknadFailed(EndringsmeldingPsbApp.skjemanavn);
+                logSoknadFailed(EndringsmeldingPsbApp.navn);
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });
     };
 
     const onSøknadSendSuccess = async (metadata: SøknadApiDataMetadata) => {
-        await logSoknadSent(EndringsmeldingPsbApp.skjemanavn);
+        await logSoknadSent(EndringsmeldingPsbApp.navn);
         await logInfo(metadata);
         slettMellomlagring();
         setIsSubmitting(false);

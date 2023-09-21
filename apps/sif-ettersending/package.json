@@ -15,6 +15,7 @@
         "@navikt/ds-react": "5.5.0",
         "@navikt/ds-tailwind": "5.5.0",
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
+        "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",

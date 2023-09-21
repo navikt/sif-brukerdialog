@@ -45,7 +45,7 @@ const App = () => (
                 applicationKey={EndringsmeldingPsbApp.key}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Endringsmelding - pleiepenger sykt barn"
+                    appName={EndringsmeldingPsbApp.navn}
                     intlMessages={applicationIntlMessages}
                     sentryKey={EndringsmeldingPsbApp.key}
                     appStatus={{

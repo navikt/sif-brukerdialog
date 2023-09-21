@@ -109,7 +109,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
     };
 
     const startSoknad = async () => {
-        await logSoknadStartet(PleiepengerSyktBarnApp.skjemanavn);
+        await logSoknadStartet(PleiepengerSyktBarnApp.navn);
         await purge();
 
         const initialFormValues = undefined;

@@ -31,7 +31,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async () => {
-        await logSoknadSent(OmsorgsdagerKroniskApp.skjemanavn);
+        await logSoknadSent(OmsorgsdagerKroniskApp.navn);
         slettMellomlagring();
         setIsSubmitting(false);
         dispatch(actionsCreator.setSøknadSendt());

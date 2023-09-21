@@ -31,7 +31,7 @@ const App = () => (
                 applicationKey={OmsorgspengerutbetalingSNFriApp.key}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName={OmsorgspengerutbetalingSNFriApp.skjemanavn}
+                    appName={OmsorgspengerutbetalingSNFriApp.navn}
                     intlMessages={applicationIntlMessages}
                     sentryKey={OmsorgspengerutbetalingSNFriApp.key}
                     appStatus={{

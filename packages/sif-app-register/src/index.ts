@@ -1,6 +1,6 @@
 interface AppInfo {
     /** Ikke synlig beskrivende navn - brukes i amplitude */
-    skjemanavn: string;
+    navn: string;
     /** Applikasjonsnøkkel som brukes i amplitude og sentry */
     key: string;
     /** Tittel brukt i applikasjon, og dersom en skal lenke til applikasjon */
@@ -16,7 +16,7 @@ interface AppInfo {
 
 export const PleiepengerSyktBarnApp: AppInfo = {
     key: 'pleiepengesoknad',
-    skjemanavn: 'Pleiepenger for sykt barn',
+    navn: 'Pleiepenger for sykt barn',
     tittel: {
         nb: 'Søknad om pleiepenger for sykt barn',
     },
@@ -28,7 +28,7 @@ export const PleiepengerSyktBarnApp: AppInfo = {
 
 export const EndringsmeldingPsbApp: AppInfo = {
     key: 'endringsmelding-pleiepenger',
-    skjemanavn: 'Endringsmelding pleiepenger sykt barn',
+    navn: 'Endringsmelding pleiepenger sykt barn',
     tittel: {
         nb: 'Endringsmelding for pleiepenger sykt barn',
     },
@@ -40,7 +40,7 @@ export const EndringsmeldingPsbApp: AppInfo = {
 
 export const PleiepengerLivetsSluttApp: AppInfo = {
     key: 'pleiepengesoknad-livets-slutt',
-    skjemanavn: 'Pleiepenger i livets sluttfase',
+    navn: 'Pleiepenger i livets sluttfase',
     tittel: {
         nb: 'Søknad om pleiepenger i livets sluttfase',
     },
@@ -52,7 +52,7 @@ export const PleiepengerLivetsSluttApp: AppInfo = {
 
 export const OmsorgsdagerKroniskApp: AppInfo = {
     key: 'omsorgspengersoknad',
-    skjemanavn: 'Ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
+    navn: 'Ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
     tittel: {
         nb: 'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
     },
@@ -64,7 +64,7 @@ export const OmsorgsdagerKroniskApp: AppInfo = {
 
 export const OmsorgsdagerAleneomsorgApp: AppInfo = {
     key: 'omsorgsdager-aleneomsorg-dialog',
-    skjemanavn: 'Ekstra omsorgsdager ved aleneomsorg',
+    navn: 'Ekstra omsorgsdager ved aleneomsorg',
     tittel: {
         nb: 'Søknad om ekstra omsorgsdager ved aleneomsorg',
     },
@@ -76,7 +76,7 @@ export const OmsorgsdagerAleneomsorgApp: AppInfo = {
 
 export const OmsorgsdagerAnnenForelderIkkeTilsynApp: AppInfo = {
     key: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
-    skjemanavn: 'Ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
+    navn: 'Ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
     tittel: {
         nb: 'Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn',
     },
@@ -88,7 +88,7 @@ export const OmsorgsdagerAnnenForelderIkkeTilsynApp: AppInfo = {
 
 export const OmsorgspengerutbetalingArbeidstakerApp: AppInfo = {
     key: 'omsorgspengerutbetaling-arbeidstaker',
-    skjemanavn: 'Utbetaling av omsorgspenger for arbeidstaker',
+    navn: 'Utbetaling av omsorgspenger for arbeidstaker',
     tittel: {
         nb: 'Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler',
     },
@@ -100,7 +100,7 @@ export const OmsorgspengerutbetalingArbeidstakerApp: AppInfo = {
 
 export const OmsorgspengerutbetalingSNFriApp: AppInfo = {
     key: 'omsorgspengerutbetaling-soknad',
-    skjemanavn: 'Utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
+    navn: 'Utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere',
     tittel: {
         nb: 'Søknad om utbetaling av omsorgspenger til selvstendig næringsdrivende eller frilansere',
     },
@@ -112,7 +112,7 @@ export const OmsorgspengerutbetalingSNFriApp: AppInfo = {
 
 export const EttersendelseApp: AppInfo = {
     key: 'ettersending',
-    skjemanavn: 'Ettersending av dokumenter innenfor sykdom i familien',
+    navn: 'Ettersending av dokumenter innenfor sykdom i familien',
     tittel: {
         nb: 'Ettersendelse',
     },
@@ -124,7 +124,7 @@ export const EttersendelseApp: AppInfo = {
 
 export const EttersendelsePsbApp: AppInfo = {
     key: 'ettersending',
-    skjemanavn: 'Ettersendelse - Pleiepenger for sykt barn',
+    navn: 'Ettersendelse - Pleiepenger for sykt barn',
     tittel: {
         nb: 'Ettersendelse - Pleiepenger for sykt barn',
     },
@@ -136,7 +136,7 @@ export const EttersendelsePsbApp: AppInfo = {
 
 export const EttersendelseLivetsSluttApp: AppInfo = {
     key: 'ettersending',
-    skjemanavn: 'Ettersendelse - Pleiepenger i livets sluttfase',
+    navn: 'Ettersendelse - Pleiepenger i livets sluttfase',
     tittel: {
         nb: 'Ettersendelse - Pleiepenger for sykt barn',
     },
@@ -147,7 +147,7 @@ export const EttersendelseLivetsSluttApp: AppInfo = {
 };
 export const EttersendelseOmsorgspengerApp: AppInfo = {
     key: 'ettersending',
-    skjemanavn: 'Ettersendelse - Omsorgspenger',
+    navn: 'Ettersendelse - Omsorgspenger',
     tittel: {
         nb: 'Ettersendelse - Omsorgspenger',
     },
@@ -158,7 +158,7 @@ export const EttersendelseOmsorgspengerApp: AppInfo = {
 };
 export const InnsynPsbApp: AppInfo = {
     key: 'sif-innsyn',
-    skjemanavn: 'Dine pleiepenger - sykt barn',
+    navn: 'Dine pleiepenger - sykt barn',
     tittel: {
         nb: 'Dine pleiepenger',
     },
@@ -170,7 +170,7 @@ export const InnsynPsbApp: AppInfo = {
 
 export const OmsorgsdagerKalkulator: AppInfo = {
     key: 'omsorgsdagerkalkulator',
-    skjemanavn: 'Omsorgsdagerkalkulator',
+    navn: 'Omsorgsdagerkalkulator',
     tittel: {
         nb: 'Kalkulator for omsorgsdager',
     },
