@@ -18,36 +18,43 @@ describe('Direktelenker', () => {
 
     it('Pleiepenger for sykt barn', () => {
         cy.visit(getSøknadstypeUrl(Søknadstype.pleiepengerSyktBarn));
+        cy.wait('@getSøker');
         cy.get('h2').contains('Ettersendelse av dokumentasjon til søknad om pleiepenger for sykt barn').should('exist');
     });
     it('Pleiepenger i livets sluttfase', () => {
         cy.visit(getSøknadstypeUrl(Søknadstype.pleiepengerLivetsSluttfase));
+        cy.wait('@getSøker');
         cy.get('h2')
             .contains('Ettersendelse av dokumentasjon til søknad om pleiepenger i livets sluttfase')
             .should('exist');
     });
     it('Omsorgspenger - generell', () => {
         cy.visit(getSøknadstypeUrl(Søknadstype.omsorgspenger));
+        cy.wait('@getSøker');
         cy.get('h2').contains('Ettersendelse av dokumentasjon for omsorgspenger').should('exist');
     });
     it('Omsorgspenger - kronisk syk', () => {
         cy.visit(getSøknadstypeUrl(Søknadstype.ekstraomsorgsdager));
+        cy.wait('@getSøker');
         cy.get('h2')
             .contains('Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning')
             .should('exist');
     });
     it('Omsorgspengerutbetaling SN/Fri', () => {
         cy.visit(getSøknadstypeUrl(Søknadstype.utbetaling));
+        cy.wait('@getSøker');
         cy.get('h2')
             .contains('Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere')
             .should('exist');
     });
     it('Omsorgspengerutbetaling - arbeidstaker', () => {
         cy.visit(getSøknadstypeUrl(Søknadstype.utbetalingarbeidstaker));
+        cy.wait('@getSøker');
         cy.get('h2').contains('Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler').should('exist');
     });
     it('Omsorgspengerutbetaling - regnet som alene', () => {
         cy.visit(getSøknadstypeUrl(Søknadstype.regnetsomalene));
+        cy.wait('@getSøker');
         cy.get('h2')
             .contains('Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn')
             .should('exist');
