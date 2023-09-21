@@ -49,6 +49,14 @@ const getInitialYtelse = (søknadstype: Søknadstype): YtelseKey | undefined => 
             return YtelseKey.pleiepengerLivetsSlutt;
         case Søknadstype.omsorgspenger:
             return undefined;
+        case Søknadstype.ekstraomsorgsdager:
+            return YtelseKey.omsorgsdagerKroniskSyk;
+        case Søknadstype.regnetsomalene:
+            return YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn;
+        case Søknadstype.utbetaling:
+            return YtelseKey.omsorgspengerutbetalingSNFri;
+        case Søknadstype.utbetalingarbeidstaker:
+            return YtelseKey.omsorgspengerutbetalingArbeidstaker;
     }
 };
 

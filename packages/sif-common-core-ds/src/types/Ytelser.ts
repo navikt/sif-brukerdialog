@@ -13,7 +13,6 @@ export enum YtelseKey {
     'pleiepengerSyktBarn' = 'pleiepengerSyktBarn',
     'pleiepengerLivetsSlutt' = 'pleiepengerLivetsSlutt',
     'omsorgsdagerKroniskSyk' = 'omsorgsdagerKroniskSyk',
-    // 'omsorgsdagerAleneomsorg' = 'omsorgsdagerAleneomsorg',
     'omsorgsdagerAnnenForelderIkkeTilsyn' = 'omsorgsdagerAnnenForelderIkkeTilsyn',
     'omsorgspengerutbetalingSNFri' = 'omsorgspengerutbetalingSNFri',
     'omsorgspengerutbetalingArbeidstaker' = 'omsorgspengerutbetalingArbeidstaker',
