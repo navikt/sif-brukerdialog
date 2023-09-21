@@ -2,10 +2,10 @@ import { BodyLong, Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import getLenker from '../../../lenker';
-import { ApplicationType } from '../../../types/ApplicationType';
+import { Søknadstype } from '../../../types/Søknadstype';
 
 interface Props {
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
 }
 
 const BehandlingAvPersonopplysningerContent = ({ søknadstype }: Props) => {
@@ -28,12 +28,12 @@ const BehandlingAvPersonopplysningerContent = ({ søknadstype }: Props) => {
                     </p>
 
                     <ul>
-                        {søknadstype === ApplicationType.pleiepengerLivetsSluttfase && (
+                        {søknadstype === Søknadstype.pleiepengerLivetsSluttfase && (
                             <li>
                                 <FormattedMessage id="modal.personopplysninger.4.1.pleiepengerLivetsSluttfase" />
                             </li>
                         )}
-                        {søknadstype !== ApplicationType.pleiepengerLivetsSluttfase && (
+                        {søknadstype !== Søknadstype.pleiepengerLivetsSluttfase && (
                             <>
                                 <li>
                                     <FormattedMessage id="modal.personopplysninger.4.1" />
@@ -58,7 +58,7 @@ const BehandlingAvPersonopplysningerContent = ({ søknadstype }: Props) => {
                         </li>
                     </ul>
                 </Block>
-                {søknadstype === ApplicationType.pleiepengerLivetsSluttfase && (
+                {søknadstype === Søknadstype.pleiepengerLivetsSluttfase && (
                     <Block margin="xl">
                         <p>
                             <FormattedMessage id="modal.personopplysninger.4.7" />

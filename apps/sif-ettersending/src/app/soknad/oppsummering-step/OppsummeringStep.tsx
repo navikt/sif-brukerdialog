@@ -3,18 +3,17 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { isFailure, isPending } from '@devexperts/remote-data-ts';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { useFormikContext } from 'formik';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
-import { ApplicationType } from '../../types/ApplicationType';
 import { Person } from '../../types/Person';
-import { YtelseTypeApi } from '../../types/SoknadApiData';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
+import { Søknadstype } from '../../types/Søknadstype';
 import { mapFormDataToApiData } from '../../utils/mapFormDataToApiData';
 import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
@@ -25,7 +24,7 @@ import './oppsummeringStep.css';
 
 interface Props {
     soknadId: string;
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
     søker: Person;
 }
 
@@ -34,7 +33,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
     const { sendSoknadStatus, sendSoknad, resetSendSøknadStatus } = useSoknadContext();
     const { values } = useFormikContext<SoknadFormData>();
     const { fornavn, mellomnavn, etternavn, fødselsnummer } = søker;
-    const apiValues = mapFormDataToApiData(soknadId, values, søknadstype, intl);
+    const apiValues = mapFormDataToApiData(soknadId, values, intl);
 
     useEffectOnce(() => {
         resetSendSøknadStatus();
@@ -47,11 +46,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             includeValidationSummary={false}
             showButtonSpinner={isPending(sendSoknadStatus.status)}
             submitButtonLabel={intlHelper(intl, 'step.sendButtonLabel')}
-            buttonDisabled={
-                isPending(sendSoknadStatus.status) ||
-                apiValues === undefined ||
-                apiValues.søknadstype === YtelseTypeApi.ukjent
-            }
+            buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
             <SifGuidePanel>
                 <BodyLong>
@@ -69,7 +64,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
                         </SummaryBlock>
 
                         <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.typeSøknad.tittel')}>
-                            {intlHelper(intl, `steg.oppsummering.typeSøknad.type.${apiValues.søknadstype}`)}
+                            {apiValues.ytelseTittel}
                         </SummaryBlock>
 
                         {apiValues.beskrivelse && (

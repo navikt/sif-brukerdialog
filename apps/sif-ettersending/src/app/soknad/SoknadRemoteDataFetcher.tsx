@@ -5,38 +5,23 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
-import { ApplicationType } from '../types/ApplicationType';
 import { RequestStatus } from '../types/RequestStatus';
+import { Søknadstype } from '../types/Søknadstype';
 import Soknad from './Soknad';
 
-const getSøknadstypeFromYtelse = (param?: string): ApplicationType | undefined => {
-    switch (param) {
-        case 'omsorgspenger':
-            return ApplicationType.omsorgspenger;
-        case 'ekstraomsorgsdager':
-            return ApplicationType.ekstraomsorgsdager;
-        case 'utbetaling':
-            return ApplicationType.utbetaling;
-        case 'utbetalingarbeidstaker':
-            return ApplicationType.utbetalingarbeidstaker;
-        case 'regnetsomalene':
-            return ApplicationType.regnetsomalene;
-        case 'deling':
-            return ApplicationType.deling;
-        case 'pleiepenger':
-            return ApplicationType.pleiepengerBarn;
-        case 'pleiepenger-livets-sluttfase':
-            return ApplicationType.pleiepengerLivetsSluttfase;
-    }
-    return undefined;
+const isSøknadstype = (type: string): type is Søknadstype => {
+    return [
+        Søknadstype.omsorgspenger,
+        Søknadstype.pleiepengerSyktBarn,
+        Søknadstype.pleiepengerLivetsSluttfase,
+    ].includes(type as any);
 };
 
 const SoknadRemoteDataFetcher = (): JSX.Element => {
     const intl = useIntl();
-    const { ytelse } = useParams();
-    const søknadstype = getSøknadstypeFromYtelse(ytelse);
+    const { soknadstype: søknadstype } = useParams();
 
-    if (!søknadstype) {
+    if (!søknadstype || !isSøknadstype(søknadstype)) {
         return <>ugyldig path</>;
     }
 
