@@ -29,14 +29,6 @@ const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined =
     return undefined;
 };
 
-// const isSøknadstype = (type: string): type is Søknadstype => {
-//     return [
-//         Søknadstype.omsorgspenger,
-//         Søknadstype.pleiepengerSyktBarn,
-//         Søknadstype.pleiepengerLivetsSluttfase,
-//     ].includes(type as any);
-// };
-
 const SoknadRemoteDataFetcher = (): JSX.Element => {
     const intl = useIntl();
     const { soknadstype } = useParams();

@@ -2,7 +2,6 @@ import 'cypress-axe';
 import { contextConfig } from '../contextConfig';
 import { Søknadstype } from '../../../../src/app/types/Søknadstype';
 
-// const velgSøknadstypeUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
 
 const getSøknadstypeUrl = (søknadstype: string) => {
