@@ -44,9 +44,9 @@ root.render(
                 publicPath={publicPath}>
                 <SoknadApplicationCommonRoutes
                     contentRoutes={[
-                        <Route path={'/:ytelse/melding/*'} key="soknad" element={<SoknadRemoteDataFetcher />} />,
-                        <Route path={'/:ytelse/'} key="ytelse" element={<Navigate to={'melding'} />} />,
-                        <Route path={'/:ytelse/feil'} key="ytelseFeil" element={<GeneralErrorPage />} />,
+                        <Route path={'/:soknadstype/melding/*'} key="soknad" element={<SoknadRemoteDataFetcher />} />,
+                        <Route path={'/:soknadstype/'} key="søknadstype" element={<Navigate to={'melding'} />} />,
+                        <Route path={'/:soknadstype/feil'} key="søknadstypeFeil" element={<GeneralErrorPage />} />,
                         <Route path={'/feil'} key="feil" element={<GeneralErrorPage />} />,
                         <Route path={'/'} key="intro" element={<IntroPage />} />,
                     ]}

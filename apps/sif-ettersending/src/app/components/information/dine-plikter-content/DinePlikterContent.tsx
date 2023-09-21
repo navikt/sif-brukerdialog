@@ -2,12 +2,12 @@ import { Heading, Link } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../../lenker';
-import { ApplicationType } from '../../../types/ApplicationType';
+import { Søknadstype } from '../../../types/Søknadstype';
 
 const getText = (part: string) => <FormattedMessage id={`modal.minePlikter.${part}`} />;
 
 interface Props {
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
 }
 
 const DinePlikterContent = ({ søknadstype }: Props) => {

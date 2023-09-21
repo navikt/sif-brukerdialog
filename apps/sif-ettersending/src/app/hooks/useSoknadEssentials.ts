@@ -4,10 +4,10 @@ import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/lib/util
 import { isObjectLike } from 'lodash';
 import getSokerRemoteData from '../api/getSoker';
 import getSoknadTempStorage from '../api/getSoknadTempStorage';
-import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
 import { RequestStatus } from '../types/RequestStatus';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
+import { Søknadstype } from '../types/Søknadstype';
 import appSentryLogger from '../utils/appSentryLogger';
 import { navigateToLoginPage } from '../utils/navigationUtils';
 
@@ -51,7 +51,7 @@ const isUnknownAxiosError = (error: any) => {
     }
 };
 
-function useSoknadEssentials(søknadstype: ApplicationType): SøknadInitialDataState {
+function useSoknadEssentials(søknadstype: Søknadstype): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
 
     const fetch = async () => {

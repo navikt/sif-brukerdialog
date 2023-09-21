@@ -1,5 +1,5 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
-import { ApplicationType } from '../types/ApplicationType';
+import { Søknadstype } from '../types/Søknadstype';
 import { getApplicationPageRoute } from '../utils/routeUtils';
 
 export enum StepID {
@@ -14,22 +14,22 @@ interface ConfigStepHelperType {
     included: boolean;
 }
 
-export const getFirstStep = (applicationType: ApplicationType): StepID => {
+export const getFirstStep = (applicationType: Søknadstype): StepID => {
     switch (applicationType) {
-        case ApplicationType.pleiepengerBarn:
-        case ApplicationType.pleiepengerLivetsSluttfase:
+        case Søknadstype.pleiepengerSyktBarn:
+        case Søknadstype.pleiepengerLivetsSluttfase:
             return StepID.BESKRIVELSE;
-        case ApplicationType.omsorgspenger:
+        case Søknadstype.omsorgspenger:
             return StepID.OMS_TYPE;
         default:
             return StepID.DOKUMENTER;
     }
 };
 
-const getSoknadSteps = (søknadstype: ApplicationType): StepID[] => {
+const getSoknadSteps = (søknadstype: Søknadstype): StepID[] => {
     const visBeskrivelseStep =
-        søknadstype === ApplicationType.pleiepengerBarn || søknadstype === ApplicationType.pleiepengerLivetsSluttfase;
-    const visOmsTypeStep = søknadstype === ApplicationType.omsorgspenger;
+        søknadstype === Søknadstype.pleiepengerSyktBarn || søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
+    const visOmsTypeStep = søknadstype === Søknadstype.omsorgspenger;
 
     const allSteps: ConfigStepHelperType[] = [
         { stepID: StepID.BESKRIVELSE, included: visBeskrivelseStep },
@@ -43,7 +43,7 @@ const getSoknadSteps = (søknadstype: ApplicationType): StepID[] => {
     return steps;
 };
 
-export const getSoknadStepsConfig = (søknadstype: ApplicationType): SoknadStepsConfig<StepID> => {
+export const getSoknadStepsConfig = (søknadstype: Søknadstype): SoknadStepsConfig<StepID> => {
     const søknadStepConfig = soknadStepUtils.getStepsConfig(getSoknadSteps(søknadstype), SoknadApplicationType.MELDING);
     const updatedConfig: SoknadStepsConfig<StepID> = {};
 

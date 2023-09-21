@@ -1,25 +1,25 @@
 import { getApplicationRoute } from '../config/routeConfig';
+import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
-import { ApplicationType } from '../types/ApplicationType';
+import { Søknadstype } from '../types/Søknadstype';
 import {
     beskrivelseStepIsAvailable,
     documentsStepIsAvailable,
     omsTypeStepIsAvailable,
     summaryStepAvailable,
 } from './stepUtils';
-import { StepID } from '../soknad/soknadStepsConfig';
 
-export const getApplicationPageRoute = (søknadstype: ApplicationType, page: StepID | string): string => {
+export const getApplicationPageRoute = (søknadstype: Søknadstype, page: StepID | string): string => {
     const route = `${getApplicationRoute(søknadstype)}/${page}`;
     return route;
 };
 
-export const getAvailableSteps = (values: SoknadFormData, søknadstype: ApplicationType): StepID[] => {
+export const getAvailableSteps = (values: SoknadFormData, søknadstype: Søknadstype): StepID[] => {
     const steps: StepID[] = [];
 
     const visBeskrivelseStep =
-        søknadstype === ApplicationType.pleiepengerBarn || søknadstype === ApplicationType.pleiepengerLivetsSluttfase;
-    const visOmsTypeStep = søknadstype === ApplicationType.omsorgspenger;
+        søknadstype === Søknadstype.pleiepengerSyktBarn || søknadstype === Søknadstype.pleiepengerLivetsSluttfase;
+    const visOmsTypeStep = søknadstype === Søknadstype.omsorgspenger;
 
     if (visBeskrivelseStep && beskrivelseStepIsAvailable(values)) {
         steps.push(StepID.BESKRIVELSE);
