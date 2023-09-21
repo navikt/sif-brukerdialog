@@ -30,11 +30,11 @@ export const EndringsmeldingPsbApp: AppInfo = {
     key: 'endringsmelding-pleiepenger',
     skjemanavn: 'Endringsmelding pleiepenger sykt barn',
     tittel: {
-        nb: 'Søknad om pleiepenger for sykt barn',
+        nb: 'Endringsmelding for pleiepenger sykt barn',
     },
     lenker: {
-        q: 'https://pleiepengesoknad.intern.dev.nav.no',
-        prod: 'https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger',
+        q: 'https://endringsmelding-pleiepenger.intern.dev.nav.no',
+        prod: 'https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
     },
 };
 
