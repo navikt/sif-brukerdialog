@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-common-appregister';
+import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
 import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';

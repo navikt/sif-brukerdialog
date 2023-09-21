@@ -13,7 +13,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { PleiepengerSyktBarnApp } from '@navikt/sif-common-appregister';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';

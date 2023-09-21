@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-common-appregister';
+import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
 import { AxiosError } from 'axios';
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
 import { useMellomlagring } from '../hooks/useMellomlagring';

@@ -3,7 +3,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-common-appregister';
+import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,

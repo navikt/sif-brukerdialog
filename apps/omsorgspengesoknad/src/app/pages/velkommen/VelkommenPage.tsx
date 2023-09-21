@@ -8,7 +8,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import OmSøknaden from './OmSøknaden';
 import VelkommenGuide from './VelkommenGuide';
-import { OmsorgsdagerKroniskApp } from '@navikt/sif-common-appregister';
+import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 
 const VelkommenPage = () => {
     const intl = useIntl();

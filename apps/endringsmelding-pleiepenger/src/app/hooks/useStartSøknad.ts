@@ -1,6 +1,6 @@
 import { useSøknadContext } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import { EndringsmeldingPsbApp } from '@navikt/sif-common-appregister';
+import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { EndringType } from '@types';
 import actionsCreator from '../søknad/context/action/actionCreator';
 

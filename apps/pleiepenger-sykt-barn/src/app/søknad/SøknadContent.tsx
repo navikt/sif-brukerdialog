@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { PleiepengerSyktBarnApp } from '@navikt/sif-common-appregister';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { dateToday } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { purge } from '../api/api';

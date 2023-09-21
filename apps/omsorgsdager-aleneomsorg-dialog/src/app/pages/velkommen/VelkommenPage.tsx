@@ -8,7 +8,7 @@ import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
 import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
-import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-common-appregister';
+import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 
 const VelkommenPage = () => {
     const intl = useIntl();
