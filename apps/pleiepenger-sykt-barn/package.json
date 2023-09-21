@@ -53,7 +53,7 @@
         "fs-extra": "11.1.1",
         "helmet": "7.0.0",
         "http-proxy-middleware": "2.0.6",
-        "http-status-codes": "2.2.0",
+        "http-status-codes": "2.3.0",
         "jose": "4.14.6",
         "lodash.debounce": "4.0.8",
         "lodash.groupby": "4.6.0",
