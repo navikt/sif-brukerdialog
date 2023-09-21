@@ -2,11 +2,12 @@ import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
+import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søknadstype } from '../types/Søknadstype';
+import { redirectTo } from '../utils/navigationUtils';
 import Soknad from './Soknad';
 
 const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined => {
@@ -35,7 +36,8 @@ const SoknadRemoteDataFetcher = (): JSX.Element => {
     const søknadstype = getSøknadstypeFromUrlParam(soknadstype);
 
     if (!søknadstype) {
-        return <>ugyldig path</>;
+        redirectTo('/');
+        return <LoadingPage />;
     }
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
