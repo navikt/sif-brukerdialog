@@ -6,6 +6,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SummarySection } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
+import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
 
 interface Props {
     apiData: OmBarnetApiData;
@@ -27,8 +28,12 @@ const OmBarnetOppsummering: React.FC<Props> = ({ apiData: apiData }) => {
             </Block>
             <Block margin="l">
                 <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
-                    {apiData.sammeAdresse === true && intlHelper(intl, 'Ja')}
-                    {apiData.sammeAdresse === false && intlHelper(intl, 'Nei')}
+                    {apiData.sammeAdresse === BarnSammeAdresse.JA &&
+                        intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.ja')}
+                    {apiData.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED &&
+                        intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.jaDeltBosted')}
+                    {apiData.sammeAdresse === BarnSammeAdresse.NEI &&
+                        intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.nei')}
                 </ContentWithHeader>
             </Block>
         </SummarySection>

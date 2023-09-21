@@ -78,9 +78,6 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                     <p style={{ marginTop: 0 }}>
                         <FormattedMessage id={'steg.deltBosted.helperTextPanel.1'} />
                     </p>
-                    <p>
-                        <FormattedMessage id={'steg.deltBosted.helperTextPanel.2'} />
-                    </p>
                 </SifGuidePanel>
             </Block>
             <Block margin={'l'}>
@@ -100,7 +97,7 @@ const DeltBostedForm: React.FunctionComponent<Props> = ({ values, goBack, andreV
                         validate={(attachments: Attachment[] = []) => {
                             return validateAll<ValidateAttachmentsErrors | ValidationError>([
                                 () => validateAttachments([...attachments, ...andreVedlegg]),
-                                () => getListValidator({ required: true })(getUploadedAttachments(attachments)),
+                                () => getListValidator({ required: false })(getUploadedAttachments(attachments)),
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={relocateToLoginPage}

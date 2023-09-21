@@ -18,12 +18,20 @@ export const omBarnetMessages: MessageFileFormat = {
         'steg.omBarnet.navn': 'Barnets navn',
         'steg.omBarnet.relasjon': 'Min relasjon til barnet',
         'steg.omBarnet.veileder.samværsavtale': 'Senere i søknaden laster du opp avtale om delt bosted for barnet.',
-        'steg.omBarnet.spm.sammeAdresse': 'Er du folkeregistrert på samme adresse som barnet?',
+        'steg.omBarnet.spm.sammeAdresse': 'Bor du sammen med barnet?',
+        'steg.omBarnet.spm.sammeAdresse.ja': 'Ja',
+        'steg.omBarnet.spm.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bosted',
+        'steg.omBarnet.spm.sammeAdresse.nei': 'Nei',
+        'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette': 'Hva betyr dette?',
+        'steg.omBarnet.spm.sammeAdresse.hvaBetyrDette.info':
+            'Hva er avtale om delt fast bosted? Hvis foreldrene til barnet ikke bor sammen, kan de inngå en avtale om delt fast bosted etter barneloven §36. Barnet bor da fast med begge foreldrene sine.',
+        'steg.omBarnet.spm.sammeAdresse.neiAlert':
+            'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra NAV. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
         'steg.omBarnet.spm.kroniskEllerFunksjonshemmende':
-            'Har barnet kronisk sykdom, funksjonshemning eller langvarig sykdom?',
+            'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
         'steg.omBarnet.alert.barnet18ÅrKanIkkeFortsette': 'Det gis ikke omsorgsdager til barn over 18 år.',
         'steg.omBarnet.alert.ikkeKroniskSykdom':
-            'Søknad om ekstra omsorgsdager gjelder kun for de som har barn med kronisk sykdom, funksjonshemning eller langvarig sykdom.',
+            'Søknad om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
         'steg.omBarnet.annetBarn.tittel': 'Annet barn',
 
         'validation.barnetSøknadenGjelder.noValue':

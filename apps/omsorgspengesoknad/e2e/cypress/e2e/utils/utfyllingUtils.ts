@@ -5,6 +5,7 @@ import {
     getInputByName,
     getTestElement,
     getTestElementByType,
+    selectRadioByNameAndValue,
     selectRadioYesOrNo,
     setInputByNameValue,
     submitSkjema,
@@ -34,8 +35,8 @@ const fyllUtOmBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet', () => {
         cy.injectAxe();
         getTestElement('barn-2811762539343').click();
-        selectRadioYesOrNo('sammeAdresse', props.deltBosted);
-        selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
+        selectRadioByNameAndValue('sammeAdresse', props.deltBosted ? 'NEI' : 'JA_DELT_BOSTED'),
+            selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         cy.checkA11y();
         submitSkjema();
     });
@@ -51,7 +52,8 @@ const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
         setInputByNameValue('barnetsNavn', cyApiMockData.barnMock.barn[0].fornavn);
         setInputByNameValue('barnetsFødselsdato', cyApiMockData.barnMock.barn[0].fødselsdato);
         getInputByName('søkersRelasjonTilBarnet').select('mor');
-        selectRadioYesOrNo('sammeAdresse', props.deltBosted);
+        selectRadioByNameAndValue('sammeAdresse', props.deltBosted ? 'NEI' : 'JA_DELT_BOSTED'),
+            selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
         cy.checkA11y();
         submitSkjema();

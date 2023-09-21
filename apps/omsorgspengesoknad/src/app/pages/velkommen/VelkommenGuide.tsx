@@ -1,4 +1,4 @@
-import { GuidePanel, Heading, Ingress } from '@navikt/ds-react';
+import { GuidePanel, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -11,9 +11,9 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
         <Heading level="1" size="large" spacing={true}>
             <FormattedMessage id="page.velkommen.guide.tittel" values={{ navn }} />
         </Heading>
-        <Ingress>
+        <p>
             <FormattedMessage id="page.velkommen.guide.ingress" />
-        </Ingress>
+        </p>
         <p>
             <FormattedMessage id="page.velkommen.guide.tekst.1" />
         </p>

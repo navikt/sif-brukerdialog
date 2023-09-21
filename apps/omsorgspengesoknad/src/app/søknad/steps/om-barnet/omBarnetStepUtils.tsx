@@ -25,13 +25,12 @@ export const getOmBarnetStepInitialValues = (
         barnetsNavn: '',
         barnetsFødselsdato: '',
         søkersRelasjonTilBarnet: undefined,
-        sammeAdresse: YesOrNo.UNANSWERED,
+        sammeAdresse: undefined,
         kroniskEllerFunksjonshemming: YesOrNo.UNANSWERED,
     };
 
     const { omBarnet } = søknadsdata;
     if (omBarnet) {
-        const sammeAdresse = getYesOrNoFromBoolean(omBarnet.sammeAdresse);
         const kroniskEllerFunksjonshemming = getYesOrNoFromBoolean(omBarnet.kroniskEllerFunksjonshemming);
 
         switch (omBarnet.type) {
@@ -40,7 +39,7 @@ export const getOmBarnetStepInitialValues = (
                     ...defaultValues,
                     søknadenGjelderEtAnnetBarn: false,
                     barnetSøknadenGjelder: omBarnet.registrertBarn.aktørId,
-                    sammeAdresse,
+                    sammeAdresse: omBarnet.sammeAdresse,
                     kroniskEllerFunksjonshemming,
                 };
             case 'annetBarn':
@@ -51,7 +50,7 @@ export const getOmBarnetStepInitialValues = (
                     barnetsNavn: omBarnet.barnetsNavn,
                     barnetsFødselsdato: omBarnet.barnetsFødselsdato,
                     søkersRelasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
-                    sammeAdresse,
+                    sammeAdresse: omBarnet.sammeAdresse,
                     kroniskEllerFunksjonshemming,
                 };
         }
@@ -63,11 +62,10 @@ export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
     { registrerteBarn = [] }: Partial<SøknadContextState>,
 ): OmBarnetSøknadsdata | undefined => {
-    const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
     const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
 
     if (values.søknadenGjelderEtAnnetBarn || registrerteBarn.length === 0) {
-        if (values.søkersRelasjonTilBarnet === undefined) {
+        if (values.søkersRelasjonTilBarnet === undefined || values.sammeAdresse === undefined) {
             return undefined;
         }
         return {
@@ -77,7 +75,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
             barnetsFødselsdato: values.barnetsFødselsdato,
             barnetsNavn: values.barnetsNavn,
             søkersRelasjonTilBarnet: values.søkersRelasjonTilBarnet,
-            sammeAdresse,
+            sammeAdresse: values.sammeAdresse,
             kroniskEllerFunksjonshemming,
         };
     }
@@ -89,10 +87,14 @@ export const getOmBarnetSøknadsdataFromFormValues = (
         return undefined;
     }
 
+    if (!values.sammeAdresse) {
+        return undefined;
+    }
+
     return {
         type: 'registrertBarn',
         registrertBarn: barn,
-        sammeAdresse,
+        sammeAdresse: values.sammeAdresse,
         kroniskEllerFunksjonshemming,
     };
 };
