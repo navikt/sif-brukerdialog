@@ -1,5 +1,9 @@
 export enum Søknadstype {
-    'pleiepengerSyktBarn' = 'pleiepenger-for-sykt-barn',
-    'pleiepengerLivetsSluttfase' = 'pleiepenger-i-livets-sluttfase',
+    'pleiepengerSyktBarn' = 'pleiepenger',
+    'pleiepengerLivetsSluttfase' = 'pleiepengerLivetsSluttfase',
     'omsorgspenger' = 'omsorgspenger',
+    'ekstraomsorgsdager' = 'ekstraomsorgsdager',
+    'utbetaling' = 'utbetaling',
+    'utbetalingarbeidstaker' = 'utbetalingarbeidstaker',
+    'regnetsomalene' = 'regnetsomalene',
 }

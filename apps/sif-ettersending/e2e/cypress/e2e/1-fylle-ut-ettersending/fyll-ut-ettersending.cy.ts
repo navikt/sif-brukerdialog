@@ -5,8 +5,7 @@ import { getElement, getTestElement, getTestElementByType, submitSkjema } from '
 
 const fileName = 'navlogopng.png';
 const velgSøknadstypeUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
-const startUrl =
-    'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/pleiepenger-for-sykt-barn/melding';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/pleiepenger/melding';
 
 const velgSøknadstype = () => {
     it('Velg søknadstype', () => {

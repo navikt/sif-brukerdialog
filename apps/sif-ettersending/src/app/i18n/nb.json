@@ -25,14 +25,18 @@
 
     "søknadstype.pleiepenger": "pleiepengesøknad",
     "søknadstype.omsorgspenger": "omsorgspengesøknad",
-    "søknadstype.pleiepenger-i-livets-sluttfase": "pleiepenger i livets sluttfase",
+    "søknadstype.pleiepengerLivetsSluttfase": "pleiepenger i livets sluttfase",
 
     "banner.intro": "Ettersendelse av dokumentasjon",
 
     "application.title": "Ettersendelse av dokumentasjon",
-    "application.title.pleiepenger-for-sykt-barn": "Ettersendelse av dokumentasjon til søknad om pleiepenger for sykt barn",
-    "application.title.pleiepenger-i-livets-sluttfase": "Ettersendelse av dokumentasjon til søknad om pleiepenger i livets sluttfase",
+    "application.title.pleiepenger": "Ettersendelse av dokumentasjon til søknad om pleiepenger for sykt barn",
+    "application.title.pleiepengerLivetsSluttfase": "Ettersendelse av dokumentasjon til søknad om pleiepenger i livets sluttfase",
     "application.title.omsorgspenger": "Ettersendelse av dokumentasjon for omsorgspenger",
+    "application.title.ekstraomsorgsdager": "Ettersendelse av dokumentasjon - Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning",
+    "application.title.utbetaling": "Ettersendelse av dokumentasjon  - Søknad om utbetaling av omsorgspenger for selvstendig næringsdrivende og frilansere",
+    "application.title.utbetalingarbeidstaker": "Ettersendelse av dokumentasjon - Søknad om utbetaling av omsorgspenger når arbeidsgiver ikke utbetaler",
+    "application.title.regnetsomalene": "Ettersendelse av dokumentasjon - Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn",
 
     "modal.personopplysninger.dialogtittel": "Om behandling av personopplysninger",
     "modal.personopplysninger.1": "Slik behandler NAV personopplysningene dine",
