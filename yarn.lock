@@ -3598,12 +3598,12 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.7
     "@sanity/client": 6.4.12
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     config: "workspace:*"
     copyfiles: 2.4.1
-    postcss: 8.4.29
+    postcss: 8.4.30
     prop-types: 15.8.1
     react: 18.2.0
     react-dom: 18.2.0
@@ -3744,7 +3744,6 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
-    autoprefixer: 10.4.15
     axios: 1.5.0
     babel-polyfill: 6.26.0
     case-sensitive-paths-webpack-plugin: 2.4.0
@@ -3752,9 +3751,8 @@ __metadata:
     cookie-parser: 1.4.6
     css-loader: 6.8.1
     cypress: 13.2.0
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     dotenv: 16.3.1
-    eslint: 8.49.0
     express: 4.18.2
     formik: 2.4.5
     helmet: 7.0.0
@@ -3769,7 +3767,7 @@ __metadata:
     npm-run-all: 4.1.5
     object-hash: 3.0.0
     openid-client: 5.5.0
-    postcss: 8.4.29
+    postcss: 8.4.30
     postcss-loader: 7.3.3
     promise: 8.3.0
     react: 18.2.0
@@ -3782,7 +3780,7 @@ __metadata:
     sass: 1.68.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
-    start-server-and-test: 2.0.0
+    start-server-and-test: 2.0.1
     style-loader: 3.3.3
     ts-loader: 9.4.4
     typescript: 5.2.2
@@ -3839,7 +3837,7 @@ __metadata:
     "@types/react-dom": 18.2.7
     "@types/react-modal": 3.16.0
     "@types/react-router-dom": 5.3.3
-    axe-core: 4.8.1
+    axe-core: 4.8.2
     axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -3853,11 +3851,11 @@ __metadata:
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     date-fns: 2.30.0
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     detect-browser: 5.3.0
     dotenv: 16.3.1
     express: 4.18.2
-    flat: 6.0.0
+    flat: 6.0.1
     formik: 2.4.5
     fp-ts: 2.16.1
     fs-extra: 11.1.1
@@ -3884,7 +3882,7 @@ __metadata:
     newtype-ts: 0.3.5
     object-hash: 3.0.0
     openid-client: 5.5.0
-    postcss: 8.4.29
+    postcss: 8.4.30
     postcss-import: 15.1.0
     postcss-loader: 7.3.3
     prettier: 3.0.3
@@ -3903,7 +3901,7 @@ __metadata:
     sass: 1.68.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
-    start-server-and-test: 2.0.0
+    start-server-and-test: 2.0.1
     storybook: 7.4.3
     style-loader: 3.3.3
     tailwindcss: 3.3.3
@@ -3968,7 +3966,7 @@ __metadata:
     cookie-parser: 1.4.6
     css-loader: 6.8.1
     cypress: 13.2.0
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     dotenv: 16.3.1
     express: 4.18.2
     formik: 2.4.5
@@ -3994,7 +3992,7 @@ __metadata:
     react-router-dom: 6.16.0
     rimraf: 5.0.1
     source-map-loader: 4.0.1
-    start-server-and-test: 2.0.0
+    start-server-and-test: 2.0.1
     style-loader: 3.3.3
     ts-loader: 9.4.4
     ulid: 2.3.0
@@ -4056,7 +4054,7 @@ __metadata:
     nav-datovelger: 12.6.0
     object-hash: 3.0.0
     openid-client: 5.5.0
-    postcss: 8.4.29
+    postcss: 8.4.30
     postcss-loader: 7.3.3
     postcss-nesting: 12.0.1
     promise: 8.3.0
@@ -4069,7 +4067,7 @@ __metadata:
     sass: 1.68.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
-    start-server-and-test: 2.0.0
+    start-server-and-test: 2.0.1
     style-loader: 3.3.3
     tailwindcss: 3.3.3
     ts-loader: 9.4.4
@@ -4118,7 +4116,7 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
-    axe-core: 4.8.1
+    axe-core: 4.8.2
     axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -4129,7 +4127,7 @@ __metadata:
     cypress: 13.2.0
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     dotenv: 16.3.1
     express: 4.18.2
     formik: 2.4.5
@@ -4145,7 +4143,7 @@ __metadata:
     mustache-express: 1.3.2
     object-hash: 3.0.0
     openid-client: 5.5.0
-    postcss: 8.4.29
+    postcss: 8.4.30
     postcss-loader: 7.3.3
     promise: 8.3.0
     react: 18.2.0
@@ -4157,7 +4155,7 @@ __metadata:
     sass: 1.68.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
-    start-server-and-test: 2.0.0
+    start-server-and-test: 2.0.1
     storybook: 7.4.3
     style-loader: 3.3.3
     ts-loader: 9.4.4
@@ -4199,11 +4197,11 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
-    "@typescript-eslint/eslint-plugin": 6.7.0
-    "@typescript-eslint/parser": 6.7.0
+    "@typescript-eslint/eslint-plugin": 6.7.2
+    "@typescript-eslint/parser": 6.7.2
     ajv: 8.12.0
     amplitude-js: 8.21.9
-    axe-core: 4.8.1
+    axe-core: 4.8.2
     axios: 1.5.0
     axios-mock-adapter: 1.22.0
     babel-polyfill: 6.26.0
@@ -4216,9 +4214,8 @@ __metadata:
     cypress: 13.2.0
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     dotenv: 16.3.1
-    eslint: 8.49.0
     eslint-config-prettier: 9.0.0
     eslint-plugin-jsx-a11y: 6.7.1
     eslint-plugin-prettier: 5.0.0
@@ -4256,7 +4253,7 @@ __metadata:
     sass: 1.68.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
-    start-server-and-test: 2.0.0
+    start-server-and-test: 2.0.1
     style-loader: 3.3.3
     ts-loader: 9.4.4
     typescript: 5.2.2
@@ -4300,7 +4297,7 @@ __metadata:
     lint-staged: 14.0.1
     npm-run-all: 4.1.5
     npm-watch: 0.11.0
-    postcss: 8.4.29
+    postcss: 8.4.30
     postcss-cli: 10.1.0
     postcss-loader: 7.3.3
     postcss-nested: 6.0.1
@@ -4322,7 +4319,7 @@ __metadata:
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
     "@types/amplitude-js": 8.16.2
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     "@types/react": 18.2.21
     amplitude-js: 8.21.9
     config: "workspace:*"
@@ -4367,7 +4364,7 @@ __metadata:
     "@storybook/react-webpack5": 7.4.3
     "@storybook/testing-library": 0.2.1
     "@types/jest": 29.5.5
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     "@types/react": 18.2.21
     "@types/react-collapse": 5.0.1
     "@types/react-dom": 18.2.7
@@ -4377,13 +4374,13 @@ __metadata:
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 2.30.0
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     formik: 2.4.5
     http-status-codes: 2.3.0
     i18n-iso-countries: 7.7.0
     mini-css-extract-plugin: 2.7.6
     nav-frontend-typografi-style: 2.0.2
-    postcss: 8.4.29
+    postcss: 8.4.30
     pretty-bytes: 6.1.1
     prop-types: 15.8.1
     react: 18.2.0
@@ -4428,7 +4425,7 @@ __metadata:
     "@storybook/react": 7.4.3
     "@storybook/testing-library": 0.2.1
     "@types/jest": 29.5.5
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/uuid": 9.0.4
@@ -4436,7 +4433,7 @@ __metadata:
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 2.30.0
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     formik: 2.4.5
     i18n-iso-countries: 7.7.0
     lodash: 4.17.21
@@ -4491,7 +4488,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.5.1
     "@types/jest": 29.5.5
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-responsive": 8.0.5
@@ -4499,8 +4496,8 @@ __metadata:
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 2.30.0
-    dayjs: 1.11.9
-    flat: 6.0.0
+    dayjs: 1.11.10
+    flat: 6.0.1
     formik: 2.4.5
     gh-pages: 6.0.0
     history: 5.3.0
@@ -4540,7 +4537,7 @@ __metadata:
     "@sentry/browser": 7.70.0
     "@sentry/react": 7.70.0
     "@sentry/types": 7.70.0
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     axios: 1.5.0
     config: "*"
     copyfiles: 2.4.1
@@ -4586,14 +4583,14 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.5.1
     "@types/jest": 29.5.5
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/react-modal": 3.16.0
     axios: 1.5.0
     copyfiles: 2.4.1
     date-fns: 2.30.0
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     formik: 2.4.5
     fp-ts: 2.16.1
     gh-pages: 6.0.0
@@ -4649,12 +4646,12 @@ __metadata:
     "@babel/preset-env": 7.22.20
     "@babel/preset-react": 7.22.15
     "@types/jest": 29.5.5
-    "@types/node": 20.6.2
+    "@types/node": 20.6.3
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     "@types/uuid": 9.0.4
     config: "workspace:*"
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     eslint-config-custom: "*"
     iso8601-duration: 2.1.1
     lodash: 4.17.21
@@ -4696,7 +4693,7 @@ __metadata:
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
     "@types/uuid": 9.0.4
-    axe-core: 4.8.1
+    axe-core: 4.8.2
     axios: 1.5.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -4709,7 +4706,7 @@ __metadata:
     cypress-axe: 1.5.0
     cypress-file-upload: 5.0.8
     date-fns: 2.30.0
-    dayjs: 1.11.9
+    dayjs: 1.11.10
     dotenv: 16.3.1
     express: 4.18.2
     formik: 2.4.5
@@ -4729,7 +4726,7 @@ __metadata:
     mustache-express: 1.3.2
     newtype-ts: 0.3.5
     openid-client: 5.5.0
-    postcss: 8.4.29
+    postcss: 8.4.30
     postcss-loader: 7.3.3
     promise: 8.3.0
     react: 18.2.0
@@ -4742,7 +4739,7 @@ __metadata:
     sass: 1.68.0
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
-    start-server-and-test: 2.0.0
+    start-server-and-test: 2.0.1
     style-loader: 3.3.3
     tailwindcss: 3.3.3
     ts-loader: 9.4.4
@@ -8496,10 +8493,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.6.2":
-  version: 20.6.2
-  resolution: "@types/node@npm:20.6.2"
-  checksum: 96fe5303872640a173f3fd43e289a451776ed5b8f0090094447c6790b43f23fb607eea8268af0829cef4d132e5afa0bfa4cd871aa7412e9042a414a698e9e971
+"@types/node@npm:20.6.3":
+  version: 20.6.3
+  resolution: "@types/node@npm:20.6.3"
+  checksum: 444a6f1f41cfa8d3e20ce0108e6e43960fb2ae0e481f233bb1c14d6252aa63a92e021de561cd317d9fdb411688f871065f40175a1f18763282dee2613a08f8a3
   languageName: node
   linkType: hard
 
@@ -8878,15 +8875,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:6.7.0"
+"@typescript-eslint/eslint-plugin@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/eslint-plugin@npm:6.7.2"
   dependencies:
     "@eslint-community/regexpp": ^4.5.1
-    "@typescript-eslint/scope-manager": 6.7.0
-    "@typescript-eslint/type-utils": 6.7.0
-    "@typescript-eslint/utils": 6.7.0
-    "@typescript-eslint/visitor-keys": 6.7.0
+    "@typescript-eslint/scope-manager": 6.7.2
+    "@typescript-eslint/type-utils": 6.7.2
+    "@typescript-eslint/utils": 6.7.2
+    "@typescript-eslint/visitor-keys": 6.7.2
     debug: ^4.3.4
     graphemer: ^1.4.0
     ignore: ^5.2.4
@@ -8899,7 +8896,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 48393749c5c1f67acf71795551c6065586198530006189c48636e32caea4d1285624c16c047164f9d29055e26c4f90fca964c5a2b5c0e9b6d9ed87acd74ca0d6
+  checksum: 4d6f612619282a20518cd6581bce16cd7c50ac4e49f5eeca2ab916a923049379aa382817568c929216381fb2c1bfbc1c4e6fde16ac8bfdd63862a9126f0ab797
   languageName: node
   linkType: hard
 
@@ -8938,21 +8935,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/parser@npm:6.7.0"
+"@typescript-eslint/parser@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/parser@npm:6.7.2"
   dependencies:
-    "@typescript-eslint/scope-manager": 6.7.0
-    "@typescript-eslint/types": 6.7.0
-    "@typescript-eslint/typescript-estree": 6.7.0
-    "@typescript-eslint/visitor-keys": 6.7.0
+    "@typescript-eslint/scope-manager": 6.7.2
+    "@typescript-eslint/types": 6.7.2
+    "@typescript-eslint/typescript-estree": 6.7.2
+    "@typescript-eslint/visitor-keys": 6.7.2
     debug: ^4.3.4
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 21d52a49abf78a3b037261c01f1f4d2d550919ddc906ebb058db3410a706457ac3a7d082716328ce98a6741d4e77c945b71ff386d9047c5a2e5beef23e14ab45
+  checksum: 9e93d3eb432ed5457a852e25a31782d07518f728966cd477620175ae64db9be04f5d8e605f3561dbfe9a365f209a83b2a3788efb9b3cf33669c8bca17f1bcf6f
   languageName: node
   linkType: hard
 
@@ -8983,13 +8980,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/scope-manager@npm:6.7.0"
+"@typescript-eslint/scope-manager@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/scope-manager@npm:6.7.2"
   dependencies:
-    "@typescript-eslint/types": 6.7.0
-    "@typescript-eslint/visitor-keys": 6.7.0
-  checksum: f6ea33c647783d53d98938bd5d3fc94c9a5ebc83bd64cf379215863921dd1c57e66c33af7948d6ac1884623e1917a3b42565e6d02e1fd7adfbce4b3424a2382e
+    "@typescript-eslint/types": 6.7.2
+    "@typescript-eslint/visitor-keys": 6.7.2
+  checksum: e35fa23ecb16252c3ad00b5f1ec05d9b8d33ee30d4c57543892f900443ed77926be9bd2836f06463c31b483f5f0f79070273bc51c4a606f55ac3cd1d9c9cd542
   languageName: node
   linkType: hard
 
@@ -9010,12 +9007,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/type-utils@npm:6.7.0"
+"@typescript-eslint/type-utils@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/type-utils@npm:6.7.2"
   dependencies:
-    "@typescript-eslint/typescript-estree": 6.7.0
-    "@typescript-eslint/utils": 6.7.0
+    "@typescript-eslint/typescript-estree": 6.7.2
+    "@typescript-eslint/utils": 6.7.2
     debug: ^4.3.4
     ts-api-utils: ^1.0.1
   peerDependencies:
@@ -9023,7 +9020,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 15ae33a6981721f83b2ac612a7597a4fcb2d9d9bfedce54707e5228bec2774fd99ba54ffce89924ae36b61488c7b6c0c2165a6d361be5cd4cefebefad8b02a01
+  checksum: 67743f8e4b77d0ab3d82907eda0411ffd221357b60ac9cbd29683d5b8c77127369ebfafcf0bfc30a1f1828927ccd5635fab5b2eaf2b2f1d12a9361549cab3e62
   languageName: node
   linkType: hard
 
@@ -9034,10 +9031,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/types@npm:6.7.0"
-  checksum: fb76031432a009813d559b1cc63091eb5434279012cdb98de62fcd556910663c6a1b506e0a77c4f86e223a5e2c00e76a2d1d2170802c75168008d19a52a51fca
+"@typescript-eslint/types@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/types@npm:6.7.2"
+  checksum: 5a7c4cd456f721649757d2edb4cae71d1405c1c2c35672031f012b27007b9d49b7118297eec746dc3351370e6aa414e5d2c493fb658c7b910154b7998c0278e1
   languageName: node
   linkType: hard
 
@@ -9059,12 +9056,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/typescript-estree@npm:6.7.0"
+"@typescript-eslint/typescript-estree@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/typescript-estree@npm:6.7.2"
   dependencies:
-    "@typescript-eslint/types": 6.7.0
-    "@typescript-eslint/visitor-keys": 6.7.0
+    "@typescript-eslint/types": 6.7.2
+    "@typescript-eslint/visitor-keys": 6.7.2
     debug: ^4.3.4
     globby: ^11.1.0
     is-glob: ^4.0.3
@@ -9073,7 +9070,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 9bd57910085f0dd97d7083e0468c34e0753d20d36d3ffaa4ba111f13cc4986743374f5aed928e645ea982cf2ed9a8141598bee41393cad0abee001f0842ad117
+  checksum: c30b9803567c37527e2806badd98f3083ae125db9a430d8a28647b153e446e6a4b830833f229cca27d5aa0ff5497c149aaa524aa3a6dbf932b557c60d0bfd4f9
   languageName: node
   linkType: hard
 
@@ -9095,20 +9092,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/utils@npm:6.7.0"
+"@typescript-eslint/utils@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/utils@npm:6.7.2"
   dependencies:
     "@eslint-community/eslint-utils": ^4.4.0
     "@types/json-schema": ^7.0.12
     "@types/semver": ^7.5.0
-    "@typescript-eslint/scope-manager": 6.7.0
-    "@typescript-eslint/types": 6.7.0
-    "@typescript-eslint/typescript-estree": 6.7.0
+    "@typescript-eslint/scope-manager": 6.7.2
+    "@typescript-eslint/types": 6.7.2
+    "@typescript-eslint/typescript-estree": 6.7.2
     semver: ^7.5.4
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
-  checksum: b2a2857ec856d1752e77c2a274a12513372311c300f9ec57ed7bf7411eb9ea34b85a8e7810a5c48fff0e3966b71d63d77e38c5c7bca1d5c004bede5638619a00
+  checksum: 97f950562dba2bda63ffe64672f643ef940123cf74007bc878afcf31c75f905c99934a3ad77da3d5a4fe7807d5d69c791b20c429712ad5a5525e331ebc313756
   languageName: node
   linkType: hard
 
@@ -9122,13 +9119,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/visitor-keys@npm:6.7.0":
-  version: 6.7.0
-  resolution: "@typescript-eslint/visitor-keys@npm:6.7.0"
+"@typescript-eslint/visitor-keys@npm:6.7.2":
+  version: 6.7.2
+  resolution: "@typescript-eslint/visitor-keys@npm:6.7.2"
   dependencies:
-    "@typescript-eslint/types": 6.7.0
+    "@typescript-eslint/types": 6.7.2
     eslint-visitor-keys: ^3.4.1
-  checksum: cd85722d26ccfa23a76e5cb5aa0229f89eb3c4f1ed87d71a0f902db15f420f3f3e94cbd16dc711039f611ac60b1e7d0fee9ee78c48c88310a5f1926a2bc8778e
+  checksum: b4915fbc0f3d44c81b92b7151830b698e8b6ed2dee8587bb65540c888c7a84300d3fd6b0c159e2131c7c6df1bebe49fb0d21c347ecdbf7f3e4aec05acebbb0bc
   languageName: node
   linkType: hard
 
@@ -10373,7 +10370,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:10.4.15, autoprefixer@npm:^10.4.13":
+"autoprefixer@npm:10.4.16":
+  version: 10.4.16
+  resolution: "autoprefixer@npm:10.4.16"
+  dependencies:
+    browserslist: ^4.21.10
+    caniuse-lite: ^1.0.30001538
+    fraction.js: ^4.3.6
+    normalize-range: ^0.1.2
+    picocolors: ^1.0.0
+    postcss-value-parser: ^4.2.0
+  peerDependencies:
+    postcss: ^8.1.0
+  bin:
+    autoprefixer: bin/autoprefixer
+  checksum: 45fad7086495048dacb14bb7b00313e70e135b5d8e8751dcc60548889400763705ab16fc2d99ea628b44c3472698fb0e39598f595ba28409c965ab159035afde
+  languageName: node
+  linkType: hard
+
+"autoprefixer@npm:^10.4.13":
   version: 10.4.15
   resolution: "autoprefixer@npm:10.4.15"
   dependencies:
@@ -10412,7 +10427,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.8.1, axe-core@npm:^4.2.0, axe-core@npm:^4.6.2":
+"axe-core@npm:4.8.2":
+  version: 4.8.2
+  resolution: "axe-core@npm:4.8.2"
+  checksum: 8c19f507dabfcb8514e4280c7fc66e85143be303ddb57ec9f119338021228dc9b80560993938003837bda415fde7c07bba3a96560008ffa5f4145a248ed8f5fe
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.2.0, axe-core@npm:^4.6.2":
   version: 4.8.1
   resolution: "axe-core@npm:4.8.1"
   checksum: 78cc7c19bd98d9fc859e9f08923d12c0023f93c9f807b2eebc2ef7b415d7c7cd0dcda914848fa5443ec4b58a9db879366186528a86e08b1c1b336ee38a029c7e
@@ -11446,6 +11468,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"caniuse-lite@npm:^1.0.30001538":
+  version: 1.0.30001538
+  resolution: "caniuse-lite@npm:1.0.30001538"
+  checksum: 94c5d55757a339c7cc175f08a024671e2b4e7c04f130b1015793303d637061347efb6ad84447c3b8137333e742d150b8ad9672716bbf2482646c2e63a56f6c55
+  languageName: node
+  linkType: hard
+
 "capture-exit@npm:^2.0.0":
   version: 2.0.0
   resolution: "capture-exit@npm:2.0.0"
@@ -12114,15 +12143,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "config@workspace:packages/config"
   dependencies:
-    "@typescript-eslint/eslint-plugin": 6.7.0
-    "@typescript-eslint/parser": 6.7.0
+    "@typescript-eslint/eslint-plugin": 6.7.2
+    "@typescript-eslint/parser": 6.7.2
+    autoprefixer: 10.4.16
     eslint: 8.49.0
     eslint-config-prettier: 9.0.0
     eslint-plugin-jsx-a11y: 6.7.1
     eslint-plugin-prettier: 5.0.0
     eslint-plugin-react: 7.33.2
-    eslint-plugin-storybook: 0.6.13
-    postcss: 8.4.29
+    eslint-plugin-storybook: 0.6.14
+    postcss: 8.4.30
   languageName: unknown
   linkType: soft
 
@@ -12999,7 +13029,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:1.11.9, dayjs@npm:^1.10.4":
+"dayjs@npm:1.11.10":
+  version: 1.11.10
+  resolution: "dayjs@npm:1.11.10"
+  checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.10.4":
   version: 1.11.9
   resolution: "dayjs@npm:1.11.9"
   checksum: a4844d83dc87f921348bb9b1b93af851c51e6f71fa259604809cfe1b49d1230e6b0212dab44d1cb01994c096ad3a77ea1cf18fa55154da6efcc9d3610526ac38
@@ -14583,9 +14620,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:0.6.13":
-  version: 0.6.13
-  resolution: "eslint-plugin-storybook@npm:0.6.13"
+"eslint-plugin-storybook@npm:0.6.14":
+  version: 0.6.14
+  resolution: "eslint-plugin-storybook@npm:0.6.14"
   dependencies:
     "@storybook/csf": ^0.0.1
     "@typescript-eslint/utils": ^5.45.0
@@ -14593,7 +14630,7 @@ __metadata:
     ts-dedent: ^2.2.0
   peerDependencies:
     eslint: ">=6"
-  checksum: 4d7bebd19bbebcdc36042e1e796dfd25fbde5f9d3a3d551a4d75fe1f41f537412f53fcf6b5e544386c5e0e2ce7af30efdabeb9169df27333e3e793a26fe2f008
+  checksum: f2ba1d77da273a3294416394573edc60d780bc1d7ac177eb921f25b32b90bb87a549698126ce572211067130b93974cc812b594d726d234c41f71f163edd56d8
   languageName: node
   linkType: hard
 
@@ -15533,12 +15570,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flat@npm:6.0.0":
-  version: 6.0.0
-  resolution: "flat@npm:6.0.0"
+"flat@npm:6.0.1":
+  version: 6.0.1
+  resolution: "flat@npm:6.0.1"
   bin:
     flat: cli.js
-  checksum: 5351e7cf20b27e4aa7943b0c1223f1d08b484a9419a7dcb4026cbbfe8cc735161f1996d20c49b35d3099549bd0e10e3edd33c33da3a52b521d039103db751ebc
+  checksum: c7a5f2e7e3ba0bec28b9c3aca27e68ff74df446df15cdb77ddef9e3d4fd0e9321ca52e49ca8b861c46157215006666b0dad25457f231083fc7bd2f7fcb67d7eb
   languageName: node
   linkType: hard
 
@@ -15790,7 +15827,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fraction.js@npm:^4.2.0":
+"fraction.js@npm:^4.2.0, fraction.js@npm:^4.3.6":
   version: 4.3.6
   resolution: "fraction.js@npm:4.3.6"
   checksum: e96ae77e64ebfd442d3a5a01a3f0637b0663fc2440bcf2841b3ad9341ba24c81fb2e3e7142e43ef7d088558c6b3f8609df135b201adc7a1c674aea6a71384162
@@ -23191,14 +23228,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.29, postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
-  version: 8.4.29
-  resolution: "postcss@npm:8.4.29"
+"postcss@npm:8.4.30, postcss@npm:^8.2.14":
+  version: 8.4.30
+  resolution: "postcss@npm:8.4.30"
   dependencies:
     nanoid: ^3.3.6
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: dd6daa25e781db9ae5b651d9b7bfde0ec6e60e86a37da69a18eb4773d5ddd51e28fc4ff054fbdc04636a31462e6bf09a1e50986f69ac52b10d46b7457cd36d12
+  checksum: 6c810c10c9bd3e03ca016e0b6b6756261e640aba1a9a7b1200b55502bc34b9165e38f590aef3493afc2f30ab55cdfcd43fd0f8408d69a77318ddbcf2a8ad164b
   languageName: node
   linkType: hard
 
@@ -23212,14 +23249,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.14":
-  version: 8.4.30
-  resolution: "postcss@npm:8.4.30"
+"postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
+  version: 8.4.29
+  resolution: "postcss@npm:8.4.29"
   dependencies:
     nanoid: ^3.3.6
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: 6c810c10c9bd3e03ca016e0b6b6756261e640aba1a9a7b1200b55502bc34b9165e38f590aef3493afc2f30ab55cdfcd43fd0f8408d69a77318ddbcf2a8ad164b
+  checksum: dd6daa25e781db9ae5b651d9b7bfde0ec6e60e86a37da69a18eb4773d5ddd51e28fc4ff054fbdc04636a31462e6bf09a1e50986f69ac52b10d46b7457cd36d12
   languageName: node
   linkType: hard
 
@@ -26042,9 +26079,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"start-server-and-test@npm:2.0.0":
-  version: 2.0.0
-  resolution: "start-server-and-test@npm:2.0.0"
+"start-server-and-test@npm:2.0.1":
+  version: 2.0.1
+  resolution: "start-server-and-test@npm:2.0.1"
   dependencies:
     arg: ^5.0.2
     bluebird: 3.7.2
@@ -26058,7 +26095,7 @@ __metadata:
     server-test: src/bin/start.js
     start-server-and-test: src/bin/start.js
     start-test: src/bin/start.js
-  checksum: 8788e59ad78275332c78325a804504ac558f06a112d47cb5bc3d012d2bda46add72c863cae2357836fe245ee4e22e2fec0b6d47dbdf5e0f0f5cfd1a57544d100
+  checksum: d423e0950815d29180177c6c53d6fddcb13b64ca69ea9735b82db264ad57229f9bc9ceb5fd5623f23331dad2d5fa5a895988e84b77e1a0e37797803bcca8f7d2
   languageName: node
   linkType: hard
 

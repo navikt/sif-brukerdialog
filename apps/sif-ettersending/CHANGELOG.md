@@ -1,5 +1,24 @@
 # @navikt/sif-ettersending
 
+## 3.22.0
+
+### Minor Changes
+
+-   55e1f323: Oppdatere tekster for valg av hva etterseldenselen gjelder ved omsorgspenger.
+-   55e1f323: Oppdatere titler på søknadsdialoger i ettersendelse + rydde i valg som bruker må gjøre når en velger å sende inn dokumentasjon for en av omsorgspenger-ytelsene.
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies [55e1f323]
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.7.0
+    -   @navikt/sif-common-amplitude@2.21.1
+    -   @navikt/sif-common-formik-ds@0.6.1
+    -   @navikt/sif-common-soknad-ds@10.7.1
+    -   @navikt/sif-common-sentry@0.22.1
+    -   @navikt/sif-common-utils@3.40.1
+
 ## 3.21.0
 
 ### Minor Changes
