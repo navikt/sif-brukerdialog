@@ -3753,7 +3753,6 @@ __metadata:
     cypress: 13.2.0
     dayjs: 1.11.10
     dotenv: 16.3.1
-    eslint: 8.49.0
     express: 4.18.2
     formik: 2.4.5
     helmet: 7.0.0
@@ -4217,7 +4216,6 @@ __metadata:
     cypress-file-upload: 5.0.8
     dayjs: 1.11.10
     dotenv: 16.3.1
-    eslint: 8.49.0
     eslint-config-prettier: 9.0.0
     eslint-plugin-jsx-a11y: 6.7.1
     eslint-plugin-prettier: 5.0.0
@@ -10306,6 +10304,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"autoprefixer@npm:10.4.16":
+  version: 10.4.16
+  resolution: "autoprefixer@npm:10.4.16"
+  dependencies:
+    browserslist: ^4.21.10
+    caniuse-lite: ^1.0.30001538
+    fraction.js: ^4.3.6
+    normalize-range: ^0.1.2
+    picocolors: ^1.0.0
+    postcss-value-parser: ^4.2.0
+  peerDependencies:
+    postcss: ^8.1.0
+  bin:
+    autoprefixer: bin/autoprefixer
+  checksum: 45fad7086495048dacb14bb7b00313e70e135b5d8e8751dcc60548889400763705ab16fc2d99ea628b44c3472698fb0e39598f595ba28409c965ab159035afde
+  languageName: node
+  linkType: hard
+
 "autoprefixer@npm:^10.4.13":
   version: 10.4.15
   resolution: "autoprefixer@npm:10.4.15"
@@ -11386,6 +11402,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"caniuse-lite@npm:^1.0.30001538":
+  version: 1.0.30001538
+  resolution: "caniuse-lite@npm:1.0.30001538"
+  checksum: 94c5d55757a339c7cc175f08a024671e2b4e7c04f130b1015793303d637061347efb6ad84447c3b8137333e742d150b8ad9672716bbf2482646c2e63a56f6c55
+  languageName: node
+  linkType: hard
+
 "capture-exit@npm:^2.0.0":
   version: 2.0.0
   resolution: "capture-exit@npm:2.0.0"
@@ -12056,6 +12079,7 @@ __metadata:
   dependencies:
     "@typescript-eslint/eslint-plugin": 6.7.2
     "@typescript-eslint/parser": 6.7.2
+    autoprefixer: 10.4.16
     eslint: 8.49.0
     eslint-config-prettier: 9.0.0
     eslint-plugin-jsx-a11y: 6.7.1
@@ -15737,7 +15761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fraction.js@npm:^4.2.0":
+"fraction.js@npm:^4.2.0, fraction.js@npm:^4.3.6":
   version: 4.3.6
   resolution: "fraction.js@npm:4.3.6"
   checksum: e96ae77e64ebfd442d3a5a01a3f0637b0663fc2440bcf2841b3ad9341ba24c81fb2e3e7142e43ef7d088558c6b3f8609df135b201adc7a1c674aea6a71384162
