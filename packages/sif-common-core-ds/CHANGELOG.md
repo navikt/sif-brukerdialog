@@ -1,5 +1,17 @@
 # @navikt/sif-common-core-ds
 
+## 9.7.0
+
+### Minor Changes
+
+-   55e1f323: Legge til Ytelser objekt som holder på navn og tittel på ytelser og søknadsdialoger
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.40.1
+
 ## 9.6.0
 
 ### Minor Changes
