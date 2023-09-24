@@ -1,18 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
+import { withStoryWrapper } from '../../storybook/decorators';
 import ProgressStepper, { ProgressStep } from './ProgressStepper';
-import StoryWrapper from '../../storybook/decorators/StoryWrapper';
 
 export default {
     title: 'Component/step-element/ProgressStepper',
     component: ProgressStepper,
-    decorators: [
-        (Story) => (
-            <StoryWrapper>
-                <Story />
-            </StoryWrapper>
-        ),
-    ],
+    decorators: [withStoryWrapper],
 } as Meta<typeof ProgressStepper>;
 
 const steps: ProgressStep[] = [

@@ -2,18 +2,13 @@ import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import DaySelector from './DaySelector';
-import StoryWrapper from '../../storybook/decorators/StoryWrapper';
+
+import { withStoryWrapper } from '../../storybook/decorators';
 
 export default {
     title: 'Component/form-element/DaySelector',
     component: DaySelector,
-    decorators: [
-        (Story) => (
-            <StoryWrapper>
-                <Story />
-            </StoryWrapper>
-        ),
-    ],
+    decorators: [withStoryWrapper],
 } as Meta<typeof DaySelector>;
 
 const Template: StoryFn<typeof DaySelector> = (args) => {
