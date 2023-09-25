@@ -14,7 +14,7 @@ interface ConfigProps {
 export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step } = props || {};
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
-        cy.intercept(`/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN`, mellomlagring || {});
+        cy.intercept(`/mellomlagring/*`, mellomlagring || {}).as('getMellomlagring');
         cy.intercept(`/ettersending/innsending`, {});
         cy.intercept('POST', '/vedlegg', {
             location: '/vedlegg',

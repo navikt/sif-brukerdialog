@@ -14,7 +14,7 @@ export type SøknadStatePersistence = {
     søknadsdata: Søknadsdata;
     søknadRoute?: SøknadRoutes;
     søknadHashString: string;
-    harUkjentArbeidsforhold: boolean;
+    harArbeidsgivereIkkeISak: boolean;
     valgteEndringer: ValgteEndringer;
     søknadSteps: StepId[];
     metadata: {
@@ -49,7 +49,7 @@ const persistedSøknadRouteIsAvailable = (søknadState: SøknadStatePersistence)
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo,
-    k9saker: K9Sak[]
+    k9saker: K9Sak[],
 ): boolean => {
     return (
         søknadState.versjon === APP_VERSJON &&
@@ -67,8 +67,8 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: (
-        { søknadsdata, søknadRoute, barnAktørId, valgteEndringer, harUkjentArbeidsforhold, søknadSteps },
-        søker
+        { søknadsdata, søknadRoute, barnAktørId, valgteEndringer, harArbeidsgivereIkkeISak, søknadSteps },
+        søker,
     ) => {
         return persistSetup.update({
             versjon: APP_VERSJON,
@@ -77,7 +77,7 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             søknadsdata,
             søknadRoute,
             valgteEndringer,
-            harUkjentArbeidsforhold,
+            harArbeidsgivereIkkeISak,
             søknadSteps,
             metadata: {
                 updatedTimestamp: new Date().toISOString(),

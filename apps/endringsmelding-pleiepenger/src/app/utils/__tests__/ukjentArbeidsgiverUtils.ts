@@ -14,7 +14,7 @@ describe('ukjentArbeidsforholdUtils', () => {
             const perioder = getSøknadsperioderForUkjentArbeidsforhold(
                 søknadsperioder,
                 ISODateToDate(fomIsoDate),
-                ISODateToDate(tomIsoDate)
+                ISODateToDate(tomIsoDate),
             );
             expect(perioder.length).toBe(2);
             expect(dateToISODate(perioder[0].from)).toEqual(fomIsoDate);
@@ -27,7 +27,7 @@ describe('ukjentArbeidsforholdUtils', () => {
             const perioder = getSøknadsperioderForUkjentArbeidsforhold(
                 søknadsperioder,
                 ISODateToDate(fomIsoDate),
-                undefined
+                undefined,
             );
             expect(perioder.length).toBe(2);
             expect(dateToISODate(perioder[0].from)).toEqual(fomIsoDate);
@@ -40,7 +40,7 @@ describe('ukjentArbeidsforholdUtils', () => {
             const perioder = getSøknadsperioderForUkjentArbeidsforhold(
                 søknadsperioder,
                 undefined,
-                ISODateToDate(tomIsoDate)
+                ISODateToDate(tomIsoDate),
             );
             expect(perioder.length).toBe(1);
             expect(dateToISODate(perioder[0].from)).toEqual('2020-01-01');

@@ -7,7 +7,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
@@ -72,9 +72,7 @@ const OppsummeringStep = () => {
     const harGyldigArbeidstid = oppsummeringStepUtils.erArbeidstidEndringerGyldig(arbeidstid);
     const lovbestemtFerieErEndret = oppsummeringStepUtils.harEndringerILovbestemtFerieApiData(lovbestemtFerie);
 
-    const harIngenEndringer =
-        (valgteEndringer.arbeidstid && arbeidstidErEndret === false) ||
-        (valgteEndringer.lovbestemtFerie && lovbestemtFerieErEndret === false);
+    const harIngenEndringer = arbeidstidErEndret === false && lovbestemtFerieErEndret === false;
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -87,12 +85,12 @@ const OppsummeringStep = () => {
                 </Ingress>
             </SifGuidePanel>
 
-            {sak.harUkjentArbeidsforhold && ukjenteArbeidsforhold && (
+            {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                 <Block margin="xxl">
                     <SummarySection header="Nytt arbeidsforhold">
-                        {sak.ukjenteArbeidsgivere.map((arbeidsgiver) => {
+                        {sak.arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                             const arbeidsforhold = ukjenteArbeidsforhold.find(
-                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer
+                                (a) => a.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
                             );
 
                             if (!arbeidsforhold) {
@@ -124,7 +122,7 @@ const OppsummeringStep = () => {
                                                 <div data-testid={getTestKey('timerPerUke')}>
                                                     <DurationText
                                                         duration={ISODurationToDuration(
-                                                            arbeidsforhold.normalarbeidstid.timerPerUke
+                                                            arbeidsforhold.normalarbeidstid.timerPerUke,
                                                         )}
                                                     />
                                                 </div>
@@ -145,7 +143,7 @@ const OppsummeringStep = () => {
                             <>
                                 <ArbeidstidOppsummering
                                     arbeidstid={arbeidstid}
-                                    arbeidsgivere={[...arbeidsgivere, ...sak.ukjenteArbeidsgivere]}
+                                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
                                 />
                                 {!harGyldigArbeidstid && (
                                     <Block margin="none" padBottom="l">

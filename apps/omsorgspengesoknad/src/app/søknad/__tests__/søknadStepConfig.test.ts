@@ -32,6 +32,7 @@ describe('søknadStepConfig', () =>
             const omBarnet: OmBarnetSøknadsdata = {
                 type: 'annetBarn',
                 barnetsFødselsnummer: '123',
+                barnetsFødselsdato: '05.02.2020',
                 barnetsNavn: 'A',
                 søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.ADOPTIVFORELDER,
                 søknadenGjelderEtAnnetBarn: true,
@@ -48,14 +49,14 @@ describe('søknadStepConfig', () =>
                         ...omBarnet,
                         sammeAdresse: true,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER,
-                    })
+                    }),
                 ).toBeFalsy();
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
                         sammeAdresse: false,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER,
-                    })
+                    }),
                 ).toBeFalsy();
             });
             it('inkluderer IKKE delt bosted når bruker bor på samme andresse', () => {
@@ -67,19 +68,19 @@ describe('søknadStepConfig', () =>
                     includeDeltBostedStep({
                         ...omBarnet,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.ADOPTIVFORELDER,
-                    })
+                    }),
                 ).toBeFalsy();
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FAR,
-                    })
+                    }),
                 ).toBeFalsy();
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
                         søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.MOR,
-                    })
+                    }),
                 ).toBeFalsy();
             });
         });

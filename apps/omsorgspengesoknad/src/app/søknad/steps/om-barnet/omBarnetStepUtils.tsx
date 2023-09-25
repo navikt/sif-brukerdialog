@@ -8,10 +8,11 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/lib/utils/yesOrNoUtils';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import dayjs from 'dayjs';
 
 export const getOmBarnetStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: OmBarnetFormValues
+    formValues?: OmBarnetFormValues,
 ): OmBarnetFormValues => {
     if (formValues) {
         return formValues;
@@ -22,6 +23,7 @@ export const getOmBarnetStepInitialValues = (
         søknadenGjelderEtAnnetBarn: undefined,
         barnetsFødselsnummer: '',
         barnetsNavn: '',
+        barnetsFødselsdato: '',
         søkersRelasjonTilBarnet: undefined,
         sammeAdresse: YesOrNo.UNANSWERED,
         kroniskEllerFunksjonshemming: YesOrNo.UNANSWERED,
@@ -47,6 +49,7 @@ export const getOmBarnetStepInitialValues = (
                     søknadenGjelderEtAnnetBarn: true,
                     barnetsFødselsnummer: omBarnet.barnetsFødselsnummer,
                     barnetsNavn: omBarnet.barnetsNavn,
+                    barnetsFødselsdato: omBarnet.barnetsFødselsdato,
                     søkersRelasjonTilBarnet: omBarnet.søkersRelasjonTilBarnet,
                     sammeAdresse,
                     kroniskEllerFunksjonshemming,
@@ -58,7 +61,7 @@ export const getOmBarnetStepInitialValues = (
 
 export const getOmBarnetSøknadsdataFromFormValues = (
     values: OmBarnetFormValues,
-    { registrerteBarn = [] }: Partial<SøknadContextState>
+    { registrerteBarn = [] }: Partial<SøknadContextState>,
 ): OmBarnetSøknadsdata | undefined => {
     const sammeAdresse = values.sammeAdresse === YesOrNo.YES;
     const kroniskEllerFunksjonshemming = values.kroniskEllerFunksjonshemming === YesOrNo.YES;
@@ -71,6 +74,7 @@ export const getOmBarnetSøknadsdataFromFormValues = (
             type: 'annetBarn',
             søknadenGjelderEtAnnetBarn: true,
             barnetsFødselsnummer: values.barnetsFødselsnummer,
+            barnetsFødselsdato: values.barnetsFødselsdato,
             barnetsNavn: values.barnetsNavn,
             søkersRelasjonTilBarnet: values.søkersRelasjonTilBarnet,
             sammeAdresse,
@@ -112,4 +116,23 @@ export const mapBarnTilRadioProps = (barn: RegistrertBarn, disabled?: boolean): 
         ),
         disabled,
     };
+};
+
+export const isBarnOver18år = (fødselsdato: Date | string): boolean => {
+    const dato18år = dayjs(fødselsdato).add(18, 'year');
+
+    // Siden det kan gis ekstra dager opp til 3 måneder tilbake i tid fra søknadsdato brukes det 1. april året etter det kalenderåret barnet fylte 18 år som frist.
+    const frist = dato18år.add(1, 'year').set('month', 3).set('date', 1);
+
+    return dayjs().isSame(frist) || dayjs().isAfter(frist);
+};
+
+export const getMinDatoForBarnetsFødselsdato = (): Date => {
+    // April 1 dette år
+    const today = dayjs();
+    const frist = dayjs(today).set('month', 3).set('date', 1);
+
+    return today.isBefore(frist)
+        ? today.subtract(19, 'year').startOf('year').toDate()
+        : today.subtract(18, 'year').startOf('year').toDate();
 };

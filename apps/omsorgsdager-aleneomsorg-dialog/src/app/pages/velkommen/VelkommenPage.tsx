@@ -7,8 +7,8 @@ import VelkommenGuide from './VelkommenGuide';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { SøknadRoutes } from '../../types/SøknadRoutes';
-import { SKJEMANAVN } from '../../App';
 import SamtykkeForm from '@navikt/sif-common-soknad-ds/lib/modules/samtykke-form/SamtykkeForm';
+import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 
 const VelkommenPage = () => {
     const intl = useIntl();
@@ -22,7 +22,7 @@ const VelkommenPage = () => {
     const { logSoknadStartet } = useAmplitudeInstance();
 
     const startSøknad = async () => {
-        await logSoknadStartet(SKJEMANAVN);
+        await logSoknadStartet(OmsorgsdagerAleneomsorgApp.navn);
         dispatch(actionsCreator.startSøknad());
         dispatch(actionsCreator.setSøknadRoute(SøknadRoutes.OM_OMSORGEN_FOR_BARN));
     };

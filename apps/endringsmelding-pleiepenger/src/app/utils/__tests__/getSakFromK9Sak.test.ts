@@ -302,24 +302,24 @@ describe('getSakFromK9Sak', () => {
                 expect(
                     erArbeidsgiverInnenforSøknadsperioder(
                         { ansattFom: ISODateToDate('2020-02-03') } as Arbeidsgiver,
-                        søknadsperioder
-                    )
+                        søknadsperioder,
+                    ),
                 ).toBeTruthy();
             });
             it('returnerer true når ansattFom er i en søknadsperiode', () => {
                 expect(
                     erArbeidsgiverInnenforSøknadsperioder(
                         { ansattFom: ISODateToDate('2020-03-02') } as Arbeidsgiver,
-                        søknadsperioder
-                    )
+                        søknadsperioder,
+                    ),
                 ).toBeTruthy();
             });
             it('returnerer false når ansattFom er etter søknadsperiode', () => {
                 expect(
                     erArbeidsgiverInnenforSøknadsperioder(
                         { ansattFom: ISODateToDate('2020-05-02') } as Arbeidsgiver,
-                        søknadsperioder
-                    )
+                        søknadsperioder,
+                    ),
                 ).toBeFalsy();
             });
         });
@@ -331,8 +331,8 @@ describe('getSakFromK9Sak', () => {
                             ansattFom: ISODateToDate('2019-01-01'),
                             ansattTom: ISODateToDate('2023-01-01'),
                         } as Arbeidsgiver,
-                        søknadsperioder
-                    )
+                        søknadsperioder,
+                    ),
                 ).toBeTruthy();
             });
             describe('returnerer true når ansattTom er i mellom søknadsperioder', () => {
@@ -342,8 +342,8 @@ describe('getSakFromK9Sak', () => {
                             ansattFom: ISODateToDate('2019-01-01'),
                             ansattTom: ISODateToDate('2020-03-01'),
                         } as Arbeidsgiver,
-                        søknadsperioder
-                    )
+                        søknadsperioder,
+                    ),
                 ).toBeTruthy();
             });
             describe('returnerer false når ansattTom er før søknadsperioder', () => {
@@ -353,8 +353,8 @@ describe('getSakFromK9Sak', () => {
                             ansattFom: ISODateToDate('2019-01-01'),
                             ansattTom: ISODateToDate('2019-12-31'),
                         } as Arbeidsgiver,
-                        søknadsperioder
-                    )
+                        søknadsperioder,
+                    ),
                 ).toBeFalsy();
             });
             describe('returnerer false når ansattFom og ansattTom er mellom to søknadsperioder', () => {
@@ -364,8 +364,8 @@ describe('getSakFromK9Sak', () => {
                             ansattFom: ISODateToDate('2020-03-01'),
                             ansattTom: ISODateToDate('2020-03-02'),
                         } as Arbeidsgiver,
-                        søknadsperioder
-                    )
+                        søknadsperioder,
+                    ),
                 ).toBeFalsy();
             });
         });

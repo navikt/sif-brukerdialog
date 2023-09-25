@@ -27,6 +27,7 @@ export enum OmBarnetFormFields {
     søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
     barnetsNavn = 'barnetsNavn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
+    barnetsFødselsdato = 'barnetsFødselsdato',
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
     sammeAdresse = 'sammeAdresse',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
@@ -37,6 +38,7 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
     [OmBarnetFormFields.barnetsNavn]: string;
     [OmBarnetFormFields.barnetsFødselsnummer]: string;
+    [OmBarnetFormFields.barnetsFødselsdato]: string;
     [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
     [OmBarnetFormFields.sammeAdresse]?: YesOrNo;
     [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
@@ -75,7 +77,7 @@ const OmBarnetStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const harIkkeBarn = registrerteBarn.length === 0;
@@ -123,7 +125,7 @@ const OmBarnetStep = () => {
                                                 name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
                                                 legend={intlHelper(
                                                     intl,
-                                                    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende'
+                                                    'steg.omBarnet.spm.kroniskEllerFunksjonshemmende',
                                                 )}
                                                 data-testid="kroniskEllerFunksjonshemming"
                                                 validate={getYesOrNoValidator()}

@@ -14,7 +14,7 @@ describe('søknadsdata', () => {
                             endringer: {},
                         },
                     },
-                })
+                }),
             ).toBeFalsy();
         });
         it('returnerer true dersom arbeidstid har aktiviteter og endringer har elementer', () => {
@@ -27,7 +27,7 @@ describe('søknadsdata', () => {
                             },
                         },
                     },
-                })
+                }),
             ).toBeTruthy();
         });
     });

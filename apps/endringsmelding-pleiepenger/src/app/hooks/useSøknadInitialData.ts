@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import { DateRange } from '@navikt/sif-common-utils';
 import {
@@ -46,12 +46,13 @@ const prepInitialData = (
     loadedData: {
         søker: Søker;
         k9saker: K9Sak[];
+        antallSakerFørEndringsperiode: number;
         arbeidsgivere: Arbeidsgiver[];
         lagretSøknadState?: SøknadStatePersistence;
     },
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): SøknadInitialData => {
-    const { arbeidsgivere, lagretSøknadState, k9saker, søker } = loadedData;
+    const { arbeidsgivere, lagretSøknadState, k9saker, søker, antallSakerFørEndringsperiode } = loadedData;
 
     const persistedSak = lagretSøknadState
         ? k9saker.find((k9sak) => k9sak.barn.aktørId === lagretSøknadState.barnAktørId)
@@ -67,8 +68,8 @@ const prepInitialData = (
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
                     JSON.stringify(
-                        getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode)
-                    )
+                        getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode),
+                    ),
                 );
             }
             return sak;
@@ -94,6 +95,7 @@ const prepInitialData = (
                   },
         søknadsdata: {} as any,
         søknadSteps: [],
+        antallSakerFørEndringsperiode,
         inputPreferanser: {
             timerEllerProsent: TimerEllerProsent.PROSENT,
         },

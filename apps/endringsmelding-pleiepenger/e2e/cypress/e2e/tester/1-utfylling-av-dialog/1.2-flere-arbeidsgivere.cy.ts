@@ -10,7 +10,7 @@ describe('Endre arbeidstid for flere arbeidsgivere', () => {
         mellomlagring: {},
     });
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
         cy.visit(cyHelpers.startUrl);
     });

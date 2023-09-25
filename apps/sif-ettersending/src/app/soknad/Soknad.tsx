@@ -3,17 +3,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import LoadWrapper from '@navikt/sif-common-core-ds/lib/components/load-wrapper/LoadWrapper';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/lib/utils/apiUtils';
 import { v4 as uuid } from 'uuid';
 import { sendSoknad } from '../api/sendSoknad';
 import { getRouteConfig } from '../config/routeConfig';
-import { ApplicationType } from '../types/ApplicationType';
 import { Person } from '../types/Person';
-import { getSkjemanavn } from '../types/skjemanavn';
 import { SoknadApiData } from '../types/SoknadApiData';
 import { initialSoknadFormData, SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
+import { Søknadstype } from '../types/Søknadstype';
 import {
     navigateTo,
     navigateToErrorPage,
@@ -28,27 +27,48 @@ import SoknadFormComponents from './SoknadFormComponents';
 import SoknadRouter from './SoknadRouter';
 import { getFirstStep, getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './soknadTempStorage';
+import { YtelseKey } from '@navikt/sif-common-core-ds/lib/types/Ytelser';
 
 interface Props {
     søker: Person;
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
     soknadTempStorage?: SoknadTempStorageData;
     route?: string;
 }
 
-const isOnWelcomingPage = (path: string, søknadstype: ApplicationType) => {
+const isOnWelcomingPage = (path: string, søknadstype: Søknadstype) => {
     const config = getRouteConfig(søknadstype);
     return path === config.WELCOMING_PAGE_ROUTE || path === config.APPLICATION_ROUTE_PREFIX;
+};
+
+const getInitialYtelse = (søknadstype: Søknadstype): YtelseKey | undefined => {
+    switch (søknadstype) {
+        case Søknadstype.pleiepengerSyktBarn:
+            return YtelseKey.pleiepengerSyktBarn;
+        case Søknadstype.pleiepengerLivetsSluttfase:
+            return YtelseKey.pleiepengerLivetsSlutt;
+        case Søknadstype.omsorgspenger:
+            return undefined;
+        case Søknadstype.ekstraomsorgsdager:
+            return YtelseKey.omsorgsdagerKroniskSyk;
+        case Søknadstype.regnetsomalene:
+            return YtelseKey.omsorgsdagerAnnenForelderIkkeTilsyn;
+        case Søknadstype.utbetaling:
+            return YtelseKey.omsorgspengerutbetalingSNFri;
+        case Søknadstype.utbetalingarbeidstaker:
+            return YtelseKey.omsorgspengerutbetalingArbeidstaker;
+    }
 };
 
 const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTempStorage: tempStorage }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [initializing, setInitializing] = useState(true);
-    const [initialFormData, setInitialFormData] = useState<Partial<SoknadFormData>>({ ...initialSoknadFormData });
+    const [initialFormData, setInitialFormData] = useState<Partial<SoknadFormData>>({
+        ...initialSoknadFormData,
+    });
     const [sendSoknadStatus, setSendSoknadStatus] = useState<SendSoknadStatus>(initialSendSoknadState);
     const [soknadId, setSoknadId] = useState<string | undefined>();
-    const skjemanavn = getSkjemanavn(søknadstype);
     const { logSoknadSent, logSoknadStartet, logSoknadFailed, logHendelse, logUserLoggedOut, logInfo } =
         useAmplitudeInstance();
 
@@ -72,7 +92,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
 
     const resetSoknad = async (checkIfRedirectToFrontpage = true): Promise<void> => {
         await soknadTempStorage.purge(søknadstype);
-        setInitialFormData({ ...initialSoknadFormData });
+        setInitialFormData({ ...initialSoknadFormData, ytelse: getInitialYtelse(søknadstype) });
         setSoknadId(undefined);
         if (checkIfRedirectToFrontpage) {
             if (isOnWelcomingPage(location.pathname, søknadstype) === false) {
@@ -106,7 +126,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
             await resetSoknad(false);
             setSoknadId(uuid());
             await soknadTempStorage.create(søknadstype);
-            await logSoknadStartet(skjemanavn);
+            await logSoknadStartet(søknadstype);
             const firstStepID = getFirstStep(søknadstype);
             const route = getApplicationPageRoute(søknadstype, firstStepID);
             navigate(route);
@@ -139,10 +159,9 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
         try {
             await sendSoknad(apiValues);
             await soknadTempStorage.purge(søknadstype);
-            await logSoknadSent(skjemanavn);
+            await logSoknadSent(søknadstype);
             await logInfo({ 'Antall vedlegg sendt': apiValues.vedlegg.length });
             setSendSoknadStatus({ failures: 0, status: success(apiValues) });
-            // setSoknadSent(true);
             setTimeout(() => {
                 navigateToKvitteringPage(søknadstype, navigate);
             });
@@ -151,7 +170,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                 logUserLoggedOut('Logget ut ved innsending');
                 navigateToLoginPage(søknadstype);
             } else {
-                await logSoknadFailed(skjemanavn);
+                await logSoknadFailed(søknadstype);
                 if (sendSoknadStatus.failures >= 2) {
                     navigateToErrorPage(søknadstype, navigate);
                 } else {
@@ -200,7 +219,7 @@ const Soknad: React.FunctionComponent<Props> = ({ søker, søknadstype, soknadTe
                                             {
                                                 søker,
                                             },
-                                            søknadstype
+                                            søknadstype,
                                         );
                                     } catch (error) {
                                         if (isUserLoggedOut(error)) {

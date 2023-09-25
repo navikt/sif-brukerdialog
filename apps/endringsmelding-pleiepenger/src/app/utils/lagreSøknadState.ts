@@ -8,7 +8,7 @@ export const lagreSøknadState = (state: SøknadContextState) => {
             barnAktørId: sak.barn.aktørId,
             søknadsdata,
             versjon,
-            harUkjentArbeidsforhold: state.sak.harUkjentArbeidsforhold,
+            harArbeidsgivereIkkeISak: state.sak.harArbeidsgivereIkkeISak,
             søknadRoute,
             valgteEndringer: valgtEndring,
             søknadSteps,
@@ -16,6 +16,6 @@ export const lagreSøknadState = (state: SøknadContextState) => {
                 updatedTimestamp: new Date().toISOString(),
             },
         },
-        søker
+        søker,
     );
 };

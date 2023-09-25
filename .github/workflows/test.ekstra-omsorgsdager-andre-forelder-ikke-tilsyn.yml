@@ -2,6 +2,8 @@ name: test.ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
 
 on:
     push:
+        branches-ignore:
+            - 'main'
         paths:
             - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**/*'
             - 'nais-config/**/*'
@@ -23,7 +25,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: 'yarn'
 
             - name: Install dependencies (yarn)
@@ -41,11 +43,11 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: 'yarn'
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v6.4.0
+              uses: cypress-io/github-action@v6.5.0
               env:
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn

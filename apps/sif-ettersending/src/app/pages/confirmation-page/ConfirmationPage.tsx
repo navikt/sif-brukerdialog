@@ -1,21 +1,22 @@
 import { BodyLong, Heading, Ingress, Link } from '@navikt/ds-react';
+import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import CheckmarkIcon from '@navikt/sif-common-core-ds/lib/atoms/checkmark-icon/CheckmarkIcon';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
+import { YtelseKey } from '@navikt/sif-common-core-ds/lib/types/Ytelser';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import getLenker from '../../lenker';
-import { ApplicationType } from '../../types/ApplicationType';
+import { Søknadstype } from '../../types/Søknadstype';
 import './confirmationPage.css';
-import { useEffect } from 'react';
 
 interface Props {
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
     onUnmount?: () => void;
 }
-ApplicationType;
+YtelseKey;
 
 const bem = bemUtils('confirmationPage');
 
@@ -47,7 +48,7 @@ const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
             </div>
             <BodyLong as="div">
                 <Block margin="xl">
-                    {søknadstype === ApplicationType.pleiepengerBarn && (
+                    {søknadstype === Søknadstype.pleiepengerSyktBarn && (
                         <ul className="checklist">
                             <li>
                                 <FormattedMessage id="page.confirmation.check.1.pp" />{' '}
@@ -58,7 +59,7 @@ const ConfirmationPage = ({ søknadstype, onUnmount }: Props) => {
                             </li>
                         </ul>
                     )}
-                    {søknadstype !== ApplicationType.pleiepengerBarn && (
+                    {søknadstype !== Søknadstype.pleiepengerSyktBarn && (
                         <>
                             <Block padBottom="m">
                                 <Ingress>

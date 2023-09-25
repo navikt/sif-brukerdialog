@@ -5,7 +5,7 @@ import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ArbeidsaktivitetType, ArbeiderIPeriodenSvar, ArbeidstidEndringMap, SøknadContextState } from '@types';
-import { getArbeidsaktiviteterForUkjenteArbeidsgivere } from '@utils';
+import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@utils';
 import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { StepId } from '../../config/StepId';
@@ -63,14 +63,14 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const onArbeidstidAktivitetChange = (
         arbeidsaktivitetKey: string,
         arbeidstidEndringMap: ArbeidstidEndringMap,
         values: Partial<ArbeidstidFormValues>,
-        setValues: (values: ArbeidstidFormValues) => void
+        setValues: (values: ArbeidstidFormValues) => void,
     ) => {
         const currentAktivitetValues = (values.arbeidsaktivitet || {})[arbeidsaktivitetKey];
         const newValues: ArbeidstidFormValues = {
@@ -99,11 +99,11 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
             renderForm={({ setValues, values, validateForm }) => {
                 const aktiviteterValuesMap = values.arbeidsaktivitet || {};
                 const arbeidsaktiviteter = [
-                    ...getArbeidsaktiviteterForUkjenteArbeidsgivere(
+                    ...getArbeidsaktiviteterForUkjenteArbeidsforhold(
                         sak.søknadsperioder,
-                        sak.ukjenteArbeidsgivere,
+                        sak.arbeidsgivereIkkeISak,
                         aktiviteterValuesMap,
-                        søknadsdata.ukjentArbeidsforhold
+                        søknadsdata.ukjentArbeidsforhold,
                     ),
                     ...getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter),
                 ];
@@ -127,7 +127,7 @@ const ArbeidstidForm: React.FunctionComponent<Props> = ({ goBack }) => {
                                                 arbeidsaktivitet.key,
                                                 arbeidstidEndringer,
                                                 values,
-                                                setValues
+                                                setValues,
                                             );
                                             setTimeout(() => {
                                                 validateForm();

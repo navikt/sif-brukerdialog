@@ -1,5 +1,28 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.3.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies [55e1f323]
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.7.0
+    -   @navikt/sif-common-amplitude@2.21.1
+    -   @navikt/sif-common-formik-ds@0.6.1
+    -   @navikt/sif-common-soknad-ds@10.7.1
+    -   @navikt/sif-common-forms-ds@8.8.1
+    -   @navikt/sif-common-sentry@0.22.1
+    -   @navikt/sif-common-utils@3.40.1
+
+## 1.3.1
+
+### Patch Changes
+
+-   5f655843: Ersatte ordet funksjonshemming med funksjonshemning
+-   Updated dependencies [ad5092d1]
+    -   @navikt/sif-common-soknad-ds@10.5.0
+
 ## 1.3.0
 
 ### Minor Changes

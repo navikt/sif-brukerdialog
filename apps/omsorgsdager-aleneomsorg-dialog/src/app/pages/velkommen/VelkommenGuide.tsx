@@ -1,7 +1,8 @@
+import { GuidePanel, Heading, Ingress, Link } from '@navikt/ds-react';
 import React from 'react';
-import { GuidePanel, Heading, Ingress } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 
 interface Props {
     navn: string;
@@ -21,28 +22,29 @@ const VelkommenGuide: React.FunctionComponent<Props> = ({ navn }) => (
             <FormattedMessage id="page.velkommen.guide.tekst.1" />
         </p>
         <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.2" />
+            <FormattedMessage id="page.velkommen.guide.tekst.2" />{' '}
+            <Link href={getEnvironmentVariable('OMS_IKKE_TILSYN_URL')} inlineText={true}>
+                <FormattedMessage id="page.velkommen.guide.tekst.2.lenketekst" />
+            </Link>
+            .
         </p>
         <p>
             <FormattedMessage id="page.velkommen.guide.tekst.3" />
         </p>
         <p>
-            <FormattedMessage id="page.velkommen.guide.tekst.4" />
-        </p>
-        <p>
             <strong>
-                <FormattedMessage id="page.velkommen.guide.tekst.5" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4" />
             </strong>
         </p>
         <InfoList>
             <li>
-                <FormattedMessage id="page.velkommen.guide.tekst.5.1" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4.1" />
             </li>
             <li>
-                <FormattedMessage id="page.velkommen.guide.tekst.5.2" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4.2" />
             </li>
             <li>
-                <FormattedMessage id="page.velkommen.guide.tekst.5.3" />
+                <FormattedMessage id="page.velkommen.guide.tekst.4.3" />
             </li>
         </InfoList>
     </GuidePanel>
