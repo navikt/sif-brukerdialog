@@ -3,7 +3,6 @@ import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/Dat
 import React from 'react';
 import { useFormikContext } from 'formik';
 import { TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
-import { InputDateStringToISODateString } from '../formik-datepicker/dateFormatUtils';
 import { ISOStringToDate } from '../formik-datepicker/datepickerUtils';
 import FormikDatepicker, { DatePickerBaseProps, DatepickerLimitations } from '../formik-datepicker/FormikDatepicker';
 import FormikInputGroup from '../formik-input-group/FormikInputGroup';
@@ -42,8 +41,8 @@ function FormikDateRangePicker<FieldName, ErrorType>({
 }: FormikDateRangePickerProps<FieldName, ErrorType>) {
     const { values } = useFormikContext<any>();
 
-    const fromDate = ISOStringToDate(InputDateStringToISODateString(values[fromInputProps.name]));
-    const toDate = ISOStringToDate(InputDateStringToISODateString(values[toInputProps.name]));
+    const fromDate = ISOStringToDate(values[fromInputProps.name]);
+    const toDate = ISOStringToDate(values[toInputProps.name]);
 
     const { fromDateLimitations, toDateLimitations } = getDateRangePickerLimitations({
         fromDate,

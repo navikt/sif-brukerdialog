@@ -86,19 +86,15 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                 cancelButtonLabel={intlText('omsorgstilbudPeriodeForm.cancelButtonLabel')}>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
-                                        <FormComponents.DateIntervalPicker
+                                        <FormComponents.DateRangePicker
                                             legend={intlText('omsorgstilbudPeriodeForm.periode.legend')}
-                                            fromDatepickerProps={{
+                                            disableWeekends={true}
+                                            minDate={periode.from}
+                                            maxDate={periode.to}
+                                            fromInputProps={{
                                                 label: intlText('omsorgstilbudPeriodeForm.fraOgMed.label'),
                                                 name: FormFields.fom,
-                                                disableWeekend: true,
-                                                fullscreenOverlay: true,
-                                                fullScreenOnMobile: true,
-                                                dayPickerProps: {
-                                                    defaultMonth: periode.from,
-                                                },
-                                                minDate: periode.from,
-                                                maxDate: to || periode.to,
+                                                defaultMonth: periode.from,
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: true,
@@ -108,17 +104,10 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                                     max: to || periode.to,
                                                 }).validateFromDate,
                                             }}
-                                            toDatepickerProps={{
+                                            toInputProps={{
                                                 label: intlText('omsorgstilbudPeriodeForm.tilOgMed.label'),
                                                 name: FormFields.tom,
-                                                disableWeekend: true,
-                                                fullScreenOnMobile: true,
-                                                fullscreenOverlay: true,
-                                                minDate: from || periode.from,
-                                                maxDate: periode.to,
-                                                dayPickerProps: {
-                                                    defaultMonth: from || periode.from,
-                                                },
+                                                defaultMonth: from || periode.from,
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: true,

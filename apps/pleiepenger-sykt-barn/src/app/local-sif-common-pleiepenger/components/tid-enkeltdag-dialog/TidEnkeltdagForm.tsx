@@ -270,12 +270,8 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                             max: periode.to,
                                                                             required: true,
                                                                         })}
-                                                                        disableWeekend={true}
-                                                                        fullScreenOnMobile={true}
-                                                                        fullscreenOverlay={true}
-                                                                        dayPickerProps={{
-                                                                            defaultMonth: dato,
-                                                                        }}
+                                                                        disableWeekends={true}
+                                                                        defaultMonth={dato}
                                                                         name={FormFields.stopDato}
                                                                     />
                                                                 </FormBlock>
