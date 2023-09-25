@@ -34,7 +34,7 @@ export const getUtbetalingsdatoerFraFravær = (perioder: FraværPeriode[], dager
 
 export const getFraværFraStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: FraværFraFormValues
+    formValues?: FraværFraFormValues,
 ): FraværFraFormValues => {
     if (formValues) {
         return formValues;
@@ -57,7 +57,7 @@ export const getFraværFraStepInitialValues = (
 };
 
 export const getFraværFraSøknadsdataFromFormValues = (
-    values: FraværFraFormValues
+    values: FraværFraFormValues,
 ): FraværFraSøknadsdata | undefined => {
     const { aktivitetFravær } = values;
 

@@ -1,4 +1,3 @@
-import { ISODateString } from '@navikt/ds-datepicker/lib/types';
 import { Locale } from '@navikt/sif-common-core-ds/lib/types/Locale';
 import { OpptjeningAktivitet } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland';
 import { UtenlandskNæringstype } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring';
@@ -9,6 +8,7 @@ import { ArbeidsgiverAnsattApiData } from './ArbeidsgiverAnsattApiData';
 import { FrilansApiData } from './FrilansApiData';
 import { SelvstendigApiData } from './SelvstendigApiData';
 import { StønadGodtgjørelseApiData } from './StønadGodtgjørelseApiData';
+import { ISODateString } from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/dateFormatUtils';
 
 export * from './ArbeidIPeriodeApiData';
 export * from './ArbeidsgiverAnsattApiData';

@@ -3381,13 +3381,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^3.4.2":
-  version: 3.4.2
-  resolution: "@navikt/aksel-icons@npm:3.4.2"
-  checksum: d58da59cb6b31bfe54a1f83c17481c2d629ef62f11956ec9adc6615c2a5f1cf2efe0370ff2b8de70a5c9492e5bdb23594b89a38d269f090a512b7a1abe9b2960
-  languageName: node
-  linkType: hard
-
 "@navikt/aksel-icons@npm:^5.5.0":
   version: 5.5.0
   resolution: "@navikt/aksel-icons@npm:5.5.0"
@@ -3418,38 +3411,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/ds-css@npm:3":
-  version: 3.4.2
-  resolution: "@navikt/ds-css@npm:3.4.2"
-  checksum: a47614b4085c66eeecd43b73cb20aaae2f8800677aa34818f2c928a7ba7137d2ab49266cc8d59fdf29ce4e7703f473b214604caa2c5e3668d638a6c862265f39
-  languageName: node
-  linkType: hard
-
 "@navikt/ds-css@npm:5.5.0":
   version: 5.5.0
   resolution: "@navikt/ds-css@npm:5.5.0"
   checksum: 3b460c3e3fff9359a53b4bf2fc4fa462d1e636e08bd079709264684618004fbdac1fdb2f7c43f91dfbeb0a83d2ae0f9abcea26cb7fac56f1fb865b21243ab733
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-datepicker@npm:4.2.0":
-  version: 4.2.0
-  resolution: "@navikt/ds-datepicker@npm:4.2.0"
-  dependencies:
-    "@navikt/ds-css": 3
-    "@navikt/ds-react": 3
-    focus-trap-react: 10.1.1
-    prop-types: 15.8.1
-  peerDependencies:
-    "@navikt/ds-css": ">=2"
-    "@navikt/ds-react": ">=2"
-    classnames: 2.3.x
-    date-fns: 2.x
-    dayjs: 1.x
-    react: 18.x
-    react-day-picker: 8.x
-    uuid: 9
-  checksum: 95b0870c8bb420cf925f1ade31217ffa6ec86446c62ce4f968e5b26bbf303942014464bbdefc9c65999e8010d0c4a2977cfe5b25d79bf008a0a8d3d315eaed8f
   languageName: node
   linkType: hard
 
@@ -3463,28 +3428,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 3b5f917c65ea4ca6296075dcc5b91e4c2ebdd8146731fc58ab6ea2d7fcad7f6dfa8b63d550717c862a0dc889c6dc1a7dd04bf8ac84b6b88c6d75b94d4127f199
-  languageName: node
-  linkType: hard
-
-"@navikt/ds-react@npm:3":
-  version: 3.4.2
-  resolution: "@navikt/ds-react@npm:3.4.2"
-  dependencies:
-    "@floating-ui/react": 0.24.1
-    "@navikt/aksel-icons": ^3.4.2
-    "@radix-ui/react-tabs": 1.0.0
-    "@radix-ui/react-toggle-group": 1.0.0
-    clsx: ^1.2.1
-    date-fns: 2.29.3
-    react-day-picker: 8.3.4
-    react-modal: 3.15.1
-  peerDependencies:
-    "@types/react": ^17.0.30 || ^18.0.0
-    react: ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: fdb1504a5b493be29a554cb118bad3aa037446505b83a96b8ab016d2dfe6c34ed5a3526d370da25dd8f393dc35818ae004913bfc70259c3a03be313713330c73
   languageName: node
   linkType: hard
 
@@ -3982,7 +3925,6 @@ __metadata:
     "@formatjs/intl-pluralrules": 5.2.6
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": 5.5.0
-    "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.5.0
     "@navikt/fnrvalidator": 1.3.0
@@ -4152,7 +4094,6 @@ __metadata:
     "@formatjs/intl-pluralrules": 5.2.6
     "@navikt/appstatus-react-ds": "workspace:*"
     "@navikt/ds-css": 5.5.0
-    "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.5.0
     "@navikt/ds-tailwind": 5.5.0
@@ -4217,7 +4158,6 @@ __metadata:
     "@babel/preset-typescript": 7.23.0
     "@formatjs/intl-pluralrules": 5.2.6
     "@navikt/ds-css": 5.5.0
-    "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.5.0
     "@navikt/fnrvalidator": 1.3.0
@@ -4261,7 +4201,6 @@ __metadata:
     webpack: 5.88.2
   peerDependencies:
     "@navikt/ds-css": 5
-    "@navikt/ds-datepicker": ">=4.1.7"
     "@navikt/ds-react": 5
     formik: 2.x
     react-intl: 6.x
@@ -4465,7 +4404,6 @@ __metadata:
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.6
     "@navikt/ds-css": 5.5.0
-    "@navikt/ds-datepicker": 4.2.0
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.5.0
     "@navikt/ds-tailwind": 5.5.0
@@ -15308,20 +15246,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"focus-trap-react@npm:10.1.1":
-  version: 10.1.1
-  resolution: "focus-trap-react@npm:10.1.1"
-  dependencies:
-    focus-trap: ^7.4.0
-    tabbable: ^6.1.1
-  peerDependencies:
-    prop-types: ^15.8.1
-    react: ">=16.3.0"
-    react-dom: ">=16.3.0"
-  checksum: 66bf8d9efa0efda77b7dc2591736fa38e2892151362db7543ea81e70187b8d2e25f471a31175eb0596a862ec8c6391c943bc5fbf69cfaaeb61c0ef2aa3e4750c
-  languageName: node
-  linkType: hard
-
 "focus-trap-react@npm:^8.6.0":
   version: 8.11.3
   resolution: "focus-trap-react@npm:8.11.3"
@@ -15341,15 +15265,6 @@ __metadata:
   dependencies:
     tabbable: ^5.3.3
   checksum: 0b4cebcc11010bd9397731092bd59a981e838c710c6497374ba70571875a14ab27c0db7d60f36005ec01bdabc3b9cfeda11d30ddf5b8874596dcc95e18913b3b
-  languageName: node
-  linkType: hard
-
-"focus-trap@npm:^7.4.0":
-  version: 7.5.2
-  resolution: "focus-trap@npm:7.5.2"
-  dependencies:
-    tabbable: ^6.2.0
-  checksum: 1eee29d18c152ef08849a5cfd6d462a6741ec15f08938a9d87336d47807f07dbfff2e6405b16b5ce96745eb86b60f3dcdd87b63f0ad240e47252254d2c248d40
   languageName: node
   linkType: hard
 
@@ -23733,21 +23648,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-modal@npm:3.15.1":
-  version: 3.15.1
-  resolution: "react-modal@npm:3.15.1"
-  dependencies:
-    exenv: ^1.2.0
-    prop-types: ^15.7.2
-    react-lifecycles-compat: ^3.0.0
-    warning: ^4.0.3
-  peerDependencies:
-    react: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18
-    react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18
-  checksum: ee99ca312c35bcec9ef0868babf970ce03c52801731e29be336bb6bdc867a1ecf00a73e1fb5bc3b1b1ef66ceb0c9b4a0199fadb85b1b9829f731409951b018f0
-  languageName: node
-  linkType: hard
-
 "react-modal@npm:3.16.1":
   version: 3.16.1
   resolution: "react-modal@npm:3.16.1"
@@ -26410,7 +26310,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tabbable@npm:^6.0.1, tabbable@npm:^6.1.1, tabbable@npm:^6.2.0":
+"tabbable@npm:^6.0.1":
   version: 6.2.0
   resolution: "tabbable@npm:6.2.0"
   checksum: f8440277d223949272c74bb627a3371be21735ca9ad34c2570f7e1752bd646ccfc23a9d8b1ee65d6561243f4134f5fbbf1ad6b39ac3c4b586554accaff4a1300
