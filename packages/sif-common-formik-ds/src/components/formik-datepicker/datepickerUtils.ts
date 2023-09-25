@@ -37,22 +37,6 @@ export const getDisabledDates = (limitations: DatepickerLimitations): Matcher[] 
     ];
 };
 
-// const parseDateLimitations = ({
-//     fromDate,
-//     toDate,
-//     disabledDateRanges = [],
-//     disableWeekend,
-//     disabledDaysOfWeek,
-// }: DatepickerLimitations): DatepickerLimitations => {
-//     return {
-//         fromDate,
-//         toDate,
-//         disableWeekend,
-//         disabledDateRanges,
-//         disabledDaysOfWeek: disabledDaysOfWeek ? { dayOfWeek: disabledDaysOfWeek } : undefined,
-//     };
-// };
-
 const getDateStringFromValue = (value?: Date | string): string | undefined => {
     let date;
     if (value && typeof value === 'string') {
