@@ -25,11 +25,11 @@ export const fyllUtArbeidssituasjonMottarStønadGodtgjørelseIkkeIHelePerioden =
         selectRadioNo('stønadGodtgjørelse.mottarStønadGodtgjørelseIHelePerioden');
 
         selectRadioYes('stønadGodtgjørelse.starterUndeveis');
-        const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
+        const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('DD.MM.YYYY');
         getInputByName('stønadGodtgjørelse.startdato').click().type(startdato).blur();
 
         selectRadioYes('stønadGodtgjørelse.slutterUnderveis');
-        const sluttdato = getSøknadsdato().startOf('week').add(1, 'week').format('YYYY-MM-DD');
+        const sluttdato = getSøknadsdato().startOf('week').add(1, 'week').format('DD.MM.YYYY');
         getInputByName('stønadGodtgjørelse.sluttdato').click().type(sluttdato).blur();
     });
 };
