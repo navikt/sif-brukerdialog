@@ -20,12 +20,12 @@ import {
 
 const fileName = 'navlogopng.png';
 
-const fraDato = dayjs().startOf('isoWeek').subtract(3, 'weeks').format('YYYY-MM-DD');
-const tilDato = dayjs().startOf('isoWeek').format('YYYY-MM-DD');
-const datoDelvisFravær = dayjs().startOf('isoWeek').subtract(4, 'weeks').format('YYYY-MM-DD');
-const fomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(2, 'day').format('YYYY-MM-DD');
-const tomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('YYYY-MM-DD');
-const frilansStartDato = dayjs().startOf('isoWeek').subtract(10, 'weeks').format('YYYY-MM-DD');
+const fraDato = dayjs().startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');
+const tilDato = dayjs().startOf('isoWeek').format('DD.MM.YYYY');
+const datoDelvisFravær = dayjs().startOf('isoWeek').subtract(4, 'weeks').format('DD.MM.YYYY');
+const fomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(2, 'day').format('DD.MM.YYYY');
+const tomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('DD.MM.YYYY');
+const frilansStartDato = dayjs().startOf('isoWeek').subtract(10, 'weeks').format('DD.MM.YYYY');
 
 const virksomhet = {
     næringstype: 'JORDBRUK_SKOGBRUK',
