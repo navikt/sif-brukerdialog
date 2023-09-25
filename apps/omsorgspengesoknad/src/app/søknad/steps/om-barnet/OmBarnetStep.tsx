@@ -27,6 +27,7 @@ export enum OmBarnetFormFields {
     søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
     barnetsNavn = 'barnetsNavn',
     barnetsFødselsnummer = 'barnetsFødselsnummer',
+    barnetsFødselsdato = 'barnetsFødselsdato',
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
     sammeAdresse = 'sammeAdresse',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
@@ -37,6 +38,7 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.søknadenGjelderEtAnnetBarn]?: boolean;
     [OmBarnetFormFields.barnetsNavn]: string;
     [OmBarnetFormFields.barnetsFødselsnummer]: string;
+    [OmBarnetFormFields.barnetsFødselsdato]: string;
     [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
     [OmBarnetFormFields.sammeAdresse]?: YesOrNo;
     [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;

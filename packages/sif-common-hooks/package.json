@@ -1,0 +1,23 @@
+{
+    "name": "@navikt/sif-common-hooks",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "react": "18.2.0",
+        "typescript": "latest"
+    },
+    "devDependencies": {
+        "copyfiles": "2.4.1",
+        "npm-run-all": "4.1.5",
+        "react-scripts": "5.0.1"
+    },
+    "scripts": {
+        "build": "npm-run-all build-package",
+        "build-package": "npm-run-all compile-lib-script copy-files",
+        "compile-lib-script": "tsc -p tsconfig.json",
+        "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib"
+    }
+}

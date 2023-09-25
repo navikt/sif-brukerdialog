@@ -6,6 +6,7 @@ export const appMessages = {
         'fødselsnummer.disallowedFødselsnummer': 'Du kan ikke bruke dette fødselsnummeret',
         'fødselsnummer.disallowedFødselsnummerCustom': 'Du kan ikke bruke dette fødselsnummeret {info}',
         'søskennavn.mangler': 'Ett av søskenene til {navn} mangler navn',
+        'confirmation.notChecked': 'Du må bekrefte',
     },
     nn: {},
 };

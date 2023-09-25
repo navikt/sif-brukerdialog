@@ -1,12 +1,16 @@
 name: test.omsorgspengerutbetaling-soknad
+
 on:
     push:
+        branches-ignore:
+            - 'main'
         paths:
             - 'apps/omsorgspengerutbetaling-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/app.omsorgspengerutbetaling-soknad.yml
             - .github/workflows/test.omsorgspengerutbetaling-soknad.yml
+    workflow_call:
 
 env:
     APP_NAME: 'omsorgspengerutbetaling-soknad'
@@ -21,7 +25,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: 'yarn'
 
             - name: Install dependencies (yarn)
@@ -39,7 +43,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: 'yarn'
 
             - name: Build and start e2e server

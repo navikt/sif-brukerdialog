@@ -11,6 +11,7 @@ export enum GlobalSoknadApplicationRoutes {
 
 interface Props {
     contentRoutes: React.ReactNode[];
+    onReset?: () => void;
     errorContentRenderer?: () => JSX.Element;
     unavailableContentRenderer?: () => JSX.Element;
     unknownRouteContentRenderer?: () => JSX.Element;
@@ -18,6 +19,7 @@ interface Props {
 
 const SoknadApplicationCommonRoutes = ({
     contentRoutes,
+    onReset,
     errorContentRenderer,
     unavailableContentRenderer,
     unknownRouteContentRenderer,
@@ -56,7 +58,7 @@ const SoknadApplicationCommonRoutes = ({
                         contentRenderer={
                             unknownRouteContentRenderer
                                 ? unknownRouteContentRenderer
-                                : () => <SoknadErrorMessages.UnknownRoute />
+                                : () => <SoknadErrorMessages.UnknownRoute onReset={onReset} />
                         }
                     />
                 }

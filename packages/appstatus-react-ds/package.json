@@ -1,50 +1,31 @@
 {
     "author": "navikt",
     "description": "Sanity utils for sykdom i familien",
-    "homepage": "https://navikt.github.io/appstatus-react-ds",
     "license": "MIT",
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.13.0",
-    "bugs": {
-        "url": "https://github.com/navikt/appstatus-react-ds/issues"
-    },
+    "version": "2.14.1",
+    "private": true,
     "dependencies": {
+        "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "3.0.7",
-        "@sanity/client": "6.4.9"
+        "@sanity/client": "6.4.12"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.4.0",
-        "@navikt/ds-react": "5.4.0",
-        "@types/node": "20.6.0",
+        "@navikt/ds-css": "5.5.0",
+        "@navikt/ds-react": "5.5.0",
+        "@types/node": "20.6.5",
         "@types/react": "18.2.21",
         "@types/react-dom": "18.2.7",
-        "config": "*",
+        "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.4.29",
+        "postcss": "8.4.30",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.1",
-        "sass": "1.66.1"
-    },
-    "directories": {
-        "lib": "lib"
-    },
-    "files": [
-        "package.json",
-        "/lib"
-    ],
-    "peerDependencies": {
-        "@navikt/ds-css": "5",
-        "@navikt/ds-react": "5",
-        "sass": "1.x",
-        "sass-loader": "13.x"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/navikt/appstatus-react-ds.git"
+        "sass": "1.68.0"
     },
     "scripts": {
         "build": "npm-run-all build-package",

@@ -1,6 +1,6 @@
-import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { DateRange, dateToISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 import { K9Sak } from '@types';
-import { getSamletDateRangeForK9Saker } from '../k9SakUtils';
+import { getSamletDateRangeForK9Saker, isK9SakErInnenforGyldigEndringsperiode } from '../k9SakUtils';
 
 describe('getDateRangeForSaker', () => {
     it('returnerer riktig når det er én sak', () => {
@@ -49,5 +49,32 @@ describe('getDateRangeForSaker', () => {
             expect(dateToISODate(range.from)).toEqual('2021-01-01');
             expect(dateToISODate(range.to)).toEqual('2021-01-03');
         }
+    });
+});
+describe('k9SakErInnenforGyldigEndringsperiode', () => {
+    const endringsperiode: DateRange = ISODateRangeToDateRange('2021-06-15/2021-12-01');
+    it('returnerer true når sak slutter innenfor endringsperiode', () => {
+        const sak: K9Sak = {
+            ytelse: {
+                søknadsperioder: [
+                    { from: ISODateToDate('2021-01-01'), to: ISODateToDate('2021-01-02') },
+                    { from: ISODateToDate('2021-05-03'), to: ISODateToDate('2021-07-04') },
+                ],
+            },
+        } as any;
+        const result = isK9SakErInnenforGyldigEndringsperiode(sak, endringsperiode);
+        expect(result).toBeTruthy();
+    });
+    it('returnerer false når sak slutter før endringsperiode', () => {
+        const sak: K9Sak = {
+            ytelse: {
+                søknadsperioder: [
+                    { from: ISODateToDate('2021-01-01'), to: ISODateToDate('2021-01-02') },
+                    { from: ISODateToDate('2021-01-03'), to: ISODateToDate('2021-01-04') },
+                ],
+            },
+        } as any;
+        const result = isK9SakErInnenforGyldigEndringsperiode(sak, endringsperiode);
+        expect(result).toBeFalsy();
     });
 });

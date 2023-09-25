@@ -1,5 +1,31 @@
 # @navikt/sif-common-forms-ds
 
+## 8.8.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 8.8.0
+
+### Patch Changes
+
+-   Updated dependencies [61eee34c]
+    -   @navikt/sif-common-core-ds@9.6.0
+
+## 8.7.0
+
+### Minor Changes
+
+-   96810cd6: Pakkeoppdateringer
+-   96810cd6: Oppdatere virksomhetform til å være i sync med det som har vært i sif-common-forms. Spesifikt endre til objekt og ikke array av objekter for næringsvirksomhet
+
+### Patch Changes
+
+-   Updated dependencies [96810cd6]
+-   Updated dependencies [96810cd6]
+    -   @navikt/sif-common-core-ds@9.5.0
+
 ## 8.6.0
 
 ### Minor Changes

@@ -23,6 +23,8 @@ export interface SøknadContextState {
     valgteEndringer: ValgteEndringer;
     søknadSteps: StepId[];
     inputPreferanser: SøknadContextInputPreferanse;
+    /** Antall saker hvor siste søknadsperiode slutter før gyldig endringsperiode */
+    antallSakerFørEndringsperiode: number;
 }
 
 export interface SøknadContextInputPreferanse {

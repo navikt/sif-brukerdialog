@@ -1,5 +1,34 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.7.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 10.7.0
+
+### Patch Changes
+
+-   Updated dependencies [61eee34c]
+    -   @navikt/sif-common-formik-ds@0.6.0
+
+## 10.6.0
+
+### Minor Changes
+
+-   96810cd6: Pakkeoppdateringer
+
+### Patch Changes
+
+-   96810cd6: Justere layout
+-   Updated dependencies [96810cd6]
+-   Updated dependencies [96810cd6]
+    -   @navikt/sif-common-formik-ds@0.5.0
+    -   @navikt/appstatus-react-ds@2.14.0
+    -   @navikt/sif-common-sentry@0.22.0
+    -   @navikt/sif-common-utils@3.40.0
+
 ## 10.5.0
 
 ### Minor Changes

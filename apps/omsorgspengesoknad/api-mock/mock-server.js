@@ -13,7 +13,7 @@ server.use(
         contentSecurityPolicy: false,
         crossOriginEmbedderPolicy: false,
         crossOriginResourcePolicy: false,
-    })
+    }),
 );
 
 server.use((req, res, next) => {

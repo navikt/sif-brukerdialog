@@ -1,5 +1,25 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 0.6.0
+
+### Minor Changes
+
+-   61eee34c: Bytte til å bruke react-dropzone komponet for filopplasting. Enkel porting av eksisterende komponent til ny.
+
+## 0.5.0
+
+### Minor Changes
+
+-   96810cd6: Fjerne checked prop fra checkbox i checkboxgroup
+    Legge til showSubmitButton prop i TypedFormikForm
+-   96810cd6: Pakkeoppdateringer
+
 ## 0.4.0
 
 ### Minor Changes

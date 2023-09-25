@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
@@ -28,7 +28,7 @@ const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConf
 const getStepSøknadsdataFromStepFormValues = (
     step: StepId,
     stepFormValues: StepFormValues,
-    state: SøknadContextState
+    state: SøknadContextState,
 ) => {
     const formValues = stepFormValues[step];
     if (!formValues) {
@@ -56,7 +56,7 @@ export const isStepFormValuesAndStepSøknadsdataValid = (
     step: StepId,
     stepFormValues: StepFormValues,
     søknadsdata: Søknadsdata,
-    state: SøknadContextState
+    state: SøknadContextState,
 ): boolean => {
     if (stepFormValues[step]) {
         const stepSøknadsdata = søknadsdata[step];

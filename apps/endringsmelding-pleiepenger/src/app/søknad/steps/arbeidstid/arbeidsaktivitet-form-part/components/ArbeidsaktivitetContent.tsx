@@ -111,33 +111,47 @@ const ArbeidsaktivitetContent: React.FunctionComponent<Props> = ({
             )}
             {(erNyArbeidsgiver === false || arbeiderIPerioden === ArbeiderIPeriodenSvar.redusert) && (
                 <Block margin={erNyArbeidsgiver ? 'xl' : 'none'}>
-                    <Heading level="3" size="small" spacing={true}>
-                        {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Uker med pleiepenger'}
-                    </Heading>
-                    <ArbeidsaktivitetUtenforPeriodeInfo
-                        arbeidsaktivitet={arbeidsaktivitet}
-                        tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
-                    />
-                    <FormikInputGroup
-                        legend={arbeidsaktivitet.navn}
-                        hideLegend={true}
-                        errorPropagation={false}
-                        name={`arbeidsgiver_${arbeidsaktivitet.key}`}
-                        validate={getUkjentArbeidsaktivitetArbeidstidValidator(
-                            arbeidsaktivitet,
-                            endringer,
-                            arbeiderIPerioden,
-                        )}>
-                        {perioder.length === 1 ? (
-                            renderArbeidstidUker(perioder[0])
-                        ) : (
-                            <DateRangeAccordion
-                                dateRanges={perioder}
-                                renderContent={(periode) => renderArbeidstidUker(periode)}
-                                renderHeader={(periode) => renderAccordionHeader(periode)}
+                    {perioder.length > 0 ? (
+                        <>
+                            <Heading level="3" size="small" spacing={true}>
+                                {perioder.length > 1 ? 'Dine perioder med pleiepenger' : 'Uker med pleiepenger'}
+                            </Heading>
+                            <ArbeidsaktivitetUtenforPeriodeInfo
+                                arbeidsaktivitet={arbeidsaktivitet}
+                                tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
                             />
-                        )}
-                    </FormikInputGroup>
+                            <FormikInputGroup
+                                legend={arbeidsaktivitet.navn}
+                                hideLegend={true}
+                                errorPropagation={false}
+                                name={`arbeidsgiver_${arbeidsaktivitet.key}`}
+                                validate={getUkjentArbeidsaktivitetArbeidstidValidator(
+                                    arbeidsaktivitet,
+                                    endringer,
+                                    arbeiderIPerioden,
+                                )}>
+                                {perioder.length === 1 ? (
+                                    renderArbeidstidUker(perioder[0])
+                                ) : (
+                                    <DateRangeAccordion
+                                        dateRanges={perioder}
+                                        renderContent={(periode) => renderArbeidstidUker(periode)}
+                                        renderHeader={(periode) => renderAccordionHeader(periode)}
+                                    />
+                                )}
+                            </FormikInputGroup>
+                        </>
+                    ) : (
+                        <>
+                            <Heading level="3" size="small" spacing={true}>
+                                Ingen perioder tilgjengelig for endring
+                            </Heading>
+                            <ArbeidsaktivitetUtenforPeriodeInfo
+                                arbeidsaktivitet={arbeidsaktivitet}
+                                tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                            />
+                        </>
+                    )}
                 </Block>
             )}
 

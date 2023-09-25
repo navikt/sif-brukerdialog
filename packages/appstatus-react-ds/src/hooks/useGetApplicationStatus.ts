@@ -3,7 +3,7 @@ import { ApplicationStatus, SanityConfig, SanityError, Status } from '../types';
 import { SanityStatusMessage } from '../types/sanityObjects';
 import { getMessage, sanityConfigIsValid } from '../utils';
 import { getAppSanityClient } from '../utils/sanityClient';
-import { usePrevious } from './usePrevious';
+import { usePrevious } from '@navikt/sif-common-hooks';
 
 const getApplicationDocumentStatusQuery = (key: string, team?: string): string => {
     const teamQuery = team ? `team->.key == "${team}"` : '';
@@ -63,7 +63,7 @@ function useGetApplicationStatus(applicationKey: string, sanityConfig: SanityCon
         setIsLoading(true);
         try {
             const result: ApplicationSanityQueryResult[] = await getAppSanityClient(config).fetch(
-                getApplicationDocumentStatusQuery(key)
+                getApplicationDocumentStatusQuery(key),
             );
             if (result.length === 1) {
                 const appResult = result[0];

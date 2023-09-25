@@ -12,7 +12,6 @@
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/ettersending/api",
         "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending/api",
         "INNSYN_PP": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn/dine-pleiepenger",
-        "LIVETS_SLUTTFASE": "on",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ettersending",
         "MIN_SIDE_URL": "https://www.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",

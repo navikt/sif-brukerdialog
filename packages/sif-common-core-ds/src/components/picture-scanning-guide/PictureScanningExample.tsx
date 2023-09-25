@@ -11,10 +11,10 @@ interface Props {
 
 const PictureScanningExample = ({ image, status, statusText, description }: Props) => (
     <BodyLong as="div">
-        <div className="pl-4 mb-3">{image}</div>
-        <Heading size="xsmall" level="4" spacing={true} className="flex">
+        <div>{image}</div>
+        <Heading size="xsmall" level="4" spacing={true} style={{ display: 'flex', gap: '.25rem' }}>
             <StatusIkon status={status} />
-            <span className="pl-2">{statusText}</span>
+            <span>{statusText}</span>
         </Heading>
         <p>{description}</p>
     </BodyLong>

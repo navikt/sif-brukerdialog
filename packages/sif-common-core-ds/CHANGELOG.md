@@ -1,5 +1,43 @@
 # @navikt/sif-common-core-ds
 
+## 9.7.0
+
+### Minor Changes
+
+-   55e1f323: Legge til Ytelser objekt som holder på navn og tittel på ytelser og søknadsdialoger
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.40.1
+
+## 9.6.0
+
+### Minor Changes
+
+-   61eee34c: Bytte til å bruke react-dropzone komponet for filopplasting. Enkel porting av eksisterende komponent til ny.
+
+### Patch Changes
+
+-   Updated dependencies [61eee34c]
+    -   @navikt/sif-common-formik-ds@0.6.0
+
+## 9.5.0
+
+### Minor Changes
+
+-   96810cd6: Pakkeoppdateringer
+
+### Patch Changes
+
+-   96810cd6: Oppdatere layout
+-   Updated dependencies [96810cd6]
+-   Updated dependencies [96810cd6]
+    -   @navikt/sif-common-formik-ds@0.5.0
+    -   @navikt/appstatus-react-ds@2.14.0
+    -   @navikt/sif-common-utils@3.40.0
+
 ## 9.4.0
 
 ### Minor Changes

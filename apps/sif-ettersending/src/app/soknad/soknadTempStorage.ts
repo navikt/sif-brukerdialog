@@ -1,16 +1,16 @@
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/lib/utils/persistence/persistence';
+import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
+import { axiosJsonConfig } from '../api/api';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 import { Person } from '../types/Person';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
-import { axiosJsonConfig } from '../api/api';
-import { ApplicationType } from '../types/ApplicationType';
+import { Søknadstype } from '../types/Søknadstype';
 import { StepID } from './soknadStepsConfig';
-import { jsonSort } from '@navikt/sif-common-utils';
 
-export const STORAGE_VERSION = '2.0';
+export const STORAGE_VERSION = '2.1';
 
 interface UserHashInfo {
     søker: Person;
@@ -27,25 +27,25 @@ interface SoknadTemporaryStorage
         formData: Partial<SoknadFormData>,
         lastStepID: StepID,
         søkerInfo: UserHashInfo,
-        søknadstype: ApplicationType,
+        søknadstype: Søknadstype,
     ) => Promise<AxiosResponse>;
-    create: (søknadstype: ApplicationType) => Promise<AxiosResponse>;
-    purge: (søknadstype: ApplicationType) => Promise<AxiosResponse>;
-    rehydrate: (søknadstype: ApplicationType) => Promise<AxiosResponse>;
+    create: (søknadstype: Søknadstype) => Promise<AxiosResponse>;
+    purge: (søknadstype: Søknadstype) => Promise<AxiosResponse>;
+    rehydrate: (søknadstype: Søknadstype) => Promise<AxiosResponse>;
 }
 
-const getMellomlagringApiEndpoint = (søknadstype: ApplicationType) => {
+const getMellomlagringApiEndpoint = (søknadstype: Søknadstype) => {
     switch (søknadstype) {
-        case ApplicationType.pleiepengerBarn:
+        case Søknadstype.pleiepengerSyktBarn:
             return ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_SYKT_BARN;
-        case ApplicationType.pleiepengerLivetsSluttfase:
+        case Søknadstype.pleiepengerLivetsSluttfase:
             return ApiEndpoint.MELLOMLAGRING_PLEIEPENGER_LIVETS_SLUTTFASE;
         default:
             return ApiEndpoint.MELLOMLAGRING_OMP;
     }
 };
 
-const persistSetup = (søknadstype: ApplicationType) =>
+const persistSetup = (søknadstype: Søknadstype) =>
     persistence<SoknadTempStorageData>({
         url: getMellomlagringApiEndpoint(søknadstype),
         requestConfig: { ...axiosJsonConfig },
@@ -74,7 +74,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
         formData: SoknadFormData,
         lastStepID: StepID,
         userHashInfo: UserHashInfo,
-        søknadstype: ApplicationType,
+        søknadstype: Søknadstype,
     ) => {
         return persistSetup(søknadstype).update({
             formData,
@@ -86,9 +86,9 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
             },
         });
     },
-    create: (søknadstype: ApplicationType) => persistSetup(søknadstype).create(),
-    purge: (søknadstype: ApplicationType) => persistSetup(søknadstype).purge(),
-    rehydrate: (søknadstype: ApplicationType) => persistSetup(søknadstype).rehydrate(),
+    create: (søknadstype: Søknadstype) => persistSetup(søknadstype).create(),
+    purge: (søknadstype: Søknadstype) => persistSetup(søknadstype).purge(),
+    rehydrate: (søknadstype: Søknadstype) => persistSetup(søknadstype).rehydrate(),
 };
 
 export default SøknadTempStorage;

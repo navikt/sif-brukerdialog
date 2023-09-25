@@ -2,8 +2,8 @@ import { ErrorSummary } from '@navikt/ds-react';
 import { useEffect, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
-import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
@@ -40,7 +40,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const OppsummeringStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata, søker, registrerteBarn },
+        state: { søknadsdata, søker },
     } = useSøknadContext();
 
     const stepId = StepId.OPPSUMMERING;
@@ -116,7 +116,7 @@ const OppsummeringStep = () => {
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
-                                <OmBarnetOppsummering apiData={apiData} registrerteBarn={registrerteBarn} />
+                                <OmBarnetOppsummering apiData={apiData} />
                                 <VedleggOppsummering
                                     apiData={apiData}
                                     legeerklæringSøknadsdata={søknadsdata.legeerklaering}
