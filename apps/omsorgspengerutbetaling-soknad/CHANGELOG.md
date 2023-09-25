@@ -1,5 +1,20 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.4.0
+
+### Minor Changes
+
+-   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+
+### Patch Changes
+
+-   Updated dependencies [fd07933f]
+-   Updated dependencies [e2967240]
+    -   @navikt/sif-common-formik-ds@1.0.0
+    -   @navikt/sif-common-forms-ds@8.9.0
+    -   @navikt/sif-common-core-ds@9.8.0
+    -   @navikt/sif-common-soknad-ds@10.7.1
+
 ## 1.3.2
 
 ### Patch Changes

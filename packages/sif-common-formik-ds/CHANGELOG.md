@@ -1,5 +1,15 @@
 # @navikt/sif-common-formik-ds
 
+## 1.0.0
+
+### Major Changes
+
+-   e2967240: Erstatte ds-datepicker med DatePicker fra Aksel. Medfører endringer i props som kan sendes til FormikDatePicker of FormikDateRangePicker
+
+### Minor Changes
+
+-   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+
 ## 0.6.1
 
 ### Patch Changes

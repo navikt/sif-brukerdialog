@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.9.0
+
+### Minor Changes
+
+-   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+
 ## 8.8.1
 
 ### Patch Changes
