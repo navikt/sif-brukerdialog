@@ -20,12 +20,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: 'yarn'
 
             - name: Install dependencies (yarn)
@@ -38,23 +38,22 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: 'yarn'
 
             - name: Build and start e2e server
-              uses: cypress-io/github-action@v5.8.3
+              uses: cypress-io/github-action@v6.5.0
               env:
                   API_URL_INNSYN: http://localhost:8099
                   API_URL: http://localhost:8099
                   DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger
                   MSW: off
-                  APP_VERSION: dev
                   FRONTEND_API_PATH: http://localhost:8099/
                   FRONTEND_VEDLEGG_URL: http://localhost:8099/api
                   FRONTEND_INNSYN_API_PATH: http://localhost:8099/api

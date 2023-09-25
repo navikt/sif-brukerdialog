@@ -22,7 +22,7 @@ export const flereSakerMock = [
                     '2022-12-05/2022-12-19',
                     '2023-01-17/2023-01-19',
                     '2023-01-24/2023-01-25',
-                    '2023-01-27/2023-02-15',
+                    '2023-01-27/2023-06-15',
                 ],
                 endringsperiode: [],
                 trekkKravPerioder: [],
@@ -218,7 +218,7 @@ export const flereSakerMock = [
             ytelse: {
                 type: 'PLEIEPENGER_SYKT_BARN',
                 barn: { norskIdentitetsnummer: '00000000000', fødselsdato: null },
-                søknadsperiode: ['2022-08-01/2022-10-30', '2022-12-01/2022-12-28', '2023-01-04/2023-01-22'],
+                søknadsperiode: ['2022-08-01/2022-10-30', '2022-12-01/2022-12-28', '2023-01-04/2023-06-22'],
                 endringsperiode: [],
                 trekkKravPerioder: [],
                 opptjeningAktivitet: {},

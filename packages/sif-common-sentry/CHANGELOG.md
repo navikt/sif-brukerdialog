@@ -1,5 +1,23 @@
 # @navikt/sif-common-sentry
 
+## 0.22.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 0.22.0
+
+### Minor Changes
+
+-   96810cd6: Pakkeoppdateringer
+
+## 0.21.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
 ## 0.20.0
 
 ### Minor Changes

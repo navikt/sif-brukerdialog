@@ -23,16 +23,18 @@ jobs:
     deploy-to-prod:
         name: Deploy ${{ inputs.app-name }} to prod
         runs-on: ubuntu-latest
+        permissions:
+            packages: write
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 2
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
               with:
-                  node-version: 16
+                  node-version: 18
                   cache: 'yarn'
 
             - name: Install dependencies (yarn)

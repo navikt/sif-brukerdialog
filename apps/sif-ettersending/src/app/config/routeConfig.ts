@@ -1,5 +1,5 @@
-import { ApplicationType } from '../types/ApplicationType';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { Søknadstype } from '../types/Søknadstype';
 
 interface RouteConfig {
     UTILGJENGELIG_ROUTE: string;
@@ -14,9 +14,9 @@ export const APPLICATION_SENDT_PAGE = 'dokumenter-sendt';
 export const ERROR_PAGE = 'feil';
 export const WELCOME_PAGE = 'velkommen';
 
-export const getApplicationRoute = (søknadstype: ApplicationType) => `/${søknadstype}/melding`;
+export const getApplicationRoute = (søknadstype: Søknadstype) => `/${søknadstype}/melding`;
 
-export const getRouteConfig = (søknadstype: ApplicationType): RouteConfig => {
+export const getRouteConfig = (søknadstype: Søknadstype): RouteConfig => {
     const APPLICATION_ROUTE_PREFIX = getApplicationRoute(søknadstype);
     return {
         UTILGJENGELIG_ROUTE: '/utilgjengelig',

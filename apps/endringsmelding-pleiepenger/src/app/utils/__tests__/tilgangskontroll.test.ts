@@ -1,5 +1,5 @@
 import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
-import { Arbeidsgiver, IngenTilgangÅrsak, K9Sak, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
+import { Arbeidsgiver, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@types';
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 
 const arbeidsgiver1: Arbeidsgiver = { key: 'a_1', organisasjonsnummer: '1' } as Arbeidsgiver;
@@ -28,53 +28,12 @@ describe('tilgangskontroll', () => {
     const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-01/2023-03-01');
 
     it('stopper ved ingen sak', () => {
-        const result = tilgangskontroll([], [], tillattEndringsperiode);
+        const result = tilgangskontroll([], tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
     });
     it('stopper hvis bruker har flere enn én sak', () => {
-        const result = tilgangskontroll([true, false] as any, [], tillattEndringsperiode);
+        const result = tilgangskontroll([true, false] as any, tillattEndringsperiode);
         expect(result.kanBrukeSøknad).toBeFalsy();
-    });
-    // it('stopper hvis bruker har arbeidsgiver som ikke er i sak', () => {
-    //     const sak: K9Sak = {
-    //         ytelse: {
-    //             arbeidstid: {
-    //                 arbeidstakerList: [
-    //                     {
-    //                         organisasjonsnummer: '2',
-    //                     },
-    //                 ],
-    //             },
-    //             søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2023-10-01')],
-    //         },
-    //     } as K9Sak;
-    //     const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
-    //     expect(result.kanBrukeSøknad).toBeFalsy();
-    //     if (result.kanBrukeSøknad === false) {
-    //         expect(result.årsak).toContain(IngenTilgangÅrsak.harArbeidsgiverUtenArbeidsaktivitet);
-    //     }
-    // });
-    it('stopper hvis det er arbeidsaktivitet i sak som ikke har arbeidsgiver', () => {
-        const sak: K9Sak = {
-            ytelse: {
-                arbeidstid: {
-                    arbeidstakerList: [
-                        {
-                            organisasjonsnummer: '1',
-                        },
-                        {
-                            organisasjonsnummer: '3',
-                        },
-                    ],
-                },
-                søknadsperioder: [ISODateRangeToDateRange('2022-01-01/2023-10-01')],
-            },
-        } as K9Sak;
-        const result = tilgangskontroll([sak], [arbeidsgiver1], tillattEndringsperiode);
-        expect(result.kanBrukeSøknad).toBeFalsy();
-        if (result.kanBrukeSøknad === false) {
-            expect(result.årsak).toContain(IngenTilgangÅrsak.harArbeidsaktivitetUtenArbeidsgiver);
-        }
     });
 });
 
@@ -82,30 +41,14 @@ describe('harArbeidsgiverUtenArbeidstakerK9Sak', () => {
     it('returnerer true hvis arbeidsgiver ikke har arbeidsaktivitet i sak', () => {
         const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver3],
-            [arbeidstaker1, arbeidstaker2]
+            [arbeidstaker1, arbeidstaker2],
         );
         expect(result).toBeTruthy();
     });
     it('returnerer false hvis alle arbeidsgivere har arbeidsaktivitet i sak', () => {
         const result = tilgangskontrollUtils.harArbeidsgiverUtenArbeidsaktivitet(
             [arbeidsgiver1, arbeidsgiver2],
-            [arbeidstaker1, arbeidstaker2]
-        );
-        expect(result).toBeFalsy();
-    });
-});
-describe('harArbeidstakerISakUtenArbeidsforhold', () => {
-    it('returnerer true hvis har har arbeidsaktivitet i sak med ikke tilhørende arbeidsgiver', () => {
-        const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
             [arbeidstaker1, arbeidstaker2],
-            [arbeidsgiver3]
-        );
-        expect(result).toBeTruthy();
-    });
-    it('returnerer false hvis alle arbeidsaktiviteter i sak har tilhørende arbeidsgiver', () => {
-        const result = tilgangskontrollUtils.harArbeidsaktivitetUtenArbeidsgiver(
-            [arbeidstaker1, arbeidstaker2],
-            [arbeidsgiver1, arbeidsgiver2]
         );
         expect(result).toBeFalsy();
     });
@@ -119,7 +62,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     it('returnerer true hvis søknadsperioder er innenfor tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeInnenfor,
-            tillatEndringsperiode
+            tillatEndringsperiode,
         );
         expect(result).toBeTruthy();
     });
@@ -127,7 +70,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     it('returnerer false hvis søknadsperioder er før tillatt endringsperiode', () => {
         const result = tilgangskontrollUtils.harSøknadsperiodeInnenforTillattEndringsperiode(
             søknadsperiodeUtenfor,
-            tillatEndringsperiode
+            tillatEndringsperiode,
         );
         expect(result).toBeFalsy();
     });

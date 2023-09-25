@@ -1,17 +1,18 @@
+import { BodyLong, Link } from '@navikt/ds-react';
 import React from 'react';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { SoknadFormField } from '../../types/SoknadFormData';
+import { Søknadstype } from '../../types/Søknadstype';
 import { MAX_BESKRIVELSE_LENGTH, MIN_BESKRIVELSE_LENGTH } from '../../validation/fieldValidations';
 import SoknadFormComponents from '../SoknadFormComponents';
-import { getStringValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { BodyLong, Link } from '@navikt/ds-react';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SoknadFormStep from '../SoknadFormStep';
-import { ApplicationType } from '../../types/ApplicationType';
 import { StepID } from '../soknadStepsConfig';
+
 interface Props {
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
 }
 
 const BeskrivelseStep: React.FC<Props> = ({ søknadstype }) => {

@@ -9,7 +9,7 @@ import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadCont
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
 import OmSøkerOppsummering from './OmSøkerOppsummering';
-import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import SøknadStep from '../../../søknad/SøknadStep';

@@ -1,5 +1,17 @@
 # config
 
+## 0.6.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 0.6.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
 ## 0.5.0
 
 ### Minor Changes

@@ -6,16 +6,16 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-amplitude",
     "types": "lib/index.d.js",
-    "version": "2.19.0",
+    "version": "2.21.1",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "devDependencies": {
         "@types/amplitude-js": "8.16.2",
-        "@types/node": "20.5.0",
-        "@types/react": "18.2.20",
+        "@types/node": "20.6.5",
+        "@types/react": "18.2.21",
         "amplitude-js": "8.21.9",
-        "config": "*",
+        "config": "workspace:*",
         "constate": "3.3.2",
         "gh-pages": "6.0.0",
         "react": "18.2.0",

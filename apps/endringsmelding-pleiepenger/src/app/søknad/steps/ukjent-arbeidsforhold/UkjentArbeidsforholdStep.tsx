@@ -6,6 +6,7 @@ import { useStepConfig } from '../../../hooks/useStepConfig';
 import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
 import UkjentArbeidsforholdForm from './UkjentArbeidsforholdForm';
+import AAregisteret from '../../../components/aa-registeret/AARegisteret';
 
 const UkjentArbeidsforholdStep = () => {
     const stepId = StepId.UKJENT_ARBEIDSFOHOLD;
@@ -24,9 +25,8 @@ const UkjentArbeidsforholdStep = () => {
                         Vi trenger informasjon om et nytt arbeidsforhold
                     </Heading>
                     <p>
-                        Vi har funnet et arbeidsforhold på deg i{' '}
-                        <abbr title="Arbeidsgiver- og arbeidstakerregisteret">AA-registeret</abbr> som ikke var der da
-                        du sendte inn søknad om pleiepenger. Vi trenger litt informasjon fra deg før du kan fortsette.
+                        Vi har funnet et arbeidsforhold på deg i <AAregisteret /> som ikke var der da du sendte inn
+                        søknad om pleiepenger. Vi trenger litt informasjon fra deg før du kan fortsette.
                     </p>
                 </BodyLong>
             </SifGuidePanel>
@@ -36,7 +36,7 @@ const UkjentArbeidsforholdStep = () => {
                     stepId={stepId}
                     goBack={goBack}
                     arbeidsgivere={arbeidsgivere}
-                    ukjenteArbeidsgivere={sak.ukjenteArbeidsgivere}
+                    arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
                     ukjentArbeidsforholdSøknadsdata={søknadsdata.ukjentArbeidsforhold}
                 />
             </Block>

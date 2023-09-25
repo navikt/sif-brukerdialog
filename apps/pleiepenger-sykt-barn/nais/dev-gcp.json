@@ -1,0 +1,33 @@
+{
+    "app": "pleiepengesoknad",
+    "cluster": "dev-gcp",
+    "namespace": "dusseldorf",
+    "team": "dusseldorf",
+    "ingresses": ["https://pleiepengesoknad.intern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
+    "livenessPath": "/familie/sykdom-i-familien/soknad/pleiepenger/health/isAlive",
+    "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger/health/isReady",
+    "env": {
+        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
+        "API_URL_INNSYN": "http://sif-innsyn-api",
+        "API_URL": "http://k9-brukerdialog-api",
+        "APP_VERSION": "dev",
+        "APPSTATUS_DATASET": "staging",
+        "APPSTATUS_PROJECT_ID": "ryujtq87",
+        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepengesoknad.intern.dev.nav.no/oauth2/logout",
+        "FORENKLET_ARBEID": "off",
+        "FRONTEND_API_PATH": "/api",
+        "FRONTEND_INNSYN_API_PATH": "/innsynapi",
+        "FRONTEND_VEDLEGG_URL": "https://pleiepengesoknad.intern.dev.nav.no/api",
+        "INNSYN_API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:sif-innsyn-api",
+        "INNSYN_URL": "https://sif-innsyn.intern.dev.nav.no/familie/sykdom-i-familien/soknad/innsyn/",
+        "INNSYN": "on",
+        "LOGIN_URL": "https://pleiepengesoknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger/soknad",
+        "NPM_CONFIG_CACHE": "/tmp",
+        "NYNORSK": "on",
+        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
+        "USE_AMPLITUDE": "true",
+        "UTILGJENGELIG": "off",
+        "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
+    }
+}

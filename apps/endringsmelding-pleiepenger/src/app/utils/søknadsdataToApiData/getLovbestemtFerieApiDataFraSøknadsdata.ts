@@ -11,10 +11,10 @@ export const getLovbestemtFerieApiDataFromSøknadsdata = ({
 }: LovbestemtFerieSøknadsdata): LovbestemtFerieApiData => {
     const perioder: ISODateRangeMap<LovbestemtFerieType> = {};
     joinAdjacentDateRanges(perioderLagtTil.sort(sortDateRange)).forEach(
-        (periode) => (perioder[dateRangeToISODateRange(periode)] = { skalHaFerie: true })
+        (periode) => (perioder[dateRangeToISODateRange(periode)] = { skalHaFerie: true }),
     );
     joinAdjacentDateRanges(perioderFjernet.sort(sortDateRange)).forEach(
-        (periode) => (perioder[dateRangeToISODateRange(periode)] = { skalHaFerie: false })
+        (periode) => (perioder[dateRangeToISODateRange(periode)] = { skalHaFerie: false }),
     );
 
     return {

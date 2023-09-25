@@ -1,6 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
 import { getRouteConfig } from '../../config/routeConfig';
-import { ApplicationType } from '../../types/ApplicationType';
+import { Søknadstype } from '../../types/Søknadstype';
 import { navigateTo, navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUtils';
 
 const navigate: NavigateFunction = jest.fn();
@@ -9,7 +9,7 @@ jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => {
     return { getEnvironmentVariable: () => '' };
 });
 
-const søknadstype = ApplicationType.omsorgspenger;
+const søknadstype = Søknadstype.omsorgspenger;
 const routeConfig = getRouteConfig(søknadstype);
 
 // hacky workaround for this issue, which actually seems to be an issue

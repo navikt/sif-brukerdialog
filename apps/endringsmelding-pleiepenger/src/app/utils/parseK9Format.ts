@@ -89,7 +89,7 @@ export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakAr
             ? frilanserArbeidstidInfo
             : undefined,
         selvstendigNæringsdrivendeArbeidstidInfo: harNormalarbeidstidIK9SakArbeidstidInfo(
-            selvstendigNæringsdrivendeArbeidstidInfo
+            selvstendigNæringsdrivendeArbeidstidInfo,
         )
             ? selvstendigNæringsdrivendeArbeidstidInfo
             : undefined,
@@ -102,7 +102,7 @@ export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakAr
  * @returns
  */
 export const parseK9FormatUtenlandsopphold = (
-    utenlandsoppholdMap: K9FormatUtenlandsoppholdPerioder
+    utenlandsoppholdMap: K9FormatUtenlandsoppholdPerioder,
 ): K9SakUtenlandsopphold[] => {
     return Object.keys(utenlandsoppholdMap).map((key) => {
         const utenlandsopphold = utenlandsoppholdMap[key];

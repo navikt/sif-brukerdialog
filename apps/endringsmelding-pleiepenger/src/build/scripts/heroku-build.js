@@ -25,7 +25,7 @@ function createEnvSettingsFileForHeroku() {
                 MELLOMLAGRING: 'on',
                 MSW: 'on',
                 PUBLIC_PATH: ''
-            };`
+            };`,
         );
     });
 }

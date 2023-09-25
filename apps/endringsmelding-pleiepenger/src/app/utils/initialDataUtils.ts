@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 export const getPeriodeForArbeidsgiverOppslag = (
     dateRangeAlleSaker: DateRange,
-    tillattEndringsperiode: DateRange
+    tillattEndringsperiode: DateRange,
 ): DateRange | undefined => {
     const dateRange = {
         from: dayjs.max(dayjs(dateRangeAlleSaker.from), dayjs(tillattEndringsperiode.from))!.toDate(),

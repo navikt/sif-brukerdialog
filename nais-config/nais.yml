@@ -58,6 +58,8 @@ spec:
     {{/each}}
      - name: IMAGE
        value: {{image}}
+     - name: GITHUB_REF_NAME
+       value: {{GITHUB_REF_NAME}}
     tokenx:
          enabled: true
     idporten:

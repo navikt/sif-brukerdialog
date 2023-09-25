@@ -77,7 +77,7 @@ const AnnenForelderenSituasjonStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     return (
@@ -120,12 +120,12 @@ const AnnenForelderenSituasjonStep = () => {
                                                 return {
                                                     label: intlHelper(
                                                         intl,
-                                                        `step.annenForeldrensSituasjon.grunn.${grunn}`
+                                                        `step.annenForeldrensSituasjon.grunn.${grunn}`,
                                                     ),
                                                     value: AnnenForeldrenSituasjon[grunn],
                                                     'data-testid': `grunn-${AnnenForeldrenSituasjon[grunn]}`,
                                                 };
-                                            }
+                                            },
                                         )}
                                         validate={getRequiredFieldValidator()}
                                         afterOnChange={(newValue) => {
@@ -136,7 +136,7 @@ const AnnenForelderenSituasjonStep = () => {
                                             ) {
                                                 setFieldValue(
                                                     AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom,
-                                                    false
+                                                    false,
                                                 );
                                             }
                                         }}
@@ -150,7 +150,7 @@ const AnnenForelderenSituasjonStep = () => {
                                             name={AnnenForelderenSituasjonFormFields.annenForelderSituasjonBeskrivelse}
                                             label={intlHelper(
                                                 intl,
-                                                'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm'
+                                                'step.annenForeldrensSituasjon.beskrivelseAvSituasjonen.spm',
                                             )}
                                             minLength={5}
                                             maxLength={1000}
@@ -165,7 +165,7 @@ const AnnenForelderenSituasjonStep = () => {
                                         <DateRangePicker
                                             legend={intlHelper(
                                                 intl,
-                                                `step.annenForeldrensSituasjon.periode.${annenForelderSituasjon}.spm`
+                                                `step.annenForeldrensSituasjon.periode.${annenForelderSituasjon}.spm`,
                                             )}
                                             fromInputProps={{
                                                 label: intlHelper(intl, 'step.annenForeldrensSituasjon.periode.fra'),
@@ -190,7 +190,7 @@ const AnnenForelderenSituasjonStep = () => {
                                                 <Checkbox
                                                     label={intlHelper(
                                                         intl,
-                                                        'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom'
+                                                        'step.annenForeldrensSituasjon.periode.checkboxVetIkkeTom',
                                                     )}
                                                     name={
                                                         AnnenForelderenSituasjonFormFields.annenForelderPeriodeVetIkkeTom
@@ -199,12 +199,12 @@ const AnnenForelderenSituasjonStep = () => {
                                                         if (newValue) {
                                                             setFieldValue(
                                                                 AnnenForelderenSituasjonFormFields.annenForelderPeriodeTom,
-                                                                undefined
+                                                                undefined,
                                                             );
                                                         } else {
                                                             setFieldValue(
                                                                 AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder,
-                                                                YesOrNo.UNANSWERED
+                                                                YesOrNo.UNANSWERED,
                                                             );
                                                         }
                                                     }}
@@ -230,7 +230,7 @@ const AnnenForelderenSituasjonStep = () => {
                                             name={AnnenForelderenSituasjonFormFields.annenForelderPeriodeMer6Maneder}
                                             legend={intlHelper(
                                                 intl,
-                                                'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm'
+                                                'step.annenForeldrensSituasjon.erVarighetMerEnn6Maneder.spm',
                                             )}
                                             validate={getYesOrNoValidator()}
                                             data-testid="annenForeldrensSituasjon-PeriodeMer6Maneder"

@@ -75,7 +75,7 @@ export const useFormikFileUploader = ({
     function updateFailedAttachments(
         allAttachments: Attachment[],
         failedAttachments: Attachment[],
-        replaceFn: FieldArrayReplaceFn
+        replaceFn: FieldArrayReplaceFn,
     ) {
         failedAttachments.forEach((attachment) => {
             attachment = setAttachmentPendingToFalse(attachment);
@@ -99,7 +99,7 @@ export const useFormikFileUploader = ({
     function updateAttachmentListElement(
         attachments: Attachment[],
         attachment: Attachment,
-        replaceFn: FieldArrayReplaceFn
+        replaceFn: FieldArrayReplaceFn,
     ) {
         replaceFn(attachments.indexOf(attachment), { ...attachment, file: mapFileToPersistedFile(attachment.file) });
     }

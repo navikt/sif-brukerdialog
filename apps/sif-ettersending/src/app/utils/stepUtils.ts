@@ -1,9 +1,8 @@
 import { IntlShape } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-// import { StepConfigInterface, StepConfigItemTexts } from '../config/stepConfig';
 import { StepID } from '../soknad/soknadStepsConfig';
-import { ApplicationType } from '../types/ApplicationType';
 import { SoknadFormData } from '../types/SoknadFormData';
+import { Søknadstype } from '../types/Søknadstype';
 import { beskrivelseStepIsValid, documentsStepIsValid, welcomingPageIsValid } from '../validation/stepValidations';
 
 export interface StepConfigItemTexts {
@@ -13,16 +12,6 @@ export interface StepConfigItemTexts {
     nextButtonLabel?: string;
     previousButtonLabel?: string;
 }
-
-// const getStepConfigItemTextKeys = (stepId: StepID): StepConfigItemTexts => {
-//     return {
-//         pageTitle: `step.${stepId}.pageTitle`,
-//         stepTitle: `step.${stepId}.stepTitle`,
-//         stepIndicatorLabel: `step.${stepId}.stepIndicatorLabel`,
-//         nextButtonLabel: 'step.nextButtonLabel',
-//         previousButtonLabel: 'step.previousButtonLabel',
-//     };
-// };
 
 export interface StepItemConfigInterface extends StepConfigItemTexts {
     index: number;
@@ -49,8 +38,8 @@ export const beskrivelseStepIsAvailable = (formData: SoknadFormData) => welcomin
 
 export const omsTypeStepIsAvailable = (formData: SoknadFormData) => welcomingPageIsValid(formData);
 
-export const documentsStepIsAvailable = (formData: SoknadFormData, søknadstype: ApplicationType) =>
-    søknadstype === ApplicationType.pleiepengerBarn || søknadstype === ApplicationType.pleiepengerLivetsSluttfase
+export const documentsStepIsAvailable = (formData: SoknadFormData, søknadstype: Søknadstype) =>
+    søknadstype === Søknadstype.pleiepengerSyktBarn || søknadstype === Søknadstype.pleiepengerLivetsSluttfase
         ? beskrivelseStepIsValid(formData)
         : welcomingPageIsValid(formData);
 

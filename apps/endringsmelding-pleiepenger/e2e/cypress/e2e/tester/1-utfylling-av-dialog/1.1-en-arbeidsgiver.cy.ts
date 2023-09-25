@@ -9,15 +9,17 @@ describe('Endre arbeidstid for én arbeidsgiver', () => {
         saker: enSakEnArbeidsgiverMock,
     });
 
+    beforeEach(() => {
+        cyHelpers.setTestDate();
+    });
     before(() => {
-        cy.clock(cyHelpers.date);
         cy.clearLocalStorage();
     });
 
     cyHelpers.startSøknad({ endreArbeidstid: true, endreLovbestemtFerie: true });
     cyHelpers.leggTilOgFjernFerie();
-    cyHelpers.endreEnkeltuke();
-    cyHelpers.endreFlereUker();
+    cyHelpers.endreArbeidEnkeltuke();
+    cyHelpers.endreArbeidFlereUker();
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummering();
     cyHelpers.bekreftOpplysningerOgSendInn();

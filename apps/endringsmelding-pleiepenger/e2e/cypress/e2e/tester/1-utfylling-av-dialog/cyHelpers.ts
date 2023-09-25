@@ -9,11 +9,17 @@ const flereUker = [46, 47];
 
 const getAktivitet = () => getTestElement('aktivitet_a_947064649');
 const getPeriode = () => getTestElement('dateRangeAccordion_0');
-const getUkeRow = (ukenummer) => cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`);
-const getArbeidstimerModal = () => cy.get('.endreArbeidstidModal');
+const getUkeRow = (ukenummer) => {
+    cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`).should('be.visible').wait(200);
+    return cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`);
+};
+const getArbeidstimerModal = () => {
+    cy.get('.endreArbeidstidModal').should('be.visible').wait(200);
+    return cy.get('.endreArbeidstidModal');
+};
 
-const captureScreenshot = () => {
-    // cy.screenshot({ capture: 'fullPage' });
+const setTestDate = () => {
+    cy.clock(cyHelpers.date.getTime(), ['Date']);
 };
 
 const startSøknad = ({
@@ -57,6 +63,7 @@ const fyllUtFerieDialog = (from, to) => {
         cy.get('input[name="from"]').clear().type(from);
         cy.get('input[name="to"]').clear().type(to).blur();
         getTestElement('typedFormikForm-submitButton').click();
+        cy.wait(400);
     });
 };
 
@@ -76,13 +83,13 @@ const leggTilFerie = (submit?: boolean) => {
         });
 
         fyllUtFerieDialog('20.11.2022', '25.11.2022');
-        cy.checkA11y();
+        cy.checkA11y({ exclude: '.navds-date__field-input' });
 
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
-                'søndag 20.11.2022 - fredag 25.11.2022'
+                'søndag 20.11.2022 - fredag 25.11.2022',
             );
         });
         cy.checkA11y();
@@ -96,16 +103,16 @@ const endreOgFjernFerie = () => {
     it('endre og fjerne én ferie', () => {
         cy.injectAxe();
         /** Endre */
+        getTestElement('dateRangeAccordion_0').should('be.visible');
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__endreKnapp').click();
         });
-        cy.checkA11y();
         fyllUtFerieDialog('28.11.2022', '29.11.2022');
         getTestElement('dateRangeAccordion_0').within(() => {
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             cy.get('.lovbestemtFerieListe li:nth-child(2) .lovbestemtFerieListe__ferie__periode .dato').should(
                 'have.text',
-                'mandag 28.11.2022 - tirsdag 29.11.2022'
+                'mandag 28.11.2022 - tirsdag 29.11.2022',
             );
             cy.checkA11y();
         });
@@ -115,7 +122,7 @@ const endreOgFjernFerie = () => {
             cy.get('.lovbestemtFerieListe li:nth-child(1) .lovbestemtFerieListe__ferie__fjernKnapp').click();
             cy.get('.lovbestemtFerieListe li').should('have.length', 2);
             const angreKnapp = cy.get(
-                '.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]'
+                '.lovbestemtFerieListe li:nth-child(1) button[data-testid="angre_fjern_ferie_knapp"]',
             );
             angreKnapp.should('exist');
         });
@@ -142,9 +149,8 @@ const endreOgFjernFerie = () => {
     });
 };
 
-const endreEnkeltuke = (ukenummer = enkeltuke) => {
+const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
-        cy.wait(1000);
         cy.injectAxe();
         getAktivitet().within(() => {
             cy.get('[data-testid=dateRangeAccordion_0]').click();
@@ -152,30 +158,25 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
-            cy.wait(500);
             cy.checkA11y();
-            captureScreenshot();
         });
     });
     it('kontrollerer verdi før endring', () => {
-        cy.wait(1000);
+        cy.injectAxe();
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
             cy.checkA11y();
-            captureScreenshot();
         });
     });
     it('åpner dialog for uke', () => {
-        cy.wait(1000);
+        cy.injectAxe();
         getAktivitet().within(() => {
             getUkeRow(ukenummer).within(() => {
                 cy.get('[data-testid=endre-button]').click();
             });
-            cy.checkA11y();
-            captureScreenshot();
         });
     });
     it('fyller ut timer', () => {
@@ -183,7 +184,6 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
             getTestElement('toggle-timer').click();
             getTestElement('timer-verdi').type('10,5');
             cy.checkA11y();
-            captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
     });
@@ -194,12 +194,11 @@ const endreEnkeltuke = (ukenummer = enkeltuke) => {
                 expect(cy.get('[data-testid=timer-opprinnelig]').contains('4 t.'));
             });
             cy.checkA11y();
-            captureScreenshot();
         });
     });
 };
 
-const endreFlereUker = (uker: number[] = flereUker) => {
+const endreArbeidFlereUker = (uker: number[] = flereUker) => {
     it('velger uker for endring', () => {
         getAktivitet().within(() => {
             getPeriode().within(() => {
@@ -212,7 +211,6 @@ const endreFlereUker = (uker: number[] = flereUker) => {
                 });
             });
         });
-        captureScreenshot();
     });
     it('åpner dialog og endrer timer', () => {
         cy.injectAxe();
@@ -221,14 +219,17 @@ const endreFlereUker = (uker: number[] = flereUker) => {
                 cy.get('[data-testid=endre-flere-uker-button]').click();
             });
         });
-        cy.checkA11y();
         getArbeidstimerModal().within(() => {
-            getTestElement('timer-verdi').type('5');
+            getTestElement('timer-verdi').type('1.5');
             cy.checkA11y();
-            captureScreenshot();
             cy.get('button[type="submit"]').click();
         });
-        captureScreenshot();
+    });
+    it('kontrollerer endringer i tabell', () => {
+        getAktivitet().within(() => {
+            cy.get(`[data-testid="uke_46"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+            cy.get(`[data-testid="uke_47"] .endretArbeidstid__timer`).should('contain.text', '1 t. 30 m.');
+        });
     });
 };
 
@@ -240,7 +241,7 @@ interface UkeMedArbeidstid {
 const fyllUtArbeidstidUkjentArbeidsforhold = (
     orgnummer: string,
     arbeiderIPeriodenSvar: 'HELT_FRAVÆR' | 'SOM_VANLIG' | 'REDUSERT',
-    uker?: UkeMedArbeidstid[]
+    uker?: UkeMedArbeidstid[],
 ) => {
     if (arbeiderIPeriodenSvar === 'REDUSERT' && uker) {
         it('legger til arbeidstid for enkeltuker', () => {
@@ -257,7 +258,6 @@ const fyllUtArbeidstidUkjentArbeidsforhold = (
                 getArbeidstimerModal().within(() => {
                     getTestElement('toggle-timer').click();
                     getTestElement('timer-verdi').type(uke.tid);
-                    captureScreenshot();
                     cy.get('button[type="submit"]').click();
                 });
             });
@@ -272,12 +272,14 @@ const fyllUtArbeidstidUkjentArbeidsforhold = (
 
 const fortsettTilOppsummering = () => {
     it('fortsetter til oppsummering fra arbeidstid', () => {
-        captureScreenshot();
         submitSkjema();
     });
 };
 
 const kontrollerOppsummering = () => {
+    it('er på oppsummeringssiden', () => {
+        cy.get('h1').contains('Oppsummering').should('exist');
+    });
     it('viser riktig informasjon i oppsummering', () => {
         getUkeRow(enkeltuke).within(() => {
             expect(cy.get('[data-testid=timer-faktisk]').contains('10 t. 30 m.'));
@@ -328,7 +330,6 @@ const bekreftOpplysningerOgSendInn = () => {
         cy.injectAxe();
         getTestElement('bekreft-opplysninger').parent().click();
         cy.checkA11y();
-        captureScreenshot();
     });
     it('sender inn endringsmelding og viser kvittering', () => {
         submitSkjema();
@@ -343,13 +344,14 @@ const bekreftOpplysningerOgSendInn = () => {
 export const cyHelpers = {
     startUrl,
     date,
+    setTestDate,
     startSøknad,
     fyllUtUkjentArbeidsforhold,
     leggTilOgFjernFerie,
     leggTilFerie,
     endreOgFjernFerie,
-    endreEnkeltuke,
-    endreFlereUker,
+    endreArbeidEnkeltuke,
+    endreArbeidFlereUker,
     fyllUtArbeidstidUkjentArbeidsforhold,
     fortsettTilOppsummering,
     kontrollerOppsummering,

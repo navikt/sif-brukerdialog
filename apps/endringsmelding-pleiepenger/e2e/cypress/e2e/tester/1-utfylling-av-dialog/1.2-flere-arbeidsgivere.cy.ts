@@ -10,13 +10,13 @@ describe('Endre arbeidstid for flere arbeidsgivere', () => {
         mellomlagring: {},
     });
     before(() => {
-        cy.clock(cyHelpers.date);
+        cyHelpers.setTestDate();
         cy.clearLocalStorage();
         cy.visit(cyHelpers.startUrl);
     });
     cyHelpers.startSøknad({ endreArbeidstid: true });
-    cyHelpers.endreEnkeltuke();
-    cyHelpers.endreFlereUker();
+    cyHelpers.endreArbeidEnkeltuke();
+    cyHelpers.endreArbeidFlereUker();
     cyHelpers.fortsettTilOppsummering();
     cyHelpers.kontrollerOppsummering();
     cyHelpers.bekreftOpplysningerOgSendInn();

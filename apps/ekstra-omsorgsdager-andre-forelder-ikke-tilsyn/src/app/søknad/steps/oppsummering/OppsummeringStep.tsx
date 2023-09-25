@@ -13,7 +13,7 @@ import { StepId } from '../../../types/StepId';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { usePrevious } from '@navikt/sif-common-core-ds/lib/hooks/usePrevious';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import SøknadStep from '../../SøknadStep';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';

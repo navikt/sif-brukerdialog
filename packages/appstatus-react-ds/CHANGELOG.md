@@ -1,5 +1,29 @@
 # @navikt/appstatus-react-ds
 
+## 2.14.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 2.14.0
+
+### Minor Changes
+
+-   96810cd6: Pakkeoppdateringer
+
+## 2.13.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
+## 2.12.0
+
+### Minor Changes
+
+-   026fc373: Oppdatere til versjon 5 av designsystemet aksel
+
 ## 2.11.0
 
 ### Minor Changes

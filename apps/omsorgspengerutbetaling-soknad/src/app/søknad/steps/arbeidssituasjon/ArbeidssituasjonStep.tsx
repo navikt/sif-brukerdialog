@@ -85,7 +85,7 @@ const ArbeidssituasjonStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     return (

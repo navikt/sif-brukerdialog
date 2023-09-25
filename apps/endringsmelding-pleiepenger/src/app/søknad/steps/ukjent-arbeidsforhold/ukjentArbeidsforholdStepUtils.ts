@@ -5,11 +5,13 @@ import { Arbeidsforhold, Arbeidsgiver, UkjentArbeidsforholdSøknadsdata } from '
 import {
     UkjentArbeidsforholdFormValues,
     UkjentArbeidsgiverFormField,
-    UkjentArbeidsgiverFormValues,
-    UkjentArbeidsgiverMap,
+    UkjentArbeidsforholdArbeidsgiverFormValues,
+    UkjentArbeidsforholdArbeidsgiverMap,
 } from './UkjentArbeidsforholdForm';
 
-const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold): UkjentArbeidsgiverFormValues => {
+const arbeidsforholdSøknadsdataToFormValues = (
+    arbeidsforhold: Arbeidsforhold,
+): UkjentArbeidsforholdArbeidsgiverFormValues => {
     return arbeidsforhold.erAnsatt
         ? {
               erAnsatt: YesOrNo.YES,
@@ -22,8 +24,8 @@ const arbeidsforholdSøknadsdataToFormValues = (arbeidsforhold: Arbeidsforhold):
 };
 
 const ukjentArbeidsgiverFormValuesToSøknadsdata = (
-    formValues: UkjentArbeidsgiverFormValues,
-    arbeidsgiver?: Arbeidsgiver
+    formValues: UkjentArbeidsforholdArbeidsgiverFormValues,
+    arbeidsgiver?: Arbeidsgiver,
 ): Arbeidsforhold | undefined => {
     if (!arbeidsgiver) {
         return undefined;
@@ -52,14 +54,14 @@ const ukjentArbeidsgiverFormValuesToSøknadsdata = (
 export const getUkjentArbeidsforholdStepInitialValues = (
     ukjentArbeidsforholdSøknadsdata: UkjentArbeidsforholdSøknadsdata | undefined,
     formValues: UkjentArbeidsforholdFormValues | undefined,
-    ukjenteArbeidsgivere: Arbeidsgiver[]
+    arbeidsgivereIkkeISak: Arbeidsgiver[],
 ): UkjentArbeidsforholdFormValues => {
     if (formValues) {
         return formValues;
     }
-    const arbeidsforhold: UkjentArbeidsgiverMap = {};
+    const arbeidsforhold: UkjentArbeidsforholdArbeidsgiverMap = {};
     if (ukjentArbeidsforholdSøknadsdata === undefined) {
-        ukjenteArbeidsgivere.forEach((a) => {
+        arbeidsgivereIkkeISak.forEach((a) => {
             arbeidsforhold[a.key] = {
                 erAnsatt: YesOrNo.UNANSWERED,
                 timerPerUke: '',
@@ -77,7 +79,7 @@ export const getUkjentArbeidsforholdStepInitialValues = (
 
 export const getUkjentArbeidsforholdSøknadsdataFromFormValues = (
     values: UkjentArbeidsforholdFormValues,
-    arbeidsgivere: Arbeidsgiver[]
+    arbeidsgivere: Arbeidsgiver[],
 ): UkjentArbeidsforholdSøknadsdata => {
     const arbeidsforhold: Arbeidsforhold[] = [];
     Object.keys(values.arbeidsforhold).forEach((key) => {

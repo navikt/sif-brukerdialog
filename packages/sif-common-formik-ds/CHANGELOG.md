@@ -1,5 +1,49 @@
 # @navikt/sif-common-formik-ds
 
+## 0.6.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 0.6.0
+
+### Minor Changes
+
+-   61eee34c: Bytte til å bruke react-dropzone komponet for filopplasting. Enkel porting av eksisterende komponent til ny.
+
+## 0.5.0
+
+### Minor Changes
+
+-   96810cd6: Fjerne checked prop fra checkbox i checkboxgroup
+    Legge til showSubmitButton prop i TypedFormikForm
+-   96810cd6: Pakkeoppdateringer
+
+## 0.4.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
+## 0.3.0
+
+### Minor Changes
+
+-   41d0a03c: Oppdatere til versjon 5 av designsystemet aksel. Breaking change på grunn av props som er endret på komponenter som bruker modal dialog.
+
+    # Props som er fjernet
+
+    -   shouldCloseOnOverlayClick. Denne finnes ikke lenger i Aksel Modal. Dette gjelder:
+        -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndInfo.tsx
+        -- packages/sif-common-formik-ds/src/components/formik-modal-form/FormikModalFormAndList.tsx
+
+## 0.25.0
+
+### Minor Changes
+
+-   6669d48c: Legge til ny komponent for filopplasting med drag and drop - FormikFileDropInput
+
 ## 0.24.0
 
 ### Minor Changes

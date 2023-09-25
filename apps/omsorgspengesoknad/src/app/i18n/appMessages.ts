@@ -2,20 +2,13 @@ import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageF
 
 export const appMessages: MessageFileFormat = {
     nb: {
-        'application.title': 'Omsorgspengesøknad',
-        'application.bannerTitle': 'Søknad om ekstra omsorgsdager',
+        'application.title':
+            'Søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
-        'step.omBarnet.pageTitle': 'Omsorgspengesøknad - opplysninger om barnet',
         'step.omBarnet.stepTitle': 'Barn',
-
-        'step.deltBosted.pageTitle': 'Omsorgspengesøknad - Delt bosted',
         'step.deltBosted.stepTitle': 'Delt bosted',
-
-        'step.legeerklaering.pageTitle': 'Omsorgspengesøknad - legeerklæring',
         'step.legeerklaering.stepTitle': 'Legeerklæring',
-
-        'step.oppsummering.pageTitle': 'Omsorgspengesøknad - Oppsummering',
         'step.oppsummering.stepTitle': 'Oppsummering',
 
         'steg.footer.avbryt': 'Avbryt og slett søknad',

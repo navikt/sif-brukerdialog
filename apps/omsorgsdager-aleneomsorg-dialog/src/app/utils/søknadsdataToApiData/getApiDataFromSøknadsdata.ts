@@ -5,7 +5,7 @@ import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata
 
 export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
-    registrertBarn: RegistrertBarn[]
+    registrertBarn: RegistrertBarn[],
 ): SøknadApiData | undefined => {
     const { id, omOmsorgenForBarn, tidspunktForAleneomsorg } = søknadsdata;
     if (!omOmsorgenForBarn || !tidspunktForAleneomsorg) {

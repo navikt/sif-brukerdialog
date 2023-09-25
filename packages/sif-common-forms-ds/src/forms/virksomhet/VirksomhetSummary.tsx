@@ -2,6 +2,7 @@ import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
 import JaNeiSvar from '../../components/summary/JaNeiSvar';
@@ -10,7 +11,6 @@ import SummaryBlock from '../../components/summary/SummaryBlock';
 import TallSvar from '../../components/summary/TallSvar';
 import { Næringstype, VirksomhetApiData } from './types';
 import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
-import { ISODateToDate } from '@navikt/sif-common-utils';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -28,13 +28,10 @@ const getFiskerNæringTekst = (intl: IntlShape, erPåBladB: boolean) => {
 export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
 
-    const næringstyper = virksomhet.næringstyper
-        .map((næring) =>
-            næring === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
-                ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
-                : intlHelper(intl, `sifForms.virksomhet.næringstype_${næring}`)
-        )
-        .join(', ');
+    const næringstype =
+        virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
+            ? getFiskerNæringTekst(intl, virksomhet.fiskerErPåBladB)
+            : intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
 
     const tidsinfo = virksomhet.tilOgMed
         ? intlHelper(intl, 'sifForms.virksomhet.summary.tidsinfo.avsluttet', {
@@ -50,7 +47,7 @@ export const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: Int
             <IntlLabelValue labelKey="sifForms.virksomhet.summary.navn">
                 {virksomhet.navnPåVirksomheten}.
             </IntlLabelValue>
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstyper}. </IntlLabelValue>
+            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
             <div>
                 <FormattedMessage id="sifForms.virksomhet.summary.registrertILand" values={{ land }} />
                 {virksomhet.registrertINorge && (
@@ -80,7 +77,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                         intl,
                         harFlereVirksomheter
                             ? 'sifForms.virksomhet.næringsinntekt.flereVirksomheter.spm'
-                            : 'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm'
+                            : 'sifForms.virksomhet.næringsinntekt.enVirksomhet.spm',
                     )}>
                     <FormattedMessage id="sifForms.virksomhet.summary.næringsinntekst" />
                     {` `}
@@ -99,7 +96,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet, harFler
                                 id="sifForms.virksomhet.summary.yrkesaktiv.jaStartetDato"
                                 values={{
                                     dato: prettifyApiDate(
-                                        virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato
+                                        virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
                                     ),
                                 }}
                             />

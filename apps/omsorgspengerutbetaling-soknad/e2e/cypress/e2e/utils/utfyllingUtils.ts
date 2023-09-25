@@ -20,12 +20,12 @@ import {
 
 const fileName = 'navlogopng.png';
 
-const fraDato = dayjs().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
-const tilDato = dayjs().format('YYYY-MM-DD');
-const datoDelvisFravær = dayjs().startOf('week').subtract(4, 'weeks').format('YYYY-MM-DD');
-const fomDatoIUtlandet = dayjs().startOf('week').subtract(3, 'weeks').add(2, 'day').format('YYYY-MM-DD');
-const tomDatoIUtlandet = dayjs().startOf('week').subtract(3, 'weeks').add(4, 'day').format('YYYY-MM-DD');
-const frilansStartDato = dayjs().startOf('week').subtract(10, 'weeks').format('YYYY-MM-DD');
+const fraDato = dayjs().startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');
+const tilDato = dayjs().startOf('isoWeek').format('DD.MM.YYYY');
+const datoDelvisFravær = dayjs().startOf('isoWeek').subtract(4, 'weeks').format('DD.MM.YYYY');
+const fomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(2, 'day').format('DD.MM.YYYY');
+const tomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('DD.MM.YYYY');
+const frilansStartDato = dayjs().startOf('isoWeek').subtract(10, 'weeks').format('DD.MM.YYYY');
 
 const virksomhet = {
     næringstype: 'JORDBRUK_SKOGBRUK',
@@ -95,7 +95,7 @@ const fyllUtVirksomhetDialog = () => {
     getInputByName('tom').click().type(virksomhet.tilOgMed).blur();
     selectRadioByNameAndValue(
         'hattVarigEndringAvNæringsinntektSiste4Kalenderår',
-        virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår
+        virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår,
     );
     getInputByName('varigEndringINæringsinntekt_dato').click().type(virksomhet.varigEndringINæringsinntekt_dato).blur();
     getInputByName('varigEndringINæringsinntekt_inntektEtterEndring')
@@ -156,7 +156,7 @@ const lastOppLegeerklæring = () => {
                     fileName,
                     mimeType: 'image/png',
                     encoding: 'utf8',
-                })
+                }),
             );
         cy.wait(200);
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);

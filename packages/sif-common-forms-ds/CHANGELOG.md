@@ -1,5 +1,63 @@
 # @navikt/sif-common-forms-ds
 
+## 8.8.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 8.8.0
+
+### Patch Changes
+
+-   Updated dependencies [61eee34c]
+    -   @navikt/sif-common-core-ds@9.6.0
+
+## 8.7.0
+
+### Minor Changes
+
+-   96810cd6: Pakkeoppdateringer
+-   96810cd6: Oppdatere virksomhetform til å være i sync med det som har vært i sif-common-forms. Spesifikt endre til objekt og ikke array av objekter for næringsvirksomhet
+
+### Patch Changes
+
+-   Updated dependencies [96810cd6]
+-   Updated dependencies [96810cd6]
+    -   @navikt/sif-common-core-ds@9.5.0
+
+## 8.6.0
+
+### Minor Changes
+
+-   c976be57: Oppdatere til Aksel 5.1.0 + andre mindre oppdateringer
+
+### Patch Changes
+
+-   Updated dependencies [c976be57]
+    -   @navikt/sif-common-core-ds@9.4.0
+
+## 8.5.0
+
+### Minor Changes
+
+-   026fc373: Oppdatere til versjon 5 av designsystemet aksel
+
+### Patch Changes
+
+-   Updated dependencies [026fc373]
+    -   @navikt/sif-common-core-ds@9.3.0
+
+## 8.4.0
+
+### Minor Changes
+
+-   68bf3131: Endret næringstyper (Array) til næringstype (ikke array) i Virksomhet
+
+### Patch Changes
+
+-   @navikt/sif-common-core-ds@9.3.1
+
 ## 8.3.0
 
 ### Minor Changes

@@ -21,7 +21,7 @@ const arbeidstidInitialFormValues: ArbeidstidFormValues = {
 
 export const getArbeidstidStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: ArbeidstidFormValues
+    formValues?: ArbeidstidFormValues,
 ): ArbeidstidFormValues => {
     if (formValues) {
         return formValues;
@@ -63,7 +63,7 @@ export const getArbeidstidSøknadsdataFromFormValues = (values: ArbeidstidFormVa
 
 export const cleanupArbeidsaktivitetEndringer = (
     endringer: ArbeidstidEndringMap,
-    arbeidsaktivitet: Arbeidsaktivitet
+    arbeidsaktivitet: Arbeidsaktivitet,
 ): ArbeidstidEndringMap => {
     const arbeidsuker = getArbeidsukerIArbeidsaktivitet(arbeidsaktivitet);
     const cleanedEndringer: ArbeidstidEndringMap = {};
@@ -73,7 +73,7 @@ export const cleanupArbeidsaktivitetEndringer = (
         const endretArbeidstid = beregnEndretArbeidstidForUke(
             endring,
             opprinnelig.normalt.uke,
-            opprinnelig.antallDagerMedArbeidstid
+            opprinnelig.antallDagerMedArbeidstid,
         );
         if (!durationsAreEqual(endretArbeidstid, opprinnelig.faktisk?.uke)) {
             cleanedEndringer[key] = endring;
@@ -107,7 +107,7 @@ export const getAktiviteterSomSkalEndres = (arbeidsaktiviteter: Arbeidsaktivitet
 export const validateUkjentArbeidsaktivitetArbeidstid = (
     arbeidsaktivitet: ArbeidsaktivitetArbeidstaker,
     endringer: ArbeidstidEndringMap = {},
-    arbeiderIPeriodenSvar?: ArbeiderIPeriodenSvar
+    arbeiderIPeriodenSvar?: ArbeiderIPeriodenSvar,
 ): IntlErrorObject | undefined => {
     const manglendePeriode: ISODateRange[] = [];
     arbeidsaktivitet.perioderMedArbeidstid.forEach((periode) => {
@@ -132,7 +132,7 @@ export const validateUkjentArbeidsaktivitetArbeidstid = (
 export const getUkjentArbeidsaktivitetArbeidstidValidator = (
     arbeidsaktivitet: Arbeidsaktivitet,
     endringer?: ArbeidstidEndringMap,
-    arbeiderIPerioden?: ArbeiderIPeriodenSvar
+    arbeiderIPerioden?: ArbeiderIPeriodenSvar,
 ) => {
     if (
         arbeidsaktivitet.type === ArbeidsaktivitetType.arbeidstaker &&

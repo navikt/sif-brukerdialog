@@ -1,4 +1,4 @@
-import { Heading } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
@@ -10,7 +10,8 @@ import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { getSakFromK9Sak } from '@utils';
+import { dateFormatter } from '@navikt/sif-common-utils/lib';
+import { getSakFromK9Sak, getSisteSøknadsperiodeIK9Sak } from '@utils';
 import { StepId } from '../../søknad/config/StepId';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
@@ -55,10 +56,13 @@ const VelgSakPage = () => {
     return (
         <Page title="Velkommen">
             <SifGuidePanel>
-                <Heading level="1" size="large">
+                <Heading level="1" size="large" spacing={true}>
                     Hei {søker.fornavn}
                 </Heading>
-                <p>Du har flere saker og må velge hvilken sak du ønsker å endre:</p>
+                <BodyShort>
+                    Vi ser at du har pleiepengesaker for flere barn. Du kan kun endre én sak om gangen, så du må velge
+                    hvilken sak du ønsker å sende inn endring på.
+                </BodyShort>
             </SifGuidePanel>
             <FormBlock>
                 <FormikWrapper
@@ -70,13 +74,31 @@ const VelgSakPage = () => {
                                 submitButtonLabel="Velg"
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
                                 <RadioGroup
-                                    legend="Velg sak"
+                                    legend="Velg barn/sak"
                                     name={FormFields.barnAktørId}
                                     validate={getRequiredFieldValidator()}
-                                    radios={k9saker.map((sak) => ({
-                                        label: formatName(sak.barn.fornavn, sak.barn.etternavn, sak.barn.mellomnavn),
-                                        value: sak.barn.aktørId,
-                                    }))}
+                                    radios={k9saker.map((sak) => {
+                                        const sisteSøknadperiodeISak = getSisteSøknadsperiodeIK9Sak(sak);
+                                        return {
+                                            label: (
+                                                <BodyShort as="div">
+                                                    <Heading size="xsmall" as="div">
+                                                        {formatName(
+                                                            sak.barn.fornavn,
+                                                            sak.barn.etternavn,
+                                                            sak.barn.mellomnavn,
+                                                        )}
+                                                        - ({dateFormatter.dayDateMonthYear(sak.barn.fødselsdato)})
+                                                    </Heading>
+                                                    <p style={{ marginTop: '.5rem' }}>
+                                                        Siste dag med pleiepenger:{' '}
+                                                        {dateFormatter.dayCompactDate(sisteSøknadperiodeISak.to)}
+                                                    </p>
+                                                </BodyShort>
+                                            ),
+                                            value: sak.barn.aktørId,
+                                        };
+                                    })}
                                 />
                             </Form>
                         );

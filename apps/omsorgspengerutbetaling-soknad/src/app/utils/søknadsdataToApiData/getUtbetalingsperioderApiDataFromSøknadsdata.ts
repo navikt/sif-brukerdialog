@@ -57,13 +57,13 @@ export const getUtbetalingsperioderApiDataFromSøknadsdata = (søknadsdata: Søk
     } else if (apiAktivitet.length === 2) {
         return [
             ...fraværDager.map((dag) =>
-                mapFraværDagTilUtbetalingsperiodeApi(dag, getApiAktivitetForDag(dag.dato, aktivitetFravær))
+                mapFraværDagTilUtbetalingsperiodeApi(dag, getApiAktivitetForDag(dag.dato, aktivitetFravær)),
             ),
             ...delFraværPerioderOppIDager(fraværPerioder).map((periodeDag) =>
                 mapFraværPeriodeTilUtbetalingsperiodeApi(
                     periodeDag,
-                    getApiAktivitetForDag(periodeDag.fraOgMed, aktivitetFravær)
-                )
+                    getApiAktivitetForDag(periodeDag.fraOgMed, aktivitetFravær),
+                ),
             ),
         ];
     } else {
@@ -74,7 +74,7 @@ export const getUtbetalingsperioderApiDataFromSøknadsdata = (søknadsdata: Søk
 export const getAktivitetFromAktivitetFravær = (
     aktivitetFravær: AktivitetFravær,
     erFrilanser: boolean,
-    erSelvstendigNæringsdrivende: boolean
+    erSelvstendigNæringsdrivende: boolean,
 ): ApiAktivitet[] => {
     if (erFrilanser && !erSelvstendigNæringsdrivende) {
         return [ApiAktivitet.FRILANSER];
@@ -94,13 +94,13 @@ const harFraværSomFrilanser = (dager: AktivitetFravær) => {
 
 const harFraværSomSN = (fraværFraDag: AktivitetFravær) => {
     return Object.keys(fraværFraDag).map(
-        (aktivitet) => aktivitet === Aktivitet.BEGGE || aktivitet === Aktivitet.SELVSTENDIG_VIRKSOMHET
+        (aktivitet) => aktivitet === Aktivitet.BEGGE || aktivitet === Aktivitet.SELVSTENDIG_VIRKSOMHET,
     );
 };
 
 const mapFraværDagTilUtbetalingsperiodeApi = (
     fraværDag: FraværDag,
-    aktivitetFravær: ApiAktivitet[]
+    aktivitetFravær: ApiAktivitet[],
 ): UtbetalingsperiodeApi => {
     return {
         fraOgMed: dateToISODate(fraværDag.dato),
@@ -114,7 +114,7 @@ const mapFraværDagTilUtbetalingsperiodeApi = (
 
 const mapFraværPeriodeTilUtbetalingsperiodeApi = (
     periode: FraværPeriode,
-    aktivitetFravær: ApiAktivitet[]
+    aktivitetFravær: ApiAktivitet[],
 ): UtbetalingsperiodeApi => {
     return {
         fraOgMed: dateToISODate(periode.fraOgMed),

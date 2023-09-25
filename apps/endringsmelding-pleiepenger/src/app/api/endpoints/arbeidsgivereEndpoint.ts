@@ -19,7 +19,7 @@ export const arbeidsgivereEndpoint = {
             const { from, to } = periode;
             const { data } = await api.psb.get<AAregArbeidsgiver>(
                 ApiEndpointPsb.arbeidsgiver,
-                `ytelse=endringsmelding-pleiepenger&fra_og_med=${dateToISODate(from)}&til_og_med=${dateToISODate(to)}`
+                `ytelse=endringsmelding-pleiepenger&fra_og_med=${dateToISODate(from)}&til_og_med=${dateToISODate(to)}`,
             );
             const aaArbeidsgivere: Arbeidsgiver[] = [];
             (data.organisasjoner || []).forEach((a) => {

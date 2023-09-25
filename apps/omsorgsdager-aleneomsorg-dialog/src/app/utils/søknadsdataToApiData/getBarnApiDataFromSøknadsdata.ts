@@ -11,7 +11,7 @@ import { dateToISODate } from '@navikt/sif-common-utils/lib';
 
 export const mapRegistrertBarnToApiBarn = (
     registrertBarn: RegistrertBarn,
-    aleneomsorgTidspunkter: AleneomsorgTidspunkt
+    aleneomsorgTidspunkter: AleneomsorgTidspunkt,
 ): ApiBarn => {
     const { fornavn, etternavn, mellomnavn, aktørId } = registrertBarn;
 
@@ -51,7 +51,7 @@ export const mapAnnetBarnToApiBarn = (annetBarn: AnnetBarn, aleneomsorgTidspunkt
 
 export const getBarnApiDataFromSøknadsdata = (
     { omOmsorgenForBarn, tidspunktForAleneomsorg }: Søknadsdata,
-    registrertBarn: RegistrertBarn[]
+    registrertBarn: RegistrertBarn[],
 ): ApiBarn[] | undefined => {
     if (!omOmsorgenForBarn || !tidspunktForAleneomsorg) {
         return undefined;

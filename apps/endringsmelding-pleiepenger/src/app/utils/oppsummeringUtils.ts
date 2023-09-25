@@ -3,6 +3,7 @@ import {
     ArbeidstidApiData,
     LovbestemtFerieApiData,
     LovbestemtFeriePeriode,
+    Sak,
     SøknadApiData,
     Søknadsdata,
     ValgteEndringer,
@@ -11,11 +12,15 @@ import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummerin
 
 interface UkjentArbeidsforholdMetadata {
     antallUkjentArbeidsforhold: number;
-    antallAnsatt?: number;
-    antallIkkeAnsatt?: number;
+    antallUkjentAnsatt?: number;
+    antallUkjentIkkeAnsatt?: number;
 }
 interface ArbeidstidMetadata {
     endretArbeidstid?: boolean;
+}
+
+interface ArbeidsgiverIkkeIAaregMetadata {
+    antallArbeidsgivereIkkeIAareg: number;
 }
 
 interface LovbestemtFerieMetadata {
@@ -24,9 +29,12 @@ interface LovbestemtFerieMetadata {
     fjernetFerie?: boolean;
 }
 
-export type SøknadApiDataMetadata = LovbestemtFerieMetadata &
+export type SøknadApiDataMetadata = {
+    antallAktiviteterSomKanEndres: number;
+} & LovbestemtFerieMetadata &
     ArbeidstidMetadata &
-    UkjentArbeidsforholdMetadata & {
+    UkjentArbeidsforholdMetadata &
+    ArbeidsgiverIkkeIAaregMetadata & {
         valgtEndreArbeidstid: boolean;
         valgtEndreFerie: boolean;
     };
@@ -45,10 +53,11 @@ const getUkjentArbeidsforholdMetadata = (søknadsdata: Søknadsdata): UkjentArbe
     const ukjentArbeidsforhold = søknadsdata.ukjentArbeidsforhold?.arbeidsforhold || [];
     return {
         antallUkjentArbeidsforhold: ukjentArbeidsforhold.length,
-        antallAnsatt: ukjentArbeidsforhold.filter((a) => a.erAnsatt).length,
-        antallIkkeAnsatt: ukjentArbeidsforhold.filter((a) => a.erAnsatt === false).length,
+        antallUkjentAnsatt: ukjentArbeidsforhold.filter((a) => a.erAnsatt).length,
+        antallUkjentIkkeAnsatt: ukjentArbeidsforhold.filter((a) => a.erAnsatt === false).length,
     };
 };
+
 const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtFerieMetadata | undefined => {
     if (!lovbestemtFerie) {
         return {
@@ -65,19 +74,27 @@ const getFerieMetadata = (lovbestemtFerie?: LovbestemtFerieApiData): LovbestemtF
     };
 };
 
+const getArbeidsgiverIkkeIAaregMetadata = (sak: Sak): ArbeidsgiverIkkeIAaregMetadata => {
+    return {
+        antallArbeidsgivereIkkeIAareg: sak.arbeidsaktivitetMedUkjentArbeidsgiver.length,
+    };
+};
 export const getSøknadApiDataMetadata = (
     apiData: SøknadApiData,
     søknadsdata: Søknadsdata,
-    valgteEndringer: ValgteEndringer
+    valgteEndringer: ValgteEndringer,
+    sak: Sak,
 ): SøknadApiDataMetadata => {
     const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
 
     return {
         valgtEndreArbeidstid: valgteEndringer?.arbeidstid || false,
         valgtEndreFerie: valgteEndringer?.lovbestemtFerie || false,
+        antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
         ...getUkjentArbeidsforholdMetadata(søknadsdata),
         ...getFerieMetadata(lovbestemtFerie),
         ...getArbeidstidMetadata(arbeidstid),
+        ...getArbeidsgiverIkkeIAaregMetadata(sak),
     };
 };
 
@@ -88,7 +105,7 @@ export const getLovbestemtFerieOppsummeringInfo = (lovbestemtFerie: LovbestemtFe
                 ...ISODateRangeToDateRange(isoDateRange),
                 skalHaFerie: lovbestemtFerie.perioder[isoDateRange].skalHaFerie,
             };
-        }
+        },
     );
     const perioderLagtTil = perioder.filter((p) => p.skalHaFerie === true);
     const perioderFjernet = perioder.filter((p) => p.skalHaFerie === false);

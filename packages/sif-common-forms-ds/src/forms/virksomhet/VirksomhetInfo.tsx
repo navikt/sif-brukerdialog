@@ -1,18 +1,18 @@
 import React from 'react';
 import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import TextareaSummary from '@navikt/sif-common-core-ds/lib/atoms/textarea-summary/TextareaSummary';
-import { ISODateToDate } from '@navikt/sif-common-utils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import DatoSvar, { prettifyApiDate } from '../../components/summary/DatoSvar';
 import IntlLabelValue from '../../components/summary/IntlLabelValue';
 import JaNeiSvar from '../../components/summary/JaNeiSvar';
 import Sitat from '../../components/summary/Sitat';
 import SummaryBlock from '../../components/summary/SummaryBlock';
 import TallSvar from '../../components/summary/TallSvar';
-import { VirksomhetApiData } from './types';
-import { erVirksomhetRegnetSomNyoppstartet, harFiskerNæringstype } from './virksomhetUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { Næringstype, VirksomhetApiData } from './types';
+import { erVirksomhetRegnetSomNyoppstartet } from './virksomhetUtils';
 
 interface Props {
     virksomhet: VirksomhetApiData;
@@ -20,11 +20,10 @@ interface Props {
 
 const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape) => {
     const land = virksomhet.registrertIUtlandet ? virksomhet.registrertIUtlandet.landnavn : 'Norge';
-    const næringstyper = virksomhet.næringstyper
-        .map((næring) => intlHelper(intl, `sifForms.virksomhet.næringstype_${næring}`))
-        .join(', ');
+    const næringstype = intlHelper(intl, `sifForms.virksomhet.næringstype_${virksomhet.næringstype}`);
+
     const fiskerinfo =
-        harFiskerNæringstype(virksomhet.næringstyper) && virksomhet.fiskerErPåBladB !== undefined
+        virksomhet.næringstype === Næringstype.FISKE && virksomhet.fiskerErPåBladB !== undefined
             ? {
                   erPåBladB: virksomhet.fiskerErPåBladB !== undefined && virksomhet.fiskerErPåBladB === true,
               }
@@ -41,7 +40,7 @@ const renderVirksomhetSummary = (virksomhet: VirksomhetApiData, intl: IntlShape)
 
     return (
         <SummaryBlock header={virksomhet.navnPåVirksomheten} margin="none">
-            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstyper}. </IntlLabelValue>
+            <IntlLabelValue labelKey="sifForms.virksomhet.summary.næringstype">{næringstype}. </IntlLabelValue>
             {fiskerinfo && (
                 <div>
                     {fiskerinfo.erPåBladB === false ? (
@@ -97,7 +96,7 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                         id="sifForms.virksomhet.summary.yrkesaktiv.jaStartetDato"
                                         values={{
                                             dato: prettifyApiDate(
-                                                virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato
+                                                virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene.oppstartsdato,
                                             ),
                                         }}
                                     />
@@ -120,14 +119,14 @@ const VirksomhetSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
                                     <SummaryBlock
                                         header={intlHelper(
                                             intl,
-                                            'sifForms.virksomhet.summary.varigEndring.næringsinntekt'
+                                            'sifForms.virksomhet.summary.varigEndring.næringsinntekt',
                                         )}>
                                         <TallSvar verdi={virksomhet.varigEndring.inntektEtterEndring} />
                                     </SummaryBlock>
                                     <SummaryBlock
                                         header={intlHelper(
                                             intl,
-                                            'sifForms.virksomhet.summary.varigEndring.beskrivelse'
+                                            'sifForms.virksomhet.summary.varigEndring.beskrivelse',
                                         )}>
                                         <Sitat>
                                             <TextareaSummary text={virksomhet.varigEndring.forklaring} />
