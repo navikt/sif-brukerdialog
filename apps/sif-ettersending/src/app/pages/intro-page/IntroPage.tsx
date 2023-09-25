@@ -1,15 +1,14 @@
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
-import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import { ApplicationType } from '../../types/ApplicationType';
-import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
+import SoknadHeader from '@navikt/sif-common-soknad-ds/lib/components/soknad-header/SoknadHeader';
+import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToWelcomePage } from '../../utils/navigationUtils';
 
 enum PageFormField {
@@ -17,29 +16,10 @@ enum PageFormField {
 }
 
 interface PageFormValues {
-    [PageFormField.søknadstype]: ApplicationType;
+    [PageFormField.søknadstype]: Søknadstype;
 }
 
 const PageForm = getTypedFormComponents<PageFormField, PageFormValues, ValidationError>();
-
-const getSøknadstyper = (intl: IntlShape) => [
-    {
-        value: ApplicationType.pleiepengerBarn,
-        label: intlHelper(intl, 'page.intro.type.pleiepenger'),
-    },
-    ...(isFeatureEnabled(Feature.LIVETS_SLUTTFASE)
-        ? [
-              {
-                  value: ApplicationType.pleiepengerLivetsSluttfase,
-                  label: intlHelper(intl, 'page.intro.type.pleiepenger_livets_sluttfase'),
-              },
-          ]
-        : []),
-    {
-        value: ApplicationType.omsorgspenger,
-        label: intlHelper(intl, 'page.intro.type.omsorgspenger'),
-    },
-];
 
 const IntroPage = () => {
     const intl = useIntl();
@@ -67,7 +47,20 @@ const IntroPage = () => {
                                 <PageForm.RadioGroup
                                     name={PageFormField.søknadstype}
                                     legend={intlHelper(intl, 'page.intro.hvilkenTypeSøknad')}
-                                    radios={getSøknadstyper(intl)}
+                                    radios={[
+                                        {
+                                            value: Søknadstype.pleiepengerSyktBarn,
+                                            label: intlHelper(intl, 'page.intro.type.pleiepenger'),
+                                        },
+                                        {
+                                            value: Søknadstype.pleiepengerLivetsSluttfase,
+                                            label: intlHelper(intl, 'page.intro.type.pleiepenger_livets_sluttfase'),
+                                        },
+                                        {
+                                            value: Søknadstype.omsorgspenger,
+                                            label: intlHelper(intl, 'page.intro.type.omsorgspenger'),
+                                        },
+                                    ]}
                                     validate={getRequiredFieldValidator()}
                                 />
                             </Block>

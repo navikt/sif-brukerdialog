@@ -13,6 +13,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
@@ -22,7 +23,6 @@ import { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import HttpStatus from 'http-status-codes';
 import { purge, sendApplication } from '../../api/api';
-import { SKJEMANAVN } from '../../App';
 import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import routeConfig from '../../config/routeConfig';
@@ -111,7 +111,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         setSendingInProgress(true);
         try {
             await sendApplication(apiValues);
-            await logSoknadSent(SKJEMANAVN);
+            await logSoknadSent(PleiepengerSyktBarnApp.navn);
             if (harArbeidMenIngenFravær) {
                 await logSenderInnSøknadMedIngenFravær();
             }
@@ -127,7 +127,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
             } else {
-                await logSoknadFailed(SKJEMANAVN);
+                await logSoknadFailed(PleiepengerSyktBarnApp.navn);
                 appSentryLogger.logApiError(error);
                 navigateTo(routeConfig.ERROR_PAGE_ROUTE, navigate);
             }

@@ -1,7 +1,7 @@
 import { useSøknadContext } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { EndringType } from '@types';
-import { SKJEMANAVN } from '../App';
 import actionsCreator from '../søknad/context/action/actionCreator';
 
 export const useStartSøknad = () => {
@@ -12,7 +12,7 @@ export const useStartSøknad = () => {
     } = useSøknadContext();
 
     const startSøknad = (hvaSkalEndres: EndringType[] = [EndringType.arbeidstid]) => {
-        logSoknadStartet(SKJEMANAVN);
+        logSoknadStartet(EndringsmeldingPsbApp.navn);
         logInfo({
             antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
             erArbeidstaker: sak.arbeidsaktiviteter.arbeidstakerAktiviteter.length > 0,

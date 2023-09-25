@@ -16,9 +16,9 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
-import { ApplicationType } from '../../types/ApplicationType';
 import { Person } from '../../types/Person';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
+import { Søknadstype } from '../../types/Søknadstype';
 import { navigateToLoginPage } from '../../utils/navigationUtils';
 import { validateDocuments } from '../../validation/fieldValidations';
 import SoknadFormStep from '../SoknadFormStep';
@@ -26,7 +26,7 @@ import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
 
 interface Props {
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
     søker: Person;
     soknadId: string;
 }

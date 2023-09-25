@@ -1,24 +1,24 @@
+import { BodyLong } from '@navikt/ds-react';
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useFormikContext } from 'formik';
 import FormSection from '../../components/form-section/FormSection';
-import useEffectOnce from '../../hooks/useEffectOnce';
+import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
+import InfoList from '../../pages/welcoming-page/components/info-list/InfoList';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
-import { BodyLong } from '@navikt/ds-react';
-import InfoList from '../../pages/welcoming-page/components/info-list/InfoList';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export const cleanupNattevåkOgBeredskapStep = (values: SøknadFormValues): SøknadFormValues => {
     const cleanedValues = { ...values };
