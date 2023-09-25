@@ -35,7 +35,7 @@ import {
     getArbeidssituasjonSøknadsdataFromFormValues,
     visVernepliktSpørsmål,
 } from './arbeidssituasjonStepUtils';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { useState } from 'react';
 import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';

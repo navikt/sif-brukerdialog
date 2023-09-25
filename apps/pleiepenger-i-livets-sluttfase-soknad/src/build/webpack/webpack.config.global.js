@@ -24,7 +24,6 @@ const webpackConfig = {
             },
             {
                 test: /\.(ts|tsx)$/,
-                include: [path.resolve(__dirname, './../../app')],
                 use: [
                     {
                         loader: 'ts-loader',

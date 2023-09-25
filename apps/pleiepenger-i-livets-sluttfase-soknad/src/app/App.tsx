@@ -12,12 +12,10 @@ import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
+import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import './app.css';
-
-export const APPLICATION_KEY = 'pleiepenger-i-livets-sluttfase-soknad';
-export const SKJEMANAVN = 'Søknad om pleiepenger i livets sluttfase';
 
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -30,14 +28,14 @@ const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>
             <AmplitudeProvider
-                applicationKey={APPLICATION_KEY}
+                applicationKey={PleiepengerLivetsSluttApp.key}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName={SKJEMANAVN}
+                    appName={PleiepengerLivetsSluttApp.navn}
                     intlMessages={applicationIntlMessages}
-                    sentryKey={APPLICATION_KEY}
+                    sentryKey={PleiepengerLivetsSluttApp.key}
                     appStatus={{
-                        applicationKey: APPLICATION_KEY,
+                        applicationKey: PleiepengerLivetsSluttApp.key,
                         sanityConfig: {
                             projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
                             dataset: getEnvironmentVariable('APPSTATUS_DATASET'),

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { AxiosError } from 'axios';
-import { SKJEMANAVN } from '../App';
+import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
@@ -37,7 +37,7 @@ export const useSendSøknad = () => {
     };
 
     const onSøknadSendSuccess = async (kvitteringInfo?: KvitteringInfo) => {
-        await logSoknadSent(SKJEMANAVN);
+        await logSoknadSent(PleiepengerLivetsSluttApp.key);
         slettMellomlagring();
         setIsSubmitting(false);
         if (kvitteringInfo) {
