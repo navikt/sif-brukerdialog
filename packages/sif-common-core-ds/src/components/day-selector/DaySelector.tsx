@@ -4,13 +4,16 @@ import { useEffectOnce } from '@navikt/sif-common-hooks';
 import {
     DateRange,
     dateRangeToISODateRange,
+    getDatesInDateRange,
     getMonthsInDateRange,
     isDateInDateRange,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
-// import './daySelector.css';
+import './daySelector.css';
+import { DayPicker } from 'react-day-picker';
+import { nb } from 'date-fns/locale';
 
 dayjs.extend(isoWeeksInYear);
 dayjs.extend(isoWeek);
@@ -26,7 +29,7 @@ const getMonthKey = (date: Date): string => {
 
 type SelectedDaysInMonths = { [monthAndYear: string]: Date[] };
 
-export const getWeekDateRange = (weekNumber: number, month: Date): DateRange => {
+const getWeekDateRange = (weekNumber: number, month: Date): DateRange => {
     const from = dayjs(month).isoWeek(weekNumber).startOf('isoWeek').toDate();
     return {
         from,
@@ -34,17 +37,17 @@ export const getWeekDateRange = (weekNumber: number, month: Date): DateRange => 
     };
 };
 
-export const getSelectedDatesInWeek = (week: DateRange, dates: Date[]): Date[] => {
+const getSelectedDatesInWeek = (week: DateRange, dates: Date[]): Date[] => {
     return dates.filter((d) => isDateInDateRange(d, week));
 };
 
-export const removeDuplicateDatesInArray = (dates: Date[]) => {
+const removeDuplicateDatesInArray = (dates: Date[]) => {
     return dates.filter((date, index, self) => {
         return self.findIndex((d) => d.getTime() === date.getTime()) === index;
     });
 };
 
-export const removeDatesInArray = (dates: Date[], datesToRemove: Date[]) => {
+const removeDatesInArray = (dates: Date[], datesToRemove: Date[]) => {
     return dates.filter((date) => {
         return datesToRemove.some((d) => d.getTime() === date.getTime()) === false;
     });
@@ -66,20 +69,20 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
         });
     };
 
-    // const onWeekNumberClick = (weekNumber: number, month: Date) => {
-    //     const week = getWeekDateRange(weekNumber, month);
-    //     const datesSelectedInMonth = selectedDaysInMonths[getMonthKey(month)] || [];
-    //     const selectedDatesInWeek = getSelectedDatesInWeek(week, datesSelectedInMonth);
+    const onWeekNumberClick = (weekNumber: number, month: Date) => {
+        const week = getWeekDateRange(weekNumber, month);
+        const datesSelectedInMonth = selectedDaysInMonths[getMonthKey(month)] || [];
+        const selectedDatesInWeek = getSelectedDatesInWeek(week, datesSelectedInMonth);
 
-    //     if (selectedDatesInWeek.length === 5) {
-    //         onSelectDates(month, removeDatesInArray(datesSelectedInMonth, selectedDatesInWeek));
-    //     } else {
-    //         onSelectDates(
-    //             month,
-    //             removeDuplicateDatesInArray([...getDatesInDateRange(week, true), ...datesSelectedInMonth]),
-    //         );
-    //     }
-    // };
+        if (selectedDatesInWeek.length === 5) {
+            onSelectDates(month, removeDatesInArray(datesSelectedInMonth, selectedDatesInWeek));
+        } else {
+            onSelectDates(
+                month,
+                removeDuplicateDatesInArray([...getDatesInDateRange(week, true), ...datesSelectedInMonth]),
+            );
+        }
+    };
 
     return (
         <div className="daySelectorWrapper">
@@ -113,7 +116,7 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
                                     </Heading>
 
                                     <div className="navds-date__standalone-wrapper daySelector__month">
-                                        {/* <DayPicker
+                                        <DayPicker
                                             locale={nb}
                                             ISOWeek={true}
                                             weekStartsOn={1}
@@ -148,14 +151,14 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
                                                     return `Uke ${uke} - velg alle dager denne uken`;
                                                 },
                                             }}
-                                        /> */}
+                                        />
                                     </div>
                                     <DatePicker.Standalone
                                         locale="nb"
                                         // disableNavigation={true}
                                         // numberOfMonths={1}
                                         // showOutsideDays={true}
-                                        className="daySelector__month"
+                                        // className="daySelector__month"
                                         fromDate={month.from}
                                         toDate={month.to}
                                         fixedWeeks={false}

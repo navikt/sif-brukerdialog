@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
