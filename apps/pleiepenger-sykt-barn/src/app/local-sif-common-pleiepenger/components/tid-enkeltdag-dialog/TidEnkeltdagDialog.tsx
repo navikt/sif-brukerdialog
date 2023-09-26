@@ -1,5 +1,4 @@
 import { Modal } from '@navikt/ds-react';
-import { createPortal } from 'react-dom';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 import './styles/tidEnkeltdagDialog.less';
@@ -15,23 +14,19 @@ const TidEnkeltdagDialog = ({ open = false, formProps, dialogTitle }: TidEnkeltd
         return null;
     }
     return open ? (
-        <>
-            {createPortal(
-                <Modal
-                    open={open}
-                    onClose={formProps.onCancel}
-                    className="tidEnkeltdagDialog"
-                    header={{
-                        heading: `${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`,
-                        closeButton: true,
-                    }}>
-                    <Modal.Body>
-                        <TidEnkeltdagForm {...formProps} />
-                    </Modal.Body>
-                </Modal>,
-                document.body,
-            )}
-        </>
+        <Modal
+            open={open}
+            onClose={formProps.onCancel}
+            className="tidEnkeltdagDialog"
+            portal={true}
+            header={{
+                heading: `${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`,
+                closeButton: true,
+            }}>
+            <Modal.Body>
+                <TidEnkeltdagForm {...formProps} />
+            </Modal.Body>
+        </Modal>
     ) : null;
 };
 
