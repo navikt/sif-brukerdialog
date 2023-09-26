@@ -4,4 +4,6 @@ module.exports = {
         root: true,
         tsconfigRootDir: __dirname,
     },
+
+    extends: ['plugin:storybook/recommended'],
 };

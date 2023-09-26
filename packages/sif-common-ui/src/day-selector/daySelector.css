@@ -1,0 +1,50 @@
+.daySelectorWrapper .navds-accordion__header-content {
+    width: 100%;
+}
+.daySelector {
+    max-width: 30rem;
+}
+
+.daySelector__month .rdp-caption {
+    display: none;
+}
+.daySelector__hideWeekend .rdp-head .rdp-head_cell:nth-child(7),
+.daySelector__hideWeekend .rdp-head .rdp-head_cell:nth-child(8),
+.daySelector__hideWeekend .rdp-tbody .rdp-cell:nth-child(7),
+.daySelector__hideWeekend .rdp-tbody .rdp-cell:nth-child(8) {
+    display: none;
+}
+
+.rdp-tbody .rdp-row .rdp-cell:first-child {
+    position: relative;
+    padding-right: 0.5rem;
+    font-size: var(--a-font-size-small);
+}
+.rdp-tbody .rdp-row .rdp-cell:first-child button:after {
+    display: block;
+    content: '';
+    position: absolute;
+    right: 0.25rem;
+    top: -1px;
+    bottom: -1px;
+    width: 2px;
+    background-color: #cbcfd5;
+}
+
+.daySelector__month .navds-date {
+    padding: 0;
+}
+.daySelector__month {
+    margin-bottom: 1rem;
+}
+
+.daySelector__month .navds-date__standalone-wrapper {
+    width: 100%;
+}
+
+.daySelectorHeader {
+    max-width: 30rem;
+}
+.daySelectorHeader__title {
+    text-transform: capitalize;
+}
