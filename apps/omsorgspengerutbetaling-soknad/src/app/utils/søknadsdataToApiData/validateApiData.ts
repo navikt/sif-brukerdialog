@@ -25,7 +25,7 @@ interface ApiDataValidationError {
 /** Ikke tatt i bruk enda */
 export const validateApiData = (
     apiData: SøknadApiData | undefined,
-    intl: IntlShape
+    intl: IntlShape,
 ): undefined | ApiDataValidationError => {
     if (!apiData) {
         return {

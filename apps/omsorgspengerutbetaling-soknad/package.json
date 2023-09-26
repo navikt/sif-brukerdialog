@@ -51,7 +51,6 @@
         "@babel/preset-react": "7.22.15",
         "@babel/preset-typescript": "7.23.0",
         "@types/jest": "29.5.5",
-        "@types/lodash": "4.14.198",
         "@types/object-hash": "3.0.4",
         "@types/react": "18.2.21",
         "@types/react-dom": "18.2.7",

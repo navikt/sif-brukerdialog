@@ -14,7 +14,7 @@ export const mapBostedUtlandToApiData = (opphold: BostedUtland, locale: string):
 
 export const getMedlemskapApiDataFromSøknadsdata = (
     locale: string,
-    medlemskapSøknadsdata?: MedlemskapSøknadsdata
+    medlemskapSøknadsdata?: MedlemskapSøknadsdata,
 ): UtenlandsoppholdApiData[] => {
     if (medlemskapSøknadsdata === undefined) {
         throw Error('medlemskapSøknadsdata undefined');
@@ -29,7 +29,7 @@ export const getMedlemskapApiDataFromSøknadsdata = (
                 medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd,
                 medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd,
-                locale
+                locale,
             );
 
         case 'harBodd':
@@ -38,7 +38,7 @@ export const getMedlemskapApiDataFromSøknadsdata = (
                 medlemskapSøknadsdata.utenlandsoppholdSiste12Mnd,
                 medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 [],
-                locale
+                locale,
             );
         case 'skalBo':
             return settInnBosteder(
@@ -46,7 +46,7 @@ export const getMedlemskapApiDataFromSøknadsdata = (
                 [],
                 medlemskapSøknadsdata.skalBoUtenforNorgeNeste12Mnd,
                 medlemskapSøknadsdata.utenlandsoppholdNeste12Mnd,
-                locale
+                locale,
             );
     }
 };
@@ -56,7 +56,7 @@ const settInnBosteder = (
     utenlandsoppholdSiste12Mnd: Utenlandsopphold[],
     skalBoUtenforNorgeNeste12Mnd: boolean,
     utenlandsoppholdNeste12Mnd: Utenlandsopphold[],
-    locale: string
+    locale: string,
 ): UtenlandsoppholdApiData[] => {
     const mappedSiste12Mnd = harBoddUtenforNorgeSiste12Mnd
         ? utenlandsoppholdSiste12Mnd.map((utenlandsopphold: Utenlandsopphold) => {

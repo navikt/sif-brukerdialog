@@ -154,6 +154,7 @@ const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
         cy.injectAxe();
         getAktivitet().within(() => {
             cy.get('[data-testid=dateRangeAccordion_0]').click();
+            getUkeRow(ukenummer).should('be.visible');
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
