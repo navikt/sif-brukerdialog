@@ -83,6 +83,8 @@ const leggTilFerie = (submit?: boolean) => {
         });
 
         fyllUtFerieDialog('20.11.2022', '25.11.2022');
+        cy.wait(300);
+
         cy.checkA11y();
 
         getTestElement('dateRangeAccordion_0').within(() => {
@@ -153,7 +155,7 @@ const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
         cy.injectAxe();
         getAktivitet().within(() => {
-            cy.get('[data-testid=dateRangeAccordion_0]').click();
+            cy.get('[data-testid=dateRangeAccordion_0]').should('be.visible1').wait(200).click();
             getUkeRow(ukenummer).should('be.visible');
             getUkeRow(ukenummer).within(() => {
                 expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
