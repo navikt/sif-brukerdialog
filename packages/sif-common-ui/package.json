@@ -10,10 +10,11 @@
         "react-scripts": "5.0.1"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script copy-files",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "build": "npm-run-all build-package",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib"
+        "compile-lib-script": "tsc -p tsconfig.json",
+        "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
+        "lint": "eslint ./src --ext ts,tsx"
     }
 }

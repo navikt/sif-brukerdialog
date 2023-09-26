@@ -48,7 +48,7 @@ export const summarizeDurationInDurationWeekdays = (weekdays: DurationWeekdays):
 
 export const getDurationForISOWeekdayNumber = (
     durationWeekdays: DurationWeekdays,
-    isoWeekday: number
+    isoWeekday: number,
 ): Duration | undefined => {
     switch (isoWeekday) {
         case 1:
@@ -67,7 +67,7 @@ export const getDurationForISOWeekdayNumber = (
 
 export const getNumberDurationForWeekday = (
     durationWeekdays: DurationWeekdays,
-    weekday: Weekday
+    weekday: Weekday,
 ): NumberDuration | undefined => {
     switch (weekday) {
         case 'monday':
@@ -161,7 +161,7 @@ export const hasWeekdaysWithoutDuration = (durationWeekdays: DurationWeekdays): 
 
 export const removeDurationWeekdaysNotInDurationWeekdays = (
     weekdays1: DurationWeekdays,
-    weekdays2: DurationWeekdays
+    weekdays2: DurationWeekdays,
 ): DurationWeekdays => {
     return {
         [Weekday.monday]: weekdays2.monday ? weekdays1.monday : undefined,
@@ -206,7 +206,7 @@ export const removeDurationWeekdaysWithNoDuration = ({
  */
 export const getDateDurationMapFromDurationWeekdaysInDateRange = (
     dateRange: DateRange,
-    durationWeekdays: DurationWeekdays
+    durationWeekdays: DurationWeekdays,
 ): DateDurationMap => {
     const resultMap: DateDurationMap = {};
     const weekdays = getISOWeekdaysFromDurationWeekdays(durationWeekdays);

@@ -42,14 +42,15 @@
         "url": "git+https://github.com/navikt/sif-common-sentry.git"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script",
-        "clean": "rm -rf node_modules lib",
+        "build": "npm-run-all build-package",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "dev": "yarn compile-lib-script-watch",
-        "test": "react-scripts test --watchAll=false --env=jsdom",
-        "test-watch": "react-scripts test"
+        "lint": "eslint ./src --ext ts,tsx",
+        "test-watch": "react-scripts test",
+        "test": "react-scripts test --watchAll=false --env=jsdom"
     }
 }

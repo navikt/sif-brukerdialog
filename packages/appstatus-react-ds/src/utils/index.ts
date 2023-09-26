@@ -16,7 +16,7 @@ const hasLocaleValue = (obj?: LocaleObject, locale: SanityLocale = sanityDefault
 
 export const getLocaleObject = (
     obj: LocaleObject | undefined,
-    locale: SanityLocale = sanityDefaultLocale
+    locale: SanityLocale = sanityDefaultLocale,
 ): object | string | undefined =>
     obj && hasLocaleValue(obj, locale) ? obj[locale] || obj[sanityDefaultLocale] : undefined;
 
@@ -38,7 +38,7 @@ export const getOptionalLocaleString = ({
 
 export const getLocaleBlockContent = (
     obj: LocaleObject | undefined,
-    locale: SanityLocale = sanityDefaultLocale
+    locale: SanityLocale = sanityDefaultLocale,
 ): BlockContentType | undefined => (obj && hasLocaleValue(obj, locale) ? obj[locale] || obj[sanityDefaultLocale] : []);
 
 export const getMessage = (messages?: SanityStatusMessage[]): SanityStatusMessage | undefined =>

@@ -202,15 +202,15 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                                             labels={{
                                                 addLabel: intlHelper(
                                                     intl,
-                                                    'utenlandsopphold.form.perioderBarnetErInnlag.addLabel'
+                                                    'utenlandsopphold.form.perioderBarnetErInnlag.addLabel',
                                                 ),
                                                 modalTitle: intlHelper(
                                                     intl,
-                                                    'utenlandsopphold.form.perioderBarnetErInnlag.formTitle'
+                                                    'utenlandsopphold.form.perioderBarnetErInnlag.formTitle',
                                                 ),
                                                 listTitle: intlHelper(
                                                     intl,
-                                                    'utenlandsopphold.form.perioderBarnetErInnlag.listTitle'
+                                                    'utenlandsopphold.form.perioderBarnetErInnlag.listTitle',
                                                 ),
                                             }}
                                         />
@@ -230,7 +230,7 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                                                         value: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
                                                         label: intlHelper(
                                                             intl,
-                                                            `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE}`
+                                                            `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE}`,
                                                         ),
                                                     },
                                                     {
@@ -238,14 +238,14 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                                                         label: intlHelper(
                                                             intl,
                                                             `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.INNLAGT_DEKKET_ANNET_LAND}`,
-                                                            { land: getCountryName(landkode, intl.locale) }
+                                                            { land: getCountryName(landkode, intl.locale) },
                                                         ),
                                                     },
                                                     {
                                                         value: UtenlandsoppholdÅrsak.ANNET,
                                                         label: intlHelper(
                                                             intl,
-                                                            `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.ANNET}`
+                                                            `utenlandsopphold.form.årsak.${UtenlandsoppholdÅrsak.ANNET}`,
                                                         ),
                                                     },
                                                 ]}

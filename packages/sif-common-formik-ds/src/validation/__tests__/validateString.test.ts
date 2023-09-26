@@ -49,7 +49,7 @@ describe(`validateString`, () => {
         });
         it(`returns ${ValidateStringError.stringContainsUnicodeChacters} when string failes regexp test()`, () => {
             expect(getStringValidator({ disallowUnicodeCharacters: true })(`${unicodeChar}asd`)).toBe(
-                ValidateStringError.stringContainsUnicodeChacters
+                ValidateStringError.stringContainsUnicodeChacters,
             );
         });
     });

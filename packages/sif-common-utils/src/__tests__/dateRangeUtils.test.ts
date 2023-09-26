@@ -137,7 +137,7 @@ describe('dateRangeUtils', () => {
         });
         it('detects no collision when dates is outside dateranges', () => {
             expect(
-                datesCollideWithDateRanges([dateBefore, dateBetween, dateAfter], [dateRange1, dateRange2])
+                datesCollideWithDateRanges([dateBefore, dateBetween, dateAfter], [dateRange1, dateRange2]),
             ).toBeFalsy();
         });
         it('detects collision when dates is inside one of the dateranges', () => {
@@ -221,7 +221,7 @@ describe('dateRangeUtils', () => {
         });
         it('returns correct week daterange when the week spans two years', () => {
             expect(dateRangeToISODateRange(getIsoWeekDateRangeForDate(ISODateToDate('2023-01-01')))).toEqual(
-                `2022-12-26/2023-01-01`
+                `2022-12-26/2023-01-01`,
             );
         });
     });
@@ -341,7 +341,7 @@ describe('dateRangeUtils', () => {
                     from: ISODateToDate('2020-01-01'),
                     to: ISODateToDate('2020-02-15'),
                 },
-                true
+                true,
             );
             expect(result.length).toEqual(33);
             expect(dateToISODate(result[0])).toEqual('2020-01-01');
@@ -412,14 +412,14 @@ describe('dateRangeUtils', () => {
                         from: ISODateToDate('2021-02-05'),
                         to: ISODateToDate('2021-02-06'),
                     },
-                    true
+                    true,
                 );
                 const result2 = getNumberOfDaysInDateRange(
                     {
                         from: ISODateToDate('2021-02-05'),
                         to: ISODateToDate('2021-02-07'),
                     },
-                    true
+                    true,
                 );
                 expect(result).toBe(1);
                 expect(result2).toBe(1);
@@ -430,7 +430,7 @@ describe('dateRangeUtils', () => {
                         from: ISODateToDate('2021-02-05'),
                         to: ISODateToDate('2021-02-08'),
                     },
-                    true
+                    true,
                 );
                 expect(result).toBe(2);
             });
@@ -486,7 +486,7 @@ describe('dateRangeUtils', () => {
                 dateRangeToISODateRange({
                     from: ISODateToDate('2021-01-01'),
                     to: ISODateToDate('2021-01-28'),
-                })
+                }),
             ).toEqual('2021-01-01/2021-01-28');
         });
     });
@@ -582,8 +582,8 @@ describe('dateRangeUtils', () => {
                             to: dayjs().subtract(1, 'day').toDate(),
                         },
                     ],
-                    range
-                )
+                    range,
+                ),
             ).toBeTruthy();
         });
         it('should return true if ranges are after valid range', () => {
@@ -596,8 +596,8 @@ describe('dateRangeUtils', () => {
                             to: dayjs().add(4, 'week').toDate(),
                         },
                     ],
-                    range
-                )
+                    range,
+                ),
             ).toBeTruthy();
         });
     });
@@ -821,7 +821,7 @@ describe('dateRangeUtils', () => {
         it('returns correct dates if dateRange is within limits', () => {
             const dateRange: ISODateRange = '2022-02-01/2022-02-10';
             const result = dateRangeToISODateRange(
-                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange))
+                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange)),
             );
             expect(result).toEqual(dateRange);
         });
@@ -829,22 +829,22 @@ describe('dateRangeUtils', () => {
             const result = dateRangeToISODateRange(
                 limitDateRangeToDateRange(
                     ISODateRangeToDateRange(limitDateRange),
-                    ISODateRangeToDateRange(limitDateRange)
-                )
+                    ISODateRangeToDateRange(limitDateRange),
+                ),
             );
             expect(result).toEqual(limitDateRange);
         });
         it('returns correct dates if dateRange exceeds start of limit', () => {
             const dateRange: ISODateRange = '2022-01-01/2022-02-10';
             const result = dateRangeToISODateRange(
-                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange))
+                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange)),
             );
             expect(result).toEqual('2022-01-15/2022-02-10');
         });
         it('returns correct dates if dateRange exceeds end of limit', () => {
             const dateRange: ISODateRange = '2022-02-01/2022-03-10';
             const result = dateRangeToISODateRange(
-                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange))
+                limitDateRangeToDateRange(ISODateRangeToDateRange(dateRange), ISODateRangeToDateRange(limitDateRange)),
             );
             expect(result).toEqual('2022-02-01/2022-02-15');
         });
@@ -865,7 +865,7 @@ describe('dateRangeUtils', () => {
                     ISODateRangeToDateRange(dr2),
                     ISODateRangeToDateRange(drEtter),
                 ],
-                limitDateRange
+                limitDateRange,
             );
             expect(result.length).toEqual(2);
             expect(result[0]).toEqual(ISODateRangeToDateRange(dr1));
@@ -876,7 +876,7 @@ describe('dateRangeUtils', () => {
             const drEnd: ISODateRange = '2022-02-16/2022-02-25';
             const result = getDateRangesWithinDateRange(
                 [ISODateRangeToDateRange(drStart), ISODateRangeToDateRange(drEnd)],
-                limitDateRange
+                limitDateRange,
             );
             expect(result.length).toEqual(2);
             expect(result[0]).toEqual(ISODateRangeToDateRange('2022-02-10/2022-02-15'));
@@ -888,7 +888,7 @@ describe('dateRangeUtils', () => {
             const result = getDateRangesWithinDateRange(
                 [ISODateRangeToDateRange(drStart), ISODateRangeToDateRange(drEnd)],
                 limitDateRange,
-                false
+                false,
             );
             expect(result.length).toEqual(2);
             expect(result[0]).toEqual(ISODateRangeToDateRange(drStart));

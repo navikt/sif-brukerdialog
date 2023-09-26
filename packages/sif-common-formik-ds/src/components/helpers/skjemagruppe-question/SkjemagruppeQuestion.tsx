@@ -5,7 +5,7 @@ import { TestProps } from '../../../types';
 
 const SkjemagruppeQuestion = forwardRef(function SkjemagruppeQuestion(
     props: FieldsetProps & TestProps,
-    ref: React.Ref<any>
+    ref: React.Ref<any>,
 ) {
     const { id, legend, ...rest } = props;
     const titleId = `${id || uuid()}__title`;

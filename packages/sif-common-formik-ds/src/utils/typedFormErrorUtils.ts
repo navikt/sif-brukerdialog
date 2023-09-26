@@ -18,7 +18,7 @@ export const getErrorPropForFormikInput = ({
 
 export const getErrorForField = <FormValues>(
     elementName: string,
-    errors: FormikErrors<FormValues>
+    errors: FormikErrors<FormValues>,
 ): any | undefined => {
     const fieldErrors: Array<string> | string = getIn(errors, elementName);
     if (fieldErrors === null) {

@@ -14,7 +14,7 @@ type Options = {
 
 export const getDateRangeText = (
     { from, to }: DateRange,
-    options: Options = { compact: true, includeDayName: false }
+    options: Options = { compact: true, includeDayName: false },
 ): string => {
     const { includeDayName, compact } = options;
     const fromString = getDateText(from, compact, includeDayName);

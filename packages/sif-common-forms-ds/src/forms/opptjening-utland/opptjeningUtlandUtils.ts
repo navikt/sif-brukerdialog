@@ -12,7 +12,7 @@ const isValidOpptjeningUtland = (opptjeningUtland: Partial<OpptjeningUtland>): o
 
 const mapFormValuesToOpptjeningUtland = (
     formValues: OpptjeningUtlandFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<OpptjeningUtland> => {
     return {
         ...formValues,
