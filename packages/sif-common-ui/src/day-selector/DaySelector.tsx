@@ -1,16 +1,19 @@
-import { Accordion, Alert, BodyShort, DatePicker, Heading } from '@navikt/ds-react';
+import { Accordion, Alert, BodyShort, Heading } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import {
     DateRange,
     dateRangeToISODateRange,
+    getDatesInDateRange,
     getMonthsInDateRange,
     isDateInDateRange,
 } from '@navikt/sif-common-utils/lib';
+import { nb } from 'date-fns/locale';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
-// import './daySelector.css';
+import './daySelector.css';
 
 dayjs.extend(isoWeeksInYear);
 dayjs.extend(isoWeek);
@@ -66,20 +69,20 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
         });
     };
 
-    // const onWeekNumberClick = (weekNumber: number, month: Date) => {
-    //     const week = getWeekDateRange(weekNumber, month);
-    //     const datesSelectedInMonth = selectedDaysInMonths[getMonthKey(month)] || [];
-    //     const selectedDatesInWeek = getSelectedDatesInWeek(week, datesSelectedInMonth);
+    const onWeekNumberClick = (weekNumber: number, month: Date) => {
+        const week = getWeekDateRange(weekNumber, month);
+        const datesSelectedInMonth = selectedDaysInMonths[getMonthKey(month)] || [];
+        const selectedDatesInWeek = getSelectedDatesInWeek(week, datesSelectedInMonth);
 
-    //     if (selectedDatesInWeek.length === 5) {
-    //         onSelectDates(month, removeDatesInArray(datesSelectedInMonth, selectedDatesInWeek));
-    //     } else {
-    //         onSelectDates(
-    //             month,
-    //             removeDuplicateDatesInArray([...getDatesInDateRange(week, true), ...datesSelectedInMonth]),
-    //         );
-    //     }
-    // };
+        if (selectedDatesInWeek.length === 5) {
+            onSelectDates(month, removeDatesInArray(datesSelectedInMonth, selectedDatesInWeek));
+        } else {
+            onSelectDates(
+                month,
+                removeDuplicateDatesInArray([...getDatesInDateRange(week, true), ...datesSelectedInMonth]),
+            );
+        }
+    };
 
     return (
         <div className="daySelectorWrapper">
@@ -113,7 +116,7 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
                                     </Heading>
 
                                     <div className="navds-date__standalone-wrapper daySelector__month">
-                                        {/* <DayPicker
+                                        <DayPicker
                                             locale={nb}
                                             ISOWeek={true}
                                             weekStartsOn={1}
@@ -148,9 +151,9 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
                                                     return `Uke ${uke} - velg alle dager denne uken`;
                                                 },
                                             }}
-                                        /> */}
+                                        />
                                     </div>
-                                    <DatePicker.Standalone
+                                    {/* <DatePicker.Standalone
                                         locale="nb"
                                         // disableNavigation={true}
                                         // numberOfMonths={1}
@@ -168,7 +171,7 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
                                         // formatters={{
                                         //     formatWeekNumber: (weekNumber) => `${weekNumber}`,
                                         // }}
-                                    />
+                                    /> */}
 
                                     <Alert variant="info" size="small" inline={true}>
                                         <BodyShort size="small">

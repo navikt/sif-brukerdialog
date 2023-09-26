@@ -9,7 +9,8 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "5.5.0",
         "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-utils": "3.40.0"
+        "@navikt/sif-common-utils": "3.40.0",
+        "react-day-picker": "8.8.2"
     },
     "devDependencies": {
         "@storybook/addon-a11y": "7.4.5",
