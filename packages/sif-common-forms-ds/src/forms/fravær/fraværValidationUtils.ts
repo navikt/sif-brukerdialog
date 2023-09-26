@@ -49,7 +49,7 @@ export const validateNotHelgedag = (maybeDate: string | undefined): FraværField
 export const validateFraværPeriodeCollision = (
     from: Date | undefined,
     to: Date | undefined,
-    ranges: DateRange[] | undefined
+    ranges: DateRange[] | undefined,
 ): FraværFieldValidationErrors | undefined => {
     if (!from || !to || (ranges || []).length === 0) {
         return undefined;
@@ -61,7 +61,7 @@ export const validateFraværPeriodeCollision = (
 
 export const validateFraOgMedForCollision = (
     date: Date | undefined,
-    ranges: DateRange[] | undefined
+    ranges: DateRange[] | undefined,
 ): FraværFieldValidationErrors | undefined => {
     if (!date || (ranges || []).length === 0) {
         return undefined;
@@ -73,7 +73,7 @@ export const validateFraOgMedForCollision = (
 
 export const validateTilOgMedForCollision = (
     date: Date | undefined,
-    ranges: DateRange[] | undefined
+    ranges: DateRange[] | undefined,
 ): FraværFieldValidationErrors | undefined => {
     if (!date || (ranges || []).length === 0) {
         return undefined;
@@ -85,7 +85,7 @@ export const validateTilOgMedForCollision = (
 
 export const validateFraværDagCollision = (
     date: Date | undefined,
-    ranges: DateRange[] | undefined
+    ranges: DateRange[] | undefined,
 ): FraværFieldValidationErrors | undefined => {
     if (!date || (ranges || []).length === 0) {
         return undefined;
@@ -97,7 +97,7 @@ export const validateFraværDagCollision = (
 
 export const validateNoCollisions = (
     fraværDager: FraværDag[],
-    fraværPerioder: FraværPeriode[]
+    fraværPerioder: FraværPeriode[],
 ): FraværFieldValidationErrors.dager_overlapper_med_andre_dager | undefined => {
     if (fraværPerioder.length === 0 && fraværDager.length === 0) {
         return undefined;

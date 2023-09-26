@@ -8,7 +8,7 @@ import { dateToISODate } from '@navikt/sif-common-utils/lib/dateUtils';
 const mapRegistrertBarnToApiBarn = (
     registrertBarn: RegistrertBarn,
     harDekketTiFørsteDagerSelv?: boolean,
-    harUtvidetRettFor?: string[]
+    harUtvidetRettFor?: string[],
 ): ApiBarn => {
     return {
         identitetsnummer: undefined,
@@ -26,7 +26,7 @@ const mapRegistrertBarnToApiBarn = (
 const mapAndreBarnToApiBarn = (
     annetBarn: AnnetBarn,
     harDekketTiFørsteDagerSelv?: boolean,
-    harUtvidetRettFor?: string[]
+    harUtvidetRettFor?: string[],
 ): ApiBarn => {
     return {
         aktørId: undefined,
@@ -43,7 +43,7 @@ const mapAndreBarnToApiBarn = (
 
 export const getDineBarnApiDataFromSøknadsdata = (
     dineBarnSøknadsdata: DineBarnSøknadsdata,
-    registrertBarn: RegistrertBarn[]
+    registrertBarn: RegistrertBarn[],
 ): ApiBarn[] => {
     if (dineBarnSøknadsdata === undefined) {
         throw Error('dineBarnSøknadsdata undefined');
@@ -55,16 +55,16 @@ export const getDineBarnApiDataFromSøknadsdata = (
             return [
                 ...andreBarn.map((barn) => mapAndreBarnToApiBarn(barn, dineBarnSøknadsdata.harDekketTiFørsteDagerSelv)),
                 ...registrertBarn.map((barn) =>
-                    mapRegistrertBarnToApiBarn(barn, dineBarnSøknadsdata.harDekketTiFørsteDagerSelv)
+                    mapRegistrertBarnToApiBarn(barn, dineBarnSøknadsdata.harDekketTiFørsteDagerSelv),
                 ),
             ];
         case 'alleBarnEldre12år':
             return [
                 ...andreBarn.map((barn) =>
-                    mapAndreBarnToApiBarn(barn, undefined, dineBarnSøknadsdata.harUtvidetRettFor)
+                    mapAndreBarnToApiBarn(barn, undefined, dineBarnSøknadsdata.harUtvidetRettFor),
                 ),
                 ...registrertBarn.map((barn) =>
-                    mapRegistrertBarnToApiBarn(barn, undefined, dineBarnSøknadsdata.harUtvidetRettFor)
+                    mapRegistrertBarnToApiBarn(barn, undefined, dineBarnSøknadsdata.harUtvidetRettFor),
                 ),
             ];
     }

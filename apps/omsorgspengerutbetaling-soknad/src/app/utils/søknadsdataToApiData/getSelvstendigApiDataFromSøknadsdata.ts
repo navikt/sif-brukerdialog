@@ -3,7 +3,7 @@ import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidSe
 import { VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
 
 export const getSelvstendigApiDataFromSøknadsdata = (
-    selvstendig: ArbeidSelvstendigSøknadsdata
+    selvstendig: ArbeidSelvstendigSøknadsdata,
 ): VirksomhetApiData | undefined => {
     switch (selvstendig.type) {
         case 'erIkkeSN':

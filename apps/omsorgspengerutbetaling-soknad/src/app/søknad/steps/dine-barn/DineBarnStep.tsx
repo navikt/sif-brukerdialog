@@ -94,7 +94,7 @@ const DineBarnStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState({ ...state, tempFormData: undefined });
-        }
+        },
     );
 
     const { persistTempFormValues } = usePersistTempFormValues();
@@ -179,15 +179,15 @@ const DineBarnStep = () => {
                                             labels={{
                                                 addLabel: intlHelper(
                                                     intl,
-                                                    'step.dineBarn.annetBarnListAndDialog.addLabel'
+                                                    'step.dineBarn.annetBarnListAndDialog.addLabel',
                                                 ),
                                                 listTitle: intlHelper(
                                                     intl,
-                                                    'step.dineBarn.annetBarnListAndDialog.listTitle'
+                                                    'step.dineBarn.annetBarnListAndDialog.listTitle',
                                                 ),
                                                 modalTitle: intlHelper(
                                                     intl,
-                                                    'step.dineBarn.annetBarnListAndDialog.modalTitle'
+                                                    'step.dineBarn.annetBarnListAndDialog.modalTitle',
                                                 ),
                                             }}
                                             maxDate={dateToday}
@@ -195,7 +195,7 @@ const DineBarnStep = () => {
                                             disallowedFødselsnumre={[...[søker.fødselsnummer], ...andreBarnFnr]}
                                             aldersGrenseText={intlHelper(
                                                 intl,
-                                                'step.dineBarn.formLeggTilBarn.aldersGrenseInfo'
+                                                'step.dineBarn.formLeggTilBarn.aldersGrenseInfo',
                                             )}
                                             visBarnTypeValg={true}
                                             onAfterChange={(values) => oppdatereAndreBarn(values)}
@@ -214,11 +214,11 @@ const DineBarnStep = () => {
                                                     registrerteBarn.length + andreBarn.length === 1
                                                         ? intlHelper(
                                                               intl,
-                                                              'step.dineBarn.harFåttEkstraOmsorgsdager.spm.ettBarn'
+                                                              'step.dineBarn.harFåttEkstraOmsorgsdager.spm.ettBarn',
                                                           )
                                                         : intlHelper(
                                                               intl,
-                                                              'step.dineBarn.harFåttEkstraOmsorgsdager.spm'
+                                                              'step.dineBarn.harFåttEkstraOmsorgsdager.spm',
                                                           )
                                                 }
                                                 validate={getYesOrNoValidator()}
@@ -233,7 +233,7 @@ const DineBarnStep = () => {
                                                             <CheckboxGroup
                                                                 legend={intlHelper(
                                                                     intl,
-                                                                    'step.dineBarn.utvidetRettFor.spm'
+                                                                    'step.dineBarn.utvidetRettFor.spm',
                                                                 )}
                                                                 name={DineBarnFormFields.harUtvidetRettFor}
                                                                 checkboxes={barnOptions}
@@ -242,8 +242,8 @@ const DineBarnStep = () => {
                                                                         cleanHarUtvidetRettFor(
                                                                             value,
                                                                             andreBarn,
-                                                                            registrerteBarn
-                                                                        )
+                                                                            registrerteBarn,
+                                                                        ),
                                                                     )
                                                                 }
                                                                 data-testid="harUtvidetRettFor"
@@ -283,7 +283,7 @@ const DineBarnStep = () => {
                                             <ContentWithHeader
                                                 header={intlHelper(
                                                     intl,
-                                                    'step.dineBarn.bekrefterDektTiDagerSelv.label'
+                                                    'step.dineBarn.bekrefterDektTiDagerSelv.label',
                                                 )}>
                                                 <ConfirmationCheckbox
                                                     label={intlHelper(intl, 'step.dineBarn.bekrefterDektTiDagerSelv')}

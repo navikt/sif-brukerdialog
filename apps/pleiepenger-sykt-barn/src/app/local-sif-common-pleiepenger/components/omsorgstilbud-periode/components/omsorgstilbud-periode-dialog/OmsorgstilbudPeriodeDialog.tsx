@@ -6,7 +6,6 @@ import OmsorgstilbudPeriodeForm, {
     OmsorgstilbudPeriodeFormProps,
 } from '../omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 import './omsorgstilbudPeriodeDialog.less';
-import { createPortal } from 'react-dom';
 
 interface Props {
     isOpen: boolean;
@@ -15,23 +14,21 @@ interface Props {
 
 const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ formProps, isOpen }) => {
     const intl = useIntl();
-    return isOpen
-        ? createPortal(
-              <Modal
-                  open={isOpen}
-                  onClose={formProps.onCancel}
-                  className="omsorgstilbudPeriodeDialog"
-                  header={{
-                      heading: intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel'),
-                      closeButton: true,
-                  }}>
-                  <Modal.Body>
-                      <OmsorgstilbudPeriodeForm {...formProps} />
-                  </Modal.Body>
-              </Modal>,
-              document.body,
-          )
-        : null;
+    return isOpen ? (
+        <Modal
+            open={isOpen}
+            onClose={formProps.onCancel}
+            className="omsorgstilbudPeriodeDialog"
+            portal={true}
+            header={{
+                heading: intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel'),
+                closeButton: true,
+            }}>
+            <Modal.Body>
+                <OmsorgstilbudPeriodeForm {...formProps} />
+            </Modal.Body>
+        </Modal>
+    ) : null;
 };
 
 export default OmsorgstilbudPeriodeDialog;

@@ -17,7 +17,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
     const intl = useIntl();
     const legeerklæringer = legeerklæringSøknadsdata
         ? legeerklæringSøknadsdata.vedlegg.filter(
-              (v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url))
+              (v) => v.url && apiData.vedlegg.includes(getAttachmentURLBackend(v.url)),
           )
         : [];
 

@@ -27,7 +27,7 @@ export interface QuestionConfig<Payload, QuestionKeys, ErrorFormat = any> {
 const isQuestionVisible = <Payload, QuestionKeys, ErrorFormat>(
     questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
     question: QuestionKeys,
-    payload: Payload
+    payload: Payload,
 ): boolean => {
     const config = questions[question as any];
     if (!config) {
@@ -49,7 +49,7 @@ const isQuestionVisible = <Payload, QuestionKeys, ErrorFormat>(
 const isQuestionAnswered = <Payload, QuestionKeys, ErrorFormat>(
     questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
     question: QuestionKeys,
-    payload: Payload
+    payload: Payload,
 ): boolean => {
     const config = questions[question as any];
     if (!config || !config.isAnswered) {
@@ -61,7 +61,7 @@ const isQuestionAnswered = <Payload, QuestionKeys, ErrorFormat>(
 const isQuestionIncluded = <Payload, QuestionKeys, ErrorFormat>(
     questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
     question: QuestionKeys,
-    payload: Payload
+    payload: Payload,
 ): boolean => {
     const config = questions[question as any];
     if (!config) {
@@ -72,7 +72,7 @@ const isQuestionIncluded = <Payload, QuestionKeys, ErrorFormat>(
 
 const areAllQuestionsAnswered = <Payload, QuestionKeys, ErrorFormat>(
     questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
-    payload: Payload
+    payload: Payload,
 ): boolean => {
     let allQuestionsHasAnswers = true;
     Object.keys(questions).forEach((key) => {
@@ -87,7 +87,7 @@ const areAllQuestionsAnswered = <Payload, QuestionKeys, ErrorFormat>(
 
 const getIncludedQuestions = <QuestionKeys, Payload, ErrorFormat>(
     questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
-    payload: Payload
+    payload: Payload,
 ): QuestionKeys[] => {
     const keys = Object.keys(questions).filter((key) => {
         return isQuestionIncluded(questions, key as any, payload);
@@ -99,7 +99,7 @@ const validateQuestion = <Value, QuestionKeys, Payload, ErrorFormat = any>(
     _value: Value,
     questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
     question: QuestionKeys,
-    payload: Payload
+    payload: Payload,
 ): undefined | boolean | ErrorFormat | ErrorFormat[] => {
     const config = questions[question as any];
     if (!config || !config.validate) {
@@ -124,7 +124,7 @@ export interface QuestionVisibilityInfo<ErrorFormat = any> {
 }
 
 export const Questions = <Payload, QuestionKeys, ErrorFormat = undefined>(
-    questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>
+    questions: QuestionConfig<Payload, QuestionKeys, ErrorFormat>,
 ) => ({
     getVisbility: (payload: Payload): QuestionVisibility<QuestionKeys, ErrorFormat> => ({
         validate: (key: QuestionKeys) => (value: any) =>
