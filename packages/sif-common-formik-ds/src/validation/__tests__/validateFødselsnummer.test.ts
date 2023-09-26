@@ -26,13 +26,13 @@ describe(`validateFødselsnummer`, () => {
     it(`returns ${ValidateFødselsnummerError.fødselsnummerIsNot11Chars} when the fødselsnummer is not 11 chars`, () => {
         expect(getFødselsnummerValidator()('1234567890')).toEqual(ValidateFødselsnummerError.fødselsnummerIsNot11Chars);
         expect(getFødselsnummerValidator()('123456789012')).toEqual(
-            ValidateFødselsnummerError.fødselsnummerIsNot11Chars
+            ValidateFødselsnummerError.fødselsnummerIsNot11Chars,
         );
     });
 
     it(`returns ${ValidateFødselsnummerError.fødselsnummerIsNotAllowed} when the fødselsnummer is same as fødselsnummerIsNotAllowed`, () => {
         expect(getFødselsnummerValidator({ disallowedValues: [generatedFnr] })(generatedFnr)).toEqual(
-            ValidateFødselsnummerError.fødselsnummerIsNotAllowed
+            ValidateFødselsnummerError.fødselsnummerIsNotAllowed,
         );
     });
     it(`does not returns ${ValidateFødselsnummerError.fødselsnummerIsNotAllowed} when the fødselsnummer is not in fødselsnummerIsNotAllowed`, () => {

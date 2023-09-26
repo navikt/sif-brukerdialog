@@ -78,7 +78,7 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                 bem.modifierConditional('withValue', hasValue(time.hours) || hasValue(time.minutes)),
                 bem.modifierConditional('withHours', hasValue(time.hours)),
                 bem.modifierConditional('withMinutes', hasValue(time.minutes)),
-                className
+                className,
             )}>
             <div className={bem.element('contentWrapper')}>
                 <div className={bem.element('inputWrapper')}>

@@ -39,12 +39,13 @@
         "url": "git+https://github.com/navikt/sif-common-amplitude.git"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script",
-        "clean": "rm -rf node_modules lib",
+        "build": "npm-run-all build-package",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
-        "dev": "yarn compile-lib-script-watch"
+        "compile-lib-script": "tsc -p tsconfig.json",
+        "dev": "yarn compile-lib-script-watch",
+        "lint": "eslint ./src --ext ts,tsx"
     }
 }

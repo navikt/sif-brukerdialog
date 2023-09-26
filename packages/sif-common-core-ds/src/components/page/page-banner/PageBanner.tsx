@@ -23,7 +23,7 @@ const getBannerSizeClass = (size: BannerSize) => {
 const PageBanner = ({ level = '2', size = 'small', ...rest }: Props) => (
     <div
         className={`bg-purple-200 flex items-center justify-center text-center p-1 sm:p-2 md:p-4 ${getBannerSizeClass(
-            size
+            size,
         )}`}>
         <Heading level={level} {...rest} size="medium" />
     </div>

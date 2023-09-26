@@ -12,7 +12,7 @@ describe('<FormikCheckboxGroup>', () => {
         return render(
             <StoryFormikWrapper parameters={{ includeButtons: true, formik: { initialValues } }}>
                 {content}
-            </StoryFormikWrapper>
+            </StoryFormikWrapper>,
         );
     };
 
@@ -32,7 +32,7 @@ describe('<FormikCheckboxGroup>', () => {
                     { label: 'Dragon', value: 'dragon', 'data-testid': 'dragon-option' },
                 ]}
             />,
-            { animals: ['dragon'] }
+            { animals: ['dragon'] },
         );
         const checkbox = screen.getByTestId('dragon-option');
         expect(checkbox).toBeDefined();
