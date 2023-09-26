@@ -1,7 +1,7 @@
 import * as React from 'react';
 import StoryIntlProvider from '../components/StoryIntlProvider';
 
-export const withIntl = (Story) => (
+export const withIntlWrapper = (Story) => (
     <StoryIntlProvider locale="nb" messages={{}}>
         <Story />
     </StoryIntlProvider>

@@ -4425,7 +4425,8 @@ __metadata:
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.5.0
     "@navikt/sif-common-core-ds": "workspace:*"
-    "@navikt/sif-common-utils": 3.40.0
+    "@navikt/sif-common-formik-ds": "workspace:*"
+    "@navikt/sif-common-utils": "workspace:*"
     "@storybook/addon-a11y": 7.4.5
     "@storybook/addon-actions": 7.4.5
     "@storybook/addon-essentials": 7.4.5
@@ -4447,20 +4448,6 @@ __metadata:
     storybook: 7.4.5
   languageName: unknown
   linkType: soft
-
-"@navikt/sif-common-utils@npm:3.40.0":
-  version: 3.40.0
-  resolution: "@navikt/sif-common-utils@npm:3.40.0"
-  dependencies:
-    dayjs: 1.11.9
-    iso8601-duration: 2.1.1
-    lodash: 4.17.21
-    uuid: 9.0.0
-  peerDependencies:
-    dayjs: 1.x
-  checksum: 2226699755db781b196dfcdccecfffaad29c7fab7e0ab2130d78872950f4d7c82c63a1bc15a1ee419927660c20fd7a74c8ea6a165ff9a696f6356833fa5a9106
-  languageName: node
-  linkType: hard
 
 "@navikt/sif-common-utils@workspace:*, @navikt/sif-common-utils@workspace:packages/sif-common-utils":
   version: 0.0.0-use.local
@@ -12798,13 +12785,6 @@ __metadata:
   version: 1.11.10
   resolution: "dayjs@npm:1.11.10"
   checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
-  languageName: node
-  linkType: hard
-
-"dayjs@npm:1.11.9":
-  version: 1.11.9
-  resolution: "dayjs@npm:1.11.9"
-  checksum: a4844d83dc87f921348bb9b1b93af851c51e6f71fa259604809cfe1b49d1230e6b0212dab44d1cb01994c096ad3a77ea1cf18fa55154da6efcc9d3610526ac38
   languageName: node
   linkType: hard
 
@@ -27709,15 +27689,6 @@ __metadata:
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
   checksum: c81095493225ecfc28add49c106ca4f09cdf56bc66731aa8dabc2edbbccb1e1bfe2de6a115e5c6a380d3ea166d1636410b62ef216bb07b3feb1cfde1d95d5080
-  languageName: node
-  linkType: hard
-
-"uuid@npm:9.0.0":
-  version: 9.0.0
-  resolution: "uuid@npm:9.0.0"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
   languageName: node
   linkType: hard
 

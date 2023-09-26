@@ -9,7 +9,8 @@
         "@navikt/ds-icons": "3.4.3",
         "@navikt/ds-react": "5.5.0",
         "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-utils": "3.40.0",
+        "@navikt/sif-common-formik-ds": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
         "react-day-picker": "8.8.2"
     },
     "devDependencies": {
