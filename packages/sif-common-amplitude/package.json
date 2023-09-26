@@ -11,8 +11,8 @@
         "url": "https://github.com/navikt/sif-common-amplitude/issues"
     },
     "devDependencies": {
-        "@types/amplitude-js": "8.16.2",
-        "@types/node": "20.6.5",
+        "@types/amplitude-js": "8.16.3",
+        "@types/node": "20.7.0",
         "@types/react": "18.2.21",
         "amplitude-js": "8.21.9",
         "config": "workspace:*",
@@ -20,7 +20,7 @@
         "gh-pages": "6.0.0",
         "react": "18.2.0",
         "react-scripts": "5.0.1",
-        "rimraf": "5.0.1"
+        "rimraf": "5.0.4"
     },
     "directories": {
         "lib": "lib"

@@ -23,7 +23,7 @@ const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
 export const getApiDataFromSøknadsdata = (
     søknadsdata: Søknadsdata,
     registrerteBarn: RegistrertBarn[],
-    intl: IntlShape
+    intl: IntlShape,
 ): SøknadApiData | undefined => {
     const { id, dineBarn, fravaer, arbeidssituasjon, medlemskap, legeerklæring } = søknadsdata;
 

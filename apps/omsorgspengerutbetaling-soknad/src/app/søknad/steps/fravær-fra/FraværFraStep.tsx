@@ -70,7 +70,7 @@ const FraværFraStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const getFieldName = (dato: Date, field: AktivitetFraværField): string => {
