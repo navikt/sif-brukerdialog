@@ -3994,7 +3994,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.5
     "@types/object-hash": 3.0.4
-    "@types/react": 18.2.21
+    "@types/react": 18.2.22
     "@types/react-dom": 18.2.7
     "@types/react-router-dom": 5.3.3
     axios: 1.5.0
@@ -27767,7 +27767,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.1, uuid@npm:^9.0.0":
+"uuid@npm:9.0.1, uuid@npm:^9.0.0, uuid@npm:^9.0.1":
   version: 9.0.1
   resolution: "uuid@npm:9.0.1"
   bin:
