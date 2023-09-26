@@ -33,7 +33,7 @@ const createHashString = (info: SøknadStateHashInfo) => {
 
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
-    info: SøknadStateHashInfo
+    info: SøknadStateHashInfo,
 ): boolean => {
     return (
         søknadState.versjon === SØKNAD_VERSJON &&
@@ -46,10 +46,11 @@ export const isPersistedSøknadStateValid = (
 const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
-    update: ({ søker, søknadsdata, frilansoppdrag, søknadRoute, søknadSendt }: SøknadContextState) => {
+    update: ({ søker, søknadsdata, frilansoppdrag, søknadRoute, søknadSendt, tempFormData }: SøknadContextState) => {
         return persistSetup.update({
             søknadHashString: createHashString({ søker }),
             søknadsdata,
+            tempFormData,
             frilansoppdrag,
             søknadRoute,
             søknadSendt,

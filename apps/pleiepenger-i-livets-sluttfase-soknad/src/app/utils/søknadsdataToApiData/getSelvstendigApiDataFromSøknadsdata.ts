@@ -10,7 +10,6 @@ export const getSelvstendigApiDataFromSøknadsdata = (
     selvstendig?: ArbeidSelvstendigSøknadsdata,
     arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): SelvstendigNæringsdrivendeApiData | undefined => {
-    // TODO check this
     if (!selvstendig || !arbeidIperiode) {
         return undefined;
     }

@@ -10,6 +10,7 @@ import { ArbeidIPeriode, JobberIPeriodeSvar } from './ArbeidstidTypes';
 
 export const getArbeidstidStepInitialValues = (
     søknadsdata: Søknadsdata,
+    tempFormValues?: ArbeidstidFormValues,
     //formValues?: ArbeidstidFormValues,
 ): ArbeidstidFormValues => {
     /*if (formValues) {
@@ -29,15 +30,18 @@ export const getArbeidstidStepInitialValues = (
     const arbeidsgivereDefaultValues = getAnsattArbeidstidFormData(
         arbeidsgivereArbeidssituasjonSøknadsdata,
         arbeidsgivereArbeidstidSøknadsdata,
+        tempFormValues,
     );
     const frilansDefaultValues = getArbeidstidFrilansFormData(
         frilansArbeidstidSøknadsdata,
         frilansArbeidssituasjonSøknadsdata,
+        tempFormValues,
     );
 
     const selvstendivDefaultValues = getArbeidstidSelvstendigFormData(
         selvstendigArbeidstidSøknadsdata,
         selvstendigArbeidssituasjonSøknadsdata,
+        tempFormValues,
     );
 
     return {
@@ -50,12 +54,17 @@ export const getArbeidstidStepInitialValues = (
 export const getAnsattArbeidstidFormData = (
     arbeidsgivereArbeidssituasjonSøknadsdata?: ArbeidsgivereSøknadsdata,
     arbeidsgivereArbeidstidSøknadsdata?: ArbeidstidArbeidsgivereSøknadsdata,
+    tempFormValues?: ArbeidstidFormValues,
 ): AnsattArbeidstid[] | undefined => {
     if (arbeidsgivereArbeidssituasjonSøknadsdata) {
         const ansattArbeidstid: AnsattArbeidstid[] = [];
+        const tempAnsattArbeidstid = tempFormValues?.ansattArbeidstid;
 
         Object.entries(arbeidsgivereArbeidssituasjonSøknadsdata).map(([key, value]) => {
             if (value.erAnsattISøknadsperiode) {
+                const tempArbeidIPeriode = tempAnsattArbeidstid?.find((an) => an.organisasjonsnummer === key)
+                    ?.arbeidIPeriode;
+
                 const arbeidIPeriode =
                     arbeidsgivereArbeidstidSøknadsdata && arbeidsgivereArbeidstidSøknadsdata.hasOwnProperty(key)
                         ? getArbeidIPeriodeFormDataFromSøknadsdata(
@@ -67,7 +76,7 @@ export const getAnsattArbeidstidFormData = (
                     organisasjonsnummer: key,
                     navn: value.arbeidsgiver.navn,
                     jobberNormaltTimer: value.jobberNormaltTimer,
-                    arbeidIPeriode,
+                    arbeidIPeriode: tempArbeidIPeriode ? tempArbeidIPeriode : arbeidIPeriode,
                 });
             }
         });
@@ -80,6 +89,7 @@ export const getAnsattArbeidstidFormData = (
 const getArbeidstidFrilansFormData = (
     frilansArbeidstidSøknadsdata?: ArbeidIPeriodeSøknadsdata,
     frilansArbeidssituasjonSøknadsdata?: ArbeidFrilansSøknadsdata,
+    tempFormValues?: ArbeidstidFormValues,
 ): FrilansSNArbeidstid | undefined => {
     if (!frilansArbeidssituasjonSøknadsdata) {
         return undefined;
@@ -89,12 +99,13 @@ const getArbeidstidFrilansFormData = (
         frilansArbeidssituasjonSøknadsdata.type === 'pågående' ||
         frilansArbeidssituasjonSøknadsdata.type === 'sluttetISøknadsperiode'
     ) {
+        const tempArbeidIPeriode = tempFormValues?.frilansArbeidstid?.arbeidIPeriode;
         const arbeidIPeriode = getArbeidIPeriodeFormDataFromSøknadsdata(frilansArbeidstidSøknadsdata);
 
         return {
             type: ArbeidsaktivitetType.frilanser,
             jobberNormaltTimer: frilansArbeidssituasjonSøknadsdata.jobberNormaltTimer,
-            arbeidIPeriode,
+            arbeidIPeriode: tempArbeidIPeriode ? tempArbeidIPeriode : arbeidIPeriode,
         };
     }
 
@@ -104,18 +115,20 @@ const getArbeidstidFrilansFormData = (
 const getArbeidstidSelvstendigFormData = (
     selvstendigArbeidstidSøknadsdata?: ArbeidIPeriodeSøknadsdata,
     selvstendigArbeidssituasjonSøknadsdata?: ArbeidSelvstendigSøknadsdata,
+    tempFormValues?: ArbeidstidFormValues,
 ): FrilansSNArbeidstid | undefined => {
     if (!selvstendigArbeidssituasjonSøknadsdata) {
         return undefined;
     }
 
     if (selvstendigArbeidssituasjonSøknadsdata.type === 'erSN') {
+        const tempArbeidIPeriode = tempFormValues?.selvstendigArbeidstid?.arbeidIPeriode;
         const arbeidIPeriode = getArbeidIPeriodeFormDataFromSøknadsdata(selvstendigArbeidstidSøknadsdata);
 
         return {
             type: ArbeidsaktivitetType.selvstendigNæringsdrivende,
             jobberNormaltTimer: selvstendigArbeidssituasjonSøknadsdata.jobberNormaltTimer,
-            arbeidIPeriode,
+            arbeidIPeriode: tempArbeidIPeriode ? tempArbeidIPeriode : arbeidIPeriode,
         };
     }
 

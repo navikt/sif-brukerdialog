@@ -43,7 +43,11 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-
+            case SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_DATA:
+                return {
+                    ...state,
+                    tempFormData: action.payload,
+                };
             case SøknadContextActionKeys.SET_SØKNAD_OPPLYSNINGER_OM_PLEIETRENGENDE:
                 const søknadsdata: Søknadsdata = {
                     ...state.søknadsdata,

@@ -1,5 +1,6 @@
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { KvitteringInfo } from '../../../types/KvitteringInfo';
+import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import {
     OpplysningerOmPleietrengendeSøknadsdata,
@@ -17,6 +18,7 @@ export enum SøknadContextActionKeys {
     AVBRYT_SØKNAD = 'avbrytSøknad',
     FORTSETT_SØKNAD_SENERE = 'fortsettSøknadSenere',
     SET_SØKNAD_ROUTE = 'setSøknadRoute',
+    SET_SØKNAD_TEMP_FORM_DATA = 'setSøknadTempFormData',
     SET_SØKNAD_OPPLYSNINGER_OM_PLEIETRENGENDE = 'setSøknadOpplysningerOmPleietrengende',
     SET_SØKNAD_LEGEERKLÆRING = 'setSøknadLegeerklæring',
     SET_SØKNAD_TIDSROM = 'setSøknadTidsrom',
@@ -57,6 +59,11 @@ interface SetSøknadSendt {
 interface SetSøknadRoute {
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE;
     payload: SøknadRoutes;
+}
+
+interface SetSøknadTempFormData {
+    type: SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_DATA;
+    payload: TempFormValues;
 }
 interface SetSøknadOpplysningerOmPleietrengende {
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLYSNINGER_OM_PLEIETRENGENDE;
@@ -129,8 +136,13 @@ const setSøknadSendt = (): SetSøknadSendt => ({
     type: SøknadContextActionKeys.SET_SØKNAD_SENDT,
 });
 
+const setSøknadTempFormData = (payload: TempFormValues): SetSøknadTempFormData => ({
+    type: SøknadContextActionKeys.SET_SØKNAD_TEMP_FORM_DATA,
+    payload,
+});
+
 const setSøknadOpplysningerOmPleietrengende = (
-    payload: OpplysningerOmPleietrengendeSøknadsdata
+    payload: OpplysningerOmPleietrengendeSøknadsdata,
 ): SetSøknadOpplysningerOmPleietrengende => ({
     type: SøknadContextActionKeys.SET_SØKNAD_OPPLYSNINGER_OM_PLEIETRENGENDE,
     payload,
@@ -187,6 +199,7 @@ export type SøknadContextAction =
     | RequestLagreSøknad
     | SetSøknadLagret
     | SetSøknadSendt
+    | SetSøknadTempFormData
     | SetSøknadOpplysningerOmPleietrengende
     | SetSøknadLegeerklæring
     | SetSøknadTidsrom
@@ -205,6 +218,7 @@ const actionsCreator = {
     fortsettSøknadSenere,
     requestLagreSøknad,
     setSøknadRoute,
+    setSøknadTempFormData,
     setSøknadOpplysningerOmPleietrengende,
     setSøknadLegeerklæring,
     setSøknadTidsrom,

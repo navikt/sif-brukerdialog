@@ -31,6 +31,7 @@ import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
 import { getIngenFraværConfirmationDialog } from '../confirmation-dialogs/ingenFraværConfirmation';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/lib/components/dialogs/confirmation-dialog/ConfirmationDialog';
+import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -80,7 +81,8 @@ const { FormikWrapper, Form } = getTypedFormComponents<ArbeidstidFormFields, Arb
 const ArbeidstidStep = () => {
     const intl = useIntl();
     const {
-        state: { søknadsdata },
+        state: { søknadsdata, tempFormData },
+        dispatch,
     } = useSøknadContext();
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialogType | undefined>(undefined);
     const { logArbeidPeriodeRegistrert, logArbeidEnkeltdagRegistrert, logBekreftIngenFraværFraJobb } =
@@ -123,7 +125,10 @@ const ArbeidstidStep = () => {
 
         if (arbeidstidSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadArbeidstid(arbeidstidSøknadsdata)];
+            return [
+                actionsCreator.setSøknadArbeidstid(arbeidstidSøknadsdata),
+                actionsCreator.setSøknadTempFormData(undefined),
+            ];
         }
         return [];
     };
@@ -132,29 +137,32 @@ const ArbeidstidStep = () => {
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
-            return lagreSøknadState(state);
+            return lagreSøknadState({ ...state, tempFormData: undefined });
         },
     );
+
+    const { persistTempFormValues } = usePersistTempFormValues();
+
+    const handleArbeidstidChanged = (values: Partial<ArbeidstidFormValues>) => {
+        dispatch(actionsCreator.setSøknadTempFormData({ stepId, values }));
+        persistTempFormValues({ stepId, values });
+    };
     const { tidsrom } = søknadsdata;
 
     const periodeFra = tidsrom?.søknadsperiode.from;
     const periodeTil = tidsrom?.søknadsperiode.to;
 
     if (!periodeFra || !periodeTil) {
-        // TODO
         return undefined;
     }
 
     const periode: DateRange = { from: periodeFra, to: periodeTil };
 
-    const handleArbeidstidChanged = () => {
-        // TODO;
-    };
-
+    const tempArbeidstid = tempFormData?.stepId === stepId ? tempFormData.values : undefined;
     return (
         <SøknadStep stepId={stepId}>
             <FormikWrapper
-                initialValues={getArbeidstidStepInitialValues(søknadsdata)}
+                initialValues={getArbeidstidStepInitialValues(søknadsdata, tempArbeidstid)}
                 onSubmit={async (values) => {
                     if (await onBeforeValidSubmit(values)) {
                         handleSubmit(values);
@@ -164,7 +172,6 @@ const ArbeidstidStep = () => {
                     if (!ansattArbeidstid && !frilansArbeidstid && !selvstendigArbeidstid) {
                         return undefined;
                     }
-                    // TODO logBekreftIngenFraværFraJobb
 
                     const periodeSomFrilanserISøknadsperiode =
                         frilansArbeidstid && periode
@@ -178,7 +185,8 @@ const ArbeidstidStep = () => {
                                   søknadsdata.arbeidssituasjon?.selvstendig,
                               )
                             : undefined;
-
+                    const oppdatereArbeidstid = () =>
+                        handleArbeidstidChanged({ ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid });
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -239,7 +247,7 @@ const ArbeidstidStep = () => {
                                                                     periode.from,
                                                                     periode.to,
                                                                 )}
-                                                                onArbeidstidVariertChange={handleArbeidstidChanged}
+                                                                onArbeidstidVariertChange={oppdatereArbeidstid}
                                                                 onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                                 onArbeidstidEnkeltdagRegistrert={
                                                                     logArbeidEnkeltdagRegistrert
@@ -266,7 +274,7 @@ const ArbeidstidStep = () => {
                                                     periode={periodeSomFrilanserISøknadsperiode}
                                                     parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
                                                     søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
-                                                    onArbeidstidVariertChange={handleArbeidstidChanged}
+                                                    onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
                                                 />
@@ -288,7 +296,7 @@ const ArbeidstidStep = () => {
                                                     periode={periodeSomSelvstendigISøknadsperiode}
                                                     parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
                                                     søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
-                                                    onArbeidstidVariertChange={handleArbeidstidChanged}
+                                                    onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
                                                 />
