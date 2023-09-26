@@ -24,37 +24,39 @@ const bem = bemUtils('bekreftDialog');
 const BekreftDialog = (props: Props) => {
     const intl = useIntl();
     const { tittel, onAvbryt, onBekreft, avbrytLabel, bekreftLabel, children, størrelse, ...modalProps } = props;
-    return props.open
-        ? createPortal(
-              <Modal
-                  {...modalProps}
-                  header={{
-                      heading: tittel,
-                      closeButton: true,
-                  }}
-                  className={classnames(bem.block, størrelse ? bem.modifier(`size-${størrelse}`) : undefined)}>
-                  <Modal.Body>
-                      <div className="blokk-m">{children}</div>
-                      <Knapperad>
-                          <Button
-                              variant="primary"
-                              type="button"
-                              onClick={() => onBekreft()}
-                              className="bekreftDialog__bekreftKnapp">
-                              {bekreftLabel || intlHelper(intl, 'komponent.bekreftDialog.bekreftLabel')}
-                          </Button>
-                          <Button
-                              variant="tertiary"
-                              type="button"
-                              onClick={onAvbryt}
-                              className="bekreftDialog__avbrytKnapp">
-                              {avbrytLabel || intlHelper(intl, 'komponent.bekreftDialog.avbrytLabel')}
-                          </Button>
-                      </Knapperad>
-                  </Modal.Body>
-              </Modal>,
-              document.body,
-          )
-        : null;
+    return props.open ? (
+        <>
+            {createPortal(
+                <Modal
+                    {...modalProps}
+                    header={{
+                        heading: tittel,
+                        closeButton: true,
+                    }}
+                    className={classnames(bem.block, størrelse ? bem.modifier(`size-${størrelse}`) : undefined)}>
+                    <Modal.Body>
+                        <div className="blokk-m">{children}</div>
+                        <Knapperad>
+                            <Button
+                                variant="primary"
+                                type="button"
+                                onClick={() => onBekreft()}
+                                className="bekreftDialog__bekreftKnapp">
+                                {bekreftLabel || intlHelper(intl, 'komponent.bekreftDialog.bekreftLabel')}
+                            </Button>
+                            <Button
+                                variant="tertiary"
+                                type="button"
+                                onClick={onAvbryt}
+                                className="bekreftDialog__avbrytKnapp">
+                                {avbrytLabel || intlHelper(intl, 'komponent.bekreftDialog.avbrytLabel')}
+                            </Button>
+                        </Knapperad>
+                    </Modal.Body>
+                </Modal>,
+                document.body,
+            )}
+        </>
+    ) : null;
 };
 export default BekreftDialog;

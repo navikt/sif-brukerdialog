@@ -19,23 +19,25 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
     if (!open) {
         return null;
     }
-    return open
-        ? createPortal(
-              <Modal
-                  open={open}
-                  onClose={formProps.onCancel}
-                  className="tidEnkeltdagDialog"
-                  header={{
-                      heading: `${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`,
-                      closeButton: true,
-                  }}>
-                  <Modal.Body>
-                      <TidEnkeltdagForm {...formProps} />
-                  </Modal.Body>
-              </Modal>,
-              document.body,
-          )
-        : null;
+    return open ? (
+        <>
+            {createPortal(
+                <Modal
+                    open={open}
+                    onClose={formProps.onCancel}
+                    className="tidEnkeltdagDialog"
+                    header={{
+                        heading: `${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`,
+                        closeButton: true,
+                    }}>
+                    <Modal.Body>
+                        <TidEnkeltdagForm {...formProps} />
+                    </Modal.Body>
+                </Modal>,
+                document.body,
+            )}
+        </>
+    ) : null;
 };
 
 export default TidEnkeltdagDialog;

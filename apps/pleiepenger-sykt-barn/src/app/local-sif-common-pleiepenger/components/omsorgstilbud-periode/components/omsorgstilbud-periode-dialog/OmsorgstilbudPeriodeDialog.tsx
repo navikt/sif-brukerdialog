@@ -15,23 +15,25 @@ interface Props {
 
 const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ formProps, isOpen }) => {
     const intl = useIntl();
-    return isOpen
-        ? createPortal(
-              <Modal
-                  open={isOpen}
-                  onClose={formProps.onCancel}
-                  className="omsorgstilbudPeriodeDialog"
-                  header={{
-                      heading: intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel'),
-                      closeButton: true,
-                  }}>
-                  <Modal.Body>
-                      <OmsorgstilbudPeriodeForm {...formProps} />
-                  </Modal.Body>
-              </Modal>,
-              document.body,
-          )
-        : null;
+    return isOpen ? (
+        <>
+            {createPortal(
+                <Modal
+                    open={isOpen}
+                    onClose={formProps.onCancel}
+                    className="omsorgstilbudPeriodeDialog"
+                    header={{
+                        heading: intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel'),
+                        closeButton: true,
+                    }}>
+                    <Modal.Body>
+                        <OmsorgstilbudPeriodeForm {...formProps} />
+                    </Modal.Body>
+                </Modal>,
+                document.body,
+            )}
+        </>
+    ) : null;
 };
 
 export default OmsorgstilbudPeriodeDialog;
