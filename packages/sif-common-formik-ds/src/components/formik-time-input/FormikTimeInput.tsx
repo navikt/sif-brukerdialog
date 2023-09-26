@@ -47,8 +47,8 @@ function FormikTimeInput<FieldName, ErrorType>({
                             bem.block,
                             bem.modifierConditional(
                                 timeInputLayout?.direction,
-                                timeInputLayout?.direction !== undefined
-                            )
+                                timeInputLayout?.direction !== undefined,
+                            ),
                         )}
                         ref={ref}
                         error={getErrorPropForFormikInput({ field, form, context, error })}

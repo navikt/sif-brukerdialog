@@ -3,7 +3,7 @@ import { UtenlandskNæring, UtenlandskNæringFormValues } from './types';
 import { guid } from '@navikt/sif-common-utils/lib';
 
 export const cleanupUtenlandskNæringFormValues = (
-    formValues: UtenlandskNæringFormValues
+    formValues: UtenlandskNæringFormValues,
 ): UtenlandskNæringFormValues => {
     const values: UtenlandskNæringFormValues = { ...formValues };
     const tomDate = ISOStringToDate(values.tilOgMed);
@@ -16,14 +16,14 @@ export const cleanupUtenlandskNæringFormValues = (
 };
 
 export const isValidUtenlandskNæring = (
-    utenlandskNæring: Partial<UtenlandskNæring>
+    utenlandskNæring: Partial<UtenlandskNæring>,
 ): utenlandskNæring is UtenlandskNæring => {
     return utenlandskNæring.fraOgMed !== undefined && utenlandskNæring.land != undefined;
 };
 
 export const mapFormValuesToUtenlandskNæring = (
     formValues: UtenlandskNæringFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<UtenlandskNæring> => {
     return {
         ...formValues,

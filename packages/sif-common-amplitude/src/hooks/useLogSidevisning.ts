@@ -7,7 +7,7 @@ function useLogSidevisning<PageKeys extends string>(pageKey: PageKeys) {
         (key: PageKeys) => {
             logSidevisning(key);
         },
-        [logSidevisning]
+        [logSidevisning],
     );
 
     useEffect(() => {

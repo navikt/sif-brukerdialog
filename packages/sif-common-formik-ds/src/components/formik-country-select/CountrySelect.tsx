@@ -22,7 +22,7 @@ interface CountryOptionsCache {
 const createCountryOptions = (
     onluEuAndEftaCountries: boolean,
     locale: string,
-    useAlpha3Code = true
+    useAlpha3Code = true,
 ): React.ReactNode[] => {
     const lang = locale === 'en' ? 'nn' : 'nb';
     const countries = getCountries();
@@ -31,7 +31,7 @@ const createCountryOptions = (
     return names
         .sort((a: string[], b: string[]) => a[1].localeCompare(b[1], lang))
         .filter((countryOptionValue: string[]) =>
-            filteredListEØSCountries(countryOptionValue[0], onluEuAndEftaCountries)
+            filteredListEØSCountries(countryOptionValue[0], onluEuAndEftaCountries),
         )
         .map((countryOptionValue: string[]) => (
             <option
@@ -56,7 +56,7 @@ class CountrySelect extends React.Component<Props> {
             options: createCountryOptions(
                 this.props.showOnlyEuAndEftaCountries ? this.props.showOnlyEuAndEftaCountries : false,
                 locale,
-                this.props.useAlpha3Code
+                this.props.useAlpha3Code,
             ),
         };
     }

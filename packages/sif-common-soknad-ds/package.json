@@ -90,6 +90,7 @@
         "copy-json-files": "copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
         "dev": "yarn compile-lib-script-watch & yarn copy-files-watch",
+        "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --passWithNoTests"
     }

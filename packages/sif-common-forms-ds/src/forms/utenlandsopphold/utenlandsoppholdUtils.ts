@@ -12,7 +12,7 @@ const isValidUtenlandsopphold = (utenlandsopphold: Partial<Utenlandsopphold>): u
 
 const mapFormValuesToUtenlandsopphold = (
     formValues: UtenlandsoppholdFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<Utenlandsopphold> => {
     const { barnInnlagtPerioder } = formValues;
     return {

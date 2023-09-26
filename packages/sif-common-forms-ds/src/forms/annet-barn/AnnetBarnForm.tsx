@@ -124,7 +124,7 @@ const AnnetBarnForm = ({
                             }
                             validate={(value) => {
                                 const dateError = getDateValidator({ required: true, min: minDate, max: maxDate })(
-                                    value
+                                    value,
                                 );
                                 if (dateError === ValidateDateError.dateIsBeforeMin) {
                                     return {

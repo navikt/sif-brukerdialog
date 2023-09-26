@@ -6,7 +6,7 @@ const createFieldErrorIntlKey = (
     error: string,
     fieldName: string,
     keySeparator: string,
-    errorPrefix?: string
+    errorPrefix?: string,
 ): string => `${errorPrefix ? `${errorPrefix}${keySeparator}` : ''}${fieldName}${keySeparator}${error}`;
 
 const getFieldErrorHandler =
@@ -19,7 +19,7 @@ const getFieldErrorHandler =
                           ? error.key
                           : createFieldErrorIntlKey(error.key, fieldName, keySeparator, errorPrefix),
                   },
-                  error.values
+                  error.values,
               )
             : intl.formatMessage({ id: createFieldErrorIntlKey(error, fieldName, keySeparator, errorPrefix) });
     };
@@ -31,7 +31,7 @@ const getIntlFormErrorHandler = (intl: IntlShape, errorPrefix?: string): CustomF
 
 export const getIntlFormErrorHandler_underscoreKeys = (
     intl: IntlShape,
-    errorPrefix?: string
+    errorPrefix?: string,
 ): CustomFormErrorHandler<ValidationError> => ({
     fieldErrorHandler: getFieldErrorHandler(intl, '_', errorPrefix),
     isHandledErrorTypeFunc: isIntlErrorObject,

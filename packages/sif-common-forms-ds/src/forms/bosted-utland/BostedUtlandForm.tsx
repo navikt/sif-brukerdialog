@@ -114,7 +114,7 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                                     return handleDateRangeValidationError(
                                         error,
                                         fomDateLimits.minDate,
-                                        fomDateLimits.maxDate
+                                        fomDateLimits.maxDate,
                                     );
                                 },
                             }}
@@ -131,7 +131,7 @@ const BostedUtlandForm = ({ maxDate, minDate, bosted, alleBosteder = [], onSubmi
                                     return handleDateRangeValidationError(
                                         error,
                                         tomDateLimits.minDate,
-                                        tomDateLimits.maxDate
+                                        tomDateLimits.maxDate,
                                     );
                                 },
                             }}

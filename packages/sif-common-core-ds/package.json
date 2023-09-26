@@ -94,6 +94,7 @@
         "copy-sass-files-to-lib": "copyfiles -u 1 \"src/**/*.scss\" lib",
         "copy-asset-files-to-lib": "copyfiles -u 1 \"src/**/assets/**/*\" lib",
         "copy-json-files-to-lib": "copyfiles -u 1 \"src/**/*.json\" lib",
+        "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test",
