@@ -16,7 +16,7 @@
         "@navikt/ds-css": "5.5.0",
         "@navikt/ds-react": "5.5.0",
         "@types/node": "20.7.0",
-        "@types/react": "18.2.21",
+        "@types/react": "18.2.22",
         "@types/react-dom": "18.2.7",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
@@ -28,13 +28,14 @@
         "sass": "1.68.0"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script copy-files",
-        "clean": "rm -rf node_modules lib",
+        "build": "npm-run-all build-package",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "dev": "yarn compile-lib-script-watch"
+        "dev": "yarn compile-lib-script-watch",
+        "lint": "eslint ./src --ext ts,tsx"
     }
 }

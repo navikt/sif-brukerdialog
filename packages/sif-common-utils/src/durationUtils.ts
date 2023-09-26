@@ -74,7 +74,7 @@ export const durationToISODuration = (duration: NumberDuration | Partial<Duratio
 
 export const durationsAreEqual = (
     duration1?: Partial<Duration> | NumberDuration,
-    duration2?: Partial<Duration> | NumberDuration
+    duration2?: Partial<Duration> | NumberDuration,
 ): boolean => {
     if (duration1 === undefined && duration2 === undefined) {
         return true;
@@ -86,7 +86,7 @@ export const durationsAreEqual = (
 };
 
 export const summarizeDurations = (
-    durations: Array<Partial<Duration> | NumberDuration | undefined>
+    durations: Array<Partial<Duration> | NumberDuration | undefined>,
 ): NumberDuration => {
     let minutes = 0;
     durations.forEach((duration) => {
@@ -177,7 +177,7 @@ export const decimalDurationToDuration = (duration: number): Duration => {
         ensureNumberDuration({
             hours,
             minutes,
-        })
+        }),
     );
 };
 
@@ -197,7 +197,7 @@ export const durationToDecimalDuration = (duration: NumberDuration | Partial<Dur
  * @returns
  */
 export const isValidDuration = (
-    duration: NumberDuration | Partial<Duration> | undefined
+    duration: NumberDuration | Partial<Duration> | undefined,
 ): duration is NumberDuration => {
     if (!duration) {
         return false;
@@ -275,7 +275,7 @@ export const getDurationsInDateRange = (dateDurationMap: DateDurationMap, dateRa
 /** Remove dates from a dateDurationMap */
 export const removeDatesFromDateDurationMap = (
     dateDurationMap: DateDurationMap,
-    datesToRemove: Date[]
+    datesToRemove: Date[],
 ): DateDurationMap => {
     const cleanedMap: DateDurationMap = {};
     Object.keys(dateDurationMap).forEach((key) => {

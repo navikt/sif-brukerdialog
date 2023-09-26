@@ -18,7 +18,7 @@
         "@babel/preset-react": "7.22.15",
         "@types/jest": "29.5.5",
         "@types/node": "20.7.0",
-        "@types/react": "18.2.21",
+        "@types/react": "18.2.22",
         "@types/react-dom": "18.2.7",
         "@types/uuid": "9.0.4",
         "config": "workspace:*",
@@ -29,16 +29,17 @@
         "react-scripts": "5.0.1"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script",
-        "clean": "rm -rf node_modules lib",
+        "build": "npm-run-all build-package",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "dev": "yarn compile-lib-script-watch",
-        "test": "react-scripts test --watchAll=false --env=jsdom",
-        "test-watch": "react-scripts test",
+        "lint": "eslint ./src --ext ts,tsx",
+        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
         "test-coverage": "react-scripts test a --coverage --watchAll=false",
-        "test-coverage-watch": "react-scripts test a --coverage --watchAll=true"
+        "test-watch": "react-scripts test",
+        "test": "react-scripts test --watchAll=false --env=jsdom"
     }
 }

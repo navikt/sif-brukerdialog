@@ -57,7 +57,7 @@ export const getClosestDateRangeAfterDate = (date: Date, ranges: DateRange[]): D
 
 const getFollowingDate = (
     dateRange: DateRange | undefined,
-    allowRangesToStartAndStopOnSameDate?: boolean
+    allowRangesToStartAndStopOnSameDate?: boolean,
 ): Date | undefined => {
     if (!dateRange) {
         return undefined;
@@ -115,7 +115,7 @@ export const getMaxDateForRangeEnd = ({
 
 const getPreceedingDate = (
     dateRange: DateRange | undefined,
-    allowRangesToStartAndStopOnSameDate?: boolean
+    allowRangesToStartAndStopOnSameDate?: boolean,
 ): Date | undefined => {
     if (!dateRange) {
         return undefined;

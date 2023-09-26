@@ -89,7 +89,7 @@ const errorsToIgnore = [
 ];
 
 export const setupIgnoreErrorsAndAllowUrls = (
-    initProps: SentryInitProps
+    initProps: SentryInitProps,
 ): {
     allowUrls: AllowUrlsType;
     ignoreErrors: IgnoreErrorsType;

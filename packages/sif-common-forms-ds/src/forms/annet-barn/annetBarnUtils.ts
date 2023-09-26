@@ -10,7 +10,7 @@ const isAnnetBarn = (annetBarn: Partial<AnnetBarn>): annetBarn is AnnetBarn => {
 
 const mapFormValuesToPartialAnnetBarn = (
     formValues: AnnetBarnFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<AnnetBarn> => {
     return {
         ...formValues,

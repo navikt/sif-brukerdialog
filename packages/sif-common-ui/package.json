@@ -33,14 +33,14 @@
         "storybook": "7.4.5"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script copy-files",
         "build-storybook": "storybook build ",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "chromatic": "npx chromatic --project-token=chpt_eb5b80c88cc7e7f",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "storybook": "storybook dev -p 6006 -s storybook-public",
-        "chromatic": "npx chromatic --project-token=chpt_eb5b80c88cc7e7f"
+        "lint": "eslint ./src --ext ts,tsx",
+        "storybook": "storybook dev -p 6006 -s storybook-public"
     },
     "readme": "ERROR: No README data found!",
     "_id": "@navikt/sif-common-ui@0.0.1"
