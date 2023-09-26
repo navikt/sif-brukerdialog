@@ -14,7 +14,7 @@ const ArbeidstidMånedTittel: React.FunctionComponent<Props> = ({ måned, antall
     const intl = useIntl();
 
     return (
-        <Heading level={'2'} size="small">
+        <Heading level={'4'} size="small">
             <span className="m-caps">
                 {intlHelper(intl, 'arbeidstidMånedTittel.ukeOgÅr', {
                     ukeOgÅr: dayjs(måned.from).format('MMMM YYYY'),

@@ -67,7 +67,7 @@ const startExpressServer = () => {
         setTimeout(() => {
             // res.send({ ...arbeidsgivereMock, ...frilansoppdragMock, privatarbeidsgiver: [] });
             res.send({ ...arbeidsgivereMock, frilansoppdrag: [], privatarbeidsgiver: [] });
-        }, 2000);
+        }, 200);
     });
 
     /** --- Send søknad ---------- */

@@ -97,7 +97,7 @@ const ArbeidstidKalender: React.FunctionComponent<ArbeidstidKalenderProps> = ({
                                             weekday && arbeiderNormaltTimerFasteUkedager
                                                 ? getNumberDurationForWeekday(
                                                       arbeiderNormaltTimerFasteUkedager,
-                                                      weekday
+                                                      weekday,
                                                   )
                                                 : undefined,
                                         onSubmit: (evt) => {
