@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Heading, Panel } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
@@ -7,7 +8,6 @@ import './stateInfo.scss';
 const StateInfo = () => {
     const {
         state: {
-            // eslint-disable-next-line no-unused-vars
             søknadsdata: { id, oppsummering, velkommen, ...rest },
         },
     } = useSøknadContext();

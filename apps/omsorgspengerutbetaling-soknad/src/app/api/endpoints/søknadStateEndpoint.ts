@@ -33,7 +33,7 @@ const createHashString = (info: SøknadStateHashInfo) => {
 
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
-    info: SøknadStateHashInfo
+    info: SøknadStateHashInfo,
 ): boolean => {
     return (
         søknadState.versjon === SØKNAD_VERSJON &&

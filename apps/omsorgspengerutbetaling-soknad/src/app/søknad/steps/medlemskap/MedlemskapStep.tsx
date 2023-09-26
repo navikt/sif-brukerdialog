@@ -79,7 +79,7 @@ const MedlemskapStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     return (
@@ -127,15 +127,15 @@ const MedlemskapStep = () => {
                                                 labels={{
                                                     addLabel: intlHelper(
                                                         intl,
-                                                        'step.medlemskap.utenlandsopphold.leggTilLabel'
+                                                        'step.medlemskap.utenlandsopphold.leggTilLabel',
                                                     ),
                                                     listTitle: intlHelper(
                                                         intl,
-                                                        'step.medlemskap.annetLandSiste12.listeTittel'
+                                                        'step.medlemskap.annetLandSiste12.listeTittel',
                                                     ),
                                                     modalTitle: intlHelper(
                                                         intl,
-                                                        'step.medlemskap.annetLandSiste12.listeTittel'
+                                                        'step.medlemskap.annetLandSiste12.listeTittel',
                                                     ),
                                                 }}
                                                 validate={validateUtenlandsoppholdSiste12Mnd}
@@ -166,15 +166,15 @@ const MedlemskapStep = () => {
                                                 labels={{
                                                     addLabel: intlHelper(
                                                         intl,
-                                                        'step.medlemskap.utenlandsopphold.leggTilLabel'
+                                                        'step.medlemskap.utenlandsopphold.leggTilLabel',
                                                     ),
                                                     listTitle: intlHelper(
                                                         intl,
-                                                        'step.medlemskap.annetLandNeste12.listeTittel'
+                                                        'step.medlemskap.annetLandNeste12.listeTittel',
                                                     ),
                                                     modalTitle: intlHelper(
                                                         intl,
-                                                        'step.medlemskap.annetLandNeste12.listeTittel'
+                                                        'step.medlemskap.annetLandNeste12.listeTittel',
                                                     ),
                                                 }}
                                                 validate={validateUtenlandsoppholdNeste12Mnd}

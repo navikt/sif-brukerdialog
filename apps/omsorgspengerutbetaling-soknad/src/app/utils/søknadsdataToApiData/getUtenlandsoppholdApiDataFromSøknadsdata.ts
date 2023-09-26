@@ -5,7 +5,7 @@ import { mapBostedUtlandToApiData } from './getMedlemskapApiDataFromSøknadsdata
 
 export const getUtenlansoppholdApiDataFromSøknadsdata = (
     locale: string,
-    fraværSøknadsdata?: FraværSøknadsdata
+    fraværSøknadsdata?: FraværSøknadsdata,
 ): UtenlandsoppholdApiData[] => {
     if (fraværSøknadsdata === undefined) {
         throw Error('fraværSøknadsdata i getUtenlansoppholdApiDataFromSøknadsdata undefined');

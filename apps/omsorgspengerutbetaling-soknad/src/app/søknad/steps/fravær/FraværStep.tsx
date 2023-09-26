@@ -88,7 +88,7 @@ const FraværStep = () => {
         stepId,
         (state: SøknadContextState) => {
             return lagreSøknadState(state);
-        }
+        },
     );
 
     const harUtvidetRettFor =
@@ -113,15 +113,15 @@ const FraværStep = () => {
     const [årstall, setÅrstall] = useState<number | undefined>();
     const [gyldigTidsrom, setGyldigTidsrom] = useState<DateRange>(
         fraværStepUtils.getTidsromFromÅrstall(
-            fraværStepUtils.getÅrstallFromFravær(fraværDagerFromSøknadsdata, fraværPerioderFromSøknadsdata)
-        )
+            fraværStepUtils.getÅrstallFromFravær(fraværDagerFromSøknadsdata, fraværPerioderFromSøknadsdata),
+        ),
     );
     const updateÅrstall = useCallback(
         (årstall: number | undefined) => {
             setÅrstall(årstall);
             setGyldigTidsrom(fraværStepUtils.getTidsromFromÅrstall(årstall));
         },
-        [setÅrstall]
+        [setÅrstall],
     );
 
     const { persistTempFormValues } = usePersistTempFormValues();
@@ -160,7 +160,7 @@ const FraværStep = () => {
                                 onChange={() => {
                                     const nyttÅrstall = fraværStepUtils.getÅrstallFromFravær(
                                         fraværDager,
-                                        fraværPerioder
+                                        fraværPerioder,
                                     );
                                     if (nyttÅrstall !== årstall) {
                                         updateÅrstall(nyttÅrstall);
@@ -211,15 +211,15 @@ const FraværStep = () => {
                                                         labels={{
                                                             listTitle: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.harPerioderMedFravær.listTitle'
+                                                                'step.fravaer.harPerioderMedFravær.listTitle',
                                                             ),
                                                             addLabel: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.harPerioderMedFravær.addLabel'
+                                                                'step.fravaer.harPerioderMedFravær.addLabel',
                                                             ),
                                                             modalTitle: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.harPerioderMedFravær.modalTitle'
+                                                                'step.fravaer.harPerioderMedFravær.modalTitle',
                                                             ),
                                                         }}
                                                         dateRangesToDisable={[
@@ -252,15 +252,15 @@ const FraværStep = () => {
                                                         labels={{
                                                             listTitle: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.harDagerMedDelvisFravær.listTitle'
+                                                                'step.fravaer.harDagerMedDelvisFravær.listTitle',
                                                             ),
                                                             addLabel: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.harDagerMedDelvisFravær.addLabel'
+                                                                'step.fravaer.harDagerMedDelvisFravær.addLabel',
                                                             ),
                                                             modalTitle: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.harDagerMedDelvisFravær.modalTitle'
+                                                                'step.fravaer.harDagerMedDelvisFravær.modalTitle',
                                                             ),
                                                         }}
                                                         dateRangesToDisable={[
@@ -293,7 +293,7 @@ const FraværStep = () => {
                                                     name={FraværFormFields.perioder_harVærtIUtlandet}
                                                     legend={intlHelper(
                                                         intl,
-                                                        'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm'
+                                                        'step.fravaer.har_du_oppholdt_deg_i_utlandet_for_dager_du_soker_ok.spm',
                                                     )}
                                                     validate={getYesOrNoValidator()}
                                                     data-testid="perioder_harVærtIUtlandet"
@@ -309,11 +309,11 @@ const FraværStep = () => {
                                                         labels={{
                                                             addLabel: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.utenlandsopphold.addLabel'
+                                                                'step.fravaer.utenlandsopphold.addLabel',
                                                             ),
                                                             modalTitle: intlHelper(
                                                                 intl,
-                                                                'step.fravaer.utenlandsopphold.modalTitle'
+                                                                'step.fravaer.utenlandsopphold.modalTitle',
                                                             ),
                                                         }}
                                                         validate={getListValidator({ required: true })}
