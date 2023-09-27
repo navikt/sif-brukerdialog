@@ -1,0 +1,144 @@
+import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
+import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
+import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
+import { ArbeidsgiverType } from '../Arbeidsgiver';
+import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
+
+export interface PleietrengendeApi {
+    navn: string;
+    norskIdentitetsnummer?: string;
+    årsakManglerIdentitetsnummer?: ÅrsakManglerIdentitetsnummer;
+    fødselsdato?: string;
+}
+
+export interface TidEnkeltdagApiData {
+    dato: ISODate;
+    tid: ISODuration;
+}
+
+export interface TidFasteDagerApiData {
+    mandag?: ISODuration;
+    tirsdag?: ISODuration;
+    onsdag?: ISODuration;
+    torsdag?: ISODuration;
+    fredag?: ISODuration;
+}
+
+export interface ArbeidIPeriodeApiData {
+    jobberIPerioden: JobberIPeriodeSvar;
+    enkeltdager?: TidEnkeltdagApiData[];
+}
+
+export interface ArbeidsforholdApiData {
+    jobberNormaltTimer: number;
+    arbeidIPeriode?: ArbeidIPeriodeApiData;
+}
+
+export interface ArbeidsgiverApiData {
+    type: ArbeidsgiverType;
+    navn: string;
+    organisasjonsnummer?: string;
+    offentligIdent?: string;
+    ansattFom?: ISODate;
+    ansattTom?: ISODate;
+    erAnsatt: boolean;
+    sluttetFørSøknadsperiode?: boolean;
+    arbeidsforhold?: ArbeidsforholdApiData;
+}
+
+export interface FrilansApiData {
+    harHattInntektSomFrilanser: boolean;
+    startdato: ISODate;
+    jobberFortsattSomFrilans: boolean;
+    sluttdato?: ISODate;
+    arbeidsforhold?: ArbeidsforholdApiData;
+}
+
+export interface SelvstendigNæringsdrivendeApiData {
+    virksomhet: VirksomhetApiData;
+    arbeidsforhold: ArbeidsforholdApiData;
+}
+
+export interface MedlemskapApiData {
+    harBoddIUtlandetSiste12Mnd: boolean;
+    skalBoIUtlandetNeste12Mnd: boolean;
+    utenlandsoppholdNeste12Mnd: BostedUtlandApiData[];
+    utenlandsoppholdSiste12Mnd: BostedUtlandApiData[];
+}
+
+export interface BostedUtlandApiData {
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
+    landkode: string;
+    landnavn: string;
+}
+
+export interface PeriodeApiData {
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
+}
+export interface UtenlandsoppholdIPeriodenApiData extends PeriodeApiData {
+    landkode: string;
+    landnavn: string;
+}
+
+export interface LandApi {
+    landkode: string;
+    landnavn: string;
+}
+
+export interface OpptjeningIUtlandetApi {
+    navn: string;
+    opptjeningType: OpptjeningAktivitet;
+    land: LandApi;
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
+}
+
+export interface FerieuttakIPeriodenApiData {
+    skalTaUtFerieIPerioden: boolean;
+    ferieuttak: PeriodeApiData[];
+}
+
+export interface UtenlandsoppholdIPeriodenApi {
+    skalOppholdeSegIUtlandetIPerioden: boolean;
+    opphold: UtenlandsoppholdIPeriodenApiData[];
+}
+
+export interface UtenlandskNæringApi {
+    næringstype: UtenlandskNæringstype;
+    navnPåVirksomheten: string;
+    land: LandApi;
+    organisasjonsnummer?: string;
+    fraOgMed: ISODate;
+    tilOgMed?: ISODate;
+}
+
+export enum FlereSokereApiData {
+    'JA' = 'JA',
+    'NEI' = 'NEI',
+    'USIKKER' = 'USIKKER',
+}
+
+export interface SøknadApiData {
+    id: string;
+    språk: string;
+    harForståttRettigheterOgPlikter: boolean;
+    pleietrengende: PleietrengendeApi;
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
+    pleierDuDenSykeHjemme: boolean;
+    flereSokere: FlereSokereApiData;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApi;
+    ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
+    arbeidsgivere?: ArbeidsgiverApiData[];
+    frilans?: FrilansApiData;
+    selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
+    medlemskap: MedlemskapApiData;
+    harBekreftetOpplysninger: boolean;
+    vedleggUrls: string[];
+    opplastetIdVedleggUrls: string[];
+    harVærtEllerErVernepliktig?: boolean;
+    opptjeningIUtlandet: OpptjeningIUtlandetApi[];
+    utenlandskNæring: UtenlandskNæringApi[];
+}

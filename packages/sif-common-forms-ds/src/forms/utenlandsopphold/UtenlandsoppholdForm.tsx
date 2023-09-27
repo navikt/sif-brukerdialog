@@ -33,6 +33,7 @@ interface Props {
     maxDate: Date;
     opphold?: Utenlandsopphold;
     alleOpphold?: Utenlandsopphold[];
+    excludeInnlagtQuestion: boolean;
     onSubmit: (values: Utenlandsopphold) => void;
     onCancel: () => void;
 }
@@ -84,11 +85,23 @@ const defaultFormValues: UtenlandsoppholdFormValues = {
 
 const Form = getTypedFormComponents<UtenlandsoppholdFormFields, UtenlandsoppholdFormValues, ValidationError>();
 
-const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onSubmit, onCancel }: Props) => {
+const UtenlandsoppholdForm = ({
+    maxDate,
+    minDate,
+    opphold,
+    excludeInnlagtQuestion,
+    alleOpphold = [],
+    onSubmit,
+    onCancel,
+}: Props) => {
     const intl = useIntl();
 
     const onFormikSubmit = (formValues: Partial<UtenlandsoppholdFormValues>) => {
-        const utenlandsoppholdToSubmit = utils.mapFormValuesToUtenlandsopphold(formValues, opphold?.id);
+        const utenlandsoppholdToSubmit = utils.mapFormValuesToUtenlandsopphold(
+            formValues,
+            excludeInnlagtQuestion,
+            opphold?.id,
+        );
         if (utils.isValidUtenlandsopphold(utenlandsoppholdToSubmit)) {
             onSubmit({
                 ...utenlandsoppholdToSubmit,
@@ -104,7 +117,13 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
             ? alleOpphold.map(mapFomTomToDateRange)
             : alleOpphold.filter((o) => o.id !== opphold.id).map(mapFomTomToDateRange);
 
-    const initialValues = opphold ? utils.mapUtenlandsoppholdToFormValues(opphold) : defaultFormValues;
+    if (excludeInnlagtQuestion) {
+        defaultFormValues.erBarnetInnlagt = undefined;
+    }
+
+    const initialValues = opphold
+        ? utils.mapUtenlandsoppholdToFormValues(opphold, excludeInnlagtQuestion)
+        : defaultFormValues;
     return (
         <Form.FormikWrapper
             initialValues={initialValues}
@@ -120,9 +139,12 @@ const UtenlandsoppholdForm = ({ maxDate, minDate, opphold, alleOpphold = [], onS
                     hasDateStringValues && landkode !== undefined && erBarnetInnlagt === YesOrNo.YES;
 
                 const includeInnlagtQuestion: boolean =
-                    landkode !== undefined && hasValue(landkode) && !countryIsMemberOfEøsOrEfta(landkode);
+                    landkode !== undefined &&
+                    hasValue(landkode) &&
+                    !countryIsMemberOfEøsOrEfta(landkode) &&
+                    !excludeInnlagtQuestion;
 
-                const showÅrsakQuestion = barnInnlagtPerioder.length > 0;
+                const showÅrsakQuestion = erBarnetInnlagt === YesOrNo.YES && barnInnlagtPerioder.length > 0;
 
                 return (
                     <Form.Form
