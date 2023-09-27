@@ -89,6 +89,7 @@ const UtenlandsoppholdExample = () => {
                     opphold={initialValues.utenlandsopphold[0]}
                     minDate={date1YearAgo}
                     maxDate={date1YearFromNow}
+                    excludeInnlagtQuestion={false}
                     onSubmit={setSingleFormValues}
                     onCancel={() => console.log('cancel me')}
                 />
