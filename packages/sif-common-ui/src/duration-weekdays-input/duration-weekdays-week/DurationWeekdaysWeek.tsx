@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import { Heading, HeadingProps } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
+import AriaAlternative from '@navikt/sif-common-core-ds/lib/atoms/aria-alternative/AriaAlternative';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import { FormikTimeInput } from '@navikt/sif-common-formik-ds/lib';
-import AriaAlternative from '@navikt/sif-common-core-ds/lib/atoms/aria-alternative/AriaAlternative';
 import {
     dateFormatter,
     DateRange,
@@ -83,8 +83,8 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                                         compact: true,
                                     }}
                                     timeInputLabels={{
-                                        minutes: <AriaAlternative visibleText="Min." ariaText="Minutter" />,
-                                        hours: <AriaAlternative visibleText="Tim." ariaText="Timer" />,
+                                        minutes: <AriaAlternative visibleText="Minutter" ariaText="Minutter" />,
+                                        hours: <AriaAlternative visibleText="Timer" ariaText="Timer" />,
                                     }}
                                     // validate={validate ? (value) => validate(validationDayName, value) : undefined}
                                 />
