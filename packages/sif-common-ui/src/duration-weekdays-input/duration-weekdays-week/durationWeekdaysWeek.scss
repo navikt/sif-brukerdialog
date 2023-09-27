@@ -67,6 +67,12 @@
             flex-wrap: wrap;
             gap: 0.25rem;
         }
+        &__day:not(:first-child) {
+            margin-top: 0.75rem;
+        }
+        &__dayLegend {
+            font-weight: bold;
+        }
         &__day--disabled {
             display: none;
         }
