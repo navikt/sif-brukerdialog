@@ -33,16 +33,24 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
                         </Heading>
                         <div>
                             {weeks.map((week) => {
-                                const hasDates = getDatesInDateRange(week, true);
-                                if (hasDates.length === 0) return null;
+                                const dates = getDatesInDateRange(week, true);
+                                const enabledDatesInWeek = dates
+                                    .map(dateToISODate)
+                                    .filter((d) => disabledDates.map(dateToISODate).includes(d) === false);
+                                if (enabledDatesInWeek.length === 0) return null;
                                 return (
-                                    <DurationWeekdaysWeek
-                                        key={dateToISODate(week.from)}
-                                        week={week}
-                                        disabledDates={disabledDates}
-                                        formikFieldName="timer"
-                                        headingLevel="3"
-                                    />
+                                    <>
+                                        {/* <div>Måned: {dateRangeToISODateRange(month)}</div>
+                                        <div>Uke: {dateRangeToISODateRange(week)}</div>
+                                        <div>[{enabledDatesInWeek.length}]</div> */}
+                                        <DurationWeekdaysWeek
+                                            key={dateToISODate(week.from)}
+                                            week={week}
+                                            disabledDates={disabledDates}
+                                            formikFieldName="timer"
+                                            headingLevel="3"
+                                        />
+                                    </>
                                 );
                             })}
                         </div>

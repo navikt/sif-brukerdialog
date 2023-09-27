@@ -38,7 +38,6 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
     const dates = getDatesInDateRange(fullWeek);
     const isoWeek = dayjs(fullWeek.from).isoWeek();
     const datesOutsideRange = getDatesInWeekOutsideDateRange(fullWeek.from, week);
-
     const allDisabledDates = [...disabledDates, ...datesOutsideRange];
 
     return (

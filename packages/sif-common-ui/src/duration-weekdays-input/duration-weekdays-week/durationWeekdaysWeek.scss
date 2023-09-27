@@ -61,5 +61,14 @@
             margin-bottom: 0.5rem;
             padding-top: 1rem;
         }
+        &__days {
+            display: block;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        &__day--disabled {
+            display: none;
+        }
     }
 }
