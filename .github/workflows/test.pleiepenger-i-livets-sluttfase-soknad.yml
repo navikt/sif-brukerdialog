@@ -1,12 +1,16 @@
 name: test.pleiepenger-i-livets-sluttfase-soknad
+
 on:
     push:
+        branches-ignore:
+            - 'main'
         paths:
             - 'apps/pleiepenger-i-livets-sluttfase-soknad/**/*'
             - 'nais-config/**/*'
             - 'packages/**/*'
             - .github/workflows/app.pleiepenger-i-livets-sluttfase-soknad.yml
             - .github/workflows/test.pleiepenger-i-livets-sluttfase-soknad.yml
+    workflow_call:
 
 env:
     APP_NAME: 'pleiepenger-i-livets-sluttfase-soknad'
@@ -16,7 +20,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
@@ -34,7 +38,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup Node.js environment
               uses: actions/setup-node@v3
