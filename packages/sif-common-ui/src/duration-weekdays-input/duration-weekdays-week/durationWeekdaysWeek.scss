@@ -1,4 +1,4 @@
-.capitalize::first-letter {
+.capitalizeFirstChar::first-letter {
     text-transform: uppercase;
 }
 
@@ -23,10 +23,10 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.25rem;
     }
     &__day {
-        width: 6rem;
+        width: 7rem;
         &--disabled {
             .timeInput__label {
                 display: none;

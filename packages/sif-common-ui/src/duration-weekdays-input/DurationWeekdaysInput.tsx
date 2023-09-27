@@ -28,7 +28,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
                 const weeks = getWeeksInDateRange(month);
                 return (
                     <div key={dateToISODate(month.from)} className="durationWeekdaysInput__month">
-                        <Heading level="2" size="medium" className="capitalize" spacing={true}>
+                        <Heading level="2" size="medium" className="capitalizeFirstChar" spacing={true}>
                             {dayjs(month.from).format('MMMM YYYY')}
                         </Heading>
                         <div>
