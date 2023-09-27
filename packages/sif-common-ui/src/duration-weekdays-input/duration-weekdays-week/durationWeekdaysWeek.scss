@@ -8,16 +8,12 @@
     flex-wrap: wrap;
     margin-bottom: 1.5rem;
     &__weekNumber {
-        width: 4rem;
-        flex-grow: 1;
-        max-width: 4rem;
+        width: 5rem;
+        flex-grow: 0;
+        padding-top: 2.25rem;
     }
     &__daysWrapper {
         flex-grow: 2;
-    }
-    &__weekNumber {
-        padding-top: 2.25rem;
-        font-size: 1rem;
     }
     &__days {
         display: flex;

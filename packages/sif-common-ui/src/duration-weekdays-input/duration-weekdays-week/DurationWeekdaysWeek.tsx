@@ -43,11 +43,9 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
 
     return (
         <div className={bem.block}>
-            <div className={bem.element('weekNumber')}>
-                <Heading size="xsmall" level={headingLevel}>
-                    Uke {isoWeek}
-                </Heading>
-            </div>
+            <Heading size="xsmall" level={headingLevel} className={bem.element('weekNumber')}>
+                Uke {isoWeek}
+            </Heading>
             <div className={bem.element('daysWrapper')}>
                 <div className={bem.element('days')}>
                     {dates.map((date, index) => {
