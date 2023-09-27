@@ -6,7 +6,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-
+    margin-bottom: 1.5rem;
     &__weekNumber {
         width: 4rem;
         flex-grow: 1;
@@ -20,15 +20,13 @@
         font-size: 1rem;
     }
     &__days {
-        display: grid;
-        --auto-grid-min-size: 6rem;
-        grid-template-columns: 6rem repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
-        grid-column-gap: 0.5rem;
-        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
     &__day {
-        margin-bottom: 1rem;
-        max-width: 6rem;
+        width: 6rem;
         &--disabled {
             .timeInput__label {
                 display: none;
@@ -54,6 +52,18 @@
         font-weight: normal;
         &--disabled {
             text-decoration: line-through;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .durationWeekdaysWeek {
+        display: block;
+        margin-bottom: 1rem;
+        &__weekNumber {
+            max-width: initial;
+            margin-bottom: 0.5rem;
+            padding-top: 1rem;
         }
     }
 }

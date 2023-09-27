@@ -15,7 +15,7 @@ const StoryWrapper = ({ children }: IntlProviderProps) => {
     return (
         <main>
             <Router>
-                <div id="story-wrapper" style={{ maxWidth: '600px', fontSize: '1rem' }}>
+                <div id="story-wrapper" style={{ fontSize: '1rem' }}>
                     <div style={{ fontSize: '1rem' }}>{children}</div>
                 </div>
             </Router>
