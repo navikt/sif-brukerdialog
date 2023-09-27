@@ -1,0 +1,59 @@
+.capitalize::first-letter {
+    text-transform: uppercase;
+}
+
+.durationWeekdaysWeek {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__weekNumber {
+        width: 4rem;
+        flex-grow: 1;
+        max-width: 4rem;
+    }
+    &__daysWrapper {
+        flex-grow: 2;
+    }
+    &__weekNumber {
+        padding-top: 2.25rem;
+        font-size: 1rem;
+    }
+    &__days {
+        display: grid;
+        --auto-grid-min-size: 6rem;
+        grid-template-columns: 6rem repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+        grid-column-gap: 0.5rem;
+        align-items: center;
+    }
+    &__day {
+        margin-bottom: 1rem;
+        max-width: 6rem;
+        &--disabled {
+            .timeInput__label {
+                display: none;
+            }
+        }
+    }
+    .timeInput__label {
+        font-size: 90%;
+    }
+    .timeInput {
+        margin-top: 0.125rem !important;
+    }
+    &__dayName {
+        display: inline-block;
+        text-overflow: ellipsis;
+        &::first-letter {
+            font-size: 0.9rem;
+            text-transform: capitalize;
+        }
+    }
+    &__dayLegend {
+        font-size: 1rem !important;
+        font-weight: normal;
+        &--disabled {
+            text-decoration: line-through;
+        }
+    }
+}
