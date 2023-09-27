@@ -3,7 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import AriaAlternative from '@navikt/sif-common-core-ds/lib/atoms/aria-alternative/AriaAlternative';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-import { FormikTimeInput } from '@navikt/sif-common-formik-ds/lib';
+import { FormikTimeInput, ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import {
     dateFormatter,
     DateRange,
@@ -24,6 +24,8 @@ interface Props {
     formikFieldName: string;
     /** Heading level */
     headingLevel: '1' | '2' | '3' | '4' | '5' | '6';
+    /** Date validation */
+    validate?: (date: Date, value?: string) => ValidationResult<ValidationError>;
 }
 
 const bem = bemUtils('durationWeekdaysWeek');
@@ -33,6 +35,7 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
     disabledDates = [],
     formikFieldName,
     headingLevel = '3',
+    validate,
 }) => {
     const fullWeek = getWeekDateRange(week.from, true);
     const dates = getDatesInDateRange(fullWeek);
@@ -56,9 +59,6 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                         if (dayjs(date).isAfter(week.from, 'month') || dayjs(date).isAfter(week.to, 'day')) {
                             return null;
                         }
-                        // if (dayjs(date).isBefore(week.from, 'month')) {
-                        //     return null; //<div className={bem.element('day')} key={index} />;
-                        // }
 
                         return (
                             <div className={bem.element('day', dateIsDisabled ? 'disabled' : '')} key={index}>
@@ -86,7 +86,7 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                                         minutes: <AriaAlternative visibleText="Minutter" ariaText="Minutter" />,
                                         hours: <AriaAlternative visibleText="Timer" ariaText="Timer" />,
                                     }}
-                                    // validate={validate ? (value) => validate(validationDayName, value) : undefined}
+                                    validate={validate ? (value) => validate(date, value) : undefined}
                                 />
                             </div>
                         );

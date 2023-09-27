@@ -38,13 +38,13 @@
     &__dayName {
         display: inline-block;
         text-overflow: ellipsis;
+        font-size: 1rem;
         &::first-letter {
-            font-size: 0.9rem;
             text-transform: capitalize;
         }
     }
     &__dayLegend {
-        font-size: 1rem !important;
+        font-size: 1rem;
         font-weight: normal;
         &--disabled {
             text-decoration: line-through;
@@ -67,10 +67,14 @@
             flex-wrap: wrap;
             gap: 0.25rem;
         }
+        &__day {
+            width: initial;
+        }
         &__day:not(:first-child) {
             margin-top: 0.75rem;
         }
         &__dayLegend {
+            font-size: 1.125rem;
             font-weight: bold;
         }
         &__day--disabled {
