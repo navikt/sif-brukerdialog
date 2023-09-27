@@ -7,11 +7,9 @@ export const cleanupTidsromStep = (values: SøknadFormValues, søknadsperiode: D
 
     if (cleanedValues.omsorgstilbud && søkerKunFortid(søknadsperiode)) {
         cleanedValues.omsorgstilbud.erIOmsorgstilbudFremtid = undefined;
-        cleanedValues.omsorgstilbud.erLiktHverUke = undefined;
     }
     if (cleanedValues.omsorgstilbud && søkerKunFremtid(søknadsperiode)) {
         cleanedValues.omsorgstilbud.erIOmsorgstilbudFortid = undefined;
-        cleanedValues.omsorgstilbud.erLiktHverUke = undefined;
     }
     return cleanedValues;
 };
