@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.9.0
+
+### Minor Changes
+
+-   d12fcbb5: excludeInnlagtQuestion (for barn) for bruk Utenlandsopphold i PILS
+
 ## 8.8.1
 
 ### Patch Changes
