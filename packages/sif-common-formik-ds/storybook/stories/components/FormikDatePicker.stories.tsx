@@ -1,9 +1,10 @@
+import { BodyShort } from '@navikt/ds-react';
 import { Meta, StoryFn } from '@storybook/react';
+import { useFormikContext } from 'formik';
 import FormikDatepicker, { FormikDatepickerProps } from '../../../src/components/formik-datepicker/FormikDatepicker';
+import { getDateValidator } from '../../../src/validation';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
-
-import { getDateValidator } from '../../../src/validation';
 
 const meta: Meta<typeof FormikDatepicker> = {
     title: 'Component/FormikDatepicker',
@@ -13,7 +14,21 @@ const meta: Meta<typeof FormikDatepicker> = {
 
 export default meta;
 
-const Template: StoryFn<typeof FormikDatepicker> = (args) => <FormikDatepicker {...args} />;
+const Wrapper: StoryFn = ({ children }) => {
+    const formik = useFormikContext();
+    return (
+        <>
+            {children}
+            <BodyShort style={{ marginTop: '1rem' }}>formik verdi: {formik.values['date']}</BodyShort>
+        </>
+    );
+};
+
+const Template: StoryFn<typeof FormikDatepicker> = (args) => (
+    <Wrapper>
+        <FormikDatepicker {...args} />
+    </Wrapper>
+);
 const validator = getDateValidator({
     required: true,
     min: new Date(2015, 0, 1),
@@ -29,10 +44,10 @@ const defaultProps: FormikDatepickerProps<any, any> = {
     dropdownCaption: true,
     fromDate: new Date(2020, 1, 1),
     toDate: new Date(2030, 1, 10),
-    disabledDaysOfWeek: {
-        dayOfWeek: [2],
-    },
-    disabledDateRanges: [{ from: new Date(2021, 1, 1), to: new Date(2021, 1, 10) }],
+    // disabledDaysOfWeek: {
+    //     dayOfWeek: [2],
+    // },
+    // disabledDateRanges: [{ from: new Date(2021, 1, 1), to: new Date(2021, 1, 10) }],
     validate: validator,
 };
 Default.args = {
