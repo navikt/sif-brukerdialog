@@ -1,22 +1,21 @@
+import { Heading, Panel } from '@navikt/ds-react';
 /* eslint-disable no-console */
 import * as React from 'react';
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import MessagesPreview from '../../components/messages-preview/MessagesPreview';
-import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import flat from 'flat';
+import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils';
+import { flatten } from 'flat';
 import { DateTidsperiode } from '../../../src/forms/tidsperiode';
 import TidsperiodeForm, { TidsperiodeFormErrors } from '../../../src/forms/tidsperiode/TidsperiodeForm';
 import TidsperiodeListAndDialog from '../../../src/forms/tidsperiode/TidsperiodeListAndDialog';
 import tidsperiodeMessages from '../../../src/forms/tidsperiode/tidsperiodeMessages';
+import MessagesPreview from '../../components/messages-preview/MessagesPreview';
 import SubmitPreview from '../../components/submit-preview/SubmitPreview';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-import { Heading, Panel } from '@navikt/ds-react';
 
 enum FormField {
     'tidsperiode' = 'tidsperiode',
@@ -28,8 +27,8 @@ interface FormValues {
 const initialValues: FormValues = { tidsperiode: [] };
 
 const TidsperiodeExample = () => {
-    const [singleFormValues, setSingleFormValues] = useState<Partial<DateTidsperiode> | undefined>(undefined);
-    const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
+    const [singleFormValues, setSingleFormValues] = React.useState<Partial<DateTidsperiode> | undefined>(undefined);
+    const [listFormValues, setListFormValues] = React.useState<Partial<FormValues> | undefined>(undefined);
     const intl = useIntl();
     return (
         <>
@@ -68,7 +67,7 @@ const TidsperiodeExample = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(TidsperiodeFormErrors)}
+                    validationErrorIntlKeys={flatten(TidsperiodeFormErrors)}
                     intlMessages={tidsperiodeMessages}
                 />
             </Block>
