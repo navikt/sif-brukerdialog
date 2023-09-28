@@ -75,7 +75,7 @@
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.8.1",
-        "cypress": "13.2.0",
+        "cypress": "13.3.0",
         "dotenv": "16.3.1",
         "html-webpack-harddisk-plugin": "2.0.0",
         "html-webpack-plugin": "5.5.3",
