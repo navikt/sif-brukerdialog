@@ -98,6 +98,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         disabled: disabledDates,
         fromDate: restProps.minDate,
         toDate: restProps.maxDate,
+        openOnFocus: false,
         onDateChange: onDateChange,
         defaultSelected: ISODateStringToUTCDate(value),
         ...restProps,
