@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
--   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+-   d12fcbb5: excludeInnlagtQuestion (for barn) for bruk Utenlandsopphold i PILS
 
 ## 8.8.1
 
