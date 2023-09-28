@@ -144,19 +144,16 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                 }>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
-                                        <FormComponents.DateIntervalPicker
+                                        <FormComponents.DateRangePicker
                                             legend=""
-                                            fromDatepickerProps={{
+                                            disabledDaysOfWeek={{ dayOfWeek: disabledDaysOfWeekDayNumber }}
+                                            minDate={periode.from}
+                                            maxDate={periode.to}
+                                            disableWeekends={true}
+                                            fromInputProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.fraOgMed.label'),
-                                                'data-testid': 'fra-dato',
                                                 name: FormFields.fom,
-                                                disableWeekend: true,
-                                                fullScreenOnMobile: true,
-                                                fullscreenOverlay: true,
-                                                disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
-                                                disabled: heleSøknadsperioden === true,
-                                                minDate: periode.from,
-                                                maxDate: to || periode.to,
+                                                inputDisabled: heleSøknadsperioden === true,
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: false,
@@ -166,17 +163,10 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                     max: to || periode.to,
                                                 }).validateFromDate,
                                             }}
-                                            toDatepickerProps={{
+                                            toInputProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.tilOgMed.label'),
                                                 name: FormFields.tom,
-                                                'data-testid': 'til-dato',
-                                                disableWeekend: true,
-                                                disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
-                                                fullScreenOnMobile: true,
-                                                fullscreenOverlay: true,
-                                                minDate: from || periode.from,
-                                                maxDate: periode.to,
-                                                disabled: heleSøknadsperioden === true,
+                                                inputDisabled: heleSøknadsperioden === true,
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: false,

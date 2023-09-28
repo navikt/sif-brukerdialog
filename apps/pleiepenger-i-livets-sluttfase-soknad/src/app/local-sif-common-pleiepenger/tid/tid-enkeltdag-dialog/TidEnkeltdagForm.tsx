@@ -271,9 +271,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                                             max: periode.to,
                                                                             required: true,
                                                                         })}
-                                                                        disableWeekend={true}
-                                                                        fullScreenOnMobile={true}
-                                                                        fullscreenOverlay={true}
+                                                                        dropdownCaption={true}
                                                                         name={FormFields.stopDato}
                                                                     />
                                                                 </FormBlock>

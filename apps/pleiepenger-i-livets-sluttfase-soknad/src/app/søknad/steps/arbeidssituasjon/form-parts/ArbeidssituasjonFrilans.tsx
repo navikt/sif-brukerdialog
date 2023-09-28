@@ -123,7 +123,7 @@ const ArbeidssituasjonFrilans = ({
                     <DatePicker
                         name={FrilansFormFields.startdato}
                         label={intlHelper(intl, 'frilanser.nårStartet.spm')}
-                        showYearSelector={true}
+                        dropdownCaption={true}
                         maxDate={søknadsdato}
                         validate={getFrilanserStartdatoValidator(formValues, søknadsperiode, søknadsdato)}
                         data-testid="frilanser.nårStartet"
@@ -141,7 +141,7 @@ const ArbeidssituasjonFrilans = ({
                             <DatePicker
                                 name={FrilansFormFields.sluttdato}
                                 label={intlHelper(intl, 'frilanser.nårSluttet.spm')}
-                                showYearSelector={true}
+                                dropdownCaption={true}
                                 minDate={datepickerUtils.getDateFromDateString(startdato)}
                                 maxDate={søknadsdato}
                                 validate={getFrilanserSluttdatoValidator(
