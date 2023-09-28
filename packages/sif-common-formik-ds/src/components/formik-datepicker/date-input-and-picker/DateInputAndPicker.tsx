@@ -92,7 +92,6 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
     };
 
     const { inputProps, datepickerProps, selectedDay } = useDatepicker({
-        openOnFocus: false,
         locale,
         disabled: disabledDates,
         fromDate: restProps.minDate,
@@ -106,6 +105,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         <DatePicker {...(datepickerProps as any)} mode="single" onSelect={onSelect} inputDisabled={inputDisabled}>
             <DatePicker.Input
                 {...inputProps}
+                description={restProps.description}
                 id={inputId}
                 name={name}
                 label={label}

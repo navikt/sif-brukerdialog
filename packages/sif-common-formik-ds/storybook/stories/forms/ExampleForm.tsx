@@ -183,13 +183,6 @@ const ExampleForm: React.FunctionComponent = () => {
                                 />
                             </FormBlock>
                             <FormBlock>
-                                <Form.DateIntervalPicker
-                                    legend="Choose a date interval"
-                                    fromDatepickerProps={{ label: 'Interval from', name: Fields.dateRange_from }}
-                                    toDatepickerProps={{ label: 'Interval to', name: Fields.dateRange_to }}
-                                />
-                            </FormBlock>
-                            <FormBlock>
                                 <Form.RadioGroup
                                     legend="Choose ONE animal"
                                     name={Fields.radio}
