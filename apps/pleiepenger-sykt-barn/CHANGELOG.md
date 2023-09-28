@@ -1,5 +1,13 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.0.3
+
+### Patch Changes
+
+-   09f730b1: Korrigere skrivefeil
+-   Updated dependencies [d12fcbb5]
+    -   @navikt/sif-common-forms-ds@8.9.0
+
 ## 3.0.2
 
 ### Patch Changes
