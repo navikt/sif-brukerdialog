@@ -54,7 +54,6 @@ export const Validation: Story = {
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
 
-        // 👇 Simulate interactions with the component
         await userEvent.type(canvas.getByLabelText('Velg en dato'), '02-10-2000');
         await userEvent.tab();
         await userEvent.tab();

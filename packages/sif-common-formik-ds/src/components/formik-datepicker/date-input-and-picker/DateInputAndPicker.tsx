@@ -1,6 +1,6 @@
 import { DatePicker, useDatepicker } from '@navikt/ds-react';
 import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormError } from '../../../types';
 import {
     dateToISODateString,
@@ -39,6 +39,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
     ...restProps
 }) => {
     const [inputHasFocus, setInputHasFocus] = React.useState(false);
+    const [listenForInputValueChange, setListenForInputValueChange] = React.useState(false);
 
     const disabledDates = datepickerUtils.getDisabledDates({
         minDate: restProps.minDate,
@@ -60,6 +61,7 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
             }
             const isoDateString = InputDateStringToISODateString(inputProps.value);
             onChange(isoDateString !== INVALID_DATE_VALUE ? isoDateString : inputProps.value);
+            setListenForInputValueChange(true);
             return;
         }
         if (selectedDay) {
@@ -100,6 +102,16 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         defaultSelected: ISODateStringToUTCDate(value),
         ...restProps,
     });
+
+    const inputValue = inputProps.value;
+
+    useEffect(() => {
+        if (listenForInputValueChange && typeof inputValue === 'string') {
+            const isoDateString = InputDateStringToISODateString(inputValue);
+            onChange(isoDateString !== INVALID_DATE_VALUE ? isoDateString : inputValue);
+            setListenForInputValueChange(false);
+        }
+    }, [inputValue, listenForInputValueChange, onChange]);
 
     return (
         <DatePicker {...(datepickerProps as any)} mode="single" onSelect={onSelect} inputDisabled={inputDisabled}>
