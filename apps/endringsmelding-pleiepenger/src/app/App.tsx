@@ -26,7 +26,7 @@ ensureBaseNameForReactRouter(publicPath);
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvironmentVariable('MSW') === 'on') {
+        if (getEnvironmentVariable('MSW') === 'on' && (window as any).Cypress === undefined) {
             return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',

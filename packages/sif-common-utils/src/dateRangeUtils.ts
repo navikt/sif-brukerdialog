@@ -525,6 +525,36 @@ export const getDatesInMonthOutsideDateRange = (month: Date, dateRange: DateRang
 };
 
 /**
+ * Gets all dates in @week, not inside @dateRange
+ * @param week
+ * @param dateRange
+ * @returns array of dates not within the dateRange
+ */
+export const getDatesInWeekOutsideDateRange = (week: Date, dateRange: DateRange, onlyWeekDays?: boolean): Date[] => {
+    const weekDateRange: DateRange = getWeekDateRange(week, onlyWeekDays);
+    const dates: Date[] = [];
+
+    if (dayjs(dateRange.from).isAfter(weekDateRange.from, 'day')) {
+        dates.push(
+            ...getDatesInDateRange({
+                from: weekDateRange.from,
+                to: dayjs(dateRange.from).subtract(1, 'day').toDate(),
+            }),
+        );
+    }
+    if (dayjs(dateRange.to).isBefore(weekDateRange.to, 'day')) {
+        dates.push(
+            ...getDatesInDateRange({
+                from: dayjs(dateRange.to).add(1, 'day').toDate(),
+                to: weekDateRange.to,
+            }),
+        );
+    }
+
+    return dates;
+};
+
+/**
  * Converts ISODateRange to DateRange
  * @param isoDateRange
  * @returns
@@ -702,6 +732,7 @@ export const dateRangeUtils = {
     getDateRangesFromISODateRangeMap,
     getDateRangesWithinDateRange,
     getDatesInDateRanges,
+    getDatesInWeekOutsideDateRange,
     getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,

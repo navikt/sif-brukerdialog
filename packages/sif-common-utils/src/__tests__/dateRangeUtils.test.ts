@@ -39,6 +39,7 @@ import {
     sortDateRange,
     sortDateRangeByToDate,
     getLastDateInDateRanges,
+    getDatesInWeekOutsideDateRange,
 } from '..';
 
 describe('dateRangeUtils', () => {
@@ -367,6 +368,13 @@ describe('dateRangeUtils', () => {
             { from: ISODateToDate('2010-01-01'), to: ISODateToDate('2010-02-01') },
             { from: ISODateToDate('2020-01-01'), to: ISODateToDate('2020-02-01') },
         ];
+        it('throws error if dateRanges are empty', () => {
+            try {
+                getDateRangeFromDateRanges([]);
+            } catch (e) {
+                expect(e).toEqual('getDateRangeFromDateRanges: Cannot get date range from empty array');
+            }
+        });
         it('gets the spanning daterange for multiple dateranges', () => {
             const result = getDateRangeFromDateRanges(dateRanges);
             expect(dateToISODate(result.from)).toEqual('2010-01-01');
@@ -472,6 +480,19 @@ describe('dateRangeUtils', () => {
         });
     });
 
+    describe('getDatesInWeekOutsideDateRange', () => {
+        it('returns all days in the week outside daterange', () => {
+            const result = getDatesInWeekOutsideDateRange(ISODateToDate('2021-01-08'), {
+                from: ISODateToDate('2021-01-05'),
+                to: ISODateToDate('2021-01-08'),
+            });
+            expect(result.length).toBe(3);
+            expect(dateToISODate(result[0])).toEqual('2021-01-04');
+            expect(dateToISODate(result[1])).toEqual('2021-01-09');
+            expect(dateToISODate(result[2])).toEqual('2021-01-10');
+        });
+    });
+
     describe('ISODateRangeToISODates', () => {
         it('splits an ISODateRange into ISODates', () => {
             const result = ISODateRangeToISODates('2021-01-01/2021-01-10');
@@ -569,9 +590,13 @@ describe('dateRangeUtils', () => {
             },
         ];
 
+        it('should return false if ranges are empty', () => {
+            expect(dateRangesExceedsRange([], range)).toBeFalsy();
+        });
         it('should return false if ranges are within valid range', () => {
             expect(dateRangesExceedsRange(ranges, range)).toBeFalsy();
         });
+
         it('should return true if ranges are ahead of valid range', () => {
             expect(
                 dateRangesExceedsRange(
