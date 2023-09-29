@@ -65,7 +65,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
 
                     const weeks = getWeeksInDateRange(month);
                     return (
-                        <Accordion.Item>
+                        <Accordion.Item key={dateToISODate(month.from)}>
                             <Accordion.Header>{dayjs(month.from).format('MMMM YYYY')}</Accordion.Header>
                             <Accordion.Content className="durationWeekdaysInput__monthAccordionItem">
                                 {renderWeeks(weeks)}
