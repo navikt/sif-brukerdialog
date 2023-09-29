@@ -112,7 +112,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                 {tekst?.tittel || arbIntl.intlText('arbeidstidPeriodeForm.tittel', { arbeidsstedNavn })}
             </Heading>
             {tekst?.introduksjon ? <Block margin="l">{tekst.introduksjon}</Block> : undefined}
-            <FormBlock margin="xl">
+            <FormBlock>
                 <FormComponents.FormikWrapper
                     initialValues={initialFormValues}
                     onSubmit={onValidSubmit}
@@ -177,13 +177,13 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 }).validateToDate,
                                             }}
                                         />
-                                        <Block>
+                                        <FormBlock margin="m">
                                             <FormComponents.Checkbox
                                                 label={intlHelper(intl, 'arbeidstidPeriodeForm.velgHelePerioden')}
                                                 name={FormFields.heleSøknadsperioden}
                                                 afterOnChange={handleHeleSøknadsperiodenChange}
                                             />
-                                        </Block>
+                                        </FormBlock>
                                     </FormBlock>
                                 </div>
 

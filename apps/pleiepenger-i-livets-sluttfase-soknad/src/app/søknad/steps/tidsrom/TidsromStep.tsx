@@ -139,14 +139,13 @@ const TidsromStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
+                                    <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.1" />
+
                                     <p>
-                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnit.1" />
+                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.2" />
                                     </p>
                                     <p>
-                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnit.2" />
-                                    </p>
-                                    <p>
-                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnit.3" />
+                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.3" />
                                     </p>
                                 </SifGuidePanel>
                                 <FormBlock>
@@ -183,180 +182,168 @@ const TidsromStep = () => {
                                         minDate={date3YearsAgo}
                                         maxDate={getMaxDato(periodeFraDate)}
                                     />
-                                    {søkerKunHelgedager(periodeFra, periodeTil) && (
-                                        <Block padBottom="xl">
-                                            <Alert variant="warning">
-                                                <FormattedMessage id="step.tidsrom.søkerKunHelgedager.alert" />
-                                            </Alert>
-                                        </Block>
-                                    )}
-                                    {!søkerKunHelgedager(periodeFra, periodeTil) && (
-                                        <>
-                                            <Block margin="xl">
-                                                <YesOrNoQuestion
-                                                    legend={intlHelper(intl, 'steg.tidsrom.pleierDuDenSykeHjemme.spm')}
-                                                    name={TidsromFormFields.pleierDuDenSykeHjemme}
-                                                    validate={getYesOrNoValidator()}
-                                                    description={
-                                                        <ExpandableInfo
-                                                            title={intlHelper(
-                                                                intl,
-                                                                'steg.tidsrom.pleierDuDenSykeHjemme.info.tittel',
-                                                            )}>
-                                                            <FormattedMessage
-                                                                id={'steg.tidsrom.pleierDuDenSykeHjemme.info'}
-                                                            />
-                                                        </ExpandableInfo>
-                                                    }
-                                                    data-testid="pleierDuDenSykeHjemme.spm"
-                                                />
-                                            </Block>
-                                            {pleierDuDenSykeHjemme === YesOrNo.NO && (
-                                                <Block margin="l">
-                                                    <Alert variant="warning">
-                                                        <FormattedMessage id="steg.tidsrom.pleierDuDenSykeHjemme.alert" />
-                                                    </Alert>
-                                                </Block>
-                                            )}
-                                            {pleierDuDenSykeHjemme === YesOrNo.YES && (
-                                                <>
-                                                    <Block margin="xl">
-                                                        <RadioGroup
-                                                            legend={intlHelper(intl, 'steg.tidsrom.flereSokere.spm')}
-                                                            name={TidsromFormFields.flereSokere}
-                                                            validate={getRequiredFieldValidator()}
-                                                            description={
-                                                                <ExpandableInfo
-                                                                    title={intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.flereSokere.spm.description.tittle',
-                                                                    )}>
-                                                                    {intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.flereSokere.spm.description',
-                                                                    )}
-                                                                </ExpandableInfo>
-                                                            }
-                                                            radios={[
-                                                                {
-                                                                    label: intlHelper(
-                                                                        intl,
-                                                                        `step.tidsrom.flereSokere.ja`,
-                                                                    ),
-                                                                    value: YesOrNoDontKnow.YES,
-                                                                    'data-testid': `steg.tidsrom.flereSokere.spm_yes`,
-                                                                },
-                                                                {
-                                                                    label: intlHelper(
-                                                                        intl,
-                                                                        `step.tidsrom.flereSokere.nei`,
-                                                                    ),
-                                                                    value: YesOrNoDontKnow.NO,
-                                                                    'data-testid': `steg.tidsrom.flereSokere.spm_no`,
-                                                                },
-                                                                {
-                                                                    label: intlHelper(
-                                                                        intl,
-                                                                        `step.tidsrom.flereSokere.usikker`,
-                                                                    ),
-                                                                    value: YesOrNoDontKnow.DO_NOT_KNOW,
-                                                                    'data-testid': `steg.tidsrom.flereSokere.spm_usikker`,
-                                                                },
-                                                            ]}
-                                                        />
-                                                    </Block>
-                                                    <Block margin="xl">
-                                                        <YesOrNoQuestion
-                                                            legend={intlHelper(
-                                                                intl,
-                                                                'steg.tidsrom.iUtlandetIPerioden.spm',
-                                                            )}
-                                                            name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
-                                                            validate={getYesOrNoValidator()}
-                                                            data-testid="iUtlandetIPerioden.spm"
-                                                        />
-                                                    </Block>
-                                                    {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
-                                                        <Block margin="m">
-                                                            <UtenlandsoppholdListAndDialog<TidsromFormFields>
-                                                                name={TidsromFormFields.utenlandsoppholdIPerioden}
-                                                                minDate={periode.from}
-                                                                maxDate={periode.to}
-                                                                excludeInnlagtQuestion={true}
-                                                                labels={{
-                                                                    modalTitle: intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.iUtlandetIPerioden.modalTitle',
-                                                                    ),
-                                                                    listTitle: intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.iUtlandetIPerioden.listTitle',
-                                                                    ),
-                                                                    addLabel: intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.iUtlandetIPerioden.addLabel',
-                                                                    ),
-                                                                }}
-                                                                validate={
-                                                                    periode
-                                                                        ? (opphold: Utenlandsopphold[]) =>
-                                                                              validateUtenlandsoppholdIPerioden(
-                                                                                  periode,
-                                                                                  opphold,
-                                                                              )
-                                                                        : undefined
-                                                                }
-                                                            />
-                                                        </Block>
-                                                    )}
-                                                    <Block margin="xl">
-                                                        <YesOrNoQuestion
-                                                            legend={intlHelper(
-                                                                intl,
-                                                                'steg.tidsrom.ferieuttakIPerioden.spm',
-                                                            )}
-                                                            name={TidsromFormFields.skalTaUtFerieIPerioden}
-                                                            validate={getYesOrNoValidator()}
-                                                            data-testid="ferieuttakIPerioden.spm"
-                                                        />
-                                                    </Block>
-                                                    {skalTaUtFerieIPerioden === YesOrNo.YES && (
-                                                        <Block margin="m" padBottom="l">
-                                                            <FerieuttakListAndDialog<TidsromFormFields>
-                                                                name={TidsromFormFields.ferieuttakIPerioden}
-                                                                minDate={periode.from}
-                                                                maxDate={periode.to}
-                                                                labels={{
-                                                                    modalTitle: intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.ferieuttakIPerioden.modalTitle',
-                                                                    ),
-                                                                    listTitle: intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.ferieuttakIPerioden.listTitle',
-                                                                    ),
-                                                                    addLabel: intlHelper(
-                                                                        intl,
-                                                                        'steg.tidsrom.ferieuttakIPerioden.addLabel',
-                                                                    ),
-                                                                }}
-                                                                validate={
-                                                                    periode
-                                                                        ? (ferie: Ferieuttak[]) =>
-                                                                              validateFerieuttakIPerioden(
-                                                                                  periode,
-                                                                                  ferie,
-                                                                              )
-                                                                        : undefined
-                                                                }
-                                                            />
-                                                        </Block>
-                                                    )}
-                                                </>
-                                            )}
-                                        </>
-                                    )}
                                 </FormBlock>
+                                {søkerKunHelgedager(periodeFra, periodeTil) && (
+                                    <Block padBottom="xl">
+                                        <Alert variant="warning">
+                                            <FormattedMessage id="step.tidsrom.søkerKunHelgedager.alert" />
+                                        </Alert>
+                                    </Block>
+                                )}
+                                {!søkerKunHelgedager(periodeFra, periodeTil) && (
+                                    <>
+                                        <FormBlock>
+                                            <YesOrNoQuestion
+                                                legend={intlHelper(intl, 'steg.tidsrom.pleierDuDenSykeHjemme.spm')}
+                                                name={TidsromFormFields.pleierDuDenSykeHjemme}
+                                                validate={getYesOrNoValidator()}
+                                                description={
+                                                    <ExpandableInfo
+                                                        title={intlHelper(
+                                                            intl,
+                                                            'steg.tidsrom.pleierDuDenSykeHjemme.info.tittel',
+                                                        )}>
+                                                        <FormattedMessage
+                                                            id={'steg.tidsrom.pleierDuDenSykeHjemme.info'}
+                                                        />
+                                                    </ExpandableInfo>
+                                                }
+                                                data-testid="pleierDuDenSykeHjemme.spm"
+                                            />
+                                        </FormBlock>
+                                        {pleierDuDenSykeHjemme === YesOrNo.NO && (
+                                            <FormBlock>
+                                                <Alert variant="warning">
+                                                    <FormattedMessage id="steg.tidsrom.pleierDuDenSykeHjemme.alert" />
+                                                </Alert>
+                                            </FormBlock>
+                                        )}
+                                        {pleierDuDenSykeHjemme === YesOrNo.YES && (
+                                            <>
+                                                <FormBlock>
+                                                    <RadioGroup
+                                                        legend={intlHelper(intl, 'steg.tidsrom.flereSokere.spm')}
+                                                        name={TidsromFormFields.flereSokere}
+                                                        validate={getRequiredFieldValidator()}
+                                                        description={
+                                                            <ExpandableInfo
+                                                                title={intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.flereSokere.spm.description.tittle',
+                                                                )}>
+                                                                {intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.flereSokere.spm.description',
+                                                                )}
+                                                            </ExpandableInfo>
+                                                        }
+                                                        radios={[
+                                                            {
+                                                                label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
+                                                                value: YesOrNoDontKnow.YES,
+                                                                'data-testid': `steg.tidsrom.flereSokere.spm_yes`,
+                                                            },
+                                                            {
+                                                                label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
+                                                                value: YesOrNoDontKnow.NO,
+                                                                'data-testid': `steg.tidsrom.flereSokere.spm_no`,
+                                                            },
+                                                            {
+                                                                label: intlHelper(
+                                                                    intl,
+                                                                    `step.tidsrom.flereSokere.usikker`,
+                                                                ),
+                                                                value: YesOrNoDontKnow.DO_NOT_KNOW,
+                                                                'data-testid': `steg.tidsrom.flereSokere.spm_usikker`,
+                                                            },
+                                                        ]}
+                                                    />
+                                                </FormBlock>
+                                                <FormBlock>
+                                                    <YesOrNoQuestion
+                                                        legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
+                                                        name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
+                                                        validate={getYesOrNoValidator()}
+                                                        data-testid="iUtlandetIPerioden.spm"
+                                                    />
+                                                </FormBlock>
+                                                {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
+                                                    <FormBlock>
+                                                        <UtenlandsoppholdListAndDialog<TidsromFormFields>
+                                                            name={TidsromFormFields.utenlandsoppholdIPerioden}
+                                                            minDate={periode.from}
+                                                            maxDate={periode.to}
+                                                            excludeInnlagtQuestion={true}
+                                                            labels={{
+                                                                modalTitle: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.iUtlandetIPerioden.modalTitle',
+                                                                ),
+                                                                listTitle: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.iUtlandetIPerioden.listTitle',
+                                                                ),
+                                                                addLabel: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.iUtlandetIPerioden.addLabel',
+                                                                ),
+                                                            }}
+                                                            validate={
+                                                                periode
+                                                                    ? (opphold: Utenlandsopphold[]) =>
+                                                                          validateUtenlandsoppholdIPerioden(
+                                                                              periode,
+                                                                              opphold,
+                                                                          )
+                                                                    : undefined
+                                                            }
+                                                        />
+                                                    </FormBlock>
+                                                )}
+                                                <FormBlock>
+                                                    <YesOrNoQuestion
+                                                        legend={intlHelper(
+                                                            intl,
+                                                            'steg.tidsrom.ferieuttakIPerioden.spm',
+                                                        )}
+                                                        name={TidsromFormFields.skalTaUtFerieIPerioden}
+                                                        validate={getYesOrNoValidator()}
+                                                        data-testid="ferieuttakIPerioden.spm"
+                                                    />
+                                                </FormBlock>
+                                                {skalTaUtFerieIPerioden === YesOrNo.YES && (
+                                                    <FormBlock>
+                                                        <FerieuttakListAndDialog<TidsromFormFields>
+                                                            name={TidsromFormFields.ferieuttakIPerioden}
+                                                            minDate={periode.from}
+                                                            maxDate={periode.to}
+                                                            labels={{
+                                                                modalTitle: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.ferieuttakIPerioden.modalTitle',
+                                                                ),
+                                                                listTitle: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.ferieuttakIPerioden.listTitle',
+                                                                ),
+                                                                addLabel: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.ferieuttakIPerioden.addLabel',
+                                                                ),
+                                                            }}
+                                                            validate={
+                                                                periode
+                                                                    ? (ferie: Ferieuttak[]) =>
+                                                                          validateFerieuttakIPerioden(periode, ferie)
+                                                                    : undefined
+                                                            }
+                                                        />
+                                                    </FormBlock>
+                                                )}
+                                            </>
+                                        )}
+                                    </>
+                                )}
                             </Form>
                         </>
                     );

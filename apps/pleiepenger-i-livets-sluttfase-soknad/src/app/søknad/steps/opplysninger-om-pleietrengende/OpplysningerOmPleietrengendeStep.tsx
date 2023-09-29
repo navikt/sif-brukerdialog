@@ -200,7 +200,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     data-testid="opplysningerOmPleietrengende.fødselsdato"
                                                 />
                                             </FormBlock>
-                                            <FormBlock margin="l">
+                                            <FormBlock>
                                                 <RadioGroup
                                                     legend={intlHelper(
                                                         intl,
@@ -219,7 +219,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     }))}
                                                     validate={getRequiredFieldValidator()}></RadioGroup>
                                             </FormBlock>
-                                            <FormBlock margin="l">
+                                            <FormBlock>
                                                 <Heading level="2" size="medium">
                                                     <FormattedMessage id="step.opplysningerOmPleietrengende.id.tittel" />
                                                 </Heading>

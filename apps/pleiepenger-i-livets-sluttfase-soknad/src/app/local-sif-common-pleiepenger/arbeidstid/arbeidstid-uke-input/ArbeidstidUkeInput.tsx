@@ -1,7 +1,9 @@
+import { Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
-
+import { FormikInputGroup, FormikTimeInput, TestProps, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import {
     dateFormatter,
     decimalDurationToDuration,
@@ -17,9 +19,6 @@ import LabelInputInfoLayout from '../../common/label-input-info-layout/LabelInpu
 import TimerOgMinutter, { formatTimerOgMinutter } from '../../common/timer-og-minutter/TimerOgMinutter';
 import { Daginfo, Ukeinfo } from '../../types';
 import './arbeidstidUkeInput.less';
-import { Heading } from '@navikt/ds-react';
-import { FormikInputGroup, FormikTimeInput, TestProps, ValidationError } from '@navikt/sif-common-formik-ds/lib';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 export type ArbeidstidUkeInputEnkeltdagValidator = (dato: Date) => (value: Duration) => ValidationError | undefined;
 

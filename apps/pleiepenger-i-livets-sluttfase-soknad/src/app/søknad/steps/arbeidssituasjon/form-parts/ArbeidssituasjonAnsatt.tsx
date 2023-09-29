@@ -49,7 +49,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
 
     return (
         <>
-            <FormBlock margin="xl">
+            <FormBlock>
                 <Block padBottom="m">
                     <Heading level="3" size="large">
                         {arbeidsforhold.arbeidsgiver.navn}
