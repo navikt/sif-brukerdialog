@@ -4939,18 +4939,18 @@ __metadata:
   linkType: hard
 
 "@portabletext/toolkit@npm:^2.0.8":
-  version: 2.0.8
-  resolution: "@portabletext/toolkit@npm:2.0.8"
+  version: 2.0.9
+  resolution: "@portabletext/toolkit@npm:2.0.9"
   dependencies:
-    "@portabletext/types": ^2.0.6
-  checksum: 91a0b4e4ed904bdb38ce17e19a412f2616600c4e6559f830c36e7e8a17c8ba54969026fedddf6f2e7a310f1875cfb77a6506d72538b3b994520941ea4cabfd86
+    "@portabletext/types": ^2.0.7
+  checksum: ddc805133dc8717bcd8ad6b65e2ba0c420984524c62ac05e5179ab47d4363a840b6b1a59286a14debc13675c5b0d683b154bd9cb99f5fd6c0b86c34785d6a19b
   languageName: node
   linkType: hard
 
-"@portabletext/types@npm:^2.0.6":
-  version: 2.0.6
-  resolution: "@portabletext/types@npm:2.0.6"
-  checksum: c417cc8b575494317d8b45f6f6228d27c53ed57940cffdadfcfb82033ca097cf37a33495b5ce6b16786eb9980415fd85edb1d25124d420f76a86771764643ea3
+"@portabletext/types@npm:^2.0.6, @portabletext/types@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "@portabletext/types@npm:2.0.7"
+  checksum: f92fbb76ee516d2deb81b7382a1912059b1ff9aebfca3ebab7316d46a2b9a5113bcba2bb8faffc15d0aa86c6334447c825e95e31e64e2ca17ab83b56ef1d9389
   languageName: node
   linkType: hard
 
@@ -5824,14 +5824,14 @@ __metadata:
   linkType: hard
 
 "@sanity/eventsource@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "@sanity/eventsource@npm:5.0.0"
+  version: 5.0.1
+  resolution: "@sanity/eventsource@npm:5.0.1"
   dependencies:
-    "@types/event-source-polyfill": 1.0.1
-    "@types/eventsource": 1.1.11
+    "@types/event-source-polyfill": 1.0.2
+    "@types/eventsource": 1.1.12
     event-source-polyfill: 1.0.31
     eventsource: 2.0.2
-  checksum: 172cf4208e20acd5bb159f7dacfee4e6e252a50f19aa5647b348d33856c3021f1ed2167dd45d385e18ce1b56f181ba11e717d51945140f6c369a6683890a2dd2
+  checksum: ec4025a06b973bdfdd76aede8a8ad32ccabc03aea6e37c28bd259231d485f7cf3e2efd43ebdf1ae177c3dca603999feb10977563ec5658d1f8c3e9e31072c682
   languageName: node
   linkType: hard
 
@@ -8275,17 +8275,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/event-source-polyfill@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@types/event-source-polyfill@npm:1.0.1"
-  checksum: 37f3ccc40e2fc43230047c3323f8bfc55f6ed40aee8c61af7f6b702a923be5615362cf3241f5a536f9c64932309a2184a0181bb48e105a94b968b8321cae1c60
+"@types/event-source-polyfill@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@types/event-source-polyfill@npm:1.0.2"
+  checksum: f0813edfee0af768e6e0994b48f9f618df7a5d9023c383a8f35e9e805dec560222dc40fc583d5f1404977febb7353c27c1d0606c67d948a2d18634c18ae437a9
   languageName: node
   linkType: hard
 
-"@types/eventsource@npm:1.1.11":
-  version: 1.1.11
-  resolution: "@types/eventsource@npm:1.1.11"
-  checksum: 84cd8595b43f8d0cdb857102e78ae35e9ff7284daa72085b114caaf90de14bca96b1c604553b9055eda19a76e2b161fb764e8cd4aba1824f81feec98fa331c1c
+"@types/eventsource@npm:1.1.12":
+  version: 1.1.12
+  resolution: "@types/eventsource@npm:1.1.12"
+  checksum: 19039099c2dc8fb369517b248856ba30dca3c36cf58cb2d62137d7c907db40871c6c4e67b1960ebba2b6f84a6bba7add4c25dc647fefbb4a37cdb7ccfa3b3f15
   languageName: node
   linkType: hard
 
@@ -8978,11 +8978,11 @@ __metadata:
   linkType: hard
 
 "@types/yargs@npm:^17.0.8":
-  version: 17.0.25
-  resolution: "@types/yargs@npm:17.0.25"
+  version: 17.0.26
+  resolution: "@types/yargs@npm:17.0.26"
   dependencies:
     "@types/yargs-parser": "*"
-  checksum: ef57926de514f5eb0a182167a63930bd7d2eb33d89b6041760f690d50b2019d7901b30c33ab7d03b3fa66a5004f0f81e36186d8f9e5e583a27b9ce331d2a5276
+  checksum: 26611969674f4972080c3b22239d4579eaadc5287f95f7802f893c4a9bb292c141467bd70f1e66eb834486c63a23c4f10032618b3d2e7b1ddc05051d08db4078
   languageName: node
   linkType: hard
 
@@ -11368,16 +11368,16 @@ __metadata:
   linkType: hard
 
 "browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.18.1, browserslist@npm:^4.21.10, browserslist@npm:^4.21.4, browserslist@npm:^4.21.9":
-  version: 4.22.0
-  resolution: "browserslist@npm:4.22.0"
+  version: 4.22.1
+  resolution: "browserslist@npm:4.22.1"
   dependencies:
-    caniuse-lite: ^1.0.30001539
-    electron-to-chromium: ^1.4.530
+    caniuse-lite: ^1.0.30001541
+    electron-to-chromium: ^1.4.535
     node-releases: ^2.0.13
     update-browserslist-db: ^1.0.13
   bin:
     browserslist: cli.js
-  checksum: 14fc119bbfb85b65e2ee4a82205fabf9327520d010c4c586f1176ceaf9136cfdb391397045a4eafaa9defe52b6dbdf875916714695826c69091a936d5838f9ec
+  checksum: 7e6b10c53f7dd5d83fd2b95b00518889096382539fed6403829d447e05df4744088de46a571071afb447046abc3c66ad06fbc790e70234ec2517452e32ffd862
   languageName: node
   linkType: hard
 
@@ -11659,7 +11659,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001538, caniuse-lite@npm:^1.0.30001539":
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001538, caniuse-lite@npm:^1.0.30001541":
   version: 1.0.30001541
   resolution: "caniuse-lite@npm:1.0.30001541"
   checksum: 972f6c223cf4ea2c6821b817b419249285006bbf67ebe415fe58097cf07551e3bae898586736d92f7c40b9f0ac28638dbf760631c23742b780affd0254f44d17
@@ -13975,10 +13975,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.4.530":
-  version: 1.4.534
-  resolution: "electron-to-chromium@npm:1.4.534"
-  checksum: f4d67a4dc797bc74260aad58113a3c0115f9ce3e71174a774c0db644c066183fcb69ee94d9d09b2881b96189b37d21512be6b3402b112c1ad17dea9c1dce4843
+"electron-to-chromium@npm:^1.4.535":
+  version: 1.4.536
+  resolution: "electron-to-chromium@npm:1.4.536"
+  checksum: 3c1f04f9b7526964a8c0d256eb223231a678b6a76411a547a3cf59aac32b773212e4e6497fa5534c77ee95d7fd634ffa9f18c1eeb72d229d6423eea4b81663e0
   languageName: node
   linkType: hard
 
@@ -15918,9 +15918,9 @@ __metadata:
   linkType: hard
 
 "flow-parser@npm:0.*":
-  version: 0.217.0
-  resolution: "flow-parser@npm:0.217.0"
-  checksum: 086d7ef5e7ae448bbb666e3a30e73d7424627fcca6c1000fb497b84bc7e13608fac2c82399b5a056317b67e2d3741e53fbb3b0510a368f743fd21333c1c7914d
+  version: 0.217.1
+  resolution: "flow-parser@npm:0.217.1"
+  checksum: 968756576ae9862395807c3736cf6faad5db829a092b30d46d84f2605a8e43d31436693dea4caf6cffa2e5227e38ccdbfae2a1cea0d3c1f350106d2ae629d33e
   languageName: node
   linkType: hard
 
@@ -21503,9 +21503,9 @@ __metadata:
   linkType: hard
 
 "minipass@npm:^5.0.0 || ^6.0.2 || ^7.0.0, minipass@npm:^7.0.3":
-  version: 7.0.3
-  resolution: "minipass@npm:7.0.3"
-  checksum: 6f1614f5b5b55568a46bca5fec0e7c46dac027691db27d0e1923a8192866903144cd962ac772c0e9f89b608ea818b702709c042bce98e190d258847d85461531
+  version: 7.0.4
+  resolution: "minipass@npm:7.0.4"
+  checksum: 87585e258b9488caf2e7acea242fd7856bbe9a2c84a7807643513a338d66f368c7d518200ad7b70a508664d408aa000517647b2930c259a8b1f9f0984f344a21
   languageName: node
   linkType: hard
 
@@ -24136,7 +24136,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.30, postcss@npm:^8.2.14, postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
+"postcss@npm:8.4.30":
   version: 8.4.30
   resolution: "postcss@npm:8.4.30"
   dependencies:
@@ -24154,6 +24154,17 @@ __metadata:
     picocolors: ^0.2.1
     source-map: ^0.6.1
   checksum: 4ac793f506c23259189064bdc921260d869a115a82b5e713973c5af8e94fbb5721a5cc3e1e26840500d7e1f1fa42a209747c5b1a151918a9bc11f0d7ed9048e3
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.14, postcss@npm:^8.2.15, postcss@npm:^8.3.5, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.4":
+  version: 8.4.31
+  resolution: "postcss@npm:8.4.31"
+  dependencies:
+    nanoid: ^3.3.6
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: 1d8611341b073143ad90486fcdfeab49edd243377b1f51834dc4f6d028e82ce5190e4f11bb2633276864503654fb7cab28e67abdc0fbf9d1f88cad4a0ff0beea
   languageName: node
   linkType: hard
 
