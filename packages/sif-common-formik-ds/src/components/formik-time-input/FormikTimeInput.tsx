@@ -25,6 +25,8 @@ export type FormikTimeInputProps<FieldName, ErrorType> = OwnProps<FieldName> &
 
 const bem = bemUtils('formikTimeInput');
 
+export const Div = (props: any) => <div {...props} />;
+
 function FormikTimeInput<FieldName, ErrorType>({
     label,
     name,
@@ -40,18 +42,31 @@ function FormikTimeInput<FieldName, ErrorType>({
     const ref = useRef<any>();
     const FieldComponent = useFastField ? FastField : Field;
 
+    const skjemagruppeClassName = bem.classNames(
+        bem.block,
+        bem.modifierConditional(timeInputLayout?.direction, timeInputLayout?.direction !== undefined),
+    );
+
+    if (restProps.disabled) {
+        return (
+            <SkjemagruppeQuestion className={skjemagruppeClassName} ref={ref} legend={label} description={description}>
+                <TimeInput
+                    {...restProps}
+                    {...timeInputLayout}
+                    justifyContent="left"
+                    onChange={() => null}
+                    labels={timeInputLabels}
+                />
+            </SkjemagruppeQuestion>
+        );
+    }
+
     return (
         <FieldComponent validate={validate ? (value: any) => validate(value, name) : undefined} name={name}>
             {({ field, form }: FieldProps) => {
                 return (
                     <SkjemagruppeQuestion
-                        className={bem.classNames(
-                            bem.block,
-                            bem.modifierConditional(
-                                timeInputLayout?.direction,
-                                timeInputLayout?.direction !== undefined,
-                            ),
-                        )}
+                        className={skjemagruppeClassName}
                         ref={ref}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
                         id={name as any}
