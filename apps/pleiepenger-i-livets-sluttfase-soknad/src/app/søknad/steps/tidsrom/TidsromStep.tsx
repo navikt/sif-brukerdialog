@@ -1,18 +1,16 @@
 import { Alert } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
+import { getDateRangeFromDates } from '@navikt/sif-common-utils/lib';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
@@ -29,15 +27,12 @@ import DagerMedPleieFormPart from './DagerMedPleieFormPart';
 import {
     getTidsromStepInitialValues,
     getTidsromSøknadsdataFromFormValues,
-    søkerKunHelgedager,
     validateFerieuttakIPerioden,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
-    periodeFra = 'periodeFra',
-    periodeTil = 'periodeTil',
     pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
     flereSokere = 'flereSokere',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
@@ -48,8 +43,6 @@ export enum TidsromFormFields {
 
 export interface TidsromFormValues {
     [TidsromFormFields.dagerMedPleie]?: Date[];
-    [TidsromFormFields.periodeFra]?: string;
-    [TidsromFormFields.periodeTil]?: string;
     [TidsromFormFields.pleierDuDenSykeHjemme]: YesOrNo;
     [TidsromFormFields.flereSokere]: YesOrNoDontKnow;
     [TidsromFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
@@ -102,19 +95,14 @@ const TidsromStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={({
                     values: {
-                        periodeFra,
-                        periodeTil,
                         pleierDuDenSykeHjemme,
                         skalOppholdeSegIUtlandetIPerioden,
                         skalTaUtFerieIPerioden,
+                        dagerMedPleie,
                     },
                 }) => {
-                    const periodeFraDate = datepickerUtils.getDateFromDateString(periodeFra);
-                    const periodeTilDate = datepickerUtils.getDateFromDateString(periodeTil);
-                    const periode: DateRange = {
-                        from: periodeFraDate || date1YearAgo,
-                        to: periodeTilDate || date1YearFromNow,
-                    };
+                    const periode: DateRange | undefined =
+                        dagerMedPleie && dagerMedPleie.length > 0 ? getDateRangeFromDates(dagerMedPleie) : undefined;
 
                     return (
                         <>
@@ -123,11 +111,7 @@ const TidsromStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
-                                submitDisabled={
-                                    søkerKunHelgedager(periodeFra, periodeTil) ||
-                                    pleierDuDenSykeHjemme === YesOrNo.NO ||
-                                    isSubmitting
-                                }
+                                submitDisabled={pleierDuDenSykeHjemme === YesOrNo.NO || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
@@ -145,14 +129,7 @@ const TidsromStep = () => {
                                     <DagerMedPleieFormPart />
                                 </FormBlock>
 
-                                {søkerKunHelgedager(periodeFra, periodeTil) && (
-                                    <Block padBottom="xl">
-                                        <Alert variant="warning">
-                                            <FormattedMessage id="step.tidsrom.søkerKunHelgedager.alert" />
-                                        </Alert>
-                                    </Block>
-                                )}
-                                {!søkerKunHelgedager(periodeFra, periodeTil) && (
+                                {periode && (
                                     <>
                                         <FormBlock>
                                             <YesOrNoQuestion
