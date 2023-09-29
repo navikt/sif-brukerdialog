@@ -4150,6 +4150,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
+    "@navikt/sif-common-ui": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.5
@@ -4651,7 +4652,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@navikt/sif-common-ui@workspace:packages/sif-common-ui":
+"@navikt/sif-common-ui@workspace:*, @navikt/sif-common-ui@workspace:packages/sif-common-ui":
   version: 0.0.0-use.local
   resolution: "@navikt/sif-common-ui@workspace:packages/sif-common-ui"
   dependencies:
