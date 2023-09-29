@@ -1,0 +1,84 @@
+.capitalizeFirstChar::first-letter {
+    text-transform: uppercase;
+}
+
+.durationWeekdaysWeek {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    &__weekNumber {
+        width: 5rem;
+        flex-grow: 0;
+        padding-top: 2.25rem;
+    }
+    &__daysWrapper {
+        flex-grow: 2;
+    }
+    &__days {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+    &__day {
+        width: 7rem;
+        &--disabled {
+            .timeInput__label {
+                display: none;
+            }
+        }
+    }
+    .timeInput__label {
+        font-size: 90%;
+    }
+    .timeInput {
+        margin-top: 0.125rem !important;
+    }
+    &__dayName {
+        display: inline-block;
+        text-overflow: ellipsis;
+        font-size: 1rem;
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+    &__dayLegend {
+        font-size: 1rem;
+        font-weight: normal;
+        &--disabled {
+            text-decoration: line-through;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .durationWeekdaysWeek {
+        display: block;
+        margin-bottom: 1rem;
+        &__weekNumber {
+            max-width: initial;
+            margin-bottom: 0.5rem;
+            padding-top: 1rem;
+        }
+        &__days {
+            display: block;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        &__day {
+            width: initial;
+        }
+        &__day:not(:first-child) {
+            margin-top: 0.75rem;
+        }
+        &__dayLegend {
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+        &__day--disabled {
+            display: none;
+        }
+    }
+}

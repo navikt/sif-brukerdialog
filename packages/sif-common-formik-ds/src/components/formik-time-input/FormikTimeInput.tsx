@@ -3,7 +3,7 @@ import { FastField, Field, FieldProps } from 'formik';
 import { InputTime, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
-import TimeInput, { TimeInputLayoutProps, TimeInputRefProps } from './TimeInput';
+import TimeInput, { TimeInputLabels, TimeInputLayoutProps, TimeInputRefProps } from './TimeInput';
 import { focusFirstElement } from '../../utils/focusUtils';
 import bemUtils from '../../utils/bemUtils';
 import { TextFieldProps } from '@navikt/ds-react';
@@ -14,6 +14,7 @@ interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'onChange'> 
     maxHours?: number;
     maxMinutes?: number;
     timeInputLayout?: TimeInputLayoutProps;
+    timeInputLabels?: TimeInputLabels;
 }
 
 export type FormikTimeInputProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -32,6 +33,7 @@ function FormikTimeInput<FieldName, ErrorType>({
     timeInputLayout,
     useFastField,
     description,
+    timeInputLabels,
     ...restProps
 }: FormikTimeInputProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
@@ -72,6 +74,7 @@ function FormikTimeInput<FieldName, ErrorType>({
                                     context.onAfterFieldValueSet();
                                 }
                             }}
+                            labels={timeInputLabels}
                         />
                     </SkjemagruppeQuestion>
                 );
