@@ -1,9 +1,15 @@
 import { Alert } from '@navikt/ds-react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import {
+    DateRange,
+    getErrorForField,
+    getTypedFormComponents,
+    TypedFormikFormContext,
+    ValidationError,
+} from '@navikt/sif-common-formik-ds/lib';
 import getTimeValidator from '@navikt/sif-common-formik-ds/lib/validation/getTimeValidator';
 import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
 import { dateFormatter, getDatesInDateRange, getMonthsInDateRange, isDateInDates } from '@navikt/sif-common-utils/lib';
@@ -12,6 +18,7 @@ import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../A
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
 import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
+import { useFormikContext } from 'formik';
 
 const { RadioGroup } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
 
@@ -40,6 +47,9 @@ const ArbeidIPeriodeSpørsmål = ({
     const intl = useIntl();
     const [arbeidstidChanged, setArbeidstidChanged] = useState(false);
 
+    const context = useContext(TypedFormikFormContext);
+    const formik = useFormikContext<ArbeidstidFormValues>();
+
     useEffect(() => {
         if (arbeidstidChanged === true) {
             setArbeidstidChanged(false);
@@ -61,7 +71,11 @@ const ArbeidIPeriodeSpørsmål = ({
     });
 
     const getFieldName = (field: ArbeidIPeriodeField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
+    const fieldName = getFieldName(ArbeidIPeriodeField.enkeltdager);
     const numberOfMonths = getMonthsInDateRange(periode).length;
+
+    const hasEnkeltdagerMedFeil =
+        formik.isValid === false && context?.showErrors && getErrorForField(fieldName, formik.errors) !== undefined;
 
     const { jobberIPerioden } = arbeidIPeriode || {};
 
@@ -76,12 +90,12 @@ const ArbeidIPeriodeSpørsmål = ({
 
             {jobberIPerioden === JobberIPeriodeSvar.redusert && (
                 <FormBlock>
-                    {/* <FormBlock>{renderArbeidstidVariertPart(false)}</FormBlock> */}
                     <DurationWeekdaysInput
                         dateRange={periode}
                         disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}
-                        formikFieldName={getFieldName(ArbeidIPeriodeField.enkeltdager)}
+                        formikFieldName={fieldName}
                         useAccordion={numberOfMonths > 1}
+                        accordionOpen={hasEnkeltdagerMedFeil}
                         validateDate={(date: Date, value?: any) => {
                             const error = getTimeValidator({ required: true })(value);
                             if (error) {

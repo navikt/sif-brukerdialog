@@ -17,6 +17,7 @@ export interface DurationWeekdaysInputProps {
     disabledDates?: Date[];
     formikFieldName: string;
     useAccordion?: boolean;
+    accordionOpen?: boolean;
     validateDate: (date: Date, value?: string) => ValidationResult<ValidationError>;
 }
 
@@ -25,6 +26,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
     formikFieldName,
     disabledDates = [],
     useAccordion,
+    accordionOpen,
     validateDate,
 }) => {
     const months = getMonthsInDateRange(dateRange);
@@ -65,7 +67,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
 
                     const weeks = getWeeksInDateRange(month);
                     return (
-                        <Accordion.Item key={dateToISODate(month.from)}>
+                        <Accordion.Item key={dateToISODate(month.from)} open={accordionOpen ? true : undefined}>
                             <Accordion.Header>{dayjs(month.from).format('MMMM YYYY')}</Accordion.Header>
                             <Accordion.Content className="durationWeekdaysInput__monthAccordionItem">
                                 {renderWeeks(weeks)}
