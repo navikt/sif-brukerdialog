@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds/lib';
@@ -148,11 +149,15 @@ const ArbeidstidStep = () => {
         persistTempFormValues({ stepId, values });
     };
     const { tidsrom } = søknadsdata;
+    if (!tidsrom) {
+        return undefined;
+    }
 
-    const periodeFra = tidsrom?.søknadsperiode.from;
-    const periodeTil = tidsrom?.søknadsperiode.to;
+    const { søknadsperiode, dagerMedPleie } = tidsrom;
+    const periodeFra = søknadsperiode.from;
+    const periodeTil = søknadsperiode.to;
 
-    if (!periodeFra || !periodeTil) {
+    if (!periodeFra || !periodeTil || !dagerMedPleie) {
         return undefined;
     }
 
@@ -172,7 +177,6 @@ const ArbeidstidStep = () => {
                     if (!ansattArbeidstid && !frilansArbeidstid && !selvstendigArbeidstid) {
                         return undefined;
                     }
-
                     const periodeSomFrilanserISøknadsperiode =
                         frilansArbeidstid && periode
                             ? getPeriodeSomFrilanserInnenforPeriode(periode, søknadsdata.arbeidssituasjon?.frilans)
@@ -241,6 +245,7 @@ const ArbeidstidStep = () => {
                                                                 arbeidsforholdType={ArbeidsforholdType.ANSATT}
                                                                 arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
                                                                 jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
+                                                                dagerMedPleie={dagerMedPleie}
                                                                 periode={periode}
                                                                 parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
                                                                 søkerKunHelgedager={søkerKunHelgedager(
@@ -272,6 +277,7 @@ const ArbeidstidStep = () => {
                                                     arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
                                                     jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
                                                     periode={periodeSomFrilanserISøknadsperiode}
+                                                    dagerMedPleie={dagerMedPleie}
                                                     parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
                                                     søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
@@ -294,6 +300,7 @@ const ArbeidstidStep = () => {
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
                                                     periode={periodeSomSelvstendigISøknadsperiode}
+                                                    dagerMedPleie={dagerMedPleie}
                                                     parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
                                                     søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}

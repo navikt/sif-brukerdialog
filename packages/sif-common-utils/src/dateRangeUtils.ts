@@ -391,6 +391,22 @@ export const getNumberOfDaysInDateRange = (dateRange: DateRange, onlyWeekDays = 
         : Math.abs(dayjs(dateRange.to).startOf('day').diff(dayjs(dateRange.from).startOf('day'), 'days')) + 1;
 
 /**
+ * Gets a dateRange from a list of @dates
+ * @param dates
+ * @returns dateRange
+ */
+export const getDateRangeFromDates = (dates: Date[]): DateRange => {
+    if (dates.length === 0) {
+        throw 'getDateRangeFromDates: Cannot get date range from empty array';
+    }
+    const sortedDates = dates.sort(sortDates);
+    return {
+        from: sortedDates[0],
+        to: sortedDates[sortedDates.length - 1],
+    };
+};
+
+/**
  * Gets a dateRange spanning all @ranges
  * @param dateRanges
  * @returns dateRange
@@ -404,6 +420,7 @@ export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange =
         to: dayjs.max(dateRanges.map((range) => dayjs(range.to)))!.toDate(),
     };
 };
+
 /**
  * Gets a isoDateRangeMap from array of DateRange
  * @param dateRanges
@@ -726,6 +743,7 @@ export const dateRangeUtils = {
     dateRangesCollide,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
+    getDateRangeFromDates,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,

@@ -32,7 +32,11 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 : undefined;
 
         if (arbeidIPeriodeSøknadsdata && (value.type === 'pågående' || value.type === 'sluttetISøknadsperiode')) {
-            const arbeidIPeriode = getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriodeSøknadsdata, søknadsperiode);
+            const arbeidIPeriode = getArbeidIPeriodeApiDataFromSøknadsdata(
+                arbeidIPeriodeSøknadsdata,
+                søknadsperiode,
+                value.jobberNormaltTimer,
+            );
             arbeidsgiverApiData.push({
                 ...arbeidsgiverInfo,
                 erAnsatt: value.type === 'pågående',

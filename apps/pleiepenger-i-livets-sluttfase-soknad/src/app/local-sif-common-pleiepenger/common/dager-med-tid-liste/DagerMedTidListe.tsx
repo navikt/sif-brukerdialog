@@ -1,11 +1,11 @@
+import { Heading } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
+import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { DagMedTid } from '../..';
 import DurationText from '../duration-text/DurationText';
-import bemUtils from '@navikt/sif-common-core-ds/lib/utils/bemUtils';
 import './dagerMedTidListe.less';
-import { Detail } from '@navikt/ds-react';
 
 interface Props {
     dagerMedTid: DagMedTid[];
@@ -22,19 +22,26 @@ export const DagerMedTidListe = ({ dagerMedTid, viseUke, visMåned, visNormaltid
     const weeksWithDays = groupBy(dagerMedTid, (dag) => `${dag.dato.getFullYear()}-${dayjs(dag.dato).isoWeek()}`);
     return (
         <div className={bem.block}>
-            {visMåned && <Detail className="m-caps">{dayjs(dagerMedTid[0].dato).format('MMM YYYY')}</Detail>}
+            {visMåned && (
+                <Heading level="4" size="xsmall" className="m-caps">
+                    {dayjs(dagerMedTid[0].dato).format('MMM YYYY')}
+                </Heading>
+            )}
             <div className={bem.element('uker')}>
                 {Object.keys(weeksWithDays).map((key) => {
                     const days = weeksWithDays[key];
                     return (
                         <div key={key} className={bem.element('uke')}>
                             {viseUke && (
-                                <Detail className={bem.element('uketittel')}>
+                                <Heading
+                                    level={visMåned ? '5' : '4'}
+                                    size="xsmall"
+                                    className={bem.element('uketittel')}>
                                     <FormattedMessage
                                         id="dagerMedTid.uke"
                                         values={{ uke: dayjs(days[0].dato).isoWeek() }}
                                     />
-                                </Detail>
+                                </Heading>
                             )}
                             <ol className={bem.element('dager')}>
                                 {days.sort(sortDays).map((dag, idx) => {

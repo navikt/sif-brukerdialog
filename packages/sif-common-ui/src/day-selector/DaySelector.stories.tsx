@@ -12,10 +12,11 @@ export default {
 } as Meta<typeof DaySelector>;
 
 const Template: StoryFn<typeof DaySelector> = (args) => {
-    return <DaySelector dateRange={args.dateRange}>Content</DaySelector>;
+    return <DaySelector {...args}>Content</DaySelector>;
 };
 
 export const Default = Template.bind({});
 Default.args = {
     dateRange: ISODateRangeToDateRange('2023-07-01/2023-09-30'),
+    onChange: () => {},
 };

@@ -63,6 +63,7 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                         return (
                             <div className={bem.element('day', dateIsDisabled ? 'disabled' : '')} key={index}>
                                 <FormikTimeInput
+                                    useFastField={true}
                                     label={
                                         <span className={bem.element('dayLegend', dateIsDisabled ? 'disabled' : '')}>
                                             <AriaAlternative
@@ -76,14 +77,14 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                                             />
                                         </span>
                                     }
-                                    name={`${formikFieldName}_${dateToISODate(date)}`}
+                                    name={`${formikFieldName}.${dateToISODate(date)}`}
                                     disabled={dateIsDisabled}
                                     timeInputLayout={{
                                         direction: 'vertical',
                                         compact: true,
                                     }}
                                     timeInputLabels={{
-                                        minutes: <AriaAlternative visibleText="Minutter" ariaText="Minutter" />,
+                                        minutes: <AriaAlternative visibleText="Min." ariaText="Minutter" />,
                                         hours: <AriaAlternative visibleText="Timer" ariaText="Timer" />,
                                     }}
                                     validate={validate ? (value) => validate(date, value) : undefined}

@@ -2,16 +2,18 @@ import {
     DateDurationMap,
     DateRange,
     dateToday,
+    dateToISODate,
+    decimalDurationToISODuration,
     durationToISODuration,
     DurationWeekdays,
-    isDateInDateRange,
+    getDatesInDateRange,
     isDateWeekDay,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { durationUtils } from '@navikt/sif-common-utils';
 import { TidEnkeltdagApiData, TidFasteDagerApiData } from '../../types/søknadApiData/SøknadApiData';
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
+import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 
 export const getFasteDagerApiData = ({
     monday: mandag,
@@ -33,21 +35,39 @@ const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiDat
 export const getEnkeltdagerIPeriodeApiData = (
     enkeltdager: DateDurationMap,
     periode: DateRange,
+    jobberNormaltTimer: number,
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
+    const tidNormalt = decimalDurationToISODuration(jobberNormaltTimer / 5);
 
-    Object.keys(enkeltdager).forEach((dag) => {
-        const dato = ISOStringToDate(dag);
-        if (dato && isDateInDateRange(dato, periode) && isDateWeekDay(dato)) {
-            if (durationUtils.durationIsZero(enkeltdager[dag])) {
-                return;
-            }
+    getDatesInDateRange(periode, true).forEach((dato) => {
+        const dag = dateToISODate(dato);
+
+        if (enkeltdager[dag] === undefined || durationUtils.durationIsZero(enkeltdager[dag])) {
+            dager.push({
+                dato: dateToISOString(dato),
+                tid: tidNormalt,
+            });
+        } else {
             dager.push({
                 dato: dateToISOString(dato),
                 tid: durationToISODuration(enkeltdager[dag]),
             });
         }
     });
+
+    // Object.keys(enkeltdager).forEach((dag) => {
+    //     const dato = ISOStringToDate(dag);
+    //     if (dato && isDateInDateRange(dato, periode) && isDateWeekDay(dato)) {
+    //         if (durationUtils.durationIsZero(enkeltdager[dag])) {
+    //             return;
+    //         }
+    //         dager.push({
+    //             dato: dateToISOString(dato),
+    //             tid: durationToISODuration(enkeltdager[dag]),
+    //         });
+    //     }
+    // });
 
     return dager.sort(sortTidEnkeltdagApiData);
 };

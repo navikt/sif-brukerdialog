@@ -7,14 +7,15 @@ import {
     date3YearsAgo,
     dateRangesCollide,
     dateRangesExceedsRange,
+    getDateRangeFromDates,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { TidsromSøknadsdata } from '../../../types/søknadsdata/TidsromSøknadsdata';
+import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import { AppFieldValidationErrors } from '../../../utils/fieldValidation';
 import { TidsromFormValues } from './TidsromStep';
-import { TidsromSøknadsdata } from '../../../types/søknadsdata/TidsromSøknadsdata';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 
 dayjs.extend(isoWeek);
 
@@ -99,6 +100,7 @@ export const validateFerieuttakIPerioden = (
 
 export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues): TidsromSøknadsdata | undefined => {
     const {
+        dagerMedPleie,
         periodeFra,
         periodeTil,
         pleierDuDenSykeHjemme,
@@ -119,8 +121,11 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
     if (!periodeFraDato || !periodeTilDato) {
         throw Error('getTidsromSøknadsdataFromFormValues periodeFraDato eller periodeTilDato undefined');
     }
+    if (!dagerMedPleie || dagerMedPleie.length === 0) {
+        throw Error('getTidsromSøknadsdataFromFormValues dagerMedPleie må inneholde datoer');
+    }
 
-    const søknadsperiode: DateRange = { from: periodeFraDato, to: periodeTilDato };
+    const søknadsperiode: DateRange = getDateRangeFromDates(dagerMedPleie);
 
     if (pleierDuDenSykeHjemme === YesOrNo.NO) {
         throw Error('getTidsromSøknadsdataFromFormValues pleierDuDenSykeHjemme === YesOrNo.NO');
@@ -130,6 +135,7 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
         return {
             type: 'tidsromUtenUtenlandsoppholdUtenFerie',
             søknadsperiode,
+            dagerMedPleie,
             flereSokere,
             skalOppholdeSegIUtlandetIPerioden: false,
             skalTaUtFerieIPerioden: false,
@@ -140,6 +146,7 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
         return {
             type: 'tidsromKunMedUtenlandsopphold',
             søknadsperiode,
+            dagerMedPleie,
             flereSokere,
             skalOppholdeSegIUtlandetIPerioden: true,
             utenlandsoppholdIPerioden,
@@ -151,6 +158,7 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
         return {
             type: 'tidsromKunMedFerie',
             søknadsperiode,
+            dagerMedPleie,
             flereSokere,
             skalOppholdeSegIUtlandetIPerioden: false,
             skalTaUtFerieIPerioden: true,
@@ -162,6 +170,7 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
         return {
             type: 'tidsromMedUtenlandsoppholdMedFerie',
             søknadsperiode,
+            dagerMedPleie,
             flereSokere,
             skalOppholdeSegIUtlandetIPerioden: true,
             utenlandsoppholdIPerioden,
@@ -182,6 +191,7 @@ export const getTidsromStepInitialValues = (
     }
 
     const defaultValues: TidsromFormValues = {
+        dagerMedPleie: [],
         periodeFra: undefined,
         periodeTil: undefined,
         pleierDuDenSykeHjemme: YesOrNo.UNANSWERED,
@@ -195,6 +205,7 @@ export const getTidsromStepInitialValues = (
     const { tidsrom } = søknadsdata;
 
     if (tidsrom) {
+        const { dagerMedPleie } = tidsrom;
         const { from, to } = tidsrom.søknadsperiode;
         const periodeFra = datepickerUtils.getDateStringFromValue(from);
         const periodeTil = datepickerUtils.getDateStringFromValue(to);
@@ -204,6 +215,7 @@ export const getTidsromStepInitialValues = (
                     ...defaultValues,
                     periodeFra,
                     periodeTil,
+                    dagerMedPleie,
                     pleierDuDenSykeHjemme: YesOrNo.YES,
                     flereSokere: tidsrom.flereSokere,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.NO,
@@ -215,6 +227,7 @@ export const getTidsromStepInitialValues = (
                     ...defaultValues,
                     periodeFra,
                     periodeTil,
+                    dagerMedPleie,
                     pleierDuDenSykeHjemme: YesOrNo.YES,
                     flereSokere: tidsrom.flereSokere,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.YES,
@@ -227,6 +240,7 @@ export const getTidsromStepInitialValues = (
                     ...defaultValues,
                     periodeFra,
                     periodeTil,
+                    dagerMedPleie,
                     flereSokere: tidsrom.flereSokere,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.NO,
                     skalTaUtFerieIPerioden: YesOrNo.YES,
@@ -238,6 +252,7 @@ export const getTidsromStepInitialValues = (
                     ...defaultValues,
                     periodeFra,
                     periodeTil,
+                    dagerMedPleie,
                     pleierDuDenSykeHjemme: YesOrNo.YES,
                     flereSokere: tidsrom.flereSokere,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.YES,

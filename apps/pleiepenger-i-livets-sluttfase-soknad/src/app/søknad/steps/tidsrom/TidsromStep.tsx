@@ -1,42 +1,41 @@
+import { Alert } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
-import { date1YearAgo, date1YearFromNow, date3YearsAgo } from '@navikt/sif-common-utils/lib';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
+import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
+import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import SøknadStep from '../../SøknadStep';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
+import DagerMedPleieFormPart from './DagerMedPleieFormPart';
 import {
-    getMaxDato,
     getTidsromStepInitialValues,
     getTidsromSøknadsdataFromFormValues,
     søkerKunHelgedager,
     validateFerieuttakIPerioden,
-    validateFraDato,
-    validateTildato,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { Alert } from '@navikt/ds-react';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
-import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 
 export enum TidsromFormFields {
+    dagerMedPleie = 'dagerMedPleie',
     periodeFra = 'periodeFra',
     periodeTil = 'periodeTil',
     pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
@@ -48,6 +47,7 @@ export enum TidsromFormFields {
 }
 
 export interface TidsromFormValues {
+    [TidsromFormFields.dagerMedPleie]?: Date[];
     [TidsromFormFields.periodeFra]?: string;
     [TidsromFormFields.periodeTil]?: string;
     [TidsromFormFields.pleierDuDenSykeHjemme]: YesOrNo;
@@ -58,7 +58,7 @@ export interface TidsromFormValues {
     [TidsromFormFields.ferieuttakIPerioden]: Ferieuttak[];
 }
 
-const { FormikWrapper, Form, DateRangePicker, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
     TidsromFormFields,
     TidsromFormValues,
     ValidationError
@@ -116,14 +116,6 @@ const TidsromStep = () => {
                         to: periodeTilDate || date1YearFromNow,
                     };
 
-                    const validateFraDatoField = (date?: string) => {
-                        return validateFraDato(date, periodeTil);
-                    };
-
-                    const validateTilDatoField = (date?: string) => {
-                        return validateTildato(date, periodeFra);
-                    };
-
                     return (
                         <>
                             <PersistStepFormValues stepId={stepId} />
@@ -148,41 +140,11 @@ const TidsromStep = () => {
                                         <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.3" />
                                     </p>
                                 </SifGuidePanel>
+
                                 <FormBlock>
-                                    <DateRangePicker
-                                        legend={intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.spm')}
-                                        description={
-                                            <ExpandableInfo title={intlHelper(intl, 'steg.tidsrom.hjelpetekst.tittel')}>
-                                                <p>
-                                                    <FormattedMessage id="steg.tidsrom.hjelpetekst.1" />
-                                                </p>
-                                                <p>
-                                                    <FormattedMessage id="steg.tidsrom.hjelpetekst.2" />
-                                                </p>
-                                                <p>
-                                                    <FormattedMessage id="steg.tidsrom.hjelpetekst.3" />
-                                                </p>
-                                                <p>
-                                                    <FormattedMessage id="steg.tidsrom.hjelpetekst.4" />
-                                                </p>
-                                            </ExpandableInfo>
-                                        }
-                                        fromInputProps={{
-                                            label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.fom'),
-                                            validate: validateFraDatoField,
-                                            name: TidsromFormFields.periodeFra,
-                                        }}
-                                        toInputProps={{
-                                            label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.tom'),
-                                            validate: validateTilDatoField,
-                                            name: TidsromFormFields.periodeTil,
-                                        }}
-                                        dropdownCaption={true}
-                                        disableWeekends={false}
-                                        minDate={date3YearsAgo}
-                                        maxDate={getMaxDato(periodeFraDate)}
-                                    />
+                                    <DagerMedPleieFormPart />
                                 </FormBlock>
+
                                 {søkerKunHelgedager(periodeFra, periodeTil) && (
                                     <Block padBottom="xl">
                                         <Alert variant="warning">

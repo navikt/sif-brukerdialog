@@ -61,17 +61,18 @@
             margin-bottom: 0.5rem;
             padding-top: 1rem;
         }
+    }
+}
+@media screen and (max-width: 650px) {
+    .durationWeekdaysWeek {
         &__days {
-            display: block;
+            display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 0.25rem;
+            gap: 1rem 0.25rem;
         }
         &__day {
             width: initial;
-        }
-        &__day:not(:first-child) {
-            margin-top: 0.75rem;
         }
         &__dayLegend {
             font-size: 1.125rem;

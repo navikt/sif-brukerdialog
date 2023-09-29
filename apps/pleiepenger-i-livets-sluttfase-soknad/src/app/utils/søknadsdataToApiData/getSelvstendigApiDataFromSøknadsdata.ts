@@ -23,7 +23,11 @@ export const getSelvstendigApiDataFromSøknadsdata = (
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
             const arbeidsforhold: ArbeidsforholdApiData = {
                 jobberNormaltTimer,
-                arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIperiode, søknadsperiode),
+                arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
+                    arbeidIperiode,
+                    søknadsperiode,
+                    jobberNormaltTimer,
+                ),
             };
 
             return { virksomhet: virksomhetApi, arbeidsforhold };

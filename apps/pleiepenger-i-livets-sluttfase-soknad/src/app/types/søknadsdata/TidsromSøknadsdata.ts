@@ -5,6 +5,7 @@ import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 interface BaseTidsrom {
     søknadsperiode: DateRange;
     flereSokere: YesOrNoDontKnow;
+    dagerMedPleie: Date[];
 }
 
 interface TidsromUtenUtenlandsoppholdUtenFerie extends BaseTidsrom {
