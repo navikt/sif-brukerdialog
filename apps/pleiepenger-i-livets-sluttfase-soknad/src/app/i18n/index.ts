@@ -19,7 +19,8 @@ import utenlandskNæringMessages from '@navikt/sif-common-forms-ds/lib/forms/ute
 import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i18n';
 import opptjeningUtlandMessages from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/opptjeningUtlandMessages';
 import ferieuttakMessages from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/ferieuttakMessages';
-import arbeidstidMessages from '../søknad/steps/arbeidstid/form-parts/arbeidstid-variert/arbeidstidVariertMessages';
+import arbeidstidVariertMessages from '../søknad/steps/arbeidstid/form-parts/arbeidstid-variert/arbeidstidVariertMessages';
+import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -30,8 +31,9 @@ const bokmålstekster = {
     ...legeerklæringMessages.nb,
     ...tidsromMessages.nb,
     ...utenlandsoppholdMessages.nb,
-    ...arbeidssituasjonMessages.nb,
     ...arbeidstidMessages.nb,
+    ...arbeidssituasjonMessages.nb,
+    ...arbeidstidVariertMessages.nb,
     ...opptjeningUtlandMessages.nb,
     ...utenlandskNæringMessages.nb,
     ...ferieuttakMessages.nb,

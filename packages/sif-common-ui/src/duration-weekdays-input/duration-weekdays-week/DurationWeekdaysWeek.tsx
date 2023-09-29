@@ -63,7 +63,6 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                         return (
                             <div className={bem.element('day', dateIsDisabled ? 'disabled' : '')} key={index}>
                                 <FormikTimeInput
-                                    useFastField={true}
                                     label={
                                         <span className={bem.element('dayLegend', dateIsDisabled ? 'disabled' : '')}>
                                             <AriaAlternative

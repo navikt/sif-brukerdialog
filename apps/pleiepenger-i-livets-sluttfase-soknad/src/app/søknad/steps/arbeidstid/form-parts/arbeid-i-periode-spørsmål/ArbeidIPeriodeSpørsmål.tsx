@@ -7,11 +7,11 @@ import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-
 import getTimeValidator from '@navikt/sif-common-formik-ds/lib/validation/getTimeValidator';
 import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
 import { dateFormatter, getDatesInDateRange, getMonthsInDateRange, isDateInDates } from '@navikt/sif-common-utils/lib';
-import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
+import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
 
 const { RadioGroup } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
 
@@ -65,21 +65,6 @@ const ArbeidIPeriodeSpørsmål = ({
 
     const { jobberIPerioden } = arbeidIPeriode || {};
 
-    // const renderArbeidstidVariertPart = (kanLeggeTilPeriode: boolean) => (
-    //     <ArbeidstidVariert
-    //         arbeidstid={arbeidIPeriode?.enkeltdager}
-    //         kanLeggeTilPeriode={kanLeggeTilPeriode}
-    //         jobberNormaltTimer={jobberNormaltTimer}
-    //         periode={periode}
-    //         intlValues={intlValues}
-    //         arbeidsstedNavn={arbeidsstedNavn}
-    //         arbeidsforholdType={arbeidsforholdType}
-    //         formFieldName={getFieldName(ArbeidIPeriodeField.enkeltdager)}
-    //         onArbeidstidVariertChanged={() => setArbeidstidChanged(true)}
-    //         // onArbeidPeriodeRegistrert={onArbeidPeriodeRegistrert}
-    //         // onArbeidstidEnkeltdagRegistrert={onArbeidstidEnkeltdagRegistrert}
-    //     />
-    // );
     return (
         <>
             <RadioGroup
@@ -101,9 +86,10 @@ const ArbeidIPeriodeSpørsmål = ({
                             const error = getTimeValidator({ required: true })(value);
                             if (error) {
                                 return {
-                                    key: error,
+                                    key: `arbeidIPeriode.validation.timerDag.${error}`,
                                     keepKeyUnaltered: true,
                                     values: {
+                                        ...intlValues,
                                         dato: dateFormatter.compact(date),
                                     },
                                 };
