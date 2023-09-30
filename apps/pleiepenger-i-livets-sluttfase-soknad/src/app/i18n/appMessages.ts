@@ -203,7 +203,7 @@ export const appMessages: MessageFileFormat = {
         'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.',
 
-        'validation.flereSokere.yesOrNoIsUnanswered':
+        'validation.flereSokere.noValue':
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
 
         'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':

@@ -120,6 +120,7 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
                                 <PleietrengendePersonSummary
+                                    pleierDuDenSykeHjemme={apiData.pleierDuDenSykeHjemme}
                                     pleietrengende={apiData.pleietrengende}
                                     pleietrengendeId={pleietrengendeId}
                                 />

@@ -1,32 +1,33 @@
+import { BodyLong } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
-import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import AttachmentList from '@navikt/sif-common-core-ds/lib/components/attachment-list/AttachmentList';
-import { Ingress } from '@navikt/ds-react';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { FødselsnummerSvar, SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
+import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
+import { PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
+    pleierDuDenSykeHjemme: boolean;
     pleietrengende: PleietrengendeApi;
     pleietrengendeId: Attachment[];
 }
 
-const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId }: Props) => {
+const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, pleierDuDenSykeHjemme }: Props) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.pleietrengende.header')}>
             <SummaryBlock header={pleietrengende.navn}>
                 {pleietrengende.fødselsdato ? (
-                    <Ingress>
+                    <BodyLong size="large">
                         <FormattedMessage
                             id="steg.oppsummering.pleietrengende.fødselsdato"
                             values={{
                                 dato: prettifyDate(ISODateToDate(pleietrengende.fødselsdato)),
                             }}
                         />
-                    </Ingress>
+                    </BodyLong>
                 ) : null}
                 {pleietrengende.norskIdentitetsnummer && !pleietrengende.årsakManglerIdentitetsnummer && (
                     <>
@@ -37,7 +38,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId }: Props
                 {pleietrengende.årsakManglerIdentitetsnummer && !pleietrengende.norskIdentitetsnummer && (
                     <>
                         <Block margin="l">
-                            <Ingress>
+                            <BodyLong size="large">
                                 <FormattedMessage
                                     id="steg.oppsummering.pleietrengende.harIkkeFnr"
                                     values={{
@@ -47,7 +48,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId }: Props
                                         ),
                                     }}
                                 />
-                            </Ingress>
+                            </BodyLong>
                         </Block>
                         <Block margin="m">
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleietrengende.id')}>
@@ -61,6 +62,9 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId }: Props
                         </Block>
                     </>
                 )}
+            </SummaryBlock>
+            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
+                <FormattedMessage id={pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
             </SummaryBlock>
         </SummarySection>
     );

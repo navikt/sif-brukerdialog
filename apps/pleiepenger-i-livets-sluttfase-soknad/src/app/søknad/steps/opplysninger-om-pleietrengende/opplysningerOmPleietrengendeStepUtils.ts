@@ -1,3 +1,4 @@
+import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { OpplysningerOmPleietrengendeSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { OpplysningerOmPleietrengendeFormValues } from './OpplysningerOmPleietrengendeStep';
 
@@ -12,7 +13,7 @@ export const opplysningerOmPleietrengendeDefaultValues: OpplysningerOmPleietreng
 export const getOpplysningerOmPleietrengendeStepInitialValues = (
     søknadsdata: Søknadsdata,
     formValues?: OpplysningerOmPleietrengendeFormValues,
-) => {
+): OpplysningerOmPleietrengendeFormValues => {
     if (formValues) {
         return formValues;
     }
@@ -20,9 +21,11 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
     const { opplysningerOmPleietrengende } = søknadsdata;
 
     if (opplysningerOmPleietrengende) {
+        const pleierDuDenSykeHjemme = opplysningerOmPleietrengende.pleierDuDenSykeHjemme ? YesOrNo.YES : YesOrNo.NO;
         switch (opplysningerOmPleietrengende.type) {
             case 'pleietrengendeMedFnr':
                 return {
+                    pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     norskIdentitetsnummer: opplysningerOmPleietrengende.norskIdentitetsnummer,
                     harIkkeFnr: false,
@@ -30,6 +33,7 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
                 };
             case 'pleietrengendeUtenFnr':
                 return {
+                    pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     harIkkeFnr: true,
                     fødselsdato: opplysningerOmPleietrengende.fødselsdato,
@@ -45,14 +49,22 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
 export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
     formValues: OpplysningerOmPleietrengendeFormValues,
 ): OpplysningerOmPleietrengendeSøknadsdata | undefined => {
-    const { navn, norskIdentitetsnummer, harIkkeFnr, fødselsdato, årsakManglerIdentitetsnummer, pleietrengendeId } =
-        formValues;
+    const {
+        navn,
+        norskIdentitetsnummer,
+        harIkkeFnr,
+        fødselsdato,
+        årsakManglerIdentitetsnummer,
+        pleietrengendeId,
+        pleierDuDenSykeHjemme,
+    } = formValues;
 
     if (harIkkeFnr && fødselsdato && årsakManglerIdentitetsnummer) {
         return {
             type: 'pleietrengendeUtenFnr',
             navn,
             fødselsdato,
+            pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
             årsakManglerIdentitetsnummer,
             pleietrengendeId,
         };
@@ -60,6 +72,7 @@ export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
         return {
             type: 'pleietrengendeMedFnr',
             navn,
+            pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
             norskIdentitetsnummer,
         };
     } else undefined;

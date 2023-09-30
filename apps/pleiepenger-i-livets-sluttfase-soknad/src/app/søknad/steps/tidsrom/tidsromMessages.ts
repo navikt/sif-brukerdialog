@@ -50,12 +50,5 @@ export const tidsromMessages: MessageFileFormat = {
         'steg.tidsrom.hvilketTidsrom.spm': 'Hvilken periode søker du for?',
         'steg.tidsrom.hvilketTidsrom.fom': 'Fra og med',
         'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
-
-        'steg.tidsrom.pleierDuDenSykeHjemme.spm': 'Pleier du personen i et privat hjem i perioden du søker for?',
-        'steg.tidsrom.pleierDuDenSykeHjemme.alert':
-            'For å ha rett på pleiepenger må du pleie personen i et privat hjem. Hvis det er noen dager personen har vært innlagt må du sende en søknad for hver av periodene med pleie i hjemmet.',
-        'steg.tidsrom.pleierDuDenSykeHjemme.info.tittel': 'Hva menes med privat hjem?',
-        'steg.tidsrom.pleierDuDenSykeHjemme.info':
-            'Med privat hjem menes hjemme hos noen, for eksempel hjemme hos deg eller hjemme hos den som er syk. For at du skal ha rett til pleiepenger må altså den som er syk pleies hjemme hos noen, og ikke på sykehus eller en annen institusjon.',
     },
 };

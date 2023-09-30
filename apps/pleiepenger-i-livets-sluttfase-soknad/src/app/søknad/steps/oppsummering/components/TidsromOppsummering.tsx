@@ -28,9 +28,6 @@ const TidsromOppsummering = ({ apiData }: Props) => {
                     }}
                 />
             </SummaryBlock>
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
-                <FormattedMessage id={apiData.pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
-            </SummaryBlock>
 
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
                 <FormattedMessage id={`steg.oppsummering.${apiData.flereSokere}`} />

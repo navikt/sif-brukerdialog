@@ -9,6 +9,14 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
         'step.opplysningerOmPleietrengende.counsellorPanel.info':
             'Her gir du opplysninger om personen som du pleier i livets sluttfase.',
 
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm':
+            'Pleier du personen i et privat hjem i perioden du søker for?',
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert':
+            'For å ha rett på pleiepenger må du pleie personen i et privat hjem. Hvis det er noen dager personen har vært innlagt må du sende en søknad for hver av periodene med pleie i hjemmet.',
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel': 'Hva menes med privat hjem?',
+        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info':
+            'Med privat hjem menes hjemme hos noen, for eksempel hjemme hos deg eller hjemme hos den som er syk. For at du skal ha rett til pleiepenger må altså den som er syk pleies hjemme hos noen, og ikke på sykehus eller en annen institusjon.',
+
         'step.opplysningerOmPleietrengende.spm.navn': 'Navn',
         'step.opplysningerOmPleietrengende.spm.fnr': 'Fødselsnummer/D-nummer',
         'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm':

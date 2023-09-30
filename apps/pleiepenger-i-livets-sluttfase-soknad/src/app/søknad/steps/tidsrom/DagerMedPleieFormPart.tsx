@@ -5,7 +5,7 @@ import { sortDates } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
 import { getTilgjengeligEndringsperiode } from '../../../utils/getTilgjengeligEndringsperiode';
 import { TidsromFormFields, TidsromFormValues } from './TidsromStep';
-import { Alert } from '@navikt/ds-react';
+import { Alert, BodyLong } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 interface Props {}
@@ -24,12 +24,13 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
         <>
             <FormikInputGroup
                 name={TidsromFormFields.dagerMedPleie}
-                legend="Hvilke dager skal du pleie?"
+                legend="Hvilke dager skal du være borte fra jobb for å pleie?"
                 description={
-                    <p>
-                        Velg dagene du skal pleie nedenfor. Du kan klikke på et ukenummer for å velge alle eller ingen
-                        av dagene i den uken. Du kan ikke velge lørdag eller søndag.
-                    </p>
+                    <BodyLong>
+                        Velg dagene som du skal være borte fra jobb for å pleie i kalenderen nedenfor. Du kan klikke på
+                        et ukenummer for å velge alle eller ingen av dagene i den uken. Du kan ikke velge lørdag eller
+                        søndag.
+                    </BodyLong>
                 }>
                 <DaySelector dateRange={periode} selectedDates={selectedDates} onChange={handleOnChange} />
                 {selectedDates.length > 60 && (
