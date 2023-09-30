@@ -163,6 +163,8 @@ export const appMessages: MessageFileFormat = {
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',
+        'arbeidIPeriode.enkeltdager_gruppe.legend':
+            'Oppgi hvor mye du arbeider {hvor} i de dagene du søker pleiepenger for.',
         'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
         'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
@@ -205,6 +207,8 @@ export const appMessages: MessageFileFormat = {
 
         'validation.flereSokere.noValue':
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
+
+        'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
 
         'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for',

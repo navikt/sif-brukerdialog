@@ -18,6 +18,7 @@ export interface DurationWeekdaysInputProps {
     formikFieldName: string;
     useAccordion?: boolean;
     accordionOpen?: boolean;
+    renderMonthHeader?: (month: Date) => React.ReactNode;
     validateDate: (date: Date, value?: string) => ValidationResult<ValidationError>;
 }
 
@@ -27,6 +28,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
     disabledDates = [],
     useAccordion,
     accordionOpen,
+    renderMonthHeader,
     validateDate,
 }) => {
     const months = getMonthsInDateRange(dateRange);
@@ -67,7 +69,10 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
 
                     const weeks = getWeeksInDateRange(month);
                     return (
-                        <Accordion.Item key={dateToISODate(month.from)} open={accordionOpen ? true : undefined}>
+                        <Accordion.Item
+                            key={dateToISODate(month.from)}
+                            open={accordionOpen ? true : undefined}
+                            defaultOpen={months.length === 1}>
                             <Accordion.Header>{dayjs(month.from).format('MMMM YYYY')}</Accordion.Header>
                             <Accordion.Content className="durationWeekdaysInput__monthAccordionItem">
                                 {renderWeeks(weeks)}
@@ -85,9 +90,13 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
                 const weeks = getWeeksInDateRange(month);
                 return (
                     <div key={dateToISODate(month.from)} className="durationWeekdaysInput__month">
-                        <Heading level="2" size="medium" className="capitalizeFirstChar" spacing={true}>
-                            {dayjs(month.from).format('MMMM YYYY')}
-                        </Heading>
+                        {renderMonthHeader ? (
+                            renderMonthHeader(month.from)
+                        ) : (
+                            <Heading level="3" size="xsmall" className="capitalizeFirstChar" spacing={true}>
+                                {dayjs(month.from).format('MMMM YYYY')}
+                            </Heading>
+                        )}
                         <div>{renderWeeks(weeks)}</div>
                     </div>
                 );

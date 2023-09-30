@@ -25,6 +25,9 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
             <FormikInputGroup
                 name={TidsromFormFields.dagerMedPleie}
                 legend="Hvilke dager skal du være borte fra jobb for å pleie?"
+                validate={(selectedDates: Date[]) => {
+                    return selectedDates.length === 0 ? 'ingenDagerValgt' : undefined;
+                }}
                 description={
                     <BodyLong>
                         Velg dagene som du skal være borte fra jobb for å pleie i kalenderen nedenfor. Du kan klikke på

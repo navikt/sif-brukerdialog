@@ -5,6 +5,7 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
     DateRange,
+    FormikInputGroup,
     getErrorForField,
     getTypedFormComponents,
     TypedFormikFormContext,
@@ -12,7 +13,7 @@ import {
 } from '@navikt/sif-common-formik-ds/lib';
 import getTimeValidator from '@navikt/sif-common-formik-ds/lib/validation/getTimeValidator';
 import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
-import { dateFormatter, getDatesInDateRange, getMonthsInDateRange, isDateInDates } from '@navikt/sif-common-utils/lib';
+import { dateFormatter, getDatesInDateRange, isDateInDates } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
@@ -72,7 +73,6 @@ const ArbeidIPeriodeSpørsmål = ({
 
     const getFieldName = (field: ArbeidIPeriodeField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
     const fieldName = getFieldName(ArbeidIPeriodeField.enkeltdager);
-    const numberOfMonths = getMonthsInDateRange(periode).length;
 
     const hasEnkeltdagerMedFeil =
         formik.isValid === false && context?.showErrors && getErrorForField(fieldName, formik.errors) !== undefined;
@@ -90,28 +90,34 @@ const ArbeidIPeriodeSpørsmål = ({
 
             {jobberIPerioden === JobberIPeriodeSvar.redusert && (
                 <FormBlock>
-                    <DurationWeekdaysInput
-                        dateRange={periode}
-                        disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}
-                        formikFieldName={fieldName}
-                        useAccordion={numberOfMonths > 1}
-                        accordionOpen={hasEnkeltdagerMedFeil}
-                        validateDate={(date: Date, value?: any) => {
-                            const error = getTimeValidator({ required: true })(value);
-                            if (error) {
-                                return {
-                                    key: `arbeidIPeriode.validation.timerDag.${error}`,
-                                    keepKeyUnaltered: true,
-                                    values: {
-                                        ...intlValues,
-                                        dato: dateFormatter.compact(date),
-                                    },
-                                };
-                            }
+                    <FormikInputGroup
+                        name={`${fieldName}_group`}
+                        legend={intlHelper(intl, 'arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}>
+                        <div style={{ marginTop: '1.5rem' }}>
+                            <DurationWeekdaysInput
+                                dateRange={periode}
+                                disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}
+                                formikFieldName={fieldName}
+                                useAccordion={true}
+                                accordionOpen={hasEnkeltdagerMedFeil}
+                                validateDate={(date: Date, value?: any) => {
+                                    const error = getTimeValidator({ required: true })(value);
+                                    if (error) {
+                                        return {
+                                            key: `arbeidIPeriode.validation.timerDag.${error}`,
+                                            keepKeyUnaltered: true,
+                                            values: {
+                                                ...intlValues,
+                                                dato: dateFormatter.compact(date),
+                                            },
+                                        };
+                                    }
 
-                            return undefined;
-                        }}
-                    />
+                                    return undefined;
+                                }}
+                            />
+                        </div>
+                    </FormikInputGroup>
                 </FormBlock>
             )}
         </>
