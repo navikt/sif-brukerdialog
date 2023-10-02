@@ -57,7 +57,7 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
     );
 
     const errors: React.ReactNode[] = [];
-    if (context?.showErrors) {
+    if (context?.showErrors && 1 + 1 === 3) {
         datesInWeekAndMonth.forEach((date, index) => {
             const fieldName = `${formikFieldName}.${dateToISODate(date)}`;
             const fieldError = getErrorForField(fieldName, formikContext.errors);

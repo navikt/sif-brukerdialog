@@ -1,3 +1,4 @@
+import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 import {
     DateDurationMap,
     DateRange,
@@ -11,9 +12,7 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { durationUtils } from '@navikt/sif-common-utils';
 import { TidEnkeltdagApiData, TidFasteDagerApiData } from '../../types/søknadApiData/SøknadApiData';
-import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 
 export const getFasteDagerApiData = ({
     monday: mandag,
@@ -40,18 +39,19 @@ export const getEnkeltdagerIPeriodeApiData = (
     const dager: TidEnkeltdagApiData[] = [];
     const tidNormalt = decimalDurationToISODuration(jobberNormaltTimer / 5);
 
-    getDatesInDateRange(periode, true).forEach((dato) => {
-        const dag = dateToISODate(dato);
+    getDatesInDateRange(periode, true).forEach((date) => {
+        const dateKey = dateToISODate(date);
 
-        if (enkeltdager[dag] === undefined || durationUtils.durationIsZero(enkeltdager[dag])) {
+        if (enkeltdager[dateKey] === undefined) {
+            // Dager hvor en ikke har sagt en skal pleie
             dager.push({
-                dato: dateToISOString(dato),
+                dato: dateToISOString(date),
                 tid: tidNormalt,
             });
         } else {
             dager.push({
-                dato: dateToISOString(dato),
-                tid: durationToISODuration(enkeltdager[dag]),
+                dato: dateToISOString(date),
+                tid: durationToISODuration(enkeltdager[dateKey]),
             });
         }
     });

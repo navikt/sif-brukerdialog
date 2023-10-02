@@ -20,6 +20,7 @@ import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
 import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
 import { useFormikContext } from 'formik';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 
 const { RadioGroup } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
 
@@ -92,7 +93,14 @@ const ArbeidIPeriodeSpørsmål = ({
                 <FormBlock>
                     <FormikInputGroup
                         name={`${fieldName}_group`}
-                        legend={intlHelper(intl, 'arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}>
+                        legend={intlHelper(intl, 'arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
+                        description={
+                            <Block margin="l">
+                                <Alert variant="info" inline={true}>
+                                    Dager hvor du ikke skal jobbe noe, trenger du ikke fylle ut.
+                                </Alert>
+                            </Block>
+                        }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
                                 dateRange={periode}
@@ -101,7 +109,7 @@ const ArbeidIPeriodeSpørsmål = ({
                                 useAccordion={true}
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(date: Date, value?: any) => {
-                                    const error = getTimeValidator({ required: true })(value);
+                                    const error = getTimeValidator()(value);
                                     if (error) {
                                         return {
                                             key: `arbeidIPeriode.validation.timerDag.${error}`,
