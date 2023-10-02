@@ -15,6 +15,7 @@ import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     apiValues: SøknadApiData;
+    dagerMedPleie: Date[];
     søknadsperiode: DateRange;
 }
 
@@ -61,6 +62,7 @@ const getArbeidsgiverTittel = (intl: IntlShape, arbeidsgiver: ArbeidsgiverApiDat
 
 const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
     apiValues: { arbeidsgivere, frilans, selvstendigNæringsdrivende },
+    dagerMedPleie,
     søknadsperiode,
 }) => {
     const intl = useIntl();
@@ -109,6 +111,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                             <SummaryBlock header={forhold.tittel} key={forhold.tittel}>
                                 <ArbeidIPeriodeSummaryItem
                                     periode={søknadsperiode}
+                                    dagerMedPleie={dagerMedPleie}
                                     arbeidIPeriode={forhold.arbeidIPeriode}
                                     normaltimerUke={forhold.jobberNormaltTimer}
                                 />

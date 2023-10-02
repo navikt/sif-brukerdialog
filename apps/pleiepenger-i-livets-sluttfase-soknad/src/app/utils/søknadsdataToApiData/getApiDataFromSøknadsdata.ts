@@ -15,6 +15,7 @@ import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsopphold
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
+import { getDataBruktTilUtledning } from '../getDataBruktTilUtledning';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -92,5 +93,6 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
+        dataBruktTilUtledning: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };

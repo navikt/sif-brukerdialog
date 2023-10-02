@@ -136,6 +136,7 @@ const OppsummeringStep = () => {
                                 />
                                 <ArbeidIPeriodenSummary
                                     apiValues={apiData}
+                                    dagerMedPleie={søknadsdata.tidsrom?.dagerMedPleie || []}
                                     søknadsperiode={{
                                         from: ISODateToDate(apiData.fraOgMed),
                                         to: ISODateToDate(apiData.tilOgMed),
