@@ -33,6 +33,7 @@ interface Props extends ArbeidstidRegistrertLogProps {
     periode: DateRange;
     dagerMedPleie: Date[];
     søkerKunHelgedager: boolean;
+    skjulJobberNormaltValg: boolean;
     onArbeidstidVariertChange: () => void;
 }
 
@@ -44,6 +45,7 @@ const ArbeidIPeriodeSpørsmål = ({
     periode,
     dagerMedPleie,
     arbeidsstedNavn,
+    skjulJobberNormaltValg,
     onArbeidstidVariertChange,
 }: Props) => {
     const intl = useIntl();
@@ -86,7 +88,7 @@ const ArbeidIPeriodeSpørsmål = ({
                 name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
                 legend={intlHelper(intl, `arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
                 validate={getJobberIPeriodenValidator(intlValues)}
-                radios={getJobberIPeriodenRadios(intl)}
+                radios={getJobberIPeriodenRadios(intl, skjulJobberNormaltValg)}
             />
 
             {jobberIPerioden === JobberIPeriodeSvar.redusert && (
@@ -132,7 +134,7 @@ const ArbeidIPeriodeSpørsmål = ({
     );
 };
 
-const getJobberIPeriodenRadios = (intl: IntlShape) => [
+const getJobberIPeriodenRadios = (intl: IntlShape, skjulJobberNormaltValg: boolean) => [
     {
         label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberIkke'),
         value: JobberIPeriodeSvar.heltFravær,
@@ -141,10 +143,14 @@ const getJobberIPeriodenRadios = (intl: IntlShape) => [
         label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberRedusert'),
         value: JobberIPeriodeSvar.redusert,
     },
-    {
-        label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberVanlig'),
-        value: JobberIPeriodeSvar.somVanlig,
-    },
+    ...(skjulJobberNormaltValg
+        ? []
+        : [
+              {
+                  label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberVanlig'),
+                  value: JobberIPeriodeSvar.somVanlig,
+              },
+          ]),
 ];
 
 const getDagerSomSkalDisables = (dateRange: DateRange, dagerMedPleie: Date[]): Date[] => {

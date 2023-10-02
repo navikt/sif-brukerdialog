@@ -18,7 +18,11 @@ import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import {
+    getAntallArbeidsforhold,
+    getArbeidstidStepInitialValues,
+    getArbeidstidSøknadsdataFromFormValues,
+} from './arbeidstidStepUtils';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { ArbeidsforholdType } from './form-parts/types';
 import { søkerKunHelgedager } from '../tidsrom/tidsromStepUtils';
@@ -162,6 +166,9 @@ const ArbeidstidStep = () => {
     }
 
     const periode: DateRange = { from: periodeFra, to: periodeTil };
+    const antallArbeidsforhold = søknadsdata.arbeidssituasjon
+        ? getAntallArbeidsforhold(søknadsdata.arbeidssituasjon)
+        : 0;
 
     const tempArbeidstid = tempFormData?.stepId === stepId ? tempFormData.values : undefined;
     return (
@@ -257,6 +264,7 @@ const ArbeidstidStep = () => {
                                                                 onArbeidstidEnkeltdagRegistrert={
                                                                     logArbeidEnkeltdagRegistrert
                                                                 }
+                                                                skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                             />
                                                         </Block>
                                                     </FormBlock>
@@ -283,6 +291,7 @@ const ArbeidstidStep = () => {
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                    skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                 />
                                             </Block>
                                         </FormBlock>
@@ -306,6 +315,7 @@ const ArbeidstidStep = () => {
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                    skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                 />
                                             </Block>
                                         </FormBlock>
