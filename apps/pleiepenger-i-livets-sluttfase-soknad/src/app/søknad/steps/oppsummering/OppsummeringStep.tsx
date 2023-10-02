@@ -124,7 +124,10 @@ const OppsummeringStep = () => {
                                     pleietrengende={apiData.pleietrengende}
                                     pleietrengendeId={pleietrengendeId}
                                 />
-                                <TidsromOppsummering apiData={apiData} />
+                                <TidsromOppsummering
+                                    apiData={apiData}
+                                    dagerMedPleie={søknadsdata.tidsrom!.dagerMedPleie}
+                                />
 
                                 <ArbeidssituasjonSummary
                                     apiData={apiData}

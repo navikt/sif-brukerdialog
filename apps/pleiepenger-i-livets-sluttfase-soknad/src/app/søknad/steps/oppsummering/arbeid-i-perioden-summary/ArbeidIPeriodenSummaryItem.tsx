@@ -9,7 +9,7 @@ import {
 import { JobberIPeriodeSvar } from '../../arbeidstid/ArbeidstidTypes';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { TidEnkeltdager } from '../../../../local-sif-common-pleiepenger';
-import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { ISODurationToDecimalDuration, dateToISODate } from '@navikt/sif-common-utils/lib';
 import { Heading } from '@navikt/ds-react';
 
 interface Props {
@@ -23,9 +23,11 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }
 
-const fjernDagerIkkeSøktFor = (enkeltdager: TidEnkeltdagApiData[], dagerMedPleie: Date[]) => {
+const fjernDagerIkkeSøktForOgUtenArbeidstid = (enkeltdager: TidEnkeltdagApiData[], dagerMedPleie: Date[]) => {
     const isoDagerMedPleie = dagerMedPleie.map(dateToISODate);
-    return enkeltdager.filter(({ dato }) => isoDagerMedPleie.includes(dato));
+    return enkeltdager.filter(({ dato, tid }) => {
+        return isoDagerMedPleie.includes(dato) && ISODurationToDecimalDuration(tid) !== 0;
+    });
 };
 
 const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPleie }) => {
@@ -51,9 +53,11 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, dagerMedPl
             {arbeidIPeriode.enkeltdager && (
                 <Block margin="xl">
                     <Heading size="xsmall" level="4" spacing={true}>
-                        Arbeidstid de dagene jeg søker om pleiepenger:
+                        Dager hvor jeg skal jobbe
                     </Heading>
-                    <TidEnkeltdager dager={fjernDagerIkkeSøktFor(arbeidIPeriode.enkeltdager, dagerMedPleie)} />
+                    <TidEnkeltdager
+                        dager={fjernDagerIkkeSøktForOgUtenArbeidstid(arbeidIPeriode.enkeltdager, dagerMedPleie)}
+                    />
                 </Block>
             )}
         </>
