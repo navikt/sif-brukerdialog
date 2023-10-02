@@ -15,7 +15,6 @@ interface OwnProps<FieldName> extends Omit<TextFieldProps, 'name' | 'onChange'> 
     maxMinutes?: number;
     timeInputLayout?: TimeInputLayoutProps;
     timeInputLabels?: TimeInputLabels;
-    hideErrorMessage?: boolean;
 }
 
 export type FormikTimeInputProps<FieldName, ErrorType> = OwnProps<FieldName> &
@@ -37,7 +36,6 @@ function FormikTimeInput<FieldName, ErrorType>({
     useFastField,
     description,
     timeInputLabels,
-    hideErrorMessage,
     ...restProps
 }: FormikTimeInputProps<FieldName, ErrorType>) {
     const context = React.useContext(TypedFormikFormContext);
@@ -70,10 +68,8 @@ function FormikTimeInput<FieldName, ErrorType>({
                     <SkjemagruppeQuestion
                         className={skjemagruppeClassName}
                         ref={ref}
-                        error={
-                            hideErrorMessage ? undefined : getErrorPropForFormikInput({ field, form, context, error })
-                        }
-                        id={name as any}
+                        error={getErrorPropForFormikInput({ field, form, context, error })}
+                        id={field.name as any}
                         onFocus={(evt) => {
                             if (evt.target.id === ref.current.props?.id) {
                                 focusFirstElement(evt.target);

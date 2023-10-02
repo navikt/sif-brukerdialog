@@ -7,7 +7,7 @@ const SkjemagruppeQuestion = forwardRef(function SkjemagruppeQuestion(
     ref: React.Ref<any>,
 ) {
     const { id, legend, ...rest } = props;
-    return <Fieldset {...rest} legend={legend} ref={ref} tabIndex={id ? -1 : undefined} />;
+    return <Fieldset {...rest} id={id} legend={legend} ref={ref} tabIndex={id ? -1 : undefined} />;
 });
 
 export default SkjemagruppeQuestion;

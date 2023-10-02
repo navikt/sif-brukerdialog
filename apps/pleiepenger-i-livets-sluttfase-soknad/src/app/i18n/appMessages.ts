@@ -304,10 +304,10 @@ export const appMessages: MessageFileFormat = {
         'validation.arbeidIPeriode.fast.prosent.ingenTidRegistrert':
             'Du må oppgi hvor mange timer du jobber i uken {hvor} i perioden.',
         'validation.arbeidIPeriode.fast.tid.timeHasNoValue': 'Du må fylle ut timer og minutter for {dag} {hvor}.',
-        'validation.arbeidIPeriode.fast.tid.hoursAreInvalid': 'Antall timer på {dag} {hvor} er ikke et gyldig tall.',
+        'validation.arbeidIPeriode.fast.tid.hoursAreInvalid': 'Antall timer {dag} {hvor} er ikke et gyldig tall.',
         'validation.arbeidIPeriode.fast.tid.minutesAreInvalid':
             'Antall minutter på {dag} {hvor} er ikke et gyldig tall.',
-        'validation.arbeidIPeriode.fast.tid.tooManyHours': 'Antall timer på {dag}  {hvor} kan ikke overstige 24 timer.',
+        'validation.arbeidIPeriode.fast.tid.tooManyHours': 'Antall timer {dag}  {hvor} kan ikke overstige 24 timer.',
         'validation.arbeidIPeriode.fast.tid.tooManyMinutes':
             'Antall minutter på {dag}  {hvor} kan ikke overstige 59 minutter.',
         'validation.arbeidIPeriode.fast.tid.durationIsTooLong':

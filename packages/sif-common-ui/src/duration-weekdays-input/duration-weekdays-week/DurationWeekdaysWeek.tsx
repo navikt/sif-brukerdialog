@@ -95,7 +95,6 @@ const DurationWeekdaysWeek: React.FunctionComponent<Props> = ({
                             return (
                                 <div className={bem.element('day', dateIsDisabled ? 'disabled' : '')} key={index}>
                                     <FormikTimeInput
-                                        hideErrorMessage={false}
                                         label={
                                             <span
                                                 className={bem.element('dayLegend', dateIsDisabled ? 'disabled' : '')}>
