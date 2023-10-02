@@ -6,6 +6,7 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 
 export const getFrilansApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
+    dagerMedPleie: Date[],
     frilans?: ArbeidFrilansSøknadsdata,
     arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): FrilansApiData | undefined => {
@@ -29,6 +30,7 @@ export const getFrilansApiDataFromSøknadsdata = (
                             arbeidIperiode,
                             søknadsperiode,
                             frilans.jobberNormaltTimer,
+                            dagerMedPleie,
                         ),
                     },
                 };
@@ -46,6 +48,7 @@ export const getFrilansApiDataFromSøknadsdata = (
                             arbeidIperiode,
                             søknadsperiode,
                             frilans.jobberNormaltTimer,
+                            dagerMedPleie,
                         ),
                     },
                 };

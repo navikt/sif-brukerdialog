@@ -32,18 +32,20 @@ const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiDat
     dayjs(d1.dato).isBefore(d2.dato, 'day') ? -1 : 1;
 
 export const getEnkeltdagerIPeriodeApiData = (
+    dagerMedPleie: Date[],
     enkeltdager: DateDurationMap,
     periode: DateRange,
     jobberNormaltTimer: number,
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
     const tidNormalt = decimalDurationToISODuration(jobberNormaltTimer / 5);
+    const isoDagerMedPleie = dagerMedPleie.map((d) => dateToISODate(d));
 
     getDatesInDateRange(periode, true).forEach((date) => {
         const dateKey = dateToISODate(date);
+        const erDagMedPleie = isoDagerMedPleie.includes(dateKey);
 
-        if (enkeltdager[dateKey] === undefined) {
-            // Dager hvor en ikke har sagt en skal pleie
+        if (erDagMedPleie === false) {
             dager.push({
                 dato: dateToISOString(date),
                 tid: tidNormalt,
@@ -51,23 +53,10 @@ export const getEnkeltdagerIPeriodeApiData = (
         } else {
             dager.push({
                 dato: dateToISOString(date),
-                tid: durationToISODuration(enkeltdager[dateKey]),
+                tid: durationToISODuration(enkeltdager[dateKey] || { hours: 0, minutes: 0 }),
             });
         }
     });
-
-    // Object.keys(enkeltdager).forEach((dag) => {
-    //     const dato = ISOStringToDate(dag);
-    //     if (dato && isDateInDateRange(dato, periode) && isDateWeekDay(dato)) {
-    //         if (durationUtils.durationIsZero(enkeltdager[dag])) {
-    //             return;
-    //         }
-    //         dager.push({
-    //             dato: dateToISOString(dato),
-    //             tid: durationToISODuration(enkeltdager[dag]),
-    //         });
-    //     }
-    // });
 
     return dager.sort(sortTidEnkeltdagApiData);
 };

@@ -7,6 +7,7 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
+    dagerMedPleie: Date[],
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
     arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata,
 ): ArbeidsgiverApiData[] | undefined => {
@@ -36,6 +37,7 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 arbeidIPeriodeSøknadsdata,
                 søknadsperiode,
                 value.jobberNormaltTimer,
+                dagerMedPleie,
             );
             arbeidsgiverApiData.push({
                 ...arbeidsgiverInfo,

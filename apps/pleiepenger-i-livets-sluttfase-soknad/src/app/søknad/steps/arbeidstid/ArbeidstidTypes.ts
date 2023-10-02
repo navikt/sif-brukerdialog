@@ -9,11 +9,9 @@ export enum JobberIPeriodeSvar {
 export enum ArbeidIPeriodeField {
     jobberIPerioden = 'jobberIPerioden',
     enkeltdager = 'enkeltdager',
-    // arbeidstid = 'arbeidstid',
 }
 
 export interface ArbeidIPeriode {
     [ArbeidIPeriodeField.jobberIPerioden]: JobberIPeriodeSvar;
     [ArbeidIPeriodeField.enkeltdager]?: DateDurationMap;
-    // [ArbeidIPeriodeField.arbeidstid]?: DateDurationMap;
 }

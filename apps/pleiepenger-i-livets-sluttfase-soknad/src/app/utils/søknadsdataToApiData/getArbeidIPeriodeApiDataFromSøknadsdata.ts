@@ -9,6 +9,7 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
     arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata,
     periode: DateRange,
     jobberNormaltTimer: number,
+    dagerMedPleie: Date[],
 ): ArbeidIPeriodeApiData => {
     switch (arbeidIPeriodeSøknadsdata.type) {
         case ArbeidIPeriodeType.arbeiderIkke:
@@ -21,6 +22,7 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
             };
         case ArbeidIPeriodeType.arbeiderUlikeUkerTimer:
             const enkeltdager = getEnkeltdagerIPeriodeApiData(
+                dagerMedPleie,
                 arbeidIPeriodeSøknadsdata.enkeltdager,
                 periode,
                 jobberNormaltTimer,
