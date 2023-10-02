@@ -1,18 +1,23 @@
+import {
+    DateRange,
+    getNumberFromNumberInputValue,
+    getStringForNumberInputValue,
+    YesOrNo,
+} from '@navikt/sif-common-formik-ds/lib';
+import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
-import { DateRange, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
-import { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
-import { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
-import { ArbeidssituasjonFormValues } from './ArbeidssituasjonStep';
-import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types/Arbeidsgiver';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 import { ArbeidAnsattSøknadsdata, ArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidsgivereSøknadsdata';
-import { VernepliktigSøknadsdata } from '../../../types/søknadsdata/VernepliktigSøknadsdata';
 import { OpptjeningUtlandSøknadsdata } from '../../../types/søknadsdata/OpptjeningUtlandSøknadsdata';
+import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { UtenlandskNæringSøknadsdata } from '../../../types/søknadsdata/UtenlandskNæringSøknadsdata';
-import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
+import { VernepliktigSøknadsdata } from '../../../types/søknadsdata/VernepliktigSøknadsdata';
+import { ArbeidssituasjonFormValues } from './ArbeidssituasjonStep';
+import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
+import { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
+import { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 
 export const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer !== undefined && (answer === YesOrNo.NO || answer === YesOrNo.YES);
@@ -123,14 +128,14 @@ const getFrilansDafaultValues = (frilans?: ArbeidFrilansSøknadsdata): FrilansFo
                     jobberFortsattSomFrilans: YesOrNo.NO,
                     startdato: frilans.startdato,
                     sluttdato: frilans.sluttdato,
-                    jobberNormaltTimer: frilans.jobberNormaltTimer,
+                    jobberNormaltTimer: getStringForNumberInputValue(frilans.jobberNormaltTimer),
                 };
             case 'pågående':
                 return {
                     harHattInntektSomFrilanser: YesOrNo.YES,
                     jobberFortsattSomFrilans: YesOrNo.YES,
                     startdato: frilans.startdato,
-                    jobberNormaltTimer: frilans.jobberNormaltTimer,
+                    jobberNormaltTimer: getStringForNumberInputValue(frilans.jobberNormaltTimer),
                 };
         }
     }
@@ -154,7 +159,7 @@ const getSelvstendigDefaultValues = (selvstendig?: ArbeidSelvstendigSøknadsdata
                     harHattInntektSomSN: YesOrNo.YES,
                     harFlereVirksomheter: selvstendig.harFlereVirksomheter ? YesOrNo.YES : YesOrNo.NO,
                     virksomhet: selvstendig.virksomhet,
-                    jobberNormaltTimer: selvstendig.jobberNormaltTimer,
+                    jobberNormaltTimer: getStringForNumberInputValue(selvstendig.jobberNormaltTimer),
                 };
         }
     }
@@ -203,12 +208,12 @@ const getArbeidsgiverFormDataFromSøknadsData = (
                 return {
                     erAnsatt: YesOrNo.NO,
                     sluttetFørSøknadsperiode: YesOrNo.NO,
-                    jobberNormaltTimer: arbeidsgiverSøknadsdata.jobberNormaltTimer,
+                    jobberNormaltTimer: getStringForNumberInputValue(arbeidsgiverSøknadsdata.jobberNormaltTimer),
                 };
             case 'pågående':
                 return {
                     erAnsatt: YesOrNo.YES,
-                    jobberNormaltTimer: arbeidsgiverSøknadsdata.jobberNormaltTimer,
+                    jobberNormaltTimer: getStringForNumberInputValue(arbeidsgiverSøknadsdata.jobberNormaltTimer),
                 };
         }
     }
@@ -339,8 +344,7 @@ export const getFrilansSøknadsdataFromFormValues = (
     frilansoppdrag: Arbeidsgiver[],
     søknadsperiode: DateRange,
 ): ArbeidFrilansSøknadsdata | undefined => {
-    const { harHattInntektSomFrilanser, jobberFortsattSomFrilans, startdato, sluttdato, jobberNormaltTimer } =
-        frilansFormdata;
+    const { harHattInntektSomFrilanser, jobberFortsattSomFrilans, startdato, sluttdato } = frilansFormdata;
     const erFrilanser = harHattInntektSomFrilanser === YesOrNo.YES;
 
     const brukerHarFrilansOppdrag = harFrilansoppdrag(frilansoppdrag);
@@ -369,6 +373,8 @@ export const getFrilansSøknadsdataFromFormValues = (
         };
     }
 
+    const jobberNormaltTimer = getNumberFromNumberInputValue(frilansFormdata.jobberNormaltTimer);
+
     if (brukerHarFrilansISøknadsPeriode && jobberNormaltTimer && startdato) {
         if (jobberFortsattSomFrilans === YesOrNo.NO && sluttdato) {
             return {
@@ -386,7 +392,7 @@ export const getFrilansSøknadsdataFromFormValues = (
             erFrilanser: true,
             jobberFortsattSomFrilans: true,
             startdato,
-            jobberNormaltTimer,
+            jobberNormaltTimer: jobberNormaltTimer,
         };
     }
 
@@ -407,7 +413,7 @@ export const getSelvstendigSøknadsdataFromFormValues = (
     selvstendigFormData: SelvstendigFormData,
     søknadsperiode: DateRange,
 ): ArbeidSelvstendigSøknadsdata | undefined => {
-    const { harHattInntektSomSN, harFlereVirksomheter, virksomhet, jobberNormaltTimer } = selvstendigFormData;
+    const { harHattInntektSomSN, harFlereVirksomheter, virksomhet } = selvstendigFormData;
 
     if (harHattInntektSomSN === YesOrNo.NO) {
         return {
@@ -416,6 +422,7 @@ export const getSelvstendigSøknadsdataFromFormValues = (
         };
     }
 
+    const jobberNormaltTimer = getNumberFromNumberInputValue(selvstendigFormData.jobberNormaltTimer);
     if (!virksomhet || !jobberNormaltTimer) {
         return undefined;
     }
@@ -454,21 +461,22 @@ export const getArbeidsgiverSøknadsdataFromFormData = (
 };
 
 export const getArbeidAnsattSøknadsdata = (ansatt: AnsattFormData): ArbeidAnsattSøknadsdata | undefined => {
-    if (ansatt.erAnsatt === YesOrNo.YES && ansatt.jobberNormaltTimer) {
+    const jobberNormaltTimer = getNumberFromNumberInputValue(ansatt.jobberNormaltTimer);
+    if (ansatt.erAnsatt === YesOrNo.YES && jobberNormaltTimer) {
         return {
             type: 'pågående',
             arbeidsgiver: ansatt.arbeidsgiver,
             erAnsattISøknadsperiode: true,
-            jobberNormaltTimer: ansatt.jobberNormaltTimer,
+            jobberNormaltTimer,
         };
     }
 
-    if (ansatt.erAnsatt === YesOrNo.NO && ansatt.sluttetFørSøknadsperiode === YesOrNo.NO && ansatt.jobberNormaltTimer) {
+    if (ansatt.erAnsatt === YesOrNo.NO && ansatt.sluttetFørSøknadsperiode === YesOrNo.NO && jobberNormaltTimer) {
         return {
             type: 'sluttetISøknadsperiode',
             arbeidsgiver: ansatt.arbeidsgiver,
             erAnsattISøknadsperiode: true,
-            jobberNormaltTimer: ansatt.jobberNormaltTimer,
+            jobberNormaltTimer,
         };
     }
 

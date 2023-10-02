@@ -19,7 +19,7 @@ export enum AnsattFormFields {
 
 export interface AnsattFormData {
     arbeidsgiver: Arbeidsgiver;
-    [AnsattFormFields.jobberNormaltTimer]?: number;
+    [AnsattFormFields.jobberNormaltTimer]?: string;
     [AnsattFormFields.erAnsatt]?: YesOrNo;
     [AnsattFormFields.sluttetFørSøknadsperiode]?: YesOrNo;
 }
