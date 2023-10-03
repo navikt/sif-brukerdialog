@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DatePicker, useDatepicker } from '@navikt/ds-react';
 import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
 import React, { useEffect } from 'react';
@@ -114,8 +115,15 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
         }
     }, [inputValue, listenForInputValueChange, onChange]);
 
+    const { minDate, maxDate, ...dpRestProps } = restProps;
+
     return (
-        <DatePicker {...(datepickerProps as any)} mode="single" onSelect={onSelect} inputDisabled={inputDisabled}>
+        <DatePicker
+            {...(datepickerProps as any)}
+            {...dpRestProps}
+            mode="single"
+            onSelect={onSelect}
+            inputDisabled={inputDisabled}>
             <DatePicker.Input
                 {...inputProps}
                 description={restProps.description}
