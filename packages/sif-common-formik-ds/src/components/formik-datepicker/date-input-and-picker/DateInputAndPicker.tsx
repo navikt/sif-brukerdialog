@@ -115,7 +115,12 @@ const DateInputAndPicker: React.FunctionComponent<Props> = ({
     }, [inputValue, listenForInputValueChange, onChange]);
 
     return (
-        <DatePicker {...(datepickerProps as any)} mode="single" onSelect={onSelect} inputDisabled={inputDisabled}>
+        <DatePicker
+            {...(datepickerProps as any)}
+            dropdownCaption={restProps.dropdownCaption}
+            mode="single"
+            onSelect={onSelect}
+            inputDisabled={inputDisabled}>
             <DatePicker.Input
                 {...inputProps}
                 description={restProps.description}
