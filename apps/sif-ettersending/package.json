@@ -38,7 +38,7 @@
         "helmet": "7.0.0",
         "http-proxy-middleware": "2.0.6",
         "io-ts": "2.2.20",
-        "jose": "4.14.6",
+        "jose": "4.15.1",
         "jsdom": "22.1.0",
         "lodash": "4.17.21",
         "mini-css-extract-plugin": "2.7.6",
