@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.0.1
+
+### Patch Changes
+
+-   92fbd8f8: Legge til manglende id-prop i Fieldset, rendre alternativt for disabled TimeInput, ny funksjon for å parse number til inputValue i numberInput
+
 ## 1.0.0
 
 ### Major Changes
