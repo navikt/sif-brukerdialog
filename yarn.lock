@@ -3614,7 +3614,7 @@ __metadata:
     "@navikt/sif-common-hooks": "workspace:*"
     "@portabletext/react": 3.0.7
     "@sanity/client": 6.4.12
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     "@types/react": 18.2.23
     "@types/react-dom": 18.2.8
     config: "workspace:*"
@@ -4360,7 +4360,7 @@ __metadata:
   resolution: "@navikt/sif-common-amplitude@workspace:packages/sif-common-amplitude"
   dependencies:
     "@types/amplitude-js": 8.16.3
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     "@types/react": 18.2.23
     amplitude-js: 8.21.9
     config: "workspace:*"
@@ -4404,7 +4404,7 @@ __metadata:
     "@storybook/react-webpack5": 7.4.5
     "@storybook/testing-library": 0.2.1
     "@types/jest": 29.5.5
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     "@types/react": 18.2.23
     "@types/react-collapse": 5.0.2
     "@types/react-dom": 18.2.8
@@ -4464,7 +4464,7 @@ __metadata:
     "@storybook/test-runner": 0.13.0
     "@storybook/testing-library": 0.2.1
     "@types/jest": 29.5.5
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     "@types/react": 18.2.23
     "@types/react-dom": 18.2.8
     "@types/uuid": 9.0.4
@@ -4526,7 +4526,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.5.1
     "@types/jest": 29.5.5
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     "@types/react": 18.2.23
     "@types/react-dom": 18.2.8
     "@types/react-responsive": 8.0.6
@@ -4575,7 +4575,7 @@ __metadata:
     "@sentry/browser": 7.72.0
     "@sentry/react": 7.72.0
     "@sentry/types": 7.72.0
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     axios: 1.5.1
     config: "*"
     copyfiles: 2.4.1
@@ -4621,7 +4621,7 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.5.1
     "@types/jest": 29.5.5
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     "@types/react": 18.2.23
     "@types/react-dom": 18.2.8
     "@types/react-modal": 3.16.1
@@ -4692,7 +4692,7 @@ __metadata:
     "@babel/preset-env": 7.22.20
     "@babel/preset-react": 7.22.15
     "@types/jest": 29.5.5
-    "@types/node": 20.7.1
+    "@types/node": 20.8.2
     "@types/react": 18.2.23
     "@types/react-dom": 18.2.8
     "@types/uuid": 9.0.4
@@ -8612,17 +8612,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:20.8.2":
   version: 20.8.2
   resolution: "@types/node@npm:20.8.2"
   checksum: 3da73e25d821bfcdb7de98589027e08bb4848e55408671c4a83ec0341e124b5313a0b20e1e4b4eff1168ea17a86f622ad73fcb04b761abd77496b9a27cbd5de5
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:20.7.1":
-  version: 20.7.1
-  resolution: "@types/node@npm:20.7.1"
-  checksum: 3140bd6c9130f1ed73a78ce7a1765ee43e155c1eea50eea45e18faeb31d11d97a84fffdc5e3a97582101d2f57d2652a50f510ede6c702780267bad74c822d56c
   languageName: node
   linkType: hard
 
