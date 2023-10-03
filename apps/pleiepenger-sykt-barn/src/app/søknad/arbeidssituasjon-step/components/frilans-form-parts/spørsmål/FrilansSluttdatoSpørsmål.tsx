@@ -25,7 +25,7 @@ const FrilansSluttdatoSpørsmål: React.FunctionComponent<Props> = ({
         <ArbFriFormComponents.DatePicker
             name={FrilansFormField.sluttdato}
             label={intlHelper(intl, `frilanser.sluttdato.spm`)}
-            showYearSelector={true}
+            dropdownCaption={true}
             minDate={datepickerUtils.getDateFromDateString(startdatoValue)}
             maxDate={søknadsdato}
             validate={(value) => {

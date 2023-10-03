@@ -99,7 +99,6 @@ const TidsperiodeForm = ({
                         <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'tidsperiodeForm')}>
                             <Form.DateRangePicker
                                 legend={inlineLabels.intervalTitle}
-                                fullscreenOverlay={true}
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 disabledDateRanges={disabledDateRanges}
@@ -124,12 +123,15 @@ const TidsperiodeForm = ({
                                 toInputProps={{
                                     label: inlineLabels.toDate,
                                     name: TidsperiodeFormFields.tom,
-                                    validate: getDateRangeValidator({
-                                        required: true,
-                                        min: minDate,
-                                        max: maxDate,
-                                        fromDate: ISOStringToDate(formik.values.fom),
-                                    }).validateToDate,
+                                    validate: (value) => {
+                                        const error = getDateRangeValidator({
+                                            required: true,
+                                            min: minDate,
+                                            max: maxDate,
+                                            fromDate: ISOStringToDate(formik.values.fom),
+                                        }).validateToDate(value);
+                                        return handleDateRangeValidationError(error, minDate, maxDate);
+                                    },
                                     onChange: () => {
                                         setTimeout(() => {
                                             formik.validateField(TidsperiodeFormFields.fom);

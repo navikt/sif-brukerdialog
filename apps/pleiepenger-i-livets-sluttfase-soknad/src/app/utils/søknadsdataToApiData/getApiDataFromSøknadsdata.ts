@@ -83,7 +83,7 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
             søknadsperiode,
             selvstendig,
-            arbeidstid?.selvstendig
+            arbeidstid?.selvstendig,
         ),
         opptjeningIUtlandet: getOpptjeningUtlandApiDataFromSøknadsdata(språk, arbeidssituasjon.opptjeningUtland),
         utenlandskNæring: getUtenlandskNæringApiDataFromSøknadsdata(språk, arbeidssituasjon.utenlandskNæring),

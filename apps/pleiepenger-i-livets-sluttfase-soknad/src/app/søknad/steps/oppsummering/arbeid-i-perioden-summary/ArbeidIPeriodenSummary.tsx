@@ -115,7 +115,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                             </SummaryBlock>
                         ) : (
                             <div key={index}>Informasjon om arbeid i perioden mangler</div>
-                        )
+                        ),
                     )}
                 </SummarySection>
             )}

@@ -12,11 +12,11 @@ import { ArbeiderIPeriodenSvar, ArbeidstidPeriodeData } from '../../../../../loc
 dayjs.extend(isoWeek);
 
 export const getDagerMedTidFraArbeidstidPeriodeData = (
-    arbeidstidPeriodeData: ArbeidstidPeriodeData
+    arbeidstidPeriodeData: ArbeidstidPeriodeData,
 ): DateDurationMap => {
     const datoerIPeriode = getDatesInDateRange(
         { from: arbeidstidPeriodeData.fom, to: arbeidstidPeriodeData.tom },
-        true
+        true,
     );
     const dagerMedTid: DateDurationMap = {};
     datoerIPeriode.forEach((dato) => {
@@ -24,7 +24,7 @@ export const getDagerMedTidFraArbeidstidPeriodeData = (
         if (arbeidstidPeriodeData.arbeiderHvordan === ArbeiderIPeriodenSvar.redusert) {
             const varighet = getDurationForISOWeekdayNumber(
                 arbeidstidPeriodeData.tidFasteDager,
-                dayjs(ISODateToDate(isoDate)).isoWeekday()
+                dayjs(ISODateToDate(isoDate)).isoWeekday(),
             );
             if (varighet) {
                 dagerMedTid[isoDate] = { ...varighet };

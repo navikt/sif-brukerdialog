@@ -4,7 +4,7 @@ import { Virksomhet } from '@navikt/sif-common-forms-ds/lib';
 
 export const getSelvstendigIPeriodeValidator = (
     søknadsperiode: DateRange,
-    virksomhet?: Virksomhet
+    virksomhet?: Virksomhet,
 ): ValidationResult<ValidationError> => {
     if (!virksomhet) {
         return undefined;

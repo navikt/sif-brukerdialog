@@ -3,7 +3,12 @@ const path = require('path');
 
 module.exports = {
     stories: ['../storybook/**/*.stories.@(js|jsx|ts|tsx)'],
-    addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
+    addons: [
+        '@storybook/addon-essentials',
+        '@storybook/addon-interactions',
+        '@storybook/addon-a11y',
+        'storybook-formik/register',
+    ],
     framework: {
         name: '@storybook/react-webpack5',
         options: {},
@@ -38,13 +43,13 @@ module.exports = {
                     // Compiles Sass to CSS
                     'sass-loader',
                 ],
-            }
+            },
         );
 
         config.plugins.push(
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css?[hash]-[chunkhash]-[contenthash]-[name]',
-            })
+            }),
         );
 
         config.resolve.extensions.push('.ts', '.tsx');

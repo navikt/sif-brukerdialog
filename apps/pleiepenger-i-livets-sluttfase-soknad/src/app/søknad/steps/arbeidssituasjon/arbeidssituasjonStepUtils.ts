@@ -23,7 +23,7 @@ export const visVernepliktSpørsmål = (
     ansatt_arbeidsforhold: AnsattFormData[],
     frilans: FrilansFormData,
     selvstendig: SelvstendigFormData,
-    frilansoppdrag?: Arbeidsgiver[]
+    frilansoppdrag?: Arbeidsgiver[],
 ): boolean => {
     const harFrilansoppdrag = (frilansoppdrag || []).length > 0;
 
@@ -53,7 +53,7 @@ export const visVernepliktSpørsmål = (
         }
         return (
             ansatt_arbeidsforhold.some(
-                (a) => a.erAnsatt === YesOrNo.NO && a.sluttetFørSøknadsperiode !== YesOrNo.YES
+                (a) => a.erAnsatt === YesOrNo.NO && a.sluttetFørSøknadsperiode !== YesOrNo.YES,
             ) === false
         );
     }
@@ -65,7 +65,7 @@ export const harFrilansoppdrag = (frilansoppdrag: Arbeidsgiver[] | undefined) =>
 
 export const harSvartErFrilanserEllerHarFrilansoppdrag = (
     harHattInntektSomFrilanser: YesOrNo | undefined,
-    frilansoppdrag: Arbeidsgiver[] | undefined
+    frilansoppdrag: Arbeidsgiver[] | undefined,
 ): boolean => {
     return harFrilansoppdrag(frilansoppdrag) || harHattInntektSomFrilanser === YesOrNo.YES;
 };
@@ -73,20 +73,20 @@ export const harSvartErFrilanserEllerHarFrilansoppdrag = (
 export const getArbeidssituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
     arbeidsgivere: Arbeidsgiver[],
-    formValues?: ArbeidssituasjonFormValues
+    formValues?: ArbeidssituasjonFormValues,
 ): ArbeidssituasjonFormValues => {
     if (formValues) {
         return formValues;
     }
 
     const frilansOppdragDefaultValues = arbeidsgivere.filter(
-        (arbeidsgiver) => arbeidsgiver.type === ArbeidsgiverType.FRILANSOPPDRAG
+        (arbeidsgiver) => arbeidsgiver.type === ArbeidsgiverType.FRILANSOPPDRAG,
     );
 
     const defaultValues: ArbeidssituasjonFormValues = {
         ansatt_arbeidsforhold: ansattArbeidsforholdDefaultValues(
             arbeidsgivere,
-            søknadsdata.arbeidssituasjon?.arbeidsgivere
+            søknadsdata.arbeidssituasjon?.arbeidsgivere,
         ),
         frilans: getFrilansDafaultValues(søknadsdata.arbeidssituasjon?.frilans),
         frilansoppdrag: frilansOppdragDefaultValues,
@@ -163,7 +163,7 @@ const getSelvstendigDefaultValues = (selvstendig?: ArbeidSelvstendigSøknadsdata
 
 const ansattArbeidsforholdDefaultValues = (
     arbeidsgivereFraAAreg: Arbeidsgiver[],
-    arbeidsgivere?: ArbeidsgivereSøknadsdata
+    arbeidsgivere?: ArbeidsgivereSøknadsdata,
 ): AnsattFormData[] => {
     const ansattArbeidsforholdDefaultValues: AnsattFormData[] = [];
 
@@ -171,7 +171,7 @@ const ansattArbeidsforholdDefaultValues = (
         if (arbeidsgiver.type === ArbeidsgiverType.ORGANISASJON) {
             const arbeidsgiverSøknadsdata = getArbeidsgiverFormDataFromSøknadsData(
                 arbeidsgivere,
-                arbeidsgiver.organisasjonsnummer
+                arbeidsgiver.organisasjonsnummer,
             );
 
             ansattArbeidsforholdDefaultValues.push({ arbeidsgiver, ...arbeidsgiverSøknadsdata });
@@ -183,7 +183,7 @@ const ansattArbeidsforholdDefaultValues = (
 
 const getArbeidsgiverFormDataFromSøknadsData = (
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
-    organisasjonsnummer?: string
+    organisasjonsnummer?: string,
 ): Partial<AnsattFormData> => {
     const defaultValues = {
         erAnsatt: YesOrNo.UNANSWERED,
@@ -270,7 +270,7 @@ const getUtenlandskNæringFormData = (utenlandskNæring?: UtenlandskNæringSøkn
 
 export const getArbeidssituasjonSøknadsdataFromFormValues = (
     values: ArbeidssituasjonFormValues,
-    søknadsperiode?: DateRange
+    søknadsperiode?: DateRange,
 ): ArbeidssituasjonSøknadsdata | undefined => {
     if (!søknadsperiode) {
         // TODO trow error
@@ -286,7 +286,7 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
         values.ansatt_arbeidsforhold,
         values.frilans,
         values.selvstendig,
-        values.frilansoppdrag
+        values.frilansoppdrag,
     )
         ? getVernepliktigSøknadsdata(values)
         : undefined;
@@ -320,7 +320,7 @@ export const erFrilanserITidsrom = (tidsrom: DateRange, frilansStartdato: Date, 
 export const erFrilanserISøknadsperiode = (
     søknadsperiode: DateRange,
     { harHattInntektSomFrilanser, jobberFortsattSomFrilans, sluttdato, startdato }: FrilansFormData,
-    frilansoppdrag: Arbeidsgiver[] | undefined
+    frilansoppdrag: Arbeidsgiver[] | undefined,
 ): boolean => {
     if (jobberFortsattSomFrilans === YesOrNo.YES) {
         return true;
@@ -337,7 +337,7 @@ export const erFrilanserISøknadsperiode = (
 export const getFrilansSøknadsdataFromFormValues = (
     frilansFormdata: FrilansFormData,
     frilansoppdrag: Arbeidsgiver[],
-    søknadsperiode: DateRange
+    søknadsperiode: DateRange,
 ): ArbeidFrilansSøknadsdata | undefined => {
     const { harHattInntektSomFrilanser, jobberFortsattSomFrilans, startdato, sluttdato, jobberNormaltTimer } =
         frilansFormdata;
@@ -405,7 +405,7 @@ export const erSNITidsrom = (tidsrom: DateRange, snStartdato: Date, snSluttdato?
 
 export const getSelvstendigSøknadsdataFromFormValues = (
     selvstendigFormData: SelvstendigFormData,
-    søknadsperiode: DateRange
+    søknadsperiode: DateRange,
 ): ArbeidSelvstendigSøknadsdata | undefined => {
     const { harHattInntektSomSN, harFlereVirksomheter, virksomhet, jobberNormaltTimer } = selvstendigFormData;
 
@@ -435,7 +435,7 @@ export const getSelvstendigSøknadsdataFromFormValues = (
 };
 
 export const getArbeidsgiverSøknadsdataFromFormData = (
-    ansattFormData: AnsattFormData[]
+    ansattFormData: AnsattFormData[],
 ): ArbeidsgivereSøknadsdata | undefined => {
     if (!ansattFormData || ansattFormData.length === 0) {
         return undefined;

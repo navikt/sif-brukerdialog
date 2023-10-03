@@ -142,7 +142,7 @@ const FraværPeriodeForm = ({
                 return (
                     <Form.Form onCancel={onCancel} formErrorHandler={getFormErrorHandler(intl, 'fraværPeriodeForm')}>
                         {headerContent && <Block margin="l">{headerContent}</Block>}
-                        <Form.DateIntervalPicker
+                        <Form.DateRangePicker
                             legend={formLabels.tidsrom}
                             description={periodeDescription}
                             validate={() => {
@@ -154,18 +154,15 @@ const FraværPeriodeForm = ({
                                     };
                                 }
                             }}
-                            fromDatepickerProps={{
+                            minDate={minDate}
+                            maxDate={toDate || maxDate}
+                            disableWeekends={helgedagerIkkeTillat || false}
+                            disabledDateRanges={disabledDateRanges}
+                            fromInputProps={{
                                 label: formLabels.fom,
                                 name: FraværPeriodeFormFields.fraOgMed,
-                                fullscreenOverlay: true,
-                                minDate: minDate,
-                                maxDate: toDate || maxDate,
-                                disableWeekend: helgedagerIkkeTillat || false,
-                                disabledDateRanges,
-                                dayPickerProps: {
-                                    defaultMonth:
-                                        fromDate || toDate || dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
-                                },
+                                defaultMonth:
+                                    fromDate || toDate || dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
                                 validate: getFromDateValidator({
                                     begrensTilSammeÅr,
                                     minDate,
@@ -182,18 +179,11 @@ const FraværPeriodeForm = ({
                                     });
                                 },
                             }}
-                            toDatepickerProps={{
+                            toInputProps={{
                                 label: formLabels.tom,
                                 name: FraværPeriodeFormFields.tilOgMed,
-                                fullscreenOverlay: true,
-                                minDate: fromDate || minDate,
-                                maxDate,
-                                disableWeekend: helgedagerIkkeTillat || false,
-                                disabledDateRanges,
-                                dayPickerProps: {
-                                    defaultMonth:
-                                        toDate || fromDate || dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
-                                },
+                                defaultMonth:
+                                    toDate || fromDate || dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
                                 validate: getToDateValidator({
                                     begrensTilSammeÅr,
                                     disabledDateRanges,

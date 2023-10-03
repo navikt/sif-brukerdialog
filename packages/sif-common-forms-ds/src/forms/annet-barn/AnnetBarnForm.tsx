@@ -136,7 +136,7 @@ const AnnetBarnForm = ({
                             }}
                             maxDate={maxDate}
                             minDate={minDate}
-                            showYearSelector={true}
+                            dropdownCaption={true}
                         />
                     </FormBlock>
 

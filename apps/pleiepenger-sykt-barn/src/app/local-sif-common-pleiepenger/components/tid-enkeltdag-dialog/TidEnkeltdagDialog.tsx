@@ -1,5 +1,4 @@
 import { Modal } from '@navikt/ds-react';
-import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
 import './styles/tidEnkeltdagDialog.less';
@@ -10,11 +9,7 @@ export interface TidEnkeltdagDialogProps {
     formProps: TidEnkeltdagFormProps;
 }
 
-const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
-    open = false,
-    formProps,
-    dialogTitle,
-}) => {
+const TidEnkeltdagDialog = ({ open = false, formProps, dialogTitle }: TidEnkeltdagDialogProps) => {
     if (!open) {
         return null;
     }

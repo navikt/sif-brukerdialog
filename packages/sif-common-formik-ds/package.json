@@ -5,7 +5,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-formik-ds",
     "types": "lib/index.d.js",
-    "version": "0.6.1",
+    "version": "1.0.0",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
     },
@@ -25,7 +25,6 @@
         "@babel/preset-typescript": "7.23.0",
         "@formatjs/intl-pluralrules": "5.2.6",
         "@navikt/ds-css": "5.6.1",
-        "@navikt/ds-datepicker": "4.2.0",
         "@navikt/ds-react": "5.6.1",
         "@navikt/fnrvalidator": "1.3.0",
         "@storybook/addon-a11y": "7.4.5",
@@ -33,9 +32,11 @@
         "@storybook/addon-essentials": "7.4.5",
         "@storybook/addon-interactions": "7.4.5",
         "@storybook/addon-links": "7.4.5",
+        "@storybook/jest": "0.2.2",
         "@storybook/node-logger": "7.4.5",
         "@storybook/preset-create-react-app": "7.4.5",
         "@storybook/react": "7.4.5",
+        "@storybook/test-runner": "0.13.0",
         "@storybook/testing-library": "0.2.1",
         "@types/jest": "29.5.5",
         "@types/node": "20.7.1",
@@ -74,7 +75,6 @@
     },
     "peerDependencies": {
         "@navikt/ds-css": "5",
-        "@navikt/ds-datepicker": ">=4.1.7",
         "@navikt/ds-react": "5",
         "formik": "2.x",
         "react-intl": "6.x"
@@ -100,6 +100,7 @@
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-coverage": "react-scripts test a --coverage --watchAll=false",
         "test-coverage-watch": "react-scripts test a --coverage --watchAll=true",
+        "test-storybook": "test-storybook",
         "test-watch": "react-scripts test",
         "watch-styles": "npm-watch copy-files"
     },

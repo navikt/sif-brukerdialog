@@ -37,7 +37,7 @@ export const TidUkerInput: React.FunctionComponent<Props> = ({
         .getUkerFraDager(dager)
         .filter(
             (uke) =>
-                uke.dager.filter((dag) => isDateInDates(dag.dato, utilgjengeligeDatoer)).length !== uke.dager.length
+                uke.dager.filter((dag) => isDateInDates(dag.dato, utilgjengeligeDatoer)).length !== uke.dager.length,
         );
 
     return (

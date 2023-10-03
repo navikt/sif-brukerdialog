@@ -43,7 +43,7 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId }: Props
                                     values={{
                                         årsak: intlHelper(
                                             intl,
-                                            `steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.${pleietrengende.årsakManglerIdentitetsnummer}`
+                                            `steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.${pleietrengende.årsakManglerIdentitetsnummer}`,
                                         ),
                                     }}
                                 />

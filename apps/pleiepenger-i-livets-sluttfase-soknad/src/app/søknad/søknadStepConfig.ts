@@ -16,7 +16,7 @@ export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknad
     const erSelvstendigISøknadsperiode = selvstendig && selvstendig.type === 'erSN';
 
     const erAnsattISøknadsperiode = Object.values(arbeidsgivere || {}).some(
-        (value) => value.type === 'pågående' || value.type === 'sluttetISøknadsperiode'
+        (value) => value.type === 'pågående' || value.type === 'sluttetISøknadsperiode',
     );
     return erFrilanserISøknadsperiode || erSelvstendigISøknadsperiode || erAnsattISøknadsperiode;
 };

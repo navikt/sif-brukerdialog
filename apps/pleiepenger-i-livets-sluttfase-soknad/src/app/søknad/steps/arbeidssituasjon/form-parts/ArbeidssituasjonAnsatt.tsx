@@ -116,7 +116,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                                         : `arbeidsforhold.jobberNormaltTimer.spm`,
                                     {
                                         navn: arbeidsforhold.arbeidsgiver.navn,
-                                    }
+                                    },
                                 )}
                                 name={getFieldName(AnsattFormFields.jobberNormaltTimer)}
                                 description={<InfoJobberNormaltTimerAnsatt />}

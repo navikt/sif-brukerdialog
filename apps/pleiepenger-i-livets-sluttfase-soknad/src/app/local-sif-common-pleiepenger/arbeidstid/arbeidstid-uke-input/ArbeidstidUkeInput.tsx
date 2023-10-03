@@ -144,7 +144,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                     const fravær =
                         beregnFravær && value && normalarbeidstid
                             ? decimalDurationToDuration(
-                                  durationToDecimalDuration(normalarbeidstid) - durationToDecimalDuration(value)
+                                  durationToDecimalDuration(normalarbeidstid) - durationToDecimalDuration(value),
                               )
                             : normalarbeidstid;
 

@@ -8,7 +8,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import flat from 'flat';
+import { flatten } from 'flat';
 import BostedUtlandForm, { BostedUtlandFormErrors } from '../../../src/forms/bosted-utland/BostedUtlandForm';
 import BostedUtlandListAndDialog from '../../../src/forms/bosted-utland/BostedUtlandListAndDialog';
 import bostedUtlandMessages from '../../../src/forms/bosted-utland/bostedUtlandMessages';
@@ -68,7 +68,7 @@ const FormikExample = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(BostedUtlandFormErrors)}
+                    validationErrorIntlKeys={flatten(BostedUtlandFormErrors)}
                     intlMessages={bostedUtlandMessages}
                 />
             </Block>

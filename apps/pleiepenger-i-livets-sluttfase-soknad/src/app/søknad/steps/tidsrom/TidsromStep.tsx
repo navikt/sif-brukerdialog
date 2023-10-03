@@ -178,8 +178,8 @@ const TidsromStep = () => {
                                             validate: validateTilDatoField,
                                             name: TidsromFormFields.periodeTil,
                                         }}
-                                        showYearSelector={true}
-                                        disableWeekend={false}
+                                        dropdownCaption={true}
+                                        disableWeekends={false}
                                         minDate={date3YearsAgo}
                                         maxDate={getMaxDato(periodeFraDate)}
                                     />

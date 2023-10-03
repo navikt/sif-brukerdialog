@@ -14,7 +14,7 @@ export const harFrilansoppdrag = (frilansoppdrag: Arbeidsgiver[] | undefined) =>
 
 export const harSvartErFrilanserEllerHarFrilansoppdrag = (
     harHattInntektSomFrilanser: YesOrNo | undefined,
-    frilansoppdrag: Arbeidsgiver[] | undefined
+    frilansoppdrag: Arbeidsgiver[] | undefined,
 ): boolean => {
     return harFrilansoppdrag(frilansoppdrag) || harHattInntektSomFrilanser === YesOrNo.YES;
 };
@@ -32,7 +32,7 @@ export const erFrilanserITidsrom = (tidsrom: DateRange, frilansStartdato: Date, 
 export const erFrilanserISøknadsperiode = (
     søknadsperiode: DateRange,
     { harHattInntektSomFrilanser, jobberFortsattSomFrilans, sluttdato, startdato }: FrilansFormData,
-    frilansoppdrag: Arbeidsgiver[] | undefined
+    frilansoppdrag: Arbeidsgiver[] | undefined,
 ): boolean => {
     if (jobberFortsattSomFrilans === YesOrNo.YES) {
         return true;
@@ -60,7 +60,7 @@ export const erFrilanserISøknadsperiode = (
 
 export const getPeriodeSomFrilanserInnenforPeriode = (
     periode: DateRange,
-    arbeidFrilansSøknadsdata?: ArbeidFrilansSøknadsdata
+    arbeidFrilansSøknadsdata?: ArbeidFrilansSøknadsdata,
 ): DateRange | undefined => {
     if (!arbeidFrilansSøknadsdata) {
         return undefined;
@@ -79,7 +79,7 @@ export const getPeriodeSomFrilanserInnenforPeriode = (
         }
         if (arbeidFrilansSøknadsdata.jobberFortsattSomFrilans && sluttdato !== undefined) {
             console.error(
-                'getPeriodeSomFrilanserInneforPeriode - Jobber fortsatt som frilanser, men sluttdato er satt'
+                'getPeriodeSomFrilanserInneforPeriode - Jobber fortsatt som frilanser, men sluttdato er satt',
             );
             return undefined;
         }

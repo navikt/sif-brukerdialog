@@ -126,7 +126,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                 className={bem.classNames(
                     bem.child('day').block,
                     bem.child('day').modifierConditional('disabled', dateIsDisabled),
-                    bem.child('day').modifierConditional('button', renderAsButton)
+                    bem.child('day').modifierConditional('button', renderAsButton),
                 )}>
                 <CalendarGridDate
                     date={date}
@@ -144,7 +144,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
         const areAllDaysInWeekDisabledOrOutsideMonth =
             datesInWeek.filter(
                 (date) =>
-                    isDateInDates(date, disabledDates) === true || dayjs(date).isSame(month.from, 'month') === false
+                    isDateInDates(date, disabledDates) === true || dayjs(date).isSame(month.from, 'month') === false,
             ).length === datesInWeek.length;
 
         if (hideWeeksWithOnlyDisabledContent && areAllDaysInWeekDisabledOrOutsideMonth) {
@@ -178,7 +178,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
             className={bem.classNames(
                 bem.block,
                 bem.modifierConditional('hideEmptyContentInListMode', hideEmptyContentInListMode),
-                bem.modifier(doRenderAsList ? 'list' : 'grid')
+                bem.modifier(doRenderAsList ? 'list' : 'grid'),
             )}>
             <span aria-hidden={true} className={bem.element('dayHeader', 'week')}>
                 <FormattedMessage id="calendarGrid.Uke" />

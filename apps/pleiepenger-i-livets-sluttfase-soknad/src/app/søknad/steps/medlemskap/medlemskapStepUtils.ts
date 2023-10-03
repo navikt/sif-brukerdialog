@@ -23,7 +23,7 @@ export const getMedlemskapDateRanges = (søknadsdato: Date): MedlemskapDateRange
 
 export const getMedlemskapStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: MedlemskapFormValues
+    formValues?: MedlemskapFormValues,
 ): MedlemskapFormValues => {
     if (formValues) {
         return formValues;
@@ -74,7 +74,7 @@ export const getMedlemskapStepInitialValues = (
 };
 
 export const getMedlemskapSøknadsdataFromFormValues = (
-    values: MedlemskapFormValues
+    values: MedlemskapFormValues,
 ): MedlemskapSøknadsdata | undefined => {
     const {
         harBoddUtenforNorgeSiste12Mnd,

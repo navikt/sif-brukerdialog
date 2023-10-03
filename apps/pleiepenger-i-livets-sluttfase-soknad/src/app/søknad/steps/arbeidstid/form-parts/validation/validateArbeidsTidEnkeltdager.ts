@@ -12,7 +12,7 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/
 export const validateArbeidsTidEnkeltdager = (
     tidMedArbeid: DateDurationMap,
     periode: DateRange,
-    intlValues: ArbeidIPeriodeIntlValues
+    intlValues: ArbeidIPeriodeIntlValues,
 ): ValidationResult<ValidationError> => {
     const tidIPerioden = getDurationsInDateRange(tidMedArbeid, periode);
     const validTidEnkeltdager = getValidDurations(tidIPerioden);

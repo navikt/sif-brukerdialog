@@ -89,7 +89,7 @@ const TidspunktForBarn = ({ barnMedAleneomsorg, aleneomsorgTidspunkt }: Props) =
                         label={intlHelper(intl, 'step.tidspunktForAleneomsorg.siste2årene.dato.spm', {
                             navn: barnMedAleneomsorg.navn,
                         })}
-                        showYearSelector={true}
+                        dropdownCaption={true}
                         minDate={getMinDateYearAgo()}
                         maxDate={dateToday}
                         validate={(value) => {

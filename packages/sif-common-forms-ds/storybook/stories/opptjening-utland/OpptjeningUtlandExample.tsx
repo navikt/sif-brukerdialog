@@ -7,7 +7,7 @@ import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
 import { date1YearAgo, date1YearFromNow } from '@navikt/sif-common-utils/lib';
-import flat from 'flat';
+import { flatten } from 'flat';
 import OpptjeningUtlandForm, {
     OpptjeningUtlandFormErrors,
 } from '../../../src/forms/opptjening-utland/OpptjeningUtlandForm';
@@ -71,7 +71,7 @@ const OpptjeningUtlandExample = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(OpptjeningUtlandFormErrors)}
+                    validationErrorIntlKeys={flatten(OpptjeningUtlandFormErrors)}
                     intlMessages={opptjeningUtlandMessages}
                 />
             </Block>

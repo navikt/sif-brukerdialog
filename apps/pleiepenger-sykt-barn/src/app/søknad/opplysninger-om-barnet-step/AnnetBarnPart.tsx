@@ -132,7 +132,7 @@ const AnnetBarnPart: React.FC<Props> = ({ formValues, søkersFødselsnummer, att
                                 return dateError;
                             }}
                             maxDate={dateToday}
-                            showYearSelector={true}
+                            dropdownCaption={true}
                         />
                     </FormBlock>
                 )}

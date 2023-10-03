@@ -48,13 +48,13 @@ export const fyllUtArbeidssituasjonErFrilanserOgMottarHonorar = (startetFørSist
         } else {
             selectRadioNo('frilans.startetFørSisteTreHeleMåneder');
 
-            const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('YYYY-MM-DD');
+            const startdato = getSøknadsdato().startOf('week').subtract(3, 'weeks').format('DD.MM.YYYY');
             cy.get('input[name="frilans.startdato"]').click().type(startdato).blur();
         }
 
         selectRadioNo('frilans.erFortsattFrilanser');
 
-        const sluttdato = getSøknadsdato().format('YYYY-MM-DD');
+        const sluttdato = getSøknadsdato().format('DD.MM.YYYY');
         cy.get('input[name="frilans.sluttdato"]').click().type(sluttdato).blur();
 
         setInputValueByName('frilans.arbeidsforhold.normalarbeidstid.timerPerUke', '5');

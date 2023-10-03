@@ -9,7 +9,7 @@ const tidsperiodeMessages = {
         'tidsperiodeForm.fom.dateHasNoValue':
             'Du må oppgi når perioden startet. Skriv inn eller velg dato fra datovelgeren.',
         'tidsperiodeForm.fom.dateIsAfterMax':
-            'Datoen for når perioden startet kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
+            'Datoen for når perioden startet kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
         'tidsperiodeForm.fom.dateIsBeforeMin':
             'Datoen for når perioden startet kan ikke være før {dato}. Skriv inn eller velg sluttdato fra datovelgeren.',
         'tidsperiodeForm.fom.dateHasInvalidFormat':
@@ -19,7 +19,7 @@ const tidsperiodeMessages = {
         'tidsperiodeForm.tom.dateHasNoValue':
             'Du må oppgi når perioden sluttet. Skriv inn eller velg dato fra datovelgeren.',
         'tidsperiodeForm.tom.dateIsAfterMax':
-            'Datoen for når perioden sluttet kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
+            'Datoen for når perioden sluttet kan ikke være etter {dato}. Skriv inn eller velg dato fra datovelgeren.',
         'tidsperiodeForm.tom.dateIsBeforeMin':
             'Datoen for når perioden sluttet kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
         'tidsperiodeForm.tom.dateHasInvalidFormat':

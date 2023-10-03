@@ -18,7 +18,7 @@ export const getArbeidstidIPeriodeIntlValues = (
                   type: ArbeidsforholdType.FRILANSER | ArbeidsforholdType.SELVSTENDIG;
                   jobberNormaltTimer: string | number | undefined;
               };
-    }
+    },
 ): ArbeidIPeriodeIntlValues => {
     const arbIntl = getArbeidstidPeriodeIntl(intl);
     const getTimerTekst = (): string => {

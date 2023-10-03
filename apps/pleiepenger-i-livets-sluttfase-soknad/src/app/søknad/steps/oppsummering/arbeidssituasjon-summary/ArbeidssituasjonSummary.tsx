@@ -52,7 +52,7 @@ const ArbeidssituasjonSummary: React.FC<Props> = ({
                                 intl,
                                 harVærtEllerErVernepliktig
                                     ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
-                                    : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig'
+                                    : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig',
                             )}
                         </li>
                     </ul>

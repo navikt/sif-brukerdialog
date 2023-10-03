@@ -16,7 +16,7 @@ const isWidthInRange = (width: number | undefined, range: Range) => {
 export const useElementWidthIsWithinRange = (
     ref: React.RefObject<HTMLElement>,
     range: Range,
-    debounceTimeout?: number
+    debounceTimeout?: number,
 ) => {
     const dimensions = useElementDimensions(ref, true, debounceTimeout);
     const [isWithin, setIsWithin] = useState<boolean>(isWidthInRange(dimensions?.width, range));

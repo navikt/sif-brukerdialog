@@ -144,19 +144,16 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                 }>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
-                                        <FormComponents.DateIntervalPicker
+                                        <FormComponents.DateRangePicker
                                             legend=""
-                                            fromDatepickerProps={{
+                                            disabledDaysOfWeek={{ dayOfWeek: disabledDaysOfWeekDayNumber }}
+                                            minDate={periode.from}
+                                            maxDate={periode.to}
+                                            disableWeekends={true}
+                                            fromInputProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.fraOgMed.label'),
-                                                'data-testid': 'fra-dato',
                                                 name: FormFields.fom,
-                                                disableWeekend: true,
-                                                fullScreenOnMobile: true,
-                                                fullscreenOverlay: true,
-                                                disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
-                                                disabled: heleSøknadsperioden === true,
-                                                minDate: periode.from,
-                                                maxDate: to || periode.to,
+                                                inputDisabled: heleSøknadsperioden === true,
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: false,
@@ -166,17 +163,10 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                     max: to || periode.to,
                                                 }).validateFromDate,
                                             }}
-                                            toDatepickerProps={{
+                                            toInputProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.tilOgMed.label'),
                                                 name: FormFields.tom,
-                                                'data-testid': 'til-dato',
-                                                disableWeekend: true,
-                                                disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
-                                                fullScreenOnMobile: true,
-                                                fullscreenOverlay: true,
-                                                minDate: from || periode.from,
-                                                maxDate: periode.to,
-                                                disabled: heleSøknadsperioden === true,
+                                                inputDisabled: heleSøknadsperioden === true,
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: false,
@@ -205,13 +195,13 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 legend={intlHelper(
                                                     intl,
                                                     'arbeidstidPeriodeForm.arbeiderIPerioden.spm',
-                                                    intlValues
+                                                    intlValues,
                                                 )}
                                                 radios={[
                                                     {
                                                         label: intlHelper(
                                                             intl,
-                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke'
+                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke',
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.heltFravær,
                                                         'data-testid': 'helt-fravær',
@@ -219,7 +209,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                     {
                                                         label: intlHelper(
                                                             intl,
-                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberRedusert'
+                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberRedusert',
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.redusert,
                                                         'data-testid': 'jobber-redusert',
@@ -227,7 +217,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                     {
                                                         label: intlHelper(
                                                             intl,
-                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberVanlig'
+                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberVanlig',
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.somVanlig,
                                                         'data-testid': 'som-vanlig',
@@ -249,7 +239,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 <FormComponents.InputGroup
                                                     legend={arbIntl.intlText(
                                                         'arbeidstidPeriodeForm.tidFasteUkedager.label',
-                                                        intlValues
+                                                        intlValues,
                                                     )}
                                                     validate={() => {
                                                         const error = validateFasteArbeidstimerIUke(tidFasteDager);

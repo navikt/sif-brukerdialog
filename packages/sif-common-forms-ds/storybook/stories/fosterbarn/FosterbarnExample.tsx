@@ -8,7 +8,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import flat from 'flat';
+import { flatten } from 'flat';
 import { Fosterbarn } from '../../../src/forms/fosterbarn';
 import FosterbarnForm, { FosterbarnFormErrors } from '../../../src/forms/fosterbarn/FosterbarnForm';
 import FosterbarnListAndDialog from '../../../src/forms/fosterbarn/FosterbarnListAndDialog';
@@ -60,7 +60,7 @@ const FosterbarnExample = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(FosterbarnFormErrors)}
+                    validationErrorIntlKeys={flatten(FosterbarnFormErrors)}
                     intlMessages={fosterbarnMessages}
                 />
             </Block>

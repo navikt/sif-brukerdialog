@@ -44,7 +44,7 @@ export const defaultSøknadState: Partial<SøknadContextState> = {
 
 const getSøknadInitialData = async (
     søker: Søker,
-    lagretSøknadState: SøknadStatePersistence
+    lagretSøknadState: SøknadStatePersistence,
 ): Promise<SøknadInitialData> => {
     const isValid = isPersistedSøknadStateValid(lagretSøknadState, { søker });
 

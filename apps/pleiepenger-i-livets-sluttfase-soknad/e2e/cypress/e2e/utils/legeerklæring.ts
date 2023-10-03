@@ -12,7 +12,7 @@ const fyllUtLegeerklæringEnFil = () => {
                 fileName,
                 mimeType: 'image/png', //getMimeType(fileName),
                 encoding: 'utf8',
-            })
+            }),
         );
     cy.wait(200);
     getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);

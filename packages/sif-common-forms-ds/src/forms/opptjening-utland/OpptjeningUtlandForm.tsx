@@ -112,7 +112,6 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                         <FormBlock>
                             <Form.DateRangePicker
                                 legend={intlHelper(intl, 'opptjeningUtland.form.tidsperiode.spm')}
-                                fullscreenOverlay={true}
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 fromInputProps={{

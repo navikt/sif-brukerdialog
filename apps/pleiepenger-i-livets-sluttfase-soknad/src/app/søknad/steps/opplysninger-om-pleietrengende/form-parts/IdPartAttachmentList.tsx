@@ -25,7 +25,7 @@ interface Props {
 const IdPartAttachmentList: React.FC<Props> = ({ wrapNoAttachmentsInBlock, includeDeletionFunctionality }) => {
     const { values, setFieldValue } = useFormikContext<OpplysningerOmPleietrengendeFormValues>();
     const idDokumenter: Attachment[] = values.pleietrengendeId.filter(({ file }: Attachment) =>
-        fileExtensionIsValid(file.name)
+        fileExtensionIsValid(file.name),
     );
 
     if (!containsAnyUploadedAttachments(idDokumenter)) {
@@ -50,7 +50,7 @@ const IdPartAttachmentList: React.FC<Props> = ({ wrapNoAttachmentsInBlock, inclu
                     const updateFieldValue = () => {
                         setFieldValue(
                             OpplysningerOmPleietrengendeFormFields.pleietrengendeId,
-                            removeElementFromArray(attachment, idDokumenter)
+                            removeElementFromArray(attachment, idDokumenter),
                         );
                     };
                     if (attachment.url) {

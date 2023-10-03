@@ -30,7 +30,7 @@ export const arbeidsgivereEndpoint = {
             const { from, to } = periode;
             const { data } = await api.get<AAregArbeidsgiver>(
                 ApiEndpoint.arbeidsgiver,
-                `fra_og_med=${dateToISODate(from)}&til_og_med=${dateToISODate(to)}`
+                `fra_og_med=${dateToISODate(from)}&til_og_med=${dateToISODate(to)}`,
             );
             const aaArbeidsgivere: Arbeidsgiver[] = [];
 

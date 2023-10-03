@@ -32,7 +32,7 @@ const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiDat
 
 export const getEnkeltdagerIPeriodeApiData = (
     enkeltdager: DateDurationMap,
-    periode: DateRange
+    periode: DateRange,
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
 
@@ -54,7 +54,7 @@ export const getEnkeltdagerIPeriodeApiData = (
 
 export const fjernTidUtenforPeriodeOgHelgedager = (
     periode: Partial<DateRange>,
-    tidEnkeltdag?: TidEnkeltdagApiData[]
+    tidEnkeltdag?: TidEnkeltdagApiData[],
 ): TidEnkeltdagApiData[] | undefined => {
     const { from, to } = periode;
     dateToday;

@@ -10,7 +10,7 @@ describe('tidEnkeltdagUtils', () => {
                 ISODateRangeToDateRange('2022-01-13/2022-01-20'),
                 ISODateToDate('2022-01-13'),
                 { hours: '5', minutes: '0' },
-                { gjentagelsetype: GjentagelseType.hverUke }
+                { gjentagelsetype: GjentagelseType.hverUke },
             );
             expect(Object.keys(result).length).toBe(2);
             expect(result['2022-01-13'].hours).toEqual('5');

@@ -5,7 +5,7 @@ import { getCountryName } from '@navikt/sif-common-formik-ds/lib';
 
 export const getOpptjeningUtlandApiDataFromSøknadsdata = (
     locale: string,
-    opptjeningUtlandSøknadsdata: OpptjeningUtlandSøknadsdata
+    opptjeningUtlandSøknadsdata: OpptjeningUtlandSøknadsdata,
 ): OpptjeningIUtlandetApi[] => {
     switch (opptjeningUtlandSøknadsdata.type) {
         case 'harIkkeOpptjeningUtland':
@@ -21,7 +21,7 @@ export const getOpptjeningUtlandApiDataFromSøknadsdata = (
                     },
                     fraOgMed: dateToISODate(opptjening.fom),
                     tilOgMed: dateToISODate(opptjening.tom),
-                })
+                }),
             );
             return apiData;
     }

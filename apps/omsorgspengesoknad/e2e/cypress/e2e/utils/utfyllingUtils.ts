@@ -1,5 +1,7 @@
+import { ISODateStringToInputDateString } from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/dateFormatUtils';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import 'cypress-axe';
-import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
+import { cyApiMockData } from '../data/cyApiMockData';
 import {
     checkCheckbuttonByName,
     getInputByName,
@@ -8,8 +10,7 @@ import {
     selectRadioYesOrNo,
     setInputByNameValue,
     submitSkjema,
-} from '.';
-import { cyApiMockData } from '../data/cyApiMockData';
+} from './';
 
 const fileName = 'navlogopng.png';
 
@@ -42,6 +43,7 @@ const fyllUtOmBarn = (props: BarnOgDeltBostedProps) => {
 };
 
 const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
+    const fdato = cyApiMockData.barnMock.barn[0].fødselsdato;
     it('Fyller ut om barnet - annet barn', () => {
         cy.injectAxe();
         if (props.harRegistrertBarn) {
@@ -49,7 +51,7 @@ const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
         }
         setInputByNameValue('barnetsFødselsnummer', cyApiMockData.barnMock.barn[0].fødselsnummer);
         setInputByNameValue('barnetsNavn', cyApiMockData.barnMock.barn[0].fornavn);
-        setInputByNameValue('barnetsFødselsdato', cyApiMockData.barnMock.barn[0].fødselsdato);
+        setInputByNameValue('barnetsFødselsdato', ISODateStringToInputDateString(fdato));
         getInputByName('søkersRelasjonTilBarnet').select('mor');
         selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);

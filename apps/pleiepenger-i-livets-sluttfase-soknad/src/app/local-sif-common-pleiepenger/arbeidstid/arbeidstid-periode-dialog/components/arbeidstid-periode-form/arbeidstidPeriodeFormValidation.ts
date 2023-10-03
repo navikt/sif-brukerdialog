@@ -24,7 +24,7 @@ export const getArbeidstidFastProsentValidator =
     };
 
 export const validateFasteArbeidstimerIUke = (
-    fasteDager: DurationWeekdays | undefined
+    fasteDager: DurationWeekdays | undefined,
 ): IntlErrorObject | undefined => {
     const timer = fasteDager ? durationToDecimalDuration(summarizeDurationInDurationWeekdays(fasteDager)) : 0;
     if (timer === 0) {

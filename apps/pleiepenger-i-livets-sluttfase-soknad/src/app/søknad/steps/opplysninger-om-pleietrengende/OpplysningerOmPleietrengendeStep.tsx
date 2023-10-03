@@ -196,7 +196,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     }}
                                                     maxDate={dateToday}
                                                     minDate={new Date('01.01.1900')}
-                                                    showYearSelector={true}
+                                                    dropdownCaption={true}
                                                     data-testid="opplysningerOmPleietrengende.fødselsdato"
                                                 />
                                             </FormBlock>

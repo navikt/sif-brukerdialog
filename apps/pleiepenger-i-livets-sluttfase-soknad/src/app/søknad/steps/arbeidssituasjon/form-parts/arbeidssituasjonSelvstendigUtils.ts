@@ -16,7 +16,7 @@ import { ArbeidSelvstendigSøknadsdata } from '../../../../types/søknadsdata/Ar
 
 export const getPeriodeSomSelvstendigInnenforPeriode = (
     periode: DateRange,
-    arbeidSelvstendigSøknadsdata?: ArbeidSelvstendigSøknadsdata
+    arbeidSelvstendigSøknadsdata?: ArbeidSelvstendigSøknadsdata,
 ): DateRange | undefined => {
     if (arbeidSelvstendigSøknadsdata && arbeidSelvstendigSøknadsdata.type === 'erSN') {
         const virksomhet = arbeidSelvstendigSøknadsdata.virksomhet;

@@ -53,7 +53,7 @@ export const getDagerMedNyTid = (
     endringsperiode: DateRange,
     dato: Date,
     varighet: Duration,
-    gjentagelse?: GjentagelseEnkeltdag
+    gjentagelse?: GjentagelseEnkeltdag,
 ): DateDurationMap => {
     const datoerMedTid: DateDurationMap = {};
     const datoerSomSkalEndres = getGjentagendeDager(endringsperiode, dato, gjentagelse);
@@ -65,7 +65,7 @@ export const getDagerMedNyTid = (
 };
 
 export const getGjentagelseEnkeltdagFraFormValues = (
-    values: Partial<TidEnkeltdagFormValues>
+    values: Partial<TidEnkeltdagFormValues>,
 ): GjentagelseEnkeltdag | undefined => {
     const gjentagelse: GjentagelseEnkeltdag | undefined =
         values.gjentagelse && values.skalGjentas === true

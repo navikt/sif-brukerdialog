@@ -1,4 +1,4 @@
-import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-utils/lib';
 import * as dayjs from 'dayjs';
 import * as locale from 'dayjs/locale/nb';
 import * as isoWeek from 'dayjs/plugin/isoWeek';
@@ -10,33 +10,38 @@ dayjs.locale(locale);
 const { getTestElement, getInputByName, clickFortsett } = require('../utils');
 
 const søknadsperiode = getSøknadsperiode();
-const fraDato = dayjs(søknadsperiode.from).format('YYYY-MM-DD');
-const tilDato = dayjs(søknadsperiode.to).format('YYYY-MM-DD');
-const expectedFomTomPeriode = `${dayjs(fraDato).format('D. MMMM YYYY')} - ${dayjs(tilDato).format('D. MMMM YYYY')}`;
-const expectedDateUtenlandsoppholdIPerioden = `${dayjs(fraDato).format('D. MMM YYYY')} - ${dayjs(tilDato).format(
+const fraDatoString = dayjs(søknadsperiode.from).format('DD.MM.YYYY');
+const tilDatoString = dayjs(søknadsperiode.to).format('DD.MM.YYYY');
+
+const expectedFomTomPeriode = `${dayjs(søknadsperiode.from).format('D. MMMM YYYY')} - ${dayjs(søknadsperiode.to).format(
+    'D. MMMM YYYY',
+)}`;
+const expectedDateUtenlandsoppholdIPerioden = `${dayjs(søknadsperiode.from).format('D. MMM YYYY')} - ${dayjs(
+    søknadsperiode.to,
+).format('D. MMM YYYY')}`;
+const expectedDateFerie = `${dayjs(søknadsperiode.from).format('D. MMM YYYY')} - ${dayjs(søknadsperiode.to).format(
     'D. MMM YYYY',
 )}`;
-const expectedDateFerie = `${dayjs(fraDato).format('D. MMM YYYY')} - ${dayjs(tilDato).format('D. MMM YYYY')}`;
 const expectedLand = 'Albania'; // Land #2 i listen
 
 export const cypressSøknadsperiode: DateRange = {
-    from: ISODateToDate(fraDato),
-    to: ISODateToDate(tilDato),
+    from: søknadsperiode.from,
+    to: søknadsperiode.to,
 };
 
 export const fyllUtPeriode = () => {
-    getInputByName('periodeFra').click().type(fraDato).blur();
-    getInputByName('periodeTil').click().type(tilDato).blur();
+    getInputByName('periodeFra').click().type(fraDatoString).blur();
+    getInputByName('periodeTil').click().type(tilDatoString).blur();
     selectRadioYes('skalOppholdeSegIUtlandetIPerioden');
     cy.get('button').contains('Legg til utenlandsopphold').click();
-    getInputByName('fom').click().type(fraDato).blur();
-    getInputByName('tom').click().type(tilDato).blur();
+    getInputByName('fom').click().type(fraDatoString).blur();
+    getInputByName('tom').click().type(tilDatoString).blur();
     cy.get('select').select(2); // Valg land #2 fra listen
     getInputByName('erBarnetInnlagt').eq(0).check({ force: true });
     cy.get('button').contains('Legg til periode barnet er innlagt').click();
     cy.get('[aria-label="Periode(r) barnet er innlagt"]').within(() => {
-        getInputByName('fom').click().type(fraDato).blur();
-        getInputByName('tom').click().type(tilDato).blur();
+        getInputByName('fom').click().type(fraDatoString).blur();
+        getInputByName('tom').click().type(tilDatoString).blur();
         cy.get('button').contains('Ok').click();
     });
     getInputByName('årsak').eq(1).check({ force: true });
@@ -44,16 +49,16 @@ export const fyllUtPeriode = () => {
 
     selectRadioYes('skalTaUtFerieIPerioden');
     cy.get('button').contains('Legg til ferie').click();
-    getInputByName('fom').click().type(fraDato).blur();
-    getInputByName('tom').click().type(tilDato).blur();
+    getInputByName('fom').click().type(fraDatoString).blur();
+    getInputByName('tom').click().type(tilDatoString).blur();
     cy.get('button').contains('Ok').click();
 
     clickFortsett();
 };
 
 export const fyllUtPeriodeEnkelt = () => {
-    getInputByName('periodeFra').click().type(fraDato).blur();
-    getInputByName('periodeTil').click().type(tilDato).blur();
+    getInputByName('periodeFra').click().type(fraDatoString).blur();
+    getInputByName('periodeTil').click().type(tilDatoString).blur();
 
     selectRadioNo('skalOppholdeSegIUtlandetIPerioden');
     selectRadioNo('skalTaUtFerieIPerioden');
