@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.0.2
+
+### Patch Changes
+
+-   c129755f: Bugfix - dropDownCaption prop ble ikke sendt videre.
+
 ## 1.0.1
 
 ### Patch Changes
