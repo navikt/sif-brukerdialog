@@ -5,7 +5,6 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
     DateRange,
-    FormikInputGroup,
     getErrorForField,
     getTypedFormComponents,
     TypedFormikFormContext,
@@ -18,6 +17,7 @@ import {
     durationToDecimalDuration,
     getDatesInDateRange,
     isDateInDates,
+    summarizeDateDurationMap,
 } from '@navikt/sif-common-utils/lib';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
@@ -28,7 +28,11 @@ import { useFormikContext } from 'formik';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import dayjs from 'dayjs';
 
-const { RadioGroup } = getTypedFormComponents<ArbeidstidFormFields, ArbeidstidFormValues, ValidationError>();
+const { RadioGroup, InputGroup } = getTypedFormComponents<
+    ArbeidstidFormFields,
+    ArbeidstidFormValues,
+    ValidationError
+>();
 
 interface Props extends ArbeidstidRegistrertLogProps {
     parentFieldName: string;
@@ -130,9 +134,23 @@ const ArbeidIPeriodeSpørsmål = ({
 
             {jobberIPerioden === JobberIPeriodeSvar.redusert && (
                 <FormBlock>
-                    <FormikInputGroup
-                        name={`${fieldName}_group`}
+                    <InputGroup
+                        id={`${fieldName}_group`}
+                        name={`${fieldName}_group` as any}
                         legend={intlHelper(intl, 'arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
+                        validate={() => {
+                            const { jobberIPerioden, enkeltdager = {} } = arbeidIPeriode || {};
+                            if (jobberIPerioden === JobberIPeriodeSvar.redusert) {
+                                if (durationToDecimalDuration(summarizeDateDurationMap(enkeltdager)) === 0) {
+                                    return {
+                                        key: 'validation.arbeidIPeriode.ingenTidRegistrert',
+                                        values: intlValues,
+                                        keepKeyUnaltered: true,
+                                    };
+                                }
+                            }
+                            return undefined;
+                        }}
                         description={
                             <Block margin="l">
                                 <Alert variant="info" inline={true}>
@@ -160,12 +178,11 @@ const ArbeidIPeriodeSpørsmål = ({
                                             },
                                         };
                                     }
-
                                     return undefined;
                                 }}
                             />
                         </div>
-                    </FormikInputGroup>
+                    </InputGroup>
                 </FormBlock>
             )}
         </>

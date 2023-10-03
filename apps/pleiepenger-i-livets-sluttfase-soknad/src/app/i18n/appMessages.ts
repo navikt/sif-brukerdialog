@@ -333,6 +333,8 @@ export const appMessages: MessageFileFormat = {
         'validation.arbeidIPeriode.fasteDager.forMangeTimer':
             'Du har oppgitt for mange timer du jobber i uken {hvor} i perioden.',
         'validation.arbeidIPeriode.enkeltdager.ingenTidRegistrert': 'Du må oppgi hvor mye du jobber {hvor} i perioden.',
+        'validation.arbeidIPeriode.ingenTidRegistrert':
+            'Du har ikke oppgitt noe tid med jobb {hvor} på dagene du har søkt om. Dersom dette stemmer, skal du velge "Jeg jobber ikke " på spørsmålet ovenfor.',
 
         'validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.',
