@@ -4,7 +4,7 @@
     "license": "MIT",
     "name": "@navikt/pleiepenger-sykt-barn",
     "repository": "https://github.com/navikt/sif-brukerdialog",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "private": true,
     "scripts": {
         "build-app": "node src/build/scripts/production-build.js",
