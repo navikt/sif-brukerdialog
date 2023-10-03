@@ -16,6 +16,7 @@ export type FormikInputGroupProps<ErrorType, FieldName> = OwnProps<FieldName> &
 function FormikInputGroup<ErrorType, FieldName>({
     name,
     error,
+    id,
     validate,
     useFastField,
     ...restProps
@@ -28,7 +29,10 @@ function FormikInputGroup<ErrorType, FieldName>({
                 return (
                     <Fieldset
                         {...restProps}
-                        error={getErrorPropForFormikInput({ field, form, context, error })}></Fieldset>
+                        error={getErrorPropForFormikInput({ field, form, context, error })}
+                        id={id}
+                        tabIndex={id ? -1 : undefined}
+                    />
                 );
             }}
         </FieldComponent>
