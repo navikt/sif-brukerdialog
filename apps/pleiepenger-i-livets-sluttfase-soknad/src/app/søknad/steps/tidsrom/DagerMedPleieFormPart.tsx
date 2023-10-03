@@ -35,7 +35,12 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                         søndag.
                     </BodyLong>
                 }>
-                <DaySelector dateRange={periode} selectedDates={selectedDates} onChange={handleOnChange} />
+                <DaySelector
+                    dateRange={periode}
+                    selectedDates={selectedDates}
+                    onChange={handleOnChange}
+                    reverseOrder={true}
+                />
                 {selectedDates.length > 60 && (
                     <div>
                         <Block margin="l">

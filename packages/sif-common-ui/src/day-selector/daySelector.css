@@ -13,18 +13,3 @@
 .daySelector__hideWeekend .rdp-tbody .rdp-cell:nth-child(8) {
     display: none;
 }
-
-daySelectorHeader__count {
-    display: inline-block;
-    margin-left: 1rem;
-}
-
-.daySelectorHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-}
-.daySelectorHeader__title {
-    min-width: 10rem;
-}
