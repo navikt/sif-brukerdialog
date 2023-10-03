@@ -1,8 +1,8 @@
+import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
-import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
-import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds/lib';
+import { ÅrsakManglerIdentitetsnummer } from '../ÅrsakManglerIdentitetsnummer';
 
 export interface PleietrengendeApi {
     navn: string;
@@ -120,6 +120,8 @@ export enum FlereSokereApiData {
     'USIKKER' = 'USIKKER',
 }
 
+export type DataBruktTilUtledningAnnetDataJsonString = string;
+
 export interface SøknadApiData {
     id: string;
     språk: string;
@@ -141,4 +143,5 @@ export interface SøknadApiData {
     harVærtEllerErVernepliktig?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];
+    dataBruktTilUtledning: DataBruktTilUtledningAnnetDataJsonString;
 }

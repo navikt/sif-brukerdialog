@@ -8,6 +8,8 @@ import { getEnkeltdagerIPeriodeApiData } from './tidsbrukApiUtils';
 export const getArbeidIPeriodeApiDataFromSøknadsdata = (
     arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata,
     periode: DateRange,
+    jobberNormaltTimer: number,
+    dagerMedPleie: Date[],
 ): ArbeidIPeriodeApiData => {
     switch (arbeidIPeriodeSøknadsdata.type) {
         case ArbeidIPeriodeType.arbeiderIkke:
@@ -19,7 +21,13 @@ export const getArbeidIPeriodeApiDataFromSøknadsdata = (
                 jobberIPerioden: JobberIPeriodeSvar.somVanlig,
             };
         case ArbeidIPeriodeType.arbeiderUlikeUkerTimer:
-            const enkeltdager = getEnkeltdagerIPeriodeApiData(arbeidIPeriodeSøknadsdata.enkeltdager, periode);
+            const enkeltdager = getEnkeltdagerIPeriodeApiData(
+                dagerMedPleie,
+                arbeidIPeriodeSøknadsdata.enkeltdager,
+                periode,
+                jobberNormaltTimer,
+            );
+
             return {
                 jobberIPerioden: JobberIPeriodeSvar.redusert,
                 enkeltdager,

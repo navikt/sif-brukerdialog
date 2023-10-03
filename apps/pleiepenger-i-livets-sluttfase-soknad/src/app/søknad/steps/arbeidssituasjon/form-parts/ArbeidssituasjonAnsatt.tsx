@@ -19,7 +19,7 @@ export enum AnsattFormFields {
 
 export interface AnsattFormData {
     arbeidsgiver: Arbeidsgiver;
-    [AnsattFormFields.jobberNormaltTimer]?: number;
+    [AnsattFormFields.jobberNormaltTimer]?: string;
     [AnsattFormFields.erAnsatt]?: YesOrNo;
     [AnsattFormFields.sluttetFørSøknadsperiode]?: YesOrNo;
 }
@@ -49,7 +49,7 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
 
     return (
         <>
-            <FormBlock margin="xl">
+            <FormBlock>
                 <Block padBottom="m">
                     <Heading level="3" size="large">
                         {arbeidsforhold.arbeidsgiver.navn}

@@ -3,7 +3,6 @@ import { Duration, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export * from './Daginfo';
 export * from './Ukeinfo';
-export * from '../arbeidstid/arbeidstid-periode-dialog/types';
 
 export enum ArbeidsforholdType {
     ANSATT = 'ANSATT',

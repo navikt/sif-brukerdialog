@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
 import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds/lib';
@@ -17,7 +18,11 @@ import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import {
+    getAntallArbeidsforhold,
+    getArbeidstidStepInitialValues,
+    getArbeidstidSøknadsdataFromFormValues,
+} from './arbeidstidStepUtils';
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { ArbeidsforholdType } from './form-parts/types';
 import { søkerKunHelgedager } from '../tidsrom/tidsromStepUtils';
@@ -148,15 +153,22 @@ const ArbeidstidStep = () => {
         persistTempFormValues({ stepId, values });
     };
     const { tidsrom } = søknadsdata;
+    if (!tidsrom) {
+        return undefined;
+    }
 
-    const periodeFra = tidsrom?.søknadsperiode.from;
-    const periodeTil = tidsrom?.søknadsperiode.to;
+    const { søknadsperiode, dagerMedPleie } = tidsrom;
+    const periodeFra = søknadsperiode.from;
+    const periodeTil = søknadsperiode.to;
 
-    if (!periodeFra || !periodeTil) {
+    if (!periodeFra || !periodeTil || !dagerMedPleie) {
         return undefined;
     }
 
     const periode: DateRange = { from: periodeFra, to: periodeTil };
+    const antallArbeidsforhold = søknadsdata.arbeidssituasjon
+        ? getAntallArbeidsforhold(søknadsdata.arbeidssituasjon)
+        : 0;
 
     const tempArbeidstid = tempFormData?.stepId === stepId ? tempFormData.values : undefined;
     return (
@@ -172,7 +184,6 @@ const ArbeidstidStep = () => {
                     if (!ansattArbeidstid && !frilansArbeidstid && !selvstendigArbeidstid) {
                         return undefined;
                     }
-
                     const periodeSomFrilanserISøknadsperiode =
                         frilansArbeidstid && periode
                             ? getPeriodeSomFrilanserInnenforPeriode(periode, søknadsdata.arbeidssituasjon?.frilans)
@@ -241,6 +252,7 @@ const ArbeidstidStep = () => {
                                                                 arbeidsforholdType={ArbeidsforholdType.ANSATT}
                                                                 arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
                                                                 jobberNormaltTimer={arbeidsforhold.jobberNormaltTimer}
+                                                                dagerMedPleie={dagerMedPleie}
                                                                 periode={periode}
                                                                 parentFieldName={`${ArbeidstidFormFields.ansattArbeidstid}.${index}`}
                                                                 søkerKunHelgedager={søkerKunHelgedager(
@@ -252,6 +264,7 @@ const ArbeidstidStep = () => {
                                                                 onArbeidstidEnkeltdagRegistrert={
                                                                     logArbeidEnkeltdagRegistrert
                                                                 }
+                                                                skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                             />
                                                         </Block>
                                                     </FormBlock>
@@ -272,11 +285,13 @@ const ArbeidstidStep = () => {
                                                     arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
                                                     jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
                                                     periode={periodeSomFrilanserISøknadsperiode}
+                                                    dagerMedPleie={dagerMedPleie}
                                                     parentFieldName={ArbeidstidFormFields.frilansArbeidstid}
                                                     søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                    skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                 />
                                             </Block>
                                         </FormBlock>
@@ -294,11 +309,13 @@ const ArbeidstidStep = () => {
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
                                                     periode={periodeSomSelvstendigISøknadsperiode}
+                                                    dagerMedPleie={dagerMedPleie}
                                                     parentFieldName={ArbeidstidFormFields.selvstendigArbeidstid}
                                                     søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
                                                     onArbeidstidVariertChange={oppdatereArbeidstid}
                                                     onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
                                                     onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                                                    skjulJobberNormaltValg={antallArbeidsforhold === 1}
                                                 />
                                             </Block>
                                         </FormBlock>

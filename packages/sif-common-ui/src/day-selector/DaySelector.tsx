@@ -1,15 +1,14 @@
-import { Accordion, Alert, BodyShort, Heading } from '@navikt/ds-react';
+import { Accordion, BodyShort, DatePicker, Tag } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
-import { DayPicker } from 'react-day-picker';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import {
     DateRange,
     dateRangeToISODateRange,
     getDatesInDateRange,
+    getFirstOfTwoDates,
+    getLastOfTwoDates,
     getMonthsInDateRange,
     isDateInDateRange,
 } from '@navikt/sif-common-utils/lib';
-import { nb } from 'date-fns/locale';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isoWeeksInYear from 'dayjs/plugin/isoWeeksInYear';
@@ -20,7 +19,9 @@ dayjs.extend(isoWeek);
 
 interface Props {
     dateRange: DateRange;
+    selectedDates?: Date[];
     maxDays?: number;
+    onChange: (dates: Date[]) => void;
 }
 
 const getMonthKey = (date: Date): string => {
@@ -29,11 +30,18 @@ const getMonthKey = (date: Date): string => {
 
 type SelectedDaysInMonths = { [monthAndYear: string]: Date[] };
 
-export const getWeekDateRange = (weekNumber: number, month: Date): DateRange => {
-    const from = dayjs(month).isoWeek(weekNumber).startOf('isoWeek').toDate();
+export const getWeekDateRangeWithinMonth = (weekNumber: number, month: Date): DateRange => {
+    const from = getLastOfTwoDates(
+        dayjs(month).isoWeek(weekNumber).startOf('isoWeek').toDate(),
+        dayjs(month).startOf('month').toDate(),
+    );
+
     return {
         from,
-        to: dayjs(from).endOf('isoWeek').toDate(),
+        to: getFirstOfTwoDates(
+            dayjs(from).endOf('isoWeek').subtract(2, 'days').toDate(), // fredag
+            dayjs(month).endOf('month').toDate(), // siste dag i måneden
+        ),
     };
 };
 
@@ -53,43 +61,68 @@ export const removeDatesInArray = (dates: Date[], datesToRemove: Date[]) => {
     });
 };
 
-const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
-    const [selectedDaysInMonths, setSelectedDaysInMonths] = useState<SelectedDaysInMonths>({});
+const getAllSelectedDates = (selectedDaysInMonths: SelectedDaysInMonths): Date[] => {
+    const dates: Date[] = [];
+    Object.keys(selectedDaysInMonths).forEach((monthKey) => {
+        const monthDates = selectedDaysInMonths[monthKey];
+        dates.push(...monthDates);
+    });
+
+    return dates;
+};
+
+const getSelectedDaysInMonthsFromDates = (dateRange: DateRange, dates: Date[]): SelectedDaysInMonths => {
+    const datesInRange = dates.filter((d) => isDateInDateRange(d, dateRange));
+    const selectedDaysInMonths: SelectedDaysInMonths = {};
+    datesInRange.forEach((date) => {
+        const monthKey = getMonthKey(date);
+        if (selectedDaysInMonths[monthKey]) {
+            selectedDaysInMonths[monthKey].push(date);
+        } else {
+            selectedDaysInMonths[monthKey] = [date];
+        }
+    });
+    return selectedDaysInMonths;
+};
+
+const DaySelector: React.FunctionComponent<Props> = ({ dateRange, selectedDates = [], onChange }) => {
+    const [selectedDaysInMonths, setSelectedDaysInMonths] = useState<SelectedDaysInMonths>(
+        getSelectedDaysInMonthsFromDates(dateRange, selectedDates),
+    );
 
     const months: DateRange[] = useMemo(() => {
         return getMonthsInDateRange(dateRange);
     }, [dateRange]);
 
-    useEffectOnce(() => {});
-
     const onSelectDates = (month: Date, dates: Date[]) => {
-        setSelectedDaysInMonths({
+        const selected = {
             ...selectedDaysInMonths,
             ...{ [getMonthKey(month)]: dates },
-        });
+        };
+        setSelectedDaysInMonths(selected);
+        onChange(getAllSelectedDates(selected));
     };
 
     const onWeekNumberClick = (weekNumber: number, month: Date) => {
-        const week = getWeekDateRange(weekNumber, month);
+        const weekDateRangeInMonth = getWeekDateRangeWithinMonth(weekNumber, month);
         const datesSelectedInMonth = selectedDaysInMonths[getMonthKey(month)] || [];
-        const selectedDatesInWeek = getSelectedDatesInWeek(week, datesSelectedInMonth);
+        const selectedDatesInWeek = getSelectedDatesInWeek(weekDateRangeInMonth, datesSelectedInMonth);
 
-        if (selectedDatesInWeek.length === 5) {
+        if (selectedDatesInWeek.length === getDatesInDateRange(weekDateRangeInMonth).length) {
             onSelectDates(month, removeDatesInArray(datesSelectedInMonth, selectedDatesInWeek));
         } else {
             onSelectDates(
                 month,
-                removeDuplicateDatesInArray([...getDatesInDateRange(week, true), ...datesSelectedInMonth]),
+                removeDuplicateDatesInArray([
+                    ...getDatesInDateRange(weekDateRangeInMonth, true),
+                    ...datesSelectedInMonth,
+                ]),
             );
         }
     };
 
     return (
         <div className="daySelectorWrapper">
-            <Heading level="1" size="medium" spacing={true}>
-                Hvilke dager har eller skal du pleie den syke?
-            </Heading>
-
             <Accordion>
                 {months.map((month) => {
                     const numSelectedDays = (selectedDaysInMonths[getMonthKey(month.from)] || []).length;
@@ -100,64 +133,25 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
                             <Accordion.Header style={{ width: '100%' }}>
                                 <div className="daySelectorHeader">
                                     <span className="daySelectorHeader__title">{title}</span>
-                                    <BodyShort as="div" size="small" className="daySelectorHeader__count">
-                                        {numDagerTekst}
-                                    </BodyShort>
+                                    <div className="daySelectorHeader__count">
+                                        {numSelectedDays === 0 ? (
+                                            <BodyShort as="div" size="small">
+                                                Ingen dager valgt
+                                            </BodyShort>
+                                        ) : (
+                                            <Tag variant="info" size="small">
+                                                {numDagerTekst}
+                                            </Tag>
+                                        )}
+                                    </div>
+                                    {/* <BodyShort as="div" size="small" className="daySelectorHeader__count">
+                                    </BodyShort> */}
                                 </div>
                             </Accordion.Header>
                             <Accordion.Content>
                                 <div key={dateRangeToISODateRange(month)} className="daySelector">
-                                    <Heading
-                                        level="2"
-                                        size="small"
-                                        spacing={true}
-                                        className="daySelector__monthAndYear">
-                                        <span>{}</span>
-                                    </Heading>
-
-                                    <div className="navds-date__standalone-wrapper daySelector__month">
-                                        <DayPicker
-                                            locale={nb}
-                                            ISOWeek={true}
-                                            weekStartsOn={1}
-                                            pagedNavigation={false}
-                                            disableNavigation={true}
-                                            className="navds-date daySelector__month daySelector__hideWeekend"
-                                            fromDate={month.from}
-                                            toDate={month.to}
-                                            showOutsideDays={true}
-                                            showWeekNumber={true}
-                                            fixedWeeks={false}
-                                            selected={selectedDaysInMonths[getMonthKey(month.from)] || []}
-                                            onWeekNumberClick={(weekNumber) => {
-                                                onWeekNumberClick(weekNumber, month.from);
-                                            }}
-                                            mode="multiple"
-                                            onSelect={(dates) => {
-                                                onSelectDates(month.from, dates || []);
-                                            }}
-                                            hidden={(d) => dayjs(d).isoWeekday() > 5}
-                                            disabled={(d) => dayjs(d).isoWeekday() > 5}
-                                            labels={{
-                                                labelWeekNumber: (uke) => {
-                                                    const week = getWeekDateRange(uke, month.from);
-                                                    const selected = getSelectedDatesInWeek(
-                                                        week,
-                                                        selectedDaysInMonths[getMonthKey(month.from)] || [],
-                                                    );
-                                                    if (selected.length === 5) {
-                                                        return `Uke ${uke} - velg ingen dager denne uken `;
-                                                    }
-                                                    return `Uke ${uke} - velg alle dager denne uken`;
-                                                },
-                                            }}
-                                        />
-                                    </div>
-                                    {/* <DatePicker.Standalone
+                                    <DatePicker.Standalone
                                         locale="nb"
-                                        // disableNavigation={true}
-                                        // numberOfMonths={1}
-                                        // showOutsideDays={true}
                                         className="daySelector__month"
                                         fromDate={month.from}
                                         toDate={month.to}
@@ -165,19 +159,10 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange }) => {
                                         disableWeekends={true}
                                         selected={selectedDaysInMonths[getMonthKey(month.from)] || []}
                                         showWeekNumber={true}
-                                        // onWeekNumberClick={(weekNumber) => onWeekNumberClick(weekNumber, month.from)}
+                                        onWeekNumberClick={(weekNumber) => onWeekNumberClick(weekNumber, month.from)}
                                         mode="multiple"
                                         onSelect={(dates) => onSelectDates(month.from, dates || [])}
-                                        // formatters={{
-                                        //     formatWeekNumber: (weekNumber) => `${weekNumber}`,
-                                        // }}
-                                    /> */}
-
-                                    <Alert variant="info" size="small" inline={true}>
-                                        <BodyShort size="small">
-                                            Klikk på ukenummer for å velge alle eller ingen av dagene i uken.
-                                        </BodyShort>
-                                    </Alert>
+                                    />
                                 </div>
                             </Accordion.Content>
                         </Accordion.Item>

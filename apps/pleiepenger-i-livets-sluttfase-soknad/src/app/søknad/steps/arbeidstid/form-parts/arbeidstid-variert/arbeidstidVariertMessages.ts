@@ -1,4 +1,4 @@
-const arbeidstidMessages = {
+const arbeidstidVariertMessages = {
     nb: {
         'arbeidstidVariert.registrerJobbKnapp.label': 'Registrer jobb for periode',
         'arbeidstidVariert.periode.tittel': 'Du kan registrere jobb som',
@@ -11,4 +11,4 @@ const arbeidstidMessages = {
     },
 };
 
-export default arbeidstidMessages;
+export default arbeidstidVariertMessages;

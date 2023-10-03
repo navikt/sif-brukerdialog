@@ -12,7 +12,14 @@ export default {
 } as Meta<typeof DurationWeekdaysInput>;
 
 const Template: StoryFn<typeof DurationWeekdaysInput> = (args) => {
-    return <DurationWeekdaysInput {...args} />;
+    return (
+        <DurationWeekdaysInput
+            {...args}
+            validateDate={() => {
+                return 'abc';
+            }}
+        />
+    );
 };
 
 const dateRange = ISODateRangeToDateRange('2023-05-25/2023-08-08');

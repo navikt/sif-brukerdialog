@@ -1,20 +1,20 @@
 import { attachmentIsUploadedAndIsValidFileFormat } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
-import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
-import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
-import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
-import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
+import { Attachment } from '../../components/formik-file-uploader/useFormikFileUploader';
 import { FlereSokereApiData, SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
+import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
+import { YesOrNoDontKnow } from '../../types/YesOrNoDontKnow';
+import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
+import { getDataBruktTilUtledning } from '../getDataBruktTilUtledning';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
-import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
-import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
-import { getPleietrengendeApiDataFromSøknadsdata } from './getPleietrengendeApiDataFromSøknadsdata';
 import { getFerieuttakIPeriodenApiDataFromSøknadsdata } from './getFerieuttakIPeriodenApiDataFromSøknadsdata';
-import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
+import { getFrilansApiDataFromSøknadsdata } from './getFrilansApiDataFromSøknadsdata';
 import { getMedlemskapApiDataFromSøknadsdata } from './getMedlemskapApiDataFromSøknadsdata';
 import { getOpptjeningUtlandApiDataFromSøknadsdata } from './getOpptjeningUtlandApiDataFromSøknadsdata';
+import { getPleietrengendeApiDataFromSøknadsdata } from './getPleietrengendeApiDataFromSøknadsdata';
+import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFromSøknadsdata';
 import { getUtenlandskNæringApiDataFromSøknadsdata } from './getUtenlandskNæringApiDataFromSøknadsdata';
+import { getUtenlansoppholdApiDataFromSøknadsdata } from './getUtenlandsoppholdApiDataFromSøknadsdata';
 
 const getVedleggApiData = (vedlegg?: Attachment[]): string[] => {
     if (!vedlegg || vedlegg.length === 0) {
@@ -38,7 +38,19 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
     const { id, opplysningerOmPleietrengende, legeerklæring, tidsrom, arbeidssituasjon, arbeidstid, medlemskap } =
         søknadsdata;
 
-    if (!id || !opplysningerOmPleietrengende || !legeerklæring || !tidsrom || !arbeidssituasjon || !medlemskap) {
+    const { søknadsperiode, dagerMedPleie } = tidsrom || {};
+
+    if (
+        !id ||
+        !opplysningerOmPleietrengende ||
+        !legeerklæring ||
+        !tidsrom ||
+        !arbeidssituasjon ||
+        !medlemskap ||
+        !søknadsperiode ||
+        !dagerMedPleie ||
+        dagerMedPleie.length === 0
+    ) {
         return undefined;
     }
 
@@ -54,11 +66,6 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
     if (!periodeFra || !periodeTil) {
         return undefined;
     }
-
-    const søknadsperiode: DateRange = {
-        from: periodeFra,
-        to: periodeTil,
-    };
 
     const språk = 'nb';
 
@@ -78,10 +85,16 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
         tilOgMed: dateToISODate(periodeTil),
         ferieuttakIPerioden: getFerieuttakIPeriodenApiDataFromSøknadsdata(tidsrom),
         utenlandsoppholdIPerioden: getUtenlansoppholdApiDataFromSøknadsdata(språk, tidsrom),
-        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(søknadsperiode, arbeidsgivere, arbeidstid?.arbeidsgivere),
-        frilans: getFrilansApiDataFromSøknadsdata(søknadsperiode, frilans, arbeidstid?.frilans),
+        arbeidsgivere: getArbeidsgivereApiDataFromSøknadsdata(
+            søknadsperiode,
+            dagerMedPleie,
+            arbeidsgivere,
+            arbeidstid?.arbeidsgivere,
+        ),
+        frilans: getFrilansApiDataFromSøknadsdata(søknadsperiode, dagerMedPleie, frilans, arbeidstid?.frilans),
         selvstendigNæringsdrivende: getSelvstendigApiDataFromSøknadsdata(
             søknadsperiode,
+            dagerMedPleie,
             selvstendig,
             arbeidstid?.selvstendig,
         ),
@@ -92,5 +105,6 @@ export const getApiDataFromSøknadsdata = (søknadsdata: Søknadsdata): SøknadA
             : undefined,
         medlemskap: getMedlemskapApiDataFromSøknadsdata(språk, medlemskap),
         harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger === true,
+        dataBruktTilUtledning: JSON.stringify(getDataBruktTilUtledning(søknadsdata)),
     };
 };

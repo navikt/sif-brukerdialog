@@ -3,10 +3,31 @@ import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFri
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
 import { ArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidsgivereSøknadsdata';
 import { ArbeidstidArbeidsgivereSøknadsdata } from '../../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
-import { ArbeidstidSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import {
+    ArbeidssituasjonSøknadsdata,
+    ArbeidstidSøknadsdata,
+    Søknadsdata,
+} from '../../../types/søknadsdata/Søknadsdata';
 import { ArbeidIPeriodeSøknadsdata } from '../../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
 import { AnsattArbeidstid, ArbeidsaktivitetType, ArbeidstidFormValues, FrilansSNArbeidstid } from './ArbeidstidStep';
 import { ArbeidIPeriode, JobberIPeriodeSvar } from './ArbeidstidTypes';
+
+export const getAntallArbeidsforhold = (arbeidssituasjon: ArbeidssituasjonSøknadsdata): number => {
+    let antall = 0;
+    const { arbeidsgivere, frilans, selvstendig } = arbeidssituasjon;
+    if (arbeidsgivere) {
+        antall += Object.keys(arbeidsgivere)
+            .map((key) => arbeidsgivere[key])
+            .filter((a) => a.erAnsattISøknadsperiode).length;
+    }
+    if (frilans.erFrilanser) {
+        antall++;
+    }
+    if (selvstendig.erSelvstendigNæringsdrivende) {
+        antall++;
+    }
+    return antall;
+};
 
 export const getArbeidstidStepInitialValues = (
     søknadsdata: Søknadsdata,

@@ -6,6 +6,7 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 
 export const getFrilansApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
+    dagerMedPleie: Date[],
     frilans?: ArbeidFrilansSøknadsdata,
     arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): FrilansApiData | undefined => {
@@ -25,7 +26,12 @@ export const getFrilansApiDataFromSøknadsdata = (
                     sluttdato: frilans.sluttdato,
                     arbeidsforhold: {
                         jobberNormaltTimer: frilans.jobberNormaltTimer,
-                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIperiode, søknadsperiode),
+                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
+                            arbeidIperiode,
+                            søknadsperiode,
+                            frilans.jobberNormaltTimer,
+                            dagerMedPleie,
+                        ),
                     },
                 };
             } else return undefined;
@@ -38,7 +44,12 @@ export const getFrilansApiDataFromSøknadsdata = (
                     jobberFortsattSomFrilans: true,
                     arbeidsforhold: {
                         jobberNormaltTimer: frilans.jobberNormaltTimer,
-                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIperiode, søknadsperiode),
+                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
+                            arbeidIperiode,
+                            søknadsperiode,
+                            frilans.jobberNormaltTimer,
+                            dagerMedPleie,
+                        ),
                     },
                 };
             } else return undefined;

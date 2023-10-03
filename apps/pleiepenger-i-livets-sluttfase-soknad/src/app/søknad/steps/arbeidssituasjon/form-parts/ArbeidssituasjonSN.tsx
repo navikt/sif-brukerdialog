@@ -24,7 +24,7 @@ export interface SelvstendigFormData {
     harHattInntektSomSN?: YesOrNo;
     harFlereVirksomheter?: YesOrNo;
     virksomhet?: Virksomhet;
-    jobberNormaltTimer?: number;
+    jobberNormaltTimer?: string;
 }
 
 interface Props {

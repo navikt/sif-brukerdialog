@@ -71,14 +71,14 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             submitDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <Block padBottom="xl">
-                <SifGuidePanel>
-                    <FormattedMessage id={'step.legeerklæring.counsellorPanel.info'} />
-                </SifGuidePanel>
-            </Block>
-            <Block margin="l" padBottom="l">
+            <SifGuidePanel>
+                <FormattedMessage id={'step.legeerklæring.counsellorPanel.info'} />
+            </SifGuidePanel>
+
+            <FormBlock>
                 <PictureScanningGuide />
-            </Block>
+            </FormBlock>
+
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <FormBlock>
                     <FormikFileUploader
@@ -101,7 +101,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             )}
 
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
-                <Block margin={'l'}>
+                <Block margin="l">
                     <Alert variant="warning">
                         <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.1'} />
                         <Link
@@ -115,7 +115,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
                     </Alert>
                 </Block>
             )}
-            <Block margin={'l'}>
+            <Block margin="l">
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
             <div data-testid="legeerklæring-liste">

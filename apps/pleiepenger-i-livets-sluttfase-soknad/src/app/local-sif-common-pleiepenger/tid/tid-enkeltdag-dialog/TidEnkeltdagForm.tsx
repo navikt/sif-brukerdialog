@@ -137,18 +137,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
         periode?: { fra: string; til: string },
         values?: any,
     ): JSX.Element => (
-        <>
-            <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
-            {/* <div style={{ fontSize: '0.9rem' }}>
-                <FormattedMessage
-                    id="tidEnkeltdagForm.gjentagelse.periode"
-                    values={{
-                        ...values,
-                        ...periode,
-                    }}
-                />
-            </div> */}
-        </>
+        <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
     );
 
     return (
@@ -198,7 +187,6 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                 {skalGjentas === true && (
                                     <Block margin="l">
                                         <>
-                                            {/* <div style={{ paddingLeft: '1.5rem' }}> */}
                                             <div className="tidEnkeltdagForm__gjentagelseOptions">
                                                 <FormComponents.RadioGroup
                                                     legend={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.info')}

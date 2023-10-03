@@ -7,6 +7,7 @@ import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApi
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
+    dagerMedPleie: Date[],
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
     arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata,
 ): ArbeidsgiverApiData[] | undefined => {
@@ -32,7 +33,12 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 : undefined;
 
         if (arbeidIPeriodeSøknadsdata && (value.type === 'pågående' || value.type === 'sluttetISøknadsperiode')) {
-            const arbeidIPeriode = getArbeidIPeriodeApiDataFromSøknadsdata(arbeidIPeriodeSøknadsdata, søknadsperiode);
+            const arbeidIPeriode = getArbeidIPeriodeApiDataFromSøknadsdata(
+                arbeidIPeriodeSøknadsdata,
+                søknadsperiode,
+                value.jobberNormaltTimer,
+                dagerMedPleie,
+            );
             arbeidsgiverApiData.push({
                 ...arbeidsgiverInfo,
                 erAnsatt: value.type === 'pågående',

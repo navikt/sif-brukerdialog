@@ -66,7 +66,7 @@ const IdPart = () => {
                 }}
                 onUnauthorizedOrForbiddenUpload={relocateToLoginPage}
             />
-            <Block margin={'l'}>
+            <Block margin="l">
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
             <div data-testid="idAttachment-liste">

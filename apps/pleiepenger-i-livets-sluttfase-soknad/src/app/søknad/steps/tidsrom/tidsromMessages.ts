@@ -5,10 +5,10 @@ export const tidsromMessages: MessageFileFormat = {
         'step.tidsrom.pageTitle': 'Perioden med pleiepenger',
         'step.tidsrom.stepTitle': 'Perioden med pleiepenger',
         'step.tidsrom.stepIndicatorLabel': 'Periode',
-        'step.tidsrom.counsellorPanel.avsnit.1': 'Her skal du fylle inn når du skal ha pleiepenger.',
-        'step.tidsrom.counsellorPanel.avsnit.2':
+        'step.tidsrom.counsellorPanel.avsnitt.1': 'Her skal du fylle inn når du skal ha pleiepenger.',
+        'step.tidsrom.counsellorPanel.avsnitt.2':
             'Pleiepenger i livets sluttfase gis i opptil 60 dager totalt. Hvis det er flere som deler på å pleie, har dere altså 60 dager å dele på til sammen.',
-        'step.tidsrom.counsellorPanel.avsnit.3':
+        'step.tidsrom.counsellorPanel.avsnitt.3':
             'Du trenger ikke ta ut dagene sammenhengende. Det vil si at du for eksempel kan pleie den som er syk annen hver dag, annen hver uke, halve dager, eller slik det passer for deg i din situasjon.',
         'step.tidsrom.nextButtonLabel': 'Fortsett',
         'step.tidsrom.infotekst':
@@ -50,12 +50,5 @@ export const tidsromMessages: MessageFileFormat = {
         'steg.tidsrom.hvilketTidsrom.spm': 'Hvilken periode søker du for?',
         'steg.tidsrom.hvilketTidsrom.fom': 'Fra og med',
         'steg.tidsrom.hvilketTidsrom.tom': 'Til og med',
-
-        'steg.tidsrom.pleierDuDenSykeHjemme.spm': 'Pleier du personen i et privat hjem i perioden du søker for?',
-        'steg.tidsrom.pleierDuDenSykeHjemme.alert':
-            'For å ha rett på pleiepenger må du pleie personen i et privat hjem. Hvis det er noen dager personen har vært innlagt må du sende en søknad for hver av periodene med pleie i hjemmet.',
-        'steg.tidsrom.pleierDuDenSykeHjemme.info.tittel': 'Hva menes med privat hjem?',
-        'steg.tidsrom.pleierDuDenSykeHjemme.info':
-            'Med privat hjem menes hjemme hos noen, for eksempel hjemme hos deg eller hjemme hos den som er syk. For at du skal ha rett til pleiepenger må altså den som er syk pleies hjemme hos noen, og ikke på sykehus eller en annen institusjon.',
     },
 };

@@ -1,17 +1,18 @@
+import { dateToISOString } from '@navikt/sif-common-formik-ds/lib';
 import {
     DateDurationMap,
     DateRange,
     dateToday,
+    dateToISODate,
+    decimalDurationToISODuration,
     durationToISODuration,
     DurationWeekdays,
-    isDateInDateRange,
+    getDatesInDateRange,
     isDateWeekDay,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { durationUtils } from '@navikt/sif-common-utils';
 import { TidEnkeltdagApiData, TidFasteDagerApiData } from '../../types/søknadApiData/SøknadApiData';
-import { dateToISOString, ISOStringToDate } from '@navikt/sif-common-formik-ds/lib';
 
 export const getFasteDagerApiData = ({
     monday: mandag,
@@ -31,20 +32,28 @@ const sortTidEnkeltdagApiData = (d1: TidEnkeltdagApiData, d2: TidEnkeltdagApiDat
     dayjs(d1.dato).isBefore(d2.dato, 'day') ? -1 : 1;
 
 export const getEnkeltdagerIPeriodeApiData = (
+    dagerMedPleie: Date[],
     enkeltdager: DateDurationMap,
     periode: DateRange,
+    jobberNormaltTimer: number,
 ): TidEnkeltdagApiData[] => {
     const dager: TidEnkeltdagApiData[] = [];
+    const tidNormalt = decimalDurationToISODuration(jobberNormaltTimer / 5);
+    const isoDagerMedPleie = dagerMedPleie.map((d) => dateToISODate(d));
 
-    Object.keys(enkeltdager).forEach((dag) => {
-        const dato = ISOStringToDate(dag);
-        if (dato && isDateInDateRange(dato, periode) && isDateWeekDay(dato)) {
-            if (durationUtils.durationIsZero(enkeltdager[dag])) {
-                return;
-            }
+    getDatesInDateRange(periode, true).forEach((date) => {
+        const dateKey = dateToISODate(date);
+        const erDagMedPleie = isoDagerMedPleie.includes(dateKey);
+
+        if (erDagMedPleie === false) {
             dager.push({
-                dato: dateToISOString(dato),
-                tid: durationToISODuration(enkeltdager[dag]),
+                dato: dateToISOString(date),
+                tid: tidNormalt,
+            });
+        } else {
+            dager.push({
+                dato: dateToISOString(date),
+                tid: durationToISODuration(enkeltdager[dateKey] || { hours: 0, minutes: 0 }),
             });
         }
     });

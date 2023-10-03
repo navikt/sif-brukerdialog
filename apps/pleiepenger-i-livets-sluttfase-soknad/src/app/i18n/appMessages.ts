@@ -163,6 +163,8 @@ export const appMessages: MessageFileFormat = {
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',
+        'arbeidIPeriode.enkeltdager_gruppe.legend':
+            'Oppgi hvor mye du arbeider {hvor} i de dagene du søker pleiepenger for.',
         'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
         'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
@@ -203,8 +205,10 @@ export const appMessages: MessageFileFormat = {
         'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.',
 
-        'validation.flereSokere.yesOrNoIsUnanswered':
+        'validation.flereSokere.noValue':
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
+
+        'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
 
         'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for',
@@ -300,10 +304,10 @@ export const appMessages: MessageFileFormat = {
         'validation.arbeidIPeriode.fast.prosent.ingenTidRegistrert':
             'Du må oppgi hvor mange timer du jobber i uken {hvor} i perioden.',
         'validation.arbeidIPeriode.fast.tid.timeHasNoValue': 'Du må fylle ut timer og minutter for {dag} {hvor}.',
-        'validation.arbeidIPeriode.fast.tid.hoursAreInvalid': 'Antall timer på {dag} {hvor} er ikke et gyldig tall.',
+        'validation.arbeidIPeriode.fast.tid.hoursAreInvalid': 'Antall timer {dag} {hvor} er ikke et gyldig tall.',
         'validation.arbeidIPeriode.fast.tid.minutesAreInvalid':
             'Antall minutter på {dag} {hvor} er ikke et gyldig tall.',
-        'validation.arbeidIPeriode.fast.tid.tooManyHours': 'Antall timer på {dag}  {hvor} kan ikke overstige 24 timer.',
+        'validation.arbeidIPeriode.fast.tid.tooManyHours': 'Antall timer {dag}  {hvor} kan ikke overstige 24 timer.',
         'validation.arbeidIPeriode.fast.tid.tooManyMinutes':
             'Antall minutter på {dag}  {hvor} kan ikke overstige 59 minutter.',
         'validation.arbeidIPeriode.fast.tid.durationIsTooLong':

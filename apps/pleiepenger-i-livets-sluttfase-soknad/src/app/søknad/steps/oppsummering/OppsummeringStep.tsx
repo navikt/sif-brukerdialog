@@ -120,10 +120,14 @@ const OppsummeringStep = () => {
                                 onBack={goBack}>
                                 <OmSøkerOppsummering søker={søker} />
                                 <PleietrengendePersonSummary
+                                    pleierDuDenSykeHjemme={apiData.pleierDuDenSykeHjemme}
                                     pleietrengende={apiData.pleietrengende}
                                     pleietrengendeId={pleietrengendeId}
                                 />
-                                <TidsromOppsummering apiData={apiData} />
+                                <TidsromOppsummering
+                                    apiData={apiData}
+                                    dagerMedPleie={søknadsdata.tidsrom!.dagerMedPleie}
+                                />
 
                                 <ArbeidssituasjonSummary
                                     apiData={apiData}
@@ -135,6 +139,7 @@ const OppsummeringStep = () => {
                                 />
                                 <ArbeidIPeriodenSummary
                                     apiValues={apiData}
+                                    dagerMedPleie={søknadsdata.tidsrom?.dagerMedPleie || []}
                                     søknadsperiode={{
                                         from: ISODateToDate(apiData.fraOgMed),
                                         to: ISODateToDate(apiData.tilOgMed),

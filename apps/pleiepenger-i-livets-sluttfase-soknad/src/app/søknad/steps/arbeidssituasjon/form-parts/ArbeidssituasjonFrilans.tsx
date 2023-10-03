@@ -30,7 +30,7 @@ export interface FrilansFormData {
     jobberFortsattSomFrilans?: YesOrNo;
     startdato?: ISODate;
     sluttdato?: ISODate;
-    jobberNormaltTimer?: number;
+    jobberNormaltTimer?: string;
 }
 
 const { YesOrNoQuestion, DatePicker, NumberInput } = getTypedFormComponents<

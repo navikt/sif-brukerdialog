@@ -1,25 +1,28 @@
+import { FormattedMessage, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-soknad-ds';
-import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import {
     renderFerieuttakIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummary,
 } from './renderUtenlandsoppholdSummary';
 
 interface Props {
+    dagerMedPleie: Date[];
     apiData: SøknadApiData;
 }
 
-const TidsromOppsummering = ({ apiData }: Props) => {
+const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
     const intl = useIntl();
+
+    const dateRanges = getDateRangesFromDates(dagerMedPleie);
 
     return (
         <SummarySection header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søknadsperiode.header')}>
+            {/* <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.søknadsperiode.header')}>
                 <FormattedMessage
                     id="steg.oppsummering.tidsrom.fomtom"
                     values={{
@@ -27,14 +30,27 @@ const TidsromOppsummering = ({ apiData }: Props) => {
                         tom: `${dayjs(ISODateToDate(apiData.tilOgMed)).format('D. MMMM YYYY')}`,
                     }}
                 />
-            </SummaryBlock>
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
-                <FormattedMessage id={apiData.pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
+            </SummaryBlock> */}
+            <SummaryBlock header={`${dagerMedPleie.length} dager med pleiepenger`}>
+                <ul>
+                    {dateRanges.map((dr) => (
+                        <li key={dateRangeToISODateRange(dr)} className="capitalize">
+                            {dayjs(dr.from).isSame(dr.to, 'day') ? (
+                                <>{dateFormatter.dayCompactDate(dr.from)}</>
+                            ) : (
+                                <>
+                                    {dateFormatter.dayCompactDate(dr.from)} - {dateFormatter.dayCompactDate(dr.to)}
+                                </>
+                            )}
+                        </li>
+                    ))}
+                </ul>
             </SummaryBlock>
 
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
                 <FormattedMessage id={`steg.oppsummering.${apiData.flereSokere}`} />
             </SummaryBlock>
+
             {/* Utenlandsopphold i perioden */}
             {apiData.utenlandsoppholdIPerioden && (
                 <>

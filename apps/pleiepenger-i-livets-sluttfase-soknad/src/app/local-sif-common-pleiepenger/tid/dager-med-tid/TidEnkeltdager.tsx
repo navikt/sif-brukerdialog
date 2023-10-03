@@ -1,12 +1,11 @@
+import { Accordion } from '@navikt/ds-react';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import { groupBy } from 'lodash';
 import DagerMedTidListe from '../../common/dager-med-tid-liste/DagerMedTidListe';
 import { DagMedTid } from '../../types';
-import { groupBy } from 'lodash';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import { Accordion } from '@navikt/ds-react';
 
 interface ISODagMedTid {
     dato: ISODate;
@@ -34,31 +33,24 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
 
     const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     return (
-        <div>
+        <Accordion>
             {Object.keys(months).map((key) => {
                 const dagerMedTid = months[key];
                 if (dagerMedTid.length === 0) {
                     return ingenDagerRegistrertMelding;
                 }
                 return (
-                    <Block margin="m" key={key}>
-                        <Accordion>
-                            <Accordion.Item>
-                                <Accordion.Header>
-                                    <span style={{ textTransform: 'capitalize', fontSize: '1rem' }}>
-                                        {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
-                                    </span>
-                                </Accordion.Header>
-                                <Accordion.Content>
-                                    {' '}
-                                    <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
-                                </Accordion.Content>
-                            </Accordion.Item>
-                        </Accordion>
-                    </Block>
+                    <Accordion.Item key={key}>
+                        <Accordion.Header>
+                            <div className="capitalize">{dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}</div>
+                        </Accordion.Header>
+                        <Accordion.Content>
+                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
+                        </Accordion.Content>
+                    </Accordion.Item>
                 );
             })}
-        </div>
+        </Accordion>
     );
 };
 
