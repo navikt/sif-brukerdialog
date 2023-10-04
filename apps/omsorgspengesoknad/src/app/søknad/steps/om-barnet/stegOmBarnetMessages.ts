@@ -64,6 +64,8 @@ export const omBarnetMessages: MessageFileFormat = {
             'Du må svare ja, nei eller ja, barnet har delt fast bosted på om du bor sammen med barnet.',
         'validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om barnet har en en kronisk sykdom eller funksjonshemning.',
+        'validation.høyereRisikoForFravær.yesOrNoIsUnanswered':
+            'Du må svare ja eller nei på om du har høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning.',
         'validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
             'Skriv inn en beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb.',
         'validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
