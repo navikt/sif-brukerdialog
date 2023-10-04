@@ -8,7 +8,7 @@ const isValidDateTidsperiode = (tidsperiode: Partial<DateTidsperiode>): tidsperi
 
 const mapFormValuesToDateTidsperiode = (
     formValues: DateTidsperiodeFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<DateTidsperiode> => {
     return {
         id: id || guid(),

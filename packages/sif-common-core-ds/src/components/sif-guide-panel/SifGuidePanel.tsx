@@ -33,7 +33,7 @@ const SifGuidePanel: React.FunctionComponent<Props> = ({
                 bem.block,
                 bem.modifierConditional('narrow', isNarrow),
                 bem.modifierConditional('compact', compact),
-                restProps.className
+                restProps.className,
             )}
             {...restProps}
             poster={isNarrow ? true : poster}

@@ -12,3 +12,7 @@ export const getNumberFromNumberInputValue = (inputValue: string | undefined): n
     }
     return numValue;
 };
+
+export const getStringForNumberInputValue = (value?: number): string => {
+    return value === undefined ? '' : `${value}`.replace(/\./g, ',');
+};

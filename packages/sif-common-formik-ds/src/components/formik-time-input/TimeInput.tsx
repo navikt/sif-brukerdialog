@@ -11,6 +11,11 @@ const MAX_MINUTES = 59;
 
 type TimeInputChangeFunc = (time: Partial<InputTime> | undefined, isValidTime: boolean) => void;
 
+export type TimeInputLabels = {
+    hours?: React.ReactNode;
+    minutes?: React.ReactNode;
+};
+
 export type TimeInputLayout = 'vertical' | 'horizontal';
 export interface TimeInputRefProps {
     refs?: {
@@ -35,6 +40,7 @@ interface TimeInputProps extends TimeInputLayoutProps, TestProps, TimeInputRefPr
     className?: string;
     disabled?: boolean;
     description?: React.ReactNode;
+    labels?: TimeInputLabels;
     onChange: TimeInputChangeFunc;
 }
 
@@ -63,10 +69,15 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
     onChange,
     refs,
     className,
+    labels = {
+        hours: 'Timer',
+        minutes: 'Minutter',
+    },
     ...restProps
 }) => {
     const [stateTime, setStateTime] = useState<Partial<InputTime> | undefined>(time);
     const testKey = restProps['data-testid'];
+
     return (
         <div
             data-testid={testKey}
@@ -78,64 +89,79 @@ const TimeInput: React.FunctionComponent<TimeInputProps> = ({
                 bem.modifierConditional('withValue', hasValue(time.hours) || hasValue(time.minutes)),
                 bem.modifierConditional('withHours', hasValue(time.hours)),
                 bem.modifierConditional('withMinutes', hasValue(time.minutes)),
-                className
+                className,
             )}>
             <div className={bem.element('contentWrapper')}>
                 <div className={bem.element('inputWrapper')}>
-                    <span className={bem.element('label')}>Timer</span>
-                    <TextField
-                        // id={hoursLabelId}
-                        ref={refs?.hours}
-                        className={bem.element('hours')}
-                        type="text"
-                        autoComplete={'off'}
-                        inputMode={'numeric'}
-                        pattern={'[0-9]*'}
-                        placeholder={placeholders?.hours}
-                        min={0}
-                        max={maxHours}
-                        maxLength={2}
-                        value={stateTime?.hours || ''}
-                        disabled={disabled}
-                        onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
-                            const newTime = { ...stateTime, hours: evt.target.value };
-                            setStateTime(newTime);
-                            handleTimeChange(newTime, onChange);
-                        }}
-                        label={'Timer'}
-                        hideLabel={true}
-                        data-testid={testKey ? `${testKey}_hours` : undefined}
-                    />
+                    <span className={bem.element('label')}>{labels.hours}</span>
+                    {disabled ? (
+                        <DisabledInput className={bem.element('hours')} />
+                    ) : (
+                        <TextField
+                            ref={refs?.hours}
+                            className={bem.element('hours')}
+                            type="text"
+                            autoComplete={'off'}
+                            inputMode={'numeric'}
+                            pattern={'[0-9]*'}
+                            placeholder={placeholders?.hours}
+                            min={0}
+                            max={maxHours}
+                            maxLength={2}
+                            value={stateTime?.hours || ''}
+                            disabled={disabled}
+                            onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
+                                const newTime = { ...stateTime, hours: evt.target.value };
+                                setStateTime(newTime);
+                                handleTimeChange(newTime, onChange);
+                            }}
+                            label={labels.hours}
+                            hideLabel={true}
+                            data-testid={testKey ? `${testKey}_hours` : undefined}
+                        />
+                    )}
                 </div>
                 <div className={bem.element('inputWrapper')}>
-                    <span className={bem.element('label')}>Minutter</span>
-                    <TextField
-                        // id={minutesLabelId}
-                        label="Minutter"
-                        hideLabel={true}
-                        className={bem.element('minutes')}
-                        ref={refs?.minutes}
-                        type="text"
-                        autoComplete={'off'}
-                        inputMode={'numeric'}
-                        placeholder={placeholders?.minutes}
-                        pattern={'[0-9]*'}
-                        min={0}
-                        maxLength={2}
-                        max={maxMinutes}
-                        value={stateTime?.minutes || ''}
-                        disabled={disabled}
-                        onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
-                            const newTime = { ...stateTime, minutes: evt.target.value };
-                            setStateTime(newTime);
-                            handleTimeChange(newTime, onChange);
-                        }}
-                        data-testid={testKey ? `${testKey}_minutes` : undefined}
-                    />
+                    <span className={bem.element('label')}>{labels.minutes}</span>
+                    {disabled ? (
+                        <DisabledInput className={bem.element('minutes')} />
+                    ) : (
+                        <TextField
+                            label={labels.minutes}
+                            hideLabel={true}
+                            className={bem.element('minutes')}
+                            ref={refs?.minutes}
+                            type="text"
+                            autoComplete={'off'}
+                            inputMode={'numeric'}
+                            placeholder={placeholders?.minutes}
+                            pattern={'[0-9]*'}
+                            min={0}
+                            maxLength={2}
+                            max={maxMinutes}
+                            value={stateTime?.minutes || ''}
+                            disabled={disabled}
+                            onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
+                                const newTime = { ...stateTime, minutes: evt.target.value };
+                                setStateTime(newTime);
+                                handleTimeChange(newTime, onChange);
+                            }}
+                            data-testid={testKey ? `${testKey}_minutes` : undefined}
+                        />
+                    )}
                 </div>
             </div>
             {description && <p className={bem.element('description')}>{description}</p>}
         </div>
     );
 };
+
+const DisabledInput = ({ className }: { className: string }) => {
+    return (
+        <div className={className} role="presentation" aria-hidden={true}>
+            <div className={`navds-text-field__input navds-form-field--medium fakeDisabledInput`}> </div>
+        </div>
+    );
+};
+
 export default TimeInput;

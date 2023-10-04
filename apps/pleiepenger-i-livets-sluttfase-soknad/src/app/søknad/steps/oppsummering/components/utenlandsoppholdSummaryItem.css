@@ -1,0 +1,10 @@
+.utenlandsoppholdSummaryItem {
+    display: flex;
+    flex-wrap: wrap;
+}
+.utenlandsoppholdSummaryItem__dates {
+    padding-right: 1rem;
+    &::after {
+        content: ':';
+    }
+}

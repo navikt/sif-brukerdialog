@@ -391,6 +391,22 @@ export const getNumberOfDaysInDateRange = (dateRange: DateRange, onlyWeekDays = 
         : Math.abs(dayjs(dateRange.to).startOf('day').diff(dayjs(dateRange.from).startOf('day'), 'days')) + 1;
 
 /**
+ * Gets a dateRange from a list of @dates
+ * @param dates
+ * @returns dateRange
+ */
+export const getDateRangeFromDates = (dates: Date[]): DateRange => {
+    if (dates.length === 0) {
+        throw 'getDateRangeFromDates: Cannot get date range from empty array';
+    }
+    const sortedDates = dates.sort(sortDates);
+    return {
+        from: sortedDates[0],
+        to: sortedDates[sortedDates.length - 1],
+    };
+};
+
+/**
  * Gets a dateRange spanning all @ranges
  * @param dateRanges
  * @returns dateRange
@@ -404,6 +420,7 @@ export const getDateRangeFromDateRanges = (dateRanges: DateRange[]): DateRange =
         to: dayjs.max(dateRanges.map((range) => dayjs(range.to)))!.toDate(),
     };
 };
+
 /**
  * Gets a isoDateRangeMap from array of DateRange
  * @param dateRanges
@@ -517,6 +534,36 @@ export const getDatesInMonthOutsideDateRange = (month: Date, dateRange: DateRang
             ...getDatesInDateRange({
                 from: dayjs(dateRange.to).add(1, 'day').toDate(),
                 to: monthDateRange.to,
+            }),
+        );
+    }
+
+    return dates;
+};
+
+/**
+ * Gets all dates in @week, not inside @dateRange
+ * @param week
+ * @param dateRange
+ * @returns array of dates not within the dateRange
+ */
+export const getDatesInWeekOutsideDateRange = (week: Date, dateRange: DateRange, onlyWeekDays?: boolean): Date[] => {
+    const weekDateRange: DateRange = getWeekDateRange(week, onlyWeekDays);
+    const dates: Date[] = [];
+
+    if (dayjs(dateRange.from).isAfter(weekDateRange.from, 'day')) {
+        dates.push(
+            ...getDatesInDateRange({
+                from: weekDateRange.from,
+                to: dayjs(dateRange.from).subtract(1, 'day').toDate(),
+            }),
+        );
+    }
+    if (dayjs(dateRange.to).isBefore(weekDateRange.to, 'day')) {
+        dates.push(
+            ...getDatesInDateRange({
+                from: dayjs(dateRange.to).add(1, 'day').toDate(),
+                to: weekDateRange.to,
             }),
         );
     }
@@ -696,12 +743,14 @@ export const dateRangeUtils = {
     dateRangesCollide,
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
+    getDateRangeFromDates,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
     getDateRangesFromISODateRangeMap,
     getDateRangesWithinDateRange,
     getDatesInDateRanges,
+    getDatesInWeekOutsideDateRange,
     getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,

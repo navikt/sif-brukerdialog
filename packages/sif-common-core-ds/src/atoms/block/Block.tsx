@@ -21,7 +21,7 @@ const Block = ({ margin = 'l', padBottom, className, textAlignCenter, ...rest }:
         {
             [bem.modifier('textAlignCenter')]: textAlignCenter,
             [`${className}`]: className !== undefined,
-        }
+        },
     );
     return <div className={classNames} {...rest} />;
 };

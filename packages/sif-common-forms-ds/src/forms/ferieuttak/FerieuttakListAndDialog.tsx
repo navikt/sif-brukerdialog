@@ -51,7 +51,7 @@ function FerieuttakListAndDialog<FieldNames>({
                         maxDate={maxDate}
                         onSubmit={onSubmit}
                         onCancel={onCancel}
-                        disableWeekend={disableWeekend}
+                        disableWeekends={disableWeekend}
                         utilgjengeligePerioder={disabledDateRanges}
                         alleFerieuttak={allItems}
                     />

@@ -20,10 +20,10 @@ const FrilansStartdatoSpørsmål: React.FunctionComponent<Props> = ({ startdatoV
         <ArbFriFormComponents.DatePicker
             name={FrilansFormField.startdato}
             label={intlHelper(intl, `frilanser.startdato.spm`)}
-            showYearSelector={true}
+            dropdownCaption={true}
             maxDate={søknadsperiode.to}
             minDate={minDato}
-            dayPickerProps={{ defaultMonth: søknadsperiode.to }}
+            defaultMonth={søknadsperiode.to}
             validate={(value) => {
                 const error = getFrilanserStartdatoValidator(
                     startdatoValue,

@@ -299,7 +299,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                             <Block margin="xl">
                                 <Form.DateRangePicker
                                     legend={getText('sifForms.virksomhet.startdato', { navnPåVirksomheten })}
-                                    showYearSelector={true}
+                                    dropdownCaption={true}
                                     maxDate={dateToday}
                                     minDate={date99YearsFromNow}
                                     fromInputProps={{
@@ -323,7 +323,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                     toInputProps={{
                                         label: getText('sifForms.virksomhet.kalender_tom'),
                                         name: VirksomhetFormField.tom,
-                                        disabled: values.erPågående === true,
+                                        // disabled: values.erPågående === true,
                                         validate:
                                             values.erPågående === true
                                                 ? undefined
@@ -465,20 +465,18 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         {values.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene ===
                                             YesOrNo.YES && (
                                             <FormBlock margin="m">
-                                                <Panel border={true}>
-                                                    <Form.DatePicker
-                                                        name={VirksomhetFormField.blittYrkesaktivDato}
-                                                        label={getText('sifForms.virksomhet.har_blitt_yrkesaktiv_dato')}
-                                                        showYearSelector={true}
-                                                        minDate={date3YearsAgo}
-                                                        maxDate={dateToday}
-                                                        validate={getDateValidator({
-                                                            required: true,
-                                                            max: dateToday,
-                                                            min: date3YearsAgo,
-                                                        })}
-                                                    />
-                                                </Panel>
+                                                <Form.DatePicker
+                                                    name={VirksomhetFormField.blittYrkesaktivDato}
+                                                    label={getText('sifForms.virksomhet.har_blitt_yrkesaktiv_dato')}
+                                                    dropdownCaption={true}
+                                                    minDate={date3YearsAgo}
+                                                    maxDate={dateToday}
+                                                    validate={getDateValidator({
+                                                        required: true,
+                                                        max: dateToday,
+                                                        min: date3YearsAgo,
+                                                    })}
+                                                />
                                             </FormBlock>
                                         )}
                                     </>

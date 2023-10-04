@@ -358,14 +358,14 @@ describe('durationUtils', () => {
         it('removes equal values', () => {
             const result = getDurationsDiff(
                 { '2021-01-01': { hours: '1', minutes: '2' } },
-                { '2021-01-01': { hours: '1', minutes: '2' } }
+                { '2021-01-01': { hours: '1', minutes: '2' } },
             );
             expect(Object.keys(result).length).toBe(0);
         });
         it('returns changed values', () => {
             const result = getDurationsDiff(
                 { '2021-01-01': { hours: '1', minutes: '2' } },
-                { '2021-01-01': { hours: '2', minutes: '2' } }
+                { '2021-01-01': { hours: '2', minutes: '2' } },
             );
             expect(Object.keys(result).length).toBe(1);
         });
@@ -393,22 +393,22 @@ describe('durationUtils', () => {
                 Object.keys(
                     getValidDurations({
                         '2021-02-05': { hours: '0', minutes: '0' },
-                    })
-                ).length
+                    }),
+                ).length,
             ).toBe(1);
             expect(
                 Object.keys(
                     getValidDurations({
                         '2021-02-05': { hours: '', minutes: '0' },
-                    })
-                ).length
+                    }),
+                ).length,
             ).toBe(1);
             expect(
                 Object.keys(
                     getValidDurations({
                         '2021-02-05': { hours: '1', minutes: undefined },
-                    })
-                ).length
+                    }),
+                ).length,
             ).toBe(1);
         });
     });
@@ -430,12 +430,12 @@ describe('durationUtils', () => {
     describe('getDatesWithDurationLongerThanZero', () => {
         it('includes date with minutes', () => {
             expect(
-                getDatesWithDurationLongerThanZero({ '2021-01-01': { minutes: '2', hours: undefined } }).length
+                getDatesWithDurationLongerThanZero({ '2021-01-01': { minutes: '2', hours: undefined } }).length,
             ).toBe(1);
         });
         it('includes date with hours', () => {
             expect(
-                getDatesWithDurationLongerThanZero({ '2021-01-01': { hours: '1', minutes: undefined } }).length
+                getDatesWithDurationLongerThanZero({ '2021-01-01': { hours: '1', minutes: undefined } }).length,
             ).toBe(1);
         });
         it('excludes date with 0 minutes and 0 hours', () => {
@@ -447,7 +447,7 @@ describe('durationUtils', () => {
             expect(
                 getDatesWithDurationLongerThanZero({
                     '2021-01-01': { hours: undefined, minutes: undefined },
-                }).length
+                }).length,
             ).toBe(0);
         });
     });
@@ -455,14 +455,14 @@ describe('durationUtils', () => {
         it('removes equal values', () => {
             const result = getDateDurationDiff(
                 { '2021-01-01': { hours: '1', minutes: '2' } },
-                { '2021-01-01': { hours: '1', minutes: '2' } }
+                { '2021-01-01': { hours: '1', minutes: '2' } },
             );
             expect(Object.keys(result).length).toBe(0);
         });
         it('returns changed values', () => {
             const result = getDateDurationDiff(
                 { '2021-01-01': { hours: '1', minutes: '2' } },
-                { '2021-01-01': { hours: '2', minutes: '2' } }
+                { '2021-01-01': { hours: '2', minutes: '2' } },
             );
             expect(Object.keys(result).length).toBe(1);
         });

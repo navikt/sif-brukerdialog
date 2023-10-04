@@ -33,7 +33,7 @@ export interface FerieuttakFormLabels {
 interface Props {
     minDate: Date;
     maxDate: Date;
-    disableWeekend?: boolean;
+    disableWeekends?: boolean;
     ferieuttak?: Partial<Ferieuttak>;
     alleFerieuttak?: Ferieuttak[];
     utilgjengeligePerioder?: DateRange[];
@@ -71,7 +71,7 @@ const FerieuttakForm = ({
     minDate,
     labels,
     ferieuttak,
-    disableWeekend,
+    disableWeekends,
     alleFerieuttak = [],
     utilgjengeligePerioder = [],
     onSubmit,
@@ -132,12 +132,11 @@ const FerieuttakForm = ({
                         cancelButtonLabel={formLabels.cancelButton}>
                         <Form.DateRangePicker
                             legend={formLabels.intervalTitle}
-                            fullscreenOverlay={true}
                             minDate={minDate}
                             maxDate={maxDate}
                             allowRangesToStartAndStopOnSameDate={true}
                             disabledDateRanges={[...andreFerieuttak, ...utilgjengeligePerioder]}
-                            disableWeekend={disableWeekend}
+                            disableWeekends={disableWeekends}
                             fromInputProps={{
                                 label: formLabels.fromDate,
                                 name: FerieuttakFormFields.from,
@@ -146,14 +145,12 @@ const FerieuttakForm = ({
                                         required: true,
                                         min: minDate,
                                         max: maxDate,
-                                        onlyWeekdays: disableWeekend === true,
+                                        onlyWeekdays: disableWeekends === true,
                                         toDate: ISOStringToDate(formik.values.to),
                                     }).validateFromDate(value);
                                     return handleDateRangeValidationError(error, minDate, maxDate);
                                 },
-                                dayPickerProps: {
-                                    defaultMonth,
-                                },
+                                defaultMonth,
                                 onChange: () => {
                                     setTimeout(() => {
                                         formik.validateField(FerieuttakFormFields.to);
@@ -163,15 +160,13 @@ const FerieuttakForm = ({
                             toInputProps={{
                                 label: formLabels.toDate,
                                 name: FerieuttakFormFields.to,
-                                dayPickerProps: {
-                                    defaultMonth: ISOStringToDate(formik.values.from) || defaultMonth,
-                                },
+                                defaultMonth: ISOStringToDate(formik.values.from) || defaultMonth,
                                 validate: (value) => {
                                     const dateError = getDateRangeValidator({
                                         required: true,
                                         min: minDate,
                                         max: maxDate,
-                                        onlyWeekdays: disableWeekend === true,
+                                        onlyWeekdays: disableWeekends === true,
                                         fromDate: ISOStringToDate(formik.values.from),
                                     }).validateToDate(value);
                                     switch (dateError) {

@@ -12,7 +12,7 @@ dayjs.extend(minMax);
 
 const getÅrstallFromFravær = (
     dagerMedDelvisFravær: FraværDag[],
-    perioderMedFravær: FraværPeriode[]
+    perioderMedFravær: FraværPeriode[],
 ): number | undefined => {
     const førsteDag = dagerMedDelvisFravær.length > 0 ? dagerMedDelvisFravær[0].dato : undefined;
     const førsteDagIPeriode = perioderMedFravær.length > 0 ? perioderMedFravær[0].fraOgMed : undefined;
@@ -41,7 +41,7 @@ const getTidsromFromÅrstall = (årstall?: number): DateRange => {
 
 const getPeriodeBoundaries = (
     perioderMedFravær: FraværPeriode[],
-    dagerMedFravær: FraværDag[]
+    dagerMedFravær: FraværDag[],
 ): { min?: Date; max?: Date } => {
     let min: Dayjs | undefined;
     let max: Dayjs | undefined;
@@ -70,7 +70,7 @@ const fraværStepUtils = {
 
 export const getFraværStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: FraværFormValues
+    formValues?: FraværFormValues,
 ): FraværFormValues => {
     if (formValues) {
         return formValues;

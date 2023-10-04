@@ -1,5 +1,11 @@
 # @navikt/sif-common-core-ds
 
+## 9.8.0
+
+### Minor Changes
+
+-   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+
 ## 9.7.0
 
 ### Minor Changes

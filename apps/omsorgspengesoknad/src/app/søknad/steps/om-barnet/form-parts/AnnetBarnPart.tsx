@@ -75,7 +75,7 @@ const AnnetBarnpart = () => {
                     }}
                     minDate={minDatoForBarnetsFødselsdato}
                     maxDate={dateToday}
-                    showYearSelector={true}
+                    dropdownCaption={true}
                     description={intlHelper(intl, 'step.omBarnet.fødselsdato.info', {
                         minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
                     })}
