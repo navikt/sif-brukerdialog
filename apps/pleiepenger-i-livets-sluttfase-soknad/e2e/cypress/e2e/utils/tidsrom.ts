@@ -27,7 +27,7 @@ export const fyllUtPeriodenEnkelt = () => {
                 cy.get('button').contains(25).click();
             });
         });
-        selectRadioYesOrNo('steg.tidsrom.flereSokere.spm', false);
+        selectRadioYesOrNo('steg.opplysningerOmPleietrengende.flereSokere.spm', false);
         selectRadioYesOrNo('iUtlandetIPerioden.spm', false);
         selectRadioYesOrNo('ferieuttakIPerioden.spm', false);
 

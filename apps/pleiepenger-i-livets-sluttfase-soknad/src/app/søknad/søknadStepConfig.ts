@@ -3,8 +3,11 @@ import { StepId } from '../types/StepId';
 import { ArbeidssituasjonSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
 
-export const includeArbeidstidStep = (arbeidssituasjon?: ArbeidssituasjonSøknadsdata): boolean => {
-    if (!arbeidssituasjon) {
+export const includeArbeidstidStep = (
+    arbeidssituasjon: ArbeidssituasjonSøknadsdata | undefined,
+    skalJobbeIPerioden: boolean | undefined,
+): boolean => {
+    if (!arbeidssituasjon || !skalJobbeIPerioden) {
         return false;
     }
 
@@ -27,7 +30,9 @@ const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
         StepId.LEGEERKLÆRING,
         StepId.TIDSROM,
         StepId.ARBEIDSSITUASJON,
-        ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon) ? [StepId.ARBEIDSTID] : []),
+        ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon, søknadsdata?.tidsrom?.skalJobbeIPerioden)
+            ? [StepId.ARBEIDSTID]
+            : []),
         StepId.MEDLEMSKAP,
         StepId.OPPSUMMERING,
     ];

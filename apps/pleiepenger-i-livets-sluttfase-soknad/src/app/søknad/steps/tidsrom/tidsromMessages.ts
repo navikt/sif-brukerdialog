@@ -18,14 +18,16 @@ export const tidsromMessages: MessageFileFormat = {
         'steg.tidsrom.veileder.utenlandsopphold':
             'Når du oppholder deg i et land utenfor EØS, kan du beholde pleiepengene i en begrenset periode på opptil 8 uker av en 12 måneder lang periode.',
 
-        'steg.tidsrom.flereSokere.spm': 'Er dere flere som skal dele på pleiepengene?',
-        'steg.tidsrom.flereSokere.spm.description.tittle': 'Hvorfor spør dere om dette?',
-        'steg.tidsrom.flereSokere.spm.description':
+        'steg.opplysningerOmPleietrengende.flereSokere.spm': 'Er dere flere som skal dele på pleiepengene?',
+        'steg.opplysningerOmPleietrengende.flereSokere.spm.description.tittle': 'Hvorfor spør dere om dette?',
+        'steg.opplysningerOmPleietrengende.flereSokere.spm.description':
             'Vi ønsker å vite om dere er flere som skal dele på pleiepengene slik at vi kan fordele pleiepengene riktig mellom dere. Hvis du er usikker på dette tidspunktet om dere er flere som skal dele er det helt greit, da velger du svaralternativet "Usikker".',
 
         'step.tidsrom.flereSokere.ja': 'Ja',
         'step.tidsrom.flereSokere.nei': 'Nei',
         'step.tidsrom.flereSokere.usikker': 'Usikker',
+
+        'steg.tidsrom.skalJobbeIPerioden.spm': 'Skal du jobbe noe de dagene du skal pleie?',
 
         'steg.tidsrom.iUtlandetIPerioden.spm': 'Oppholder du deg i utlandet i perioden du søker for?',
         'steg.tidsrom.iUtlandetIPerioden.listTitle': 'Utenlandsopphold i perioden',

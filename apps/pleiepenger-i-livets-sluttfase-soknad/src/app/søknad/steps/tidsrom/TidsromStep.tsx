@@ -1,10 +1,9 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
@@ -15,7 +14,6 @@ import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
-import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -32,7 +30,7 @@ import {
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
-    flereSokere = 'flereSokere',
+    skalJobbeIPerioden = 'skalJobbeIPerioden',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
     utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
@@ -41,14 +39,16 @@ export enum TidsromFormFields {
 
 export interface TidsromFormValues {
     [TidsromFormFields.dagerMedPleie]?: Date[];
-    [TidsromFormFields.flereSokere]?: YesOrNoDontKnow;
+    [TidsromFormFields.skalJobbeIPerioden]?: YesOrNo;
     [TidsromFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
     [TidsromFormFields.utenlandsoppholdIPerioden]: Utenlandsopphold[];
     [TidsromFormFields.skalTaUtFerieIPerioden]: YesOrNo;
     [TidsromFormFields.ferieuttakIPerioden]: Ferieuttak[];
 }
 
-const { FormikWrapper, Form, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
+const spørOmFerie = true;
+
+const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
     TidsromFormFields,
     TidsromFormValues,
     ValidationError
@@ -123,36 +123,11 @@ const TidsromStep = () => {
                                 {periode && (
                                     <>
                                         <FormBlock>
-                                            <RadioGroup
-                                                legend={intlHelper(intl, 'steg.tidsrom.flereSokere.spm')}
-                                                name={TidsromFormFields.flereSokere}
-                                                validate={getRequiredFieldValidator()}
-                                                description={
-                                                    <ExpandableInfo
-                                                        title={intlHelper(
-                                                            intl,
-                                                            'steg.tidsrom.flereSokere.spm.description.tittle',
-                                                        )}>
-                                                        {intlHelper(intl, 'steg.tidsrom.flereSokere.spm.description')}
-                                                    </ExpandableInfo>
-                                                }
-                                                radios={[
-                                                    {
-                                                        label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
-                                                        value: YesOrNoDontKnow.YES,
-                                                        'data-testid': `steg.tidsrom.flereSokere.spm_yes`,
-                                                    },
-                                                    {
-                                                        label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
-                                                        value: YesOrNoDontKnow.NO,
-                                                        'data-testid': `steg.tidsrom.flereSokere.spm_no`,
-                                                    },
-                                                    {
-                                                        label: intlHelper(intl, `step.tidsrom.flereSokere.usikker`),
-                                                        value: YesOrNoDontKnow.DO_NOT_KNOW,
-                                                        'data-testid': `steg.tidsrom.flereSokere.spm_usikker`,
-                                                    },
-                                                ]}
+                                            <YesOrNoQuestion
+                                                legend={intlHelper(intl, 'steg.tidsrom.skalJobbeIPerioden.spm')}
+                                                name={TidsromFormFields.skalJobbeIPerioden}
+                                                validate={getYesOrNoValidator()}
+                                                data-testid="skalJobbeIPerioden.spm"
                                             />
                                         </FormBlock>
                                         <FormBlock>
@@ -193,42 +168,49 @@ const TidsromStep = () => {
                                                 />
                                             </FormBlock>
                                         )}
-                                        <FormBlock>
-                                            <YesOrNoQuestion
-                                                legend={intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.spm')}
-                                                name={TidsromFormFields.skalTaUtFerieIPerioden}
-                                                validate={getYesOrNoValidator()}
-                                                data-testid="ferieuttakIPerioden.spm"
-                                            />
-                                        </FormBlock>
-                                        {skalTaUtFerieIPerioden === YesOrNo.YES && (
-                                            <FormBlock>
-                                                <FerieuttakListAndDialog<TidsromFormFields>
-                                                    name={TidsromFormFields.ferieuttakIPerioden}
-                                                    minDate={periode.from}
-                                                    maxDate={periode.to}
-                                                    labels={{
-                                                        modalTitle: intlHelper(
+                                        {spørOmFerie && (
+                                            <>
+                                                <FormBlock>
+                                                    <YesOrNoQuestion
+                                                        legend={intlHelper(
                                                             intl,
-                                                            'steg.tidsrom.ferieuttakIPerioden.modalTitle',
-                                                        ),
-                                                        listTitle: intlHelper(
-                                                            intl,
-                                                            'steg.tidsrom.ferieuttakIPerioden.listTitle',
-                                                        ),
-                                                        addLabel: intlHelper(
-                                                            intl,
-                                                            'steg.tidsrom.ferieuttakIPerioden.addLabel',
-                                                        ),
-                                                    }}
-                                                    validate={
-                                                        periode
-                                                            ? (ferie: Ferieuttak[]) =>
-                                                                  validateFerieuttakIPerioden(periode, ferie)
-                                                            : undefined
-                                                    }
-                                                />
-                                            </FormBlock>
+                                                            'steg.tidsrom.ferieuttakIPerioden.spm',
+                                                        )}
+                                                        name={TidsromFormFields.skalTaUtFerieIPerioden}
+                                                        validate={getYesOrNoValidator()}
+                                                        data-testid="ferieuttakIPerioden.spm"
+                                                    />
+                                                </FormBlock>
+                                                {skalTaUtFerieIPerioden === YesOrNo.YES && (
+                                                    <FormBlock>
+                                                        <FerieuttakListAndDialog<TidsromFormFields>
+                                                            name={TidsromFormFields.ferieuttakIPerioden}
+                                                            minDate={periode.from}
+                                                            maxDate={periode.to}
+                                                            labels={{
+                                                                modalTitle: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.ferieuttakIPerioden.modalTitle',
+                                                                ),
+                                                                listTitle: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.ferieuttakIPerioden.listTitle',
+                                                                ),
+                                                                addLabel: intlHelper(
+                                                                    intl,
+                                                                    'steg.tidsrom.ferieuttakIPerioden.addLabel',
+                                                                ),
+                                                            }}
+                                                            validate={
+                                                                periode
+                                                                    ? (ferie: Ferieuttak[]) =>
+                                                                          validateFerieuttakIPerioden(periode, ferie)
+                                                                    : undefined
+                                                            }
+                                                        />
+                                                    </FormBlock>
+                                                )}
+                                            </>
                                         )}
                                     </>
                                 )}
