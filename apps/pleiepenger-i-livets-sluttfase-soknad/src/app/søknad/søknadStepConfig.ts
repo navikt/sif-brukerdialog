@@ -27,13 +27,13 @@ export const includeArbeidstidStep = (
 const getSøknadSteps = (søknadsdata: Søknadsdata): StepId[] => {
     return [
         StepId.OPPLYSNINGER_OM_PLEIETRENGENDE,
-        StepId.LEGEERKLÆRING,
         StepId.TIDSROM,
         StepId.ARBEIDSSITUASJON,
         ...(includeArbeidstidStep(søknadsdata?.arbeidssituasjon, søknadsdata?.tidsrom?.skalJobbeIPerioden)
             ? [StepId.ARBEIDSTID]
             : []),
         StepId.MEDLEMSKAP,
+        StepId.LEGEERKLÆRING,
         StepId.OPPSUMMERING,
     ];
 };
