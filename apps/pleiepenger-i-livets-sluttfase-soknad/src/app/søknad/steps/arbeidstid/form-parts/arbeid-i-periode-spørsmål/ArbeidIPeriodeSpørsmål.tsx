@@ -1,4 +1,4 @@
-import { Alert, BodyShort, HStack, Tag } from '@navikt/ds-react';
+import { Alert, BodyShort, HStack, Heading, Tag } from '@navikt/ds-react';
 import { useContext, useEffect, useState } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -16,6 +16,7 @@ import {
     dateFormatter,
     durationToDecimalDuration,
     getDatesInDateRange,
+    getMonthsInDateRange,
     isDateInDates,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils/lib';
@@ -27,6 +28,7 @@ import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common
 import { useFormikContext } from 'formik';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import dayjs from 'dayjs';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -55,7 +57,7 @@ const ArbeidIPeriodeSpørsmål = ({
     periode,
     dagerMedPleie,
     arbeidsstedNavn,
-    skjulJobberNormaltValg,
+    skjulJobberNormaltValg = false,
     onArbeidstidVariertChange,
 }: Props) => {
     const intl = useIntl();
@@ -70,6 +72,12 @@ const ArbeidIPeriodeSpørsmål = ({
             onArbeidstidVariertChange();
         }
     }, [arbeidstidChanged, onArbeidstidVariertChange]);
+
+    useEffectOnce(() => {
+        if (skjulJobberNormaltValg && jobberIPerioden === undefined) {
+            formik.setFieldValue(getFieldName(ArbeidIPeriodeField.jobberIPerioden), JobberIPeriodeSvar.redusert);
+        }
+    });
 
     if (jobberNormaltTimer === undefined) {
         return <Alert variant="error">Det mangler informasjon om hvor mye du jobber normalt</Alert>;
@@ -122,17 +130,45 @@ const ArbeidIPeriodeSpørsmål = ({
             </HStack>
         );
     };
+    const renderMonthHeaderNoAccordion = (month: Date, enabledDatesInMonth: number) => {
+        const numDatesInMonthWithDuration = datesWithDuration.filter((d) =>
+            dayjs(d.date).isSame(month, 'month'),
+        ).length;
+
+        return (
+            <>
+                <Heading size="small" level="4" className="capitalize" spacing={true}>
+                    {dayjs(month).format('MMMM YYYY')}
+                </Heading>
+                {1 + 1 === 3 && (
+                    <>
+                        {numDatesInMonthWithDuration === 0 ? (
+                            <BodyShort size="small">Arbeider ingen dager</BodyShort>
+                        ) : (
+                            <Tag variant="info" size="small">
+                                Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
+                            </Tag>
+                        )}
+                    </>
+                )}
+            </>
+        );
+    };
+
+    const useAccordion = skjulJobberNormaltValg !== true || getMonthsInDateRange(periode).length > 1;
 
     return (
         <>
-            <RadioGroup
-                name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
-                legend={intlHelper(intl, `arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
-                validate={getJobberIPeriodenValidator(intlValues)}
-                radios={getJobberIPeriodenRadios(intl, skjulJobberNormaltValg)}
-            />
+            {!skjulJobberNormaltValg && (
+                <RadioGroup
+                    name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
+                    legend={intlHelper(intl, `arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
+                    validate={getJobberIPeriodenValidator(intlValues)}
+                    radios={getJobberIPeriodenRadios(intl, skjulJobberNormaltValg)}
+                />
+            )}
 
-            {jobberIPerioden === JobberIPeriodeSvar.redusert && (
+            {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
                 <FormBlock>
                     <InputGroup
                         id={`${fieldName}_group`}
@@ -152,19 +188,21 @@ const ArbeidIPeriodeSpørsmål = ({
                             return undefined;
                         }}
                         description={
-                            <Block margin="l">
-                                <Alert variant="info" inline={true}>
-                                    Dager hvor du ikke skal jobbe noe, trenger du ikke fylle ut.
-                                </Alert>
-                            </Block>
+                            skjulJobberNormaltValg ? undefined : (
+                                <Block margin="l">
+                                    <Alert variant="info" inline={true}>
+                                        Dager hvor du ikke skal jobbe noe, trenger du ikke fylle ut.
+                                    </Alert>
+                                </Block>
+                            )
                         }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
                                 dateRange={periode}
                                 disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}
                                 formikFieldName={fieldName}
-                                useAccordion={true}
-                                renderMonthHeader={renderMonthHeader}
+                                useAccordion={useAccordion}
+                                renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
                                 validateDate={(date: Date, value?: any) => {
                                     const error = getTimeValidator()(value);
