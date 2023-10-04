@@ -4,6 +4,7 @@ import { FastField, Field, FieldProps } from 'formik';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
+import './formik-radio-group--panel.scss';
 
 export type FormikRadioProp = Omit<RadioProps, 'children' | 'name'> & {
     label: React.ReactNode;
@@ -12,6 +13,7 @@ export type FormikRadioProp = Omit<RadioProps, 'children' | 'name'> & {
 interface OwnProps<FieldName> extends Omit<RadioGroupProps, 'name' | 'onChange' | 'children' | 'radios'> {
     name: FieldName;
     radios: FormikRadioProp[];
+    usePanelLayout?: boolean; // Ikke støttet av Aksel
     afterOnChange?: (newValue: string) => void;
 }
 
@@ -26,6 +28,8 @@ function FormikRadioGroup<FieldName, ErrorType>({
     radios,
     error,
     useFastField,
+    className,
+    usePanelLayout,
     afterOnChange,
     ...restProps
 }: FormikRadioGroupProps<FieldName, ErrorType>) {
@@ -42,13 +46,18 @@ function FormikRadioGroup<FieldName, ErrorType>({
                         }
                         name={field.name}
                         error={getErrorPropForFormikInput({ field, form, context, error })}
+                        className={usePanelLayout ? `formik-radio-group--panel ${className || ''}` : className}
                         value={field.value || ''}>
                         {radios.map((rb, idx) => {
-                            const { label, ...rest } = rb;
+                            const { label, className, ...rest } = rb;
+                            const isChecked = rb.value === field.value;
                             return (
                                 <Radio
                                     key={idx}
                                     {...rest}
+                                    className={
+                                        isChecked ? `formik-radio-group--panel__radio--checked ${className}` : className
+                                    }
                                     name={field.name as any}
                                     onChange={(evt) => {
                                         form.setFieldValue(field.name, evt.target.value);
