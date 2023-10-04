@@ -1,16 +1,20 @@
 import React from 'react';
 import { FormikInputGroup } from '@navikt/sif-common-formik-ds';
 import DaySelector from '@navikt/sif-common-ui/src/day-selector/DaySelector';
-import { sortDates } from '@navikt/sif-common-utils/lib';
+import { getMonthsInDates, sortDates } from '@navikt/sif-common-utils/lib';
 import { useFormikContext } from 'formik';
 import { getTilgjengeligEndringsperiode } from '../../../utils/getTilgjengeligEndringsperiode';
 import { TidsromFormFields, TidsromFormValues } from './TidsromStep';
 import { Alert, BodyLong } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import ValgteDagerMedPleie from '../oppsummering/components/ValgteDagerMedPleie';
+import dayjs from 'dayjs';
 
 interface Props {}
+
+interface MånedOgDag {
+    måned: Date;
+    dager: Date[];
+}
 
 const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
     const periode = getTilgjengeligEndringsperiode();
@@ -21,6 +25,14 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
     };
 
     const selectedDates = values[TidsromFormFields.dagerMedPleie] || [];
+    const månederMedValgteDatoer = getMonthsInDates(selectedDates);
+    const månederOgDager: MånedOgDag[] = [];
+    månederMedValgteDatoer.forEach((måned) => {
+        månederOgDager.push({
+            måned,
+            dager: selectedDates.filter((d) => dayjs(d).isSame(måned, 'month')),
+        });
+    });
 
     return (
         <>
@@ -44,7 +56,7 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                     reverseOrder={true}
                 />
 
-                <Alert variant="info" inline={true}>
+                {/* <Alert variant="info" inline={true}>
                     {selectedDates.length === 0 ? (
                         <>Ingen dager valgt</>
                     ) : (
@@ -57,7 +69,7 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                             <ValgteDagerMedPleie dagerMedPleie={selectedDates} />
                         </ExpandableInfo>
                     )}
-                </Alert>
+                </Alert> */}
                 {selectedDates.length > 60 && (
                     <div>
                         <Block margin="l">

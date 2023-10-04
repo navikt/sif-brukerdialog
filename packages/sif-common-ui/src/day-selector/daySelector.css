@@ -13,6 +13,9 @@
 .daySelector__hideWeekend .rdp-tbody .rdp-cell:nth-child(8) {
     display: none;
 }
+.daySelector__tags {
+    width: 100%;
+}
 
 @media screen and (min-width: 560px) {
     .daySelector__calendarWrapper {
@@ -20,6 +23,8 @@
         display: flex;
         justify-content: center;
         padding: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
     .daySelector__calendarWrapper .daySelector__month {
         background-color: white;
