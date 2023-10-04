@@ -7,6 +7,8 @@ interface OmBarnetSøknadsdata_registrertBarn {
     registrertBarn: RegistrertBarn;
     sammeAdresse: BarnSammeAdresse;
     kroniskEllerFunksjonshemming: boolean;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
 }
 
 interface OmBarnetSøknadsdata_annetBarn {
@@ -18,6 +20,8 @@ interface OmBarnetSøknadsdata_annetBarn {
     søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet;
     sammeAdresse: BarnSammeAdresse;
     kroniskEllerFunksjonshemming: boolean;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
 }
 
 export type OmBarnetSøknadsdata = OmBarnetSøknadsdata_annetBarn | OmBarnetSøknadsdata_registrertBarn;

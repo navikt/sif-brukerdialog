@@ -4,9 +4,14 @@ import { OmBarnetSøknadsdata } from '../../types/søknadsdata/OmBarnetSøknadsd
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
 
 export const getOmBarnetApiDataFromSøknadsdata = (omBarnet: OmBarnetSøknadsdata): OmBarnetApiData => {
-    const fellesInfo: Pick<OmBarnetSøknadsdata, 'kroniskEllerFunksjonshemming' | 'sammeAdresse'> = {
+    const fellesInfo: Pick<
+        OmBarnetSøknadsdata,
+        'kroniskEllerFunksjonshemming' | 'sammeAdresse' | 'høyereRisikoForFravær' | 'høyereRisikoForFraværBeskrivelse'
+    > = {
         kroniskEllerFunksjonshemming: omBarnet.kroniskEllerFunksjonshemming,
         sammeAdresse: omBarnet.sammeAdresse,
+        høyereRisikoForFravær: omBarnet.høyereRisikoForFravær,
+        høyereRisikoForFraværBeskrivelse: omBarnet.høyereRisikoForFraværBeskrivelse,
     };
 
     switch (omBarnet.type) {

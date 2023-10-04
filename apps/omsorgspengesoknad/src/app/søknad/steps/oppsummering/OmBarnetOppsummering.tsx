@@ -3,7 +3,7 @@ import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { SummarySection } from '@navikt/sif-common-soknad-ds';
+import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate, dateFormatter } from '@navikt/sif-common-utils';
 import { OmBarnetApiData } from '../../../types/søknadApiData/SøknadApiData';
 import { BarnSammeAdresse } from '../../../types/BarnSammeAdresse';
@@ -20,13 +20,6 @@ const OmBarnetOppsummering: React.FC<Props> = ({ apiData: apiData }) => {
                 {apiData.barn.aktørId ? getRegistrertBarnInfo(apiData) : getAnnetBarnInfo(apiData, intl)}
             </Block>
             <Block margin="l">
-                <ContentWithHeader
-                    header={intlHelper(intl, 'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header')}>
-                    {apiData.kroniskEllerFunksjonshemming === true && intlHelper(intl, 'Ja')}
-                    {apiData.kroniskEllerFunksjonshemming === false && intlHelper(intl, 'Nei')}
-                </ContentWithHeader>
-            </Block>
-            <Block margin="l">
                 <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
                     {apiData.sammeAdresse === BarnSammeAdresse.JA &&
                         intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.ja')}
@@ -36,6 +29,27 @@ const OmBarnetOppsummering: React.FC<Props> = ({ apiData: apiData }) => {
                         intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.nei')}
                 </ContentWithHeader>
             </Block>
+            <Block margin="l">
+                <ContentWithHeader
+                    header={intlHelper(intl, 'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header')}>
+                    {apiData.kroniskEllerFunksjonshemming === true && intlHelper(intl, 'Ja')}
+                    {apiData.kroniskEllerFunksjonshemming === false && intlHelper(intl, 'Nei')}
+                </ContentWithHeader>
+            </Block>
+            <Block margin="l">
+                <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.barnet.høyereRisikoForFravær.header')}>
+                    {apiData.høyereRisikoForFravær === true && intlHelper(intl, 'Ja')}
+                    {apiData.høyereRisikoForFravær === false && intlHelper(intl, 'Nei')}
+                </ContentWithHeader>
+            </Block>
+            {apiData.høyereRisikoForFravær && (
+                <Block margin={'s'}>
+                    <SummaryBlock
+                        header={intlHelper(intl, 'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header')}>
+                        <p>{apiData.høyereRisikoForFraværBeskrivelse}</p>
+                    </SummaryBlock>
+                </Block>
+            )}
         </SummarySection>
     );
 };

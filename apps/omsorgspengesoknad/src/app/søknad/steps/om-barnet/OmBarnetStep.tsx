@@ -4,7 +4,11 @@ import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import {
+    getRequiredFieldValidator,
+    getStringValidator,
+    getYesOrNoValidator,
+} from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -33,6 +37,8 @@ export enum OmBarnetFormFields {
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
     sammeAdresse = 'sammeAdresse',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
+    høyereRisikoForFravær = 'høyereRisikoForFravær',
+    høyereRisikoForFraværBeskrivelse = 'høyereRisikoForFraværBeskrivelse',
 }
 
 export interface OmBarnetFormValues {
@@ -44,9 +50,11 @@ export interface OmBarnetFormValues {
     [OmBarnetFormFields.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
     [OmBarnetFormFields.sammeAdresse]?: BarnSammeAdresse;
     [OmBarnetFormFields.kroniskEllerFunksjonshemming]?: YesOrNo;
+    [OmBarnetFormFields.høyereRisikoForFravær]?: YesOrNo;
+    [OmBarnetFormFields.høyereRisikoForFraværBeskrivelse]?: string;
 }
 
-const { FormikWrapper, Form, YesOrNoQuestion, RadioGroup } = getTypedFormComponents<
+const { FormikWrapper, Form, YesOrNoQuestion, RadioGroup, Textarea } = getTypedFormComponents<
     OmBarnetFormFields,
     OmBarnetFormValues,
     ValidationError
@@ -96,6 +104,7 @@ const OmBarnetStep = () => {
                         kroniskEllerFunksjonshemming,
                         sammeAdresse,
                         søkersRelasjonTilBarnet,
+                        høyereRisikoForFravær,
                     },
                 }) => {
                     return (
@@ -176,6 +185,55 @@ const OmBarnetStep = () => {
                                                 validate={getYesOrNoValidator()}
                                             />
                                         </FormBlock>
+                                        {kroniskEllerFunksjonshemming === YesOrNo.YES && (
+                                            <>
+                                                <FormBlock>
+                                                    <YesOrNoQuestion
+                                                        name={OmBarnetFormFields.høyereRisikoForFravær}
+                                                        legend={intlHelper(
+                                                            intl,
+                                                            'steg.omBarnet.spm.høyereRisikoForFravær',
+                                                        )}
+                                                        data-testid="høyereRisikoForFravær"
+                                                        validate={getYesOrNoValidator()}
+                                                    />
+                                                </FormBlock>
+                                                {høyereRisikoForFravær === YesOrNo.YES && (
+                                                    <FormBlock>
+                                                        <Textarea
+                                                            name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
+                                                            validate={(value) => {
+                                                                const error = getStringValidator({
+                                                                    minLength: 5,
+                                                                    maxLength: 2000,
+                                                                    required: true,
+                                                                })(value);
+
+                                                                return error;
+                                                            }}
+                                                            maxLength={2000}
+                                                            label={intlHelper(
+                                                                intl,
+                                                                'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel',
+                                                            )}
+                                                            data-testid="høyereRisikoForFraværBeskrivelse"
+                                                        />
+                                                    </FormBlock>
+                                                )}
+                                                {høyereRisikoForFravær === YesOrNo.NO && (
+                                                    <FormBlock>
+                                                        <FormBlock margin="l">
+                                                            <Alert variant="info">
+                                                                {intlHelper(
+                                                                    intl,
+                                                                    'steg.omBarnet.spm.høyereRisikoForFravær.alert',
+                                                                )}
+                                                            </Alert>
+                                                        </FormBlock>
+                                                    </FormBlock>
+                                                )}
+                                            </>
+                                        )}
                                         {kroniskEllerFunksjonshemming === YesOrNo.NO && (
                                             <FormBlock margin="l">
                                                 <Alert variant="info">

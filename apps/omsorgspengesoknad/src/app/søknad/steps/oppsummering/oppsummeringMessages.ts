@@ -18,6 +18,10 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.barnet.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bosted',
         'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header':
             'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
+        'steg.oppsummering.barnet.høyereRisikoForFravær.header':
+            'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning? ',
+        'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header':
+            'En beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb',
         'steg.oppsummering.vedlegg.header': 'Vedlegg',
         'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
         'steg.oppsummering.samværsavtale.header': 'Avtale om delt bosted',

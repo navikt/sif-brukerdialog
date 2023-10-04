@@ -8,6 +8,8 @@ export interface OmBarnetApiData {
     relasjonTilBarnet?: SøkersRelasjonTilBarnet;
     kroniskEllerFunksjonshemming: boolean;
     sammeAdresse?: BarnSammeAdresse;
+    høyereRisikoForFravær?: boolean;
+    høyereRisikoForFraværBeskrivelse?: string;
 }
 export interface BarnToSendToApi {
     navn: string;

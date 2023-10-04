@@ -29,6 +29,12 @@ export const omBarnetMessages: MessageFileFormat = {
             'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra NAV. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',
         'steg.omBarnet.spm.kroniskEllerFunksjonshemmende':
             'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
+        'steg.omBarnet.spm.høyereRisikoForFravær':
+            'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning? ',
+        'steg.omBarnet.spm.høyereRisikoForFraværBeskrivelse.tittel':
+            'Nå trenger vi en beskrivelse fra deg på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb.',
+        'steg.omBarnet.spm.høyereRisikoForFravær.alert':
+            'For å ha rett til ekstra omsorgsdager på grunn av kronisk/langvarig sykdom eller funksjonshemning, må det være en sammenheng mellom barnets sykdom/funksjonshemning og risikoen for markant høyere fravær fra jobb enn det som er vanlig.',
         'steg.omBarnet.alert.barnet18ÅrKanIkkeFortsette': 'Det gis ikke omsorgsdager til barn over 18 år.',
         'steg.omBarnet.alert.ikkeKroniskSykdom':
             'Søknad om ekstra omsorgsdager gjelder kun for de som har barn med kronisk/langvarig sykdom eller funksjonshemning.',
@@ -52,11 +58,17 @@ export const omBarnetMessages: MessageFileFormat = {
             'Fødselsdatoen kan ikke være etter dagens dato. Skriv inn eller velg dato fra datovelgeren.',
         'validation.barnetsFødselsdato.barnOver18år': 'Det gis ikke omsorgsdager til barn over 18 år.',
         'validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets navn.',
-        'validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks}.',
+        'validation.barnetsNavn.stringIsTooLong': 'Navnet på barnet kan ikke inneholde flere enn {maks} tegn.',
         'validation.søkersRelasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
         'validation.sammeAdresse.noValue':
             'Du må svare ja, nei eller ja, barnet har delt fast bosted på om du bor sammen med barnet.',
         'validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om barnet har en en kronisk sykdom eller funksjonshemning.',
+        'validation.høyereRisikoForFraværBeskrivelse.stringHasNoValue':
+            'Skriv inn en beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb.',
+        'validation.høyereRisikoForFraværBeskrivelse.stringIsTooLong':
+            'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb kan ikke inneholde flere enn 2000 tegn.',
+        'validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
+            'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb må være på minst 5 tegn.',
     },
 };
