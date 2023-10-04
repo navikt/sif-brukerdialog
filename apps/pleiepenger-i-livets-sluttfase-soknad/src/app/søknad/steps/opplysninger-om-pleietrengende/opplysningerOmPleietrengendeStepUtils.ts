@@ -75,5 +75,7 @@ export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
             pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
             norskIdentitetsnummer,
         };
-    } else undefined;
+    } else {
+        return undefined;
+    }
 };

@@ -9,7 +9,7 @@ import {
     submitModal,
     submitSkjema,
     selectRadioYesOrNo,
-} from '../utils';
+} from './cyHelpers';
 
 dayjs.extend(isoWeek);
 dayjs.locale(locale);

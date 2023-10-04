@@ -1,4 +1,4 @@
-import { submitSkjema, getTestElementByType, getTestElement, getElement } from '../utils';
+import { submitSkjema, getTestElementByType, getTestElement, getElement } from './cyHelpers';
 
 const fileName = 'navlogopng.png';
 const ingenLegeerklæringText = 'Ingen legeerklæring er lastet opp';
@@ -17,7 +17,6 @@ const fyllUtLegeerklæringEnFil = () => {
     cy.wait(200);
     getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
     submitSkjema();
-    cy.wait(400);
     cy.wait('@putMellomlagring');
 };
 
