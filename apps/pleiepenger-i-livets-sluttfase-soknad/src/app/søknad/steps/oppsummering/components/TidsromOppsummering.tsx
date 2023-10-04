@@ -32,10 +32,6 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
                 <ValgteDagerMedPleie dagerMedPleie={dagerMedPleie} />
             </SummaryBlock>
 
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
-                <FormattedMessage id={`steg.oppsummering.${apiData.flereSokere}`} />
-            </SummaryBlock>
-
             {/* Utenlandsopphold i perioden */}
             {apiData.utenlandsoppholdIPerioden && (
                 <>

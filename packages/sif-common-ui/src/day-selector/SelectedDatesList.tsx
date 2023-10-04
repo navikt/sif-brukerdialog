@@ -4,10 +4,11 @@ import dayjs from 'dayjs';
 
 interface Props {
     dates: Date[];
+    groupDates?: boolean;
 }
 
-const SelectedDatesList: React.FunctionComponent<Props> = ({ dates }) => {
-    const dateRanges = getDateRangesFromDates(dates);
+const SelectedDatesList: React.FunctionComponent<Props> = ({ dates, groupDates }) => {
+    const dateRanges = groupDates ? getDateRangesFromDates(dates) : dates.map((d) => ({ from: d, to: d }));
     return (
         <ul>
             {dateRanges.map((dr) => (

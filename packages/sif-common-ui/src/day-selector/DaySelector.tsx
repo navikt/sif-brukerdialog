@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Accordion, BodyShort, DatePicker, HStack, Link, ReadMore, Tag, VStack } from '@navikt/ds-react';
+import { Accordion, BodyShort, DatePicker, HStack, Link, Tag, VStack } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
 import {
     DateRange,
@@ -87,48 +87,57 @@ const DaySelector: React.FunctionComponent<Props> = ({
     if (mode === 'calendar' && currentMonth) {
         return (
             <div className="daySelector__calendarWrapper">
-                <DatePicker.Standalone
-                    locale="nb"
-                    onMonthChange={(month) => {
-                        setCurrentMonth(month);
-                    }}
-                    className="daySelector__month"
-                    fromDate={dateRange.from}
-                    toDate={dateRange.to}
-                    fixedWeeks={false}
-                    disableWeekends={true}
-                    month={currentMonth}
-                    selected={selectedDaysInMonths[getMonthKey(currentMonth)] || []}
-                    showWeekNumber={true}
-                    onWeekNumberClick={(weekNumber) => onWeekNumberClick(weekNumber, currentMonth)}
-                    mode="multiple"
-                    onSelect={(dates) => onSelectDates(currentMonth, dates || [])}
-                />
-                <div className="daySelector__tags">
-                    <VStack gap="5">
-                        <HStack gap="5" align={'center'}>
-                            <BodyShort>Valgte dager: </BodyShort>
-                            <HStack gap={'2'} align={'center'}>
-                                {monthsWithSelectedDates.map((m, index) => {
-                                    return (
-                                        <Link
-                                            variant="action"
-                                            onClick={() => setCurrentMonth(m.from)}
-                                            underline={false}
-                                            style={{ cursor: 'pointer' }}>
-                                            <Tag variant="info" key={index}>
-                                                <div className="capitalize">{dayjs(m.from).format('MMMM')}</div>:{' '}
-                                                {selectedDaysInMonths[getMonthKey(m.from)].length}
-                                            </Tag>
-                                        </Link>
-                                    );
-                                })}
-                            </HStack>
-                        </HStack>
-                        <ReadMore header="Vis dager som er valgt">
-                            <SelectedDatesList dates={getAllSelectedDates(selectedDaysInMonths).sort(sortDates)} />
-                        </ReadMore>
-                    </VStack>
+                <div className="daySelector__calendarContent">
+                    <DatePicker.Standalone
+                        locale="nb"
+                        onMonthChange={(month) => {
+                            setCurrentMonth(month);
+                        }}
+                        className="daySelector__month"
+                        fromDate={dateRange.from}
+                        toDate={dateRange.to}
+                        fixedWeeks={false}
+                        disableWeekends={true}
+                        month={currentMonth}
+                        selected={selectedDaysInMonths[getMonthKey(currentMonth)] || []}
+                        showWeekNumber={true}
+                        onWeekNumberClick={(weekNumber) => onWeekNumberClick(weekNumber, currentMonth)}
+                        mode="multiple"
+                        onSelect={(dates) => onSelectDates(currentMonth, dates || [])}
+                    />
+                    <div className="daySelector__tags">
+                        <VStack gap="2">
+                            {/* <HStack gap="5" align={'center'}> */}
+                            <BodyShort as="div" spacing={false}>
+                                Valgte dager:
+                            </BodyShort>
+
+                            {1 + 1 === 2 && (
+                                <HStack gap={'2'} align={'center'} wrap={true}>
+                                    {monthsWithSelectedDates.map((m, index) => {
+                                        return (
+                                            <Link
+                                                variant="action"
+                                                onClick={() => setCurrentMonth(m.from)}
+                                                underline={false}
+                                                style={{ cursor: 'pointer' }}>
+                                                <Tag variant="info" key={index}>
+                                                    <div className="capitalize">{dayjs(m.from).format('MMMM')}</div>:{' '}
+                                                    {selectedDaysInMonths[getMonthKey(m.from)].length}
+                                                </Tag>
+                                            </Link>
+                                        );
+                                    })}
+                                </HStack>
+                            )}
+                            {/* </HStack> */}
+                            {1 + 1 === 3 && (
+                                // <ReadMore header="Vis dager som er valgt">
+                                <SelectedDatesList dates={getAllSelectedDates(selectedDaysInMonths).sort(sortDates)} />
+                                // </ReadMore>
+                            )}
+                        </VStack>
+                    </div>
                 </div>
             </div>
         );
