@@ -22,6 +22,7 @@ interface Props {
     selectedDates?: Date[];
     maxDays?: number;
     reverseOrder?: boolean;
+    mode?: 'accordion' | 'calendar';
     onChange: (dates: Date[]) => void;
 }
 
@@ -31,7 +32,13 @@ const getMonthKey = (date: Date): string => {
 
 type SelectedDaysInMonths = { [monthAndYear: string]: Date[] };
 
-const DaySelector: React.FunctionComponent<Props> = ({ dateRange, selectedDates = [], onChange, reverseOrder }) => {
+const DaySelector: React.FunctionComponent<Props> = ({
+    dateRange,
+    selectedDates = [],
+    onChange,
+    reverseOrder,
+    mode = 'calendar',
+}) => {
     const [selectedDaysInMonths, setSelectedDaysInMonths] = useState<SelectedDaysInMonths>(
         getSelectedDaysInMonthsFromDates(dateRange, selectedDates),
     );
@@ -67,6 +74,24 @@ const DaySelector: React.FunctionComponent<Props> = ({ dateRange, selectedDates 
             );
         }
     };
+
+    if (mode === 'calendar') {
+        return (
+            <DatePicker.Standalone
+                locale="nb"
+                className="daySelector__month"
+                fromDate={dateRange.from}
+                toDate={dateRange.to}
+                fixedWeeks={false}
+                disableWeekends={true}
+                selected={selectedDaysInMonths[getMonthKey(dateRange.from)] || []}
+                showWeekNumber={true}
+                onWeekNumberClick={(weekNumber) => onWeekNumberClick(weekNumber, dateRange.from)}
+                mode="multiple"
+                onSelect={(dates) => onSelectDates(dateRange.from, dates || [])}
+            />
+        );
+    }
 
     return (
         <div className="daySelectorWrapper">
