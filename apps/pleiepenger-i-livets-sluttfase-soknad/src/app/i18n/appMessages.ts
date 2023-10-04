@@ -182,31 +182,14 @@ export const appMessages: MessageFileFormat = {
         'validation.harForståttRettigheterOgPlikter.notChecked':
             'Du må bekrefte at du har lest og forstått dine plikter.',
 
-        'validation.periodeFra.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
-        'validation.periodeFra.dateHasInvalidFormat':
-            'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-        'validation.periodeFra.fromDateIsAfterToDate':
-            'Fra-datoen kan ikke være etter til-datoen. Skriv inn eller velg dato fra kalenderen.',
-        'validation.periodeFra.dateIsBeforeMin':
-            'Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.',
-        'validation.periodeFra.dateIsNotWeekday':
-            'Periodens fra-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-        'validation.periodeTil.dateHasNoValue': 'Du må fylle ut periodens til-dato.',
-        'validation.periodeTil.dateHasInvalidFormat':
-            'Du må oppgi periodens til-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
-        'validation.periodeTil.dateIsBeforeMin':
-            'Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.',
-        'validation.periodeTil.dateIsNotWeekday':
-            'Periodens til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-        'validation.periodeTil.dateIsAfterMax': 'Du kan kun søke pleiepenger for opptil ett år av gangen.',
-        'validation.periodeTil.toDateIsBeforeFromDate':
-            'Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.',
-
         'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.',
 
         'validation.flereSokere.noValue':
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
+
+        'validation.skalJobbeIPerioden.yesOrNoIsUnanswered':
+            'Du må svare ja eller nei på om du skal jobbe på noen av dagene du skal pleie.',
 
         'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
 

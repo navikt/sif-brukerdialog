@@ -72,9 +72,6 @@ const TidsromStep = () => {
         const tidsromSøknadsdata = getTidsromSøknadsdataFromFormValues(values);
         if (tidsromSøknadsdata) {
             clearStepFormValues(stepId);
-            // const arbeidstid = søknadsdata.arbeidstid
-            //     ? syncArbeidstidMedDagerMedPleie(søknadsdata.arbeidstid, tidsromSøknadsdata.dagerMedPleie)
-            //     : undefined;
             return [
                 actionsCreator.setSøknadTidsrom(tidsromSøknadsdata),
                 actionsCreator.syncArbeidstidMedTidsrom(tidsromSøknadsdata),

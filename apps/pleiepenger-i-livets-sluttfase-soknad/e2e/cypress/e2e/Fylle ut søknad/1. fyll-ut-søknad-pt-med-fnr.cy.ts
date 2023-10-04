@@ -1,11 +1,11 @@
 import { contextConfig } from '../contextConfig';
 import { fyllUtArbeidssituasjonEnkelt } from '../utils/arbeidssituasjon';
-import { fyllUtArbeidstid } from '../utils/arbeidstid';
+import { fyllUtArbeidstidToMånederEnArbeidsgiver } from '../utils/arbeidstid';
 import { fyllUtLegeerklæringSteg } from '../utils/legeerklæring';
 import { fyllUtMedlemskapSteg } from '../utils/medlemskap';
 import { kontrollerOppsummering } from '../utils/oppsummering';
 import { fyllUtOpplysningerOmPleietrengende } from '../utils/pleietrengende';
-import { fyllUtPeriodenEnkelt } from '../utils/tidsrom';
+import { fyllUtPeriodenEnkeltKalender } from '../utils/tidsrom';
 import { startSøknad } from '../utils/velkommen';
 
 const startUrl =
@@ -20,11 +20,11 @@ describe('Fylle ut søknad pleietrengende med fnr', () => {
         });
         startSøknad();
         fyllUtOpplysningerOmPleietrengende();
-        fyllUtLegeerklæringSteg('komplett');
-        fyllUtPeriodenEnkelt();
+        fyllUtPeriodenEnkeltKalender();
         fyllUtArbeidssituasjonEnkelt();
-        fyllUtArbeidstid();
+        fyllUtArbeidstidToMånederEnArbeidsgiver();
         fyllUtMedlemskapSteg();
+        fyllUtLegeerklæringSteg('komplett');
         kontrollerOppsummering('komplett');
     });
 });
