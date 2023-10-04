@@ -9,10 +9,6 @@ on:
             app-name:
                 type: string
                 required: true
-        secrets:
-            NAIS_DEPLOY_APIKEY:
-                description: Nais deploy APIKEY
-                required: false
 
 jobs:
     deploy-to-dev:
