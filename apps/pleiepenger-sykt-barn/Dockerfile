@@ -1,5 +1,7 @@
 
 FROM gcr.io/distroless/nodejs18-debian11
+LABEL org.opencontainers.image.title=pleiepenger-sykt-barn
+
 WORKDIR /app
 COPY /node_modules ./node_modules/
 COPY /apps/pleiepenger-sykt-barn/envSettings.js .
