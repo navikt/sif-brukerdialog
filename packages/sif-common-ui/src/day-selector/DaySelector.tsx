@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Accordion, BodyShort, DatePicker, HStack, Tag } from '@navikt/ds-react';
 import React, { useMemo, useState } from 'react';
 import {
@@ -39,6 +40,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
     reverseOrder,
     mode = 'calendar',
 }) => {
+    const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
     const [selectedDaysInMonths, setSelectedDaysInMonths] = useState<SelectedDaysInMonths>(
         getSelectedDaysInMonthsFromDates(dateRange, selectedDates),
     );
@@ -75,21 +77,26 @@ const DaySelector: React.FunctionComponent<Props> = ({
         }
     };
 
-    if (mode === 'calendar') {
+    if (mode === 'calendar' && currentMonth) {
         return (
-            <DatePicker.Standalone
-                locale="nb"
-                className="daySelector__month"
-                fromDate={dateRange.from}
-                toDate={dateRange.to}
-                fixedWeeks={false}
-                disableWeekends={true}
-                selected={selectedDaysInMonths[getMonthKey(dateRange.from)] || []}
-                showWeekNumber={true}
-                onWeekNumberClick={(weekNumber) => onWeekNumberClick(weekNumber, dateRange.from)}
-                mode="multiple"
-                onSelect={(dates) => onSelectDates(dateRange.from, dates || [])}
-            />
+            <div className="daySelector__calendarWrapper">
+                <DatePicker.Standalone
+                    locale="nb"
+                    onMonthChange={(month) => {
+                        setCurrentMonth(month);
+                    }}
+                    className="daySelector__month"
+                    fromDate={dateRange.from}
+                    toDate={dateRange.to}
+                    fixedWeeks={false}
+                    disableWeekends={true}
+                    selected={selectedDaysInMonths[getMonthKey(currentMonth)] || []}
+                    showWeekNumber={true}
+                    onWeekNumberClick={(weekNumber) => onWeekNumberClick(weekNumber, currentMonth)}
+                    mode="multiple"
+                    onSelect={(dates) => onSelectDates(currentMonth, dates || [])}
+                />
+            </div>
         );
     }
 

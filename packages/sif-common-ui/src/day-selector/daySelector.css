@@ -13,3 +13,16 @@
 .daySelector__hideWeekend .rdp-tbody .rdp-cell:nth-child(8) {
     display: none;
 }
+
+@media screen and (min-width: 560px) {
+    .daySelector__calendarWrapper {
+        background-color: var(--a-grayalpha-50);
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .daySelector__calendarWrapper .daySelector__month {
+        background-color: white;
+        border-radius: 0.5rem;
+    }
+}

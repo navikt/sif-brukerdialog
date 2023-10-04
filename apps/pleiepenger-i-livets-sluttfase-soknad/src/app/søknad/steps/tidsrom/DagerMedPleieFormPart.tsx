@@ -7,6 +7,8 @@ import { getTilgjengeligEndringsperiode } from '../../../utils/getTilgjengeligEn
 import { TidsromFormFields, TidsromFormValues } from './TidsromStep';
 import { Alert, BodyLong } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import ValgteDagerMedPleie from '../oppsummering/components/ValgteDagerMedPleie';
 
 interface Props {}
 
@@ -41,6 +43,13 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                     onChange={handleOnChange}
                     reverseOrder={true}
                 />
+
+                <Alert variant="info" inline={true}>
+                    <ExpandableInfo
+                        title={`${selectedDates.length} ${selectedDates.length === 1 ? 'dag' : 'dager'} valgt`}>
+                        <ValgteDagerMedPleie dagerMedPleie={selectedDates} />
+                    </ExpandableInfo>
+                </Alert>
                 {selectedDates.length > 60 && (
                     <div>
                         <Block margin="l">

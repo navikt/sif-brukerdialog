@@ -2,13 +2,12 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { SummaryBlock, SummaryList, SummarySection } from '@navikt/sif-common-soknad-ds';
-import { dateFormatter, dateRangeToISODateRange, getDateRangesFromDates } from '@navikt/sif-common-utils/lib';
-import dayjs from 'dayjs';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import {
     renderFerieuttakIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummary,
 } from './renderUtenlandsoppholdSummary';
+import ValgteDagerMedPleie from './ValgteDagerMedPleie';
 
 interface Props {
     dagerMedPleie: Date[];
@@ -17,8 +16,6 @@ interface Props {
 
 const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
     const intl = useIntl();
-
-    const dateRanges = getDateRangesFromDates(dagerMedPleie);
 
     return (
         <SummarySection header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
@@ -32,19 +29,7 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
                 />
             </SummaryBlock> */}
             <SummaryBlock header={`${dagerMedPleie.length} dager med pleiepenger`}>
-                <ul>
-                    {dateRanges.map((dr) => (
-                        <li key={dateRangeToISODateRange(dr)} className="capitalize">
-                            {dayjs(dr.from).isSame(dr.to, 'day') ? (
-                                <>{dateFormatter.dayCompactDate(dr.from)}</>
-                            ) : (
-                                <>
-                                    {dateFormatter.dayCompactDate(dr.from)} - {dateFormatter.dayCompactDate(dr.to)}
-                                </>
-                            )}
-                        </li>
-                    ))}
-                </ul>
+                <ValgteDagerMedPleie dagerMedPleie={dagerMedPleie} />
             </SummaryBlock>
 
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
