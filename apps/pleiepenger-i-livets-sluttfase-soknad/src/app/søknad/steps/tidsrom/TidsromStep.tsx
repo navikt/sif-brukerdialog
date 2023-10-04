@@ -69,10 +69,16 @@ const TidsromStep = () => {
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: TidsromFormValues) => {
-        const TidsromSøknadsdata = getTidsromSøknadsdataFromFormValues(values);
-        if (TidsromSøknadsdata) {
+        const tidsromSøknadsdata = getTidsromSøknadsdataFromFormValues(values);
+        if (tidsromSøknadsdata) {
             clearStepFormValues(stepId);
-            return [actionsCreator.setSøknadTidsrom(TidsromSøknadsdata)];
+            // const arbeidstid = søknadsdata.arbeidstid
+            //     ? syncArbeidstidMedDagerMedPleie(søknadsdata.arbeidstid, tidsromSøknadsdata.dagerMedPleie)
+            //     : undefined;
+            return [
+                actionsCreator.setSøknadTidsrom(tidsromSøknadsdata),
+                actionsCreator.syncArbeidstidMedTidsrom(tidsromSøknadsdata),
+            ];
         }
         return [];
     };

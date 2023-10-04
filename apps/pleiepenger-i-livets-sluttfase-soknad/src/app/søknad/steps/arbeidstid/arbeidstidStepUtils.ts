@@ -1,3 +1,4 @@
+import { DateDurationMap, dateToISODate } from '@navikt/sif-common-utils/lib';
 import { ArbeidIPeriodeType } from '../../../types/arbeidIPeriodeType';
 import { ArbeidFrilansSøknadsdata } from '../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
@@ -32,14 +33,7 @@ export const getAntallArbeidsforhold = (arbeidssituasjon: ArbeidssituasjonSøkna
 export const getArbeidstidStepInitialValues = (
     søknadsdata: Søknadsdata,
     tempFormValues?: ArbeidstidFormValues,
-    //formValues?: ArbeidstidFormValues,
 ): ArbeidstidFormValues => {
-    /*if (formValues) {
-        // Trenger vi det her? det viser ikke arbeidsforhold hvis bruker går tilbake og endrer noe 
-        console.log('formValues');
-        return formValues;
-    }*/
-
     const arbeidsgivereArbeidstidSøknadsdata = søknadsdata.arbeidstid?.arbeidsgivere;
     const frilansArbeidstidSøknadsdata = søknadsdata.arbeidstid?.frilans;
     const selvstendigArbeidstidSøknadsdata = søknadsdata.arbeidstid?.selvstendig;
@@ -246,4 +240,44 @@ export const getArbeidIPeriodeSøknadsdata = (
     }
 
     return undefined;
+};
+
+export const syncArbeidstidMedDagerMedPleie = (arbeidstid: ArbeidstidSøknadsdata, dagerMedPleie: Date[] = []) => {
+    const { arbeidsgivere } = arbeidstid;
+    if (arbeidsgivere) {
+        Object.keys(arbeidsgivere).forEach((key) => {
+            const a = arbeidsgivere[key];
+            if (a && a.arbeidIPeriode?.type === ArbeidIPeriodeType.arbeiderUlikeUkerTimer) {
+                a.arbeidIPeriode.enkeltdager = cleanupDateDurationMapWithValidDates(
+                    a.arbeidIPeriode.enkeltdager,
+                    dagerMedPleie,
+                );
+            }
+        });
+    }
+    if (arbeidstid.frilans?.type === ArbeidIPeriodeType.arbeiderUlikeUkerTimer) {
+        arbeidstid.frilans.enkeltdager = cleanupDateDurationMapWithValidDates(
+            arbeidstid.frilans.enkeltdager,
+            dagerMedPleie,
+        );
+    }
+    if (arbeidstid.selvstendig?.type === ArbeidIPeriodeType.arbeiderUlikeUkerTimer) {
+        arbeidstid.selvstendig.enkeltdager = cleanupDateDurationMapWithValidDates(
+            arbeidstid.selvstendig.enkeltdager,
+            dagerMedPleie,
+        );
+    }
+
+    return arbeidstid;
+};
+
+export const cleanupDateDurationMapWithValidDates = (enkeltdager: DateDurationMap, dates: Date[]) => {
+    const cleanedMap: DateDurationMap = {};
+    const isoDates = dates.map(dateToISODate);
+    Object.entries(enkeltdager).map(([key, value]) => {
+        if (isoDates.includes(key)) {
+            cleanedMap[key] = value;
+        }
+    });
+    return cleanedMap;
 };
