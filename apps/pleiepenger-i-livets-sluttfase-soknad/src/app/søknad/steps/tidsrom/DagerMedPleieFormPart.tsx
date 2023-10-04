@@ -45,10 +45,18 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                 />
 
                 <Alert variant="info" inline={true}>
-                    <ExpandableInfo
-                        title={`${selectedDates.length} ${selectedDates.length === 1 ? 'dag' : 'dager'} valgt`}>
-                        <ValgteDagerMedPleie dagerMedPleie={selectedDates} />
-                    </ExpandableInfo>
+                    {selectedDates.length === 0 ? (
+                        <>Ingen dager valgt</>
+                    ) : (
+                        <ExpandableInfo
+                            title={
+                                selectedDates.length === 1
+                                    ? `Vis hvilken dag som er valgt`
+                                    : `Vis liste over hvilke ${selectedDates.length} ${selectedDates.length} dager som er valgt`
+                            }>
+                            <ValgteDagerMedPleie dagerMedPleie={selectedDates} />
+                        </ExpandableInfo>
+                    )}
                 </Alert>
                 {selectedDates.length > 60 && (
                     <div>
