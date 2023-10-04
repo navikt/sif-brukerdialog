@@ -8,11 +8,13 @@ import {
     selectRadioByNameAndValue,
     selectRadioYesOrNo,
     setInputByNameValue,
+    setInputValue,
     submitSkjema,
 } from '.';
 import { cyApiMockData } from '../data/cyApiMockData';
 
 const fileName = 'navlogopng.png';
+const høyereRisikoForFraværBeskrivelse = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
 
 interface BarnOgDeltBostedProps {
     deltBosted: boolean;
@@ -35,8 +37,10 @@ const fyllUtOmBarn = (props: BarnOgDeltBostedProps) => {
     it('Fyller ut om barnet', () => {
         cy.injectAxe();
         getTestElement('barn-2811762539343').click();
-        selectRadioByNameAndValue('sammeAdresse', props.deltBosted ? 'NEI' : 'JA_DELT_BOSTED'),
-            selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
+        selectRadioByNameAndValue('sammeAdresse', props.deltBosted ? 'NEI' : 'JA_DELT_BOSTED');
+        selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
+        selectRadioYesOrNo('høyereRisikoForFravær', true);
+        setInputValue('høyereRisikoForFraværBeskrivelse', høyereRisikoForFraværBeskrivelse);
         cy.checkA11y();
         submitSkjema();
     });
@@ -52,9 +56,10 @@ const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
         setInputByNameValue('barnetsNavn', cyApiMockData.barnMock.barn[0].fornavn);
         setInputByNameValue('barnetsFødselsdato', cyApiMockData.barnMock.barn[0].fødselsdato);
         getInputByName('søkersRelasjonTilBarnet').select('mor');
-        selectRadioByNameAndValue('sammeAdresse', props.deltBosted ? 'NEI' : 'JA_DELT_BOSTED'),
-            selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
+        selectRadioByNameAndValue('sammeAdresse', props.deltBosted ? 'NEI' : 'JA_DELT_BOSTED');
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
+        selectRadioYesOrNo('høyereRisikoForFravær', true);
+        setInputValue('høyereRisikoForFraværBeskrivelse', høyereRisikoForFraværBeskrivelse);
         cy.checkA11y();
         submitSkjema();
     });
@@ -106,6 +111,7 @@ const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
             oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fornavn);
         }
         oppsummering.should('contain', dateFormatter.full(ISODateToDate(cyApiMockData.barnMock.barn[0].fødselsdato)));
+        oppsummering.should('contain', høyereRisikoForFraværBeskrivelse);
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
         if (props.deltBosted === false) {
             getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);
