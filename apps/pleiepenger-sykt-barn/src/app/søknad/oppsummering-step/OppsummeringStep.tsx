@@ -1,7 +1,5 @@
-import { Alert, BodyLong } from '@navikt/ds-react';
-import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
+import { Alert } from '@navikt/ds-react';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -13,7 +11,6 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import SummaryBlock from '@navikt/sif-common-soknad-ds/lib/components/summary-block/SummaryBlock';
 import SummaryList from '@navikt/sif-common-soknad-ds/lib/components/summary-list/SummaryList';
@@ -22,6 +19,9 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import HttpStatus from 'http-status-codes';
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { purge, sendApplication } from '../../api/api';
 import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
@@ -47,12 +47,12 @@ import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenS
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
+import './oppsummeringStep.less';
 import {
     renderFerieuttakIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummary,
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
-import './oppsummeringStep.less';
 
 interface Props {
     values: SøknadFormValues;
@@ -197,9 +197,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
                         <SifGuidePanel>
-                            <BodyLong as="div">
+                            <p>
                                 <FormattedMessage id="steg.oppsummering.info" />
-                            </BodyLong>
+                            </p>
                         </SifGuidePanel>
 
                         {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (

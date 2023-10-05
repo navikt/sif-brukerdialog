@@ -1,28 +1,28 @@
-import { Alert, Button, ErrorSummary, Heading, Ingress } from '@navikt/ds-react';
-import { useEffect, useRef } from 'react';
-import { useIntl } from 'react-intl';
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@hooks';
 import { Back } from '@navikt/ds-icons';
+import { Alert, Button, ErrorSummary, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import DurationText from '@navikt/sif-common-core-ds/lib/components/duration-text/DurationText';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import { usePrevious } from '@navikt/sif-common-hooks';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import { getCheckedValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import JaNeiSvar from '@navikt/sif-common-forms-ds/lib/components/summary/JaNeiSvar';
+import { usePrevious } from '@navikt/sif-common-hooks';
 import { SummaryBlock, SummarySection } from '@navikt/sif-common-soknad-ds';
 import { ISODurationToDuration } from '@navikt/sif-common-utils/lib';
 import { getApiDataFromSøknadsdata } from '@utils';
+import { useEffect, useRef } from 'react';
+import { useIntl } from 'react-intl';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { useStepConfig } from '../../../hooks/useStepConfig';
-import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
+import { StepId } from '../../config/StepId';
 import ArbeidstidOppsummering from './ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './LovbestemtFerieOppsummering';
-import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import './oppsummering.css';
+import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -77,12 +77,10 @@ const OppsummeringStep = () => {
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
-                <Ingress as="div">
-                    <p>
-                        Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Hvis
-                        noe ikke stemmer, kan du gå tilbake og endre igjen.
-                    </p>
-                </Ingress>
+                <p>
+                    Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Hvis noe
+                    ikke stemmer, kan du gå tilbake og endre igjen.
+                </p>
             </SifGuidePanel>
 
             {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (

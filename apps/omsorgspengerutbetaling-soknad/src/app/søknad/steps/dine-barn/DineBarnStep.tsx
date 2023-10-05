@@ -1,13 +1,36 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import { YesOrNo } from '@navikt/sif-common-formik-ds/lib/types';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { StepId } from '../../../types/StepId';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { Alert, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
+import ItemList from '@navikt/sif-common-core-ds/lib/components/lists/item-list/ItemList';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { YesOrNo } from '@navikt/sif-common-formik-ds/lib/types';
+import {
+    getCheckedValidator,
+    getListValidator,
+    getYesOrNoValidator,
+} from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/AnnetBarnListAndDialog';
+import { AnnetBarn } from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/types';
+import { dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
+import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { RegistrertBarn } from '../../../types/RegistrertBarn';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import SøknadStep from '../../SøknadStep';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     barnItemLabelRenderer,
     cleanHarUtvidetRettFor,
@@ -17,29 +40,6 @@ import {
     minstEtBarn12årIårellerYngre,
     nYearsAgo,
 } from './dineBarnStepUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import actionsCreator from '../../context/action/actionCreator';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import SøknadStep from '../../SøknadStep';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { RegistrertBarn } from '../../../types/RegistrertBarn';
-import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/annet-barn/AnnetBarnListAndDialog';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { Alert, Heading } from '@navikt/ds-react';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import ItemList from '@navikt/sif-common-core-ds/lib/components/lists/item-list/ItemList';
-import {
-    getYesOrNoValidator,
-    getListValidator,
-    getCheckedValidator,
-} from '@navikt/sif-common-formik-ds/lib/validation';
-import ContentWithHeader from '@navikt/sif-common-core-ds/lib/components/content-with-header/ContentWithHeader';
-import { dateToday } from '@navikt/sif-common-utils/lib/dateUtils';
-import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValues';
 // import { FormikValuesObserver } from '@navikt/sif-common-formik-ds/lib';
 
 export enum DineBarnFormFields {
@@ -139,10 +139,12 @@ const DineBarnStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    <FormattedMessage id="step.dineBarn.counsellorPanel.avsnitt.1" />
-                                    <Block margin="l">
+                                    <p>
+                                        <FormattedMessage id="step.dineBarn.counsellorPanel.avsnitt.1" />
+                                    </p>
+                                    <p>
                                         <FormattedMessage id="step.dineBarn.counsellorPanel.avsnitt.2" />
-                                    </Block>
+                                    </p>
                                 </SifGuidePanel>
 
                                 <FormBlock>
