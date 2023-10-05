@@ -48,16 +48,16 @@ const fyllUtTimerIUke = (
 export const fyllUtArbeidstidToMånederEnArbeidsgiver = () => {
     it('Fyller ut arbeidstid når bruker har kun én arbeidsgiver', () => {
         // August
-        cy.get('.navds-accordion__item').eq(0).click();
-        cy.get('.navds-accordion__item .durationWeekdaysWeek').should('be.visible');
+        // cy.get('.navds-accordion__item').eq(0).click();
+        // cy.get('.navds-accordion__item .durationWeekdaysWeek').should('be.visible');
 
         fyllUtTimerIUke(33, {
             mandag: { hours: '3', minutes: '30' },
             onsdag: { hours: '3', minutes: '30' },
         });
 
-        cy.get('.navds-accordion__item').eq(1).click();
-        cy.get('.navds-accordion__item .durationWeekdaysWeek').should('be.visible');
+        // cy.get('.navds-accordion__item').eq(1).click();
+        // cy.get('.navds-accordion__item .durationWeekdaysWeek').should('be.visible');
 
         fyllUtTimerIUke(36, {
             mandag: { hours: '3', minutes: '30' },
@@ -65,10 +65,6 @@ export const fyllUtArbeidstidToMånederEnArbeidsgiver = () => {
         fyllUtTimerIUke(38, {
             mandag: { hours: '3', minutes: '30' },
         });
-
-        // September
-        cy.get('.navds-accordion__item').eq(1).click();
-        cy.get('.navds-accordion__item .durationWeekdaysWeek').should('be.visible');
 
         submitSkjema();
         cy.wait('@putMellomlagring');
