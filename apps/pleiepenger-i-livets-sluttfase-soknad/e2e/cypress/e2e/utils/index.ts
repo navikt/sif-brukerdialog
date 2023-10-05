@@ -9,6 +9,6 @@ export const setDate = () => {
 export const getTilgjengeligEndringsperiode = (): DateRange => {
     return {
         from: dayjs(testDate).startOf('month').subtract(3, 'months').toDate(),
-        to: dayjs(testDate).add(1, 'month').toDate(),
+        to: dayjs().add(4, 'weeks').toDate(),
     };
 };
