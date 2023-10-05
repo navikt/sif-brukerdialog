@@ -1,31 +1,18 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import { dateToday } from '@navikt/sif-common-utils/lib';
-import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
-import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import SøknadStep from '../../SøknadStep';
+import { Alert, Heading } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
     FormikYesOrNoQuestion,
+    ValidationError,
+    YesOrNo,
     getTypedFormComponents,
     resetFieldValue,
     resetFieldValues,
-    ValidationError,
-    YesOrNo,
 } from '@navikt/sif-common-formik-ds/lib';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import {
     getDateValidator,
     getFødselsnummerValidator,
@@ -33,15 +20,28 @@ import {
     getStringValidator,
     getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import { dateToday } from '@navikt/sif-common-utils/lib';
+import { FormattedMessage, useIntl } from 'react-intl';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import { StepId } from '../../../types/StepId';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
+import { ÅrsakManglerIdentitetsnummer } from '../../../types/ÅrsakManglerIdentitetsnummer';
+import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import SøknadStep from '../../SøknadStep';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import IdPart from './form-parts/IdPart';
-import { Alert, Heading } from '@navikt/ds-react';
 import {
     getOpplysningerOmPleietrengendeStepInitialValues,
     getOpplysningerOmPleietrengendeSøknadsdataFromFormValues,
     opplysningerOmPleietrengendeDefaultValues,
 } from './opplysningerOmPleietrengendeStepUtils';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import { YesOrNoDontKnow } from '../../../types/YesOrNoDontKnow';
 
 export enum OpplysningerOmPleietrengendeFormFields {
     pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
@@ -118,6 +118,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
+                                showSubmitButton={pleierDuDenSykeHjemme !== YesOrNo.NO}
                                 submitDisabled={
                                     pleierDuDenSykeHjemme === YesOrNo.NO || hasPendingUploads || isSubmitting
                                 }

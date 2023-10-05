@@ -1,44 +1,44 @@
+import { Heading } from '@navikt/ds-react';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
+import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
-import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
+import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/types';
+import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring/types';
-import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
-import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
-import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { StepId } from '../../../types/StepId';
-import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import actionsCreator from '../../context/action/actionCreator';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils/lib';
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
+import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
+import getLenker from '../../../lenker';
+import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
+import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import SøknadStep from '../../SøknadStep';
-import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
-import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsgivere';
-import { FormattedMessage, useIntl } from 'react-intl';
-import getLenker from '../../../lenker';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/opptjening-utland/OpptjeningUtlandListAndDialog';
-import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-utils/lib';
-import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
-import { Heading } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
+import actionsCreator from '../../context/action/actionCreator';
+import { useSøknadContext } from '../../context/hooks/useSøknadContext';
+import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
     getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
     visVernepliktSpørsmål,
 } from './arbeidssituasjonStepUtils';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { useState } from 'react';
-import { arbeidsgivereEndpoint } from '../../../api/endpoints/arbeidsgiverEndpoint';
-import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
+import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
+import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsgivere';
+import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
+import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -200,7 +200,7 @@ const ArbeidssituasjonStep = () => {
                                     />
                                 </FormBlock>
                                 <FormBlock>
-                                    <Heading level="2" size="large">
+                                    <Heading level="2" size="large" spacing={true}>
                                         <FormattedMessage id="steg.arbeidssituasjon.opptjeningUtland.tittel" />
                                     </Heading>
                                     <YesOrNoQuestion

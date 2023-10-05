@@ -1,24 +1,24 @@
-import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
+import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils/lib';
+import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import SøknadStep from '../../SøknadStep';
+import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
-import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import DagerMedPleieFormPart from './DagerMedPleieFormPart';
 import {
@@ -110,8 +110,9 @@ const TidsromStep = () => {
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
-                                    <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.1" />
-
+                                    <p>
+                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.1" />
+                                    </p>
                                     <p>
                                         <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.2" />
                                     </p>
