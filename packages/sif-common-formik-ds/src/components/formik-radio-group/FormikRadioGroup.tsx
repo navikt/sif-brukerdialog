@@ -4,7 +4,6 @@ import React, { useContext } from 'react';
 import { TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
 import { TypedFormikFormContext } from '../typed-formik-form/TypedFormikForm';
-import './formik-radio-group--panel.scss';
 
 export type FormikRadioProp = Omit<RadioProps, 'children' | 'name'> & {
     label: React.ReactNode;
