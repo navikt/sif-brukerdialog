@@ -108,7 +108,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                     <div className="daySelector__tags">
                         <VStack gap="2">
                             {/* <HStack gap="5" align={'center'}> */}
-                            <BodyShort as="div" spacing={false}>
+                            <BodyShort as="div" spacing={false} size="small">
                                 Valgte dager:
                             </BodyShort>
 
@@ -122,7 +122,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                                                 onClick={() => setCurrentMonth(m.from)}
                                                 underline={false}
                                                 style={{ cursor: 'pointer' }}>
-                                                <Tag variant="info" key={index}>
+                                                <Tag variant="info" key={index} size="small">
                                                     <div className="capitalize">{dayjs(m.from).format('MMMM')}</div>:{' '}
                                                     {selectedDaysInMonths[getMonthKey(m.from)].length}
                                                 </Tag>
