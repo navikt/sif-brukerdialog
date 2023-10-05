@@ -20,7 +20,7 @@ export const arbeidssituasjonMessages: MessageFileFormat = {
         'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
             'Hvis du i perioden du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
         'steg.arbeidssituasjon.info.tekst':
-            'Dersom det mangler en arbeidsgiver her, må du be arbeidsgiveren din sende ny A-melding, enten via lønns- og personalsystemet eller gjennom Altinn.',
+            'Hvis det mangler en arbeidsgiver her, må du be arbeidsgiveren din sende ny A-melding, enten via lønns- og personalsystemet eller gjennom Altinn.',
         'steg.arbeidssituasjon.ingenOpplysninger': 'Vi har ikke funnet noen arbeidsgiver registrert på deg.',
 
         'steg.arbeidssituasjon.intro': 'Vi har funnet disse arbeidsforholdene registrert på deg.',
