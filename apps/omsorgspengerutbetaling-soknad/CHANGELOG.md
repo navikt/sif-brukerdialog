@@ -1,5 +1,17 @@
 # @navikt/omsorgspengerutbetaling-soknad
 
+## 1.3.6
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+-   Updated dependencies [81e7e155]
+    -   @navikt/sif-common-formik-ds@1.0.3
+    -   @navikt/sif-common-forms-ds@8.9.1
+    -   @navikt/sif-common-core-ds@9.8.1
+    -   @navikt/sif-common-utils@3.40.2
+    -   @navikt/sif-common-soknad-ds@10.7.1
+
 ## 1.3.5
 
 ### Patch Changes

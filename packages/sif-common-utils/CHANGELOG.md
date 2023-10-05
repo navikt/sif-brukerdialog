@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.40.2
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
 ## 3.40.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.0.3
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
 ## 1.0.2
 
 ### Patch Changes
