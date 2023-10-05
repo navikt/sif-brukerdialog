@@ -21,10 +21,10 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.barnet.høyereRisikoForFravær.header':
             'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning? ',
         'steg.oppsummering.barnet.høyereRisikoForFraværBeskrivelse.header':
-            'En beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb',
+            'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb',
         'steg.oppsummering.vedlegg.header': 'Vedlegg',
         'steg.oppsummering.legeerklæring.header': 'Legeerklæring',
-        'steg.oppsummering.samværsavtale.header': 'Avtale om delt bosted',
+        'steg.oppsummering.samværsavtale.header': 'Avtale om delt fast bosted',
         'steg.oppsummering.bekrefterOpplysninger':
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
         'validation.harBekreftetOpplysninger.notChecked': 'Du må bekrefte opplysningene.',
