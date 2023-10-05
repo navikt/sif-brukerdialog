@@ -1,5 +1,13 @@
 # @navikt/sif-common-core-ds
 
+## 9.8.1
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+-   Updated dependencies [81e7e155]
+    -   @navikt/sif-common-utils@3.40.2
+
 ## 9.8.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.9.1
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
 ## 8.9.0
 
 ### Minor Changes
