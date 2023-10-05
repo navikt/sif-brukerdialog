@@ -117,6 +117,7 @@ const DaySelector: React.FunctionComponent<Props> = ({
                                     {monthsWithSelectedDates.map((m, index) => {
                                         return (
                                             <Link
+                                                key={index}
                                                 variant="action"
                                                 onClick={() => setCurrentMonth(m.from)}
                                                 underline={false}

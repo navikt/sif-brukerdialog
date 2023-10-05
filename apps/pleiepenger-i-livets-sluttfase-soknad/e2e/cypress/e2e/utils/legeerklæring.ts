@@ -1,4 +1,4 @@
-import { submitSkjema, getTestElementByType, getTestElement, getElement } from './cyHelpers';
+import { getTestElement, getTestElementByType, submitSkjema } from './cyHelpers';
 
 const fileName = 'navlogopng.png';
 const ingenLegeerklæringText = 'Ingen legeerklæring er lastet opp';
@@ -22,10 +22,10 @@ const fyllUtLegeerklæringEnFil = () => {
 
 const oppsummeringTestLegeerklæringEnFil = () => {
     getTestElement('legeerklæring-liste').within(() => {
-        getElement('li')
+        cy.get('li')
             .eq(0)
             .within(() => {
-                getElement('a').contains(fileName);
+                cy.get('a').contains(fileName);
             });
     });
 };
