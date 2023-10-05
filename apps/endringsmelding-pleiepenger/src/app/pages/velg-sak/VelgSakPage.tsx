@@ -1,19 +1,19 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import Page from '@navikt/sif-common-core-ds/lib/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { formatName } from '@navikt/sif-common-core-ds/lib/utils/personUtils';
-import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { ValidationError, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateFormatter } from '@navikt/sif-common-utils/lib';
 import { getSakFromK9Sak, getSisteSøknadsperiodeIK9Sak } from '@utils';
+import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { StepId } from '../../søknad/config/StepId';
-import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { SøknadRoutes, getSøknadStepRoute } from '../../søknad/config/SøknadRoutes';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 
 enum FormFields {
@@ -59,10 +59,10 @@ const VelgSakPage = () => {
                 <Heading level="1" size="large" spacing={true}>
                     Hei {søker.fornavn}
                 </Heading>
-                <BodyShort>
+                <p>
                     Vi ser at du har pleiepengesaker for flere barn. Du kan kun endre én sak om gangen, så du må velge
                     hvilken sak du ønsker å sende inn endring på.
-                </BodyShort>
+                </p>
             </SifGuidePanel>
             <FormBlock>
                 <FormikWrapper

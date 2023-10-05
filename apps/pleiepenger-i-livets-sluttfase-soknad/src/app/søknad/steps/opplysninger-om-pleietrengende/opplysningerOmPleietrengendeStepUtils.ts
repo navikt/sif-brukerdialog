@@ -28,6 +28,7 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
                     pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     norskIdentitetsnummer: opplysningerOmPleietrengende.norskIdentitetsnummer,
+                    flereSokere: opplysningerOmPleietrengende.flereSokere,
                     harIkkeFnr: false,
                     pleietrengendeId: [],
                 };
@@ -36,6 +37,7 @@ export const getOpplysningerOmPleietrengendeStepInitialValues = (
                     pleierDuDenSykeHjemme,
                     navn: opplysningerOmPleietrengende.navn,
                     harIkkeFnr: true,
+                    flereSokere: opplysningerOmPleietrengende.flereSokere,
                     fødselsdato: opplysningerOmPleietrengende.fødselsdato,
                     årsakManglerIdentitetsnummer: opplysningerOmPleietrengende.årsakManglerIdentitetsnummer,
                     pleietrengendeId: opplysningerOmPleietrengende.pleietrengendeId,
@@ -53,27 +55,32 @@ export const getOpplysningerOmPleietrengendeSøknadsdataFromFormValues = (
         navn,
         norskIdentitetsnummer,
         harIkkeFnr,
+        flereSokere,
         fødselsdato,
         årsakManglerIdentitetsnummer,
         pleietrengendeId,
         pleierDuDenSykeHjemme,
     } = formValues;
 
-    if (harIkkeFnr && fødselsdato && årsakManglerIdentitetsnummer) {
+    if (harIkkeFnr && fødselsdato && årsakManglerIdentitetsnummer && flereSokere) {
         return {
             type: 'pleietrengendeUtenFnr',
             navn,
             fødselsdato,
+            flereSokere,
             pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
             årsakManglerIdentitetsnummer,
             pleietrengendeId,
         };
-    } else if (norskIdentitetsnummer) {
+    } else if (norskIdentitetsnummer && flereSokere) {
         return {
             type: 'pleietrengendeMedFnr',
             navn,
             pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
+            flereSokere,
             norskIdentitetsnummer,
         };
-    } else undefined;
+    } else {
+        return undefined;
+    }
 };

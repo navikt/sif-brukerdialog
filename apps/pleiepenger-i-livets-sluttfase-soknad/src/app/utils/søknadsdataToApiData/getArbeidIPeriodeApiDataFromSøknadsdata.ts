@@ -6,11 +6,17 @@ import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTyp
 import { getEnkeltdagerIPeriodeApiData } from './tidsbrukApiUtils';
 
 export const getArbeidIPeriodeApiDataFromSøknadsdata = (
-    arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata,
+    skalJobbeIPerioden: boolean,
+    arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata | undefined,
     periode: DateRange,
     jobberNormaltTimer: number,
     dagerMedPleie: Date[],
 ): ArbeidIPeriodeApiData => {
+    if (skalJobbeIPerioden === false || !arbeidIPeriodeSøknadsdata) {
+        return {
+            jobberIPerioden: JobberIPeriodeSvar.heltFravær,
+        };
+    }
     switch (arbeidIPeriodeSøknadsdata.type) {
         case ArbeidIPeriodeType.arbeiderIkke:
             return {

@@ -124,6 +124,7 @@ const ArbeidssituasjonFrilans = ({
                         name={FrilansFormFields.startdato}
                         label={intlHelper(intl, 'frilanser.nårStartet.spm')}
                         dropdownCaption={true}
+                        minDate={dayjs().subtract(50, 'years').toDate()}
                         maxDate={søknadsdato}
                         validate={getFrilanserStartdatoValidator(formValues, søknadsperiode, søknadsdato)}
                         data-testid="frilanser.nårStartet"

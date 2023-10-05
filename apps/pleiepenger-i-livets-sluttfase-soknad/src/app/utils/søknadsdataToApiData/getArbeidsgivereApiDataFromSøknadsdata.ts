@@ -1,13 +1,15 @@
 import { DateRange } from '@navikt/sif-common-formik-ds/lib';
-import { ArbeidsgiverApiData } from '../../types/søknadApiData/SøknadApiData';
-import { ArbeidstidArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
-import { ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidsgivereSøknadsdata';
 import { dateToISODate } from '@navikt/sif-common-utils/lib';
+import { ArbeidsgiverApiData } from '../../types/søknadApiData/SøknadApiData';
+import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/arbeidIPeriodeSøknadsdata';
+import { ArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidsgivereSøknadsdata';
+import { ArbeidstidArbeidsgivereSøknadsdata } from '../../types/søknadsdata/ArbeidstidArbeidsgivereSøknadsdata';
 import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
 
 export const getArbeidsgivereApiDataFromSøknadsdata = (
     søknadsperiode: DateRange,
     dagerMedPleie: Date[],
+    skalJobbeIPerioden: boolean,
     arbeidsgivere?: ArbeidsgivereSøknadsdata,
     arbeidstidArbeidsgivere?: ArbeidstidArbeidsgivereSøknadsdata,
 ): ArbeidsgiverApiData[] | undefined => {
@@ -27,13 +29,17 @@ export const getArbeidsgivereApiDataFromSøknadsdata = (
                 ansattFom: value.arbeidsgiver.ansattFom ? dateToISODate(value.arbeidsgiver.ansattFom) : undefined,
                 ansattTom: value.arbeidsgiver.ansattTom ? dateToISODate(value.arbeidsgiver.ansattTom) : undefined,
             };
-        const arbeidIPeriodeSøknadsdata =
+        const arbeidIPeriodeSøknadsdata: ArbeidIPeriodeSøknadsdata | undefined =
             arbeidstidArbeidsgivere && arbeidstidArbeidsgivere.hasOwnProperty(key)
                 ? arbeidstidArbeidsgivere[key].arbeidIPeriode
                 : undefined;
 
-        if (arbeidIPeriodeSøknadsdata && (value.type === 'pågående' || value.type === 'sluttetISøknadsperiode')) {
+        if (
+            (skalJobbeIPerioden === false || arbeidIPeriodeSøknadsdata) &&
+            (value.type === 'pågående' || value.type === 'sluttetISøknadsperiode')
+        ) {
             const arbeidIPeriode = getArbeidIPeriodeApiDataFromSøknadsdata(
+                skalJobbeIPerioden,
                 arbeidIPeriodeSøknadsdata,
                 søknadsperiode,
                 value.jobberNormaltTimer,

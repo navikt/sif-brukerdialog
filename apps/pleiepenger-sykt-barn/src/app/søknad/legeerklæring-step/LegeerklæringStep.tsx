@@ -1,6 +1,4 @@
-import { Alert, BodyLong, Link } from '@navikt/ds-react';
-import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { Alert, Link } from '@navikt/ds-react';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
@@ -8,22 +6,24 @@ import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/pict
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import {
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
     getTotalSizeOfAttachments,
     mapFileToPersistedFile,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core-ds/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormikFileUploader from '../../components/formik-file-uploader/FormikFileUploader';
 import LegeerklæringFileList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
 import getLenker from '../../lenker';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../validation/fieldValidations';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -97,14 +97,12 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
             buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             <Block padBottom="xl">
                 <SifGuidePanel compact={true}>
-                    <BodyLong as="div">
-                        <p>
-                            <FormattedMessage id={'steg.legeerklaering.counsellorpanel.1'} />
-                        </p>
-                        <p>
-                            <FormattedMessage id={'steg.legeerklaering.counsellorpanel.2'} />{' '}
-                        </p>
-                    </BodyLong>
+                    <p>
+                        <FormattedMessage id={'steg.legeerklaering.counsellorpanel.1'} />
+                    </p>
+                    <p>
+                        <FormattedMessage id={'steg.legeerklaering.counsellorpanel.2'} />{' '}
+                    </p>
                 </SifGuidePanel>
             </Block>
 
