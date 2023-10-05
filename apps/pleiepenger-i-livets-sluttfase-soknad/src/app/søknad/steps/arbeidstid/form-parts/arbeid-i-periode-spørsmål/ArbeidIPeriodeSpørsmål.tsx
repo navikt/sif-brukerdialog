@@ -1,16 +1,16 @@
 import { Alert, BodyShort, HStack, Heading, Tag } from '@navikt/ds-react';
-import { useContext, useEffect, useState } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
     DateRange,
-    getErrorForField,
-    getTypedFormComponents,
     TypedFormikFormContext,
     ValidationError,
+    getErrorForField,
+    getTypedFormComponents,
 } from '@navikt/sif-common-formik-ds/lib';
 import getTimeValidator from '@navikt/sif-common-formik-ds/lib/validation/getTimeValidator';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import DurationWeekdaysInput from '@navikt/sif-common-ui/src/duration-weekdays-input/DurationWeekdaysInput';
 import {
     dateFormatter,
@@ -20,15 +20,15 @@ import {
     isDateInDates,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils/lib';
+import dayjs from 'dayjs';
+import { useFormikContext } from 'formik';
+import { useContext, useEffect, useState } from 'react';
+import { IntlShape, useIntl } from 'react-intl';
+import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
 import { ArbeidstidFormFields, ArbeidstidFormValues } from '../../ArbeidstidStep';
 import { ArbeidIPeriode, ArbeidIPeriodeField, JobberIPeriodeSvar } from '../../ArbeidstidTypes';
 import { ArbeidsforholdType, ArbeidstidRegistrertLogProps } from '../types';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
-import { getArbeidstidIPeriodeIntlValues } from '../../../../../local-sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
-import { useFormikContext } from 'formik';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
-import dayjs from 'dayjs';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 const { RadioGroup, InputGroup } = getTypedFormComponents<
     ArbeidstidFormFields,
@@ -120,9 +120,7 @@ const ArbeidIPeriodeSpørsmål = ({
                 <div style={{ minWidth: '10rem' }} className="capitalize">
                     {dayjs(month).format('MMMM YYYY')}
                 </div>
-                {numDatesInMonthWithDuration === 0 ? (
-                    <BodyShort size="small">Arbeider ingen dager</BodyShort>
-                ) : (
+                {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
                         Arbeider {numDatesInMonthWithDuration} av {enabledDatesInMonth} dager
                     </Tag>
@@ -155,7 +153,7 @@ const ArbeidIPeriodeSpørsmål = ({
         );
     };
 
-    const useAccordion = skjulJobberNormaltValg !== true || getMonthsInDateRange(periode).length > 1;
+    const useAccordion = skjulJobberNormaltValg !== true && getMonthsInDateRange(periode).length > 1;
 
     return (
         <>

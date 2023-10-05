@@ -1,5 +1,4 @@
 import { Accordion, Heading } from '@navikt/ds-react';
-import React from 'react';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds/lib';
 import {
     DateRange,
@@ -9,6 +8,7 @@ import {
     getWeeksInDateRange,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
+import React from 'react';
 import DurationWeekdaysWeek from './duration-weekdays-week/DurationWeekdaysWeek';
 import './durationWeekdaysInput.scss';
 
@@ -80,8 +80,8 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
                                     ? renderMonthHeader(month.from, enabledDatesInMonth.length)
                                     : dayjs(month.from).format('MMMM YYYY')}
                             </Accordion.Header>
-                            <Accordion.Content className="durationWeekdaysInput__monthAccordionItem">
-                                {renderWeeks(weeks)}
+                            <Accordion.Content className="durationWeekdaysInput__accordionContent">
+                                <div className="durationWeekdaysInput__accordionContentMonth">{renderWeeks(weeks)}</div>
                             </Accordion.Content>
                         </Accordion.Item>
                     );

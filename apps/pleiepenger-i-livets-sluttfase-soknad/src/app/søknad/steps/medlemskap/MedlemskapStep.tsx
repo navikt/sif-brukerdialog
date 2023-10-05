@@ -1,5 +1,4 @@
 import { Link } from '@navikt/ds-react';
-import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
@@ -97,26 +96,26 @@ const MedlemskapStep = () => {
                                 submitPending={isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
-                                <Block padBottom="xxl">
-                                    <SifGuidePanel>
-                                        {intlHelper(intl, 'step.medlemskap.info.1')}
-                                        <Link href={getLenker().medlemskap} target="_blank">
-                                            <FormattedMessage id="step.medlemskap.info.2" />
-                                        </Link>
-                                        .
-                                    </SifGuidePanel>
-                                </Block>
-                                <YesOrNoQuestion
-                                    legend={intlHelper(intl, 'step.medlemskap.annetLandSiste12.spm')}
-                                    name={MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd}
-                                    validate={getYesOrNoValidator()}
-                                    description={
-                                        <ExpandableInfo title={intlHelper(intl, 'step.medlemskap.hvaBetyrDette')}>
-                                            {intlHelper(intl, 'step.medlemskap.annetLandSiste12.hjelp')}
-                                        </ExpandableInfo>
-                                    }
-                                    data-testid="medlemskap-annetLandSiste12"
-                                />
+                                <SifGuidePanel>
+                                    {intlHelper(intl, 'step.medlemskap.info.1')}
+                                    <Link href={getLenker().medlemskap} target="_blank">
+                                        <FormattedMessage id="step.medlemskap.info.2" />
+                                    </Link>
+                                    .
+                                </SifGuidePanel>
+                                <FormBlock>
+                                    <YesOrNoQuestion
+                                        legend={intlHelper(intl, 'step.medlemskap.annetLandSiste12.spm')}
+                                        name={MedlemskapFormFields.harBoddUtenforNorgeSiste12Mnd}
+                                        validate={getYesOrNoValidator()}
+                                        description={
+                                            <ExpandableInfo title={intlHelper(intl, 'step.medlemskap.hvaBetyrDette')}>
+                                                {intlHelper(intl, 'step.medlemskap.annetLandSiste12.hjelp')}
+                                            </ExpandableInfo>
+                                        }
+                                        data-testid="medlemskap-annetLandSiste12"
+                                    />
+                                </FormBlock>
                                 {harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                                     <FormBlock margin="l">
                                         <div data-testid="bostedUtlandList-annetLandSiste12">
