@@ -1,15 +1,20 @@
-import { useFeatureToggleIntl } from '../../../hooks/useFeatureToggleIntl';
-import { BarnFormFiels, BarnKalkulator, KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
-import BarnPanelView from '../../../components/barnPanel/BarnPanelView';
-import { ValidationError } from '../../../components/sif-formik/validation/types';
-import { getTypedFormComponents } from '../../../components/sif-formik/getTypedFormComponents';
+import { useFeatureToggleIntl } from '../../hooks/useFeatureToggleIntl';
+import {
+    BarnFormFiels,
+    BarnKalkulator,
+    KlakulatorFormFields,
+    KlakulatorFormValues,
+} from '../../pages/kalkulator/Kalkulator';
+import BarnPanelView from '../barnPanel/BarnPanelView';
+import { ValidationError } from '../sif-formik/validation/types';
+import { getTypedFormComponents } from '../sif-formik/getTypedFormComponents';
 import { Alert, BodyLong, Link, ReadMore } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 import dayjs from 'dayjs';
-import getYesOrNoValidator from '../../../components/sif-formik/validation/getYesOrNoValidator';
-import { YesOrNo } from '../../../components/sif-formik/types';
-import getRequiredFieldValidator from '../../../components/sif-formik/validation/getRequiredFieldValidator';
-import { erForbiDetAttendeKalenderår } from '../../../utils/utils';
+import getYesOrNoValidator from '../sif-formik/validation/getYesOrNoValidator';
+import { YesOrNo } from '../sif-formik/types';
+import getRequiredFieldValidator from '../sif-formik/validation/getRequiredFieldValidator';
+import { erForbiDetAttendeKalenderår } from '../../utils/utils';
 
 interface Props {
     barn: BarnKalkulator;

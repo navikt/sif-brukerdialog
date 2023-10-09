@@ -1,6 +1,4 @@
-import { Alert, BodyLong, Link, ReadMore } from '@navikt/ds-react';
-import { useFeatureToggleIntl } from '../../hooks/useFeatureToggleIntl';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 import { YesOrNo } from '../../components/sif-formik/types';
 import { getTypedFormComponents } from '../../components/sif-formik/getTypedFormComponents';
@@ -13,8 +11,8 @@ import { useState } from 'react';
 import { ResultView, empty, noValidChildrenOrange } from '../../components/result/ResultView';
 import Omsorgsprinsipper from '../../components/kalkulerOmsorgsdager/types/Omsorgsprinsipper';
 import FormikValuesObserver from '../../components/sif-formik/helpers/formik-values-observer/FormikValuesObserver';
-import BarnFormPart from './form-parts/BarnFormPart';
-import AntallBarnFormPart from './form-parts/AntallBarnFormPart';
+import BarnFormPart from '../../components/kalkulator-form-parts/BarnFormPart';
+import AntallBarnFormPart from '../../components/kalkulator-form-parts/AntallBarnFormPart';
 
 export interface BarnKalkulator {
     årFødt: number;
