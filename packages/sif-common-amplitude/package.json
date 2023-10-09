@@ -12,7 +12,7 @@
     },
     "devDependencies": {
         "@types/amplitude-js": "8.16.3",
-        "@types/node": "20.8.2",
+        "@types/node": "20.8.3",
         "@types/react": "18.2.25",
         "amplitude-js": "8.21.9",
         "config": "workspace:*",

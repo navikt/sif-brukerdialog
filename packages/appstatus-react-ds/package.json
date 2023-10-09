@@ -15,9 +15,9 @@
     "devDependencies": {
         "@navikt/ds-css": "5.6.3",
         "@navikt/ds-react": "5.6.3",
-        "@types/node": "20.8.2",
+        "@types/node": "20.8.3",
         "@types/react": "18.2.25",
-        "@types/react-dom": "18.2.10",
+        "@types/react-dom": "18.2.11",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "postcss": "8.4.31",
@@ -25,7 +25,7 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "rimraf": "5.0.5",
-        "sass": "1.68.0"
+        "sass": "1.69.0"
     },
     "scripts": {
         "build-package": "npm-run-all compile-lib-script copy-files",
