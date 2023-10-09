@@ -72,7 +72,7 @@
         "@babel/preset-env": "7.22.20",
         "@babel/preset-react": "7.22.15",
         "@babel/preset-typescript": "7.23.0",
-        "@mswjs/data": "0.13.1",
+        "@mswjs/data": "0.14.0",
         "@navikt/ds-tailwind": "5.6.3",
         "@storybook/addon-actions": "7.4.6",
         "@storybook/addon-essentials": "7.4.6",

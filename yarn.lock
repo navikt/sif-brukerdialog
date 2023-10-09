@@ -3564,9 +3564,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mswjs/data@npm:0.13.1":
-  version: 0.13.1
-  resolution: "@mswjs/data@npm:0.13.1"
+"@mswjs/data@npm:0.14.0":
+  version: 0.14.0
+  resolution: "@mswjs/data@npm:0.14.0"
   dependencies:
     "@types/lodash": ^4.14.172
     "@types/md5": ^2.3.0
@@ -3585,7 +3585,7 @@ __metadata:
   dependenciesMeta:
     msw:
       optional: true
-  checksum: c945f257c18e613cd97ebf7e2ce314abcc92aadb71896ab19f90872fd96d41afdb7cbe19296e394faa7ac5d1f50d07ce36c6666439b0a563157a6385ed112f42
+  checksum: 8a9049059baa3635c5bf3d8ad3380fb3922c4643c6bdc7d60d643d86abc5d92028075d4e5bb41b3891d2606d95ed364c50ea081430af988e9806a8a92ac898c2
   languageName: node
   linkType: hard
 
@@ -3774,7 +3774,7 @@ __metadata:
     "@babel/preset-typescript": 7.23.0
     "@devexperts/remote-data-ts": 2.1.1
     "@formatjs/intl-pluralrules": 5.2.6
-    "@mswjs/data": 0.13.1
+    "@mswjs/data": 0.14.0
     "@navikt/ds-css": 5.6.3
     "@navikt/ds-icons": 3.4.3
     "@navikt/ds-react": 5.6.3
