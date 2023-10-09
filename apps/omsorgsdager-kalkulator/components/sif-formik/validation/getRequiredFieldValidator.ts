@@ -1,20 +1,17 @@
-import { ValidationFunction } from "./types";
-import { hasValue } from "./validationUtils";
+import { ValidationFunction } from './types';
+import { hasValue } from './validationUtils';
 
 export enum ValidateRequiredFieldError {
-  "noValue" = "noValue",
+    'noValue' = 'noValue',
 }
 
-type RequiredFieldValidationResult =
-  | ValidateRequiredFieldError.noValue
-  | undefined;
+type RequiredFieldValidationResult = ValidateRequiredFieldError.noValue | undefined;
 
-const getRequiredFieldValidator =
-  (): ValidationFunction<RequiredFieldValidationResult> => (value: any) => {
+const getRequiredFieldValidator = (): ValidationFunction<RequiredFieldValidationResult> => (value: any) => {
     if (hasValue(value) === false) {
-      return ValidateRequiredFieldError.noValue;
+        return ValidateRequiredFieldError.noValue;
     }
     return undefined;
-  };
+};
 
 export default getRequiredFieldValidator;
