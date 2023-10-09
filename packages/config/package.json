@@ -17,6 +17,7 @@
     },
     "files": [
         "eslint.js",
+        "eslint-next.js",
         "tsconfig-base.json"
     ]
 }
