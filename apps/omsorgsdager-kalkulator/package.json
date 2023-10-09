@@ -1,0 +1,42 @@
+{
+  "name": "kalkulator2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@navikt/ds-css": "^5.2.1",
+    "@navikt/ds-icons": "^3.4.3",
+    "@navikt/ds-react": "^5.2.1",
+    "@navikt/ds-tailwind": "^5.2.1",
+    "@navikt/nav-dekoratoren-moduler": "1.6.9",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.30.0",
+    "dayjs": "1.11.10",
+    "formik": "^2.4.5",
+    "next": "13.5.3",
+    "node-fetch": "^3.3.2",
+    "react": "18.2.0",
+    "react-day-picker": "^8.8.2",
+    "react-dom": "18.2.0",
+    "react-intl": "^6.4.7",
+    "sass": "^1.68.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.6.5",
+    "@types/react": "18.2.24",
+    "@types/react-dom": "18.2.7",
+    "@types/uuid": "9.0.4",
+    "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
+}

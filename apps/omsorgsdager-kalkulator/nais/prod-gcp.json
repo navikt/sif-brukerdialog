@@ -1,0 +1,18 @@
+{
+  "app": "omsorgsdager-kalkulator",
+  "cluster": "prod-gcp",
+  "namespace": "dusseldorf",
+  "team": "dusseldorf",
+  "ingresses": [
+    "https://www.nav.no/omsorgspenger/kalkulator-antall-omsorgsdager"
+  ],
+  "externalHosts": ["www.nav.no"],
+  "livenessPath": "/omsorgspenger/kalkulator-antall-omsorgsdager/health/isAlive",
+  "readinessPath": "/omsorgspenger/kalkulator-antall-omsorgsdager/health/isReady",
+  "env": {
+    "NEXT_PUBLIC_DEKORATOR_ENV": "prod",
+    "NEXT_PUBLIC_ENVIRONMENT": "prod",
+    "PUBLIC_PATH": "/omsorgspenger/kalkulator-antall-omsorgsdager",
+    "NPM_CONFIG_CACHE": "/tmp"
+  }
+}
