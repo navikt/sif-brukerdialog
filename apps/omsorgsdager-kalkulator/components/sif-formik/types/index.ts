@@ -1,22 +1,7 @@
-import { Accept } from 'react-dropzone';
-
 export enum YesOrNo {
     'YES' = 'yes',
     'NO' = 'no',
     'UNANSWERED' = 'unanswered',
-}
-
-export interface InputTime {
-    hours: string;
-    minutes: string;
-}
-export interface DateRange {
-    from: Date;
-    to: Date;
-}
-export interface OpenDateRange {
-    from: Date;
-    to?: Date;
 }
 
 export type CancelButtonTypes = 'primary' | 'secondary' | 'tertiary' | 'danger';
@@ -42,9 +27,3 @@ export interface CustomFormErrorHandler<ErrorType> {
 
 export type FieldErrorHandler<ErrorType> = (error: ErrorType, fieldName: string) => string;
 export type ErrorTypeChecker<ErrorType = any> = (error: ErrorType) => boolean;
-
-export const FileDropAcceptImagesAndPdf: Accept = {
-    'image/jpeg': ['.jpg', '.jpeg'],
-    'image/png': [],
-    'application/pdf': [],
-};
