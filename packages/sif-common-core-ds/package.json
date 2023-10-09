@@ -3,7 +3,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-core-ds",
     "types": "lib/index.d.js",
-    "version": "9.8.2",
+    "version": "9.8.3",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",

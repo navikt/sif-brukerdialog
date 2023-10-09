@@ -1,5 +1,11 @@
 # config
 
+## 0.6.2
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
 ## 0.6.1
 
 ### Patch Changes
