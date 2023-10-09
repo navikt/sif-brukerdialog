@@ -90,7 +90,7 @@
         "source-map-loader": "4.0.1",
         "start-server-and-test": "2.0.1",
         "style-loader": "3.3.3",
-        "ts-loader": "9.4.4",
+        "ts-loader": "9.5.0",
         "typescript": "5.2.2",
         "webpack": "5.88.2",
         "webpack-dev-server": "4.15.1"
