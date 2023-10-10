@@ -1,7 +1,7 @@
 import { DateRange, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import datepickerUtils from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import {
     date1YearFromNow,
     date3YearsAgo,
@@ -80,83 +80,32 @@ export const validateUtenlandsoppholdIPerioden = (
     return undefined;
 };
 
-export const validateFerieuttakIPerioden = (
-    periode: DateRange,
-    ferieuttak: Ferieuttak[],
-): ValidationResult<ValidationError> => {
-    if (ferieuttak.length === 0) {
-        return AppFieldValidationErrors.ferieuttak_ikke_registrert;
-    }
-    const dateRanges = ferieuttak.map((u) => ({ from: u.from, to: u.to }));
-    if (dateRangesCollide(dateRanges)) {
-        return AppFieldValidationErrors.ferieuttak_overlapper;
-    }
-    if (dateRangesExceedsRange(dateRanges, periode)) {
-        return AppFieldValidationErrors.ferieuttak_utenfor_periode;
-    }
-    return undefined;
-};
-
 export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues): TidsromSøknadsdata | undefined => {
-    const {
-        dagerMedPleie,
-        skalJobbeIPerioden,
-        skalOppholdeSegIUtlandetIPerioden,
-        utenlandsoppholdIPerioden,
-        skalTaUtFerieIPerioden,
-        ferieuttakIPerioden,
-    } = values;
+    const { dagerMedPleie, skalJobbeIPerioden, skalOppholdeSegIUtlandetIPerioden, utenlandsoppholdIPerioden } = values;
 
     if (!dagerMedPleie || dagerMedPleie.length === 0) {
         throw Error('getTidsromSøknadsdataFromFormValues dagerMedPleie må inneholde datoer');
     }
     const søknadsperiode: DateRange = getDateRangeFromDates(dagerMedPleie);
 
-    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.NO && skalTaUtFerieIPerioden === YesOrNo.NO) {
+    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.NO) {
         return {
-            type: 'tidsromUtenUtenlandsoppholdUtenFerie',
+            type: 'tidsromUtenUtenlandsopphold',
             søknadsperiode,
             dagerMedPleie,
             skalJobbeIPerioden: skalJobbeIPerioden === YesOrNo.YES,
             skalOppholdeSegIUtlandetIPerioden: false,
-            skalTaUtFerieIPerioden: false,
         };
     }
 
-    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && skalTaUtFerieIPerioden === YesOrNo.NO) {
+    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES) {
         return {
-            type: 'tidsromKunMedUtenlandsopphold',
+            type: 'tidsromMedUtenlandsopphold',
             søknadsperiode,
             dagerMedPleie,
             skalJobbeIPerioden: skalJobbeIPerioden === YesOrNo.YES,
             skalOppholdeSegIUtlandetIPerioden: true,
             utenlandsoppholdIPerioden,
-            skalTaUtFerieIPerioden: false,
-        };
-    }
-
-    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.NO && skalTaUtFerieIPerioden === YesOrNo.YES) {
-        return {
-            type: 'tidsromKunMedFerie',
-            søknadsperiode,
-            dagerMedPleie,
-            skalJobbeIPerioden: skalJobbeIPerioden === YesOrNo.YES,
-            skalOppholdeSegIUtlandetIPerioden: false,
-            skalTaUtFerieIPerioden: true,
-            ferieuttakIPerioden,
-        };
-    }
-
-    if (skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && skalTaUtFerieIPerioden === YesOrNo.YES) {
-        return {
-            type: 'tidsromMedUtenlandsoppholdMedFerie',
-            søknadsperiode,
-            dagerMedPleie,
-            skalJobbeIPerioden: skalJobbeIPerioden === YesOrNo.YES,
-            skalOppholdeSegIUtlandetIPerioden: true,
-            utenlandsoppholdIPerioden,
-            skalTaUtFerieIPerioden: true,
-            ferieuttakIPerioden,
         };
     }
 
@@ -175,8 +124,6 @@ export const getTidsromStepInitialValues = (
         dagerMedPleie: [],
         skalOppholdeSegIUtlandetIPerioden: YesOrNo.UNANSWERED,
         utenlandsoppholdIPerioden: [],
-        skalTaUtFerieIPerioden: YesOrNo.UNANSWERED,
-        ferieuttakIPerioden: [],
     };
 
     const { tidsrom } = søknadsdata;
@@ -191,44 +138,21 @@ export const getTidsromStepInitialValues = (
                 : YesOrNo.NO;
 
         switch (tidsrom.type) {
-            case 'tidsromUtenUtenlandsoppholdUtenFerie':
+            case 'tidsromUtenUtenlandsopphold':
                 return {
                     ...defaultValues,
                     dagerMedPleie,
                     skalJobbeIPerioden,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.NO,
-                    skalTaUtFerieIPerioden: YesOrNo.NO,
                 };
 
-            case 'tidsromKunMedUtenlandsopphold':
+            case 'tidsromMedUtenlandsopphold':
                 return {
                     ...defaultValues,
                     dagerMedPleie,
                     skalJobbeIPerioden,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.YES,
                     utenlandsoppholdIPerioden: tidsrom.utenlandsoppholdIPerioden,
-                    skalTaUtFerieIPerioden: YesOrNo.NO,
-                };
-
-            case 'tidsromKunMedFerie':
-                return {
-                    ...defaultValues,
-                    dagerMedPleie,
-                    skalJobbeIPerioden,
-                    skalOppholdeSegIUtlandetIPerioden: YesOrNo.NO,
-                    skalTaUtFerieIPerioden: YesOrNo.YES,
-                    ferieuttakIPerioden: tidsrom.ferieuttakIPerioden,
-                };
-
-            case 'tidsromMedUtenlandsoppholdMedFerie':
-                return {
-                    ...defaultValues,
-                    dagerMedPleie,
-                    skalJobbeIPerioden,
-                    skalOppholdeSegIUtlandetIPerioden: YesOrNo.YES,
-                    utenlandsoppholdIPerioden: tidsrom.utenlandsoppholdIPerioden,
-                    skalTaUtFerieIPerioden: YesOrNo.YES,
-                    ferieuttakIPerioden: tidsrom.ferieuttakIPerioden,
                 };
         }
     }

@@ -36,9 +36,6 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Utenlandsopphold i perioden du søker for?',
         'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
 
-        'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
-        'steg.oppsummering.ferieuttakIPerioden.listetittel': 'Ferieuttak i perioden',
-
         'steg.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
         'steg.oppsummering.vedlegg.header': 'Vedlegg',
 

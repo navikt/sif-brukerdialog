@@ -4,8 +4,7 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { DateRange, ValidationError, YesOrNo, getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
-import FerieuttakListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/ferieuttak/FerieuttakListAndDialog';
+import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils/lib';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -24,7 +23,6 @@ import DagerMedPleieFormPart from './DagerMedPleieFormPart';
 import {
     getTidsromStepInitialValues,
     getTidsromSøknadsdataFromFormValues,
-    validateFerieuttakIPerioden,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
 
@@ -33,8 +31,6 @@ export enum TidsromFormFields {
     skalJobbeIPerioden = 'skalJobbeIPerioden',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
     utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
-    skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
-    ferieuttakIPerioden = 'ferieuttakIPerioden',
 }
 
 export interface TidsromFormValues {
@@ -42,11 +38,7 @@ export interface TidsromFormValues {
     [TidsromFormFields.skalJobbeIPerioden]?: YesOrNo;
     [TidsromFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
     [TidsromFormFields.utenlandsoppholdIPerioden]: Utenlandsopphold[];
-    [TidsromFormFields.skalTaUtFerieIPerioden]: YesOrNo;
-    [TidsromFormFields.ferieuttakIPerioden]: Ferieuttak[];
 }
-
-const spørOmFerie = true;
 
 const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
     TidsromFormFields,
@@ -93,9 +85,7 @@ const TidsromStep = () => {
             <FormikWrapper
                 initialValues={getTidsromStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({
-                    values: { skalOppholdeSegIUtlandetIPerioden, skalTaUtFerieIPerioden, dagerMedPleie },
-                }) => {
+                renderForm={({ values: { skalOppholdeSegIUtlandetIPerioden, dagerMedPleie } }) => {
                     const periode: DateRange | undefined =
                         dagerMedPleie && dagerMedPleie.length > 0 ? getDateRangeFromDates(dagerMedPleie) : undefined;
 
@@ -171,50 +161,6 @@ const TidsromStep = () => {
                                                     }
                                                 />
                                             </FormBlock>
-                                        )}
-                                        {spørOmFerie && (
-                                            <>
-                                                <FormBlock>
-                                                    <YesOrNoQuestion
-                                                        legend={intlHelper(
-                                                            intl,
-                                                            'steg.tidsrom.ferieuttakIPerioden.spm',
-                                                        )}
-                                                        name={TidsromFormFields.skalTaUtFerieIPerioden}
-                                                        validate={getYesOrNoValidator()}
-                                                        data-testid="ferieuttakIPerioden.spm"
-                                                    />
-                                                </FormBlock>
-                                                {skalTaUtFerieIPerioden === YesOrNo.YES && (
-                                                    <FormBlock>
-                                                        <FerieuttakListAndDialog<TidsromFormFields>
-                                                            name={TidsromFormFields.ferieuttakIPerioden}
-                                                            minDate={periode.from}
-                                                            maxDate={periode.to}
-                                                            labels={{
-                                                                modalTitle: intlHelper(
-                                                                    intl,
-                                                                    'steg.tidsrom.ferieuttakIPerioden.modalTitle',
-                                                                ),
-                                                                listTitle: intlHelper(
-                                                                    intl,
-                                                                    'steg.tidsrom.ferieuttakIPerioden.listTitle',
-                                                                ),
-                                                                addLabel: intlHelper(
-                                                                    intl,
-                                                                    'steg.tidsrom.ferieuttakIPerioden.addLabel',
-                                                                ),
-                                                            }}
-                                                            validate={
-                                                                periode
-                                                                    ? (ferie: Ferieuttak[]) =>
-                                                                          validateFerieuttakIPerioden(periode, ferie)
-                                                                    : undefined
-                                                            }
-                                                        />
-                                                    </FormBlock>
-                                                )}
-                                            </>
                                         )}
                                     </>
                                 )}

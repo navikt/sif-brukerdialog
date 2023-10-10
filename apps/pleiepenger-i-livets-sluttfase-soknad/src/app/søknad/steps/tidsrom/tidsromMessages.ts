@@ -34,11 +34,6 @@ export const tidsromMessages: MessageFileFormat = {
         'steg.tidsrom.iUtlandetIPerioden.modalTitle': 'Utenlandsopphold',
         'steg.tidsrom.iUtlandetIPerioden.addLabel': 'Legg til utenlandsopphold',
 
-        'steg.tidsrom.ferieuttakIPerioden.spm': 'Skal du ha ferie i perioden du søker for?',
-        'steg.tidsrom.ferieuttakIPerioden.listTitle': 'Ferie i perioden',
-        'steg.tidsrom.ferieuttakIPerioden.modalTitle': 'Ferie',
-        'steg.tidsrom.ferieuttakIPerioden.addLabel': 'Legg til ferie',
-
         'steg.tidsrom.hjelpetekst.tittel': 'Kan jeg søke for flere perioder i samme søknad?',
         'steg.tidsrom.hjelpetekst.1':
             'Når du ikke tar ut dagene sammenhengende, kan du søke om flere perioder hvis du jobber i din fulle stilling mellom periodene du har pleiepenger.',

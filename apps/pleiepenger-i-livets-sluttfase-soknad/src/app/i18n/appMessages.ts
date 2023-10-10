@@ -204,14 +204,6 @@ export const appMessages: MessageFileFormat = {
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt':
             'Et utenlandsopphold kan ikke starte samme dag som et annet avsluttes.',
 
-        'validation.ferieuttakIPerioden.ferieuttak_ikke_registrert':
-            'Du har svart ja til at du skal ha ferie i perioden med pleiepenger. Legg til minst ett ferieuttak.',
-        'validation.ferieuttakIPerioden.ferieuttak_utenfor_periode':
-            'Du har lagt inn ferie som er utenfor søknadsperioden.',
-        'validation.ferieuttakIPerioden.ferieuttak_overlapper': 'Du har lagt inn ferier som overlapper hverandre.',
-        'validation.skalTaUtFerieIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du skal ha ferie i perioden du søker for.',
-
         'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du er ansatt hos {navn} i perioden du søker pleiepenger.',
 

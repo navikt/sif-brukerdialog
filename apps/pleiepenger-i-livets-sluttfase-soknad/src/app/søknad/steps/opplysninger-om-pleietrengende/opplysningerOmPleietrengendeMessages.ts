@@ -17,8 +17,8 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info':
             'Med privat hjem menes hjemme hos noen, for eksempel hjemme hos deg eller hjemme hos den som er syk. For at du skal ha rett til pleiepenger må altså den som er syk pleies hjemme hos noen, og ikke på sykehus eller en annen institusjon.',
 
-        'step.opplysningerOmPleietrengende.spm.navn': 'Navn',
-        'step.opplysningerOmPleietrengende.spm.fnr': 'Fødselsnummer/D-nummer',
+        'step.opplysningerOmPleietrengende.spm.navn': 'Navn på den pleietrengende',
+        'step.opplysningerOmPleietrengende.spm.fnr': 'Fødselsnummer/D-nummer til den pleietrengende',
         'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm':
             'Hvorfor har ikke personen fødselsnummer eller D-nummer?',
         'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',
