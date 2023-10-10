@@ -158,7 +158,7 @@ export const appMessages: MessageFileFormat = {
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',
         'arbeidIPeriode.enkeltdager_gruppe.legend':
-            'Oppgi hvor mange timer du skal være bort fra jobb {hvor} for å pleie.',
+            'Oppgi hvor mye du jobber {hvor} i de dagene du søker pleiepenger for.',
         'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
         'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',

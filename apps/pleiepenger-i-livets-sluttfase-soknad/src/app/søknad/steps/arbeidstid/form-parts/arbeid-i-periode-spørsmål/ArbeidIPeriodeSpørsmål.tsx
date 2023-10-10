@@ -173,7 +173,7 @@ const ArbeidIPeriodeSpørsmål = ({
                         legend={intlHelper(intl, 'arbeidIPeriode.enkeltdager_gruppe.legend', intlValues)}
                         validate={() => {
                             const { jobberIPerioden, enkeltdager = {} } = arbeidIPeriode || {};
-                            if (jobberIPerioden === JobberIPeriodeSvar.redusert) {
+                            if (jobberIPerioden === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
                                 if (durationToDecimalDuration(summarizeDateDurationMap(enkeltdager)) === 0) {
                                     return {
                                         key: 'validation.arbeidIPeriode.ingenTidRegistrert',
