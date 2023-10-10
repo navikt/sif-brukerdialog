@@ -12,7 +12,6 @@ import { personalOpplysningerMessages } from '../pages/velkommen/personalopplysn
 import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
 import { arbeidssituasjonMessages } from '../søknad/steps/arbeidssituasjon/arbeidssituasjonMessages';
 import { arbeidstidMessages } from '../søknad/steps/arbeidstid/arbeidstidMessages';
-import arbeidstidVariertMessages from '../søknad/steps/arbeidstid/form-parts/arbeidstid-variert/arbeidstidVariertMessages';
 import { legeerklæringMessages } from '../søknad/steps/legeerklæring/legeerklæringMessages';
 import { medlemskapMessages } from '../søknad/steps/medlemskap/medlemskapMessages';
 import { opplysningerOmPleietrengendeMessages } from '../søknad/steps/opplysninger-om-pleietrengende/opplysningerOmPleietrengendeMessages';
@@ -32,7 +31,6 @@ const bokmålstekster = {
     ...utenlandsoppholdMessages.nb,
     ...arbeidstidMessages.nb,
     ...arbeidssituasjonMessages.nb,
-    ...arbeidstidVariertMessages.nb,
     ...opptjeningUtlandMessages.nb,
     ...utenlandskNæringMessages.nb,
     ...bostedUtlandMessages.nb,

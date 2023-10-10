@@ -146,8 +146,8 @@ export const appMessages: MessageFileFormat = {
             'Hvis du jobber som selvstendig i flere virksomheter skal du her svare samlet for alle virksomhetene dine. Hvis du f.eks. skal jobbe i en av to virksomheter skal du her svare "Ja, men jeg skal jobbe mindre enn normalt".',
 
         'step.arbeidstid.pageTitle': 'Opplysninger om arbeidstid',
-        'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
-        'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
+        'step.arbeidstid.stepTitle': 'Fravær fra jobb i dagene med pleie',
+        'step.arbeidstid.stepIndicatorLabel': 'Fravær fra jobb i dagene med pleie',
         'step.arbeidstid.nextButtonLabel': 'Fortsett',
 
         'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1':
@@ -157,14 +157,15 @@ export const appMessages: MessageFileFormat = {
         'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.3':
             'Vennligst gå tilbake til steg "Perioden med pleiepenger" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
 
-        'arbeidIPeriode.StepInfo.1': 'Nå trenger vi å vite om du jobber noe i perioden du søker om å få pleiepenger.',
+        'arbeidIPeriode.StepInfo.1':
+            'Nå trenger vi å vite hvor mye du skal vært borte fra jobb på grunn av at du skal pleie.',
         'arbeidIPeriode.StepInfo.2':
             'Hvis du for eksempel pleier den som er syk en halv dag og jobber resten av dagen, bruker du også bare en halv dag med pleiepenger. De dagene du jobber fullt bruker du ikke av pleiepengedagene.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',
         'arbeidIPeriode.enkeltdager_gruppe.legend':
-            'Oppgi hvor mye du arbeider {hvor} i de dagene du søker pleiepenger for.',
+            'Oppgi hvor mange timer du skal være bort fra jobb {hvor} for å pleie.',
         'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
         'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
