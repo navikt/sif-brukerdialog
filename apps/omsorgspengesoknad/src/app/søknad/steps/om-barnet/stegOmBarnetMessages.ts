@@ -17,7 +17,8 @@ export const omBarnetMessages: MessageFileFormat = {
         'step.omBarnet.fødselsdato.info': 'Barn må være født etter {minFødselsdato}',
         'steg.omBarnet.navn': 'Barnets navn',
         'steg.omBarnet.relasjon': 'Min relasjon til barnet',
-        'steg.omBarnet.veileder.samværsavtale': 'Senere i søknaden laster du opp avtale om delt bosted for barnet.',
+        'steg.omBarnet.veileder.samværsavtale':
+            'Senere i søknaden laster du opp avtale om delt fast bosted for barnet.',
         'steg.omBarnet.spm.sammeAdresse': 'Bor du sammen med barnet?',
         'steg.omBarnet.spm.sammeAdresse.ja': 'Ja',
         'steg.omBarnet.spm.sammeAdresse.jaDeltBosted': 'Ja, barnet har delt fast bosted',

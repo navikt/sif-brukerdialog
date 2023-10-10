@@ -14,7 +14,7 @@ export enum API_DATA_VALIDATION_ERROR {
 export const validateApiDataMessages: MessageFileFormat = {
     nb: {
         'apiDataValidation.undefined': 'Det oppstod en feil ved visningen av siden.',
-        'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt bosted. ',
+        'apiDataValidation.omsorgsavtaleMangler': 'Det mangler avtale om delt fast bosted. ',
     },
 };
 

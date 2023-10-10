@@ -16,7 +16,7 @@ const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgs
 
 describe('Fylle ut søknad med registrert barn', () => {
     contextConfig();
-    describe('Med delt bosted', () => {
+    describe('Med delt fast bosted', () => {
         const props = { deltBosted: true, harRegistrertBarn: true };
         before(() => {
             cy.visit(startUrl);
@@ -28,7 +28,7 @@ describe('Fylle ut søknad med registrert barn', () => {
         sendInnSøknad();
         kontrollerKvittering();
     });
-    describe('Registrert barn med delt omsorg (ikke delt bosted)', () => {
+    describe('Registrert barn med delt omsorg (ikke delt fast bosted)', () => {
         const props = { deltBosted: false, harRegistrertBarn: true };
         before(() => {
             cy.visit(startUrl);

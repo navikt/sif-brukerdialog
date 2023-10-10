@@ -7,7 +7,7 @@ export const appMessages: MessageFileFormat = {
         'page.form.ubesvarteSpørsmålInfo': 'For å komme videre, må du svare på alle spørsmålene ovenfor',
 
         'step.omBarnet.stepTitle': 'Barn',
-        'step.deltBosted.stepTitle': 'Delt bosted',
+        'step.deltBosted.stepTitle': 'Delt fast bosted',
         'step.legeerklaering.stepTitle': 'Legeerklæring',
         'step.oppsummering.stepTitle': 'Oppsummering',
 

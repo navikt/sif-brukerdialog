@@ -20,11 +20,11 @@ describe('søknadStepConfig', () =>
                 sammeAdresse: BarnSammeAdresse.JA,
                 kroniskEllerFunksjonshemming: true,
             };
-            it('inkluderer delt bosted når bruker bor på en annen andresse', () => {
+            it('inkluderer delt fast bosted når bruker bor på en annen andresse', () => {
                 const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: BarnSammeAdresse.JA_DELT_BOSTED });
                 expect(result).toBeTruthy();
             });
-            it('inkluderer IKKE delt bosted når bruker bor på samme andresse', () => {
+            it('inkluderer IKKE delt fast bosted når bruker bor på samme andresse', () => {
                 const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: BarnSammeAdresse.JA });
                 expect(result).toBeFalsy();
             });
@@ -40,11 +40,11 @@ describe('søknadStepConfig', () =>
                 sammeAdresse: BarnSammeAdresse.JA,
                 kroniskEllerFunksjonshemming: true,
             };
-            it('inkluderer delt bosted når bruker ikke bor på en annen andresse', () => {
+            it('inkluderer delt fast bosted når bruker ikke bor på en annen andresse', () => {
                 const result = includeDeltBostedStep({ ...omBarnet, sammeAdresse: BarnSammeAdresse.JA_DELT_BOSTED });
                 expect(result).toBeTruthy();
             });
-            it('inkluderer IKKE delt bosted dersom brukers relasjon er fosterforelder, uavhengig av samme adresse', () => {
+            it('inkluderer IKKE delt fast bosted dersom brukers relasjon er fosterforelder, uavhengig av samme adresse', () => {
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
@@ -60,11 +60,11 @@ describe('søknadStepConfig', () =>
                     }),
                 ).toBeFalsy();
             });
-            it('inkluderer IKKE delt bosted når bruker bor på samme andresse', () => {
+            it('inkluderer IKKE delt fast bosted når bruker bor på samme andresse', () => {
                 const result = includeDeltBostedStep({ ...omBarnet });
                 expect(result).toBeFalsy();
             });
-            it('inkluderer IKKE delt bosted når bruker bor på samme andresse - og er ikke fosterforelder', () => {
+            it('inkluderer IKKE delt fast bosted når bruker bor på samme andresse - og er ikke fosterforelder', () => {
                 expect(
                     includeDeltBostedStep({
                         ...omBarnet,
