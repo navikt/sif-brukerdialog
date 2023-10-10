@@ -45,6 +45,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, openPanel }: P
                         <Select
                             label={formatMessage('barn.årFødt')}
                             name={getFieldName(index, BarnFormFiels.årFødt) as KlakulatorFormFields}
+                            style={{ width: 'fit-content' }}
                             validate={(value) => {
                                 const error = getRequiredFieldValidator()(value);
 

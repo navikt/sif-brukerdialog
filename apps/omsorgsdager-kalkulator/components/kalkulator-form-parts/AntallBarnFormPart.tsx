@@ -23,6 +23,7 @@ const AntallBarnFormPart: React.FC<Props> = ({ setBarn }: Props) => {
                 name={KlakulatorFormFields.antallBarn}
                 validate={getRequiredFieldValidator()}
                 afterOnChange={(value) => setBarn(value)}
+                style={{ width: 'fit-content' }}
                 description={
                     <ReadMore header={formatMessage('kalkulator.antallBarn.readMore.title')}>
                         <FormattedMessage id={'kalkulator.antallBarn.readMore'} />
