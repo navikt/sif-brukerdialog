@@ -74,7 +74,7 @@
             "dependsOn": ["^build-package"]
         },
         "build-omsorgsdager-kalkulator": {
-            "outputs": [],
+            "outputs": [".next/**", "!.next/cache/**"],
             "dependsOn": ["^build-package"]
         }
 

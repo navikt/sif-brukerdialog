@@ -16,6 +16,7 @@ on:
                     - omsorgsdager-aleneomsorg-dialog
                     - omsorgspengerutbetaling-soknad
                     - pleiepenger-i-livets-sluttfase-soknad
+                    - omsorgsdager-kalkulator
                 required: true
 
 jobs:

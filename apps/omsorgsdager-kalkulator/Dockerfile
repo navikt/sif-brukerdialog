@@ -1,20 +1,35 @@
-FROM node:18-alpine
+FROM node:18-alpine AS base
+RUN apk update && apk add git
+RUN apk add --no-cache libc6-compat
+
+RUN yarn global add turbo
+
+WORKDIR /app
+
+ENV SCOPE=@navikt/omsorgsdager-kalkulator
+
+FROM base AS pruner
+COPY . .
+RUN yarn
+RUN yarn turbo run build-app --filter=${SCOPE}
 
 ENV NODE_ENV production
 
 RUN addgroup --system --gid 1069 nodejs
 RUN adduser --system --uid 1069 nextjs
-
-WORKDIR /app
-COPY --chown=nextjs:nodejs .env ./
-COPY --chown=nextjs:nodejs .env.local ./
-COPY --chown=nextjs:nodejs .next/standalone ./
-COPY --chown=nextjs:nodejs .next/static ./.next/static
-COPY --chown=nextjs:nodejs public ./public
 USER nextjs
 
-EXPOSE 3000
+FROM pruner AS server
+WORKDIR /apps/omsorgsdager-kalkulator
+COPY --from=pruner --chown=nextjs:nodejs .env ./
+COPY --from=pruner --chown=nextjs:nodejs .env.local ./
+COPY --from=pruner --chown=nextjs:nodejs .next/standalone ./
+COPY --from=pruner --chown=nextjs:nodejs .next/static ./.next/static
+COPY --from=pruner --chown=nextjs:nodejs public ./public
 
-ENV PORT 3000g
+
+EXPOSE 8080
+
+ENV PORT 8080g
 
 CMD ["node", "server.js"]
