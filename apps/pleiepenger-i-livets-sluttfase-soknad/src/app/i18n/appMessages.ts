@@ -150,13 +150,6 @@ export const appMessages: MessageFileFormat = {
         'step.arbeidstid.stepIndicatorLabel': 'Fravær fra jobb i dagene med pleie',
         'step.arbeidstid.nextButtonLabel': 'Fortsett',
 
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1':
-            'Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie personen.',
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.2':
-            'Du kan derfor ikke registrere arbeid kun for lørdag og/eller søndag.',
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.3':
-            'Vennligst gå tilbake til steg "Perioden med pleiepenger" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
-
         'arbeidIPeriode.StepInfo.1':
             'Nå trenger vi å vite hvor mye du skal vært borte fra jobb på grunn av at du skal pleie.',
         'arbeidIPeriode.StepInfo.2':

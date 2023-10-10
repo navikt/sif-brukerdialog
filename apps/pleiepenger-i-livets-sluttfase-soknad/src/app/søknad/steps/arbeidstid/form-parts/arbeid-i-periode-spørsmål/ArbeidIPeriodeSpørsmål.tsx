@@ -44,7 +44,6 @@ interface Props extends ArbeidstidRegistrertLogProps {
     arbeidsstedNavn: string;
     periode: DateRange;
     dagerMedPleie: Date[];
-    søkerKunHelgedager: boolean;
     skjulJobberNormaltValg: boolean;
     onArbeidstidVariertChange: () => void;
 }

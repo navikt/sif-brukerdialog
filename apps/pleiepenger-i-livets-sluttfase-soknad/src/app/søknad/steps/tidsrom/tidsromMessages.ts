@@ -13,8 +13,6 @@ export const tidsromMessages: MessageFileFormat = {
         'step.tidsrom.nextButtonLabel': 'Fortsett',
         'step.tidsrom.infotekst':
             'For å ha rett til pleiepenger må du ha omsorgen for pleietrengende i hele perioden du søker for.',
-        'step.tidsrom.søkerKunHelgedager.alert':
-            'Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb. Du kan derfor ikke søke pleiepenger kun for lørdag og/eller søndag.',
         'steg.tidsrom.veileder.utenlandsopphold':
             'Når du oppholder deg i et land utenfor EØS, kan du beholde pleiepengene i en begrenset periode på opptil 8 uker av en 12 måneder lang periode.',
 

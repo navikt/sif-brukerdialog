@@ -22,22 +22,6 @@ export const getMaxDato = (fraDato?: string | Date): Date => {
     return fraDato ? dayjs(fraDato).endOf('day').add(1, 'year').toDate() : date1YearFromNow;
 };
 
-export const søkerKunHelgedager = (fom?: string | Date, tom?: string | Date): boolean => {
-    if (fom && tom) {
-        const fomDayJs = dayjs(fom);
-        const tomDayJs = dayjs(tom);
-
-        if ((fomDayJs.isoWeekday() === 6 || fomDayJs.isoWeekday() === 7) && fomDayJs.isSame(tomDayJs, 'day')) {
-            return true;
-        } else if (fomDayJs.isoWeekday() === 6 && tomDayJs.isSame(fomDayJs.add(1, 'd'), 'day')) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    return false;
-};
-
 export const validateFraDato = (fraDatoString?: string, tilDatoString?: string): ValidationResult<ValidationError> => {
     const tilDato = datepickerUtils.getDateFromDateString(tilDatoString);
 
