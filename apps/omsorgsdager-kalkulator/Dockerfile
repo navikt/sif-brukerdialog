@@ -20,16 +20,17 @@ RUN adduser --system --uid 1069 nextjs
 USER nextjs
 
 FROM pruner AS server
-WORKDIR /apps/omsorgsdager-kalkulator
-COPY --from=pruner --chown=nextjs:nodejs .env ./
-COPY --from=pruner --chown=nextjs:nodejs .env.local ./
-COPY --from=pruner --chown=nextjs:nodejs .next/standalone ./
-COPY --from=pruner --chown=nextjs:nodejs .next/static ./.next/static
-COPY --from=pruner --chown=nextjs:nodejs public ./public
+COPY --from=pruner /app/apps/omsorgsdager-kalkulator/next.config.js .
+COPY --from=pruner /app/apps/omsorgsdager-kalkulator/package.json .
+
+COPY --from=pruner --chown=nextjs:nodejs /app/apps/omsorgsdager-kalkulator/.next/standalone ./
+COPY --from=pruner --chown=nextjs:nodejs /app/apps/omsorgsdager-kalkulator/.next/static ./.next/static
+COPY --from=pruner --chown=nextjs:nodejs /app/apps/omsorgsdager-kalkulator/public ./public
 
 
 EXPOSE 8080
 
 ENV PORT 8080g
 
-CMD ["node", "server.js"]
+CMD ["node", "apps/omsorgsdager-kalkulator/server.js"]
+
