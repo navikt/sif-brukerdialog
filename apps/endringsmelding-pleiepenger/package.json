@@ -1,6 +1,7 @@
 {
     "author": "NAV",
     "description": "Endringsmelding - pleiepenger sykt barn",
+    "type": "module",
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
@@ -63,7 +64,8 @@
         "react-dom": "18.2.0",
         "react-intl": "6.4.7",
         "react-modal": "3.16.1",
-        "react-router-dom": "6.16.0"
+        "react-router-dom": "6.16.0",
+        "request": "2.88.2"
     },
     "devDependencies": {
         "@babel/core": "7.23.0",
@@ -82,6 +84,7 @@
         "@storybook/node-logger": "7.4.6",
         "@storybook/preset-create-react-app": "7.4.6",
         "@storybook/react": "7.4.6",
+        "@storybook/react-vite": "7.4.6",
         "@storybook/react-webpack5": "7.4.6",
         "@storybook/testing-library": "0.2.2",
         "@types/flat": "5.0.3",
@@ -95,9 +98,11 @@
         "@types/react-dom": "18.2.11",
         "@types/react-modal": "3.16.1",
         "@types/react-router-dom": "5.3.3",
+        "@vitejs/plugin-react": "4.1.0",
         "axe-core": "4.8.2",
         "babel-polyfill": "6.26.0",
         "case-sensitive-paths-webpack-plugin": "2.4.0",
+        "cross-env": "7.0.3",
         "css-loader": "6.8.1",
         "cypress": "13.3.0",
         "cypress-axe": "1.5.0",
@@ -124,6 +129,9 @@
         "ts-loader": "9.5.0",
         "ts-prune": "0.10.3",
         "typescript": "5.2.2",
+        "vite": "4.4.11",
+        "vite-plugin-checker": "0.6.2",
+        "vitest": "0.34.6",
         "webpack": "5.88.2",
         "webpack-dev-server": "4.15.1"
     },
@@ -133,28 +141,26 @@
             "node_modules/(?!(axios)).*\\.js$"
         ],
         "moduleNameMapper": {
-            "^@hooks$": "<rootDir>/src/app/hooks/index.ts",
-            "^@types$": "<rootDir>/src/app/types/index.ts",
-            "^@utils$": "<rootDir>/src/app/utils/index.ts",
+            "@hooks$": "<rootDir>/src/app/hooks/index.ts",
+            "@types$": "<rootDir>/src/app/types/index.ts",
+            "@utils$": "<rootDir>/src/app/utils/index.ts",
             "axios": "axios/dist/node/axios.cjs"
         }
     },
     "scripts": {
-        "build-app": "node src/build/scripts/production-build.js",
         "build-storybook": "storybook build",
-        "build": "yarn build-app",
+        "build": "vite build",
         "build-heroku": "node src/build/scripts/heroku-build.js",
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive 'yarn cypress-run'",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",
-        "dev-api": "PORT=8089 node ./src/mocks/server.js",
+        "dev-api": "PORT=8089 node ./src/mocks/server.cjs",
+        "snd": "cross-env NODE_ENV=development node ./server.cjs",
         "msw-init": "msw init dist",
         "lint": "eslint ./src --ext js,ts,tsx",
-        "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
-        "start-express": "node ./server.js",
-        "start": "node ./src/build/scripts/start-dev.js",
-        "start-e2e-server": "node ./server-e2e.js",
+        "start-express": "node ./server.cjs",
+        "start-e2e-server": "node ./server-e2e.cjs",
         "storybook": "storybook dev -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test --watchAll=true --env=jsdom"

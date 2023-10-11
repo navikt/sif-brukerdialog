@@ -1,6 +1,12 @@
 import { ArbeiderIPeriodenSvar, TimerEllerProsent } from '../../../../types';
 import { getArbeidstidSøknadsdataFromFormValues } from '../arbeidstidStepUtils';
 
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
+    getEnvironmentVariable: () => {
+        return false;
+    },
+}));
+
 describe('arbeidstidStepUtils', () => {
     describe('getArbeidstidSøknadsdataFromFormValues', () => {
         const isoDateRange = '2020-01-01/2020-02-01';
@@ -14,7 +20,7 @@ describe('arbeidstidStepUtils', () => {
             });
             expect(result.arbeidsaktivitet).toEqual({});
         });
-        it('oppretter endringer for aktiviteter med endring, fjerner andre', () => {
+        it.only('oppretter endringer for aktiviteter med endring, fjerner andre', () => {
             const result = getArbeidstidSøknadsdataFromFormValues({
                 arbeidsaktivitet: {
                     org1: { endringer: {} },

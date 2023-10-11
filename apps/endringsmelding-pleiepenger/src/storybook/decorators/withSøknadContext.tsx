@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StepId } from '../../app/søknad/config/StepId';
 import { StepFormValuesContextProvider } from '../../app/søknad/context/StepFormValuesContext';
 import { SøknadContextProvider } from '../../app/søknad/context/SøknadContext';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
@@ -9,16 +10,23 @@ import { søkerMock } from '../data/søkerMock';
 const initialState: SøknadContextState = {
     versjon: '1.0.0',
     søker: søkerMock,
+    søknadSteps: [StepId.LOVBESTEMT_FERIE],
     søknadsdata: {
         id: '123',
     },
     k9saker: [],
-    hvaSkalEndres: [],
+    antallSakerFørEndringsperiode: 0,
+    valgteEndringer: {
+        arbeidstid: false,
+        lovbestemtFerie: true,
+    },
     tillattEndringsperiode: {
         from: new Date(),
         to: new Date(),
     },
-    sak: {} as any,
+    sak: {
+        arbeidsaktivitetMedUkjentArbeidsgiver: [],
+    } as any,
     søknadRoute: undefined,
     arbeidsgivere: arbeidsgivereMock,
     inputPreferanser: {

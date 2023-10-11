@@ -1,19 +1,19 @@
-import { createRoot } from 'react-dom/client';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import '@navikt/ds-css';
+import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
+import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
-import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
+import { SoknadApplication, ensureBaseNameForReactRouter } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import { createRoot } from 'react-dom/client';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import ErrorBoundary from './modules/errorBoundary/ErrorBoundary';
-import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
-import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
+import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 
 dayjs.extend(isoWeek);
 
