@@ -13,7 +13,7 @@ require('dotenv').config();
 server.disable('x-powered-by');
 server.use(compression());
 
-server.set('views', `${__dirname}/dist`);
+server.set('views', path.resolve(`${__dirname}/dist`));
 
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
@@ -42,7 +42,6 @@ const renderApp = (decoratorFragments) =>
 const startServer = async (html) => {
     server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
     server.get('/health/isReady', (_req, res) => res.sendStatus(200));
-
     server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
     server.get(/^\/(?!.*dist).*$/, (_req, res) => {
         res.send(html);
