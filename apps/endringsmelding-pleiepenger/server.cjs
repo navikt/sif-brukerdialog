@@ -5,18 +5,16 @@ server.use(express.json());
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const getDecorator = require('./src/build/scripts/decorator.cjs');
-var compression = require('compression');
-const envSettings = require('./envSettings.cjs');
-require('dotenv').config();
+const compression = require('compression');
+const jose = require('jose');
+const { v4: uuidv4 } = require('uuid');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-server.disable('x-powered-by');
+require('dotenv').config();
 
 const isDev = process.env.NODE_ENV === 'development';
 
-if (isDev) {
-    require('dotenv').config();
-}
-
+server.disable('x-powered-by');
 server.use(compression());
 
 if (isDev) {
@@ -24,6 +22,7 @@ if (isDev) {
 } else {
     server.set('views', `${__dirname}/dist`);
 }
+
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
 
@@ -37,6 +36,42 @@ server.use((_req, res, next) => {
     next();
 });
 
+const isExpiredOrNotAuthorized = (token) => {
+    if (token) {
+        try {
+            const exp = jose.decodeJwt(token).exp;
+            return Date.now() >= exp * 1000;
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error('Feilet med dekoding av token: ', err);
+            return true;
+        }
+    }
+    return true;
+};
+
+const getRouterConfig = async (req, audienceInnsyn) => {
+    {
+        req.headers['X-Correlation-ID'] = uuidv4();
+
+        if (process.env.NAIS_CLIENT_ID !== undefined) {
+            req.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
+        }
+
+        if (req.headers['authorization'] !== undefined) {
+            const token = req.headers['authorization'].replace('Bearer ', '');
+            if (isExpiredOrNotAuthorized(token)) {
+                return undefined;
+            }
+            const exchangedToken = await exchangeToken(token, audienceInnsyn);
+            if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+            }
+        }
+
+        return undefined;
+    }
+};
 const renderApp = (decoratorFragments) =>
     new Promise((resolve, reject) => {
         server.render('index.html', decoratorFragments, (err, html) => {
@@ -79,6 +114,7 @@ const startServer = async (html) => {
             }
             next();
         });
+
         server.use(vite.middlewares);
     } else {
         server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
@@ -86,6 +122,40 @@ const startServer = async (html) => {
             res.send(html);
         });
     }
+
+    server.use(
+        process.env.FRONTEND_API_PATH,
+        createProxyMiddleware({
+            target: process.env.API_URL,
+            changeOrigin: true,
+            pathRewrite: (path) => {
+                return path.replace(process.env.FRONTEND_API_PATH, '');
+            },
+            router: async (req) => getRouterConfig(req, false),
+            secure: true,
+            xfwd: true,
+            logLevel: 'info',
+        }),
+    );
+
+    server.use(
+        process.env.FRONTEND_INNSYN_API_PATH,
+        createProxyMiddleware({
+            target: process.env.API_URL_INNSYN,
+            changeOrigin: true,
+            pathRewrite: (path) => {
+                return path.replace(process.env.FRONTEND_INNSYN_API_PATH, '');
+            },
+            router: async (req) => getRouterConfig(req, true),
+            secure: true,
+            xfwd: true,
+            logLevel: 'info',
+        }),
+    );
+
+    server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (req, res) => {
+        res.send(html);
+    });
 
     const port = process.env.PORT || 8080;
     server.listen(port, () => {
