@@ -150,6 +150,7 @@
     "scripts": {
         "build-storybook": "storybook build",
         "build": "vite build",
+        "build-app": "vite build",
         "build-heroku": "node src/build/scripts/heroku-build.js",
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive 'yarn cypress-run'",
         "clean": "rm -rf node_modules .dist",

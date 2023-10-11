@@ -2,7 +2,6 @@
 const fs = require('fs');
 const express = require('express');
 const server = express();
-server.use(express.json());
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const getDecorator = require('./src/build/scripts/decorator.cjs');
@@ -10,6 +9,7 @@ const compression = require('compression');
 
 require('dotenv').config();
 
+server.use(express.json());
 server.disable('x-powered-by');
 server.use(compression());
 
