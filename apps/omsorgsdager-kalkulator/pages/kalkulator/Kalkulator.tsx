@@ -44,8 +44,7 @@ const { FormikWrapper, Form } = getTypedFormComponents<KlakulatorFormFields, Kla
 
 const Kalkulator = () => {
     const intl = useIntl();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [openBarnPanel, setOpenBarnPanel] = useState<boolean | undefined>(undefined);
+
     const [resultViewData, setResultViewData] = useState<ResultView<number>>(empty);
 
     const onValidSubmit = (values: Partial<KlakulatorFormValues>) => {
@@ -74,9 +73,10 @@ const Kalkulator = () => {
             onSubmit={(values) => {
                 return onValidSubmit(values);
             }}
-            renderForm={({ values: { barn = [] }, setFieldValue }) => {
+            renderForm={({ values: { barn = [] }, isValid, setFieldValue, setErrors }) => {
                 const setBarn = (value: string) => {
                     const valueNumber = parseInt(value, 10);
+
                     setFieldValue(
                         KlakulatorFormFields.barn,
                         Array.from({ length: valueNumber }, (_, i) => i).map(() => {
@@ -89,6 +89,7 @@ const Kalkulator = () => {
                     <>
                         <FormikValuesObserver
                             onChange={() => {
+                                setErrors({});
                                 setResultViewData(empty);
                             }}
                         />
@@ -107,7 +108,7 @@ const Kalkulator = () => {
                                         index={index}
                                         antallBarn={barn.length}
                                         key={b.id}
-                                        openPanel={openBarnPanel}
+                                        valideringsFeil={!isValid}
                                     />
                                 );
                             })}

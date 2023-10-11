@@ -5,8 +5,8 @@ interface Props {
     id: string;
     index: number;
     length: number;
-    open?: boolean;
     children: React.ReactNode;
+    valideringsFeil?: boolean;
 }
 
 const BarnPanelView: React.FC<Props> = ({ id, index, length, children }: React.PropsWithChildren<Props>) => {

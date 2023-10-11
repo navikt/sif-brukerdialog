@@ -14,13 +14,13 @@ import dayjs from 'dayjs';
 import getYesOrNoValidator from '../sif-formik/validation/getYesOrNoValidator';
 import { YesOrNo } from '../sif-formik/types';
 import getRequiredFieldValidator from '../sif-formik/validation/getRequiredFieldValidator';
-import { erForbiDetAttendeKalenderår } from '../../utils/utils';
+import { barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt, erForbiDetAttendeKalenderår } from '../../utils/utils';
 
 interface Props {
     barn: BarnKalkulator;
     index: number;
     antallBarn: number;
-    openPanel?: boolean;
+    valideringsFeil?: boolean;
 }
 
 const { YesOrNoQuestion, Select } = getTypedFormComponents<
@@ -29,7 +29,7 @@ const { YesOrNoQuestion, Select } = getTypedFormComponents<
     ValidationError
 >();
 
-const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, openPanel }: Props) => {
+const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
     const { formatMessage } = useFeatureToggleIntl();
     const getFieldName = (index: number, field: BarnFormFiels): string => {
         return `${KlakulatorFormFields.barn}.${index}.${field}`;
@@ -40,7 +40,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, openPanel }: P
     return (
         <>
             <div className="mt-7">
-                <BarnPanelView id={barn.id} index={index} length={antallBarn} open={openPanel}>
+                <BarnPanelView id={barn.id} index={index} length={antallBarn} valideringsFeil={valideringsFeil}>
                     <div>
                         <Select
                             label={formatMessage('barn.årFødt')}
@@ -102,71 +102,88 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, openPanel }: P
                                     }
                                 />
                             </div>
-                            <div className="mt-7">
-                                <YesOrNoQuestion
-                                    name={getFieldName(index, BarnFormFiels.borSammen) as KlakulatorFormFields}
-                                    legend={formatMessage('barn.borSammen')}
-                                    validate={(value) => {
-                                        const error = getYesOrNoValidator()(value);
-
-                                        return error
-                                            ? {
-                                                  key: 'validation.barn.borSammen.yesOrNoIsUnanswered',
-                                                  values: { barnName },
-                                                  keepKeyUnaltered: true,
-                                              }
-                                            : undefined;
-                                    }}
-                                    description={
-                                        <ReadMore header={formatMessage('barn.borSammen.readMore.title')}>
-                                            <FormattedMessage id={'barn.borSammen.readMore'} />
-                                        </ReadMore>
-                                    }
-                                />
-                            </div>
-                            {barn.borSammen === YesOrNo.NO && (
-                                <Alert variant="warning" className="mt-4">
-                                    <FormattedMessage id={'barn.borSammen.alert'} />
+                            {barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt(barn) && (
+                                <Alert variant="warning" className="my-7">
+                                    <FormattedMessage id={'barn.kroniskSykt.alert'} />
                                 </Alert>
                             )}
-                            {barn.borSammen === YesOrNo.YES && (
-                                <div className="mt-7">
-                                    <YesOrNoQuestion
-                                        name={
-                                            getFieldName(index, BarnFormFiels.aleneOmOmsorgen) as KlakulatorFormFields
-                                        }
-                                        legend={formatMessage('barn.aleneOmOmsorgen')}
-                                        validate={(value) => {
-                                            const error = getYesOrNoValidator()(value);
+                            {!barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt(barn) && (
+                                <>
+                                    <div className="mt-7">
+                                        <YesOrNoQuestion
+                                            name={getFieldName(index, BarnFormFiels.borSammen) as KlakulatorFormFields}
+                                            legend={formatMessage('barn.borSammen')}
+                                            validate={(value) => {
+                                                const error = getYesOrNoValidator()(value);
 
-                                            return error
-                                                ? {
-                                                      key: 'validation.barn.aleneOmOmsorgen.yesOrNoIsUnanswered',
-                                                      values: { barnName },
-                                                      keepKeyUnaltered: true,
-                                                  }
-                                                : undefined;
-                                        }}
-                                        description={
-                                            <ReadMore header={formatMessage('barn.aleneOmOmsorgen.readMore.title')}>
-                                                <BodyLong as="div">
-                                                    <FormattedMessage id={'barn.aleneOmOmsorgen.readMore.avsnitt.1'} />
-                                                </BodyLong>
+                                                return error
+                                                    ? {
+                                                          key: 'validation.barn.borSammen.yesOrNoIsUnanswered',
+                                                          values: { barnName },
+                                                          keepKeyUnaltered: true,
+                                                      }
+                                                    : undefined;
+                                            }}
+                                            description={
+                                                <ReadMore header={formatMessage('barn.borSammen.readMore.title')}>
+                                                    <FormattedMessage id={'barn.borSammen.readMore'} />
+                                                </ReadMore>
+                                            }
+                                        />
+                                    </div>
+                                    {barn.borSammen === YesOrNo.NO && (
+                                        <Alert variant="warning" className="mt-4">
+                                            <FormattedMessage id={'barn.borSammen.alert'} />
+                                        </Alert>
+                                    )}
+                                    {barn.borSammen === YesOrNo.YES && (
+                                        <div className="mt-7">
+                                            <YesOrNoQuestion
+                                                name={
+                                                    getFieldName(
+                                                        index,
+                                                        BarnFormFiels.aleneOmOmsorgen,
+                                                    ) as KlakulatorFormFields
+                                                }
+                                                legend={formatMessage('barn.aleneOmOmsorgen')}
+                                                validate={(value) => {
+                                                    const error = getYesOrNoValidator()(value);
 
-                                                <BodyLong as="div">
-                                                    <FormattedMessage id={'barn.aleneOmOmsorgen.readMore.avsnitt.1'} />
-                                                </BodyLong>
-                                                <Link
-                                                    href={
-                                                        'https://www.regjeringen.no/no/tema/familie-og-barn/innsiktsartikler/bosted-og-samvar/samvar/id749587/'
-                                                    }
-                                                    target="_blank">
-                                                    <FormattedMessage id="barn.aleneOmOmsorgen.readMore.avsnitt.lenke" />
-                                                </Link>
-                                            </ReadMore>
-                                        }
-                                    />
-                                </div>
+                                                    return error
+                                                        ? {
+                                                              key: 'validation.barn.aleneOmOmsorgen.yesOrNoIsUnanswered',
+                                                              values: { barnName },
+                                                              keepKeyUnaltered: true,
+                                                          }
+                                                        : undefined;
+                                                }}
+                                                description={
+                                                    <ReadMore
+                                                        header={formatMessage('barn.aleneOmOmsorgen.readMore.title')}>
+                                                        <BodyLong as="div">
+                                                            <FormattedMessage
+                                                                id={'barn.aleneOmOmsorgen.readMore.avsnitt.1'}
+                                                            />
+                                                        </BodyLong>
+
+                                                        <BodyLong as="div">
+                                                            <FormattedMessage
+                                                                id={'barn.aleneOmOmsorgen.readMore.avsnitt.1'}
+                                                            />
+                                                        </BodyLong>
+                                                        <Link
+                                                            href={
+                                                                'https://www.regjeringen.no/no/tema/familie-og-barn/innsiktsartikler/bosted-og-samvar/samvar/id749587/'
+                                                            }
+                                                            target="_blank">
+                                                            <FormattedMessage id="barn.aleneOmOmsorgen.readMore.avsnitt.lenke" />
+                                                        </Link>
+                                                    </ReadMore>
+                                                }
+                                            />
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </>
                     )}

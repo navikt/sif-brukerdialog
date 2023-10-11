@@ -28,7 +28,8 @@
         "kroniskSykt": "Har du fått ekstra omsorgsdager fordi barnet har kronisk sykdom, funksjonshemning eller langvarig sykdom?",
         "kroniskSykt.readMore.title": "Hva betyr dette?",
         "kroniskSykt.readMore": "Hvis barnet har kronisk sykdom, funksjonshemning eller langvarig sykdom, kan du ha rett på ekstra omsorgsdager. Du kan svare ja på dette spørsmålet dersom du har søkt og fått svar fra NAV om at du har fått ekstra omsorgsdager.",
-
+        "kroniskSykt.alert": "For å få omsorgsdager for barn som er 13 år eller eldre, må du ha søkt og fått innvilget ekstra omsorgsdager fra NAV fordi barnet har en kronisk sykdom eller en funksjonshemning.",
+        
         "borSammen": "Bor barnet fast hos deg?",
         "borSammen.readMore.title": "Hva betyr dette?",
         "borSammen.readMore": "Du skal svare ja på dette spørsmålet hvis barnet har folkeregistrert adresse hos deg, eller om du har en avtale om delt bosted med den andre forelderen.",
