@@ -1,8 +1,8 @@
 const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
-const appSettings = JSON.parse(settingsNode.text);
+const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
 
 export const getEnvironmentVariable = (variableName: string): string => {
-    return (appSettings || {})[variableName];
+    return (appSettingsInline || (window as any).appSettings || {})[variableName];
 };
 
 export const getEnvVariableOrDefault = (key: string, defaultValue: string): string => {
