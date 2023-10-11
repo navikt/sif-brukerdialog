@@ -111,19 +111,6 @@ const startServer = async (html) => {
                     if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
                         req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
                     }
-                } else if (req.cookies['selvbetjening-idtoken'] !== undefined) {
-                    const selvbetjeningIdtoken = req.cookies['selvbetjening-idtoken'];
-                    if (isExpiredOrNotAuthorized(selvbetjeningIdtoken)) {
-                        return undefined;
-                    }
-
-                    const exchangedToken = await exchangeToken(selvbetjeningIdtoken);
-                    if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
-                        req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
-                    }
-                } else {
-                    console.log('Ingen token sendes cookies');
-                    return undefined;
                 }
 
                 return undefined;

@@ -81,17 +81,7 @@ const getRouterConfig = async (req, audienceInnsyn) => {
             if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
                 req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
             }
-        } else if (req.cookies['selvbetjening-idtoken'] !== undefined) {
-            const selvbetjeningIdtoken = req.cookies['selvbetjening-idtoken'];
-            if (isExpiredOrNotAuthorized(selvbetjeningIdtoken)) {
-                return undefined;
-            }
-
-            const exchangedToken = await exchangeToken(selvbetjeningIdtoken, audienceInnsyn);
-            if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
-                req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
-            }
-        } else return undefined;
+        }
 
         return undefined;
     }
