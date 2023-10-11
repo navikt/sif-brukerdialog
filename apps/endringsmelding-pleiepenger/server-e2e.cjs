@@ -1,28 +1,36 @@
 /* eslint-disable no-console */
 const fs = require('fs');
-const compression = require('compression');
-const envSettings = require('./envSettings');
 const express = require('express');
-const helmet = require('helmet');
-const mustacheExpress = require('mustache-express');
-const path = require('path');
-const Promise = require('promise');
-
 const server = express();
-server.use(
-    helmet({
-        contentSecurityPolicy: false,
-    })
-);
+server.use(express.json());
+const path = require('path');
+const mustacheExpress = require('mustache-express');
+const getDecorator = require('./src/build/scripts/decorator.cjs');
+const compression = require('compression');
 
+require('dotenv').config();
+
+server.disable('x-powered-by');
 server.use(compression());
-server.set('views', path.resolve(`${__dirname}/dist`));
+
+server.set('views', `${__dirname}/dist`);
+
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
 
+server.use((_req, res, next) => {
+    res.removeHeader('X-Powered-By');
+    res.set('X-Frame-Options', 'SAMEORIGIN');
+    res.set('X-XSS-Protection', '1; mode=block');
+    res.set('X-Content-Type-Options', 'nosniff');
+    res.set('Referrer-Policy', 'no-referrer');
+    res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
+    next();
+});
+
 const renderApp = (decoratorFragments) =>
     new Promise((resolve, reject) => {
-        server.render(`index.html`, decoratorFragments, (err, html) => {
+        server.render('index.html', decoratorFragments, (err, html) => {
             if (err) {
                 reject(err);
             } else {
@@ -31,24 +39,16 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
-const envSettingsToUse = envSettings('off');
+const startServer = async (html) => {
+    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
+    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
 
-const startServer = (html) => {
-    server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
-    server.use(`${process.env.PUBLIC_PATH}/distjs`, express.static(path.resolve(__dirname, 'dist/js')));
-    server.use(`${process.env.PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
-    server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
-    server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (req, res) => res.sendStatus(200));
-    server.get(`${process.env.PUBLIC_PATH}/dist/settings.js`, (req, res) => {
-        res.set('content-type', 'application/javascript');
-        res.send(`${envSettingsToUse}`);
-    });
-    server.get(`/dist/settings.js`, (req, res) => {
-        res.set('content-type', 'application/javascript');
-        res.send(`${envSettingsToUse}`);
+    server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
+    server.get(/^\/(?!.*dist).*$/, (_req, res) => {
+        res.send(html);
     });
 
-    server.get(/^\/(?!.*dist).*$/, (req, res) => {
+    server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });
 
@@ -60,12 +60,9 @@ const startServer = (html) => {
 
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
-const getDecoratorMock = async () => {
-    return fs.readFileSync('./e2e/server/mock-decorator.html', 'utf8');
-};
-
-getDecoratorMock()
+getDecorator()
     .then(renderApp, (error) => {
+        console.log(error);
         logError('Failed to get decorator', error);
         process.exit(1);
     })
