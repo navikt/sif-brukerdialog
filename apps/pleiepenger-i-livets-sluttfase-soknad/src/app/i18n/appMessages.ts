@@ -160,7 +160,7 @@ export const appMessages: MessageFileFormat = {
         'arbeidIPeriode.enkeltdager_gruppe.legend':
             'Oppgi hvor mye du jobber {hvor} i de dagene du søker pleiepenger for.',
         'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
-        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
+        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke noe de dagene jeg pleier',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
         'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
         'arbeidIPeriode.iDag.utledet': 'timer i uka',

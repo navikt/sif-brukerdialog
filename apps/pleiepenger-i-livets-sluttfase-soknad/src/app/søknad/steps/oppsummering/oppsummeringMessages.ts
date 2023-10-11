@@ -87,7 +87,7 @@ export const oppsummeringMessages: MessageFileFormat = {
         'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
         'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
         'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
-        'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke',
+        'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg pleier',
         'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg kombinerer delvis jobb med pleiepenger',
         'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
         'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jobber likt hver uke',
