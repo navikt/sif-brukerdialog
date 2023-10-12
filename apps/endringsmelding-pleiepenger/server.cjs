@@ -9,6 +9,7 @@ const compression = require('compression');
 const jose = require('jose');
 const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const { initTokenX, exchangeToken } = require('./tokenx');
 
 require('dotenv').config();
 
@@ -93,6 +94,8 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = async (html) => {
+    await Promise.all([initTokenX()]);
+
     server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
     server.get('/health/isReady', (_req, res) => res.sendStatus(200));
 
