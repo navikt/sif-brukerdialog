@@ -16,9 +16,11 @@ const isDev = process.env.NODE_ENV === 'development';
 
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit');
-var limiter = RateLimit({
+var apiLimiter = RateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // max 100 requests per windowMs
+    max: 500, // max 100 requests per windowMs
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
 });
 
 server.disable('x-powered-by');
@@ -90,10 +92,7 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
-const startServer = async (html) => {
-    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
-    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
-
+const setupProxyMiddleware = () => {
     server.use(
         process.env.FRONTEND_API_PATH,
         createProxyMiddleware({
@@ -123,10 +122,11 @@ const startServer = async (html) => {
             logLevel: 'info',
         }),
     );
+};
 
-    server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (req, res) => {
-        res.send(html);
-    });
+const startServer = async (html) => {
+    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
+    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
 
     if (isDev) {
         const fs = require('fs');
@@ -146,7 +146,10 @@ const startServer = async (html) => {
             },
         });
 
-        server.use(limiter);
+        setupProxyMiddleware();
+
+        server.use('/api', apiLimiter);
+
         server.get(/^\/(?!.*dist).*$/, (req, _res, next) => {
             const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
             const fileExists = fs.existsSync(fullPath);
@@ -159,8 +162,11 @@ const startServer = async (html) => {
 
         server.use(vite.middlewares);
     } else {
+        setupProxyMiddleware();
+
         server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
-        server.get(/^\/(?!.*dist).*$/, (_req, res) => {
+
+        server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (_req, res) => {
             res.send(html);
         });
     }
