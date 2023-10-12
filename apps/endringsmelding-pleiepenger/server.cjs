@@ -92,7 +92,10 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
-const setupProxyMiddleware = () => {
+const startServer = async (html) => {
+    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
+    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
+
     server.use(
         process.env.FRONTEND_API_PATH,
         createProxyMiddleware({
@@ -122,11 +125,6 @@ const setupProxyMiddleware = () => {
             logLevel: 'info',
         }),
     );
-};
-
-const startServer = async (html) => {
-    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
-    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
 
     if (isDev) {
         const fs = require('fs');
@@ -146,8 +144,6 @@ const startServer = async (html) => {
             },
         });
 
-        setupProxyMiddleware();
-
         server.use('/api', apiLimiter);
 
         server.get(/^\/(?!.*dist).*$/, (req, _res, next) => {
@@ -162,10 +158,7 @@ const startServer = async (html) => {
 
         server.use(vite.middlewares);
     } else {
-        setupProxyMiddleware();
-
         server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
-
         server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (_req, res) => {
             res.send(html);
         });
