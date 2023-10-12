@@ -3631,6 +3631,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.3.1
     express: 4.18.2
+    express-rate-limit: 7.1.1
     flat: 6.0.1
     formik: 2.4.5
     http-proxy-middleware: 2.0.6
@@ -15010,6 +15011,15 @@ __metadata:
   version: 3.1.1
   resolution: "exponential-backoff@npm:3.1.1"
   checksum: 3d21519a4f8207c99f7457287291316306255a328770d320b401114ec8481986e4e467e854cb9914dd965e0a1ca810a23ccb559c642c88f4c7f55c55778a9b48
+  languageName: node
+  linkType: hard
+
+"express-rate-limit@npm:7.1.1":
+  version: 7.1.1
+  resolution: "express-rate-limit@npm:7.1.1"
+  peerDependencies:
+    express: ^4 || ^5
+  checksum: d5b6a171e7faad25ef38e280cc442fb3baa252b95a16c2fcaee4df04e17af25d89f5f05b9c45bdf4e465f01b3ec9ddab783e7a7427c1bb2138a51592845d2a3c
   languageName: node
   linkType: hard
 
