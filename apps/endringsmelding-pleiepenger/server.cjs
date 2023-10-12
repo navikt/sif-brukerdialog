@@ -13,7 +13,7 @@ const { initTokenX, exchangeToken } = require('./tokenx.cjs');
 
 require('dotenv').config();
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.APP_VERSION === 'dev';
 
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit');
@@ -94,7 +94,7 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = async (html) => {
-    await Promise.all(...(isDev ? [] : [initTokenX()]));
+    await Promise.all([...(isDev ? [] : [initTokenX()])]);
 
     server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
     server.get('/health/isReady', (_req, res) => res.sendStatus(200));
