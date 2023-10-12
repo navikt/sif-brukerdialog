@@ -96,10 +96,12 @@ const renderApp = (decoratorFragments) =>
 
 const setupTokenX = async () => {
     if (isDev) {
+        console.log('dev');
         return Promise.resolve();
     }
-    return Promise.all([initTokenX()])
-}
+    console.log('prod');
+    return Promise.all([initTokenX()]);
+};
 
 const startServer = async (html) => {
     await setupTokenX();

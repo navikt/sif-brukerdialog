@@ -121,7 +121,7 @@
         "lint": "eslint ./src --ext js,ts,tsx",
         "msw-init": "msw init dist",
         "snd": "cross-env NODE_ENV=development node ./server.cjs",
-        "start-e2e-server": "node ./server.cjs",
+        "start-e2e-server": "cross-env NODE_ENV=development node ./server.cjs",
         "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
         "test-watch": "react-scripts test --watchAll=true --env=jsdom",
