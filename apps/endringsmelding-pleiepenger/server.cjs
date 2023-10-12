@@ -13,7 +13,7 @@ const { initTokenX, exchangeToken } = require('./tokenx.cjs');
 
 require('dotenv').config();
 
-const isDev = process.env.APP_VERSION === 'dev';
+const isDev = process.env.NODE_ENV === 'development';
 
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit');
