@@ -21,9 +21,6 @@ var limiter = RateLimit({
     max: 100, // max 100 requests per windowMs
 });
 
-// apply rate limiter to all requests
-server.use(limiter);
-
 server.disable('x-powered-by');
 server.use(compression());
 
@@ -115,6 +112,7 @@ const startServer = async (html) => {
             },
         });
 
+        server.use(limiter);
         server.get(/^\/(?!.*dist).*$/, (req, _res, next) => {
             const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
             const fileExists = fs.existsSync(fullPath);
