@@ -94,6 +94,40 @@ const startServer = async (html) => {
     server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
     server.get('/health/isReady', (_req, res) => res.sendStatus(200));
 
+    server.use(
+        process.env.FRONTEND_API_PATH,
+        createProxyMiddleware({
+            target: process.env.API_URL,
+            changeOrigin: true,
+            pathRewrite: (path) => {
+                return path.replace(process.env.FRONTEND_API_PATH, '');
+            },
+            router: async (req) => getRouterConfig(req, false),
+            secure: true,
+            xfwd: true,
+            logLevel: 'info',
+        }),
+    );
+
+    server.use(
+        process.env.FRONTEND_INNSYN_API_PATH,
+        createProxyMiddleware({
+            target: process.env.API_URL_INNSYN,
+            changeOrigin: true,
+            pathRewrite: (path) => {
+                return path.replace(process.env.FRONTEND_INNSYN_API_PATH, '');
+            },
+            router: async (req) => getRouterConfig(req, true),
+            secure: true,
+            xfwd: true,
+            logLevel: 'info',
+        }),
+    );
+
+    server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (req, res) => {
+        res.send(html);
+    });
+
     if (isDev) {
         const fs = require('fs');
         fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), html);
@@ -130,40 +164,6 @@ const startServer = async (html) => {
             res.send(html);
         });
     }
-
-    server.use(
-        process.env.FRONTEND_API_PATH,
-        createProxyMiddleware({
-            target: process.env.API_URL,
-            changeOrigin: true,
-            pathRewrite: (path) => {
-                return path.replace(process.env.FRONTEND_API_PATH, '');
-            },
-            router: async (req) => getRouterConfig(req, false),
-            secure: true,
-            xfwd: true,
-            logLevel: 'info',
-        }),
-    );
-
-    server.use(
-        process.env.FRONTEND_INNSYN_API_PATH,
-        createProxyMiddleware({
-            target: process.env.API_URL_INNSYN,
-            changeOrigin: true,
-            pathRewrite: (path) => {
-                return path.replace(process.env.FRONTEND_INNSYN_API_PATH, '');
-            },
-            router: async (req) => getRouterConfig(req, true),
-            secure: true,
-            xfwd: true,
-            logLevel: 'info',
-        }),
-    );
-
-    server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (req, res) => {
-        res.send(html);
-    });
 
     const port = process.env.PORT || 8080;
     server.listen(port, () => {
