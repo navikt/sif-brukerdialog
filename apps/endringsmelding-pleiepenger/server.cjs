@@ -94,8 +94,15 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
+const setupTokenX = async () => {
+    if (isDev) {
+        return Promise.resolve();
+    }
+    return Promise.all([initTokenX()])
+}
+
 const startServer = async (html) => {
-    (await isDev) ? Promise.resolve() : Promise.all([initTokenX()]);
+    await setupTokenX();
 
     server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
     server.get('/health/isReady', (_req, res) => res.sendStatus(200));
