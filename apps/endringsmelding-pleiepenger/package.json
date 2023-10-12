@@ -148,23 +148,21 @@
         }
     },
     "scripts": {
+        "build-app": "vite build",
         "build-storybook": "storybook build",
         "build": "vite build",
-        "build-app": "vite build",
-        "build-heroku": "node src/build/scripts/heroku-build.js",
-        "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive 'yarn cypress-run'",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",
         "dev-api": "PORT=8089 node ./src/mocks/server.cjs",
-        "snd": "cross-env NODE_ENV=development node ./server.cjs",
-        "msw-init": "msw init dist",
         "lint": "eslint ./src --ext js,ts,tsx",
+        "msw-init": "msw init dist",
+        "snd": "cross-env NODE_ENV=development node ./server.cjs",
+        "start-e2e-server": "node ./server.cjs",
         "start-express": "node ./server.cjs",
-        "start-e2e-server": "node ./server-e2e.cjs",
         "storybook": "storybook dev -p 6006 -s public",
-        "test": "react-scripts test --watchAll=false --env=jsdom",
-        "test-watch": "react-scripts test --watchAll=true --env=jsdom"
+        "test-watch": "react-scripts test --watchAll=true --env=jsdom",
+        "test": "react-scripts test --watchAll=false --env=jsdom"
     },
     "eslintConfig": {
         "overrides": [
