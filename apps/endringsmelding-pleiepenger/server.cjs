@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 const express = require('express');
-const server = express();
-server.use(express.json());
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const getDecorator = require('./src/build/scripts/decorator.cjs');
@@ -10,9 +8,9 @@ const jose = require('jose');
 const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
+const helmet = require('helmet');
 
 const isDev = process.env.NODE_ENV === 'development';
-
 if (isDev) {
     require('dotenv').config();
 }
@@ -26,7 +24,14 @@ var apiLimiter = RateLimit({
     legacyHeaders: false,
 });
 
-server.disable('x-powered-by');
+const server = express();
+server.use(express.json());
+server.use(
+    helmet({
+        contentSecurityPolicy: false,
+        crossOriginEmbedderPolicy: false,
+    }),
+);
 server.use(compression());
 
 if (isDev) {
@@ -98,10 +103,8 @@ const renderApp = (decoratorFragments) =>
 
 const setupTokenX = async () => {
     if (isDev) {
-        console.log('dev');
         return Promise.resolve();
     }
-    console.log('prod');
     return Promise.all([initTokenX()]);
 };
 
