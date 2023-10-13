@@ -11,9 +11,11 @@ const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
 
-require('dotenv').config();
-
 const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+    require('dotenv').config();
+}
 
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit');
