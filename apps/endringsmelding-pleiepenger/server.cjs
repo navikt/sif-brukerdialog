@@ -4,6 +4,7 @@ const path = require('path');
 const mustacheExpress = require('mustache-express');
 const getDecorator = require('./src/build/scripts/decorator.cjs');
 const compression = require('compression');
+const cookieParser = require('cookie-parser');
 const jose = require('jose');
 const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -25,29 +26,22 @@ var apiLimiter = RateLimit({
 });
 
 const server = express();
-server.use(express.json());
 server.use(
     helmet({
         contentSecurityPolicy: false,
         crossOriginEmbedderPolicy: false,
     }),
 );
-server.use(compression());
-
-if (isDev) {
-    server.set('views', `${__dirname}`);
-} else {
-    server.set('views', `${__dirname}/dist`);
-}
-
-server.set('view engine', 'mustache');
-server.engine('html', mustacheExpress());
-
-server.use((_req, res, next) => {
+server.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
     next();
 });
+server.use(compression());
+server.use(cookieParser());
+server.set('views', `${__dirname}/dist`);
+server.set('view engine', 'mustache');
+server.engine('html', mustacheExpress());
 
 const isExpiredOrNotAuthorized = (token) => {
     if (token) {

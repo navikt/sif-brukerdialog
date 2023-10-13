@@ -154,8 +154,33 @@ const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
 
+const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+    require('dotenv').config();
+}
+
+// set up rate limiter: maximum of five requests per minute
+var RateLimit = require('express-rate-limit');
+var apiLimiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 500, // max 100 requests per windowMs
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
+});
+
 server.disable('x-powered-by');
 server.use(compression());
+
+if (isDev) {
+    server.set('views', `${__dirname}`);
+} else {
+    server.set('views', `${__dirname}/dist`);
+}
+
+server.set('view engine', 'mustache');
+server.engine('html', mustacheExpress());
+
 server.use((_req, res, next) => {
     res.removeHeader('X-Powered-By');
     res.set('X-Frame-Options', 'SAMEORIGIN');
@@ -165,9 +190,6 @@ server.use((_req, res, next) => {
     res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
     next();
 });
-server.set('views', `${__dirname}/dist`);
-server.set('view engine', 'mustache');
-server.engine('html', mustacheExpress());
 
 const isExpiredOrNotAuthorized = (token) => {
     if (token) {
@@ -194,8 +216,15 @@ const renderApp = (decoratorFragments) =>
         });
     });
 
+const setupTokenX = async () => {
+    if (isDev) {
+        return Promise.resolve();
+    }
+    return Promise.all([initTokenX()]);
+};
+
 const startServer = async (html) => {
-    await Promise.all([initTokenX()]);
+    await setupTokenX();
 
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
@@ -235,11 +264,44 @@ const startServer = async (html) => {
         }),
     );
 
-    server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
-    server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
-    server.get(/^\/(?!.*api)(?!.*dist).*$/, (_req, res) => {
-        res.send(html);
-    });
+    if (isDev) {
+        const fs = require('fs');
+        fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), html);
+        const vedleggMockStore = './dist/vedlegg';
+
+        if (!fs.existsSync(vedleggMockStore)) {
+            fs.mkdirSync(vedleggMockStore);
+        }
+
+        const vite = await require('vite').createServer({
+            root: __dirname,
+            server: {
+                middlewareMode: true,
+                port: 8080,
+                open: './index-decorated.html',
+            },
+        });
+
+        server.use('/api', apiLimiter);
+
+        server.get(/^\/(?!.*dist).*$/, (req, _res, next) => {
+            const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
+            const fileExists = fs.existsSync(fullPath);
+
+            if ((!fileExists && !req.url.startsWith('/@')) || req.url === '/') {
+                req.url = '/index-decorated.html';
+            }
+            next();
+        });
+
+        server.use(vite.middlewares);
+    } else {
+        server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
+        server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
+        server.get(/^\/(?!.*api)(?!.*dist).*$/, (_req, res) => {
+            res.send(html);
+        });
+    }
 
     const port = process.env.PORT || 8080;
     server.listen(port, () => {
