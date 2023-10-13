@@ -4,7 +4,7 @@ const path = require('path');
 const mustacheExpress = require('mustache-express');
 const getDecorator = require('./src/build/scripts/decorator.cjs');
 const compression = require('compression');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const jose = require('jose');
 const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -38,7 +38,7 @@ server.use((req, res, next) => {
     next();
 });
 server.use(compression());
-server.use(cookieParser());
+// server.use(cookieParser());
 server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
