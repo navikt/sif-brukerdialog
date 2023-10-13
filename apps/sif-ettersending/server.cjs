@@ -96,18 +96,16 @@ const renderApp = (decoratorFragments) =>
 
 const setupTokenX = async () => {
     if (isDev) {
-        console.log('dev');
         return Promise.resolve();
     }
-    console.log('prod');
     return Promise.all([initTokenX()]);
 };
 
 const startServer = async (html) => {
     await setupTokenX();
 
-    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
-    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
+    server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
+    server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
 
     server.use(
         process.env.FRONTEND_API_PATH,
