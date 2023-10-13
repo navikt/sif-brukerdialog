@@ -1,7 +1,7 @@
 {
     "author": "NAV",
     "description": "Endringsmelding - pleiepenger sykt barn",
-    "type": "commonjs",
+    "type": "module",
     "license": "MIT",
     "name": "@navikt/endringsmelding-pleiepenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
