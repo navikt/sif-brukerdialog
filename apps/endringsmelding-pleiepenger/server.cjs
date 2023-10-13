@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 const express = require('express');
-const server = express();
-server.use(express.json());
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const getDecorator = require('./src/build/scripts/decorator.cjs');
@@ -11,9 +9,11 @@ const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
 
-require('dotenv').config();
-
 const isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+    require('dotenv').config();
+}
 
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit');
@@ -24,19 +24,9 @@ var apiLimiter = RateLimit({
     legacyHeaders: false,
 });
 
-server.disable('x-powered-by');
-server.use(compression());
+const server = express();
 
-if (isDev) {
-    server.set('views', `${__dirname}`);
-} else {
-    server.set('views', `${__dirname}/dist`);
-}
-
-server.set('view engine', 'mustache');
-server.engine('html', mustacheExpress());
-
-server.use((_req, res, next) => {
+server.use((req, res, next) => {
     res.removeHeader('X-Powered-By');
     res.set('X-Frame-Options', 'SAMEORIGIN');
     res.set('X-XSS-Protection', '1; mode=block');
@@ -45,6 +35,10 @@ server.use((_req, res, next) => {
     res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
     next();
 });
+server.use(compression());
+server.set('views', `${__dirname}/dist`);
+server.set('view engine', 'mustache');
+server.engine('html', mustacheExpress());
 
 const isExpiredOrNotAuthorized = (token) => {
     if (token) {
@@ -96,18 +90,16 @@ const renderApp = (decoratorFragments) =>
 
 const setupTokenX = async () => {
     if (isDev) {
-        console.log('dev');
         return Promise.resolve();
     }
-    console.log('prod');
     return Promise.all([initTokenX()]);
 };
 
 const startServer = async (html) => {
     await setupTokenX();
 
-    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
-    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
+    server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
+    server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
 
     server.use(
         process.env.FRONTEND_API_PATH,
@@ -171,7 +163,8 @@ const startServer = async (html) => {
 
         server.use(vite.middlewares);
     } else {
-        server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
+        server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
+        server.use(`/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
         server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (_req, res) => {
             res.send(html);
         });
