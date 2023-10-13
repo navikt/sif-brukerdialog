@@ -9,6 +9,7 @@ const jose = require('jose');
 const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
+const RateLimit = require('express-rate-limit');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -16,17 +17,8 @@ if (isDev) {
     require('dotenv').config();
 }
 
-// set up rate limiter: maximum of five requests per minute
-var RateLimit = require('express-rate-limit');
-var apiLimiter = RateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 500, // max 100 requests per windowMs
-    standardHeaders: 'draft-7',
-    legacyHeaders: false,
-});
-
 const server = express();
-server.use((req, res, next) => {
+server.use((_req, res, next) => {
     res.removeHeader('X-Powered-By');
     res.set('X-Frame-Options', 'SAMEORIGIN');
     res.set('X-XSS-Protection', '1; mode=block');
@@ -37,9 +29,17 @@ server.use((req, res, next) => {
 });
 server.use(compression());
 server.use(cookieParser());
-server.set('views', `${__dirname}/dist`);
+
+if (isDev) {
+    require('dotenv').config();
+    server.set('views', `${__dirname}`);
+} else {
+    server.set('views', `${__dirname}/dist`);
+}
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
+
+const logError = (errorMessage, details) => console.log(errorMessage, details);
 
 const isExpiredOrNotAuthorized = (token) => {
     if (token) {
@@ -135,7 +135,15 @@ const startServer = async (html) => {
             },
         });
 
-        server.use('/api', apiLimiter);
+        server.use(
+            '/api',
+            RateLimit({
+                windowMs: 15 * 60 * 1000, // 15 minutes
+                max: 500, // max 100 requests per windowMs
+                standardHeaders: 'draft-7',
+                legacyHeaders: false,
+            }),
+        );
 
         server.get(/^\/(?!.*dist).*$/, (req, _res, next) => {
             const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
@@ -161,8 +169,6 @@ const startServer = async (html) => {
         console.log(`App listening on port: ${port}`);
     });
 };
-
-const logError = (errorMessage, details) => console.log(errorMessage, details);
 
 getDecorator()
     .then(renderApp, (error) => {
