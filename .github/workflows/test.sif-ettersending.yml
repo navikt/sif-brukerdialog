@@ -52,6 +52,7 @@ jobs:
                   API_URL: http://localhost:8089/
                   FRONTEND_API_PATH: http://localhost:8089/
                   FRONTEND_VEDLEGG_URL: https://k9-ettersending-soknad.intern.dev.nav.no/api
+                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
                   LIVETS_SLUTTFASE: on
                   NPM_CONFIG_CACHE: /tmp
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending

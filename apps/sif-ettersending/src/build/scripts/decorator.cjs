@@ -4,10 +4,6 @@ const request = require('request');
 const { JSDOM } = jsdom;
 
 const requestDecorator = (callback) => {
-    if (!process.env.DEKORATOR_URL) {
-        console.log(process.env);
-        throw Error('Missing DEKORATOR_URL');
-    }
     const baseUrl = process.env.DEKORATOR_URL;
     return request(`${baseUrl}/?simple=true`, callback);
 };
