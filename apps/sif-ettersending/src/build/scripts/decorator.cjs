@@ -17,6 +17,7 @@ const extractDecoratorFragments = (html) => {
         NAV_HEADING: document.getElementById('header-withmenu')[prop],
         NAV_FOOTER: document.getElementById('footer-withmenu')[prop],
         APP_SETTINGS: JSON.stringify({
+            API_TOKENX_AUDIENCE: `${process.env.API_TOKENX_AUDIENCE}`,
             API_URL: `${process.env.API_URL}`,
             APP_VERSION: `${process.env.APP_VERSION}`,
             APPSTATUS_DATASET: `${process.env.APPSTATUS_DATASET}`,
@@ -31,7 +32,6 @@ const extractDecoratorFragments = (html) => {
             LIVETS_SLUTTFASE: `${process.env.LIVETS_SLUTTFASE}`,
             LOGIN_URL: `${process.env.LOGIN_URL}`,
             MIN_SIDE_URL: `${process.env.MIN_SIDE_URL}`,
-            NYNORSK: `${process.env.NYNORSK}`,
             PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
             USE_AMPLITUDE: `${process.env.USE_AMPLITUDE}`,
             VEDLEGG_API_URL: `${process.env.VEDLEGG_API_URL}`,
