@@ -4,12 +4,11 @@ const path = require('path');
 const mustacheExpress = require('mustache-express');
 const getDecorator = require('./src/build/scripts/decorator.cjs');
 const compression = require('compression');
-// const cookieParser = require('cookie-parser');
 const jose = require('jose');
 const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 
 const isDev = process.env.NODE_ENV === 'development';
 if (isDev) {
@@ -26,19 +25,24 @@ var apiLimiter = RateLimit({
 });
 
 const server = express();
-server.use(
-    helmet({
-        contentSecurityPolicy: false,
-        crossOriginEmbedderPolicy: false,
-    }),
-);
+// server.use(
+//     helmet({
+//         contentSecurityPolicy: false,
+//         crossOriginEmbedderPolicy: false,
+//     }),
+// );
 server.use((req, res, next) => {
+    res.removeHeader('X-Powered-By');
+    res.set('X-Frame-Options', 'SAMEORIGIN');
     res.set('X-XSS-Protection', '1; mode=block');
+    res.set('X-Content-Type-Options', 'nosniff');
+    res.set('Referrer-Policy', 'no-referrer');
     res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
+    // res.set('X-XSS-Protection', '1; mode=block');
+    // res.set('Feature-Policy', "geolocation 'none'; microphone 'none'; camera 'none'");
     next();
 });
 server.use(compression());
-// server.use(cookieParser());
 server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
