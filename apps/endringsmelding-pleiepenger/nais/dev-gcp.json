@@ -18,6 +18,7 @@
         "LOGIN_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding",
         "MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
         "MSW_MODE": "dev",
+        "NODE_ENV": "q",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "USE_AMPLITUDE": "true"

@@ -1,10 +1,10 @@
-import React from 'react';
-import { useSøknadContext } from '../../../hooks';
 import { Alert, Heading } from '@navikt/ds-react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
-import { getAktiviteterSomSkalEndres } from './arbeidstidStepUtils';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
+import React from 'react';
 import AAregisteret from '../../../components/aa-registeret/AARegisteret';
+import { useSøknadContext } from '../../../hooks';
+import { getAktiviteterSomSkalEndres } from './arbeidstidStepUtils';
 
 interface Props {}
 

@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import * as React from 'react';
-import { arbeidsukerMockData } from '../../../mocks/data/app/arbeidsukerMockData';
 import ArbeidsaktiviteterMedUkjentArbeidsgiver from '../../../app/søknad/steps/arbeidstid/ArbeidsaktiviteterMedUkjentArbeidsgiver';
+import { arbeidsukerMockData } from '../../../mocks/data/app/arbeidsukerMockData';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
 import { withSøknadContextProvider } from '../../decorators/withSøknadContext';

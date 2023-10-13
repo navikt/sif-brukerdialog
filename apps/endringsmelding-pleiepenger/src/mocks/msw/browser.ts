@@ -1,4 +1,4 @@
-import { setupWorker, rest } from 'msw';
+import { rest, setupWorker } from 'msw';
 import { getHandlers } from './handlers';
 
 export const worker = setupWorker(...getHandlers());
