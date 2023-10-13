@@ -60,29 +60,6 @@ const isExpiredOrNotAuthorized = (token) => {
     return true;
 };
 
-const getRouterConfig = async (req, audienceInnsyn) => {
-    {
-        req.headers['X-Correlation-ID'] = uuidv4();
-
-        if (process.env.NAIS_CLIENT_ID !== undefined) {
-            req.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
-        }
-
-        if (req.headers['authorization'] !== undefined) {
-            const token = req.headers['authorization'].replace('Bearer ', '');
-            if (isExpiredOrNotAuthorized(token)) {
-                return undefined;
-            }
-            const exchangedToken = await exchangeToken(token, audienceInnsyn);
-            if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
-                req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
-            }
-        }
-
-        return undefined;
-    }
-};
-
 const renderApp = (decoratorFragments) =>
     new Promise((resolve, reject) => {
         server.render('index.html', decoratorFragments, (err, html) => {
@@ -115,7 +92,27 @@ const startServer = async (html) => {
             pathRewrite: (path) => {
                 return path.replace(process.env.FRONTEND_API_PATH, '');
             },
-            router: async (req) => getRouterConfig(req, false),
+
+            router: async (req) => {
+                req.headers['X-Correlation-ID'] = uuidv4();
+
+                if (process.env.NAIS_CLIENT_ID !== undefined) {
+                    req.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
+                }
+
+                if (req.headers['authorization'] !== undefined) {
+                    const token = req.headers['authorization'].replace('Bearer ', '');
+                    if (isExpiredOrNotAuthorized(token)) {
+                        return undefined;
+                    }
+                    const exchangedToken = await exchangeToken(token);
+                    if (exchangedToken != null && !exchangedToken.expired() && exchangedToken.access_token) {
+                        req.headers['authorization'] = `Bearer ${exchangedToken.access_token}`;
+                    }
+                }
+
+                return undefined;
+            },
             secure: true,
             xfwd: true,
             logLevel: 'info',
