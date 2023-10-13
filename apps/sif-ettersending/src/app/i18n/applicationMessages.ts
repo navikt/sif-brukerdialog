@@ -2,11 +2,10 @@ import { allCommonMessages } from '@navikt/sif-common-core-ds/lib/i18n/allCommon
 import { MessageFileFormat } from '@navikt/sif-common-core-ds/lib/types/MessageFileFormat';
 import { soknadErrorIntlMessages, soknadIntlMessages } from '@navikt/sif-common-soknad-ds';
 import { velkommenPageMessages } from '../pages/velkommen-page/velkommenPageMessages';
-
-const appBokmålstekster = require('./nb.json');
+import { appMessagesNb } from './nb';
 
 const bokmålstekster = {
-    ...appBokmålstekster,
+    ...appMessagesNb,
     ...allCommonMessages.nb,
     ...velkommenPageMessages.nb,
     ...soknadErrorIntlMessages.nb,
