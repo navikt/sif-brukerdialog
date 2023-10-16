@@ -20,7 +20,7 @@ describe('arbeidstidStepUtils', () => {
             });
             expect(result.arbeidsaktivitet).toEqual({});
         });
-        it.only('oppretter endringer for aktiviteter med endring, fjerner andre', () => {
+        it('oppretter endringer for aktiviteter med endring, fjerner andre', () => {
             const result = getArbeidstidSøknadsdataFromFormValues({
                 arbeidsaktivitet: {
                     org1: { endringer: {} },

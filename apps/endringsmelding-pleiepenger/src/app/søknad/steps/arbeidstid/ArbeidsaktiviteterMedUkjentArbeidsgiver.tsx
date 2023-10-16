@@ -1,7 +1,7 @@
 import { Alert, Heading } from '@navikt/ds-react';
+import React from 'react';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
-import React from 'react';
 import AAregisteret from '../../../components/aa-registeret/AARegisteret';
 import { useSøknadContext } from '../../../hooks';
 import { getAktiviteterSomSkalEndres } from './arbeidstidStepUtils';

@@ -8,6 +8,5 @@ export default defineConfig({
         // eslint-disable-next-line no-unused-vars
         setupNodeEvents(on, config) {},
         video: false,
-        // screenshotOnRunFailure: false,
     },
 });

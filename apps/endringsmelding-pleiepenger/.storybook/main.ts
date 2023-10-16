@@ -1,11 +1,6 @@
 const config = {
     stories: ['../src/storybook/**/*.stories.tsx'],
-    addons: [
-        '@storybook/addon-essentials',
-        '@storybook/addon-a11y',
-        'storybook-formik/register',
-        // '@storybook/preset-create-react-app',
-    ],
+    addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-formik/register'],
     framework: {
         name: '@storybook/react-vite',
         options: {},
