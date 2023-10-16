@@ -48,7 +48,7 @@
         "jsdom": "22.1.0",
         "react": "18.2.0",
         "react-collapse": "5.1.1",
-        "react-day-picker": "8.8.2",
+        "react-day-picker": "8.9.0",
         "react-dom": "18.2.0",
         "react-intl": "6.4.7",
         "react-modal": "3.16.1",
