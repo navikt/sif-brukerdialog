@@ -57,7 +57,7 @@
         "react-scripts": "5.0.1",
         "rimraf": "5.0.5",
         "storybook": "7.4.6",
-        "webpack": "5.88.2"
+        "webpack": "5.89.0"
     },
     "jest": {
         "transformIgnorePatterns": [
