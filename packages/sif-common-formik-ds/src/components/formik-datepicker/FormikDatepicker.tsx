@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { DatePickerDefaultProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
+import { DatePickerProps } from '@navikt/ds-react/esm/date/datepicker/DatePicker';
 import React from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { FastField, Field, FieldProps } from 'formik';
@@ -35,7 +35,7 @@ interface OwnProps<FieldName, ErrorType> extends DatePickerBaseProps<FieldName, 
 }
 
 export type FormikDatepickerProps<FieldName, ErrorType> = OwnProps<FieldName, ErrorType> &
-    Omit<DatePickerDefaultProps, 'onChange' | 'fromDate' | 'toDate'> &
+    Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
     UseFastFieldProps &
     DatepickerLimitations;
 
