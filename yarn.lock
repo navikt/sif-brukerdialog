@@ -4418,7 +4418,7 @@ __metadata:
     "@storybook/react": 7.4.6
     "@storybook/react-webpack5": 7.4.6
     "@storybook/testing-library": 0.2.2
-    chromatic: 7.2.3
+    chromatic: 7.4.0
     copyfiles: 2.4.1
     dayjs: 1.11.10
     npm-run-all: 4.1.5
@@ -11349,14 +11349,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:7.2.3":
-  version: 7.2.3
-  resolution: "chromatic@npm:7.2.3"
+"chromatic@npm:7.4.0":
+  version: 7.4.0
+  resolution: "chromatic@npm:7.4.0"
   bin:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 841962ec63e7de86957bc39bf1b743cd36d2bdf467c754f6669e4df067f57224f501a75ad6129e943605f32bf2b5b57190a478be5454ae92d0847998eb94399f
+  checksum: 97c096c8d2e70ea890167b4bc5c9cb717db72f746f14a2e9a367d7534ef10a7b723b0780bfa80743a0de54cd6e664c24a64bd693e654f7df1121abfbeeb1c569
   languageName: node
   linkType: hard
 
