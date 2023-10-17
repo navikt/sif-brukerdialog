@@ -5,8 +5,6 @@ import {
     ISODateRange,
     isStringOrNull,
 } from '@navikt/sif-common-utils/lib';
-import { isObject, isString } from 'formik';
-import { isArray } from 'lodash';
 import {
     K9Format,
     K9FormatArbeidstaker,
@@ -20,6 +18,7 @@ import {
     K9FormatUtenlandsopphold,
     K9FormatYtelse,
 } from '@types';
+import { isObject, isString } from 'formik';
 
 const itemsAreValidISODateRanges = (keys: string[]): boolean => keys.some((key) => !isISODateRange(key)) === false;
 
@@ -117,7 +116,7 @@ const verifyK9FormatArbeidstaker = (arbeidstaker: any): arbeidstaker is K9Format
 
 const verifyK9FormatArbeidstid = (arbeidstid: any): arbeidstid is K9FormatArbeidstid => {
     const arb = arbeidstid as K9FormatArbeidstid;
-    if (isObject(arb) && isArray(arb.arbeidstakerList)) {
+    if (isObject(arb) && Array.isArray(arb.arbeidstakerList)) {
         if (arb.arbeidstakerList.length > 0) {
             if (arb.arbeidstakerList.some((a) => !verifyK9FormatArbeidstaker(a))) {
                 return false;
@@ -141,7 +140,7 @@ const verifyK9FormatArbeidstid = (arbeidstid: any): arbeidstid is K9FormatArbeid
 };
 
 const isSøknadsperioder = (perioder: any): perioder is ISODateRange[] => {
-    if (isArray(perioder) && itemsAreValidISODateRanges(perioder)) {
+    if (Array.isArray(perioder) && itemsAreValidISODateRanges(perioder)) {
         return true;
     }
     throw 'verifySøknadsperioder';

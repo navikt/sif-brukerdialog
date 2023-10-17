@@ -2,6 +2,12 @@ import { ISODateRange } from '@navikt/sif-common-utils';
 import { ArbeidstidEndringMap, Arbeidsuke, TimerEllerProsent } from '@types';
 import { getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 
+jest.mock('@navikt/sif-common-core-ds/lib/utils/envUtils', () => ({
+    getEnvironmentVariable: () => {
+        return false;
+    },
+}));
+
 describe('arbeidsaktivitetUtils', () => {
     describe('getEndringerForArbeidsukeForm', () => {
         const uke1: ISODateRange = '2023-01-02/2023-01-08';

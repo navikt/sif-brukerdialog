@@ -1,5 +1,3 @@
-import React from 'react';
-import { useIntl } from 'react-intl';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import {
@@ -11,6 +9,8 @@ import {
 } from '@navikt/sif-common-formik-ds/lib';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ArbeidsaktivitetType, Arbeidsgiver, SøknadContextState, UkjentArbeidsforholdSøknadsdata } from '@types';
+import React from 'react';
+import { useIntl } from 'react-intl';
 import ArbeidsaktivitetBlock from '../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
 import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { InfoNormalarbeidstid } from '../../../components/info-normalarbeidstid/InfoNormalarbeidstid';
@@ -47,8 +47,8 @@ export interface UkjentArbeidsforholdFormValues {
 
 enum UkjentArbeidsforholdFormFields {
     arbeidsforhold = 'arbeidsforhold',
-    ['arbeidsforhold.erAnsatt'] = 'erAnsatt',
-    ['arbeidsforhold.timerPerUke'] = 'timerPerUke',
+    'arbeidsforhold.erAnsatt' = 'erAnsatt',
+    'arbeidsforhold.timerPerUke' = 'timerPerUke',
 }
 
 const { FormikWrapper, Form } = getTypedFormComponents<
