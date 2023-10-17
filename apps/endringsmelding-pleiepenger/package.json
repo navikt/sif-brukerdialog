@@ -112,7 +112,7 @@
         }
     },
     "scripts": {
-        "build-app": "vite build",
+        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "build-storybook": "storybook build",
         "build": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/alive 'yarn cypress-run'",
