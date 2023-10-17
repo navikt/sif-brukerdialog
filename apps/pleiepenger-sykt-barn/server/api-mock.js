@@ -167,6 +167,7 @@ const startExpressServer = () => {
         res.sendStatus(200);
     });
 
+    // server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
     server.post('/pleiepenger-sykt-barn/innsending-feil-parametre', (req, res) => {
         res.status(400).send({
             type: '/problem-details/invalid-request-parameters',
@@ -175,9 +176,12 @@ const startExpressServer = () => {
             detail: 'Requesten inneholder ugyldige paramtere.',
             instance: 'about:blank',
             invalid_parameters: [
-                'frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR',
-                'frilans.startdato kan ikke være null dersom frilans.type er HONORAR',
-                'frilans.jobberFortsattSomFrilans kan ikke være null dersom frilans.type er HONORAR',
+                {
+                    name: "ytelse.opptjeningAktivitet.selvstendigNæringsdrivende[0].perioder['2021-05-21/..'].regnskapsførerTlf",
+                    reason: "'+00 00000000' matcher ikke tillatt pattern '^[\\p{Graph}\\p{Space}\\p{Sc}\\p{L}\\p{M}\\p{N}]+$'",
+                    invalid_value: 'K9-format valideringsfeil',
+                    type: 'entity',
+                },
             ],
         });
     });
