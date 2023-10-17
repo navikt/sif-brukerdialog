@@ -8,6 +8,9 @@ import { messages } from '../utils/message';
 import '../styles/globals.css';
 import '../styles/buttonRow.scss';
 import '../styles/ResultBox.scss';
+import '../components/section-panel/sectionPanel.scss';
+import '../components/section-panel/circle-mask/circleMask.scss';
+
 import '@navikt/ds-css';
 
 const getLocaleOrFallback = (locale?: string) => {
