@@ -4113,7 +4113,6 @@ __metadata:
     "@types/uuid": 9.0.4
     classnames: ^2.3.2
     config: "workspace:*"
-    date-fns: ^2.30.0
     dayjs: 1.11.10
     eslint: 8.51.0
     eslint-config-next: 13.5.4
@@ -13791,7 +13790,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:2.30.0, date-fns@npm:^2.21.1, date-fns@npm:^2.30.0":
+"date-fns@npm:2.30.0, date-fns@npm:^2.21.1":
   version: 2.30.0
   resolution: "date-fns@npm:2.30.0"
   dependencies:

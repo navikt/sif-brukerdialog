@@ -1,15 +1,16 @@
-import { useFeatureToggleIntl } from '../../../hooks/useFeatureToggleIntl';
 import { BarnFormFiels, BarnKalkulator, KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
 import BarnPanelView from '../../barnPanel/BarnPanelView';
 import { ValidationError } from '../../sif-formik/validation/types';
 import { getTypedFormComponents } from '../../sif-formik/getTypedFormComponents';
 import { Alert, BodyLong, Link, ReadMore } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import dayjs from 'dayjs';
 import getYesOrNoValidator from '../../sif-formik/validation/getYesOrNoValidator';
 import { YesOrNo } from '../../sif-formik/types';
 import getRequiredFieldValidator from '../../sif-formik/validation/getRequiredFieldValidator';
 import { barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt, erForbiDetAttendeKalenderår } from '../../../utils/utils';
+import { intlHelper } from '@/utils/intlHelper';
+import { lenker } from '@/utils/lenker';
 
 interface Props {
     barn: BarnKalkulator;
@@ -25,7 +26,7 @@ const { YesOrNoQuestion, Select } = getTypedFormComponents<
 >();
 
 const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
-    const { formatMessage } = useFeatureToggleIntl();
+    const intl = useIntl();
     const getFieldName = (index: number, field: BarnFormFiels): string => {
         return `${KlakulatorFormFields.barn}.${index}.${field}`;
     };
@@ -38,7 +39,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                 <BarnPanelView id={barn.id} index={index} length={antallBarn} valideringsFeil={valideringsFeil}>
                     <div>
                         <Select
-                            label={formatMessage('barn.årFødt')}
+                            label={intlHelper(intl, 'barn.årFødt')}
                             name={getFieldName(index, BarnFormFiels.årFødt) as KlakulatorFormFields}
                             style={{ width: 'fit-content' }}
                             validate={(value) => {
@@ -53,7 +54,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                     : undefined;
                             }}
                             description={
-                                <ReadMore header={formatMessage('barn.årFødt.readMore.title')}>
+                                <ReadMore header={intlHelper(intl, 'barn.årFødt.readMore.title')}>
                                     <FormattedMessage id={'barn.årFødt.readMore'} />
                                 </ReadMore>
                             }>
@@ -78,7 +79,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                             <div className="mt-7">
                                 <YesOrNoQuestion
                                     name={getFieldName(index, BarnFormFiels.kroniskSykt) as KlakulatorFormFields}
-                                    legend={formatMessage('barn.kroniskSykt')}
+                                    legend={intlHelper(intl, 'barn.kroniskSykt')}
                                     validate={(value) => {
                                         const error = getYesOrNoValidator()(value);
 
@@ -91,7 +92,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                             : undefined;
                                     }}
                                     description={
-                                        <ReadMore header={formatMessage('barn.kroniskSykt.readMore.title')}>
+                                        <ReadMore header={intlHelper(intl, 'barn.kroniskSykt.readMore.title')}>
                                             <FormattedMessage id={'barn.kroniskSykt.readMore'} />
                                         </ReadMore>
                                     }
@@ -107,7 +108,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                     <div className="mt-7">
                                         <YesOrNoQuestion
                                             name={getFieldName(index, BarnFormFiels.borSammen) as KlakulatorFormFields}
-                                            legend={formatMessage('barn.borSammen')}
+                                            legend={intlHelper(intl, 'barn.borSammen')}
                                             validate={(value) => {
                                                 const error = getYesOrNoValidator()(value);
 
@@ -120,7 +121,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                                     : undefined;
                                             }}
                                             description={
-                                                <ReadMore header={formatMessage('barn.borSammen.readMore.title')}>
+                                                <ReadMore header={intlHelper(intl, 'barn.borSammen.readMore.title')}>
                                                     <FormattedMessage id={'barn.borSammen.readMore'} />
                                                 </ReadMore>
                                             }
@@ -140,7 +141,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                                         BarnFormFiels.aleneOmOmsorgen,
                                                     ) as KlakulatorFormFields
                                                 }
-                                                legend={formatMessage('barn.aleneOmOmsorgen')}
+                                                legend={intlHelper(intl, 'barn.aleneOmOmsorgen')}
                                                 validate={(value) => {
                                                     const error = getYesOrNoValidator()(value);
 
@@ -154,23 +155,22 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                                 }}
                                                 description={
                                                     <ReadMore
-                                                        header={formatMessage('barn.aleneOmOmsorgen.readMore.title')}>
-                                                        <BodyLong as="div">
+                                                        header={intlHelper(
+                                                            intl,
+                                                            'barn.aleneOmOmsorgen.readMore.title',
+                                                        )}>
+                                                        <BodyLong as="div" spacing>
                                                             <FormattedMessage
                                                                 id={'barn.aleneOmOmsorgen.readMore.avsnitt.1'}
                                                             />
                                                         </BodyLong>
 
-                                                        <BodyLong as="div">
+                                                        <BodyLong as="div" spacing>
                                                             <FormattedMessage
                                                                 id={'barn.aleneOmOmsorgen.readMore.avsnitt.1'}
                                                             />
                                                         </BodyLong>
-                                                        <Link
-                                                            href={
-                                                                'https://www.regjeringen.no/no/tema/familie-og-barn/innsiktsartikler/bosted-og-samvar/samvar/id749587/'
-                                                            }
-                                                            target="_blank">
+                                                        <Link href={lenker.fastBosted} target="_blank">
                                                             <FormattedMessage id="barn.aleneOmOmsorgen.readMore.avsnitt.lenke" />
                                                         </Link>
                                                     </ReadMore>

@@ -2,7 +2,7 @@
     "banner": {
         "title": "Kalkulator for omsorgsdager",
         "description": "hvor mange omsorgsdager KAN du ha rett på",
-        "updated": "Oppdatert"
+        "updated": "Oppdatert {dato}"
     },
 
     "info": {

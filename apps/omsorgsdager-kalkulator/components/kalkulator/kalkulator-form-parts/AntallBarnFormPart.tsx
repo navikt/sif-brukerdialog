@@ -1,10 +1,10 @@
 import { ValidationError } from '../../sif-formik/validation/types';
 import { KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
 import { getTypedFormComponents } from '../../sif-formik/getTypedFormComponents';
-import { useFeatureToggleIntl } from '../../../hooks/useFeatureToggleIntl';
 import getRequiredFieldValidator from '../../sif-formik/validation/getRequiredFieldValidator';
 import { ReadMore } from '@navikt/ds-react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { intlHelper } from '../../../utils/intlHelper';
 
 interface Props {
     setBarn: (value: string) => void;
@@ -13,19 +13,19 @@ interface Props {
 const { Select } = getTypedFormComponents<KlakulatorFormFields, KlakulatorFormValues, ValidationError>();
 
 const AntallBarnFormPart: React.FC<Props> = ({ setBarn }: Props) => {
-    const { formatMessage } = useFeatureToggleIntl();
+    const intl = useIntl();
     const nBarnMaks = 20;
 
     return (
         <>
             <Select
-                label={formatMessage('kalkulator.antallBarn')}
+                label={intlHelper(intl, 'kalkulator.antallBarn')}
                 name={KlakulatorFormFields.antallBarn}
                 validate={getRequiredFieldValidator()}
                 afterOnChange={(value) => setBarn(value)}
                 style={{ width: 'fit-content' }}
                 description={
-                    <ReadMore header={formatMessage('kalkulator.antallBarn.readMore.title')}>
+                    <ReadMore header={intlHelper(intl, 'kalkulator.antallBarn.readMore.title')}>
                         <FormattedMessage id={'kalkulator.antallBarn.readMore'} />
                     </ReadMore>
                 }>

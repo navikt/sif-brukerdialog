@@ -1,9 +1,10 @@
 import { BodyLong, Heading, ReadMore } from '@navikt/ds-react';
-import { useFeatureToggleIntl } from '../../hooks/useFeatureToggleIntl';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { intlHelper } from '../../utils/intlHelper';
 
 const Info = () => {
-    const { formatMessage } = useFeatureToggleIntl();
+    const intl = useIntl();
+
     return (
         <div className="p-4">
             <Heading level="2" size="large" spacing>
@@ -12,7 +13,7 @@ const Info = () => {
             <BodyLong as="div">
                 <FormattedMessage id="info.avsnitt1" />
             </BodyLong>
-            <ReadMore header={formatMessage('info.readMore.tittel')} className="flex flex-col pt-4 pb-4">
+            <ReadMore header={intlHelper(intl, 'info.readMore.tittel')} className="flex flex-col pt-4 pb-4">
                 <BodyLong as="div" spacing>
                     <FormattedMessage id="info.readMore.avsnitt1" />
                 </BodyLong>
