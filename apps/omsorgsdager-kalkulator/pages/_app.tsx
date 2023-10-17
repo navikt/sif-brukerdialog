@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app';
 import { IntlProvider } from 'react-intl';
 import { Locale } from '@navikt/nav-dekoratoren-moduler';
 import Container from '../components/container/Container';
-import { Dekorator } from '../components/dekorator/Dekorator';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { messages } from '../utils/message';
@@ -24,17 +23,15 @@ export default function App({ Component, pageProps }: AppProps) {
     const locale = getLocaleOrFallback(router.locale);
     return (
         <IntlProvider locale={locale} messages={messages[locale as Locale]}>
-            <Dekorator>
-                <>
-                    <Head>
-                        {process.env.NEXT_PUBLIC_ENVIRONMENT != 'prod' ? <meta name="robots" content="noindex" /> : ''}
-                        <title>Omsorgdager kalkulator - www.nav.no</title>
-                    </Head>
-                    <Container>
-                        <Component {...pageProps} />
-                    </Container>
-                </>
-            </Dekorator>
+            <>
+                <Head>
+                    {process.env.NEXT_PUBLIC_ENVIRONMENT != 'prod' ? <meta name="robots" content="noindex" /> : ''}
+                    <title>Omsorgdager kalkulator - www.nav.no</title>
+                </Head>
+                <Container>
+                    <Component {...pageProps} />
+                </Container>
+            </>
         </IntlProvider>
     );
 }

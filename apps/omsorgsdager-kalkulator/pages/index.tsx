@@ -1,7 +1,7 @@
 import { Panel } from '@navikt/ds-react';
 import type { NextPage } from 'next';
-import Info from './info/info';
-import Kalkulator from './kalkulator/Kalkulator';
+import Info from '../components/info/info';
+import Kalkulator from '../components/kalkulator/Kalkulator';
 
 const Home: NextPage = () => {
     return (

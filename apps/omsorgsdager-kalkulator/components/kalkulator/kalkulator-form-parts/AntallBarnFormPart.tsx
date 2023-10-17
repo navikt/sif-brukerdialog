@@ -1,8 +1,8 @@
-import { ValidationError } from '../sif-formik/validation/types';
-import { KlakulatorFormFields, KlakulatorFormValues } from '../../pages/kalkulator/Kalkulator';
-import { getTypedFormComponents } from '../sif-formik/getTypedFormComponents';
-import { useFeatureToggleIntl } from '../../hooks/useFeatureToggleIntl';
-import getRequiredFieldValidator from '../sif-formik/validation/getRequiredFieldValidator';
+import { ValidationError } from '../../sif-formik/validation/types';
+import { KlakulatorFormFields, KlakulatorFormValues } from '../Kalkulator';
+import { getTypedFormComponents } from '../../sif-formik/getTypedFormComponents';
+import { useFeatureToggleIntl } from '../../../hooks/useFeatureToggleIntl';
+import getRequiredFieldValidator from '../../sif-formik/validation/getRequiredFieldValidator';
 import { ReadMore } from '@navikt/ds-react';
 import { FormattedMessage } from 'react-intl';
 

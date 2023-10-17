@@ -1,7 +1,7 @@
 import Barn, { AlderType } from '../components/kalkulerOmsorgsdager/types/Barn';
 import Omsorgsprinsipper from '../components/kalkulerOmsorgsdager/types/Omsorgsprinsipper';
 import { YesOrNo } from '../components/sif-formik/types';
-import { BarnKalkulator } from '../pages/kalkulator/Kalkulator';
+import { BarnKalkulator } from '../components/kalkulator/Kalkulator';
 import dayjs from 'dayjs';
 
 export const getYear = (): number => dayjs().year();

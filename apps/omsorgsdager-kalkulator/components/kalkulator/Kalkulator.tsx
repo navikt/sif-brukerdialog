@@ -1,18 +1,18 @@
 import { useIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
-import { YesOrNo } from '../../components/sif-formik/types';
-import { getTypedFormComponents } from '../../components/sif-formik/getTypedFormComponents';
-import { ValidationError } from '../../components/sif-formik/validation/types';
-import getIntlFormErrorHandler from '../../components/sif-formik/validation/intlFormErrorHandler';
+import { YesOrNo } from '../sif-formik/types';
+import { getTypedFormComponents } from '../sif-formik/getTypedFormComponents';
+import { ValidationError } from '../sif-formik/validation/types';
+import getIntlFormErrorHandler from '../sif-formik/validation/intlFormErrorHandler';
 import { mapBarnKalkulatorToBarn, summerAntallOmsorgsdager } from '../../utils/utils';
-import { beregnOmsorgsdager } from '../../components/kalkulerOmsorgsdager/kalkulerOmsorgsdager';
-import ResultatArea from '../../components/result/ResultatArea';
+import { beregnOmsorgsdager } from '../kalkulerOmsorgsdager/kalkulerOmsorgsdager';
+import ResultatArea from '../result/ResultatArea';
 import { useState } from 'react';
-import { ResultView, empty, noValidChildrenOrange } from '../../components/result/ResultView';
-import Omsorgsprinsipper from '../../components/kalkulerOmsorgsdager/types/Omsorgsprinsipper';
-import FormikValuesObserver from '../../components/sif-formik/helpers/formik-values-observer/FormikValuesObserver';
-import BarnFormPart from '../../components/kalkulator-form-parts/BarnFormPart';
-import AntallBarnFormPart from '../../components/kalkulator-form-parts/AntallBarnFormPart';
+import { ResultView, empty, noValidChildrenOrange } from '../result/ResultView';
+import Omsorgsprinsipper from '../kalkulerOmsorgsdager/types/Omsorgsprinsipper';
+import FormikValuesObserver from '../sif-formik/helpers/formik-values-observer/FormikValuesObserver';
+import BarnFormPart from './kalkulator-form-parts/BarnFormPart';
+import AntallBarnFormPart from './kalkulator-form-parts/AntallBarnFormPart';
 
 export interface BarnKalkulator {
     årFødt: number;
