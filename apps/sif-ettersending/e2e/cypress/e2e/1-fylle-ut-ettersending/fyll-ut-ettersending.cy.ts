@@ -4,8 +4,8 @@ import { cyApiMockData } from '../data/cyApiMockData';
 import { getElement, getTestElement, getTestElementByType, submitSkjema } from '../utils';
 
 const fileName = 'navlogopng.png';
-const velgSøknadstypeUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending/pleiepenger/melding';
+const velgSøknadstypeUrl = 'http://localhost:8080/';
+const startUrl = 'http://localhost:8080/';
 
 const velgSøknadstype = () => {
     it('Velg søknadstype', () => {
