@@ -39,12 +39,9 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = async (html) => {
-    server.get('/health/isAlive', (_req, res) => res.sendStatus(200));
-    server.get('/health/isReady', (_req, res) => res.sendStatus(200));
-    server.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
-    server.get(/^\/(?!.*dist).*$/, (_req, res) => {
-        res.send(html);
-    });
+    server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
+    server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
+    server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
 
     server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (req, res) => {
         res.send(html);

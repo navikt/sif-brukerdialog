@@ -173,7 +173,6 @@ const startServer = async (html) => {
         server.use(vite.middlewares);
     } else {
         server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
-        server.use(`/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
         server.get(/^\/(?!.*api)(?!.*innsynapi)(?!.*dist).*$/, (_req, res) => {
             res.send(html);
         });
