@@ -20,7 +20,7 @@
         "MSW_MODE": "dev",
         "NODE_ENV": "q",
         "NPM_CONFIG_CACHE": "/tmp",
-        "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
+        "PUBLIC_PATH": "",
         "USE_AMPLITUDE": "true"
     },
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
