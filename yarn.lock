@@ -4529,7 +4529,6 @@ __metadata:
     axios: 1.5.1
     babel-polyfill: 6.26.0
     busboy: 1.6.0
-    case-sensitive-paths-webpack-plugin: 2.4.0
     classnames: 2.3.2
     compression: 1.7.4
     cookie-parser: 1.4.6
@@ -4545,8 +4544,6 @@ __metadata:
     formik: 2.4.5
     fs-extra: 11.1.1
     helmet: 7.0.0
-    html-webpack-harddisk-plugin: 2.0.0
-    html-webpack-plugin: 5.5.3
     http-proxy-middleware: 2.0.6
     io-ts-types: 0.5.19
     jose: 4.15.4
@@ -4576,8 +4573,6 @@ __metadata:
     uuid: 9.0.1
     vite: 4.4.11
     vite-plugin-checker: 0.6.2
-    webpack: 5.89.0
-    webpack-dev-server: 4.15.1
   languageName: unknown
   linkType: soft
 
