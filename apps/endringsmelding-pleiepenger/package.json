@@ -112,9 +112,8 @@
         }
     },
     "scripts": {
-        "build-app": "vite build",
+        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
         "build-storybook": "storybook build",
-        "build": "vite build",
         "clean": "rm -rf node_modules .dist",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",
