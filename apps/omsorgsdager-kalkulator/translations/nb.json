@@ -9,8 +9,10 @@
         "title": "Her kan du regne ut hvor mange omsorgsdager du kan ha rett på fra 1.januar 2023 til 31. desember 2023",
         "avsnitt1": "Kalkulatoren er for deg som barnet bor fast hos. Det vil si der barnet har folkeregistrert adresse. Hvis foreldrene ikke bor sammen, men har en avtale om delt bosted, bor barnet fast hos begge.",
         "readMore.tittel": "Er du samværsforelder?",
-        "readMore": "Kalkulatoren beregner hvor mange omsorgsdager du har ut fra svarene du oppgir. Det betyr at riktig resultat er avhengig av at du gir riktige opplysninger. Kalkulatoren er ment som et hjelpeverktøy for deg, det er ikke et vedtak eller en bekreftelse fra NAV.",
-        "avsnitt2": "Du må svare på alle spørsmålene nedenfor for å få et resultat."
+        "readMore.avsnitt1": "Hvis du er samværsforelder som har fått omsorgsdager fra den andre forelderen og i tillegg har egne barn som bor fast hos deg, beregner kalkulatoren hvor mange omsorgsdager du har for de egne barna som bor fast hos deg. Du plusser selv på antall omsorgsdager du har fått fra den andre forelderen.",
+        "readMore.avsnitt2": "Kalkulatoren vil ikke fungere for deg som er samværsforelder og ikke har egne barn som bor fast hos deg.",
+        "avsnitt2": "Kalkulatoren beregner hvor mange omsorgsdager du har ut fra svarene du oppgir. Det betyr at riktig resultat er avhengig av at du gir riktige opplysninger. Kalkulatoren er ment som et hjelpeverktøy for deg, det er ikke et vedtak eller en bekreftelse fra NAV.",
+        "avsnitt3": "Du må svare på alle spørsmålene nedenfor for å få et resultat."
     },
 
     "kalkulator": {
@@ -29,7 +31,7 @@
         "kroniskSykt.readMore.title": "Hva betyr dette?",
         "kroniskSykt.readMore": "Hvis barnet har kronisk sykdom, funksjonshemning eller langvarig sykdom, kan du ha rett på ekstra omsorgsdager. Du kan svare ja på dette spørsmålet dersom du har søkt og fått svar fra NAV om at du har fått ekstra omsorgsdager.",
         "kroniskSykt.alert": "For å få omsorgsdager for barn som er 13 år eller eldre, må du ha søkt og fått innvilget ekstra omsorgsdager fra NAV fordi barnet har en kronisk sykdom eller en funksjonshemning.",
-        
+
         "borSammen": "Bor barnet fast hos deg?",
         "borSammen.readMore.title": "Hva betyr dette?",
         "borSammen.readMore": "Du skal svare ja på dette spørsmålet hvis barnet har folkeregistrert adresse hos deg, eller om du har en avtale om delt bosted med den andre forelderen.",

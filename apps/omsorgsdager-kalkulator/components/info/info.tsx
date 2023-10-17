@@ -12,13 +12,19 @@ const Info = () => {
             <BodyLong as="div">
                 <FormattedMessage id="info.avsnitt1" />
             </BodyLong>
-            <ReadMore header={formatMessage('info.readMore.tittel')} className="flex flex-col pt-4">
+            <ReadMore header={formatMessage('info.readMore.tittel')} className="flex flex-col pt-4 pb-4">
+                <BodyLong as="div" spacing>
+                    <FormattedMessage id="info.readMore.avsnitt1" />
+                </BodyLong>
                 <BodyLong as="div">
-                    <FormattedMessage id="info.readMore" />
+                    <FormattedMessage id="info.readMore.avsnitt2" />
                 </BodyLong>
             </ReadMore>
-            <BodyLong as="div">
+            <BodyLong as="div" spacing>
                 <FormattedMessage id="info.avsnitt2" />
+            </BodyLong>
+            <BodyLong as="div" spacing>
+                <FormattedMessage id="info.avsnitt3" />
             </BodyLong>
         </div>
     );
