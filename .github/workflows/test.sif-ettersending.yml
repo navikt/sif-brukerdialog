@@ -56,6 +56,7 @@ jobs:
                   LIVETS_SLUTTFASE: on
                   NPM_CONFIG_CACHE: /tmp
                   PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending
+                  VITE_PUBLIC_PATH: /familie/sykdom-i-familien/soknad/ettersending
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
                   APPSTATUS_PROJECT_ID: ryujtq87
                   APPSTATUS_DATASET: staging

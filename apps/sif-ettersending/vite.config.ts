@@ -5,7 +5,7 @@ import checker from 'vite-plugin-checker';
 import 'dotenv/config';
 
 export default defineConfig({
-    base: process.env.PUBLIC_PATH,
+    base: `${process.env.VITE_PUBLIC_PATH}`,
     plugins: [
         react({
             include: '**/*.{jsx,tsx}',
