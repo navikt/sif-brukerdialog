@@ -3,7 +3,7 @@
     "description": "Søknad om utbetaling av omsorgsdager for arbeidstakere",
     "license": "MIT",
     "name": "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad",
-    "repository": "https://github.com/navikt/omsorgspengerutbetaling-arbeidstaker-soknad",
+    "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "1.0.0",
     "private": true,
     "dependencies": {
