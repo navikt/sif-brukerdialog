@@ -28,9 +28,9 @@
         "start-e2e-server": "node ./server-e2e.js"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.7.0",
-        "@navikt/ds-react": "5.7.0",
-        "@navikt/ds-tailwind": "5.7.0",
+        "@navikt/ds-css": "5.7.3",
+        "@navikt/ds-react": "5.7.3",
+        "@navikt/ds-tailwind": "5.7.3",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -59,7 +59,7 @@
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
         "react-intl": "6.5.0",
-        "react-router-dom": "6.16.0",
+        "react-router-dom": "6.17.0",
         "ulid": "2.3.0",
         "uuid": "9.0.1"
     },
@@ -68,7 +68,7 @@
         "@babel/plugin-transform-modules-commonjs": "7.23.0",
         "@babel/preset-env": "7.23.2",
         "@babel/preset-react": "7.22.15",
-        "@types/object-hash": "3.0.4",
+        "@types/object-hash": "3.0.5",
         "@types/react": "18.2.28",
         "@types/react-dom": "18.2.13",
         "@types/react-router-dom": "5.3.3",
