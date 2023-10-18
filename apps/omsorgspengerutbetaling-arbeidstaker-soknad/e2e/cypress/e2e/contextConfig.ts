@@ -20,7 +20,7 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(
             `GET`,
             `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`,
-            mellomlagring || { noData: 1 }
+            mellomlagring || { noData: 1 },
         );
         cy.intercept(`DELETE`, `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, mellomlagring || {});
         cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, {}).as('putMellomlagring');
