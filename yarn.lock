@@ -3596,7 +3596,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/aksel-icons@npm:^5.7.3":
+"@navikt/aksel-icons@npm:^5.7.0, @navikt/aksel-icons@npm:^5.7.3":
   version: 5.7.3
   resolution: "@navikt/aksel-icons@npm:5.7.3"
   checksum: 41ad284dc9d6e41b0ee86ebdc56409fd5cc42ec3566a0832c883134145d7272b54257005d49cb9c1deecbc43e6a2a10c1d0527b00891507affe2f2f5ca0a3d32
@@ -3626,6 +3626,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@navikt/ds-css@npm:5.7.0":
+  version: 5.7.0
+  resolution: "@navikt/ds-css@npm:5.7.0"
+  checksum: ea6e99b62bbd6ac89e5fb1f90cbe0e4ac19c9a3b0385b23cefa2ebf49b446bf4777ee1f81da81b12e2d4f17842b99096d15945f6e70e0da466318f96f51a0bb6
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-css@npm:5.7.3":
   version: 5.7.3
   resolution: "@navikt/ds-css@npm:5.7.3"
@@ -3643,6 +3650,28 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 3b5f917c65ea4ca6296075dcc5b91e4c2ebdd8146731fc58ab6ea2d7fcad7f6dfa8b63d550717c862a0dc889c6dc1a7dd04bf8ac84b6b88c6d75b94d4127f199
+  languageName: node
+  linkType: hard
+
+"@navikt/ds-react@npm:5.7.0":
+  version: 5.7.0
+  resolution: "@navikt/ds-react@npm:5.7.0"
+  dependencies:
+    "@floating-ui/react": 0.25.4
+    "@navikt/aksel-icons": ^5.7.0
+    "@navikt/ds-tokens": ^5.7.0
+    "@radix-ui/react-tabs": 1.0.0
+    "@radix-ui/react-toggle-group": 1.0.0
+    clsx: ^1.2.1
+    date-fns: 2.29.3
+    react-day-picker: 8.3.4
+  peerDependencies:
+    "@types/react": ^17.0.30 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 1891a7de86ebb87d655303ee63734115cb381833a7318fcd66f47a5d224790cfd5e20fa1bb50117c932378161f698d95812ac4de1236a1e12999e26f22d35f82
   languageName: node
   linkType: hard
 
@@ -3668,6 +3697,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@navikt/ds-tailwind@npm:5.7.0":
+  version: 5.7.0
+  resolution: "@navikt/ds-tailwind@npm:5.7.0"
+  checksum: af4eebb313b2cbf986c908195f8fc6c2a513687aa456486bda85c38876fd7d3ed20a42e00a6b7e81cbb4d9be61d810e5fa92415cf9178bc1d098623c95464774
+  languageName: node
+  linkType: hard
+
 "@navikt/ds-tailwind@npm:5.7.3":
   version: 5.7.3
   resolution: "@navikt/ds-tailwind@npm:5.7.3"
@@ -3675,7 +3711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@navikt/ds-tokens@npm:^5.7.3":
+"@navikt/ds-tokens@npm:^5.7.0, @navikt/ds-tokens@npm:^5.7.3":
   version: 5.7.3
   resolution: "@navikt/ds-tokens@npm:5.7.3"
   checksum: 5fd9b64512ab0b7ecc8138a112060ada5ae9f6838677ee57296e947bea3823e720d69593224675f429dc9fbba858653db563c967523893264962b95eb376d9a1
@@ -5814,6 +5850,13 @@ __metadata:
   version: 1.10.0
   resolution: "@remix-run/router@npm:1.10.0"
   checksum: f8f9fcd5f08465a7e0a05378398ff6df2c5c5ef5766df3490a134d64260b3b16f1bd490bb0c3f5925c2671a0c1d8d1fa01dfbdc7ecc3b2447dc6eafe6b73bcc2
+  languageName: node
+  linkType: hard
+
+"@remix-run/router@npm:1.9.0":
+  version: 1.9.0
+  resolution: "@remix-run/router@npm:1.9.0"
+  checksum: 0537b0ff29879ac85077cb4c42eaca4a295b9efd71477848984c2f2dfa5741c9b83d3106a7bb72994a51a9adfeeab3b0f5a40f2dee8be3f0750feeeca2a6d513
   languageName: node
   linkType: hard
 
@@ -8871,6 +8914,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jest@npm:29.5.5":
+  version: 29.5.5
+  resolution: "@types/jest@npm:29.5.5"
+  dependencies:
+    expect: ^29.0.0
+    pretty-format: ^29.0.0
+  checksum: 56e55cde9949bcc0ee2fa34ce5b7c32c2bfb20e53424aa4ff3a210859eeaaa3fdf6f42f81a3f655238039cdaaaf108b054b7a8602f394e6c52b903659338d8c6
+  languageName: node
+  linkType: hard
+
 "@types/jest@npm:29.5.6":
   version: 29.5.6
   resolution: "@types/jest@npm:29.5.6"
@@ -9062,6 +9115,13 @@ __metadata:
   version: 4.1.4
   resolution: "@types/npmlog@npm:4.1.4"
   checksum: 740f7431ccfc0e127aa8d162fe05c6ce8aa71290be020d179b2824806d19bd2c706c7e0c9a3c9963cefcdf2ceacb1dec6988c394c3694451387759dafe0aa927
+  languageName: node
+  linkType: hard
+
+"@types/object-hash@npm:3.0.4":
+  version: 3.0.4
+  resolution: "@types/object-hash@npm:3.0.4"
+  checksum: 0c9f3c9262a7a4e5e5a5ee6c3bd513e05296f0c5e9c198ec99c5d9a4d9f4a6b2e2f19db7b28beab077de3713e04eb7aea5eb25e54b8f6c85a16753f6f9f463a5
   languageName: node
   linkType: hard
 
@@ -25760,6 +25820,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-router-dom@npm:6.16.0":
+  version: 6.16.0
+  resolution: "react-router-dom@npm:6.16.0"
+  dependencies:
+    "@remix-run/router": 1.9.0
+    react-router: 6.16.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 18b398924bb0f0d97cf2f71dab71d860b960a7a267b2f77388990c662bb6d8738bdc3042d92f713fd63d269ae9ad90df39c8e97661b6ba758bbb7386b9f20ae0
+  languageName: node
+  linkType: hard
+
 "react-router-dom@npm:6.17.0":
   version: 6.17.0
   resolution: "react-router-dom@npm:6.17.0"
@@ -25770,6 +25843,17 @@ __metadata:
     react: ">=16.8"
     react-dom: ">=16.8"
   checksum: e0ba4f4c507681e2ffdecdf2e67edf7ec0e2bf4be35222e29d013afdb03866a5e6ecacc8b452bd55797b9672785d02f81bd6dbf6b05ac93a59e48e774b0060de
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.16.0":
+  version: 6.16.0
+  resolution: "react-router@npm:6.16.0"
+  dependencies:
+    "@remix-run/router": 1.9.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: b31c187e3fdcdf7294ffdad6ff834e14d012840c94d8ee8c7fbe451062a8fcb6e31e8bc7827fb1ff45445dd40fad2b8c96a7e98f0ac1c3eb1d716c257a0821c9
   languageName: node
   linkType: hard
 
@@ -26811,6 +26895,19 @@ __metadata:
     sass-embedded:
       optional: true
   checksum: 5d73a428588150f704016aa27397941bb9246cecd2ee083b573e95d969fc080ac6a16f2fe1cc64aca08f6e70da6f3c586ee68f0efc9f527fecc360e5f1c299ec
+  languageName: node
+  linkType: hard
+
+"sass@npm:1.69.3":
+  version: 1.69.3
+  resolution: "sass@npm:1.69.3"
+  dependencies:
+    chokidar: ">=3.0.0 <4.0.0"
+    immutable: ^4.0.0
+    source-map-js: ">=0.6.2 <2.0.0"
+  bin:
+    sass: sass.js
+  checksum: b89a3370c7ede462b344e2136bf1407bf375855c1ec54f73b6257b18fe59dae5377eb9f7b25f21ae4a25d8f0bc41a165d8d7e5f693d8285b1aa51ac6056c4d19
   languageName: node
   linkType: hard
 
