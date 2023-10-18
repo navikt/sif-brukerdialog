@@ -1,6 +1,5 @@
 import { cyApiMockData } from './data/cyApiMockData';
 const PUBLIC_PATH = '/soknad';
-const API = 'http://localhost:8089';
 
 const getUrlForStep = (step?) => {
     const url = `${PUBLIC_PATH}/soknad${step ? `/${step}` : '/velkommen'}`;
@@ -17,21 +16,17 @@ export const contextConfig = (props?: ConfigProps) => {
     const { mellomlagring, step } = props || {};
 
     beforeEach('intercept mellomlagring og levere tomt objekt', () => {
-        cy.intercept(
-            `GET`,
-            `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`,
-            mellomlagring || { noData: 1 },
-        );
-        cy.intercept(`DELETE`, `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, mellomlagring || {});
-        cy.intercept(`PUT`, `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, {}).as('putMellomlagring');
-        cy.intercept(`POST`, `${API}/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, {});
-        cy.intercept(`POST`, `${API}/omsorgspenger-utbetaling-arbeidstaker/innsending`, {}).as('innsending');
-        cy.intercept('POST', `${API}/vedlegg`, {
+        cy.intercept(`GET`, `**/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, mellomlagring || { noData: 1 });
+        cy.intercept(`DELETE`, `**/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, mellomlagring || {});
+        cy.intercept(`PUT`, `**/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, {}).as('putMellomlagring');
+        cy.intercept(`POST`, `**/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, {});
+        cy.intercept(`POST`, `**/omsorgspenger-utbetaling-arbeidstaker/innsending`, {}).as('innsending');
+        cy.intercept('POST', `**/vedlegg`, {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
-        cy.intercept('GET', `${API}/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
-        cy.intercept('GET', `${API}/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgiverMock).as('getArbeidsgiver');
+        cy.intercept('GET', `**/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
+        cy.intercept('GET', `**/oppslag/arbeidsgiver*`, cyApiMockData.arbeidsgiverMock).as('getArbeidsgiver');
         cy.intercept('*.api.sanity.io', {});
     });
 
