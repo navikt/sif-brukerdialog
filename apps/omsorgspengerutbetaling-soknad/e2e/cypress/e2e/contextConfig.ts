@@ -30,6 +30,10 @@ export const contextConfig = (props?: ConfigProps) => {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
+        cy.intercept('POST', `/vedlegg`, {
+            location: '/vedlegg',
+            headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
+        });
         cy.intercept('GET', `${INTERCEPT_PATH}/oppslag/soker*`, cyApiMockData.søkerMock).as('getSøker');
         cy.intercept('GET', `${INTERCEPT_PATH}/oppslag/barn*`, { barn: props?.barn } || cyApiMockData.barnMock).as(
             'getBarn',
