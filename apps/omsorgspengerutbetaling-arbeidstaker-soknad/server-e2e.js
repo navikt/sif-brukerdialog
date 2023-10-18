@@ -12,7 +12,7 @@ const server = express();
 server.use(
     helmet({
         contentSecurityPolicy: false,
-    })
+    }),
 );
 
 server.use(compression());

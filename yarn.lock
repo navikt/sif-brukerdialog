@@ -3949,7 +3949,6 @@ __metadata:
     busboy: 1.6.0
     case-sensitive-paths-webpack-plugin: 2.4.0
     compression: 1.7.4
-    cookie-parser: 1.4.6
     css-loader: 6.8.1
     cypress: 13.3.1
     cypress-file-upload: 5.0.8
