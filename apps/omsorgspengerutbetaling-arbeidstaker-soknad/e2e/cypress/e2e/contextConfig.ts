@@ -23,7 +23,7 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`POST`, `/mellomlagring/OMSORGSPENGER_UTBETALING_ARBEIDSTAKER`, {});
         cy.intercept(`POST`, `/omsorgspenger-utbetaling-arbeidstaker/innsending`, {}).as('innsending');
         cy.intercept('POST', `/vedlegg`, {
-            location: '/vedlegg',
+            location: '**/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
         cy.intercept('GET', `/oppslag/barn`, cyApiMockData.barnMock).as('getBarn');
