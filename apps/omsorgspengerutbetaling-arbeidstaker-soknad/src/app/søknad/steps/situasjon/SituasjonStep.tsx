@@ -36,7 +36,7 @@ import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils
 import FormSection from '../../../components/form-section/FormSection';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { useState } from 'react';
-import useEffectOnce from '@navikt/sif-common-core-ds/lib/hooks/useEffectOnce';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import arbeidsgivereEndpoint from '../../../api/endpoints/arbeidsgivereEndpoint';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 

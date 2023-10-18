@@ -15,7 +15,6 @@ const webpackConfig = {
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
-        alias: {},
     },
     module: {
         rules: [
@@ -27,7 +26,6 @@ const webpackConfig = {
             },
             {
                 test: /\.(ts|tsx)$/,
-                include: [path.resolve(__dirname, './../../app')],
                 use: [
                     {
                         loader: 'ts-loader',
