@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.9.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 8.9.3
 
 ### Patch Changes
