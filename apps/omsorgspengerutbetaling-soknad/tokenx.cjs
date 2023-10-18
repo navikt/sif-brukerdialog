@@ -10,7 +10,7 @@ async function initTokenX() {
         },
         {
             keys: [JSON.parse(process.env.TOKEN_X_PRIVATE_JWK)],
-        }
+        },
     );
 }
 
@@ -25,7 +25,7 @@ async function getTokenXToken(token, additionalClaims) {
                 audience: process.env.API_TOKENX_AUDIENCE,
                 subject_token: token,
             },
-            additionalClaims
+            additionalClaims,
         );
     } catch (err) {
         // eslint-disable-next-line no-console
