@@ -2,6 +2,7 @@ import { getTestElement, selectRadio, selectRadioNo, selectRadioYes, submitSkjem
 
 export const fyllUtSituasjonSteg = () => {
     it('Fyll ut situasjon steg', () => {
+        cy.wait(['@getArbeidsgiver']);
         getTestElement('arbeidsforhold-liste').each(($element, $index) => {
             cy.wrap($element).within(() => {
                 selectRadioYes('arbeidsforhold-harHattFravær');
