@@ -3,7 +3,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-core-ds",
     "types": "lib/index.d.js",
-    "version": "9.8.4",
+    "version": "9.8.5",
     "private": true,
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
@@ -57,7 +57,7 @@
         "postcss": "8.4.31",
         "prop-types": "15.8.1",
         "react": "18.2.0",
-        "react-day-picker": "8.9.0",
+        "react-day-picker": "8.9.1",
         "react-dom": "18.2.0",
         "react-intl": "6.5.0",
         "react-responsive": "9.0.2",

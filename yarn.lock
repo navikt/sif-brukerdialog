@@ -3867,7 +3867,7 @@ __metadata:
     promise: 8.3.0
     react: 18.2.0
     react-collapse: 5.1.1
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.0
     react-modal: 3.16.1
@@ -4297,7 +4297,7 @@ __metadata:
     openid-client: 5.6.1
     promise: 8.3.0
     react: 18.2.0
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.0
     react-responsive: 9.0.2
@@ -4415,7 +4415,7 @@ __metadata:
     prop-types: 15.8.1
     react: 18.2.0
     react-collapse: 5.1.1
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.0
     react-responsive: 9.0.2
@@ -4477,7 +4477,7 @@ __metadata:
     npm-run-all: 4.1.5
     prop-types: 15.8.1
     react: 18.2.0
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-dropzone: 14.2.3
     react-fast-compare: 3.2.2
@@ -4547,7 +4547,7 @@ __metadata:
     jsdom: 22.1.0
     react: 18.2.0
     react-collapse: 5.1.1
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.0
     react-modal: 3.16.1
@@ -4647,7 +4647,7 @@ __metadata:
     monocle-ts: 2.3.13
     newtype-ts: 0.3.5
     react: 18.2.0
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.0
     react-router-dom: 6.17.0
@@ -4687,7 +4687,7 @@ __metadata:
     copyfiles: 2.4.1
     dayjs: 1.11.10
     npm-run-all: 4.1.5
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-scripts: 5.0.1
     sass: 1.69.4
     storybook: 7.5.0
@@ -4785,7 +4785,7 @@ __metadata:
     promise: 8.3.0
     react: 18.2.0
     react-collapse: 5.1.1
-    react-day-picker: 8.9.0
+    react-day-picker: 8.9.1
     react-dom: 18.2.0
     react-intl: 6.5.0
     react-router-dom: 6.17.0
@@ -25360,13 +25360,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-day-picker@npm:8.9.0":
-  version: 8.9.0
-  resolution: "react-day-picker@npm:8.9.0"
+"react-day-picker@npm:8.9.1":
+  version: 8.9.1
+  resolution: "react-day-picker@npm:8.9.1"
   peerDependencies:
     date-fns: ^2.28.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 1227b9dddd2aa1b8183cefad0d741919a721c36ed6b575a212da49258dc91609bf95c57cae30db37b7a4bc1bdc27ebc1364ec12126366c9216e238d15568ac75
+  checksum: 1a609bd3621f66fd93c58635990246c6129e57ea33d05345256bdd561f56035a04b201213a279aa37129dbbe149ae5f0f15259a9d06309910d1c9a6bb6c0eccc
   languageName: node
   linkType: hard
 

@@ -1,5 +1,11 @@
 # config
 
+## 0.6.4
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
 ## 0.6.3
 
 ### Patch Changes

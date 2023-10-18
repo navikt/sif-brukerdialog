@@ -3,7 +3,7 @@
     "description": "Basis felleskomponenter for sykdom i familien søknadsskjema",
     "name": "@navikt/sif-common-soknad-ds",
     "main": "lib/index.js",
-    "version": "10.7.4",
+    "version": "10.7.5",
     "private": true,
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "1.6.9",
@@ -57,7 +57,7 @@
         "monocle-ts": "2.3.13",
         "newtype-ts": "0.3.5",
         "react": "18.2.0",
-        "react-day-picker": "8.9.0",
+        "react-day-picker": "8.9.1",
         "react-dom": "18.2.0",
         "react-intl": "6.5.0",
         "react-router-dom": "6.17.0",
