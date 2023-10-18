@@ -22,7 +22,7 @@ const extractDecoratorFragments = (html) => {
             APPSTATUS_DATASET: `${process.env.APPSTATUS_DATASET}`,
             APPSTATUS_PROJECT_ID: `${process.env.APPSTATUS_PROJECT_ID}`,
             FRONTEND_API_PATH: `${process.env.FRONTEND_API_PATH}`,
-            FRONTEND_VEDLEGG_URL: '${process.env.FRONTEND_VEDLEGG_URL}',
+            FRONTEND_VEDLEGG_URL: `${process.env.FRONTEND_VEDLEGG_URL}`,
             GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
             IMAGE: `${process.env.IMAGE}`,
             LOGIN_URL: `${process.env.LOGIN_URL}`,
