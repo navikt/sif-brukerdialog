@@ -106,9 +106,6 @@ const TidsromStep = () => {
                                     <p>
                                         <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.2" />
                                     </p>
-                                    <p>
-                                        <FormattedMessage id="step.tidsrom.counsellorPanel.avsnitt.3" />
-                                    </p>
                                 </SifGuidePanel>
 
                                 <FormBlock>

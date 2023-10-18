@@ -151,9 +151,7 @@ export const appMessages: MessageFileFormat = {
         'step.arbeidstid.nextButtonLabel': 'Fortsett',
 
         'arbeidIPeriode.StepInfo.1':
-            'Nå trenger vi å vite hvor mye du skal vært borte fra jobb på grunn av at du skal pleie.',
-        'arbeidIPeriode.StepInfo.2':
-            'Hvis du for eksempel pleier den som er syk en halv dag og jobber resten av dagen, bruker du også bare en halv dag med pleiepenger. De dagene du jobber fullt bruker du ikke av pleiepengedagene.',
+            'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
         'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',

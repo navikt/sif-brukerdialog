@@ -129,208 +129,201 @@ const OpplysningerOmPleietrengendeStep = () => {
                                         <FormattedMessage id="step.opplysningerOmPleietrengende.counsellorPanel.info" />
                                     </p>
                                 </SifGuidePanel>
+
                                 <FormBlock>
+                                    <TextField
+                                        name={OpplysningerOmPleietrengendeFormFields.navn}
+                                        label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.navn')}
+                                        validate={getStringValidator({ required: true, maxLength: 50 })}
+                                        style={{ maxWidth: '20rem' }}
+                                        data-testid="opplysningerOmPleietrengende.spm.navn"
+                                    />
                                     <FormBlock>
-                                        <FormikYesOrNoQuestion
-                                            legend={intlHelper(
-                                                intl,
-                                                'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm',
-                                            )}
-                                            name={OpplysningerOmPleietrengendeFormFields.pleierDuDenSykeHjemme}
-                                            validate={getYesOrNoValidator()}
-                                            description={
-                                                <ExpandableInfo
-                                                    title={intlHelper(
-                                                        intl,
-                                                        'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel',
-                                                    )}>
-                                                    <FormattedMessage
-                                                        id={
-                                                            'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info'
-                                                        }
-                                                    />
-                                                </ExpandableInfo>
+                                        <TextField
+                                            name={OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer}
+                                            label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.fnr')}
+                                            validate={
+                                                harIkkeFnr
+                                                    ? undefined
+                                                    : getFødselsnummerValidator({
+                                                          required: true,
+                                                          disallowedValues: søker.fødselsnummer
+                                                              ? [søker.fødselsnummer]
+                                                              : [],
+                                                      })
                                             }
-                                            data-testid="pleierDuDenSykeHjemme.spm"
+                                            inputMode="numeric"
+                                            maxLength={11}
+                                            minLength={11}
+                                            style={{ maxWidth: '20rem' }}
+                                            disabled={harIkkeFnr}
+                                            data-testid="opplysningerOmPleietrengende.spm.fnr"
                                         />
+                                        <Block margin="m">
+                                            <Checkbox
+                                                label={intlHelper(
+                                                    intl,
+                                                    'step.opplysningerOmPleietrengende.fnr.harIkkeFnr',
+                                                )}
+                                                name={OpplysningerOmPleietrengendeFormFields.harIkkeFnr}
+                                                afterOnChange={(newValue) => {
+                                                    if (newValue) {
+                                                        resetFieldValue(
+                                                            OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer,
+                                                            setFieldValue,
+                                                            opplysningerOmPleietrengendeDefaultValues,
+                                                        );
+                                                    } else {
+                                                        resetFieldValues(
+                                                            [
+                                                                OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer,
+                                                                OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer,
+                                                                OpplysningerOmPleietrengendeFormFields.fødselsdato,
+                                                            ],
+                                                            setFieldValue,
+                                                            opplysningerOmPleietrengendeDefaultValues,
+                                                        );
+                                                    }
+                                                }}
+                                                data-testid="opplysningerOmPleietrengende.fnr.harIkkeFnr"
+                                            />
+                                        </Block>
                                     </FormBlock>
-                                    {pleierDuDenSykeHjemme === YesOrNo.NO && (
-                                        <FormBlock>
-                                            <Alert variant="warning">
-                                                <FormattedMessage id="steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert" />
-                                            </Alert>
-                                        </FormBlock>
-                                    )}
-                                    {pleierDuDenSykeHjemme === YesOrNo.YES && (
+                                    {harIkkeFnr && (
                                         <>
                                             <FormBlock>
-                                                <TextField
-                                                    name={OpplysningerOmPleietrengendeFormFields.navn}
+                                                <DatePicker
+                                                    name={OpplysningerOmPleietrengendeFormFields.fødselsdato}
                                                     label={intlHelper(
                                                         intl,
-                                                        'step.opplysningerOmPleietrengende.spm.navn',
+                                                        'step.opplysningerOmPleietrengende.fødselsdato',
                                                     )}
-                                                    validate={getStringValidator({ required: true, maxLength: 50 })}
-                                                    style={{ maxWidth: '20rem' }}
-                                                    data-testid="opplysningerOmPleietrengende.spm.navn"
+                                                    validate={(value) => {
+                                                        const dateError = getDateValidator({
+                                                            required: true,
+                                                            max: dateToday,
+                                                        })(value);
+
+                                                        return dateError;
+                                                    }}
+                                                    maxDate={dateToday}
+                                                    minDate={new Date('01.01.1900')}
+                                                    dropdownCaption={true}
+                                                    data-testid="opplysningerOmPleietrengende.fødselsdato"
                                                 />
-
-                                                <FormBlock>
-                                                    <TextField
-                                                        name={
-                                                            OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer
-                                                        }
-                                                        label={intlHelper(
-                                                            intl,
-                                                            'step.opplysningerOmPleietrengende.spm.fnr',
-                                                        )}
-                                                        validate={
-                                                            harIkkeFnr
-                                                                ? undefined
-                                                                : getFødselsnummerValidator({
-                                                                      required: true,
-                                                                      disallowedValues: søker.fødselsnummer
-                                                                          ? [søker.fødselsnummer]
-                                                                          : [],
-                                                                  })
-                                                        }
-                                                        inputMode="numeric"
-                                                        maxLength={11}
-                                                        minLength={11}
-                                                        style={{ maxWidth: '20rem' }}
-                                                        disabled={harIkkeFnr}
-                                                        data-testid="opplysningerOmPleietrengende.spm.fnr"
-                                                    />
-                                                    <Block margin="m">
-                                                        <Checkbox
-                                                            label={intlHelper(
-                                                                intl,
-                                                                'step.opplysningerOmPleietrengende.fnr.harIkkeFnr',
-                                                            )}
-                                                            name={OpplysningerOmPleietrengendeFormFields.harIkkeFnr}
-                                                            afterOnChange={(newValue) => {
-                                                                if (newValue) {
-                                                                    resetFieldValue(
-                                                                        OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer,
-                                                                        setFieldValue,
-                                                                        opplysningerOmPleietrengendeDefaultValues,
-                                                                    );
-                                                                } else {
-                                                                    resetFieldValues(
-                                                                        [
-                                                                            OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer,
-                                                                            OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer,
-                                                                            OpplysningerOmPleietrengendeFormFields.fødselsdato,
-                                                                        ],
-                                                                        setFieldValue,
-                                                                        opplysningerOmPleietrengendeDefaultValues,
-                                                                    );
-                                                                }
-                                                            }}
-                                                            data-testid="opplysningerOmPleietrengende.fnr.harIkkeFnr"
-                                                        />
-                                                    </Block>
-                                                </FormBlock>
-                                                {harIkkeFnr && (
-                                                    <>
-                                                        <FormBlock>
-                                                            <DatePicker
-                                                                name={
-                                                                    OpplysningerOmPleietrengendeFormFields.fødselsdato
-                                                                }
-                                                                label={intlHelper(
-                                                                    intl,
-                                                                    'step.opplysningerOmPleietrengende.fødselsdato',
-                                                                )}
-                                                                validate={(value) => {
-                                                                    const dateError = getDateValidator({
-                                                                        required: true,
-                                                                        max: dateToday,
-                                                                    })(value);
-
-                                                                    return dateError;
-                                                                }}
-                                                                maxDate={dateToday}
-                                                                minDate={new Date('01.01.1900')}
-                                                                dropdownCaption={true}
-                                                                data-testid="opplysningerOmPleietrengende.fødselsdato"
-                                                            />
-                                                        </FormBlock>
-                                                        <FormBlock>
-                                                            <RadioGroup
-                                                                legend={intlHelper(
-                                                                    intl,
-                                                                    'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm',
-                                                                )}
-                                                                name={
-                                                                    OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer
-                                                                }
-                                                                radios={Object.keys(ÅrsakManglerIdentitetsnummer).map(
-                                                                    (årsak) => ({
-                                                                        label: intlHelper(
-                                                                            intl,
-                                                                            `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`,
-                                                                        ),
-                                                                        value: årsak,
-                                                                        'data-testid': `årsakManglerIdentitetsnummer.${årsak}`,
-                                                                    }),
-                                                                )}
-                                                                validate={getRequiredFieldValidator()}></RadioGroup>
-                                                        </FormBlock>
-                                                        <FormBlock>
-                                                            <Heading level="2" size="medium">
-                                                                <FormattedMessage id="step.opplysningerOmPleietrengende.id.tittel" />
-                                                            </Heading>
-                                                            <Block>
-                                                                <FormattedMessage id="step.opplysningerOmPleietrengende.id.info" />
-                                                            </Block>
-                                                            <IdPart />
-                                                        </FormBlock>
-                                                    </>
-                                                )}
                                             </FormBlock>
                                             <FormBlock>
                                                 <RadioGroup
                                                     legend={intlHelper(
                                                         intl,
-                                                        'steg.opplysningerOmPleietrengende.flereSokere.spm',
+                                                        'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm',
                                                     )}
-                                                    name={OpplysningerOmPleietrengendeFormFields.flereSokere}
-                                                    validate={getRequiredFieldValidator()}
-                                                    description={
-                                                        <ExpandableInfo
-                                                            title={intlHelper(
-                                                                intl,
-                                                                'steg.opplysningerOmPleietrengende.flereSokere.spm.description.tittle',
-                                                            )}>
-                                                            {intlHelper(
-                                                                intl,
-                                                                'steg.opplysningerOmPleietrengende.flereSokere.spm.description',
-                                                            )}
-                                                        </ExpandableInfo>
+                                                    name={
+                                                        OpplysningerOmPleietrengendeFormFields.årsakManglerIdentitetsnummer
                                                     }
-                                                    radios={[
-                                                        {
-                                                            label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
-                                                            value: YesOrNoDontKnow.YES,
-                                                            'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_yes`,
-                                                        },
-                                                        {
-                                                            label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
-                                                            value: YesOrNoDontKnow.NO,
-                                                            'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_no`,
-                                                        },
-                                                        {
-                                                            label: intlHelper(intl, `step.tidsrom.flereSokere.usikker`),
-                                                            value: YesOrNoDontKnow.DO_NOT_KNOW,
-                                                            'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_usikker`,
-                                                        },
-                                                    ]}
-                                                />
+                                                    radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak) => ({
+                                                        label: intlHelper(
+                                                            intl,
+                                                            `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`,
+                                                        ),
+                                                        value: årsak,
+                                                        'data-testid': `årsakManglerIdentitetsnummer.${årsak}`,
+                                                    }))}
+                                                    validate={getRequiredFieldValidator()}></RadioGroup>
+                                            </FormBlock>
+                                            <FormBlock>
+                                                <Heading level="2" size="medium">
+                                                    <FormattedMessage id="step.opplysningerOmPleietrengende.id.tittel" />
+                                                </Heading>
+                                                <Block>
+                                                    <FormattedMessage id="step.opplysningerOmPleietrengende.id.info" />
+                                                </Block>
+                                                <IdPart />
                                             </FormBlock>
                                         </>
                                     )}
                                 </FormBlock>
+                                <FormBlock>
+                                    <FormikYesOrNoQuestion
+                                        legend={intlHelper(
+                                            intl,
+                                            'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm',
+                                        )}
+                                        name={OpplysningerOmPleietrengendeFormFields.pleierDuDenSykeHjemme}
+                                        validate={getYesOrNoValidator()}
+                                        description={
+                                            <ExpandableInfo
+                                                title={intlHelper(
+                                                    intl,
+                                                    'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel',
+                                                )}>
+                                                <p>
+                                                    <FormattedMessage
+                                                        id={
+                                                            'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.1'
+                                                        }
+                                                    />
+                                                </p>
+                                                <p>
+                                                    <FormattedMessage
+                                                        id={
+                                                            'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.2'
+                                                        }
+                                                    />
+                                                </p>
+                                            </ExpandableInfo>
+                                        }
+                                        data-testid="pleierDuDenSykeHjemme.spm"
+                                    />
+                                </FormBlock>
+                                {pleierDuDenSykeHjemme === YesOrNo.NO && (
+                                    <FormBlock>
+                                        <Alert variant="warning">
+                                            <FormattedMessage id="steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert" />
+                                        </Alert>
+                                    </FormBlock>
+                                )}
+                                {pleierDuDenSykeHjemme === YesOrNo.YES && (
+                                    <FormBlock>
+                                        <RadioGroup
+                                            legend={intlHelper(
+                                                intl,
+                                                'steg.opplysningerOmPleietrengende.flereSokere.spm',
+                                            )}
+                                            name={OpplysningerOmPleietrengendeFormFields.flereSokere}
+                                            validate={getRequiredFieldValidator()}
+                                            description={
+                                                <ExpandableInfo
+                                                    title={intlHelper(
+                                                        intl,
+                                                        'steg.opplysningerOmPleietrengende.flereSokere.spm.description.tittle',
+                                                    )}>
+                                                    {intlHelper(
+                                                        intl,
+                                                        'steg.opplysningerOmPleietrengende.flereSokere.spm.description',
+                                                    )}
+                                                </ExpandableInfo>
+                                            }
+                                            radios={[
+                                                {
+                                                    label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
+                                                    value: YesOrNoDontKnow.YES,
+                                                    'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_yes`,
+                                                },
+                                                {
+                                                    label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
+                                                    value: YesOrNoDontKnow.NO,
+                                                    'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_no`,
+                                                },
+                                                {
+                                                    label: intlHelper(intl, `step.tidsrom.flereSokere.usikker`),
+                                                    value: YesOrNoDontKnow.DO_NOT_KNOW,
+                                                    'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_usikker`,
+                                                },
+                                            ]}
+                                        />
+                                    </FormBlock>
+                                )}
                             </Form>
                         </>
                     );

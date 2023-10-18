@@ -7,7 +7,6 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { DateRange, ValidationError } from '@navikt/sif-common-formik-ds/lib';
 import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
-import { prettifyDateExtended } from '@navikt/sif-common-utils/lib';
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
@@ -220,20 +219,7 @@ const ArbeidstidStep = () => {
                                 <FormBlock>
                                     <SifGuidePanel>
                                         <p>
-                                            <FormattedMessage
-                                                id={'arbeidIPeriode.StepInfo.1'}
-                                                values={
-                                                    periode
-                                                        ? {
-                                                              fra: prettifyDateExtended(periode.from),
-                                                              til: prettifyDateExtended(periode.to),
-                                                          }
-                                                        : undefined
-                                                }
-                                            />
-                                        </p>
-                                        <p>
-                                            <FormattedMessage id={'arbeidIPeriode.StepInfo.2'} />
+                                            <FormattedMessage id={'arbeidIPeriode.StepInfo.1'} />
                                         </p>
                                     </SifGuidePanel>
 

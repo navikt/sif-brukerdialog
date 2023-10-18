@@ -120,7 +120,7 @@ const LegeerklæringForm: React.FunctionComponent<Props> = ({ values, goBack, an
             <Block margin="l">
                 <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
-            <div data-testid="legeerklæring-liste">
+            <div data-testid="dokumenter-liste">
                 <LegeerklæringAvtaleAttachmentList
                     wrapNoAttachmentsInBlock={true}
                     includeDeletionFunctionality={true}

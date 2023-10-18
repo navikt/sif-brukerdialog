@@ -27,7 +27,7 @@ const LegeerklæringOppsummering: React.FC<Props> = ({ apiData, legeerklæringS�
                 {legeerklæringSøknadsdata?.vedlegg.length === 0 ? (
                     <FormattedMessage id="step.oppsummering.legeerklæring.ingenVedlegg" />
                 ) : (
-                    <div data-testid="legeerklæring-liste">
+                    <div data-testid="dokumenter-liste">
                         <AttachmentList attachments={legeerklæringer} />
                     </div>
                 )}

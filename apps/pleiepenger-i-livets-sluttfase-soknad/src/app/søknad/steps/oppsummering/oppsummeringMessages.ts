@@ -24,8 +24,7 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.søknadsperiode.header': 'Periode',
         'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
-        'steg.oppsummering.pleierDuDenSykeHjemme.header':
-            'Pleier du personen i et privat hjem i perioden du søker for?',
+        'steg.oppsummering.pleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme?',
 
         'steg.oppsummering.flereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
 
