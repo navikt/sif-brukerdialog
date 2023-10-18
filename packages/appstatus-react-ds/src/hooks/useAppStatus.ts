@@ -20,7 +20,7 @@ const getStateForApplication = (
     appStatus: ApplicationStatus,
     appMessage: SanityStatusMessage | undefined,
     teamStatus: Status | undefined,
-    teamMessage: SanityStatusMessage | undefined
+    teamMessage: SanityStatusMessage | undefined,
 ) => {
     if (appStatus !== ApplicationInheritTeamStatus.team) {
         return {

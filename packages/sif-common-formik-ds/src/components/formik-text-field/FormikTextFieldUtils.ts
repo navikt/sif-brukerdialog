@@ -2,7 +2,7 @@ export type TextFieldWidths = '100%' | 'xxl' | 'xl' | 'l' | 'm' | 's' | 'xs' | '
 
 export const getTextFieldWidthClassName = (
     width: TextFieldWidths | undefined,
-    otherClassName: string | undefined
+    otherClassName: string | undefined,
 ): string | undefined => {
     const allClassNames: string[] = [];
     if (width) {

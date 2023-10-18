@@ -1,5 +1,105 @@
 # @navikt/sif-ettersending
 
+## 3.23.6
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+-   Updated dependencies [60eb7ee9]
+    -   @navikt/sif-common-formik-ds@1.1.0
+    -   @navikt/sif-common-amplitude@2.21.4
+    -   @navikt/sif-common-soknad-ds@10.7.4
+    -   @navikt/sif-common-core-ds@9.8.4
+    -   @navikt/sif-common-sentry@0.22.3
+    -   @navikt/sif-common-utils@3.40.5
+
+## 3.23.5
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+-   Updated dependencies [2a1e2526]
+    -   @navikt/sif-common-amplitude@2.21.3
+    -   @navikt/sif-common-formik-ds@1.0.5
+    -   @navikt/sif-common-soknad-ds@10.7.3
+    -   @navikt/sif-common-core-ds@9.8.3
+    -   @navikt/sif-common-sentry@0.22.2
+    -   @navikt/sif-common-utils@3.40.4
+
+## 3.23.4
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.2
+    -   @navikt/sif-common-formik-ds@1.0.4
+    -   @navikt/sif-common-soknad-ds@10.7.2
+    -   @navikt/sif-common-core-ds@9.8.2
+    -   @navikt/sif-common-utils@3.40.3
+
+## 3.23.3
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+-   Updated dependencies [81e7e155]
+    -   @navikt/sif-common-formik-ds@1.0.3
+    -   @navikt/sif-common-core-ds@9.8.1
+    -   @navikt/sif-common-utils@3.40.2
+    -   @navikt/sif-common-soknad-ds@10.7.1
+
+## 3.23.2
+
+### Patch Changes
+
+-   Updated dependencies [c129755f]
+    -   @navikt/sif-common-formik-ds@1.0.2
+    -   @navikt/sif-common-core-ds@9.8.0
+    -   @navikt/sif-common-soknad-ds@10.7.1
+
+## 3.23.1
+
+### Patch Changes
+
+-   Updated dependencies [92fbd8f8]
+    -   @navikt/sif-common-formik-ds@1.0.1
+    -   @navikt/sif-common-core-ds@9.8.0
+    -   @navikt/sif-common-soknad-ds@10.7.1
+
+## 3.23.0
+
+### Minor Changes
+
+-   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+
+### Patch Changes
+
+-   Updated dependencies [fd07933f]
+-   Updated dependencies [e2967240]
+    -   @navikt/sif-common-formik-ds@1.0.0
+    -   @navikt/sif-common-core-ds@9.8.0
+    -   @navikt/sif-common-soknad-ds@10.7.1
+
+## 3.22.0
+
+### Minor Changes
+
+-   55e1f323: Oppdatere tekster for valg av hva etterseldenselen gjelder ved omsorgspenger.
+-   55e1f323: Oppdatere titler på søknadsdialoger i ettersendelse + rydde i valg som bruker må gjøre når en velger å sende inn dokumentasjon for en av omsorgspenger-ytelsene.
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies [55e1f323]
+-   Updated dependencies
+    -   @navikt/sif-common-core-ds@9.7.0
+    -   @navikt/sif-common-amplitude@2.21.1
+    -   @navikt/sif-common-formik-ds@0.6.1
+    -   @navikt/sif-common-soknad-ds@10.7.1
+    -   @navikt/sif-common-sentry@0.22.1
+    -   @navikt/sif-common-utils@3.40.1
+
 ## 3.21.0
 
 ### Minor Changes

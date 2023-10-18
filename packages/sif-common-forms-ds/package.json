@@ -1,50 +1,46 @@
 {
     "author": "@navikt",
     "description": "Fellesskjema for sykdom i familien",
-    "homepage": "https://navikt.github.io/sif-brukerdialog",
-    "license": "ISC",
     "main": "lib/index.js",
     "name": "@navikt/sif-common-forms-ds",
     "types": "lib/index.d.js",
-    "version": "8.8.0",
-    "bugs": {
-        "url": "https://github.com/navikt/sif-brukerdialog/issues"
-    },
+    "version": "8.9.4",
+    "private": true,
     "dependencies": {
         "date-fns": "2.30.0"
     },
     "devDependencies": {
-        "@babel/core": "7.22.20",
-        "@babel/preset-env": "7.22.20",
+        "@babel/core": "7.23.2",
+        "@babel/preset-env": "7.23.2",
         "@babel/preset-react": "7.22.15",
-        "@babel/preset-typescript": "7.22.15",
-        "@formatjs/intl-pluralrules": "5.2.6",
-        "@navikt/ds-css": "5.5.0",
-        "@navikt/ds-react": "5.5.0",
-        "@navikt/sif-common-core-ds": "*",
-        "@navikt/sif-common-formik-ds": "*",
-        "@navikt/sif-common-utils": "*",
-        "@storybook/addon-a11y": "7.4.2",
-        "@storybook/addon-actions": "7.4.2",
-        "@storybook/addon-essentials": "7.4.2",
-        "@storybook/addon-interactions": "7.4.2",
-        "@storybook/addon-links": "7.4.2",
-        "@storybook/node-logger": "7.4.2",
-        "@storybook/react": "7.4.2",
-        "@storybook/testing-library": "0.2.1",
+        "@babel/preset-typescript": "7.23.2",
+        "@formatjs/intl-pluralrules": "5.2.7",
+        "@navikt/ds-css": "5.7.0",
+        "@navikt/ds-react": "5.7.0",
+        "@navikt/sif-common-core-ds": "workspace:*",
+        "@navikt/sif-common-formik-ds": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
+        "@storybook/addon-a11y": "7.4.6",
+        "@storybook/addon-actions": "7.4.6",
+        "@storybook/addon-essentials": "7.4.6",
+        "@storybook/addon-interactions": "7.4.6",
+        "@storybook/addon-links": "7.4.6",
+        "@storybook/node-logger": "7.4.6",
+        "@storybook/react": "7.4.6",
+        "@storybook/testing-library": "0.2.2",
         "@testing-library/dom": "9.3.3",
         "@testing-library/react": "14.0.0",
         "@testing-library/user-event": "14.5.1",
         "@types/jest": "29.5.5",
-        "@types/node": "20.6.2",
-        "@types/react": "18.2.21",
-        "@types/react-dom": "18.2.7",
-        "@types/react-responsive": "8.0.5",
-        "axios": "1.5.0",
-        "config": "*",
+        "@types/node": "20.8.6",
+        "@types/react": "18.2.28",
+        "@types/react-dom": "18.2.13",
+        "@types/react-responsive": "8.0.6",
+        "axios": "1.5.1",
+        "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "dayjs": "1.11.9",
-        "flat": "6.0.0",
+        "dayjs": "1.11.10",
+        "flat": "6.0.1",
         "formik": "2.4.5",
         "gh-pages": "6.0.0",
         "history": "5.3.0",
@@ -52,37 +48,21 @@
         "jsdom": "22.1.0",
         "react": "18.2.0",
         "react-collapse": "5.1.1",
-        "react-day-picker": "8.8.2",
+        "react-day-picker": "8.9.0",
         "react-dom": "18.2.0",
-        "react-intl": "6.4.7",
+        "react-intl": "6.5.0",
         "react-modal": "3.16.1",
         "react-responsive": "9.0.2",
         "react-router-dom": "6.16.0",
         "react-scripts": "5.0.1",
-        "rimraf": "5.0.1",
-        "storybook": "7.4.2",
-        "webpack": "5.88.2"
+        "rimraf": "5.0.5",
+        "storybook": "7.4.6",
+        "webpack": "5.89.0"
     },
-    "directories": {
-        "lib": "lib"
-    },
-    "files": [
-        "package.json",
-        "/lib"
-    ],
     "jest": {
         "transformIgnorePatterns": [
             "node_modules/(?!(@navikt)).*\\.js$"
         ]
-    },
-    "peerDependencies": {
-        "@navikt/ds-css": "5",
-        "@navikt/ds-react": "5",
-        "@navikt/sif-common-core-ds": "*"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/navikt/sif-brukerdialog.git"
     },
     "watch": {
         "copy-files": {
@@ -94,19 +74,20 @@
         }
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all clean-lib compile-lib-script copy-files",
         "build-storybook": "storybook build",
-        "clean": "rm -rf node_modules lib",
+        "build": "npm-run-all build-package",
         "clean-lib": "rm -rf lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "copy-files": "copyfiles -u 1 \"src/**/*.scss\" lib/ && copyfiles -u 1 \"src/**/*.css\" lib/ && copyfiles -u 1 \"src/**/assets/**/*\" lib/ && copyfiles -u 1 \"src/**/*.json\" lib/",
         "deploy": "gh-pages -d build",
         "dev": "yarn watch-styles & yarn compile-lib-script-watch",
-        "watch-styles": "npm-watch copy-files ",
+        "lint": "eslint ./src --ext ts,tsx",
         "storybook": "storybook dev -p 6006 -s public",
+        "test-watch": "react-scripts test",
         "test": "react-scripts test --watchAll=false --env=jsdom",
-        "test-watch": "react-scripts test"
+        "watch-styles": "npm-watch copy-files "
     }
 }

@@ -1,12 +1,12 @@
 import { Meta, StoryFn } from '@storybook/react';
-// import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
-import ExampleForm from './ExampleForm';
 import { withIntl } from '../../decorators/withIntl';
+import { withFormikWrapper } from '../../decorators/withFormikWrapper';
+import ExampleForm from './ExampleForm';
 
 const meta: Meta<typeof ExampleForm> = {
     title: 'Example/ExampleForm',
     component: ExampleForm,
-    decorators: [withIntl],
+    decorators: [withIntl, withFormikWrapper],
 };
 
 export default meta;

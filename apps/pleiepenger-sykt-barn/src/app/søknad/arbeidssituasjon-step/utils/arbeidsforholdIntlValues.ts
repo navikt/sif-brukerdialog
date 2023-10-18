@@ -34,7 +34,7 @@ export const getArbeidsforholdIntlValues = (
     };
 
     return {
-        jobber: intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.skalJobbe'),
+        jobber: intlHelper(intl, 'arbeidsforhold.arbeidsforholdIntlValues.jobber'),
         hvor: getHvorTekst(),
     };
 };

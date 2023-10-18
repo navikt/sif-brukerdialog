@@ -32,6 +32,7 @@ describe('søknadStepConfig', () =>
             const omBarnet: OmBarnetSøknadsdata = {
                 type: 'annetBarn',
                 barnetsFødselsnummer: '123',
+                barnetsFødselsdato: '05.02.2020',
                 barnetsNavn: 'A',
                 søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.ADOPTIVFORELDER,
                 søknadenGjelderEtAnnetBarn: true,

@@ -104,10 +104,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                     intl,
                                                     'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.startdato',
                                                 )}
-                                                showYearSelector={true}
+                                                dropdownCaption={true}
                                                 minDate={søknadsperiode.from}
                                                 maxDate={søknadsperiode.to}
-                                                dayPickerProps={{ defaultMonth: søknadsperiode.to }}
+                                                defaultMonth={søknadsperiode.to}
                                                 data-testid="stønadGodtgjørelse-startdato"
                                                 validate={getstønadGodtgjørelseStartdatoValidator(
                                                     stønadGodtgjørelse,
@@ -155,10 +155,10 @@ const StønadsgodtgjørelseFormPart: React.FunctionComponent<Props> = ({ søknad
                                                     intl,
                                                     'steg.arbeidssituasjon.stønadGodtgjørelse.starterUndeveis.sluttdato',
                                                 )}
-                                                showYearSelector={true}
+                                                dropdownCaption={true}
                                                 minDate={søknadsperiode.from}
                                                 maxDate={søknadsperiode.to}
-                                                dayPickerProps={{ defaultMonth: søknadsperiode.to }}
+                                                defaultMonth={søknadsperiode.to}
                                                 data-testid="stønadGodtgjørelse-sluttdato"
                                                 validate={getstønadGodtgjørelseSluttdatoValidator(
                                                     stønadGodtgjørelse,

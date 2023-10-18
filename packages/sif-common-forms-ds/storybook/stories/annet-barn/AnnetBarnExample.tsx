@@ -8,7 +8,7 @@ import { date4YearsAgo, dateToday } from '@navikt/sif-common-utils';
 import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-ds/lib';
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import flatten from 'flat';
+import { flatten } from 'flat';
 import AnnetBarnForm, { AnnetBarnFormErrors } from '../../../src/forms/annet-barn/AnnetBarnForm';
 import AnnetBarnListAndDialog from '../../../src/forms/annet-barn/AnnetBarnListAndDialog';
 import annetBarnMessages from '../../../src/forms/annet-barn/annetBarnMessages';

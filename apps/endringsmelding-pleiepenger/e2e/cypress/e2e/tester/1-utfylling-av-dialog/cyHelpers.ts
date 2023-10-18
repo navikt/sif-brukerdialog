@@ -7,8 +7,16 @@ const date = new Date(2023, 0, 1);
 const enkeltuke = 45;
 const flereUker = [46, 47];
 
-const getAktivitet = () => getTestElement('aktivitet_a_947064649');
-const getPeriode = () => getTestElement('dateRangeAccordion_0');
+const getAktivitet = () => {
+    getTestElement('aktivitet_a_947064649').should('be.visible').wait(200);
+    return getTestElement('aktivitet_a_947064649');
+};
+
+const getPeriode = () => {
+    getTestElement('dateRangeAccordion_0').should('be.visible').wait(200);
+    return getTestElement('dateRangeAccordion_0');
+};
+
 const getUkeRow = (ukenummer) => {
     cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`).should('be.visible').wait(200);
     return cy.get('.arbeidstidUkeTabell').get(`[data-testid=uke_${ukenummer}]`);
@@ -83,6 +91,8 @@ const leggTilFerie = (submit?: boolean) => {
         });
 
         fyllUtFerieDialog('20.11.2022', '25.11.2022');
+        cy.wait(300);
+
         cy.checkA11y();
 
         getTestElement('dateRangeAccordion_0').within(() => {
@@ -153,9 +163,10 @@ const endreArbeidEnkeltuke = (ukenummer = enkeltuke) => {
     it('åpne periode', () => {
         cy.injectAxe();
         getAktivitet().within(() => {
-            cy.get('[data-testid=dateRangeAccordion_0]').click();
+            cy.get('[data-testid=dateRangeAccordion_0]').should('be.visible').wait(200).click();
+            getUkeRow(ukenummer).should('be.visible');
             getUkeRow(ukenummer).within(() => {
-                expect(cy.get('[data-testid=ukenummer]').contains(ukenummer));
+                expect(cy.get('[data-testid=ukenummer]').should('exist').contains(ukenummer));
                 expect(cy.get('[data-testid=arbeidstid-faktisk]').contains('4 t. 0 m.'));
             });
             cy.checkA11y();

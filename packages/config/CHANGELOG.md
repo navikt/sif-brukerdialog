@@ -1,5 +1,23 @@
 # config
 
+## 0.6.3
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 0.6.2
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 0.6.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 0.6.0
 
 ### Minor Changes

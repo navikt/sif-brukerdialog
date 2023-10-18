@@ -9,7 +9,7 @@ const isValidBostedUtland = (bosted: Partial<BostedUtland>): bosted is BostedUtl
 
 const mapFormValuesToBostedUtland = (
     formValues: BostedUtlandFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<BostedUtland> => {
     return {
         id: id || guid(),

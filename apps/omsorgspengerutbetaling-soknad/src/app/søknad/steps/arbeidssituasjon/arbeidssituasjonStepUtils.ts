@@ -31,7 +31,7 @@ export const selvstendigIsValid = (values: Partial<ArbeidssituasjonFormValues>) 
 };
 
 export const getArbeidssituasjonSøknadsdataFromFormValues = (
-    values: ArbeidssituasjonFormValues
+    values: ArbeidssituasjonFormValues,
 ): ArbeidSøknadsdata | undefined => {
     const frilans = getArbeidFrilansSøknadsdataFromFormValues(values);
     const selvstendig = getArbeidSNSøknadsdataFromFormValues(values);
@@ -47,7 +47,7 @@ export const getArbeidssituasjonSøknadsdataFromFormValues = (
 };
 
 const getArbeidFrilansSøknadsdataFromFormValues = (
-    values: ArbeidssituasjonFormValues
+    values: ArbeidssituasjonFormValues,
 ): ArbeidFrilansSøknadsdata | undefined => {
     const { frilans_erFrilanser, frilans_jobberFortsattSomFrilans, frilans_startdato, frilans_sluttdato } = values;
 
@@ -88,7 +88,7 @@ const getArbeidFrilansSøknadsdataFromFormValues = (
 };
 
 const getArbeidSNSøknadsdataFromFormValues = (
-    values: ArbeidssituasjonFormValues
+    values: ArbeidssituasjonFormValues,
 ): ArbeidSelvstendigSøknadsdata | undefined => {
     const { selvstendig_erSelvstendigNæringsdrivende, selvstendig_virksomhet, selvstendig_harFlereVirksomheter } =
         values;
@@ -113,7 +113,7 @@ const getArbeidSNSøknadsdataFromFormValues = (
 
 export const getArbeidssituasjonStepInitialValues = (
     søknadsdata: Søknadsdata,
-    formValues?: ArbeidssituasjonFormValues
+    formValues?: ArbeidssituasjonFormValues,
 ): ArbeidssituasjonFormValues => {
     if (formValues) {
         return formValues;

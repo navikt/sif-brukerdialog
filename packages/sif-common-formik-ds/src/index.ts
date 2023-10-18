@@ -1,7 +1,6 @@
 export { default as FormikCheckbox } from './components/formik-checkbox/FormikCheckbox';
 export { default as FormikConfirmationCheckbox } from './components/formik-confirmation-checkbox/FormikConfirmationCheckbox';
 export { default as FormikCountrySelect } from './components/formik-country-select/FormikCountrySelect';
-export { default as FormikDateIntervalPicker } from './components/formik-date-interval-picker/FormikDateIntervalPicker';
 export { default as FormikDatepicker } from './components/formik-datepicker/FormikDatepicker';
 export { default as FormikFileInput } from './components/formik-file-input/FormikFileInput';
 export { default as FormikTextField } from './components/formik-text-field/FormikTextField';
@@ -30,7 +29,7 @@ export * from './utils/typedFormErrorUtils';
 export * from './components/getTypedFormComponents';
 export * from './validation/types';
 export * from './components/formik-modal-form/types';
+export * from './utils/numberInputUtils';
 export { ISOStringToDate, dateToISOString } from './components/formik-datepicker/datepickerUtils';
-export { getNumberFromNumberInputValue } from './utils/numberInputUtils';
 
 export { QuestionConfig, QuestionVisibility, Questions } from './question-config/index';

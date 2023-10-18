@@ -180,7 +180,7 @@ const AnnenForelderenSituasjonStep = () => {
                                                     ? undefined
                                                     : (value) =>
                                                           validateTildato(value, periodeFra, annenForelderSituasjon),
-                                                disabled: annenForelderPeriodeVetIkkeTom,
+                                                inputDisabled: annenForelderPeriodeVetIkkeTom,
                                             }}
                                             data-testid="annenForeldrensSituasjon-periode"
                                         />

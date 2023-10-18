@@ -12,7 +12,6 @@
         "FRONTEND_API_PATH": "/api",
         "FRONTEND_VEDLEGG_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/api",
         "INNSYN_PP": "https://sif-innsyn.intern.dev.nav.no/familie/sykdom-i-familien/soknad/innsyn/dine-pleiepenger",
-        "LIVETS_SLUTTFASE": "on",
         "LOGIN_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/ettersending",
         "MIN_SIDE_URL": "https://www.intern.dev.nav.no/minside",
         "NPM_CONFIG_CACHE": "/tmp",
@@ -20,7 +19,6 @@
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
         "USE_AMPLITUDE": "true",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api"
-
     },
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "ingresses": ["https://k9-ettersending-soknad.intern.dev.nav.no"],

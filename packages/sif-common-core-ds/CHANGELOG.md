@@ -1,5 +1,55 @@
 # @navikt/sif-common-core-ds
 
+## 9.8.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+-   Updated dependencies [60eb7ee9]
+    -   @navikt/sif-common-utils@3.40.5
+
+## 9.8.3
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+-   Updated dependencies [2a1e2526]
+    -   @navikt/sif-common-utils@3.40.4
+
+## 9.8.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.40.3
+
+## 9.8.1
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+-   Updated dependencies [81e7e155]
+    -   @navikt/sif-common-utils@3.40.2
+
+## 9.8.0
+
+### Minor Changes
+
+-   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+
+## 9.7.0
+
+### Minor Changes
+
+-   55e1f323: Legge til Ytelser objekt som holder på navn og tittel på ytelser og søknadsdialoger
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.40.1
+
 ## 9.6.0
 
 ### Minor Changes

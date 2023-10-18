@@ -7,7 +7,7 @@ import { TypedFormikForm, TypedFormikWrapper, YesOrNo } from '@navikt/sif-common
 import { getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import flat from 'flat';
+import { flatten } from 'flat';
 import { VirksomhetFormErrors } from '../../../src';
 import { mapVirksomhetToVirksomhetApiData } from '../../../src/forms/virksomhet/mapVirksomhetToApiData';
 import { isVirksomhet, Næringstype, Virksomhet } from '../../../src/forms/virksomhet/types';
@@ -107,7 +107,7 @@ const VirksomhetExample = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(VirksomhetFormErrors)}
+                    validationErrorIntlKeys={flatten(VirksomhetFormErrors)}
                     intlMessages={virksomhetMessages}
                 />
             </Block>

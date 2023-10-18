@@ -15,7 +15,7 @@ export const mapFomTomToDateRange = ({ fom, tom }: DateTidsperiode): DateRange =
 export const handleDateRangeValidationError = (
     error: ValidateDateError | ValidateDateRangeError | ValidateRequiredFieldError | undefined,
     minDate: Date | undefined,
-    maxDate: Date | undefined
+    maxDate: Date | undefined,
 ): ValidationError | undefined => {
     if (minDate && error === ValidateDateError.dateIsBeforeMin) {
         return {

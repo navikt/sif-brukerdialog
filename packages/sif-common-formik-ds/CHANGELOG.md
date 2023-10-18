@@ -1,5 +1,57 @@
 # @navikt/sif-common-formik-ds
 
+## 1.1.0
+
+### Minor Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 1.0.5
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 1.0.4
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 1.0.3
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
+## 1.0.2
+
+### Patch Changes
+
+-   c129755f: Bugfix - dropDownCaption prop ble ikke sendt videre.
+
+## 1.0.1
+
+### Patch Changes
+
+-   92fbd8f8: Legge til manglende id-prop i Fieldset, rendre alternativt for disabled TimeInput, ny funksjon for å parse number til inputValue i numberInput
+
+## 1.0.0
+
+### Major Changes
+
+-   e2967240: Erstatte ds-datepicker med DatePicker fra Aksel. Medfører endringer i props som kan sendes til FormikDatePicker of FormikDateRangePicker
+
+### Minor Changes
+
+-   fd07933f: Ersattet ds-datepicker med DatePicker fra Aksel
+
+## 0.6.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 0.6.0
 
 ### Minor Changes

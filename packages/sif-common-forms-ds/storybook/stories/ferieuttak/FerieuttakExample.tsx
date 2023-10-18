@@ -9,7 +9,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import * as flat from 'flat';
+import { flatten } from 'flat';
 import FerieuttakForm, { FerieuttakFormErrors } from '../../../src/forms/ferieuttak/FerieuttakForm';
 import FerieuttakListAndDialog from '../../../src/forms/ferieuttak/FerieuttakListAndDialog';
 import ferieuttakMessages from '../../../src/forms/ferieuttak/ferieuttakMessages';
@@ -70,7 +70,7 @@ const FormikExample = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(FerieuttakFormErrors)}
+                    validationErrorIntlKeys={flatten(FerieuttakFormErrors)}
                     intlMessages={ferieuttakMessages}
                 />
             </Block>

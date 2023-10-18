@@ -3,6 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
+    getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
@@ -11,14 +12,21 @@ import { useSøknadContext } from '../../../context/hooks/useSøknadContext';
 import { OmBarnetFormFields, OmBarnetFormValues } from '../OmBarnetStep';
 import { SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnetKeys } from '../../../../types/SøkersRelasjonTilBarnet';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds/lib';
+import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
+import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
 
-const { TextField, Select } = getTypedFormComponents<OmBarnetFormFields, OmBarnetFormValues, ValidationError>();
+const { TextField, DatePicker, Select } = getTypedFormComponents<
+    OmBarnetFormFields,
+    OmBarnetFormValues,
+    ValidationError
+>();
 
 const AnnetBarnpart = () => {
     const {
         state: { søker },
     } = useSøknadContext();
     const intl = useIntl();
+    const minDatoForBarnetsFødselsdato = getMinDatoForBarnetsFødselsdato();
     return (
         <>
             <Heading level="2" size="medium">
@@ -43,6 +51,35 @@ const AnnetBarnpart = () => {
                         const error = getStringValidator({ required: true, maxLength: 50 })(value);
                         return error ? { key: error, values: { maks: 50 } } : undefined;
                     }}
+                />
+            </FormBlock>
+            <FormBlock>
+                <DatePicker
+                    name={OmBarnetFormFields.barnetsFødselsdato}
+                    label={intlHelper(intl, 'step.omBarnet.fødselsdato')}
+                    validate={(value) => {
+                        const dateError = getDateValidator({
+                            required: true,
+                            max: dateToday,
+                        })(value);
+                        if (dateError) {
+                            return dateError;
+                        }
+
+                        if (isBarnOver18år(value)) {
+                            return {
+                                key: 'barnOver18år',
+                            };
+                        }
+                        return undefined;
+                    }}
+                    minDate={minDatoForBarnetsFødselsdato}
+                    maxDate={dateToday}
+                    dropdownCaption={true}
+                    description={intlHelper(intl, 'step.omBarnet.fødselsdato.info', {
+                        minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
+                    })}
+                    data-testid="barnetsFødselsdato"
                 />
             </FormBlock>
             <FormBlock>

@@ -1,59 +1,41 @@
 {
     "author": "navikt",
     "description": "Sanity utils for sykdom i familien",
-    "homepage": "https://navikt.github.io/appstatus-react-ds",
     "license": "MIT",
     "main": "lib/index.js",
     "name": "@navikt/appstatus-react-ds",
     "types": "lib/index.d.js",
-    "version": "2.14.0",
-    "bugs": {
-        "url": "https://github.com/navikt/appstatus-react-ds/issues"
-    },
+    "version": "2.14.4",
+    "private": true,
     "dependencies": {
-        "@portabletext/react": "3.0.7",
-        "@sanity/client": "6.4.12"
+        "@navikt/sif-common-hooks": "workspace:*",
+        "@portabletext/react": "3.0.11",
+        "@sanity/client": "6.6.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.5.0",
-        "@navikt/ds-react": "5.5.0",
-        "@types/node": "20.6.2",
-        "@types/react": "18.2.21",
-        "@types/react-dom": "18.2.7",
-        "config": "*",
+        "@navikt/ds-css": "5.7.0",
+        "@navikt/ds-react": "5.7.0",
+        "@types/node": "20.8.6",
+        "@types/react": "18.2.28",
+        "@types/react-dom": "18.2.13",
+        "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.4.29",
+        "postcss": "8.4.31",
         "prop-types": "15.8.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "rimraf": "5.0.1",
-        "sass": "1.67.0"
-    },
-    "directories": {
-        "lib": "lib"
-    },
-    "files": [
-        "package.json",
-        "/lib"
-    ],
-    "peerDependencies": {
-        "@navikt/ds-css": "5",
-        "@navikt/ds-react": "5",
-        "sass": "1.x",
-        "sass-loader": "13.x"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/navikt/appstatus-react-ds.git"
+        "rimraf": "5.0.5",
+        "sass": "1.69.3"
     },
     "scripts": {
-        "build": "npm-run-all build-package",
         "build-package": "npm-run-all compile-lib-script copy-files",
-        "clean": "rm -rf node_modules lib",
+        "build": "npm-run-all build-package",
         "clean-lib": "rimraf ./lib",
-        "compile-lib-script": "tsc -p tsconfig.json",
+        "clean": "rm -rf node_modules lib",
         "compile-lib-script-watch": "tsc -p tsconfig.json --watch",
+        "compile-lib-script": "tsc -p tsconfig.json",
         "copy-files": "copyfiles -u 1 \"src/**/*.css\" lib",
-        "dev": "yarn compile-lib-script-watch"
+        "dev": "yarn compile-lib-script-watch",
+        "lint": "eslint ./src --ext ts,tsx"
     }
 }

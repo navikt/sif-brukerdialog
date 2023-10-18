@@ -1,5 +1,35 @@
 # @navikt/sif-common-utils
 
+## 3.40.5
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 3.40.4
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 3.40.3
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 3.40.2
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
+## 3.40.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 3.40.0
 
 ### Minor Changes

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import SifAppWrapper from '@navikt/sif-common-core-ds/lib/components/sif-app-wrapper/SifAppWrapper';
 import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -16,9 +17,6 @@ import '@navikt/sif-common-core-ds/lib/styles/sif-ds-theme.css';
 
 dayjs.extend(isoWeek);
 
-export const APPLICATION_KEY = 'endringsmelding-pleiepenger';
-export const SKJEMANAVN = 'Endringsmelding pleiepenger sykt barn';
-
 const container = document.getElementById('app');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
@@ -28,7 +26,7 @@ ensureBaseNameForReactRouter(publicPath);
 
 function prepare() {
     if (getEnvironmentVariable('APP_VERSION') !== 'production') {
-        if (getEnvironmentVariable('MSW') === 'on') {
+        if (getEnvironmentVariable('MSW') === 'on' && (window as any).Cypress === undefined) {
             return import('../mocks/msw/browser').then(({ worker }) => {
                 worker.start({
                     onUnhandledRequest: 'bypass',
@@ -44,14 +42,14 @@ const App = () => (
     <SifAppWrapper>
         <ErrorBoundary>
             <AmplitudeProvider
-                applicationKey={APPLICATION_KEY}
+                applicationKey={EndringsmeldingPsbApp.key}
                 isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}>
                 <SoknadApplication
-                    appName="Endringsmelding - pleiepenger sykt barn"
+                    appName={EndringsmeldingPsbApp.navn}
                     intlMessages={applicationIntlMessages}
-                    sentryKey={APPLICATION_KEY}
+                    sentryKey={EndringsmeldingPsbApp.key}
                     appStatus={{
-                        applicationKey: APPLICATION_KEY,
+                        applicationKey: EndringsmeldingPsbApp.key,
                         sanityConfig: {
                             projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
                             dataset: getEnvironmentVariable('APPSTATUS_DATASET'),

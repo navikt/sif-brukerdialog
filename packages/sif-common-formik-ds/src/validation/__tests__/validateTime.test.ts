@@ -16,14 +16,14 @@ describe(`validateTime`, () => {
     });
     it(`returns undefined when hours are 24 and minutes are 0 or empty`, () => {
         expect(
-            getTimeValidator({ required: true, max: { hours: 24, minutes: 0 } })({ ...zeroTime, hours: '24' })
+            getTimeValidator({ required: true, max: { hours: 24, minutes: 0 } })({ ...zeroTime, hours: '24' }),
         ).toBeUndefined();
         expect(
             getTimeValidator({ required: true, max: { hours: 24, minutes: 0 } })({
                 ...zeroTime,
                 hours: '24',
                 minutes: '0',
-            })
+            }),
         ).toBeUndefined();
     });
     it(`returns ${ValidateTimeError.timeHasNoValue} when required and time is undefined`, () => {
@@ -31,7 +31,7 @@ describe(`validateTime`, () => {
     });
     it(`returns ${ValidateTimeError.timeHasNoValue} when required and hours and minutes are empty values`, () => {
         expect(getTimeValidator({ required: true })({ hours: '', minutes: '' })).toEqual(
-            ValidateTimeError.timeHasNoValue
+            ValidateTimeError.timeHasNoValue,
         );
     });
     it(`returns undefined when required and hours and minutes are both 0`, () => {
@@ -64,19 +64,19 @@ describe(`validateTime`, () => {
     });
     it(`returns ${ValidateTimeError.durationIsTooLong} when hours and minutes are more than max duration`, () => {
         expect(getTimeValidator({ max: { hours: 5, minutes: 0 } })({ hours: '5', minutes: '1' })).toEqual(
-            ValidateTimeError.durationIsTooLong
+            ValidateTimeError.durationIsTooLong,
         );
         expect(getTimeValidator({ max: { hours: 0, minutes: 10 } })({ hours: '0', minutes: '11' })).toEqual(
-            ValidateTimeError.durationIsTooLong
+            ValidateTimeError.durationIsTooLong,
         );
         expect(getTimeValidator({ max: { hours: 5, minutes: 0 } })({ hours: '5', minutes: '0' })).toBeUndefined();
     });
     it(`returns ${ValidateTimeError.durationIsTooShort} when hours and minutes are more than max duration`, () => {
         expect(getTimeValidator({ min: { hours: 5, minutes: 0 } })({ hours: '4', minutes: '59' })).toEqual(
-            ValidateTimeError.durationIsTooShort
+            ValidateTimeError.durationIsTooShort,
         );
         expect(getTimeValidator({ min: { hours: 0, minutes: 10 } })({ hours: '0', minutes: '09' })).toEqual(
-            ValidateTimeError.durationIsTooShort
+            ValidateTimeError.durationIsTooShort,
         );
         expect(getTimeValidator({ min: { hours: 0, minutes: 10 } })({ hours: '0', minutes: '10' })).toBeUndefined();
     });

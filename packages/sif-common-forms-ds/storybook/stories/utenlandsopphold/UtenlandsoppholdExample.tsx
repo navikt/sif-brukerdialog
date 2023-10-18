@@ -9,7 +9,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import flat from 'flat';
+import { flatten } from 'flat';
 import { Utenlandsopphold } from '../../../src/forms/utenlandsopphold/types';
 import UtenlandsoppholdForm, {
     UtlandsoppholdFormErrors,
@@ -73,7 +73,7 @@ const UtenlandsoppholdExample = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(UtlandsoppholdFormErrors)}
+                    validationErrorIntlKeys={flatten(UtlandsoppholdFormErrors)}
                     intlMessages={utenlandsoppholdMessages}
                 />
             </Block>
@@ -89,6 +89,7 @@ const UtenlandsoppholdExample = () => {
                     opphold={initialValues.utenlandsopphold[0]}
                     minDate={date1YearAgo}
                     maxDate={date1YearFromNow}
+                    excludeInnlagtQuestion={false}
                     onSubmit={setSingleFormValues}
                     onCancel={() => console.log('cancel me')}
                 />

@@ -14,14 +14,13 @@ import {
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-const fomTomMedlemskapSiste12 = dayjs().startOf('day').subtract(1, 'day').format('YYYY-MM-DD');
-const fomTomMedlemskapNeste12 = dayjs().startOf('day').add(1, 'day').format('YYYY-MM-DD');
-const expectedDateMedlemskapSiste12 = `${dayjs(fomTomMedlemskapSiste12).format('D. MMM YYYY')} - ${dayjs(
-    fomTomMedlemskapSiste12
-).format('D. MMM YYYY')}`;
-const expectedDateMedlemskapNeste12 = `${dayjs(fomTomMedlemskapNeste12).format('D. MMM YYYY')} - ${dayjs(
-    fomTomMedlemskapNeste12
-).format('D. MMM YYYY')}`;
+const fomTomSiste12 = dayjs().startOf('day').subtract(1, 'day');
+const fomTomNeste12 = dayjs().startOf('day').add(1, 'day');
+
+const fomTomMedlemskapSiste12InputString = fomTomSiste12.format('DD.MM.YYYY');
+const fomTomMedlemskapNeste12InputString = fomTomNeste12.format('DD.MM.YYYY');
+const expectedDateMedlemskapSiste12 = `${fomTomSiste12.format('D. MMM YYYY')} - ${fomTomSiste12.format('D. MMM YYYY')}`;
+const expectedDateMedlemskapNeste12 = `${fomTomNeste12.format('D. MMM YYYY')} - ${fomTomNeste12.format('D. MMM YYYY')}`;
 const expectedLand = 'Albania'; // Land #2 i listen
 
 const fyllUtMedlemskapEnkelt = () => {
@@ -36,8 +35,8 @@ const fyllUtMedlemskapKomplett = () => {
     getTestElement('bostedUtlandList-annetLandSiste12').within(() => {
         getElement('button').contains('Legg til nytt utenlandsopphold').click();
     });
-    getInputByName('fom').click().type(fomTomMedlemskapSiste12).blur();
-    getInputByName('tom').click().type(fomTomMedlemskapSiste12).blur();
+    getInputByName('fom').click().type(fomTomMedlemskapSiste12InputString).blur();
+    getInputByName('tom').click().type(fomTomMedlemskapSiste12InputString).blur();
     getElement('select').select(2); // Valg land #2 fra listen
     submitModal();
 
@@ -47,8 +46,8 @@ const fyllUtMedlemskapKomplett = () => {
         getElement('button').contains('Legg til nytt utenlandsopphold').click();
     });
 
-    getInputByName('fom').click().type(fomTomMedlemskapNeste12).blur();
-    getInputByName('tom').click().type(fomTomMedlemskapNeste12).blur();
+    getInputByName('fom').click().type(fomTomMedlemskapNeste12InputString).blur();
+    getInputByName('tom').click().type(fomTomMedlemskapNeste12InputString).blur();
     getElement('select').select(2); // Valg land #2 fra listen
     submitModal();
 

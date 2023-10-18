@@ -10,4 +10,14 @@
             }
         }
     }
+    .navds-guide-panel__content > p,
+    .navds-guide-panel__content > .navds-body-long > p,
+    .navds-guide-panel__content > .navds-body-short > p {
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }

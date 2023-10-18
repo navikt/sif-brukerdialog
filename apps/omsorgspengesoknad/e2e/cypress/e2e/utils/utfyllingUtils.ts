@@ -1,4 +1,7 @@
+import { ISODateStringToInputDateString } from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/dateFormatUtils';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import 'cypress-axe';
+import { cyApiMockData } from '../data/cyApiMockData';
 import {
     checkCheckbuttonByName,
     getInputByName,
@@ -7,8 +10,7 @@ import {
     selectRadioYesOrNo,
     setInputByNameValue,
     submitSkjema,
-} from '.';
-import { cyApiMockData } from '../data/cyApiMockData';
+} from './';
 
 const fileName = 'navlogopng.png';
 
@@ -41,6 +43,7 @@ const fyllUtOmBarn = (props: BarnOgDeltBostedProps) => {
 };
 
 const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
+    const fdato = cyApiMockData.barnMock.barn[0].fødselsdato;
     it('Fyller ut om barnet - annet barn', () => {
         cy.injectAxe();
         if (props.harRegistrertBarn) {
@@ -48,6 +51,7 @@ const fyllUtOmAnnetBarn = (props: BarnOgDeltBostedProps) => {
         }
         setInputByNameValue('barnetsFødselsnummer', cyApiMockData.barnMock.barn[0].fødselsnummer);
         setInputByNameValue('barnetsNavn', cyApiMockData.barnMock.barn[0].fornavn);
+        setInputByNameValue('barnetsFødselsdato', ISODateStringToInputDateString(fdato));
         getInputByName('søkersRelasjonTilBarnet').select('mor');
         selectRadioYesOrNo('sammeAdresse', props.deltBosted);
         selectRadioYesOrNo('kroniskEllerFunksjonshemming', true);
@@ -101,6 +105,7 @@ const kontrollerOppsummering = (props: BarnOgDeltBostedProps) => {
             oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fødselsnummer);
             oppsummering.should('contain', cyApiMockData.barnMock.barn[0].fornavn);
         }
+        oppsummering.should('contain', dateFormatter.full(ISODateToDate(cyApiMockData.barnMock.barn[0].fødselsdato)));
         getTestElement('legeerklæring-liste').find('.attachmentListElement').should('have.length', 1);
         if (props.deltBosted === false) {
             getTestElement('samværsavtale-liste').find('.attachmentListElement').should('have.length', 1);

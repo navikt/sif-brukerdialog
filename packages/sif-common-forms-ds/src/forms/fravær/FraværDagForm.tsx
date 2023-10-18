@@ -130,13 +130,10 @@ const FraværDagFormView = ({
                     const datepickerProps: FormikDatepickerProps<FraværDagFormFields, ValidationError> = {
                         label: formLabels.dato,
                         name: FraværDagFormFields.dato,
-                        fullscreenOverlay: true,
-                        dayPickerProps: {
-                            defaultMonth: dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
-                        },
+                        defaultMonth: dayjs(dateToday).isAfter(maxDate) ? maxDate : dateToday,
                         minDate,
                         maxDate,
-                        disableWeekend: helgedagerIkkeTillatt || false,
+                        disableWeekends: helgedagerIkkeTillatt || false,
                         disabledDateRanges,
                         validate: (value): ValidationError | undefined => {
                             if (helgedagerIkkeTillatt && validateNotHelgedag(value)) {

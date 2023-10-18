@@ -112,7 +112,6 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                         <FormBlock>
                             <Form.DateRangePicker
                                 legend={intlHelper(intl, 'opptjeningUtland.form.tidsperiode.spm')}
-                                fullscreenOverlay={true}
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 fromInputProps={{
@@ -160,7 +159,7 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                                         radios={Object.keys(OpptjeningAktivitet).map((opptjeningType) => ({
                                             label: intlHelper(
                                                 intl,
-                                                `opptjeningUtland.form.opptjeningAktivitet.${opptjeningType}`
+                                                `opptjeningUtland.form.opptjeningAktivitet.${opptjeningType}`,
                                             ),
                                             value: opptjeningType,
                                         }))}
@@ -177,7 +176,7 @@ const OpptjeningUtlandForm = ({ maxDate, minDate, opptjening, onSubmit, onCancel
                                                     opptjeningType === OpptjeningAktivitet.ARBEIDSTAKER
                                                         ? 'arbeidsgiversNavn'
                                                         : 'oppdragsgiverNavn'
-                                                }`
+                                                }`,
                                             )}
                                             name={OpptjeningUtlandFormFields.navn}
                                             validate={getRequiredFieldValidator()}

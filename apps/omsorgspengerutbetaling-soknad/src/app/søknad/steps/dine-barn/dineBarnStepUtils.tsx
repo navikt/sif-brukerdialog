@@ -19,7 +19,7 @@ export const nYearsAgo = (years: number): Date => {
 
 export const minstEtBarn12årIårellerYngre = (
     registrertBarn: RegistrertBarn[],
-    andreBarn: AnnetBarn[]
+    andreBarn: AnnetBarn[],
 ): boolean | undefined => {
     if (registrertBarn.length > 0 || andreBarn.length > 0) {
         const barn12ellerYngre = registrertBarn.some((barn) => dayjs().year() - dayjs(barn.fødselsdato).year() <= 12);
@@ -61,7 +61,7 @@ export const barnItemLabelRenderer = (registrertBarn: RegistrertBarn) => {
 
 export const getDineBarnSøknadsdataFromFormValues = (
     values: DineBarnFormValues,
-    { registrerteBarn = [] }: Partial<SøknadContextState>
+    { registrerteBarn = [] }: Partial<SøknadContextState>,
 ): DineBarnSøknadsdata | undefined => {
     const { andreBarn = [], harDekketTiFørsteDagerSelv, harUtvidetRett, harUtvidetRettFor } = values;
 
@@ -93,7 +93,7 @@ export const getDineBarnSøknadsdataFromFormValues = (
 export const getDineBarnStepInitialValues = (
     søknadsdata: Søknadsdata,
     tempFormValues?: TempFormValues,
-    formValues?: DineBarnFormValues
+    formValues?: DineBarnFormValues,
 ): DineBarnFormValues => {
     if (formValues) {
         // Trenges det?
@@ -141,7 +141,7 @@ export const getDineBarnStepInitialValues = (
 export const cleanHarUtvidetRettFor = (
     harUtvidetRettFor: string[],
     andreBarn: AnnetBarn[],
-    registrerteBarn: RegistrertBarn[]
+    registrerteBarn: RegistrertBarn[],
 ): string[] => {
     const alleBarnFnr = [...andreBarn.map((b) => b.fnr), ...registrerteBarn.map((b) => b.aktørId)];
     return harUtvidetRettFor.filter((fnr) => alleBarnFnr.includes(fnr));

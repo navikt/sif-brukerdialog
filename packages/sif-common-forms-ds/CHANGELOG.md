@@ -1,5 +1,41 @@
 # @navikt/sif-common-forms-ds
 
+## 8.9.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 8.9.3
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 8.9.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 8.9.1
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
+## 8.9.0
+
+### Minor Changes
+
+-   d12fcbb5: excludeInnlagtQuestion (for barn) for bruk Utenlandsopphold i PILS
+
+## 8.8.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 8.8.0
 
 ### Patch Changes

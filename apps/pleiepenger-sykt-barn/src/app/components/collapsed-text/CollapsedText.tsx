@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ActionLink from '@navikt/sif-common-core-ds/lib/atoms/action-link/ActionLink';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import { guid } from '@navikt/sif-common-utils/lib';
-import { usePrevious } from '../../hooks/usePrevious';
+import { usePrevious } from '@navikt/sif-common-hooks';
 
 interface Props {
     initialyExpanded?: boolean;

@@ -5,9 +5,6 @@ import FormikConfirmationCheckbox, {
     FormikConfirmationCheckboxProps,
 } from './formik-confirmation-checkbox/FormikConfirmationCheckbox';
 import FormikCountrySelect, { FormikCountrySelectProps } from './formik-country-select/FormikCountrySelect';
-import FormikDateIntervalPicker, {
-    DateIntervalPickerProps,
-} from './formik-date-interval-picker/FormikDateIntervalPicker';
 import FormikDateRangePicker, { FormikDateRangePickerProps } from './formik-date-range-picker/FormikDateRangePicker';
 import FormikDatepicker, { FormikDatepickerProps } from './formik-datepicker/FormikDatepicker';
 import FormikFileInput, { FormikFileInputProps } from './formik-file-input/FormikFileInput';
@@ -29,7 +26,6 @@ export interface TypedFormComponents<FieldName, FormValues, ErrorType> {
     ConfirmationCheckbox: (props: FormikConfirmationCheckboxProps<FieldName, ErrorType>) => JSX.Element;
     CountrySelect: (props: FormikCountrySelectProps<FieldName, ErrorType>) => JSX.Element;
     DatePicker: (props: FormikDatepickerProps<FieldName, ErrorType>) => JSX.Element;
-    DateIntervalPicker: (props: DateIntervalPickerProps<FieldName, ErrorType>) => JSX.Element;
     DateRangePicker: (props: FormikDateRangePickerProps<FieldName, ErrorType>) => JSX.Element;
     FileInput: (props: FormikFileInputProps<FieldName>) => JSX.Element;
     FileDropInput: (props: FormikFileDropInputProps<FieldName>) => JSX.Element;
@@ -65,9 +61,6 @@ export function getTypedFormComponents<FieldName, FormValues, ErrorType = string
         ),
         DatePicker: (props: FormikDatepickerProps<FieldName, ErrorType>) => (
             <FormikDatepicker<FieldName, ErrorType> {...props} />
-        ),
-        DateIntervalPicker: (props: DateIntervalPickerProps<FieldName, ErrorType>) => (
-            <FormikDateIntervalPicker<FieldName, ErrorType> {...props} />
         ),
         DateRangePicker: (props: FormikDateRangePickerProps<FieldName, ErrorType>) => (
             <FormikDateRangePicker<FieldName, ErrorType> {...props} />

@@ -32,7 +32,7 @@ export const oppsummeringMessages: MessageFileFormat = {
 
         'step.oppsummering.apiValideringFeil.tittel': 'Noe av informasjonen mangler',
 
-        'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen egeerklæring er lastet opp',
+        'step.oppsummering.legeerklæring.ingenVedlegg': 'Ingen legeerklæring er lastet opp',
         'step.oppsummering.legeerklæring.header': 'Legeerklæring',
 
         'step.oppsummering.fravær.aktivitet.1': 'Fravær som {aktivitet}.',

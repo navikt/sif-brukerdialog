@@ -10,7 +10,7 @@ import { TypedFormikForm, TypedFormikWrapper } from '@navikt/sif-common-formik-d
 import { getListValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import flat from 'flat';
+import { flatten } from 'flat';
 import { FraværDag, FraværPeriode } from '../../../src/forms/fravær';
 import FraværDagerListAndDialog from '../../../src/forms/fravær/FraværDagerListAndDialog';
 import FraværDagFormView, { FraværDagFormErrors } from '../../../src/forms/fravær/FraværDagForm';
@@ -40,7 +40,7 @@ const FraværExample: React.FunctionComponent = () => {
         Partial<FraværPeriode> | undefined
     >(undefined);
     const [fraværDagSingleFormValues, setFraværDagSingleFormValues] = useState<Partial<FraværDag> | undefined>(
-        undefined
+        undefined,
     );
     const [listFormValues, setListFormValues] = useState<Partial<FormValues> | undefined>(undefined);
     const intl = useIntl();
@@ -130,11 +130,11 @@ const FraværExample: React.FunctionComponent = () => {
 
             <Block margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(FraværPeriodeFormErrors)}
+                    validationErrorIntlKeys={flatten(FraværPeriodeFormErrors)}
                     intlMessages={fraværMessages}
                 />
                 <FormValidationErrorMessages
-                    validationErrorIntlKeys={flat(FraværDagFormErrors)}
+                    validationErrorIntlKeys={flatten(FraværDagFormErrors)}
                     intlMessages={fraværMessages}
                 />
             </Block>

@@ -21,19 +21,19 @@ const formValues: UtenlandsoppholdFormValues = {
     tom: dateToISOString(tom),
     landkode,
 };
-
+const excludeInnlagtQuestion = false;
 const { mapUtenlandsoppholdToFormValues, mapFormValuesToUtenlandsopphold, isValidUtenlandsopphold } = utils;
 
 describe('utenlandsopphold', () => {
     it('maps utenlandsopphold to formValues correctly', () => {
         const formJson = jsonSort(formValues);
-        const mappedJson = jsonSort(mapUtenlandsoppholdToFormValues(utenlandsopphold));
+        const mappedJson = jsonSort(mapUtenlandsoppholdToFormValues(utenlandsopphold, excludeInnlagtQuestion));
         expect(mappedJson).toEqual(formJson);
     });
     it('maps formValues to utenlandsopphold correctly - with id', () => {
         const id = '132';
         const mappedJson = jsonSort({ ...utenlandsopphold, id });
-        const formJson = jsonSort(mapFormValuesToUtenlandsopphold(formValues, id));
+        const formJson = jsonSort(mapFormValuesToUtenlandsopphold(formValues, excludeInnlagtQuestion, id));
         expect(mappedJson).toEqual(formJson);
     });
     it('isValidUtenlandsopphold verifies type utenlandsopphold correctly', () => {

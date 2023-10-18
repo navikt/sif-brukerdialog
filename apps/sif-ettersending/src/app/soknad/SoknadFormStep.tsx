@@ -7,8 +7,8 @@ import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import { UnansweredQuestionsInfo } from '@navikt/sif-common-formik-ds/lib';
 import getFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
-import { ApplicationType } from '../types/ApplicationType';
 import { SoknadFormData } from '../types/SoknadFormData';
+import { Søknadstype } from '../types/Søknadstype';
 import { useSoknadContext } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
@@ -23,7 +23,7 @@ interface OwnProps {
     includeValidationSummary?: boolean;
     buttonDisabled?: boolean;
     pageTitle?: string;
-    søknadstype: ApplicationType;
+    søknadstype: Søknadstype;
     showNotAllQuestionsAnsweredMessage?: boolean;
     children: React.ReactNode;
 }

@@ -1,7 +1,5 @@
-import { Alert, BodyLong } from '@navikt/ds-react';
-import { useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { useNavigate } from 'react-router-dom';
+import { Alert } from '@navikt/ds-react';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
@@ -21,8 +19,10 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import HttpStatus from 'http-status-codes';
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { purge, sendApplication } from '../../api/api';
-import { SKJEMANAVN } from '../../App';
 import LegeerklæringAttachmentList from '../../components/legeerklæring-file-list/LegeerklæringFileList';
 import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import routeConfig from '../../config/routeConfig';
@@ -47,12 +47,12 @@ import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenS
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import BarnSummary from './barn-summary/BarnSummary';
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
+import './oppsummeringStep.less';
 import {
     renderFerieuttakIPeriodenSummary,
     renderUtenlandsoppholdIPeriodenSummary,
     renderUtenlandsoppholdSummary,
 } from './summaryItemRenderers';
-import './oppsummeringStep.less';
 
 interface Props {
     values: SøknadFormValues;
@@ -111,7 +111,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         setSendingInProgress(true);
         try {
             await sendApplication(apiValues);
-            await logSoknadSent(SKJEMANAVN);
+            await logSoknadSent(PleiepengerSyktBarnApp.navn);
             if (harArbeidMenIngenFravær) {
                 await logSenderInnSøknadMedIngenFravær();
             }
@@ -127,7 +127,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
             } else {
-                await logSoknadFailed(SKJEMANAVN);
+                await logSoknadFailed(PleiepengerSyktBarnApp.navn);
                 appSentryLogger.logApiError(error);
                 navigateTo(routeConfig.ERROR_PAGE_ROUTE, navigate);
             }
@@ -197,9 +197,9 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         buttonDisabled={sendingInProgress}
                         showButtonSpinner={sendingInProgress}>
                         <SifGuidePanel>
-                            <BodyLong as="div">
+                            <p>
                                 <FormattedMessage id="steg.oppsummering.info" />
-                            </BodyLong>
+                            </p>
                         </SifGuidePanel>
 
                         {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (

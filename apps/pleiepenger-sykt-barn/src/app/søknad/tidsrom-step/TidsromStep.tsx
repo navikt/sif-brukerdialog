@@ -103,10 +103,8 @@ const TidsromStep = ({ onValidSubmit }: StepCommonProps) => {
                     label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.tom'),
                     validate: validateTilDatoField,
                     name: SøknadFormField.periodeTil,
-                    dayPickerProps: { defaultMonth: periodeFra ? new Date(periodeFra) : undefined },
+                    defaultMonth: periodeFra ? new Date(periodeFra) : undefined,
                 }}
-                disableWeekend={false}
-                fullScreenOnMobile={true}
             />
             {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
                 <Block padBottom="xl">

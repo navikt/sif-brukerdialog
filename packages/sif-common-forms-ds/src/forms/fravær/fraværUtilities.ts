@@ -103,7 +103,7 @@ export const toMaybeNumber = (timerArbeidsdag: string | undefined): number | und
 
 export const mapFormValuesToFraværDag = (
     formValues: FraværDagFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<FraværDag> => {
     return {
         id: id || guid(),
@@ -123,7 +123,7 @@ export const mapFraværDagToFormValues = (fraværDag: Partial<FraværDag>): Frav
 
 export const mapFormValuesToFraværPeriode = (
     formValues: FraværPeriodeFormValues,
-    id: string | undefined
+    id: string | undefined,
 ): Partial<FraværPeriode> => {
     return {
         id: id || guid(),

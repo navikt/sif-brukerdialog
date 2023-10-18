@@ -1,5 +1,29 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.7.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 10.7.3
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 10.7.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 10.7.1
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 10.7.0
 
 ### Patch Changes

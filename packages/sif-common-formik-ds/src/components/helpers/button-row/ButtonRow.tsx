@@ -16,7 +16,7 @@ const ButtonRow: React.FunctionComponent<Props> = ({ children, align = 'left', l
                     <span key={index} className="buttonRow__button">
                         {knapp}
                     </span>
-                ) : undefined
+                ) : undefined,
             )}
         </div>
     );

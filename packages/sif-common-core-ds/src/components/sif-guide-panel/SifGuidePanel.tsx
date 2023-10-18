@@ -1,4 +1,4 @@
-import { GuidePanel, GuidePanelProps, Heading } from '@navikt/ds-react';
+import { BodyLong, GuidePanel, GuidePanelProps, Heading } from '@navikt/ds-react';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import bemUtils from '../../utils/bemUtils';
@@ -33,7 +33,7 @@ const SifGuidePanel: React.FunctionComponent<Props> = ({
                 bem.block,
                 bem.modifierConditional('narrow', isNarrow),
                 bem.modifierConditional('compact', compact),
-                restProps.className
+                restProps.className,
             )}
             {...restProps}
             poster={isNarrow ? true : poster}
@@ -43,7 +43,9 @@ const SifGuidePanel: React.FunctionComponent<Props> = ({
                     {title}
                 </Heading>
             )}
-            {children}
+            <BodyLong spacing={false} as="div">
+                {children}
+            </BodyLong>
         </GuidePanel>
     );
 };

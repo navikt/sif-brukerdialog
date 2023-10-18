@@ -2,42 +2,43 @@ import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 import LoadingSpinner from '@navikt/sif-common-core-ds/lib/atoms/loading-spinner/LoadingSpinner';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
+import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
-import { ApplicationType } from '../types/ApplicationType';
 import { RequestStatus } from '../types/RequestStatus';
+import { Søknadstype } from '../types/Søknadstype';
+import { redirectTo } from '../utils/navigationUtils';
 import Soknad from './Soknad';
 
-const getSøknadstypeFromYtelse = (param?: string): ApplicationType | undefined => {
+const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined => {
     switch (param) {
         case 'omsorgspenger':
-            return ApplicationType.omsorgspenger;
+            return Søknadstype.omsorgspenger;
         case 'ekstraomsorgsdager':
-            return ApplicationType.ekstraomsorgsdager;
+            return Søknadstype.ekstraomsorgsdager;
         case 'utbetaling':
-            return ApplicationType.utbetaling;
+            return Søknadstype.utbetaling;
         case 'utbetalingarbeidstaker':
-            return ApplicationType.utbetalingarbeidstaker;
+            return Søknadstype.utbetalingarbeidstaker;
         case 'regnetsomalene':
-            return ApplicationType.regnetsomalene;
-        case 'deling':
-            return ApplicationType.deling;
+            return Søknadstype.regnetsomalene;
         case 'pleiepenger':
-            return ApplicationType.pleiepengerBarn;
+            return Søknadstype.pleiepengerSyktBarn;
         case 'pleiepenger-livets-sluttfase':
-            return ApplicationType.pleiepengerLivetsSluttfase;
+        case 'pleiepengerLivetsSluttfase':
+            return Søknadstype.pleiepengerLivetsSluttfase;
     }
     return undefined;
 };
 
 const SoknadRemoteDataFetcher = (): JSX.Element => {
     const intl = useIntl();
-    const { ytelse } = useParams();
-    const søknadstype = getSøknadstypeFromYtelse(ytelse);
+    const { soknadstype } = useParams();
+    const søknadstype = getSøknadstypeFromUrlParam(soknadstype);
 
     if (!søknadstype) {
-        return <>ugyldig path</>;
+        redirectTo('/');
+        return <LoadingPage />;
     }
 
     // eslint-disable-next-line react-hooks/rules-of-hooks

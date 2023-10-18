@@ -185,7 +185,7 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                         <Block margin="xl">
                             <Form.DateRangePicker
                                 legend={getText('sifForms.utenlandskNæringForm.startdato', { navnPåVirksomheten })}
-                                showYearSelector={true}
+                                dropdownCaption={true}
                                 maxDate={dateToday}
                                 minDate={date99YearsFromNow}
                                 fromInputProps={{
@@ -209,7 +209,7 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                 toInputProps={{
                                     label: getText('sifForms.utenlandskNæringForm.kalender_tom'),
                                     name: UtenlandskNæringFormField.tilOgMed,
-                                    disabled: values.erPågående === true,
+                                    // disabled: values.erPågående === true,
                                     validate:
                                         values.erPågående === true
                                             ? undefined

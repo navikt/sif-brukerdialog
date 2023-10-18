@@ -62,7 +62,7 @@ describe('workDurationUtils', () => {
             expect(
                 getISOWeekdaysFromDurationWeekdays({
                     monday: undefined,
-                })
+                }),
             ).toHaveLength(0);
         });
     });

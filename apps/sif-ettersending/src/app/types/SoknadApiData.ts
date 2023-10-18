@@ -9,8 +9,7 @@ export enum YtelseTypeApi {
     'OMP_UT_SNF' = 'OMP_UT_SNF',
     'OMP_UT_ARBEIDSTAKER' = 'OMP_UT_ARBEIDSTAKER',
     'OMP_UTV_MA' = 'OMP_UTV_MA',
-    'OMP_DELE_DAGER' = 'OMP_DELE_DAGER',
-    'ukjent' = 'ukjent',
+    // 'OMP_ALENEOMSORG' = 'OMP_ALENEOMSORG', ikke i bruk frem til backend støtter denne
 }
 
 export interface SoknadApiData {
@@ -21,4 +20,5 @@ export interface SoknadApiData {
     beskrivelse?: string;
     vedlegg: string[];
     søknadstype: YtelseTypeApi;
+    ytelseTittel: string;
 }

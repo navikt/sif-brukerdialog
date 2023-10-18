@@ -6,8 +6,8 @@ import { clickFortsett, getInputByName, getSøknadsdato, getTestElement, selectR
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-const fomTomMedlemskapSiste12 = getSøknadsdato().startOf('day').subtract(1, 'day').format('YYYY-MM-DD');
-const fomTomMedlemskapNeste12 = getSøknadsdato().startOf('day').add(1, 'day').format('YYYY-MM-DD');
+const fomTomMedlemskapSiste12 = getSøknadsdato().startOf('day').subtract(1, 'day').format('DD.MM.YYYY');
+const fomTomMedlemskapNeste12 = getSøknadsdato().startOf('day').add(1, 'day').format('DD.MM.YYYY');
 const expectedDateMedlemskapSiste12 = `${dayjs(fomTomMedlemskapSiste12).format('D. MMM YYYY')} - ${dayjs(
     fomTomMedlemskapSiste12,
 ).format('D. MMM YYYY')}`;

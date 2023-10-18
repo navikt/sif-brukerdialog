@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSøknadContext } from '@hooks';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { SøknadApiData } from '@types';
 import { appSentryLogger } from '@utils';
 import { AxiosError, isAxiosError } from 'axios';
 import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
-import { SKJEMANAVN } from '../App';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
@@ -33,14 +33,14 @@ export const useSendSøknad = () => {
                 if (isAxiosError(error)) {
                     appSentryLogger.logError('Innsending feilet', error.message);
                 }
-                logSoknadFailed(SKJEMANAVN);
+                logSoknadFailed(EndringsmeldingPsbApp.navn);
                 setSendSøknadError(error);
                 setIsSubmitting(false);
             });
     };
 
     const onSøknadSendSuccess = async (metadata: SøknadApiDataMetadata) => {
-        await logSoknadSent(SKJEMANAVN);
+        await logSoknadSent(EndringsmeldingPsbApp.navn);
         await logInfo(metadata);
         slettMellomlagring();
         setIsSubmitting(false);

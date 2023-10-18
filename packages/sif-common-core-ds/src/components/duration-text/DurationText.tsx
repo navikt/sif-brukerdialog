@@ -18,7 +18,7 @@ const getMinutesString = (intl: IntlShape, minutes: string, fullText?: boolean):
 
 export const getDurationString = (
     intl: IntlShape,
-    { duration, fullText, hideEmptyValues, type = 'standard' }: DurationTextProps
+    { duration, fullText, hideEmptyValues, type = 'standard' }: DurationTextProps,
 ): string => {
     const intlKeyPrefix = `durationText${fullText ? '.full' : ''}`;
 

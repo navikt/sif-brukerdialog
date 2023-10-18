@@ -1,13 +1,13 @@
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import InfoList from '@navikt/sif-common-core-ds/lib/components/lists/info-list/InfoList';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
 import { useStepConfig } from '../../../hooks/useStepConfig';
 import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
-import { StepId } from '../../config/StepId';
 import SøknadStep from '../../SøknadStep';
-import ArbeidstidForm from './ArbeidstidForm';
+import { StepId } from '../../config/StepId';
 import ArbeidsaktiviteterMedUkjentArbeidsgiver from './ArbeidsaktiviteterMedUkjentArbeidsgiver';
+import ArbeidstidForm from './ArbeidstidForm';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
@@ -19,21 +19,17 @@ const ArbeidstidStep = () => {
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <SifGuidePanel>
-                <>
-                    <BodyLong as="div">
-                        <Heading level="2" size="xsmall" spacing={true}>
-                            Slik endrer du jobb i pleiepengeperioden
-                        </Heading>
-                        <InfoList>
-                            <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
-                            <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
-                            <li>
-                                Hvis du har endring som gjelder kun enkeltdager, skal du fremdeles oppgi hvor mye du
-                                jobber samlet for hele uken.
-                            </li>
-                        </InfoList>
-                    </BodyLong>
-                </>
+                <Heading level="2" size="xsmall" spacing={true}>
+                    Slik endrer du jobb i pleiepengeperioden
+                </Heading>
+                <InfoList>
+                    <li>Du oppgir hvor mye du jobber i timer eller prosent per uke.</li>
+                    <li>Du kan endre flere uker samtidig, eller én og én uke.</li>
+                    <li>
+                        Hvis du har endring som gjelder kun enkeltdager, skal du fremdeles oppgi hvor mye du jobber
+                        samlet for hele uken.
+                    </li>
+                </InfoList>
             </SifGuidePanel>
 
             {harFjernetFerie && (
