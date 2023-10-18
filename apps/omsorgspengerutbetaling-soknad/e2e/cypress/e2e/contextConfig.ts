@@ -1,7 +1,7 @@
 import { cyApiMockData } from './data/cyApiMockData';
 import { PUBLIC_PATH } from './utils';
 
-const INTERCEPT_PATH = `**`;
+const INTERCEPT_PATH = `**/*`;
 
 const getUrlForStep = (step?) => {
     const url = `${PUBLIC_PATH}/soknad${step ? `/${step}` : '/velkommen'}`;
