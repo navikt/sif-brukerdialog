@@ -1,5 +1,17 @@
 # @navikt/appstatus-react-ds
 
+## 2.14.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 2.14.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 2.14.3
 
 ### Patch Changes

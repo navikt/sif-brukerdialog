@@ -1,5 +1,25 @@
 # @navikt/sif-common-ui
 
+## 0.0.9
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+-   Updated dependencies [71381778]
+    -   @navikt/sif-common-formik-ds@1.1.1
+    -   @navikt/sif-common-core-ds@9.8.5
+    -   @navikt/sif-common-utils@3.40.6
+
+## 0.0.8
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+-   Updated dependencies [60eb7ee9]
+    -   @navikt/sif-common-formik-ds@1.1.0
+    -   @navikt/sif-common-core-ds@9.8.4
+    -   @navikt/sif-common-utils@3.40.5
+
 ## 0.0.7
 
 ### Patch Changes

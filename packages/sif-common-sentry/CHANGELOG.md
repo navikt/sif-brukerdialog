@@ -1,5 +1,17 @@
 # @navikt/sif-common-sentry
 
+## 0.22.4
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 0.22.3
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 0.22.2
 
 ### Patch Changes

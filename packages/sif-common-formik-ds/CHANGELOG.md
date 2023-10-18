@@ -1,5 +1,17 @@
 # @navikt/sif-common-formik-ds
 
+## 1.1.1
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 1.1.0
+
+### Minor Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
 ## 1.0.5
 
 ### Patch Changes
