@@ -12,10 +12,6 @@
             "outputs": ["dist/**"],
             "dependsOn": ["^build-package"]
         },
-        "ci": {
-            "outputs": [],
-            "dependsOn": ["^build-app"]
-        },
         "test": {
             "outputs": [],
             "dependsOn": ["^build-package"]
