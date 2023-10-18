@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-require('dayjs/locale/nb');
+import 'dayjs/locale/nb';
 
 dayjs.locale('nb');
 
