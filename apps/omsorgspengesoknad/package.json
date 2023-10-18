@@ -82,7 +82,7 @@
         "sass-loader": "13.3.2",
         "source-map-loader": "4.0.1",
         "start-server-and-test": "2.0.1",
-        "storybook": "7.4.6",
+        "storybook": "7.5.0",
         "style-loader": "3.3.3",
         "ts-loader": "9.5.0",
         "typescript": "5.2.2",
