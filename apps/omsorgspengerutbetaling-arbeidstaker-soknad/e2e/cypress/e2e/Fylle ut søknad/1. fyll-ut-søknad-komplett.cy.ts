@@ -9,8 +9,7 @@ import { utfyllingUtils } from '../utils/utfyllingUtils';
 
 const { startSøknad } = utfyllingUtils;
 
-const startUrl =
-    'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/soknad/velkommen';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker';
 
 describe('Fylle ut søknad komplett', () => {
     const barn = cyApiMockData.barnMock.barn[4];

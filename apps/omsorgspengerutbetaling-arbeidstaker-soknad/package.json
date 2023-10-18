@@ -89,7 +89,7 @@
         "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/alive 'yarn cypress-run'",
         "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/alive",
         "cypress-open": "cypress open --project $PWD/e2e",
-        "cypress-run": "cypress run --record --project $PWD/e2e",
+        "cypress-run": "cypress run --project $PWD/e2e",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.js",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
         "start-express": "node ./server.js",

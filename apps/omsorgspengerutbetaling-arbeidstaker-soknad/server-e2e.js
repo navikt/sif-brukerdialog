@@ -46,7 +46,7 @@ const startServer = (html) => {
         res.send(`${envSettings()}`);
     });
 
-    server.get(/^\/(?!.*dist).*$/, (req, res) => {
+    server.get(/^\/(?!.*api)(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });
 
