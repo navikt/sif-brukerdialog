@@ -28,7 +28,7 @@ export const tidsromMessages: MessageFileFormat = {
 
         'steg.tidsrom.skalJobbeIPerioden.spm': 'Skal du gi pleie og jobbe på samme dag?',
 
-        'steg.tidsrom.iUtlandetIPerioden.spm': 'Oppholder du deg i utlandet i perioden du søker for?',
+        'steg.tidsrom.iUtlandetIPerioden.spm': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
         'steg.tidsrom.iUtlandetIPerioden.listTitle': 'Utenlandsopphold i perioden',
         'steg.tidsrom.iUtlandetIPerioden.modalTitle': 'Utenlandsopphold',
         'steg.tidsrom.iUtlandetIPerioden.addLabel': 'Legg til utenlandsopphold',

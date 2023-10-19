@@ -188,7 +188,7 @@ const ArbeidIPeriodeSpørsmål = ({
                             skjulJobberNormaltValg ? undefined : (
                                 <Block margin="l">
                                     <Alert variant="info" inline={true}>
-                                        Dager hvor du ikke skal jobbe noe, trenger du ikke fylle ut.
+                                        Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
                                     </Alert>
                                 </Block>
                             )

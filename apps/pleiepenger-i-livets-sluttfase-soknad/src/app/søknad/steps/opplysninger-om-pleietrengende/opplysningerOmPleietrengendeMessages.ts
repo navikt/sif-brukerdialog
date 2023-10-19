@@ -19,7 +19,7 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
             'Det er ikke rett til pleiepenger i denne situasjonen hvis den pleietrengende er på sykehus eller en annen institusjon.',
 
         'step.opplysningerOmPleietrengende.spm.navn': 'Navn på den du skal pleie',
-        'step.opplysningerOmPleietrengende.spm.fnr': 'Fødselsnummer/D-nummer til den du skal pleie',
+        'step.opplysningerOmPleietrengende.spm.fnr': 'Fødselsnummer/D-nummer',
         'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.spm':
             'Hvorfor har ikke personen fødselsnummer eller D-nummer?',
         'step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET': 'Personen bor i utlandet',

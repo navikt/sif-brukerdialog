@@ -130,8 +130,8 @@ export const appMessages: MessageFileFormat = {
             'Hvis du jobber som selvstendig i flere virksomheter skal du her svare samlet for alle virksomhetene dine. Hvis du f.eks. skal jobbe i en av to virksomheter skal du her svare "Ja, men jeg skal jobbe mindre enn normalt".',
 
         'step.arbeidstid.pageTitle': 'Opplysninger om arbeidstid',
-        'step.arbeidstid.stepTitle': 'Fravær fra jobb i dagene med pleie',
-        'step.arbeidstid.stepIndicatorLabel': 'Fravær fra jobb i dagene med pleie',
+        'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
+        'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
         'step.arbeidstid.nextButtonLabel': 'Fortsett',
 
         'arbeidIPeriode.StepInfo.1':
@@ -169,9 +169,9 @@ export const appMessages: MessageFileFormat = {
         'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
 
         'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for',
+            'Du må svare ja eller nei på om du oppholder deg i utlandet i noen av dagene du søker for.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert':
-            'Du har svart ja til at du oppholder deg i utlandet i perioden du søker for. Legg til minst ett utenlandsopphold.',
+            'Du har svart ja til at du oppholder deg i utlandet i noen av dagene du søker for. Legg til minst ett utenlandsopphold.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
             'Du har lagt inn utenlandsopphold med datoer som overlapper hverandre.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_utenfor_periode':
@@ -273,7 +273,7 @@ export const appMessages: MessageFileFormat = {
         'validation.arbeidIPeriode.timer.forMangeTimer':
             'Du har oppgitt for mange timer du jobber i uken {hvor} i perioden.',
         'validation.arbeidIPeriode.jobber':
-            'Du må svare på om hvilken situasjon gjelder for deg {hvor} i perioden du søker for.',
+            'Du må svare på hvilken situasjon som gjelder for deg {hvor} i dagene du søker for.',
         'validation.arbeidIPeriode.timerEllerProsent.noValue':
             'Du må svare på hvordan du ønsker å oppgi hvor mye du jobber {hvor} i perioden.',
         'validation.arbeidIPeriode_prosentUgyldig':

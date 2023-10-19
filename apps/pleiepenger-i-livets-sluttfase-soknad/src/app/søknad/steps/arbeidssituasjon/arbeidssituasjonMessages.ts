@@ -57,7 +57,7 @@ export const arbeidssituasjonMessages: MessageFileFormat = {
             'Når du ikke er ansatt her lenger, må du be denne arbeidsgiveren om å sende en ny A-melding med sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
         'arbeidsforhold.ikkeFrilansoppdragIPerioden.info': 'Informasjon når frilansoppdraget ikke gjelder perioden',
 
-        'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er ansatt hos  {navn} i dagene du søker for?',
+        'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er ansatt hos  {navn} i perioden du søker for?',
         'arbeidsforhold.harFrilansoppdrag.spm':
             'Stemmer det at du har et frilansoppdrag hos {navn} i perioden du søker for?',
         'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
