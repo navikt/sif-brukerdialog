@@ -1,11 +1,7 @@
 import { durationTextMessages } from '../components/duration-text/durationText.messages';
-
-const commonMessagesNb = require('./common.nb.json');
-const commonMessagesNn = require('./common.nn.json');
-const validationErrorsNb = require('./validationErrors.nb.json');
-const validationErrorsNn = require('./validationErrors.nn.json');
-const pictureScanningNb = require('../components/picture-scanning-guide/picturescanningguide.nb.json');
-const pictureScanningNn = require('../components/picture-scanning-guide/picturescanningguide.nn.json');
+import { pictureScanningNb } from '../components/picture-scanning-guide/picturescanningguide.nb';
+import { commonMessagesNb } from './common.nb';
+import { validationErrorsNb } from './validationErrors.nb';
 
 const bokmålstekster = {
     ...commonMessagesNb,
@@ -13,14 +9,7 @@ const bokmålstekster = {
     ...pictureScanningNb,
     ...durationTextMessages.nb,
 };
-const nynorsktekster = {
-    ...commonMessagesNn,
-    ...validationErrorsNn,
-    ...pictureScanningNn,
-    ...durationTextMessages.nb,
-};
 
 export const allCommonMessages = {
     nb: bokmålstekster,
-    nn: nynorsktekster,
 };
