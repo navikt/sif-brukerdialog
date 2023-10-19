@@ -17,7 +17,6 @@ import {
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
-import { InputDateString } from 'nav-datovelger/lib/types';
 import { DurationText } from '../..';
 import {
     getDagerMedNyTid,
@@ -32,6 +31,7 @@ import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import { Heading } from '@navikt/ds-react';
+import { InputDateString } from '@navikt/sif-common-formik-ds/lib/components/formik-datepicker/dateFormatUtils';
 
 dayjs.extend(minMax);
 
