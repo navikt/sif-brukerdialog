@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.14.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 2.14.5
 
 ### Patch Changes
