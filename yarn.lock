@@ -4087,6 +4087,7 @@ __metadata:
     "@storybook/node-logger": 7.5.0
     "@storybook/preset-create-react-app": 7.5.0
     "@storybook/react": 7.5.0
+    "@storybook/react-vite": 7.5.0
     "@storybook/testing-library": 0.2.2
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.6
@@ -4094,6 +4095,7 @@ __metadata:
     "@types/react": 18.2.29
     "@types/react-dom": 18.2.14
     "@types/react-router-dom": 5.3.3
+    "@vitejs/plugin-react": 4.1.0
     axe-core: 4.8.2
     axios: 1.5.1
     babel-polyfill: 6.26.0
@@ -4108,6 +4110,7 @@ __metadata:
     dayjs: 1.11.10
     dotenv: 16.3.1
     express: 4.18.2
+    express-rate-limit: 7.1.1
     formik: 2.4.5
     helmet: 7.0.0
     history: 5.3.0
@@ -4130,6 +4133,7 @@ __metadata:
     react-intl: 6.5.0
     react-router-dom: 6.17.0
     react-scripts: 5.0.1
+    request: 2.88.2
     sass: 1.69.4
     sass-loader: 13.3.2
     source-map-loader: 4.0.1
@@ -4138,6 +4142,8 @@ __metadata:
     style-loader: 3.3.3
     ts-loader: 9.5.0
     typescript: 5.2.2
+    vite: 4.5.0
+    vite-plugin-checker: 0.6.2
     webpack: 5.89.0
     webpack-dev-server: 4.15.1
   languageName: unknown
