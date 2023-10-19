@@ -6,6 +6,7 @@
     "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "1.0.8",
     "private": true,
+    "type": "module",
     "dependencies": {
         "@navikt/ds-css": "5.7.3",
         "@navikt/ds-icons": "3.4.3",
@@ -44,7 +45,7 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "6.5.0",
         "react-router-dom": "6.17.0",
-        "ulid": "^2.3.0",
+        "request": "2.88.2",
         "uuid": "^9.0.1"
     },
     "devDependencies": {
@@ -52,21 +53,18 @@
         "@babel/preset-env": "7.23.2",
         "@babel/preset-react": "7.22.15",
         "@babel/preset-typescript": "7.23.2",
+        "@storybook/react-vite": "7.5.0",
+        "@testing-library/react": "14.0.0",
         "@types/jest": "29.5.6",
         "@types/object-hash": "3.0.5",
         "@types/react": "18.2.29",
         "@types/react-dom": "18.2.14",
         "@types/react-router-dom": "5.3.3",
         "babel-polyfill": "6.26.0",
-        "case-sensitive-paths-webpack-plugin": "2.4.0",
         "css-loader": "6.8.1",
-        "css-minimizer-webpack-plugin": "5.0.1",
         "cypress": "13.3.1",
         "cypress-file-upload": "5.0.8",
-        "html-webpack-harddisk-plugin": "2.0.0",
-        "html-webpack-plugin": "5.5.3",
-        "jsdom": "22.1.0",
-        "mini-css-extract-plugin": "2.7.6",
+        "express-rate-limit": "7.1.1",
         "postcss": "8.4.31",
         "postcss-loader": "7.3.3",
         "react-scripts": "5.0.1",
@@ -77,8 +75,8 @@
         "style-loader": "3.3.3",
         "ts-loader": "9.5.0",
         "typescript": "5.2.2",
-        "webpack": "5.89.0",
-        "webpack-dev-server": "4.15.1"
+        "vite": "4.5.0",
+        "vite-plugin-checker": "0.6.2"
     },
     "jest": {
         "transformIgnorePatterns": [
@@ -86,19 +84,16 @@
         ]
     },
     "scripts": {
-        "build-app": "node src/build/scripts/production-build.js",
-        "build-storybook": "storybook build",
-        "build": "npm-run-all build-app",
+        "build-app": "vite build --base=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
         "clean": "rm -rf node_modules .dist",
-        "ci": "start-server-and-test 'yarn start-e2e-server' http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/alive 'yarn cypress-run'",
-        "ci-server": "server-test http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/alive",
         "cypress-open": "cypress open --project $PWD/e2e",
         "cypress-run": "cypress run --project $PWD/e2e",
+        "build-storybook": "storybook build",
         "dev-api": "PORT=8089 node ./api-mock/mock-server.js",
-        "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
-        "start-express": "node ./server.js",
-        "start-e2e-server": "node ./server-e2e.js",
-        "start": "npm run start-express",
+        "snd": "cross-env NODE_ENV=development node ./server.cjs",
+        "start-api-mock": "PORT=8089 node ./server/api-mock.js",
+        "start-e2e-server": "node ./server-e2e.cjs",
+        "start-express": "node ./server.cjs",
         "storybook": "storybook dev -p 6006 -s public",
         "test": "react-scripts test --watchAll=false --env=jsdom",
         "test-watch": "react-scripts test --watchAll=true --env=jsdom"
