@@ -33,7 +33,7 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
         'step.opplysningerOmPleietrengende.fnr.harIkkeFnr': 'Personen har ikke fødselsnummer/D-nummer',
         'step.opplysningerOmPleietrengende.fødselsdato': 'Fødselsdato',
 
-        'validation.navn.stringHasNoValue': 'Du må skrive inn navnet til personen du  pleier.',
+        'validation.navn.stringHasNoValue': 'Du må skrive inn navnet til den du  pleier.',
         'validation.norskIdentitetsnummer.fødselsnummerHasNoValue':
             'Du må skrive inn fødselsnummeret til personen du  pleier. Et fødselsnummer består av 11 siffer.',
         'validation.norskIdentitetsnummer.fødselsnummerIsInvalid':

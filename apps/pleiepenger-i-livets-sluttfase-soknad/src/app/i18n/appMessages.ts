@@ -61,22 +61,6 @@ export const appMessages: MessageFileFormat = {
         'step.sendButtonLabel': 'Send inn søknaden',
         'step.sendButtonAriaLabel': 'Send inn søknaden',
 
-        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': 'Hvordan vil du oppgi hvor mye du jobbet i perioden?',
-        'arbeidstidPeriodeForm.tidFasteDager.label': 'Fyll ut hvor mye du jobbet i uken i perioden:',
-        'arbeidstidPeriodeForm.prosent.label': 'Hvor mange prosent av din normale arbeidstid jobbet du i perioden?',
-        'arbeidstidPeriodeForm.validation.tidFasteDagerEllerProsent.noValue':
-            'Du må velge hvordan du ønsker å oppgi hvor mye du jobbet.',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasNoValue':
-            'Du må oppgi hvor mange prosent du jobbet i perioden.',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasInvalidFormat':
-            'Antall prosent du jobbet kan kun bestå av tall.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooSmall':
-            'Antall prosent du jobbet kan ikke være mindre enn {min}.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooLarge':
-            'Antall prosent du jobbet kan ikke være mer enn {max}.',
-        'arbeidstidPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
-            'Du må oppgi hvor mange timer du jobbet i uken.',
-
         'arbeidsforhold.turnus.info.tittel': 'Hvordan regner jeg ut et snitt av turnusen min?',
         'arbeidsforhold.turnus.info.tekst.1':
             'Du regner ut snittet ved å legge sammen antall timer du jobber totalt i hele turnusperioden din, og deler det med antall uker som turnusperioden din består av.',
@@ -154,10 +138,9 @@ export const appMessages: MessageFileFormat = {
             'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
-        'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',
+        'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',
         'arbeidIPeriode.enkeltdager_gruppe.legend':
             'Oppgi hvor mye du jobber {hvor} i de dagene du søker pleiepenger for.',
-        'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
         'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke noe de dagene jeg pleier',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
         'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
@@ -175,7 +158,7 @@ export const appMessages: MessageFileFormat = {
             'Du må bekrefte at du har lest og forstått dine plikter.',
 
         'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.',
+            'Du må svare ja eller nei på om du pleier personen hjemme.',
 
         'validation.flereSokere.noValue':
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
