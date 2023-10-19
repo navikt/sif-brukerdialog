@@ -1,7 +1,7 @@
 import { cyApiMockData } from './data/cyApiMockData';
 import { PUBLIC_PATH } from './utils';
 
-const INTERCEPT_PATH = `**`;
+const INTERCEPT_PATH = `*/**`;
 
 const getUrlForStep = (step?) => {
     const url = `${PUBLIC_PATH}/soknad${step ? `/${step}` : '/velkommen'}`;
@@ -27,6 +27,10 @@ export const contextConfig = (props?: ConfigProps) => {
         cy.intercept(`POST`, `${INTERCEPT_PATH}/mellomlagring/OMSORGSPENGER_UTBETALING_SNF`, {});
         cy.intercept(`POST`, `${INTERCEPT_PATH}/omsorgspenger-utbetaling-snf/innsending`, {}).as('innsending');
         cy.intercept('POST', `${INTERCEPT_PATH}/vedlegg`, {
+            location: '/vedlegg',
+            headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
+        });
+        cy.intercept('POST', `/vedlegg`, {
             location: '/vedlegg',
             headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
         });
