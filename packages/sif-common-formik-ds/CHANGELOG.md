@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.1.2
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 1.1.1
 
 ### Patch Changes
