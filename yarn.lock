@@ -3912,11 +3912,12 @@ __metadata:
     "@types/react": 18.2.30
     "@types/react-dom": 18.2.14
     "@types/react-router-dom": 5.3.3
+    "@vitejs/plugin-react": 4.1.0
     axios: 1.5.1
     babel-polyfill: 6.26.0
-    case-sensitive-paths-webpack-plugin: 2.4.0
     compression: 1.7.4
     cookie-parser: 1.4.6
+    cross-env: 7.0.3
     css-loader: 6.8.1
     cypress: 13.3.2
     dayjs: 1.11.10
@@ -3925,8 +3926,6 @@ __metadata:
     formik: 2.4.5
     helmet: 7.0.0
     history: 5.3.0
-    html-webpack-harddisk-plugin: 2.0.0
-    html-webpack-plugin: 5.5.3
     http-proxy-middleware: 2.0.6
     jose: 4.15.4
     jsdom: 22.1.0
@@ -3951,8 +3950,8 @@ __metadata:
     ts-loader: 9.5.0
     ulid: 2.3.0
     uuid: 9.0.1
-    webpack: 5.89.0
-    webpack-dev-server: 4.15.1
+    vite: 4.5.0
+    vite-plugin-checker: 0.6.2
   languageName: unknown
   linkType: soft
 
