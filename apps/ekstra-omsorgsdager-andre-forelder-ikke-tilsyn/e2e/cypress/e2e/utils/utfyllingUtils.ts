@@ -1,11 +1,16 @@
 import { getTestElement, getTestElementByType, setInputByNameValue, submitSkjema, submitModalSkjema } from '.';
 import { cyApiMockData } from '../data/cyApiMockData';
 
+const startUrl =
+    'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad/velkommen';
+
 const startSøknad = () => {
     it('Starter søknad', () => {
-        cy.wait(['@getSøker', '@getBarn']);
-        getTestElement('bekreft-label').click();
-        getTestElement('typedFormikForm-submitButton').click();
+        cy.visit(startUrl).then(() => {
+            cy.wait(['@getSøker', '@getBarn']);
+            getTestElement('bekreft-label').click();
+            getTestElement('typedFormikForm-submitButton').click();
+        });
     });
 };
 
@@ -55,15 +60,15 @@ const kontrollerOppsummering = () => {
 
         oppsummering.should(
             'contain',
-            `${cyApiMockData.barnMock.barn[0].fornavn} ${cyApiMockData.barnMock.barn[0].etternavn}`
+            `${cyApiMockData.barnMock.barn[0].fornavn} ${cyApiMockData.barnMock.barn[0].etternavn}`,
         );
         oppsummering.should(
             'contain',
-            `${cyApiMockData.barnMock.barn[1].fornavn} ${cyApiMockData.barnMock.barn[1].etternavn}`
+            `${cyApiMockData.barnMock.barn[1].fornavn} ${cyApiMockData.barnMock.barn[1].etternavn}`,
         );
         oppsummering.should(
             'contain',
-            `${cyApiMockData.barnMock.barn[2].fornavn} ${cyApiMockData.barnMock.barn[2].etternavn}`
+            `${cyApiMockData.barnMock.barn[2].fornavn} ${cyApiMockData.barnMock.barn[2].etternavn}`,
         );
 
         oppsummering.should('contain', 'Sykdom, skade eller funksjonhemming');
