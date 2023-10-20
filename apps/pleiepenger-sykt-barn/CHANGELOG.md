@@ -1,5 +1,90 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.0.11
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.6
+    -   @navikt/sif-common-formik-ds@1.1.2
+    -   @navikt/sif-common-soknad-ds@10.7.6
+    -   @navikt/sif-common-forms-ds@8.9.6
+    -   @navikt/appstatus-react-ds@2.14.6
+    -   @navikt/sif-common-core-ds@9.8.6
+    -   @navikt/sif-common-utils@3.40.7
+
+## 3.0.10
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+-   Updated dependencies [71381778]
+    -   @navikt/sif-common-amplitude@2.21.5
+    -   @navikt/sif-common-formik-ds@1.1.1
+    -   @navikt/sif-common-soknad-ds@10.7.5
+    -   @navikt/sif-common-forms-ds@8.9.5
+    -   @navikt/appstatus-react-ds@2.14.5
+    -   @navikt/sif-common-core-ds@9.8.5
+    -   @navikt/sif-common-sentry@0.22.4
+    -   @navikt/sif-common-utils@3.40.6
+
+## 3.0.9
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+-   Updated dependencies [60eb7ee9]
+    -   @navikt/sif-common-formik-ds@1.1.0
+    -   @navikt/sif-common-amplitude@2.21.4
+    -   @navikt/sif-common-soknad-ds@10.7.4
+    -   @navikt/sif-common-forms-ds@8.9.4
+    -   @navikt/appstatus-react-ds@2.14.4
+    -   @navikt/sif-common-core-ds@9.8.4
+    -   @navikt/sif-common-sentry@0.22.3
+    -   @navikt/sif-common-utils@3.40.5
+
+## 3.0.8
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+-   Updated dependencies [2a1e2526]
+    -   @navikt/sif-common-amplitude@2.21.3
+    -   @navikt/sif-common-formik-ds@1.0.5
+    -   @navikt/sif-common-soknad-ds@10.7.3
+    -   @navikt/sif-common-forms-ds@8.9.3
+    -   @navikt/appstatus-react-ds@2.14.3
+    -   @navikt/sif-common-core-ds@9.8.3
+    -   @navikt/sif-common-sentry@0.22.2
+    -   @navikt/sif-common-utils@3.40.4
+
+## 3.0.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.2
+    -   @navikt/sif-common-formik-ds@1.0.4
+    -   @navikt/sif-common-soknad-ds@10.7.2
+    -   @navikt/sif-common-forms-ds@8.9.2
+    -   @navikt/appstatus-react-ds@2.14.2
+    -   @navikt/sif-common-core-ds@9.8.2
+    -   @navikt/sif-common-utils@3.40.3
+
+## 3.0.6
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+-   Updated dependencies [81e7e155]
+    -   @navikt/sif-common-formik-ds@1.0.3
+    -   @navikt/sif-common-forms-ds@8.9.1
+    -   @navikt/sif-common-core-ds@9.8.1
+    -   @navikt/sif-common-utils@3.40.2
+    -   @navikt/sif-common-soknad-ds@10.7.1
+
 ## 3.0.5
 
 ### Patch Changes

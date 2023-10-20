@@ -1,5 +1,35 @@
 # @navikt/sif-common-amplitude
 
+## 2.21.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 2.21.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 2.21.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 2.21.3
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 2.21.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 2.21.1
 
 ### Patch Changes

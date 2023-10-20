@@ -54,7 +54,7 @@ export const erFrilanserISøknadsperiode = (
  * @returns DateRange
  *
  * Avkort periode med evt start og sluttdato som frilanser.
- * Returnerer undefined dersom start og/eller slutt som frilanser
+ * Returnerer undefined hvis start og/eller slutt som frilanser
  * gjør at bruker ikke var frilanser i perioden
  */
 

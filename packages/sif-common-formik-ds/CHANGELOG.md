@@ -1,5 +1,41 @@
 # @navikt/sif-common-formik-ds
 
+## 1.1.2
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 1.1.1
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 1.1.0
+
+### Minor Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 1.0.5
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 1.0.4
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 1.0.3
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
 ## 1.0.2
 
 ### Patch Changes

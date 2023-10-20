@@ -1,7 +1,17 @@
+.durationWeekdaysInput__month {
+    background-color: var(--a-gray-50);
+    padding: var(--a-spacing-8);
+    border-radius: 0.5rem;
+}
+
 .durationWeekdaysInput__month:not(:first-child) {
     margin-top: 2rem;
 }
 
-.durationWeekdaysInput__monthAccordionItem {
+.durationWeekdaysInput__accordionContent {
+    background-color: var(--a-grayalpha-50);
     padding: 0.5rem 1rem !important;
+}
+.durationWeekdaysInput__accordionContentMonth {
+    padding: var(--a-spacing-6);
 }

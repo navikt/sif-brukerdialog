@@ -2,8 +2,6 @@ import * as Sentry from '@sentry/browser';
 import { SeverityLevel } from '@sentry/types';
 import { AxiosError } from 'axios';
 
-const window = global as any;
-
 export enum SentryEnvironment {
     LOCALHOST = 'LOCALHOST',
     q = 'q',

@@ -1,5 +1,41 @@
 # @navikt/sif-common-forms-ds
 
+## 8.9.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 8.9.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
+## 8.9.4
+
+### Patch Changes
+
+-   60eb7ee9: Pakkeoppdateringer. Endret import av DatePickerProps i sif-common-formik-ds
+
+## 8.9.3
+
+### Patch Changes
+
+-   2a1e2526: Pakkeoppdateringer
+
+## 8.9.2
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
+## 8.9.1
+
+### Patch Changes
+
+-   81e7e155: Bruke BodyLong i alle SifGuidePanel
+
 ## 8.9.0
 
 ### Minor Changes

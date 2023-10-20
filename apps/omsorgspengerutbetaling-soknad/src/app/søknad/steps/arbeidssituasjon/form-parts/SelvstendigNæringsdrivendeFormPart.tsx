@@ -1,17 +1,17 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
-import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetInfoAndDialog';
-import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
-import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
-import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
-import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import { Link } from '@navikt/ds-react';
-import getLenker from '../../../../lenker';
-import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-panel/SifGuidePanel';
+import { YesOrNo } from '@navikt/sif-common-core-ds/lib/types/YesOrNo';
+import { getEnvironmentVariable } from '@navikt/sif-common-core-ds/lib/utils/envUtils';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
+import { getTypedFormComponents } from '@navikt/sif-common-formik-ds/lib/components/getTypedFormComponents';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
+import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
+import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/lib/forms/virksomhet/VirksomhetInfoAndDialog';
+import { FormattedMessage, useIntl } from 'react-intl';
+import getLenker from '../../../../lenker';
+import { ArbeidssituasjonFormFields, ArbeidssituasjonFormValues } from '../ArbeidssituasjonStep';
 
 const { YesOrNoQuestion } = getTypedFormComponents<
     ArbeidssituasjonFormFields,
@@ -66,7 +66,9 @@ const SelvstendigNæringsdrivendeFormPart: React.FC<Props> = ({ values }) => {
             {harFlereVirksomheter && (
                 <FormBlock>
                     <SifGuidePanel>
-                        <FormattedMessage id="selvstendig.veileder.flereAktiveVirksomheter" />
+                        <p>
+                            <FormattedMessage id="selvstendig.veileder.flereAktiveVirksomheter" />
+                        </p>
                     </SifGuidePanel>
                 </FormBlock>
             )}

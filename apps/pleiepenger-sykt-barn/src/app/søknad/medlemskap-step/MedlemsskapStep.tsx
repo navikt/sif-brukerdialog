@@ -1,5 +1,4 @@
-import { BodyLong, Link } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
+import { Link } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
@@ -9,15 +8,16 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds/lib';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik-ds/lib/validation';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/lib/forms/bosted-utland/BostedUtlandListAndDialog';
 import { useFormikContext } from 'formik';
+import { useIntl } from 'react-intl';
+import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 import getLenker from '../../lenker';
+import { StepCommonProps } from '../../types/StepCommonProps';
 import { StepID } from '../../types/StepID';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { getMedlemsskapDateRanges } from '../../utils/medlemsskapUtils';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
-import { StepCommonProps } from '../../types/StepCommonProps';
 import { validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd } from './medlemskapFieldValidations';
-import ResponsivePanel from '../../components/responsive-panel/ResponsivePanel';
 
 type Props = {
     søknadsdato: Date;
@@ -32,13 +32,11 @@ const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepCommonProps & Prop
         <SøknadFormStep stepId={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
             <Block padBottom="xxl">
                 <SifGuidePanel>
-                    <BodyLong as="div">
-                        {intlHelper(intl, 'step.medlemskap.veileder')}{' '}
-                        <Link href={getLenker().medlemskap} target="_blank">
-                            nav.no
-                        </Link>
-                        .
-                    </BodyLong>
+                    {intlHelper(intl, 'step.medlemskap.veileder')}{' '}
+                    <Link href={getLenker().medlemskap} target="_blank">
+                        nav.no
+                    </Link>
+                    .
                 </SifGuidePanel>
             </Block>
             <SøknadFormComponents.YesOrNoQuestion

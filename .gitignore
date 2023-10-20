@@ -12,6 +12,7 @@ dist-ssr
 .vscode
 storybook-static
 coverage
+index-decorated.html
 .idea
 
 server/dist
