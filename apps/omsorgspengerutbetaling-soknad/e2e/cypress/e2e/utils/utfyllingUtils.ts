@@ -18,6 +18,8 @@ import {
     selectRadioByValue,
 } from '.';
 
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
+
 const fileName = 'navlogopng.png';
 
 const fraDato = dayjs().startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');
@@ -43,10 +45,12 @@ const virksomhet = {
 
 const startSøknad = () => {
     it('Starter søknad', () => {
-        cy.wait(['@getSøker', '@getBarn']);
-        getTestElement('bekreft-label').click();
-        getTestElement('typedFormikForm-submitButton').click();
-        cy.wait('@putMellomlagring');
+        cy.visit(startUrl);
+        cy.wait(['@getSøker', '@getBarn']).then(() => {
+            getTestElement('bekreft-label').click();
+            getTestElement('typedFormikForm-submitButton').click();
+            cy.wait('@putMellomlagring');
+        });
     });
 };
 

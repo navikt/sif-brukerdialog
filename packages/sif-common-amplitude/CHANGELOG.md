@@ -1,5 +1,11 @@
 # @navikt/sif-common-amplitude
 
+## 2.21.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 2.21.5
 
 ### Patch Changes
