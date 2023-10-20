@@ -1,5 +1,16 @@
 import { rest } from 'msw';
 import { getScenarioFromLocalStorage } from '../../app/dev/scenarioer';
+import { ArbeidsaktivitetUtenArbeidsgiver } from '../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/ArbeidsaktivitetUtenArbeidsgiver';
+import { ArbeidsgiverIkkeISak } from '../data/scenario/arbeidsgiver-ikke-i-sak/ArbeidsgiverIkkeISak';
+import { ArbeidsgiverOgFrilanser } from '../data/scenario/arbeidsgiver-og-frilanser/ArbeidsgiverOgFrilanser';
+import { ArbeidsgivereOgFrilanser } from '../data/scenario/arbeidsgivere-og-frilanser/ArbeidsgivereOgFrilanser';
+import { Debug } from '../data/scenario/debug/Debug';
+import { EnArbeidsgiverEnPeriode } from '../data/scenario/en-arbeidsgiver-en-periode/EnArbeidsgiverEnPeriode';
+import { EnArbeidsgiverToPerioder } from '../data/scenario/en-arbeidsgiver-to-perioder/EnArbeidsgiverToPerioder';
+import { FlereSaker } from '../data/scenario/flere-saker/FlereSaker';
+import { IngenSak } from '../data/scenario/ingen-sak/IngenSak';
+import { SelvstendigNæringsdrivende } from '../data/scenario/selvstendig-næringsdrivende/SelvstendigNæringsdrivende';
+import { UgyldigK9Format } from '../data/scenario/ugyldig-k9-format/UgyldigK9Format';
 
 const getMockData = (scenario = 'en-arbeidsgiver-en-periode') => {
     return mockData[scenario] ? mockData[scenario] : mockData['en-arbeidsgiver-en-periode'];
@@ -9,67 +20,23 @@ type ScenarioMap = {
     [key: string]: ScenarioData;
 };
 
-interface ScenarioData {
+export interface ScenarioData {
     søker: any;
     sak: any;
     arbeidsgiver: any;
 }
 const mockData: ScenarioMap = {
-    ['en-arbeidsgiver-en-periode']: {
-        søker: require('../data/scenario/en-arbeidsgiver-en-periode/søker-mock.json'),
-        sak: require('../data/scenario/en-arbeidsgiver-en-periode/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/en-arbeidsgiver-en-periode/arbeidsgiver-mock.json'),
-    },
-    ['en-arbeidsgiver-to-perioder']: {
-        søker: require('../data/scenario/en-arbeidsgiver-to-perioder/søker-mock.json'),
-        sak: require('../data/scenario/en-arbeidsgiver-to-perioder/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/en-arbeidsgiver-to-perioder/arbeidsgiver-mock.json'),
-    },
-    ['arbeidsgiver-og-frilanser']: {
-        søker: require('../data/scenario/arbeidsgiver-og-frilanser/søker-mock.json'),
-        sak: require('../data/scenario/arbeidsgiver-og-frilanser/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/arbeidsgiver-og-frilanser/arbeidsgiver-mock.json'),
-    },
-    ['arbeidsgivere-og-frilanser']: {
-        søker: require('../data/scenario/arbeidsgivere-og-frilanser/søker-mock.json'),
-        sak: require('../data/scenario/arbeidsgivere-og-frilanser/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/arbeidsgivere-og-frilanser/arbeidsgiver-mock.json'),
-    },
-    ['debug']: {
-        søker: require('../data/scenario/debug/søker-mock.json'),
-        sak: require('../data/scenario/debug/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/debug/arbeidsgiver-mock.json'),
-    },
-    ['selvstendig-næringsdrivende']: {
-        søker: require('../data/scenario/selvstendig-næringsdrivende/søker-mock.json'),
-        sak: require('../data/scenario/selvstendig-næringsdrivende/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/selvstendig-næringsdrivende/arbeidsgiver-mock.json'),
-    },
-    ['flere-saker']: {
-        søker: require('../data/scenario/flere-saker/søker-mock.json'),
-        sak: require('../data/scenario/flere-saker/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/flere-saker/arbeidsgiver-mock.json'),
-    },
-    ['ingen-sak']: {
-        søker: require('../data/scenario/ingen-sak/søker-mock.json'),
-        sak: require('../data/scenario/ingen-sak/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/ingen-sak/arbeidsgiver-mock.json'),
-    },
-    ['arbeidsgiver-ikke-i-sak']: {
-        søker: require('../data/scenario/arbeidsgiver-ikke-i-sak/søker-mock.json'),
-        sak: require('../data/scenario/arbeidsgiver-ikke-i-sak/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/arbeidsgiver-ikke-i-sak/arbeidsgiver-mock.json'),
-    },
-    ['arbeidsaktivitet-uten-arbeidsgiver']: {
-        søker: require('../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/søker-mock.json'),
-        sak: require('../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/arbeidsgiver-mock.json'),
-    },
-    ['ugyldig-k9-format']: {
-        søker: require('../data/scenario/ugyldig-k9-format/søker-mock.json'),
-        sak: require('../data/scenario/ugyldig-k9-format/sak-mock.json'),
-        arbeidsgiver: require('../data/scenario/ugyldig-k9-format/arbeidsgiver-mock.json'),
-    },
+    ['en-arbeidsgiver-en-periode']: EnArbeidsgiverEnPeriode,
+    ['en-arbeidsgiver-to-perioder']: EnArbeidsgiverToPerioder,
+    ['arbeidsgiver-og-frilanser']: ArbeidsgiverOgFrilanser,
+    ['arbeidsgivere-og-frilanser']: ArbeidsgivereOgFrilanser,
+    ['debug']: Debug,
+    ['selvstendig-næringsdrivende']: SelvstendigNæringsdrivende,
+    ['flere-saker']: FlereSaker,
+    ['ingen-sak']: IngenSak,
+    ['arbeidsgiver-ikke-i-sak']: ArbeidsgiverIkkeISak,
+    ['arbeidsaktivitet-uten-arbeidsgiver']: ArbeidsaktivitetUtenArbeidsgiver,
+    ['ugyldig-k9-format']: UgyldigK9Format,
 };
 
 const baseUrl = '*';
