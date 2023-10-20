@@ -27,6 +27,14 @@ export const tidsromMessages: MessageFileFormat = {
         'step.tidsrom.flereSokere.usikker': 'Usikker',
 
         'steg.tidsrom.skalJobbeIPerioden.spm': 'Skal du gi pleie og jobbe på samme dag?',
+        'steg.tidsrom.skalJobbeIPerioden.info.tittel': 'Hva betyr dette?',
+        'steg.tidsrom.skalJobbeIPerioden.info.tekst.1':
+            'Du skal svare ja på dette spørsmålet dersom du skal gi pleie og jobbe på én og samme dag',
+        'steg.tidsrom.skalJobbeIPerioden.info.tekst.2.1': 'Eksempel:',
+        'steg.tidsrom.skalJobbeIPerioden.info.tekst.2.2':
+            'Du søker om pleiepenger for 10 dager. På onsdag passer det at du gir pleie en halv dag, og at du jobber en halv dag. I dette tilfellet bruker du bare en halv dag med pleiepenger.',
+        'steg.tidsrom.skalJobbeIPerioden.info.tekst.3':
+            'Hvis du ikke skal gi pleie og jobbe på samme dag, skal du svare nei på dette spørsmålet.',
 
         'steg.tidsrom.iUtlandetIPerioden.spm': 'Oppholder du deg i utlandet i noen av dagene du søker for?',
         'steg.tidsrom.iUtlandetIPerioden.listTitle': 'Utenlandsopphold i perioden',

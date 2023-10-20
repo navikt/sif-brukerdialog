@@ -25,6 +25,7 @@ import {
     getTidsromSøknadsdataFromFormValues,
     validateUtenlandsoppholdIPerioden,
 } from './tidsromStepUtils';
+import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
 
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
@@ -119,6 +120,26 @@ const TidsromStep = () => {
                                                 name={TidsromFormFields.skalJobbeIPerioden}
                                                 validate={getYesOrNoValidator()}
                                                 data-testid="skalJobbeIPerioden.spm"
+                                                description={
+                                                    <ExpandableInfo
+                                                        title={intlHelper(
+                                                            intl,
+                                                            'steg.tidsrom.skalJobbeIPerioden.info.tittel',
+                                                        )}>
+                                                        <p>
+                                                            <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.1" />
+                                                        </p>
+                                                        <p>
+                                                            <strong>
+                                                                <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.2.1" />
+                                                            </strong>{' '}
+                                                            <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.2.2" />
+                                                        </p>
+                                                        <p>
+                                                            <FormattedMessage id="steg.tidsrom.skalJobbeIPerioden.info.tekst.3" />
+                                                        </p>
+                                                    </ExpandableInfo>
+                                                }
                                             />
                                         </FormBlock>
                                         <FormBlock>
