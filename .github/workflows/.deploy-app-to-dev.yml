@@ -29,14 +29,19 @@ jobs:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Install dependencies (yarn)
-              run: yarn
+            - name: Install dependencies (yarn & turbo)
+              run: |
+                yarn global add turbo
+                yarn
 
             - name: Run tests
               run: yarn test --filter=${{inputs.app-name}}
 
             - name: Build application
               run: yarn build-${{ inputs.app-name }}
+
+            - name: Build with turbo
+              run: yarn turbo run build-app --filter=@navikt/${{ inputs.app-name }}
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0
@@ -45,8 +50,9 @@ jobs:
                   team: dusseldorf
                   push_image: true
                   pull: true
-                  dockerfile: apps/${{inputs.app-name}}/Dockerfile
+                  dockerfile: Dockerfile
                   docker_context: .
+                  build_args: APP_NAME=${{ inputs.app-name }}
                   image_suffix: ${{inputs.app-name}}-mono
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
