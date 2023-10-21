@@ -29,10 +29,8 @@ jobs:
                   node-version: 18
                   cache: 'yarn'
 
-            - name: Install dependencies (yarn & turbo)
-              run: |
-                yarn global add turbo
-                yarn
+            - name: Install dependencies (yarn)
+              run: yarn
 
             - name: Run tests
               run: yarn test --filter=${{inputs.app-name}}
