@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 import { YesOrNo } from '../sif-formik/types';
 import { getTypedFormComponents } from '../sif-formik/getTypedFormComponents';
@@ -13,6 +13,7 @@ import Omsorgsprinsipper from '../kalkulerOmsorgsdager/types/Omsorgsprinsipper';
 import FormikValuesObserver from '../sif-formik/helpers/formik-values-observer/FormikValuesObserver';
 import BarnFormPart from './kalkulator-form-parts/BarnFormPart';
 import AntallBarnFormPart from './kalkulator-form-parts/AntallBarnFormPart';
+import { Heading } from '@navikt/ds-react';
 
 export interface BarnKalkulator {
     årFødt: number;
@@ -100,6 +101,11 @@ const Kalkulator = () => {
                             showButtonArrows={false}
                             formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
                             <AntallBarnFormPart setBarn={setBarn} />
+                            {barn.length > 0 && (
+                                <Heading level="2" size="medium">
+                                    <FormattedMessage id={'barn.tittel'} values={{ antall: barn.length }} />
+                                </Heading>
+                            )}
 
                             {barn.map((b, index) => {
                                 return (

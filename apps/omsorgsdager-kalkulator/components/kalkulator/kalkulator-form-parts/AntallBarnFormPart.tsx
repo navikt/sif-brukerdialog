@@ -16,7 +16,7 @@ const AntallBarnFormPart: React.FC<Props> = ({ setBarn }: Props) => {
     const nBarnMaks = 20;
 
     return (
-        <>
+        <div className="mb-7">
             <Select
                 label={intlHelper(intl, 'kalkulator.antallBarn')}
                 name={KlakulatorFormFields.antallBarn}
@@ -46,7 +46,7 @@ const AntallBarnFormPart: React.FC<Props> = ({ setBarn }: Props) => {
                     );
                 })}
             </Select>
-        </>
+        </div>
     );
 };
 

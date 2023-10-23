@@ -37,43 +37,42 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
         <>
             <div className="mt-7">
                 <BarnPanelView id={barn.id} index={index} length={antallBarn} valideringsFeil={valideringsFeil}>
-                    <div>
-                        <Select
-                            label={intlHelper(intl, 'barn.årFødt')}
-                            name={getFieldName(index, BarnFormFiels.årFødt) as KlakulatorFormFields}
-                            style={{ width: 'fit-content' }}
-                            validate={(value) => {
-                                const error = getRequiredFieldValidator()(value);
+                    <Select
+                        label={intlHelper(intl, 'barn.årFødt')}
+                        name={getFieldName(index, BarnFormFiels.årFødt) as KlakulatorFormFields}
+                        style={{ width: 'fit-content' }}
+                        validate={(value) => {
+                            const error = getRequiredFieldValidator()(value);
 
-                                return error
-                                    ? {
-                                          key: 'validation.barn.årFødt.noValue',
-                                          values: { barnName },
-                                          keepKeyUnaltered: true,
-                                      }
-                                    : undefined;
-                            }}
-                            description={
-                                <ReadMore header={intlHelper(intl, 'barn.årFødt.readMore.title')}>
-                                    <FormattedMessage id={'barn.årFødt.readMore'} />
-                                </ReadMore>
-                            }>
-                            {[
-                                <option id={`${index}.aar-fodt-ikke-valgt`} value={undefined} key={0}>
-                                    {' '}
-                                </option>,
-                                ...Array.from({ length: 21 }, (_, i) => i).map((value: number) => {
-                                    const currentYear = dayjs().year();
-                                    const year = currentYear - value;
-                                    return (
-                                        <option value={year} key={year}>
-                                            {year}
-                                        </option>
-                                    );
-                                }),
-                            ]}
-                        </Select>
-                    </div>
+                            return error
+                                ? {
+                                      key: 'validation.barn.årFødt.noValue',
+                                      values: { barnName },
+                                      keepKeyUnaltered: true,
+                                  }
+                                : undefined;
+                        }}
+                        description={
+                            <ReadMore header={intlHelper(intl, 'barn.årFødt.readMore.title')}>
+                                <FormattedMessage id={'barn.årFødt.readMore'} />
+                            </ReadMore>
+                        }>
+                        {[
+                            <option id={`${index}.aar-fodt-ikke-valgt`} value={undefined} key={0}>
+                                {' '}
+                            </option>,
+                            ...Array.from({ length: 21 }, (_, i) => i).map((value: number) => {
+                                const currentYear = dayjs().year();
+                                const year = currentYear - value;
+                                return (
+                                    <option value={year} key={year}>
+                                        {year}
+                                    </option>
+                                );
+                            }),
+                        ]}
+                    </Select>
+
                     {barn.årFødt && !erForbiDetAttendeKalenderår(barn.årFødt) && (
                         <>
                             <div className="mt-7">

@@ -22,6 +22,7 @@
     },
 
     "barn": {
+        "tittel": "Opplysninger om {antall, plural, one {barnet} other {barna}}",
         "årFødt": "Hvilket årstall er barnet født?",
         "årFødt.readMore.title": "Hvorfor spør vi om det?",
         "årFødt.readMore": "Omsorgsdager gjelder i utgangspunktet ut kalenderåret barnet er 12 år. Hvis barnet ditt er 13 år eller eldre har du ikke rett til omsorgsdager for dette barnet med mindre du har søkt om og fått ekstra omsorgsdager fordi barnet har en kronisk sykdom eller funksjonshemning.",
