@@ -163,12 +163,12 @@ const startExpressServer = () => {
     //Test uten barn
     // server.get('/oppslag/barn', (req, res) => res.send({ barn: [] }));
 
-    server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
-        res.sendStatus(200);
-    });
-
     // server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
-    server.post('/pleiepenger-sykt-barn/innsending-feil-parametre', (req, res) => {
+    //     res.sendStatus(200);
+    // });
+
+    server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
+        // server.post('/pleiepenger-sykt-barn/innsending-feil-parametre', (req, res) => {
         res.status(400).send({
             type: '/problem-details/invalid-request-parameters',
             title: 'invalid-request-parameters',
