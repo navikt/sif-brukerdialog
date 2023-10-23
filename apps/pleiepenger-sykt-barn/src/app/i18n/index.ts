@@ -12,8 +12,7 @@ import { sifCommonPleiepengerMessages } from '../local-sif-common-pleiepenger/i1
 import { velkommenPageMessages } from '../pages/welcoming-page/velkommenPageMessages';
 import omsorgstilbudMessages from './omsorgstilbudMessages';
 import { arbeidIPeriodeMessages } from '../søknad/arbeidstid-step/i18n/arbeidIPeriodeMessages';
-
-export const appBokmålstekster = require('./nb.json');
+import { appMessagesNb } from './nb';
 
 const bokmålstekster = {
     ...allCommonMessages.nb,
@@ -26,7 +25,7 @@ const bokmålstekster = {
     ...sifCommonPleiepengerMessages.nb,
     ...opptjeningUtlandMessages.nb,
     ...utenlandskNæringMessages.nb,
-    ...appBokmålstekster,
+    ...appMessagesNb,
     ...velkommenPageMessages.nb,
     ...soknadIntlMessages.nb,
     ...arbeidIPeriodeMessages.nb,
