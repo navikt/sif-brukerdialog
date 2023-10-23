@@ -47,29 +47,28 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
                 </InfoList>
             );
         }
-        return (
-            <>
-                <p>Søknaden inneholder ugyldig informasjon. Dette kan være:</p>
-                <InfoList>
-                    <li>
-                        Ugyldig tegn i tekstfelter. Dette kan oppstå hvis du kopierer og limer inn verdier fra et annet
-                        sted, da kan det komme med usynlige tegn som ikke vi godtar. For å rette opp i dette, er det
-                        best å skrive inn teksten direkte i feltet.
-                    </li>
-                    <li>
-                        Ugyldige svarkombinasjoner. Dette kan oppstå hvis du bruker frem og tilbake i nettleseren i
-                        stedet for å bruke &quot;Fortsett&quot;-knappen nederst i skjemaet. Gå tilbake til første steg i
-                        søknaden og bruk &quot;Fortsett&quot;-knappen for å gå videre, og se om du får en feilmelding
-                        underveis.
-                    </li>
-                </InfoList>
-                <ExpandableInfo title="Detaljert info (teknisk)">
-                    <p style={{ wordBreak: 'break-word' }}>{invalidParameter.name}</p>
-                    <p style={{ wordBreak: 'break-word' }}>{invalidParameter.reason}</p>
-                </ExpandableInfo>
-            </>
-        );
     }
+    return (
+        <>
+            <p>Søknaden inneholder ugyldig informasjon. Dette kan være:</p>
+            <InfoList>
+                <li>
+                    Ugyldig tegn i tekstfelter. Dette kan oppstå hvis du kopierer og limer inn verdier fra et annet
+                    sted, da kan det komme med usynlige tegn som ikke vi godtar. For å rette opp i dette, er det best å
+                    skrive inn teksten direkte i feltet.
+                </li>
+                <li>
+                    Ugyldige svarkombinasjoner. Dette kan oppstå hvis du bruker frem og tilbake i nettleseren i stedet
+                    for å bruke &quot;Fortsett&quot;-knappen nederst i skjemaet. Gå tilbake til første steg i søknaden
+                    og bruk &quot;Fortsett&quot;-knappen for å gå videre, og se om du får en feilmelding underveis.
+                </li>
+            </InfoList>
+            <ExpandableInfo title="Detaljert info (teknisk)">
+                <p style={{ wordBreak: 'break-word' }}>{invalidParameter.name}</p>
+                <p style={{ wordBreak: 'break-word' }}>{invalidParameter.reason}</p>
+            </ExpandableInfo>
+        </>
+    );
 };
 
 const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidParameter }) => {
