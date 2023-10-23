@@ -11,16 +11,10 @@ const {
     kontrollerOppsummering,
 } = utfyllingUtils;
 
-const startUrl =
-    'http://localhost:8080/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/soknad/velkommen';
-
 describe('Fylle ut søknad', () => {
     contextConfig({ barn: [] });
 
     describe('Med Sykdom', () => {
-        before(() => {
-            cy.visit(startUrl);
-        });
         startSøknad();
         fyllOmAnnenForelder();
         fyllOmAnnenForelderSituasjon();

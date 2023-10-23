@@ -17,11 +17,10 @@ RUN yarn turbo run build-app --filter=${SCOPE}
 FROM pruner AS server
 WORKDIR /apps/omsorgspengesoknad
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/omsorgspengesoknad/envSettings.js .
-COPY --from=pruner /app/apps/omsorgspengesoknad/server.js .
-COPY --from=pruner /app/apps/omsorgspengesoknad/tokenx.js .
+COPY --from=pruner /app/apps/omsorgspengesoknad/server.cjs .
+COPY --from=pruner /app/apps/omsorgspengesoknad/tokenx.cjs .
 COPY --from=pruner /app/apps/omsorgspengesoknad/package.json .
-COPY --from=pruner /app/apps/omsorgspengesoknad/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
+COPY --from=pruner /app/apps/omsorgspengesoknad/src/build/scripts/decorator.cjs ./src/build/scripts/decorator.cjs
 COPY --from=pruner /app/apps/omsorgspengesoknad/dist ./dist
 
 EXPOSE 8080

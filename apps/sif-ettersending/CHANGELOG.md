@@ -1,5 +1,30 @@
 # @navikt/sif-ettersending
 
+## 3.23.8
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.6
+    -   @navikt/sif-common-formik-ds@1.1.2
+    -   @navikt/sif-common-soknad-ds@10.7.6
+    -   @navikt/sif-common-core-ds@9.8.6
+    -   @navikt/sif-common-utils@3.40.7
+
+## 3.23.7
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+-   Updated dependencies [71381778]
+    -   @navikt/sif-common-amplitude@2.21.5
+    -   @navikt/sif-common-formik-ds@1.1.1
+    -   @navikt/sif-common-soknad-ds@10.7.5
+    -   @navikt/sif-common-core-ds@9.8.5
+    -   @navikt/sif-common-sentry@0.22.4
+    -   @navikt/sif-common-utils@3.40.6
+
 ## 3.23.6
 
 ### Patch Changes

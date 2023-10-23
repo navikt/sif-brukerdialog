@@ -1,10 +1,13 @@
 import { getTestElement, submitSkjema } from '.';
+const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad/velkommen';
 
 const startSøknad = () => {
     it('Starter søknad', () => {
-        cy.wait(['@getSøker', '@getBarn']);
-        getTestElement('bekreft-label').click();
-        getTestElement('typedFormikForm-submitButton').click();
+        cy.visit(startUrl).then(() => {
+            cy.wait(['@getSøker', '@getBarn']);
+            getTestElement('bekreft-label').click();
+            getTestElement('typedFormikForm-submitButton').click();
+        });
     });
 };
 

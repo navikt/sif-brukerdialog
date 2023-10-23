@@ -1,5 +1,25 @@
 # @navikt/sif-common-ui
 
+## 0.0.10
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-formik-ds@1.1.2
+    -   @navikt/sif-common-core-ds@9.8.6
+    -   @navikt/sif-common-utils@3.40.7
+
+## 0.0.9
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+-   Updated dependencies [71381778]
+    -   @navikt/sif-common-formik-ds@1.1.1
+    -   @navikt/sif-common-core-ds@9.8.5
+    -   @navikt/sif-common-utils@3.40.6
+
 ## 0.0.8
 
 ### Patch Changes

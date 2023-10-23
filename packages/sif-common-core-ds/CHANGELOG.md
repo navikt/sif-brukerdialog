@@ -1,5 +1,21 @@
 # @navikt/sif-common-core-ds
 
+## 9.8.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-utils@3.40.7
+
+## 9.8.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+-   Updated dependencies [71381778]
+    -   @navikt/sif-common-utils@3.40.6
+
 ## 9.8.4
 
 ### Patch Changes

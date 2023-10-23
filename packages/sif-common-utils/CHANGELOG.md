@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.40.7
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 3.40.6
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
 ## 3.40.5
 
 ### Patch Changes

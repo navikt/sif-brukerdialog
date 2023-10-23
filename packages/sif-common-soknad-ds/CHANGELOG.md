@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.7.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
+## 10.7.5
+
+### Patch Changes
+
+-   71381778: Patch pakkeoppdateringer
+
 ## 10.7.4
 
 ### Patch Changes
