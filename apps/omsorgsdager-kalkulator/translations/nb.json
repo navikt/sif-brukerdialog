@@ -59,7 +59,8 @@
     },
 
     "validation": {
-        "barn.årFødt.noValue": "Då må svare på hvilket årstall barn {barnName} er født.",
+        "antallBarn.noValue": "Du må velge hvor mange egne barn har du i husstanden.",
+        "barn.årFødt.noValue": "Du må svare på hvilket årstall barn {barnName} er født.",
         "barn.kroniskSykt.yesOrNoIsUnanswered": "Då må svare på om du har fått ekstra omsorgsdager fordi barn {barnName} har en kronisk sykdom eller en funksjonshemning.",
         "barn.borSammen.yesOrNoIsUnanswered": "Då må svare på om barn {barnName} bor fast hos deg.",
         "barn.aleneOmOmsorgen.yesOrNoIsUnanswered": "Då må svare på om du er alene om omsorgen med barn {barnName}."

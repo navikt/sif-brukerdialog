@@ -67,7 +67,7 @@ const Kalkulator = () => {
     return (
         <FormikWrapper
             initialValues={{
-                antallBarn: 0,
+                antallBarn: undefined,
                 barn: [],
             }}
             onSubmit={(values) => {
