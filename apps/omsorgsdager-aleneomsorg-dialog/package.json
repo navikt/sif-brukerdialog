@@ -23,9 +23,9 @@
         "lint": "eslint ./src --ext ts,tsx"
     },
     "dependencies": {
-        "@navikt/ds-css": "5.7.4",
-        "@navikt/ds-react": "5.7.4",
-        "@navikt/ds-tailwind": "5.7.4",
+        "@navikt/ds-css": "5.7.6",
+        "@navikt/ds-react": "5.7.6",
+        "@navikt/ds-tailwind": "5.7.6",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -53,7 +53,7 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "6.5.0",
+        "react-intl": "6.5.1",
         "react-router-dom": "6.17.0",
         "ulid": "2.3.0",
         "uuid": "9.0.1"
@@ -64,7 +64,7 @@
         "@babel/preset-env": "7.23.2",
         "@babel/preset-react": "7.22.15",
         "@types/object-hash": "3.0.5",
-        "@types/react": "18.2.30",
+        "@types/react": "18.2.31",
         "@types/react-dom": "18.2.14",
         "@types/react-router-dom": "5.3.3",
         "@vitejs/plugin-react": "4.1.0",
