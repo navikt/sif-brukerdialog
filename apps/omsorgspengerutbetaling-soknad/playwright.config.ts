@@ -73,9 +73,19 @@ export default defineConfig({
     ],
 
     /* Run your local dev server before starting the tests */
-    webServer: {
-        command: 'yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad',
-        url: 'http://localhost:8080',
-        reuseExistingServer: !process.env.CI,
-    },
+    // webServer: {
+    //     command: 'yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad',
+    //     url: 'http://localhost:8080',
+    //     reuseExistingServer: !process.env.CI,
+    //     env: {
+    //         DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
+    //         PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
+    //         API_URL: 'http://localhost:8089',
+    //         FRONTEND_API_PATH: 'http://localhost:8089',
+    //         FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
+    //         VEDLEGG_API_URL: 'http://localhost:8089',
+    //         APPSTATUS_PROJECT_ID: 'ryujtq87',
+    //         APPSTATUS_DATASET: 'staging',
+    //     },
+    // },
 });
