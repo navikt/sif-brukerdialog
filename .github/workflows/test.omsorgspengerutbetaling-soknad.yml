@@ -71,6 +71,7 @@ jobs:
               run: yarn turbo cypress-run --filter=omsorgspengerutbetaling-soknad
               env:
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
     test:
         timeout-minutes: 60
         runs-on: ubuntu-latest
@@ -79,9 +80,13 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: 18
+                  cache: 'yarn'
+
             - name: Install dependencies
               run: yarn
+
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
+
             - name: Run Playwright tests
-              run: npx playwright test
+              run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-soknad
