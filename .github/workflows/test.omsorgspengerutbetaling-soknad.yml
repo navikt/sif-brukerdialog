@@ -72,7 +72,7 @@ jobs:
               env:
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
-    test:
+    run-playwright-test:
         timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
@@ -86,7 +86,7 @@ jobs:
               run: yarn
 
             - name: Install Playwright Browsers
-              run: yarn playwright install chromium
+              run: npx playwright install --with-deps
 
             - name: Run Playwright tests
               run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-soknad
