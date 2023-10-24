@@ -90,6 +90,9 @@ jobs:
 
             - name: start-e2e-server
               run: yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad
+              env:
+                DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+
 
             - name: Run Playwright tests
               run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-soknad

@@ -74,7 +74,7 @@ export default defineConfig({
 
     /* Run your local dev server before starting the tests */
     webServer: {
-        command: 'yarn start-e2e-server',
+        command: 'yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad',
         url: 'http://localhost:8080',
         reuseExistingServer: !process.env.CI,
     },
