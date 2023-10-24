@@ -100,8 +100,5 @@ jobs:
             - name: Build application
               run: yarn build-app --filter=omsorgspengerutbetaling-soknad
 
-            # - name: Start test server
-            #   run: yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad
-
-            - name: Run Playwright tests
+            - name: Run tests
               run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-soknad

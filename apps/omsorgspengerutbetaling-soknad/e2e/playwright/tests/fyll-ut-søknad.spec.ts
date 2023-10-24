@@ -1,7 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
+import { utfyllingUtils } from '../utils/utfyllingUtils';
 
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
+// const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
 
 test.describe('Fyller ut søknad', () => {
     test.beforeEach(async ({ page }) => {
@@ -17,36 +18,19 @@ test.describe('Fyller ut søknad', () => {
         await page.route('**/oppslag/barn', async (route) => {
             await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.barnMock) });
         });
+        await page.route('**/vedlegg', async (route) => {
+            await route.fulfill({
+                status: 200,
+                headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
+            });
+        });
     });
 
     test('Fyller ut søknad med valgt barn', async ({ page }) => {
-        await page.goto(startUrl);
-        const intro = page.locator('.navds-guide-panel__content');
-        await expect(intro).toContainText('Velkommen til søknad om omsorgspenger');
-        await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').check();
-        await page.getByRole('button').getByText('Start søknad').click();
-
-        /** Steg 1 - Om barn */
-        await page.getByRole('heading', { name: 'Om barn' });
-        await page.getByText('Ja, jeg bekrefter at jeg har dekket 10 omsorgsdager i år.').click();
-        await page.getByTestId('typedFormikForm-submitButton').click();
-
-        /** Steg 2 - Dager du søker om utbetaling for */
-        await page.getByRole('heading', { name: 'Dager du søker om utbetaling for' });
-        await page.getByTestId('harPerioderMedFravær_yes').check();
-        await page.getByRole('button', { name: 'Legg til dager med fullt fravær fra jobb' }).click();
-        await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
-        await page.getByLabel('2. oktober (mandag)').click();
-        await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
-        await page.getByLabel('6. oktober (fredag)').click();
-        await page.getByLabel('Dager med fullt fravær fra jobb').getByTestId('typedFormikForm-submitButton').click();
-        await page.getByTestId('harDagerMedDelvisFravær_no').check();
-        await page.getByTestId('perioder_harVærtIUtlandet_no').check();
-        await page.getByTestId('typedFormikForm-submitButton').click();
-
-        /** Steg 3 - Last opp legeerklæring */
-        await page.getByRole('heading', { name: 'Last opp legeerklæring' });
-        await page.getByTestId('typedFormikForm-submitButton').click();
+        await utfyllingUtils.startSøknad(page);
+        await utfyllingUtils.fyllUtOmBarnMinstEttYngre13år(page);
+        await utfyllingUtils.fyllUtFraværSteg(page);
+        await utfyllingUtils.lastOppLegeerklæring(page);
 
         /** Steg 4 - Arbeidssituasjon */
         await page.getByRole('heading', { name: 'Arbeidssituasjon' });
