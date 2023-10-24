@@ -25,7 +25,7 @@ export default defineConfig({
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
         /* Base URL to use in actions like `await page.goto('/')`. */
-        // baseURL: 'http://127.0.0.1:3000',
+        baseURL: 'http://localhost:8080',
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
@@ -40,52 +40,21 @@ export default defineConfig({
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
         },
-
-        // {
-        //     name: 'firefox',
-        //     use: { ...devices['Desktop Firefox'] },
-        // },
-
-        // {
-        //     name: 'webkit',
-        //     use: { ...devices['Desktop Safari'] },
-        // },
-
-        /* Test against mobile viewports. */
-        // {
-        //   name: 'Mobile Chrome',
-        //   use: { ...devices['Pixel 5'] },
-        // },
-        // {
-        //   name: 'Mobile Safari',
-        //   use: { ...devices['iPhone 12'] },
-        // },
-
-        /* Test against branded browsers. */
-        // {
-        //   name: 'Microsoft Edge',
-        //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-        // },
-        // {
-        //   name: 'Google Chrome',
-        //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-        // },
     ],
 
     /* Run your local dev server before starting the tests */
-    // webServer: {
-    //     command: 'yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad',
-    //     url: 'http://localhost:8080',
-    //     reuseExistingServer: !process.env.CI,
-    //     env: {
-    //         DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
-    //         PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
-    //         API_URL: 'http://localhost:8089',
-    //         FRONTEND_API_PATH: 'http://localhost:8089',
-    //         FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
-    //         VEDLEGG_API_URL: 'http://localhost:8089',
-    //         APPSTATUS_PROJECT_ID: 'ryujtq87',
-    //         APPSTATUS_DATASET: 'staging',
-    //     },
-    // },
+    webServer: {
+        command: 'yarn start-e2e-server',
+        url: 'http://localhost:8080',
+        env: {
+            DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
+            PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling',
+            API_URL: 'http://localhost:8089',
+            FRONTEND_API_PATH: 'http://localhost:8089',
+            FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
+            VEDLEGG_API_URL: 'http://localhost:8089',
+            APPSTATUS_PROJECT_ID: 'ryujtq87',
+            APPSTATUS_DATASET: 'staging',
+        },
+    },
 });
