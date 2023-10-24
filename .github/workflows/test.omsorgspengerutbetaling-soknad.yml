@@ -71,3 +71,6 @@ jobs:
               run: yarn turbo cypress-run --filter=omsorgspengerutbetaling-soknad
               env:
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+            - name: Run playwright tests
+              run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-soknad

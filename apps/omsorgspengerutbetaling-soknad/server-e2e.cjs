@@ -39,6 +39,7 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = async (html) => {
+    console.log(process.env.PUBLIC_PATH);
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
     server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));

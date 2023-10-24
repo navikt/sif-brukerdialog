@@ -41,6 +41,10 @@
             "outputs": [],
             "dependsOn": ["^start-e2e-server", "^build-app"]
         },
+        "playwright-test": {
+            "outputs": [],
+            "dependsOn": ["^start-e2e-server", "^build-app"]
+        },
         "build-omsorgspengesoknad": {
             "outputs": [],
             "dependsOn": ["^build-package"]
