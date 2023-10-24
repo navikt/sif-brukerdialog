@@ -109,27 +109,5 @@ jobs:
                   wait-on-timeout: 60
                   runTests: false
 
-            # - name: Start test server
-            #   run: yarn turbo start-e2e-server --filter=omsorgspengerutbetaling-soknad
-            #   env:
-            #     DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-
             - name: Run Playwright tests
               run: yarn turbo playwright-test --filter=omsorgspengerutbetaling-soknad
-              env:
-                  DEKORATOR_URL: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
-                  PUBLIC_PATH: /familie/sykdom-i-familien/soknad/omsorgspengerutbetaling
-                  API_URL: http://localhost:8089
-                  FRONTEND_API_PATH: http://localhost:8089
-                  FRONTEND_VEDLEGG_URL: http://localhost:8089
-                  VEDLEGG_API_URL: http://localhost:8089
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  APPSTATUS_PROJECT_ID: ryujtq87
-                  APPSTATUS_DATASET: staging
-
-            - uses: actions/upload-artifact@v3
-              if: always()
-              with:
-                name: playwright-report
-                path: playwright-report/
-                retention-days: 30
