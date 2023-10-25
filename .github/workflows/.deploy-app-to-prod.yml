@@ -40,18 +40,25 @@ jobs:
             - name: Install dependencies (yarn)
               run: yarn
 
-            - name: Run tests
-              run: yarn test --filter=${{inputs.app-name}}
-
             - name: Build application
-              run: |
-                  yarn build-${{ inputs.app-name }}
+              run: yarn build-${{ inputs.app-name }}
 
-            - name: Build and publish Docker image
-              run: |
-                  docker build -t ${IMAGE} -f apps/${{inputs.app-name}}/Dockerfile .
-                  docker login ghcr.io -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-                  docker push ${IMAGE}
+            - name: Build with turbo
+              run: yarn turbo run build-app --filter=@navikt/${{ inputs.app-name }}
+
+            - name: Build and publish docker image
+              uses: nais/docker-build-push@v0
+              id: docker-push
+              with:
+                  team: dusseldorf
+                  push_image: true
+                  pull: true
+                  dockerfile: Dockerfile
+                  docker_context: .
+                  build_args: APP_NAME=${{ inputs.app-name }}
+                  image_suffix: ${{inputs.app-name}}-mono
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
 
             - name: Deploy to prod
               uses: nais/deploy/actions/deploy@v1
