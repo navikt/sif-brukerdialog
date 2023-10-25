@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useMellomlagring } from '../hooks/useMellomlagring';
@@ -19,7 +18,6 @@ import MedlemskapStep from './steps/medlemskap/MedlemskapStep';
 import OppsummeringStep from './steps/oppsummering/OppsummeringStep';
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import { useResetSøknad } from '../hooks/useResetSøknad';
-import { useStepHistory } from '../hooks/useStepHistory';
 
 const SøknadRouter = () => {
     const { pathname } = useLocation();
@@ -33,15 +31,6 @@ const SøknadRouter = () => {
     const { setShouldResetSøknad, shouldResetSøknad } = useResetSøknad();
 
     usePersistSøknadState();
-
-    useStepHistory();
-    // const location = useLocation();
-
-    // useEffectOnce(() => {
-    //     window.addEventListener('popstate', (evt) => {
-    //         console.log({ curr: (evt.currentTarget as any)?.location.pathname, loc: location.pathname });
-    //     });
-    // });
 
     useEffect(() => {
         if (stateSøknadRoute && isFirstTimeLoadingApp) {

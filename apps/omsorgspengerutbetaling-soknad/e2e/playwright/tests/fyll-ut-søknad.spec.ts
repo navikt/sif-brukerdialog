@@ -2,8 +2,6 @@ import { test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
 
-// const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
-
 test.describe('Fyller ut søknad', () => {
     test.beforeEach(async ({ page }) => {
         await page.route('https://**.nav.no/**', async (route) => {
