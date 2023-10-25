@@ -24,6 +24,9 @@ test.describe('Fyller ut søknad', () => {
                 headers: { Location: '/vedlegg', 'access-control-expose-headers': 'Location' },
             });
         });
+        await page.route('**/innsending', async (route) => {
+            await route.fulfill({ status: 200 });
+        });
     });
 
     test('Fyller ut søknad med valgt barn', async ({ page }) => {
@@ -31,28 +34,10 @@ test.describe('Fyller ut søknad', () => {
         await utfyllingUtils.fyllUtOmBarnMinstEttYngre13år(page);
         await utfyllingUtils.fyllUtFraværSteg(page);
         await utfyllingUtils.lastOppLegeerklæring(page);
-
-        /** Steg 4 - Arbeidssituasjon */
-        await page.getByRole('heading', { name: 'Arbeidssituasjon' });
-        await page.getByTestId('frilans_erFrilanser_yes').check();
-        await page.getByLabel('Når startet du som frilanser?').click();
-        await page.getByLabel('Når startet du som frilanser?').fill('01.01.2003');
-        await page.getByLabel('Når startet du som frilanser?').press('Tab');
-        await page.getByTestId('frilans_jobberFortsattSomFrilans_yes').check();
-        await page.getByTestId('selvstendig_erSelvstendigNæringsdrivende_no').check();
-        await page.getByTestId('typedFormikForm-submitButton').click();
-
-        /** Steg 5 - Medlemsskap */
-        await page.getByRole('heading', { name: 'Medlemskap i folketrygden' });
-        await page.getByTestId('medlemskap-annetLandSiste12').getByText('Nei').click();
-        await page.getByTestId('medlemskap-annetLandNeste12_no').check();
-        await page.getByTestId('typedFormikForm-submitButton').click();
-
-        /** Oppsummering */
-        await page.getByRole('heading', { name: 'Oppsummering' });
-        await page.getByTestId('bekreft-label').click();
-        await page.getByTestId('typedFormikForm-submitButton').click();
-
-        await page.getByRole('heading', { name: 'Vi har mottatt søknad om utbetaling av omsorgspenger' });
+        await utfyllingUtils.fyllerUtArbeidssituasjonSteg(page);
+        await utfyllingUtils.fyllerUtFraværFraSteg(page);
+        await utfyllingUtils.fyllUtMedlemsskap(page);
+        await utfyllingUtils.sendInnSøknad(page);
+        await utfyllingUtils.kontrollerKvittering(page);
     });
 });

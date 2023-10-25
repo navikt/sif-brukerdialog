@@ -6,19 +6,6 @@ import isoWeek from 'dayjs/plugin/isoWeek.js';
 dayjs.extend(isoWeek);
 dayjs.locale(locale);
 
-// import {
-//     getTestElement,
-//     getTestElementByType,
-//     selectRadioYesOrNo,
-//     getInputByName,
-//     submitModal,
-//     submitSkjema,
-//     getElement,
-//     selectRadioByNameAndValue,
-//     getRadioButtons,
-//     selectRadioByValue,
-// } from '.';
-
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling';
 
 const fraDato = dayjs().startOf('isoWeek').subtract(3, 'weeks').format('DD.MM.YYYY');
@@ -27,6 +14,10 @@ const datoDelvisFravær = dayjs().startOf('isoWeek').subtract(4, 'weeks').format
 const fomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(2, 'day').format('DD.MM.YYYY');
 const tomDatoIUtlandet = dayjs().startOf('isoWeek').subtract(3, 'weeks').add(4, 'day').format('DD.MM.YYYY');
 const frilansStartDato = dayjs().startOf('isoWeek').subtract(10, 'weeks').format('DD.MM.YYYY');
+
+const selectRadioByNameAndValue = async (page: Page) => {
+    await page.locator('input[type="radio"][value="JORDBRUK_SKOGBRUK"]').check();
+};
 
 const virksomhet = {
     næringstype: 'JORDBRUK_SKOGBRUK',
@@ -106,73 +97,89 @@ const lastOppLegeerklæring = async (page: Page) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
-const fyllUtVirksomhetDialog = () => {
-    // selectRadioByNameAndValue('næringstype', virksomhet.næringstype);
-    // selectRadioByNameAndValue('registrertINorge', virksomhet.registrertINorge);
-    // getInputByName('navnPåVirksomheten').click().type(virksomhet.navn).blur();
-    // getInputByName('organisasjonsnummer').click().type(virksomhet.organisasjonsnummer).blur();
-    // getInputByName('fom').click().type(virksomhet.fraOgMed).blur();
-    // getInputByName('tom').click().type(virksomhet.tilOgMed).blur();
-    // selectRadioByNameAndValue(
-    //     'hattVarigEndringAvNæringsinntektSiste4Kalenderår',
-    //     virksomhet.hattVarigEndringAvNæringsinntektSiste4Kalenderår,
-    // );
-    // getInputByName('varigEndringINæringsinntekt_dato').click().type(virksomhet.varigEndringINæringsinntekt_dato).blur();
-    // getInputByName('varigEndringINæringsinntekt_inntektEtterEndring')
-    //     .click()
-    //     .type(virksomhet.varigEndringINæringsinntekt_inntektEtterEndring)
-    //     .blur();
-    // getInputByName('varigEndringINæringsinntekt_forklaring')
-    //     .click()
-    //     .type(virksomhet.varigEndringINæringsinntekt_forklaring)
-    //     .blur();
-    // selectRadioByNameAndValue('harRegnskapsfører', virksomhet.harRegnskapsfører);
-    // submitModal();
+const fyllUtVirksomhetDialog = async (page: Page) => {
+    await page.getByLabel('Jordbruker').check();
+    await page.getByLabel('Hva heter virksomheten?').fill(virksomhet.navn);
+    await page.getByLabel('Opplysninger om den eldste virksomheten din').getByLabel('Ja').check();
+    await page.getByLabel('Hva er organisasjonsnummeret?').fill(virksomhet.organisasjonsnummer);
+    await page.getByText('Opplysninger om den eldste virksomheten dinHvilken type virksomhet har du?Fisker').click();
+    await page.getByLabel('Startdato').fill(virksomhet.fraOgMed);
+    await page.getByLabel('Eventuell sluttdato').fill(virksomhet.tilOgMed);
+    await page
+        .getByRole('group', {
+            name: 'Har du hatt en varig endring i noen av arbeidsforholdene, virksomhetene eller arbeidssituasjonen din de siste fire årene?',
+        })
+        .getByLabel('Ja')
+        .check();
+    await page.getByLabel('Oppgi dato for endringen').fill(virksomhet.varigEndringINæringsinntekt_dato);
+    await page
+        .getByLabel('Oppgi næringsinntekten din etter endringen. Oppgi årsinntekten i hele kroner.')
+        .fill(virksomhet.varigEndringINæringsinntekt_inntektEtterEndring);
+    await page
+        .getByLabel(
+            'Her kan du skrive kort hva som har endret seg i arbeidsforholdene, virksomhetene eller arbeidssituasjonen din',
+        )
+        .fill(virksomhet.varigEndringINæringsinntekt_forklaring);
+    await page.getByRole('group', { name: 'Har du regnskapsfører?' }).getByLabel('Nei').check();
+    await page
+        .getByLabel('Opplysninger om den eldste virksomheten din')
+        .getByTestId('typedFormikForm-submitButton')
+        .click();
 };
 
-const fyllerUtArbeidssituasjonSteg = () => {
-    //     selectRadioYesOrNo('frilans_erFrilanser', true);
-    //     getInputByName('frilans_startdato').click().type(frilansStartDato).blur();
-    //     selectRadioYesOrNo('frilans_jobberFortsattSomFrilans', true);
-    //     selectRadioYesOrNo('selvstendig_erSelvstendigNæringsdrivende', true);
-    //     selectRadioYesOrNo('selvstendig_harFlereVirksomheter', true);
-    //     getElement('button').contains('Registrer virksomhet').click();
-    //     fyllUtVirksomhetDialog();
-    //     submitSkjema();
+const fyllerUtArbeidssituasjonSteg = async (page: Page) => {
+    await page.getByRole('heading', { name: 'Arbeidssituasjon' });
+    await page.getByTestId('frilans_erFrilanser_yes').check();
+    await page.getByLabel('Når startet du som frilanser?').click();
+    await page.getByLabel('Når startet du som frilanser?').fill(frilansStartDato);
+    await page.getByLabel('Når startet du som frilanser?').press('Tab');
+    await page.getByTestId('frilans_jobberFortsattSomFrilans_yes').check();
+    await page.getByTestId('selvstendig_erSelvstendigNæringsdrivende_yes').check();
+    await page.getByTestId('selvstendig_harFlereVirksomheter_yes').check();
+    await page.getByRole('button', { name: 'Registrer virksomhet' }).click();
+    await fyllUtVirksomhetDialog(page);
+    await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
-const fyllerUtFraværFraSteg = () => {
-    // it('Fyller ut Fravær Fra steg', () => {
-    //     getRadioButtons().each(($element, $index) => {
-    //         if ($index % 2 === 0) {
-    //             cy.wrap($element).within(() => {
-    //                 selectRadioByValue('SELVSTENDIG_VIRKSOMHET');
-    //             });
-    //         } else if ($index % 3 === 0) {
-    //             cy.wrap($element).within(() => {
-    //                 selectRadioByValue('BEGGE');
-    //             });
-    //         } else
-    //             cy.wrap($element).within(() => {
-    //                 selectRadioByValue('FRILANSER');
-    //             });
-    //     });
-    //     submitSkjema();
-    // });
+const fyllerUtFraværFraSteg = async (page: Page) => {
+    await page.getByRole('heading', { name: 'Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser' });
+
+    const fieldsets = await page.$$('form fieldset');
+    const numFieldsets = fieldsets.length;
+    for (let i = 0; i < numFieldsets; i++) {
+        if (i % 2 === 0) {
+            await page
+                .locator('form fieldset')
+                .locator(`nth=${i}`)
+                .getByText('Selvstendig næringsdrivende', { exact: true })
+                .click();
+        } else if (i % 3 === 0) {
+            await page
+                .locator('form fieldset')
+                .locator(`nth=${i}`)
+                .getByText('Både frilanser og selvstendig næringsdrivende', { exact: true })
+                .click();
+        } else {
+            await page.locator('form fieldset').locator(`nth=${i}`).getByText('Frilanser', { exact: true }).click();
+        }
+    }
+    await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
-const sendInnSøknad = () => {
-    // it('Sender inn søknad', () => {
-    //     getTestElement('bekreft-label').click();
-    //     getTestElement('typedFormikForm-submitButton').click();
-    //     cy.wait('@innsending');
-    // });
+const fyllUtMedlemsskap = async (page: Page) => {
+    await page.getByRole('heading', { name: 'Medlemskap i folketrygden' });
+    await page.getByTestId('medlemskap-annetLandSiste12').getByText('Nei').click();
+    await page.getByTestId('medlemskap-annetLandNeste12_no').check();
+    await page.getByTestId('typedFormikForm-submitButton').click();
 };
-const kontrollerKvittering = () => {
-    // it('Inneholder søknad mottatt tekst', () => {
-    //     const el = getTestElement('kvittering-page');
-    //     el.should('contain', 'Vi har mottatt søknad om utbetaling av omsorgspenger');
-    // });
+
+const sendInnSøknad = async (page: Page) => {
+    await page.getByRole('heading', { name: 'Oppsummering' });
+    await page.getByTestId('bekreft-label').click();
+    await page.getByTestId('typedFormikForm-submitButton').click();
+};
+const kontrollerKvittering = async (page: Page) => {
+    await page.getByRole('heading', { name: 'Vi har mottatt søknad om utbetaling av omsorgspenger' });
 };
 
 export const utfyllingUtils = {
@@ -183,6 +190,7 @@ export const utfyllingUtils = {
     lastOppLegeerklæring,
     fyllerUtArbeidssituasjonSteg,
     fyllerUtFraværFraSteg,
+    fyllUtMedlemsskap,
     sendInnSøknad,
     kontrollerKvittering,
 };
