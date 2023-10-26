@@ -66,8 +66,8 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
                 </li>
             </InfoList>
             <p>
-                Hvis du har sjekket dette, og fortsatt ikke kommer videre, ber vi deg kontakte oss på 55 55 33 33 for
-                videre veiledning.
+                Hvis du har sjekket dette, og fortsatt ikke kommer videre, ber vi deg kontakte oss på{' '}
+                <span style={{ whiteSpace: 'nowrap' }}>55 55 33 33</span> for videre veiledning.
             </p>
             <ExpandableInfo title="Detaljert info (teknisk)">
                 <p style={{ wordBreak: 'break-word' }}>{invalidParameter.name}</p>
