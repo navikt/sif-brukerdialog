@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 8.9.6
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+
 ## 8.9.5
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 2.20.11
+
+### Patch Changes
+
+-   Pakkeoppdatering som fikser datepicker + modal bug
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.6
+    -   @navikt/sif-common-formik-ds@1.1.2
+    -   @navikt/sif-common-soknad-ds@10.7.6
+    -   @navikt/sif-common-forms-ds@8.9.6
+    -   @navikt/sif-common-core-ds@9.8.6
+    -   @navikt/sif-common-utils@3.40.7
+
 ## 2.20.10
 
 ### Patch Changes
