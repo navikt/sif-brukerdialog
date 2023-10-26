@@ -185,13 +185,11 @@ const ArbeidIPeriodeSpørsmål = ({
                             return undefined;
                         }}
                         description={
-                            skjulJobberNormaltValg ? undefined : (
-                                <Block margin="l">
-                                    <Alert variant="info" inline={true}>
-                                        Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
-                                    </Alert>
-                                </Block>
-                            )
+                            <Block margin="l">
+                                <Alert variant="info" inline={true}>
+                                    Du trenger ikke fylle ut noe for dager du ikke skal jobbe.
+                                </Alert>
+                            </Block>
                         }>
                         <div style={{ marginTop: '1.5rem' }}>
                             <DurationWeekdaysInput
