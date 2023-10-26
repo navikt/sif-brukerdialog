@@ -3646,6 +3646,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
+    "@sentry/vite-plugin": 2.9.0
     "@storybook/addon-actions": 7.5.1
     "@storybook/addon-essentials": 7.5.1
     "@storybook/addon-interactions": 7.5.1
