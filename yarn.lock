@@ -4550,6 +4550,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
+    "@playwright/test": ^1.39.0
     "@storybook/react-vite": 7.5.1
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.6
