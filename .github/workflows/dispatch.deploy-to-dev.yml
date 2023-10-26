@@ -8,14 +8,14 @@ on:
                 description: Choose application
                 type: choice
                 options:
-                    - pleiepenger-sykt-barn
                     - endringsmelding-pleiepenger
-                    - omsorgspengesoknad
-                    - sif-ettersending
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                    - omsorgspengesoknad
                     - omsorgsdager-aleneomsorg-dialog
                     - omsorgspengerutbetaling-soknad
                     - pleiepenger-i-livets-sluttfase-soknad
+                    - pleiepenger-sykt-barn
+                    - sif-ettersending
                 required: true
 
 jobs:

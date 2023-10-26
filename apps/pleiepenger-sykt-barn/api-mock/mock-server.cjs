@@ -97,8 +97,8 @@ const arbeidsgivereMock = {
         { navn: 'SJOKKERENDE ELEKTRIKER', organisasjonsnummer: '947064649', ansattFom: '2002-04-20' },
         // { navn: 'ROLIG SVANE', organisasjonsnummer: '947064642', ansattFom: '2016-12-01' },
     ],
-    frilansoppdrag: [frilansoppdrag, frilansoppdrag2],
-    // frilansoppdrag: [],
+    // frilansoppdrag: [frilansoppdrag, frilansoppdrag2],
+    frilansoppdrag: [],
     privatarbeidsgiver: [],
 };
 
@@ -166,7 +166,7 @@ const startExpressServer = () => {
     server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
         res.sendStatus(200);
     });
-
+    // server.post('/pleiepenger-sykt-barn/innsending', (req, res) => {
     server.post('/pleiepenger-sykt-barn/innsending-feil-parametre', (req, res) => {
         res.status(400).send({
             type: '/problem-details/invalid-request-parameters',
@@ -175,11 +175,29 @@ const startExpressServer = () => {
             detail: 'Requesten inneholder ugyldige paramtere.',
             instance: 'about:blank',
             invalid_parameters: [
-                'frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR',
-                'frilans.startdato kan ikke være null dersom frilans.type er HONORAR',
-                'frilans.jobberFortsattSomFrilans kan ikke være null dersom frilans.type er HONORAR',
+                {
+                    name: "ytelsFRONTEND_API_PATHe.tilsynsordning.perioder.['2023-10-10/2023-10-08']",
+                    reason: 'Fra og med (FOM) må være før eller lik til og med (TOM).',
+                    invalid_value: 'K9-format valideringsfeil',
+                    type: 'entity',
+                },
             ],
         });
+        // res.status(400).send({
+        //     type: '/problem-details/invalid-request-parameters',
+        //     title: 'invalid-request-parameters',
+        //     status: 400,
+        //     detail: 'Requesten inneholder ugyldige paramtere.',
+        //     instance: 'about:blank',
+        //     invalid_parameters: [
+        //         {
+        //             name: "ytelse.opptjeningAktivitet.selvstendigNæringsdrivende[0].perioder['2021-05-21/..'].regnskapsførerTlf",
+        //             reason: "'+00 00000000' matcher ikke tillatt pattern '^[\\p{Graph}\\p{Space}\\p{Sc}\\p{L}\\p{M}\\p{N}]+$'",
+        //             invalid_value: 'K9-format valideringsfeil',
+        //             type: 'entity',
+        //         },
+        //     ],
+        // });
     });
 
     server.get('/mellomlagring/PLEIEPENGER_SYKT_BARN', (req, res) => {

@@ -35,11 +35,16 @@
             "cache": false
         },
         "start-e2e-server": {
-            "outputs": []
+            "outputs": [],
+            "dependsOn": ["^build-app"]
         },
         "cypress-run": {
             "outputs": [],
-            "dependsOn": ["^start-e2e-server", "^build-app"]
+            "dependsOn": ["^build-app"]
+        },
+        "playwright-test": {
+            "outputs": [],
+            "dependsOn": ["^build-app"]
         },
         "build-omsorgspengesoknad": {
             "outputs": [],

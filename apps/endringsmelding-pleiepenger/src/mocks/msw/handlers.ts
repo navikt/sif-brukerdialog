@@ -1,4 +1,4 @@
-import { rest } from 'msw';
+import { http, HttpResponse, delay } from 'msw';
 import { getScenarioFromLocalStorage } from '../../app/dev/scenarioer';
 import { ArbeidsaktivitetUtenArbeidsgiver } from '../data/scenario/arbeidsaktivitet-uten-arbeidsgiver/ArbeidsaktivitetUtenArbeidsgiver';
 import { ArbeidsgiverIkkeISak } from '../data/scenario/arbeidsgiver-ikke-i-sak/ArbeidsgiverIkkeISak';
@@ -48,41 +48,42 @@ export const getHandlers = () => {
     const { sak, arbeidsgiver, søker } = getMockData(scenario.value);
 
     const handlers = [
-        rest.get(`${baseUrl}/health/isAlive`, (_req, res, ctx) => res(ctx.status(200))),
-        rest.get(`${baseUrl}/health/isReady`, (_req, res, ctx) => res(ctx.status(200))),
-        rest.get(`${baseUrl}/oppslag/soker`, (_req, res, ctx) => {
-            return res(ctx.status(200), ctx.json(søker));
+        http.get(`${baseUrl}/health/isAlive`, () => new HttpResponse(null, { status: 200 })),
+        http.get(`${baseUrl}/health/isReady`, () => new HttpResponse(null, { status: 200 })),
+        http.get(`${baseUrl}/oppslag/soker`, () => {
+            return new HttpResponse(JSON.stringify(søker), { status: 200 });
         }),
-        rest.get(`${baseUrl}/oppslag/soker-ikkeLoggetInn`, (_req, res, ctx) => {
-            return res(ctx.status(401));
+        http.get(`${baseUrl}/oppslag/soker-ikkeLoggetInn`, () => {
+            new HttpResponse(null, { status: 401 });
         }),
-        rest.get(`${baseUrl}/innsyn/sak`, (_req, res, ctx) => {
-            return res(ctx.delay(250), ctx.status(200), ctx.json(sak));
+        http.get(`${baseUrl}/innsyn/sak`, async () => {
+            await delay(250);
+            return new HttpResponse(JSON.stringify(sak), { status: 200 });
         }),
-        rest.get(`${baseUrl}/oppslag/arbeidsgiver`, (_req, res, ctx) => {
-            return res(ctx.status(200), ctx.json(arbeidsgiver));
+        http.get(`${baseUrl}/oppslag/arbeidsgiver`, () => {
+            return new HttpResponse(JSON.stringify(arbeidsgiver), { status: 200 });
         }),
-        rest.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (_req, res, ctx) => {
+        http.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, () => {
             const data = localStorage.getItem(MellomlagringStorageKey);
-            const jsonData = JSON.parse(data || '{}');
-            return res(ctx.status(200), ctx.json(jsonData));
+            const jsonData = JSON.parse(JSON.stringify(data) || '{}');
+            return new HttpResponse(jsonData, { status: 200 });
         }),
-        rest.post(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, async (req, res, ctx) => {
-            const data = await req.text();
+        http.post(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, async ({ request }) => {
+            const data = await request.text();
             localStorage.setItem(MellomlagringStorageKey, data);
-            return res(ctx.status(200));
+            return new HttpResponse(null, { status: 200 });
         }),
-        rest.put(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, async (req, res, ctx) => {
-            const data = await req.text();
+        http.put(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, async ({ request }) => {
+            const data = await request.text();
             localStorage.setItem(MellomlagringStorageKey, data);
-            return res(ctx.status(200));
+            return new HttpResponse(null, { status: 200 });
         }),
-        rest.delete(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, (_req, res, ctx) => {
+        http.delete(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, () => {
             localStorage.setItem(MellomlagringStorageKey, '');
-            return res(ctx.status(200));
+            return new HttpResponse(null, { status: 200 });
         }),
-        rest.post(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, (_req, res, ctx) => {
-            return res(ctx.status(200));
+        http.post(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, () => {
+            return new HttpResponse(null, { status: 200 });
         }),
     ];
 

@@ -5,6 +5,8 @@ const os = require('os');
 const fs = require('fs');
 const busboyCons = require('busboy');
 
+require('dotenv').config();
+
 const barnMock = require('./mock-data/barn.json');
 const søkerMock = require('./mock-data/soker.json');
 
@@ -16,7 +18,7 @@ server.use(
         contentSecurityPolicy: false,
         crossOriginEmbedderPolicy: false,
         crossOriginResourcePolicy: false,
-    })
+    }),
 );
 
 server.use((req, res, next) => {
@@ -54,12 +56,11 @@ const startServer = () => {
     const port = process.env.PORT || 8089;
 
     /** --- Get søker data fra api ---------- */
-
-    server.get('/oppslag/soker', (req, res) => {
+    server.get(`${process.env.PUBLIC_PATH}/oppslag/soker`, (req, res) => {
         res.send(søkerMock);
     });
 
-    server.get('/oppslag/barn', (req, res) => {
+    server.get(`${process.env.PUBLIC_PATH}/oppslag/barn`, (req, res) => {
         setTimeout(() => {
             res.send(barnMock);
         }, 200);
@@ -67,14 +68,14 @@ const startServer = () => {
 
     /** --- Send søknad ---------- */
 
-    server.post('/omsorgspenger-utbetaling-snf/innsending', (req, res) => {
+    server.post(`${process.env.PUBLIC_PATH}/omsorgspenger-utbetaling-snf/innsending`, (req, res) => {
         console.log(req.body);
         res.sendStatus(200);
     });
 
     /** --- Vedlegg ---------- */
 
-    server.post('/vedlegg', (req, res) => {
+    server.post(`${process.env.PUBLIC_PATH}/vedlegg`, (req, res) => {
         res.set('Access-Control-Expose-Headers', 'Location');
         res.set('Location', 'nav.no');
         const busboy = busboyCons({ headers: req.headers });
@@ -87,13 +88,13 @@ const startServer = () => {
         req.pipe(busboy);
     });
 
-    server.delete('/vedlegg', (req, res) => {
+    server.delete(`${process.env.PUBLIC_PATH}/vedlegg`, (req, res) => {
         res.sendStatus(200);
     });
 
     /** --- Mellomlagring ---------- */
 
-    server.get('/mellomlagring/OMSORGSPENGER_UTBETALING_SNF', (req, res) => {
+    server.get(`${process.env.PUBLIC_PATH}/mellomlagring/OMSORGSPENGER_UTBETALING_SNF`, (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
             const body = readFileSync(MELLOMLAGRING_JSON);
             res.send(JSON.parse(body));
@@ -101,19 +102,19 @@ const startServer = () => {
             res.send({});
         }
     });
-    server.post('/mellomlagring/OMSORGSPENGER_UTBETALING_SNF', (req, res) => {
+    server.post(`${process.env.PUBLIC_PATH}/mellomlagring/OMSORGSPENGER_UTBETALING_SNF`, (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
-    server.put('/mellomlagring/OMSORGSPENGER_UTBETALING_SNF', (req, res) => {
+    server.put(`${process.env.PUBLIC_PATH}/mellomlagring/OMSORGSPENGER_UTBETALING_SNF`, (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
-    server.delete('/mellomlagring/OMSORGSPENGER_UTBETALING_SNF', (req, res) => {
+    server.delete(`${process.env.PUBLIC_PATH}/mellomlagring/OMSORGSPENGER_UTBETALING_SNF`, (req, res) => {
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(202);
     });
