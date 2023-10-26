@@ -201,7 +201,7 @@ const ArbeidIPeriodeSpørsmål = ({
                                 useAccordion={useAccordion}
                                 renderMonthHeader={useAccordion ? renderMonthHeader : renderMonthHeaderNoAccordion}
                                 accordionOpen={hasEnkeltdagerMedFeil}
-                                validateDate={(date: Date, value?: any) => {
+                                validateDate={(value: any, date: Date) => {
                                     const error = getTimeValidator()(value);
                                     if (error) {
                                         return {
