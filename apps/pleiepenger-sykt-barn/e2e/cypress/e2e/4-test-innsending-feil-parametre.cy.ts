@@ -40,8 +40,7 @@ describe('Send inn søknad med feil parametre', () => {
         cy.injectAxe();
         cy.get('input[name="harBekreftetOpplysninger"]').click();
         cy.get('button').contains('Send inn søknaden').click();
-        expect(cy.contains('Oops, der oppstod det en feil')).exist;
-        cy.contains('Vis mer informasjon om feilen (teknisk)').click();
+        expect(cy.contains('Oops, noe gikk galt')).exist;
         cy.contains('frilans.misterHonorar kan ikke være null dersom frilans.type er HONORAR').should('exist');
         cy.checkA11y();
     });
