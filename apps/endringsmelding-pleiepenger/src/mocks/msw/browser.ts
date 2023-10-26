@@ -1,4 +1,4 @@
-import { setupWorker, rest } from 'msw';
+import { setupWorker } from 'msw/browser';
 import { getHandlers } from './handlers';
 
 export const worker = setupWorker(...getHandlers());
@@ -7,5 +7,4 @@ export const worker = setupWorker(...getHandlers());
 // @ts-ignore
 window.msw = {
     worker,
-    rest,
 };

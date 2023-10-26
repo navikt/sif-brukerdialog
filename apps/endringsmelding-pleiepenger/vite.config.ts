@@ -11,11 +11,17 @@ export default defineConfig({
             include: '**/*.{jsx,tsx}',
         }),
         checker({ typescript: true }),
-        sentryVitePlugin({
-            org: 'nav',
-            project: 'sykdom-i-familien',
-            authToken: process.env.SENTRY_AUTH_TOKEN,
-        }),
+        ...[
+            process.env.SENTRY_AUTH_TOKEN
+                ? [
+                      sentryVitePlugin({
+                          org: 'nav',
+                          project: 'sykdom-i-familien',
+                          authToken: process.env.SENTRY_AUTH_TOKEN,
+                      }),
+                  ]
+                : [],
+        ],
     ],
     resolve: {
         alias: {
