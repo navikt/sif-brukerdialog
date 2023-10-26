@@ -14,10 +14,10 @@ interface Props {
 const getInvalidPatternMelding = (feil: K9Valideringsfeil): string | undefined => {
     if (feil.name.includes('selvstendigNæringsdrivende')) {
         if (feil.name.includes('regnskapsførerTlf')) {
-            return 'Oppgitt telefonnummer på regnskapsfører inneholder ugyldige tegn.';
+            return 'Telefonnummeret til regnskapsføreren din inneholder ugyldige tegn.';
         }
         if (feil.name.includes('endringBegrunnelse')) {
-            return 'Oppgitt informasjon for hva som har endret seg i din virksomhet inneholder ugyldige tegn.';
+            return 'Informasjonen for hva som har endret seg i din virksomhet inneholder ugyldige tegn.';
         }
     }
 };
@@ -37,12 +37,12 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
                         <p>{kjentFeltMelding}</p>
                     </li>
                     <p>
-                        Dette kan f.eks. oppstå hvis du kopierer og limer inn verdier fra et annet sted, da kan det
-                        komme med usynlige tegn som ikke vi godtar.
+                        Dette kan skje hvis du kopierer telefonnummeret fra et annet sted og limer det inn i søknaden,
+                        da kan det komme med tegn som ikke er den del av telefonnummeret.
                     </p>
                     <p>
-                        Gå tilbake til der hvor informasjonen ble oppgitt og legg informasjonen på nytt uten å bruke
-                        kopier og lim inn.
+                        Gå tilbake til steg 3 i søknaden, og skriv inn telefonnummeret uten å kopiere det fra et annet
+                        sted.
                     </p>
                 </InfoList>
             );
@@ -50,19 +50,25 @@ const renderFeilmelding = (invalidParameter: InvalidParameter) => {
     }
     return (
         <>
-            <p>Søknaden inneholder ugyldig informasjon. Dette kan være:</p>
+            <p>Søknaden din inneholder ugyldig informasjon.</p>
             <InfoList>
                 <li>
-                    Ugyldig tegn i tekstfelter. Dette kan oppstå hvis du kopierer og limer inn verdier fra et annet
-                    sted, da kan det komme med usynlige tegn som ikke vi godtar. For å rette opp i dette, er det best å
-                    skrive inn teksten direkte i feltet.
+                    Når du selv skriver inn tekst i et felt i søknaden, kan noen tegn være ugyldige ut fra informasjonen
+                    vi ber om. Dette skjer vanligvis hvis du kopierer og limer inn tekst fra andre steder, da kan det
+                    komme med tegn som ikke hører til teksten. Du fikser dette ved å skrive inn teksten på ny, uten å
+                    kopiere den fra et annet sted.
                 </li>
                 <li>
-                    Ugyldige svarkombinasjoner. Dette kan oppstå hvis du bruker frem og tilbake i nettleseren i stedet
-                    for å bruke &quot;Fortsett&quot;-knappen nederst i skjemaet. Gå tilbake til første steg i søknaden
-                    og bruk &quot;Fortsett&quot;-knappen for å gå videre, og se om du får en feilmelding underveis.
+                    Hvis du har brukt tilbakeknappen i nettleseren, kan du ha gitt svar som ikke lar seg kombinere. Du
+                    fikser dette ved å gå tilbake i søknaden og bruke den blå &quot;fortsett&quot;-knappen gjennom de
+                    ulike stegene i søknaden. Da vil du få en feilmelding hvis svarene dine ikke lar seg kombinere, og
+                    kan rette opp feilen.
                 </li>
             </InfoList>
+            <p>
+                Hvis du har sjekket dette, og fortsatt ikke kommer videre, ber vi deg kontakte oss på 55 55 33 33 for
+                videre veiledning.
+            </p>
             <ExpandableInfo title="Detaljert info (teknisk)">
                 <p style={{ wordBreak: 'break-word' }}>{invalidParameter.name}</p>
                 <p style={{ wordBreak: 'break-word' }}>{invalidParameter.reason}</p>
@@ -75,7 +81,7 @@ const InnsendingFeiletInformasjon: React.FunctionComponent<Props> = ({ invalidPa
     return (
         <FormBlock>
             <Alert variant="error">
-                <p style={{ marginTop: '.2em' }}>Oops, der oppstod det en feil.</p>
+                <p style={{ marginTop: '.2em' }}>Oops, noe gikk galt.</p>
                 {visFlereMeldinger ? (
                     <ul>
                         {invalidParameter.map((ip, index) => (
