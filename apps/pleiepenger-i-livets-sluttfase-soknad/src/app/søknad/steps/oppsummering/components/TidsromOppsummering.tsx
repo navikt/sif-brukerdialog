@@ -20,6 +20,10 @@ const TidsromOppsummering = ({ apiData, dagerMedPleie }: Props) => {
                 <ValgteDagerMedPleie dagerMedPleie={dagerMedPleie} />
             </SummaryBlock>
 
+            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
+                <FormattedMessage id={apiData.pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
+            </SummaryBlock>
+
             {apiData.utenlandsoppholdIPerioden && (
                 <>
                     <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.utenlandsoppholdIPerioden.header')}>

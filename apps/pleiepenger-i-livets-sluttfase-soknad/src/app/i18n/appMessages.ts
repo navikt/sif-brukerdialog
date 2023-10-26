@@ -164,7 +164,7 @@ export const appMessages: MessageFileFormat = {
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
 
         'validation.skalJobbeIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du skal jobbe på noen av dagene du skal pleie.',
+            'Du må svare ja eller nei på om du skal gi pleie og jobbe på samme dag, noen av dagene du skal gi pleie.',
 
         'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
 

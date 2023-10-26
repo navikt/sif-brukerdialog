@@ -8,7 +8,6 @@
         "opplysningerOmPleietrengende": {
             "type": "pleietrengendeMedFnr",
             "navn": "Test Testesen",
-            "pleierDuDenSykeHjemme": true,
             "norskIdentitetsnummer": "27857798800"
         },
         "legeerklæring": {
@@ -29,6 +28,7 @@
         },
         "tidsrom": {
             "type": "tidsromUtenUtenlandsopphold",
+            "pleierDuDenSykeHjemme": true,
             "søknadsperiode": {
                 "from": "2023-09-03T22:00:00.000Z",
                 "to": "2023-10-12T22:00:00.000Z"

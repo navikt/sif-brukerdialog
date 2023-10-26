@@ -1,4 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FormBlock from '@navikt/sif-common-core-ds/lib/atoms/form-block/FormBlock';
 import ExpandableInfo from '@navikt/sif-common-core-ds/lib/components/expandable-info/ExpandableInfo';
@@ -6,9 +6,7 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/lib/components/sif-guide-p
 import { Attachment } from '@navikt/sif-common-core-ds/lib/types/Attachment';
 import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 import {
-    FormikYesOrNoQuestion,
     ValidationError,
-    YesOrNo,
     getTypedFormComponents,
     resetFieldValue,
     resetFieldValues,
@@ -18,7 +16,6 @@ import {
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
-    getYesOrNoValidator,
 } from '@navikt/sif-common-formik-ds/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik-ds/lib/validation/intlFormErrorHandler';
 import { dateToday } from '@navikt/sif-common-utils/lib';
@@ -44,7 +41,6 @@ import {
 } from './opplysningerOmPleietrengendeStepUtils';
 
 export enum OpplysningerOmPleietrengendeFormFields {
-    pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
     navn = 'navn',
     flereSokere = 'flereSokere',
     norskIdentitetsnummer = 'norskIdentitetsnummer',
@@ -55,7 +51,6 @@ export enum OpplysningerOmPleietrengendeFormFields {
 }
 
 export interface OpplysningerOmPleietrengendeFormValues {
-    [OpplysningerOmPleietrengendeFormFields.pleierDuDenSykeHjemme]?: YesOrNo;
     [OpplysningerOmPleietrengendeFormFields.flereSokere]?: YesOrNoDontKnow;
     [OpplysningerOmPleietrengendeFormFields.navn]: string;
     [OpplysningerOmPleietrengendeFormFields.norskIdentitetsnummer]?: string;
@@ -108,7 +103,7 @@ const OpplysningerOmPleietrengendeStep = () => {
             <FormikWrapper
                 initialValues={getOpplysningerOmPleietrengendeStepInitialValues(søknadsdata, stepFormValues[stepId])}
                 onSubmit={handleSubmit}
-                renderForm={({ values: { pleierDuDenSykeHjemme, harIkkeFnr, pleietrengendeId }, setFieldValue }) => {
+                renderForm={({ values: { harIkkeFnr, pleietrengendeId }, setFieldValue }) => {
                     const hasPendingUploads: boolean =
                         (pleietrengendeId || []).find((a) => a.pending === true) !== undefined;
                     return (
@@ -118,10 +113,7 @@ const OpplysningerOmPleietrengendeStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
-                                showSubmitButton={pleierDuDenSykeHjemme !== YesOrNo.NO}
-                                submitDisabled={
-                                    pleierDuDenSykeHjemme === YesOrNo.NO || hasPendingUploads || isSubmitting
-                                }
+                                submitDisabled={hasPendingUploads || isSubmitting}
                                 onBack={goBack}
                                 runDelayedFormValidation={true}>
                                 <SifGuidePanel>
@@ -243,87 +235,43 @@ const OpplysningerOmPleietrengendeStep = () => {
                                         </>
                                     )}
                                 </FormBlock>
+
                                 <FormBlock>
-                                    <FormikYesOrNoQuestion
-                                        legend={intlHelper(
-                                            intl,
-                                            'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm',
-                                        )}
-                                        name={OpplysningerOmPleietrengendeFormFields.pleierDuDenSykeHjemme}
-                                        validate={getYesOrNoValidator()}
+                                    <RadioGroup
+                                        legend={intlHelper(intl, 'steg.opplysningerOmPleietrengende.flereSokere.spm')}
+                                        name={OpplysningerOmPleietrengendeFormFields.flereSokere}
+                                        validate={getRequiredFieldValidator()}
                                         description={
                                             <ExpandableInfo
                                                 title={intlHelper(
                                                     intl,
-                                                    'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel',
+                                                    'steg.opplysningerOmPleietrengende.flereSokere.spm.description.tittle',
                                                 )}>
-                                                <p>
-                                                    <FormattedMessage
-                                                        id={
-                                                            'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.1'
-                                                        }
-                                                    />
-                                                </p>
-                                                <p>
-                                                    <FormattedMessage
-                                                        id={
-                                                            'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.2'
-                                                        }
-                                                    />
-                                                </p>
+                                                {intlHelper(
+                                                    intl,
+                                                    'steg.opplysningerOmPleietrengende.flereSokere.spm.description',
+                                                )}
                                             </ExpandableInfo>
                                         }
-                                        data-testid="pleierDuDenSykeHjemme.spm"
+                                        radios={[
+                                            {
+                                                label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
+                                                value: YesOrNoDontKnow.YES,
+                                                'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_yes`,
+                                            },
+                                            {
+                                                label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
+                                                value: YesOrNoDontKnow.NO,
+                                                'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_no`,
+                                            },
+                                            {
+                                                label: intlHelper(intl, `step.tidsrom.flereSokere.usikker`),
+                                                value: YesOrNoDontKnow.DO_NOT_KNOW,
+                                                'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_usikker`,
+                                            },
+                                        ]}
                                     />
                                 </FormBlock>
-                                {pleierDuDenSykeHjemme === YesOrNo.NO && (
-                                    <FormBlock>
-                                        <Alert variant="warning">
-                                            <FormattedMessage id="steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert" />
-                                        </Alert>
-                                    </FormBlock>
-                                )}
-                                {pleierDuDenSykeHjemme === YesOrNo.YES && (
-                                    <FormBlock>
-                                        <RadioGroup
-                                            legend={intlHelper(
-                                                intl,
-                                                'steg.opplysningerOmPleietrengende.flereSokere.spm',
-                                            )}
-                                            name={OpplysningerOmPleietrengendeFormFields.flereSokere}
-                                            validate={getRequiredFieldValidator()}
-                                            description={
-                                                <ExpandableInfo
-                                                    title={intlHelper(
-                                                        intl,
-                                                        'steg.opplysningerOmPleietrengende.flereSokere.spm.description.tittle',
-                                                    )}>
-                                                    {intlHelper(
-                                                        intl,
-                                                        'steg.opplysningerOmPleietrengende.flereSokere.spm.description',
-                                                    )}
-                                                </ExpandableInfo>
-                                            }
-                                            radios={[
-                                                {
-                                                    label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
-                                                    value: YesOrNoDontKnow.YES,
-                                                    'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_yes`,
-                                                },
-                                                {
-                                                    label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
-                                                    value: YesOrNoDontKnow.NO,
-                                                    'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_no`,
-                                                },
-                                                {
-                                                    label: intlHelper(intl, `step.tidsrom.flereSokere.usikker`),
-                                                    value: YesOrNoDontKnow.DO_NOT_KNOW,
-                                                    'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_usikker`,
-                                                },
-                                            ]}
-                                        />
-                                    </FormBlock>
-                                )}
                             </Form>
                         </>
                     );

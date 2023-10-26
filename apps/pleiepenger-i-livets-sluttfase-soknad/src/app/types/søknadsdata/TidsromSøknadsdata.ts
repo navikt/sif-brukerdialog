@@ -4,6 +4,7 @@ import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/lib';
 interface BaseTidsrom {
     søknadsperiode: DateRange;
     dagerMedPleie: Date[];
+    pleierDuDenSykeHjemme: boolean;
     skalJobbeIPerioden: boolean;
 }
 

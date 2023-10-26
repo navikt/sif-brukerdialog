@@ -11,7 +11,7 @@ export const opplysningerOmPleietrengendeMessages: MessageFileFormat = {
 
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.spm': 'Skal du pleie personen hjemme?',
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.alert':
-            'For å ha rett på pleiepenger må du pleie personen i et privat hjem. Hvis det er noen dager personen har vært innlagt må du sende en søknad for hver av periodene med pleie i hjemmet.',
+            'For å ha rett på pleiepenger må du pleie personen i et privat hjem.',
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.tittel': 'Hva betyr dette?',
         'steg.opplysningerOmPleietrengende.pleierDuDenSykeHjemme.info.1':
             'For å ha rett til pleiepenger må du pleie den som trenger pleie hjemme i et privat hjem. Som oftest skjer det hjemme hos deg, eller hjemme hos den du pleier.',
