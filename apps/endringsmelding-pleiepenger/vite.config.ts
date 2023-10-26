@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
@@ -10,6 +11,11 @@ export default defineConfig({
             include: '**/*.{jsx,tsx}',
         }),
         checker({ typescript: true }),
+        sentryVitePlugin({
+            org: 'nav',
+            project: 'sykdom-i-familien',
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+        }),
     ],
     resolve: {
         alias: {
