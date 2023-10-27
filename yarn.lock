@@ -3552,7 +3552,7 @@ __metadata:
     "@types/react": 18.2.31
     "@types/react-dom": 18.2.14
     "@types/react-router-dom": 5.3.3
-    axios: 1.5.1
+    axios: 1.6.0
     babel-polyfill: 6.26.0
     compression: 1.7.4
     cookie-parser: 1.4.6
@@ -3644,7 +3644,7 @@ __metadata:
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.1.0
     axe-core: 4.8.2
-    axios: 1.5.1
+    axios: 1.6.0
     babel-polyfill: 6.26.0
     compression: 1.7.4
     cookie-parser: 1.4.6
@@ -3743,7 +3743,7 @@ __metadata:
     "@types/react-dom": 18.2.14
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.1.0
-    axios: 1.5.1
+    axios: 1.6.0
     babel-polyfill: 6.26.0
     compression: 1.7.4
     cookie-parser: 1.4.6
@@ -3816,7 +3816,7 @@ __metadata:
     "@types/react-dom": 18.2.14
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.1.0
-    axios: 1.5.1
+    axios: 1.6.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     compression: 1.7.4
@@ -3900,7 +3900,7 @@ __metadata:
     "@types/react-router-dom": 5.3.3
     "@vitejs/plugin-react": 4.1.0
     axe-core: 4.8.2
-    axios: 1.5.1
+    axios: 1.6.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     case-sensitive-paths-webpack-plugin: 2.4.0
@@ -3980,7 +3980,7 @@ __metadata:
     "@types/react": 18.2.31
     "@types/react-dom": 18.2.14
     "@types/react-router-dom": 5.3.3
-    axios: 1.5.1
+    axios: 1.6.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     case-sensitive-paths-webpack-plugin: 2.4.0
@@ -4068,7 +4068,7 @@ __metadata:
     ajv: 8.12.0
     amplitude-js: 8.21.9
     axe-core: 4.8.2
-    axios: 1.5.1
+    axios: 1.6.0
     axios-mock-adapter: 1.22.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
@@ -4209,7 +4209,7 @@ __metadata:
     "@types/react-collapse": 5.0.3
     "@types/react-dom": 18.2.14
     "@vitejs/plugin-react": 4.1.0
-    axios: 1.5.1
+    axios: 1.6.0
     browser-image-compression: 2.0.2
     classnames: 2.3.2
     config: "workspace:*"
@@ -4345,7 +4345,7 @@ __metadata:
     "@types/react-dom": 18.2.14
     "@types/react-responsive": 8.0.7
     "@vitejs/plugin-react": 4.1.0
-    axios: 1.5.1
+    axios: 1.6.0
     config: "workspace:*"
     copyfiles: 2.4.1
     date-fns: 2.30.0
@@ -4392,7 +4392,7 @@ __metadata:
     "@sentry/react": 7.75.1
     "@sentry/types": 7.75.1
     "@types/node": 20.8.7
-    axios: 1.5.1
+    axios: 1.6.0
     config: "*"
     copyfiles: 2.4.1
     gh-pages: 6.0.0
@@ -4445,7 +4445,7 @@ __metadata:
     "@types/react-dom": 18.2.14
     "@types/react-modal": 3.16.2
     "@vitejs/plugin-react": 4.1.0
-    axios: 1.5.1
+    axios: 1.6.0
     copyfiles: 2.4.1
     date-fns: 2.30.0
     dayjs: 1.11.10
@@ -4560,7 +4560,7 @@ __metadata:
     "@types/uuid": 9.0.6
     "@vitejs/plugin-react": 4.1.0
     axe-core: 4.8.2
-    axios: 1.5.1
+    axios: 1.6.0
     babel-polyfill: 6.26.0
     busboy: 1.6.0
     classnames: 2.3.2
@@ -10373,14 +10373,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.5.1":
-  version: 1.5.1
-  resolution: "axios@npm:1.5.1"
+"axios@npm:1.6.0":
+  version: 1.6.0
+  resolution: "axios@npm:1.6.0"
   dependencies:
     follow-redirects: ^1.15.0
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: 4444f06601f4ede154183767863d2b8e472b4a6bfc5253597ed6d21899887e1fd0ee2b3de792ac4f8459fe2e359d2aa07c216e45fd8b9e4e0688a6ebf48a5a8d
+  checksum: c7c9f2ae9e0b9bad7d6f9a4dff030930b12ee667dedf54c3c776714f91681feb743c509ac0796ae5c01e12c4ab4a2bee74905068dd200fbc1ab86f9814578fb0
   languageName: node
   linkType: hard
 
