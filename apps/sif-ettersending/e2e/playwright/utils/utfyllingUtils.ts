@@ -1,4 +1,5 @@
 import { Page, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright'; // 1
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
 
@@ -23,21 +24,29 @@ const fyllUtBeskrivelseSteg = async (page: Page) => {
 
 const fyllUtDokumenterSteg = async (page: Page) => {
     await page.getByRole('heading', { name: 'Nå skal du laste opp dokumentene dine' });
-    await page.getByRole('button', { name: 'Last opp vedlegg' }).click();
-    await page.getByLabel('OpplastingsikonLast opp vedlegg').setInputFiles('./e2e/playwright/files/navlogopng.png');
+    await page.locator('#dokumenter-input').setInputFiles('./e2e/playwright/files/navlogopng.png');
     const list = await page.getByTestId('uploaded-attachments-list');
     expect(list.locator('.attachmentListElement')).toHaveCount(1);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
+const kontrollerOppsummering = async (page: Page) => {
+    const heading = await page.getByRole('heading', { name: 'Oppsummering' });
+    expect(heading).toHaveCount(1);
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+};
 const sendInnDokumenter = async (page: Page) => {
-    await page.getByRole('heading', { name: 'Oppsummering' });
     await page.getByTestId('bekreft-label').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
 const kontrollerKvittering = async (page: Page) => {
-    await page.getByRole('heading', { name: 'Vi har mottatt ettersendingen av dokumenter' });
+    const page1Promise = page.waitForEvent('popup');
+    const heading = await page.getByRole('heading', { name: 'Vi har mottatt ettersendingen av dokumenter' });
+    expect(heading).toHaveCount(1);
+    await page.getByRole('link', { name: 'Dine pleiepenger' }).click();
+    await page1Promise;
 };
 
 export const utfyllingUtils = {
@@ -45,6 +54,7 @@ export const utfyllingUtils = {
     startSøknad,
     fyllUtBeskrivelseSteg,
     fyllUtDokumenterSteg,
+    kontrollerOppsummering,
     sendInnDokumenter,
     kontrollerKvittering,
 };

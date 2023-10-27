@@ -4,7 +4,10 @@ import { utfyllingUtils } from '../utils/utfyllingUtils';
 
 test.describe('Start og innsending av ettersending', () => {
     test.beforeEach(async ({ page }) => {
-        await page.route('https://**.nav.no/**', async (route) => {
+        await page.route('https://login.nav.no/**', async (route) => {
+            await route.fulfill({ status: 200 });
+        });
+        await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
             await route.fulfill({ status: 200 });
         });
         await page.route('**/mellomlagring/ETTERSENDING_PLEIEPENGER_SYKT_BARN', async (route) => {
@@ -33,6 +36,7 @@ test.describe('Start og innsending av ettersending', () => {
         await utfyllingUtils.fyllUtBeskrivelseSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page);
         await utfyllingUtils.sendInnDokumenter(page);
+        await utfyllingUtils.kontrollerOppsummering(page);
         await utfyllingUtils.kontrollerKvittering(page);
     });
 });
