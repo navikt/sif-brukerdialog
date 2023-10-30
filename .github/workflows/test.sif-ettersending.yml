@@ -58,9 +58,3 @@ jobs:
 
             - name: Run tests
               run: yarn turbo playwright-test --filter=sif-ettersending
-            - uses: actions/upload-artifact@v3
-              if: always()
-              with:
-                name: playwright-report
-                path: ./apps/sif-ettersending/playwright-report/
-                retention-days: 30
