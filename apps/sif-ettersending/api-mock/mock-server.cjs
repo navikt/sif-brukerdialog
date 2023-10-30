@@ -50,7 +50,7 @@ const readFileSync = (path) => {
 
 const existsSync = (path) => fs.existsSync(path);
 
-const RESPONSE_DELAY = 200;
+const RESPONSE_DELAY = 0;
 
 const søkerMock = {
     fornavn: 'Test',
