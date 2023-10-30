@@ -124,7 +124,7 @@ const DokumenterStep: React.FC<Props> = ({ søknadstype, søker, soknadId }: Pro
             <Block margin="m">
                 <FileDropUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
             </Block>
-            <Block margin="l" data-testid="uploaded-attachments-list">
+            <Block margin="l">
                 <UploadedDocumentsList
                     wrapNoAttachmentsInBox={true}
                     includeDeletionFunctionality={true}
