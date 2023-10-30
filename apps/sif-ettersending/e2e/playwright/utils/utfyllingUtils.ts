@@ -27,7 +27,7 @@ const fyllUtDokumenterSteg = async (page: Page) => {
     await page.getByText('Last opp vedlegg').click();
     await page.locator('#dokumenter-input').setInputFiles('./e2e/playwright/files/navlogopng.png');
     const listItems = await page.locator('.attachmentListElement');
-    expect(listItems).toHaveCount(1);
+    expect(listItems).toHaveCount(2);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
