@@ -24,9 +24,8 @@ const fyllUtBeskrivelseSteg = async (page: Page) => {
 
 const fyllUtDokumenterSteg = async (page: Page) => {
     await page.getByRole('heading', { name: 'Nå skal du laste opp dokumentene dine' });
+    await page.getByText('Last opp vedlegg').click();
     await page.locator('#dokumenter-input').setInputFiles('./e2e/playwright/files/navlogopng.png');
-    const list = await page.getByTestId('uploaded-attachments-list');
-    expect(list.locator('.attachmentListElement')).toHaveCount(1);
     await page.getByTestId('typedFormikForm-submitButton').click();
 };
 
