@@ -28,6 +28,12 @@ function usePersistSoknad() {
             formValues: formValues || stateFormValues,
             lastStepID: stepID,
         }).catch((error: AxiosError) => {
+            /** Logge for å se om vi kan redirecte til logg-inn i dette tilfellet
+             * ref: https://stackoverflow.com/questions/52341222/detect-xhr-status-0-in-axios
+             */
+            if (typeof error.response === 'undefined') {
+                logApiError(ApiError.mellomlagring, { stepID, txt: 'typeof error.response is undefined' });
+            }
             if (apiUtils.isUnauthorized(error)) {
                 logUserLoggedOut('Lagre mellomlagring');
                 relocateToLoginPage();
