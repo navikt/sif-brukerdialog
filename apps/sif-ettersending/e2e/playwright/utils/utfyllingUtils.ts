@@ -32,23 +32,28 @@ const fyllUtDokumenterSteg = async (page: Page, testInfo: TestInfo) => {
     await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
     const listItems = await page.locator('.attachmentListElement');
     expect(listItems).toHaveCount(1);
-    await page.screenshot({ path: 'vedlegg.png', fullPage: true });
-    await page.getByRole('button').getByText('Neste').click();
-    const etter = await page.screenshot({ path: 'vedlegg2.png', fullPage: true });
+
+    const vedleggLagtTil = await page.screenshot({ fullPage: true });
     await testInfo.attach('Skjermdump etter neste', {
-        body: etter,
+        body: vedleggLagtTil,
         contentType: 'image/png',
     });
 
-    // const feilmelding = await page.getByText('Feil i skjema');
+    await page.getByRole('button').getByText('Neste').click();
 };
 
-const kontrollerOppsummering = async (page: Page) => {
+const kontrollerOppsummering = async (page: Page, testInfo: TestInfo) => {
     const heading = await page.getByRole('heading', { name: 'Oppsummering' });
+    const oppsummeringsbilde = await page.screenshot({ fullPage: true });
+    await testInfo.attach('Oppsummeringsbilde', {
+        body: oppsummeringsbilde,
+        contentType: 'image/png',
+    });
     expect(heading).toHaveCount(1);
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
 };
+
 const sendInnDokumenter = async (page: Page) => {
     await page.getByTestId('bekreft-label').click();
     await page.getByRole('button').getByText('Send inn').click();

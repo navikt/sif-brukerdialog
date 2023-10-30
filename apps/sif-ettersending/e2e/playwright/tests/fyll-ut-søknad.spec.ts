@@ -35,8 +35,8 @@ test.describe('Start og innsending av ettersending', () => {
         await utfyllingUtils.startSøknad(page);
         await utfyllingUtils.fyllUtBeskrivelseSteg(page);
         await utfyllingUtils.fyllUtDokumenterSteg(page, testInfo);
+        await utfyllingUtils.kontrollerOppsummering(page, testInfo);
         await utfyllingUtils.sendInnDokumenter(page);
-        await utfyllingUtils.kontrollerOppsummering(page);
         await utfyllingUtils.kontrollerKvittering(page);
     });
 });
