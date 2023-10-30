@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { TestInfo, test } from '@playwright/test';
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
 
@@ -30,11 +30,11 @@ test.describe('Start og innsending av ettersending', () => {
         });
     });
 
-    test('Fyller ut og sender inn ett vedlegg', async ({ page }) => {
+    test('Fyller ut og sender inn ett vedlegg', async ({ page }, testInfo: TestInfo) => {
         await utfyllingUtils.velgYtelsePleiepenger(page);
         await utfyllingUtils.startSøknad(page);
         await utfyllingUtils.fyllUtBeskrivelseSteg(page);
-        await utfyllingUtils.fyllUtDokumenterSteg(page);
+        await utfyllingUtils.fyllUtDokumenterSteg(page, testInfo);
         await utfyllingUtils.sendInnDokumenter(page);
         await utfyllingUtils.kontrollerOppsummering(page);
         await utfyllingUtils.kontrollerKvittering(page);

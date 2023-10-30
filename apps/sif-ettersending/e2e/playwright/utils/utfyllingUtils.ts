@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { Page, TestInfo, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright'; // 1
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
@@ -22,7 +22,7 @@ const fyllUtBeskrivelseSteg = async (page: Page) => {
     await page.getByRole('button').getByText('Neste').click();
 };
 
-const fyllUtDokumenterSteg = async (page: Page) => {
+const fyllUtDokumenterSteg = async (page: Page, testInfo: TestInfo) => {
     await page.getByRole('heading', { name: 'Nå skal du laste opp dokumentene dine' });
 
     const [fileChooser] = await Promise.all([
@@ -32,7 +32,14 @@ const fyllUtDokumenterSteg = async (page: Page) => {
     await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
     const listItems = await page.locator('.attachmentListElement');
     expect(listItems).toHaveCount(1);
+    await page.screenshot({ path: 'vedlegg.png', fullPage: true });
     await page.getByRole('button').getByText('Neste').click();
+    const etter = await page.screenshot({ path: 'vedlegg2.png', fullPage: true });
+    await testInfo.attach('Skjermdump etter neste', {
+        body: etter,
+        contentType: 'image/png',
+    });
+
     // const feilmelding = await page.getByText('Feil i skjema');
 };
 
