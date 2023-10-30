@@ -19,7 +19,7 @@ const barnMock = {
     ],
 };
 
-export const cyApiMockData = {
+export const playwrightApiMockData = {
     barnMock,
     søkerMock,
 };

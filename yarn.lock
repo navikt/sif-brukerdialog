@@ -91,6 +91,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@axe-core/playwright@npm:4.8.1":
+  version: 4.8.1
+  resolution: "@axe-core/playwright@npm:4.8.1"
+  dependencies:
+    axe-core: ~4.8.2
+  peerDependencies:
+    playwright-core: ">= 1.0.0"
+  checksum: 08f34f6a6f106aafafab4d6bda8f7c273c9785811410cc42c0713bc469bb302d137b8b7a8ce09645525b2f18b6b59eddf80cbbb2cffc364b2b141779958cfffe
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.12.13, @babel/code-frame@npm:^7.16.0, @babel/code-frame@npm:^7.16.7, @babel/code-frame@npm:^7.22.13, @babel/code-frame@npm:^7.8.3":
   version: 7.22.13
   resolution: "@babel/code-frame@npm:7.22.13"
@@ -4559,6 +4570,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@navikt/sif-ettersending@workspace:apps/sif-ettersending"
   dependencies:
+    "@axe-core/playwright": 4.8.1
     "@babel/core": 7.23.2
     "@babel/preset-env": 7.23.2
     "@babel/preset-react": 7.22.15
@@ -4576,6 +4588,7 @@ __metadata:
     "@navikt/sif-common-sentry": "workspace:*"
     "@navikt/sif-common-soknad-ds": "workspace:*"
     "@navikt/sif-common-utils": "workspace:*"
+    "@playwright/test": ^1.39.0
     "@storybook/react-vite": 7.5.1
     "@testing-library/react": 14.0.0
     "@types/jest": 29.5.6
@@ -4594,9 +4607,6 @@ __metadata:
     cookie-parser: 1.4.6
     cross-env: 7.0.3
     css-loader: 6.8.1
-    cypress: 13.3.3
-    cypress-axe: 1.5.0
-    cypress-file-upload: 5.0.8
     date-fns: 2.30.0
     dayjs: 1.11.10
     dotenv: 16.3.1
@@ -4753,7 +4763,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:1.39.0":
+"@playwright/test@npm:1.39.0, @playwright/test@npm:^1.39.0":
   version: 1.39.0
   resolution: "@playwright/test@npm:1.39.0"
   dependencies:
@@ -10483,7 +10493,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.8.2, axe-core@npm:^4.2.0, axe-core@npm:^4.6.2":
+"axe-core@npm:4.8.2, axe-core@npm:^4.2.0, axe-core@npm:^4.6.2, axe-core@npm:~4.8.2":
   version: 4.8.2
   resolution: "axe-core@npm:4.8.2"
   checksum: 8c19f507dabfcb8514e4280c7fc66e85143be303ddb57ec9f119338021228dc9b80560993938003837bda415fde7c07bba3a96560008ffa5f4145a248ed8f5fe
