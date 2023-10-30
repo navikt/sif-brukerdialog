@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright'; // 1
 
-const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
+export const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
 
 const velgYtelsePleiepenger = async (page: Page) => {
     await page.goto(startUrl);
@@ -15,13 +15,13 @@ const startSøknad = async (page: Page) => {
 };
 
 const fyllUtBeskrivelseSteg = async (page: Page) => {
-    await page.getByRole('heading', { name: 'Ettersendelse av dokumentasjon' });
+    await expect(page.getByRole('heading', { name: 'Ettersendelse av dokumentasjon' })).toBeVisible();
     await page.getByTestId('beskrivelse').fill('Her er en kommentar');
     await page.getByRole('button').getByText('Neste').click();
 };
 
 const fyllUtDokumenterSteg = async (page: Page) => {
-    await page.getByRole('heading', { name: 'Nå skal du laste opp dokumentene dine' });
+    await expect(page.getByRole('heading', { name: 'Nå skal du laste opp dokumentene dine' })).toBeVisible();
 
     const [fileChooser] = await Promise.all([
         page.waitForEvent('filechooser'),
@@ -29,14 +29,12 @@ const fyllUtDokumenterSteg = async (page: Page) => {
     ]);
     await fileChooser.setFiles('./e2e/playwright/files/navlogopng.png');
     const listItems = await page.locator('.attachmentListElement');
-    expect(listItems).toHaveCount(1);
-
+    await expect(listItems).toHaveCount(1);
     await page.getByRole('button').getByText('Neste').click();
 };
 
 const kontrollerOppsummering = async (page: Page) => {
-    const heading = await page.getByRole('heading', { name: 'Oppsummering' });
-    expect(heading).toHaveCount(1);
+    await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
 };
@@ -48,8 +46,7 @@ const sendInnDokumenter = async (page: Page) => {
 
 const kontrollerKvittering = async (page: Page) => {
     await page.waitForURL('**/dokumenter-sendt');
-    const text = await page.getByText('Vi har mottatt ettersendingen av dokumenter');
-    expect(text).toHaveCount(1);
+    await expect(page.getByRole('heading', { name: 'Vi har mottatt ettersendingen av dokumenter' })).toBeVisible();
 };
 
 export const utfyllingUtils = {
