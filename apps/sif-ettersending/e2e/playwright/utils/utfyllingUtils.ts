@@ -15,7 +15,7 @@ const startSøknad = async (page: Page) => {
 };
 
 const fyllUtBeskrivelseSteg = async (page: Page) => {
-    await expect(page.getByRole('heading', { name: 'Ettersendelse av dokumentasjon' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Ettersendelse av dokumentasjon', level: 1 })).toBeVisible();
     await page.getByTestId('beskrivelse').fill('Her er en kommentar');
     await page.getByRole('button').getByText('Neste').click();
 };
