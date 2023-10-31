@@ -24,7 +24,7 @@ interface FormikFileUploader extends TypedFormInputValidationProps<SøknadFormFi
     name: SøknadFormField;
     label: string;
     legend: string;
-    onFileUploadComplete?: () => void;
+    onFilesUploaded?: (antall: number, antallFeilet: number) => void;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
@@ -37,7 +37,7 @@ const FormikFileUploader = ({
     label,
     legend,
     onFileInputClick,
-    onFileUploadComplete,
+    onFilesUploaded,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
@@ -117,8 +117,8 @@ const FormikFileUploader = ({
 
         const failedAttachments = [...attachmentsNotToUpload, ...attachmentsToUpload.filter(attachmentUploadHasFailed)];
         updateFailedAttachments(allAttachments, failedAttachments, replaceFn);
-        if (onFileUploadComplete) {
-            onFileUploadComplete();
+        if (onFilesUploaded) {
+            onFilesUploaded(attachmentsToUpload.length, failedAttachments.length);
         }
     }
     return (
@@ -131,9 +131,6 @@ const FormikFileUploader = ({
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
                 const attachments = files.map((file) => addPendingAttachmentToFieldArray(file, push));
                 await uploadAttachments([...(values as any)[name], ...attachments], replace);
-                if (onFileUploadComplete) {
-                    onFileUploadComplete();
-                }
             }}
             onClick={onFileInputClick}
             {...otherProps}

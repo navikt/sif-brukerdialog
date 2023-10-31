@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.1.0
+
+### Minor Changes
+
+-   Legge til logging til aplitude når vedlegg lastes opp. Antall feilet og antall med suksess.
+
 ## 3.0.12
 
 ### Patch Changes

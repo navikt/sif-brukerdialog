@@ -1,5 +1,5 @@
 import { Alert, Link } from '@navikt/ds-react';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, SIFCommonGeneralEvents, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import Block from '@navikt/sif-common-core-ds/lib/atoms/block/Block';
 import FileUploadErrors from '@navikt/sif-common-core-ds/lib/components/file-upload-errors/FileUploadErrors';
 import PictureScanningGuide from '@navikt/sif-common-core-ds/lib/components/picture-scanning-guide/PictureScanningGuide';
@@ -39,7 +39,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const ref = React.useRef({ attachments });
 
-    const { logHendelse, logUserLoggedOut } = useAmplitudeInstance();
+    const { logHendelse, logUserLoggedOut, logEvent } = useAmplitudeInstance();
 
     const vedleggOpplastingFeilet = async (files?: File[]) => {
         if (files) {
@@ -121,6 +121,9 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                         }}
                         validate={validateLegeerklæring}
                         onUnauthorizedOrForbiddenUpload={userNotLoggedIn}
+                        onFilesUploaded={(antall, antallFeilet) => {
+                            logEvent(SIFCommonGeneralEvents.vedleggLastetOpp, { antall, antallFeilet });
+                        }}
                     />
                 </Block>
             )}
