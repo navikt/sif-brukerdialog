@@ -13,8 +13,8 @@
         "@sanity/client": "6.7.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.7.6",
-        "@navikt/ds-react": "5.7.6",
+        "@navikt/ds-css": "5.8.0",
+        "@navikt/ds-react": "5.8.0",
         "@types/node": "20.8.9",
         "@types/react": "18.2.33",
         "@types/react-dom": "18.2.14",
