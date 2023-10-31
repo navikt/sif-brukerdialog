@@ -66,9 +66,9 @@
 
     "validation": {
         "antallBarn.noValue": "Du må velge hvor mange egne barn som bor hos deg.",
-        "barn.årFødt.noValue": "Du må svare på hvilket årstall barn {barnName} er født.",
-        "barn.kroniskSykt.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager fordi barn {barnName} har en kronisk/langvarig sykdom eller funksjonshemning som gir risiko for høyere fravær fra jobb.",
-        "barn.borSammen.yesOrNoIsUnanswered": "Då må svare på om barn {barnName} bor fast hos deg.",
-        "barn.aleneOmOmsorgen.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager på grunn av aleneomsorg for barn {barnName}."
+        "barn.årFødt.noValue": "Du må svare på hvilket årstall {barnName} er født.",
+        "barn.kroniskSykt.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager fordi {barnName} har en kronisk/langvarig sykdom eller funksjonshemning som gir risiko for høyere fravær fra jobb.",
+        "barn.borSammen.yesOrNoIsUnanswered": "Då må svare på om {barnName} bor fast hos deg.",
+        "barn.aleneOmOmsorgen.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager på grunn av aleneomsorg for {barnName}."
     }
 }

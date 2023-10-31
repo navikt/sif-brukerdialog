@@ -31,7 +31,11 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
         return `${KlakulatorFormFields.barn}.${index}.${field}`;
     };
 
-    const barnName = index + 1;
+    const barnName = () => {
+        if (antallBarn > 1) {
+            return `barn  ${index + 1}`;
+        } else return 'barnet';
+    };
 
     return (
         <>
@@ -47,7 +51,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                             return error
                                 ? {
                                       key: 'validation.barn.årFødt.noValue',
-                                      values: { barnName },
+                                      values: { barnName: barnName() },
                                       keepKeyUnaltered: true,
                                   }
                                 : undefined;
@@ -90,7 +94,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                         return error
                                             ? {
                                                   key: 'validation.barn.borSammen.yesOrNoIsUnanswered',
-                                                  values: { barnName },
+                                                  values: { barnName: barnName() },
                                                   keepKeyUnaltered: true,
                                               }
                                             : undefined;
@@ -121,7 +125,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                                 return error
                                                     ? {
                                                           key: 'validation.barn.kroniskSykt.yesOrNoIsUnanswered',
-                                                          values: { barnName },
+                                                          values: { barnName: barnName() },
                                                           keepKeyUnaltered: true,
                                                       }
                                                     : undefined;
@@ -162,7 +166,7 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                                     return error
                                                         ? {
                                                               key: 'validation.barn.aleneOmOmsorgen.yesOrNoIsUnanswered',
-                                                              values: { barnName },
+                                                              values: { barnName: barnName() },
                                                               keepKeyUnaltered: true,
                                                           }
                                                         : undefined;
