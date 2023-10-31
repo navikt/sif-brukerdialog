@@ -1,22 +1,22 @@
 {
     "banner": {
         "title": "Kalkulator for omsorgsdager",
-        "description": "hvor mange omsorgsdager KAN du ha rett på",
+        "description": "Finn ut hvor mange omsorgsdager du kan ha rett til",
         "updated": "Oppdatert {dato}"
     },
 
     "info": {
-        "title": "Her kan du regne ut hvor mange omsorgsdager du kan ha rett på fra 1.januar 2023 til 31. desember 2023",
-        "avsnitt1": "Kalkulatoren er for deg som barnet bor fast hos. Det vil si der barnet har folkeregistrert adresse. Hvis foreldrene ikke bor sammen, men har en avtale om delt bosted, bor barnet fast hos begge.",
+        "title": "Her kan du se hvor mange omsorgsdager du kan ha rett til.",
+        "avsnitt1": "Kalkulatoren regner ut hvor mange omsorgsdager du har rett til for barn som bor fast hos deg. Hvis dere som foreldre ikke bor sammen, men har avtale om delt fast bosted, har barnet fast bosted hos begge foreldre.",
         "readMore.tittel": "Er du samværsforelder?",
-        "readMore.avsnitt1": "Hvis du er samværsforelder som har fått omsorgsdager fra den andre forelderen og i tillegg har egne barn som bor fast hos deg, beregner kalkulatoren hvor mange omsorgsdager du har for de egne barna som bor fast hos deg. Du plusser selv på antall omsorgsdager du har fått fra den andre forelderen.",
-        "readMore.avsnitt2": "Kalkulatoren vil ikke fungere for deg som er samværsforelder og ikke har egne barn som bor fast hos deg.",
+        "readMore.avsnitt1": "Kalkulatoren beregner kun omsorgsdager for den forelderen som bor fast med barnet.",
+        "readMore.avsnitt2": "Hvis du har fått omsorgsdager av forelderen som bor med barnet, vil du ha rett til disse dagene selv om de ikke vises i kalkulatoren.",
         "avsnitt2": "Kalkulatoren beregner hvor mange omsorgsdager du har ut fra svarene du oppgir. Det betyr at riktig resultat er avhengig av at du gir riktige opplysninger. Kalkulatoren er ment som et hjelpeverktøy for deg, det er ikke et vedtak eller en bekreftelse fra NAV.",
         "avsnitt3": "Du må svare på alle spørsmålene nedenfor for å få et resultat."
     },
 
     "kalkulator": {
-        "antallBarn": "Hvor mange egne barn har du i husstanden?",
+        "antallBarn": "Hvor mange av barna dine bor hos deg?",
         "antallBarn.readMore.title": "Hva menes med egne barn?",
         "antallBarn.readMore": "Med egne barn menes biologiske barn, adoptivbarn og fosterbarn."
     },
@@ -25,45 +25,50 @@
         "tittel": "Opplysninger om {antall, plural, one {barnet} other {barna}}",
         "årFødt": "Hvilket årstall er barnet født?",
         "årFødt.readMore.title": "Hvorfor spør vi om det?",
-        "årFødt.readMore": "Omsorgsdager gjelder i utgangspunktet ut kalenderåret barnet er 12 år. Hvis barnet ditt er 13 år eller eldre har du ikke rett til omsorgsdager for dette barnet med mindre du har søkt om og fått ekstra omsorgsdager fordi barnet har en kronisk sykdom eller funksjonshemning.",
+        "årFødt.readMore.avsnitt1": "Omsorgsdager gjelder i utgangspunktet ut kalenderåret barnet er 12 år.",
+        "årFødt.readMore.avsnitt2": "Hvis du har fått vedtak om ekstra omsorgsdager fordi barnet har en kronisk/langvarig sykdom eller funksjonshemning, kan du bruke omsorgsdager ut kalenderåret barnet fyller 18 år.",
         "årFødt.alert": "Du har ikke rett på omsorgsdager for barn som er 19 år eller eldre. Omsorgsdager gjelder i utgangspunktet ut kalenderåret barnet er 12 år. I noen tilfeller kan du få omsorgsdager ut kalenderåret barnet er 18 år.",
 
-        "kroniskSykt": "Har du fått ekstra omsorgsdager fordi barnet har kronisk sykdom, funksjonshemning eller langvarig sykdom?",
+        "kroniskSykt": "Har du fått vedtak fra NAV om ekstra omsorgsdager, fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?",
         "kroniskSykt.readMore.title": "Hva betyr dette?",
-        "kroniskSykt.readMore": "Hvis barnet har kronisk sykdom, funksjonshemning eller langvarig sykdom, kan du ha rett på ekstra omsorgsdager. Du kan svare ja på dette spørsmålet dersom du har søkt og fått svar fra NAV om at du har fått ekstra omsorgsdager.",
+        "kroniskSykt.readMore.avsnitt1": "Hvis barnet har en kronisk/langvarig sykdom eller funksjonshemning som gir høyere risiko for at du må være borte fra jobb, kan du ha rett til ekstra omsorgsdager. Du skal svare ja hvis du har søkt og fått innvilget ekstra omsorgsdager fra NAV. ",
+        "kroniskSykt.readMore.avsnitt2": "Du finner informasjon og søknad på ",
+        "kroniskSykt.readMore.avsnitt2.lenke": "nav.no/omsorgspenger#situasjon.",
         "kroniskSykt.alert": "For å få omsorgsdager for barn som er 13 år eller eldre, må du ha søkt og fått innvilget ekstra omsorgsdager fra NAV fordi barnet har en kronisk sykdom eller en funksjonshemning.",
 
         "borSammen": "Bor barnet fast hos deg?",
         "borSammen.readMore.title": "Hva betyr dette?",
-        "borSammen.readMore": "Du skal svare ja på dette spørsmålet hvis barnet har folkeregistrert adresse hos deg, eller om du har en avtale om delt bosted med den andre forelderen.",
+        "borSammen.readMore": "Du skal svare ja på dette spørsmålet hvis barnet bor fast hos deg, eller hvis du har avtale om delt fast bosted med den andre forelderen.",
         "borSammen.alert": "For å ha rett på omsorgsdager for dette barnet, må barnet bo fast hos deg.",
 
-        "aleneOmOmsorgen": "Har du fått ekstra omsorgsdager fordi du er alene om omsorgen for barn?",
+        "aleneOmOmsorgen": "Har du fått vedtak om ekstra omsorgsdager for du er alene om omsorgen for barnet?",
         "aleneOmOmsorgen.readMore.title": "Hva betyr det å være alene om omsorgen?",
-        "aleneOmOmsorgen.readMore.avsnitt.1": "Når du er alene med omsorgen for barn kan du ha rett til dobbelt antall omsorgsdager. Du kan svare ja på dette spørsmålet dersom du har søkt og fått svar fra NAV om at du har fått ekstra omsorgsdager.",
-        "aleneOmOmsorgen.readMore.avsnitt.2": "Når det gjelder omsorgsdager er du alene om omsorgen når barnet bor fast hos deg, og du ikke bor med den andre forelderen. Hvis du og den andre forelderen har en avtale om delt bosted, hvor barnet bor fast hos dere begge, vil ingen av dere bli regnet som alene om omsorgen.",
-        "aleneOmOmsorgen.readMore.avsnitt.lenke": "Les mer om fast bosted og samvær"
+        "aleneOmOmsorgen.readMore.avsnitt.1": "Du er alene om omsorgen hvis barnet bor fast hos deg, og du ikke bor sammen med den andre forelderen. Hvis du og den andre forelderen har en avtale om delt fast bosted, er du ikke alene om omsorgen for barnet.",
+        "aleneOmOmsorgen.readMore.avsnitt.2": "Du kan også regnes som alene om omsorgen hvis den andre forelderen ikke kan ha tilsyn med barnet i mins t 6 måneder, for eksempel på grunn av egen sykdom eller fengselsopphold.",
+        "aleneOmOmsorgen.readMore.avsnitt.3": "Du kan svare ja på dette spørsmålet hvis du har søkt og fått godkjent ekstra omsorgsdager fra NAV.",
+        "aleneOmOmsorgen.readMore.avsnitt.4": "Du finner informasjon og søknad på  ",
+        "aleneOmOmsorgen.readMore.avsnitt.4.lenke": "nav.no/omsorgspenger#situasjon"
     },
     "resultat-area": {
         "title": "Resultat",
-        "orange.1": "Beregningen baserer seg på svarene du har lagt inn i kalkulatoren. Det betyr at resultatet er avhengig av at du har gitt riktige opplysninger. Ut fra opplysningene du har gitt, har du",
+        "orange.1": "Beregningen baserer seg på svarene du har lagt inn i kalkulatoren. Det betyr at resultatet er avhengig av at du har gitt riktige opplysninger. Ut fra opplysningene du har gitt har du",
         "orange.2.1.a": "0 omsorgsdager",
-        "orange.2.1.b": "fra 1. januar {year} til 31. desember {year}",
+        "orange.2.1.b": "i {year}.",
         "orange.3": "Opplysningene du har gitt om din situasjon gir ikke rett til omsorgsdager.",
 
-        "green.1": "Beregningen baserer seg på svarene du har lagt inn i kalkulatoren. Det betyr at resultatet er avhengig av at du har gitt riktige opplysninger. Ut fra opplysningene du har gitt, har du",
+        "green.1": "Beregningen baserer seg på svarene du har lagt inn i kalkulatoren. Det betyr at resultatet er avhengig av at du har gitt riktige opplysninger. Ut fra opplysningene du har gitt har du",
         "green.2.1.a": "{result} omsorgsdager",
-        "green.2.1.b": "fra 1. januar {year} til 31. desember {year}",
-        "green.3.1": "Hvis du etter 1. januar {year} har brukt omsorgsdager, eller delt dager med en annen, må du trekke fra disse dagene selv.",
+        "green.2.1.b": "i {year}.",
+        "green.3.1": "Du må selv trekke fra dager som du allerede har brukt eller delt med en annen omsorgsperson.",
 
         "tilbake-til-omsorgspenger": "Tilbake til informasjonssiden for omsorgspenger"
     },
 
     "validation": {
-        "antallBarn.noValue": "Du må velge hvor mange egne barn har du i husstanden.",
+        "antallBarn.noValue": "Du må velge hvor mange egne barn som bor hos deg.",
         "barn.årFødt.noValue": "Du må svare på hvilket årstall barn {barnName} er født.",
-        "barn.kroniskSykt.yesOrNoIsUnanswered": "Då må svare på om du har fått ekstra omsorgsdager fordi barn {barnName} har en kronisk sykdom eller en funksjonshemning.",
+        "barn.kroniskSykt.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager fordi barn {barnName} har en kronisk/langvarig sykdom eller funksjonshemning som gir risiko for høyere fravær fra jobb.",
         "barn.borSammen.yesOrNoIsUnanswered": "Då må svare på om barn {barnName} bor fast hos deg.",
-        "barn.aleneOmOmsorgen.yesOrNoIsUnanswered": "Då må svare på om du er alene om omsorgen med barn {barnName}."
+        "barn.aleneOmOmsorgen.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager på grunn av aleneomsorg for barn {barnName}."
     }
 }

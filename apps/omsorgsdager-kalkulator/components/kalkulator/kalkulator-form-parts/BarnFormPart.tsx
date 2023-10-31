@@ -54,7 +54,12 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                         }}
                         description={
                             <ReadMore header={intlHelper(intl, 'barn.årFødt.readMore.title')}>
-                                <FormattedMessage id={'barn.årFødt.readMore'} />
+                                <BodyLong as="div" spacing>
+                                    <FormattedMessage id={'barn.årFødt.readMore.avsnitt1'} />
+                                </BodyLong>
+                                <BodyLong as="div">
+                                    <FormattedMessage id={'barn.årFødt.readMore.avsnitt2'} />
+                                </BodyLong>
                             </ReadMore>
                         }>
                         {[
@@ -92,7 +97,15 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                                     }}
                                     description={
                                         <ReadMore header={intlHelper(intl, 'barn.kroniskSykt.readMore.title')}>
-                                            <FormattedMessage id={'barn.kroniskSykt.readMore'} />
+                                            <BodyLong as="div" spacing>
+                                                <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt1" />
+                                            </BodyLong>
+                                            <BodyLong as="div" spacing>
+                                                <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2" />
+                                                <Link href={lenker.omsorgspengerEkstraDager} target="_blank">
+                                                    <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2.lenke" />
+                                                </Link>
+                                            </BodyLong>
                                         </ReadMore>
                                     }
                                 />
@@ -166,12 +179,22 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
 
                                                         <BodyLong as="div" spacing>
                                                             <FormattedMessage
-                                                                id={'barn.aleneOmOmsorgen.readMore.avsnitt.1'}
+                                                                id={'barn.aleneOmOmsorgen.readMore.avsnitt.2'}
                                                             />
                                                         </BodyLong>
-                                                        <Link href={lenker.fastBosted} target="_blank">
-                                                            <FormattedMessage id="barn.aleneOmOmsorgen.readMore.avsnitt.lenke" />
-                                                        </Link>
+                                                        <BodyLong as="div" spacing>
+                                                            <FormattedMessage
+                                                                id={'barn.aleneOmOmsorgen.readMore.avsnitt.3'}
+                                                            />
+                                                        </BodyLong>
+                                                        <BodyLong as="div" spacing>
+                                                            <FormattedMessage
+                                                                id={'barn.aleneOmOmsorgen.readMore.avsnitt.4'}
+                                                            />{' '}
+                                                            <Link href={lenker.fastBosted} target="_blank">
+                                                                <FormattedMessage id="barn.aleneOmOmsorgen.readMore.avsnitt.4.lenke" />
+                                                            </Link>
+                                                        </BodyLong>
                                                     </ReadMore>
                                                 }
                                             />
