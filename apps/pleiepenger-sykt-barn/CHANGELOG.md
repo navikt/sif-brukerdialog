@@ -1,5 +1,19 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.0.12
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.7
+    -   @navikt/sif-common-formik-ds@1.1.3
+    -   @navikt/sif-common-soknad-ds@10.7.7
+    -   @navikt/sif-common-forms-ds@8.9.7
+    -   @navikt/appstatus-react-ds@2.14.7
+    -   @navikt/sif-common-core-ds@9.8.7
+    -   @navikt/sif-common-sentry@0.22.5
+    -   @navikt/sif-common-utils@3.40.8
+
 ## 3.0.11
 
 ### Patch Changes
