@@ -82,69 +82,71 @@ const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFei
                         <>
                             <div className="mt-7">
                                 <YesOrNoQuestion
-                                    name={getFieldName(index, BarnFormFiels.kroniskSykt) as KlakulatorFormFields}
-                                    legend={intlHelper(intl, 'barn.kroniskSykt')}
+                                    name={getFieldName(index, BarnFormFiels.borSammen) as KlakulatorFormFields}
+                                    legend={intlHelper(intl, 'barn.borSammen')}
                                     validate={(value) => {
                                         const error = getYesOrNoValidator()(value);
 
                                         return error
                                             ? {
-                                                  key: 'validation.barn.kroniskSykt.yesOrNoIsUnanswered',
+                                                  key: 'validation.barn.borSammen.yesOrNoIsUnanswered',
                                                   values: { barnName },
                                                   keepKeyUnaltered: true,
                                               }
                                             : undefined;
                                     }}
                                     description={
-                                        <ReadMore header={intlHelper(intl, 'barn.kroniskSykt.readMore.title')}>
-                                            <BodyLong as="div" spacing>
-                                                <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt1" />
-                                            </BodyLong>
-                                            <BodyLong as="div" spacing>
-                                                <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2" />
-                                                <Link href={lenker.omsorgspengerEkstraDager} target="_blank">
-                                                    <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2.lenke" />
-                                                </Link>
-                                            </BodyLong>
+                                        <ReadMore header={intlHelper(intl, 'barn.borSammen.readMore.title')}>
+                                            <FormattedMessage id={'barn.borSammen.readMore'} />
                                         </ReadMore>
                                     }
                                 />
                             </div>
-                            {barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt(barn) && (
-                                <Alert variant="warning" className="my-7">
-                                    <FormattedMessage id={'barn.kroniskSykt.alert'} />
+                            {barn.borSammen === YesOrNo.NO && (
+                                <Alert variant="warning" className="mt-4">
+                                    <FormattedMessage id={'barn.borSammen.alert'} />
                                 </Alert>
                             )}
-                            {!barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt(barn) && (
+                            {barn.borSammen === YesOrNo.YES && (
                                 <>
                                     <div className="mt-7">
                                         <YesOrNoQuestion
-                                            name={getFieldName(index, BarnFormFiels.borSammen) as KlakulatorFormFields}
-                                            legend={intlHelper(intl, 'barn.borSammen')}
+                                            name={
+                                                getFieldName(index, BarnFormFiels.kroniskSykt) as KlakulatorFormFields
+                                            }
+                                            legend={intlHelper(intl, 'barn.kroniskSykt')}
                                             validate={(value) => {
                                                 const error = getYesOrNoValidator()(value);
 
                                                 return error
                                                     ? {
-                                                          key: 'validation.barn.borSammen.yesOrNoIsUnanswered',
+                                                          key: 'validation.barn.kroniskSykt.yesOrNoIsUnanswered',
                                                           values: { barnName },
                                                           keepKeyUnaltered: true,
                                                       }
                                                     : undefined;
                                             }}
                                             description={
-                                                <ReadMore header={intlHelper(intl, 'barn.borSammen.readMore.title')}>
-                                                    <FormattedMessage id={'barn.borSammen.readMore'} />
+                                                <ReadMore header={intlHelper(intl, 'barn.kroniskSykt.readMore.title')}>
+                                                    <BodyLong as="div" spacing>
+                                                        <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt1" />
+                                                    </BodyLong>
+                                                    <BodyLong as="div" spacing>
+                                                        <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2" />
+                                                        <Link href={lenker.omsorgspengerEkstraDager} target="_blank">
+                                                            <FormattedMessage id="barn.kroniskSykt.readMore.avsnitt2.lenke" />
+                                                        </Link>
+                                                    </BodyLong>
                                                 </ReadMore>
                                             }
                                         />
                                     </div>
-                                    {barn.borSammen === YesOrNo.NO && (
-                                        <Alert variant="warning" className="mt-4">
-                                            <FormattedMessage id={'barn.borSammen.alert'} />
+                                    {barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt(barn) && (
+                                        <Alert variant="warning" className="my-7">
+                                            <FormattedMessage id={'barn.kroniskSykt.alert'} />
                                         </Alert>
                                     )}
-                                    {barn.borSammen === YesOrNo.YES && (
+                                    {!barnetErForbiDetTolvteKalenderårOgIkkeKroniskSykt(barn) && (
                                         <div className="mt-7">
                                             <YesOrNoQuestion
                                                 name={

@@ -18,7 +18,7 @@
     "kalkulator": {
         "antallBarn": "Hvor mange av barna dine bor hos deg?",
         "antallBarn.readMore.title": "Hva menes med egne barn?",
-        "antallBarn.readMore": "Med egne barn menes biologiske barn, adoptivbarn og fosterbarn."
+        "antallBarn.readMore": "Med egne barn mener vi barn som du er juridisk forelder til og eventuelle fosterbarn som bor fast hos deg."
     },
 
     "barn": {
