@@ -39,7 +39,7 @@ const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string
     const maybeXRequestId: string | undefined = headers ? headers['x-request-id'] : undefined;
     const errorMsg: string | undefined = error?.message;
 
-    if (['0', '400', '401'].includes(`${error.response?.status || ''}`)) {
+    if (['0', '401'].includes(`${error.response?.status || ''}`)) {
         return;
     }
 

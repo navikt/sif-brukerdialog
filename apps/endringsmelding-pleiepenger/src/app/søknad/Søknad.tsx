@@ -37,9 +37,8 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.error) {
-        const { error } = initialData;
-        if (isAxiosError(error)) {
-            appSentryLogger.logApiError(error);
+        if (isAxiosError(initialData.error)) {
+            appSentryLogger.logApiError(initialData.error);
         } else {
             appSentryLogger.logError('Søknad.requestStatus', initialData.error);
         }
