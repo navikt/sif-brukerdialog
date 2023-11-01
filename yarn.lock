@@ -3618,7 +3618,6 @@ __metadata:
     react-intl: 6.5.1
     react-router-dom: 6.17.0
     react-scripts: 5.0.1
-    request: 2.88.2
     rimraf: 5.0.5
     sass: 1.69.5
     sass-loader: 13.3.2
