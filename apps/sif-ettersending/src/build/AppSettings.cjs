@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const getAppSettings = () => ({
     API_URL: `${process.env.API_URL}`,
     APP_VERSION: `${process.env.APP_VERSION}`,
