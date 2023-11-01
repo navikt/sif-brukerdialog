@@ -32,4 +32,4 @@ const startServer = async ({ html, server }) => {
     });
 };
 
-getDecoratorAndServer(getAppSettings(), __dirname, isDev).then(startServer);
+getDecoratorAndServer(getAppSettings(), __dirname, isDev, isDev).then(startServer);

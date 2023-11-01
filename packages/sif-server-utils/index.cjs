@@ -53,15 +53,23 @@ const renderApp = (decoratorFragments, server) =>
         });
     });
 
-const setupTokenX = async (isDev) => {
-    if (isDev) {
+const setupTokenX = async (skipTokenX) => {
+    if (skipTokenX) {
         return Promise.resolve();
     }
     return Promise.all([initTokenX()]);
 };
+/**
+ *
+ * @param { Object } AppSettings env variables used in decorator
+ * @param { string } dirName __dirname
+ * @param { boolean } useDevFiles if the server is to serve dev files
+ * @param { boolean } skipTokenX do not setup tokenx
+ * @returns
+ */
 
-const getDecoratorAndServer = async (AppSettings, dirName, isDev) => {
-    const server = getSifServer(dirName, isDev);
+const getDecoratorAndServer = async (AppSettings, dirName, useDevFiles, skipTokenX) => {
+    const server = getSifServer(dirName, useDevFiles);
     return getDecorator(AppSettings)
         .then(
             (decoratorFragments) => renderApp(decoratorFragments, server),
@@ -72,7 +80,7 @@ const getDecoratorAndServer = async (AppSettings, dirName, isDev) => {
         )
         .then(
             async (html) => {
-                await setupTokenX(isDev);
+                await setupTokenX(skipTokenX);
                 return {
                     html,
                     server,
@@ -82,7 +90,7 @@ const getDecoratorAndServer = async (AppSettings, dirName, isDev) => {
         );
 };
 
-const getSifServer = (dirname, isDev) => {
+const getSifServer = (dirname, useDistFolder) => {
     const server = express();
     server.use((_req, res, next) => {
         res.removeHeader('X-Powered-By');
@@ -96,7 +104,7 @@ const getSifServer = (dirname, isDev) => {
     server.use(compression());
     server.use(cookieParser());
     server.engine('html', mustacheExpress());
-    if (isDev) {
+    if (useDistFolder) {
         server.set('views', `${dirname}`);
     } else {
         server.set('views', `${dirname}/dist`);
