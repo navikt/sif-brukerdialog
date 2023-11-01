@@ -1,74 +1,24 @@
 /* eslint-disable no-console */
 const express = require('express');
 const path = require('path');
-const { createProxyMiddleware } = require('http-proxy-middleware');
-const RateLimit = require('express-rate-limit');
-const { getDecoratorAndServer } = require('@navikt/sif-server-utils');
+const { getDecoratorAndServer, setupViteDevServer, createApiUrlProxyMiddleware } = require('@navikt/sif-server-utils');
 const { getAppSettings } = require('./src/build/AppSettings.cjs');
+
+require('dotenv').config();
 
 const isDev = process.env.NODE_ENV === 'development';
 
-if (isDev) {
-    require('dotenv').config();
-}
 const startServer = async ({ html, server }) => {
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
 
     server.use(
         process.env.FRONTEND_API_PATH,
-        createProxyMiddleware({
-            target: process.env.API_URL,
-            changeOrigin: true,
-            pathRewrite: (path) => {
-                return path.replace(process.env.FRONTEND_API_PATH, '');
-            },
-            router: async (req) => getRouterConfig(req, false),
-            secure: true,
-            xfwd: true,
-            logLevel: 'info',
-        }),
+        createApiUrlProxyMiddleware(process.env.API_URL, process.env.FRONTEND_API_PATH, process.env.NAIS_CLIENT_ID),
     );
 
     if (isDev) {
-        const fs = require('fs');
-        fs.writeFileSync(path.resolve(__dirname, 'index-decorated.html'), html);
-        const vedleggMockStore = './dist/vedlegg';
-
-        if (!fs.existsSync(vedleggMockStore)) {
-            fs.mkdirSync(vedleggMockStore);
-        }
-
-        const vite = await require('vite').createServer({
-            root: __dirname,
-            server: {
-                middlewareMode: true,
-                port: 8080,
-                open: './index-decorated.html',
-            },
-        });
-
-        server.use(
-            '/api',
-            RateLimit({
-                windowMs: 15 * 60 * 1000, // 15 minutes
-                max: 500, // max 100 requests per windowMs
-                standardHeaders: 'draft-7',
-                legacyHeaders: false,
-            }),
-        );
-
-        server.get(/^\/(?!.*dist).*$/, (req, _res, next) => {
-            const fullPath = path.resolve(__dirname, decodeURIComponent(req.path.substring(1)));
-            const fileExists = fs.existsSync(fullPath);
-
-            if ((!fileExists && !req.url.startsWith('/@')) || req.url === '/') {
-                req.url = '/index-decorated.html';
-            }
-            next();
-        });
-
-        server.use(vite.middlewares);
+        setupViteDevServer(server, __dirname, html);
     } else {
         server.use(`${process.env.PUBLIC_PATH}/assets`, express.static(path.resolve(__dirname, 'dist/assets')));
         server.get(/^\/(?!.*api)(?!.*dist).*$/, (_req, res) => {
@@ -82,4 +32,4 @@ const startServer = async ({ html, server }) => {
     });
 };
 
-getDecoratorAndServer(getAppSettings(), __dirname).then(startServer);
+getDecoratorAndServer(getAppSettings(), __dirname, isDev).then(startServer);
