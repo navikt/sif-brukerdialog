@@ -17,15 +17,6 @@ const startServer = async ({ html, server }) => {
         createSifProxyMiddleware(process.env.API_URL, process.env.FRONTEND_API_PATH, process.env.NAIS_CLIENT_ID),
     );
 
-    server.use(
-        process.env.FRONTEND_INNSYN_API_PATH,
-        createSifProxyMiddleware(
-            process.env.API_URL_INNSYN,
-            process.env.FRONTEND_INNSYN_API_PATH,
-            process.env.NAIS_CLIENT_ID,
-        ),
-    );
-
     if (isDev) {
         setupViteDevServer(server, __dirname, html);
     } else {
@@ -41,4 +32,4 @@ const startServer = async ({ html, server }) => {
     });
 };
 
-getDecoratorAndServer(getAppSettings(), __dirname, isDev).then(startServer);
+getDecoratorAndServer(getAppSettings(), __dirname, isDev, isDev).then(startServer);
