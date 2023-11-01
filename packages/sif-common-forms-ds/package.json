@@ -4,7 +4,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-forms-ds",
     "types": "lib/index.d.js",
-    "version": "8.9.6",
+    "version": "8.9.7",
     "private": true,
     "dependencies": {
         "date-fns": "2.30.0"
@@ -35,7 +35,7 @@
         "@testing-library/react": "14.0.0",
         "@testing-library/user-event": "14.5.1",
         "@types/jest": "29.5.7",
-        "@types/node": "20.8.9",
+        "@types/node": "20.8.10",
         "@types/react": "18.2.33",
         "@types/react-dom": "18.2.14",
         "@types/react-responsive": "8.0.7",
