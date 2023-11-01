@@ -227,6 +227,8 @@ const virksomhetMessages = {
         'sifForms.virksomhet.regnskapsfører_spm': 'Har du rekneskapsførar?',
         'sifForms.virksomhet.regnskapsfører_navn': 'Gi opp namnet til rekneskapsføraren',
         'sifForms.virksomhet.regnskapsfører_telefon': 'Gi opp telefonnummeret til rekneskapsføraren',
+        'sifForms.virksomhet.regnskapsfører_telefon_info':
+            'Skriv inn telefonnummeret i stedet for å kopiere og lime det inn fra et annet sted.',
         'sifForms.virksomhet.veileder_innhenter_info.1':
             'Vi hentar inn opplysningar om verksemda og inntekta di frå offentlege register.',
         'sifForms.virksomhet.veileder_innhenter_info.2': 'Vi tek kontakt med deg dersom vi treng fleire opplysningar',
