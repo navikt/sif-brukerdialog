@@ -22,6 +22,7 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-server-utils": "workspace:*",
         "@testing-library/react": "14.0.0",
         "axios": "1.6.0",
         "busboy": "1.6.0",

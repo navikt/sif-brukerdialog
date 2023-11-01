@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-const express = require('express');
-const server = express();
-const path = require('path');
-const mustacheExpress = require('mustache-express');
-const getDecorator = require('./src/build/scripts/decorator.cjs');
+const AppSettings = require('./src/build/AppSettings.cjs');
 const compression = require('compression');
-
+const express = require('express');
+const { getDecoratorAndStart } = require('@navikt/sif-server-utils');
+const mustacheExpress = require('mustache-express');
+const path = require('path');
+const server = express();
 require('dotenv').config();
 
 server.use(express.json());
@@ -27,17 +27,6 @@ server.use((_req, res, next) => {
     next();
 });
 
-const renderApp = (decoratorFragments) =>
-    new Promise((resolve, reject) => {
-        server.render('index.html', decoratorFragments, (err, html) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(html);
-            }
-        });
-    });
-
 const startServer = async (html) => {
     server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (_req, res) => res.sendStatus(200));
     server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (_req, res) => res.sendStatus(200));
@@ -53,11 +42,4 @@ const startServer = async (html) => {
     });
 };
 
-const logError = (errorMessage, details) => console.log(errorMessage, details);
-
-getDecorator()
-    .then(renderApp, (error) => {
-        logError('Failed to get decorator', error);
-        process.exit(1);
-    })
-    .then(startServer, (error) => logError('Failed to render app', error));
+getDecoratorAndStart(AppSettings.getAppSettings(), server, startServer);
