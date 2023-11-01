@@ -121,7 +121,6 @@ const OppsummeringStep = () => {
                                 <OmSøkerOppsummering søker={søker} />
                                 <PleietrengendePersonSummary
                                     flereSøkere={apiData.flereSokere}
-                                    pleierDuDenSykeHjemme={apiData.pleierDuDenSykeHjemme}
                                     pleietrengende={apiData.pleietrengende}
                                     pleietrengendeId={pleietrengendeId}
                                 />
