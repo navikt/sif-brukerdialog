@@ -55,8 +55,7 @@ const Kalkulator = () => {
             setResultViewData(noValidChildrenOrange);
         }
 
-        const inkluderKoronadager = false;
-        const omsorgsprinsipper: Omsorgsprinsipper = beregnOmsorgsdager(mappedBarn, inkluderKoronadager);
+        const omsorgsprinsipper: Omsorgsprinsipper = beregnOmsorgsdager(mappedBarn);
         const sumDager: number = summerAntallOmsorgsdager(omsorgsprinsipper);
         if (sumDager === 0) {
             setResultViewData(noValidChildrenOrange);

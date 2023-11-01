@@ -29,14 +29,7 @@ export const includeChild = (barn: BarnKalkulator): boolean => !excludeChild(bar
 export const summerAntallOmsorgsdager = (result: Omsorgsprinsipper): number => {
     const { grunnrett, kroniskSykt, aleneomsorg, aleneomsorgKroniskSyke } = result;
     return (
-        grunnrett.normaldager +
-        kroniskSykt.normaldager +
-        aleneomsorg.normaldager +
-        aleneomsorgKroniskSyke.normaldager +
-        grunnrett.koronadager +
-        kroniskSykt.koronadager +
-        aleneomsorg.koronadager +
-        aleneomsorgKroniskSyke.koronadager
+        grunnrett.normaldager + kroniskSykt.normaldager + aleneomsorg.normaldager + aleneomsorgKroniskSyke.normaldager
     );
 };
 
