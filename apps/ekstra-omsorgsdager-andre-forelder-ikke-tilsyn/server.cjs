@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const path = require('path');
-const { getDecoratorAndServer, setupViteDevServer, createApiUrlProxyMiddleware } = require('@navikt/sif-server-utils');
+const { getDecoratorAndServer, setupViteDevServer, createSifProxyMiddleware } = require('@navikt/sif-server-utils');
 const { getAppSettings } = require('./src/build/AppSettings.cjs');
 
 require('dotenv').config();
@@ -14,7 +14,7 @@ const startServer = async ({ html, server }) => {
 
     server.use(
         process.env.FRONTEND_API_PATH,
-        createApiUrlProxyMiddleware(process.env.API_URL, process.env.FRONTEND_API_PATH, process.env.NAIS_CLIENT_ID),
+        createSifProxyMiddleware(process.env.API_URL, process.env.FRONTEND_API_PATH, process.env.NAIS_CLIENT_ID),
     );
 
     if (isDev) {

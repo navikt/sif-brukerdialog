@@ -10,7 +10,7 @@ const mustacheExpress = require('mustache-express');
 const path = require('path');
 const RateLimit = require('express-rate-limit');
 
-const isExpiredOrNotAuthorized = (token) => {
+const isTokenExpiredOrNotAuthorized = (token) => {
     if (token) {
         try {
             const exp = jose.decodeJwt(token).exp;
@@ -31,7 +31,7 @@ const getRouterConfig = async (NAIS_CLIENT_ID, req, audienceInnsyn) => {
     }
     if (req.headers['authorization'] !== undefined) {
         const token = req.headers['authorization'].replace('Bearer ', '');
-        if (isExpiredOrNotAuthorized(token)) {
+        if (isTokenExpiredOrNotAuthorized(token)) {
             return undefined;
         }
         const exchangedToken = await exchangeToken(token, audienceInnsyn);
@@ -59,36 +59,6 @@ const setupTokenX = async (skipTokenX) => {
     }
     return Promise.all([initTokenX()]);
 };
-/**
- *
- * @param { Object } AppSettings env variables used in decorator
- * @param { string } dirName __dirname
- * @param { boolean } useDevFiles if the server is to serve dev files
- * @param { boolean } skipTokenX do not setup tokenx
- * @returns
- */
-
-const getDecoratorAndServer = async (AppSettings, dirName, useDevFiles, skipTokenX) => {
-    const server = getSifServer(dirName, useDevFiles);
-    return getDecorator(AppSettings)
-        .then(
-            (decoratorFragments) => renderApp(decoratorFragments, server),
-            (error) => {
-                console.log('Failed to get decorator', error);
-                process.exit(1);
-            },
-        )
-        .then(
-            async (html) => {
-                await setupTokenX(skipTokenX);
-                return {
-                    html,
-                    server,
-                };
-            },
-            (error) => console.log('Failed to render app', error),
-        );
-};
 
 const getSifServer = (dirname, useDistFolder) => {
     const server = express();
@@ -104,6 +74,7 @@ const getSifServer = (dirname, useDistFolder) => {
     server.use(compression());
     server.use(cookieParser());
     server.engine('html', mustacheExpress());
+
     if (useDistFolder) {
         server.set('views', `${dirname}`);
     } else {
@@ -114,7 +85,7 @@ const getSifServer = (dirname, useDistFolder) => {
     return server;
 };
 
-const createApiUrlProxyMiddleware = (target, replacement, NAIS_CLIENT_ID) =>
+const createSifProxyMiddleware = (target, replacement, NAIS_CLIENT_ID) =>
     createProxyMiddleware({
         target,
         changeOrigin: true,
@@ -167,9 +138,40 @@ const setupViteDevServer = async (server, dirname, html) => {
 
     server.use(vite.middlewares);
 };
+
+/**
+ *
+ * @param { Object } AppSettings env variables used in decorator
+ * @param { string } dirName __dirname
+ * @param { boolean } useDevFiles if the server is to serve dev files
+ * @param { boolean } skipTokenX do not setup tokenx
+ * @returns
+ */
+
+const getDecoratorAndServer = async (AppSettings, dirName, useDevFiles, skipTokenX) => {
+    const server = getSifServer(dirName, useDevFiles);
+    return getDecorator(AppSettings)
+        .then(
+            (decoratorFragments) => renderApp(decoratorFragments, server),
+            (error) => {
+                console.log('Failed to get decorator', error);
+                process.exit(1);
+            },
+        )
+        .then(
+            async (html) => {
+                await setupTokenX(skipTokenX);
+                return {
+                    html,
+                    server,
+                };
+            },
+            (error) => console.log('Failed to render app', error),
+        );
+};
+
 module.exports = {
-    setupViteDevServer,
-    createApiUrlProxyMiddleware,
+    createSifProxyMiddleware,
     getDecoratorAndServer,
-    getRouterConfig,
+    setupViteDevServer,
 };
