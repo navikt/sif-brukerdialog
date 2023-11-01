@@ -18,6 +18,7 @@ FROM pruner AS server
 WORKDIR /apps/sif-ettersending
 COPY --from=pruner /app/node_modules ./node_modules/
 COPY --from=pruner /app/apps/sif-ettersending/server.cjs .
+COPY --from=pruner /app/apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/src/build/AppSettings.cjs ./src/build/AppSettings.cjs
 COPY --from=pruner /app/apps/sif-ettersending/package.json .
 COPY --from=pruner /app/apps/sif-ettersending/dist ./dist
 
