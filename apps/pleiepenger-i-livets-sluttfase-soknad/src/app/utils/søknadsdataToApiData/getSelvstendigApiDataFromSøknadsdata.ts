@@ -25,15 +25,13 @@ export const getSelvstendigApiDataFromSøknadsdata = (
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
             const arbeidsforhold: ArbeidsforholdApiData = {
                 jobberNormaltTimer,
-                arbeidIPeriode: arbeidIperiode
-                    ? getArbeidIPeriodeApiDataFromSøknadsdata(
-                          skalJobbeIPerioden,
-                          arbeidIperiode,
-                          søknadsperiode,
-                          jobberNormaltTimer,
-                          dagerMedPleie,
-                      )
-                    : undefined,
+                arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
+                    skalJobbeIPerioden,
+                    arbeidIperiode,
+                    søknadsperiode,
+                    jobberNormaltTimer,
+                    dagerMedPleie,
+                ),
             };
 
             return { virksomhet: virksomhetApi, arbeidsforhold };
