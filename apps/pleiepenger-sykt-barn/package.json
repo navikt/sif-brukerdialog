@@ -107,7 +107,6 @@
         "react-dom": "18.2.0",
         "react-intl": "6.5.1",
         "react-scripts": "5.0.1",
-        "request": "2.88.2",
         "sass": "1.69.5",
         "sass-loader": "13.3.2",
         "source-map-loader": "4.0.1",
