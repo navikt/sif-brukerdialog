@@ -156,7 +156,6 @@ const TidsromStep = () => {
                                                         </p>
                                                     </ExpandableInfo>
                                                 }
-                                                data-testid="pleierDuDenSykeHjemme.spm"
                                             />
                                         </FormBlock>
                                         {pleierDuDenSykeHjemme === YesOrNo.NO && (
@@ -174,7 +173,6 @@ const TidsromStep = () => {
                                                         legend={intlHelper(intl, 'steg.tidsrom.skalJobbeIPerioden.spm')}
                                                         name={TidsromFormFields.skalJobbeOgPleieSammeDag}
                                                         validate={getYesOrNoValidator()}
-                                                        data-testid="skalJobbeIPerioden.spm"
                                                         description={
                                                             <ExpandableInfo
                                                                 title={intlHelper(
@@ -202,7 +200,6 @@ const TidsromStep = () => {
                                                         legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
                                                         name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
                                                         validate={getYesOrNoValidator()}
-                                                        data-testid="iUtlandetIPerioden.spm"
                                                     />
                                                 </FormBlock>
                                                 {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (

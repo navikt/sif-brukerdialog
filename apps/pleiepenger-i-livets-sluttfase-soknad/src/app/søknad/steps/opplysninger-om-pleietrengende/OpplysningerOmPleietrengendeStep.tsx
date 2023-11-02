@@ -128,7 +128,6 @@ const OpplysningerOmPleietrengendeStep = () => {
                                         label={intlHelper(intl, 'step.opplysningerOmPleietrengende.spm.navn')}
                                         validate={getStringValidator({ required: true, maxLength: 50 })}
                                         style={{ maxWidth: '20rem' }}
-                                        data-testid="opplysningerOmPleietrengende.spm.navn"
                                     />
                                     <FormBlock>
                                         <TextField
@@ -149,7 +148,6 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             minLength={11}
                                             style={{ maxWidth: '20rem' }}
                                             disabled={harIkkeFnr}
-                                            data-testid="opplysningerOmPleietrengende.spm.fnr"
                                         />
                                         <Block margin="m">
                                             <Checkbox
@@ -177,7 +175,6 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                         );
                                                     }
                                                 }}
-                                                data-testid="opplysningerOmPleietrengende.fnr.harIkkeFnr"
                                             />
                                         </Block>
                                     </FormBlock>
@@ -201,7 +198,6 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                     maxDate={dateToday}
                                                     minDate={new Date('01.01.1900')}
                                                     dropdownCaption={true}
-                                                    data-testid="opplysningerOmPleietrengende.fødselsdato"
                                                 />
                                             </FormBlock>
                                             <FormBlock>
@@ -219,7 +215,6 @@ const OpplysningerOmPleietrengendeStep = () => {
                                                             `step.opplysningerOmPleietrengende.årsakManglerIdentitetsnummer.${årsak}`,
                                                         ),
                                                         value: årsak,
-                                                        'data-testid': `årsakManglerIdentitetsnummer.${årsak}`,
                                                     }))}
                                                     validate={getRequiredFieldValidator()}></RadioGroup>
                                             </FormBlock>
@@ -257,17 +252,14 @@ const OpplysningerOmPleietrengendeStep = () => {
                                             {
                                                 label: intlHelper(intl, `step.tidsrom.flereSokere.ja`),
                                                 value: YesOrNoDontKnow.YES,
-                                                'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_yes`,
                                             },
                                             {
                                                 label: intlHelper(intl, `step.tidsrom.flereSokere.nei`),
                                                 value: YesOrNoDontKnow.NO,
-                                                'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_no`,
                                             },
                                             {
                                                 label: intlHelper(intl, `step.tidsrom.flereSokere.usikker`),
                                                 value: YesOrNoDontKnow.DO_NOT_KNOW,
-                                                'data-testid': `steg.opplysningerOmPleietrengende.flereSokere.spm_usikker`,
                                             },
                                         ]}
                                     />
