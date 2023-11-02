@@ -125,6 +125,7 @@ export interface SøknadApiData {
     fraOgMed: ISODate;
     tilOgMed: ISODate;
     pleierDuDenSykeHjemme: boolean;
+    skalJobbeOgPleieSammeDag: boolean;
     flereSokere: FlereSokereApiData;
     utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApi;
     arbeidsgivere?: ArbeidsgiverApiData[];

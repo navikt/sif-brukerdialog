@@ -12,7 +12,7 @@ export const getSelvstendigApiDataFromSøknadsdata = (
     selvstendig?: ArbeidSelvstendigSøknadsdata,
     arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): SelvstendigNæringsdrivendeApiData | undefined => {
-    if (!selvstendig || !arbeidIperiode) {
+    if (!selvstendig) {
         return undefined;
     }
 
@@ -25,13 +25,15 @@ export const getSelvstendigApiDataFromSøknadsdata = (
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
             const arbeidsforhold: ArbeidsforholdApiData = {
                 jobberNormaltTimer,
-                arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                    skalJobbeIPerioden,
-                    arbeidIperiode,
-                    søknadsperiode,
-                    jobberNormaltTimer,
-                    dagerMedPleie,
-                ),
+                arbeidIPeriode: arbeidIperiode
+                    ? getArbeidIPeriodeApiDataFromSøknadsdata(
+                          skalJobbeIPerioden,
+                          arbeidIperiode,
+                          søknadsperiode,
+                          jobberNormaltTimer,
+                          dagerMedPleie,
+                      )
+                    : undefined,
             };
 
             return { virksomhet: virksomhetApi, arbeidsforhold };
