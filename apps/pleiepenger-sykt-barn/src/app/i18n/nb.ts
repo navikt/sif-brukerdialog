@@ -9,8 +9,6 @@ export const appMessagesNb = {
     'common.varighet.separator--full': ' og ',
     'common.varighet.separator--normal': ', ',
 
-    'common.fieldvalidation.ugyldigTall': 'Feltet må inneholde et gyldig tall',
-
     'application.title': 'Søknad om pleiepenger for sykt barn',
 
     Ja: 'Ja',
