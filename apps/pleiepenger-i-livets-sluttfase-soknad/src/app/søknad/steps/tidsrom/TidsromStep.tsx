@@ -37,7 +37,7 @@ import { Alert } from '@navikt/ds-react';
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
     pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
-    skalJobbeIPerioden = 'skalJobbeIPerioden',
+    skalJobbeOgPleieSammeDag = 'skalJobbeOgPleieSammeDag',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
     utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
 }
@@ -45,7 +45,7 @@ export enum TidsromFormFields {
 export interface TidsromFormValues {
     [TidsromFormFields.dagerMedPleie]?: Date[];
     [TidsromFormFields.pleierDuDenSykeHjemme]?: YesOrNo;
-    [TidsromFormFields.skalJobbeIPerioden]?: YesOrNo;
+    [TidsromFormFields.skalJobbeOgPleieSammeDag]?: YesOrNo;
     [TidsromFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
     [TidsromFormFields.utenlandsoppholdIPerioden]: Utenlandsopphold[];
 }
@@ -172,7 +172,7 @@ const TidsromStep = () => {
                                                 <FormBlock>
                                                     <YesOrNoQuestion
                                                         legend={intlHelper(intl, 'steg.tidsrom.skalJobbeIPerioden.spm')}
-                                                        name={TidsromFormFields.skalJobbeIPerioden}
+                                                        name={TidsromFormFields.skalJobbeOgPleieSammeDag}
                                                         validate={getYesOrNoValidator()}
                                                         data-testid="skalJobbeIPerioden.spm"
                                                         description={

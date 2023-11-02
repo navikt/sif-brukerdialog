@@ -25,6 +25,7 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
         'steg.oppsummering.pleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme?',
+        'steg.oppsummering.skalJobbeOgPleieSammeDag.header': 'Skal du gi pleie og jobbe på samme dag?',
 
         'steg.oppsummering.flereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
 
