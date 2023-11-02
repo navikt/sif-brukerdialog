@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 const { JSDOM } = require('jsdom');
 
-require('dotenv').config();
-
 const extractDecoratorFragments = (html, appSettings) => {
     const { document } = new JSDOM(html).window;
     const prop = 'innerHTML';
@@ -27,8 +25,8 @@ const decoratorParams = new URLSearchParams({
     simple: 'true',
 });
 
-const getDecorator = (appSettings) => {
-    return new Promise((resolve, reject) => {
+const getDecorator = (appSettings) =>
+    new Promise((resolve, reject) => {
         fetch(`${process.env.DEKORATOR_URL}`, decoratorParams)
             .then((response) => response.text())
             .then((html) => {
@@ -45,6 +43,5 @@ const getDecorator = (appSettings) => {
                 }
             });
     });
-};
 
 module.exports = getDecorator;
