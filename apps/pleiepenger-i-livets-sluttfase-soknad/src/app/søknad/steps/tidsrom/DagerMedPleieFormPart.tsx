@@ -38,16 +38,15 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
         <>
             <FormikInputGroup
                 name={TidsromFormFields.dagerMedPleie}
-                legend="Hvilke dager skal du være borte fra jobb for å pleie?"
+                legend="Hvilke dager skal du være hjemme fra jobb for å gi pleie?"
                 validate={(selectedDates: Date[]) => {
                     return selectedDates.length === 0 ? 'ingenDagerValgt' : undefined;
                 }}
                 description={
                     <Block margin="m">
                         <BodyLong>
-                            Velg dagene som du skal være borte fra jobb for å pleie i kalenderen nedenfor. Du kan klikke
-                            på et ukenummer for å velge alle eller ingen av dagene i den uken. Du kan ikke velge lørdag
-                            eller søndag.
+                            Velg dagene du skal gi pleie i kalenderen. Hvis du skal gi pleie gjennom en hel uke, er det
+                            lettest å klikke på ukenummeret du ser til venstre.
                         </BodyLong>
                     </Block>
                 }>
@@ -62,20 +61,6 @@ const DagerMedPleieFormPart: React.FunctionComponent<Props> = () => {
                     </Block>
                 </div>
 
-                {/* <Alert variant="info" inline={true}>
-                    {selectedDates.length === 0 ? (
-                        <>Ingen dager valgt</>
-                    ) : (
-                        <ExpandableInfo
-                            title={
-                                selectedDates.length === 1
-                                    ? `Vis hvilken dag som er valgt`
-                                    : `Vis liste over hvilke ${selectedDates.length} ${selectedDates.length} dager som er valgt`
-                            }>
-                            <ValgteDagerMedPleie dagerMedPleie={selectedDates} />
-                        </ExpandableInfo>
-                    )}
-                </Alert> */}
                 {selectedDates.length > 60 && (
                     <div>
                         <Block margin="l">

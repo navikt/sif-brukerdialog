@@ -4,7 +4,9 @@ import {
     DateRange,
     dateToday,
     dateToISODate,
+    decimalDurationToDuration,
     decimalDurationToISODuration,
+    Duration,
     durationToISODuration,
     DurationWeekdays,
     getDatesInDateRange,
@@ -59,6 +61,18 @@ export const getEnkeltdagerIPeriodeApiData = (
     });
 
     return dager.sort(sortTidEnkeltdagApiData);
+};
+
+export const getEnkeltdagerMedTidPerDag = (dagerMedPleie: Date[], tidPerDag: Duration): DateDurationMap => {
+    const enkeltdager: DateDurationMap = {};
+    dagerMedPleie.forEach((date) => {
+        enkeltdager[dateToISODate(date)] = tidPerDag;
+    });
+    return enkeltdager;
+};
+
+export const getNormalarbeidstidPerDag = (jobberNormaltTimer: number): Duration => {
+    return decimalDurationToDuration(jobberNormaltTimer / 5);
 };
 
 export const fjernTidUtenforPeriodeOgHelgedager = (

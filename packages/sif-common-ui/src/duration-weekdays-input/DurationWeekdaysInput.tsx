@@ -12,6 +12,11 @@ import React from 'react';
 import DurationWeekdaysWeek from './duration-weekdays-week/DurationWeekdaysWeek';
 import './durationWeekdaysInput.scss';
 
+export type DurationWeekdaysDateValidator = (
+    value: string | undefined,
+    date: Date,
+) => ValidationResult<ValidationError>;
+
 export interface DurationWeekdaysInputProps {
     dateRange: DateRange;
     disabledDates?: Date[];
@@ -19,7 +24,7 @@ export interface DurationWeekdaysInputProps {
     useAccordion?: boolean;
     accordionOpen?: boolean;
     renderMonthHeader?: (month: Date, enabledDatesInMonth: number) => React.ReactNode;
-    validateDate: (date: Date, value?: string) => ValidationResult<ValidationError>;
+    validateDate: DurationWeekdaysDateValidator;
 }
 
 const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps> = ({
@@ -54,7 +59,7 @@ const DurationWeekdaysInput: React.FunctionComponent<DurationWeekdaysInputProps>
                             disabledDates={disabledDates}
                             formikFieldName={formikFieldName}
                             headingLevel="3"
-                            validate={validateDate}
+                            validateDate={validateDate}
                         />
                     );
                 })}

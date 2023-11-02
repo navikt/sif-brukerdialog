@@ -31,7 +31,7 @@ const IdPartAttachmentList: React.FC<Props> = ({ wrapNoAttachmentsInBlock, inclu
     if (!containsAnyUploadedAttachments(idDokumenter)) {
         const noAttachmentsText = (
             <BodyShort>
-                <FormattedMessage id="vedleggsliste.ingenLegeerklæringLastetOpp" />
+                <FormattedMessage id="vedleggsliste.ingenDokumenter" />
             </BodyShort>
         );
         if (wrapNoAttachmentsInBlock) {

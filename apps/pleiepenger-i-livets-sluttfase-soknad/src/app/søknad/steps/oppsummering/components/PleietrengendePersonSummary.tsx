@@ -9,18 +9,12 @@ import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils/lib';
 import { FlereSokereApiData, PleietrengendeApi } from '../../../../types/søknadApiData/SøknadApiData';
 
 interface Props {
-    pleierDuDenSykeHjemme: boolean;
     pleietrengende: PleietrengendeApi;
     pleietrengendeId: Attachment[];
     flereSøkere: FlereSokereApiData;
 }
 
-const PleietrengendePersonSummary = ({
-    pleietrengende,
-    pleietrengendeId,
-    pleierDuDenSykeHjemme,
-    flereSøkere,
-}: Props) => {
+const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId, flereSøkere }: Props) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.pleietrengende.header')}>
@@ -68,9 +62,6 @@ const PleietrengendePersonSummary = ({
                         </Block>
                     </>
                 )}
-            </SummaryBlock>
-            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleierDuDenSykeHjemme.header')}>
-                <FormattedMessage id={pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
             </SummaryBlock>
             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
                 <FormattedMessage id={`steg.oppsummering.${flereSøkere}`} />

@@ -24,8 +24,7 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.søknadsperiode.header': 'Periode',
         'steg.oppsummering.tidsrom.fomtom': '{fom} - {tom}',
 
-        'steg.oppsummering.pleierDuDenSykeHjemme.header':
-            'Pleier du personen i et privat hjem i perioden du søker for?',
+        'steg.oppsummering.pleierDuDenSykeHjemme.header': 'Skal du pleie personen hjemme?',
 
         'steg.oppsummering.flereSokere.header': 'Er dere flere som skal dele på pleiepengene?',
 
@@ -35,9 +34,6 @@ export const oppsummeringMessages: MessageFileFormat = {
 
         'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Utenlandsopphold i perioden du søker for?',
         'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
-
-        'steg.oppsummering.ferieuttakIPerioden.header': 'Skal du ta ut ferie i perioden?',
-        'steg.oppsummering.ferieuttakIPerioden.listetittel': 'Ferieuttak i perioden',
 
         'steg.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
         'steg.oppsummering.vedlegg.header': 'Vedlegg',
@@ -90,7 +86,7 @@ export const oppsummeringMessages: MessageFileFormat = {
         'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',
         'oppsummering.arbeidIPeriode.jobbIPerioden': 'Jobb i søknadsperioden',
         'oppsummering.arbeidIPeriode.jobberIPerioden.ja': 'jobber',
-        'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke',
+        'oppsummering.arbeidIPeriode.jobberIPerioden.HELT_FRAVÆR': 'Jeg jobber ikke her de dagene jeg pleier',
         'oppsummering.arbeidIPeriode.jobberIPerioden.REDUSERT': 'Jeg kombinerer delvis jobb med pleiepenger',
         'oppsummering.arbeidIPeriode.jobberIPerioden.SOM_VANLIG': 'Jeg jobber som normalt, og har ikke fravær',
         'oppsummering.arbeidIPeriode.jobberIPerioden.liktHverUke': 'Jobber likt hver uke',
