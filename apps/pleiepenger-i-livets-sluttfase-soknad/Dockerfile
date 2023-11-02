@@ -17,11 +17,10 @@ RUN yarn turbo run build-app --filter=${SCOPE}
 FROM pruner AS server
 WORKDIR /apps/pleiepenger-i-livets-sluttfase-soknad
 COPY --from=pruner /app/node_modules ./node_modules/
-COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/envSettings.js .
-COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/server.js .
-COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/tokenx.js .
+COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/server.cjs .
+COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/tokenx.cjs .
 COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/package.json .
-COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/src/build/scripts/decorator.js ./src/build/scripts/decorator.js
+COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/src/build/scripts/decorator.cjs ./src/build/scripts/decorator.cjs
 COPY --from=pruner /app/apps/pleiepenger-i-livets-sluttfase-soknad/dist ./dist
 
 EXPOSE 8080

@@ -8,7 +8,7 @@ export const velkommenPageMessages: MessageFileFormat = {
         'page.velkommen.guide.tekst.1':
             'Denne søknaden bruker du når du må være borte fra jobb for å pleie og ta vare på en person som er i livets sluttfase.',
         'page.velkommen.guide.tekst.2':
-            'Den som er syk må pleies i et privat hjem, for eksempel hjemme hos deg eller hjemme hos den som er syk. Det er ikke rett til pleiepenger hvis den som er syk er innlagt på sykehus, eller en annen institusjon i perioden du søker for.',
+            'Den som er syk må pleies hjemme hos noen, vanligvis hjemme hos deg eller hos den som er syk.',
 
         'page.velkommen.omSøknaden.tittel': 'Om søknaden',
         'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',

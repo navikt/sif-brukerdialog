@@ -14,9 +14,9 @@ export const getIngenFraværConfirmationDialog = (props: Props): ConfirmationDia
                 Fravær fra jobb
             </Heading>
             <p>
-                Du har oppgitt at du jobber som normalt og ikke har fravær i perioden du søker for. For å ha rett til
+                Du har oppgitt at du jobber som normalt og ikke har fravær i dagene du søker for. For å ha rett til
                 pleiepenger må du ha fravær fra jobb fordi du pleier noen. Stemmer det at du ikke har fravær fra jobb i
-                perioden du søker for?
+                dagene du søker for?
             </p>
         </div>
     ),

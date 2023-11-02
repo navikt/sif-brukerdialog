@@ -8,7 +8,4 @@ export enum AppFieldValidationErrors {
     'utenlandsopphold_overlapper' = 'utenlandsopphold_overlapper',
     'utenlandsopphold_overlapper_samme_start_slutt' = 'utenlandsopphold_overlapper_samme_start_slutt',
     'utenlandsopphold_utenfor_periode' = 'utenlandsopphold_utenfor_periode',
-    'ferieuttak_ikke_registrert' = 'ferieuttak_ikke_registrert',
-    'ferieuttak_overlapper' = 'ferieuttak_overlapper',
-    'ferieuttak_utenfor_periode' = 'ferieuttak_utenfor_periode',
 }

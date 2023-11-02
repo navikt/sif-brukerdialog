@@ -61,22 +61,6 @@ export const appMessages: MessageFileFormat = {
         'step.sendButtonLabel': 'Send inn søknaden',
         'step.sendButtonAriaLabel': 'Send inn søknaden',
 
-        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': 'Hvordan vil du oppgi hvor mye du jobbet i perioden?',
-        'arbeidstidPeriodeForm.tidFasteDager.label': 'Fyll ut hvor mye du jobbet i uken i perioden:',
-        'arbeidstidPeriodeForm.prosent.label': 'Hvor mange prosent av din normale arbeidstid jobbet du i perioden?',
-        'arbeidstidPeriodeForm.validation.tidFasteDagerEllerProsent.noValue':
-            'Du må velge hvordan du ønsker å oppgi hvor mye du jobbet.',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasNoValue':
-            'Du må oppgi hvor mange prosent du jobbet i perioden.',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasInvalidFormat':
-            'Antall prosent du jobbet kan kun bestå av tall.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooSmall':
-            'Antall prosent du jobbet kan ikke være mindre enn {min}.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooLarge':
-            'Antall prosent du jobbet kan ikke være mer enn {max}.',
-        'arbeidstidPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
-            'Du må oppgi hvor mange timer du jobbet i uken.',
-
         'arbeidsforhold.turnus.info.tittel': 'Hvordan regner jeg ut et snitt av turnusen min?',
         'arbeidsforhold.turnus.info.tekst.1':
             'Du regner ut snittet ved å legge sammen antall timer du jobber totalt i hele turnusperioden din, og deler det med antall uker som turnusperioden din består av.',
@@ -150,23 +134,14 @@ export const appMessages: MessageFileFormat = {
         'step.arbeidstid.stepIndicatorLabel': 'Jobb i søknadsperioden',
         'step.arbeidstid.nextButtonLabel': 'Fortsett',
 
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1':
-            'Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie personen.',
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.2':
-            'Du kan derfor ikke registrere arbeid kun for lørdag og/eller søndag.',
-        'arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.3':
-            'Vennligst gå tilbake til steg "Perioden med pleiepenger" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på "Fortsett"-knappen for å gå videre.',
-
-        'arbeidIPeriode.StepInfo.1': 'Nå trenger vi å vite om du jobber noe i perioden du søker om å få pleiepenger.',
-        'arbeidIPeriode.StepInfo.2':
-            'Hvis du for eksempel pleier den som er syk en halv dag og jobber resten av dagen, bruker du også bare en halv dag med pleiepenger. De dagene du jobber fullt bruker du ikke av pleiepengedagene.',
+        'arbeidIPeriode.StepInfo.1':
+            'Du har fortalt oss at du skal jobbe noe de dagene du skal gi pleie. Så, nå må du legge inn i kalenderen hvor mye du skal jobbe.',
         'arbeidIPeriode.FrilansLabel': 'Frilans',
         'arbeidIPeriode.SNLabel': 'Selvstendig næringsdrivende',
-        'arbeidIPeriode.jobberIPerioden.spm': 'I perioden du søker for, hvilken situasjon gjelder for deg {hvor}?',
+        'arbeidIPeriode.jobberIPerioden.spm': 'I dagene du søker for, hvilken situasjon gjelder for deg {hvor}?',
         'arbeidIPeriode.enkeltdager_gruppe.legend':
-            'Oppgi hvor mye du arbeider {hvor} i de dagene du søker pleiepenger for.',
-        'arbeidIPeriode.ukedager.tittel': 'Fyll ut hvor mye du jobbet i uken {hvor} i perioden:',
-        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke',
+            'Oppgi hvor mye du jobber {hvor} i de dagene du søker pleiepenger for.',
+        'arbeidIPeriode.jobberIPerioden.jobberIkke': 'Jeg jobber ikke noe de dagene jeg pleier',
         'arbeidIPeriode.jobberIPerioden.jobberVanlig': 'Jeg jobber som normalt, og har ikke fravær',
         'arbeidIPeriode.jobberIPerioden.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
         'arbeidIPeriode.iDag.utledet': 'timer i uka',
@@ -183,34 +158,26 @@ export const appMessages: MessageFileFormat = {
             'Du må bekrefte at du har lest og forstått dine plikter.',
 
         'validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.',
+            'Du må svare ja eller nei på om du pleier personen hjemme.',
 
         'validation.flereSokere.noValue':
             'Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.',
 
         'validation.skalJobbeIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du skal jobbe på noen av dagene du skal pleie.',
+            'Du må svare ja eller nei på om du skal gi pleie og jobbe på samme dag, noen av dagene du skal gi pleie.',
 
         'validation.dagerMedPleie.ingenDagerValgt': 'Du må velge minst én dag med pleiepenger.',
 
         'validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for',
+            'Du må svare ja eller nei på om du oppholder deg i utlandet i noen av dagene du søker for.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert':
-            'Du har svart ja til at du oppholder deg i utlandet i perioden du søker for. Legg til minst ett utenlandsopphold.',
+            'Du har svart ja til at du oppholder deg i utlandet i noen av dagene du søker for. Legg til minst ett utenlandsopphold.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper':
             'Du har lagt inn utenlandsopphold med datoer som overlapper hverandre.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_utenfor_periode':
             'Du har lagt inn utenlandsopphold som er utenfor søknadsperioden.',
         'validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt':
             'Et utenlandsopphold kan ikke starte samme dag som et annet avsluttes.',
-
-        'validation.ferieuttakIPerioden.ferieuttak_ikke_registrert':
-            'Du har svart ja til at du skal ha ferie i perioden med pleiepenger. Legg til minst ett ferieuttak.',
-        'validation.ferieuttakIPerioden.ferieuttak_utenfor_periode':
-            'Du har lagt inn ferie som er utenfor søknadsperioden.',
-        'validation.ferieuttakIPerioden.ferieuttak_overlapper': 'Du har lagt inn ferier som overlapper hverandre.',
-        'validation.skalTaUtFerieIPerioden.yesOrNoIsUnanswered':
-            'Du må svare ja eller nei på om du skal ha ferie i perioden du søker for.',
 
         'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered':
             'Du må svare ja eller nei på om du er ansatt hos {navn} i perioden du søker pleiepenger.',
@@ -306,7 +273,7 @@ export const appMessages: MessageFileFormat = {
         'validation.arbeidIPeriode.timer.forMangeTimer':
             'Du har oppgitt for mange timer du jobber i uken {hvor} i perioden.',
         'validation.arbeidIPeriode.jobber':
-            'Du må svare på om hvilken situasjon gjelder for deg {hvor} i perioden du søker for.',
+            'Du må svare på hvilken situasjon som gjelder for deg {hvor} i dagene du søker for.',
         'validation.arbeidIPeriode.timerEllerProsent.noValue':
             'Du må svare på hvordan du ønsker å oppgi hvor mye du jobber {hvor} i perioden.',
         'validation.arbeidIPeriode_prosentUgyldig':

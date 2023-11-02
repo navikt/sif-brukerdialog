@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Page, expect } from '@playwright/test';
 import dayjs from 'dayjs';
 import locale from 'dayjs/locale/nb.js';
