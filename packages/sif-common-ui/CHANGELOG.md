@@ -1,5 +1,16 @@
 # @navikt/sif-common-ui
 
+## 0.0.12
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+-   Updated dependencies [5c44f78b]
+-   Updated dependencies [cb7e6653]
+    -   @navikt/sif-common-formik-ds@1.1.4
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-utils@3.40.9
+
 ## 0.0.11
 
 ### Patch Changes

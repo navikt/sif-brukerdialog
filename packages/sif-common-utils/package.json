@@ -4,7 +4,7 @@
     "main": "lib/index.js",
     "name": "@navikt/sif-common-utils",
     "types": "lib/index.d.js",
-    "version": "3.40.8",
+    "version": "3.40.9",
     "private": true,
     "dependencies": {
         "dayjs": "1.11.10",
@@ -18,7 +18,7 @@
         "@babel/preset-react": "7.22.15",
         "@types/jest": "29.5.7",
         "@types/node": "20.8.10",
-        "@types/react": "18.2.33",
+        "@types/react": "18.2.34",
         "@types/react-dom": "18.2.14",
         "@types/uuid": "9.0.6",
         "config": "workspace:*",
