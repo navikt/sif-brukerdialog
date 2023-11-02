@@ -45,15 +45,13 @@ export const getFrilansApiDataFromSøknadsdata = (
                 jobberFortsattSomFrilans: true,
                 arbeidsforhold: {
                     jobberNormaltTimer: frilans.jobberNormaltTimer,
-                    arbeidIPeriode: arbeidIPeriode
-                        ? getArbeidIPeriodeApiDataFromSøknadsdata(
-                              skalJobbeIPerioden,
-                              arbeidIPeriode,
-                              søknadsperiode,
-                              frilans.jobberNormaltTimer,
-                              dagerMedPleie,
-                          )
-                        : undefined,
+                    arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
+                        skalJobbeIPerioden,
+                        arbeidIPeriode,
+                        søknadsperiode,
+                        frilans.jobberNormaltTimer,
+                        dagerMedPleie,
+                    ),
                 },
             };
     }
