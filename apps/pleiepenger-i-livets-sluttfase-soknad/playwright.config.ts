@@ -19,18 +19,18 @@ export default defineConfig({
             use: { ...devices['Desktop Chrome'] },
         },
     ],
-    // webServer: {
-    //     command: 'yarn start-e2e-server',
-    //     url: 'http://localhost:8080',
-    //     env: {
-    //         DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
-    //         PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ettersending',
-    //         API_URL: 'http://localhost:8089',
-    //         FRONTEND_API_PATH: 'http://localhost:8089',
-    //         FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
-    //         VEDLEGG_API_URL: 'http://localhost:8089',
-    //         APPSTATUS_PROJECT_ID: 'ryujtq87',
-    //         APPSTATUS_DATASET: 'staging',
-    //     },
-    // },
+    webServer: {
+        command: 'yarn start-e2e-server',
+        url: 'http://localhost:8080',
+        env: {
+            DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
+            PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase',
+            API_URL: 'http://localhost:8089',
+            FRONTEND_API_PATH: 'http://localhost:8089',
+            FRONTEND_VEDLEGG_URL: 'http://localhost:8089',
+            VEDLEGG_API_URL: 'http://localhost:8089',
+            APPSTATUS_PROJECT_ID: 'ryujtq87',
+            APPSTATUS_DATASET: 'staging',
+        },
+    },
 });
