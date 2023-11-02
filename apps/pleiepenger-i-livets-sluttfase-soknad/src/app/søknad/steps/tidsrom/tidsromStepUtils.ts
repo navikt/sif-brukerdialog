@@ -67,7 +67,7 @@ export const validateUtenlandsoppholdIPerioden = (
 export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues): TidsromSøknadsdata | undefined => {
     const {
         dagerMedPleie,
-        skalJobbeIPerioden,
+        skalJobbeOgPleieSammeDag,
         pleierDuDenSykeHjemme,
         skalOppholdeSegIUtlandetIPerioden,
         utenlandsoppholdIPerioden,
@@ -84,7 +84,7 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
             søknadsperiode,
             dagerMedPleie,
             pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
-            skalJobbeIPerioden: skalJobbeIPerioden === YesOrNo.YES,
+            skalJobbeOgPleieSammeDag: skalJobbeOgPleieSammeDag === YesOrNo.YES,
             skalOppholdeSegIUtlandetIPerioden: false,
         };
     }
@@ -95,7 +95,7 @@ export const getTidsromSøknadsdataFromFormValues = (values: TidsromFormValues):
             søknadsperiode,
             dagerMedPleie,
             pleierDuDenSykeHjemme: pleierDuDenSykeHjemme === YesOrNo.YES,
-            skalJobbeIPerioden: skalJobbeIPerioden === YesOrNo.YES,
+            skalJobbeOgPleieSammeDag: skalJobbeOgPleieSammeDag === YesOrNo.YES,
             skalOppholdeSegIUtlandetIPerioden: true,
             utenlandsoppholdIPerioden,
         };
@@ -122,10 +122,10 @@ export const getTidsromStepInitialValues = (
 
     if (tidsrom) {
         const { dagerMedPleie } = tidsrom;
-        const skalJobbeIPerioden: YesOrNo | undefined =
-            tidsrom.skalJobbeIPerioden === undefined
+        const skalJobbeOgPleieSammeDag: YesOrNo | undefined =
+            tidsrom.skalJobbeOgPleieSammeDag === undefined
                 ? undefined
-                : tidsrom.skalJobbeIPerioden === true
+                : tidsrom.skalJobbeOgPleieSammeDag === true
                 ? YesOrNo.YES
                 : YesOrNo.NO;
         const pleierDuDenSykeHjemme = tidsrom.pleierDuDenSykeHjemme ? YesOrNo.YES : YesOrNo.NO;
@@ -134,7 +134,7 @@ export const getTidsromStepInitialValues = (
                 return {
                     ...defaultValues,
                     dagerMedPleie,
-                    skalJobbeIPerioden,
+                    skalJobbeOgPleieSammeDag,
                     pleierDuDenSykeHjemme,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.NO,
                 };
@@ -143,7 +143,7 @@ export const getTidsromStepInitialValues = (
                 return {
                     ...defaultValues,
                     dagerMedPleie,
-                    skalJobbeIPerioden,
+                    skalJobbeOgPleieSammeDag,
                     pleierDuDenSykeHjemme,
                     skalOppholdeSegIUtlandetIPerioden: YesOrNo.YES,
                     utenlandsoppholdIPerioden: tidsrom.utenlandsoppholdIPerioden,
