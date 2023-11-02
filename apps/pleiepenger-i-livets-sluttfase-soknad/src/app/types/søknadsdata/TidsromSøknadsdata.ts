@@ -5,7 +5,7 @@ interface BaseTidsrom {
     søknadsperiode: DateRange;
     dagerMedPleie: Date[];
     pleierDuDenSykeHjemme: boolean;
-    skalJobbeIPerioden: boolean;
+    skalJobbeOgPleieSammeDag: boolean;
 }
 
 interface TidsromUtenUtenlandsopphold extends BaseTidsrom {

@@ -37,7 +37,7 @@ import { Alert } from '@navikt/ds-react';
 export enum TidsromFormFields {
     dagerMedPleie = 'dagerMedPleie',
     pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
-    skalJobbeIPerioden = 'skalJobbeIPerioden',
+    skalJobbeOgPleieSammeDag = 'skalJobbeOgPleieSammeDag',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
     utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
 }
@@ -45,7 +45,7 @@ export enum TidsromFormFields {
 export interface TidsromFormValues {
     [TidsromFormFields.dagerMedPleie]?: Date[];
     [TidsromFormFields.pleierDuDenSykeHjemme]?: YesOrNo;
-    [TidsromFormFields.skalJobbeIPerioden]?: YesOrNo;
+    [TidsromFormFields.skalJobbeOgPleieSammeDag]?: YesOrNo;
     [TidsromFormFields.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
     [TidsromFormFields.utenlandsoppholdIPerioden]: Utenlandsopphold[];
 }
@@ -156,7 +156,6 @@ const TidsromStep = () => {
                                                         </p>
                                                     </ExpandableInfo>
                                                 }
-                                                data-testid="pleierDuDenSykeHjemme.spm"
                                             />
                                         </FormBlock>
                                         {pleierDuDenSykeHjemme === YesOrNo.NO && (
@@ -172,9 +171,8 @@ const TidsromStep = () => {
                                                 <FormBlock>
                                                     <YesOrNoQuestion
                                                         legend={intlHelper(intl, 'steg.tidsrom.skalJobbeIPerioden.spm')}
-                                                        name={TidsromFormFields.skalJobbeIPerioden}
+                                                        name={TidsromFormFields.skalJobbeOgPleieSammeDag}
                                                         validate={getYesOrNoValidator()}
-                                                        data-testid="skalJobbeIPerioden.spm"
                                                         description={
                                                             <ExpandableInfo
                                                                 title={intlHelper(
@@ -202,7 +200,6 @@ const TidsromStep = () => {
                                                         legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
                                                         name={TidsromFormFields.skalOppholdeSegIUtlandetIPerioden}
                                                         validate={getYesOrNoValidator()}
-                                                        data-testid="iUtlandetIPerioden.spm"
                                                     />
                                                 </FormBlock>
                                                 {skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
