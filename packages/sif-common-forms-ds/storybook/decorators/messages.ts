@@ -9,14 +9,11 @@ import annetBarnMessages from '../../src/forms/annet-barn/annetBarnMessages';
 import utenlandskNæringMessages from '../../src/forms/utenlandsk-næring/utenlandskNæringMessages';
 import opptjeningUtlandMessages from '../../src/forms/opptjening-utland/opptjeningUtlandMessages';
 
-const commonNb = require('@navikt/sif-common-core-ds/lib/i18n/common.nb.json');
-const commonNn = require('@navikt/sif-common-core-ds/lib/i18n/common.nn.json');
-const validationNb = require('@navikt/sif-common-core-ds/lib/i18n/validationErrors.nb.json');
-const validationNn = require('@navikt/sif-common-core-ds/lib/i18n/validationErrors.nn.json');
-
+import { commonMessagesNb } from '@navikt/sif-common-core-ds/lib/i18n/common.nb';
+import { validationErrorsNb } from '@navikt/sif-common-core-ds/lib/i18n/validationErrors.nb';
 const bokmålstekster = {
-    ...commonNb,
-    ...validationNb,
+    ...commonMessagesNb,
+    ...validationErrorsNb,
     ...bostedUtlandMessages.nb,
     ...fraværMessages.nb,
     ...ferieuttakMessages.nb,
@@ -27,24 +24,8 @@ const bokmålstekster = {
     ...annetBarnMessages.nb,
     ...utenlandskNæringMessages.nb,
     ...opptjeningUtlandMessages.nb,
-    'common.fieldvalidation.ugyldigTall': 'Ugyldig tall',
-};
-
-const nynorsktekster = {
-    ...commonNn,
-    ...validationNn,
-    ...bostedUtlandMessages.nn,
-    ...fraværMessages.nn,
-    ...ferieuttakMessages.nn,
-    ...fosterbarnMessages.nn,
-    ...utenlandsoppholdMessages.nn,
-    ...tidsperiodeMessages.nn,
-    ...virksomhetMessages.nn,
-    ...annetBarnMessages.nn,
-    'common.fieldvalidation.ugyldigTall': 'Ugyldig tall',
 };
 
 export const appMessages = {
     nb: bokmålstekster,
-    nn: nynorsktekster,
 };

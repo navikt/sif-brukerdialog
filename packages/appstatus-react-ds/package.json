@@ -13,10 +13,10 @@
         "@sanity/client": "6.7.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "5.8.0",
-        "@navikt/ds-react": "5.8.0",
+        "@navikt/ds-css": "5.9.1",
+        "@navikt/ds-react": "5.9.1",
         "@types/node": "20.8.10",
-        "@types/react": "18.2.33",
+        "@types/react": "18.2.34",
         "@types/react-dom": "18.2.14",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
