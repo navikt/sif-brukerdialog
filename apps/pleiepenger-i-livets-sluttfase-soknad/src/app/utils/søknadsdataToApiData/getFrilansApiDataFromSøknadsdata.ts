@@ -39,22 +39,22 @@ export const getFrilansApiDataFromSøknadsdata = (
             } else return undefined;
 
         case 'pågående':
-            if (arbeidIPeriode) {
-                return {
-                    harHattInntektSomFrilanser: true,
-                    startdato: frilans.startdato,
-                    jobberFortsattSomFrilans: true,
-                    arbeidsforhold: {
-                        jobberNormaltTimer: frilans.jobberNormaltTimer,
-                        arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                            skalJobbeIPerioden,
-                            arbeidIPeriode,
-                            søknadsperiode,
-                            frilans.jobberNormaltTimer,
-                            dagerMedPleie,
-                        ),
-                    },
-                };
-            } else return undefined;
+            return {
+                harHattInntektSomFrilanser: true,
+                startdato: frilans.startdato,
+                jobberFortsattSomFrilans: true,
+                arbeidsforhold: {
+                    jobberNormaltTimer: frilans.jobberNormaltTimer,
+                    arbeidIPeriode: arbeidIPeriode
+                        ? getArbeidIPeriodeApiDataFromSøknadsdata(
+                              skalJobbeIPerioden,
+                              arbeidIPeriode,
+                              søknadsperiode,
+                              frilans.jobberNormaltTimer,
+                              dagerMedPleie,
+                          )
+                        : undefined,
+                },
+            };
     }
 };
