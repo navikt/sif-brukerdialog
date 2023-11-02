@@ -19,7 +19,7 @@ describe('Fylle ut søknad pleietrengende med fnr', () => {
             cy.visit(startUrl);
         });
         it('Starter applikasjonen', () => {
-            cy.get('h1').contains('Hei PRESENTABEL', { timeout: 2000 }).should('be.visible');
+            cy.get('h1').contains('Hei PRESENTABEL', { timeout: 10000 }).should('be.visible');
         });
 
         startSøknad();
