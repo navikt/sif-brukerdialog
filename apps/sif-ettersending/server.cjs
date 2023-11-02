@@ -2,7 +2,8 @@
 const express = require('express');
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getDecorator = require('./src/build/scripts/decorator.cjs');
+const getDecorator = require('./src/build/decorator.cjs');
+const getAppSettings = require('./src/build/AppSettings.cjs');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const jose = require('jose');
@@ -169,7 +170,7 @@ const startServer = async (html) => {
     });
 };
 
-getDecorator()
+getDecorator(getAppSettings())
     .then(renderApp, (error) => {
         console.log(error);
         logError('Failed to get decorator', error);
