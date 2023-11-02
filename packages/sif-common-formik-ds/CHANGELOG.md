@@ -1,5 +1,12 @@
 # @navikt/sif-common-formik-ds
 
+## 1.1.4
+
+### Patch Changes
+
+-   5c44f78b: Legge til manglende default valideringstekst når tekst har ugyldig format
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
 ## 1.1.3
 
 ### Patch Changes
