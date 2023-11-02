@@ -68,7 +68,6 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                             </>
                         </ExpandableInfo>
                     }
-                    data-testid="harHattInntektSomSN"
                 />
             </Block>
             {harHattInntektSomSN === YesOrNo.YES && (
@@ -77,7 +76,6 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                         name={SelvstendigFormFields.harFlereVirksomheter}
                         legend={intlHelper(intl, 'selvstendig.harFlereVirksomheter.spm')}
                         validate={getYesOrNoValidator()}
-                        data-testid="selvstendig.harFlereVirksomheter"
                     />
 
                     {søkerHarFlereVirksomheter && (
@@ -122,7 +120,6 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: 
                                     description={<InfoJobberNormaltTimerSN />}
                                     validate={getJobberNormaltTimerValidator(intlValues)}
                                     value={jobberNormaltTimer ? jobberNormaltTimer || '' : ''}
-                                    data-testid="Selvstendig.jobberNormaltTimer"
                                 />
                             </FormBlock>
                         </FormBlock>

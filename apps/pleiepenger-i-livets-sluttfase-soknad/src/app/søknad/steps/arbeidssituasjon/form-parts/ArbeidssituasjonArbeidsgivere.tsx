@@ -37,7 +37,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, søknadsperiode,
         {ansatt_arbeidsforhold.length > 0 && (
             <>
                 {ansatt_arbeidsforhold.map((forhold, index) => (
-                    <FormBlock key={forhold.arbeidsgiver.id} data-testid="arbeidssituasjonAnsatt-liste">
+                    <FormBlock key={forhold.arbeidsgiver.id}>
                         <ArbeidssituasjonAnsatt
                             arbeidsforhold={forhold}
                             parentFieldName={`${parentFieldName}.${index}`}
