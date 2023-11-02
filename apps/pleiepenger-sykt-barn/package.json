@@ -25,9 +25,9 @@
     "dependencies": {
         "@formatjs/intl-pluralrules": "5.2.7",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-css": "5.9.0",
+        "@navikt/ds-css": "5.8.0",
         "@navikt/ds-icons": "3.4.3",
-        "@navikt/ds-react": "5.9.0",
+        "@navikt/ds-react": "5.8.0",
         "@navikt/fnrvalidator": "1.3.0",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-amplitude": "workspace:*",
