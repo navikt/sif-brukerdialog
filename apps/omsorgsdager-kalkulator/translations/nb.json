@@ -17,8 +17,8 @@
 
     "kalkulator": {
         "antallBarn": "Hvor mange av barna dine bor hos deg?",
-        "antallBarn.readMore.title": "Hva menes med egne barn?",
-        "antallBarn.readMore": "Med egne barn mener vi barn som du er juridisk forelder til og eventuelle fosterbarn som bor fast hos deg."
+        "antallBarn.readMore.title": "Hva betyr dette?",
+        "antallBarn.readMore": "Vi må vite hvor mange av barna dine som bor hos deg, det vil si barn som du er juridisk forelder til og eventuelle fosterbarn som bor fast hos deg."
     },
 
     "barn": {
@@ -66,7 +66,7 @@
     },
 
     "validation": {
-        "antallBarn.noValue": "Du må velge hvor mange egne barn som bor hos deg.",
+        "antallBarn.noValue": "Du må velge hvor mange barn som bor hos deg.",
         "barn.årFødt.noValue": "Du må svare på hvilket årstall {barnName} er født.",
         "barn.kroniskSykt.yesOrNoIsUnanswered": "Du må svare på om du har vedtak om ekstra omsorgsdager fordi {barnName} har en kronisk/langvarig sykdom eller funksjonshemning som gir risiko for høyere fravær fra jobb.",
         "barn.borSammen.yesOrNoIsUnanswered": "Då må svare på om {barnName} bor fast hos deg.",
