@@ -23,6 +23,7 @@
 
     "barn": {
         "tittel": "Opplysninger om {antall, plural, one {barnet} other {barna}}",
+        "panel.tittel": "Barn {barnNumber}",
         "årFødt": "Hvilket årstall er barnet født?",
         "årFødt.readMore.title": "Hvorfor spør vi om det?",
         "årFødt.readMore.avsnitt1": "Omsorgsdager gjelder i utgangspunktet ut kalenderåret barnet er 12 år.",

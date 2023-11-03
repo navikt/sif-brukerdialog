@@ -27,6 +27,7 @@ const { YesOrNoQuestion, Select } = getTypedFormComponents<
 
 const BarnFormPart: React.FC<Props> = ({ barn, index, antallBarn, valideringsFeil }: Props) => {
     const intl = useIntl();
+
     const getFieldName = (index: number, field: BarnFormFiels): string => {
         return `${KlakulatorFormFields.barn}.${index}.${field}`;
     };

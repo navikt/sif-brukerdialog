@@ -73,10 +73,10 @@ const Kalkulator = () => {
             onSubmit={(values) => {
                 return onValidSubmit(values);
             }}
-            renderForm={({ values: { barn = [] }, isValid, setFieldValue, setErrors }) => {
+            renderForm={({ values: { barn = [] }, status, setErrors, setFieldValue }) => {
                 const setBarn = (value: string) => {
                     const valueNumber = parseInt(value, 10);
-
+                    setErrors({});
                     setFieldValue(
                         KlakulatorFormFields.barn,
                         Array.from({ length: valueNumber }, (_, i) => i).map(() => {
@@ -89,7 +89,6 @@ const Kalkulator = () => {
                     <>
                         <FormikValuesObserver
                             onChange={() => {
-                                setErrors({});
                                 setResultViewData(empty);
                             }}
                         />
@@ -113,7 +112,7 @@ const Kalkulator = () => {
                                         index={index}
                                         antallBarn={barn.length}
                                         key={b.id}
-                                        valideringsFeil={!isValid}
+                                        valideringsFeil={status?.showErrors}
                                     />
                                 );
                             })}

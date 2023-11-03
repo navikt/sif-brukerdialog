@@ -9,15 +9,24 @@ interface Props {
     valideringsFeil?: boolean;
 }
 
-const BarnPanelView: React.FC<Props> = ({ id, index, length, children }: React.PropsWithChildren<Props>) => {
+const BarnPanelView: React.FC<Props> = ({
+    id,
+    index,
+    length,
+    children,
+    valideringsFeil,
+}: React.PropsWithChildren<Props>) => {
+    const [open, setOpen] = React.useState<boolean>(index === 0);
+
+    if (!open && valideringsFeil) {
+        setOpen(true);
+    }
     if (length === 1) {
         return <>{children}</>;
     }
 
-    const defaultOpen = index === 0 ? true : undefined;
-
     return (
-        <ExpansionCard aria-label="default-demo" defaultOpen={defaultOpen} id={id}>
+        <ExpansionCard aria-label="default-demo" id={id} open={open} onToggle={() => setOpen(!open)}>
             <ExpansionCard.Header>
                 <ExpansionCard.Title>Barn {index + 1}</ExpansionCard.Title>
             </ExpansionCard.Header>
