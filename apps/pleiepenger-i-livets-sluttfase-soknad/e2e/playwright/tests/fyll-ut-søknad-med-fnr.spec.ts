@@ -1,67 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
-import sinon from 'sinon';
-
-declare global {
-    interface Window {
-        __clock: sinon.SinonFakeTimers;
-    }
-}
+import { setNow } from '../utils/setNow';
+import { setupMockRoutes } from '../utils/setupMockRoutes';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
 
-// Pick the new/fake "now" for you test pages.
-const fakeNow = new Date('2023-10-04').valueOf();
-
-const initScript = `
-{
-    // Extend Date constructor to default to fakeNow
-    Date = class extends Date {
-      constructor(...args) {
-        if (args.length === 0) {
-          super(${fakeNow});
-        } else {
-          super(...args);
-        }
-      }
-    }
-    // Override Date.now() to start from fakeNow
-    const __DateNowOffset = ${fakeNow} - Date.now();
-    const __DateNow = Date.now;
-    Date.now = () => __DateNow() + __DateNowOffset;
-
-    console.log(new Date());
-  }
-`;
-
 test.beforeEach(async ({ page }) => {
-    // Update the Date accordingly in your test pages
-    await page.addInitScript(initScript);
-
-    await page.route('https://login.nav.no/**', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
-    await page.route('https://www.nav.no/person/nav-dekoratoren-api/auth', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
-    await page.route('**/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', async (route) => {
-        await route.fulfill({ status: 200, body: '{}' });
-    });
-    await page.route('**/oppslag/soker', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.søkerMock) });
-    });
-    await page.route('**/oppslag/arbeidsgiver**', async (route) => {
-        await route.fulfill({ status: 200, body: JSON.stringify(playwrightApiMockData.arbeidsgiverMock) });
-    });
-    await page.route('**/innsending', async (route) => {
-        await route.fulfill({ status: 200 });
-    });
+    await setNow(page);
+    await setupMockRoutes(page);
 });
 
 test('Søknad med fnr', async ({ page }) => {
-    // await page.addInitScript(initScript);
-
     await page.goto(startUrl);
 
     /** Velkommen side */
