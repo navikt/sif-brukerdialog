@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
-const express = require('express');
-const path = require('path');
-const mustacheExpress = require('mustache-express');
-const getDecorator = require('./src/build/scripts/decorator.cjs');
-const compression = require('compression');
-const cookieParser = require('cookie-parser');
-const jose = require('jose');
-const { v4: uuidv4 } = require('uuid');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { initTokenX, exchangeToken } = require('./tokenx.cjs');
+const { v4: uuidv4 } = require('uuid');
+const compression = require('compression');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const getAppSettings = require('./src/build/AppSettings.cjs');
+const getDecorator = require('./src/build/decorator.cjs');
+const jose = require('jose');
+const mustacheExpress = require('mustache-express');
+const path = require('path');
 const RateLimit = require('express-rate-limit');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -169,7 +170,7 @@ const startServer = async (html) => {
     });
 };
 
-getDecorator()
+getDecorator(getAppSettings())
     .then(renderApp, (error) => {
         console.log(error);
         logError('Failed to get decorator', error);

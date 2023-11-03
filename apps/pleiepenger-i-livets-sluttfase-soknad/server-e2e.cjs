@@ -3,7 +3,8 @@ const express = require('express');
 const server = express();
 const path = require('path');
 const mustacheExpress = require('mustache-express');
-const getDecorator = require('./src/build/scripts/decorator.cjs');
+const getAppSettings = require('./src/build/AppSettings.cjs');
+const getDecorator = require('./src/build/decorator.cjs');
 const compression = require('compression');
 
 require('dotenv').config();
@@ -55,7 +56,7 @@ const startServer = async (html) => {
 
 const logError = (errorMessage, details) => console.log(errorMessage, details);
 
-getDecorator()
+getDecorator(getAppSettings())
     .then(renderApp, (error) => {
         logError('Failed to get decorator', error);
         process.exit(1);
