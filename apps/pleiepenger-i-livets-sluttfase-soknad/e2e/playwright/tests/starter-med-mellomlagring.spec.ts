@@ -21,7 +21,5 @@ test('Starter med mellomlagring - info om den pleietrengende', async ({ page }) 
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
     await page.getByRole('button', { name: 'Neste', exact: true }).click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
-    await page.getByRole('button', { name: 'Neste', exact: true }).click();
     await expect(page).toHaveTitle('Oppsummering - Søknad om pleiepenger i livets sluttfase');
 });
