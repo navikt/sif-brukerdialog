@@ -114,7 +114,7 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                                                             <div className="flex justify-between" key={b.barnIndex}>
                                                                 <FormattedMessage
                                                                     id={'resultat-area.green.barnKroniskSyk'}
-                                                                    values={{ navn: b.barnIndex }}
+                                                                    values={{ navn: antallBarn > 1 ? b.barnIndex : '' }}
                                                                 />
                                                                 <span className="font-extrabold text-right">
                                                                     <FormattedMessage
