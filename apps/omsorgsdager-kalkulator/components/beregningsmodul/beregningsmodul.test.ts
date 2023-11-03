@@ -4,7 +4,7 @@ import {
     ALENEOMSORGDAGER_3_ELLER_FLERE_BARN,
     GRUNNRETTSDAGER_3_ELLER_FLER_BARN,
     beregnOmsorgsdager,
-} from './kalkulerOmsorgsdager';
+} from './beregningsmodul';
 import Barn, { AlderType } from './types/Barn';
 
 interface OmsorgsdagerExpected {
@@ -25,19 +25,19 @@ const assertOmsorgsdager = (
         aleneomsorgKroniskSykeExpected,
     }: OmsorgsdagerExpected,
 ) => {
-    const { grunnrett, aleneomsorg, kroniskSykt, aleneomsorgKroniskSyke } = beregnOmsorgsdager(barn);
+    const { grunnrett, aleneomsorg, kroniskSyktSumm, aleneomsorgKroniskSykeSumm } = beregnOmsorgsdager(barn);
 
     if (isNumber(grunnrettExpected)) {
-        expect(grunnrett.normaldager).toEqual(grunnrettExpected);
+        expect(grunnrett).toEqual(grunnrettExpected);
     }
     if (isNumber(aleneomsorgExpected)) {
-        expect(aleneomsorg.normaldager).toEqual(aleneomsorgExpected);
+        expect(aleneomsorg).toEqual(aleneomsorgExpected);
     }
     if (isNumber(kroniskSyktExpected)) {
-        expect(kroniskSykt.normaldager).toEqual(kroniskSyktExpected);
+        expect(kroniskSyktSumm).toEqual(kroniskSyktExpected);
     }
     if (isNumber(aleneomsorgKroniskSykeExpected)) {
-        expect(aleneomsorgKroniskSyke.normaldager).toEqual(aleneomsorgKroniskSykeExpected);
+        expect(aleneomsorgKroniskSykeSumm).toEqual(aleneomsorgKroniskSykeExpected);
     }
 };
 
@@ -49,14 +49,17 @@ describe('omsorgsdager', () => {
                 kroniskSykt: true,
                 alder: AlderType.UNDER12,
                 id: '1',
+                navn: 1,
             },
             {
                 alder: AlderType.UNDER12,
                 id: '2',
+                navn: 2,
             },
             {
                 alder: AlderType.UNDER12,
                 id: '3',
+                navn: 3,
             },
         ];
 
@@ -75,6 +78,7 @@ describe('omsorgsdager', () => {
                     alder: AlderType.OVER12,
                     søkerHarAleneomsorgFor: true,
                     id: '1',
+                    navn: 1,
                 },
             ];
 
@@ -88,6 +92,7 @@ describe('omsorgsdager', () => {
                     alder: AlderType.UNDER12,
                     søkerHarAleneomsorgFor: true,
                     id: '3',
+                    navn: 3,
                 },
             ];
 
@@ -103,6 +108,7 @@ describe('omsorgsdager', () => {
                     kroniskSykt: true,
                     søkerHarAleneomsorgFor: true,
                     id: '2',
+                    navn: 2,
                 },
             ];
 
@@ -117,16 +123,19 @@ describe('omsorgsdager', () => {
                     søkerHarAleneomsorgFor: true,
                     alder: AlderType.UNDER12,
                     id: '1',
+                    navn: 1,
                 },
                 {
                     søkerHarAleneomsorgFor: true,
                     alder: AlderType.UNDER12,
                     id: '2',
+                    navn: 2,
                 },
                 {
                     søkerHarAleneomsorgFor: true,
                     alder: AlderType.UNDER12,
                     id: '3',
+                    navn: 3,
                 },
             ];
 

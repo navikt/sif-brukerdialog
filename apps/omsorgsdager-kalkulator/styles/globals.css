@@ -16,3 +16,13 @@ a {
 * {
     box-sizing: border-box;
 }
+.subtle-card {
+    --ac-expansioncard-bg: var(--a-green-100);
+    --ac-expansioncard-border-open-color: var(--a-green-100);
+    --ac-expansioncard-border-color: var(--a-green-100);
+    --ac-expansioncard-border-hover-color: var(--a-green-100);
+}
+
+.customBox {
+    --__ac-box-background: var(--a-green-100);
+}

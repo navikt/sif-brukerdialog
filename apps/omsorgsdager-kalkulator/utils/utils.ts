@@ -1,5 +1,5 @@
-import Barn, { AlderType } from '../components/kalkulerOmsorgsdager/types/Barn';
-import Omsorgsprinsipper from '../components/kalkulerOmsorgsdager/types/Omsorgsprinsipper';
+import Barn, { AlderType } from '../components/beregningsmodul/types/Barn';
+import Omsorgsprinsipper from '../components/beregningsmodul/types/Omsorgsprinsipper';
 import { YesOrNo } from '../components/sif-formik/types';
 import { BarnKalkulator } from '../components/kalkulator/Kalkulator';
 import dayjs from 'dayjs';
@@ -27,10 +27,8 @@ export const excludeChild = (barn: BarnKalkulator): boolean =>
 export const includeChild = (barn: BarnKalkulator): boolean => !excludeChild(barn);
 
 export const summerAntallOmsorgsdager = (result: Omsorgsprinsipper): number => {
-    const { grunnrett, kroniskSykt, aleneomsorg, aleneomsorgKroniskSyke } = result;
-    return (
-        grunnrett.normaldager + kroniskSykt.normaldager + aleneomsorg.normaldager + aleneomsorgKroniskSyke.normaldager
-    );
+    const { grunnrett, kroniskSyktSumm, aleneomsorg, aleneomsorgKroniskSykeSumm } = result;
+    return grunnrett + kroniskSyktSumm + aleneomsorg + aleneomsorgKroniskSykeSumm;
 };
 
 export const mapBarnKalkulatorToBarn = (barn: BarnKalkulator[]): Barn[] => {
@@ -39,6 +37,7 @@ export const mapBarnKalkulatorToBarn = (barn: BarnKalkulator[]): Barn[] => {
     filtrertBarn.map((b) =>
         barnToBeregn.push({
             id: b.id,
+            navn: b.index,
             alder: årFødtToAlderType(b.årFødt),
             søkerHarAleneomsorgFor: b.aleneOmOmsorgen === YesOrNo.YES,
             kroniskSykt: b.kroniskSykt === YesOrNo.YES,

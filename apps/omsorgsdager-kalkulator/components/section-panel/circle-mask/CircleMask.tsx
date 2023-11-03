@@ -1,8 +1,6 @@
 import React, { CSSProperties } from 'react';
 import bemUtils from '../../../utils/bemUtils';
 
-// import './circleMask.scss';
-
 interface Props {
     active?: boolean;
     color?: string;

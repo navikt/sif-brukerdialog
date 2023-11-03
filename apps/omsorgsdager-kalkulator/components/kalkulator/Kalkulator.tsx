@@ -5,15 +5,20 @@ import { getTypedFormComponents } from '../sif-formik/getTypedFormComponents';
 import { ValidationError } from '../sif-formik/validation/types';
 import getIntlFormErrorHandler from '../sif-formik/validation/intlFormErrorHandler';
 import { mapBarnKalkulatorToBarn, summerAntallOmsorgsdager } from '../../utils/utils';
-import { beregnOmsorgsdager } from '../kalkulerOmsorgsdager/kalkulerOmsorgsdager';
+import { beregnOmsorgsdager } from '../beregningsmodul/beregningsmodul';
 import ResultatArea from '../result/ResultatArea';
 import { useState } from 'react';
 import { ResultView, empty, noValidChildrenOrange } from '../result/ResultView';
-import Omsorgsprinsipper from '../kalkulerOmsorgsdager/types/Omsorgsprinsipper';
+import Omsorgsprinsipper from '../beregningsmodul/types/Omsorgsprinsipper';
 import FormikValuesObserver from '../sif-formik/helpers/formik-values-observer/FormikValuesObserver';
 import BarnFormPart from './kalkulator-form-parts/BarnFormPart';
 import AntallBarnFormPart from './kalkulator-form-parts/AntallBarnFormPart';
 import { Heading } from '@navikt/ds-react';
+
+export type Result = {
+    sumDager: number;
+    omsorgsprinsipper: Omsorgsprinsipper;
+};
 
 export interface BarnKalkulator {
     årFødt: number;
@@ -21,6 +26,7 @@ export interface BarnKalkulator {
     borSammen?: YesOrNo;
     aleneOmOmsorgen?: YesOrNo;
     id: string;
+    index: number;
 }
 
 export enum BarnFormFiels {
@@ -29,6 +35,7 @@ export enum BarnFormFiels {
     borSammen = 'borSammen',
     aleneOmOmsorgen = 'aleneOmOmsorgen',
     id = 'id',
+    index = 'index',
 }
 
 export enum KlakulatorFormFields {
@@ -46,7 +53,7 @@ const { FormikWrapper, Form } = getTypedFormComponents<KlakulatorFormFields, Kla
 const Kalkulator = () => {
     const intl = useIntl();
 
-    const [resultViewData, setResultViewData] = useState<ResultView<number>>(empty);
+    const [resultViewData, setResultViewData] = useState<ResultView<Result>>(empty);
 
     const onValidSubmit = (values: Partial<KlakulatorFormValues>) => {
         const mappedBarn = values.barn ? mapBarnKalkulatorToBarn(values.barn) : [];
@@ -56,11 +63,15 @@ const Kalkulator = () => {
         }
 
         const omsorgsprinsipper: Omsorgsprinsipper = beregnOmsorgsdager(mappedBarn);
+
         const sumDager: number = summerAntallOmsorgsdager(omsorgsprinsipper);
         if (sumDager === 0) {
             setResultViewData(noValidChildrenOrange);
         } else {
-            setResultViewData({ _tag: 'ResultBox', result: sumDager });
+            setResultViewData({
+                _tag: 'ResultBox',
+                result: { sumDager: sumDager, omsorgsprinsipper: omsorgsprinsipper },
+            });
         }
     };
 
@@ -79,8 +90,8 @@ const Kalkulator = () => {
                     setErrors({});
                     setFieldValue(
                         KlakulatorFormFields.barn,
-                        Array.from({ length: valueNumber }, (_, i) => i).map(() => {
-                            return { id: uuid() };
+                        Array.from({ length: valueNumber }, (_, i) => i).map((index) => {
+                            return { id: uuid(), index: index + 1 };
                         }),
                     );
                 };

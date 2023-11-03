@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 import bemUtils from '../../utils/bemUtils';
 import CircleIllustration from './circle-illustration/CircleIllustration';
 import { Heading, HeadingProps, Panel } from '@navikt/ds-react';
-// import './sectionPanel.scss';
 
 const bem = bemUtils('sectionPanel');
 

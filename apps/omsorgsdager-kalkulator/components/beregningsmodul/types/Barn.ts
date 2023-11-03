@@ -8,6 +8,7 @@ interface Barn {
     alder?: AlderType;
     søkerHarAleneomsorgFor?: boolean;
     id: string;
+    navn: number;
 }
 
 export default Barn;
