@@ -52,6 +52,7 @@ test('Kan fylle ut informasjon om person som ikke har fødselsnummer eller D-num
     expect(
         await page.getByText('Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer: Annet').isVisible(),
     ).toBeTruthy();
+    expect(await page.getByText('Er dere flere som skal dele på pleiepengene?Nei').isVisible()).toBeTruthy();
 });
 
 test('Validering av navn', async ({ page }) => {
