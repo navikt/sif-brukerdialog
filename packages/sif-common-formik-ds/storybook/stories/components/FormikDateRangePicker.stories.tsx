@@ -27,8 +27,9 @@ const defaultProps: FormikDateRangePickerProps<any, any> = {
         label: 'To',
         name: 'to',
     },
-    minDate: new Date('2023-08-03'),
-    maxDate: new Date('2023-10-12'),
+    dropdownCaption: true,
+    minDate: new Date('2023-11-06'),
+    maxDate: new Date('2023-11-06'),
 };
 
 Default.args = {
