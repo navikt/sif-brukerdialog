@@ -176,7 +176,7 @@ const ArbeidIPeriodeSpørsmål = ({
                             if (jobberIPerioden === JobberIPeriodeSvar.redusert && skjulJobberNormaltValg === false) {
                                 if (durationToDecimalDuration(summarizeDateDurationMap(enkeltdager)) === 0) {
                                     return {
-                                        key: 'validation.arbeidIPeriode.ingenTidRegistrert',
+                                        key: 'arbeidIPeriode.validation.ingenTidRegistrert',
                                         values: intlValues,
                                         keepKeyUnaltered: true,
                                     };

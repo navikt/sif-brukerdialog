@@ -35,6 +35,7 @@ import {
 import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
 import { ArbeidsforholdType } from './form-parts/types';
+import intlHelper from '@navikt/sif-common-core-ds/lib/utils/intlUtils';
 
 export enum ArbeidsaktivitetType {
     arbeidstaker = 'arbeidstaker',
@@ -261,7 +262,10 @@ const ArbeidstidStep = () => {
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn="Frilansoppdrag"
+                                                    arbeidsstedNavn={intlHelper(
+                                                        intl,
+                                                        'arbeidIPeriode.arbeidstidSted.frilansoppdrag',
+                                                    )}
                                                     arbeidsforholdType={ArbeidsforholdType.FRILANSER}
                                                     arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
                                                     jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
@@ -284,7 +288,10 @@ const ArbeidstidStep = () => {
                                             </Heading>
                                             <Block>
                                                 <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn="Selvstendig næringsdrivende"
+                                                    arbeidsstedNavn={intlHelper(
+                                                        intl,
+                                                        'arbeidIPeriode.arbeidstidSted.sn',
+                                                    )}
                                                     arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}
