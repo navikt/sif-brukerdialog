@@ -1,5 +1,11 @@
 # @navikt/sif-common-formik-ds
 
+## 1.1.5
+
+### Patch Changes
+
+-   1d7c508f: Feilfiks når maks og min dato er på samme dag. Da ble undefined returnert, noe som igjen førte til at dropdownCaption ikke virket som forventet. Nå returneres alltid en min eller maks dato dersom dette er satt.
+
 ## 1.1.4
 
 ### Patch Changes
