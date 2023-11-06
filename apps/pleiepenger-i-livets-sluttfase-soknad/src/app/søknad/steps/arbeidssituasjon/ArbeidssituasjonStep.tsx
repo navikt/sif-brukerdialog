@@ -246,15 +246,15 @@ const ArbeidssituasjonStep = () => {
                                                     labels={{
                                                         addLabel: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp',
-                                                        ),
-                                                        modalTitle: intlHelper(
-                                                            intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel',
+                                                            'steg.arbeidssituasjon.utenlandskNæring.addLabel',
                                                         ),
                                                         listTitle: intlHelper(
                                                             intl,
                                                             'steg.arbeidssituasjon.utenlandskNæring.listTitle',
+                                                        ),
+                                                        modalTitle: intlHelper(
+                                                            intl,
+                                                            'steg.arbeidssituasjon.utenlandskNæring.modalTitle',
                                                         ),
                                                     }}
                                                 />

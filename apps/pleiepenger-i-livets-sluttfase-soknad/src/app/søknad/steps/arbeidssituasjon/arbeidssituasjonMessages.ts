@@ -43,10 +43,9 @@ export const arbeidssituasjonMessages: MessageFileFormat = {
 
         'steg.arbeidssituasjon.utenlandskNæring.spm':
             'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel': 'Virksomhet',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp':
-            'Legg til næringsvirksomhet i et annet EØS-land',
-        'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel': 'Virksomhet',
+
+        'steg.arbeidssituasjon.utenlandskNæring.addLabel': 'Legg til næringsvirksomhet i et annet EØS-land',
+        'steg.arbeidssituasjon.utenlandskNæring.modalTitle': 'Virksomhet',
         'steg.arbeidssituasjon.utenlandskNæring.listTitle': 'Næringsvirksomhet i et annet EØS-land',
 
         'arbeidsforhold.part.jobber': 'jobber',
