@@ -33,7 +33,8 @@ export const oppsummeringMessages: MessageFileFormat = {
         'steg.oppsummering.NEI': 'Nei',
         'steg.oppsummering.USIKKER': 'Usikker',
 
-        'steg.oppsummering.utenlandsoppholdIPerioden.header': 'Utenlandsopphold i perioden du søker for?',
+        'steg.oppsummering.utenlandsoppholdIPerioden.header':
+            'Oppholder du deg i utlandet i noen av dagene du søker for?',
         'steg.oppsummering.utenlandsoppholdIPerioden.listetittel': 'Utenlandsopphold i perioden',
 
         'steg.oppsummering.arbeidssituasjon.header': 'Din arbeidssituasjon',
@@ -77,11 +78,12 @@ export const oppsummeringMessages: MessageFileFormat = {
         'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig':
             'Utøvde ikke verneplikt på tidspunktet det søkes pleiepenger fra',
 
-        'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel': 'Jobbet i annet EØS-land',
+        'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel':
+            'Har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden en søker om',
         'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei': 'Nei',
 
         'oppsummering.arbeidssituasjon.utenlandskNæring.listetittel':
-            'Jobbet som selvstendig næringsdrivende i et annet EØS-land',
+            'Har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden en søker om',
         'oppsummering.arbeidssituasjon.utenlandskNæring.nei': 'Nei',
 
         'oppsummering.arbeidIPeriode.jobbIPerioden.header': 'Jobb i søknadsperioden',

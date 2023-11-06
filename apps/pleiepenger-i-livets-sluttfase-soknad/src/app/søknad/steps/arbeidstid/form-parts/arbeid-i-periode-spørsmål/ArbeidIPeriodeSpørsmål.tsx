@@ -117,7 +117,7 @@ const ArbeidIPeriodeSpørsmål = ({
         return (
             <HStack gap="4" align="center">
                 <div style={{ minWidth: '10rem' }} className="capitalize">
-                    {dayjs(month).format('MMMM YYYY')}
+                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
                 </div>
                 {numDatesInMonthWithDuration > 0 && (
                     <Tag variant="info" size="small">
@@ -134,8 +134,8 @@ const ArbeidIPeriodeSpørsmål = ({
 
         return (
             <>
-                <Heading size="small" level="4" className="capitalize" spacing={true}>
-                    {dayjs(month).format('MMMM YYYY')}
+                <Heading size="small" level="4" spacing={true}>
+                    Timer med jobb {dayjs(month).format('MMMM YYYY')}
                 </Heading>
                 {1 + 1 === 3 && (
                     <>
