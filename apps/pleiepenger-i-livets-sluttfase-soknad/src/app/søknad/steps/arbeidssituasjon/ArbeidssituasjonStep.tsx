@@ -237,23 +237,15 @@ const ArbeidssituasjonStep = () => {
                                                     labels={{
                                                         addLabel: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp',
+                                                            'steg.arbeidssituasjon.utenlandskNæring.addLabel',
                                                         ),
-                                                        deleteLabel: intlHelper(
+                                                        listTitle: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp',
-                                                        ),
-                                                        editLabel: intlHelper(
-                                                            intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp',
-                                                        ),
-                                                        infoTitle: intlHelper(
-                                                            intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel',
+                                                            'steg.arbeidssituasjon.utenlandskNæring.listTitle',
                                                         ),
                                                         modalTitle: intlHelper(
                                                             intl,
-                                                            'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel',
+                                                            'steg.arbeidssituasjon.utenlandskNæring.modalTitle',
                                                         ),
                                                     }}
                                                 />

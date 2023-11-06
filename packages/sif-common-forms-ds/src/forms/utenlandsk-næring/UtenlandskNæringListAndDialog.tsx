@@ -1,6 +1,6 @@
 import {
     FormikModalFormAndList,
-    ModalFormAndInfoLabels,
+    ModalFormAndListLabels,
     TypedFormInputValidationProps,
 } from '@navikt/sif-common-formik-ds';
 import { ValidationError } from '@navikt/sif-common-formik-ds/lib/validation/types';
@@ -10,7 +10,7 @@ import UtenlandskNæringList from './UtenlandskNæringList';
 
 interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, ValidationError> {
     name: FieldNames;
-    labels: ModalFormAndInfoLabels;
+    labels: ModalFormAndListLabels;
 }
 
 function UtenlandskNæringListAndDialog<FieldNames>({ name, labels, validate }: Props<FieldNames>) {
