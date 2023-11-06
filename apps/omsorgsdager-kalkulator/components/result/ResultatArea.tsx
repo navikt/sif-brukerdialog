@@ -22,7 +22,9 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                 <Box borderRadius="large" padding={'5'} background="surface-warning-moderate" className="mb-3">
                     <Heading level="3" size="medium">
                         <FormattedMessage id={'resultat-area.green.2.1.a'} values={{ result: 0 }} />{' '}
-                        <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
+                        <span className="font-normal">
+                            <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
+                        </span>
                     </Heading>
                 </Box>
                 <BodyLong className="pt-4 pb-9 text-justify" size="small">
@@ -49,7 +51,9 @@ const ResultatArea: React.FC<Props> = ({ resultView }: Props) => {
                                         id={'resultat-area.green.2.1.a'}
                                         values={{ result: result.sumDager }}
                                     />{' '}
-                                    <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
+                                    <span className="font-normal">
+                                        <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
+                                    </span>
                                 </Heading>
                             </Box>
 

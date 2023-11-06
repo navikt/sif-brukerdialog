@@ -54,7 +54,7 @@ const ResultBox: React.FC<Props> = ({ type, children }: PropsWithChildren<Props>
                             {type === 'SUCCESS' && <SvgChild />}
                             {type === 'WARNING' && <SvgChildSad />}
 
-                            <div className="pt-3 pl-9">
+                            <div className="pt-3 pl-4 sm:pl-9">
                                 <Heading level="2" size="medium">
                                     <FormattedMessage id={'resultat-area.title'} />
                                 </Heading>
