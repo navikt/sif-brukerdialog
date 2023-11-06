@@ -1,5 +1,42 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 3.1.1
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+-   5c44f78b: Fjerne ubrukt tekst
+-   Updated dependencies [5c44f78b]
+-   Updated dependencies [5c44f78b]
+-   Updated dependencies [cb7e6653]
+    -   @navikt/sif-common-forms-ds@8.10.0
+    -   @navikt/sif-common-formik-ds@1.1.4
+    -   @navikt/sif-common-amplitude@2.21.8
+    -   @navikt/sif-common-soknad-ds@10.7.8
+    -   @navikt/appstatus-react-ds@2.14.8
+    -   @navikt/sif-common-core-ds@9.8.8
+    -   @navikt/sif-common-utils@3.40.9
+
+## 3.1.0
+
+### Minor Changes
+
+-   Legge til logging til aplitude når vedlegg lastes opp. Antall feilet og antall med suksess.
+
+## 3.0.12
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @navikt/sif-common-amplitude@2.21.7
+    -   @navikt/sif-common-formik-ds@1.1.3
+    -   @navikt/sif-common-soknad-ds@10.7.7
+    -   @navikt/sif-common-forms-ds@8.9.7
+    -   @navikt/appstatus-react-ds@2.14.7
+    -   @navikt/sif-common-core-ds@9.8.7
+    -   @navikt/sif-common-sentry@0.22.5
+    -   @navikt/sif-common-utils@3.40.8
+
 ## 3.0.11
 
 ### Patch Changes

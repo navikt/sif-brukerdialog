@@ -1,5 +1,17 @@
 # @navikt/appstatus-react-ds
 
+## 2.14.8
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 2.14.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 2.14.6
 
 ### Patch Changes

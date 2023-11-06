@@ -1,5 +1,21 @@
 # @navikt/sif-common-forms-ds
 
+## 8.10.0
+
+### Minor Changes
+
+-   5c44f78b: Bytte regexp på telefonnummer til regnskapsfører, som nå tillater kun + space og tall. Noen tekstendringer.
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 8.9.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 8.9.6
 
 ### Patch Changes

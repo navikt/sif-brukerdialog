@@ -8,7 +8,7 @@ export const legeerklæringMessages: MessageFileFormat = {
         'step.legeerklæring.nextButtonLabel': 'Fortsett',
 
         'step.legeerklæring.counsellorPanel.info':
-            'Søker du for første gang må du laste opp en legeerklæring, som bekrefter at personen er i livets sluttfase. Vi trenger kun én legeerklæring. Det vil si at hvis du eller en annen søker allerede har sendt en slik legeerklæring, kan du bare gå videre uten å laste opp noe.',
+            'Her skal du laste opp en legeerklæring som bekrefter at personen er i livets sluttfase. Du kan hoppe over dette hvis du eller en annen allerede har lastet opp en slik erklæring.',
 
         'step.legeerklæring.vedlegg.knappLabel': 'Last opp legeerklæringen',
 

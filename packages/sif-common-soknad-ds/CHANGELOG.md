@@ -1,5 +1,17 @@
 # @navikt/sif-common-soknad-ds
 
+## 10.7.8
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 10.7.7
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 10.7.6
 
 ### Patch Changes

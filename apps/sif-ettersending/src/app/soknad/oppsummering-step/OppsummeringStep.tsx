@@ -49,9 +49,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker }: Props) => {
             buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
             <SifGuidePanel>
-                <p>
-                    <FormattedMessage id="steg.oppsummering.info" />
-                </p>
+                <FormattedMessage id="steg.oppsummering.info" />
             </SifGuidePanel>
             <Block margin="xl">
                 <div data-testid="oppsummering">

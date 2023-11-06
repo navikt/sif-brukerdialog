@@ -18,7 +18,7 @@ export const arbeidssituasjonMessages: MessageFileFormat = {
         'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
             'Vi har ikke funnet noen arbeidsgivere registrert på deg i AA-registeret.',
         'steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver':
-            'Hvis du i perioden du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
+            'Hvis du i noen av dagene du søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
         'steg.arbeidssituasjon.info.tekst':
             'Hvis det mangler en arbeidsgiver her, må du be arbeidsgiveren din sende ny A-melding, enten via lønns- og personalsystemet eller gjennom Altinn.',
         'steg.arbeidssituasjon.ingenOpplysninger': 'Vi har ikke funnet noen arbeidsgiver registrert på deg.',

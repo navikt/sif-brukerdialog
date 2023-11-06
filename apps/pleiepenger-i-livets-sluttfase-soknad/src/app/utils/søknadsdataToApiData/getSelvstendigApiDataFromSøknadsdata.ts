@@ -12,7 +12,7 @@ export const getSelvstendigApiDataFromSøknadsdata = (
     selvstendig?: ArbeidSelvstendigSøknadsdata,
     arbeidIperiode?: ArbeidIPeriodeSøknadsdata,
 ): SelvstendigNæringsdrivendeApiData | undefined => {
-    if (!selvstendig || !arbeidIperiode) {
+    if (!selvstendig) {
         return undefined;
     }
 

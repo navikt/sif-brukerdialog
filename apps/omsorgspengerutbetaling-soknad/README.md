@@ -14,8 +14,6 @@ For å kjøre enhetstester:
 
 1.  `yarn test`.
 
-For å kjøre cypress tester:
+For å kjøre Playwright tester:
 
-1. `yarn dev-api` i en terminal.
-2. `yarn snd` i en annen terminal.
-3. `yarn cypress-open` i en tredje terminal.
+1. `yarn playwright test`.

@@ -1,5 +1,17 @@
 # @navikt/sif-common-utils
 
+## 3.40.9
+
+### Patch Changes
+
+-   cb7e6653: Oppdatere ds pakker etter at versjon 5.9.1 hadde feil. Fikset i v. 5.9.2
+
+## 3.40.8
+
+### Patch Changes
+
+-   Pakkeoppdateringer
+
 ## 3.40.7
 
 ### Patch Changes
