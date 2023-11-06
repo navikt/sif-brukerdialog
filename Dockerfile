@@ -13,6 +13,7 @@ COPY /node_modules/compression /node_modules/compression
 COPY /node_modules/cookie-parser /node_modules/cookie-parser
 COPY /node_modules/uuid /node_modules/uuid
 COPY /node_modules/http-proxy-middleware /node_modules/http-proxy-middleware
+COPY /node_modules/body-parser /node_modules/body-parser
 
 # Local files
 COPY /apps/${APP_NAME}/server.cjs .
